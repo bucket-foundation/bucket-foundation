@@ -14,3 +14,10 @@
 ### Steps
 ## Mint Royalty
 ### Steps
+
+# Backend
+## Walrus
+### Aggregator
+https://walrus.publisher.agfarms.dev
+### Publisher
+https://walrus.aggregator.agfarms.dev
