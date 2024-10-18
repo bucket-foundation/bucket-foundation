@@ -18,6 +18,17 @@
 # Backend
 ## Walrus
 ### Aggregator
-https://walrus.publisher.agfarms.dev
-### Publisher
+endpoint:
 https://walrus.aggregator.agfarms.dev
+
+example usage with curl:
+curl "https://walrus.aggregator.agfarms.dev/v1/<some blob ID>" -o <some file name>
+
+### Publisher
+endpoint:
+https://walrus.publisher.agfarms.dev
+
+example usage with curl: 
+curl -X PUT "https://walrus.publisher.agfarms.dev/v1/store" -d "some string"
+curl -X PUT "https://walrus.publisher.agfarms.dev/v1/store?epochs=5" --upload-file "some/file"
+
