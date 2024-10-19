@@ -4,6 +4,7 @@ import { CurrencyAddress, RPCProviderUrl, SPGNFTContractAddress } from './utils/
 import { privateKeyToAccount, Account, Address } from 'viem/accounts'
 import { uploadJSONToWalrus } from './utils/uploadToWalrus'
 import { createHash } from 'crypto'
+import { toHex } from 'viem';
 
 export interface publishIPAssetProps {
   title: string;
@@ -51,24 +52,33 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
   const meta = await uploadJSONToWalrus(ipMetadata);
   metaId = meta.newlyCreated?.blobId ?? meta.alreadyCertified?.blobId ?? null;
 
-  const ipHash = createHash('sha256').update(JSON.stringify(ipMetadata)).digest('hex')
+  const ipHash = createHash('sha256').update(JSON.stringify(ipMetadata)).digest()
 
   const meta2 = await uploadJSONToWalrus(nftMetadata);
   metaId2 = meta2.newlyCreated?.blobId ?? meta2.alreadyCertified?.blobId ?? null;
 
-  const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest('hex')
+  const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest()
 
   console.log("IP METADATA ID: ", metaId!)
   console.log("NFT METADATA ID: ", metaId2!)
 
+  const newCollection = await client.nftClient.createNFTCollection({
+    name: 'Test NFT',
+    symbol: 'TEST',
+    txOptions: { waitForTransaction: true }
+  });
+
+  console.log("New Collection: ", newCollection.nftContract);
+
   const response: CreateIpAssetWithPilTermsResponse = await client.ipAsset.mintAndRegisterIpAssetWithPilTerms({
-    nftContract: SPGNFTContractAddress,
-    pilType: PIL_TYPE.COMMERCIAL_USE,
+    nftContract: newCollection.nftContract as Address,
+    currency: CurrencyAddress,
+    pilType: PIL_TYPE.NON_COMMERCIAL_REMIX,
     ipMetadata: {
       ipMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${metaId!}`,
-      ipMetadataHash: `0x${ipHash}`,
+      ipMetadataHash: toHex(ipHash, { size: 32 }),
       nftMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${metaId2!}`,
-      nftMetadataHash: `0x${nftHash}`,
+      nftMetadataHash: toHex(nftHash, { size: 32 }),
     },
     txOptions: { waitForTransaction: true },
   })
