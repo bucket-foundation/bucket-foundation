@@ -10,7 +10,7 @@ export default function Page() {
   const [description, setDescription] = useState("");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [filePath, setFilePath] = useState("");
-  const [data, setData] = useState<publishIPAssetProps>({ title: "", description: "", image: "" });
+  const [data, setData] = useState<publishIPAssetProps>({ title: "", description: "", blobId: "" });
 
   const handlePublish = async () => {
     if (!pdfFile) {
@@ -18,10 +18,25 @@ export default function Page() {
       return;
     }
     try {
-      const uploadedFilePath = await uploadFileToWalrus(pdfFile);
-      setFilePath(uploadedFilePath);
+      const uploadedFile = await uploadFileToWalrus(pdfFile);
+      let blobId: string;
+      console.log("File: ", uploadedFile)
+      if (uploadedFile) {
+        const { newlyCreated, alreadyCertified } = uploadedFile;
 
-      setData({ title: title, description: description, image: filePath });
+        if (newlyCreated) {
+          console.log('Newly created file:', newlyCreated);
+          blobId = newlyCreated.blobId;
+
+        } else if (alreadyCertified) {
+          console.log('Already certified file:', alreadyCertified);
+          blobId = alreadyCertified.blobId
+        } else {
+          console.log('No valid file state found.');
+        }
+      }
+
+      setData({ title: title, description: description, blobId: blobId! });
 
       await publishIPAsset(data);
       alert("IP Asset published successfully!");

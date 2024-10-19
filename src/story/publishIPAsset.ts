@@ -1,20 +1,24 @@
-
 import { CreateIpAssetWithPilTermsResponse, IpMetadata, PIL_TYPE, StoryClient, StoryConfig } from '@story-protocol/core-sdk'
 import { http } from 'viem'
 import { RPCProviderUrl, SPGNFTContractAddress } from './utils/utils'
-import { createHash } from 'crypto'
 import { privateKeyToAccount, Account, Address } from 'viem/accounts'
 import { uploadJSONToWalrus } from './utils/uploadToWalrus'
+import { createHash } from 'crypto'
 
 export interface publishIPAssetProps {
   title: string;
   description: string;
-  image: string;
+  blobId: string;
 }
 
-export const publishIPAsset = async function ({ title, description, image }: publishIPAssetProps) {
-  const privateKey: Address = `0x${process.env.WALLET_PRIVATE_KEY}`
+export const publishIPAsset = async function ({ title, description, blobId }: publishIPAssetProps) {
+  console.log("WALLET PRIVATE KEY", process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY)
+
+  const privateKey: Address = `0x${process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY}`
   const account: Account = privateKeyToAccount(privateKey)
+
+  console.log("PRIVATE KEY", privateKey)
+  console.log("ACCOUNT KEY", account)
 
 
   const config: StoryConfig = {
@@ -38,21 +42,32 @@ export const publishIPAsset = async function ({ title, description, image }: pub
   const nftMetadata = {
     name: title,
     description: description,
-    image: image,
+    image: `https://wal-aggregator-testnet.staketab.org/v1/${blobId}`,
   }
 
-  const ipIpfsHash = await uploadJSONToWalrus(ipMetadata)
+  let metaId: string;
+  let metaId2: string;
+
+  const meta = await uploadJSONToWalrus(ipMetadata);
+  metaId = meta.newlyCreated?.blobObject?.blobId ?? meta.alreadyCertified?.blobObject?.blobId ?? null;
+
   const ipHash = createHash('sha256').update(JSON.stringify(ipMetadata)).digest('hex')
-  const nftIpfsHash = await uploadJSONToWalrus(nftMetadata)
+
+  const meta2 = await uploadJSONToWalrus(nftMetadata);
+  metaId2 = meta2.newlyCreated?.blobObject?.blobId ?? meta2.alreadyCertified?.blobObject?.blobId ?? null;
+
   const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest('hex')
+
+  console.log("IP METADATA ID: ", metaId!)
+  console.log("NFT METADATA ID: ", metaId2!)
 
   const response: CreateIpAssetWithPilTermsResponse = await client.ipAsset.mintAndRegisterIpAssetWithPilTerms({
     nftContract: SPGNFTContractAddress,
     pilType: PIL_TYPE.NON_COMMERCIAL_REMIX,
     ipMetadata: {
-      ipMetadataURI: `http://walrus.publisher.agfarms.dev/v1/${ipIpfsHash}`,
+      ipMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${metaId!}`,
       ipMetadataHash: `0x${ipHash}`,
-      nftMetadataURI: `http://walrus.aggregator.agfarms.dev/v1/${nftIpfsHash}`,
+      nftMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${metaId2!}`,
       nftMetadataHash: `0x${nftHash}`,
     },
     txOptions: { waitForTransaction: true },
