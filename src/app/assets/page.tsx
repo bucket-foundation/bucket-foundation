@@ -1,9 +1,9 @@
 "use client";
 
-import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+// import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 export default function Page() {
-  const { user } = useDynamicContext();
+  //  const { user } = useDynamicContext();
   const research_name = "research name";
 
   const value = "$XX";
