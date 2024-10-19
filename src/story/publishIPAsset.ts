@@ -1,6 +1,6 @@
 import { CreateIpAssetWithPilTermsResponse, IpMetadata, PIL_TYPE, StoryClient, StoryConfig } from '@story-protocol/core-sdk'
 import { http } from 'viem'
-import { RPCProviderUrl, SPGNFTContractAddress } from './utils/utils'
+import { CurrencyAddress, RPCProviderUrl, SPGNFTContractAddress } from './utils/utils'
 import { privateKeyToAccount, Account, Address } from 'viem/accounts'
 import { uploadJSONToWalrus } from './utils/uploadToWalrus'
 import { createHash } from 'crypto'
@@ -49,12 +49,12 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
   let metaId2: string;
 
   const meta = await uploadJSONToWalrus(ipMetadata);
-  metaId = meta.newlyCreated?.blobObject.blobId ?? meta.alreadyCertified?.blobObject.blobId ?? null;
+  metaId = meta.newlyCreated?.blobId ?? meta.alreadyCertified?.blobId ?? null;
 
   const ipHash = createHash('sha256').update(JSON.stringify(ipMetadata)).digest('hex')
 
   const meta2 = await uploadJSONToWalrus(nftMetadata);
-  metaId2 = meta2.newlyCreated?.blobObject.blobId ?? meta2.alreadyCertified?.blobObject.blobId ?? null;
+  metaId2 = meta2.newlyCreated?.blobId ?? meta2.alreadyCertified?.blobId ?? null;
 
   const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest('hex')
 
@@ -63,7 +63,9 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
 
   const response: CreateIpAssetWithPilTermsResponse = await client.ipAsset.mintAndRegisterIpAssetWithPilTerms({
     nftContract: SPGNFTContractAddress,
-    pilType: PIL_TYPE.NON_COMMERCIAL_REMIX,
+    pilType: PIL_TYPE.COMMERCIAL_USE,
+    currency: CurrencyAddress,
+    mintingFee: 1,
     ipMetadata: {
       ipMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${metaId!}`,
       ipMetadataHash: `0x${ipHash}`,
@@ -72,6 +74,7 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
     },
     txOptions: { waitForTransaction: true },
   })
+  console.log(response)
   console.log(`Root IPA created at transaction hash ${response.txHash}, IPA ID: ${response.ipId}`)
   console.log(`View on the explorer: https://explorer.story.foundation/ipa/${response.ipId}`)
 }
