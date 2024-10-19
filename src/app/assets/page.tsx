@@ -1,15 +1,27 @@
 "use client";
 
-// import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+
 
 export default function Page() {
-  //  const { user } = useDynamicContext();
-  const research_name = "research name";
+  const { primaryWallet } = useDynamicContext();
 
+
+  const getAddress = () => {
+    return primaryWallet?.address || "Address not available";
+  };
+
+  const research_name = "Research Name";
   const value = "$XX";
+  const address = getAddress();
+
 
   return (
     <div className=" flex justify-center items-center flex-col gap-2">
+      <div className="w-[94%] flex items-end justify-start">
+        <span className="text-2xl font-bold">Wallet Address:</span>
+        <span className="text-2xl">{address}</span>
+      </div>
       <div className="w-[89%] justify-end flex" >
         <text className="text-2xl font-bold">{value}</text>
       </div>

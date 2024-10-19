@@ -1,11 +1,13 @@
+
 "use client";
-import { http, createConfig, WagmiProvider } from "wagmi";
+import { http, createConfig, WagmiProvider, useWalletClient } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { PropsWithChildren } from "react";
-import { type Chain } from "viem";
+import { createWalletClient, type Chain } from "viem";
+import { StoryProvider } from "@story-protocol/react-sdk";
 
 
 export const iliad = {
@@ -68,10 +70,33 @@ export default function Web3Providers({ children }: PropsWithChildren) {
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <DynamicWagmiConnector>
-            {children}
+            <StoryProviderWrapper>
+              {children}
+            </StoryProviderWrapper>
           </DynamicWagmiConnector>
         </QueryClientProvider>
       </WagmiProvider>
     </DynamicContextProvider>
   );
+}
+
+function StoryProviderWrapper({ children }: PropsWithChildren) {
+  const { data: wallet } = useWalletClient();
+
+  const dummyWallet = createWalletClient({
+    chain: iliad,
+    transport: http("https://testnet.storyrpc.io"),
+  });
+
+  return (
+    <StoryProvider
+      config={{
+        chainId: "iliad",
+        transport: http(process.env.NEXT_PUBLIC_RPC_PROVIDER_URL),
+        wallet: wallet || dummyWallet,
+      }}
+    >
+      {children}
+    </StoryProvider>
+  )
 }
