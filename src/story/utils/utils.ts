@@ -1,8 +1,6 @@
 import { privateKeyToAccount, Address, Account } from 'viem/accounts'
 
 // Add your private key to your .env file.
-const privateKey: Address = `0x${process.env.WALLET_PRIVATE_KEY}`
-export const account: Account = privateKeyToAccount(privateKey)
 
 // This is a pre-configured PIL Flavor: https://docs.story.foundation/docs/pil-flavors
 export const NonCommercialSocialRemixingTermsId = '1'
@@ -10,7 +8,7 @@ export const NonCommercialSocialRemixingTermsId = '1'
 // A NFT contract address that will be used to represent your IP Assets
 export const NFTContractAddress: Address = (process.env.NFT_CONTRACT_ADDRESS as Address) || '0xd2a4a4Cb40357773b658BECc66A6c165FD9Fc485'
 export const SPGNFTContractAddress: Address =
-    (process.env.SPG_NFT_CONTRACT_ADDRESS as Address) || '0x9BDca7dbdd7cFB7984993e6EcEbB91DAE360f791'
+  (process.env.SPG_NFT_CONTRACT_ADDRESS as Address) || '0x9BDca7dbdd7cFB7984993e6EcEbB91DAE360f791'
 
 // Add your rpc provider url to your .env file
 // You can select from one of these: https://docs.story.foundation/docs/story-network#-rpcs

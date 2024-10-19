@@ -2,12 +2,15 @@
 "use client";
 
 import { useState } from "react";
-import { publishIPAsset } from "@/story/simpleMintAndRegisterSpg";
+import { publishIPAsset, publishIPAssetProps } from "@/story/publishIPAsset";
+import { uploadFileToWalrus } from "@/story/utils/uploadToWalrus";
 
 export default function Page() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
+  const [filePath, setFilePath] = useState("");
+  const [data, setData] = useState<publishIPAssetProps>({ title: "", description: "", image: "" });
 
   const handlePublish = async () => {
     if (!pdfFile) {
@@ -15,7 +18,12 @@ export default function Page() {
       return;
     }
     try {
-      await publishIPAsset(title, description, pdfFile);
+      const uploadedFilePath = await uploadFileToWalrus(pdfFile);
+      setFilePath(uploadedFilePath);
+
+      setData({ title: title, description: description, image: filePath });
+
+      await publishIPAsset(data);
       alert("IP Asset published successfully!");
     } catch (error) {
       console.error("Error publishing IP Asset:", error);
