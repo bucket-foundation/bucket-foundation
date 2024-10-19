@@ -1,15 +1,13 @@
 import { RegisterIpAndMakeDerivativeResponse, RegisterIpResponse, StoryClient, StoryConfig } from '@story-protocol/core-sdk'
 import { Address, http, toHex } from 'viem'
+import { privateKeyToAccount, Account, Address as AccountsAddress } from 'viem/accounts'
 import { mintNFT } from './utils/mintNFT'
-import { NFTContractAddress, NonCommercialSocialRemixingTermsId, RPCProviderUrl, account } from './utils/utils'
+import { NFTContractAddress, NonCommercialSocialRemixingTermsId, RPCProviderUrl } from './utils/utils'
 
-// BEFORE YOU RUN THIS FUNCTION: Make sure to read the README which contains instructions
-// for running this "Register Derivative Non-Commercial" example.
+export const mintReadNFT = async function () {
+    const privateKey: AccountsAddress = `0x${process.env.WALLET_PRIVATE_KEY}`
+    const account: Account = privateKeyToAccount(privateKey)
 
-const main = async function () {
-    // 1. Set up your Story Config
-    //
-    // Docs: https://docs.story.foundation/docs/typescript-sdk-setup
     const config: StoryConfig = {
         account: account,
         transport: http(RPCProviderUrl),
@@ -17,15 +15,11 @@ const main = async function () {
     }
     const client = StoryClient.newClient(config)
 
-    // 2. Register an IP Asset
-    //
-    // Docs: https://docs.story.foundation/docs/register-an-nft-as-an-ip-asset
     const tokenId = await mintNFT(account.address, 'test-uri')
     const registeredIpResponse: RegisterIpResponse = await client.ipAsset.register({
         nftContract: NFTContractAddress,
         tokenId: tokenId!,
-        // NOTE: The below metadata is not configured properly. It is just to make things simple.
-        // See `simpleMintAndRegister.ts` for a proper example.
+        // NOTE: I need to pull the db for metadata 
         ipMetadata: {
             ipMetadataURI: 'test-uri',
             ipMetadataHash: toHex('test-metadata-hash', { size: 32 }),
@@ -47,8 +41,7 @@ const main = async function () {
             parentIpIds: [registeredIpResponse.ipId as Address],
             licenseTermsIds: [NonCommercialSocialRemixingTermsId],
         },
-        // NOTE: The below metadata is not configured properly. It is just to make things simple.
-        // See `simpleMintAndRegister.ts` for a proper example.
+        // NOTE: THis will be exactly the same as original because it is read only.
         ipMetadata: {
             ipMetadataURI: 'test-uri',
             ipMetadataHash: toHex('test-metadata-hash', { size: 32 }),
@@ -62,4 +55,3 @@ const main = async function () {
     )
 }
 
-main()

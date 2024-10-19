@@ -1,19 +1,18 @@
 
 // Function to upload a file to Walrus
 export const uploadFileToWalrus = async (file: File): Promise<string> => {
-  const WALRUS_PUBLISHER_URL = process.env.WALRUS_PUBLISHER_URL || "https://walrus.publisher.agfarms.dev/v1/store/"
-    ;
+  const WALRUS_PUBLISHER_URL = "https://publisher.walrus-testnet.walrus.space/v1/store";
 
   if (!WALRUS_PUBLISHER_URL) {
     throw new Error('Environment variable WALRUS_PUBLISHER_URL is not defined.');
   }
 
-  const formData = new FormData();
-  formData.append('file', file); // Append the file to the FormData
-
   const response = await fetch(WALRUS_PUBLISHER_URL, {
-    method: 'POST',
-    body: formData,
+    method: 'PUT',
+    body: file, // Directly send the file as the body
+    headers: {
+      'Content-Type': file.type, // Set the Content-Type to the file's MIME type
+    },
   });
 
   if (!response.ok) {
@@ -22,12 +21,13 @@ export const uploadFileToWalrus = async (file: File): Promise<string> => {
   }
 
   const data = await response.json();
-  return data.blobId; // Ensure the response contains blobId
+  console.log(data);
+  return data.newlyCreated.blobObject.blobId; // Ensure the response contains blobId
 };
 
 // Function to upload JSON metadata to Walrus
 export const uploadJSONToWalrus = async (jsonMetadata: Record<string, any>): Promise<string> => {
-  const WALRUS_PUBLISHER_URL = process.env.WALRUS_PUBLISHER_URL;
+  const WALRUS_PUBLISHER_URL = process.env.WALRUS_PUBLISHER_URL || "https://publisher.walrus-testnet.walrus.space/v1/store";
 
   if (!WALRUS_PUBLISHER_URL) {
     throw new Error('Environment variable WALRUS_PUBLISHER_URL is not defined.');
@@ -47,6 +47,7 @@ export const uploadJSONToWalrus = async (jsonMetadata: Record<string, any>): Pro
   }
 
   const data = await response.json();
-  return data.blobId; // Ensure the response contains blobId
+  console.log(data);
+  return data.newlyCreated.blobObject.blobId; // Ensure the response contains blobId
 };
 

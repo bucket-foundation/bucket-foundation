@@ -12,15 +12,17 @@ import {
 } from '@story-protocol/core-sdk'
 import { Address, http, toHex } from 'viem'
 import { mintNFT } from './utils/mintNFT'
-import { CurrencyAddress, NFTContractAddress, RPCProviderUrl, account } from './utils/utils'
+import { CurrencyAddress, NFTContractAddress, RPCProviderUrl } from './utils/utils'
 
+import { privateKeyToAccount, Account, Address as AccountsAddress } from 'viem/accounts'
 // BEFORE YOU RUN THIS FUNCTION: Make sure to read the README which contains
 // instructions for running this "Register Derivative Commercial" example.
 
 const main = async function () {
-    // 1. Set up your Story Config
-    //
-    // Docs: https://docs.story.foundation/docs/typescript-sdk-setup
+    const privateKey: AccountsAddress = `0x${process.env.WALLET_PRIVATE_KEY}`
+    const account: Account = privateKeyToAccount(privateKey)
+
+
     const config: StoryConfig = {
         account: account,
         transport: http(RPCProviderUrl),
