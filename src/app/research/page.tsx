@@ -36,6 +36,8 @@ export default function Page() {
         }
       }
 
+      console.log(title, description)
+
       setData({ title: title, description: description, blobId: blobId! });
 
       await publishIPAsset(data);

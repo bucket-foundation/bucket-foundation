@@ -5,6 +5,8 @@ import { privateKeyToAccount, Account, Address } from 'viem/accounts'
 import { uploadJSONToWalrus } from './utils/uploadToWalrus'
 import { createHash } from 'crypto'
 import { toHex } from 'viem';
+import { createClient } from '@supabase/supabase-js';
+import { ResearchCreate } from '@/lib/types'
 
 export interface publishIPAssetProps {
   title: string;
@@ -82,9 +84,21 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
     },
     txOptions: { waitForTransaction: true },
   })
-  console.log(response)
-  console.log(`Root IPA created at transaction hash ${response.txHash}, IPA ID: ${response.ipId}`)
-  console.log(`View on the explorer: https://explorer.story.foundation/ipa/${response.ipId}`)
+
+  const researchCreate: ResearchCreate = {
+    title: title,
+    description: description,
+    blob_id: blobId,
+    txn_hash: response.txHash!,
+  };
+
+  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+  const { data, error } = await supabase.from('research').insert(researchCreate)
+
+  if (error) {
+    console.log(error)
+  }
+
 }
 
 
