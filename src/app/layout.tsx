@@ -3,8 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
-import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+import Web3Providers from "@/providers/Web3Providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,19 +28,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <DynamicContextProvider
-        settings={{
-          environmentId: process.env.NEXT_PUBLIC_DYNAMIC_ENV_ID!,
-          walletConnectors: [EthereumWalletConnectors],
-        }}>
+      <Web3Providers>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         ><Header />
           {children}
           <Footer />
         </body>
-      </DynamicContextProvider>
-
+      </Web3Providers>
     </html>
   );
 }
