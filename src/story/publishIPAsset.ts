@@ -63,7 +63,7 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
 
   const response: CreateIpAssetWithPilTermsResponse = await client.ipAsset.mintAndRegisterIpAssetWithPilTerms({
     nftContract: SPGNFTContractAddress,
-    pilType: PIL_TYPE.NON_COMMERCIAL_REMIX,
+    pilType: PIL_TYPE.COMMERCIAL_USE,
     ipMetadata: {
       ipMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${metaId!}`,
       ipMetadataHash: `0x${ipHash}`,
