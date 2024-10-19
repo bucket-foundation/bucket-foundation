@@ -1,6 +1,6 @@
 
 // Function to upload a file to Walrus
-export const uploadFileToWalrus = async (file: File): Promise<string> => {
+export const uploadFileToWalrus = async (file: File): Promise<any> => {
   const WALRUS_PUBLISHER_URL = "https://publisher.walrus-testnet.walrus.space/v1/store";
 
   if (!WALRUS_PUBLISHER_URL) {
@@ -10,9 +10,6 @@ export const uploadFileToWalrus = async (file: File): Promise<string> => {
   const response = await fetch(WALRUS_PUBLISHER_URL, {
     method: 'PUT',
     body: file, // Directly send the file as the body
-    headers: {
-      'Content-Type': file.type, // Set the Content-Type to the file's MIME type
-    },
   });
 
   if (!response.ok) {
@@ -22,11 +19,11 @@ export const uploadFileToWalrus = async (file: File): Promise<string> => {
 
   const data = await response.json();
   console.log(data);
-  return data.newlyCreated.blobObject.blobId; // Ensure the response contains blobId
+  return data;
 };
 
 // Function to upload JSON metadata to Walrus
-export const uploadJSONToWalrus = async (jsonMetadata: Record<string, any>): Promise<string> => {
+export const uploadJSONToWalrus = async (jsonMetadata: Record<string, any>): Promise<any> => {
   const WALRUS_PUBLISHER_URL = process.env.WALRUS_PUBLISHER_URL || "https://publisher.walrus-testnet.walrus.space/v1/store";
 
   if (!WALRUS_PUBLISHER_URL) {
@@ -36,9 +33,6 @@ export const uploadJSONToWalrus = async (jsonMetadata: Record<string, any>): Pro
   const response = await fetch(WALRUS_PUBLISHER_URL, {
     method: 'PUT',
     body: JSON.stringify(jsonMetadata),
-    headers: {
-      'Content-Type': 'application/json',
-    },
   });
 
   if (!response.ok) {
@@ -48,6 +42,6 @@ export const uploadJSONToWalrus = async (jsonMetadata: Record<string, any>): Pro
 
   const data = await response.json();
   console.log(data);
-  return data.newlyCreated.blobObject.blobId; // Ensure the response contains blobId
+  return data.newlyCreated.blobObject.blobId;
 };
 
