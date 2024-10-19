@@ -42,6 +42,6 @@ export const uploadJSONToWalrus = async (jsonMetadata: Record<string, any>): Pro
 
   const data = await response.json();
   console.log(data);
-  return data.newlyCreated.blobObject.blobId;
+  return data;
 };
 

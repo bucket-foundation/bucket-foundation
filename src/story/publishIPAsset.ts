@@ -49,12 +49,12 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
   let metaId2: string;
 
   const meta = await uploadJSONToWalrus(ipMetadata);
-  metaId = meta.newlyCreated?.blobObject?.blobId ?? meta.alreadyCertified?.blobObject?.blobId ?? null;
+  metaId = meta.newlyCreated?.blobObject.blobId ?? meta.alreadyCertified?.blobObject.blobId ?? null;
 
   const ipHash = createHash('sha256').update(JSON.stringify(ipMetadata)).digest('hex')
 
   const meta2 = await uploadJSONToWalrus(nftMetadata);
-  metaId2 = meta2.newlyCreated?.blobObject?.blobId ?? meta2.alreadyCertified?.blobObject?.blobId ?? null;
+  metaId2 = meta2.newlyCreated?.blobObject.blobId ?? meta2.alreadyCertified?.blobObject.blobId ?? null;
 
   const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest('hex')
 
