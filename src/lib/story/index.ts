@@ -5,7 +5,7 @@ import { defaultNftContractAbi } from './defaultContractAbi'
 import { privateKeyToAccount } from 'viem/accounts'
 import { uploadJSONToWalrus } from '../walrus/upload'
 import { createHash } from 'crypto'
-import { IpMetadataCreate, IpMetadataType, ResearchCreate } from '@/lib/types'
+import { CiteTokenCreate, IpMetadataCreate, IpMetadataType, ResearchCreate } from '@/lib/types'
 import { supabase } from '../supabase/client'
 
 
@@ -95,8 +95,7 @@ export async function mintReadNFT(ip_metadata: IpMetadataType) {
   })
 }
 
-export async function publishIpAsset({ title, description, blobId }: { title: string, description: string, blobId: string }) {
-
+export async function publishIpAsset({ title, description, blobId, author_id }: { title: string, description: string, blobId: string, author_id: number }) {
   const privateKey: Address = `0x${process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY}`
   const account: Account = privateKeyToAccount(privateKey)
 
@@ -137,8 +136,6 @@ export async function publishIpAsset({ title, description, blobId }: { title: st
   // Access the blobId correctly for NFT metadata
   metaId2 = meta2.newlyCreated?.blobObject?.blobId ?? meta2.alreadyCertified?.blobId ?? null;
 
-  metaId2 = meta2.newlyCreated?.blobId ?? meta2.alreadyCertified?.blobId ?? null;
-
   const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest();
 
   const newCollection = await client.nftClient.createNFTCollection({
@@ -168,6 +165,8 @@ export async function publishIpAsset({ title, description, blobId }: { title: st
     description: description,
     blob_id: blobId,
     txn_hash: response.txHash!,
+    ip_id: response.ipId!,
+    author_id
   };
 
   const { data: researchData, error: researchError } = await supabase
@@ -176,6 +175,8 @@ export async function publishIpAsset({ title, description, blobId }: { title: st
     .select();
 
   console.log(researchData, researchError)
+
+  console.log("Meta Blob Id: ", metaId, metaId2)
 
 
   const ipCreate: IpMetadataCreate = {
@@ -191,7 +192,31 @@ export async function publishIpAsset({ title, description, blobId }: { title: st
   console.log(data, error)
 }
 
-export function mintCiteNFT() { }
+export async function mintCiteNFT(ip_id: string, author_id: number, research_id: number) {
+  const privateKey: Address = `0x${process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY!}`
+  const account: Account = privateKeyToAccount(privateKey)
+  const config: StoryConfig = {
+    account: account,
+    transport: http(RPCProviderUrl),
+    chainId: 'iliad',
+  }
+  const client = StoryClient.newClient(config)
+  console.log("IPID", ip_id)
+  const response = await client.license.mintLicenseTokens({
+    licenseTermsId: "1",
+    licensorIpId: ip_id as `0x${string}`,
+    amount: 1,
+    txOptions: { waitForTransaction: true }
+  });
+
+  const citeTokenCreate: CiteTokenCreate = {
+    author_id,
+    research_id,
+    txn_hash: response.txHash
+  }
+  await supabase.from('cite_tokens').insert(citeTokenCreate)
+  console.log("Minted Citation Token")
+}
 
 export function createNFTCollection() { }
 

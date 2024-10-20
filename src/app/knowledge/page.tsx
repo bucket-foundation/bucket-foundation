@@ -5,7 +5,7 @@ import KnowledgeDisplay from "@/components/KnowledgeDisplay";
 import { useAuthor } from "@/context/AuthorContext";
 import { useCiteToken } from "@/context/CiteTokensContext";
 import { useResearch } from "@/context/ResearchContext";
-import { mintReadNFT } from "@/lib/story"; // Assuming you use this elsewhere
+import { mintCiteNFT, mintReadNFT } from "@/lib/story"; // Assuming you use this elsewhere
 import { downloadFileFromWalrus } from "@/lib/walrus/download";
 import { Research } from "@/lib/types";
 import { supabase } from "@/lib/supabase/client";
@@ -47,10 +47,14 @@ export default function Page() {
   };
 
 
-  const handleCite = (id: number): void => {
-    if (author) {
-      createCiteToken(author.id, id);
+  const handleCite = async (id: number): Promise<void> => {
+
+    const r = research?.find((e) => { return e.id == id })
+    if (!r || !author) {
+      return
     }
+
+    await mintCiteNFT(r.ip_id, author.id, id)
   };
 
   if (loading || !research) {
@@ -59,7 +63,7 @@ export default function Page() {
 
   return (
     <div className="gap-4 mt-8 flex justify-center items-center flex-col">
-      {research!.map((e: Research, index: number) => (
+      {research && research.map((e: Research, index: number) => (
         <KnowledgeDisplay
           key={index}
           id_value={e.id}

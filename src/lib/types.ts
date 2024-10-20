@@ -59,6 +59,8 @@ export type Research = {
   description: string;  // text corresponds to string
   blob_id: string;       // text corresponds to string
   txn_hash: string;      // text corresponds to string
+  ip_id: string;
+  author_id: number;
 };
 
 export type ResearchCreate = {
@@ -66,6 +68,8 @@ export type ResearchCreate = {
   description: string;  // text corresponds to string
   blob_id: string;       // text corresponds to string
   txn_hash: string;      // text corresponds to string
+  ip_id: string;
+  author_id: number;
 };
 
 export type CiteToken = {
@@ -73,10 +77,12 @@ export type CiteToken = {
   created_at: Date; // or string if you prefer
   research_id?: number | null;
   author_id?: number | null;
+  txn_hash?: string | null
 };
 
 export type CiteTokenCreate = {
   research_id?: number | null;
   author_id?: number | null;
+  txn_hash?: string | null
 };
 
