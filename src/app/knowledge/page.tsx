@@ -1,7 +1,6 @@
 // Server Component
 import { createClient } from '@/utils/server';
 import { cookies } from 'next/headers';
-import KnowledgeDisplay from '@/components/KnowledgeDisplay';
 import ReadClient from '@/components/ReadClient';
 
 export default async function Page() {
