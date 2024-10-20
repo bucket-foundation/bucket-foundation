@@ -29,7 +29,7 @@ const ReadClient = ({ research }: { research: any }) => {
   }
 
   return (
-    <>
+    <div className="gap-4 mt-8 flex justify-center items-center flex-col">
       {research.map((e: any) => (
         <KnowledgeDisplay
           key={e.id}
@@ -45,7 +45,7 @@ const ReadClient = ({ research }: { research: any }) => {
         onClose={handleCloseModal}
         file={pdfFile}
       />
-    </>
+    </div>
   );
 };
 

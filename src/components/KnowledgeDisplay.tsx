@@ -8,7 +8,7 @@ interface KnowledgeDisplayProps {
 
 export default function KnowledgeDisplay({ id, research_name, onRead, onCite }: KnowledgeDisplayProps) {
   return (
-    <div className="w-[96%] h-32 flex bg-teal-950 border-teal-800 border-2 rounded-xl justify-between items-center flex-row px-4">
+    <div className="w-[96%] h-32 flex bg-teal-950 border-teal-800 border-2 rounded-xl justify-between items-center flex-row px-4 m-2">
       <text className="text-4xl font-bold">{research_name}</text>
       <div className="flex gap-4">
         <button
