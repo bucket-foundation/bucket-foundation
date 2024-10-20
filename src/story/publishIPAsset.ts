@@ -53,19 +53,19 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
   let metaId2: string;
 
   const meta = await uploadJSONToWalrus(ipMetadata);
+  console.log('IP Metadata Response:', meta); // Log the full response
   metaId = meta.newlyCreated?.blobId ?? meta.alreadyCertified?.blobId ?? null;
 
-  const ipHash = createHash('sha256').update(JSON.stringify(ipMetadata)).digest()
+  const ipHash = createHash('sha256').update(JSON.stringify(ipMetadata)).digest();
 
   const meta2 = await uploadJSONToWalrus(nftMetadata);
+  console.log('NFT Metadata Response:', meta2); // Log the full response
   metaId2 = meta2.newlyCreated?.blobId ?? meta2.alreadyCertified?.blobId ?? null;
 
-  const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest()
+  const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest();
 
-  console.log("IP METADATA ID: ", metaId!)
-  console.log("NFT METADATA ID: ", metaId2!)
-
-  const newCollection = await client.nftClient.createNFTCollection({
+  console.log("IP METADATA ID: ", metaId);
+  console.log("NFT METADATA ID: ", metaId2); const newCollection = await client.nftClient.createNFTCollection({
     name: 'Test NFT',
     symbol: 'TEST',
     txOptions: { waitForTransaction: true }

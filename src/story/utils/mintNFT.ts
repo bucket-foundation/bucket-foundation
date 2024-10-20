@@ -4,21 +4,25 @@ import { iliad } from '@story-protocol/core-sdk'
 import { defaultNftContractAbi } from './defaultNftContractAbi'
 
 import { privateKeyToAccount, Account, Address as AccountsAddress } from 'viem/accounts'
-const privateKey: AccountsAddress = `0x${process.env.WALLET_PRIVATE_KEY}`
-const account: Account = privateKeyToAccount(privateKey)
-
-
-const baseConfig = {
-  chain: iliad,
-  transport: http(RPCProviderUrl),
-} as const
-export const publicClient = createPublicClient(baseConfig)
-export const walletClient = createWalletClient({
-  ...baseConfig,
-  account,
-})
-
 export async function mintNFT(to: Address, uri: string): Promise<number | undefined> {
+  console.log("WALLET PRIVATE KEY", process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY)
+
+  const privateKey: Address = `0x${process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY}`
+  const account: Account = privateKeyToAccount(privateKey)
+
+  console.log("PRIVATE KEY", privateKey)
+  console.log("ACCOUNT KEY", account)
+
+  const baseConfig = {
+    chain: iliad,
+    transport: http(RPCProviderUrl),
+  } as const
+  const publicClient = createPublicClient(baseConfig)
+  const walletClient = createWalletClient({
+    ...baseConfig,
+    account,
+  })
+
   console.log('Minting a new NFT...')
 
   const { request } = await publicClient.simulateContract({

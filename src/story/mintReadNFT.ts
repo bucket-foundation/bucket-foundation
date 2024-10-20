@@ -20,7 +20,6 @@ export const mintReadNFT = async function (ip_metadata: { ip_metadata: IPCreate 
   const registeredIpResponse: RegisterIpResponse = await client.ipAsset.register({
     nftContract: NFTContractAddress,
     tokenId: tokenId!,
-    // NOTE: I need to pull the db for metadata 
     ipMetadata: {
       ipMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${ip_metadata.ip_metadata.ip_blob_id!}`,
       ipMetadataHash: toHex(ip_metadata.ip_metadata.ip_txn_hash, { size: 32 }),
@@ -42,7 +41,6 @@ export const mintReadNFT = async function (ip_metadata: { ip_metadata: IPCreate 
       parentIpIds: [registeredIpResponse.ipId as Address],
       licenseTermsIds: [NonCommercialSocialRemixingTermsId],
     },
-    // NOTE: THis will be exactly the same as original because it is read only.
     ipMetadata: {
       ipMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${ip_metadata.ip_metadata.ip_blob_id!}`,
       ipMetadataHash: toHex(ip_metadata.ip_metadata.ip_txn_hash, { size: 32 }),
