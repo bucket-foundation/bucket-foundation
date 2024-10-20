@@ -7,6 +7,7 @@ import { createHash } from 'crypto'
 import { toHex } from 'viem';
 import { createClient } from '@supabase/supabase-js';
 import { IPCreate, ResearchCreate } from '@/lib/types'
+import { supabase } from '@/utils/supabaseClient'
 
 export interface publishIPAssetProps {
   title: string;
@@ -98,7 +99,6 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
     nft_txn_hash: toHex(nftHash, { size: 32 }),
 
   };
-
 
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
   const { data, error } = await supabase.from('research').insert(researchCreate)
