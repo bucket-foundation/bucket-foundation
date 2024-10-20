@@ -2,51 +2,59 @@
 "use client";
 
 import { useState } from "react";
-import { publishIPAsset, publishIPAssetProps } from "@/story/publishIPAsset";
+import { publishIPAsset } from "@/story/publishIPAsset";
 import { uploadFileToWalrus } from "@/story/utils/uploadToWalrus";
 
 export default function Page() {
   const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
-  const [filePath, setFilePath] = useState("");
-  const [data, setData] = useState<publishIPAssetProps>({ title: "", description: "", blobId: "" });
 
   const handlePublish = async () => {
-    if (!pdfFile) {
-      alert("Please upload a PDF file.");
-      return;
-    }
+    setLoading(true)
     try {
-      const uploadedFile = await uploadFileToWalrus(pdfFile);
-      let blobId: string;
-      console.log("File: ", uploadedFile)
-      if (uploadedFile) {
-        const { newlyCreated, alreadyCertified } = uploadedFile;
-
-        if (newlyCreated) {
-          console.log('Newly created file:', newlyCreated);
-          blobId = newlyCreated.blobId;
-
-        } else if (alreadyCertified) {
-          console.log('Already certified file:', alreadyCertified);
-          blobId = alreadyCertified.blobId
-        } else {
-          console.log('No valid file state found.');
-        }
+      if (!pdfFile) {
+        alert("Please upload a PDF file.");
+        return;
       }
+      try {
+        const uploadedFile = await uploadFileToWalrus(pdfFile);
+        let blobId: string;
+        console.log("File: ", uploadedFile)
+        if (uploadedFile) {
+          const { newlyCreated, alreadyCertified } = uploadedFile;
 
-      console.log(title, description)
+          if (newlyCreated) {
+            console.log('Newly created file:', newlyCreated);
+            blobId = newlyCreated.blobId;
 
-      setData({ title, description, blobId: blobId! });
+          } else if (alreadyCertified) {
+            console.log('Already certified file:', alreadyCertified);
+            blobId = alreadyCertified.blobId
+          } else {
+            console.log('No valid file state found.');
+          }
+        }
 
-      await publishIPAsset({ title, description, blobId: blobId! });
-      alert("IP Asset published successfully!");
-    } catch (error) {
-      console.error("Error publishing IP Asset:", error);
-      alert("Failed to publish IP Asset.");
+        console.log(title, description)
+
+        await publishIPAsset({ title, description, blobId: blobId! });
+        alert("IP Asset published successfully!");
+      } catch (error) {
+        console.error("Error publishing IP Asset:", error);
+        alert("Failed to publish IP Asset.");
+      }
+    }
+    catch { }
+    finally {
+      setLoading(false)
     }
   };
+
+  if (loading) {
+    return (<div>Loading ...</div>)
+  }
 
   return (
     <div className="flex justify-center items-center h-screen">
