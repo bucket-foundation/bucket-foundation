@@ -11,7 +11,7 @@ import { Research } from "@/lib/types";
 import { supabase } from "@/lib/supabase/client";
 
 export default function Page() {
-  const { research } = useResearch();
+  const { research, citations } = useResearch();
   const { createCiteToken } = useCiteToken();
   const { author } = useAuthor();
   const [loading, setLoading] = useState(true);
@@ -68,6 +68,7 @@ export default function Page() {
           key={index}
           id_value={e.id}
           research_name={e.title}
+          citations_vals={citations?.filter((c) => { return c.research_id == e.id })!}
           onRead={handleRead}
           onCite={handleCite}
         />

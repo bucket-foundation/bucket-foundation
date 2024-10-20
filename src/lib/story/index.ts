@@ -95,7 +95,7 @@ export async function mintReadNFT(ip_metadata: IpMetadataType) {
   })
 }
 
-export async function publishIpAsset({ title, description, blobId, author_id }: { title: string, description: string, blobId: string, author_id: number }) {
+export async function publishIpAsset({ title, description, blobId, author_id, selectedCiteTokens }: { title: string, description: string, blobId: string, author_id: number, selectedCiteTokens: number[] }) {
   const privateKey: Address = `0x${process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY}`
   const account: Account = privateKeyToAccount(privateKey)
 
@@ -169,10 +169,22 @@ export async function publishIpAsset({ title, description, blobId, author_id }: 
     author_id
   };
 
+
   const { data: researchData, error: researchError } = await supabase
     .from('research')
     .insert(researchCreate)
     .select();
+
+  for (let c of selectedCiteTokens) {
+    const { data, error } = await supabase.from('research_cite').insert(
+      {
+        research_id: researchData![0].id,
+        cite_token_id: c
+      }
+    )
+
+    console.log(data, error)
+  }
 
   console.log(researchData, researchError)
 

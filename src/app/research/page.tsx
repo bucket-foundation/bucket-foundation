@@ -1,7 +1,7 @@
-
 "use client";
 
 import { useAuthor } from "@/context/AuthorContext";
+import { useCiteToken } from "@/context/CiteTokensContext";
 import { publishIpAsset } from "@/lib/story";
 import { uploadFileToWalrus } from "@/lib/walrus/upload";
 import { useState } from "react";
@@ -11,19 +11,25 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
+  const [selectedCiteTokens, setSelectedCiteTokens] = useState<number[]>([]);
   const { author } = useAuthor();
+  const { citeTokens } = useCiteToken();
 
   const handlePublish = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       if (!pdfFile) {
         alert("Please upload a PDF file.");
         return;
       }
+      if (selectedCiteTokens.length === 0) {
+        alert("Please select at least one CiteToken.");
+        return;
+      }
       try {
         const uploadedFile = await uploadFileToWalrus(pdfFile);
-        let blobId: string;
-        console.log("File: ", uploadedFile)
+        let blobId: string | undefined;
+        console.log("File: ", uploadedFile);
         if (uploadedFile) {
           const { newlyCreated, alreadyCertified } = uploadedFile;
 
@@ -33,27 +39,36 @@ export default function Page() {
 
           } else if (alreadyCertified) {
             console.log('Already certified file:', alreadyCertified);
-            blobId = alreadyCertified.blobId
+            blobId = alreadyCertified.blobId;
           } else {
             console.log('No valid file state found.');
           }
         }
 
-        console.log(title, description)
+        console.log(title, description, selectedCiteTokens);
 
-        await publishIpAsset({ title, description, blobId: blobId!, author_id: author!.id });
+        await publishIpAsset({
+          title,
+          description,
+          blobId: blobId!,
+          author_id: author!.id,
+          selectedCiteTokens
+        });
         alert("IP Asset published successfully!");
       } catch (error) {
         console.error("Error publishing IP Asset:", error);
         alert("Failed to publish IP Asset.");
       }
+    } catch {
+      console.log("error");
+    } finally {
+      setLoading(false);
     }
-    catch {
-      console.log("error")
-    }
-    finally {
-      setLoading(false)
-    }
+  };
+
+  const handleCiteTokenChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = Array.from(event.target.selectedOptions, option => Number(option.value));
+    setSelectedCiteTokens(value);
   };
 
   return (
@@ -79,6 +94,21 @@ export default function Page() {
           className="border-2 border-teal-800 p-2 rounded-lg bg-teal-950 text-white"
           onChange={(e) => setPdfFile(e.target.files?.[0] || null)}
         />
+
+        {/* Multi-select for selecting CiteTokens */}
+        <select
+          multiple
+          className="border-2 border-teal-800 p-2 rounded-lg bg-teal-950 text-white"
+          value={selectedCiteTokens.map((e) => { return e.toString() })}
+          onChange={handleCiteTokenChange}
+        >
+          {citeTokens && citeTokens.map((token) => (
+            <option key={token.id} value={token.id}>
+              {`CiteToken ${token.id} - ${token.created_at.toString()}`}
+            </option>
+          ))}
+        </select>
+
         {loading ? (
           <div className="flex justify-center items-center h-10">
             <div className="loader animate-spin border-4 border-t-4 border-t-white border-teal-800 rounded-full w-6 h-6"></div>
