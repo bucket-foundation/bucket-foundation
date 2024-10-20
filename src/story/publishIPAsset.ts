@@ -5,7 +5,7 @@ import { privateKeyToAccount, Account, Address } from 'viem/accounts'
 import { uploadJSONToWalrus } from './utils/uploadToWalrus'
 import { createHash } from 'crypto'
 import { toHex } from 'viem';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/utils/supabaseClient'
 import { ResearchCreate } from '@/lib/types'
 
 export interface publishIPAssetProps {
@@ -91,8 +91,6 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
     blob_id: blobId,
     txn_hash: response.txHash!,
   };
-
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
   const { data, error } = await supabase.from('research').insert(researchCreate)
 
   if (error) {
