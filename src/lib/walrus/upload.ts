@@ -1,6 +1,7 @@
 
 const walrusPublisherUrls = [
-  "http://5.161.189.192:31416",
+  "https://5.161.189.192:31416",
+  "https://publisher.walrus-testnet.walrus.space", "https://wal-publisher-testnet.staketab.org", "https://walrus-testnet-publisher.bartestnet.com", "https://walrus-testnet-publisher.nodes.guru", "https://sui-walrus-testnet.bwarelabs.com/publisher", "https://walrus-testnet-publisher.stakin-nodes.com", "https://testnet-publisher-walrus.kiliglab.io", "https://walrus-testnet-publisher.nodeinfra.com", "https://walrus-testnet.blockscope.net:11444", "https://walrus-publish-testnet.chainode.tech:9003", "https://walrus-testnet-publisher.starduststaking.com:11445",
   "http://walrus-publisher-testnet.overclock.run:9001/v1/store",
   "http://walrus-testnet-publisher.everstake.one:9001/v1/store",
   "http://walrus.testnet.pops.one:9001/v1/store",

@@ -1,5 +1,5 @@
 export const downloadFileFromWalrus = async (path: string): Promise<File> => {
-  const WALRUS_AGGREGATOR_URL = "http://5.161.189.192:31415";
+  const WALRUS_AGGREGATOR_URL = "https://5.161.189.192:31415";
 
   if (!WALRUS_AGGREGATOR_URL) {
     throw new Error('Environment variable WALRUS_AGGREGATOR_URL is not defined.');
@@ -24,7 +24,7 @@ export const downloadFileFromWalrus = async (path: string): Promise<File> => {
 };
 
 export const downloadJSONFromWalrus = async (path: string): Promise<any> => {
-  const WALRUS_AGGREGATOR_URL = "http://5.161.189.192:31415";
+  const WALRUS_AGGREGATOR_URL = "https://5.161.189.192:31415";
 
   if (!WALRUS_AGGREGATOR_URL) {
     throw new Error('Environment variable WALRUS_AGGREGATOR_URL is not defined.');
