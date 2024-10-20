@@ -22,10 +22,6 @@ export default function Page() {
         alert("Please upload a PDF file.");
         return;
       }
-      if (selectedCiteTokens.length === 0) {
-        alert("Please select at least one CiteToken.");
-        return;
-      }
       try {
         const uploadedFile = await uploadFileToWalrus(pdfFile);
         let blobId: string | undefined;
