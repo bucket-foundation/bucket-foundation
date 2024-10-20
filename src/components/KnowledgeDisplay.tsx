@@ -3,7 +3,7 @@ interface KnowledgeDisplayProps {
   id: number,
   research_name: string,
   onRead: (id: number) => Promise<void>
-  onCite: (id: number) => any
+  onCite: (id: number) => Promise<void>
 }
 
 export default function KnowledgeDisplay({ id, research_name, onRead, onCite }: KnowledgeDisplayProps) {
@@ -13,7 +13,7 @@ export default function KnowledgeDisplay({ id, research_name, onRead, onCite }: 
       <div className="flex gap-4">
         <button
           className="bg-rose-950 border-rose-800 border-2 rounded-lg p-4"
-          onClick={() => { onRead(id) }}
+          onClick={async () => { await onRead(id) }}
         >
           <text className="text-2xl font-bold">
             Read
@@ -21,7 +21,7 @@ export default function KnowledgeDisplay({ id, research_name, onRead, onCite }: 
         </button>
         <button
           className="bg-amber-950 border-amber-800 border-2 rounded-lg p-4"
-          onClick={() => { onCite(id) }}
+          onClick={async () => { await onCite(id) }}
         >
           <text className="text-2xl font-bold">
             Cite
