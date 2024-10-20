@@ -38,9 +38,9 @@ export default function Page() {
 
       console.log(title, description)
 
-      setData({ title: title, description: description, blobId: blobId! });
+      setData({ title, description, blobId: blobId! });
 
-      await publishIPAsset(data);
+      await publishIPAsset({ title, description, blobId: blobId! });
       alert("IP Asset published successfully!");
     } catch (error) {
       console.error("Error publishing IP Asset:", error);
