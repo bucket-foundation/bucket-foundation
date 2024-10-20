@@ -7,7 +7,7 @@ import { useCiteToken } from "@/context/CiteTokensContext";
 import { useResearch } from "@/context/ResearchContext";
 import { mintReadNFT } from "@/lib/story"; // Assuming you use this elsewhere
 import { downloadFileFromWalrus } from "@/lib/walrus/download";
-import { Research } from "@/types";
+import { Research } from "@/lib/types";
 import { supabase } from "@/lib/supabase/client";
 
 export default function Page() {
@@ -25,7 +25,7 @@ export default function Page() {
   const handleRead = async (id: number): Promise<void> => {
     if (!research) return;
 
-    const blobId = research.find((e: any) => e.id === id)?.blob_id;
+    const blobId = research.find((e: Research) => e.id === id)?.blob_id;
     if (blobId) {
       const file = await downloadFileFromWalrus(blobId);
 
@@ -35,7 +35,7 @@ export default function Page() {
       // Open the file in a new window
       window.open(blobUrl, '_blank');
 
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('ip_metadata')
         .select()
         .eq('research_id', id);
@@ -53,7 +53,7 @@ export default function Page() {
     }
   };
 
-  if (loading) {
+  if (loading || !research) {
     return <div>Loading ...</div>;
   }
 

@@ -1,4 +1,4 @@
-import { Author } from "@/types";
+import { Author } from "@/lib/types";
 import { useDynamicContext, Wallet } from '@dynamic-labs/sdk-react-core';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client'

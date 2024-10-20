@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import { CiteToken, CiteTokenCreate } from '@/types';
+import { CiteToken, CiteTokenCreate } from '@/lib/types';
 import { useAuthor } from './AuthorContext';
 
 interface CiteTokenContextType {
@@ -49,7 +49,7 @@ export const CiteTokenProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const createCiteToken = async (authorId: number, researchId: number) => {
     try {
 
-      let createCiteToken: CiteTokenCreate = {
+      const createCiteToken: CiteTokenCreate = {
         author_id: authorId,
         research_id: researchId
       }

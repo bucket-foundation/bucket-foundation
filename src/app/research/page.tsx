@@ -46,7 +46,9 @@ export default function Page() {
         alert("Failed to publish IP Asset.");
       }
     }
-    catch { }
+    catch {
+      console.log("error")
+    }
     finally {
       setLoading(false)
     }

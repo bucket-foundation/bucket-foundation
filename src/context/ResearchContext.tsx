@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import { Research } from '@/types';
+import { Research } from '@/lib/types';
 
 interface ResearchContextType {
   loading: boolean;

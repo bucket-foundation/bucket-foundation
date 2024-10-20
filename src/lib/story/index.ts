@@ -5,7 +5,7 @@ import { defaultNftContractAbi } from './defaultContractAbi'
 import { privateKeyToAccount } from 'viem/accounts'
 import { uploadJSONToWalrus } from '../walrus/upload'
 import { createHash } from 'crypto'
-import { IpMetadataCreate, IpMetadataType, ResearchCreate } from '@/types'
+import { IpMetadataCreate, IpMetadataType, ResearchCreate } from '@/lib/types'
 import { supabase } from '../supabase/client'
 
 

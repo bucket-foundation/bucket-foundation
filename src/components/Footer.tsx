@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Footer() {
   return (
     <footer className="flex flex-col items-center py-4 absolute bottom-0 left-4 justify-start ">
