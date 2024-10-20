@@ -1,9 +1,9 @@
 
 "use client";
 
+import { publishIpAsset } from "@/lib/story";
+import { uploadFileToWalrus } from "@/lib/walrus/upload";
 import { useState } from "react";
-import { publishIPAsset } from "@/story/publishIPAsset";
-import { uploadFileToWalrus } from "@/story/utils/uploadToWalrus";
 
 export default function Page() {
   const [title, setTitle] = useState("");
@@ -39,7 +39,7 @@ export default function Page() {
 
         console.log(title, description)
 
-        await publishIPAsset({ title, description, blobId: blobId! });
+        await publishIpAsset({ title, description, blobId: blobId! });
         alert("IP Asset published successfully!");
       } catch (error) {
         console.error("Error publishing IP Asset:", error);

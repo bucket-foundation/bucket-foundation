@@ -16,13 +16,10 @@ export default function Header() {
             />
           </Link>
           <Link href={"/knowledge"} className="text-white text-2xl hover:text-gray-300 transition">
-            Knowledge
+            Library
           </Link>
           <Link href={"/research"} className="text-white text-2xl hover:text-gray-300 transition">
             Research
-          </Link>
-          <Link href={"/library"} className="text-white text-2xl hover:text-gray-300 transition">
-            Library
           </Link>
           <Link href={"/assets"} className="text-white text-2xl hover:text-gray-300 transition">
             Assets

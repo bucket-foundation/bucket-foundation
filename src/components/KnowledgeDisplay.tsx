@@ -1,19 +1,19 @@
 "use client"
 interface KnowledgeDisplayProps {
-  id: number,
+  id_value: number,
   research_name: string,
-  onRead: (id: number) => Promise<void>
-  onCite: (id: number) => Promise<void>
+  onRead: (id: number) => void
+  onCite: (id: number) => void
 }
 
-export default function KnowledgeDisplay({ id, research_name, onRead, onCite }: KnowledgeDisplayProps) {
+export default function KnowledgeDisplay({ id_value, research_name, onRead, onCite }: KnowledgeDisplayProps) {
   return (
     <div className="w-[96%] h-32 flex bg-teal-950 border-teal-800 border-2 rounded-xl justify-between items-center flex-row px-4 m-2">
       <text className="text-4xl font-bold">{research_name}</text>
       <div className="flex gap-4">
         <button
           className="bg-rose-950 border-rose-800 border-2 rounded-lg p-4"
-          onClick={async () => { await onRead(id) }}
+          onClick={async () => { console.log("Reading ", id_value); await onRead(id_value) }}
         >
           <text className="text-2xl font-bold">
             Read
@@ -21,7 +21,7 @@ export default function KnowledgeDisplay({ id, research_name, onRead, onCite }: 
         </button>
         <button
           className="bg-amber-950 border-amber-800 border-2 rounded-lg p-4"
-          onClick={async () => { await onCite(id) }}
+          onClick={async () => { console.log("Citing ", id_value); await onCite(id_value) }}
         >
           <text className="text-2xl font-bold">
             Cite

@@ -1,4 +1,3 @@
-// ReadClient.tsx
 "use client";
 
 import { useState } from 'react';
@@ -8,19 +7,25 @@ import { downloadFileFromWalrus } from '@/story/utils/downloadFromWalrus';
 import { useAuthor } from '@/contexts/AuthorContext';
 import { supabase } from '@/utils/supabaseClient';
 import { mintReadNFT } from '@/story/mintReadNFT';
+import { Research } from '@/contexts/ResearchContext';
+import { IpMetadata } from '@story-protocol/core-sdk';
+import { IPCreate } from '@/lib/types';
 
-const ReadClient = ({ research, ip_metadata }: { research: any, ip_metadata: any }) => {
+const ReadClient = ({ research, ip_metadata }: { research: Research[], ip_metadata: IPCreate[] }) => {
   const [pdfFile, setPdfFile] = useState<Blob | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoadingRead, setIsLoadingRead] = useState(false);
   const [isLoadingCite, setIsLoadingCite] = useState(false);
-  const { author } = useAuthor();
+  const { author, wallet } = useAuthor();
 
   async function handleRead(id: number): Promise<void> {
     //MINT READ TOKEN
     setIsLoadingRead(true)
-    const metadataEntry = ip_metadata.find((e: any) => e.id === id)?.ip_blob_id;
-    await mintReadNFT(metadataEntry);
+    console.log(ip_metadata)
+    console.log(id)
+    const metadataEntry = ip_metadata.find((e: any) => { return e.id == id });
+    console.log("meta data entry", metadataEntry)
+    await mintReadNFT({ ip_metadata: metadataEntry!, account: wallet });
     const blobId = research.find((e: any) => e.id === id)?.blob_id;
     if (blobId) {
       const file = await downloadFileFromWalrus(blobId);
@@ -51,10 +56,10 @@ const ReadClient = ({ research, ip_metadata }: { research: any, ip_metadata: any
 
   return (
     <div className="gap-4 mt-8 flex justify-center items-center flex-col">
-      {research.map((e: any) => (
+      {research.map((e: Research, index: number) => (
         <KnowledgeDisplay
-          key={e.id}
-          id={e.id}
+          key={index}
+          id_value={e.id}
           research_name={e.title}
           onRead={handleRead}
           onCite={handleCite}

@@ -1,16 +1,6 @@
 
 const walrusPublisherUrls = [
-  "https://publisher.walrus-testnet.walrus.space/v1/store",
-  "https://wal-publisher-testnet.staketab.org/v1/store",
-  "https://walrus-testnet-publisher.bartestnet.com/v1/store",
-  "https://walrus-testnet-publisher.nodes.guru/v1/store",
-  "https://sui-walrus-testnet.bwarelabs.com/publisher/v1/store",
-  "https://walrus-testnet-publisher.stakin-nodes.com/v1/store",
-  "https://testnet-publisher-walrus.kiliglab.io/v1/store",
-  "https://walrus-testnet-publisher.nodeinfra.com/v1/store",
-  "https://walrus-testnet.blockscope.net:11444/v1/store",
-  "https://walrus-publish-testnet.chainode.tech:9003/v1/store",
-  "https://walrus-testnet-publisher.starduststaking.com:11445/v1/store",
+  "http://5.161.189.192:31416",
   "http://walrus-publisher-testnet.overclock.run:9001/v1/store",
   "http://walrus-testnet-publisher.everstake.one:9001/v1/store",
   "http://walrus.testnet.pops.one:9001/v1/store",
@@ -72,4 +62,5 @@ export const uploadJSONToWalrus = async (jsonmetadata: Record<string, any>): Pro
   }
   throw new Error('All upload attempts failed.');
 };
+
 
