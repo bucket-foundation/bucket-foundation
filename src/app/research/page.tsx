@@ -1,15 +1,17 @@
 
 "use client";
 
+import { useAuthor } from "@/context/AuthorContext";
+import { publishIpAsset } from "@/lib/story";
+import { uploadFileToWalrus } from "@/lib/walrus/upload";
 import { useState } from "react";
-import { publishIPAsset } from "@/story/publishIPAsset";
-import { uploadFileToWalrus } from "@/story/utils/uploadToWalrus";
 
 export default function Page() {
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
+  const { author } = useAuthor();
 
   const handlePublish = async () => {
     setLoading(true)
@@ -39,14 +41,16 @@ export default function Page() {
 
         console.log(title, description)
 
-        await publishIPAsset({ title, description, blobId: blobId! });
+        await publishIpAsset({ title, description, blobId: blobId!, author_id: author!.id });
         alert("IP Asset published successfully!");
       } catch (error) {
         console.error("Error publishing IP Asset:", error);
         alert("Failed to publish IP Asset.");
       }
     }
-    catch { }
+    catch {
+      console.log("error")
+    }
     finally {
       setLoading(false)
     }

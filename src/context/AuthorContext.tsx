@@ -1,27 +1,12 @@
-// src/context/AuthorContext.tsx
-import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
+import { Author } from "@/lib/types";
+import { useDynamicContext, Wallet } from '@dynamic-labs/sdk-react-core';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '@/utils/supabaseClient';
-
-interface Author {
-  id: number;
-  created_at: string;
-  wallet_address: string | null;
-  first_name: string | null;
-  last_name: string | null;
-}
-
-interface CiteToken {
-  id: number;
-  created_at: string;
-  research_id: number;
-  author_id: number;
-}
+import { supabase } from '@/lib/supabase/client'
 
 interface AuthorContextType {
-  author: Author | null;
-  loading: boolean;
-  citeTokens: CiteToken[] | null;
+  loading: boolean,
+  author: Author | null,
+  wallet: Wallet | null
 }
 
 const AuthorContext = createContext<AuthorContextType | undefined>(undefined);
@@ -30,7 +15,6 @@ export const AuthorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const { primaryWallet } = useDynamicContext();
   const [author, setAuthor] = useState<Author | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [citeTokens, setCiteTokens] = useState<CiteToken[]>([]);
 
   useEffect(() => {
     const upsertAuthor = async () => {
@@ -61,14 +45,14 @@ export const AuthorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
                   first_name: 'Anon',
                   last_name: 'John',
                 },
-                { onConflict: ['wallet_address'] }
+                { onConflict: 'wallet_address' }
               );
 
             if (createError) {
               console.error(createError);
               setAuthor(null);
             } else {
-              setAuthor(createdAuthor[0]);
+              setAuthor(createdAuthor![0]);
             }
           }
         } catch (error) {
@@ -86,29 +70,8 @@ export const AuthorProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     upsertAuthor();
   }, [primaryWallet]);
 
-  useEffect(() => {
-    const fetchCiteTokens = async () => {
-      if (author) {
-        const { data: tokens, error } = await supabase
-          .from('cite_tokens')
-          .select('*')
-          .eq('author_id', author.id);
-
-        if (error) {
-          console.error('Error fetching cite tokens:', error);
-          setCiteTokens([]);
-        } else {
-          setCiteTokens(tokens);
-        }
-      }
-    };
-
-    fetchCiteTokens();
-  }, [author]);
-
-
   return (
-    <AuthorContext.Provider value={{ author, loading, citeTokens }}>
+    <AuthorContext.Provider value={{ author, loading, wallet: primaryWallet }}>
       {children}
     </AuthorContext.Provider>
   );
@@ -121,4 +84,5 @@ export const useAuthor = () => {
   }
   return context;
 };
+
 

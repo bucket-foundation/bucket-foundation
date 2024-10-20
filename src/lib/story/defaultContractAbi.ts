@@ -106,3 +106,4 @@ export const defaultNftContractAbi = [
     type: "function",
   },
 ];
+

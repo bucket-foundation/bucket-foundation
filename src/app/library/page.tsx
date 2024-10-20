@@ -1,20 +1,24 @@
 "use client";
 
-import { useAuthor } from "@/contexts/AuthorContext";
-import { useResearch } from "@/contexts/ResearchContext";
+import { useCiteToken } from "@/context/CiteTokensContext";
+import { useResearch } from "@/context/ResearchContext";
 
 export default function Page() {
 
-  const { author, citeTokens } = useAuthor();
   const { research } = useResearch();
+  const { citeTokens } = useCiteToken();
+
+  if (!citeTokens) {
+    return (<div>Loading ...</div>)
+  }
 
   return (
     <div className=" flex justify-center items-center flex-col gap-4 mt-8" >
       {
-        citeTokens!.map((c) => {
+        citeTokens!.map((c, index: number) => {
           return (
-            <div className="w-[96%] h-32 flex bg-teal-950 border-teal-800 border-2 rounded-xl justify-between items-center flex-row px-4 m-2">
-              <text className="text-4xl font-bold">{research.find((r) => { return r.id == c.research_id })?.title}</text>
+            <div key={index} className="w-[96%] h-32 flex bg-teal-950 border-teal-800 border-2 rounded-xl justify-between items-center flex-row px-4 m-2">
+              <text className="text-4xl font-bold">{research!.find((r) => { return r.id == c.research_id })?.title}</text>
               <div className="flex gap-4">
                 <button
                   className="bg-green-950 border-green-800 border-2 rounded-lg p-4"

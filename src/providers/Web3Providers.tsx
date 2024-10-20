@@ -5,11 +5,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren } from "react";
 import { createWalletClient, type Chain } from "viem";
 import { StoryProvider } from "@story-protocol/react-sdk";
-import { AuthorProvider } from "@/contexts/AuthorContext";
-import { ResearchProvider } from "@/contexts/ResearchContext";
+import { AuthorProvider } from "@/context/AuthorContext";
+import { ResearchProvider } from "@/context/ResearchContext";
+import { CiteTokenProvider } from "@/context/CiteTokensContext";
 
 
 export const iliad = {
@@ -75,7 +76,9 @@ export default function Web3Providers({ children }: PropsWithChildren) {
             <StoryProviderWrapper>
               <AuthorProvider>
                 <ResearchProvider>
-                  {children}
+                  <CiteTokenProvider>
+                    {children}
+                  </CiteTokenProvider>
                 </ResearchProvider>
               </AuthorProvider>
             </StoryProviderWrapper>
@@ -106,3 +109,4 @@ function StoryProviderWrapper({ children }: PropsWithChildren) {
     </StoryProvider>
   )
 }
+

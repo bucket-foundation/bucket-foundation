@@ -18,7 +18,7 @@ const ReadClient = ({ research, ip_metadata }: { research: any, ip_metadata: any
   const { author } = useAuthor();
 
   async function handleRead(id: number): Promise<void> {
-    const metadataEntry = ip_metadata.find((e: any) => e.id === id)?.ip_blob_id;
+    const metadataEntry = ip_metadata.find((e: any) => e.id === id);
     await mintReadNFT(metadataEntry);
     setIsLoadingRead(true)
 

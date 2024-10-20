@@ -28,7 +28,7 @@ export const mintReadNFT = async function (ip_metadata: { ip_metadata: IPCreate 
     ipMetadata: {
       ipMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${ip_metadata.ip_metadata.ip_blob_id!}`,
       ipMetadataHash: toHex(ip_metadata.ip_metadata.ip_txn_hash, { size: 32 }),
-      nftMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${ip_metadata.ip_metadata.ip_blob_id!}`,
+      nftMetadataURI: `https://wal-aggregator-testnet.staketab.org/v1/${ip_metadata.ip_metadata.nft_blob_id!}`,
       nftMetadataHash: toHex(ip_metadata.ip_metadata.nft_txn_hash, { size: 32 }),
     },
     txOptions: { waitForTransaction: true },

@@ -43,3 +43,4 @@ export const downloadJSONFromWalrus = async (path: string): Promise<any> => {
   const jsonData = await response.json();
   return jsonData;
 };
+
