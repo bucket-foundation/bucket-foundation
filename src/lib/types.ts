@@ -5,8 +5,6 @@ export type IP = {
   ip_txn_hash: string;
   nft_blob_id: string;
   nft_txn_hash: string;
-
-
 }
 
 export type IPCreate = {
@@ -23,6 +21,7 @@ export type Research = {
   description: string;  // text corresponds to string
   blob_id: string;       // text corresponds to string
   txn_hash: string;      // text corresponds to string
+  ip_id: string;
 };
 
 export type ResearchCreate = {
@@ -30,6 +29,7 @@ export type ResearchCreate = {
   description: string;  // text corresponds to string
   blob_id: string;       // text corresponds to string
   txn_hash: string;      // text corresponds to string
+  ip_id: string;
 };
 
 

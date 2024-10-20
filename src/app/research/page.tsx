@@ -27,7 +27,7 @@ export default function Page() {
 
           if (newlyCreated) {
             console.log('Newly created file:', newlyCreated);
-            blobId = newlyCreated.blobId;
+            blobId = newlyCreated.blobObject.blobId;
 
           } else if (alreadyCertified) {
             console.log('Already certified file:', alreadyCertified);

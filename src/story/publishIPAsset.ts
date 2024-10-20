@@ -54,11 +54,17 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
 
   const meta = await uploadJSONToWalrus(ipMetadata);
   console.log('IP Metadata Response:', meta); // Log the full response
-  metaId = meta.newlyCreated?.blobId ?? meta.alreadyCertified?.blobId ?? null;
+
+  metaId = meta.newlyCreated?.blobObject?.blobId ?? meta.alreadyCertified?.blobId ?? null;
 
   const ipHash = createHash('sha256').update(JSON.stringify(ipMetadata)).digest();
 
   const meta2 = await uploadJSONToWalrus(nftMetadata);
+  console.log('NFT Metadata Response:', meta2); // Log the full response
+
+  // Access the blobId correctly for NFT metadata
+  metaId2 = meta2.newlyCreated?.blobObject?.blobId ?? meta2.alreadyCertified?.blobId ?? null;
+
   console.log('NFT Metadata Response:', meta2); // Log the full response
   metaId2 = meta2.newlyCreated?.blobId ?? meta2.alreadyCertified?.blobId ?? null;
 
@@ -91,6 +97,7 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
     description: description,
     blob_id: blobId,
     txn_hash: response.txHash!,
+    ip_id: response.ipId!,
   };
   const ipCreate: IPCreate = {
     ip_blob_id: metaId!,
@@ -100,15 +107,21 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
 
   };
 
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
-  const { data, error } = await supabase.from('research').insert(researchCreate)
-  const { data2, error2 } = await supabase.from('ip_metadata').insert(ipCreate)
+  const { data: researchData, error: researchError } = await supabase
+    .from('research')
+    .insert(researchCreate);
 
-  if (error) {
-    console.log(error)
+  if (researchError) {
+    console.error('Error inserting into research table:', researchError);
   }
-  if (error2) {
-    console.log(error2)
+
+  // Insert into the 'ip_metadata' table
+  const { data: ipData, error: ipError } = await supabase
+    .from('ip_metadata')
+    .insert(ipCreate);
+
+  if (ipError) {
+    console.error('Error inserting into ip_metadata table:', ipError);
   }
 }
 
