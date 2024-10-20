@@ -1,6 +1,17 @@
 
 const walrusPublisherUrls = [
   "https://walrus.publisher.agfarms.dev/v1/store",
+  "http://walrus.publisher.agfarms.dev/v1/store",
+  "http://walrus-publisher-testnet.overclock.run:9001/v1/store",
+  "http://walrus-testnet-publisher.everstake.one:9001/v1/store",
+  "http://walrus.testnet.pops.one:9001/v1/store",
+  "http://ivory-dakar-e5812.walrus.bdnodes.net:9001/v1/store",
+  "http://publisher.testnet.sui.rpcpool.com:9001/v1/store",
+  "http://walrus.krates.ai:9001/v1/store",
+  "http://walrus-publisher-testnet.latitude-sui.com:9001/v1/store",
+  "http://walrus-tn.juicystake.io:9090/v1/store",
+  "http://walrus-testnet.stakingdefenseleague.com:9001/v1/store",
+  "http://walrus.sui.thepassivetrust.com:9001/v1/store",
   "https://publisher.walrus-testnet.walrus.space/v1/store",
   "https://wal-publisher-testnet.staketab.org/v1/store",
   "https://walrus-testnet-publisher.bartestnet.com/v1/store",
@@ -12,16 +23,7 @@ const walrusPublisherUrls = [
   "https://walrus-testnet.blockscope.net:11444/v1/store",
   "https://walrus-publish-testnet.chainode.tech:9003/v1/store",
   "https://walrus-testnet-publisher.starduststaking.com:11445/v1/store",
-  "http://walrus-publisher-testnet.overclock.run:9001/v1/store",
-  "http://walrus-testnet-publisher.everstake.one:9001/v1/store",
-  "http://walrus.testnet.pops.one:9001/v1/store",
-  "http://ivory-dakar-e5812.walrus.bdnodes.net:9001/v1/store",
-  "http://publisher.testnet.sui.rpcpool.com:9001/v1/store",
-  "http://walrus.krates.ai:9001/v1/store",
-  "http://walrus-publisher-testnet.latitude-sui.com:9001/v1/store",
-  "http://walrus-tn.juicystake.io:9090/v1/store",
-  "http://walrus-testnet.stakingdefenseleague.com:9001/v1/store",
-  "http://walrus.sui.thepassivetrust.com:9001/v1/store"
+
 ];
 
 // Function to upload a file to Walrus

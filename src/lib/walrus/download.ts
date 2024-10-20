@@ -1,5 +1,14 @@
 
 const WALRUS_AGGREGATOR_URLS = [
+  "https://walrus.publisher.agfarms.dev/v1/store",
+  "http://walrus.publisher.agfarms.dev/v1/store",
+  "http://walrus-testnet-aggregator.everstake.one:9000",
+  "http://walrus.testnet.pops.one:9000",
+  "http://scarlet-brussels-376c2.walrus.bdnodes.net:9000",
+  "http://aggregator.testnet.sui.rpcpool.com:9000",
+  "http://walrus.krates.ai:9000",
+  "http://walrus-testnet.stakingdefenseleague.com:9000",
+  "http://walrus.sui.thepassivetrust.com:9000",
   "https://aggregator.walrus-testnet.walrus.space",
   "https://wal-aggregator-testnet.staketab.org",
   "https://walrus-testnet-aggregator.bartestnet.com",
@@ -14,13 +23,6 @@ const WALRUS_AGGREGATOR_URLS = [
   "https://walrus-tn.juicystake.io:9443",
   "https://walrus-agg-testnet.chainode.tech:9002",
   "https://walrus-testnet-aggregator.starduststaking.com:11444",
-  "http://walrus-testnet-aggregator.everstake.one:9000",
-  "http://walrus.testnet.pops.one:9000",
-  "http://scarlet-brussels-376c2.walrus.bdnodes.net:9000",
-  "http://aggregator.testnet.sui.rpcpool.com:9000",
-  "http://walrus.krates.ai:9000",
-  "http://walrus-testnet.stakingdefenseleague.com:9000",
-  "http://walrus.sui.thepassivetrust.com:9000"
 ];
 
 export const downloadFileFromWalrus = async (path: string): Promise<File> => {
