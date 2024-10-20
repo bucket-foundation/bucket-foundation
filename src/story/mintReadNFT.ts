@@ -6,8 +6,13 @@ import { NFTContractAddress, NonCommercialSocialRemixingTermsId, RPCProviderUrl 
 import { IPCreate } from '@/lib/types'
 
 export const mintReadNFT = async function (ip_metadata: { ip_metadata: IPCreate }) {
-  const privateKey: AccountsAddress = `0x${process.env.WALLET_PRIVATE_KEY}`
+  console.log("WALLET PRIVATE KEY", process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY)
+
+  const privateKey: Address = `0x${process.env.NEXT_PUBLIC_WALLET_PRIVATE_KEY}`
   const account: Account = privateKeyToAccount(privateKey)
+
+  console.log("PRIVATE KEY", privateKey)
+  console.log("ACCOUNT KEY", account)
 
   const config: StoryConfig = {
     account: account,
