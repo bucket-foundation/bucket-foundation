@@ -57,7 +57,7 @@ export default function Page() {
     await mintCiteNFT(r.ip_id, author.id, id)
   };
 
-  if (loading || !research) {
+  if (loading || !research || !citations) {
     return <div>Loading ...</div>;
   }
 
@@ -68,7 +68,7 @@ export default function Page() {
           key={index}
           id_value={e.id}
           research_name={e.title}
-          citations_vals={citations?.filter((c) => { return c.research_id == e.id })!}
+          citations_vals={citations.filter((c) => { return c.research_id == e.id }) ?? []}
           onRead={handleRead}
           onCite={handleCite}
         />
