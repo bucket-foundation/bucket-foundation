@@ -1,3 +1,15 @@
+## Short Description 
+    (280 Characters)
+Bucket is a research platform that allows free to read and paid to cite research.
+
+## Description
+
+
+Change Knowledge to Explore
+Get rid of library or make Knowledge Library
+
+Library, Research, Assets
+
 # Knowledge
 ## Mint Read Token
 ### Steps

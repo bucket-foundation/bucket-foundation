@@ -11,7 +11,7 @@ interface KnowledgeDisplayProps {
 }
 
 export default function KnowledgeDisplay({ id_value, research_name, onRead, onCite, citations_vals }: KnowledgeDisplayProps) {
-  const { research, citations } = useResearch();
+  const { citations } = useResearch();
   return (
     <div className="w-[96%] h-32 flex flex-col bg-teal-950 border-teal-800 border-2 rounded-xl justify-between px-4 m-2">
       <div className="flex justify-between items-center">
@@ -30,6 +30,7 @@ export default function KnowledgeDisplay({ id_value, research_name, onRead, onCi
             <span className="text-2xl font-bold">Cite</span>
           </button>
         </div>
+
       </div>
       {citations && citations.length > 0 && (
         <div className="mt-2 text-sm text-gray-300">
