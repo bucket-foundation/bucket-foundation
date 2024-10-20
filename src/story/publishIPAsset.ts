@@ -6,7 +6,7 @@ import { uploadJSONToWalrus } from './utils/uploadToWalrus'
 import { createHash } from 'crypto'
 import { toHex } from 'viem';
 import { createClient } from '@supabase/supabase-js';
-import { ResearchCreate } from '@/lib/types'
+import { IPCreate, ResearchCreate } from '@/lib/types'
 
 export interface publishIPAssetProps {
   title: string;
@@ -91,14 +91,25 @@ export const publishIPAsset = async function ({ title, description, blobId }: pu
     blob_id: blobId,
     txn_hash: response.txHash!,
   };
+  const ipCreate: IPCreate = {
+    ip_blob_id: metaId!,
+    ip_txn_hash: toHex(ipHash, { size: 32 }),
+    nft_blob_id: metaId2!,
+    nft_txn_hash: toHex(nftHash, { size: 32 }),
+
+  };
+
 
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
   const { data, error } = await supabase.from('research').insert(researchCreate)
+  const { data2, error2 } = await supabase.from('ip_metadata').insert(ipCreate)
 
   if (error) {
     console.log(error)
   }
-
+  if (error2) {
+    console.log(error2)
+  }
 }
 
 

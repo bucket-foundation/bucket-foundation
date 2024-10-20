@@ -23,3 +23,23 @@ export const downloadFileFromWalrus = async (path: string): Promise<File> => {
   return file;
 };
 
+export const downloadJSONFromWalrus = async (path: string): Promise<any> => {
+  const WALRUS_AGGREGATOR_URL = "http://5.161.189.192:31415";
+
+  if (!WALRUS_AGGREGATOR_URL) {
+    throw new Error('Environment variable WALRUS_AGGREGATOR_URL is not defined.');
+  }
+
+  const response = await fetch(`${WALRUS_AGGREGATOR_URL}/v1/${path}`, {
+    method: 'GET',
+    mode: "cors"
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch JSON: ${response.status} ${response.statusText}`);
+  }
+
+  // Parse the response as JSON
+  const jsonData = await response.json();
+  return jsonData;
+};

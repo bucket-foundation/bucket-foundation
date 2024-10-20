@@ -7,8 +7,9 @@ import KnowledgeDisplay from '@/components/KnowledgeDisplay';
 import { downloadFileFromWalrus } from '@/story/utils/downloadFromWalrus';
 import { useAuthor } from '@/contexts/AuthorContext';
 import { supabase } from '@/utils/supabaseClient';
+import { mintReadNFT } from '@/story/mintReadNFT';
 
-const ReadClient = ({ research }: { research: any }) => {
+const ReadClient = ({ research, ip_metadata }: { research: any, ip_metadata: any }) => {
   const [pdfFile, setPdfFile] = useState<Blob | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoadingRead, setIsLoadingRead] = useState(false);
@@ -18,9 +19,12 @@ const ReadClient = ({ research }: { research: any }) => {
   async function handleRead(id: number): Promise<void> {
     //MINT READ TOKEN
     setIsLoadingRead(true)
+    const metadataEntry = ip_metadata.find((e: any) => e.id === id)?.ip_blob_id;
+    await mintReadNFT(metadataEntry);
     const blobId = research.find((e: any) => e.id === id)?.blob_id;
     if (blobId) {
       const file = await downloadFileFromWalrus(blobId);
+
       setPdfFile(file);
       setIsModalOpen(true);
     }

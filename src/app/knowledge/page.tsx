@@ -7,10 +7,11 @@ export default async function Page() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
   const { data: research } = await supabase.from('research').select();
+  const { data: ip_metadata } = await supabase.from('ip_metadata').select();
 
   return (
     <main>
-      <ReadClient research={research} />
+      <ReadClient research={research} ip_metadata={ip_metadata} />
     </main>
   );
 }
