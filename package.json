@@ -1,8 +1,22 @@
 {
-  "name": "bucket",
+  "name": "bucket-foundation",
   "version": "0.1.0",
-  "private": true,
-  "description": "",
+  "private": false,
+  "description": "Open-source research data protocol over x402. Pay once per paper, cite it forever.",
+  "license": "MIT",
+  "homepage": "https://bucket.foundation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gianyrox/bucket-foundation.git"
+  },
+  "keywords": [
+    "x402",
+    "research",
+    "open-science",
+    "citations",
+    "protocol",
+    "open-source"
+  ],
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -16,8 +30,7 @@
     "register-deriv-com": "npx ts-node ./scripts/registerDerivativeCommercial.ts",
     "create-spg-collection": "npx ts-node ./scripts/utils/createSpgNftCollection.ts"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "bucket.foundation contributors",
   "dependencies": {
     "@dynamic-labs/ethereum": "^3.4.2",
     "@dynamic-labs/sdk-react-core": "^3.4.2",

@@ -1,100 +1,94 @@
-https://bucket.foundation
+# bucket.foundation
 
-# Background
+> **Open-source research data protocol over x402.**
+> Pay once per paper. Cite it forever. No gatekeepers.
 
-Bucket.Foundation is an idea that I have brainstormed in my head for quite some time while in school, reading papers and doing independent research. Having an IP Management system was an integral puzzle piece to the fruition of the project, so Story had the exact technology that I needed to complete a life project of mine that I deeply care about.
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![protocol](https://img.shields.io/badge/protocol-x402-purple.svg)](./PROTOCOL.md)
+[![status](https://img.shields.io/badge/status-alpha-orange.svg)](#status)
 
-# Problem
+---
 
-There is a high barrier of entry into the research industry due to:
+## What it is
 
-1. **Access to Research is Expensive**  
-   Researchers have to pay publishers to publish their research and pay them again to access the papers in publishers' journals. The price on knowledge is an inhibitor for curious individuals and aspiring students to conduct research, let alone read research papers. Independent researchers who either pay too much for journal subscriptions or need to pay for individual papers may waste money on useless papers because they didn't get to read the paper before they cited it.
+`bucket.foundation` is an open protocol and a reference publishing site for research that can be **paid for once and cited forever**.
 
-2. **Research Papers are Difficult to Read**  
-   Research papers are written for a specific genre of journals, which are reviewed and read by peer reviewers and researchers in the same field. It is difficult enough for a researcher in the field to understand a peer's work; imagine someone not in the field. This leads to segmentation in knowledge and a lack of interdisciplinary discussion, thought, and human evolution. From a data science perspective, one cannot make a mapping of all the research ever conducted in the publishing system because they are all disjoint databases from different publishing companies owning unique journals.
+- You pay for a paper once, over **[x402](https://x402.org/)** — HTTP-native micropayments on an L2.
+- The paper lands in a **bucket** — a content-addressed folder with a sidecar manifest (`canon.json`) that records provenance, license, and citation metadata.
+- Any downstream agent, research tool, or human can cite the bucketed paper from a local copy, forever, at zero marginal x402 cost.
+- Citations route fees back to the author through a simple on-chain receipt, not through publishers.
 
-# Description
+This repo contains:
 
-Bucket is a platform for free-to-read and paid-to-cite research. This allows for a freedom of knowledge that enables all students, curious individuals, or independent researchers to leverage a research system that is not owned by publishing companies, which creates innovative inefficiencies. Bucket.Foundation cares about the evolution of knowledge, and a free-to-read, pay-to-cite platform does just that. In this project, I have built the free-to-read, paid-to-cite part of the platform, but there is more to come, including a pre-publish peer-reviewing system and a citation market price calculator. 
+1. **`PROTOCOL.md`** — the open spec (sidecar schema, x402 endpoint shape, canon contract).
+2. **`src/`** — a reference Next.js site that fetches, mints, and displays bucketed papers. The site is optional. The protocol is not.
+3. **`LICENSE`** — MIT. Fork it, run your own bucket, federate.
 
-One may wonder why, if the knowledge is available for free on the platform, someone wouldn't just download it and run with it. Well, citations are NFT tokens that will have a market value and fluctuate in price based on dimensions such as quality, ingenuity, authorship, demand (in terms of free NFT downloads), and more.
+## The thesis in one paragraph
 
-# Tools and Functionality
+Research access is broken. Readers pay publishers for papers they may not need. Authors pay publishers to print what they already wrote. Independent researchers can't cite what they can't afford, and can't read what they can't cite. `bucket.foundation` flips the loop: **the paper is a one-time x402 purchase with forever citation rights.** A bucket is a durable, content-addressed copy of a paper plus a sidecar manifest. Once a bucket exists, the marginal cost of citing that paper is zero; the fee attached to each citation flows to the original author, not to a publisher that already got paid. The protocol is open and the reference implementation is MIT-licensed so anyone can run a bucket, federate, mirror, and compete.
 
-Bucket uses **Story**, **Walrus**, **Dynamic**, and **Supabase** to build a hybrid platform hosted on Vercel. 
+## The protocol, in 90 seconds
 
-- **Story** is used for:
-  - Minting/registering/licensing research for publishing
-  - Minting noncommercial research for reading and early research
-  - Minting citation license tokens for citing research
-  - Managing IP
+```
+┌──────────┐    x402 payment      ┌──────────────────┐
+│  client  │ ───────────────────► │  paper source    │
+│ (agent,  │                      │ (any x402-gated  │
+│ reader,  │ ◄─── paper + hash ── │  research API)   │
+│  app)    │                      └──────────────────┘
+└────┬─────┘
+     │ write to bucket
+     ▼
+┌──────────────────────────────────────────┐
+│  bucket/<sha256>/                        │
+│    paper.pdf        ← the paper itself   │
+│    canon.json       ← sidecar manifest   │
+│    receipt.x402     ← payment receipt    │
+└──────────────────────────────────────────┘
+     │
+     ▼  citeable forever, zero marginal cost
+```
 
-- **Walrus** is used for:
-  - Storing research data on-chain
-  - Storing NFT data on-chain
-  - Storing IP data on-chain
-  - Retrieving data for web interactivity
+A bucket is just a folder. A sidecar is just JSON. An x402 endpoint is just HTTP 402. There is nothing novel to deploy — the novelty is the convention, the license, and the citation economics built on top.
 
-- **Dynamic** is used for:
-  - Authentication for web3 beginner and veteran researchers
-  - Webhooks to populate user data in conjunction with Supabase
+## Quick start
 
-- **Supabase** is used for:
-  - Storing Walrus keys
-  - Storing Story transaction hashes and keys
-  - Quick retrieval of blockchain duplicate data (e.g., title, description for research NFT)
-  - Retrieval of data stored on Walrus
-  - Retrieval of NFT and Token Data on Story Protocol
-  - Hydrating the www.bucket.foundation website with data
+```bash
+git clone https://github.com/gianyrox/bucket-foundation
+cd bucket-foundation
+cp .env.example .env.local    # fill in your keys
+npm install
+npm run dev                   # http://localhost:3000
+```
 
-# User Experience
+See **[PROTOCOL.md](./PROTOCOL.md)** for the spec. See **[CONTRIBUTING.md](./CONTRIBUTING.md)** to help.
 
-## Dynamic Auth
-- Button for Dynamic Auth
+## Status
 
-## Home Tab
-- The home tab provides an explanation of the Bucket Platform for users.
+| Piece | State |
+|---|---|
+| Protocol spec (`PROTOCOL.md`) | Draft v0.1 |
+| Sidecar schema (`canon.json`) | Draft v0.1 |
+| Reference site (Next.js) | Dormant — being revived |
+| x402 buyer client | Planned — depends on [x402](https://x402.org/) vendor gateway |
+| Story Protocol IP mint (optional) | Shipped in prior version, kept |
+| Federation / mirroring spec | Not yet drafted |
+| Open contributors welcome | **Yes** |
 
-## Library Tab  
-- The Library Tab allows users to browse research IP Assets, mint a free noncommercial NFT PDF to read, and mint a paid commercial citation token to be attached to other research IP Assets.
+This project was dormant between Feb 2025 and April 2026. It is being revived as an **open-source protocol first** and a site second. Expect rough edges.
 
-## Research Tab
-- The Research Tab allows users to upload a title, description, research paper PDF, and citation tokens to a Research IP Asset and mint/register/attach a license.
+## Prior art & credits
 
-## Assets Tab
-- The Assets Tab is where users can access all of their Story Protocol NFTs, including Research IP Assets, Citation Tokens, and Read NFTs.
-# Knowledge
-## Mint Read Token
-### Steps
-## Mint Citation Token
-### Steps
-# Research
-## Mint Research IPAsset
-### Steps
-## Add File to IPFS
-### Steps
-## Attach License Terms
-### Steps
-## Mint License
-### Steps
-## Mint Royalty
-### Steps
+- **[x402](https://x402.org/)** — the HTTP 402 micropayment protocol this builds on.
+- **[Story Protocol](https://www.story.foundation/)** — IP NFT infrastructure used by the reference site to mint licenses.
+- **[Walrus](https://www.walrus.xyz/)** — storage layer for bucketed papers in the reference site.
+- **[Dynamic](https://www.dynamic.xyz/)** — wallet auth used by the reference site.
+- **Research gateways** that expose x402 endpoints on top of PubMed, arXiv, OpenAlex, PubChem — `bucket.foundation` is a consumer, not a replacement.
 
-# Backend
-## Walrus
-### Aggregator
-endpoint:
-https://walrus.aggregator.agfarms.dev
+## Why "foundation"
 
-example usage with curl:
-curl "https://walrus.aggregator.agfarms.dev/v1/<some blob ID>" -o <some file name>
+Because the canon holds **only foundations** — axioms, real math, rules, laws, principles, primary derivations. Outcomes (longevity, disease, cognition, climate) are downstream applications. A bucket of foundations is worth more than a landfill of outcomes.
 
-### Publisher
-endpoint:
-https://walrus.publisher.agfarms.dev
+## License
 
-example usage with curl: 
-curl -X PUT "https://walrus.publisher.agfarms.dev/v1/store" -d "some string"
-curl -X PUT "https://walrus.publisher.agfarms.dev/v1/store?epochs=5" --upload-file "some/file"
-
+[MIT](./LICENSE). Fork it.
