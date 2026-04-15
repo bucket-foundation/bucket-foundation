@@ -85,10 +85,21 @@ This project was dormant between Feb 2025 and April 2026. It is being revived as
 - **[Dynamic](https://www.dynamic.xyz/)** — wallet auth used by the reference site.
 - **Research gateways** that expose x402 endpoints on top of PubMed, arXiv, OpenAlex, PubChem — `bucket.foundation` is a consumer, not a replacement.
 
-## Why "foundation"
+## Governance — bucket.foundation is a nonprofit
 
-Because the canon holds **only foundations** — axioms, real math, rules, laws, principles, primary derivations. Outcomes (longevity, disease, cognition, climate) are downstream applications. A bucket of foundations is worth more than a landfill of outcomes.
+`bucket.foundation` is literally a foundation. It is operated as a **nonprofit**. No equity, no investors, no exit.
+
+- **Mission:** make primary research paid-for-once and citeable-forever, and route citation fees to authors — not publishers.
+- **No profit extraction.** Any revenue from operating the reference infrastructure (hosting buckets, running x402 buyer wallets, maintaining the canonical registry) goes back into operations and author payouts. If there is ever a surplus, it funds more research access — grants, mirror subsidies, bandwidth for developing regions.
+- **The protocol is MIT.** Anyone — nonprofit, for-profit, individual, university, lab — can run a bucket. You do not need permission from the Foundation to participate in the network. The Foundation runs **a** bucket, not **the** bucket. There is no authoritative node.
+- **Why "foundation"?** Two reasons that reinforce each other: (1) legally, this is a nonprofit foundation organization; (2) structurally, the canon holds only **foundations** — axioms, real math, rules, laws, principles, primary derivations. Outcomes (longevity, disease, cognition, climate) are downstream applications, not canon. A foundation of foundations.
+
+Full governance notes: see [`GOVERNANCE.md`](./GOVERNANCE.md).
+
+**Supporting the project.** Until a formal donations page is set up, the most useful support is code, review, or mirroring a bucket. Financial sponsorship channels (fiscal sponsor, direct nonprofit donations) will be announced here once formalized. No fundraise is currently open.
 
 ## License
 
-[MIT](./LICENSE). Fork it.
+- **Protocol spec** (`PROTOCOL.md`) — Creative Commons Zero (CC0) equivalent in intent: use it anywhere, no attribution required. See the spec file.
+- **Code** (this repo) — [MIT](./LICENSE). Fork it.
+- **Canon content** published through `bucket.foundation` — each artifact carries its own license in `canon.json`. The Foundation does not relicense authors' work.
