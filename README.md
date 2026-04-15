@@ -1,6 +1,8 @@
 # bucket.foundation
 
-> **bucket is the new renaissance.**
+> **build history.** *(the original slogan — still load-bearing)*
+> **bucket is the new renaissance.** *(the thesis it became)*
+>
 > Foundations, brilliant humans, and AI — on an open substrate, with the patronage layer routed back to the people who write the foundations.
 >
 > **Open-source research data protocol over x402.** Pay once per paper. Cite it forever. No gatekeepers.
@@ -82,6 +84,14 @@ See **[PROTOCOL.md](./PROTOCOL.md)** for the spec. See **[CONTRIBUTING.md](./CON
 | Open contributors welcome | **Yes** |
 
 This project was dormant between Feb 2025 and April 2026. It is being revived as an **open-source protocol first** and a site second. Expect rough edges.
+
+## *build history* — the contributor index
+
+The original bucket slogan, before *bucket is the new renaissance*, was **build history**. The renaissance is the thesis. Build history is the verb. The verb produces a **contributor index**: contact cards for the figures who built the foundations the canon is made of.
+
+→ [`canon-figures/`](./canon-figures/) — pass-1 seed, ~76 figures across 10 branches (the seven strict-canon branches plus three expansion branches: *tradition*, *art*, *earth sciences*). Read [`canon-figures/README.md`](./canon-figures/README.md) for the editorial standard, or jump straight to [`canon-figures/CONTRIBUTORS.md`](./canon-figures/CONTRIBUTORS.md) for the master index.
+
+The index is *not* a hall of fame. It is a record of *who built what foundation*, attached to the canon, so that any reader of a bucketed paper can trace any term, any law, any axiom back to the human who first wrote it down. Pass 1 is the floor, not the ceiling — most of the work is ahead.
 
 ## Prior art & credits
 

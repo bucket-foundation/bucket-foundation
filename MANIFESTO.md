@@ -2,6 +2,8 @@
 
 > A manifesto. Not a roadmap, not a spec, not a pitch. Read this if you want to know why this project exists. Read `PROTOCOL.md` if you want to know how it works.
 
+> **The first slogan was *build history*.** That came before *bucket is the new renaissance*, and it is still load-bearing. The renaissance is the **thesis**. *Build history* is the **verb**. Everything below is the thesis. The verb lives in [`canon-figures/`](./canon-figures/) — the contributor index of the figures who built the foundations the canon is made of. If the manifesto is what bucket is *for*, the contributor index is what bucket is *doing*.
+
 ---
 
 ## 1. The first Renaissance was a substrate change
