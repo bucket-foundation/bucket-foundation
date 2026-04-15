@@ -1,13 +1,19 @@
 # bucket.foundation
 
-> **Open-source research data protocol over x402.**
-> Pay once per paper. Cite it forever. No gatekeepers.
+> **bucket is the new renaissance.**
+> Foundations, brilliant humans, and AI — on an open substrate, with the patronage layer routed back to the people who write the foundations.
+>
+> **Open-source research data protocol over x402.** Pay once per paper. Cite it forever. No gatekeepers.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![protocol](https://img.shields.io/badge/protocol-x402-purple.svg)](./PROTOCOL.md)
+[![manifesto](https://img.shields.io/badge/read-MANIFESTO.md-red.svg)](./MANIFESTO.md)
 [![status](https://img.shields.io/badge/status-alpha-orange.svg)](#status)
 
 ---
+
+> *"The first Renaissance happened because a few hundred people in a few cities had the right tools, the right foundations, and a working patronage layer at the same time. The second Renaissance is happening because the same three things are aligning again, on a planet of eight billion people, with an AI that fits in your pocket."*
+> — [`MANIFESTO.md`](./MANIFESTO.md)
 
 ## What it is
 
