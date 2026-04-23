@@ -60,13 +60,19 @@
 html, body {
   color: var(--basalt);
   /* Body is a high-contrast variable serif (Fraunces) — editorial, warm,  */
-  /* character-rich. No generic sans-serif. Body carries the paper weight. */
+  /* character-rich. Weight 500 on warm stone keeps body copy crisply      */
+  /* legible; 400 looked washed out against the grain.                     */
   font-family: "Fraunces", "Söhne", Georgia, serif;
+  font-weight: 500;
   font-optical-sizing: auto;
   font-variation-settings: "SOFT" 30, "WONK" 0;
   font-feature-settings: "kern", "ss01", "tnum";
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+/* Paragraphs get a hair more weight for reading comfort. */
+p, li, dd { font-weight: 500; }
+strong, b { font-weight: 700; }
 
 /* Editorial italic pulls (Fraunces italic is gorgeous; Instrument Serif */
 /* italic for softer pull quotes).                                         */
@@ -240,8 +246,8 @@ html, body {
 .papyrus-inner   { padding: clamp(2.25rem, 5.5vw, 5rem) clamp(1.75rem, 4.5vw, 4.5rem); }
 .papyrus-deckle  { clip-path: none; }
 
-/* Chisel — carved-into-stone text. Dark letters, light top-edge highlight, */
-/* dark bottom-edge crevice — the classic inscription depth cue.             */
+/* Chisel — carved-into-stone text. Reserved for DISPLAY type (h1/h2/h3).   */
+/* At body size the shadow blurs the glyph, so body copy uses solid basalt. */
 .chisel {
   color: var(--basalt);
   text-shadow:
@@ -249,6 +255,15 @@ html, body {
     0 -1px 0 rgba(31,28,22,0.35),
     0 2px 1px rgba(31,28,22,0.12);
 }
+/* Auto-strip the chisel shadow on any <p>/<li>/small text that accidentally */
+/* inherits it — readability wins over effect at body size.                  */
+p.chisel, li.chisel, small.chisel, .chisel p, .chisel li {
+  text-shadow: 0 1px 0 rgba(239,232,212,0.5);
+}
+/* Body-ink utility: when you need confident, readable basalt on stone, */
+/* no shadow, weight 600.                                                */
+.body-ink { color: var(--basalt); font-weight: 600; text-shadow: none; }
+.body-ink-2 { color: var(--basalt); font-weight: 500; text-shadow: none; }
 .chisel-bone {
   color: var(--bone);
   text-shadow:

@@ -24,15 +24,15 @@ export default function Header() {
           aria-label="bucket.foundation"
         >
           <Image
-            src="/brand/omega-lyre-gold.png"
+            src="/brand/logo/mark-hero.png"
             alt=""
-            width={42}
-            height={42}
+            width={44}
+            height={44}
             priority
-            className="rounded-sm shadow-[0_2px_6px_rgba(13,13,13,0.35)]"
+            className="rounded-sm drop-shadow-[0_2px_4px_rgba(31,28,22,0.25)]"
           />
-          <span className="font-display uppercase text-[18px] tracking-[0.08em] chisel">
-            bucket<span className="text-[color:var(--aegean-deep)]">.</span>foundation
+          <span className="font-display uppercase text-[18px] tracking-[0.08em] text-[color:var(--basalt)] font-bold">
+            bucket<span className="text-[color:var(--gold-deep)]">.</span>foundation
           </span>
         </Link>
 

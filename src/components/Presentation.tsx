@@ -118,7 +118,7 @@ export default function Presentation() {
 
             <div className="mt-10 carve-in-5 carved-rule max-w-md" />
 
-            <p className="mt-10 carve-in-5 max-w-xl text-[20px] text-[color:var(--basalt-2)] leading-[1.55] drop-cap">
+            <p className="mt-10 carve-in-5 max-w-xl text-[20px] text-[color:var(--basalt)] font-semibold leading-[1.55] drop-cap">
               A nonprofit canon of foundations — axioms, real math, laws,
               principles, primary derivations — carved into stone by the small
               number of people who can do genius work with AI. Every paper is free
@@ -260,9 +260,9 @@ export default function Presentation() {
             <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] chisel mb-8">
               § I·b · Manifesto pull
             </div>
-            <p className="drop-cap font-serif-display text-[clamp(1.45rem,2.7vw,2.2rem)] leading-[1.35] chisel">
-              Primary research is paid for <em className="ed-italic">once</em>, and
-              citeable <em className="ed-italic">forever.</em> The author is the
+            <p className="drop-cap font-serif-display text-[clamp(1.45rem,2.7vw,2.2rem)] leading-[1.4] text-[color:var(--basalt)] font-semibold">
+              Primary research is paid for <em className="ed-italic font-medium">once</em>, and
+              citeable <em className="ed-italic font-medium">forever.</em> The author is the
               beneficiary. The publisher is{" "}
               <span className="text-[color:var(--crimson)]">removed from the rail.</span>{" "}
               The citation becomes a payment; the payment becomes provenance;
