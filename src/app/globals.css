@@ -12,8 +12,9 @@
   --aegean:       #2E6B6B;
   --aegean-deep:  #1F4F4F;
   --aegean-dark:  #123838;
-  --gold:         #D9A43A;
-  --gold-deep:    #A87B1E;
+  --gold:         #B8861E;    /* AA on bone (4.2:1), rich on basalt */
+  --gold-bright:  #D9A43A;    /* display-only accent for dark sections */
+  --gold-deep:    #8A641A;
   --basalt:       #1F1C16;
   --basalt-2:     #2A261E;
   --basalt-3:     #3A3529;
@@ -39,16 +40,19 @@
   --hairline-bone: rgba(239, 232, 212, 0.12);
   --stone-carve:   rgba(31, 28, 22, 0.40);
 
-  /* Legacy aliases so older pages keep rendering */
+  /* Legacy aliases — FLIPPED for light-mode earth-ambient stone.           */
+  /* --parchment used to mean "bone text on basalt bg"; now the whole page  */
+  /* is bone stone, so --parchment = ink (basalt). --parchment-dim = a      */
+  /* readable mid-brown that still sits calmly on warm stone.               */
   --ink:           var(--basalt);
   --ink-2:         var(--basalt-2);
   --ink-3:         var(--basalt-3);
-  --parchment:     var(--bone);
-  --parchment-dim: #6F6A5E;
+  --parchment:     var(--basalt);
+  --parchment-dim: #4A4238;
   --midnight:      var(--basalt);
   --morning-fog:   var(--bone);
   --driftwood:     var(--basalt-2);
-  --river-stone:   #6F6A5E;
+  --river-stone:   #4A4238;
   --gold-dim:      var(--gold-deep);
   --gold-dawn:     #F2CF7E;
   --teal:          var(--aegean);
@@ -211,13 +215,22 @@ html, body {
   box-shadow: 0 1px 0 rgba(239,232,212,0.55);
 }
 
-/* Legacy section aliases — now all transparent carve-seams. The body     */
-/* stone shows through unchanged; ::before gives the seam.                */
+/* Section surfaces. The body stone is the substrate; sections tint it    */
+/* with a translucent layer so the grain still shows through but the tone */
+/* shifts. stone-basalt = deep pocket carved dark, bone text readable.    */
 .stone-bone,
 .stone-basalt,
 .stone-aegean {
-  background: transparent;
   position: relative;
+}
+.stone-bone    { background-color: transparent; }
+.stone-basalt  {
+  background-color: rgba(31, 28, 22, 0.92);
+  color: var(--bone);
+}
+.stone-aegean  {
+  background-color: rgba(18, 56, 56, 0.9);
+  color: var(--bone);
 }
 .stone-bone::after,
 .stone-basalt::after,
@@ -226,11 +239,11 @@ html, body {
   position: absolute; inset: 0;
   pointer-events: none;
 }
-/* very subtle sunken shadow for major section blocks (no color overlay) */
 .stone-bone::after    { box-shadow: inset 0 8px 24px -16px rgba(31,28,22,0.18); }
-.stone-basalt::after  { box-shadow: inset 0 20px 60px -30px rgba(31,28,22,0.35),
-                                    inset 0 -20px 60px -30px rgba(31,28,22,0.35); }
-.stone-aegean::after  { box-shadow: inset 0 12px 36px -20px rgba(31,28,22,0.22); }
+.stone-basalt::after  { box-shadow: inset 0 24px 60px -30px rgba(0,0,0,0.55),
+                                    inset 0 -24px 60px -30px rgba(0,0,0,0.55); }
+.stone-aegean::after  { box-shadow: inset 0 18px 40px -20px rgba(0,0,0,0.45),
+                                    inset 0 -18px 40px -20px rgba(0,0,0,0.45); }
 /* legacy papyrus classes → carved-inset (same stone, just recessed) */
 .papyrus {
   position: relative;
