@@ -2,26 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --- bucket foundation · brand tokens -------------------------------- */
+/* Palette: KALA-adjacent — deep ink, parchment, muted gold.            */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink:        #0b0b0d;   /* near-black canvas */
+  --ink-2:      #141418;   /* elevated surface */
+  --ink-3:      #1d1d22;   /* hairline contrast */
+  --parchment:  #ece4d2;   /* primary text */
+  --parchment-dim: #c8bfa9;
+  --gold:       #c9a24b;   /* accent, shields, marks */
+  --gold-dim:   #8a6f33;
+  --rust:       #8b3a2f;   /* rare alert / citation-live */
+  --hairline:   rgba(236, 228, 210, 0.12);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background: var(--ink);
+  color: var(--parchment);
+  font-family: "EB Garamond", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-feature-settings: "liga", "onum", "kern";
+  -webkit-font-smoothing: antialiased;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.font-serif-display {
+  font-family: "EB Garamond", "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
+.font-mono-mark {
+  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  letter-spacing: 0.04em;
+}
+.small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+}
+
+.hairline { border-color: var(--hairline); }
+.rule-v { border-left: 1px solid var(--hairline); }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
 }
+
+/* Slow ember pulse for the "live" citation dot */
+@keyframes ember {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+.ember { animation: ember 3.6s ease-in-out infinite; }

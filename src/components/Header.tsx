@@ -1,32 +1,40 @@
+"use client";
+
 import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
 import Link from "next/link";
-import Image from "next/image";
+import Shield from "./Shield";
+
+const NAV = [
+  { href: "/canon",    label: "Canon" },
+  { href: "/research", label: "Research" },
+  { href: "/kruse",    label: "Kruse" },
+  { href: "/protocol", label: "Protocol" },
+  { href: "/about",    label: "About" },
+];
 
 export default function Header() {
   return (
-    <div className="h-[120px] flex justify-center items-center">
-      <div className="w-[98%] h-[80%] flex justify-between items-center rounded-xl px-4 bg-teal-950 border-2 border-teal-800 bg-opacity-50 ">
-        <div className="h-[80%] w-full flex gap-20 justify-start items-end rounded-xl pb-1">
-          <Link href={"/"}>
-            <Image
-              src="/first-image.png"
-              alt="Footer Image"
-              width={90}
-              height={90}
-            />
-          </Link>
-          <Link href={"/knowledge"} className="text-white text-2xl hover:text-gray-300 transition">
-            Library
-          </Link>
-          <Link href={"/research"} className="text-white text-2xl hover:text-gray-300 transition">
-            Research
-          </Link>
-          <Link href={"/assets"} className="text-white text-2xl hover:text-gray-300 transition">
-            Assets
-          </Link>
+    <header className="w-full border-b hairline">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-5">
+        <Link href="/" className="flex items-center gap-3 text-[color:var(--gold)] hover:text-[color:var(--parchment)] transition">
+          <Shield size={36} />
+          <span className="font-serif-display text-xl tracking-tight">
+            bucket<span className="text-[color:var(--parchment-dim)]">.</span>foundation
+          </span>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-8 small-caps text-[13px] text-[color:var(--parchment-dim)]">
+          {NAV.map((n) => (
+            <Link key={n.href} href={n.href} className="hover:text-[color:var(--parchment)] transition">
+              {n.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <DynamicWidget />
         </div>
-        <div className="flex items-center">
-          <DynamicWidget /></div>
-      </div></div>
+      </div>
+    </header>
   );
 }

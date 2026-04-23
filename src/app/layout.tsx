@@ -5,8 +5,14 @@ import Footer from "@/components/Footer";
 import Web3Providers from "@/providers/Web3Providers";
 
 export const metadata: Metadata = {
-  title: "Bucket",
-  description: "Desci & Research",
+  title: "bucket.foundation — build the past. build history.",
+  description:
+    "A nonprofit canon of foundations. Primary research paid for once, citeable forever, over x402. bucket is the new renaissance.",
+  openGraph: {
+    title: "bucket.foundation",
+    description: "build the past. build history. bucket is the new renaissance.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
