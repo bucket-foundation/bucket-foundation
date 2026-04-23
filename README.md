@@ -17,6 +17,21 @@
 > *"The first Renaissance happened because a few hundred people in a few cities had the right tools, the right foundations, and a working patronage layer at the same time. The second Renaissance is happening because the same three things are aligning again, on a planet of eight billion people, with an AI that fits in your pocket."*
 > — [`MANIFESTO.md`](./MANIFESTO.md)
 
+## For AI agents
+
+bucket.foundation exposes a zero-key, budget-capped research proxy so any
+LLM/agent can discover and query the canon without holding a wallet:
+
+```bash
+curl -s "https://www.bucket.foundation/api/research?q=mitochondrial+function&tier=insight"
+```
+
+Every response is a feed402/0.2 envelope: `{ data, citation, receipt }`.
+Full playbook at [`/llms.txt`](https://www.bucket.foundation/llms.txt) and
+[`/llms-full.txt`](https://www.bucket.foundation/llms-full.txt). Discovery
+manifest at [`/.well-known/feed402.json`](https://www.bucket.foundation/.well-known/feed402.json).
+MCP server manifest at [`/.well-known/mcp.json`](https://www.bucket.foundation/.well-known/mcp.json).
+
 ## What it is
 
 `bucket.foundation` is an open protocol and a reference publishing site for research that can be **paid for once and cited forever**.

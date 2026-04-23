@@ -119,6 +119,13 @@ export const metadata: Metadata = {
     "license:intent": "CC0",
     "canon:branches": "8",
     "protocol": "feed402 / x402 / Base",
+    // Machine-readable agent hints
+    "ai:protocol": "feed402/0.2",
+    "ai:discovery": "/.well-known/feed402.json",
+    "ai:llms": "/llms.txt",
+    "ai:llms_full": "/llms-full.txt",
+    "ai:api": "/api/research",
+    "ai:mcp": "/.well-known/mcp.json",
   },
 };
 
