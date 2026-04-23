@@ -148,7 +148,28 @@ html, body {
     auto,
     240px 240px,
     480px 480px;
-  background-attachment: fixed, fixed, fixed, fixed, fixed, fixed, fixed;
+  /* fixed-attachment bg causes paint jank on iOS Safari (mobile Safari     */
+/* repaints the whole bg layer on every scroll frame). Scope to md+.     */
+  background-attachment: scroll, scroll, scroll, scroll, scroll, scroll, scroll;
+}
+@media (min-width: 768px) {
+  html, body {
+    background-attachment: fixed, fixed, fixed, fixed, fixed, fixed, fixed;
+  }
+}
+/* Prevent horizontal overflow anywhere (big sections pushing past vw). */
+html, body { overflow-x: hidden; }
+/* Safe areas for notched iPhones. */
+@supports (padding: max(0px)) {
+  .safe-x { padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right)); }
+}
+/* Mobile-first section padding: generous on desktop, tight on phones.  */
+.section-pad { padding-top: clamp(3rem, 9vw, 7rem); padding-bottom: clamp(3rem, 9vw, 7rem); }
+/* Grid hairlines — on mobile the gap-px + bg-basalt trick becomes a heavy */
+/* black lattice around small tiles. Strip the gap-bg below md.            */
+@media (max-width: 767px) {
+  .grid-hairlines { background-color: transparent !important; gap: 0.75rem; }
 }
 
 /* The body class is now cosmetic-only — the stone lives on <body> itself. */

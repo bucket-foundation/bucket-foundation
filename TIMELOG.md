@@ -99,3 +99,9 @@ Filing blocked on: `NUCLEUS_ADMIN_USER` / `NUCLEUS_ADMIN_PASSWORD` not in sessio
 - **Work already done (backfill)**: ~15.5 hrs (Apr 14–17 planning, research, Kruse Index build, Bucket reactivation)
 - **Work planned forward**: ~30.5 hrs (14.5 Bucket + 15.5 DerbyFish + 0.5 contract)
 - **Grand total Kruse pitch initiative**: ~46 hrs / ~5-6 working days
+
+## 2026-04-23 — Demo video production plan
+
+| Date | Hrs | Actor | Scope | Deliverable | Bead |
+|---|---|---|---|---|---|
+| 2026-04-23 | ~0.75 | ai (revenue pillar) | bkt / gtm | Researched environment (keys: OpenAI/Anthropic/HeyGen present; ElevenLabs/Suno/Runway absent; tools: ffmpeg/obs/chrome/cairosvg/magick present; playwright/whisper/yt-dlp installable). Authored `gtm/demo-video-plan.md` — full production plan for 75s stonepunk music video: strategic framing, script (69 words ending "written in stone."), 12-shot storyboard (3x Playwright PW, 5x gpt-image-1 GEN, 1x canon-figures ARC, 3x SVG+FFX), voice decision tree (OpenAI `onyx`/`ash` primary), royalty-free music shortlist with ffmpeg ducking mix, end-to-end runnable ffmpeg pipeline, Playwright spec skeleton, gdrive mirror path, longtermism regen template (`script-generator.md` convention + reading seed list), time estimate ~7.75h / < $2 API. PLAN ONLY — awaits founder green-light on 7 decisions in §10. | `bkt- · demo-video v1 production plan` (dispatch attempt returned HTTP 401 at POST nucleus.agfarms.dev/api/portfolio/dispatch with env NUCLEUS_ADMIN_USER=nucleus + 8-char password from ~/.bashrc; nginx basic-auth rejected. Founder must re-file with correct creds or admin UI. Payload ready in plan §Bead. Subdomain TLS still pending.) |

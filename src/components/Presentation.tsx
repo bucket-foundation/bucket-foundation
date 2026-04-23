@@ -305,12 +305,12 @@ export default function Presentation() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--basalt)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--basalt)] grid-hairlines">
             {BRANCHES.map((b, i) => (
               <Link
                 key={b.slug}
                 href={`/canon/${b.slug}`}
-                className="bg-[color:var(--bone)] p-8 hover:bg-[color:var(--bone-2)] transition group relative aspect-[4/5] flex flex-col"
+                className="bg-[color:var(--bone)] p-6 md:p-8 hover:bg-[color:var(--bone-2)] active:bg-[color:var(--bone-2)] transition group relative md:aspect-[4/5] min-h-[180px] flex flex-col rounded-sm md:rounded-none shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]"
               >
                 <div className="flex items-start justify-between">
                   <div className="font-display text-[32px] text-[color:var(--basalt-3)] group-hover:text-[color:var(--aegean-deep)] transition leading-none">
@@ -416,7 +416,7 @@ export default function Presentation() {
             how a citation gets{" "}
             <span className="ed-italic text-[color:var(--aegean-deep)] font-normal lowercase">carved</span>.
           </h3>
-          <ol className="grid md:grid-cols-3 gap-px bg-[color:var(--basalt)]">
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--basalt)] grid-hairlines">
             {[
               {
                 num: "I",
@@ -434,7 +434,7 @@ export default function Presentation() {
                 body: "Agent receives { data, citation, receipt }. Citation includes the author DID, corpus hash, model id, chunk id — reproducible forever.",
               },
             ].map((s) => (
-              <li key={s.num} className="bg-[color:var(--bone)] p-10 flex flex-col gap-5">
+              <li key={s.num} className="bg-[color:var(--bone)] p-6 md:p-10 flex flex-col gap-4 md:gap-5 rounded-sm md:rounded-none shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]">
                 <div className="font-display text-[52px] text-[color:var(--gold-deep)] leading-none">
                   {s.num}
                 </div>

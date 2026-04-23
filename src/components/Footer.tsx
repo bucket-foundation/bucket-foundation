@@ -51,7 +51,7 @@ export default function Footer() {
 
       <div className="border-t border-[color:var(--hairline-bone)]">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-wrap gap-4 justify-between text-[10px] small-caps text-[color:var(--bone-3)]">
-          <div>bucket foundation · nonprofit · MIT code · CC0 intent</div>
+          <div>bucket foundation · nonprofit · MIT code · CC0 intent · v0.2.0</div>
           <div className="text-[color:var(--gold)]">carved in stone · mmxxii</div>
         </div>
       </div>

@@ -33,6 +33,9 @@ const KEYWORDS = [
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#EFE8D4" },
     { media: "(prefers-color-scheme: dark)",  color: "#1F1C16" },
