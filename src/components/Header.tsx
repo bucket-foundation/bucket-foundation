@@ -12,6 +12,11 @@ const NAV = [
   { href: "/about",    label: "About" },
 ];
 
+// Dynamic widget crashes when its context isn't mounted (e.g. static pages
+// rendered without NEXT_PUBLIC_DYNAMIC_ENV_ID). Render it only when the env
+// is present so the public marketing chrome stays universally reachable.
+const HAS_DYNAMIC = !!process.env.NEXT_PUBLIC_DYNAMIC_ENV_ID;
+
 export default function Header() {
   return (
     <header className="w-full border-b hairline">
@@ -32,7 +37,16 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <DynamicWidget />
+          {HAS_DYNAMIC ? (
+            <DynamicWidget />
+          ) : (
+            <Link
+              href="/join"
+              className="small-caps text-[11px] text-[color:var(--gold)] border border-[color:var(--gold)] px-4 py-2 hover:bg-[color:var(--gold)] hover:text-[color:var(--ink)] transition"
+            >
+              Contribute
+            </Link>
+          )}
         </div>
       </div>
     </header>

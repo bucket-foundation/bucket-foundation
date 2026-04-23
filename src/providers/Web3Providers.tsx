@@ -61,11 +61,18 @@ const config = createConfig({
 const queryClient = new QueryClient();
 
 export default function Web3Providers({ children }: PropsWithChildren) {
+  // Graceful-degrade: if the Dynamic env id isn't configured (e.g. during a
+  // static prerender or a public-pages-only build), render children bare.
+  // Wallet-gated pages will throw at runtime, not at build time.
+  const envId = process.env.NEXT_PUBLIC_DYNAMIC_ENV_ID;
+  if (!envId) {
+    return <>{children}</>;
+  }
   return (
     // setup dynamic
     <DynamicContextProvider
       settings={{
-        environmentId: process.env.NEXT_PUBLIC_DYNAMIC_ENV_ID!,
+        environmentId: envId,
         walletConnectors: [EthereumWalletConnectors],
         overrides: { evmNetworks },
       }}
