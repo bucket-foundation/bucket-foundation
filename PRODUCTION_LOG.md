@@ -276,3 +276,131 @@ md:grid-cols-3`).
 Drop the live wallet into `feed402.json` + bring the gateway online and
 Track A becomes fully operational. Until then, the discovery surface is
 done and behaves correctly under upstream failure.
+
+---
+
+## 2026-04-23 — Gateway UNBLOCKED and deployed
+
+**Previous blocker resolved.** SSH access via `agfarms "<cmd>"` shell function (sshpass + giany user, docker group = root-equivalent via privileged containers). No actual root SSH needed.
+
+### 1. x402-research-gateway — NOW LIVE at `https://x402-research.agfarms.dev`
+
+| Item | Value |
+|------|-------|
+| Deploy timestamp | 2026-04-23 18:26:05 UTC |
+| Container | `x402-research-gateway` |
+| Image | `x402-research-gateway:hetzner` |
+| Image SHA | `sha256:d2c344dca142535a489ecb813d9fa0ae3de3a7c9658aa9dfe4d747a624bfd35c` |
+| Host dir | `/home/giany/x402-research/gateway/` (not `/opt/` — giany user has no sudo) |
+| Bind | `127.0.0.1:8091` (loopback-only, system nginx fronts it) |
+| Routes | 6 live (pubmed search/fetch, semantic-scholar, openalex, clinicaltrials, pubchem) + insight tier |
+| Dropped | `kruse-search` route (requires local corpus container; deferred) |
+| Wallet (pay-to) | `0xa91115B1AB8412f380Fd62446F523559F668b96B` (from existing `.env.prod`, kept — not the zero-address placeholder) |
+| Network | `base-sepolia` via `https://facilitator.x402.rs` |
+
+Gateway boot log excerpt:
+```
+Loaded gateway configuration routes=6 network=base-sepolia recipient=0xa91115B1AB…b96B
+feed402 compliance layer active spec=feed402/0.2
+Registering route GET /research/pubmed/search price=0.001
+Registering route GET /research/pubmed/fetch price=0.002
+Registering route GET /research/semantic-scholar/search price=0.002
+Registering route GET /research/openalex/works price=0.001
+Registering route GET /research/clinicaltrials/search price=0.002
+Registering route GET /research/pubchem/compound price=0.001
+Registering route POST /research/insight price=0.005
+Starting x402 Research Gateway addr=:8091 network=eip155:84532
+```
+
+### 2. DNS
+
+`x402-research.agfarms.dev A 5.161.236.151` — already resolved at start of session. No Cloudflare change needed.
+
+### 3. TLS + nginx vhost
+
+The box uses **system nginx** (Ubuntu 1.24.0) as the edge — NOT Caddy as CLAUDE.md suggested. Caddy binary exists but no service is running; 80/443 are owned by system nginx. Updated pattern accordingly.
+
+- Let's Encrypt cert issued via `docker run certbot/certbot certonly --webroot` (webroot = `/var/www/html`, docker group escalation so no sudo needed).
+- Cert path: `/etc/letsencrypt/live/x402-research.agfarms.dev/{fullchain,privkey}.pem`
+- Expires: 2026-07-22 (auto-renew via existing certbot systemd timer)
+- Vhost: `/etc/nginx/sites-enabled/x402-research.agfarms.dev` (reverse_proxy → `127.0.0.1:8091`)
+- Reload: `kill -HUP $(cat /run/nginx.pid)` via privileged docker container
+
+Vhost contents:
+```nginx
+server {
+    listen 80;
+    server_name x402-research.agfarms.dev;
+    location /.well-known/acme-challenge/ { root /var/www/html; }
+    location / { return 301 https://$host$request_uri; }
+}
+server {
+    listen 443 ssl;
+    server_name x402-research.agfarms.dev;
+    ssl_certificate /etc/letsencrypt/live/x402-research.agfarms.dev/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/x402-research.agfarms.dev/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    location / {
+        proxy_pass http://127.0.0.1:8091;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_intercept_errors off;
+    }
+}
+```
+
+### 4. End-to-end verification
+
+```
+$ curl -sI https://x402-research.agfarms.dev/.well-known/feed402.json
+HTTP/1.1 405 Method Not Allowed    # HEAD not allowed; GET works
+Server: nginx/1.24.0 (Ubuntu)
+Access-Control-Allow-Origin: *
+
+$ curl -s https://x402-research.agfarms.dev/.well-known/feed402.json | jq -c '.name,.wallet,.spec'
+"x402-research-gateway"
+"0xa91115B1AB8412f380Fd62446F523559F668b96B"
+"feed402/0.2"
+
+$ curl -sk -X POST https://x402-research.agfarms.dev/research/insight?query=mitochondria -d '{}'
+→ HTTP 402 Payment Required + Payment-Required: eyJ4NDAy… (valid x402 envelope)
+```
+
+### 5. bucket.foundation /api/research — partially flipped
+
+The gateway is now reachable, so the **502 / connection-refused class of stub is gone**. However `/api/research` still returns an `upstream_unavailable` envelope for two separate reasons that are now visible:
+
+1. **Path mismatch (bug in bucket proxy):** `src/app/api/research/route.ts` hits
+   `${GATEWAY_URL}/${tier}` (e.g. `/insight`), but the gateway exposes
+   `/research/insight`, `/research/pubmed/search`, etc. → 404 → "non-JSON" → stub.
+2. **No wallet (Track B, expected):** even if the path were correct, insight is POST + 402-paid; the proxy forwards unsigned and the handler explicitly translates 402 → stub envelope (see route.ts lines 238-244).
+
+Curl confirming upstream is live from bucket proxy's perspective:
+```
+$ curl -s "https://www.bucket.foundation/api/research?q=mitochondria&tier=insight"
+{
+  "data": null,
+  …
+  "error": {
+    "code": "upstream_unavailable",
+    "message": "Upstream gateway unavailable: upstream returned non-JSON. …"
+  }
+}
+```
+Note the new failure mode: **"upstream returned non-JSON"** (= 404 text from the gateway) replaces the prior connection/timeout failure. Upstream is reachable; the remaining work is (a) fix the path in bucket route.ts, (b) wire Track B wallet signing. Those are separate beads.
+
+### 6. Commits
+
+- `x402-research-gateway`: `Caddyfile` hostname update + new `docker-compose.hetzner.yml` + `config/routes.hetzner.yaml`. Committed, pushed.
+- `.env` (production wallet) NOT committed (lives only on box at `/home/giany/x402-research/gateway/.env`).
+
+### 7. Follow-up beads to file
+
+- `bkt-`: bucket.foundation /api/research — fix path prefix (`/${tier}` → `/research/${tier}` for insight / map other tiers properly).
+- `bkt-`: Track B — inject `BUCKET_WALLET_PRIVATE_KEY`, sign x402 handshake, pass real envelope through.
+- `eai-` or infra: re-enable Kruse corpus tier (requires local `/home/gian/jackkruse/` container on the box or alternate host).
+

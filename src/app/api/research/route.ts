@@ -184,7 +184,14 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const upstream = `${GATEWAY_URL}/${tier}?q=${encodeURIComponent(q)}`;
+  // Gateway routes live under /research/* — insight is POST, sources are GET
+  const upstream =
+    tier === "insight"
+      ? `${GATEWAY_URL}/research/insight`
+      : `${GATEWAY_URL}/research/pubmed/search?q=${encodeURIComponent(q)}`;
+  const upstreamMethod = tier === "insight" ? "POST" : "GET";
+  const upstreamBody =
+    tier === "insight" ? JSON.stringify({ q, query: q }) : undefined;
 
   // Attempt call. If BUCKET_WALLET_PRIVATE_KEY is set we'd sign here — for
   // Track A we forward the raw call and let upstream 402 through if unsigned.
@@ -194,12 +201,14 @@ export async function GET(req: NextRequest) {
   let resp: Response;
   try {
     resp = await fetch(upstream, {
-      method: "GET",
+      method: upstreamMethod,
       signal: controller.signal,
       headers: {
         accept: "application/json",
+        "content-type": "application/json",
         "x-bucket-proxy": "v1",
       },
+      body: upstreamBody,
       cache: "no-store",
     });
   } catch (e: unknown) {
@@ -232,14 +241,64 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  // 402 from upstream (payment required) → we don't hold a wallet in Track A,
-  // so surface a clear upstream_unavailable with the reason. Track B wires
-  // real payment here.
+  // 402 from upstream (payment required) → decode the x402 challenge so the
+  // caller gets a structured, actionable envelope. This is the zero-key demo
+  // path: the proxy wallet isn't funded yet, but an agent reading this
+  // response can (a) pay the challenge directly from its own wallet, or
+  // (b) read /llms-full.txt for funding status.
   if (resp.status === 402) {
-    return stubUpstreamUnavailable(
-      q,
-      tier,
-      "upstream requires x402 payment; proxy wallet not configured",
+    const challengeB64 = resp.headers.get("payment-required") ?? "";
+    let challenge: Record<string, unknown> | null = null;
+    let price_usd = TIER_PRICES[tier];
+    let payTo: string | null = null;
+    let asset: string | null = null;
+    let network: string | null = null;
+    try {
+      const decoded = Buffer.from(challengeB64, "base64").toString("utf-8");
+      challenge = JSON.parse(decoded);
+      const accepts = (challenge?.accepts as Array<Record<string, unknown>>) ?? [];
+      const first = accepts[0] ?? {};
+      payTo = (first.payTo as string) ?? null;
+      asset = (first.extra as Record<string, unknown>)?.name as string ?? "USDC";
+      network = (first.network as string) ?? null;
+      const amt = Number(first.amount ?? 0);
+      if (amt > 0) price_usd = amt / 1_000_000; // USDC has 6 decimals
+    } catch {
+      // keep defaults
+    }
+    return json(
+      {
+        data: null,
+        citation: {
+          type: "source",
+          provider: "bucket-foundation",
+          canonical_url: "https://www.bucket.foundation/protocol",
+          license: "CC-BY-4.0",
+          retrieved_at: new Date().toISOString(),
+        },
+        receipt: {
+          tier,
+          status: "payment_required",
+          price_usd,
+          asset,
+          network,
+          pay_to: payTo,
+          challenge: challengeB64 || null,
+          demo: true,
+        },
+        error: {
+          code: "payment_required",
+          message:
+            "This endpoint requires x402 payment. The bucket.foundation proxy wallet is not yet funded — you can (a) pay the x402 challenge directly from your own Base wallet using receipt.challenge, or (b) check back soon for zero-key service. See https://www.bucket.foundation/llms-full.txt §4 for details.",
+        },
+      },
+      {
+        status: 402,
+        headers: {
+          "x-bucket-tier": tier,
+          "payment-required": challengeB64,
+        },
+      },
     );
   }
 
