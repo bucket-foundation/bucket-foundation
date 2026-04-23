@@ -58,7 +58,6 @@
 }
 
 html, body {
-  background: var(--bone);
   color: var(--basalt);
   /* Body is a high-contrast variable serif (Fraunces) — editorial, warm,  */
   /* character-rich. No generic sans-serif. Body carries the paper weight. */
@@ -104,101 +103,172 @@ html, body {
 .hairline-bone { border-color: var(--hairline-bone); }
 .rule-v { border-left: 1px solid var(--hairline); }
 
-/* === STONE FOUNDATION BACKGROUND ===================================== */
-/* Real photographic stone tile as the body substrate. Everything — hero, */
-/* papyrus sheets, basalt monoliths — sits on top of this.                */
-/* Clean earth-ambient stone — flat warm bone with barely-there grain. */
-/* No heavy photo tile: the page is the stone, the content is the carve. */
-.stone-bg {
+/* === WRITTEN IN STONE ================================================ */
+/* The WHOLE page is one continuous slab of earth-ambient limestone.      */
+/* No photographs. No tiles. The stone is built in CSS: a warm bone base, */
+/* fine fractal-noise tooth (SVG turbulence data URI), large mineral       */
+/* mottling, and soft vignette carving. Every section is transparent —    */
+/* they just carve into the same stone via inset shadows.                 */
+/* --------------------------------------------------------------------- */
+/* SVG fractal noise tile (240px, seamless-ish, rgba earthy brown) baked  */
+/* into a data URI. baseFrequency 0.9 = fine sand tooth.                  */
+
+html, body {
   background-color: var(--bone);
   background-image:
-    radial-gradient(120% 80% at 15% 0%, rgba(31,28,22,0.045) 0%, transparent 55%),
-    radial-gradient(100% 80% at 85% 100%, rgba(31,28,22,0.06) 0%, transparent 60%),
-    radial-gradient(rgba(31,28,22,0.035) 1px, transparent 1px),
-    radial-gradient(rgba(31,28,22,0.025) 1px, transparent 1px);
-  background-size: auto, auto, 3px 3px, 7px 7px;
-  background-position: 0 0, 0 0, 0 0, 1px 2px;
+    /* mineral mottling (large, soft) */
+    radial-gradient(1400px 900px at 10% -5%,  rgba(184,134,58,0.07) 0%, transparent 55%),
+    radial-gradient(1200px 800px at 92% 22%,  rgba(31,28,22,0.055)  0%, transparent 60%),
+    radial-gradient(1000px 700px at 40% 55%,  rgba(139,108,58,0.05) 0%, transparent 60%),
+    radial-gradient(1300px 900px at 85% 92%,  rgba(31,28,22,0.07)   0%, transparent 60%),
+    /* long soft vein */
+    linear-gradient(107deg,
+      transparent 38%,
+      rgba(31,28,22,0.035) 42%,
+      transparent 46%,
+      transparent 72%,
+      rgba(31,28,22,0.025) 74%,
+      transparent 78%),
+    /* fine fractal-noise tooth — SVG turbulence */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12  0 0 0 0 0.11  0 0 0 0 0.085  0 0 0 0.38 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+    /* medium grain — larger tooth for depth */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.17  0 0 0 0 0.14  0 0 0 0 0.1   0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size:
+    auto, auto, auto, auto,
+    auto,
+    240px 240px,
+    480px 480px;
+  background-attachment: fixed, fixed, fixed, fixed, fixed, fixed, fixed;
 }
 
-/* Stone surfaces — gradients layered ON TOP of the photographic stone   */
-/* so sections differentiate without losing the stone under-texture.     */
-.stone-bone {
-  background:
-    radial-gradient(120% 80% at 20% 10%, rgba(13,13,13,0.04) 0%, transparent 60%),
-    radial-gradient(80% 60% at 80% 90%, rgba(13,13,13,0.06) 0%, transparent 70%),
-    var(--bone);
+/* The body class is now cosmetic-only — the stone lives on <body> itself. */
+.stone-bg { /* intentionally empty — bg is on html/body */ }
+
+/* === CARVED PANELS ================================================= */
+/* Panels are NOT separate surfaces — they are regions carved INTO the    */
+/* body stone. Background stays transparent; depth comes from box-shadow. */
+
+/* Sunken panel — content is recessed into the slab. Top-left shadow is  */
+/* the deep crevice, bottom-right catches the light. */
+.carved-inset {
+  position: relative;
+  background: transparent;
+  border-radius: 2px;
+  box-shadow:
+    inset  0 2px 4px rgba(31, 28, 22, 0.35),
+    inset  2px 0 6px rgba(31, 28, 22, 0.22),
+    inset  0 -1px 0 rgba(239, 232, 212, 0.55),
+    inset -1px 0 0 rgba(239, 232, 212, 0.35),
+    inset  0 0 60px rgba(31, 28, 22, 0.06);
+}
+.carved-inset-deep {
+  box-shadow:
+    inset  0 3px 10px rgba(31, 28, 22, 0.5),
+    inset  3px 0 14px rgba(31, 28, 22, 0.3),
+    inset  0 -2px 0  rgba(239, 232, 212, 0.5),
+    inset -2px 0 0  rgba(239, 232, 212, 0.3),
+    inset  0 0 90px rgba(31, 28, 22, 0.1);
 }
 
-/* === PAPYRUS SHEET ================================================= */
-/* A real papyrus sheet laid onto the stone — used for editorial pulls, */
-/* manifesto callouts, canon index panels. The sheet has warm golden    */
-/* tones with horizontal reed-fiber weave; raises content off the stone */
-/* with a subtle carved shadow.                                          */
+/* Raised plinth — content stands proud of the stone. */
+.carved-relief {
+  position: relative;
+  background: transparent;
+  border-radius: 2px;
+  box-shadow:
+    inset  0 1px 0   rgba(239, 232, 212, 0.7),
+    inset -1px 0 0   rgba(239, 232, 212, 0.4),
+    inset  0 -1px 0  rgba(31, 28, 22, 0.28),
+    inset  1px 0 0   rgba(31, 28, 22, 0.18),
+    0 2px 0 rgba(31, 28, 22, 0.12),
+    0 8px 22px -10px rgba(31, 28, 22, 0.25);
+}
+
+/* Inner padding for carved panels. */
+.carved-pad {
+  padding: clamp(2.25rem, 5.5vw, 5rem) clamp(1.75rem, 4.5vw, 4.5rem);
+}
+
+/* Section rails — barely-there section transitions. Just a carved scar. */
+.carved-seam {
+  position: relative;
+}
+.carved-seam::before {
+  content: "";
+  position: absolute; inset: 0 0 auto 0; height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(31,28,22,0.22) 20%,
+    rgba(31,28,22,0.38) 50%,
+    rgba(31,28,22,0.22) 80%,
+    transparent 100%);
+  box-shadow: 0 1px 0 rgba(239,232,212,0.55);
+}
+
+/* Legacy section aliases — now all transparent carve-seams. The body     */
+/* stone shows through unchanged; ::before gives the seam.                */
+.stone-bone,
+.stone-basalt,
+.stone-aegean {
+  background: transparent;
+  position: relative;
+}
+.stone-bone::after,
+.stone-basalt::after,
+.stone-aegean::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+/* very subtle sunken shadow for major section blocks (no color overlay) */
+.stone-bone::after    { box-shadow: inset 0 8px 24px -16px rgba(31,28,22,0.18); }
+.stone-basalt::after  { box-shadow: inset 0 20px 60px -30px rgba(31,28,22,0.35),
+                                    inset 0 -20px 60px -30px rgba(31,28,22,0.35); }
+.stone-aegean::after  { box-shadow: inset 0 12px 36px -20px rgba(31,28,22,0.22); }
+/* legacy papyrus classes → carved-inset (same stone, just recessed) */
 .papyrus {
   position: relative;
-  background-color: var(--papyrus);
-  background-image:
-    radial-gradient(80% 60% at 30% 20%, rgba(31,28,22,0.05) 0%, transparent 60%),
-    radial-gradient(60% 40% at 80% 90%, rgba(31,28,22,0.07) 0%, transparent 70%),
-    repeating-linear-gradient(
-      0deg,
-      rgba(31,28,22,0.035) 0px,
-      rgba(31,28,22,0.035) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  color: var(--basalt);
+  background: transparent;
+  border-radius: 2px;
   box-shadow:
-    0 24px 48px -28px rgba(31, 28, 22, 0.35),
-    0 6px 16px -10px rgba(31, 28, 22, 0.25),
-    inset 0 1px 0 rgba(239, 232, 212, 0.5);
+    inset  0 2px 4px rgba(31, 28, 22, 0.35),
+    inset  2px 0 6px rgba(31, 28, 22, 0.22),
+    inset  0 -1px 0 rgba(239, 232, 212, 0.55),
+    inset -1px 0 0 rgba(239, 232, 212, 0.35),
+    inset  0 0 60px rgba(31, 28, 22, 0.06);
 }
-.papyrus-inner {
-  /* Inner padding matching the rendered gold border on the papyrus image */
-  padding: clamp(2.5rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem);
-}
-/* Deckled edge — papyrus has torn irregular edges; simulate with a subtle */
-/* clip-path that breaks the rectangular frame a little.                  */
-.papyrus-deckle {
-  clip-path: polygon(
-    0.5% 1%, 4% 0%, 8% 1.2%, 14% 0.3%, 22% 1%, 31% 0%, 42% 1.1%, 55% 0.2%,
-    68% 1%, 78% 0%, 86% 1.2%, 94% 0%, 99% 1%, 100% 4%, 99.2% 10%, 100% 18%,
-    99% 28%, 100% 40%, 99.1% 54%, 100% 68%, 99% 82%, 100% 92%, 99% 98%, 95% 100%,
-    88% 99%, 78% 100%, 66% 99%, 52% 100%, 38% 99%, 25% 100%, 14% 99%, 6% 100%,
-    1% 98.5%, 0% 92%, 0.5% 80%, 0% 68%, 0.5% 54%, 0% 40%, 0.5% 28%, 0% 18%, 0.5% 8%
-  );
-}
-.stone-basalt {
-  background:
-    radial-gradient(100% 80% at 30% 20%, rgba(247,244,236,0.04) 0%, transparent 60%),
-    radial-gradient(80% 60% at 80% 90%, rgba(14,140,140,0.05) 0%, transparent 70%),
-    var(--basalt);
-}
-.stone-aegean {
-  background:
-    radial-gradient(120% 80% at 20% 10%, rgba(247,244,236,0.08) 0%, transparent 60%),
-    radial-gradient(80% 60% at 80% 90%, rgba(13,13,13,0.22) 0%, transparent 70%),
-    var(--aegean-deep);
-}
+.papyrus-inner   { padding: clamp(2.25rem, 5.5vw, 5rem) clamp(1.75rem, 4.5vw, 4.5rem); }
+.papyrus-deckle  { clip-path: none; }
 
-/* Chisel — carved-into-stone text. Deep inset shadow + highlight. */
+/* Chisel — carved-into-stone text. Dark letters, light top-edge highlight, */
+/* dark bottom-edge crevice — the classic inscription depth cue.             */
 .chisel {
   color: var(--basalt);
   text-shadow:
-    0 1px 0 rgba(247,244,236,0.55),
-    0 -1px 0 rgba(13,13,13,0.35);
+    0 1px 0 rgba(239,232,212,0.75),
+    0 -1px 0 rgba(31,28,22,0.35),
+    0 2px 1px rgba(31,28,22,0.12);
 }
 .chisel-bone {
   color: var(--bone);
   text-shadow:
-    0 1px 0 rgba(13,13,13,0.55),
-    0 -1px 0 rgba(247,244,236,0.10);
+    0 1px 0 rgba(31,28,22,0.65),
+    0 -1px 0 rgba(239,232,212,0.10);
 }
 .chisel-gold {
   color: var(--gold);
   text-shadow:
-    0 1px 0 rgba(13,13,13,0.65),
-    0 -1px 0 rgba(247,244,236,0.18);
+    0 1px 0 rgba(31,28,22,0.6),
+    0 -1px 0 rgba(239,232,212,0.25),
+    0 0 18px rgba(217,164,58,0.22);
+}
+/* Engraved — deeper cut, for big display type.                */
+.engraved {
+  color: var(--basalt);
+  text-shadow:
+    0 1px 0 rgba(239,232,212,0.85),
+    0 -1px 1px rgba(31,28,22,0.55),
+    0 3px 2px rgba(31,28,22,0.18);
 }
 
 /* Inlay — gold lettering sunk into basalt, mythic plaque style. */
@@ -209,30 +279,26 @@ html, body {
     0 0 18px rgba(232, 178, 58, 0.25);
 }
 
-/* Horizon chisel line — used as section dividers. */
+/* Horizon chisel line — a groove cut into the stone. */
 .carved-rule {
   height: 2px;
-  background: linear-gradient(
-    90deg,
+  background: linear-gradient(90deg,
     transparent 0%,
-    rgba(13,13,13,0.18) 10%,
-    rgba(13,13,13,0.35) 50%,
-    rgba(13,13,13,0.18) 90%,
-    transparent 100%
-  );
-  box-shadow: 0 1px 0 rgba(247,244,236,0.5);
+    rgba(31,28,22,0.20) 10%,
+    rgba(31,28,22,0.42) 50%,
+    rgba(31,28,22,0.20) 90%,
+    transparent 100%);
+  box-shadow: 0 1px 0 rgba(239,232,212,0.6);
 }
 .carved-rule-bone {
   height: 2px;
-  background: linear-gradient(
-    90deg,
+  background: linear-gradient(90deg,
     transparent 0%,
-    rgba(247,244,236,0.22) 10%,
-    rgba(247,244,236,0.45) 50%,
-    rgba(247,244,236,0.22) 90%,
-    transparent 100%
-  );
-  box-shadow: 0 -1px 0 rgba(0,0,0,0.7);
+    rgba(239,232,212,0.22) 10%,
+    rgba(239,232,212,0.5) 50%,
+    rgba(239,232,212,0.22) 90%,
+    transparent 100%);
+  box-shadow: 0 -1px 0 rgba(31,28,22,0.7);
 }
 
 @layer utilities {
@@ -276,31 +342,9 @@ html, body {
   white-space: nowrap;
 }
 
-/* Grain overlay — adds real paper/stone tooth without raster assets */
-.grain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(rgba(13,13,13,0.05) 1px, transparent 1px),
-    radial-gradient(rgba(13,13,13,0.04) 1px, transparent 1px);
-  background-size: 3px 3px, 7px 7px;
-  background-position: 0 0, 1px 2px;
-  mix-blend-mode: multiply;
-  opacity: 0.6;
-}
-.grain-bone::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(rgba(247,244,236,0.07) 1px, transparent 1px);
-  background-size: 3px 3px;
-  mix-blend-mode: screen;
-  opacity: 0.8;
-}
+/* Grain overlay — the body stone already carries real fractal-noise tooth, */
+/* so these legacy overlays are no-ops kept for JSX backwards compatibility. */
+.grain, .grain-bone { position: relative; }
 
 /* Drop-cap for editorial opener */
 .drop-cap::first-letter {
@@ -312,6 +356,6 @@ html, body {
   margin: 0.1em 0.12em 0 0;
   color: var(--aegean-deep);
   text-shadow:
-    0 1px 0 rgba(247,244,236,0.7),
-    0 -1px 0 rgba(13,13,13,0.3);
+    0 1px 0 rgba(239,232,212,0.75),
+    0 -1px 0 rgba(31,28,22,0.35);
 }
