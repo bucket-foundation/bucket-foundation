@@ -16,7 +16,7 @@ const HAS_DYNAMIC = !!process.env.NEXT_PUBLIC_DYNAMIC_ENV_ID;
 
 export default function Header() {
   return (
-    <header className="w-full border-b-2 border-[color:var(--basalt)] stone-bone">
+    <header className="w-full border-b border-[color:var(--hairline)] backdrop-blur-[2px] bg-[color:var(--bone)]/70">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
         <Link
           href="/"
@@ -54,7 +54,7 @@ export default function Header() {
           ) : (
             <Link
               href="/join"
-              className="small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--basalt)] px-5 py-2 hover:bg-[color:var(--aegean-deep)] transition"
+              className="small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-5 py-2 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] hover:bg-[color:var(--aegean-deep)] transition"
             >
               Contribute
             </Link>

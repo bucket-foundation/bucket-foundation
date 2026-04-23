@@ -7,23 +7,37 @@
 /* ground. Basalt is the carved glyph. Aegean Teal primary, Hot Gold    */
 /* accent. Aesthetic: ancient advanced tech / Antikythera / Atlantean.  */
 :root {
-  --aegean:       #0E8C8C;
-  --aegean-deep:  #0A5F5F;
-  --aegean-dark:  #073C3C;
-  --gold:         #E8B23A;
-  --gold-deep:    #B8861E;
-  --basalt:       #0D0D0D;
-  --basalt-2:     #1A1A1A;
-  --basalt-3:     #2A2A2A;
-  --bone:         #F7F4EC;
-  --bone-2:       #EBE6D6;
-  --bone-3:       #D9D1BB;
-  --laurel:       #4A7C3A;
-  --marigold:     #D99A2C;
-  --crimson:      #B23A2C;
-  --hairline:     rgba(13, 13, 13, 0.14);
-  --hairline-bone: rgba(247, 244, 236, 0.12);
-  --stone-carve:   rgba(13, 13, 13, 0.42);
+  /* === KALA · EARTH AMBIENT (V06.1) =============================== */
+  /* Core */
+  --aegean:       #2E6B6B;
+  --aegean-deep:  #1F4F4F;
+  --aegean-dark:  #123838;
+  --gold:         #D9A43A;
+  --gold-deep:    #A87B1E;
+  --basalt:       #1F1C16;
+  --basalt-2:     #2A261E;
+  --basalt-3:     #3A3529;
+  --bone:         #EFE8D4;
+  --bone-2:       #E4DCC4;
+  --bone-3:       #D3C9AB;
+  /* Earth Ambient extensions */
+  --laurel-deep:  #3E5A2A;
+  --laurel-core:  #5A7A3A;
+  --laurel:       var(--laurel-core);
+  --lichen:       #8A9668;
+  --stone-200:    #4A4A42;
+  --stone-300:    #6F6A5E;
+  --stone-800:    #2E2A22;
+  --papyrus:      #E4D5A8;
+  --sandstone:    #C9A863;
+  --ochre:        #B8863A;
+  --marigold:     var(--ochre);
+  --verdigris:    #4A8A7A;
+  --copper:       #B86A3A;
+  --crimson:      #9E3A24;
+  --hairline:     rgba(31, 28, 22, 0.14);
+  --hairline-bone: rgba(239, 232, 212, 0.12);
+  --stone-carve:   rgba(31, 28, 22, 0.40);
 
   /* Legacy aliases so older pages keep rendering */
   --ink:           var(--basalt);
@@ -93,12 +107,17 @@ html, body {
 /* === STONE FOUNDATION BACKGROUND ===================================== */
 /* Real photographic stone tile as the body substrate. Everything — hero, */
 /* papyrus sheets, basalt monoliths — sits on top of this.                */
+/* Clean earth-ambient stone — flat warm bone with barely-there grain. */
+/* No heavy photo tile: the page is the stone, the content is the carve. */
 .stone-bg {
   background-color: var(--bone);
-  background-image: url("/brand/bg-stone-tile.png");
-  background-size: 512px 512px;
-  background-repeat: repeat;
-  background-blend-mode: multiply;
+  background-image:
+    radial-gradient(120% 80% at 15% 0%, rgba(31,28,22,0.045) 0%, transparent 55%),
+    radial-gradient(100% 80% at 85% 100%, rgba(31,28,22,0.06) 0%, transparent 60%),
+    radial-gradient(rgba(31,28,22,0.035) 1px, transparent 1px),
+    radial-gradient(rgba(31,28,22,0.025) 1px, transparent 1px);
+  background-size: auto, auto, 3px 3px, 7px 7px;
+  background-position: 0 0, 0 0, 0 0, 1px 2px;
 }
 
 /* Stone surfaces — gradients layered ON TOP of the photographic stone   */
@@ -117,15 +136,22 @@ html, body {
 /* with a subtle carved shadow.                                          */
 .papyrus {
   position: relative;
-  background-color: #EADBAE;
-  background-image: url("/brand/bg-papyrus-sheet.png");
-  background-size: cover;
-  background-position: center;
+  background-color: var(--papyrus);
+  background-image:
+    radial-gradient(80% 60% at 30% 20%, rgba(31,28,22,0.05) 0%, transparent 60%),
+    radial-gradient(60% 40% at 80% 90%, rgba(31,28,22,0.07) 0%, transparent 70%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(31,28,22,0.035) 0px,
+      rgba(31,28,22,0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    );
   color: var(--basalt);
   box-shadow:
-    0 30px 60px -30px rgba(13, 13, 13, 0.45),
-    0 10px 24px -14px rgba(13, 13, 13, 0.35),
-    inset 0 1px 0 rgba(247, 244, 236, 0.5);
+    0 24px 48px -28px rgba(31, 28, 22, 0.35),
+    0 6px 16px -10px rgba(31, 28, 22, 0.25),
+    inset 0 1px 0 rgba(239, 232, 212, 0.5);
 }
 .papyrus-inner {
   /* Inner padding matching the rendered gold border on the papyrus image */
