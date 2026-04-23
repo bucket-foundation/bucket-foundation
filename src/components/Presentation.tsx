@@ -252,6 +252,31 @@ export default function Presentation() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════ */}
+      {/* MANIFESTO PULL · papyrus sheet laid on stone                  */}
+      {/* ════════════════════════════════════════════════════════════ */}
+      <section className="stone-bg relative border-t-4 border-[color:var(--basalt)] py-24">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="papyrus papyrus-inner papyrus-deckle relative">
+            <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] mb-6">
+              § I·b · Manifesto pull
+            </div>
+            <p className="drop-cap font-serif-display text-[clamp(1.4rem,2.6vw,2.1rem)] leading-[1.35] text-[color:var(--basalt)]">
+              Primary research is paid for <em className="ed-italic">once</em>, and
+              citeable <em className="ed-italic">forever.</em> The author is the
+              beneficiary. The publisher is{" "}
+              <span className="text-[color:var(--crimson)]">removed from the rail.</span>{" "}
+              The citation becomes a payment; the payment becomes provenance;
+              provenance becomes canon.
+            </p>
+            <div className="carved-rule my-8 max-w-sm mx-auto" />
+            <p className="ed-italic text-center text-[color:var(--basalt-2)] text-[15px]">
+              free to read · paid to cite · carved in stone
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════ */}
       {/* CANON · the eight plinths                                     */}
       {/* ════════════════════════════════════════════════════════════ */}
       <section className="stone-bone relative border-t-4 border-[color:var(--basalt)] grain">

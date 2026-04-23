@@ -90,12 +90,57 @@ html, body {
 .hairline-bone { border-color: var(--hairline-bone); }
 .rule-v { border-left: 1px solid var(--hairline); }
 
-/* Stone surfaces — gradients + noise for depth without raster assets. */
+/* === STONE FOUNDATION BACKGROUND ===================================== */
+/* Real photographic stone tile as the body substrate. Everything — hero, */
+/* papyrus sheets, basalt monoliths — sits on top of this.                */
+.stone-bg {
+  background-color: var(--bone);
+  background-image: url("/brand/bg-stone-tile.png");
+  background-size: 512px 512px;
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+}
+
+/* Stone surfaces — gradients layered ON TOP of the photographic stone   */
+/* so sections differentiate without losing the stone under-texture.     */
 .stone-bone {
   background:
     radial-gradient(120% 80% at 20% 10%, rgba(13,13,13,0.04) 0%, transparent 60%),
     radial-gradient(80% 60% at 80% 90%, rgba(13,13,13,0.06) 0%, transparent 70%),
     var(--bone);
+}
+
+/* === PAPYRUS SHEET ================================================= */
+/* A real papyrus sheet laid onto the stone — used for editorial pulls, */
+/* manifesto callouts, canon index panels. The sheet has warm golden    */
+/* tones with horizontal reed-fiber weave; raises content off the stone */
+/* with a subtle carved shadow.                                          */
+.papyrus {
+  position: relative;
+  background-color: #EADBAE;
+  background-image: url("/brand/bg-papyrus-sheet.png");
+  background-size: cover;
+  background-position: center;
+  color: var(--basalt);
+  box-shadow:
+    0 30px 60px -30px rgba(13, 13, 13, 0.45),
+    0 10px 24px -14px rgba(13, 13, 13, 0.35),
+    inset 0 1px 0 rgba(247, 244, 236, 0.5);
+}
+.papyrus-inner {
+  /* Inner padding matching the rendered gold border on the papyrus image */
+  padding: clamp(2.5rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem);
+}
+/* Deckled edge — papyrus has torn irregular edges; simulate with a subtle */
+/* clip-path that breaks the rectangular frame a little.                  */
+.papyrus-deckle {
+  clip-path: polygon(
+    0.5% 1%, 4% 0%, 8% 1.2%, 14% 0.3%, 22% 1%, 31% 0%, 42% 1.1%, 55% 0.2%,
+    68% 1%, 78% 0%, 86% 1.2%, 94% 0%, 99% 1%, 100% 4%, 99.2% 10%, 100% 18%,
+    99% 28%, 100% 40%, 99.1% 54%, 100% 68%, 99% 82%, 100% 92%, 99% 98%, 95% 100%,
+    88% 99%, 78% 100%, 66% 99%, 52% 100%, 38% 99%, 25% 100%, 14% 99%, 6% 100%,
+    1% 98.5%, 0% 92%, 0.5% 80%, 0% 68%, 0.5% 54%, 0% 40%, 0.5% 28%, 0% 18%, 0.5% 8%
+  );
 }
 .stone-basalt {
   background:
