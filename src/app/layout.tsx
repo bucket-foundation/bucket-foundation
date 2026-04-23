@@ -81,29 +81,14 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} — ${TAGLINE}`,
     description: DESCRIPTION,
     locale: "en_US",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "bucket.foundation — the golden omega-lyre carved in aegean stone · free to read, paid to cite",
-        type: "image/png",
-      },
-      {
-        url: "/brand/tagline-stone.png",
-        width: 1536,
-        height: 1024,
-        alt: "FREE TO READ / PAID TO CITE — carved in bone limestone with hot-gold inlay",
-        type: "image/png",
-      },
-    ],
+    // opengraph-image.png at src/app/ is auto-wired by Next.js file convention
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — ${TAGLINE}`,
     description: DESCRIPTION,
     creator: "@gianyrox",
-    images: ["/twitter-image.png"],
+    // twitter-image.png at src/app/ is auto-wired by Next.js file convention
   },
   robots: {
     index: true,
