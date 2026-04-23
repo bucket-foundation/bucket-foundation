@@ -205,6 +205,71 @@ export default function Presentation() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════ */}
+      {/* AI-NATIVE · paste this URL into Claude                        */}
+      {/* ════════════════════════════════════════════════════════════ */}
+      <section className="stone-bone relative border-t-4 border-[color:var(--gold)] grain">
+        <div className="max-w-[1400px] mx-auto px-6 py-20 md:py-24 grid grid-cols-12 gap-8 md:gap-10 items-start">
+          <div className="col-span-12 md:col-span-4">
+            <div className="small-caps text-[10px] text-[color:var(--gold-deep)]">§ I · b · AI-native</div>
+            <h2 className="mt-6 font-display uppercase text-[clamp(1.5rem,3vw,2.3rem)] leading-[1.12] text-[color:var(--basalt)]">
+              paste into Claude.
+              <span className="block ed-italic text-[color:var(--aegean-deep)] font-light mt-1">
+                the rest is automatic.
+              </span>
+            </h2>
+            <p className="mt-5 text-[15px] leading-[1.7] text-[color:var(--basalt-2)] max-w-sm">
+              Drop <span className="font-mono-mark text-[color:var(--aegean-deep)]">www.bucket.foundation</span> into Claude, ChatGPT, or any agent.
+              They auto-discover the research API via <span className="font-mono-mark">/llms.txt</span>, find the
+              feed402 manifest, and can pay <span className="font-mono-mark text-[color:var(--gold-deep)]">$0.005</span> per query over x402 on Base — with the citation paying the author, forever.
+            </p>
+          </div>
+
+          <div className="col-span-12 md:col-span-8">
+            <div className="carved-inset carved-pad bg-[color:var(--bone-2)]/60 rounded-sm">
+              <div className="flex items-center justify-between px-2 mb-4">
+                <span className="small-caps text-[9px] text-[color:var(--aegean-deep)] tracking-[0.2em]">
+                  › claude prompt · copy & paste
+                </span>
+                <span className="font-mono-mark text-[9px] text-[color:var(--gold-deep)]">
+                  feed402 / 0.2
+                </span>
+              </div>
+              <pre className="font-mono-mark text-[13px] md:text-[14px] leading-[1.7] text-[color:var(--basalt)] whitespace-pre-wrap break-words px-2">
+<span className="text-[color:var(--gold-deep)]">$ </span>Use www.bucket.foundation to research
+<span className="text-[color:var(--aegean-deep)]">  mitochondrial ATP synthesis</span>. Follow the
+  feed402 protocol described in <span className="text-[color:var(--aegean-deep)]">/llms.txt</span>,
+  pay the x402 challenge from receipt.challenge,
+  and cite the returned envelope.
+              </pre>
+              <div className="mt-5 px-2 grid grid-cols-3 gap-3 text-[10px] small-caps tracking-[0.12em] text-[color:var(--basalt-2)]">
+                <a href="/llms.txt" className="flex flex-col gap-1 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-3 hover:border-[color:var(--gold)] transition rounded-sm">
+                  <span className="text-[color:var(--aegean-deep)]">/llms.txt</span>
+                  <span className="text-[9px] text-[color:var(--basalt-3)]">agent onramp</span>
+                </a>
+                <a href="/.well-known/feed402.json" className="flex flex-col gap-1 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-3 hover:border-[color:var(--gold)] transition rounded-sm">
+                  <span className="text-[color:var(--aegean-deep)]">feed402.json</span>
+                  <span className="text-[9px] text-[color:var(--basalt-3)]">discovery</span>
+                </a>
+                <a href="/api/research?q=mitochondria&tier=insight" className="flex flex-col gap-1 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-3 hover:border-[color:var(--gold)] transition rounded-sm">
+                  <span className="text-[color:var(--aegean-deep)]">/api/research</span>
+                  <span className="text-[9px] text-[color:var(--basalt-3)]">try it (402)</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center gap-4 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
+              <a href="/build" className="inline-flex items-center gap-2 text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-5 py-3 rounded-sm hover:bg-[color:var(--aegean-deep)] transition min-h-[44px] shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)]">
+                → build an agent
+              </a>
+              <span className="text-[color:var(--basalt-3)]">
+                or register the <a href="https://github.com/bucket-foundation/bucket-mcp" className="underline decoration-[color:var(--gold)] underline-offset-4 hover:text-[color:var(--aegean-deep)]">bucket MCP</a> in Claude Desktop
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════ */}
       {/* THESIS · the verdict (basalt tablet)                          */}
       {/* ════════════════════════════════════════════════════════════ */}
       <section className="stone-basalt relative border-t-4 border-[color:var(--gold)] grain">
