@@ -1,0 +1,50 @@
+{
+  "name": "bucket-foundation",
+  "version": "0.1.0",
+  "spec": "feed402/0.2",
+  "chain": "base-sepolia",
+  "wallet": "0x0000000000000000000000000000000000000000",
+  "_wallet_note": "placeholder — live wallet address drops in after Track B (x402-research-gateway) deploys to x402-research.agfarms.dev",
+  "tiers": {
+    "raw": {
+      "path": "https://x402-research.agfarms.dev/raw",
+      "price_usd": 0.05,
+      "unit": "row"
+    },
+    "query": {
+      "path": "https://x402-research.agfarms.dev/query",
+      "price_usd": 0.01,
+      "unit": "call"
+    },
+    "insight": {
+      "path": "https://x402-research.agfarms.dev/insight",
+      "price_usd": 0.002,
+      "unit": "call"
+    }
+  },
+  "proxy": {
+    "url": "https://www.bucket.foundation/api/research",
+    "note": "zero-key server-side proxy; budget-capped at $1.00/day shared; pass ?q= and optional ?tier="
+  },
+  "schema_url": "https://www.bucket.foundation/llms-full.txt",
+  "citation_policy": "CC-BY-4.0",
+  "citation_types": ["source"],
+  "contact": "ops@bucket.foundation",
+  "index": {
+    "type": "hybrid",
+    "model": "openai:text-embedding-3-small",
+    "distance": "cosine",
+    "chunks": null,
+    "chunk_strategy": { "kind": "post" },
+    "corpus_sha256": null,
+    "built_at": null,
+    "_note": "corpus spans eight canon branches (mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth) plus the Kruse biophysics corpus (~460 posts). Chunk counts and hashes populate after x402-research-gateway first-index build."
+  },
+  "links": {
+    "llms": "https://www.bucket.foundation/llms.txt",
+    "llms_full": "https://www.bucket.foundation/llms-full.txt",
+    "mcp": "https://www.bucket.foundation/.well-known/mcp.json",
+    "source": "https://github.com/bucket-foundation/bucket-foundation",
+    "spec": "https://github.com/gianyrox/feed402"
+  }
+}

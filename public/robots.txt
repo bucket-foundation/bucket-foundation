@@ -1,6 +1,40 @@
+# bucket.foundation — free to read. paid to cite.
+# LLMs welcome; please cite per /llms.txt
+
 User-agent: *
 Allow: /
-Disallow: /api/
 Disallow: /admin/
+
+# Explicitly allowlist major AI crawlers + agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Discovery pointers for agents
+# - /llms.txt            short agent onramp
+# - /llms-full.txt       full programmatic playbook
+# - /.well-known/feed402.json  feed402/0.2 discovery manifest
+# - /.well-known/mcp.json      MCP server manifest
+# - /api/research              zero-key server-side proxy
 
 Sitemap: https://www.bucket.foundation/sitemap.xml

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-manifest.json",
+  "name": "bucket-foundation",
+  "version": "0.1.0",
+  "description": "Query the bucket.foundation research canon — feed402/0.2 over x402 on Base. Every response returns a citeable envelope (data + citation + receipt).",
+  "homepage": "https://www.bucket.foundation",
+  "license": "MIT",
+  "contact": "ops@bucket.foundation",
+  "repository": "https://github.com/bucket-foundation/bucket-mcp",
+  "transport": {
+    "type": "stdio",
+    "description": "Zero-dependency Python stdio MCP server. Clone the repo and register at user scope."
+  },
+  "install": {
+    "claude_code": "claude mcp add --scope user --transport stdio bucket -- bash -lc \"exec python3 $HOME/bucket-mcp/bucket-mcp.py\"",
+    "clone": "gh repo clone bucket-foundation/bucket-mcp ~/bucket-mcp",
+    "npx": "pending",
+    "uvx": "pending",
+    "note": "npx/uvx packages will publish once the bucket-foundation GitHub org + repo are created. Clone + register path above works today."
+  },
+  "tools": [
+    {
+      "name": "bucket_research",
+      "description": "Query the bucket.foundation research canon. Routes through bucket.foundation/api/research (zero-key proxy) → feed402 provider on Base → cited envelope. Default tier 'insight' ($0.002/call).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "Natural-language research question." },
+          "tier":  { "type": "string", "enum": ["raw", "query", "insight"], "default": "insight" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "bucket_cite",
+      "description": "Return a CSL-JSON citation block for a DOI or URL. Uses doi.org content negotiation when a DOI is present.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "doi_or_url": { "type": "string", "description": "A DOI (10.xxxx/...) or a URL that may contain one." }
+        },
+        "required": ["doi_or_url"]
+      }
+    },
+    {
+      "name": "bucket_canon_list",
+      "description": "List canon-tier entries for a branch. Canon holds only foundations — axioms, laws, primary derivations.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "branch": {
+            "type": "string",
+            "enum": ["mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind"]
+          }
+        }
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "https://www.bucket.foundation/llms.txt",
+      "name": "llms.txt",
+      "description": "Short LLM onramp."
+    },
+    {
+      "uri": "https://www.bucket.foundation/llms-full.txt",
+      "name": "llms-full.txt",
+      "description": "Full programmatic playbook."
+    },
+    {
+      "uri": "https://www.bucket.foundation/.well-known/feed402.json",
+      "name": "feed402.json",
+      "description": "Static feed402/0.2 discovery manifest."
+    }
+  ]
+}

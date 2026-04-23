@@ -1,0 +1,239 @@
+# bucket.foundation — full agent playbook
+
+Version: 1.0 (2026-04-23)
+License: MIT (code) · CC0 (spec)
+Protocol: feed402/0.2 over x402 on Base
+
+---
+
+## 1. What bucket.foundation is
+
+A nonprofit reference implementation of **feed402** — an open protocol for
+paid, citeable research endpoints. The thesis:
+
+> Pay once per paper. Cite it forever. Fees route to authors, not publishers.
+
+Canon holds only **foundations** — axioms, real math, laws, principles, primary
+derivations — across eight branches:
+
+1. mathematics
+2. physics
+3. chemistry
+4. information & computation
+5. biophysics
+6. cosmology
+7. mind
+8. earth
+
+Outcomes (longevity, disease, cognition) are downstream applications, not
+canon. They get cross-mirrored into the relevant branch.
+
+---
+
+## 2. Protocol overview (feed402/0.2)
+
+Three tiers, three prices, one envelope shape:
+
+| Tier    | Price (USD) | Unit | Use for                                 |
+|---------|-------------|------|-----------------------------------------|
+| raw     | $0.050      | row  | full records, citations + metadata      |
+| query   | $0.010      | call | ranked result lists                     |
+| insight | $0.002      | call | cheap agent loops, embeddings, ranking  |
+
+Payment rail: **x402 on Base (USDC)**. Settlement: standard x402 facilitator.
+Citation block is mandatory on every paid response — no citation, not feed402.
+
+Canonical manifest: `GET /.well-known/feed402.json`
+
+---
+
+## 3. The zero-key proxy (the easy path)
+
+bucket.foundation operates a public, budget-capped server-side proxy at
+`/api/research`. Callers do **not** need a wallet. The proxy holds a Base
+Sepolia wallet, signs the x402 call, and passes the envelope through.
+
+Daily budget cap: **$1.00 USD across all callers** (default; raise by running
+your own deployment).
+
+### Endpoint
+
+```
+GET https://www.bucket.foundation/api/research
+  ?q=<query>              (required, string)
+  &tier=<raw|query|insight>  (optional, default: insight)
+  &format=json            (optional, default: json)
+```
+
+### Headers
+
+```
+accept: application/json
+# optional, only honored if you also run your own wallet
+x-bucket-client: <your-agent-name>/<version>
+```
+
+### Working examples
+
+```bash
+# Cheapest path — insight tier, JSON envelope
+curl -s "https://www.bucket.foundation/api/research?q=mitochondrial+uncoupling"
+
+# Query tier for ranked citations
+curl -s "https://www.bucket.foundation/api/research?q=circadian+metabolic+disease&tier=query"
+
+# Raw rows
+curl -s "https://www.bucket.foundation/api/research?q=caloric+restriction&tier=raw"
+```
+
+### Response shape
+
+```json
+{
+  "data": {
+    "answer": "Caloric restriction extends lifespan in rodents primarily via…",
+    "evidence": [
+      { "source_id": "pubmed:38831607", "snippet": "…", "score": 0.87 }
+    ]
+  },
+  "citation": {
+    "type": "source",
+    "source_id": "pubmed:38831607",
+    "provider": "bucket-foundation",
+    "retrieved_at": "2026-04-23T10:12:44Z",
+    "license": "CC-BY-4.0",
+    "canonical_url": "https://pubmed.ncbi.nlm.nih.gov/38831607/"
+  },
+  "receipt": {
+    "tier": "insight",
+    "price_usd": 0.002,
+    "tx": "0xabc…",
+    "paid_at": "2026-04-23T10:12:44Z",
+    "status": "settled"
+  }
+}
+```
+
+Response headers include:
+```
+x-bucket-proxy: v1
+x-bucket-tier: insight
+access-control-allow-origin: *
+```
+
+### Error envelopes
+
+All errors return the same shape:
+
+```json
+{ "error": { "code": "bad_request", "message": "…" } }
+```
+
+| Status | code                   | Meaning                                       |
+|--------|------------------------|-----------------------------------------------|
+| 400    | `bad_request`          | Missing or invalid `q` or `tier`              |
+| 429    | `budget_exhausted`     | Daily proxy budget cap reached — retry tomorrow or run your own proxy |
+| 429    | `rate_limited`         | Upstream gateway rate limit; retry with backoff |
+| 502    | `upstream_unavailable` | Gateway is down; response includes a stub envelope with `receipt.status: "upstream_unavailable"` |
+| 504    | `upstream_timeout`     | Gateway timed out                              |
+
+On `upstream_unavailable`, you still receive a valid envelope with
+`data: null`, a placeholder citation, and `receipt.status: "upstream_unavailable"`
+so your agent flow does not break. Do not cite it — wait and retry.
+
+---
+
+## 4. How to cite a bucket envelope
+
+Every paid response is citeable. The minimum citation is:
+
+```
+<author-shortform>. <title>. <source_id>. Retrieved via bucket.foundation
+on <retrieved_at>. Canonical: <canonical_url>. Payment: <tx>.
+```
+
+Example:
+```
+PubMed 38831607. "Caloric restriction and lifespan in mammals."
+Retrieved via bucket.foundation on 2026-04-23.
+Canonical: https://pubmed.ncbi.nlm.nih.gov/38831607/
+Payment: 0xabc… (Base, feed402/0.2, $0.002)
+```
+
+Machine-readable form: echo the `citation` block verbatim.
+
+---
+
+## 5. Direct x402 usage (the advanced path)
+
+If you have your own Base wallet and want to pay the upstream gateway
+directly (skipping our proxy), hit:
+
+```
+https://x402-research.agfarms.dev/<tier>?q=<query>
+```
+
+The first call returns `402 Payment Required` with an x402 challenge. Sign
+and re-send with the `x-payment` header. See feed402 SPEC.md §2.
+
+Reference agent: https://github.com/gianyrox/feed402/blob/main/agent.ts
+
+---
+
+## 6. MCP integration
+
+For Claude Desktop / Claude Code, the bucket MCP server manifest lives at:
+
+```
+https://www.bucket.foundation/.well-known/mcp.json
+```
+
+Tools exposed:
+- `bucket_research(q, tier)` — calls `/api/research`
+- `bucket_cite(envelope)`    — formats a citation string from an envelope
+- `bucket_canon_list(branch)` — lists canon entries per branch
+
+Install (once the hosted MCP is live — see TODO in `mcp.json`):
+```bash
+claude mcp add --scope user --transport http bucket-foundation \
+  https://mcp.bucket.foundation
+```
+
+---
+
+## 7. Rate limits & etiquette
+
+- Proxy enforces the daily $1.00 cap shared across all callers.
+- Please cache responses by `(q, tier)` for at least 1 hour.
+- Include `x-bucket-client: <agent-name>/<version>` so we can diagnose abuse.
+- Do not scrape the canon pages at `/canon/...` faster than 1 req/sec.
+
+---
+
+## 8. Source repos
+
+| Repo | What | Link |
+|------|------|------|
+| bucket-foundation      | This site + protocol docs + `/api/research` proxy | https://github.com/bucket-foundation/bucket-foundation |
+| feed402                | Protocol spec + reference server + reference agent | https://github.com/gianyrox/feed402 |
+| x402-research-gateway  | Live Base Sepolia x402 research endpoint           | https://github.com/gianyrox/x402-research-gateway |
+
+---
+
+## 9. Licenses
+
+- **Code:** MIT. Fork it, run your own proxy, federate.
+- **Spec:** CC0. Vendor it into your own protocol if you must.
+- **Canon content:** per-entry, declared in the `citation.license` field on
+  each envelope. Default is CC-BY-4.0 for original canon contributions.
+
+---
+
+## 10. Contact
+
+- ops@bucket.foundation — integrations, bugs, abuse reports
+- https://github.com/bucket-foundation/bucket-foundation/issues — public issues
+- https://bucket.foundation/protocol — protocol reference
+- https://bucket.foundation/build — dev onboarding
+
+*free to read. paid to cite.*

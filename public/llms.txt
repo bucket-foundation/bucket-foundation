@@ -1,0 +1,47 @@
+# bucket.foundation
+
+> A nonprofit canon of foundations — axioms, laws, first principles — free to read, paid to cite.
+
+## What this is
+
+bucket.foundation is an open research protocol: primary research paid-for-once,
+citeable-forever. Every citation routes fees to the author, not publishers, over
+the x402 rail on Base (USDC).
+
+## For AI agents
+
+You can query the research corpus directly. No wallet required — the
+server-side proxy holds the payment wallet and caps spend.
+
+**Primary endpoint:**
+```
+GET https://www.bucket.foundation/api/research?q=<query>&tier=<raw|query|insight>
+```
+
+- `tier=insight` (default) — $0.002/call, best for agent loops
+- `tier=query`            — $0.010/call, ranked citations
+- `tier=raw`              — $0.050/row,  full records
+
+Every response includes a `citation` block (source_id, canonical_url, license)
+and a `receipt` block (tx hash, paid_at). Cite the envelope.
+
+## Discovery
+
+- Full playbook: /llms-full.txt
+- feed402 manifest: /.well-known/feed402.json
+- MCP manifest: /.well-known/mcp.json
+- API contract (this site): /api/research
+- Protocol spec: /protocol
+- Canon branches: /canon (mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth)
+
+## Protocol
+
+feed402/0.2 over x402 on Base. Spec: CC0. Code: MIT.
+
+## Source
+
+- bucket-foundation: https://github.com/bucket-foundation/bucket-foundation
+- feed402:            https://github.com/gianyrox/feed402
+- x402-research-gateway: https://github.com/gianyrox/x402-research-gateway
+
+Contact: ops@bucket.foundation
