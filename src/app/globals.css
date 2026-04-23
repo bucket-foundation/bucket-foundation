@@ -2,40 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- bucket foundation · brand tokens -------------------------------- */
-/* Palette: KALA-adjacent — deep ink, parchment, muted gold.            */
+/* --- bucket foundation · KALA brand tokens (exact) -------------------- */
 :root {
-  --ink:        #0b0b0d;   /* near-black canvas */
-  --ink-2:      #141418;   /* elevated surface */
-  --ink-3:      #1d1d22;   /* hairline contrast */
-  --parchment:  #ece4d2;   /* primary text */
-  --parchment-dim: #c8bfa9;
-  --gold:       #c9a24b;   /* accent, shields, marks */
-  --gold-dim:   #8a6f33;
-  --rust:       #8b3a2f;   /* rare alert / citation-live */
-  --hairline:   rgba(236, 228, 210, 0.12);
+  --midnight:       #0D1B2A;  /* primary dark bg */
+  --driftwood:      #1B2838;  /* elevated surface / text-on-light */
+  --river-stone:    #6B7B8D;  /* secondary text */
+  --morning-fog:    #F7F5F0;  /* light surface */
+  --gold:           #C9A227;  /* Sunrise Gold — primary accent */
+  --gold-dawn:      #E8D48B;  /* hover / highlight */
+  --gold-amber:     #8B6914;  /* pressed / dark-mode gold */
+  --teal:           #2A9D8F;  /* Glacial Teal — secondary accent */
+  --teal-clear:     #7ED4C8;
+  --teal-deep:      #1A7A6F;
+  --coral:          #E07A5F;
+  --forest:         #3D8B37;
+  --red-tide:       #C44536;
+  --hairline:       rgba(247, 245, 240, 0.10);
+
+  /* Legacy aliases so existing components keep rendering */
+  --ink:            var(--midnight);
+  --ink-2:          var(--driftwood);
+  --ink-3:          #223140;
+  --parchment:      var(--morning-fog);
+  --parchment-dim:  var(--river-stone);
+  --gold-dim:       var(--gold-amber);
+  --rust:           var(--coral);
 }
 
 html, body {
-  background: var(--ink);
-  color: var(--parchment);
-  font-family: "EB Garamond", "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  font-feature-settings: "liga", "onum", "kern";
+  background: var(--midnight);
+  color: var(--morning-fog);
+  font-family: "Source Sans 3", "Source Sans Pro", "Segoe UI", system-ui, sans-serif;
+  font-feature-settings: "kern", "tnum";
   -webkit-font-smoothing: antialiased;
 }
 
 .font-serif-display {
-  font-family: "EB Garamond", "Cormorant Garamond", Georgia, serif;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 .font-mono-mark {
-  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  font-family: "IBM Plex Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, monospace;
   letter-spacing: 0.04em;
 }
 .small-caps {
-  font-variant: small-caps;
-  letter-spacing: 0.12em;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
 .hairline { border-color: var(--hairline); }
@@ -52,3 +67,7 @@ html, body {
   50%      { opacity: 1; }
 }
 .ember { animation: ember 3.6s ease-in-out infinite; }
+
+/* Globe slow rotate */
+@keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 60s linear infinite; }
