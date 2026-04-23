@@ -2,72 +2,167 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- bucket foundation · KALA brand tokens (exact) -------------------- */
+/* === bucket.foundation · STONEPUNK ================================= */
+/* Locked KALA palette (config.json V05–V09). Bone is the ONLY light    */
+/* ground. Basalt is the carved glyph. Aegean Teal primary, Hot Gold    */
+/* accent. Aesthetic: ancient advanced tech / Antikythera / Atlantean.  */
 :root {
-  --midnight:       #0D1B2A;  /* primary dark bg */
-  --driftwood:      #1B2838;  /* elevated surface / text-on-light */
-  --river-stone:    #6B7B8D;  /* secondary text */
-  --morning-fog:    #F7F5F0;  /* light surface */
-  --gold:           #C9A227;  /* Sunrise Gold — primary accent */
-  --gold-dawn:      #E8D48B;  /* hover / highlight */
-  --gold-amber:     #8B6914;  /* pressed / dark-mode gold */
-  --teal:           #2A9D8F;  /* Glacial Teal — secondary accent */
-  --teal-clear:     #7ED4C8;
-  --teal-deep:      #1A7A6F;
-  --coral:          #E07A5F;
-  --forest:         #3D8B37;
-  --red-tide:       #C44536;
-  --hairline:       rgba(247, 245, 240, 0.10);
+  --aegean:       #0E8C8C;
+  --aegean-deep:  #0A5F5F;
+  --aegean-dark:  #073C3C;
+  --gold:         #E8B23A;
+  --gold-deep:    #B8861E;
+  --basalt:       #0D0D0D;
+  --basalt-2:     #1A1A1A;
+  --basalt-3:     #2A2A2A;
+  --bone:         #F7F4EC;
+  --bone-2:       #EBE6D6;
+  --bone-3:       #D9D1BB;
+  --laurel:       #4A7C3A;
+  --marigold:     #D99A2C;
+  --crimson:      #B23A2C;
+  --hairline:     rgba(13, 13, 13, 0.14);
+  --hairline-bone: rgba(247, 244, 236, 0.12);
+  --stone-carve:   rgba(13, 13, 13, 0.42);
 
-  /* Legacy aliases so existing components keep rendering */
-  --ink:            var(--midnight);
-  --ink-2:          var(--driftwood);
-  --ink-3:          #223140;
-  --parchment:      var(--morning-fog);
-  --parchment-dim:  var(--river-stone);
-  --gold-dim:       var(--gold-amber);
-  --rust:           var(--coral);
+  /* Legacy aliases so older pages keep rendering */
+  --ink:           var(--basalt);
+  --ink-2:         var(--basalt-2);
+  --ink-3:         var(--basalt-3);
+  --parchment:     var(--bone);
+  --parchment-dim: #6F6A5E;
+  --midnight:      var(--basalt);
+  --morning-fog:   var(--bone);
+  --driftwood:     var(--basalt-2);
+  --river-stone:   #6F6A5E;
+  --gold-dim:      var(--gold-deep);
+  --gold-dawn:     #F2CF7E;
+  --teal:          var(--aegean);
+  --teal-clear:    #5FB5B5;
+  --teal-deep:     var(--aegean-deep);
+  --rust:          var(--crimson);
 }
 
 html, body {
-  background: var(--midnight);
-  color: var(--morning-fog);
-  font-family: "Source Sans 3", "Source Sans Pro", "Segoe UI", system-ui, sans-serif;
-  font-feature-settings: "kern", "tnum";
+  background: var(--bone);
+  color: var(--basalt);
+  font-family: "Inter", "Söhne", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "kern", "ss01", "cv11", "tnum";
   -webkit-font-smoothing: antialiased;
 }
 
-.font-serif-display {
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-.font-mono-mark {
-  font-family: "IBM Plex Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, monospace;
-  letter-spacing: 0.04em;
-}
-.small-caps {
-  font-family: "Montserrat", system-ui, sans-serif;
+/* Display = carved Roman inscription. Cinzel is literally modeled on   */
+/* 1st-century Roman stone lettering — strongest free Arizona-Flare alt. */
+.font-serif-display,
+.font-display {
+  font-family: "Cinzel", "Trajan Pro", "Cormorant Garamond", Georgia, serif;
   font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.font-mono-mark,
+.font-mono {
+  font-family: "JetBrains Mono", "Berkeley Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  letter-spacing: 0.02em;
+}
+
+.small-caps {
+  font-family: "Cinzel", "Inter", system-ui, sans-serif;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
 }
 
 .hairline { border-color: var(--hairline); }
+.hairline-bone { border-color: var(--hairline-bone); }
 .rule-v { border-left: 1px solid var(--hairline); }
+
+/* Stone surfaces — gradients + noise for depth without raster assets. */
+.stone-bone {
+  background:
+    radial-gradient(120% 80% at 20% 10%, rgba(13,13,13,0.04) 0%, transparent 60%),
+    radial-gradient(80% 60% at 80% 90%, rgba(13,13,13,0.06) 0%, transparent 70%),
+    var(--bone);
+}
+.stone-basalt {
+  background:
+    radial-gradient(100% 80% at 30% 20%, rgba(247,244,236,0.04) 0%, transparent 60%),
+    radial-gradient(80% 60% at 80% 90%, rgba(14,140,140,0.05) 0%, transparent 70%),
+    var(--basalt);
+}
+.stone-aegean {
+  background:
+    radial-gradient(120% 80% at 20% 10%, rgba(247,244,236,0.08) 0%, transparent 60%),
+    radial-gradient(80% 60% at 80% 90%, rgba(13,13,13,0.22) 0%, transparent 70%),
+    var(--aegean-deep);
+}
+
+/* Chisel — carved-into-stone text. Deep inset shadow + highlight. */
+.chisel {
+  color: var(--basalt);
+  text-shadow:
+    0 1px 0 rgba(247,244,236,0.55),
+    0 -1px 0 rgba(13,13,13,0.35);
+}
+.chisel-bone {
+  color: var(--bone);
+  text-shadow:
+    0 1px 0 rgba(13,13,13,0.55),
+    0 -1px 0 rgba(247,244,236,0.10);
+}
+.chisel-gold {
+  color: var(--gold);
+  text-shadow:
+    0 1px 0 rgba(13,13,13,0.65),
+    0 -1px 0 rgba(247,244,236,0.18);
+}
+
+/* Inlay — gold lettering sunk into basalt, mythic plaque style. */
+.inlay-gold {
+  color: var(--gold);
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.85),
+    0 0 18px rgba(232, 178, 58, 0.25);
+}
+
+/* Horizon chisel line — used as section dividers. */
+.carved-rule {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(13,13,13,0.18) 10%,
+    rgba(13,13,13,0.35) 50%,
+    rgba(13,13,13,0.18) 90%,
+    transparent 100%
+  );
+  box-shadow: 0 1px 0 rgba(247,244,236,0.5);
+}
+.carved-rule-bone {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(247,244,236,0.22) 10%,
+    rgba(247,244,236,0.45) 50%,
+    rgba(247,244,236,0.22) 90%,
+    transparent 100%
+  );
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.7);
+}
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty  { text-wrap: pretty; }
 }
 
-/* Slow ember pulse for the "live" citation dot */
+/* Slow ember (pending-stamp heartbeat) */
 @keyframes ember {
-  0%, 100% { opacity: 0.55; }
+  0%, 100% { opacity: 0.45; }
   50%      { opacity: 1; }
 }
 .ember { animation: ember 3.6s ease-in-out infinite; }
 
 /* Globe slow rotate */
 @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-.spin-slow { animation: spin-slow 60s linear infinite; }
+.spin-slow { animation: spin-slow 90s linear infinite; }

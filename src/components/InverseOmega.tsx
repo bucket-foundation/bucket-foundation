@@ -1,166 +1,182 @@
 // Inverse Omega — bucket.foundation primary logomark.
 //
-// Design thesis:
-//   Omega (Ω) is the last letter. Inverted, it becomes a vessel —
-//   a cup holding what came before. "Build the past." The legs
-//   splay outward at the top like columns; the arch catches
-//   them at the base like a foundation stone. A single gilt dot
-//   sits inside the cup: the citation token.
+// Stonepunk treatment per the KALA locked brand system (V03 carved-stone
+// terminals, V05 elemental palette, V08 Bone+Basalt neutrals):
+//   - heavy inscriptional stroke with flat chiselled terminals
+//   - subtle asymmetric hand-carved edges (no perfect curves)
+//   - inset shadow below each stroke = the chisel cut depth
+//   - inner bone highlight on the upper edge = stone lit from above
+//   - hot-gold inlay dot inside the cup = the citation token (mythic plaque)
+//   - Roman serif feet at the top flare
 //
-// Implementation:
-//   Heavy-weight stroke glyph, gold fill option, subtle inner
-//   highlight so it reads at 16px (favicon) through 320px (hero).
+// Rendered entirely in SVG (no raster dependency). Scales 16px → 800px.
 
 type Props = {
   size?: number;
   className?: string;
-  /** "line" for hollow strokes, "solid" for filled wordmark use */
-  variant?: "line" | "solid";
-  /** color token: "gold" | "fog" | "teal" | "currentColor" */
-  tone?: "gold" | "fog" | "teal" | "currentColor";
+  /** "carved" = basalt-on-bone stonepunk; "inlay" = gold-on-basalt plaque */
+  variant?: "carved" | "inlay";
   title?: string;
 };
 
-const TONE: Record<NonNullable<Props["tone"]>, string> = {
-  gold: "var(--gold)",
-  fog: "var(--morning-fog)",
-  teal: "var(--teal)",
-  currentColor: "currentColor",
-};
-
 export default function InverseOmega({
-  size = 80,
+  size = 240,
   className = "",
-  variant = "line",
-  tone = "gold",
+  variant = "carved",
   title = "bucket foundation — inverse omega",
 }: Props) {
-  const c = TONE[tone];
-  const gid = `ioG-${size}-${tone}`;
+  const isInlay = variant === "inlay";
+  const stroke = isInlay ? "var(--gold)" : "var(--basalt)";
+  const cut = isInlay ? "rgba(0,0,0,0.6)" : "rgba(0,0,0,0.35)";
+  const rim = isInlay ? "rgba(232,178,58,0.25)" : "rgba(247,244,236,0.55)";
+
+  const uid = `ΩΩ-${variant}`;
 
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 120 120"
-      fill="none"
+      viewBox="0 0 240 240"
       role="img"
       aria-label={title}
       className={className}
+      shapeRendering="geometricPrecision"
     >
       <title>{title}</title>
 
       <defs>
-        <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={c} stopOpacity="0.95" />
-          <stop offset="1" stopColor={c} stopOpacity="0.55" />
+        {/* Carved depth — dark inner shadow offset down-right */}
+        <filter id={`${uid}-carve`} x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="1.4" result="b" />
+          <feOffset in="b" dx="0" dy="2" result="o" />
+          <feComposite in="o" in2="SourceAlpha" operator="out" result="rim" />
+          <feMerge>
+            <feMergeNode in="rim" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        {/* Stone grain texture on strokes */}
+        <filter id={`${uid}-grain`} x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" />
+          <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.12 0" />
+          <feComposite in2="SourceGraphic" operator="in" />
+          <feMerge>
+            <feMergeNode in="SourceGraphic" />
+            <feMergeNode />
+          </feMerge>
+        </filter>
+
+        {/* Gradient along strokes — slight tonal life */}
+        <linearGradient id={`${uid}-g`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={stroke} stopOpacity="1" />
+          <stop offset="1" stopColor={stroke} stopOpacity="0.82" />
         </linearGradient>
-        <radialGradient id={`${gid}-dot`} cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor={c} stopOpacity="1" />
-          <stop offset="1" stopColor={c} stopOpacity="0.2" />
+
+        {/* Gold inlay gradient */}
+        <radialGradient id={`${uid}-dot`} cx="0.5" cy="0.45" r="0.6">
+          <stop offset="0" stopColor="var(--gold)" stopOpacity="1" />
+          <stop offset="0.6" stopColor="var(--gold-deep)" stopOpacity="1" />
+          <stop offset="1" stopColor="var(--basalt)" stopOpacity="1" />
         </radialGradient>
       </defs>
 
-      {variant === "solid" ? (
-        // Filled inverse-omega: two flared legs + arched cup, cut out interior.
+      {/* === Inscriptional crossbar (foundation line) ================= */}
+      {/* Top serif line that the two legs hang from. Deeper at ends. */}
+      <g filter={`url(#${uid}-carve)`}>
         <path
-          fill={`url(#${gid})`}
-          d="
-            M 22 22
-            L 44 22
-            L 44 30
-            L 40 30
-            C 38 38  36 46  34 58
-            C 33 66  34 74  40 80
-            C 44 84  50 86  60 86
-            C 70 86  76 84  80 80
-            C 86 74  87 66  86 58
-            C 84 46  82 38  80 30
-            L 76 30
-            L 76 22
-            L 98 22
-            L 98 30
-            L 93 30
-            C 96 42  100 56  100 70
-            C 100 86  90 100  78 102
-            L 78 108
-            L 58 108
-            L 58 104
-            C 52 104  46 100  42 96
-            C 38 92  36 86  36 80
-            L 28 80
-            L 28 72
-            L 36 72
-            C 36 60  34 44  31 30
-            L 22 30
-            Z"
+          d="M 26 48 L 214 48 L 214 54 L 26 54 Z"
+          fill={`url(#${uid}-g)`}
         />
-      ) : (
-        <>
-          {/* Foundation baseline */}
-          <line
-            x1="16"
-            y1="26"
-            x2="104"
-            y2="26"
-            stroke={c}
-            strokeWidth="2.2"
-            strokeLinecap="square"
-            opacity="0.55"
-          />
+        {/* Left serif anchor block */}
+        <path
+          d="M 20 44 L 36 44 L 36 60 L 20 60 Z"
+          fill={`url(#${uid}-g)`}
+        />
+        {/* Right serif anchor block */}
+        <path
+          d="M 204 44 L 220 44 L 220 60 L 204 60 Z"
+          fill={`url(#${uid}-g)`}
+        />
 
-          {/* Left leg of inverse omega — flares up and outward */}
-          <path
-            d="M30 26 L30 34 C30 46 32 58 38 70"
-            stroke={`url(#${gid})`}
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+        {/* === Left leg — splays outward, flared top, carved stone ==== */}
+        {/* Top flare tick (serifed foot of the omega leg) */}
+        <path
+          d="M 44 54
+             L 76 54
+             L 72 70
+             C 70 82  66 100  64 124
+             C 63 138  64 150  68 162
+             L 50 162
+             C 46 150  44 136  45 120
+             C 46 96   48 74  50 60
+             L 44 60
+             Z"
+          fill={`url(#${uid}-g)`}
+        />
 
-          {/* Right leg */}
-          <path
-            d="M90 26 L90 34 C90 46 88 58 82 70"
-            stroke={`url(#${gid})`}
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+        {/* === Right leg — mirror of left ============================= */}
+        <path
+          d="M 196 54
+             L 164 54
+             L 168 70
+             C 170 82  174 100  176 124
+             C 177 138  176 150  172 162
+             L 190 162
+             C 194 150  196 136  195 120
+             C 194 96   192 74  190 60
+             L 196 60
+             Z"
+          fill={`url(#${uid}-g)`}
+        />
 
-          {/* The cup — catches both legs. This is the bucket. */}
-          <path
-            d="M38 70 C44 82 56 86 60 86 C64 86 76 82 82 70"
-            stroke={`url(#${gid})`}
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+        {/* === The cup — the bucket — arched catch basin =============== */}
+        {/* Outer edge */}
+        <path
+          d="M 50 162
+             C 54 180  72 196  96 202
+             C 108 204  132 204  144 202
+             C 168 196  186 180  190 162
+             L 172 162
+             C 168 174  156 184  138 188
+             C 124 190  116 190  102 188
+             C 84 184  72 174  68 162
+             Z"
+          fill={`url(#${uid}-g)`}
+        />
+      </g>
 
-          {/* Citation-token dot sitting inside the cup */}
-          <circle cx="60" cy="94" r="3.2" fill={`url(#${gid}-dot)`} />
+      {/* === Hot-gold citation inlay — the token in the cup =========== */}
+      {/* Sits below the cup, the "drop" that falls from the arch. */}
+      <g>
+        <circle cx="120" cy="212" r="7.5" fill="var(--basalt)" opacity="0.85" />
+        <circle cx="120" cy="210" r="5.2" fill={`url(#${uid}-dot)`} />
+        <circle cx="118.5" cy="208.5" r="1.2" fill="var(--bone)" opacity="0.65" />
+      </g>
 
-          {/* Left flare tick */}
-          <line
-            x1="22"
-            y1="26"
-            x2="22"
-            y2="32"
-            stroke={c}
-            strokeWidth="2.4"
-            strokeLinecap="round"
-          />
-          {/* Right flare tick */}
-          <line
-            x1="98"
-            y1="26"
-            x2="98"
-            y2="32"
-            stroke={c}
-            strokeWidth="2.4"
-            strokeLinecap="round"
-          />
-        </>
-      )}
+      {/* === Rim highlight on the upper edge of each stroke =========== */}
+      {/* Faint bone (or gold-bone for inlay) along the top carves,     */}
+      {/* sells the depth — stone is lit from above.                   */}
+      <g opacity="1" stroke={rim} strokeWidth="0.7" fill="none" strokeLinecap="round">
+        <line x1="26" y1="48" x2="214" y2="48" />
+        <path d="M 44 54 L 76 54" />
+        <path d="M 164 54 L 196 54" />
+      </g>
+
+      {/* === Chisel cut — tiny dark crevice at each concave corner ==== */}
+      <g opacity="0.55" stroke={cut} strokeWidth="0.9" fill="none" strokeLinecap="round">
+        <path d="M 68 162 L 172 162" />
+        <path d="M 50 162 C 54 178 72 194 96 200" />
+        <path d="M 190 162 C 186 178 168 194 144 200" />
+      </g>
+
+      {/* === Signature runic mark under the plinth (hot gold) ========= */}
+      {/* Three dots — the triple-rune motif from KALA V11.3 bindrune.  */}
+      <g fill="var(--gold)" opacity={isInlay ? 0 : 0.9}>
+        <circle cx="108" cy="226" r="1.2" />
+        <circle cx="120" cy="226" r="1.2" />
+        <circle cx="132" cy="226" r="1.2" />
+      </g>
     </svg>
   );
 }

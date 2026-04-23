@@ -11,5 +11,5 @@ export default function Shield({
   className?: string;
   title?: string;
 }) {
-  return <InverseOmega size={size} className={className} tone="gold" title={title} />;
+  return <InverseOmega size={size} className={className} title={title} />;
 }
