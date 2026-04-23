@@ -1,0 +1,13 @@
+{
+  "file_key": "zVwoR6s0FYawk1QY0GBIOe",
+  "file_name": "bucket pitch",
+  "slug": "bucket-pitch",
+  "venture": "bucket-foundation",
+  "pulled_at": "2026-04-15",
+  "last_modified": "2024-01-17T12:02:59Z",
+  "role": "owner",
+  "status": "metadata-only",
+  "note": "Image renderer rate-limited at pull time (per-account 429 from earlier bisect-retry burst on bucket-1.0). _file.json also 429. Re-run `agf-figma pull zVwoR6s0FYawk1QY0GBIOe --venture bucket-foundation --slug bucket-pitch` once Figma clears the cooldown. Estimated 344 top-level elements (mostly RECTANGLE/TEXT, not FRAMEs) — actual renderable count TBD.",
+  "captured_endpoints": ["components", "styles", "comments", "versions"],
+  "deferred_endpoints": ["file (429)", "images (account in cooldown)"]
+}
