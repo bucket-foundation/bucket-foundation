@@ -369,7 +369,7 @@ export default function Presentation() {
             </p>
           </div>
           <div className="col-span-12 md:col-span-8 space-y-8">
-            <p className="text-[20px] text-[color:var(--bone)] leading-[1.6] ed-italic font-light">
+            <p className="text-[20px] text-[color:var(--bone)] leading-[1.6] ed-italic font-normal">
               &ldquo;An AI agent with a wallet discovers a data source,
               pays per query, and receives a citeable envelope —{" "}
               <span className="text-[color:var(--gold)] not-italic font-normal">

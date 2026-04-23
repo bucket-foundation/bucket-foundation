@@ -146,6 +146,38 @@ export default function InverseOmega({
         />
       </g>
 
+      {/* === LYRE STRINGS — 5 hot-gold strings stretched across the ==== */}
+      {/* inverse-omega arch, crossbar (top) → cup rim (bottom).         */}
+      {/* This is what makes it an inverse-omega LYRE, not just an Ω.    */}
+      <g>
+        <defs>
+          <linearGradient id={`${uid}-str`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0"   stopColor="var(--gold-bright, #D9A43A)" stopOpacity="1" />
+            <stop offset="0.5" stopColor="var(--gold)" stopOpacity="1" />
+            <stop offset="1"   stopColor="var(--gold-deep)" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+        {/* 5 strings, subtly varying from slack-plucked to taut */}
+        {[84, 100, 120, 140, 156].map((x, i) => (
+          <g key={i}>
+            {/* shadow groove under each string */}
+            <line
+              x1={x} y1="54" x2={x} y2="162"
+              stroke="rgba(31,28,22,0.55)" strokeWidth="2.4" strokeLinecap="round"
+            />
+            {/* the string itself */}
+            <line
+              x1={x} y1="54" x2={x} y2="162"
+              stroke={`url(#${uid}-str)`} strokeWidth="1.6" strokeLinecap="round"
+            />
+            {/* top peg (gold stud at the crossbar) */}
+            <circle cx={x} cy="50" r="2.2" fill="var(--gold)" stroke="var(--gold-deep)" strokeWidth="0.6" />
+            {/* bottom fixing dot at the cup rim */}
+            <circle cx={x} cy="162" r="1.4" fill="var(--gold-deep)" />
+          </g>
+        ))}
+      </g>
+
       {/* === Hot-gold citation inlay — the token in the cup =========== */}
       {/* Sits below the cup, the "drop" that falls from the arch. */}
       <g>

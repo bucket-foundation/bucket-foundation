@@ -232,6 +232,21 @@ html, body {
   background-color: rgba(18, 56, 56, 0.9);
   color: var(--bone);
 }
+/* Readability safety net: inside dark sections, any element with         */
+/* basalt-colored text (common leftover from light-mode defaults) flips   */
+/* to bone. Prevents invisible text from escaping review.                 */
+.stone-basalt *:where([class*="text-[color:var(--basalt)]"],
+                     [class*="text-[color:var(--basalt-2)]"],
+                     [class*="text-[color:var(--basalt-3)]"]),
+.stone-aegean *:where([class*="text-[color:var(--basalt)]"],
+                      [class*="text-[color:var(--basalt-2)]"],
+                      [class*="text-[color:var(--basalt-3)]"]) {
+  color: var(--bone) !important;
+}
+/* And inline feather text (font-light) in dark sections bumps to normal  */
+/* weight so it doesn't ghost on the stone.                               */
+.stone-basalt .font-light,
+.stone-aegean .font-light { font-weight: 400; }
 .stone-bone::after,
 .stone-basalt::after,
 .stone-aegean::after {

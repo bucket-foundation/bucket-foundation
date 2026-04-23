@@ -2,7 +2,7 @@
 
 import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
 import Link from "next/link";
-import Image from "next/image";
+import InverseOmega from "./InverseOmega";
 
 const NAV = [
   { href: "/canon",    label: "Canon" },
@@ -23,14 +23,7 @@ export default function Header() {
           className="flex items-center gap-3 group"
           aria-label="bucket.foundation"
         >
-          <Image
-            src="/brand/logo/mark-hero.png"
-            alt=""
-            width={44}
-            height={44}
-            priority
-            className="rounded-sm drop-shadow-[0_2px_4px_rgba(31,28,22,0.25)]"
-          />
+          <InverseOmega size={44} variant="carved" />
           <span className="font-display uppercase text-[18px] tracking-[0.08em] text-[color:var(--basalt)] font-bold">
             bucket<span className="text-[color:var(--gold-deep)]">.</span>foundation
           </span>
