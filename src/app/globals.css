@@ -223,6 +223,10 @@ html, body {
 .stone-aegean {
   position: relative;
 }
+/* stone-bone is a SECTION marker — stays transparent so the body's       */
+/* fractal-noise stone shows through at section scale (continuous slab).  */
+/* LEAF tiles/cards MUST use explicit bg-[color:var(--bone)] — never      */
+/* rely on stone-bone for background color on grid children.              */
 .stone-bone    { background-color: transparent; }
 .stone-basalt  {
   background-color: rgba(31, 28, 22, 0.92);

@@ -310,7 +310,7 @@ export default function Presentation() {
               <Link
                 key={b.slug}
                 href={`/canon/${b.slug}`}
-                className="stone-bone p-8 hover:bg-[color:var(--bone-2)] transition group relative aspect-[4/5] flex flex-col"
+                className="bg-[color:var(--bone)] p-8 hover:bg-[color:var(--bone-2)] transition group relative aspect-[4/5] flex flex-col"
               >
                 <div className="flex items-start justify-between">
                   <div className="font-display text-[32px] text-[color:var(--basalt-3)] group-hover:text-[color:var(--aegean-deep)] transition leading-none">
@@ -434,7 +434,7 @@ export default function Presentation() {
                 body: "Agent receives { data, citation, receipt }. Citation includes the author DID, corpus hash, model id, chunk id — reproducible forever.",
               },
             ].map((s) => (
-              <li key={s.num} className="stone-bone p-10 flex flex-col gap-5">
+              <li key={s.num} className="bg-[color:var(--bone)] p-10 flex flex-col gap-5">
                 <div className="font-display text-[52px] text-[color:var(--gold-deep)] leading-none">
                   {s.num}
                 </div>
