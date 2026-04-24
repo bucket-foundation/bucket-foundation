@@ -241,3 +241,32 @@ Started executing beads 17 → 02/13/15/16/14/12/09/07/08 in parallel (agents + 
 | bkt-research-18 (bioelectric lineage) | ⏳ QUEUED | Wait for Becker to settle. |
 
 **Build stats**: 1 commit pending. 8 new directories under bucket-canon/ + research-landscape/. 12 new README/INDEX/SEED files. 1 site mirror (419 MB, not committed — will evaluate .gitignore).
+
+---
+
+## Art / Design / Music Research Track (filed 2026-04-23, batch 3)
+
+Canon/landscape split. Music theory goes under 09-art/music-theory/ (cross-refs 02-physics/acoustics). Design theory goes under 09-art/design/. "How to be artistic" stays landscape; peer-reviewed creativity research can promote to 07-mind/creativity/.
+
+### bkt-research-19 · P2 · Canon scaffold: `09-art/` branch seed + subfolders
+Canon branch directory doesn't exist yet (only canon-figures/09-art.md does). Create: aesthetic-theory/ (Aristotle Poetics, Kant Critique of Judgment, Hegel Aesthetics, Burke Sublime, Lessing Laocoön, Schiller Aesthetic Education), perception/ (Gombrich Art and Illusion, Arnheim Art and Visual Perception, Panofsky), color-form/ (Goethe Theory of Colours, Munsell, Itten, Albers, Kandinsky), craft-foundations/ (Vitruvius, Alberti De Pictura + De Re Aedificatoria, Cennini, Palladio, Dürer theoretical), music-theory/ (sub-folder scaffolded, bead 21 populates).
+
+### bkt-research-20 · P2 · Canon dossier: Bauhaus + design-theory primaries (`09-art/design/`)
+Gropius Bauhaus Manifesto 1919, Moholy-Nagy Vision in Motion, Itten Design and Form, Albers Interaction of Color, Kepes Language of Vision, Papanek Design for the Real World, Dieter Rams' ten principles (Vitsoe primary), Christopher Alexander A Pattern Language + Notes on the Synthesis of Form, Tufte Visual Display of Quantitative Information, Norman Design of Everyday Things. Mechanism/principle focus.
+
+### bkt-research-21 · P2 · Canon dossier: music-theory primaries (`09-art/music-theory/`)
+Pythagorean intervals → Boethius De institutione musica → Zarlino → Rameau Traité de l'harmonie 1722 → Helmholtz On the Sensations of Tone 1863 (bridges 02-physics) → Schenker Der freie Satz → Hindemith Craft of Musical Composition → Messiaen Technique de mon langage musical → Xenakis Formalized Music. Acoustics canon ∩ music canon.
+
+### bkt-research-22 · P3 · Landscape: art market (`research-landscape/art-market/`)
+"What the rich buy" — primary data sources only, non-facilitation. Art Basel/UBS Global Art Market Report (McAndrew), Artprice, Artnet, TEFAF Report, Sotheby's Mei Moses indices (Mei & Moses 2002 AER), Christie's/Sotheby's/Phillips/Bonhams post-sale results, Ashenfelter & Graddy 2003 JEP, Goetzmann/Renneboog/Spaenjers Art and Money 2011, freeport/tax-haven mechanics, FATF 2023 money-laundering report. Landscape map, not buyer's guide.
+
+### bkt-research-23 · P3 · Landscape: art education + "how to be artistic" (`research-landscape/art-pedagogy/`)
+Beaux-Arts → Bauhaus → Black Mountain → RISD/Cooper Union/CalArts/Goldsmiths pedagogical lineage. Classical drawing primaries: Bargue Drawing Course, Loomis, Nicolaides Natural Way to Draw, Hale Drawing Lessons from the Great Masters. Creative-practice popularizers: Cameron The Artist's Way, Tharp The Creative Habit, Kleon Steal Like an Artist, Rubin The Creative Act (landscape, not canon). Art-education research: Eisner, Robinson. Creativity research (borderline canon): Csikszentmihalyi Flow/Creativity, Simonton on genius, Amabile componential theory — peer-reviewed primaries promote to 07-mind/creativity/ later.
+
+### bkt-research-24 · P4 · Landscape: contemporary-art commentariat (`research-landscape/art-commentariat/`)
+Parallel to history-commentariat. Critics: Greenberg, Rosenberg, Krauss, Foster, T.J. Clark, Fried, Berger (Ways of Seeing), Hickey, Hughes (Shock of the New). Contemporary: Saltz, Smith, Schjeldahl (†), Davis. Market-adjacent: Georgina Adam, Schachter, Reyburn. Podcast/YT: Great Art Explained, The Art Angle, Dialogues (Zwirner).
+
+### Shipping order (batch 3)
+0. 19 + 21 in parallel (canon scaffolds, largely writing)
+1. 20 (design dossier) + 22 (art market landscape) in parallel
+2. 23 (art pedagogy) + 24 (commentariat)
