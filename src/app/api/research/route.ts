@@ -377,7 +377,30 @@ export async function GET(req: NextRequest) {
     spend.usd += price;
   }
 
-  const enriched = mergeCiteFields(envelope, tier, GATEWAY_URL);
+  let enriched = mergeCiteFields(envelope, tier, GATEWAY_URL);
+
+  // Permanence layer (feature-flagged OFF by default).
+  // When BUCKET_PERMANENCE_ENABLED=true, every successful envelope is
+  // dual-written to Arweave (via Irys) + EAS on Base before return.
+  // Failures are logged but do NOT break the 200 response — the envelope
+  // still goes back to the caller without permanence receipts.
+  if (
+    resp.ok &&
+    process.env.BUCKET_PERMANENCE_ENABLED === "true" &&
+    enriched &&
+    typeof enriched === "object"
+  ) {
+    try {
+      const { permanentize } = await import("@/lib/permanence/dual-write");
+      const r = await permanentize(
+        enriched as Record<string, unknown> & { provenance?: unknown[] },
+      );
+      enriched = r.enriched;
+    } catch (e) {
+      console.error("[permanence] dual-write failed:", e);
+    }
+  }
+
   return json(enriched, {
     status: resp.status,
     headers: { "x-bucket-tier": tier },
