@@ -88,6 +88,109 @@ Jason — Gian from bucket.foundation. We're building DeSci's first per-citation
 | 9 | **Gitcoin DeSci round** | Gitcoin Grants Stack application | Next round; nonprofit = free runway |
 | 10 | **Farcaster** (@dwr, @vitalik casts) | Cast a bucket-citation-demo Frame | After first pilot ships, use as distribution |
 
+---
+
+# Week 2 — secondary queue (drafted)
+
+Copy-paste-ready. Send the week after messages #1–5 have landed (or stalled).
+
+---
+
+## Message #6 — Ocean Protocol (@oceanprotocol)
+
+**Vector:** X DM **@oceanprotocol** + email **sheridan.kemple@oceanprotocol.com** (if still routing partnerships)
+**Fallback:** Ocean forum, `partnerships` category
+**Why now:** Ocean withdrew from the ASI Alliance in Oct 2025 — they're independent again, rebuilding a narrative, and actively hunting complementary primitives. Bucket's per-citation rail routes to *authors*; Ocean's Compute-to-Data routes access to *datasets*. Orthogonal wedges, shared chain logic.
+
+```
+Ocean team — Gian from bucket.foundation (nonprofit, Base, MIT). Ocean sells dataset access; bucket pays per-citation USDC to research authors forever via x402. Different primitive, same rail-shaped hole in DeSci. Since the ASI unwind, you're the most stack-compatible partner we see — your C2D for data, our feed402 envelope for the citation. Open to a 20-min call to map the overlap?
+```
+
+**Character count:** 478.
+
+---
+
+## Message #7 — DeSci Labs (@DeSciLabs)
+
+**Vector:** X DM **@DeSciLabs** + **@desci_phil** (founder, responsive)
+**Fallback:** community Discord, #partnerships
+**Why now:** dPID already attaches a persistent identifier to every research artifact. Bucket attaches a payout wallet. One more field on the same manifest. If they ship `dpid.payout_wallet` natively, every DeSci Nodes artifact becomes bucket-enabled on day one.
+
+```
+Phil / DeSci Labs — Gian, bucket.foundation. dPID already pins a canonical identifier to every artifact; bucket pins a payout wallet (USDC on Base, per-citation via x402). One more field on the same manifest. Proposing a joint co-spec: `dpid.payout_wallet` as an optional extension — zero fee, open standard, we do the writeup. Worth a call?
+```
+
+**Character count:** 416.
+
+---
+
+## Message #8 — CerebrumDAO (@CerebrumDAO)
+
+**Vector:** X DM **@CerebrumDAO** + Discord #partnerships
+**Fallback:** bio.xyz warm intro once #2 lands
+**Why now:** Bucket's Mind branch (`07-mind`) is the thinnest canon branch and the one most in need of a lighthouse partner. CerebrumDAO owns the neuroscience IP angle. If BIO stalls, Cerebrum is the cleanest standalone pilot — one DAO, one branch, one press release.
+
+```
+CerebrumDAO — Gian from bucket.foundation (nonprofit, Base). Bucket's canon has a Mind branch and it's the thinnest one. We want Cerebrum as the lighthouse partner: 10 of your neuroscience IP-NFTs get a bucket citation wallet, USDC per-citation to DAO treasury, 30-day pilot, zero fee. Co-announcement, transparent dashboard. Good fit?
+```
+
+**Character count:** 389.
+
+---
+
+## Message #9 — Gitcoin DeSci Round (grant application, 150 words)
+
+**Vector:** Gitcoin Grants Stack, next DeSci round (usually quarterly)
+**Why now:** We qualify — nonprofit entity (pending 501(c)(3) reinstatement), MIT code, CC0 spec, open dashboard. Free runway, distribution inside the DeSci quadratic-funding crowd, no dilution.
+
+```
+bucket.foundation is a nonprofit building the missing post-publication revenue layer for research: per-citation USDC payouts to authors on Base, via x402 and feed402. Molecule mints IP-NFTs, ResearchHub pays reviewers, VitaDAO funds science — nobody pays authors for the downstream citations AI agents are now making at scale. That's our entire scope. We attach a payout wallet to every canon-tier artifact; agents pay $0.005–$0.05 per query; the wallet earns forever. Code MIT, spec CC0, governance public, contributor index spans 7 canon branches and ~76 figures. Grant funds pay for: (1) pilot integrations with 3 BioDAOs, (2) EAS + Arweave permanence layer deploy, (3) author-outreach and wallet-provisioning tooling. We are the citation rail. Support us and every DeSci paper funded on Gitcoin earns post-publication revenue by default.
+```
+
+**Word count:** 148.
+
+---
+
+## Message #10 — Farcaster Frame spec (not a DM)
+
+**Vector:** ship the Frame, then cast it from **@bucket** / **@gian**; tag **@dwr.eth** and **@vitalik.eth** once live
+**Why now:** Frames are Farcaster's native distribution primitive. A "Cite this paper for $0.005" Frame that anyone can embed in a cast = bucket's first viral surface. One-click USDC pay via Warpcast's connected wallet. No app, no signup, no KYC.
+
+### Frame spec v0.1 — `frames.bucket.foundation/cite/:artifact_id`
+
+**Meta tags** (served from the artifact page):
+
+```html
+<meta property="fc:frame" content="vNext" />
+<meta property="fc:frame:image" content="https://frames.bucket.foundation/og/:artifact_id.png" />
+<meta property="fc:frame:image:aspect_ratio" content="1.91:1" />
+<meta property="fc:frame:button:1" content="Cite — $0.005" />
+<meta property="fc:frame:button:1:action" content="tx" />
+<meta property="fc:frame:button:1:target" content="https://frames.bucket.foundation/api/cite/:artifact_id" />
+<meta property="fc:frame:button:2" content="Read abstract" />
+<meta property="fc:frame:button:2:action" content="link" />
+<meta property="fc:frame:button:2:target" content="https://bucket.foundation/a/:artifact_id" />
+<meta property="fc:frame:post_url" content="https://frames.bucket.foundation/api/post/:artifact_id" />
+```
+
+**Button 1 flow (`tx` action):**
+1. Warpcast client POSTs to `/api/cite/:artifact_id` with the user's FID + connected wallet.
+2. Server returns an EIP-712 tx payload: USDC transfer of `0.005` on Base to the artifact's `payout_wallet`, plus a `citation_memo` field (`artifact_id` + `fid` + timestamp).
+3. Warpcast wallet pops the tx, user signs, tx lands on Base.
+4. Server observes the tx, emits a feed402 citation event, updates the Frame image to show `"Cited — tx 0x…"` and increments the on-chain counter.
+
+**Button 2 flow (`link` action):** opens the canonical artifact page on bucket.foundation. No wallet required.
+
+**OG image generator** (`/og/:artifact_id.png`): 1200x628 stone card, title, 3-line abstract, citation count, payout wallet short-hash, canon branch badge. Matches the stone-card aesthetic of `gtm/video-v5`.
+
+**Success metric:** ≥100 citations from Frames in the first 30 days = bucket has a distribution primitive. Then we port it to Lens, XMTP, and Telegram inline-queries.
+
+**Build order:**
+1. Static Frame + OG generator (1 day).
+2. `tx` action endpoint + Base observer (2 days).
+3. First cast from @bucket with a canon-tier paper, tag @dwr.eth (day 4).
+4. Measure, iterate.
+
 ## Tracking
 
 Log every sent message in `TIMELOG.md`. Track:
