@@ -274,3 +274,37 @@ Parallel to history-commentariat. Critics: Greenberg, Rosenberg, Krauss, Foster,
 0. 19 + 21 in parallel (canon scaffolds, largely writing)
 1. 20 (design dossier) + 22 (art market landscape) in parallel
 2. 23 (art pedagogy) + 24 (commentariat)
+
+---
+
+## Activity Layer / "What's New" Beads (filed 2026-04-23, batch 4)
+
+Make canon contributions legible publicly. GitHub push → feed.json → website → gdrive, with PR-merge as the accept gate. Recommendation: ship Option B (Actions-driven feed) now, Option C (Story Protocol mint-on-merge) later.
+
+### bkt-feed-01 · P1 · Canon-change parser
+Python script in `tools/feed/parse.py`. Reads `git diff <sha_from>..<sha_to>`, emits structured events as JSON lines. Event types: `add_paper` (new `@article{...}` in `primary-papers.bib`), `add_figure` (diff in `canon-figures/figures.json`), `add_branch` (new top-level dir under `bucket-canon/`), `add_canon_entry` (new file under `bucket-canon/<branch>/<topic>/`), `add_landscape` (new file under `research-landscape/`), `promote` (move from landscape → canon), `demote` (canon → landscape or _archive), `update_dossier` (existing primary-papers.md or .bib touched). Each event carries: `type`, `branch`, `topic`, `title`, `author_github`, `author_name`, `commit_sha`, `timestamp`, `pr_number` (if available).
+
+### bkt-feed-02 · P1 · feed.json schema + generator
+`tools/feed/feed.py`. Rolling main feed `feed.json` (last 200 events, at repo root) + monthly archives `feed/YYYY-MM.json`. RSS/Atom emitter `feed.xml`. Schema versioned; events are append-only; retractions are new events, not edits.
+
+### bkt-feed-03 · P1 · GitHub Action: push → feed → gdrive → Vercel
+`.github/workflows/feed.yml`. On `push: main`: (a) `tools/feed/parse.py` on HEAD vs HEAD~, (b) `tools/feed/feed.py` to update feed.json + monthly archive + feed.xml, (c) commit with `[skip ci]`, (d) rclone mirror the diff summary to `gdrive:AGFarms/Nucleus/bucket-foundation/canon-updates/YYYY-MM-DD.md`, (e) curl the Vercel deploy hook. Secrets needed: `RCLONE_CONFIG_GDRIVE_TOKEN`, `VERCEL_DEPLOY_HOOK`.
+
+### bkt-feed-04 · P2 · `/whats-new` timeline page
+Next.js route at `src/app/whats-new/page.tsx`. Server component reads `feed.json` (or fetches at runtime). Timeline UI: date-grouped, filter by canon-branch / contributor / event-type. Link each event to its file on GitHub and its canon location. Mobile-responsive. Reuse existing site design tokens.
+
+### bkt-feed-05 · P2 · `/contributors/[handle]` dynamic page
+Dynamic route at `src/app/contributors/[handle]/page.tsx`. Aggregate all events by GitHub author. Show: canon/landscape split, branches touched, figures added, papers added, first-contribution date. Link to github.com/<handle> + Dynamic wallet if known. `generateStaticParams` from contributors listed in latest feed.json.
+
+### bkt-feed-06 · P3 · CONTRIBUTING.md update with acceptance criteria
+Extend existing CONTRIBUTING.md (or create): explicit PR acceptance criteria per tier. Canon = primary source cited (DOI or permanent URL), branch-fit justified, no marketing voice, no clinical claims in mechanism dossiers, canon_score > 50 when pipeline-resolvable. Landscape = tier honestly labeled, evaluation axes filled, non-endorsement framing. Figures = SCHEMA.md compliance, Disputed. paragraph for contested claims. Quote the editorial constraints from SCHEMA.md verbatim.
+
+### bkt-feed-07 · P4 · Story Protocol mint-on-merge hook (Option C bridge)
+DEFERRED. On PR merge to main with `add_canon_entry` or `add_paper` event, mint Story Protocol IP NFT with contributor wallet. Requires GitHub→Dynamic-wallet lookup table in Supabase. Depends on feed-01/02/03 landing + Story Protocol docs from bkt-epic-kruse.
+
+### Shipping order
+0. feed-01 + feed-02 in parallel (engineering, no-deps)
+1. feed-03 (Action — depends on 01 & 02)
+2. feed-04 + feed-05 in parallel (frontend — depends on feed.json format locked)
+3. feed-06 (docs)
+4. feed-07 (later)
