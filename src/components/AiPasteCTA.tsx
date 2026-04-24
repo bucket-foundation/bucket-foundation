@@ -37,7 +37,7 @@ export default function AiPasteCTA() {
 
   return (
     <section className="stone-bone relative border-t-4 border-[color:var(--gold)] grain">
-      <div className="max-w-[1400px] mx-auto px-6 py-20 md:py-24 grid grid-cols-12 gap-8 md:gap-10 items-start">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-14 md:py-24 grid grid-cols-12 gap-6 md:gap-10 items-start">
         {/* ─────────── left column ─────────── */}
         <div className="col-span-12 md:col-span-4">
           <div className="small-caps text-[10px] text-[color:var(--gold-deep)] tracking-[0.2em]">

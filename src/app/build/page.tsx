@@ -137,7 +137,7 @@ export default function BuildPage() {
     <main className="min-h-screen stone-bone">
       {/* Hero */}
       <section className="relative overflow-hidden border-b-2 border-[color:var(--basalt)]">
-        <div className="max-w-[1400px] mx-auto px-6 pt-16 pb-12 md:pt-24 md:pb-16">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 pt-12 pb-10 md:pt-24 md:pb-16">
           <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] mb-4 tracking-[0.2em]">
             § Build
           </div>
@@ -152,7 +152,7 @@ export default function BuildPage() {
       </section>
 
       {/* Plinths */}
-      <section className="max-w-[1400px] mx-auto px-6 py-12 md:py-20">
+      <section className="max-w-[1400px] mx-auto px-4 md:px-6 py-10 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           {/* ── Path 1 — Use the API ───────────────────────────────── */}
           <article className="carved-inset carved-pad bg-[color:var(--bone-2)] flex flex-col min-w-0">

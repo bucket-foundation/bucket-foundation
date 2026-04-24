@@ -18,7 +18,7 @@ export default function PageShell({
   return (
     <main className="min-h-screen">
       <header className="border-b hairline">
-        <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
+        <div className="max-w-3xl mx-auto px-4 md:px-6 pt-14 md:pt-24 pb-10 md:pb-16">
           {eyebrow && (
             <div className="small-caps text-[11px] text-[color:var(--gold)] mb-6">
               {eyebrow}
@@ -34,7 +34,7 @@ export default function PageShell({
           )}
         </div>
       </header>
-      <article className="max-w-3xl mx-auto px-6 py-16">{children}</article>
+      <article className="max-w-3xl mx-auto px-4 md:px-6 py-10 md:py-16">{children}</article>
     </main>
   );
 }

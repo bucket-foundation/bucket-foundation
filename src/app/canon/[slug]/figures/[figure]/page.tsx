@@ -24,7 +24,7 @@ export default function Page({ params }: { params: { slug: string; figure: strin
   return (
     <main className="min-h-screen">
       <header className="border-b hairline">
-        <div className="max-w-4xl mx-auto px-6 pt-24 pb-16">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 pt-14 md:pt-24 pb-10 md:pb-16">
           <div className="small-caps text-[11px] text-[color:var(--gold)] mb-6">
             <Link href="/canon" className="hover:text-[color:var(--parchment)]">§ canon</Link>{" "}
             <span className="text-[color:var(--parchment-dim)]">/ </span>
@@ -42,7 +42,7 @@ export default function Page({ params }: { params: { slug: string; figure: strin
         </div>
       </header>
 
-      <section className="max-w-4xl mx-auto px-6 py-16 space-y-10">
+      <section className="max-w-4xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-8 md:space-y-10">
         <Card
           title="Authored works"
           body="Every OpenAlex-indexed work authored by this figure, wrapped in a feed402 §3 envelope (citation + data + receipt). Includes title, authors, year, DOI, venue, citation count, OA status, concept tags."

@@ -4,7 +4,7 @@ import InverseOmega from "./InverseOmega";
 export default function Footer() {
   return (
     <footer className="mt-0 stone-basalt border-t-4 border-[color:var(--gold)]">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10 text-[color:var(--bone-3)]">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10 text-[color:var(--bone-3)]">
         <div className="flex flex-col gap-4">
           <InverseOmega size={48} variant="inlay" />
           <div className="font-display uppercase text-lg text-[color:var(--bone)] tracking-[0.06em]">
@@ -40,7 +40,7 @@ export default function Footer() {
         <div>
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Open</div>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/whats-new" className="hover:text-[color:var(--bone)] transition">What's new</Link></li>
+            <li><Link href="/whats-new" className="hover:text-[color:var(--bone)] transition">What&apos;s new</Link></li>
             <li><Link href="/contributors" className="hover:text-[color:var(--bone)] transition">Contributors</Link></li>
             <li><a href="/feed.xml" className="hover:text-[color:var(--bone)] transition">RSS feed</a></li>
             <li><a href="https://github.com/bucket-foundation/bucket-foundation" className="hover:text-[color:var(--bone)] transition">GitHub</a></li>
@@ -52,7 +52,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-[color:var(--hairline-bone)]">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-wrap gap-4 justify-between text-[10px] small-caps text-[color:var(--bone-3)]">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-5 flex flex-wrap gap-4 justify-between text-[10px] small-caps text-[color:var(--bone-3)]">
           <div>bucket foundation · nonprofit · MIT code · CC0 intent · v0.2.0</div>
           <div className="text-[color:var(--gold)]">carved in stone · mmxxii</div>
         </div>

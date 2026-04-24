@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <main className="min-h-screen">
       <header className="border-b hairline">
-        <div className="max-w-6xl mx-auto px-6 pt-24 pb-16">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 pt-14 md:pt-24 pb-10 md:pb-16">
           <div className="small-caps text-[11px] text-[color:var(--gold)] mb-6">§ canon</div>
           <h1 className="font-serif-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.05] text-[color:var(--parchment)]">
             Eight branches.<br />One index.
@@ -30,7 +30,7 @@ export default function Page() {
         </div>
       </header>
 
-      <section className="max-w-6xl mx-auto px-6 py-16">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)]">
           {BRANCHES.map((b) => {
             const sum = b.sources.reduce((m, s) => m + s.count, 0) +

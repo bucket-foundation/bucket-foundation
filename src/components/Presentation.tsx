@@ -55,9 +55,9 @@ export default function Presentation() {
           </div>
         </div>
 
-        <div className="relative max-w-[1400px] mx-auto px-6 pt-14 pb-24 grid grid-cols-12 gap-10 items-start">
+        <div className="relative max-w-[1400px] mx-auto px-4 md:px-6 pt-10 md:pt-14 pb-16 md:pb-24 grid grid-cols-12 gap-6 md:gap-10 items-start">
           {/* ═══════ Left rail: metadata column (editorial) ═══════ */}
-          <aside className="col-span-12 lg:col-span-2 flex lg:flex-col gap-6 lg:gap-10 items-start carve-in-1">
+          <aside className="col-span-12 lg:col-span-2 flex flex-wrap lg:flex-col gap-x-5 gap-y-4 lg:gap-10 items-start carve-in-1">
             <div>
               <div className="small-caps text-[10px] text-[color:var(--aegean-deep)]">Folio</div>
               <div className="font-mono-mark text-[11px] mt-1 text-[color:var(--basalt-2)]">
@@ -196,7 +196,7 @@ export default function Presentation() {
 
         {/* Bottom hero stat strip — Roman inscription ledger */}
         <div className="relative border-t-2 border-[color:var(--basalt)]">
-          <div className="max-w-[1400px] mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             <Stat roman="VIII"   label="canon branches"          sub="mathematics → earth" />
             <Stat roman="LXXVI"  label="seed figures"            sub="pass-1 · canon-tier" />
             <Stat roman="MCCCLXXII" label="Einstein works indexed" sub="via OpenAlex" />
@@ -218,7 +218,7 @@ export default function Presentation() {
           aria-hidden
           className="absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-[color:var(--gold-deep)] to-transparent opacity-60"
         />
-        <div className="max-w-[1400px] mx-auto px-6 py-28 grid grid-cols-12 gap-10">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-16 md:py-28 grid grid-cols-12 gap-8 md:gap-10">
           <div className="col-span-12 md:col-span-3">
             <div className="small-caps text-[10px] text-[color:var(--gold)]">§ I · Thesis</div>
             <div className="mt-8 font-mono-mark text-[11px] text-[color:var(--bone-3)] leading-[1.8]">
@@ -260,8 +260,8 @@ export default function Presentation() {
       {/* ════════════════════════════════════════════════════════════ */}
       {/* MANIFESTO PULL · carved directly into the same stone          */}
       {/* ════════════════════════════════════════════════════════════ */}
-      <section className="relative carved-seam py-28">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative carved-seam py-16 md:py-28">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
           <div className="carved-inset carved-inset-deep carved-pad">
             <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] chisel mb-8">
               § I·b · Manifesto pull
@@ -286,8 +286,8 @@ export default function Presentation() {
       {/* CANON · the eight plinths                                     */}
       {/* ════════════════════════════════════════════════════════════ */}
       <section className="stone-bone relative border-t-4 border-[color:var(--basalt)] grain">
-        <div className="max-w-[1400px] mx-auto px-6 py-28">
-          <div className="grid grid-cols-12 gap-10 items-end mb-16">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-16 md:py-28">
+          <div className="grid grid-cols-12 gap-6 md:gap-10 items-end mb-10 md:mb-16">
             <div className="col-span-12 md:col-span-8">
               <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] mb-4">§ II · The Canon</div>
               <h2 className="font-display uppercase text-[clamp(2.25rem,6vw,4.75rem)] leading-[0.95] chisel tracking-[0.005em]">
@@ -359,7 +359,7 @@ export default function Presentation() {
           <Globe size={720} mode="basalt" />
         </div>
 
-        <div className="relative max-w-[1400px] mx-auto px-6 py-28 grid grid-cols-12 gap-10">
+        <div className="relative max-w-[1400px] mx-auto px-4 md:px-6 py-16 md:py-28 grid grid-cols-12 gap-8 md:gap-10">
           <div className="col-span-12 md:col-span-4">
             <div className="small-caps text-[10px] text-[color:var(--gold)]">§ III · Protocol</div>
             <h3 className="font-display uppercase text-[clamp(2.75rem,6vw,4.5rem)] chisel-bone mt-4 leading-[0.92] tracking-[0.02em]">
@@ -383,7 +383,7 @@ export default function Presentation() {
               </span>
               &rdquo;
             </p>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4">
               <Tier name="raw"     price="$0.010" note="source rows" />
               <Tier name="query"   price="$0.005" note="filtered view" />
               <Tier name="insight" price="$0.002" note="agent synthesis" highlight />
@@ -416,7 +416,7 @@ export default function Presentation() {
       {/* INSCRIPTION · how a citation works (3-step carve)             */}
       {/* ════════════════════════════════════════════════════════════ */}
       <section className="stone-bone border-t-4 border-[color:var(--basalt)] relative grain">
-        <div className="max-w-[1400px] mx-auto px-6 py-28">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-16 md:py-28">
           <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] mb-6">§ IV · The Cut</div>
           <h3 className="font-display uppercase text-[clamp(2rem,4.5vw,3.5rem)] chisel mb-16 leading-[1] max-w-4xl">
             how a citation gets{" "}
@@ -468,7 +468,7 @@ export default function Presentation() {
               "radial-gradient(40% 45% at 50% 55%, rgba(232,178,58,0.18) 0%, rgba(247,244,236,0) 70%)",
           }}
         />
-        <div className="relative max-w-4xl mx-auto px-6 py-40 text-center">
+        <div className="relative max-w-4xl mx-auto px-4 md:px-6 py-24 md:py-40 text-center">
           <div className="flex justify-center mb-10">
             <InverseOmega size={92} />
           </div>
@@ -488,13 +488,13 @@ export default function Presentation() {
           <div className="mt-14 flex justify-center gap-3 flex-wrap">
             <Link
               href="/join"
-              className="px-10 py-4 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px]"
+              className="px-6 sm:px-10 py-4 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px] min-h-[44px] inline-flex items-center"
             >
               Contribute canon
             </Link>
             <a
               href="https://github.com/bucket-foundation/bucket-research"
-              className="px-10 py-4 border-2 border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition small-caps text-[11px]"
+              className="px-6 sm:px-10 py-4 border-2 border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition small-caps text-[11px] min-h-[44px] inline-flex items-center"
             >
               bucket-research ↗
             </a>
@@ -521,7 +521,7 @@ export default function Presentation() {
 function Stat({ roman, label, sub }: { roman: string; label: string; sub: string }) {
   return (
     <div className="flex flex-col gap-2">
-      <div className="font-display text-[clamp(1.75rem,3vw,2.5rem)] chisel leading-none text-[color:var(--basalt)]">
+      <div className="font-display text-[clamp(1.25rem,3vw,2.5rem)] chisel leading-none text-[color:var(--basalt)] break-all">
         {roman}
       </div>
       <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] leading-tight">
@@ -546,7 +546,7 @@ function Tier({
   return (
     <div
       className={
-        "p-5 border-2 bg-[color:var(--basalt)]/60 backdrop-blur-sm " +
+        "p-3 sm:p-5 border-2 bg-[color:var(--basalt)]/60 backdrop-blur-sm min-w-0 " +
         (highlight ? "border-[color:var(--gold)]" : "border-[color:var(--bone)]/25")
       }
     >

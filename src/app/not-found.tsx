@@ -4,7 +4,7 @@ import Shield from "@/components/Shield";
 export default function NotFound() {
   return (
     <main className="min-h-[70vh] flex items-center justify-center">
-      <div className="max-w-xl mx-auto px-6 py-24 text-center">
+      <div className="max-w-xl mx-auto px-4 md:px-6 py-24 text-center">
         <div className="text-[color:var(--gold)] flex justify-center mb-8">
           <Shield size={96} />
         </div>

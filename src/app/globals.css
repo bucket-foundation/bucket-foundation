@@ -158,7 +158,13 @@ html, body {
   }
 }
 /* Prevent horizontal overflow anywhere (big sections pushing past vw). */
-html, body { overflow-x: hidden; }
+html, body { overflow-x: hidden; max-width: 100vw; }
+/* Any long unbroken token (wallet address, tx hash, x402 challenge blob, URL)
+   rendered as body copy shouldn't blow out the viewport on phones. CodeBlock
+   has its own <pre overflow-x-auto> and is excluded. */
+@media (max-width: 767px) {
+  .font-mono-mark:not(pre):not(pre *) { overflow-wrap: anywhere; word-break: break-word; }
+}
 /* Safe areas for notched iPhones. */
 @supports (padding: max(0px)) {
   .safe-x { padding-left: max(1rem, env(safe-area-inset-left));
@@ -215,9 +221,10 @@ html, body { overflow-x: hidden; }
     0 8px 22px -10px rgba(31, 28, 22, 0.25);
 }
 
-/* Inner padding for carved panels. */
+/* Inner padding for carved panels. Tightened horizontal on phones so
+   code blocks + long monospace strings have breathing room at 360px. */
 .carved-pad {
-  padding: clamp(2.25rem, 5.5vw, 5rem) clamp(1.75rem, 4.5vw, 4.5rem);
+  padding: clamp(1.5rem, 5.5vw, 5rem) clamp(1rem, 4.5vw, 4.5rem);
 }
 
 /* Section rails — barely-there section transitions. Just a carved scar. */

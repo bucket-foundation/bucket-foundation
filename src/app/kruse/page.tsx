@@ -7,7 +7,7 @@ export const dynamic = "force-static";
 export default function KrusePage() {
   return (
     <main className="stone-bone relative grain">
-      <div className="max-w-[1100px] mx-auto px-6 py-24 md:py-32">
+      <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Bucket Foundation · Private preview
         </div>

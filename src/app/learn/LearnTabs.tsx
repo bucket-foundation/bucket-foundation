@@ -31,12 +31,12 @@ export default function LearnTabs() {
   const [tab, setTab] = useState<TabId>("chat");
 
   return (
-    <section className="max-w-[1200px] mx-auto px-6 pb-24">
+    <section className="max-w-[1200px] mx-auto px-4 md:px-6 pb-16 md:pb-24">
       {/* Tab strip */}
       <div
         role="tablist"
         aria-label="Learn tabs"
-        className="flex flex-wrap gap-2 border-b border-[color:var(--hairline)] mb-8"
+        className="flex md:flex-wrap gap-2 border-b border-[color:var(--hairline)] mb-8 overflow-x-auto md:overflow-visible whitespace-nowrap md:whitespace-normal -mx-4 px-4 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none"
       >
         {TABS.map((t) => {
           const active = tab === t.id;
@@ -48,7 +48,7 @@ export default function LearnTabs() {
               aria-controls={`panel-${t.id}`}
               id={`tab-${t.id}`}
               onClick={() => setTab(t.id)}
-              className={`small-caps text-[11px] tracking-[0.14em] px-5 py-3 min-h-[44px] border-b-2 -mb-px transition ${
+              className={`shrink-0 md:shrink snap-start small-caps text-[11px] tracking-[0.14em] px-4 md:px-5 py-3 min-h-[44px] border-b-2 -mb-px transition ${
                 active
                   ? "border-[color:var(--gold-deep)] text-[color:var(--basalt)]"
                   : "border-transparent text-[color:var(--basalt-3)] hover:text-[color:var(--basalt-2)] hover:border-[color:var(--gold)]"

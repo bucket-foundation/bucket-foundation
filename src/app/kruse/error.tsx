@@ -17,7 +17,7 @@ export default function KruseError({
 
   return (
     <main className="stone-bone relative grain">
-      <div className="max-w-2xl mx-auto px-6 py-28">
+      <div className="max-w-2xl mx-auto px-4 md:px-6 py-16 md:py-28">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Kruse Index · temporary error
         </div>

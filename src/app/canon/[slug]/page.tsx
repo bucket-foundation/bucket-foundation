@@ -26,7 +26,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <main className="min-h-screen">
       <header className="border-b hairline">
-        <div className="max-w-4xl mx-auto px-6 pt-24 pb-16">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 pt-14 md:pt-24 pb-10 md:pb-16">
           <div className="small-caps text-[11px] text-[color:var(--gold)] mb-6">
             <Link href="/canon" className="hover:text-[color:var(--parchment)]">§ canon</Link>{" "}
             <span className="text-[color:var(--parchment-dim)]">/ {b.num}</span>
@@ -43,7 +43,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         </div>
       </header>
 
-      <section className="max-w-4xl mx-auto px-6 py-16 space-y-16">
+      <section className="max-w-4xl mx-auto px-4 md:px-6 py-10 md:py-10 md:py-16 space-y-8 md:space-y-10 md:space-y-16">
         <div>
           <h2 className="font-serif-display text-3xl text-[color:var(--parchment)] mb-8">Sources</h2>
           <div className="divide-y divide-[color:var(--hairline)]">
