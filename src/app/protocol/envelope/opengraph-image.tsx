@@ -17,8 +17,8 @@ export default function OG() {
           justifyContent: "space-between",
           padding: "72px 80px",
           background:
-            "linear-gradient(135deg, #1F1C16 0%, #2A2520 55%, #1A1714 100%)",
-          color: "#EFE8D4",
+            "linear-gradient(135deg, #EFE8D4 0%, #E4DCC4 55%, #D3C9AB 100%)",
+          color: "#1F1C16",
           fontFamily: "serif",
         }}
       >
@@ -28,14 +28,14 @@ export default function OG() {
             fontSize: 18,
             letterSpacing: "0.24em",
             textTransform: "uppercase",
-            color: "#C9A24E",
+            color: "#8A641A",
           }}
         >
           § protocol · envelope
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          <div style={{ fontSize: 92, lineHeight: 1, fontWeight: 700, color: "#EFE8D4" }}>
+          <div style={{ fontSize: 92, lineHeight: 1, fontWeight: 700, color: "#1F1C16" }}>
             one envelope.
           </div>
           <div style={{ fontSize: 92, lineHeight: 1, fontWeight: 700, color: "#C9A24E" }}>
@@ -44,7 +44,7 @@ export default function OG() {
           <div
             style={{
               fontSize: 22,
-              color: "#8A8270",
+              color: "#4A4238",
               fontFamily: "monospace",
               marginTop: 12,
             }}
@@ -59,8 +59,8 @@ export default function OG() {
             justifyContent: "space-between",
             alignItems: "center",
             fontSize: 20,
-            color: "#8A8270",
-            borderTop: "1px solid rgba(201,162,78,0.3)",
+            color: "#6F6A5E",
+            borderTop: "1px solid rgba(31,28,22,0.2)",
             paddingTop: 20,
           }}
         >

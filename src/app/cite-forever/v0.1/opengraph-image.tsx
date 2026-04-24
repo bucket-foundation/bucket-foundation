@@ -17,8 +17,8 @@ export default function OG() {
           justifyContent: "space-between",
           padding: "72px 80px",
           background:
-            "linear-gradient(135deg, #1F1C16 0%, #2A2520 55%, #1A1714 100%)",
-          color: "#EFE8D4",
+            "linear-gradient(135deg, #EFE8D4 0%, #E4DCC4 55%, #D3C9AB 100%)",
+          color: "#1F1C16",
           fontFamily: "serif",
         }}
       >
@@ -28,23 +28,23 @@ export default function OG() {
             fontSize: 18,
             letterSpacing: "0.24em",
             textTransform: "uppercase",
-            color: "#C9A24E",
+            color: "#8A641A",
           }}
         >
           § license · cite-forever · v0.1
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 96, lineHeight: 1, fontWeight: 700, color: "#EFE8D4" }}>
+          <div style={{ fontSize: 96, lineHeight: 1, fontWeight: 700, color: "#1F1C16" }}>
             free to read.
           </div>
-          <div style={{ fontSize: 96, lineHeight: 1, fontWeight: 700, color: "#C9A24E" }}>
+          <div style={{ fontSize: 96, lineHeight: 1, fontWeight: 700, color: "#8A641A" }}>
             paid to cite.
           </div>
           <div
             style={{
               fontSize: 28,
-              color: "#B8AE94",
+              color: "#4A4238",
               fontStyle: "italic",
               maxWidth: 980,
               marginTop: 16,
@@ -60,13 +60,13 @@ export default function OG() {
             justifyContent: "space-between",
             alignItems: "center",
             fontSize: 20,
-            color: "#8A8270",
-            borderTop: "1px solid rgba(201,162,78,0.3)",
+            color: "#6F6A5E",
+            borderTop: "1px solid rgba(31,28,22,0.2)",
             paddingTop: 20,
           }}
         >
           <div style={{ display: "flex" }}>bucket.foundation/cite-forever/v0.1</div>
-          <div style={{ display: "flex", color: "#C9A24E" }}>feed402/0.2</div>
+          <div style={{ display: "flex", color: "#8A641A" }}>feed402/0.2</div>
         </div>
       </div>
     ),

@@ -2,40 +2,56 @@
  * Gate the private Kruse Index preview.
  *
  * Rules:
- *   - Only /kruse and /api/kruse/* are gated. Every other route passes through.
- *   - First visit with ?t=<HS256 token>   -> set HttpOnly cookie, 302 to /kruse (strip token).
- *   - Cookie present & valid              -> pass through.
- *   - Missing / invalid / expired         -> return a plain 404 (do not leak existence).
+ *   - `/kruse` itself is a PUBLIC preview/landing — no gate.
+ *   - `/kruse/search` and `/api/kruse/*` are gated by an HS256 magic-link
+ *     cookie. Missing / invalid / expired -> 404 (do not leak existence).
+ *   - First visit anywhere under /kruse with ?t=<token> -> set cookie,
+ *     302 to /kruse/search (strip token).
  */
 
 import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_MAX_AGE_SECONDS, COOKIE_NAME, verifyToken } from "@/lib/kruse-token";
 
 export const config = {
-  matcher: ["/kruse", "/kruse/:path*", "/api/kruse/:path*"],
+  matcher: ["/kruse/:path*", "/api/kruse/:path*"],
 };
 
 function notFound(): NextResponse {
-  // A minimal 404 body — no Next.js chrome, no hint the route exists.
   return new NextResponse("Not Found", {
     status: 404,
     headers: { "content-type": "text/plain; charset=utf-8" },
   });
 }
 
+function isGatedPath(pathname: string): boolean {
+  // The public preview at /kruse is always reachable.
+  // Everything deeper under /kruse, plus the JSON API, is gated.
+  if (pathname === "/kruse" || pathname === "/kruse/") return false;
+  if (pathname.startsWith("/api/kruse")) return true;
+  if (pathname.startsWith("/kruse/")) return true;
+  return false;
+}
+
 export async function middleware(req: NextRequest) {
   const { pathname, searchParams } = req.nextUrl;
 
-  // 1. Incoming magic link: ?t=<token>
+  // 1. Incoming magic link: ?t=<token> — accepted on any /kruse path.
   const rawToken = searchParams.get("t");
   if (rawToken) {
     const payload = await verifyToken(rawToken);
-    if (!payload) return notFound();
+    if (!payload) {
+      // Invalid token — for the public preview path, let it through unchrome.
+      if (!isGatedPath(pathname)) return NextResponse.next();
+      return notFound();
+    }
 
-    // Redirect to /kruse without the token in the URL.
     const clean = req.nextUrl.clone();
     clean.search = "";
-    clean.pathname = "/kruse";
+    // If they clicked a link straight at /kruse, upgrade them to the gated
+    // search view now that they have a valid token.
+    if (clean.pathname === "/kruse" || clean.pathname === "/kruse/") {
+      clean.pathname = "/kruse/search";
+    }
 
     const res = NextResponse.redirect(clean, 302);
     res.cookies.set(COOKIE_NAME, rawToken, {
@@ -48,27 +64,23 @@ export async function middleware(req: NextRequest) {
     return res;
   }
 
-  // 2. Existing cookie?
+  // 2. Public preview — no cookie required.
+  if (!isGatedPath(pathname)) {
+    return NextResponse.next();
+  }
+
+  // 3. Gated path — cookie required.
   const cookie = req.cookies.get(COOKIE_NAME)?.value;
   if (!cookie) return notFound();
 
   const payload = await verifyToken(cookie);
   if (!payload) {
-    // Stale/invalid cookie — clear it and 404.
     const res = notFound();
     res.cookies.delete(COOKIE_NAME);
     return res;
   }
 
-  // 3. Valid — pass through. Forward the verified recipient id to downstream
-  // route handlers via a request header so the API proxy can log / rate-limit.
   const headers = new Headers(req.headers);
   headers.set("x-kruse-recipient", payload.r);
-
-  // Only /kruse and /api/kruse/* should be reachable.
-  if (!pathname.startsWith("/kruse") && !pathname.startsWith("/api/kruse")) {
-    return notFound();
-  }
-
   return NextResponse.next({ request: { headers } });
 }

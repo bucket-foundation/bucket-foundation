@@ -262,10 +262,37 @@ html, body { overflow-x: hidden; }
 /* to bone. Prevents invisible text from escaping review.                 */
 .stone-basalt *:where([class*="text-[color:var(--basalt)]"],
                      [class*="text-[color:var(--basalt-2)]"],
-                     [class*="text-[color:var(--basalt-3)]"]),
+                     [class*="text-[color:var(--basalt-3)]"],
+                     [class*="text-[color:var(--ink)"],
+                     [class*="text-[color:var(--ink-2)"],
+                     [class*="text-[color:var(--ink-3)"],
+                     [class*="text-[color:var(--parchment)]"],
+                     [class*="text-[color:var(--midnight)"]),
 .stone-aegean *:where([class*="text-[color:var(--basalt)]"],
                       [class*="text-[color:var(--basalt-2)]"],
-                      [class*="text-[color:var(--basalt-3)]"]) {
+                      [class*="text-[color:var(--basalt-3)]"],
+                      [class*="text-[color:var(--ink)"],
+                      [class*="text-[color:var(--ink-2)"],
+                      [class*="text-[color:var(--ink-3)"],
+                      [class*="text-[color:var(--parchment)]"],
+                      [class*="text-[color:var(--midnight)"]) {
+  color: var(--bone) !important;
+}
+/* Catch any stray "text-black", "text-gray-900", "text-neutral-900" style
+   Tailwind defaults that slipped into a dark section. These compile to
+   concrete colors, not CSS variables, so the selector above misses them. */
+.stone-basalt .text-black,
+.stone-basalt [class*="text-gray-9"],
+.stone-basalt [class*="text-neutral-9"],
+.stone-basalt [class*="text-stone-9"],
+.stone-basalt [class*="text-slate-9"],
+.stone-basalt [class*="text-zinc-9"],
+.stone-aegean .text-black,
+.stone-aegean [class*="text-gray-9"],
+.stone-aegean [class*="text-neutral-9"],
+.stone-aegean [class*="text-stone-9"],
+.stone-aegean [class*="text-slate-9"],
+.stone-aegean [class*="text-zinc-9"] {
   color: var(--bone) !important;
 }
 /* And inline feather text (font-light) in dark sections bumps to normal  */
