@@ -119,7 +119,7 @@ export const metadata: Metadata = {
   // once issued (Anthropic search indexer, Google Search Console, Bing, OAI).
   // Robots.txt + sitemap.xml + JSON-LD already ship; this is a reminder hook.
   verification: {
-    // google: "<GOOGLE_SITE_VERIFICATION_TOKEN>",
+    google: "VoXPR3QPeKevM6ueMEWoDnoZyQmj1UYzzNYx7X33HWM",
     // yandex: "<YANDEX_VERIFICATION_TOKEN>",
     other: {
       // "anthropic-search-verification": "<ANTHROPIC_TOKEN>",
