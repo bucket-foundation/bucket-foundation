@@ -8,6 +8,22 @@
 
 ---
 
+## 2026-04-23 — `/learn` reformative-education surface (bead intent)
+
+> **Bead intent (no cert, no env creds — founder-authorized "do the rest" path per CLAUDE.md workaround):**
+> - Title: `feat(learn): /learn reformative-education surface`
+> - Type: task · Priority: 2 · Instance: `bucket-foundation`
+> - Scope: BYO-key streaming chat w/ Claude (sessionStorage only, `dangerouslyAllowBrowser`), 4 tabs, MCP install, Claude.ai lessons, corpus.zip, JSON-LD LearningResource, next/og OG image, sitemap + nav + homepage CTA.
+> - Files: `src/app/learn/page.tsx`, `src/app/learn/LearnTabs.tsx`, `src/app/learn/opengraph-image.tsx`, `src/components/Header.tsx`, `src/components/AiPasteCTA.tsx`, `src/app/sitemap.ts`, `package.json`.
+> - Commit: `2c3d386` (`main`).
+> - Re-file as real `bkt-` bead once `bucket-foundation.nucleus.agfarms.dev` TLS cert is issued.
+
+| Date | Hrs | Actor | Scope | Deliverable | Bead |
+|---|---|---|---|---|---|
+| 2026-04-23 | ~1.5 | engineering-ai | bkt | Shipped `/learn` — 4-tab reformative-education surface (chat, MCP, Claude.ai lessons, corpus); BYO Anthropic key, sessionStorage-only persistence, llms-full.txt as ground truth; lazy-imported SDK/jszip/lz-string; JSON-LD + OG image; nav+sitemap+homepage CTA wired; `npm run build` green | intent-logged (see above) |
+
+---
+
 ## 2026-04-14 — Bucket reactivation
 
 | Date | Hrs | Actor | Scope | Deliverable | Bead |
