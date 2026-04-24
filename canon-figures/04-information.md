@@ -152,3 +152,25 @@
 **Downstream.** Doob, Itô, all of modern stochastic analysis; Chaitin, Levin, Solomonoff (algorithmic probability), AIXI, modern theoretical AI.
 
 **Tags.** `probability-axioms` `kolmogorov-complexity` `algorithmic-information` `randomness`
+
+---
+
+### Norbert Wiener
+
+| | |
+|---|---|
+| **id** | wiener |
+| **lifespan** | 1894–1964 |
+| **era** | 20th century |
+| **region / tradition** | MIT — American mathematics |
+| **branches** | 04-information |
+| **cross-branches** | 01-mathematics, 05-biophysics, 07-mind |
+| **primary works** | *Extrapolation, Interpolation, and Smoothing of Stationary Time Series* (1949, English); *Cybernetics: or Control and Communication in the Animal and the Machine* (1948, English) |
+
+**Foundation contribution.** Founded **cybernetics**: the unified study of control, feedback, and communication in systems regardless of whether they are biological, mechanical, or social. Formalized negative-feedback control loops, the Wiener filter for signal estimation in noise, and the mathematical treatment of stochastic processes (Wiener process / Brownian motion). Framed the analogy — later literal — between nervous-system regulation and servo-mechanism regulation.
+
+**Why canon.** Cybernetics is the substrate vocabulary of control theory, systems biology, and the *feedback* concept that AI, economics, and neuroscience all depend on. The Wiener process is the canonical model of continuous random motion in probability theory.
+
+**Downstream.** Ashby, von Foerster, Bateson (second-order cybernetics); modern control theory; stochastic calculus; Kalman's 1960 filter generalizes the Wiener filter.
+
+**Tags.** `cybernetics` `feedback` `wiener-process` `control-theory`

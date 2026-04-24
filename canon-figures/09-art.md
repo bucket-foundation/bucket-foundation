@@ -168,3 +168,49 @@
 **Downstream.** All of Latin American magical realism; postmodern fiction (Calvino, Eco, Pavić, Bolaño); hypertext theory; popular philosophy of identity, time, and infinity.
 
 **Tags.** `ficciones` `library-of-babel` `garden-of-forking-paths` `metafiction`
+
+---
+
+### Leonardo da Vinci
+
+| | |
+|---|---|
+| **id** | leonardo |
+| **lifespan** | 1452–1519 |
+| **era** | Italian Renaissance |
+| **region / tradition** | Florence, Milan, Amboise — Florentine workshop practice |
+| **branches** | 09-art |
+| **cross-branches** | 02-physics, 05-biophysics, 10-earth |
+| **primary works** | Notebooks (c.1478–1519, Italian, mirror script); *Last Supper* (1495–1498); *Mona Lisa* (c.1503–1519); *Treatise on Painting* (posthumous compilation, Italian) |
+
+**Foundation contribution.** As painter: codified *sfumato* and atmospheric perspective as systematic techniques, and structured the picture plane around geometric-optical construction rather than iconographic convention. As notebook-keeper: produced the earliest sustained body of work treating **painting, anatomy, hydraulics, flight, and geology as a single unified investigation of visible form**. The anatomical drawings (based on personal dissection) and the water/fluid-dynamics studies are foundation-tier on their own terms.
+
+**Why canon.** The integration itself is the foundation. Leonardo's notebooks are the most sustained early-modern example of the thesis that bucket-foundation names in 2026 — one mind operating across multiple canon branches simultaneously, in a method where the observational eye is the shared instrument.
+
+**Downstream.** Italian High Renaissance painting; Vesalius (directly, via shared anatomical practice); the entire notebook-as-research-method tradition.
+
+**Disputed.** The notebooks circulated posthumously in fragmentary form; the *Treatise on Painting* is a compilation by Melzi. Several attributions (*Salvator Mundi*) remain open.
+
+**Tags.** `sfumato` `anatomy` `hydraulics` `notebook-method` `polymath`
+
+---
+
+### J. R. R. Tolkien
+
+| | |
+|---|---|
+| **id** | tolkien |
+| **lifespan** | 1892–1973 |
+| **era** | 20th century |
+| **region / tradition** | Oxford — English philology and literature |
+| **branches** | 09-art |
+| **cross-branches** | 08-tradition |
+| **primary works** | *The Lord of the Rings* (1954–55, English); *The Silmarillion* (posthumous, 1977, English); *Beowulf: The Monsters and the Critics* (1936, English) |
+
+**Foundation contribution.** Founded **secondary-world fantasy as a literary form** grounded in philological method: the fictional languages (Quenya, Sindarin) were constructed first, and the legendarium was written as the history required by those languages. The 1936 *Beowulf* lecture reframed the poem from a philological curiosity into a literary artifact, and remains foundational in Old English studies.
+
+**Why canon.** The philology-first construction method is the novel formal move: a literary secondary world built as the consequent of constructed Indo-European-style language families. Every subsequent secondary-world fantasy literature is in this lineage.
+
+**Downstream.** Entire genre of post-Tolkien fantasy literature; constructed-language (conlang) community; Old English studies.
+
+**Tags.** `secondary-world` `philology-as-method` `conlang` `legendarium`

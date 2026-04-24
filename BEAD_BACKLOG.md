@@ -216,3 +216,28 @@ After Becker dossier lands, build the broader bioelectric-foundations arc: Galva
 2. `bkt-research-13` (sacred-texts scaffold) + `bkt-research-15` (sites index) + `bkt-research-16` (cataclysms) in parallel once pipeline lands
 3. `bkt-research-10` (polymaths), `bkt-research-11` (polyglots), `bkt-research-18` (bioelectric lineage)
 4. `bkt-research-12` (history commentariat), `bkt-research-14` (myth patterns)
+
+---
+
+## Execution Log — 2026-04-23 (bkt-nuc /loop session)
+
+Started executing beads 17 → 02/13/15/16/14/12/09/07/08 in parallel (agents + inline).
+
+| Bead | Status | Notes |
+|---|---|---|
+| bkt-research-17 (Becker) | ✅ DONE | 56 papers (papers.bib), 419MB site mirror (2026-04-23), biography, books, lineage, commentariat folders. Known gap: author disambiguation on 7 PubMed hits. Full-text PDFs NOT stored (canon discipline). |
+| bkt-research-13 (sacred-texts) | ✅ DONE | 12 traditions, ~42 PD/open sources verified. Clean anchors: Westminster Leningrad, KJV/ASV/WEB, SBLGNT (CC-BY), Tanzil Quran, SuttaCentral (CC0), Legge Confucian/Taoist, Griffith Rig Veda, Müller Upanishads, Darmesteter Avesta. License flags for Sefaria/Quran.com per-translation, Thanissaro, and several older US-renewal cases flagged for founder review. |
+| bkt-research-02 (08-deep-history scaffold + research-landscape sibling) | ✅ DONE | 08-deep-history/README.md + research-landscape/README.md created. |
+| bkt-research-15 (ancient sites) | 🟡 SEED | sites/INDEX.md seeded with ~20 sites across 6 regions. Full DOI + BibTeX blocked on bkt-research-01 pipeline. |
+| bkt-research-16 (cataclysms) | 🟡 SEED | cataclysms/INDEX.md seeded with 6 event classes (impacts, Miyake solar, climate, volcanic, geomagnetic, near-miss future). Full BibTeX blocked on pipeline. |
+| bkt-research-14 (myth-patterns) | ✅ DONE | research-landscape/myth-patterns/README.md — flood, precession (Hamlet's Mill), sky-change, fire-from-sky, dragon/chaos, lost-continent motifs + scholars. |
+| bkt-research-12 (history-commentariat) | ✅ DONE | research-landscape/history-commentariat/README.md — 13 entries w/ evaluation axes (Hancock, Carlson, Carlin, Fall of Civilizations, Wyman, Historia Civilis, UnchartedX, Foerster, Schoch-as-commentator, West, Rundkvist, Kurzgesagt). |
+| bkt-research-09 (longtermism) | ✅ DONE | research-landscape/philosophy/longtermism/README.md — Parfit, Bostrom, Ord, MacAskill, Singer, Greaves, Askell, critics (Torres, Gebru), what Bucket rejects about longtermism. |
+| bkt-research-07 (peptide-markets) | ✅ SCAFFOLD | research-landscape/peptide-markets/README.md with explicit non-facilitation clause. Actual landscape scan deferred per P3 priority. |
+| bkt-research-08 (GOE/radiosynthesis) | 🟡 SEED | 05-biophysics/radiosynthesis/SEED.md with primary-paper list across GOE, photosynthesis origin, radiosynthesis (Dadachova), melanin-semiconductor. BibTeX population blocked on pipeline. |
+| bkt-research-03/10/11 (canon-figures pass-2) | ✅ DONE | +23 figures (76→99). 04-info: Wiener. 05-bio: Szent-Györgyi, Burr, Becker, Marino, Ling, Pollack, Popp, Levin, Wallace, Lane, Solís-Herrera, Khavinson. 08-tradition: Hildegard, Champollion, W. Jones, Ventris. 09-art: Leonardo, Tolkien. 10-earth: Schmidt, Schoch, West, Carlson. _polymaths.md (13 rows, ≥3-branch) + _polyglots.md (4 canon + 4 landscape). Hancock excluded (no primary contribution); Parfit deferred pass-3. |
+| bkt-research-01 (DOI pipeline) | ⏳ QUEUED | Unblocks full citation population of 15/16/08. |
+| bkt-research-04/05/06 (melanin/mito/peptide dossiers) | ⏳ QUEUED | Wait for pipeline. |
+| bkt-research-18 (bioelectric lineage) | ⏳ QUEUED | Wait for Becker to settle. |
+
+**Build stats**: 1 commit pending. 8 new directories under bucket-canon/ + research-landscape/. 12 new README/INDEX/SEED files. 1 site mirror (419 MB, not committed — will evaluate .gitignore).

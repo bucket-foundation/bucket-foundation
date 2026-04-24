@@ -58,6 +58,56 @@
 
 ---
 
-## Pass 2 — *(not yet run)*
+## Pass 2 — Bioelectric / deep-history / polyglot pass
 
-When pass 2 is run, append a new heading here with the same structure: date, author, intent, what was added (table), editorial decisions, what was deliberately omitted, open questions for pass 3.
+**Date:** 2026-04-23
+**Author:** Data pillar (Nucleus agent), on beads `bkt-research-03`, `bkt-research-10`, `bkt-research-11`
+**Slogan being honored:** *build history* (continued from pass 1) — this pass widens the biophysics branch toward its contested / bioelectric lineage, and adds two derived registers (`_polymaths.md`, `_polyglots.md`) to make cross-branch structure legible.
+
+**Intent.** Three parallel aims: (1) close the pass-1 biophysics gap around bioelectric and structured-water lineages (Burr → Becker → Marino → Levin; Ling → Pollack; plus Szent-Györgyi, Popp, Wallace, Lane, Solís-Herrera, Khavinson); (2) add a deep-history cluster under `10-earth` around weathering-geology and Neolithic chronology (Schmidt, Schoch, West, Carlson) with explicit contested-status flags; (3) extract the polymath and polyglot structure from the index as derived registers rather than new branches.
+
+**What was added (23 new figures, total now 99):**
+
+| Branch | Count | Figures |
+|---|---:|---|
+| `04-information` | 1 | Wiener |
+| `05-biophysics` | 12 | Szent-Györgyi, Burr, Becker, Marino, Ling, Pollack, Popp, Levin, Wallace (Doug), Lane, Solís-Herrera, Khavinson |
+| `08-tradition` | 4 | Hildegard of Bingen, Champollion, William Jones, Ventris |
+| `09-art` | 2 | Leonardo da Vinci, Tolkien |
+| `10-earth` | 4 | Klaus Schmidt, Robert Schoch, John Anthony West, Randall Carlson |
+
+**New register files:**
+
+- `_polymaths.md` — derived view over `figures.json` for figures with load-bearing contribution in ≥3 branches. 13 entries in the register table (12 existing + 1 new via Hildegard); flags for pass-3 additions (Leibniz, Avicenna).
+- `_polyglots.md` — editorially-curated register of figures whose multilingualism was the epistemic instrument for the canonical work. 4 canon-tier rows (Champollion, Ventris, Jones, Tolkien) + 4 landscape rows (Mezzofanti, Schliemann, Burton, Lomb, with explicit "not canon-tier, listed for completeness" framing).
+
+**Editorial decisions made in this pass:**
+
+1. **Contested contributions are included *with* the dispute, not excluded.** Solís-Herrera, Khavinson, Schoch, Carlson are flagged `contested` in tags and have an explicit `Disputed.` paragraph. The schema requires this, and the bioelectric / structured-water / deep-history lineages cannot be honestly indexed without it. The editorial rule: if the underlying *phenomenon or observation* is reproducible, the figure can enter the index with the interpretation marked as disputed. If only the interpretation exists, they stay out or go to a landscape note.
+2. **Graham Hancock: excluded.** Hancock is a landscape-level synthesizer (media popularizer), not a field researcher; he does not meet even the Schoch / Carlson bar (field-documented geological observation as the foundation contribution). If a future pass adds a "media/popularization" sub-track, he's a candidate there.
+3. **Derek Parfit: excluded.** Ethics / philosophy of personal identity is real foundational philosophy, but it sits further from the foundations-only canon spine defined in `PROTOCOL.md` than pass 2 is willing to rule on. Deferred to pass 3 with an explicit branch-scope decision.
+4. **Living-figure bar enforced.** Every living-figure card (Marino, Pollack, Levin, Wallace, Lane, Solís-Herrera, Khavinson, Schoch, Carlson) explicitly names a *single* contribution and refuses career summary, as the schema requires. Cards are tagged `living-figure` for filterability.
+5. **Polymath register is a view, not a branch.** We specifically chose not to make `polymath` a new branch in `figures.json`; it's a derived index regenerable from the data. Same for polyglots. This keeps the branch set stable at 10.
+6. **`canon_contribution` / `why_canon` / `downstream` / `disputed` fields in `figures.json`:** pass-1 entries do not carry these as JSON fields (the prose lives in the markdown cards). Pass-2 JSON entries follow the same convention for consistency; the markdown cards carry the full prose per schema.
+
+**What pass 2 deliberately did NOT include** (and why):
+
+- **Graham Hancock** — landscape-only popularizer (see above).
+- **Derek Parfit** — branch-scope decision deferred.
+- **Hypatia, Ada Lovelace, Lise Meitner, Chien-Shiung Wu, Henrietta Leavitt, Cecilia Payne-Gaposchkin, Dorothy Hodgkin, Barbara McClintock** — carried forward from pass-1 open questions; pass 2 ran out of scope, still owed in pass 3.
+- **Ramanujan, Nāgārjuna, Avicenna, al-Bīrūnī, Sushruta, Charaka, Madhava of Sangamagrama** — still owed from pass 1, deferred to pass 3.
+- **African scholarly traditions (Timbuktu, Ethiopia, Yoruba), Mesoamerican astronomy** — still the most glaring gap, deferred.
+- **Leibniz** — noted as priority pass-3 polymath addition.
+- **Rawlinson (Behistun)** — noted for pass-3 polyglot canon row.
+
+**Open questions for pass 3:**
+
+- Should `05-biophysics` be split into a conventional-biology branch and a contested-biophysics sub-track, or does the `contested` tag suffice? Pass 2 used the tag; pass 3 should either commit or split.
+- Should `10-earth` carry the deep-history / alternative-chronology material at all? Pass 2 added it with contested flags because the Schoch weathering observation is a legitimate geological question; pass 3 should decide whether to keep this cluster in `10-earth` or move it to a new `11-archaeology` branch.
+- Hildegard is now the only pre-modern woman polymath in the register; the pre-modern polymath gap (no Émilie du Châtelet cross-branches, no Hypatia, no Maria the Jewess) should be closed in pass 3.
+
+---
+
+## Pass 3 — *(not yet run)*
+
+When pass 3 is run, append a new heading here with the same structure: date, author, intent, what was added (table), editorial decisions, what was deliberately omitted, open questions for pass 4.

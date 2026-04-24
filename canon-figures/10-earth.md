@@ -123,3 +123,93 @@
 **Downstream.** The plate tectonics revolution; all subsequent ocean-floor mapping; the modern view of the Earth as a tectonically active planet.
 
 **Tags.** `mid-atlantic-ridge` `seafloor-mapping` `rift-valley` `plate-tectonics-evidence`
+
+---
+
+### Klaus Schmidt
+
+| | |
+|---|---|
+| **id** | schmidt-klaus |
+| **lifespan** | 1953–2014 |
+| **era** | Late 20th / early 21st century |
+| **region / tradition** | German Archaeological Institute — German prehistoric archaeology |
+| **branches** | 10-earth |
+| **cross-branches** | 08-tradition |
+| **primary works** | *Sie bauten die ersten Tempel* (2006, German); excavation reports on Göbekli Tepe (1996–2014, German/English) |
+
+**Foundation contribution.** Directed the excavation of **Göbekli Tepe** (SE Turkey), a pre-pottery-Neolithic monumental site dated c.9600–8200 BCE — roughly 6,000 years older than Stonehenge and predating the conventional origin-of-agriculture threshold. The T-shaped megalithic pillars with relief carvings force a revision of the sequence "agriculture → settlement → monumental architecture," suggesting that organized ritual construction preceded or coincided with sedentism.
+
+**Why canon.** A single site that reorganizes the Neolithic timeline. The excavation dataset is the foundation contribution; interpretive claims (temple vs. funerary vs. communal) are ongoing.
+
+**Downstream.** Pre-pottery-Neolithic archaeology; the "cognitive Neolithic" debate; Karahan Tepe and the broader Taş Tepeler sites.
+
+**Disputed.** Interpretation of the site's function and of the timeline of domestication nearby (Karacadağ wheat) is contested; the dating and stratigraphy are not.
+
+**Tags.** `gobekli-tepe` `pre-pottery-neolithic` `monumental-architecture` `neolithic-reorder`
+
+---
+
+### Robert M. Schoch
+
+| | |
+|---|---|
+| **id** | schoch |
+| **lifespan** | 1957– |
+| **era** | Late 20th / early 21st century |
+| **region / tradition** | Boston University — American geology |
+| **branches** | 10-earth |
+| **cross-branches** | 08-tradition |
+| **primary works** | *Redating the Great Sphinx of Giza* (*KMT*, 1992, English); *Voices of the Rocks* (1999, English) |
+
+**Foundation contribution.** (Living-figure card; single contribution.) Argued on **geological-weathering grounds** that the enclosure walls of the Great Sphinx at Giza show vertical fissures and rounded profiles consistent with prolonged precipitation erosion, and therefore must predate the currently attributed c.2500 BCE date, with an older core dating into a wetter North African climate regime (potentially Early Holocene).
+
+**Why canon.** (Contested card.) The specific redating claim is rejected by mainstream Egyptology; the underlying observation — that the erosion pattern requires explanation distinct from wind-and-sand abrasion — is the content of the canon entry. Schoch's status as canon-tier rests on the methodological move (read the monument as a geological object subject to standard weathering physics) rather than on the acceptance of his dating.
+
+**Disputed.** Redating is not accepted; the weathering-geology framing is a real contribution, regardless.
+
+**Tags.** `sphinx` `weathering-geology` `early-holocene` `contested` `living-figure`
+
+---
+
+### John Anthony West
+
+| | |
+|---|---|
+| **id** | west-jaw |
+| **lifespan** | 1932–2018 |
+| **era** | Late 20th / early 21st century |
+| **region / tradition** | Independent — American alternative Egyptology |
+| **branches** | 10-earth |
+| **cross-branches** | 08-tradition |
+| **primary works** | *Serpent in the Sky* (1979, English); collaboration with Schoch on Sphinx weathering investigation (1990s) |
+
+**Foundation contribution.** (Landscape card; included for completeness of the deep-history / heterodox-chronology discourse.) Brought the Schwaller de Lubicz symbolist reading of Egyptian architecture to an English-language audience and initiated the field collaboration with Schoch that produced the Sphinx weathering hypothesis. Not a primary researcher; included as the catalyst of the redating discussion.
+
+**Why canon.** (Borderline — landscape-level.) Included because the Schoch entry is incomplete without the collaborator who framed the question. Future passes may demote this to a landscape note rather than a card.
+
+**Disputed.** Symbolist readings of Egyptian architecture are not accepted by academic Egyptology; West's role as collaborator on the Sphinx weathering work is documented.
+
+**Tags.** `alternative-egyptology` `symbolist` `schoch-collaborator` `landscape`
+
+---
+
+### Randall Carlson
+
+| | |
+|---|---|
+| **id** | carlson-randall |
+| **lifespan** | 1951– |
+| **era** | Early 21st century |
+| **region / tradition** | Independent — American geomythology and catastrophism |
+| **branches** | 10-earth |
+| **cross-branches** | 08-tradition |
+| **primary works** | Sacred Geometry International lectures and field documentation (2000s–present); public work on Younger Dryas impact and meltwater-flood geomorphology |
+
+**Foundation contribution.** (Living-figure card; contested.) Field-documented and synthesized **Younger Dryas meltwater-flood landscape features** across the Channeled Scablands and adjacent Pleistocene meltwater-outburst geomorphology, and argued that similar catastrophic-flood evidence is more widespread than uniformitarian geology has granted. The underlying outburst-flood geomorphology (J Harlen Bretz tradition) is mainstream; the extrapolation to broader global catastrophism and the Younger Dryas impact hypothesis (Firestone et al.) is contested.
+
+**Why canon.** (Borderline — landscape-plus-field-contribution.) Not a primary-paper geologist. Included because the Younger Dryas chronology and the meltwater-outburst signal are live scientific questions and Carlson is the most visible popular synthesizer of the field evidence. Future passes may move this to a landscape note.
+
+**Disputed.** Broader catastrophism framing and Younger Dryas impact hypothesis are not accepted by mainstream geology; the Channeled Scablands outburst-flood evidence is.
+
+**Tags.** `channeled-scablands` `younger-dryas` `catastrophism` `contested` `living-figure`

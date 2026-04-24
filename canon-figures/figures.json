@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1",
-  "generated": "2026-04-14",
-  "pass": 1,
+  "generated": "2026-04-23",
+  "pass": 2,
   "branches": [
     "01-mathematics",
     "02-physics",
@@ -22,10 +22,23 @@
       "era": "Hellenistic",
       "region": "Alexandria, Ptolemaic Egypt",
       "tradition": "Greek geometry",
-      "branches": ["01-mathematics"],
+      "branches": [
+        "01-mathematics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Elements", "year": "c.300 BCE", "language": "Koine Greek"}],
-      "tags": ["axiomatic-method", "geometry", "proof", "foundation-of-foundations"],
+      "primary_works": [
+        {
+          "title": "Elements",
+          "year": "c.300 BCE",
+          "language": "Koine Greek"
+        }
+      ],
+      "tags": [
+        "axiomatic-method",
+        "geometry",
+        "proof",
+        "foundation-of-foundations"
+      ],
       "added_in_pass": 1
     },
     {
@@ -35,13 +48,29 @@
       "era": "Hellenistic",
       "region": "Syracuse",
       "tradition": "Greek geometry & mechanics",
-      "branches": ["01-mathematics"],
-      "cross_branches": ["02-physics"],
-      "primary_works": [
-        {"title": "On the Sphere and Cylinder", "year": "c.250 BCE", "language": "Koine Greek"},
-        {"title": "The Method", "year": "c.250 BCE", "language": "Koine Greek"}
+      "branches": [
+        "01-mathematics"
       ],
-      "tags": ["exhaustion", "limit", "quadrature"],
+      "cross_branches": [
+        "02-physics"
+      ],
+      "primary_works": [
+        {
+          "title": "On the Sphere and Cylinder",
+          "year": "c.250 BCE",
+          "language": "Koine Greek"
+        },
+        {
+          "title": "The Method",
+          "year": "c.250 BCE",
+          "language": "Koine Greek"
+        }
+      ],
+      "tags": [
+        "exhaustion",
+        "limit",
+        "quadrature"
+      ],
       "added_in_pass": 1
     },
     {
@@ -51,10 +80,24 @@
       "era": "Classical India",
       "region": "Bhillamala, Gurjara kingdom",
       "tradition": "Indian mathematics",
-      "branches": ["01-mathematics"],
-      "cross_branches": ["06-cosmology"],
-      "primary_works": [{"title": "Brāhmasphuṭasiddhānta", "year": "628 CE", "language": "Sanskrit"}],
-      "tags": ["zero", "negative-numbers", "quadratic"],
+      "branches": [
+        "01-mathematics"
+      ],
+      "cross_branches": [
+        "06-cosmology"
+      ],
+      "primary_works": [
+        {
+          "title": "Brāhmasphuṭasiddhānta",
+          "year": "628 CE",
+          "language": "Sanskrit"
+        }
+      ],
+      "tags": [
+        "zero",
+        "negative-numbers",
+        "quadratic"
+      ],
       "added_in_pass": 1
     },
     {
@@ -64,10 +107,22 @@
       "era": "Islamic Golden Age",
       "region": "Baghdad, House of Wisdom",
       "tradition": "Arabic mathematics",
-      "branches": ["01-mathematics"],
+      "branches": [
+        "01-mathematics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "al-Kitāb al-mukhtaṣar fī ḥisāb al-jabr wal-muqābala", "year": "c.820 CE", "language": "Arabic"}],
-      "tags": ["algebra", "algorithm", "decimal-numerals"],
+      "primary_works": [
+        {
+          "title": "al-Kitāb al-mukhtaṣar fī ḥisāb al-jabr wal-muqābala",
+          "year": "c.820 CE",
+          "language": "Arabic"
+        }
+      ],
+      "tags": [
+        "algebra",
+        "algorithm",
+        "decimal-numerals"
+      ],
       "added_in_pass": 1
     },
     {
@@ -77,10 +132,25 @@
       "era": "19th century",
       "region": "Göttingen",
       "tradition": "German mathematics",
-      "branches": ["01-mathematics"],
-      "cross_branches": ["02-physics", "06-cosmology"],
-      "primary_works": [{"title": "Disquisitiones Arithmeticae", "year": "1801", "language": "Latin"}],
-      "tags": ["number-theory", "differential-geometry", "least-squares"],
+      "branches": [
+        "01-mathematics"
+      ],
+      "cross_branches": [
+        "02-physics",
+        "06-cosmology"
+      ],
+      "primary_works": [
+        {
+          "title": "Disquisitiones Arithmeticae",
+          "year": "1801",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "number-theory",
+        "differential-geometry",
+        "least-squares"
+      ],
       "added_in_pass": 1
     },
     {
@@ -90,10 +160,22 @@
       "era": "Restoration France",
       "region": "Paris",
       "tradition": "French mathematics",
-      "branches": ["01-mathematics"],
+      "branches": [
+        "01-mathematics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Mémoire sur les conditions de résolubilité des équations par radicaux", "year": "1831", "language": "French"}],
-      "tags": ["group-theory", "symmetry", "solvability"],
+      "primary_works": [
+        {
+          "title": "Mémoire sur les conditions de résolubilité des équations par radicaux",
+          "year": "1831",
+          "language": "French"
+        }
+      ],
+      "tags": [
+        "group-theory",
+        "symmetry",
+        "solvability"
+      ],
       "added_in_pass": 1
     },
     {
@@ -103,13 +185,30 @@
       "era": "19th century",
       "region": "Göttingen",
       "tradition": "German mathematics",
-      "branches": ["01-mathematics"],
-      "cross_branches": ["02-physics", "06-cosmology"],
-      "primary_works": [
-        {"title": "Über die Hypothesen, welche der Geometrie zu Grunde liegen", "year": "1854", "language": "German"},
-        {"title": "Über die Anzahl der Primzahlen unter einer gegebenen Größe", "year": "1859", "language": "German"}
+      "branches": [
+        "01-mathematics"
       ],
-      "tags": ["riemannian-geometry", "zeta-function", "manifold"],
+      "cross_branches": [
+        "02-physics",
+        "06-cosmology"
+      ],
+      "primary_works": [
+        {
+          "title": "Über die Hypothesen, welche der Geometrie zu Grunde liegen",
+          "year": "1854",
+          "language": "German"
+        },
+        {
+          "title": "Über die Anzahl der Primzahlen unter einer gegebenen Größe",
+          "year": "1859",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "riemannian-geometry",
+        "zeta-function",
+        "manifold"
+      ],
       "added_in_pass": 1
     },
     {
@@ -119,10 +218,22 @@
       "era": "Late 19th / early 20th century",
       "region": "Halle",
       "tradition": "German set theory",
-      "branches": ["01-mathematics"],
+      "branches": [
+        "01-mathematics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Beiträge zur Begründung der transfiniten Mengenlehre", "year": "1895", "language": "German"}],
-      "tags": ["set-theory", "cardinality", "diagonal-argument"],
+      "primary_works": [
+        {
+          "title": "Beiträge zur Begründung der transfiniten Mengenlehre",
+          "year": "1895",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "set-theory",
+        "cardinality",
+        "diagonal-argument"
+      ],
       "added_in_pass": 1
     },
     {
@@ -132,10 +243,22 @@
       "era": "Early 20th century",
       "region": "Göttingen",
       "tradition": "German mathematics",
-      "branches": ["01-mathematics"],
+      "branches": [
+        "01-mathematics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Grundlagen der Geometrie", "year": "1899", "language": "German"}],
-      "tags": ["formalism", "axiomatic-geometry", "hilbert-problems"],
+      "primary_works": [
+        {
+          "title": "Grundlagen der Geometrie",
+          "year": "1899",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "formalism",
+        "axiomatic-geometry",
+        "hilbert-problems"
+      ],
       "added_in_pass": 1
     },
     {
@@ -145,10 +268,25 @@
       "era": "20th century",
       "region": "Vienna, Princeton",
       "tradition": "Mathematical logic",
-      "branches": ["01-mathematics"],
-      "cross_branches": ["04-information", "07-mind"],
-      "primary_works": [{"title": "Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I", "year": "1931", "language": "German"}],
-      "tags": ["incompleteness", "self-reference", "godel-numbering"],
+      "branches": [
+        "01-mathematics"
+      ],
+      "cross_branches": [
+        "04-information",
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I",
+          "year": "1931",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "incompleteness",
+        "self-reference",
+        "godel-numbering"
+      ],
       "added_in_pass": 1
     },
     {
@@ -158,10 +296,26 @@
       "era": "Islamic Golden Age",
       "region": "Cairo (Fatimid)",
       "tradition": "Arabic optics & natural philosophy",
-      "branches": ["02-physics"],
-      "cross_branches": ["01-mathematics", "07-mind"],
-      "primary_works": [{"title": "Kitāb al-Manāẓir", "year": "c.1011-1021", "language": "Arabic"}],
-      "tags": ["optics", "vision", "experimental-method", "camera-obscura"],
+      "branches": [
+        "02-physics"
+      ],
+      "cross_branches": [
+        "01-mathematics",
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Kitāb al-Manāẓir",
+          "year": "c.1011-1021",
+          "language": "Arabic"
+        }
+      ],
+      "tags": [
+        "optics",
+        "vision",
+        "experimental-method",
+        "camera-obscura"
+      ],
       "added_in_pass": 1
     },
     {
@@ -171,13 +325,29 @@
       "era": "Late Renaissance",
       "region": "Padua, Florence",
       "tradition": "Italian natural philosophy",
-      "branches": ["02-physics"],
-      "cross_branches": ["06-cosmology"],
-      "primary_works": [
-        {"title": "Sidereus Nuncius", "year": "1610", "language": "Latin"},
-        {"title": "Discorsi e dimostrazioni matematiche intorno a due nuove scienze", "year": "1638", "language": "Italian"}
+      "branches": [
+        "02-physics"
       ],
-      "tags": ["free-fall", "relativity-principle", "telescope"],
+      "cross_branches": [
+        "06-cosmology"
+      ],
+      "primary_works": [
+        {
+          "title": "Sidereus Nuncius",
+          "year": "1610",
+          "language": "Latin"
+        },
+        {
+          "title": "Discorsi e dimostrazioni matematiche intorno a due nuove scienze",
+          "year": "1638",
+          "language": "Italian"
+        }
+      ],
+      "tags": [
+        "free-fall",
+        "relativity-principle",
+        "telescope"
+      ],
       "added_in_pass": 1
     },
     {
@@ -187,10 +357,26 @@
       "era": "Scientific Revolution",
       "region": "Cambridge",
       "tradition": "English natural philosophy",
-      "branches": ["02-physics"],
-      "cross_branches": ["01-mathematics", "06-cosmology"],
-      "primary_works": [{"title": "Philosophiæ Naturalis Principia Mathematica", "year": "1687", "language": "Latin"}],
-      "tags": ["mechanics", "gravitation", "calculus", "unification"],
+      "branches": [
+        "02-physics"
+      ],
+      "cross_branches": [
+        "01-mathematics",
+        "06-cosmology"
+      ],
+      "primary_works": [
+        {
+          "title": "Philosophiæ Naturalis Principia Mathematica",
+          "year": "1687",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "mechanics",
+        "gravitation",
+        "calculus",
+        "unification"
+      ],
       "added_in_pass": 1
     },
     {
@@ -200,10 +386,24 @@
       "era": "French Enlightenment",
       "region": "Paris, Cirey",
       "tradition": "French natural philosophy",
-      "branches": ["02-physics"],
-      "cross_branches": ["01-mathematics"],
-      "primary_works": [{"title": "Institutions de Physique", "year": "1740", "language": "French"}],
-      "tags": ["kinetic-energy", "vis-viva", "principia-translation"],
+      "branches": [
+        "02-physics"
+      ],
+      "cross_branches": [
+        "01-mathematics"
+      ],
+      "primary_works": [
+        {
+          "title": "Institutions de Physique",
+          "year": "1740",
+          "language": "French"
+        }
+      ],
+      "tags": [
+        "kinetic-energy",
+        "vis-viva",
+        "principia-translation"
+      ],
       "added_in_pass": 1
     },
     {
@@ -213,10 +413,22 @@
       "era": "Victorian Britain",
       "region": "Edinburgh, Cambridge",
       "tradition": "Scottish/English mathematical physics",
-      "branches": ["02-physics"],
+      "branches": [
+        "02-physics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "A Dynamical Theory of the Electromagnetic Field", "year": "1865", "language": "English"}],
-      "tags": ["electromagnetism", "field-theory", "displacement-current"],
+      "primary_works": [
+        {
+          "title": "A Dynamical Theory of the Electromagnetic Field",
+          "year": "1865",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "electromagnetism",
+        "field-theory",
+        "displacement-current"
+      ],
       "added_in_pass": 1
     },
     {
@@ -226,10 +438,24 @@
       "era": "Late 19th century",
       "region": "Vienna, Graz",
       "tradition": "Austrian/German physics",
-      "branches": ["02-physics"],
-      "cross_branches": ["04-information"],
-      "primary_works": [{"title": "Über die Beziehung zwischen dem zweiten Hauptsatze...", "year": "1877", "language": "German"}],
-      "tags": ["statistical-mechanics", "entropy", "microstates"],
+      "branches": [
+        "02-physics"
+      ],
+      "cross_branches": [
+        "04-information"
+      ],
+      "primary_works": [
+        {
+          "title": "Über die Beziehung zwischen dem zweiten Hauptsatze...",
+          "year": "1877",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "statistical-mechanics",
+        "entropy",
+        "microstates"
+      ],
       "added_in_pass": 1
     },
     {
@@ -239,13 +465,30 @@
       "era": "20th century",
       "region": "Bern, Berlin, Princeton",
       "tradition": "German/Swiss/American physics",
-      "branches": ["02-physics"],
-      "cross_branches": ["06-cosmology"],
-      "primary_works": [
-        {"title": "Annus Mirabilis papers", "year": "1905", "language": "German"},
-        {"title": "Die Grundlage der allgemeinen Relativitätstheorie", "year": "1916", "language": "German"}
+      "branches": [
+        "02-physics"
       ],
-      "tags": ["special-relativity", "general-relativity", "photon", "brownian-motion"],
+      "cross_branches": [
+        "06-cosmology"
+      ],
+      "primary_works": [
+        {
+          "title": "Annus Mirabilis papers",
+          "year": "1905",
+          "language": "German"
+        },
+        {
+          "title": "Die Grundlage der allgemeinen Relativitätstheorie",
+          "year": "1916",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "special-relativity",
+        "general-relativity",
+        "photon",
+        "brownian-motion"
+      ],
       "added_in_pass": 1
     },
     {
@@ -255,10 +498,24 @@
       "era": "Early 20th century",
       "region": "Göttingen, Bryn Mawr",
       "tradition": "German mathematical physics",
-      "branches": ["02-physics"],
-      "cross_branches": ["01-mathematics"],
-      "primary_works": [{"title": "Invariante Variationsprobleme", "year": "1918", "language": "German"}],
-      "tags": ["symmetry", "conservation-laws", "gauge-theory"],
+      "branches": [
+        "02-physics"
+      ],
+      "cross_branches": [
+        "01-mathematics"
+      ],
+      "primary_works": [
+        {
+          "title": "Invariante Variationsprobleme",
+          "year": "1918",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "symmetry",
+        "conservation-laws",
+        "gauge-theory"
+      ],
       "added_in_pass": 1
     },
     {
@@ -268,10 +525,22 @@
       "era": "Early 20th century",
       "region": "Copenhagen",
       "tradition": "Danish physics",
-      "branches": ["02-physics"],
+      "branches": [
+        "02-physics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "On the Constitution of Atoms and Molecules", "year": "1913", "language": "English"}],
-      "tags": ["quantum-atom", "complementarity", "copenhagen-interpretation"],
+      "primary_works": [
+        {
+          "title": "On the Constitution of Atoms and Molecules",
+          "year": "1913",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "quantum-atom",
+        "complementarity",
+        "copenhagen-interpretation"
+      ],
       "added_in_pass": 1
     },
     {
@@ -281,10 +550,22 @@
       "era": "20th century",
       "region": "Cambridge, Princeton",
       "tradition": "English theoretical physics",
-      "branches": ["02-physics"],
+      "branches": [
+        "02-physics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "The Quantum Theory of the Electron", "year": "1928", "language": "English"}],
-      "tags": ["dirac-equation", "antimatter", "relativistic-quantum"],
+      "primary_works": [
+        {
+          "title": "The Quantum Theory of the Electron",
+          "year": "1928",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "dirac-equation",
+        "antimatter",
+        "relativistic-quantum"
+      ],
       "added_in_pass": 1
     },
     {
@@ -294,10 +575,23 @@
       "era": "Late Enlightenment",
       "region": "Paris",
       "tradition": "French chemistry",
-      "branches": ["03-chemistry"],
+      "branches": [
+        "03-chemistry"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Traité Élémentaire de Chimie", "year": "1789", "language": "French"}],
-      "tags": ["oxygen", "combustion", "mass-conservation", "nomenclature"],
+      "primary_works": [
+        {
+          "title": "Traité Élémentaire de Chimie",
+          "year": "1789",
+          "language": "French"
+        }
+      ],
+      "tags": [
+        "oxygen",
+        "combustion",
+        "mass-conservation",
+        "nomenclature"
+      ],
       "added_in_pass": 1
     },
     {
@@ -307,10 +601,22 @@
       "era": "Early 19th century",
       "region": "Manchester",
       "tradition": "English chemistry",
-      "branches": ["03-chemistry"],
+      "branches": [
+        "03-chemistry"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "A New System of Chemical Philosophy", "year": "1808", "language": "English"}],
-      "tags": ["atomic-theory", "multiple-proportions", "atomic-weights"],
+      "primary_works": [
+        {
+          "title": "A New System of Chemical Philosophy",
+          "year": "1808",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "atomic-theory",
+        "multiple-proportions",
+        "atomic-weights"
+      ],
       "added_in_pass": 1
     },
     {
@@ -320,10 +626,22 @@
       "era": "Late 19th century",
       "region": "Saint Petersburg",
       "tradition": "Russian chemistry",
-      "branches": ["03-chemistry"],
+      "branches": [
+        "03-chemistry"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Опыт системы элементов, основанной на их атомном весе и химическом сходстве", "year": "1869", "language": "Russian"}],
-      "tags": ["periodic-table", "periodicity", "prediction"],
+      "primary_works": [
+        {
+          "title": "Опыт системы элементов, основанной на их атомном весе и химическом сходстве",
+          "year": "1869",
+          "language": "Russian"
+        }
+      ],
+      "tags": [
+        "periodic-table",
+        "periodicity",
+        "prediction"
+      ],
       "added_in_pass": 1
     },
     {
@@ -333,10 +651,24 @@
       "era": "Turn of the 20th century",
       "region": "Paris",
       "tradition": "Polish/French radiochemistry",
-      "branches": ["03-chemistry"],
-      "cross_branches": ["02-physics"],
-      "primary_works": [{"title": "Recherches sur les substances radioactives", "year": "1903", "language": "French"}],
-      "tags": ["radioactivity", "polonium", "radium"],
+      "branches": [
+        "03-chemistry"
+      ],
+      "cross_branches": [
+        "02-physics"
+      ],
+      "primary_works": [
+        {
+          "title": "Recherches sur les substances radioactives",
+          "year": "1903",
+          "language": "French"
+        }
+      ],
+      "tags": [
+        "radioactivity",
+        "polonium",
+        "radium"
+      ],
       "added_in_pass": 1
     },
     {
@@ -346,10 +678,24 @@
       "era": "20th century",
       "region": "Caltech",
       "tradition": "American chemistry",
-      "branches": ["03-chemistry"],
-      "cross_branches": ["05-biophysics"],
-      "primary_works": [{"title": "The Nature of the Chemical Bond", "year": "1939", "language": "English"}],
-      "tags": ["chemical-bond", "electronegativity", "alpha-helix"],
+      "branches": [
+        "03-chemistry"
+      ],
+      "cross_branches": [
+        "05-biophysics"
+      ],
+      "primary_works": [
+        {
+          "title": "The Nature of the Chemical Bond",
+          "year": "1939",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "chemical-bond",
+        "electronegativity",
+        "alpha-helix"
+      ],
       "added_in_pass": 1
     },
     {
@@ -359,13 +705,29 @@
       "era": "20th century",
       "region": "Cambridge",
       "tradition": "English biochemistry",
-      "branches": ["03-chemistry"],
-      "cross_branches": ["05-biophysics"],
-      "primary_works": [
-        {"title": "Insulin sequencing papers", "year": "1955", "language": "English"},
-        {"title": "DNA sequencing with chain-terminating inhibitors", "year": "1977", "language": "English"}
+      "branches": [
+        "03-chemistry"
       ],
-      "tags": ["insulin-sequence", "dna-sequencing", "chain-termination"],
+      "cross_branches": [
+        "05-biophysics"
+      ],
+      "primary_works": [
+        {
+          "title": "Insulin sequencing papers",
+          "year": "1955",
+          "language": "English"
+        },
+        {
+          "title": "DNA sequencing with chain-terminating inhibitors",
+          "year": "1977",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "insulin-sequence",
+        "dna-sequencing",
+        "chain-termination"
+      ],
       "added_in_pass": 1
     },
     {
@@ -375,10 +737,22 @@
       "era": "Mid-19th century",
       "region": "Cork",
       "tradition": "English/Irish mathematical logic",
-      "branches": ["04-information"],
+      "branches": [
+        "04-information"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "An Investigation of the Laws of Thought", "year": "1854", "language": "English"}],
-      "tags": ["boolean-algebra", "symbolic-logic", "propositional-calculus"],
+      "primary_works": [
+        {
+          "title": "An Investigation of the Laws of Thought",
+          "year": "1854",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "boolean-algebra",
+        "symbolic-logic",
+        "propositional-calculus"
+      ],
       "added_in_pass": 1
     },
     {
@@ -388,10 +762,25 @@
       "era": "Late 19th / early 20th century",
       "region": "Jena",
       "tradition": "German mathematical logic",
-      "branches": ["04-information"],
-      "cross_branches": ["01-mathematics", "07-mind"],
-      "primary_works": [{"title": "Begriffsschrift", "year": "1879", "language": "German"}],
-      "tags": ["predicate-logic", "quantifier", "logicism"],
+      "branches": [
+        "04-information"
+      ],
+      "cross_branches": [
+        "01-mathematics",
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Begriffsschrift",
+          "year": "1879",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "predicate-logic",
+        "quantifier",
+        "logicism"
+      ],
       "added_in_pass": 1
     },
     {
@@ -401,10 +790,25 @@
       "era": "20th century",
       "region": "Cambridge, Bletchley Park, Manchester",
       "tradition": "English mathematical logic & computer science",
-      "branches": ["04-information"],
-      "cross_branches": ["01-mathematics", "07-mind"],
-      "primary_works": [{"title": "On Computable Numbers, with an Application to the Entscheidungsproblem", "year": "1936", "language": "English"}],
-      "tags": ["turing-machine", "halting-problem", "computability"],
+      "branches": [
+        "04-information"
+      ],
+      "cross_branches": [
+        "01-mathematics",
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "On Computable Numbers, with an Application to the Entscheidungsproblem",
+          "year": "1936",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "turing-machine",
+        "halting-problem",
+        "computability"
+      ],
       "added_in_pass": 1
     },
     {
@@ -414,10 +818,24 @@
       "era": "20th century",
       "region": "Princeton",
       "tradition": "American mathematical logic",
-      "branches": ["04-information"],
-      "cross_branches": ["01-mathematics"],
-      "primary_works": [{"title": "An Unsolvable Problem of Elementary Number Theory", "year": "1936", "language": "English"}],
-      "tags": ["lambda-calculus", "functional-programming", "entscheidungsproblem"],
+      "branches": [
+        "04-information"
+      ],
+      "cross_branches": [
+        "01-mathematics"
+      ],
+      "primary_works": [
+        {
+          "title": "An Unsolvable Problem of Elementary Number Theory",
+          "year": "1936",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "lambda-calculus",
+        "functional-programming",
+        "entscheidungsproblem"
+      ],
       "added_in_pass": 1
     },
     {
@@ -427,10 +845,22 @@
       "era": "20th century",
       "region": "Bell Labs, MIT",
       "tradition": "American information theory",
-      "branches": ["04-information"],
+      "branches": [
+        "04-information"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "A Mathematical Theory of Communication", "year": "1948", "language": "English"}],
-      "tags": ["information-theory", "entropy", "channel-capacity"],
+      "primary_works": [
+        {
+          "title": "A Mathematical Theory of Communication",
+          "year": "1948",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "information-theory",
+        "entropy",
+        "channel-capacity"
+      ],
       "added_in_pass": 1
     },
     {
@@ -440,13 +870,30 @@
       "era": "20th century",
       "region": "Princeton (IAS), Los Alamos",
       "tradition": "Hungarian/American polymath",
-      "branches": ["04-information"],
-      "cross_branches": ["01-mathematics", "02-physics"],
-      "primary_works": [
-        {"title": "First Draft of a Report on the EDVAC", "year": "1945", "language": "English"},
-        {"title": "Theory of Games and Economic Behavior", "year": "1944", "language": "English"}
+      "branches": [
+        "04-information"
       ],
-      "tags": ["stored-program", "von-neumann-architecture", "game-theory"],
+      "cross_branches": [
+        "01-mathematics",
+        "02-physics"
+      ],
+      "primary_works": [
+        {
+          "title": "First Draft of a Report on the EDVAC",
+          "year": "1945",
+          "language": "English"
+        },
+        {
+          "title": "Theory of Games and Economic Behavior",
+          "year": "1944",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "stored-program",
+        "von-neumann-architecture",
+        "game-theory"
+      ],
       "added_in_pass": 1
     },
     {
@@ -456,10 +903,24 @@
       "era": "20th century",
       "region": "Moscow",
       "tradition": "Soviet mathematics",
-      "branches": ["04-information"],
-      "cross_branches": ["01-mathematics"],
-      "primary_works": [{"title": "Grundbegriffe der Wahrscheinlichkeitsrechnung", "year": "1933", "language": "German"}],
-      "tags": ["probability-axioms", "kolmogorov-complexity", "algorithmic-information"],
+      "branches": [
+        "04-information"
+      ],
+      "cross_branches": [
+        "01-mathematics"
+      ],
+      "primary_works": [
+        {
+          "title": "Grundbegriffe der Wahrscheinlichkeitsrechnung",
+          "year": "1933",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "probability-axioms",
+        "kolmogorov-complexity",
+        "algorithmic-information"
+      ],
       "added_in_pass": 1
     },
     {
@@ -469,10 +930,22 @@
       "era": "Mid-19th century",
       "region": "Brno",
       "tradition": "Moravian/Czech experimental natural history",
-      "branches": ["05-biophysics"],
+      "branches": [
+        "05-biophysics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Versuche über Pflanzen-Hybriden", "year": "1866", "language": "German"}],
-      "tags": ["inheritance", "gene", "segregation"],
+      "primary_works": [
+        {
+          "title": "Versuche über Pflanzen-Hybriden",
+          "year": "1866",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "inheritance",
+        "gene",
+        "segregation"
+      ],
       "added_in_pass": 1
     },
     {
@@ -482,10 +955,24 @@
       "era": "Mid-19th century",
       "region": "Paris, Strasbourg, Lille",
       "tradition": "French chemistry & microbiology",
-      "branches": ["05-biophysics"],
-      "cross_branches": ["03-chemistry"],
-      "primary_works": [{"title": "Mémoire sur la fermentation appelée lactique", "year": "1857", "language": "French"}],
-      "tags": ["germ-theory", "fermentation", "vaccination"],
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [
+        "03-chemistry"
+      ],
+      "primary_works": [
+        {
+          "title": "Mémoire sur la fermentation appelée lactique",
+          "year": "1857",
+          "language": "French"
+        }
+      ],
+      "tags": [
+        "germ-theory",
+        "fermentation",
+        "vaccination"
+      ],
       "added_in_pass": 1
     },
     {
@@ -495,10 +982,22 @@
       "era": "Mid-20th century",
       "region": "King's College London, Birkbeck",
       "tradition": "English X-ray crystallography",
-      "branches": ["05-biophysics"],
+      "branches": [
+        "05-biophysics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Molecular Configuration in Sodium Thymonucleate", "year": "1953", "language": "English"}],
-      "tags": ["dna-structure", "x-ray-crystallography", "photograph-51"],
+      "primary_works": [
+        {
+          "title": "Molecular Configuration in Sodium Thymonucleate",
+          "year": "1953",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "dna-structure",
+        "x-ray-crystallography",
+        "photograph-51"
+      ],
       "added_in_pass": 1
     },
     {
@@ -508,10 +1007,22 @@
       "era": "Mid-20th century",
       "region": "Cambridge",
       "tradition": "Anglo-American molecular biology",
-      "branches": ["05-biophysics"],
+      "branches": [
+        "05-biophysics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid", "year": "1953", "language": "English"}],
-      "tags": ["double-helix", "base-pairing", "central-dogma"],
+      "primary_works": [
+        {
+          "title": "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid",
+          "year": "1953",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "double-helix",
+        "base-pairing",
+        "central-dogma"
+      ],
       "added_in_pass": 1
     },
     {
@@ -521,10 +1032,22 @@
       "era": "Mid-20th century",
       "region": "Cambridge, Plymouth",
       "tradition": "English neurophysiology",
-      "branches": ["05-biophysics"],
+      "branches": [
+        "05-biophysics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "A Quantitative Description of Membrane Current and its Application to Conduction and Excitation in Nerve", "year": "1952", "language": "English"}],
-      "tags": ["action-potential", "voltage-clamp", "ion-channel"],
+      "primary_works": [
+        {
+          "title": "A Quantitative Description of Membrane Current and its Application to Conduction and Excitation in Nerve",
+          "year": "1952",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "action-potential",
+        "voltage-clamp",
+        "ion-channel"
+      ],
       "added_in_pass": 1
     },
     {
@@ -534,10 +1057,22 @@
       "era": "Mid-20th century",
       "region": "Edinburgh, Glynn",
       "tradition": "English biochemistry",
-      "branches": ["05-biophysics"],
+      "branches": [
+        "05-biophysics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Coupling of Phosphorylation to Electron and Hydrogen Transfer by a Chemi-Osmotic Type of Mechanism", "year": "1961", "language": "English"}],
-      "tags": ["chemiosmosis", "proton-gradient", "atp-synthesis"],
+      "primary_works": [
+        {
+          "title": "Coupling of Phosphorylation to Electron and Hydrogen Transfer by a Chemi-Osmotic Type of Mechanism",
+          "year": "1961",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "chemiosmosis",
+        "proton-gradient",
+        "atp-synthesis"
+      ],
       "added_in_pass": 1
     },
     {
@@ -547,10 +1082,22 @@
       "era": "Late 20th century",
       "region": "Boston University, UMass Amherst",
       "tradition": "American evolutionary biology",
-      "branches": ["05-biophysics"],
+      "branches": [
+        "05-biophysics"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "On the Origin of Mitosing Cells", "year": "1967", "language": "English"}],
-      "tags": ["endosymbiosis", "mitochondria", "eukaryogenesis"],
+      "primary_works": [
+        {
+          "title": "On the Origin of Mitosing Cells",
+          "year": "1967",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "endosymbiosis",
+        "mitochondria",
+        "eukaryogenesis"
+      ],
       "added_in_pass": 1
     },
     {
@@ -560,10 +1107,22 @@
       "era": "Hellenistic",
       "region": "Samos, Alexandria",
       "tradition": "Greek astronomy",
-      "branches": ["06-cosmology"],
+      "branches": [
+        "06-cosmology"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "On the Sizes and Distances of the Sun and Moon", "year": "c.270 BCE", "language": "Koine Greek"}],
-      "tags": ["heliocentrism", "solar-system", "lost-original"],
+      "primary_works": [
+        {
+          "title": "On the Sizes and Distances of the Sun and Moon",
+          "year": "c.270 BCE",
+          "language": "Koine Greek"
+        }
+      ],
+      "tags": [
+        "heliocentrism",
+        "solar-system",
+        "lost-original"
+      ],
       "added_in_pass": 1
     },
     {
@@ -573,10 +1132,22 @@
       "era": "Roman Egypt",
       "region": "Alexandria",
       "tradition": "Greek/Roman astronomy",
-      "branches": ["06-cosmology"],
+      "branches": [
+        "06-cosmology"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Almagest", "year": "c.150 CE", "language": "Koine Greek"}],
-      "tags": ["geocentric", "epicycle", "almagest"],
+      "primary_works": [
+        {
+          "title": "Almagest",
+          "year": "c.150 CE",
+          "language": "Koine Greek"
+        }
+      ],
+      "tags": [
+        "geocentric",
+        "epicycle",
+        "almagest"
+      ],
       "added_in_pass": 1
     },
     {
@@ -586,10 +1157,24 @@
       "era": "Classical India",
       "region": "Pataliputra",
       "tradition": "Indian mathematical astronomy",
-      "branches": ["06-cosmology"],
-      "cross_branches": ["01-mathematics"],
-      "primary_works": [{"title": "Āryabhaṭīya", "year": "499 CE", "language": "Sanskrit"}],
-      "tags": ["earth-rotation", "sine-table", "indian-astronomy"],
+      "branches": [
+        "06-cosmology"
+      ],
+      "cross_branches": [
+        "01-mathematics"
+      ],
+      "primary_works": [
+        {
+          "title": "Āryabhaṭīya",
+          "year": "499 CE",
+          "language": "Sanskrit"
+        }
+      ],
+      "tags": [
+        "earth-rotation",
+        "sine-table",
+        "indian-astronomy"
+      ],
       "added_in_pass": 1
     },
     {
@@ -599,10 +1184,21 @@
       "era": "Renaissance",
       "region": "Frombork",
       "tradition": "Polish/German astronomy",
-      "branches": ["06-cosmology"],
+      "branches": [
+        "06-cosmology"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "De revolutionibus orbium coelestium", "year": "1543", "language": "Latin"}],
-      "tags": ["heliocentrism", "copernican-principle"],
+      "primary_works": [
+        {
+          "title": "De revolutionibus orbium coelestium",
+          "year": "1543",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "heliocentrism",
+        "copernican-principle"
+      ],
       "added_in_pass": 1
     },
     {
@@ -612,10 +1208,22 @@
       "era": "Late Renaissance",
       "region": "Graz, Prague, Linz",
       "tradition": "German astronomy",
-      "branches": ["06-cosmology"],
+      "branches": [
+        "06-cosmology"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Astronomia Nova", "year": "1609", "language": "Latin"}],
-      "tags": ["keplers-laws", "ellipse", "mars-orbit"],
+      "primary_works": [
+        {
+          "title": "Astronomia Nova",
+          "year": "1609",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "keplers-laws",
+        "ellipse",
+        "mars-orbit"
+      ],
       "added_in_pass": 1
     },
     {
@@ -625,10 +1233,22 @@
       "era": "Early 20th century",
       "region": "Mount Wilson Observatory",
       "tradition": "American observational astronomy",
-      "branches": ["06-cosmology"],
+      "branches": [
+        "06-cosmology"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "A Relation between Distance and Radial Velocity among Extra-Galactic Nebulae", "year": "1929", "language": "English"}],
-      "tags": ["galaxies", "cosmic-expansion", "hubble-law"],
+      "primary_works": [
+        {
+          "title": "A Relation between Distance and Radial Velocity among Extra-Galactic Nebulae",
+          "year": "1929",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "galaxies",
+        "cosmic-expansion",
+        "hubble-law"
+      ],
       "added_in_pass": 1
     },
     {
@@ -638,10 +1258,24 @@
       "era": "Early to mid-20th century",
       "region": "Louvain",
       "tradition": "Belgian theoretical cosmology",
-      "branches": ["06-cosmology"],
-      "cross_branches": ["02-physics"],
-      "primary_works": [{"title": "Un univers homogène de masse constante et de rayon croissant...", "year": "1927", "language": "French"}],
-      "tags": ["expanding-universe", "primeval-atom", "big-bang"],
+      "branches": [
+        "06-cosmology"
+      ],
+      "cross_branches": [
+        "02-physics"
+      ],
+      "primary_works": [
+        {
+          "title": "Un univers homogène de masse constante et de rayon croissant...",
+          "year": "1927",
+          "language": "French"
+        }
+      ],
+      "tags": [
+        "expanding-universe",
+        "primeval-atom",
+        "big-bang"
+      ],
       "added_in_pass": 1
     },
     {
@@ -651,10 +1285,22 @@
       "era": "Late 20th century",
       "region": "DTM Carnegie",
       "tradition": "American observational astronomy",
-      "branches": ["06-cosmology"],
+      "branches": [
+        "06-cosmology"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Rotational Properties of 21 Sc Galaxies...", "year": "1980", "language": "English"}],
-      "tags": ["dark-matter", "galaxy-rotation", "missing-mass"],
+      "primary_works": [
+        {
+          "title": "Rotational Properties of 21 Sc Galaxies...",
+          "year": "1980",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "dark-matter",
+        "galaxy-rotation",
+        "missing-mass"
+      ],
       "added_in_pass": 1
     },
     {
@@ -664,10 +1310,28 @@
       "era": "Classical Greece",
       "region": "Athens",
       "tradition": "Greek philosophy & natural history",
-      "branches": ["07-mind"],
-      "cross_branches": ["02-physics", "05-biophysics", "08-tradition", "10-earth"],
-      "primary_works": [{"title": "De Anima", "year": "c.350 BCE", "language": "Koine Greek"}],
-      "tags": ["categories", "de-anima", "syllogism", "formal-cause"],
+      "branches": [
+        "07-mind"
+      ],
+      "cross_branches": [
+        "02-physics",
+        "05-biophysics",
+        "08-tradition",
+        "10-earth"
+      ],
+      "primary_works": [
+        {
+          "title": "De Anima",
+          "year": "c.350 BCE",
+          "language": "Koine Greek"
+        }
+      ],
+      "tags": [
+        "categories",
+        "de-anima",
+        "syllogism",
+        "formal-cause"
+      ],
       "added_in_pass": 1
     },
     {
@@ -677,10 +1341,25 @@
       "era": "Early modern",
       "region": "Paris, Netherlands",
       "tradition": "French rationalism",
-      "branches": ["07-mind"],
-      "cross_branches": ["01-mathematics", "02-physics"],
-      "primary_works": [{"title": "Meditationes de Prima Philosophia", "year": "1641", "language": "Latin"}],
-      "tags": ["cogito", "dualism", "analytic-geometry"],
+      "branches": [
+        "07-mind"
+      ],
+      "cross_branches": [
+        "01-mathematics",
+        "02-physics"
+      ],
+      "primary_works": [
+        {
+          "title": "Meditationes de Prima Philosophia",
+          "year": "1641",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "cogito",
+        "dualism",
+        "analytic-geometry"
+      ],
       "added_in_pass": 1
     },
     {
@@ -690,10 +1369,22 @@
       "era": "Late Enlightenment",
       "region": "Königsberg",
       "tradition": "German idealism",
-      "branches": ["07-mind"],
+      "branches": [
+        "07-mind"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Kritik der reinen Vernunft", "year": "1781", "language": "German"}],
-      "tags": ["a-priori", "categories", "transcendental"],
+      "primary_works": [
+        {
+          "title": "Kritik der reinen Vernunft",
+          "year": "1781",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "a-priori",
+        "categories",
+        "transcendental"
+      ],
       "added_in_pass": 1
     },
     {
@@ -703,10 +1394,22 @@
       "era": "Late 19th / early 20th century",
       "region": "Harvard",
       "tradition": "American philosophy & psychology",
-      "branches": ["07-mind"],
+      "branches": [
+        "07-mind"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "The Principles of Psychology", "year": "1890", "language": "English"}],
-      "tags": ["stream-of-consciousness", "pragmatism", "james-lange"],
+      "primary_works": [
+        {
+          "title": "The Principles of Psychology",
+          "year": "1890",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "stream-of-consciousness",
+        "pragmatism",
+        "james-lange"
+      ],
       "added_in_pass": 1
     },
     {
@@ -716,13 +1419,27 @@
       "era": "20th century",
       "region": "Vienna, Cambridge",
       "tradition": "Austrian/English analytic philosophy",
-      "branches": ["07-mind"],
+      "branches": [
+        "07-mind"
+      ],
       "cross_branches": [],
       "primary_works": [
-        {"title": "Tractatus Logico-Philosophicus", "year": "1921", "language": "German"},
-        {"title": "Philosophical Investigations", "year": "1953", "language": "German"}
+        {
+          "title": "Tractatus Logico-Philosophicus",
+          "year": "1921",
+          "language": "German"
+        },
+        {
+          "title": "Philosophical Investigations",
+          "year": "1953",
+          "language": "German"
+        }
       ],
-      "tags": ["language-games", "picture-theory", "tractatus"],
+      "tags": [
+        "language-games",
+        "picture-theory",
+        "tractatus"
+      ],
       "added_in_pass": 1
     },
     {
@@ -732,10 +1449,24 @@
       "era": "Mid-late 20th century",
       "region": "MIT",
       "tradition": "American linguistics",
-      "branches": ["07-mind"],
-      "cross_branches": ["04-information"],
-      "primary_works": [{"title": "Syntactic Structures", "year": "1957", "language": "English"}],
-      "tags": ["generative-grammar", "chomsky-hierarchy", "cognitive-revolution"],
+      "branches": [
+        "07-mind"
+      ],
+      "cross_branches": [
+        "04-information"
+      ],
+      "primary_works": [
+        {
+          "title": "Syntactic Structures",
+          "year": "1957",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "generative-grammar",
+        "chomsky-hierarchy",
+        "cognitive-revolution"
+      ],
       "added_in_pass": 1
     },
     {
@@ -745,10 +1476,25 @@
       "era": "Late 20th century",
       "region": "MIT, Cambridge",
       "tradition": "English/American computational neuroscience",
-      "branches": ["07-mind"],
-      "cross_branches": ["04-information", "05-biophysics"],
-      "primary_works": [{"title": "Vision", "year": "1982", "language": "English"}],
-      "tags": ["three-levels", "computational-vision", "marr-poggio"],
+      "branches": [
+        "07-mind"
+      ],
+      "cross_branches": [
+        "04-information",
+        "05-biophysics"
+      ],
+      "primary_works": [
+        {
+          "title": "Vision",
+          "year": "1982",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "three-levels",
+        "computational-vision",
+        "marr-poggio"
+      ],
       "added_in_pass": 1
     },
     {
@@ -758,10 +1504,22 @@
       "era": "Spring and Autumn / Warring States China",
       "region": "Zhou-era China",
       "tradition": "Daoism",
-      "branches": ["08-tradition"],
+      "branches": [
+        "08-tradition"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Dao De Jing", "year": "c.4th century BCE", "language": "Classical Chinese"}],
-      "tags": ["daoism", "dao-de-jing", "wu-wei"],
+      "primary_works": [
+        {
+          "title": "Dao De Jing",
+          "year": "c.4th century BCE",
+          "language": "Classical Chinese"
+        }
+      ],
+      "tags": [
+        "daoism",
+        "dao-de-jing",
+        "wu-wei"
+      ],
       "added_in_pass": 1
     },
     {
@@ -771,10 +1529,23 @@
       "era": "Spring and Autumn China",
       "region": "State of Lu",
       "tradition": "Confucianism",
-      "branches": ["08-tradition"],
+      "branches": [
+        "08-tradition"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Analects", "year": "compiled posthumously", "language": "Classical Chinese"}],
-      "tags": ["confucianism", "analects", "ren", "li"],
+      "primary_works": [
+        {
+          "title": "Analects",
+          "year": "compiled posthumously",
+          "language": "Classical Chinese"
+        }
+      ],
+      "tags": [
+        "confucianism",
+        "analects",
+        "ren",
+        "li"
+      ],
       "added_in_pass": 1
     },
     {
@@ -784,10 +1555,24 @@
       "era": "Iron Age India",
       "region": "Magadha, Ganges plain",
       "tradition": "Early Buddhism",
-      "branches": ["08-tradition"],
-      "cross_branches": ["07-mind"],
-      "primary_works": [{"title": "Pāli Canon (Tipiṭaka)", "year": "c.1st century BCE (written)", "language": "Pāli"}],
-      "tags": ["buddhism", "four-noble-truths", "anatman"],
+      "branches": [
+        "08-tradition"
+      ],
+      "cross_branches": [
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Pāli Canon (Tipiṭaka)",
+          "year": "c.1st century BCE (written)",
+          "language": "Pāli"
+        }
+      ],
+      "tags": [
+        "buddhism",
+        "four-noble-truths",
+        "anatman"
+      ],
       "added_in_pass": 1
     },
     {
@@ -797,10 +1582,24 @@
       "era": "Late Roman / early medieval",
       "region": "Hippo Regius",
       "tradition": "Latin Christian theology",
-      "branches": ["08-tradition"],
-      "cross_branches": ["07-mind"],
-      "primary_works": [{"title": "Confessiones", "year": "c.400 CE", "language": "Latin"}],
-      "tags": ["confessions", "city-of-god", "introspection"],
+      "branches": [
+        "08-tradition"
+      ],
+      "cross_branches": [
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Confessiones",
+          "year": "c.400 CE",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "confessions",
+        "city-of-god",
+        "introspection"
+      ],
       "added_in_pass": 1
     },
     {
@@ -810,13 +1609,27 @@
       "era": "Medieval / Islamic Golden Age",
       "region": "Córdoba, Cairo",
       "tradition": "Sephardic Jewish philosophy",
-      "branches": ["08-tradition"],
+      "branches": [
+        "08-tradition"
+      ],
       "cross_branches": [],
       "primary_works": [
-        {"title": "Mishneh Torah", "year": "1180", "language": "Hebrew"},
-        {"title": "Guide for the Perplexed", "year": "c.1190", "language": "Judeo-Arabic"}
+        {
+          "title": "Mishneh Torah",
+          "year": "1180",
+          "language": "Hebrew"
+        },
+        {
+          "title": "Guide for the Perplexed",
+          "year": "c.1190",
+          "language": "Judeo-Arabic"
+        }
       ],
-      "tags": ["halakha", "guide-for-the-perplexed", "negative-theology"],
+      "tags": [
+        "halakha",
+        "guide-for-the-perplexed",
+        "negative-theology"
+      ],
       "added_in_pass": 1
     },
     {
@@ -826,10 +1639,23 @@
       "era": "Islamic Golden Age",
       "region": "Tūs, Baghdad",
       "tradition": "Sunni Islam, Sufism",
-      "branches": ["08-tradition"],
+      "branches": [
+        "08-tradition"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Tahāfut al-Falāsifa", "year": "c.1095", "language": "Arabic"}],
-      "tags": ["tahafut", "occasionalism", "kalam", "sufism"],
+      "primary_works": [
+        {
+          "title": "Tahāfut al-Falāsifa",
+          "year": "c.1095",
+          "language": "Arabic"
+        }
+      ],
+      "tags": [
+        "tahafut",
+        "occasionalism",
+        "kalam",
+        "sufism"
+      ],
       "added_in_pass": 1
     },
     {
@@ -839,10 +1665,24 @@
       "era": "High Medieval",
       "region": "Naples, Paris",
       "tradition": "Latin Christian scholasticism",
-      "branches": ["08-tradition"],
-      "cross_branches": ["07-mind"],
-      "primary_works": [{"title": "Summa Theologiae", "year": "c.1265-1274", "language": "Latin"}],
-      "tags": ["scholasticism", "summa-theologiae", "five-ways"],
+      "branches": [
+        "08-tradition"
+      ],
+      "cross_branches": [
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Summa Theologiae",
+          "year": "c.1265-1274",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "scholasticism",
+        "summa-theologiae",
+        "five-ways"
+      ],
       "added_in_pass": 1
     },
     {
@@ -852,13 +1692,28 @@
       "era": "Archaic Greece",
       "region": "Ionian Greek tradition",
       "tradition": "Greek oral epic",
-      "branches": ["09-art"],
+      "branches": [
+        "09-art"
+      ],
       "cross_branches": [],
       "primary_works": [
-        {"title": "Iliad", "year": "c.750-700 BCE", "language": "Homeric Greek"},
-        {"title": "Odyssey", "year": "c.750-700 BCE", "language": "Homeric Greek"}
+        {
+          "title": "Iliad",
+          "year": "c.750-700 BCE",
+          "language": "Homeric Greek"
+        },
+        {
+          "title": "Odyssey",
+          "year": "c.750-700 BCE",
+          "language": "Homeric Greek"
+        }
       ],
-      "tags": ["epic", "iliad", "odyssey", "oral-tradition"],
+      "tags": [
+        "epic",
+        "iliad",
+        "odyssey",
+        "oral-tradition"
+      ],
       "added_in_pass": 1
     },
     {
@@ -868,10 +1723,23 @@
       "era": "Archaic Greece",
       "region": "Lesbos",
       "tradition": "Aeolic Greek lyric poetry",
-      "branches": ["09-art"],
+      "branches": [
+        "09-art"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Lyric fragments", "year": "c.600 BCE", "language": "Aeolic Greek"}],
-      "tags": ["lyric", "sapphic-stanza", "first-person", "lost-corpus"],
+      "primary_works": [
+        {
+          "title": "Lyric fragments",
+          "year": "c.600 BCE",
+          "language": "Aeolic Greek"
+        }
+      ],
+      "tags": [
+        "lyric",
+        "sapphic-stanza",
+        "first-person",
+        "lost-corpus"
+      ],
       "added_in_pass": 1
     },
     {
@@ -881,10 +1749,22 @@
       "era": "Tang dynasty",
       "region": "Tang-era China",
       "tradition": "Chinese regulated verse",
-      "branches": ["09-art"],
+      "branches": [
+        "09-art"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Collected poems", "year": "c.730-770 CE", "language": "Classical Chinese"}],
-      "tags": ["tang-poetry", "regulated-verse", "poet-sage"],
+      "primary_works": [
+        {
+          "title": "Collected poems",
+          "year": "c.730-770 CE",
+          "language": "Classical Chinese"
+        }
+      ],
+      "tags": [
+        "tang-poetry",
+        "regulated-verse",
+        "poet-sage"
+      ],
       "added_in_pass": 1
     },
     {
@@ -894,10 +1774,22 @@
       "era": "Late Medieval",
       "region": "Florence (in exile)",
       "tradition": "Italian vernacular literature",
-      "branches": ["09-art"],
+      "branches": [
+        "09-art"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Divina Commedia", "year": "c.1308-1320", "language": "Italian"}],
-      "tags": ["divina-commedia", "tuscan-italian", "vernacular"],
+      "primary_works": [
+        {
+          "title": "Divina Commedia",
+          "year": "c.1308-1320",
+          "language": "Italian"
+        }
+      ],
+      "tags": [
+        "divina-commedia",
+        "tuscan-italian",
+        "vernacular"
+      ],
       "added_in_pass": 1
     },
     {
@@ -907,10 +1799,22 @@
       "era": "Elizabethan / Jacobean",
       "region": "London",
       "tradition": "English Renaissance theater",
-      "branches": ["09-art"],
+      "branches": [
+        "09-art"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Plays and sonnets", "year": "c.1590-1613", "language": "Early Modern English"}],
-      "tags": ["tragedy", "hamlet", "interiority"],
+      "primary_works": [
+        {
+          "title": "Plays and sonnets",
+          "year": "c.1590-1613",
+          "language": "Early Modern English"
+        }
+      ],
+      "tags": [
+        "tragedy",
+        "hamlet",
+        "interiority"
+      ],
       "added_in_pass": 1
     },
     {
@@ -920,13 +1824,27 @@
       "era": "High Baroque",
       "region": "Eisenach, Leipzig",
       "tradition": "German Lutheran sacred music",
-      "branches": ["09-art"],
+      "branches": [
+        "09-art"
+      ],
       "cross_branches": [],
       "primary_works": [
-        {"title": "Das wohltemperierte Klavier I", "year": "1722", "language": "—"},
-        {"title": "Die Kunst der Fuge", "year": "c.1740-1750", "language": "—"}
+        {
+          "title": "Das wohltemperierte Klavier I",
+          "year": "1722",
+          "language": "—"
+        },
+        {
+          "title": "Die Kunst der Fuge",
+          "year": "c.1740-1750",
+          "language": "—"
+        }
       ],
-      "tags": ["counterpoint", "fugue", "equal-temperament"],
+      "tags": [
+        "counterpoint",
+        "fugue",
+        "equal-temperament"
+      ],
       "added_in_pass": 1
     },
     {
@@ -936,10 +1854,22 @@
       "era": "Late Edo Japan",
       "region": "Edo",
       "tradition": "Japanese ukiyo-e printmaking",
-      "branches": ["09-art"],
+      "branches": [
+        "09-art"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Thirty-six Views of Mount Fuji", "year": "c.1830-1832", "language": "Japanese"}],
-      "tags": ["ukiyo-e", "great-wave", "japonisme"],
+      "primary_works": [
+        {
+          "title": "Thirty-six Views of Mount Fuji",
+          "year": "c.1830-1832",
+          "language": "Japanese"
+        }
+      ],
+      "tags": [
+        "ukiyo-e",
+        "great-wave",
+        "japonisme"
+      ],
       "added_in_pass": 1
     },
     {
@@ -949,10 +1879,25 @@
       "era": "20th century",
       "region": "Buenos Aires",
       "tradition": "Argentine fantastic literature",
-      "branches": ["09-art"],
-      "cross_branches": ["04-information", "07-mind"],
-      "primary_works": [{"title": "Ficciones", "year": "1944", "language": "Spanish"}],
-      "tags": ["ficciones", "library-of-babel", "metafiction"],
+      "branches": [
+        "09-art"
+      ],
+      "cross_branches": [
+        "04-information",
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Ficciones",
+          "year": "1944",
+          "language": "Spanish"
+        }
+      ],
+      "tags": [
+        "ficciones",
+        "library-of-babel",
+        "metafiction"
+      ],
       "added_in_pass": 1
     },
     {
@@ -962,10 +1907,22 @@
       "era": "Scientific Revolution",
       "region": "Copenhagen, Florence",
       "tradition": "Danish anatomy and natural history",
-      "branches": ["10-earth"],
+      "branches": [
+        "10-earth"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "De solido intra solidum naturaliter contento dissertationis prodromus", "year": "1669", "language": "Latin"}],
-      "tags": ["stratigraphy", "superposition", "fossils"],
+      "primary_works": [
+        {
+          "title": "De solido intra solidum naturaliter contento dissertationis prodromus",
+          "year": "1669",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "stratigraphy",
+        "superposition",
+        "fossils"
+      ],
       "added_in_pass": 1
     },
     {
@@ -975,10 +1932,22 @@
       "era": "Scottish Enlightenment",
       "region": "Edinburgh",
       "tradition": "Scottish geology",
-      "branches": ["10-earth"],
+      "branches": [
+        "10-earth"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Theory of the Earth", "year": "1795", "language": "English"}],
-      "tags": ["deep-time", "uniformitarianism", "siccar-point"],
+      "primary_works": [
+        {
+          "title": "Theory of the Earth",
+          "year": "1795",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "deep-time",
+        "uniformitarianism",
+        "siccar-point"
+      ],
       "added_in_pass": 1
     },
     {
@@ -988,10 +1957,21 @@
       "era": "Early to mid-19th century",
       "region": "London",
       "tradition": "British geology",
-      "branches": ["10-earth"],
+      "branches": [
+        "10-earth"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Principles of Geology", "year": "1830-1833", "language": "English"}],
-      "tags": ["uniformitarianism", "principles-of-geology"],
+      "primary_works": [
+        {
+          "title": "Principles of Geology",
+          "year": "1830-1833",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "uniformitarianism",
+        "principles-of-geology"
+      ],
       "added_in_pass": 1
     },
     {
@@ -1001,10 +1981,22 @@
       "era": "Early 20th century",
       "region": "Marburg, Hamburg, Graz",
       "tradition": "German meteorology and geophysics",
-      "branches": ["10-earth"],
+      "branches": [
+        "10-earth"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Die Entstehung der Kontinente und Ozeane", "year": "1915", "language": "German"}],
-      "tags": ["continental-drift", "pangaea", "delayed-canon"],
+      "primary_works": [
+        {
+          "title": "Die Entstehung der Kontinente und Ozeane",
+          "year": "1915",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "continental-drift",
+        "pangaea",
+        "delayed-canon"
+      ],
       "added_in_pass": 1
     },
     {
@@ -1014,10 +2006,22 @@
       "era": "Early to mid-20th century",
       "region": "Belgrade",
       "tradition": "Serbian astronomy and geophysics",
-      "branches": ["10-earth"],
+      "branches": [
+        "10-earth"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "Kanon der Erdbestrahlung und seine Anwendung auf das Eiszeitenproblem", "year": "1941", "language": "German"}],
-      "tags": ["milankovic-cycles", "orbital-forcing", "paleoclimate"],
+      "primary_works": [
+        {
+          "title": "Kanon der Erdbestrahlung und seine Anwendung auf das Eiszeitenproblem",
+          "year": "1941",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "milankovic-cycles",
+        "orbital-forcing",
+        "paleoclimate"
+      ],
       "added_in_pass": 1
     },
     {
@@ -1027,11 +2031,751 @@
       "era": "Mid-20th century",
       "region": "Lamont Geological Observatory",
       "tradition": "American marine geology",
-      "branches": ["10-earth"],
+      "branches": [
+        "10-earth"
+      ],
       "cross_branches": [],
-      "primary_works": [{"title": "World Ocean Floor Panorama", "year": "1977", "language": "—"}],
-      "tags": ["mid-atlantic-ridge", "seafloor-mapping", "rift-valley"],
+      "primary_works": [
+        {
+          "title": "World Ocean Floor Panorama",
+          "year": "1977",
+          "language": "—"
+        }
+      ],
+      "tags": [
+        "mid-atlantic-ridge",
+        "seafloor-mapping",
+        "rift-valley"
+      ],
       "added_in_pass": 1
+    },
+    {
+      "id": "wiener",
+      "name": "Norbert Wiener",
+      "lifespan": "1894-1964",
+      "era": "20th century",
+      "region": "MIT",
+      "tradition": "American mathematics",
+      "branches": [
+        "04-information"
+      ],
+      "cross_branches": [
+        "01-mathematics",
+        "05-biophysics",
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Cybernetics: or Control and Communication in the Animal and the Machine",
+          "year": "1948",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "cybernetics",
+        "feedback",
+        "wiener-process",
+        "control-theory"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "szent-gyorgyi",
+      "name": "Albert Szent-Györgyi",
+      "lifespan": "1893-1986",
+      "era": "20th century",
+      "region": "Szeged, Woods Hole",
+      "tradition": "Hungarian/American biochemistry",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [
+        "03-chemistry"
+      ],
+      "primary_works": [
+        {
+          "title": "Bioenergetics",
+          "year": "1957",
+          "language": "English"
+        },
+        {
+          "title": "Introduction to a Submolecular Biology",
+          "year": "1960",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "vitamin-c",
+        "citric-acid-cycle",
+        "bioenergetics",
+        "submolecular-biology"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "burr",
+      "name": "Harold Saxton Burr",
+      "lifespan": "1889-1973",
+      "era": "Early to mid-20th century",
+      "region": "Yale School of Medicine",
+      "tradition": "American neuroanatomy and bioelectrics",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [],
+      "primary_works": [
+        {
+          "title": "The Electro-Dynamic Theory of Life",
+          "year": "1935",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "bioelectric-field",
+        "l-field",
+        "morphogenesis",
+        "dc-gradient"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "becker",
+      "name": "Robert O. Becker",
+      "lifespan": "1923-2008",
+      "era": "Mid-20th century",
+      "region": "Syracuse VA, SUNY Upstate",
+      "tradition": "American orthopedic surgery and bioelectrics",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [],
+      "primary_works": [
+        {
+          "title": "The bioelectric factors in amphibian-limb regeneration",
+          "year": "1961",
+          "language": "English"
+        },
+        {
+          "title": "The Body Electric",
+          "year": "1985",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "regeneration",
+        "dc-current",
+        "dedifferentiation",
+        "bioelectric-medicine"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "marino",
+      "name": "Andrew Marino",
+      "lifespan": "1939-",
+      "era": "Late 20th / early 21st century",
+      "region": "LSU Health Shreveport",
+      "tradition": "American bioelectrics and biophysics",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [],
+      "primary_works": [
+        {
+          "title": "Electromagnetism & Life",
+          "year": "1982",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "emf-bioeffects",
+        "non-linear-eeg",
+        "low-field-detection",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "ling",
+      "name": "Gilbert Ling",
+      "lifespan": "1919-2019",
+      "era": "Mid-20th to early 21st century",
+      "region": "Pennsylvania Hospital",
+      "tradition": "American/Chinese cell physiology",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [
+        "03-chemistry"
+      ],
+      "primary_works": [
+        {
+          "title": "A Physical Theory of the Living State",
+          "year": "1962",
+          "language": "English"
+        },
+        {
+          "title": "Life at the Cell and Below-Cell Level",
+          "year": "2001",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "association-induction",
+        "structured-water",
+        "cell-potassium",
+        "mri-precursor"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "pollack",
+      "name": "Gerald Pollack",
+      "lifespan": "1939-",
+      "era": "Late 20th / early 21st century",
+      "region": "University of Washington",
+      "tradition": "American bioengineering",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [
+        "03-chemistry"
+      ],
+      "primary_works": [
+        {
+          "title": "Cells, Gels and the Engines of Life",
+          "year": "2001",
+          "language": "English"
+        },
+        {
+          "title": "The Fourth Phase of Water",
+          "year": "2013",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "exclusion-zone",
+        "ez-water",
+        "interfacial-water",
+        "fourth-phase",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "popp",
+      "name": "Fritz-Albert Popp",
+      "lifespan": "1938-2018",
+      "era": "Late 20th century",
+      "region": "Marburg, Kaiserslautern, IIB Neuss",
+      "tradition": "German biophysics",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [],
+      "primary_works": [
+        {
+          "title": "Biophoton Emission",
+          "year": "1992",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "biophoton",
+        "ultra-weak-emission",
+        "photon-counting",
+        "non-thermal"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "levin",
+      "name": "Michael Levin",
+      "lifespan": "1969-",
+      "era": "Early 21st century",
+      "region": "Tufts Allen Discovery Center",
+      "tradition": "American developmental bioelectrics",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [
+        "07-mind"
+      ],
+      "primary_works": [
+        {
+          "title": "Bioelectric mechanisms in regeneration",
+          "year": "2007",
+          "language": "English"
+        },
+        {
+          "title": "The Computational Boundary of a Self",
+          "year": "2019",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "bioelectric-code",
+        "morphogenesis",
+        "planaria",
+        "xenobots",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "wallace-doug",
+      "name": "Douglas C. Wallace",
+      "lifespan": "1946-",
+      "era": "Late 20th / early 21st century",
+      "region": "CHOP / University of Pennsylvania",
+      "tradition": "American mitochondrial medicine",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [],
+      "primary_works": [
+        {
+          "title": "Mitochondrial DNA variation in human evolution and disease",
+          "year": "1999",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "mtdna",
+        "mitochondrial-medicine",
+        "haplogroup",
+        "lhon",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "lane",
+      "name": "Nick Lane",
+      "lifespan": "1967-",
+      "era": "Early 21st century",
+      "region": "University College London",
+      "tradition": "English evolutionary biochemistry",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [],
+      "primary_works": [
+        {
+          "title": "The Vital Question",
+          "year": "2015",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "origin-of-life",
+        "alkaline-vents",
+        "proton-gradient",
+        "chemiosmosis-extended",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "solis-herrera",
+      "name": "Arturo Solís-Herrera",
+      "lifespan": "1950-",
+      "era": "Early 21st century",
+      "region": "Aguascalientes",
+      "tradition": "Mexican medicine (ophthalmology/biophysics)",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [
+        "03-chemistry"
+      ],
+      "primary_works": [
+        {
+          "title": "The Human Photosynthesis",
+          "year": "2011",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "melanin",
+        "water-dissociation",
+        "human-photosynthesis",
+        "contested",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "khavinson",
+      "name": "Vladimir Khavinson",
+      "lifespan": "1946-",
+      "era": "Late 20th / early 21st century",
+      "region": "St Petersburg Institute of Bioregulation and Gerontology",
+      "tradition": "Russian gerontology",
+      "branches": [
+        "05-biophysics"
+      ],
+      "cross_branches": [],
+      "primary_works": [
+        {
+          "title": "Peptides and Ageing",
+          "year": "2002",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "peptide-bioregulator",
+        "gerontology",
+        "tissue-specific",
+        "soviet-russian",
+        "contested",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "hildegard",
+      "name": "Hildegard of Bingen",
+      "lifespan": "1098-1179",
+      "era": "High Medieval",
+      "region": "Rupertsberg, Rhineland",
+      "tradition": "Latin Christian monasticism",
+      "branches": [
+        "08-tradition"
+      ],
+      "cross_branches": [
+        "05-biophysics",
+        "09-art"
+      ],
+      "primary_works": [
+        {
+          "title": "Scivias",
+          "year": "1151",
+          "language": "Latin"
+        },
+        {
+          "title": "Physica",
+          "year": "c.1150",
+          "language": "Latin"
+        },
+        {
+          "title": "Ordo Virtutum",
+          "year": "c.1151",
+          "language": "Latin"
+        }
+      ],
+      "tags": [
+        "visionary-cosmology",
+        "medieval-medicine",
+        "monophonic-chant",
+        "scivias"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "champollion",
+      "name": "Jean-François Champollion",
+      "lifespan": "1790-1832",
+      "era": "Post-Napoleonic France",
+      "region": "Figeac, Grenoble, Paris",
+      "tradition": "French philology",
+      "branches": [
+        "08-tradition"
+      ],
+      "cross_branches": [
+        "04-information"
+      ],
+      "primary_works": [
+        {
+          "title": "Lettre à M. Dacier",
+          "year": "1822",
+          "language": "French"
+        },
+        {
+          "title": "Précis du système hiéroglyphique des anciens Égyptiens",
+          "year": "1824",
+          "language": "French"
+        }
+      ],
+      "tags": [
+        "hieroglyphic-decipherment",
+        "rosetta-stone",
+        "coptic",
+        "script-decipherment"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "william-jones",
+      "name": "William Jones",
+      "lifespan": "1746-1794",
+      "era": "Late Enlightenment",
+      "region": "London, Calcutta",
+      "tradition": "English philology and law",
+      "branches": [
+        "08-tradition"
+      ],
+      "cross_branches": [
+        "04-information"
+      ],
+      "primary_works": [
+        {
+          "title": "The Third Anniversary Discourse, on the Hindus",
+          "year": "1786",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "indo-european",
+        "comparative-linguistics",
+        "sanskrit",
+        "language-family"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "ventris",
+      "name": "Michael Ventris",
+      "lifespan": "1922-1956",
+      "era": "Mid-20th century",
+      "region": "London",
+      "tradition": "English architecture and amateur philology",
+      "branches": [
+        "08-tradition"
+      ],
+      "cross_branches": [
+        "04-information"
+      ],
+      "primary_works": [
+        {
+          "title": "Evidence for Greek dialect in the Mycenaean archives",
+          "year": "1953",
+          "language": "English"
+        },
+        {
+          "title": "Documents in Mycenaean Greek",
+          "year": "1956",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "linear-b",
+        "mycenaean",
+        "decipherment",
+        "distributional-method"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "leonardo",
+      "name": "Leonardo da Vinci",
+      "lifespan": "1452-1519",
+      "era": "Italian Renaissance",
+      "region": "Florence, Milan, Amboise",
+      "tradition": "Florentine workshop practice",
+      "branches": [
+        "09-art"
+      ],
+      "cross_branches": [
+        "02-physics",
+        "05-biophysics",
+        "10-earth"
+      ],
+      "primary_works": [
+        {
+          "title": "Notebooks",
+          "year": "c.1478-1519",
+          "language": "Italian"
+        },
+        {
+          "title": "Treatise on Painting",
+          "year": "posthumous",
+          "language": "Italian"
+        }
+      ],
+      "tags": [
+        "sfumato",
+        "anatomy",
+        "hydraulics",
+        "notebook-method",
+        "polymath"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "tolkien",
+      "name": "J. R. R. Tolkien",
+      "lifespan": "1892-1973",
+      "era": "20th century",
+      "region": "Oxford",
+      "tradition": "English philology and literature",
+      "branches": [
+        "09-art"
+      ],
+      "cross_branches": [
+        "08-tradition"
+      ],
+      "primary_works": [
+        {
+          "title": "Beowulf: The Monsters and the Critics",
+          "year": "1936",
+          "language": "English"
+        },
+        {
+          "title": "The Lord of the Rings",
+          "year": "1954-1955",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "secondary-world",
+        "philology-as-method",
+        "conlang",
+        "legendarium"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "schmidt-klaus",
+      "name": "Klaus Schmidt",
+      "lifespan": "1953-2014",
+      "era": "Late 20th / early 21st century",
+      "region": "German Archaeological Institute",
+      "tradition": "German prehistoric archaeology",
+      "branches": [
+        "10-earth"
+      ],
+      "cross_branches": [
+        "08-tradition"
+      ],
+      "primary_works": [
+        {
+          "title": "Sie bauten die ersten Tempel",
+          "year": "2006",
+          "language": "German"
+        }
+      ],
+      "tags": [
+        "gobekli-tepe",
+        "pre-pottery-neolithic",
+        "monumental-architecture",
+        "neolithic-reorder"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "schoch",
+      "name": "Robert M. Schoch",
+      "lifespan": "1957-",
+      "era": "Late 20th / early 21st century",
+      "region": "Boston University",
+      "tradition": "American geology",
+      "branches": [
+        "10-earth"
+      ],
+      "cross_branches": [
+        "08-tradition"
+      ],
+      "primary_works": [
+        {
+          "title": "Redating the Great Sphinx of Giza",
+          "year": "1992",
+          "language": "English"
+        },
+        {
+          "title": "Voices of the Rocks",
+          "year": "1999",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "sphinx",
+        "weathering-geology",
+        "early-holocene",
+        "contested",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "west-jaw",
+      "name": "John Anthony West",
+      "lifespan": "1932-2018",
+      "era": "Late 20th / early 21st century",
+      "region": "Independent",
+      "tradition": "American alternative Egyptology",
+      "branches": [
+        "10-earth"
+      ],
+      "cross_branches": [
+        "08-tradition"
+      ],
+      "primary_works": [
+        {
+          "title": "Serpent in the Sky",
+          "year": "1979",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "alternative-egyptology",
+        "symbolist",
+        "schoch-collaborator",
+        "landscape"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
+    },
+    {
+      "id": "carlson-randall",
+      "name": "Randall Carlson",
+      "lifespan": "1951-",
+      "era": "Early 21st century",
+      "region": "Independent",
+      "tradition": "American geomythology and catastrophism",
+      "branches": [
+        "10-earth"
+      ],
+      "cross_branches": [
+        "08-tradition"
+      ],
+      "primary_works": [
+        {
+          "title": "Sacred Geometry International field documentation",
+          "year": "2000s-present",
+          "language": "English"
+        }
+      ],
+      "tags": [
+        "channeled-scablands",
+        "younger-dryas",
+        "catastrophism",
+        "contested",
+        "living-figure"
+      ],
+      "added_in_pass": 2,
+      "added_on": "2026-04-23"
     }
   ]
 }

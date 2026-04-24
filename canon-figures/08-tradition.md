@@ -147,3 +147,91 @@
 **Downstream.** All later Catholic theology; modern analytic Thomism; Alasdair MacIntyre; the modern revival of virtue ethics.
 
 **Tags.** `scholasticism` `summa-theologiae` `five-ways` `aristotelian-theology`
+
+---
+
+### Hildegard of Bingen
+
+| | |
+|---|---|
+| **id** | hildegard |
+| **lifespan** | 1098–1179 |
+| **era** | High Medieval |
+| **region / tradition** | Rupertsberg, Rhineland — Latin Christian monasticism |
+| **branches** | 08-tradition |
+| **cross-branches** | 05-biophysics, 09-art |
+| **primary works** | *Scivias* (1151, Latin); *Physica* and *Causae et Curae* (c.1150, Latin); *Ordo Virtutum* (c.1151, Latin/music) |
+
+**Foundation contribution.** Produced a **unified systematic cosmology-theology-natural-history corpus** in the 12th century on the basis of claimed visionary experience, formally approved by Pope Eugenius III (1148). *Scivias* is a theological vision-sequence; *Physica* and *Causae et Curae* are classificatory natural-history / medical texts on plants, stones, elements, and humoral disease; *Ordo Virtutum* is the earliest known morality play and a substantial surviving body of monophonic liturgical composition.
+
+**Why canon.** One of the few medieval authors whose writing covers theology, natural philosophy, and musical composition at foundational scale, and one of very few women with an extant large corpus from the High Medieval Latin West.
+
+**Downstream.** German medieval mysticism (Meister Eckhart); later naturalistic-medical compendia; 20th-century recovery as a composer.
+
+**Tags.** `visionary-cosmology` `medieval-medicine` `monophonic-chant` `scivias`
+
+---
+
+### Jean-François Champollion
+
+| | |
+|---|---|
+| **id** | champollion |
+| **lifespan** | 1790–1832 |
+| **era** | Post-Napoleonic France |
+| **region / tradition** | Figeac, Grenoble, Paris — French philology |
+| **branches** | 08-tradition |
+| **cross-branches** | 04-information |
+| **primary works** | *Lettre à M. Dacier* (1822, French); *Précis du système hiéroglyphique des anciens Égyptiens* (1824, French) |
+
+**Foundation contribution.** **Deciphered the Egyptian hieroglyphic writing system** using the Rosetta Stone and other bilingual inscriptions, demonstrating that hieroglyphs are a mixed logo-phonetic script in which signs function as phonograms, logograms, or determinatives depending on context. Identified Coptic as the late descendant of the Egyptian language, which allowed phonetic values to be recovered.
+
+**Why canon.** Restores access to three millennia of Egyptian textual record. The method — cross-language phonetic identification anchored in a living descendant — is the foundation template for subsequent script decipherment.
+
+**Downstream.** All of modern Egyptology; Ventris's decipherment of Linear B (1952) explicitly follows Champollion's method.
+
+**Tags.** `hieroglyphic-decipherment` `rosetta-stone` `coptic` `script-decipherment`
+
+---
+
+### William Jones
+
+| | |
+|---|---|
+| **id** | william-jones |
+| **lifespan** | 1746–1794 |
+| **era** | Late Enlightenment |
+| **region / tradition** | London, Calcutta — English philology and law |
+| **branches** | 08-tradition |
+| **cross-branches** | 04-information |
+| **primary works** | *The Third Anniversary Discourse, on the Hindus* (1786, English, delivered Asiatic Society of Bengal) |
+
+**Foundation contribution.** Proposed, in the 1786 discourse, that **Sanskrit, Greek, Latin, Gothic, Celtic, and Persian descend from a common ancestral language** on the basis of systematic lexical and grammatical correspondences. This is the founding statement of the **Indo-European language family** and of comparative-historical linguistics as a discipline.
+
+**Why canon.** Opens the door to recoverable linguistic prehistory: languages can be reconstructed backward using correspondence patterns. The 19th-century Neogrammarian programme is built on this observation.
+
+**Downstream.** Bopp, Rask, Grimm (comparative grammar); Saussure; all of Indo-European studies.
+
+**Tags.** `indo-european` `comparative-linguistics` `sanskrit` `language-family`
+
+---
+
+### Michael Ventris
+
+| | |
+|---|---|
+| **id** | ventris |
+| **lifespan** | 1922–1956 |
+| **era** | Mid-20th century |
+| **region / tradition** | London — English architecture and amateur philology |
+| **branches** | 08-tradition |
+| **cross-branches** | 04-information |
+| **primary works** | *Evidence for Greek dialect in the Mycenaean archives* (with J. Chadwick, *Journal of Hellenic Studies*, 1953, English); *Documents in Mycenaean Greek* (with Chadwick, 1956, English) |
+
+**Foundation contribution.** **Deciphered Linear B** as an archaic form of Greek, against the prevailing assumption that the Mycenaean tablets recorded a non-Greek language. Ventris built distributional grids of sign occurrences that allowed him to identify the phonetic structure of the script before its language was known — a methodological move beyond Champollion's bilingual-inscription approach.
+
+**Why canon.** Pushes the documented history of Greek back five centuries, revealing a literate Bronze Age palace administration. The grid-based distributional method is foundational for subsequent undeciphered-script work.
+
+**Downstream.** Mycenaean studies; ongoing undeciphered-script research (Linear A, Indus, Rongorongo).
+
+**Tags.** `linear-b` `mycenaean` `decipherment` `distributional-method`
