@@ -76,7 +76,9 @@ jobs:
             curl -s https://rclone.org/install.sh | sudo bash
           fi
           mkdir -p ~/.config/rclone
-          echo "${RCLONE_CONFIG_GDRIVE_TOKEN}" | base64 -d > ~/.config/rclone/rclone.conf
+          python3 -c "import os,base64,sys;sys.stdout.buffer.write(base64.b64decode(os.environ['RCLONE_CONFIG_GDRIVE_TOKEN']))" > ~/.config/rclone/rclone.conf
+          wc -c ~/.config/rclone/rclone.conf
+          rclone listremotes --config ~/.config/rclone/rclone.conf
           DAY=$(date -u +%Y-%m-%d)
           OUT=/tmp/canon-updates-${DAY}.md
           {
