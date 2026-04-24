@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { BUCKET_GROUND_TRUTH } from "./ground-truth";
 
 type TabId = "chat" | "mcp" | "claudeai" | "corpus";
 
@@ -461,7 +462,66 @@ claude mcp add --scope user --transport stdio bucket \\
 }
 
 // ─────────────────────────── TAB 3: Claude.ai lessons ───────────────────────────
+
+// Hard cap on the encoded-URL query string (claude.ai / chat.openai.com both
+// choke well before the browser's ~8kB limit). We budget 7500 chars for q=...
+// after encodeURIComponent. If we blow past that, we progressively truncate
+// the ground truth — slogans + thesis + envelope + cite-forever are the
+// non-negotiables; canon branches drop first.
+const MAX_ENCODED_Q = 7500;
+
+// Distilled core — kept if we have to truncate. Captures slogans, thesis,
+// envelope, feed402 tiers, cite-forever license. Drops canon branches,
+// nonprofit rationale, and canon thesis flourish.
+const BUCKET_GROUND_TRUTH_CORE = BUCKET_GROUND_TRUTH
+  .replace(/\n\nCANON — 7 BRANCHES[\s\S]*?never canon themselves\./g, "")
+  .replace(/\n\nWHY NONPROFIT\.[\s\S]*?survives capture\./g, "")
+  .replace(/\n\nCANON THESIS\.[\s\S]*?reached before\./g, "");
+
+function buildLessonPrompt(question: string, groundTruth: string): string {
+  return `You are helping me learn from bucket.foundation, a nonprofit building "free to read, paid to cite" research infrastructure. Use ONLY the ground-truth context below as your source. If I ask something outside this context, say so honestly rather than guessing.
+
+--- BUCKET GROUND TRUTH (distilled from bucket.foundation/llms-full.txt) ---
+${groundTruth}
+--- END GROUND TRUTH ---
+
+My question: ${question}
+
+Answer with specific citations to the ground-truth sections above. Be honest about tradeoffs. Treat me as capable of genius work.`;
+}
+
+function buildLessonUrl(base: string, question: string): { href: string; encodedLen: number; truncated: boolean } {
+  let truncated = false;
+  let prompt = buildLessonPrompt(question, BUCKET_GROUND_TRUTH);
+  let encoded = encodeURIComponent(prompt);
+  if (encoded.length > MAX_ENCODED_Q) {
+    truncated = true;
+    prompt = buildLessonPrompt(question, BUCKET_GROUND_TRUTH_CORE);
+    encoded = encodeURIComponent(prompt);
+    if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[bucket/learn] lesson prompt exceeded ${MAX_ENCODED_Q} encoded chars; truncated to core ground truth for "${question}"`
+      );
+    }
+  }
+  return { href: `${base}${encoded}`, encodedLen: encoded.length, truncated };
+}
+
 function ClaudeAiPanel() {
+  const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
+
+  const onCopy = useCallback(async (idx: number, question: string) => {
+    try {
+      const prompt = buildLessonPrompt(question, BUCKET_GROUND_TRUTH);
+      await navigator.clipboard.writeText(prompt);
+      setCopiedIdx(idx);
+      setTimeout(() => setCopiedIdx((c) => (c === idx ? null : c)), 1800);
+    } catch {
+      /* noop */
+    }
+  }, []);
+
   return (
     <div role="tabpanel" id="panel-claudeai" aria-labelledby="tab-claudeai">
       <p className="text-[15px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
@@ -469,25 +529,52 @@ function ClaudeAiPanel() {
         Good for sending a question to a student, a friend, or future-you.
         Each opens in Claude.ai with the prompt pre-filled and bucket as ground truth.
       </p>
+      <p className="mt-3 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)] max-w-2xl">
+        these lessons carry bucket&apos;s ground truth inline — they work even before claude.ai has indexed our site.
+      </p>
       <ul className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
-        {LESSONS.map((l) => {
-          const prompt = `Using www.bucket.foundation (see /llms-full.txt, /MANIFESTO.md, /PROTOCOL.md, /protocol/envelope) as ground truth: ${l}\n\nCite specific sections and be honest about tradeoffs.`;
-          const href = `https://claude.ai/new?q=${encodeURIComponent(prompt)}`;
+        {LESSONS.map((l, idx) => {
+          const claude = buildLessonUrl("https://claude.ai/new?q=", l);
+          const chatgpt = buildLessonUrl("https://chatgpt.com/?q=", l);
+          const copied = copiedIdx === idx;
           return (
             <li key={l}>
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block h-full carved-inset rounded-sm bg-[color:var(--bone-2)]/60 hover:bg-[color:var(--bone-2)] p-5 transition group"
-              >
-                <div className="text-[14px] leading-[1.6] text-[color:var(--basalt)] group-hover:text-[color:var(--aegean-deep)]">
+              <div className="h-full carved-inset rounded-sm bg-[color:var(--bone-2)]/60 hover:bg-[color:var(--bone-2)] p-5 transition">
+                <div className="text-[14px] leading-[1.6] text-[color:var(--basalt)]">
                   {l}
                 </div>
-                <div className="mt-3 small-caps text-[10px] tracking-[0.18em] text-[color:var(--gold-deep)]">
-                  → open in claude.ai
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <a
+                    href={claude.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="small-caps text-[10px] tracking-[0.14em] text-[color:var(--bone)] bg-[color:var(--basalt)] hover:bg-[color:var(--aegean-deep)] px-3 py-2 rounded-sm min-h-[44px] inline-flex items-center transition"
+                  >
+                    → claude.ai
+                  </a>
+                  <a
+                    href={chatgpt.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt)] bg-[color:var(--bone)] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] px-3 py-2 rounded-sm min-h-[44px] inline-flex items-center transition"
+                  >
+                    → chatgpt
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => onCopy(idx, l)}
+                    aria-label={copied ? "prompt copied" : "copy prompt"}
+                    className="small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt)] bg-[color:var(--bone)] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] px-3 py-2 rounded-sm min-h-[44px] inline-flex items-center transition"
+                  >
+                    {copied ? "✓ copied" : "⧉ copy prompt"}
+                  </button>
                 </div>
-              </a>
+                {claude.truncated && (
+                  <div className="mt-2 small-caps text-[9px] tracking-[0.14em] text-[color:var(--basalt-3)]">
+                    · ground truth trimmed to core to fit url
+                  </div>
+                )}
+              </div>
             </li>
           );
         })}

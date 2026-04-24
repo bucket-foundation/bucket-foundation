@@ -113,6 +113,18 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.ico"],
   },
   manifest: "/manifest.webmanifest",
+  // Search-engine / agent-index verification tokens. Drop real tokens here
+  // once issued (Anthropic search indexer, Google Search Console, Bing, OAI).
+  // Robots.txt + sitemap.xml + JSON-LD already ship; this is a reminder hook.
+  verification: {
+    // google: "<GOOGLE_SITE_VERIFICATION_TOKEN>",
+    // yandex: "<YANDEX_VERIFICATION_TOKEN>",
+    other: {
+      // "anthropic-search-verification": "<ANTHROPIC_TOKEN>",
+      // "openai-search-verification":    "<OPENAI_TOKEN>",
+      // "msvalidate.01":                 "<BING_VERIFICATION_TOKEN>",
+    },
+  },
   other: {
     "mission": "primary research paid-for-once, citeable-forever",
     "license:code": "MIT",
