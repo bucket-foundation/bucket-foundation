@@ -427,25 +427,26 @@ function McpPanel() {
         </p>
 
         <div className="mt-6 small-caps text-[10px] tracking-[0.18em] text-[color:var(--gold-deep)]">
-          › install — primary path (git clone)
+          › install — one line (npx)
         </div>
         <pre className="mt-2 carved-inset rounded-sm bg-[color:var(--bone-2)]/70 p-4 text-[12px] font-mono-mark text-[color:var(--basalt)] whitespace-pre-wrap">
-{`git clone https://github.com/bucket-foundation/bucket-mcp
-cd bucket-mcp
-npm install && npm run build
-
-# register with Claude Desktop
-claude mcp add --scope user --transport stdio bucket \\
-  -- node $(pwd)/dist/server.js`}
-        </pre>
-
-        <div className="mt-6 small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
-          › coming soon (npm publish pending)
-        </div>
-        <pre className="mt-2 rounded-sm border border-dashed border-[color:var(--hairline)] bg-[color:var(--bone-2)]/40 p-4 text-[12px] font-mono-mark text-[color:var(--basalt-3)] opacity-60 whitespace-pre-wrap select-none">
 {`claude mcp add --scope user --transport stdio bucket \\
   -- npx -y @bucket-foundation/mcp`}
         </pre>
+
+        <div className="mt-6 small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
+          › alternative — clone from source
+        </div>
+        <pre className="mt-2 rounded-sm border border-[color:var(--hairline)] bg-[color:var(--bone-2)]/40 p-4 text-[12px] font-mono-mark text-[color:var(--basalt-2)] whitespace-pre-wrap">
+{`git clone https://github.com/bucket-foundation/bucket-mcp
+cd bucket-mcp
+claude mcp add --scope user --transport stdio bucket \\
+  -- python3 $(pwd)/bucket-mcp.py`}
+        </pre>
+
+        <p className="mt-4 text-[12px] text-[color:var(--basalt-3)] font-mono-mark">
+          npm: <a href="https://www.npmjs.com/package/@bucket-foundation/mcp" className="underline decoration-[color:var(--gold)] underline-offset-4 hover:text-[color:var(--gold-deep)]" target="_blank" rel="noopener noreferrer">@bucket-foundation/mcp</a>
+        </p>
 
         <p className="mt-6 text-[13px] text-[color:var(--basalt-2)] leading-[1.7]">
           After restart, your Claude Desktop can call{" "}
