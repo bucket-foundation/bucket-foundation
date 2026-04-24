@@ -70,8 +70,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     types: {
-      "application/rss+xml": [{ url: "/feed.xml", title: `${SITE_NAME} feed` }],
-      "application/json":    [{ url: "/.well-known/feed402.json", title: "feed402 discovery" }],
+      "application/rss+xml":  [{ url: "/feed.xml", title: `${SITE_NAME} feed` }],
+      "application/atom+xml": [{ url: "/feed.xml", title: `${SITE_NAME} feed` }],
+      "application/ld+json":  [{ url: "/api/jsonld", title: `${SITE_NAME} structured data` }],
+      "application/json":     [{ url: "/.well-known/feed402.json", title: "feed402 discovery" }],
     },
   },
   openGraph: {
