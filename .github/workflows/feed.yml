@@ -76,12 +76,7 @@ jobs:
             curl -s https://rclone.org/install.sh | sudo bash
           fi
           mkdir -p ~/.config/rclone
-          cat > ~/.config/rclone/rclone.conf <<EOF
-          [gdrive]
-          type = drive
-          scope = drive
-          token = ${RCLONE_CONFIG_GDRIVE_TOKEN}
-          EOF
+          printf '%s\n' "${RCLONE_CONFIG_GDRIVE_TOKEN}" > ~/.config/rclone/rclone.conf
           DAY=$(date -u +%Y-%m-%d)
           OUT=/tmp/canon-updates-${DAY}.md
           {
