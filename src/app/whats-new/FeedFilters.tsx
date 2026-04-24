@@ -84,7 +84,7 @@ export default function FeedFilters({ events }: { events: FeedEvent[] }) {
           <select
             value={branch}
             onChange={(e) => setBranch(e.target.value)}
-            className="w-full bg-[color:var(--ink)] border hairline px-3 py-2 text-sm text-[color:var(--parchment)]"
+            className="w-full bg-[color:var(--bone-2)] border hairline px-3 py-2 text-sm text-[color:var(--parchment)]"
           >
             <option value="">all branches</option>
             {branches.map((b) => (
@@ -104,7 +104,7 @@ export default function FeedFilters({ events }: { events: FeedEvent[] }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="search handle, name, title…"
-            className="w-full bg-[color:var(--ink)] border hairline px-3 py-2 text-sm text-[color:var(--parchment)] placeholder:text-[color:var(--parchment-dim)]"
+            className="w-full bg-[color:var(--bone-2)] border hairline px-3 py-2 text-sm text-[color:var(--parchment)] placeholder:text-[color:var(--parchment-dim)]"
           />
         </label>
 
@@ -124,7 +124,7 @@ export default function FeedFilters({ events }: { events: FeedEvent[] }) {
                     "small-caps text-[10px] px-2.5 py-1 border hairline transition " +
                     (on
                       ? "bg-[color:var(--gold)] text-[color:var(--basalt)]"
-                      : "bg-[color:var(--ink)] text-[color:var(--parchment-dim)] hover:text-[color:var(--gold)]")
+                      : "bg-[color:var(--bone-2)] text-[color:var(--parchment-dim)] hover:text-[color:var(--gold)]")
                   }
                 >
                   {TYPE_LABEL[t]}

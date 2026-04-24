@@ -103,7 +103,7 @@ export default function Page({ params }: { params: { handle: string } }) {
 
 function Stat({ label, value }: { label: string; value: number | string }) {
   return (
-    <div className="bg-[color:var(--ink)] p-4">
+    <div className="bg-[color:var(--bone-2)] p-4">
       <div className="font-serif-display text-2xl text-[color:var(--parchment)]">
         {value}
       </div>

@@ -53,7 +53,7 @@ export default function Page() {
             <Link
               key={r.handle}
               href={`/contributors/${r.handle}`}
-              className="group bg-[color:var(--ink)] p-6 hover:bg-[color:var(--ink-2)] transition block"
+              className="group bg-[color:var(--bone-2)] p-6 hover:bg-[color:var(--bone-3)] transition block"
             >
               <div className="flex items-baseline justify-between mb-2">
                 <div className="font-serif-display text-lg text-[color:var(--parchment)] group-hover:text-[color:var(--gold)]">

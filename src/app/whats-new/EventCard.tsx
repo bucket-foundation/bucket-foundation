@@ -9,7 +9,7 @@ import {
 
 export default function EventCard({ event }: { event: FeedEvent }) {
   return (
-    <article className="group bg-[color:var(--ink)] p-6 border-b hairline hover:bg-[color:var(--ink-2)] transition">
+    <article className="group bg-[color:var(--bone-2)] p-6 border-b hairline hover:bg-[color:var(--bone-3)] transition">
       <div className="flex items-start gap-4">
         <div
           aria-hidden
