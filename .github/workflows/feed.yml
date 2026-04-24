@@ -66,18 +66,25 @@ jobs:
         if: steps.commit.outputs.changed == 'true'
         continue-on-error: true
         env:
-          RCLONE_CONFIG_GDRIVE_TOKEN: ${{ secrets.RCLONE_CONFIG_GDRIVE_TOKEN }}
+          RCLONE_GDRIVE_TOKEN_JSON: ${{ secrets.RCLONE_GDRIVE_TOKEN_JSON }}
         run: |
-          if [ -z "${RCLONE_CONFIG_GDRIVE_TOKEN:-}" ]; then
-            echo "warn: RCLONE_CONFIG_GDRIVE_TOKEN missing, skipping gdrive mirror"
+          if [ -z "${RCLONE_GDRIVE_TOKEN_JSON:-}" ]; then
+            echo "warn: RCLONE_GDRIVE_TOKEN_JSON missing, skipping gdrive mirror"
             exit 0
           fi
           if ! command -v rclone >/dev/null 2>&1; then
             curl -s https://rclone.org/install.sh | sudo bash
           fi
           mkdir -p ~/.config/rclone
-          python3 -c "import os,base64,sys;sys.stdout.buffer.write(base64.b64decode(os.environ['RCLONE_CONFIG_GDRIVE_TOKEN']))" > ~/.config/rclone/rclone.conf
-          wc -c ~/.config/rclone/rclone.conf
+          python3 <<'PYEOF' > ~/.config/rclone/rclone.conf
+          import os
+          t = os.environ['RCLONE_GDRIVE_TOKEN_JSON'].strip()
+          print("[gdrive]")
+          print("type = drive")
+          print("scope = drive")
+          print(f"token = {t}")
+          print("team_drive =")
+          PYEOF
           rclone listremotes --config ~/.config/rclone/rclone.conf
           DAY=$(date -u +%Y-%m-%d)
           OUT=/tmp/canon-updates-${DAY}.md
