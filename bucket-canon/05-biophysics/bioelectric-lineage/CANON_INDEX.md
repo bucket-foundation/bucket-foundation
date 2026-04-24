@@ -28,3 +28,5 @@
 - `contested`: Node 12 (Nordenström) — contested in mainstream oncology.
 - `cross-ref-full-dossier`: Node 11 (Becker) — full dossier at `../becker/`.
 - `living`: Nodes 14, 15 — single-contribution entries only.
+
+_last updated: 2026-04-24T03:26:00Z by canon-pipeline_

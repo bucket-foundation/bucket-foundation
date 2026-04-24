@@ -36,3 +36,5 @@ For commercial/regulatory landscape (and explicit non-facilitation), see `bucket
 - No compound-to-vendor mappings.
 - Single-lab dominance and industry-funded-only evidence flagged inline.
 - Living authors: load-bearing contribution only, no career summary.
+
+_last updated: 2026-04-24T03:14:49Z by canon-pipeline_

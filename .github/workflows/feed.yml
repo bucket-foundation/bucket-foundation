@@ -1,0 +1,110 @@
+name: canon-feed
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  feed:
+    # Skip the bot's own commits to avoid loops
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !startsWith(github.event.head_commit.message, 'feed:') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Determine SHA range
+        id: shas
+        run: |
+          FROM="${{ github.event.before }}"
+          TO="${{ github.sha }}"
+          # First push on a new branch has before=000...; fall back to HEAD^
+          if [ -z "$FROM" ] || [ "$FROM" = "0000000000000000000000000000000000000000" ]; then
+            FROM=$(git rev-parse HEAD^ || echo "")
+          fi
+          echo "from=$FROM" >> "$GITHUB_OUTPUT"
+          echo "to=$TO"     >> "$GITHUB_OUTPUT"
+
+      - name: Parse + update feed
+        if: steps.shas.outputs.from != ''
+        run: |
+          python3 tools/feed/parse.py --from "${{ steps.shas.outputs.from }}" --to "${{ steps.shas.outputs.to }}" \
+            | tee /tmp/events.jsonl \
+            | python3 tools/feed/feed.py update
+          echo "events emitted: $(wc -l </tmp/events.jsonl)"
+
+      - name: Validate feed
+        run: python3 tools/feed/feed.py validate
+
+      - name: Commit feed changes
+        id: commit
+        run: |
+          git config user.name  'bucket-bot'
+          git config user.email 'bot@bucket.foundation'
+          if git diff --quiet -- feed.json feed.xml feed/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "no feed changes"
+            exit 0
+          fi
+          COUNT=$(wc -l </tmp/events.jsonl 2>/dev/null || echo 0)
+          git add feed.json feed.xml feed/ 2>/dev/null || true
+          git commit -m "feed: ${COUNT} events (bot) [skip ci]"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Mirror summary to gdrive
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          RCLONE_CONFIG_GDRIVE_TOKEN: ${{ secrets.RCLONE_CONFIG_GDRIVE_TOKEN }}
+        run: |
+          if [ -z "${RCLONE_CONFIG_GDRIVE_TOKEN:-}" ]; then
+            echo "warn: RCLONE_CONFIG_GDRIVE_TOKEN missing, skipping gdrive mirror"
+            exit 0
+          fi
+          if ! command -v rclone >/dev/null 2>&1; then
+            curl -s https://rclone.org/install.sh | sudo bash
+          fi
+          mkdir -p ~/.config/rclone
+          cat > ~/.config/rclone/rclone.conf <<EOF
+          [gdrive]
+          type = drive
+          scope = drive
+          token = ${RCLONE_CONFIG_GDRIVE_TOKEN}
+          EOF
+          DAY=$(date -u +%Y-%m-%d)
+          OUT=/tmp/canon-updates-${DAY}.md
+          {
+            echo "# Canon updates — ${DAY}"
+            echo ""
+            while IFS= read -r line; do
+              TYPE=$(echo "$line" | python3 -c "import json,sys;print(json.loads(sys.stdin.read()).get('type',''))")
+              TITLE=$(echo "$line" | python3 -c "import json,sys;print(json.loads(sys.stdin.read()).get('title',''))")
+              BRANCH=$(echo "$line" | python3 -c "import json,sys;print(json.loads(sys.stdin.read()).get('branch') or '')")
+              echo "- \`${TYPE}\` ${BRANCH} — ${TITLE}"
+            done < /tmp/events.jsonl
+          } > "$OUT"
+          rclone copy "$OUT" "gdrive:AGFarms/Nucleus/bucket-foundation/canon-updates/" -v
+
+      - name: Trigger Vercel deploy
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "${VERCEL_DEPLOY_HOOK:-}" ]; then
+            echo "warn: VERCEL_DEPLOY_HOOK missing, skipping vercel trigger"
+            exit 0
+          fi
+          curl -fsS -X POST "$VERCEL_DEPLOY_HOOK" -o /dev/null
+          echo "vercel deploy hook triggered"

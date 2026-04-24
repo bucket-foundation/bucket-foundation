@@ -47,3 +47,5 @@ Authoritative manifest for `bucket-canon/05-biophysics/melanin/`. If a file is i
 - Paywalled full texts are cited, not fetched.
 - Superseded entries move to `_archive/<YYYY-MM>/` (none yet).
 - Re-running the intake pipeline must converge, not duplicate.
+
+_last updated: 2026-04-24T03:14:28Z by canon-pipeline_

@@ -51,3 +51,5 @@
 - Does the ELF/mitochondria coupling literature deserve its own sub-branch or stay flagged within mitochondria?
 - Where does ATP synthase rotational mechanism (Boyer/Walker) sit relative to a future `atp-synthase/` sub-folder?
 - Cristae architecture (MICOS complex) — not yet seeded; candidate for pass-2.
+
+_last updated: 2026-04-24T03:14:39Z by canon-pipeline_
