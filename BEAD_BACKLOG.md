@@ -132,3 +132,87 @@ Curate longtermism philosophy shelf: Bostrom (*Superintelligence*, *Deep Utopia*
 5. `bkt-research-07`, deep-history landscape scans (from `08-deep-history` intake)
 6. `bkt-research-08` (GOE/radiosynthesis seed)
 7. `bkt-research-09` (longtermism shelf)
+
+---
+
+## Figures / Religion / Ancient Sites / Becker Research Track (filed 2026-04-23)
+
+Second batch, filed same session. Canon/landscape split continues.
+
+### bkt-research-10 · P2 · Polymath register (`canon-figures/_polymaths.md`)
+Cross-branch contributors whose work spans ≥3 canon branches. Seed: Leonardo, Newton, Gauss, Poincaré, von Neumann, Feynman, Turing, Ramanujan, Wiener, Goethe, Ibn al-Haytham, al-Khwarizmi, Avicenna, Pascal, Leibniz, Tesla, Helmholtz, Maxwell, Émilie du Châtelet, Hypatia (†), Ada Lovelace, Hildegard of Bingen. Entry: name, branches touched, primary works, qualifying criterion (not just famous).
+
+### bkt-research-11 · P3 · Polyglot register (`canon-figures/_polyglots.md`)
+Figures whose multilingualism was load-bearing for the work: Champollion, Schliemann, Mezzofanti, Tolkien, William Jones (Indo-European), Richard F. Burton, Ventris (Linear B), Kató Lomb. Separates "knew many languages" from "language was the epistemic instrument."
+
+### bkt-research-12 · P3 · Landscape: history commentariat (`research-landscape/history-commentariat/`)
+Modern history/civilization commentators who move public understanding but aren't primary-source historians: Hancock, Carlson, Dan Carlin (Hardcore History), Martin Rundkvist, Fall of Civilizations, Tides of History, Historia Civilis, Kurzgesagt-history. Landscape only, zero auto-promotion to canon. Evaluation axes: sourcing rigor, primary-reference density, retraction history.
+
+### bkt-research-13 · P2 · Canon scaffold: `09-sacred-texts` branch + public-domain source index
+New canon branch `09-sacred-texts` for primary religious/philosophical texts (treated as primary sources, NOT as truth claims — same discipline as Euclid). PD/open-license seed sources:
+- **Tanakh**: Westminster Leningrad Codex (PD), Sefaria API (CC-BY)
+- **Christian Bible**: KJV/ASV/WEB (PD); SBLGNT Greek NT (CC-BY)
+- **Quran**: Tanzil.net (CC BY-ND), Quran.com API
+- **Buddhist**: Pali Canon via SuttaCentral (CC0/CC-BY), BDK English Tripitaka
+- **Hindu**: Rig Veda (Griffith PD), Upanishads (PD translations)
+- **Taoist**: Tao Te Ching (multiple PD), Zhuangzi
+- **Zoroastrian**: Avesta (PD)
+- **Gnostic/Nag Hammadi**: Nag Hammadi Library (PD scans)
+- **Egyptian**: Pyramid Texts, Book of the Dead (Budge PD)
+- **Mesopotamian**: Enuma Elish, Gilgamesh (PD)
+- **Mesoamerican**: Popol Vuh, Chilam Balam (PD)
+Output: `09-sacred-texts/SOURCES.md` + download pipeline to `gdrive:bucket-canon/09-sacred-texts/`.
+
+### bkt-research-14 · P3 · Landscape: comparative mythology / cataclysm motifs (`research-landscape/myth-patterns/`)
+Cross-cultural flood/fire/sky-change motifs: Sumerian, Hebrew, Greek, Hindu, Mesoamerican, Aboriginal, Native American. Secondary scholarship: Dumézil, Eliade, Campbell, de Santillana & von Dechend (*Hamlet's Mill* — precession-encoded myth). Analytical landscape, not canon.
+
+### bkt-research-15 · P2 · `08-deep-history/sites/` — global ancient-site index
+Geodetic + chronological index of pre-3000 BC sites with primary-literature citations. Seed: Göbekli Tepe, Karahan Tepe, Çatalhöyük, Giza, Saqqara, Abu Gorab, Stonehenge, Newgrange, Carnac, Nabta Playa, Teotihuacan, Tiwanaku, Puma Punku, Sacsayhuamán, Nan Madol, Yonaguni, Gunung Padang. Each entry: coordinates, dating refs, primary archaeological papers, dating controversies. Canon = dated primary findings; alt-dating hypotheses → landscape.
+
+### bkt-research-16 · P2 · `08-deep-history/cataclysms/` — cataclysm event catalog
+Primary literature on known + proposed Holocene / late-Pleistocene cataclysms:
+- **Younger Dryas Impact Hypothesis** — Firestone et al 2007, Moore et al 2020, Sweatman review; primaries + rebuttals
+- **Meltwater Pulse 1A / 1B** — sea-level primary data
+- **8.2 kiloyear event**
+- **Toba eruption** (~74 kya)
+- **Chicxulub** (K-Pg methodology template)
+- **Hiawatha crater** (Kjær 2018) + age debate
+- **Miyake events** (774 AD, 993 AD, 660 BC — ¹⁴C spike solar-proton primaries)
+Canon = peer-reviewed primary dating/evidence. Carlson's synthesis → landscape.
+
+### bkt-research-17 · P1 · Robert O. Becker complete dossier (`05-biophysics/becker/`)
+**Becker is foundational for bioelectric medicine — dedicated folder.** Can ship BEFORE general DOI pipeline (bead #01) because it's a bounded crawl + known paper list. Good first real deliverable.
+
+Deliverables:
+1. **Site mirror**: `robertobecker.net` full crawl (respect robots.txt; text + PDFs + images). Output: `bucket-canon/05-biophysics/becker/site-mirror/<YYYY-MM-DD>/` + gdrive.
+2. **Papers**: all Becker-authored/co-authored papers via PubMed + Google Scholar + citation chase. DC currents + limb regeneration (salamander, frog, rat); silver electrode wound healing; ELF field bioeffects; Becker-Marino series; Syracuse VA work. DOI + citation + OA PDF where license allows; canonical-URL-only for paywalled.
+3. **Books** (bibliographic, link to WorldCat — not piracy):
+   - *The Body Electric* (1985, w/ Gary Selden)
+   - *Cross Currents* (1990)
+   - *Electromagnetism and Life* (1982, w/ Andrew Marino)
+4. **Lineage / influenced-by network**: Andrew Marino, Marco Bischof, James Oschman, Gerald Pollack, Mae-Wan Ho (†), Cyril Smith, Abraham Liboff, Reba Goodman, Carl Blackman, Martin Blank (†). Each: relationship to Becker + 1–3 key works extending his line.
+5. **Interview/talk index**: YouTube/archive talks + interviews (transcripts where available). Landscape tier.
+
+Layout:
+```
+bucket-canon/05-biophysics/becker/
+  CANON_INDEX.md
+  biography.md
+  papers.bib
+  books.md
+  lineage.md
+  site-mirror/<date>/
+research-landscape/biophysics/becker-commentariat/
+  interviews.md
+  talks.md
+```
+
+### bkt-research-18 · P3 · Bioelectric lineage dossier (`05-biophysics/bioelectric-lineage/`)
+After Becker dossier lands, build the broader bioelectric-foundations arc: Galvani → Volta → DuBois-Reymond → Harold Saxton Burr (Yale L-fields) → Becker → Nordenström → Michael Levin (Tufts, modern bioelectric morphogenesis). Canonical papers per node showing the 18th-c frog legs → modern morphogenetic fields progression.
+
+### Shipping order (second-batch, founder-approved 2026-04-23)
+0. `bkt-research-17` (Becker) — can ship *before* pipeline because bounded
+1. Pipeline from batch 1 (`bkt-research-01`) — then unlocks everything else
+2. `bkt-research-13` (sacred-texts scaffold) + `bkt-research-15` (sites index) + `bkt-research-16` (cataclysms) in parallel once pipeline lands
+3. `bkt-research-10` (polymaths), `bkt-research-11` (polyglots), `bkt-research-18` (bioelectric lineage)
+4. `bkt-research-12` (history commentariat), `bkt-research-14` (myth patterns)
