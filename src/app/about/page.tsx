@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import Link from "next/link";
 
-export const metadata = { title: "About · bucket.foundation" };
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "A nonprofit canon of foundations — axioms, real math, laws, principles, primary derivations. Held in founder's personal capacity pending formal nonprofit filing.",
+  alternates: { canonical: "/about" },
+  openGraph: { type: "article", title: "About · bucket.foundation", url: "https://www.bucket.foundation/about" },
+};
 
 export default function Page() {
   return (

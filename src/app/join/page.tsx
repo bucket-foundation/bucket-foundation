@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import Link from "next/link";
 
-export const metadata = { title: "Contribute canon · bucket.foundation" };
+export const metadata: Metadata = {
+  title: "Contribute canon",
+  description:
+    "The foundation is open. Three ways in, ranked by the standard we hold for canon: primary source, canon curator, code contributor.",
+  alternates: { canonical: "/join" },
+  openGraph: { type: "article", title: "Contribute · bucket.foundation", url: "https://www.bucket.foundation/join" },
+};
 
 export default function Page() {
   return (

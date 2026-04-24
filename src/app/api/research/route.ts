@@ -74,7 +74,54 @@ const CORS_HEADERS: Record<string, string> = {
   "access-control-allow-methods": "GET, OPTIONS",
   "access-control-allow-headers": "content-type, x-bucket-client",
   "x-bucket-proxy": "v1",
+  "x-robots-tag": "all",
+  link: '</cite-forever/v0.1>; rel="license"',
 };
+
+// Additive feed402/0.2+ fields layered onto every envelope (backward compatible).
+const CITE_LICENSE = "bucket.foundation/cite-forever/v0.1";
+const PAYOUT_WALLET =
+  process.env.BUCKET_PAYOUT_WALLET ??
+  "0xa91115B1AB8412f380Fd62446F523559F668b96B";
+
+function citeBlock(tier: string) {
+  return {
+    price_usd: TIER_PRICES[tier] ?? 0,
+    payout_wallet: PAYOUT_WALLET,
+    license: CITE_LICENSE,
+  };
+}
+
+function provenanceStep(action: string, via: string) {
+  return {
+    action,
+    at: new Date().toISOString(),
+    by: "bucket-proxy/v1",
+    via,
+  };
+}
+
+function mergeCiteFields(
+  envelope: unknown,
+  tier: string,
+  via: string,
+): unknown {
+  if (envelope && typeof envelope === "object" && !Array.isArray(envelope)) {
+    const obj = envelope as Record<string, unknown>;
+    const existingProv = Array.isArray(obj.provenance)
+      ? (obj.provenance as unknown[])
+      : [];
+    return {
+      ...obj,
+      cite: obj.cite ?? citeBlock(tier),
+      tags: obj.tags ?? [],
+      canon_tier: obj.canon_tier ?? "candidate",
+      foundation_branches: obj.foundation_branches ?? [],
+      provenance: [...existingProv, provenanceStep("proxied", via)],
+    };
+  }
+  return envelope;
+}
 
 function json(
   body: unknown,
@@ -123,8 +170,14 @@ function stubUpstreamUnavailable(q: string, tier: string, reason: string) {
         price_usd: 0,
         tx: null,
         paid_at: null,
+        buyer_wallet: null,
         status: "upstream_unavailable",
       },
+      cite: citeBlock(tier),
+      tags: [],
+      canon_tier: "candidate",
+      foundation_branches: [],
+      provenance: [provenanceStep("upstream_unavailable", GATEWAY_URL)],
       error: {
         code: "upstream_unavailable",
         message: `Upstream gateway unavailable: ${reason}. Retry shortly. Query: ${q}`,
@@ -286,6 +339,15 @@ export async function GET(req: NextRequest) {
           challenge: challengeB64 || null,
           demo: true,
         },
+        cite: {
+          price_usd,
+          payout_wallet: payTo ?? PAYOUT_WALLET,
+          license: CITE_LICENSE,
+        },
+        tags: [],
+        canon_tier: "candidate",
+        foundation_branches: [],
+        provenance: [provenanceStep("payment_required", GATEWAY_URL)],
         error: {
           code: "payment_required",
           message:
@@ -315,7 +377,8 @@ export async function GET(req: NextRequest) {
     spend.usd += price;
   }
 
-  return json(envelope, {
+  const enriched = mergeCiteFields(envelope, tier, GATEWAY_URL);
+  return json(enriched, {
     status: resp.status,
     headers: { "x-bucket-tier": tier },
   });

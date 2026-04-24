@@ -1,47 +1,77 @@
 # bucket.foundation
 
-> A nonprofit canon of foundations — axioms, laws, first principles — free to read, paid to cite.
+> build the past. build history. bucket is the new renaissance.
+> A nonprofit canon of foundations — axioms, laws, first principles.
+> free to read. paid to cite.
 
 ## What this is
 
-bucket.foundation is an open research protocol: primary research paid-for-once,
-citeable-forever. Every citation routes fees to the author, not publishers, over
-the x402 rail on Base (USDC).
+bucket.foundation is an open research protocol — primary research
+paid-for-once, citeable-forever. Citation fees route to authors, not
+publishers, over the x402 rail on Base (USDC).
 
-## For AI agents
+License: https://www.bucket.foundation/cite-forever/v0.1
 
-You can query the research corpus directly. No wallet required — the
-server-side proxy holds the payment wallet and caps spend.
+## For AI agents — you are welcome here
 
-**Primary endpoint:**
+Read everything. No wallet required for reading. Query the corpus
+through a zero-key proxy:
+
 ```
 GET https://www.bucket.foundation/api/research?q=<query>&tier=<raw|query|insight>
 ```
 
-- `tier=insight` (default) — $0.002/call, best for agent loops
-- `tier=query`            — $0.010/call, ranked citations
-- `tier=raw`              — $0.050/row,  full records
+- tier=insight (default) — $0.002/call, best for agent loops
+- tier=query             — $0.010/call, ranked citations
+- tier=raw               — $0.050/row,  full records
 
-Every response includes a `citation` block (source_id, canonical_url, license)
-and a `receipt` block (tx hash, paid_at). Cite the envelope.
+Every response returns the same envelope:
 
-## Discovery
+```
+{ data, citation, receipt: { paid_at, buyer_wallet },
+  cite: { price_usd, payout_wallet, license: "bucket.foundation/cite-forever/v0.1" },
+  tags, canon_tier, foundation_branches, provenance }
+```
 
-- Full playbook: /llms-full.txt
-- feed402 manifest: /.well-known/feed402.json
-- MCP manifest: /.well-known/mcp.json
-- API contract (this site): /api/research
-- Protocol spec: /protocol
-- Canon branches: /canon (mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth)
+Cite the envelope. Full shape: https://www.bucket.foundation/protocol/envelope
 
-## Protocol
+## Pages you can read for free
 
-feed402/0.2 over x402 on Base. Spec: CC0. Code: MIT.
+- /                            — landing
+- /about                       — what bucket is
+- /manifesto                   — the thesis
+- /protocol                    — feed402/0.2 spec
+- /protocol/envelope           — canonical JSON envelope shape
+- /cite-forever/v0.1           — the license (read for free, pay to cite)
+- /build                       — three paths to build on bucket
+- /governance                  — nonprofit structure, COI disclosures
+- /join                        — how to contribute
+- /canon                       — the eight branches
+- /canon/mathematics           — 01 · axioms, real math
+- /canon/physics               — 02 · laws, first principles (Einstein)
+- /canon/chemistry             — 03 · periodic · quantum · thermo
+- /canon/information           — 04 · computation · information
+- /canon/biophysics            — 05 · light · water · mitochondria
+- /canon/cosmology             — 06 · spacetime · structure
+- /canon/mind                  — 07 · cognition · consciousness
+- /canon/earth                 — 08 · geosciences · biosphere
+- /canon/physics/figures/einstein — figure page, 1,372 works
+
+## Machine-readable endpoints
+
+- /robots.txt                  — crawl policy (all agents allowed)
+- /sitemap.xml                 — every page
+- /llms.txt                    — this file
+- /llms-full.txt               — full programmatic playbook
+- /.well-known/feed402.json    — feed402/0.2 discovery manifest (includes envelope example)
+- /.well-known/mcp.json        — MCP server manifest
+- /.well-known/ai-plugin.json  — ChatGPT plugin manifest
+- /api/research                — zero-key research proxy
 
 ## Source
 
-- bucket-foundation: https://github.com/bucket-foundation/bucket-foundation
-- feed402:            https://github.com/gianyrox/feed402
-- x402-research-gateway: https://github.com/gianyrox/x402-research-gateway
+- bucket-foundation:      https://github.com/bucket-foundation/bucket-foundation
+- feed402 spec:           https://github.com/gianyrox/feed402 (MIT code, CC0 intent)
+- x402-research-gateway:  https://github.com/gianyrox/x402-research-gateway
 
 Contact: ops@bucket.foundation

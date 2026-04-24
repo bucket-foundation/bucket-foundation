@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "bucket.foundation",
+  "name_for_model": "bucket_foundation",
+  "description_for_human": "Free to read. Paid to cite. Query the bucket.foundation research canon — axioms, laws, first principles — over the feed402 / x402 rail.",
+  "description_for_model": "Query the bucket.foundation research canon. Every response returns a feed402/0.2 envelope with data, citation, receipt, cite (price_usd, payout_wallet, license), tags, canon_tier, foundation_branches, and provenance. Free to read. Citations cost $0.002 (insight) / $0.010 (query) / $0.050 (raw) per call on Base via USDC. A zero-key proxy is available at /api/research. License: bucket.foundation/cite-forever/v0.1.",
+  "auth": { "type": "none" },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.bucket.foundation/.well-known/openapi.json",
+    "has_user_authentication": false
+  },
+  "logo_url": "https://www.bucket.foundation/icon.png",
+  "contact_email": "ops@bucket.foundation",
+  "legal_info_url": "https://www.bucket.foundation/governance",
+  "license_url": "https://www.bucket.foundation/cite-forever/v0.1"
+}

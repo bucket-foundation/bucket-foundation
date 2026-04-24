@@ -134,16 +134,18 @@ const JSON_LD = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "NGO",
+      "@type": ["NGO", "Organization", "ResearchOrganization"],
       "@id": `${SITE_URL}#org`,
       name: "bucket.foundation",
       alternateName: ["bucket foundation", "bucket"],
       url: SITE_URL,
       logo: `${SITE_URL}/icon.png`,
       image: `${SITE_URL}/opengraph-image.png`,
+      nonprofitStatus: "Nonprofit501c3",
       description:
         "A nonprofit canon of foundations — axioms, real math, laws, principles, primary derivations — built by the small number of people who can do genius work with AI.",
-      slogan: "free to read. paid to cite.",
+      slogan: "build the past. build history. bucket is the new renaissance.",
+      license: `${SITE_URL}/cite-forever/v0.1`,
       foundingDate: "2022",
       founder: {
         "@type": "Person",
@@ -183,7 +185,18 @@ const JSON_LD = {
       description:
         "Eight branches of foundations: mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth.",
       creator: { "@id": `${SITE_URL}#org` },
-      license: "https://creativecommons.org/publicdomain/zero/1.0/",
+      license: `${SITE_URL}/cite-forever/v0.1`,
+      usageInfo: `${SITE_URL}/cite-forever/v0.1`,
+      isAccessibleForFree: true,
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": `${SITE_URL}/cite-forever/v0.1`,
+      name: "bucket.foundation cite-forever license v0.1",
+      url: `${SITE_URL}/cite-forever/v0.1`,
+      description:
+        "Free to read. Paid to cite. Every citation routes fees to the author, over the x402 rail on Base, forever.",
+      license: `${SITE_URL}/cite-forever/v0.1`,
     },
     {
       "@type": "SoftwareApplication",

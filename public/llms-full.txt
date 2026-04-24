@@ -109,10 +109,27 @@ curl -s "https://www.bucket.foundation/api/research?q=caloric+restriction&tier=r
     "price_usd": 0.002,
     "tx": "0xabc…",
     "paid_at": "2026-04-23T10:12:44Z",
+    "buyer_wallet": "0xdef…",
     "status": "settled"
-  }
+  },
+  "cite": {
+    "price_usd": 0.002,
+    "payout_wallet": "0xa91115B1AB8412f380Fd62446F523559F668b96B",
+    "license": "bucket.foundation/cite-forever/v0.1"
+  },
+  "tags": ["biophysics", "caloric-restriction"],
+  "canon_tier": "candidate",
+  "foundation_branches": ["05-biophysics"],
+  "provenance": [
+    { "action": "retrieved", "at": "2026-04-23T10:12:44Z", "by": "bucket-proxy/v1", "via": "x402-research.agfarms.dev" }
+  ]
 }
 ```
+
+The `cite` block is the forward-looking contract: if you re-cite this
+envelope in a downstream work, pay `cite.price_usd` to `cite.payout_wallet`
+under the terms of `cite.license` (https://www.bucket.foundation/cite-forever/v0.1).
+Envelope shape docs: https://www.bucket.foundation/protocol/envelope
 
 Response headers include:
 ```

@@ -2,7 +2,14 @@ import PageShell from "@/components/PageShell";
 import { Markdown } from "@/lib/markdown";
 import { readDoc } from "@/lib/docs";
 
-export const metadata = { title: "Protocol · bucket.foundation" };
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Protocol",
+  description:
+    "feed402/0.2 — an open standard for paid research endpoints over x402 on Base. Discover, pay, query — three tiers, one envelope.",
+  alternates: { canonical: "/protocol" },
+  openGraph: { type: "article", title: "Protocol · bucket.foundation", url: "https://www.bucket.foundation/protocol" },
+};
 
 export default function Page() {
   const md = readDoc("PROTOCOL.md");
