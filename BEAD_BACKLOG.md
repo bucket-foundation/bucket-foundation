@@ -85,3 +85,50 @@ Each path: code snippet + repo link + expected output. Ties all three repos toge
 4. `bkt-build-01` — `/build` landing
 
 After that ladder is green, an external dev can watch the demo, hit `/build`, clone one repo, and have a working agent in <10 min.
+
+---
+
+## Longtermism / Deep-History / Biophysics Research Track (filed 2026-04-23)
+
+Filed via `bkt-nuc` session. Nucleus dispatch still 401'd; will be promoted to live beads once `bkt-epic-infra` ships. Canon/landscape split enforced per founder direction: foundation-tier → `bucket-canon/<branch>/`, hypothesis/commercial-tier → `research-landscape/` (new sibling directory, outside canon).
+
+### bkt-research-01 · P1 · Pipeline: DOI resolver → canon mirror
+Build DOI resolution + paper-fetch pipeline feeding `gdrive:AGFarms/Nucleus/research/bucket-canon/`. Sources: OpenAlex, arXiv, bioRxiv, Crossref, PubMed, Semantic Scholar. Fallback: Sci-Hub for paywalled DOIs (local read only — canon stores DOI + canonical_url + our notes, NEVER redistributes PDFs). Open-access sources get full mirror (license allows). Reuse `x402-research-gateway` where possible. Flow: `query → DOI list → metadata → canon-score → mirror`. Foundation for all other research beads below — ship first.
+
+### bkt-research-02 · P2 · Canon scaffold: `08-deep-history` branch + `research-landscape/` sibling
+Add canon branch `08-deep-history` under `bucket-canon/` for foundation-tier deep-history science (archaeoastronomy primaries, Schoch Sphinx erosion geology, geomagnetic siting primary papers). Update `TAXONOMY_NOTES.md` with rationale. **Also create `research-landscape/` directory outside canon** for hypothesis-tier material (Hancock, Carlson, UnchartedX, alt-history podcasters). Only primary-source-verified material promotes landscape → canon. Keeps canon clean; landscape honest.
+
+### bkt-research-03 · P2 · canon-figures/ pass-2 index (~25 new names)
+Extend `canon-figures/` contributor index:
+- **Deep history**: Hancock, Carlson, Schoch, West, Foerster, Schmidt (Gobekli Tepe †)
+- **Biophysics/melanin/mito**: Solís-Herrera, Doug Wallace, Szent-Györgyi, Gilbert Ling, Gerald Pollack, Fritz-Albert Popp, Robert O. Becker, Nick Lane, Doris Loh, Georgi Dinkov, Ray Peat (†)
+- **Peptides**: Khavinson, William Seeds
+- **Longtermism (philosophy tier)**: Bostrom, Ord, MacAskill, Parfit (†)
+Each entry: name, branch, 1-line contribution, 1–3 key works.
+
+### bkt-research-04 · P2 · Canon dossier: melanin as biological semiconductor (`05-biophysics/melanin/`)
+Primary-source dossier on melanin/eumelanin water-splitting + semiconduction. Core: Solís-Herrera "Human Photosynthesis" papers, Pollack EZ-water, Becker bioelectric medicine, Szent-Györgyi electronic biology. Mechanism focus, no clinical claims. Output: `CANON_INDEX.md` entry + annotated bibliography.
+
+### bkt-research-05 · P2 · Canon dossier: mitochondria primary science (`05-biophysics/mitochondria/`)
+Foundation-tier mitochondrial science. Doug Wallace (mtDNA/disease), Nick Lane (*Power, Sex, Suicide* + primary papers), Szent-Györgyi, cytochrome c oxidase enzymology, ELF-field coupling primary refs, deuterium depletion primary literature. Separate the science from the commentariat. Output: `CANON_INDEX.md` entries.
+
+### bkt-research-06 · P2 · Canon dossier: peptide science primary literature (`05-biophysics/peptides/`)
+Foundation-tier peptide literature: Khavinson epithalon/bioregulators, BPC-157 mechanism, MOTS-c (Lee et al), GHK-Cu (Pickart), SS-31 (Szeto), TB-500/thymosin-β4, semax/selank (Russian primary lit). Mechanism of action only — NOT dosing/clinical/commercial. Lives in canon; separate from peptide-markets landscape bead.
+
+### bkt-research-07 · P3 · Landscape: RUO peptide marketplace scan (read-only, non-facilitation)
+Index research-use-only peptide vendor landscape as situational awareness — **NOT a buyer's guide, NOT canon**. Scope: vendor list, COA practices, RUO regulatory framing, pricing trends, geographic distribution. Output: `research-landscape/peptide-markets/` (outside `bucket-canon/`). **Explicit non-facilitation clause**: Bucket indexes information about the market, does not enable purchase or use. Read-only scraping, no account creation, no transactions.
+
+### bkt-research-08 · P3 · Canon seed: GOE + radiosynthesis↔photosynthesis deep-time thread
+Seed Great Oxygenation Event (~2.4 Gya) material across `06-cosmology` (atmospheric O₂ history) and `05-biophysics` (photosynthesis → radiosynthesis continuity; Dadachova melanized fungi at Chernobyl primary papers). Argues energy-from-light/ionizing-radiation as continuous across deep time into modern biology. Primary refs only.
+
+### bkt-research-09 · P4 · Shelf: longtermism philosophy (separate from science canon)
+Curate longtermism philosophy shelf: Bostrom (*Superintelligence*, *Deep Utopia*), Ord (*The Precipice*), MacAskill (*What We Owe the Future*), Parfit (*Reasons and Persons* foundations). **PHILOSOPHY TIER flag** — does NOT enter science canon (which holds only foundations/axioms/primary derivations). Lives in `research-landscape/philosophy/longtermism/`. Last priority; most separable.
+
+### Shipping order (founder-approved 2026-04-23)
+1. `bkt-research-01` (pipeline — blocks all others)
+2. `bkt-research-02` (canon scaffold + landscape sibling)
+3. `bkt-research-03` (figures index pass-2)
+4. Parallel: `bkt-research-04`, `bkt-research-05`, `bkt-research-06` (three dossiers)
+5. `bkt-research-07`, deep-history landscape scans (from `08-deep-history` intake)
+6. `bkt-research-08` (GOE/radiosynthesis seed)
+7. `bkt-research-09` (longtermism shelf)
