@@ -40,8 +40,10 @@ export default function Footer() {
         <div>
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Open</div>
           <ul className="space-y-2 text-sm">
-            <li><a href="https://github.com/bucket-foundation/bucket-research" className="hover:text-[color:var(--bone)] transition">bucket-research</a></li>
-            <li><a href="https://github.com/bucket-foundation/bucket-foundation" className="hover:text-[color:var(--bone)] transition">bucket-foundation</a></li>
+            <li><Link href="/whats-new" className="hover:text-[color:var(--bone)] transition">What's new</Link></li>
+            <li><Link href="/contributors" className="hover:text-[color:var(--bone)] transition">Contributors</Link></li>
+            <li><a href="/feed.xml" className="hover:text-[color:var(--bone)] transition">RSS feed</a></li>
+            <li><a href="https://github.com/bucket-foundation/bucket-foundation" className="hover:text-[color:var(--bone)] transition">GitHub</a></li>
             <li><a href="https://github.com/gianyrox/feed402" className="hover:text-[color:var(--bone)] transition">feed402 protocol</a></li>
             <li><Link href="/manifesto" className="hover:text-[color:var(--bone)] transition">Manifesto</Link></li>
             <li><Link href="/governance" className="hover:text-[color:var(--bone)] transition">Governance</Link></li>
