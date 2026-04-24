@@ -181,6 +181,13 @@ export default function AiPasteCTA() {
             </a>
             <span className="text-[color:var(--hairline-ink)]">·</span>
             <a
+              href="/learn"
+              className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+            >
+              → learn with your own Claude key (/learn)
+            </a>
+            <span className="text-[color:var(--hairline-ink)]">·</span>
+            <a
               href="https://github.com/bucket-foundation/bucket-mcp"
               target="_blank"
               rel="noopener noreferrer"

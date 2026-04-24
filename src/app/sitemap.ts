@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/protocol", pri: 0.9, freq: "weekly" as const },
     { p: "/protocol/envelope", pri: 0.85, freq: "weekly" as const },
     { p: "/build", pri: 0.85, freq: "weekly" as const },
+    { p: "/learn", pri: 0.85, freq: "weekly" as const },
     { p: "/cite-forever/v0.1", pri: 0.8, freq: "yearly" as const },
     { p: "/governance", pri: 0.7, freq: "monthly" as const },
     { p: "/about", pri: 0.7, freq: "monthly" as const },
