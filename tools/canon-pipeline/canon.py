@@ -166,7 +166,7 @@ def _merge(doi, oa, cr, pm, ax, bx, sources) -> dict:
             "is_oa": bool(oa_info.get("is_oa")),
             "oa_url": oa_info.get("oa_url"),
             "license": (oa.get("primary_location") or {}).get("license"),
-            "repository": (oa.get("primary_location") or {}).get("source", {}).get("host_organization_name") if oa.get("primary_location") else None,
+            "repository": ((oa.get("primary_location") or {}).get("source") or {}).get("host_organization_name") if oa.get("primary_location") else None,
         }
         is_retracted = bool(oa.get("is_retracted"))
         cr_type = oa.get("type_crossref")  # let Crossref fill type; OpenAlex's "article" is too coarse

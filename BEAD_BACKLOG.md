@@ -236,9 +236,13 @@ Started executing beads 17 → 02/13/15/16/14/12/09/07/08 in parallel (agents + 
 | bkt-research-07 (peptide-markets) | ✅ SCAFFOLD | research-landscape/peptide-markets/README.md with explicit non-facilitation clause. Actual landscape scan deferred per P3 priority. |
 | bkt-research-08 (GOE/radiosynthesis) | 🟡 SEED | 05-biophysics/radiosynthesis/SEED.md with primary-paper list across GOE, photosynthesis origin, radiosynthesis (Dadachova), melanin-semiconductor. BibTeX population blocked on pipeline. |
 | bkt-research-03/10/11 (canon-figures pass-2) | ✅ DONE | +23 figures (76→99). 04-info: Wiener. 05-bio: Szent-Györgyi, Burr, Becker, Marino, Ling, Pollack, Popp, Levin, Wallace, Lane, Solís-Herrera, Khavinson. 08-tradition: Hildegard, Champollion, W. Jones, Ventris. 09-art: Leonardo, Tolkien. 10-earth: Schmidt, Schoch, West, Carlson. _polymaths.md (13 rows, ≥3-branch) + _polyglots.md (4 canon + 4 landscape). Hancock excluded (no primary contribution); Parfit deferred pass-3. |
-| bkt-research-01 (DOI pipeline) | ⏳ QUEUED | Unblocks full citation population of 15/16/08. |
-| bkt-research-04/05/06 (melanin/mito/peptide dossiers) | ⏳ QUEUED | Wait for pipeline. |
-| bkt-research-18 (bioelectric lineage) | ⏳ QUEUED | Wait for Becker to settle. |
+| bkt-research-01 (DOI pipeline) | ✅ DONE | `tools/canon-pipeline/` Python CLI, 903 LOC, 13/13 tests. OpenAlex+Crossref+PubMed+arXiv+bioRxiv resolvers. Explainable canon_score. OA-only fetch (Unpaywall). Alvarez 1980 → score=85. Dadachova 2007 → OA. Running now against all dossier queries.txt files (206 total). |
+| bkt-research-04 (melanin) | ✅ DONE | 21 primaries across 7 sub-themes, Solís-Herrera flagged contested. 23 queries. |
+| bkt-research-05 (mitochondria) | ✅ DONE | 36 primaries + 5 landscape-adj, 4 contested flags. Kruse/Peat/Dinkov/Loh routed to landscape. 30 queries. |
+| bkt-research-06 (peptides) | ✅ DONE | 35 primaries across 13 families. Single-lab and Russian-institute provenance flagged. No compound→vendor links. 95 queries. |
+| bkt-research-18 (bioelectric lineage) | ✅ DONE | 15-node arc Galvani→Levin, 23 BibTeX. Nordenström flagged contested. 58 queries. |
+| bkt-research-19/20/21 (09-art canon) | ✅ DONE | Branch + 6 subfolders, 73 primary texts. aesthetic-theory (14), perception (8), color-form (10), craft-foundations (11), design (17), music-theory (16). Music cross-refs 02-physics/acoustics. |
+| bkt-research-22/23/24 (art landscape) | ✅ DONE | art-market (non-facilitation), art-pedagogy (5 creativity-research promotion candidates), art-commentariat (27 entries across 5 tiers). |
 
 **Build stats**: 1 commit pending. 8 new directories under bucket-canon/ + research-landscape/. 12 new README/INDEX/SEED files. 1 site mirror (419 MB, not committed — will evaluate .gitignore).
 
