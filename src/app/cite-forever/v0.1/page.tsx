@@ -140,7 +140,7 @@ export default function Page() {
           atomic).
         </p>
 
-        <div className="mt-12 p-6 border hairline bg-[color:var(--ink-2)] text-sm">
+        <div className="mt-12 p-6 border hairline bg-[color:var(--bone-3)] text-sm">
           <div className="small-caps text-[11px] text-[color:var(--gold)] mb-3">
             canonical
           </div>

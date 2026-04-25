@@ -69,7 +69,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <Link
                   key={f.slug}
                   href={`/canon/${b.slug}/figures/${f.slug}`}
-                  className="bg-[color:var(--ink)] p-6 hover:bg-[color:var(--ink-2)] transition"
+                  className="bg-[color:var(--bone-2)] p-6 hover:bg-[color:var(--bone-3)] transition"
                 >
                   <div className="font-serif-display text-2xl text-[color:var(--parchment)]">
                     {f.name}

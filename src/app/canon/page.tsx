@@ -39,7 +39,7 @@ export default function Page() {
               <Link
                 key={b.slug}
                 href={`/canon/${b.slug}`}
-                className="group bg-[color:var(--ink)] p-8 hover:bg-[color:var(--ink-2)] transition"
+                className="group bg-[color:var(--bone-2)] p-8 hover:bg-[color:var(--bone-3)] transition"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="font-mono-mark text-xs text-[color:var(--gold-dim)] group-hover:text-[color:var(--gold)]">
