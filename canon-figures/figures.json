@@ -353,31 +353,85 @@
     {
       "id": "newton",
       "name": "Isaac Newton",
-      "lifespan": "1642-1727",
-      "era": "Scientific Revolution",
-      "region": "Cambridge",
+      "lifespan": "1642-1727 (25 Dec 1642 OS – 20 Mar 1727 OS)",
+      "era": "Late Scientific Revolution / early Enlightenment",
+      "region": "Lincolnshire, Cambridge, London (England)",
       "tradition": "English natural philosophy",
       "branches": [
-        "02-physics"
+        "02-physics",
+        "01-mathematics"
       ],
       "cross_branches": [
-        "01-mathematics",
-        "06-cosmology"
+        "03-chemistry",
+        "06-cosmology",
+        "08-tradition"
       ],
       "primary_works": [
         {
           "title": "Philosophiæ Naturalis Principia Mathematica",
           "year": "1687",
+          "language": "Latin",
+          "edition_of_record": "Cohen & Whitman (tr.), University of California Press, 1999, ISBN 978-0-520-08816-0"
+        },
+        {
+          "title": "Opticks: or, A Treatise of the Reflexions, Refractions, Inflexions and Colours of Light",
+          "year": "1704",
+          "language": "English",
+          "edition_of_record": "Dover reprint of 4th edition (1730), 1952"
+        },
+        {
+          "title": "De Methodis Serierum et Fluxionum",
+          "year": "1671 (pub. 1736)",
           "language": "Latin"
+        },
+        {
+          "title": "De Analysi per Aequationes Numero Terminorum Infinitas",
+          "year": "1669 (pub. 1711)",
+          "language": "Latin"
+        },
+        {
+          "title": "Arithmetica Universalis",
+          "year": "1707",
+          "language": "Latin"
+        },
+        {
+          "title": "The Chronology of Ancient Kingdoms Amended",
+          "year": "1728 (posthumous)",
+          "language": "English"
         }
       ],
-      "tags": [
-        "mechanics",
-        "gravitation",
-        "calculus",
-        "unification"
+      "canon_contribution": "Originator statement of classical mechanics (three laws of motion + universal gravitation) in the Principia (1687); independent originator of the differential and integral calculus (fluxional form, 1665-71); foundational results in optics (spectral decomposition of white light, 1672; Opticks, 1704) and pure mathematics (generalized binomial theorem, Newton-Raphson method, classification of cubic curves).",
+      "why_canon": "Anchors bucket-canon/02-physics/classical-mechanics/ and is the upstream source for every Lagrangian, Hamiltonian, electromagnetic, relativistic, and quantum reformulation of mechanics that followed. Independently sufficient to anchor 01-mathematics/analysis/ as the (English) co-originator of the calculus.",
+      "downstream": [
+        "Maclaurin",
+        "Euler",
+        "Lagrange",
+        "Laplace",
+        "Hamilton",
+        "Maxwell",
+        "Einstein",
+        "Noether",
+        "von Neumann"
       ],
-      "added_in_pass": 1
+      "disputed": "Hooke gravitation priority (1679-80 letters); Leibniz calculus priority (modern verdict: independent simultaneous discovery; notation honours to Leibniz); Flamsteed lunar observations (seized for Principia 2nd ed., 1712); Woolsthorpe apple incident (single 1666 moment is a late-life literary compression, attested only in four post-1726 sources).",
+      "tags": [
+        "polymath",
+        "01-mathematics",
+        "02-physics",
+        "analysis",
+        "classical-mechanics",
+        "optics",
+        "alchemy",
+        "theology",
+        "lucasian-professor",
+        "royal-society-president",
+        "mint-master",
+        "1642-1727",
+        "england"
+      ],
+      "bio": "bios/newton.md",
+      "added_in_pass": 1,
+      "bio_added_on": "2026-05-01"
     },
     {
       "id": "du-chatelet",
@@ -469,27 +523,91 @@
         "02-physics"
       ],
       "cross_branches": [
-        "06-cosmology"
+        "06-cosmology",
+        "01-mathematics"
       ],
       "primary_works": [
         {
-          "title": "Annus Mirabilis papers",
+          "title": "Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt (light quantum)",
           "year": "1905",
-          "language": "German"
+          "language": "German",
+          "citation": "Annalen der Physik (4) 17, 132-148"
+        },
+        {
+          "title": "Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung von in ruhenden Flüssigkeiten suspendierten Teilchen (Brownian motion)",
+          "year": "1905",
+          "language": "German",
+          "citation": "Annalen der Physik (4) 17, 549-560"
+        },
+        {
+          "title": "Zur Elektrodynamik bewegter Körper (special relativity)",
+          "year": "1905",
+          "language": "German",
+          "citation": "Annalen der Physik (4) 17, 891-921"
+        },
+        {
+          "title": "Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig? (mass-energy equivalence)",
+          "year": "1905",
+          "language": "German",
+          "citation": "Annalen der Physik (4) 18, 639-641"
+        },
+        {
+          "title": "Über das Relativitätsprinzip und die aus demselben gezogenen Folgerungen (equivalence principle)",
+          "year": "1907",
+          "language": "German",
+          "citation": "Jahrbuch der Radioaktivität und Elektronik 4, 411-462"
+        },
+        {
+          "title": "Die Feldgleichungen der Gravitation",
+          "year": "1915",
+          "language": "German",
+          "citation": "Sitz. Preuss. Akad. Wiss. 1915, 844-847"
         },
         {
           "title": "Die Grundlage der allgemeinen Relativitätstheorie",
           "year": "1916",
-          "language": "German"
+          "language": "German",
+          "citation": "Annalen der Physik (4) 49, 769-822"
+        },
+        {
+          "title": "Kosmologische Betrachtungen zur allgemeinen Relativitätstheorie (cosmological constant)",
+          "year": "1917",
+          "language": "German",
+          "citation": "Sitz. Preuss. Akad. Wiss. 1917, 142-152"
+        },
+        {
+          "title": "Zur Quantentheorie der Strahlung (A and B coefficients)",
+          "year": "1917",
+          "language": "German",
+          "citation": "Physikalische Zeitschrift 18, 121-128"
+        },
+        {
+          "title": "Quantentheorie des einatomigen idealen Gases (Bose-Einstein statistics)",
+          "year": "1924-1925",
+          "language": "German",
+          "citation": "Sitz. Preuss. Akad. Wiss. 1924-1925, three papers"
+        },
+        {
+          "title": "Can Quantum-Mechanical Description of Physical Reality Be Considered Complete? (with Podolsky, Rosen)",
+          "year": "1935",
+          "language": "English",
+          "citation": "Physical Review 47, 777-780"
         }
       ],
       "tags": [
         "special-relativity",
         "general-relativity",
         "photon",
-        "brownian-motion"
+        "brownian-motion",
+        "bose-einstein",
+        "epr",
+        "cosmological-constant",
+        "polymath"
       ],
-      "added_in_pass": 1
+      "bio": "bios/einstein.md",
+      "added_in_pass": 1,
+      "bio_added_in_pass": 2,
+      "bio_added_on": "2026-05-01"
     },
     {
       "id": "noether",
@@ -866,35 +984,195 @@
     {
       "id": "von-neumann",
       "name": "John von Neumann",
-      "lifespan": "1903-1957",
-      "era": "20th century",
-      "region": "Princeton (IAS), Los Alamos",
-      "tradition": "Hungarian/American polymath",
-      "branches": [
-        "04-information"
+      "alt_names": [
+        "Neumann János Lajos",
+        "Johann von Neumann",
+        "margittai Neumann János"
       ],
-      "cross_branches": [
+      "lifespan": "1903-1957",
+      "birth_date": "1903-12-28",
+      "death_date": "1957-02-08",
+      "era": "20th century",
+      "region": "Budapest → Berlin → Göttingen → Hamburg → Princeton (IAS) → Los Alamos → Washington",
+      "tradition": "Hungarian-Jewish bourgeoisie; Central-European mathematical tradition; American postwar science establishment",
+      "branches": [
+        "04-information",
         "01-mathematics",
         "02-physics"
       ],
+      "cross_branches": [
+        "07-mind"
+      ],
       "primary_works": [
+        {
+          "title": "Eine Axiomatisierung der Mengenlehre",
+          "year": "1925",
+          "language": "German",
+          "venue": "Crelle 154, 219-240"
+        },
+        {
+          "title": "Zur Theorie der Gesellschaftsspiele",
+          "year": "1928",
+          "language": "German",
+          "venue": "Math. Annalen 100, 295-320"
+        },
+        {
+          "title": "Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren",
+          "year": "1929",
+          "language": "German",
+          "venue": "Math. Annalen 102, 49-131"
+        },
+        {
+          "title": "Mathematische Grundlagen der Quantenmechanik",
+          "year": "1932",
+          "language": "German",
+          "venue": "Springer; English tr. Beyer 1955; rev. Wheeler 2018, Princeton, ISBN 978-0-691-17856-1"
+        },
+        {
+          "title": "Proof of the Quasi-Ergodic Hypothesis",
+          "year": "1932",
+          "language": "English",
+          "venue": "PNAS 18, 70-82"
+        },
+        {
+          "title": "On Rings of Operators (I-IV, with F. J. Murray)",
+          "year": "1936-1943",
+          "language": "English",
+          "venue": "Annals of Math. and Trans. AMS"
+        },
+        {
+          "title": "The Logic of Quantum Mechanics (with G. Birkhoff)",
+          "year": "1936",
+          "language": "English",
+          "venue": "Annals of Math. 37, 823-843"
+        },
+        {
+          "title": "A Model of General Economic Equilibrium",
+          "year": "1937/1945",
+          "language": "German/English",
+          "venue": "Review of Economic Studies 13, 1-9"
+        },
+        {
+          "title": "Theory of Games and Economic Behavior (with O. Morgenstern)",
+          "year": "1944",
+          "language": "English",
+          "venue": "Princeton; 60th anniv. ed. 2004, ISBN 978-0-691-13061-3"
+        },
         {
           "title": "First Draft of a Report on the EDVAC",
           "year": "1945",
-          "language": "English"
+          "language": "English",
+          "venue": "Moore School memorandum; Stern 1981 reprint; IEEE Annals 15(4) 1993"
         },
         {
-          "title": "Theory of Games and Economic Behavior",
-          "year": "1944",
-          "language": "English"
+          "title": "Preliminary Discussion of the Logical Design of an Electronic Computing Instrument (with Burks and Goldstine)",
+          "year": "1946",
+          "language": "English",
+          "venue": "IAS"
+        },
+        {
+          "title": "A Method for the Numerical Calculation of Hydrodynamic Shocks (with Richtmyer)",
+          "year": "1950",
+          "language": "English",
+          "venue": "J. Appl. Phys. 21, 232-237"
+        },
+        {
+          "title": "Various Techniques Used in Connection with Random Digits",
+          "year": "1951",
+          "language": "English",
+          "venue": "NBS Applied Math. Series 12, 36-38"
+        },
+        {
+          "title": "The Computer and the Brain",
+          "year": "1958",
+          "language": "English",
+          "venue": "Yale UP, posthumous"
+        },
+        {
+          "title": "Continuous Geometry (ed. Halperin)",
+          "year": "1960",
+          "language": "English",
+          "venue": "Princeton, posthumous"
+        },
+        {
+          "title": "Theory of Self-Reproducing Automata (ed. Burks)",
+          "year": "1966",
+          "language": "English",
+          "venue": "University of Illinois Press, posthumous"
         }
       ],
+      "canon_contribution": "Foundation-tier output in four canon branches from one integrated working life: (i) NBG set theory and the modern definition of an ordinal, the spectral theorem for unbounded self-adjoint operators, the Murray-von Neumann classification of factors, the mean ergodic theorem (mathematics); (ii) the Hilbert-space axiomatisation of quantum mechanics, the projection postulate, the density-operator and entropy formalism (physics); (iii) the stored-program architecture, cellular automata with universal construction, Monte Carlo, the foundations of numerical analysis (information); (iv) game theory and the von Neumann-Morgenstern expected-utility axioms (mind, via decision theory and economic rationality).",
+      "why_canon": "Highest cross-branch foundation-tier density in the contributor index. Each of the four branch contributions is a load-bearing foundation that the field still cites as primary; removing any one of the four leaves a real hole in the canon record of that branch.",
+      "downstream": [
+        "Wigner",
+        "Wightman",
+        "Mackey",
+        "Connes",
+        "Jones",
+        "Voiculescu",
+        "Nash",
+        "Aumann",
+        "Selten",
+        "Harsanyi",
+        "Schelling",
+        "Maynard Smith",
+        "Goldstine",
+        "Burks",
+        "Bigelow",
+        "Eckert",
+        "Mauchly",
+        "Bernays",
+        "Gödel",
+        "Doob",
+        "Itô",
+        "Marr",
+        "McCarthy",
+        "Minsky",
+        "Kakutani",
+        "Arrow",
+        "Debreu",
+        "Wilkinson",
+        "Forsythe",
+        "Householder"
+      ],
+      "disputed": "1932 hidden-variable impossibility argument (Hermann 1935, Bell 1966, Mermin 1993 read it as based on an unjustified premise; Bub 2010 and Dieks 2017 defend a restricted reading; dispute unresolved). EDVAC priority vs Eckert and Mauchly (Aspray 1990 is the standard treatment). Cause of 1955 cancer (radiation exposure conjectural). Authenticity of 1956-57 deathbed return to Catholicism (Strittmatter and Klári records consistent on fact, silent on inwardness).",
       "tags": [
+        "polymath",
+        "01-mathematics",
+        "02-physics",
+        "04-information",
+        "07-mind",
+        "set-theory",
+        "functional-analysis",
+        "operator-algebras",
+        "ergodic-theory",
+        "quantum-mechanics",
+        "quantum-statistical-mechanics",
+        "game-theory",
+        "expected-utility",
+        "mathematical-economics",
+        "cellular-automata",
+        "monte-carlo",
+        "numerical-analysis",
         "stored-program",
         "von-neumann-architecture",
-        "game-theory"
+        "manhattan-project",
+        "implosion-lens",
+        "ias-princeton",
+        "aec-commissioner",
+        "1903-1957",
+        "hungary",
+        "usa",
+        "eckert-mauchly-edvac",
+        "hidden-variables-dispute",
+        "father-strittmatter",
+        "klari-dan"
       ],
-      "added_in_pass": 1
+      "added_in_pass": 1,
+      "added_on": "2026-04-14",
+      "updated_in_pass": 3,
+      "updated_on": "2026-05-01",
+      "bio": "bios/von-neumann.md"
     },
     {
       "id": "kolmogorov",

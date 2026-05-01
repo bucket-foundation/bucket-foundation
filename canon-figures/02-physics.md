@@ -146,8 +146,9 @@
 | **era** | 20th century |
 | **region / tradition** | Bern, Berlin, Princeton — German/Swiss/American physics |
 | **branches** | 02-physics |
-| **cross-branches** | 06-cosmology |
+| **cross-branches** | 06-cosmology, 01-mathematics |
 | **primary works** | The four 1905 Annus Mirabilis papers (German); *Die Grundlage der allgemeinen Relativitätstheorie* (1916, German) |
+| **long-form bio** | [`bios/einstein.md`](bios/einstein.md) |
 
 **Foundation contribution.** Three foundations in one year (1905), one more in 1915: (1) **special relativity** — the constancy of the speed of light forces space and time into a unified spacetime; (2) **the photoelectric effect** — light is quantized, founding (with Planck) the photon concept; (3) **Brownian motion** — the statistical fluctuations of pollen grains prove atoms exist; (4) **general relativity** (1915) — gravity is the curvature of spacetime, replacing Newton's action-at-a-distance with a geometric field equation.
 
