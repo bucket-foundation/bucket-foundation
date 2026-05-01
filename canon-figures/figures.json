@@ -747,20 +747,54 @@
       "branches": [
         "03-chemistry"
       ],
-      "cross_branches": [],
+      "cross_branches": [
+        "02-physics",
+        "08-deep-history"
+      ],
       "primary_works": [
         {
-          "title": "Опыт системы элементов, основанной на их атомном весе и химическом сходстве",
+          "title": "Sootnoshenie svoystv s atomnym vesom elementov",
           "year": "1869",
-          "language": "Russian"
+          "language": "Russian",
+          "venue": "Zhurnal Russkogo Khimicheskogo Obshchestva 1, pp. 60-77"
+        },
+        {
+          "title": "Die periodische Gesetzmässigkeit der chemischen Elemente",
+          "year": "1871",
+          "language": "German",
+          "venue": "Liebigs Annalen, Supplementband 8, pp. 133-229"
+        },
+        {
+          "title": "Osnovy khimii (Principles of Chemistry)",
+          "year": "1869-1906",
+          "language": "Russian",
+          "venue": "8 editions; English trans. Kamensky, Longmans Green, 1891-1897"
+        },
+        {
+          "title": "On the Compressibility of Gases (Mendeleev-Clapeyron equation)",
+          "year": "1874",
+          "language": "Russian",
+          "venue": "Zhurnal Russkogo Khimicheskogo Obshchestva"
+        },
+        {
+          "title": "The Periodic Law of the Chemical Elements (Faraday Lecture)",
+          "year": "1889",
+          "language": "English",
+          "venue": "Journal of the Chemical Society 55, pp. 634-656"
         }
       ],
+      "long_bio": "bios/mendeleev.md",
       "tags": [
         "periodic-table",
         "periodicity",
-        "prediction"
+        "prediction",
+        "eka-elements",
+        "ideal-gas-law",
+        "metrology"
       ],
-      "added_in_pass": 1
+      "added_in_pass": 1,
+      "expanded_in_pass": 2,
+      "expanded_on": "2026-05-01"
     },
     {
       "id": "curie",

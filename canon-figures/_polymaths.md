@@ -28,6 +28,7 @@
 | Marr | 07-mind | 04-information, 05-biophysics | Three-level framework spans computational theory (information), algorithm, and neural implementation (biophysics + mind). |
 | Wiener | 04-information | 01-mathematics, 05-biophysics, 07-mind | Cybernetics wires probability, control theory, neural feedback, and communication into one substrate used by all four branches. |
 | Hildegard of Bingen | 08-tradition | 05-biophysics, 09-art | Theological visionary corpus (*Scivias*), medieval natural-history / medical compendium (*Physica*, *Causae et Curae*), and surviving body of monophonic composition + the earliest morality play. |
+| Mendeleev | 03-chemistry | 02-physics, 08-deep-history | Periodic law (1869/1871) with eka-element predictions confirmed 1875–1886 (chemistry); Mendeleev–Clapeyron form of the ideal-gas law with universal *R* (1874) (physics); Bureau of Weights and Measures directorship (1893–1907), founding the modern Russian metrological infrastructure that survives as VNIIM/Rosstandart (deep-history). Three-branch borderline qualifier admitted on the expanded definition of foundation that includes institutional infrastructure; sits below the Helmholtz/Gauss/Riemann tier. Long bio at `bios/mendeleev.md`. |
 | Leibniz (NOT YET IN INDEX — pass-3 candidate) | — | — | Flagged: calculus, binary arithmetic, monadology, theodicy — clearly qualifies; add in a future pass. |
 
 ---
