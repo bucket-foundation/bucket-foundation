@@ -2,15 +2,10 @@
 // Build-time render. The repo IS the CMS.
 
 import Link from "next/link";
-import nextDynamic from "next/dynamic";
 import { getBranches } from "@/lib/canon-fs";
 import { BRANCHES as STATIC_BRANCHES, REPO_TREE, DRIVE_URL } from "@/lib/canon";
-import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
-
-const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
-  ssr: false,
-  loading: () => <StaticCanonGlobe branches={[]} size={420} interactive={false} />,
-});
+import { GlobeBranch } from "@/components/CanonGlobe";
+import CanonGlobeMount from "./CanonGlobeMount";
 
 export const metadata = { title: "Canon · bucket.foundation" };
 export const dynamic = "force-static";
@@ -59,9 +54,7 @@ export default function Page() {
           </p>
 
           <div className="mt-12 flex flex-col items-center">
-            <div style={{ width: 420, height: 420 }} className="relative">
-              <R3FCanonGlobe branches={globeBranches} />
-            </div>
+            <CanonGlobeMount branches={globeBranches} />
             <div className="mt-6 small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.15em]">
               hover a port · click to enter the branch
             </div>
