@@ -53,10 +53,10 @@ export default function Page() {
             Outcomes (longevity, disease, cognition) are downstream applications, not canon.
           </p>
 
-          <div className="mt-12 flex flex-col items-center">
+          <div className="mt-12 w-full">
             <CanonGlobeMount branches={globeBranches} />
-            <div className="mt-6 small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.15em]">
-              hover a port · click to enter the branch
+            <div className="mt-6 text-center small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.15em]">
+              hover a marker · click to enter the canon
             </div>
           </div>
 

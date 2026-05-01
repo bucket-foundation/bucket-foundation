@@ -35,15 +35,19 @@ export function Halo({
         varying vec3 vViewDir;
         uniform vec3 uColor;
         void main() {
-          float fres = pow(1.0 - dot(vNormal, vViewDir), 2.4);
-          float a = smoothstep(0.0, 1.0, fres) * 0.55;
+          // Light-theme tuned: thinner alpha smoothstep so the gold halo
+          // doesn't bloom too heavy on bone background.
+          float fres = pow(1.0 - dot(vNormal, vViewDir), 2.8);
+          float a = smoothstep(0.15, 1.0, fres) * 0.25;
           gl_FragColor = vec4(uColor, a);
         }
       `,
       transparent: true,
       side: THREE.BackSide,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      // NormalBlending on bone reads as a soft gold rim instead of a
+      // washed-out white smear (which Additive gives on light bg).
+      blending: THREE.NormalBlending,
     });
   }, [color]);
 

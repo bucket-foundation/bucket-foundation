@@ -1,3 +1,4 @@
 export { default } from "./CanonGlobe";
 export { default as CanonGlobe } from "./CanonGlobe";
-export type { CanonGlobeMode } from "./CanonGlobe";
+export { CanonMarkers } from "./CanonMarkers";
+export type { CanonMarker, CanonMarkerKind } from "./CanonMarkers";

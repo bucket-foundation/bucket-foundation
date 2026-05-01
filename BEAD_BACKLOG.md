@@ -340,3 +340,5 @@ Files added/changed:
 - `.github/workflows/whats-new.yml` (new)
 
 - 2026-05-01 feat(site): replace SVG armillary with R3F canon globe (port from kala.fish) — procedural basalt shader, gold halo, branch-port markers with status colors + pulse for complete branches; reduced-motion + mobile-halo gates honored; static SVG kept for SSR fallback and Presentation.tsx.
+
+- 2026-05-01 wire real canon-events data (lat/lng + time) into CanonGlobe markers; currently using polymath-birthplace defaults in CanonGlobeMount.tsx.
