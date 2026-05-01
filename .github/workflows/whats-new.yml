@@ -1,0 +1,48 @@
+name: whats-new
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  whats-new:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !startsWith(github.event.head_commit.message, 'whats-new:') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine SHA range
+        id: shas
+        run: |
+          FROM="${{ github.event.before }}"
+          TO="${{ github.sha }}"
+          if [ -z "$FROM" ] || [ "$FROM" = "0000000000000000000000000000000000000000" ]; then
+            FROM=$(git rev-parse HEAD^ || echo "")
+          fi
+          echo "from=$FROM" >> "$GITHUB_OUTPUT"
+          echo "to=$TO"     >> "$GITHUB_OUTPUT"
+
+      - name: Build whats-new entries
+        if: steps.shas.outputs.from != ''
+        env:
+          FROM_SHA: ${{ steps.shas.outputs.from }}
+          TO_SHA:   ${{ steps.shas.outputs.to }}
+        run: node scripts/build-whats-new-entry.mjs
+
+      - name: Commit changes
+        run: |
+          if [ -z "$(git status --porcelain data/whats-new.json)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name  "bucket-bot"
+          git config user.email "bot@bucket.foundation"
+          git add data/whats-new.json
+          git commit -m "whats-new: append milestone entries [skip ci]"
+          git push

@@ -1,71 +1,122 @@
+// /canon — the seven-branch grid + interactive armillary globe.
+// Build-time render. The repo IS the CMS.
+
 import Link from "next/link";
-import { BRANCHES, REPO_TREE, DRIVE_URL } from "@/lib/canon";
+import { getBranches } from "@/lib/canon-fs";
+import { BRANCHES as STATIC_BRANCHES, REPO_TREE, DRIVE_URL } from "@/lib/canon";
+import CanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 
 export const metadata = { title: "Canon · bucket.foundation" };
+export const dynamic = "force-static";
+
+const STATUS_BADGE: Record<string, string> = {
+  "not yet opened": "text-[color:var(--parchment-dim)] border-[color:var(--hairline)]",
+  "intake":         "text-[color:var(--ochre)] border-[color:var(--ochre)]",
+  "scaffolded":     "text-[color:var(--gold-deep)] border-[color:var(--gold-deep)]",
+  "in progress":    "text-[color:var(--gold)] border-[color:var(--gold)]",
+  "complete":       "text-[color:var(--laurel-deep)] border-[color:var(--laurel-deep)]",
+};
+
+function fmtDate(iso: string | null): string {
+  if (!iso) return "—";
+  try {
+    return new Date(iso).toLocaleDateString("en-US", {
+      year: "numeric", month: "short", day: "numeric",
+    });
+  } catch { return iso; }
+}
 
 export default function Page() {
-  const totalSources = BRANCHES.reduce((n, b) => n + b.sources.reduce((m, s) => m + s.count, 0), 0);
-  const totalFigures = BRANCHES.reduce((n, b) => n + b.figures.length, 0);
-  const figureWorks = BRANCHES.reduce(
-    (n, b) => n + b.figures.reduce((m, f) => m + f.works, 0), 0
-  );
+  const branches = getBranches();
+  const totalEntries = branches.reduce((n, b) => n + b.entryCount, 0);
+  const opened = branches.filter((b) => b.exists).length;
+
+  const globeBranches: GlobeBranch[] = branches.map((b) => ({
+    slug: b.slug,
+    numeral: b.numeral,
+    name: b.name,
+    status: b.status,
+    entryCount: b.entryCount,
+  }));
 
   return (
     <main className="min-h-screen">
       <header className="border-b hairline">
         <div className="max-w-6xl mx-auto px-4 md:px-6 pt-14 md:pt-24 pb-10 md:pb-16">
           <div className="small-caps text-[11px] text-[color:var(--gold)] mb-6">§ canon</div>
-          <h1 className="font-serif-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.05] text-[color:var(--parchment)]">
-            Eight branches.<br />One index.
+          <h1 className="font-serif-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.05] text-[color:var(--basalt)]">
+            Build the past.<br />Build history.
           </h1>
+          <p className="mt-6 max-w-2xl text-[color:var(--parchment-dim)] text-pretty">
+            The canon holds only foundations — axioms, real math, rules, laws, principles, primary derivations.
+            Outcomes (longevity, disease, cognition) are downstream applications, not canon.
+          </p>
+
+          <div className="mt-12 flex flex-col items-center">
+            <CanonGlobe branches={globeBranches} size={420} interactive />
+            <div className="mt-6 small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.15em]">
+              hover a port · click to enter the branch
+            </div>
+          </div>
+
           <div className="mt-10 grid grid-cols-3 max-w-2xl gap-6">
-            <Stat label="branches" value="8" />
-            <Stat label="seed artifacts" value={String(totalSources + figureWorks)} />
-            <Stat label="canon figures" value={String(totalFigures)} />
+            <Stat label="branches" value={String(branches.length)} />
+            <Stat label="opened" value={String(opened)} />
+            <Stat label="canon entries" value={String(totalEntries)} />
           </div>
           <div className="mt-10 flex flex-wrap gap-4 small-caps text-[11px]">
-            <a href={REPO_TREE} className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">bucket-research repo ↗</a>
-            <a href={DRIVE_URL} className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">BucketDrive ↗</a>
+            <a href={REPO_TREE} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">bucket-research repo ↗</a>
+            <a href={DRIVE_URL} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">BucketDrive ↗</a>
           </div>
         </div>
       </header>
 
       <section className="max-w-6xl mx-auto px-4 md:px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)]">
-          {BRANCHES.map((b) => {
-            const sum = b.sources.reduce((m, s) => m + s.count, 0) +
-                        b.figures.reduce((m, f) => m + f.works, 0);
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[color:var(--hairline)]">
+          {branches.map((b) => {
+            const staticMeta = STATIC_BRANCHES.find((s) => s.slug === b.slug);
+            const badgeClass = STATUS_BADGE[b.status] || "";
             return (
               <Link
-                key={b.slug}
+                key={b.dir}
                 href={`/canon/${b.slug}`}
-                className="group bg-[color:var(--bone-2)] p-8 hover:bg-[color:var(--bone-3)] transition"
+                className="group bg-[color:var(--bone-2)] p-6 hover:bg-[color:var(--bone-3)] transition flex flex-col"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="font-mono-mark text-xs text-[color:var(--gold-dim)] group-hover:text-[color:var(--gold)]">
-                    {b.num}
+                    {b.numeral} · {b.num}
                   </div>
-                  <div className="text-xs text-[color:var(--parchment-dim)] small-caps">
-                    {sum.toLocaleString()} artifacts
-                  </div>
+                  <span className={`small-caps text-[9px] tracking-[0.1em] border px-2 py-[2px] ${badgeClass}`}>
+                    {b.status}
+                  </span>
                 </div>
-                <div className="font-serif-display text-3xl text-[color:var(--parchment)]">
+                <div className="font-serif-display text-2xl text-[color:var(--basalt)] capitalize">
                   {b.name}
                 </div>
-                <div className="text-sm text-[color:var(--parchment-dim)] mt-1 mb-4">{b.note}</div>
-                <p className="text-[color:var(--parchment-dim)] leading-relaxed text-[15px] text-pretty">
-                  {b.thesis}
-                </p>
-                {b.figures.length > 0 && (
-                  <div className="mt-5 pt-4 border-t hairline">
-                    <div className="small-caps text-[10px] text-[color:var(--gold)] mb-2">figures</div>
-                    <div className="flex flex-wrap gap-2">
-                      {b.figures.map((f) => (
-                        <span key={f.slug} className="text-xs text-[color:var(--parchment)] border hairline px-2 py-1">
-                          {f.name} · {f.works.toLocaleString()} works
-                        </span>
-                      ))}
-                    </div>
+                {staticMeta?.note && (
+                  <div className="text-xs text-[color:var(--parchment-dim)] mt-1">
+                    {staticMeta.note}
+                  </div>
+                )}
+                <div className="mt-3 flex items-center gap-3 small-caps text-[10px] text-[color:var(--parchment-dim)]">
+                  <span>{b.entryCount.toLocaleString()} entries</span>
+                  <span>·</span>
+                  <span>updated {fmtDate(b.lastUpdated)}</span>
+                </div>
+
+                {b.topEntries.length > 0 && (
+                  <ul className="mt-4 pt-4 border-t hairline space-y-1 text-[12px] text-[color:var(--basalt-2)]">
+                    {b.topEntries.map((e, i) => (
+                      <li key={i} className="truncate">
+                        <span className="text-[color:var(--gold-deep)] mr-2">·</span>{e.title}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {b.topEntries.length === 0 && b.status === "not yet opened" && (
+                  <div className="mt-4 pt-4 border-t hairline text-[12px] text-[color:var(--parchment-dim)] italic">
+                    Branch not yet opened. Research in motion.
                   </div>
                 )}
               </Link>

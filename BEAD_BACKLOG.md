@@ -308,3 +308,33 @@ DEFERRED. On PR merge to main with `add_canon_entry` or `add_paper` event, mint 
 2. feed-04 + feed-05 in parallel (frontend — depends on feed.json format locked)
 3. feed-06 (docs)
 4. feed-07 (later)
+
+### bkt-site-refactor-01 · P2 · Canon site refactor (filed 2026-05-01)
+
+**Status:** SHIPPED in commit (this push). Bead filing failed: `nucleus.agfarms.dev/api/portfolio/dispatch` returned HTTP 401 (auth env vars not present in this session). Backfill the bead manually next time creds are available.
+
+Scope shipped:
+- Remove `/kruse` from top nav (route stays alive, repositioned under `/canon/biophysics` as one of multiple sources alongside PubMed, PubChem)
+- `/canon` rewritten: filesystem-driven seven-branch grid (reads `bucket-canon/` at build time) with status badges (`not yet opened` / `intake` / `scaffolded` / `in progress` / `complete`), entry counts (parses every `CANON_INDEX.md` table), last-updated dates (from `git log`), top-3 entries per card
+- New `src/components/CanonGlobe.tsx` interactive armillary extending `Globe.tsx`. 8 ports = canon branches; intensity reflects status; hover tooltip; click navigates to branch page; gold-pulsing for `complete` status. SVG only.
+- `/canon/[slug]` reads branch `README.md` for scope intro, walks all sub-folder `CANON_INDEX.md` files, renders `BranchEntriesTable` (client component, sortable by sub-folder/title/year, filterable). Per-row "mint as IP NFT" placeholder.
+- `data/whats-new.json` Pattern-B milestone changelog (seeded with site-refactor + chemistry branch open + intake memos for chemistry/cinema/gov-declassified).
+- `src/app/whats-new/page.tsx` now renders Milestones (timeline grouped by week, filterable by category/branch) above the existing FeedFilters (paper-grain feed.json events).
+- `.github/workflows/whats-new.yml` + `scripts/build-whats-new-entry.mjs` auto-append milestone entries on canon pushes (heuristics: README.md add → branch-opened, `_intake/` file → intake-research, `_landscape/` → landscape-added, `CANON_INDEX.md` modify → entry-promoted).
+- `/canon/[slug]/feed.xml` per-branch Atom 1.0 feeds (filtered by branch).
+- `/feed.xml` site feed extended to include milestone items.
+
+Files added/changed:
+- `src/lib/canon-fs.ts` (new)
+- `src/components/CanonGlobe.tsx` (new)
+- `src/components/Header.tsx` (kruse removed from NAV)
+- `src/app/canon/page.tsx` (rewrite)
+- `src/app/canon/[slug]/page.tsx` (rewrite)
+- `src/app/canon/[slug]/BranchEntriesTable.tsx` (new)
+- `src/app/canon/[slug]/feed.xml/route.ts` (new)
+- `src/app/whats-new/page.tsx` (rewrite)
+- `src/app/whats-new/MilestoneTimeline.tsx` (new)
+- `src/app/feed.xml/route.ts` (milestones merged in)
+- `data/whats-new.json` (new)
+- `scripts/build-whats-new-entry.mjs` (new)
+- `.github/workflows/whats-new.yml` (new)

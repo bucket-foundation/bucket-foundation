@@ -1,6 +1,12 @@
 import { BRANCHES } from "@/lib/canon";
+import whatsNewData from "../../../data/whats-new.json";
 
 export const dynamic = "force-static";
+
+type Milestone = {
+  id: string; date: string; category: string; branch: string | null;
+  title: string; summary: string; commit: string;
+};
 
 const BASE = "https://www.bucket.foundation";
 const TITLE = "bucket.foundation — the canon";
@@ -54,7 +60,14 @@ function items(): Item[] {
     }))
   );
 
-  return [...top, ...branch, ...figures];
+  const milestones: Item[] = ((whatsNewData as any).entries as Milestone[]).map((m) => ({
+    title: `${m.title}${m.branch ? ` (${m.branch})` : ""}`,
+    path: `/whats-new#${m.id}`,
+    desc: m.summary,
+    date: new Date(m.date).toISOString(),
+  }));
+
+  return [...top, ...branch, ...figures, ...milestones];
 }
 
 export async function GET() {
