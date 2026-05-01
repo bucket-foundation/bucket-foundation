@@ -338,3 +338,5 @@ Files added/changed:
 - `data/whats-new.json` (new)
 - `scripts/build-whats-new-entry.mjs` (new)
 - `.github/workflows/whats-new.yml` (new)
+
+- 2026-05-01 feat(site): replace SVG armillary with R3F canon globe (port from kala.fish) — procedural basalt shader, gold halo, branch-port markers with status colors + pulse for complete branches; reduced-motion + mobile-halo gates honored; static SVG kept for SSR fallback and Presentation.tsx.
