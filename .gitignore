@@ -46,3 +46,11 @@ __pycache__/
 # Dolt database files (added by bd init)
 .dolt/
 *.db
+
+# Concept art / source images live on gdrive, not git
+# (see manifesto-source/<topic>/<date>/INDEX.md for share links)
+manifesto-source/**/*.png
+manifesto-source/**/*.jpg
+manifesto-source/**/*.jpeg
+manifesto-source/**/*.heic
+manifesto-source/**/*.webp
