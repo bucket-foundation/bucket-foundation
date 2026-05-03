@@ -1,0 +1,27 @@
+{
+  "name": "@bucket-foundation/grants-gateway",
+  "version": "0.1.0-alpha.1",
+  "description": "feed402-compliant paid grants-search API. x402 merchant on Base. Sibling to kruse-feed402 and feed402 reference impl.",
+  "license": "MIT",
+  "author": "Gianangelo Dichio",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/server.ts",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.6.0",
+    "@hono/node-server": "^1.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

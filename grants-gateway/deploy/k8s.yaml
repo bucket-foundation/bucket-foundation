@@ -1,0 +1,119 @@
+# grants-gateway — Kubernetes manifest for Hetzner K3s (agfarms-k3s cluster)
+#
+# Apply:
+#   kubectl apply -f deploy/k8s.yaml
+#
+# Prereqs:
+#   - Ingress controller (Traefik default in K3s)
+#   - cert-manager with ClusterIssuer "letsencrypt-prod"
+#   - Image pushed to farmera/bucket-grants-gateway:<TAG>
+#   - Secret `grants-env` with FEED402_WALLET (and optional Viatika keys)
+#
+# Create the secret first (one time):
+#   kubectl create namespace grants
+#   kubectl -n grants create secret generic grants-env \
+#     --from-literal=FEED402_WALLET=0xYOUR_BASE_WALLET \
+#     --from-literal=FEED402_CHAIN=base \
+#     --from-literal=FEED402_VERIFY_MODE=facilitator \
+#     --from-literal=FEED402_FACILITATOR_URL=https://facilitator.x402.rs
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: grants
+  labels:
+    agfarms.dev/venture: bucket-foundation
+    agfarms.dev/service: feed402-merchant
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grants-gateway
+  namespace: grants
+  labels:
+    app: grants-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grants-gateway
+  template:
+    metadata:
+      labels:
+        app: grants-gateway
+    spec:
+      containers:
+        - name: server
+          image: farmera/bucket-grants-gateway:v0.1.0-alpha.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8789
+          env:
+            - name: PORT
+              value: "8789"
+            - name: PROVIDER_DOMAIN
+              value: "grants.bucket.foundation"
+            - name: NODE_ENV
+              value: "production"
+          envFrom:
+            - secretRef:
+                name: grants-env
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /.well-known/feed402.json
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          livenessProbe:
+            httpGet:
+              path: /.well-known/feed402.json
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grants-gateway
+  namespace: grants
+spec:
+  type: ClusterIP
+  selector:
+    app: grants-gateway
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grants-gateway
+  namespace: grants
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - grants.bucket.foundation
+      secretName: grants-bucket-foundation-tls
+  rules:
+    - host: grants.bucket.foundation
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grants-gateway
+                port:
+                  number: 80

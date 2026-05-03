@@ -1,23 +1,10 @@
 ---
 # Postgres 16 + PostGIS + pgvector for bucket-foundation
 # Namespace already exists (Nucleus instance lives here).
-# Apply: kubectl apply -f postgres.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: postgres-credentials
-  namespace: bucket-foundation
-type: Opaque
-stringData:
-  POSTGRES_USER: bucket
-  POSTGRES_DB: bucket
-  # Founder fills before apply:
-  #   kubectl -n bucket-foundation create secret generic postgres-credentials \
-  #     --from-literal=POSTGRES_USER=bucket \
-  #     --from-literal=POSTGRES_DB=bucket \
-  #     --from-literal=POSTGRES_PASSWORD='<strong-password>' \
-  #     --dry-run=client -o yaml | kubectl apply -f -
-  POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+#
+# REQUIRES: kubectl create secret generic postgres-credentials BEFORE applying this file.
+# REQUIRES: agfarms/postgres-bucket:pg16-postgis-pgvector pushed to a registry the cluster can pull.
+# See README.md for the one-time secret + image build commands.
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -25,14 +12,6 @@ metadata:
   name: postgres-init
   namespace: bucket-foundation
 data:
-  00-postgis.sh: |
-    #!/bin/bash
-    # pgvector/pgvector:pg16 is Debian-based; install PostGIS matching pg16.
-    # Runs once on first init (docker-entrypoint-initdb.d/).
-    set -e
-    apt-get update
-    apt-get install -y --no-install-recommends postgresql-16-postgis-3 postgresql-16-postgis-3-scripts
-    rm -rf /var/lib/apt/lists/*
   01-extensions.sql: |
     -- PostGIS for geospatial (USPTO assignee/inventor coords, future bucket geo features)
     CREATE EXTENSION IF NOT EXISTS postgis;
@@ -79,11 +58,10 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
         - name: postgres
-          # pgvector/pgvector:pg16 ships pgvector preinstalled.
-          # PostGIS is added via the init script below using the postgres apt repo.
-          # NOTE: switch to a custom image (postgis + pgvector baked in) once we want
-          # to avoid runtime apt-install. For now this is fine for a single-node dev DB.
-          image: pgvector/pgvector:pg16
+          # Baked image with postgis + pgvector preinstalled. Build once via
+          # postgres-image/Dockerfile (see README.md). Avoids apt-install at
+          # initdb (fragile on pod reschedule, network-dependent at boot).
+          image: agfarms/postgres-bucket:pg16-postgis-pgvector
           imagePullPolicy: IfNotPresent
           ports:
             - name: postgres
@@ -117,9 +95,6 @@ spec:
             - name: init
               mountPath: /docker-entrypoint-initdb.d/01-extensions.sql
               subPath: 01-extensions.sql
-            - name: init
-              mountPath: /docker-entrypoint-initdb.d/00-postgis.sh
-              subPath: 00-postgis.sh
       volumes:
         - name: init
           configMap:
@@ -128,8 +103,6 @@ spec:
             items:
               - key: 01-extensions.sql
                 path: 01-extensions.sql
-              - key: 00-postgis.sh
-                path: 00-postgis.sh
   volumeClaimTemplates:
     - metadata:
         name: data

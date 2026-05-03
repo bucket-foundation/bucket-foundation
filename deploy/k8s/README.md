@@ -10,8 +10,20 @@ Bead: **bkt-pf0**. Downstream consumers: `bkt-5qg` (USPTO ingest), `bkt-zx6`
 
 | File | What |
 |------|------|
-| `postgres.yaml` | Secret + ConfigMap (init scripts) + ClusterIP Service + StatefulSet (50Gi PVC) |
+| `postgres.yaml` | ConfigMap (init scripts) + ClusterIP Service + StatefulSet (50Gi PVC). NO secret stanza — secret must be created out-of-band first. |
+| `postgres-image/Dockerfile` | Custom image baking postgis + pgvector. Build + push once before applying postgres.yaml. |
 | `tls-ingress.yaml` | nginx Ingress for `bucket-foundation.nucleus.agfarms.dev` with cert-manager TLS |
+
+## One-time image build (founder runs once, then on extension upgrades)
+
+```bash
+docker build -t agfarms/postgres-bucket:pg16-postgis-pgvector \
+  /home/gian/agfarms/bucket-foundation/deploy/k8s/postgres-image
+docker push agfarms/postgres-bucket:pg16-postgis-pgvector
+```
+
+If the cluster pulls from a private registry, swap the tag accordingly and update
+`postgres.yaml`'s `image:` field.
 
 ## Apply order (founder runs after review)
 
@@ -19,8 +31,8 @@ Bead: **bkt-pf0**. Downstream consumers: `bkt-5qg` (USPTO ingest), `bkt-zx6`
 # 0. Sanity — namespace already exists (Nucleus instance lives here)
 kubectl get ns bucket-foundation
 
-# 1. Create the password secret BEFORE applying postgres.yaml
-#    (the manifest contains a placeholder; this command supersedes it)
+# 1. Create the password secret BEFORE applying postgres.yaml.
+#    (postgres.yaml no longer contains any secret stanza — required to exist first.)
 kubectl -n bucket-foundation create secret generic postgres-credentials \
   --from-literal=POSTGRES_USER=bucket \
   --from-literal=POSTGRES_DB=bucket \
@@ -31,11 +43,10 @@ kubectl -n bucket-foundation create secret generic postgres-credentials \
 kubectl -n bucket-foundation get secret postgres-credentials \
   -o jsonpath='{.data.POSTGRES_PASSWORD}' | base64 -d; echo
 
-# 2. Apply Postgres (skip the Secret stanza inside postgres.yaml — it's just a placeholder
-#    and apply will be a no-op since stringData matches existing keys; safe either way)
+# 2. Apply Postgres (image must already be pushed — see "One-time image build" above)
 kubectl apply -f postgres.yaml
 
-# 3. Wait for ready (init runs apt-get install postgis on first boot — ~60-90s)
+# 3. Wait for ready (~30-45s; postgis + pgvector are baked into the image now)
 kubectl -n bucket-foundation rollout status statefulset/postgres --timeout=5m
 kubectl -n bucket-foundation logs statefulset/postgres -f   # ctrl-C once you see "database system is ready"
 
