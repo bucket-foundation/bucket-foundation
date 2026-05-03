@@ -32,6 +32,8 @@ hand-illustration.
 | 09 | `phase-portrait-oscillator` | $\ddot{x} + 2\gamma\dot{x} + \omega^2 x = 0$ | the bobber's heart — every initial condition spirals into the origin |
 | 10 | `radial-wave-pulse` | $u(r,t) = \sin(kr - \omega t)/\sqrt{r}$ | the bobber's wave — radial pulse from a point source on a 2D surface |
 | 11 | `nand-gate` | universal logic atom + truth table | the bridge from continuous math to discrete computation |
+| 12 | `stereographic-projection` | $S^2 \setminus \{N\} \to \mathbb{R}^2$ | the universal "flatten the globe" map — conformal, sends circles to circles |
+| 13 | `trefoil-knot` | $(2,3)$ torus knot, planar diagram with crossings | the simplest non-trivial knot — every closed loop in $\mathbb{R}^3$ is or is not this |
 
 ## Reading order
 

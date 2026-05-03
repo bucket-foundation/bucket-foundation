@@ -117,6 +117,14 @@ def save(fig, path: Path) -> None:
     print(f"  → {path.name}  ({path.stat().st_size // 1024} KB)")
 
 
+def tight_3d(fig, ax) -> None:
+    """matplotlib 3D adds wasteful padding inside the axes region.  Strip it,
+    set true cube box aspect so spheres aren't ovals, and pad only enough
+    for a title above."""
+    ax.set_box_aspect((1, 1, 1))
+    fig.subplots_adjust(left=-0.08, right=1.08, top=0.96, bottom=-0.04)
+
+
 # ───────────────────────────── plates ─────────────────────────────
 
 def plate_01_eulers_identity(out: Path) -> None:
@@ -170,6 +178,7 @@ def plate_02_helix(out: Path) -> None:
 
     ax.set_xlim(-1.5, 1.5); ax.set_ylim(-1.5, 1.5); ax.set_zlim(0, 3.2)
     ax.set_axis_off()
+    tight_3d(fig, ax)
     ax.view_init(elev=22, azim=-58)
 
     fig.suptitle(r"$\gamma(t) \;=\; (\cos t,\; \sin t,\; t)$",
@@ -181,37 +190,39 @@ def plate_03_logarithmic_spiral(out: Path) -> None:
     fig, ax = plt.subplots(figsize=(8.5, 8.5))
     chalk_axes(ax, (-3, 3), (-3, 3))
 
-    a, b = 0.18, 0.18  # tight Bernoulli spiral
-    theta = np.linspace(0, 6 * np.pi, 1500)
+    a, b = 0.22, 0.20
+    # Start the curve away from the singularity at origin so path.sketch
+    # doesn't smear the inner-most coil into a stray fragment.
+    theta = np.linspace(-0.5 * np.pi, 5.5 * np.pi, 1800)
     r = a * np.exp(b * theta)
     x, y = r * np.cos(theta), r * np.sin(theta)
     ax.plot(x, y, color=CHALK_FG, lw=2.2)
 
-    # A tangent illustrating the spira mirabilis property:
-    # angle between tangent and radius is constant.
-    k = 980
+    # Tangent + radius at one chosen point, demonstrating the
+    # constant-angle property (the spira mirabilis identity).
+    k = 1500
     px, py = x[k], y[k]
-    rang = math.atan2(py, px)  # radial angle
-    tang = math.atan2(np.cos(theta[k]) - b * np.sin(theta[k]) * 0,  # placeholder
-                      np.sin(theta[k]) + b * np.cos(theta[k]) * 0)
-    # Easier: numerical tangent
     dx = x[k + 1] - x[k - 1]
     dy = y[k + 1] - y[k - 1]
-    tang_len = 0.9
     norm = math.hypot(dx, dy)
-    ax.plot([px, px + dx / norm * tang_len], [py, py + dy / norm * tang_len],
-            color=CHALK_GOLD, lw=2.0)
-    ax.plot([0, px], [0, py], color=CHALK_DIM, lw=1.2, ls=(0, (4, 3)))
-    ax.plot(px, py, "o", color=CHALK_GOLD, markersize=7)
+    tx, ty = dx / norm, dy / norm
+    tlen = 1.1
+    ax.plot([px - tx * tlen, px + tx * tlen],
+            [py - ty * tlen, py + ty * tlen],
+            color=CHALK_GOLD, lw=2.4)
+    ax.plot([0, px], [0, py], color=CHALK_GOLD, lw=1.4,
+            ls=(0, (4, 3)), alpha=0.85)
+    ax.plot(px, py, "o", color=CHALK_GOLD, markersize=8, zorder=6)
 
     title(ax, r"$r \;=\; a\, e^{\,b\theta}$  —  spira mirabilis")
-    label(ax, 0, -3.3, "the angle between tangent and radius is constant",
+    label(ax, 0, -3.35,
+          r"$\angle$(tangent, radius) is constant for every point on the curve",
           color=CHALK_DIM, size=11, halign="center")
     save(fig, out)
 
 
 def plate_04_great_circle(out: Path) -> None:
-    fig = plt.figure(figsize=(9, 9))
+    fig = plt.figure(figsize=(11, 11))
     ax = fig.add_subplot(111, projection="3d")
     ax.set_facecolor(CHALK_BG)
 
@@ -245,6 +256,7 @@ def plate_04_great_circle(out: Path) -> None:
 
     ax.set_xlim(-1.1, 1.1); ax.set_ylim(-1.1, 1.1); ax.set_zlim(-1.1, 1.1)
     ax.set_axis_off()
+    tight_3d(fig, ax)
     ax.view_init(elev=18, azim=35)
 
     fig.suptitle("great-circle geodesic on $S^2$",
@@ -253,7 +265,7 @@ def plate_04_great_circle(out: Path) -> None:
 
 
 def plate_05_loxodrome(out: Path) -> None:
-    fig = plt.figure(figsize=(9, 9))
+    fig = plt.figure(figsize=(11, 11))
     ax = fig.add_subplot(111, projection="3d")
     ax.set_facecolor(CHALK_BG)
 
@@ -276,6 +288,7 @@ def plate_05_loxodrome(out: Path) -> None:
 
     ax.set_xlim(-1.1, 1.1); ax.set_ylim(-1.1, 1.1); ax.set_zlim(-1.1, 1.1)
     ax.set_axis_off()
+    tight_3d(fig, ax)
     ax.view_init(elev=22, azim=-30)
 
     fig.suptitle("loxodrome — spiral of constant bearing on $S^2$",
@@ -308,6 +321,7 @@ def plate_06_torus(out: Path) -> None:
 
     ax.set_xlim(-1.8, 1.8); ax.set_ylim(-1.8, 1.8); ax.set_zlim(-1.0, 1.0)
     ax.set_axis_off()
+    tight_3d(fig, ax)
     ax.view_init(elev=24, azim=-42)
 
     fig.suptitle(r"torus  $\;(R + r\cos v)(\cos u,\, \sin u),\; r\sin v$",
@@ -386,37 +400,35 @@ def plate_09_phase_portrait(out: Path) -> None:
 
         x'' + 2γ x' + ω² x = 0
     """
-    fig, ax = plt.subplots(figsize=(9, 8))
-    chalk_axes(ax, (-1.4, 1.4), (-1.6, 1.6),
-               axis_labels=(r"$x$", r"$\dot{x}$"))
+    fig, ax = plt.subplots(figsize=(9, 9))
+    # Plot in NORMALIZED phase space: u = x, w = v/ω.  Then a free oscillator
+    # traces circles, equal-aspect makes geometric sense, and damped paths
+    # are honest spirals.
+    chalk_axes(ax, (-1.6, 1.6), (-1.6, 1.6),
+               axis_labels=(r"$x$", r"$\dot{x}/\omega$"))
 
-    omega, gamma = 2 * math.pi, 0.35
-    # Numerical integration (RK4 lite, just Euler with small dt is fine for a
-    # plate). Multiple initial conditions → spiral inward to origin.
-    dt = 0.005
-    T = 14.0
+    omega, gamma = 2 * math.pi, 0.45
+    dt = 0.003
+    T = 4.5
     steps = int(T / dt)
 
-    initial = [(1.0, 0.0), (0.6, 1.0), (-0.9, -0.4), (0.0, 1.4), (-1.2, 0.6)]
-    for x0, v0 in initial:
+    def integrate(x0, v0):
         x, v = x0, v0
-        xs = np.empty(steps); vs = np.empty(steps)
+        xs = np.empty(steps); ws = np.empty(steps)
         for i in range(steps):
-            xs[i], vs[i] = x, v
+            xs[i] = x; ws[i] = v / omega
             a = -omega * omega * x - 2 * gamma * v
             v += a * dt
             x += v * dt
-        ax.plot(xs, vs, color=CHALK_FG, lw=1.6, alpha=0.85)
+        return xs, ws
 
-    # Highlight one trajectory in gold
-    x, v = 1.0, 0.0
-    xs = np.empty(steps); vs = np.empty(steps)
-    for i in range(steps):
-        xs[i], vs[i] = x, v
-        a = -omega * omega * x - 2 * gamma * v
-        v += a * dt
-        x += v * dt
-    ax.plot(xs, vs, color=CHALK_GOLD, lw=2.2)
+    initial = [(1.3, 0.0), (-0.4, 7.5), (0.2, -7.0), (-1.1, -3.0)]
+    for x0, v0 in initial:
+        xs, ws = integrate(x0, v0)
+        ax.plot(xs, ws, color=CHALK_FG, lw=1.7, alpha=0.85)
+
+    xs, ws = integrate(1.3, 0.0)
+    ax.plot(xs, ws, color=CHALK_GOLD, lw=2.4)
 
     # Origin marker — the attractor.
     ax.plot(0, 0, "o", color=CHALK_GOLD, markersize=8, zorder=5)
@@ -432,20 +444,24 @@ def plate_10_radial_wave(out: Path) -> None:
     fig, ax = plt.subplots(figsize=(9, 9))
     chalk_axes(ax, (-3.5, 3.5), (-3.5, 3.5))
 
-    n = 600
+    n = 800
     x = np.linspace(-3.5, 3.5, n)
     y = np.linspace(-3.5, 3.5, n)
     X, Y = np.meshgrid(x, y)
     R = np.sqrt(X * X + Y * Y) + 1e-6
-    k, omega, t = 4.0, 0.0, 0.0
+    k, omega, t = 3.2, 0.0, 0.0
     Z = np.sin(k * R - omega * t) / np.sqrt(R)
 
     # Render as contour lines — chalkboard reads contour, not heatmap.
-    levels = np.linspace(-1.0, 1.0, 13)
-    ax.contour(X, Y, Z, levels=levels, colors=CHALK_FG,
-               linewidths=1.1, alpha=0.85)
-    # Highlight the +0.5 contour in gold — picks the wave crests.
-    ax.contour(X, Y, Z, levels=[0.5], colors=CHALK_GOLD, linewidths=2.0)
+    # Fewer, thinner levels to dial down visual noise.
+    crests = np.array([0.30, 0.45, 0.60])  # outgoing wave crests
+    troughs = -crests                       # outgoing wave troughs
+    ax.contour(X, Y, Z, levels=sorted(troughs.tolist()), colors=CHALK_FG,
+               linewidths=0.9, alpha=0.65, linestyles="dashed")
+    ax.contour(X, Y, Z, levels=sorted(crests.tolist()), colors=CHALK_FG,
+               linewidths=1.2, alpha=0.95)
+    # Highlight the +0.45 crest in gold — picks the dominant wavefront.
+    ax.contour(X, Y, Z, levels=[0.45], colors=CHALK_GOLD, linewidths=2.2)
     # Source dot.
     ax.plot(0, 0, "o", color=CHALK_GOLD, markersize=9, zorder=5)
 
@@ -520,6 +536,108 @@ def plate_11_nand_gate(out: Path) -> None:
 
 # ───────────────────────────── runner ─────────────────────────────
 
+def plate_12_stereographic(out: Path) -> None:
+    """Stereographic projection: sphere minus the north pole maps bijectively
+    to the plane. The universal "flatten the globe" map. Conformal — angles
+    preserved. Sends circles on the sphere to circles (or lines) on the plane.
+    """
+    fig = plt.figure(figsize=(11, 9))
+    ax = fig.add_subplot(111, projection="3d")
+    ax.set_facecolor(CHALK_BG)
+
+    # Sphere wireframe.
+    u = np.linspace(0, 2 * np.pi, 32)
+    v = np.linspace(0, np.pi, 16)
+    U, V = np.meshgrid(u, v)
+    sx = np.cos(U) * np.sin(V); sy = np.sin(U) * np.sin(V); sz = np.cos(V)
+    ax.plot_wireframe(sx, sy, sz, color=CHALK_FAINT, lw=0.55, alpha=0.65)
+
+    # The plane z = -1 (south-pole tangent), drawn as a faint disc.
+    th = np.linspace(0, 2 * np.pi, 80)
+    ax.plot(2.6 * np.cos(th), 2.6 * np.sin(th), -np.ones_like(th),
+            color=CHALK_FAINT, lw=0.7, alpha=0.6)
+
+    # North pole — the projection point.
+    N = np.array([0, 0, 1])
+    ax.scatter(*N, color=CHALK_GOLD, s=80, zorder=10)
+
+    # Pick three points on the sphere, project them.
+    pts_sph = [
+        np.array([math.cos(0.6) * math.sin(1.2),
+                  math.sin(0.6) * math.sin(1.2),
+                  math.cos(1.2)]),
+        np.array([math.cos(2.4) * math.sin(1.7),
+                  math.sin(2.4) * math.sin(1.7),
+                  math.cos(1.7)]),
+        np.array([math.cos(-1.0) * math.sin(2.4),
+                  math.sin(-1.0) * math.sin(2.4),
+                  math.cos(2.4)]),
+    ]
+    for p in pts_sph:
+        # Stereographic from N onto plane z = -1.
+        # Line from N through p meets z=-1 at parameter t s.t. N + t(p-N) has z=-1.
+        # 1 + t*(p_z - 1) = -1  →  t = -2 / (p_z - 1)  (well-defined when p≠N).
+        t = -2.0 / (p[2] - 1.0)
+        proj = N + t * (p - N)
+        ax.plot([N[0], proj[0]], [N[1], proj[1]], [N[2], proj[2]],
+                color=CHALK_GOLD, lw=1.0, ls=(0, (4, 3)), alpha=0.9)
+        ax.scatter(*p, color=CHALK_FG, s=45, zorder=9)
+        ax.scatter(*proj, color=CHALK_GOLD, s=55, zorder=9)
+
+    # Equal limits in all three axes → sphere stays round under cube box.
+    ax.set_xlim(-2.6, 2.6); ax.set_ylim(-2.6, 2.6); ax.set_zlim(-2.6, 2.6)
+    ax.set_axis_off()
+    tight_3d(fig, ax)
+    ax.view_init(elev=14, azim=-32)
+
+    fig.suptitle("stereographic projection — $S^2 \\setminus \\{N\\} \\to \\mathbb{R}^2$",
+                 color=CHALK_FG, fontsize=15, family="serif", style="italic", y=0.94)
+    save(fig, out)
+
+
+def plate_13_trefoil_knot(out: Path) -> None:
+    """The trefoil — simplest non-trivial knot. (2,3) torus knot:
+        x = (R + r cos(3t)) cos(2t)
+        y = (R + r cos(3t)) sin(2t)
+        z = r sin(3t)
+    Foundational object in topology — every closed curve in 3-space either
+    is or isn't this knot, no matter how you bend it.
+    """
+    fig, ax = plt.subplots(figsize=(9, 9))
+    chalk_axes(ax, (-1.8, 1.8), (-1.8, 1.8))
+
+    R, r = 1.0, 0.40
+    N = 1500
+    t = np.linspace(0, 2 * np.pi, N)
+    x = (R + r * np.cos(3 * t)) * np.cos(2 * t)
+    y = (R + r * np.cos(3 * t)) * np.sin(2 * t)
+    z = r * np.sin(3 * t)  # used only for over/under at crossings
+
+    # Detect self-crossings in the 2D projection. Whichever strand has the
+    # smaller z is the under-strand and gets a small gap drawn at it.
+    mask = np.ones(N, dtype=bool)
+    gap = 0.10
+    for i in range(N):
+        for j in range(i + 30, N - 1):
+            d2 = (x[i] - x[j]) ** 2 + (y[i] - y[j]) ** 2
+            if d2 < 0.0009:
+                if z[i] < z[j]:
+                    near = (x - x[i]) ** 2 + (y - y[i]) ** 2 < gap ** 2
+                    band = abs(np.arange(N) - i) < 25
+                    mask[near & band] = False
+                break
+
+    ax.plot(np.where(mask, x, np.nan),
+            np.where(mask, y, np.nan),
+            color=CHALK_GOLD, lw=4.5, solid_capstyle="round")
+
+    title(ax, r"trefoil — the $(2,3)$ torus knot")
+    label(ax, 0, -2.0,
+          r"the simplest non-trivial knot in $\mathbb{R}^3$",
+          color=CHALK_DIM, size=11, halign="center")
+    save(fig, out)
+
+
 PLATES: list[tuple[str, Callable[[Path], None]]] = [
     ("01-eulers-identity.png",          plate_01_eulers_identity),
     ("02-helix-eix-extended.png",       plate_02_helix),
@@ -532,6 +650,8 @@ PLATES: list[tuple[str, Callable[[Path], None]]] = [
     ("09-phase-portrait-oscillator.png", plate_09_phase_portrait),
     ("10-radial-wave-pulse.png",        plate_10_radial_wave),
     ("11-nand-gate.png",                plate_11_nand_gate),
+    ("12-stereographic-projection.png", plate_12_stereographic),
+    ("13-trefoil-knot.png",             plate_13_trefoil_knot),
 ]
 
 
