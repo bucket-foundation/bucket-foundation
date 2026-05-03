@@ -54,12 +54,35 @@ const TOOLS: Anthropic.Tool[] = [
   {
     name: "feed402_search_patents",
     description:
-      "Search the patent corpus via feed402. Use for prior art, applied science, engineering disclosures.",
+      "Search the patent corpus via feed402. Use for prior art, applied science, engineering disclosures. Geo+time+class filters supported — agent can ask 'patents in Ohio in 1903' style queries.",
     input_schema: {
       type: "object",
       properties: {
-        query: { type: "string" },
-        limit: { type: "number" },
+        query: { type: "string", description: "Search query" },
+        class: {
+          type: "string",
+          description: "IPC or CPC classification code (e.g. 'A01B', 'H04L').",
+        },
+        from: {
+          type: "string",
+          description: "Filing/publication date lower bound, YYYY-MM-DD.",
+        },
+        to: {
+          type: "string",
+          description: "Filing/publication date upper bound, YYYY-MM-DD.",
+        },
+        jurisdiction: {
+          type: "string",
+          enum: ["US", "EP", "WO", "JP", "KR", "CN"],
+          description: "Patent office jurisdiction.",
+        },
+        lat: { type: "number", description: "Latitude for geo radius search." },
+        lng: { type: "number", description: "Longitude for geo radius search." },
+        radius: {
+          type: "number",
+          description: "Radius in kilometers around (lat,lng).",
+        },
+        limit: { type: "number", description: "Max results (default 20)." },
       },
       required: ["query"],
     },

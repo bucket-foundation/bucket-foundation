@@ -5,24 +5,67 @@
 const FEED402_BASE_URL =
   process.env.FEED402_BASE_URL || "http://localhost:8402";
 
-export interface CitationEnvelope {
-  citation: {
-    type: string; // "source" | "VDS" | future extension types
-    canonical_url: string;
-    title: string;
-    authors: string[];
-    year?: number;
-    snippet?: string;
-    doi?: string;
-    license?: string;
+// bkt-tsv: re-derived from feed402 SPEC §3 / types.ts Envelope shape.
+// SPEC is source of truth — `citation` is an ARRAY of Citation entries, not a
+// single object, and the payment block is named `receipt`. Sibling fix in
+// ~/agfarms/feed402/types.ts is making citation an array; if upstream still
+// shows singular at this commit, we hold this shape — the SPEC wins.
+
+export type FeedTier = "raw" | "query" | "insight";
+
+export interface RetrievalProvenance {
+  model: string;
+  score: number;
+  rank: number;
+}
+
+export interface CitationSource {
+  type: "source";
+  source_id: string;
+  provider: string;
+  retrieved_at: string;
+  license?: string;
+  canonical_url?: string;
+  chunk_id?: string;
+  retrieval?: RetrievalProvenance;
+  // Tolerated convenience fields some providers tack on; keep optional so we
+  // remain forward-compatible per SPEC §2.3 (ignore unknown fields).
+  title?: string;
+  authors?: string[];
+  year?: number;
+  snippet?: string;
+  doi?: string;
+}
+
+export interface CitationVDS {
+  type: "vds";
+  script_id: string;
+  session_id: string;
+  captured_by: `0x${string}`;
+  captured_at: string;
+  verifier: string;
+  verification: {
+    status: "PASS" | "FAIL" | "INCONCLUSIVE";
+    confidence: number;
+    findings: Array<{ kind: string; value: string | number; confidence: number }>;
   };
-  payment: {
-    tier: "raw" | "query" | "insight";
-    cost_usd: number;
-    settled: boolean;
-    tx_hash?: string;
-  };
-  meta: Record<string, unknown>;
+  onchain?: string;
+  signature: `0x${string}`;
+}
+
+export type Citation = CitationSource | CitationVDS;
+
+export interface Receipt {
+  tier: FeedTier;
+  price_usd: number;
+  tx: string;
+  paid_at: string;
+}
+
+export interface CitationEnvelope<D = unknown> {
+  data: D;
+  citation: Citation[];
+  receipt: Receipt;
 }
 
 export interface SearchResult {

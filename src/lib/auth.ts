@@ -4,12 +4,24 @@
 
 import type { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
+import { SupabaseAdapter } from "@auth/supabase-adapter";
 
-// TODO(bkt-q7k+3): swap memory adapter for a real one (Supabase, Prisma, etc.)
-//   For now JWT-only sessions skip the user table requirement so we can ship
-//   the chat preview without a DB migration.
+// bkt-vn5: NextAuth EmailProvider requires a database adapter — magic-link
+// flow needs a `verification_tokens` table to persist the one-time token
+// between request and click. JWT-only config 500s at runtime. Wired to
+// Supabase (the venture already runs on Supabase per CLAUDE.md).
+//
+// TODO: the Supabase project MUST have the next-auth schema applied before
+// the email magic-link flow will work. Apply the SQL from:
+//   https://authjs.dev/reference/adapter/supabase
+// (creates `next_auth` schema with users / accounts / sessions /
+// verification_tokens tables + RLS policies).
 
 export const authOptions: NextAuthOptions = {
+  adapter: SupabaseAdapter({
+    url: process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+    secret: process.env.SUPABASE_SERVICE_ROLE_KEY || "",
+  }),
   providers: [
     EmailProvider({
       server: process.env.EMAIL_SERVER || "",
