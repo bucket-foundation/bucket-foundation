@@ -54,3 +54,6 @@ manifesto-source/**/*.jpg
 manifesto-source/**/*.jpeg
 manifesto-source/**/*.heic
 manifesto-source/**/*.webp
+
+# subproject node_modules — never commit
+grants-gateway/node_modules/
