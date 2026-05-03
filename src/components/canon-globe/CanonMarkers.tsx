@@ -99,16 +99,39 @@ export function CanonMarkers({
         const p = positions[i];
         const color = KIND_COLOR[m.kind];
         const isActive = i === activeIndex;
-        const dotScale = isActive ? 0.018 : 0.012;
+        const dotScale = isActive ? 0.028 : 0.020;
+        // Beam pointing outward from the dot — pulled-up obelisk.
+        const beamLen = isActive ? 0.18 : 0.10;
+        const beamMid = p.clone().normalize().multiplyScalar(radius + beamLen / 2);
         return (
           <group key={m.id}>
+            {/* outward beam */}
+            <mesh
+              position={beamMid}
+              onUpdate={(self) => self.lookAt(beamMid.clone().multiplyScalar(2))}
+            >
+              <cylinderGeometry args={[dotScale * 0.18, dotScale * 0.18, beamLen, 8, 1, true]} />
+              <meshBasicMaterial
+                color={color}
+                transparent
+                opacity={0.55}
+                toneMapped={false}
+                depthWrite={false}
+              />
+            </mesh>
+            {/* halo disc behind dot */}
+            <mesh position={p.clone().multiplyScalar(1.001)} onUpdate={(self) => self.lookAt(p.clone().multiplyScalar(2))}>
+              <ringGeometry args={[dotScale * 1.2, dotScale * 2.1, 24]} />
+              <meshBasicMaterial color={color} transparent opacity={0.35} side={THREE.DoubleSide} toneMapped={false} depthWrite={false} />
+            </mesh>
+            {/* dot itself */}
             <mesh
               position={p}
               onPointerOver={(e) => { e.stopPropagation(); setHover(i); document.body.style.cursor = "pointer"; }}
               onPointerOut={() => { setHover((h) => (h === i ? null : h)); document.body.style.cursor = "auto"; }}
               onClick={(e) => { e.stopPropagation(); handleClick(m); }}
             >
-              <sphereGeometry args={[dotScale, 12, 12]} />
+              <sphereGeometry args={[dotScale, 16, 16]} />
               <meshBasicMaterial color={color} toneMapped={false} />
             </mesh>
 

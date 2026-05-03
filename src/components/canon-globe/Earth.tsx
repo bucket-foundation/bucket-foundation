@@ -50,8 +50,8 @@ export function Earth({
   reducedMotion,
   landmaskUrl,
   children,
-  sampleCount = 15000,
-  dotRadius = 0.0055,
+  sampleCount = 36000,
+  dotRadius = 0.0038,
 }: EarthProps) {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.InstancedMesh>(null);
@@ -148,7 +148,7 @@ export function Earth({
   });
 
   // Shared geometry for instanced dots — small, low-poly disc-like sphere.
-  const dotGeo = useMemo(() => new THREE.SphereGeometry(dotRadius, 6, 6), [dotRadius]);
+  const dotGeo = useMemo(() => new THREE.SphereGeometry(dotRadius, 8, 8), [dotRadius]);
   const dotMat = useMemo(
     () =>
       new THREE.MeshBasicMaterial({
