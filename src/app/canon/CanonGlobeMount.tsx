@@ -34,8 +34,28 @@ interface Props {
 
 export default function CanonGlobeMount({ branches: _branches, markers }: Props) {
   return (
-    <div className="relative w-full min-h-[640px] lg:min-h-[820px]">
-      <R3FCanonGlobe markers={markers ?? DEFAULT_MARKERS} />
+    // Full-bleed breakout: escape the max-w-6xl parent so the globe spans
+    // the whole viewport. Aspect-square on mobile, taller on desktop, capped
+    // at 95vh so it never pushes the page below the fold on huge monitors.
+    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
+      <div
+        className="relative w-full mx-auto"
+        style={{
+          height: "min(95vh, 1100px)",
+          minHeight: "640px",
+        }}
+      >
+        {/* radial vignette behind the globe — pulls it forward, hides canvas edges */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 55%)",
+          }}
+        />
+        <R3FCanonGlobe markers={markers ?? DEFAULT_MARKERS} className="relative z-10" />
+      </div>
     </div>
   );
 }

@@ -27,7 +27,7 @@ export default function CanonGlobe({
       <Canvas
         dpr={[1, 2]}
         performance={{ min: 0.6 }}
-        camera={{ position: [0, 0, 3.4], fov: 38 }}
+        camera={{ position: [0, 0, 2.5], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
       >
         {/* dot-globe is unlit (MeshBasicMaterial) — ambient is harmless. */}
