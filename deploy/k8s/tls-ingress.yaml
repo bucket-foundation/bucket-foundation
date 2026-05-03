@@ -1,0 +1,31 @@
+---
+# TLS ingress for bucket-foundation Nucleus instance.
+# Assumes cert-manager + ClusterIssuer `letsencrypt-prod` already exist (they do — used by every other venture).
+# Assumes the Nucleus Service in this namespace is named `nucleus` on port 80.
+# If the Service has a different name/port, edit the backend block below before apply.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bucket-foundation-nucleus
+  namespace: bucket-foundation
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - bucket-foundation.nucleus.agfarms.dev
+      secretName: bucket-foundation-nucleus-tls
+  rules:
+    - host: bucket-foundation.nucleus.agfarms.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nucleus
+                port:
+                  number: 80
