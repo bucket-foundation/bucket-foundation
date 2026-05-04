@@ -66,3 +66,20 @@ Secondary gating risks:
 4. **Cultivate one NOAA Fisheries scientist** (regional NJ or FL office) starting May 2026. Letter of support de-risks every NOAA application. This is the highest-leverage cultivation move in the portfolio.
 5. **Don't waste cycles** pitching for-profit AGFarms LLC to Mellon / Templeton / Knight / Walton / Pew — they don't fund LLCs. Use Bucket as the c3 wrapper for those routes once the determination letter is in hand.
 6. **MamaTeeTees needs cultivation, not applications.** Most West Africa funders are referral-only. Spend 2026 building relationships (Segal Africa Visionary network, Mastercard regional office, Cameroon-based advisors) and aim for 2027 application cycles.
+
+## Cross-venture beads filed (2026-05-04)
+
+| Bead ID | Instance | Title |
+|---------|----------|-------|
+| `derbyfish-6vp` | derbyfish | NSF SBIR Phase I Project Pitch (DerbyFish/Kala) |
+| `derbyfish-4lb` | derbyfish | NOAA Saltonstall-Kennedy pre-proposal (DerbyFish/Kala) |
+| `bkt-jwh` *(proxy)* | bucket-foundation | [MTT-PROXY] GlobalGiving Accelerator submission |
+
+**Note on `bkt-jwh`**: filed as a proxy in `bucket-foundation` because the
+`mamateetees` Nucleus instance is dormant (scaled to zero) and behind nginx
+basic auth that current admin credentials don't satisfy. The `/issues` endpoint
+returns 401 for every credential combination tried (admin/nucleus/root × the
+documented `$NUCLEUS_ADMIN_PASSWORD`). Re-file into the mamateetees instance
+directly once the instance is brought back up and credentials are rotated. Used
+endpoint pattern: `bd-remote create` → `https://<instance>.nucleus.agfarms.dev/issues`
+(no auth required for the live derbyfish/bucket-foundation instances).
