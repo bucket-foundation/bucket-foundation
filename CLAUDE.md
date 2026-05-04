@@ -11,16 +11,16 @@ Part of AGFarms venture studio. Org dashboard: https://nucleus.agfarms.dev/admin
 ## Nucleus Connection
 
 - **Instance ID**: `bucket-foundation`
-- **Dashboard**: https://bucket-foundation.nucleus.agfarms.dev/admin *(pending TLS cert — see Known Infra Gaps)*
-- **API**: https://bucket-foundation.nucleus.agfarms.dev *(pending TLS cert)*
-- **Org fallback**: https://nucleus.agfarms.dev/api/portfolio/dispatch *(use until subdomain cert issued)*
+- **Dashboard**: https://bucket-foundation.nucleus.agfarms.dev/admin
+- **API**: https://bucket-foundation.nucleus.agfarms.dev *(TLS live as of 2026-05-03; verified 2026-05-04)*
+- **Org fallback**: https://nucleus.agfarms.dev/api/portfolio/dispatch *(no longer required; kept as backup)*
 - **Auth**: export `NUCLEUS_ADMIN_USER` and `NUCLEUS_ADMIN_PASSWORD` in your shell
 - **Bead Prefix**: `bkt-`
 - **Tier**: 3 (experiment/idea) — graduating to Tier 2 once instance is deployed + first paying customer signs
 
-## Known Infra Gaps (as of 2026-04-17)
+## Known Infra Gaps (as of 2026-04-17, last updated 2026-05-04)
 
-1. **No TLS cert** for `bucket-foundation.nucleus.agfarms.dev`. DNS resolves (5.161.236.151 Hetzner CPX42) but nginx rejects TLS handshake because the cert doesn't cover this subdomain. Blocks direct `bkt-` bead filing until certbot is run for this host. Workaround: dispatch via org-level `/api/portfolio/dispatch`.
+1. ~~**No TLS cert** for `bucket-foundation.nucleus.agfarms.dev`.~~ **RESOLVED 2026-05-04** (bead `bkt-q0x`). Let's Encrypt cert issued 2026-05-03 (valid through 2026-08-01). K3s namespace `inst-bucket-foundation` healthy (`nucleus-0` Running, Traefik ingress + host-nginx vhost both wired). End-to-end verified: `/issues=200`, `/admin=401`, `/api/version=200`. Direct `bkt-` bead filing now live; org-level dispatch fallback kept as backup only.
 2. **No `NSMotionUsageDescription`** on DerbyFish iOS (needed for Path B sensor capture — tracked as cross-venture `dbt-` bead).
 3. **`.beads/remote.json` newly created 2026-04-17.** Prior work in this venture was tracked in conversation context only; backfilled into `TIMELOG.md`.
 
@@ -57,11 +57,11 @@ Bucket Foundation canon lives on gdrive (not in this repo — too large, too man
 ## Bead Tracking
 
 ```bash
-# Preferred: direct instance (once TLS cert issued)
+# Preferred: direct instance (TLS live since 2026-05-03)
 curl -s -u "$NUCLEUS_ADMIN_USER:$NUCLEUS_ADMIN_PASSWORD" \
   https://bucket-foundation.nucleus.agfarms.dev/issues | python3 -m json.tool
 
-# Current fallback: org-level dispatch (works today)
+# Backup fallback: org-level dispatch
 curl -s -u "$NUCLEUS_ADMIN_USER:$NUCLEUS_ADMIN_PASSWORD" \
   -X POST https://nucleus.agfarms.dev/api/portfolio/dispatch \
   -H "Content-Type: application/json" \
