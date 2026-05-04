@@ -35,9 +35,20 @@ All responses follow the feed402 §3 envelope:
 cd grants-gateway
 cp .env.example .env
 npm install
-npm run dev
-# → listening on :8789
+npm run dev                          # in-memory fixture (5 fake grants)
+
+# Real corpus from grants.gov / NIH / NSF / USAspending / 990:
+python3 scripts/ingest.py            # ~10 min, idempotent, writes data/grants.db
+GRANTS_STORE=sqlite npm run dev      # store=sqlite (NNNN rows)
 ```
+
+The `GRANTS_STORE` env var picks the backing store. Default `memory`
+(5 fixtures) so tests/CI keep working. Set to `sqlite` to read
+`data/grants.db` produced by `scripts/ingest.py`. The DB file is
+gitignored.
+
+See `SMOKE-TEST.md` for ready-made curl examples against the real
+corpus.
 
 Type-check (no emit):
 
@@ -109,8 +120,14 @@ can swap implementations without touching `server.ts`.
 
 - **Payment verification** (`src/x402.ts`) — any `x-payment` header passes.
   Production: facilitator signature check.
-- **Data layer** (`src/data/grants-store.ts`) — 5 in-memory fixtures.
-  Real schema, fake content. Ingestion pipeline is bead **bkt-ugw** (P2).
+- **Data layer** — two implementations:
+  - `MemoryGrantsStore` (`src/data/grants-store.ts`) — 5 fake fixtures
+    for fast/offline dev. Default.
+  - `SqliteGrantsStore` (`src/data/sqlite-grants-store.ts`) — reads
+    `data/grants.db` produced by `scripts/ingest.py` (Python stdlib +
+    `sqlite3`). Pulls from grants.gov, NIH RePORTER, NSF Awards,
+    USAspending, and IRS 990 / 990-PF (ProPublica). Toggle with
+    `GRANTS_STORE=sqlite`. *(bead bkt-ugw — done.)*
 - **Insight LLM** (`src/insight/synthesizer.ts`) — keyword-overlap mock.
   Real OpenAI/Anthropic call is a later bead (P2).
 - **Viatika metering** (`src/metering/viatika.ts`) — `NoOpMeter`. Real

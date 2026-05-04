@@ -28,6 +28,7 @@ import {
   type TierSpec,
 } from "./types.js";
 import { MemoryGrantsStore, type GrantsStore } from "./data/grants-store.js";
+import { SqliteGrantsStore } from "./data/sqlite-grants-store.js";
 import { MockSynthesizer, type Synthesizer } from "./insight/synthesizer.js";
 import { meterFromEnv, type ViatikaMeter } from "./metering/viatika.js";
 import { nowIso, traceId, verifyPayment, x402Challenge } from "./x402.js";
@@ -50,7 +51,23 @@ const TIERS: Record<TierName, TierSpec> = {
 
 // ---------- Wiring ----------
 
-const store: GrantsStore = new MemoryGrantsStore();
+function makeStore(): GrantsStore {
+  const which = (process.env.GRANTS_STORE ?? "memory").toLowerCase();
+  if (which === "sqlite") {
+    try {
+      const s = new SqliteGrantsStore({ path: process.env.GRANTS_DB });
+      console.log(`[grants-gateway] store=sqlite (${s.count()} rows)`);
+      return s;
+    } catch (e) {
+      console.error(`[grants-gateway] sqlite store failed (${(e as Error).message}); falling back to memory`);
+      return new MemoryGrantsStore();
+    }
+  }
+  console.log("[grants-gateway] store=memory (5 fixtures)");
+  return new MemoryGrantsStore();
+}
+
+const store: GrantsStore = makeStore();
 const synthesizer: Synthesizer = new MockSynthesizer();
 const meter: ViatikaMeter = meterFromEnv();
 
