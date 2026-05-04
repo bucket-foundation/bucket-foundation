@@ -118,8 +118,13 @@ can swap implementations without touching `server.ts`.
 
 ## What's stubbed
 
-- **Payment verification** (`src/x402.ts`) — any `x-payment` header passes.
-  Production: facilitator signature check.
+- **Payment verification** (`src/x402.ts`) — two modes via
+  `FEED402_VERIFY_MODE`. `stub` (default, dev/demos) accepts any non-empty
+  `x-payment` header. `facilitator` POSTs the header to
+  `${FEED402_FACILITATOR_URL}/verify` and trusts the verdict; the facilitator
+  must enforce (a) on-chain payment to `FEED402_WALLET` on the configured
+  chain and (b) amount ≥ tier `price_usd`. Production deploys set
+  `FEED402_VERIFY_MODE=facilitator`.
 - **Data layer** — two implementations:
   - `MemoryGrantsStore` (`src/data/grants-store.ts`) — 5 fake fixtures
     for fast/offline dev. Default.
@@ -163,10 +168,42 @@ can swap implementations without touching `server.ts`.
 - [x] Compiles cleanly under `npm run typecheck` (after `npm install`)
 - [x] Boots on `npm run dev`, all three endpoints return valid envelopes
 - [x] feed402 v0.2 manifest at `/.well-known/feed402.json`
-- [ ] Real grants corpus (bkt-ugw)
+- [x] Real grants corpus — 17,211 rows in `data/grants.db` (bkt-ugw)
 - [x] Real LLM — `AnthropicSynthesizer` behind `INSIGHT_SYNTH=anthropic` (bkt-x2b)
+- [x] Real x402 facilitator verification wired (`src/x402.ts`, mode=facilitator) — bkt-2cu
+- [x] Production K8s manifest + `deploy.sh` (mirrors `~/agfarms/kruse/`) — bkt-2cu
+- [x] Corpus baked into Docker image (no PVC, idempotent rebuilds) — bkt-2cu
+- [ ] Live on `grants-gateway.nucleus.agfarms.dev` (BLOCKED on creds — see below)
 - [ ] Real Viatika metering (bead TBD)
-- [ ] Deployed (NOT in this scaffold; Dockerfile + deploy/k8s.yaml ready)
+
+### Deployment (bkt-2cu, 2026-05-04)
+
+**Service is deploy-ready but NOT YET LIVE.** All artifacts are in place:
+
+- `src/x402.ts` ships real facilitator-mode verification (mirror of `~/agfarms/kruse/server.ts`).
+- `Dockerfile` bakes the 17k-row SQLite corpus at build time (simplest persistence; no PVC).
+- `deploy/k8s.yaml` targets `grants-gateway.nucleus.agfarms.dev` (sibling AGFarms TLS path) on namespace `grants`.
+- `deploy.sh` mirrors `~/agfarms/kruse/deploy.sh` — `--seed-secret` for first deploy, plain run for rollouts.
+
+**To go live (mainnet):**
+```bash
+DEPLOY_SERVER=5.161.236.151 SERVER_PASS=... \
+FEED402_WALLET=0x... ANTHROPIC_API_KEY=sk-ant-... \
+FEED402_CHAIN=base FEED402_VERIFY_MODE=facilitator \
+FEED402_FACILITATOR_URL=https://facilitator.x402.rs \
+INSIGHT_SYNTH=anthropic \
+./deploy.sh --seed-secret
+```
+
+**Required secrets (rotate via `kubectl -n grants patch secret grants-env`):**
+- `FEED402_WALLET` — Base mainnet 0x... receiving payments
+- `FEED402_FACILITATOR_URL` — x402 facilitator (e.g. https://facilitator.x402.rs)
+- `FEED402_VERIFY_MODE=facilitator` — turns off stub
+- `FEED402_CHAIN=base` — mainnet (use `base-sepolia` for staging)
+- `ANTHROPIC_API_KEY` — for `INSIGHT_SYNTH=anthropic` (else falls back to MockSynthesizer)
+- `INSIGHT_SYNTH=anthropic`
+
+For staging, swap `FEED402_CHAIN=base-sepolia` and use a Sepolia-funded test wallet.
 
 ## License
 

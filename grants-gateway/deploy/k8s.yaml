@@ -1,21 +1,36 @@
 # grants-gateway — Kubernetes manifest for Hetzner K3s (agfarms-k3s cluster)
 #
-# Apply:
+# Apply (from inside the K3s container):
 #   kubectl apply -f deploy/k8s.yaml
+#
+# Or via the deploy.sh helper which mirrors enterprise-ai/scripts/deploy.sh:
+#   ./deploy.sh --seed-secret    # first deploy
+#   ./deploy.sh                  # subsequent deploys
 #
 # Prereqs:
 #   - Ingress controller (Traefik default in K3s)
 #   - cert-manager with ClusterIssuer "letsencrypt-prod"
-#   - Image pushed to farmera/bucket-grants-gateway:<TAG>
-#   - Secret `grants-env` with FEED402_WALLET (and optional Viatika keys)
+#   - DNS: grants-gateway.nucleus.agfarms.dev → Hetzner CPX42 (5.161.236.151)
+#     (sibling AGFarms ventures already use *.nucleus.agfarms.dev — cert path
+#     is the well-trodden one. The task spec mentioned `grants.bucket.foundation`
+#     as the long-term home; that flip is a DNS+cert-manager change only.)
+#   - Image pushed to farmera/bucket-grants-gateway:<TAG> (corpus baked in)
+#   - Secret `grants-env` with payment + LLM credentials
 #
-# Create the secret first (one time):
+# Create the secret first (one time, see deploy.sh --seed-secret):
 #   kubectl create namespace grants
 #   kubectl -n grants create secret generic grants-env \
 #     --from-literal=FEED402_WALLET=0xYOUR_BASE_WALLET \
 #     --from-literal=FEED402_CHAIN=base \
 #     --from-literal=FEED402_VERIFY_MODE=facilitator \
-#     --from-literal=FEED402_FACILITATOR_URL=https://facilitator.x402.rs
+#     --from-literal=FEED402_FACILITATOR_URL=https://facilitator.x402.rs \
+#     --from-literal=ANTHROPIC_API_KEY=sk-ant-... \
+#     --from-literal=INSIGHT_SYNTH=anthropic
+#
+# Rotate any secret value with:
+#   kubectl -n grants patch secret grants-env -p \
+#     "{\"stringData\":{\"ANTHROPIC_API_KEY\":\"sk-ant-NEW\"}}"
+#   kubectl -n grants rollout restart deploy/grants-gateway
 
 apiVersion: v1
 kind: Namespace
@@ -44,7 +59,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: farmera/bucket-grants-gateway:v0.1.0-alpha.1
+          image: farmera/bucket-grants-gateway:v0.1.0-alpha.2
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -53,19 +68,23 @@ spec:
             - name: PORT
               value: "8789"
             - name: PROVIDER_DOMAIN
-              value: "grants.bucket.foundation"
+              value: "grants-gateway.nucleus.agfarms.dev"
             - name: NODE_ENV
               value: "production"
+            - name: GRANTS_STORE
+              value: "sqlite"
+            - name: GRANTS_DB
+              value: "/app/data/grants.db"
           envFrom:
             - secretRef:
                 name: grants-env
           resources:
             requests:
-              cpu: "50m"
-              memory: "128Mi"
-            limits:
               cpu: "500m"
-              memory: "512Mi"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
           readinessProbe:
             httpGet:
               path: /.well-known/feed402.json
@@ -74,7 +93,7 @@ spec:
             periodSeconds: 15
           livenessProbe:
             httpGet:
-              path: /.well-known/feed402.json
+              path: /health
               port: http
             initialDelaySeconds: 15
             periodSeconds: 30
@@ -104,10 +123,10 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-        - grants.bucket.foundation
-      secretName: grants-bucket-foundation-tls
+        - grants-gateway.nucleus.agfarms.dev
+      secretName: grants-gateway-nucleus-tls
   rules:
-    - host: grants.bucket.foundation
+    - host: grants-gateway.nucleus.agfarms.dev
       http:
         paths:
           - path: /

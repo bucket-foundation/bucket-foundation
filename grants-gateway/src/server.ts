@@ -31,17 +31,16 @@ import { MemoryGrantsStore, type GrantsStore } from "./data/grants-store.js";
 import { SqliteGrantsStore } from "./data/sqlite-grants-store.js";
 import { synthesizerFromEnv, type Synthesizer } from "./insight/synthesizer.js";
 import { meterFromEnv, type ViatikaMeter } from "./metering/viatika.js";
-import { nowIso, traceId, verifyPayment, x402Challenge } from "./x402.js";
+import { nowIso, traceId, verifyPayment, verifyConfigFromEnv, x402Challenge } from "./x402.js";
 
 // ---------- Config ----------
 
 const PROVIDER_NAME = process.env.PROVIDER_NAME ?? "bucket-grants-gateway";
 const PROVIDER_VERSION = "0.1.0-alpha.1";
 const PROVIDER_DOMAIN = process.env.PROVIDER_DOMAIN ?? "grants.bucket.foundation";
-const CHAIN = process.env.FEED402_CHAIN ?? "base-sepolia";
-const WALLET: `0x${string}` =
-  (process.env.FEED402_WALLET as `0x${string}`) ??
-  "0x0000000000000000000000000000000000000000";
+const VERIFY_CFG = verifyConfigFromEnv();
+const CHAIN = VERIFY_CFG.chain;
+const WALLET: `0x${string}` = VERIFY_CFG.recipient;
 
 const TIERS: Record<TierName, TierSpec> = {
   raw:     { path: "/grants/raw",     price_usd: 0.010, unit: "row" },
@@ -111,8 +110,9 @@ async function chargeOrFail(
   tier: TierName,
   caller?: string,
 ): Promise<{ ok: true; tx: string } | { ok: false; resp: Response }> {
-  const pay = verifyPayment(c);
+  const pay = await verifyPayment(c, tier, TIERS[tier], VERIFY_CFG);
   if (!pay.ok) {
+    if (pay.reason) console.warn(`[grants-gateway] verify rejected (${tier}): ${pay.reason}`);
     return { ok: false, resp: x402Challenge(c, tier, TIERS[tier], CHAIN, WALLET) as unknown as Response };
   }
   const m = await meter.meter({
@@ -135,6 +135,9 @@ async function chargeOrFail(
 // ---------- App ----------
 
 const app = new Hono();
+
+// Liveness probe — cheap, no I/O
+app.get("/health", (c) => c.json({ ok: true, ts: nowIso() }));
 
 // §1 Discovery manifest
 app.get("/.well-known/feed402.json", async (c) => {
@@ -302,6 +305,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   }));
   serve({ fetch: app.fetch, port });
   console.log(`[grants-gateway] listening on :${port}`);
+  console.log(`[grants-gateway] verify_mode=${VERIFY_CFG.mode} chain=${VERIFY_CFG.chain} wallet=${VERIFY_CFG.recipient}`);
+  if (VERIFY_CFG.mode === "stub") {
+    console.log(`[grants-gateway] WARNING: STUB verification — any x-payment header is accepted. Set FEED402_VERIFY_MODE=facilitator for prod.`);
+  } else {
+    console.log(`[grants-gateway] facilitator=${VERIFY_CFG.facilitatorUrl}`);
+  }
   console.log(`[grants-gateway] manifest: http://localhost:${port}/.well-known/feed402.json`);
 }
 
