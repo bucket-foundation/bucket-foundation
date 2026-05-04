@@ -60,10 +60,24 @@ export interface Receipt {
   paid_at: string;
 }
 
+/**
+ * Synthesis provenance — emitted on `/grants/insight` envelopes when a real
+ * model was called. Sibling to feed402 §3.2 retrieval provenance, but at the
+ * envelope level so a downstream agent can audit what model produced the
+ * synthesis (vs which corpus chunk was retrieved).
+ */
+export interface SynthesisProvenance {
+  model_id: string;
+  candidates: Array<{ id: string; score: number }>;
+  prompt_sha256: string;
+  ts: string;
+}
+
 export interface Envelope<D = unknown> {
   data: D;
   citation: CitationSource;
   receipt: Receipt;
+  provenance?: SynthesisProvenance;
 }
 
 export interface Manifest {

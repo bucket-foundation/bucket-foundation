@@ -29,7 +29,7 @@ import {
 } from "./types.js";
 import { MemoryGrantsStore, type GrantsStore } from "./data/grants-store.js";
 import { SqliteGrantsStore } from "./data/sqlite-grants-store.js";
-import { MockSynthesizer, type Synthesizer } from "./insight/synthesizer.js";
+import { synthesizerFromEnv, type Synthesizer } from "./insight/synthesizer.js";
 import { meterFromEnv, type ViatikaMeter } from "./metering/viatika.js";
 import { nowIso, traceId, verifyPayment, x402Challenge } from "./x402.js";
 
@@ -68,7 +68,10 @@ function makeStore(): GrantsStore {
 }
 
 const store: GrantsStore = makeStore();
-const synthesizer: Synthesizer = new MockSynthesizer();
+const { synth: synthesizer, label: synthLabel } = synthesizerFromEnv(TIERS.insight.price_usd);
+console.log(`[grants-gateway] insight_synth=${synthLabel}`);
+const _synthTypeCheck: Synthesizer = synthesizer;
+void _synthTypeCheck;
 const meter: ViatikaMeter = meterFromEnv();
 
 // ---------- Helpers ----------
@@ -244,7 +247,7 @@ app.get("/grants/insight", async (c) => {
   if (!charge.ok) return charge.resp;
 
   const candidates = await store.all();
-  const insight = await synthesizer.synthesize({ venture, topic }, candidates);
+  const { insight, provenance } = await synthesizer.synthesize({ venture, topic }, candidates);
 
   // Cite the top match (or the first candidate if no match)
   const topId = insight.matches[0]?.grant_id ?? candidates[0]?.id;
@@ -267,6 +270,7 @@ app.get("/grants/insight", async (c) => {
     data: insight,
     citation,
     receipt: makeReceipt("insight", charge.tx),
+    ...(provenance ? { provenance } : {}),
   };
   return c.json(env, 200);
 });

@@ -128,8 +128,18 @@ can swap implementations without touching `server.ts`.
     `sqlite3`). Pulls from grants.gov, NIH RePORTER, NSF Awards,
     USAspending, and IRS 990 / 990-PF (ProPublica). Toggle with
     `GRANTS_STORE=sqlite`. *(bead bkt-ugw — done.)*
-- **Insight LLM** (`src/insight/synthesizer.ts`) — keyword-overlap mock.
-  Real OpenAI/Anthropic call is a later bead (P2).
+- **Insight LLM** (`src/insight/synthesizer.ts`) — two implementations:
+  - `MockSynthesizer` — deterministic keyword-overlap. Default. No API key
+    needed; CI uses this.
+  - `AnthropicSynthesizer` — real Claude call via `@anthropic-ai/sdk`.
+    Selected by `INSIGHT_SYNTH=anthropic` + `ANTHROPIC_API_KEY`. Model
+    default `claude-sonnet-4-5` via `ANTHROPIC_MODEL`. Pre-ranks candidates
+    by keyword overlap and ships top-K (default 8) to bound input tokens;
+    output capped at 600 tokens. Hard budget guard: when projected cost
+    exceeds 10x the tier price ($0.002), the call is logged and downgraded
+    to `MockSynthesizer`. Emits a sibling-of-§3.2 envelope-level
+    `provenance` block: `{model_id, candidates, prompt_sha256, ts}`.
+    *(bead bkt-x2b — done.)*
 - **Viatika metering** (`src/metering/viatika.ts`) — `NoOpMeter`. Real
   vendor-API integration is a later bead (P3).
 
@@ -154,7 +164,7 @@ can swap implementations without touching `server.ts`.
 - [x] Boots on `npm run dev`, all three endpoints return valid envelopes
 - [x] feed402 v0.2 manifest at `/.well-known/feed402.json`
 - [ ] Real grants corpus (bkt-ugw)
-- [ ] Real LLM (bead TBD)
+- [x] Real LLM — `AnthropicSynthesizer` behind `INSIGHT_SYNTH=anthropic` (bkt-x2b)
 - [ ] Real Viatika metering (bead TBD)
 - [ ] Deployed (NOT in this scaffold; Dockerfile + deploy/k8s.yaml ready)
 

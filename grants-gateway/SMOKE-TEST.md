@@ -146,3 +146,38 @@ curl -sH 'x-payment: stub' \
   re-running ingest refreshes `last_seen_at` and any changed fields,
   no duplicates.
 - Gitignored — never commit.
+
+## Tier 3 — `/grants/insight` with the real Anthropic synthesizer (bkt-x2b)
+
+Default synth is `mock` (no API key needed). To exercise the real
+`AnthropicSynthesizer`:
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+export INSIGHT_SYNTH=anthropic
+# optional: pin a model. Default is claude-sonnet-4-5.
+export ANTHROPIC_MODEL=claude-sonnet-4-5
+
+GRANTS_STORE=sqlite npm run dev
+# → [grants-gateway] insight_synth=anthropic (claude-sonnet-4-5)
+
+curl -s -H 'x-payment: stub' \
+  "localhost:8789/grants/insight?venture=bucket-foundation&topic=open-source%20citation%20infrastructure" \
+  | jq '{summary: .data.summary, matches: .data.matches[0:3], provenance}'
+```
+
+The envelope carries an envelope-level `provenance` block (sibling of
+feed402 §3.2 retrieval provenance, but tracking *synthesis* not retrieval):
+
+```json
+"provenance": {
+  "model_id": "claude-sonnet-4-5",
+  "candidates": [{"id": "grants-gov:HHS-2026-NIH-AG-001", "score": 0.333}, ...],
+  "prompt_sha256": "9f3a...e7c1",
+  "ts": "2026-05-04T16:01:23.456Z"
+}
+```
+
+Budget guard: projected per-call cost exceeding `10 × $0.002 = $0.02` is
+logged and downgraded to `MockSynthesizer` (the envelope then ships
+without `provenance`). Output tokens are hard-capped at 600.
