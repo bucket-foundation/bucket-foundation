@@ -95,3 +95,41 @@ See `TIMELOG.md` for the canonical work log. Headline epics as of 2026-04-17:
 - Do NOT modify `~/jackkruse/` without re-scrape integrity check
 - Cross-venture work (`dbt-`, `eai-`, etc.) gets filed in the HOME instance, not `bkt-`, with a link back
 - Kruse corpus is private until author permission is given (see `TIMELOG.md` entry for Kruse pitch)
+
+## Grant draft review — Longtail integration (live since 2026-05-06)
+
+Bucket grant drafts (LoIs, full applications, budget narratives, etc.) flow
+through the Longtail chisel queue at https://longtail.agfarms.dev/chisel for
+fast yes/no/unsure review on tier-1 gut axes (`gut.would_read`,
+`gut.confused`, `gut.feels_ai`, …) and tier-2 quality axes
+(`quality.specific`, `quality.clear_3s`, …). The selector is
+Cost-Weighted Thompson Sampling — see
+`~/agfarms/longtail/playbooks/algorithms/2026-05-05-chisel-selector-memo.md`.
+
+**Submit a draft:**
+
+```bash
+cd ~/agfarms/bucket-foundation
+LONGTAIL_HMAC_SECRET=<see below> \
+node scripts/submit-to-longtail.mjs grants-targets/drafts/sloan-exploratory-loi.md \
+  --title "Sloan Foundation — exploratory LoI" \
+  --grant sloan-exploratory
+```
+
+**Pull verdicts (once reviewers have tapped):**
+
+```bash
+node scripts/pull-longtail-verdicts.mjs <draft_id>
+node scripts/pull-longtail-verdicts.mjs --all
+node scripts/pull-longtail-verdicts.mjs --grant sloan-exploratory
+```
+
+**Submission log:** `grants-targets/.longtail-submissions.jsonl` (gitignored).
+
+**HMAC secret:** lives on prod-hetzner-1 at
+`~/longtail-mono/longtail-hub/.env:LONGTAIL_HMAC_SECRET`. Pull with:
+```bash
+agfarms 'grep LONGTAIL_HMAC_SECRET ~/longtail-mono/longtail-hub/.env'
+```
+Note: `~/longtail/longtail-pipeline/.env` has a *different* (orphaned)
+secret — do not use it. Cleanup tracked in `bkt-*` bead.
