@@ -1,10 +1,28 @@
+## ☐ FOUNDER TODO BEFORE SUBMIT
+
+Required before you click submit. Each item is a real human task — not a writer task.
+
+- [ ] **Confirm the recipient address** is still `digitaltechnology@sloan.org` — verify on https://sloan.org/programs/digital-technology before sending. (~2 min)
+- [ ] **Pick the exact dollar ask** inside the $50K–$250K range and replace the range in the header + paragraph 1 + Use of Funds section. Sloan POs prefer a number. (~10 min)
+- [ ] **Attach a one-page detailed budget** — the LoI says "available on request"; have the PDF ready in the same email. Build at `grants-targets/budgets/sloan-12mo-budget.pdf`. (~45 min)
+- [ ] **Confirm HCB fiscal sponsorship status** — letter must be attachable, or paragraph on governance must be softened. Check HCB dashboard. (~5 min)
+- [ ] **Decide disbursement path** (HCB now vs. wait for 501(c)(3) determination) and state your preference clearly in the cover email rather than offering both. POs hate optionality. (~5 min)
+- [ ] **Confirm Base mainnet wallet address** for grant disbursement (or HCB ACH details) before any award conversation. (~10 min)
+- [ ] **Send from a domain address** (`gianangelo@bucket.foundation`) not gmail if DNS/MX is live; otherwise note this and use gmail. (~15 min)
+- [ ] **CC a second human** on the outbound email (Anthony? HCB contact?) so the thread has a witness. (~1 min)
+- [ ] **Submit by** end of FY26-Q2 review window: email `digitaltechnology@sloan.org` with subject `LoI: bucket.foundation — exploratory grant request, Digital Technology Program`.
+
+After this is clean, the draft below is ready to copy-paste / paste into the form.
+
+---
+
 # Letter of Inquiry — Alfred P. Sloan Foundation
 ## Exploratory Grantmaking in Technology
 
-**To:** digitaltechnology@sloan.org
+**To:** digitaltechnology@sloan.org [[FOUNDER: verify this is still the correct intake address on sloan.org/programs/digital-technology]]
 **From:** Gianangelo Dichio, Founding Maintainer, bucket.foundation
 **Date:** 2026-05-04
-**Requested:** $50,000 – $250,000 exploratory, 12 months
+**Requested:** $50,000 – $250,000 exploratory, 12 months [[FOUNDER: pick a single number inside this range — POs prefer a specific ask]]
 **Project:** bucket.foundation — a pay-once, cite-forever protocol and reference implementation for primary research
 
 ---
@@ -21,9 +39,9 @@ I am writing on behalf of bucket.foundation, an open-source research-infrastruct
 
 **Concrete state of the work, as of May 2026.** We are not asking Sloan to fund a slide deck. The reference site is running; the protocol spec is at draft v0.1 with a defined sidecar schema across seven foundation branches (mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind). A pass-1 contributor index (`canon-figures/`) covers ~76 canon-tier figures across ten branches and is the mechanism by which citation fees route back to identified human authors. A working x402 research gateway (`x402-research-gateway`, MIT, authored by the same maintainer) exposes seven live paid endpoints across PubMed, Semantic Scholar, OpenAlex, ClinicalTrials, PubChem, and a curated longevity corpus of 17,211 indexed rows — proving the supply side of the protocol on Base Sepolia today. A zero-key, budget-capped agent proxy at `bucket.foundation/api/research` lets any LLM query the canon without holding a wallet, returning a feed402-compliant `{ data, citation, receipt }` envelope. The Story Protocol IP-NFT mint path for canon-tier artifacts shipped in a prior version and is being revived. The code is MIT, the protocol is CC0-in-intent, and there is no scenario under which a future bucket.foundation board can re-license this work into enclosure.
 
-**Use of funds (12-month exploratory).** The grant would underwrite four concrete deliverables: (a) hardening the protocol from draft v0.1 to v1.0, including a federation/mirroring spec and a public test-vector suite; (b) running the reference bucket as durable, mirrored, and bandwidth-subsidized infrastructure for at least the first 1,000 canon-tier artifacts across the seven branches; (c) maintainer time for editorial review of canon submissions and curation of the contributor index; (d) a small re-grant pool to mirror operators in developing regions to ensure no single jurisdiction is the network's single point of failure. A detailed budget is available on request; we anticipate roughly 60% personnel, 20% infrastructure (Walrus storage, Hetzner hosting, x402 gas), 10% editorial, 10% mirror subsidies and travel.
+**Use of funds (12-month exploratory).** The grant would underwrite four concrete deliverables: (a) hardening the protocol from draft v0.1 to v1.0, including a federation/mirroring spec and a public test-vector suite; (b) running the reference bucket as durable, mirrored, and bandwidth-subsidized infrastructure for at least the first 1,000 canon-tier artifacts across the seven branches; (c) maintainer time for editorial review of canon submissions and curation of the contributor index; (d) a small re-grant pool to mirror operators in developing regions to ensure no single jurisdiction is the network's single point of failure. A detailed budget is available on request [[FOUNDER: attach `grants-targets/budgets/sloan-12mo-budget.pdf` to the outbound email — do not make Sloan ask]]; we anticipate roughly 60% personnel, 20% infrastructure (Walrus storage, Hetzner hosting, x402 gas), 10% editorial, 10% mirror subsidies and travel.
 
-**Governance and conflict-of-interest disclosure.** bucket.foundation is operated as a nonprofit. There is no equity, no investor, and no exit. As of this writing, the project is held in the founder's personal capacity (`gianyrox/bucket-foundation` on GitHub) pending formal nonprofit reinstatement; the 1023 reinstatement packet is drafted and Hack Club Bank is in process as fiscal sponsor for the interim. This is disclosed in `GOVERNANCE.md` in the public repo. We are happy to route Sloan disbursement through HCB or to wait for the determination letter, whichever Sloan prefers.
+**Governance and conflict-of-interest disclosure.** bucket.foundation is operated as a nonprofit. There is no equity, no investor, and no exit. As of this writing, the project is held in the founder's personal capacity (`gianyrox/bucket-foundation` on GitHub) pending formal nonprofit reinstatement; the 1023 reinstatement packet is drafted and Hack Club Bank is in process as fiscal sponsor for the interim. [[FOUNDER: attach HCB confirmation letter once it arrives, or replace this sentence with the determination-letter status if reinstatement lands first]] This is disclosed in `GOVERNANCE.md` in the public repo. We are happy to route Sloan disbursement through HCB or to wait for the determination letter, whichever Sloan prefers. [[FOUNDER: pick one — offering both reads as indecision; recommend leading with HCB to shorten the timeline]]
 
 **The ask.** A 12-month exploratory grant in the $50K–$250K range, with a mid-year check-in. We are willing to scope the deliverables more tightly toward whichever of the four work-streams above Sloan's program officers find most aligned with the Foundation's current Digital Technology priorities. We would welcome a 30-minute call at the program officer's convenience.
 
@@ -31,6 +49,6 @@ Bucket exists for the small number of people who can do genius work with AI — 
 
 Sincerely,
 
-Gianangelo Dichio
+Gianangelo Dichio [[FOUNDER: confirm preferred citation form — full legal name vs. "Gian Dichio" — and use it consistently across all three drafts]]
 Founding Maintainer, bucket.foundation
-gianyrox@gmail.com · github.com/gianyrox/bucket-foundation
+gianyrox@gmail.com · github.com/gianyrox/bucket-foundation [[FOUNDER: send from gianangelo@bucket.foundation if MX is live; gmail is acceptable but weaker signal]]

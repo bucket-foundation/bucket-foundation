@@ -1,13 +1,32 @@
+## ☐ FOUNDER TODO BEFORE SUBMIT
+
+Required before you click submit. Each item is a real human task — not a writer task.
+
+- [ ] **Pick the FY26-Q? Gitcoin round number** from https://gitcoin.co/program — replace "GG-round" header with the actual round name (e.g. GG23 OSS). Application windows are short (~2 weeks). (~5 min)
+- [ ] **Create / verify the Gitcoin Passport** for the project owner address; passport score must clear the round threshold (usually >20). (~30 min)
+- [ ] **Confirm Base mainnet payout wallet** — Gitcoin pays match in the round's chosen token (often DAI/USDC) on the round's chosen chain. Confirm chain match with round config. (~10 min)
+- [ ] **Connect the wallet to Gitcoin Builder** at https://builder.gitcoin.co and create the project profile (name, logo, banner, links). The draft below is the long-form application — but you also need a 1-line tagline + 280-char summary in the form. (~45 min)
+- [ ] **Apply to the specific round** — the Builder profile is reusable, but each round needs a separate apply step with eligibility review. (~10 min, then 3–7 day review wait)
+- [ ] **Banner + logo** — 1500x500 banner and 300x300 logo. Drop in `grants-targets/assets/gitcoin/`. (~30 min in Figma)
+- [ ] **Confirm HCB receipt path for Gitcoin funds** — Gitcoin payouts are on-chain to a wallet; HCB needs to be able to receive that wallet's withdrawals as fiat or to custody the wallet directly. (~30 min HCB conversation)
+- [ ] **Plan the donation drive** — quadratic funding rewards *number of contributors*, not dollar amount. Lining up 50 small donors > 1 whale. Draft the X / email push for round-open day. (~2 hr)
+- [ ] **Pick a contributor wallet for the canon-figures payout demo** — the "100 citation events" claim needs at least one real demo author wallet on file. (~1 hr)
+- [ ] **Submit by** the round's published "applications close" date (check https://gitcoin.co/program for current round) at https://builder.gitcoin.co.
+
+After this is clean, the draft below is ready to copy-paste / paste into the form.
+
+---
+
 # Gitcoin Grants — bucket.foundation
-## OSS / Public Goods Round Application
+## OSS / Public Goods Round Application [[FOUNDER: replace with the specific round name (e.g. "GG23 OSS") from gitcoin.co/program]]
 
 **Project name:** bucket.foundation
 **Tagline:** Pay once. Cite forever. The patronage layer for the new Renaissance.
 **Website:** https://bucket.foundation
 **Repo:** https://github.com/gianyrox/bucket-foundation (MIT)
 **Protocol:** https://github.com/gianyrox/bucket-foundation/blob/main/PROTOCOL.md (CC0-in-intent)
-**Round target:** OSS / Public Goods (GG-round)
-**Chain:** Base (Ethereum L2)
+**Round target:** OSS / Public Goods (GG-round) [[FOUNDER: replace with exact round number + apply window from gitcoin.co/program]]
+**Chain:** Base (Ethereum L2) [[FOUNDER: confirm round's payout chain matches — some Gitcoin rounds pay on Optimism / Arbitrum, not Base]]
 
 ---
 
@@ -32,7 +51,7 @@ This is not vapor. As of May 2026:
 - **Contributor index** (`canon-figures/`) — ~76 canon-tier figures across 10 branches in pass-1 seed; this is the mechanism by which citation fees route to identified human authors.
 - **Live x402 supply side** — the open-source `x402-research-gateway` (MIT, same maintainer) operates 7 paid endpoints on Base Sepolia today across PubMed, Semantic Scholar, OpenAlex, ClinicalTrials, PubChem, and a curated longevity corpus of **17,211 indexed rows**.
 - **Zero-key agent proxy** — any LLM can query the canon at `bucket.foundation/api/research` without holding a wallet, getting back a feed402-compliant `{ data, citation, receipt }` envelope. Discovery manifests are live at `/.well-known/feed402.json` and `/.well-known/mcp.json`, and `/llms.txt` + `/llms-full.txt` give AI agents a documented entry point.
-- **Story Protocol IP-NFT mint path** for canon-tier artifacts (shipped in a prior iteration of the site, now being revived as part of the open-source push).
+- **Story Protocol IP-NFT mint path** for canon-tier artifacts (shipped in a prior iteration of the site, now being revived as part of the open-source push). [[FOUNDER: revive on testnet before submit, OR soften this bullet — Gitcoin reviewers click links]]
 - **Walrus** as the on-chain durable storage layer for the reference implementation.
 
 ## Roadmap — what your match would fund
@@ -57,10 +76,10 @@ All of these are publicly verifiable from the repo, the chain, and the transpare
 
 ## Team and governance
 
-Sole maintainer at present: **Gianangelo Dichio** (`github.com/gianyrox`), also author of the x402-research-gateway and feed402. The Foundation is operated as a nonprofit — no token, no equity, no investor, no exit. As of this writing, the project is held in the maintainer's personal capacity pending formal 501(c)(3) reinstatement, with Hack Club Bank in process as interim fiscal sponsor; this is disclosed in `GOVERNANCE.md`. Gitcoin matching funds, if awarded, will be received via HCB and used exclusively for the deliverables above. The contributor index (`canon-figures/CONTRIBUTORS.md`) is the active recruitment surface for editorial and review collaborators across the seven branches.
+Sole maintainer at present: **Gianangelo Dichio** (`github.com/gianyrox`), also author of the x402-research-gateway and feed402. The Foundation is operated as a nonprofit — no token, no equity, no investor, no exit. As of this writing, the project is held in the maintainer's personal capacity pending formal 501(c)(3) reinstatement, with Hack Club Bank in process as interim fiscal sponsor; this is disclosed in `GOVERNANCE.md`. Gitcoin matching funds, if awarded, will be received via HCB [[FOUNDER: confirm HCB can custody / withdraw from a Base wallet — Gitcoin pays on-chain, not ACH]] and used exclusively for the deliverables above. [[FOUNDER: provide the project payout wallet address (Base mainnet) in the Builder profile form]] The contributor index (`canon-figures/CONTRIBUTORS.md`) is the active recruitment surface for editorial and review collaborators across the seven branches.
 
 ## Why your contribution matters
 
 Quadratic funding is the right shape of capital for this project specifically because bucket's value compounds with the size of the contributor and mirror network. A thousand small contributions are a stronger signal — and a stronger underlying network — than one large grant. If you believe primary research should be paid for once and citeable forever, and that authors, not publishers, should get paid when their work is cited, contribute. We will build it in the open, MIT, on Base. No token. No exit.
 
-— gianyrox@gmail.com
+— gianyrox@gmail.com [[FOUNDER: confirm Gianangelo's preferred citation form for the team section — match across all three grant drafts]] [[FOUNDER: line up 50+ small donors before round-open day — quadratic funding rewards contributor count, not dollar size]]
