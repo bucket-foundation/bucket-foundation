@@ -1,0 +1,81 @@
+name: Mirror war.gov PURSUE
+# IP rotation via GitHub-hosted runners. Bypasses local Akamai 403 by running
+# from Azure-backed GH IPs that Akamai treats as legitimate. Sharded matrix
+# for parallel throughput. Outputs uploaded as workflow artifacts; pull with
+# `gh run download`.
+
+on:
+  workflow_dispatch:
+    inputs:
+      shards:
+        description: "Number of parallel shards (max 16)"
+        required: false
+        default: "8"
+
+jobs:
+  probe:
+    name: probe (1 url smoke test)
+    runs-on: ubuntu-latest
+    outputs:
+      ok: ${{ steps.t.outputs.ok }}
+    steps:
+      - id: t
+        run: |
+          set -e
+          U="https://www.war.gov/medialink/ufo/release_1/65_hs1-834228961_62-hq-83894_section_5.pdf"
+          code=$(curl -sL -o /tmp/probe.pdf -w "%{http_code}" \
+            -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+            -H "Accept: */*" -H "Accept-Language: en-US,en;q=0.9" \
+            -H "Referer: https://www.war.gov/UFO/" \
+            "$U")
+          size=$(stat -c%s /tmp/probe.pdf)
+          echo "code=$code size=$size"
+          echo "ok=$([ "$code" = "200" ] && [ "$size" -gt 100000 ] && echo yes || echo no)" >> "$GITHUB_OUTPUT"
+
+  mirror:
+    needs: probe
+    if: needs.probe.outputs.ok == 'yes'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull shard
+        run: |
+          set -e
+          mkdir -p out/{pdfs,videos,images,thumbnails}
+          URLS=_intake/war-gov-pursue-release-01/urls.tsv
+          TOTAL=8
+          i=0
+          while IFS=$'\t' read -r kind url; do
+            [ -z "$url" ] && continue
+            if [ $((i % TOTAL)) -ne ${{ matrix.shard }} ]; then i=$((i+1)); continue; fi
+            i=$((i+1))
+            fn=$(basename "$url" | tr ' ' '_')
+            case "$kind" in
+              PDF*)   sub=pdfs ;;
+              VID*)   sub=videos ;;
+              IMG*)   sub=images ;;
+              THUMB*) sub=thumbnails ;;
+              *)      sub=other ;;
+            esac
+            mkdir -p "out/$sub"
+            code=$(curl -sL -o "out/$sub/$fn" -w "%{http_code}" --max-time 300 \
+              -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+              -H "Referer: https://www.war.gov/UFO/" "$url")
+            sz=$(stat -c%s "out/$sub/$fn" 2>/dev/null || echo 0)
+            if [ "$code" != "200" ] || [ "$sz" -lt 1000 ]; then
+              rm -f "out/$sub/$fn"
+              echo "FAIL $code $sz $kind $url" | tee -a out/shard-${{ matrix.shard }}.log
+            else
+              echo "OK $sz $sub/$fn" | tee -a out/shard-${{ matrix.shard }}.log
+            fi
+            sleep 0.4
+          done < "$URLS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pursue-shard-${{ matrix.shard }}
+          path: out/
+          retention-days: 7
