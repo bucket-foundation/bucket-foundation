@@ -54,6 +54,33 @@ Bucket Foundation canon lives on gdrive (not in this repo — too large, too man
 - **Outcome canon (longevity)**: `gdrive:AGFarms/Nucleus/research/longevity-canon/` — cross-referenced to `bucket-canon/05-biophysics/sub-outcomes/longevity/`
 - **Kruse corpus**: `~/jackkruse/` — 460 scraped articles, FTS5 + MiniLM-L6-v2 + RRF hybrid search, one partial source for the 05-biophysics branch. **This is the Kruse Index.** Not open-source as of 2026-04-17.
 
+## Autonomous Mirror Jobs (run without operator attention)
+
+Long-running ingestion tasks live as systemd --user services + timers, with
+idempotent runner scripts in `scripts/`. They auto-start on boot (linger=yes
+already set), auto-retry on failure, and self-disable when complete. Every
+new shell prints a one-line status (see `~/.bashrc`); `bkt-nuc` sessions
+should run `bash scripts/pursue-status.sh` as part of session-start checks.
+
+Active jobs:
+
+| Job | Runner | Service | Status command |
+|---|---|---|---|
+| **war.gov PURSUE Release 01 mirror** (162 records → `_intake/war-gov-pursue-release-01/`) | `scripts/pursue-mirror-runner.sh` | `pursue-mirror.timer` (hourly) | `pursue-status` (alias) |
+
+Manual control:
+```bash
+pursue-status                                    # one-line snapshot
+pursue-run                                       # force run + tail logs
+systemctl --user status pursue-mirror.timer      # check schedule
+systemctl --user list-timers pursue-mirror.*     # next run time
+journalctl --user -u pursue-mirror.service -n 50 # service log
+tail -f _intake/war-gov-pursue-release-01/runner.log  # runner log
+```
+
+The timer **disables itself** once 0-fail run completes. Re-enable with
+`systemctl --user enable --now pursue-mirror.timer` if a new release drops.
+
 ## Bead Tracking
 
 ```bash
