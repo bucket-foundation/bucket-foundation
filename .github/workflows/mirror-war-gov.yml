@@ -1,40 +1,53 @@
 name: Mirror war.gov PURSUE
-# IP rotation via GitHub-hosted runners. Bypasses local Akamai 403 by running
-# from Azure-backed GH IPs that Akamai treats as legitimate. Sharded matrix
-# for parallel throughput. Outputs uploaded as workflow artifacts; pull with
-# `gh run download`.
+# Strategy: Akamai blocks both residential-rate-limited and datacenter ASNs
+# directly. Path is to (a) push URLs to Internet Archive Save Page Now from
+# multiple GH runners (rotating IPs spreads SPN rate limit), (b) once Wayback
+# has them, mirror via Wayback proxy. Schedule re-runs daily until OK count
+# stabilizes.
 
 on:
   workflow_dispatch:
-    inputs:
-      shards:
-        description: "Number of parallel shards (max 16)"
-        required: false
-        default: "8"
+  schedule:
+    # Daily at 06:00 UTC — gives IA crawler time + lets local Akamai bans clear
+    - cron: '0 6 * * *'
 
 jobs:
-  probe:
-    name: probe (1 url smoke test)
+  spn-shard:
+    name: spn-shard-${{ matrix.shard }}
     runs-on: ubuntu-latest
-    outputs:
-      ok: ${{ steps.t.outputs.ok }}
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0,1,2,3,4,5,6,7]
     steps:
-      - id: t
+      - uses: actions/checkout@v4
+      - name: Submit shard to IA Save Page Now
         run: |
-          set -e
-          U="https://www.war.gov/medialink/ufo/release_1/65_hs1-834228961_62-hq-83894_section_5.pdf"
-          code=$(curl -sL -o /tmp/probe.pdf -w "%{http_code}" \
-            -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
-            -H "Accept: */*" -H "Accept-Language: en-US,en;q=0.9" \
-            -H "Referer: https://www.war.gov/UFO/" \
-            "$U")
-          size=$(stat -c%s /tmp/probe.pdf)
-          echo "code=$code size=$size"
-          echo "ok=$([ "$code" = "200" ] && [ "$size" -gt 100000 ] && echo yes || echo no)" >> "$GITHUB_OUTPUT"
+          set +e
+          URLS=_intake/war-gov-pursue-release-01/urls.tsv
+          TOTAL=8
+          i=0
+          ok=0; fail=0; rl=0
+          while IFS=$'\t' read -r kind url; do
+            [ -z "$url" ] && continue
+            [ "$kind" = "THUMB" ] && continue
+            if [ $((i % TOTAL)) -ne ${{ matrix.shard }} ]; then i=$((i+1)); continue; fi
+            i=$((i+1))
+            code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 60 \
+              -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36" \
+              "https://web.archive.org/save/$url")
+            case "$code" in
+              200) ok=$((ok+1)); echo "OK   $url" ;;
+              429|523) rl=$((rl+1)); echo "RL   $code $url"; sleep 30 ;;
+              *) fail=$((fail+1)); echo "FAIL $code $url" ;;
+            esac
+            sleep 8
+          done < "$URLS"
+          echo "shard ${{ matrix.shard }}: ok=$ok rl=$rl fail=$fail"
 
-  mirror:
-    needs: probe
-    if: needs.probe.outputs.ok == 'yes'
+  remirror:
+    needs: spn-shard
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -42,40 +55,40 @@ jobs:
         shard: [0,1,2,3,4,5,6,7]
     steps:
       - uses: actions/checkout@v4
-      - name: Pull shard
+      - name: Pull from Wayback (now hopefully populated)
         run: |
-          set -e
-          mkdir -p out/{pdfs,videos,images,thumbnails}
+          set +e
+          mkdir -p out/{pdfs,videos,images}
           URLS=_intake/war-gov-pursue-release-01/urls.tsv
           TOTAL=8
           i=0
           while IFS=$'\t' read -r kind url; do
             [ -z "$url" ] && continue
+            [ "$kind" = "THUMB" ] && continue
             if [ $((i % TOTAL)) -ne ${{ matrix.shard }} ]; then i=$((i+1)); continue; fi
             i=$((i+1))
             fn=$(basename "$url" | tr ' ' '_')
             case "$kind" in
-              PDF*)   sub=pdfs ;;
-              VID*)   sub=videos ;;
-              IMG*)   sub=images ;;
-              THUMB*) sub=thumbnails ;;
-              *)      sub=other ;;
+              PDF*) sub=pdfs ;;
+              VID*) sub=videos ;;
+              IMG*) sub=images ;;
+              *)    sub=other ;;
             esac
             mkdir -p "out/$sub"
+            wb="https://web.archive.org/web/2026id_/$url"
             code=$(curl -sL -o "out/$sub/$fn" -w "%{http_code}" --max-time 300 \
-              -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
-              -H "Referer: https://www.war.gov/UFO/" "$url")
+              -A "Mozilla/5.0" "$wb")
             sz=$(stat -c%s "out/$sub/$fn" 2>/dev/null || echo 0)
             if [ "$code" != "200" ] || [ "$sz" -lt 1000 ]; then
               rm -f "out/$sub/$fn"
-              echo "FAIL $code $sz $kind $url" | tee -a out/shard-${{ matrix.shard }}.log
+              echo "FAIL $code $sz $kind $fn"
             else
-              echo "OK $sz $sub/$fn" | tee -a out/shard-${{ matrix.shard }}.log
+              echo "OK $sz $sub/$fn"
             fi
-            sleep 0.4
+            sleep 1
           done < "$URLS"
       - uses: actions/upload-artifact@v4
         with:
           name: pursue-shard-${{ matrix.shard }}
           path: out/
-          retention-days: 7
+          retention-days: 14
