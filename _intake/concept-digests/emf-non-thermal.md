@@ -3,7 +3,7 @@
 **Query**: `EMF OR electromagnetic`  ·  **Hits**: 30
 
 
-## pubmed (3)
+## pubmed (2)
 
 - **Low-frequency electromagnetic fields alter the replication cycle of MS2 bacteriophage.**
   - `pubmed/PMID-9541567-low-frequency-electromagnetic-fields-alter-the-replication-c/info.md`
@@ -19,15 +19,8 @@ The effect of exposure to 60-Hz <<electromagnetic>> fields (<<EMFs>>) on RNA col
 - **PMID**: 42098444
 - **DOI**: 10.1109/ACCESS.2019.2897921
 - **PMCID … 
-- **Coincident nonlinear changes in the endocrine and immune systems due to low-frequency magnetic fields.**
-  - `pubmed/PMID-11549888-coincident-nonlinear-changes-in-the-endocrine-and-immune-sys/info.md`
-  -  … 2026-05-09T09:41:24
 
-## Abstract
-
-The characteristic biological effects of low-frequency <<electromagnetic>> fields (<<EMFs>>) appear to be functional changes in the central … 
-
-## intake (27)
+## intake (28)
 
 - **emf-non-thermal**
   - `_intake/concept-digests/emf-non-thermal.md`
@@ -36,11 +29,20 @@ The characteristic biological effects of low-frequency <<electromagnetic>> field
 **Query**: `<<EMF>> OR <<electromagnetic>>`  ·  **Hits**: 30
 
 
-## intake (30)
+## pubmed (3)
 
-- **<<emf>>-non-thermal**
-  - `_intake/concept-digests/<<emf>>-non-thermal.md`
-  - # <<<<emf>>>>-non-thermal … 
+- **Low-frequency <<electromagnetic>> fields alter the replication cycle of MS2 bacteriophage.**
+  - `pubmed/PMID … 
+- **Andrew Marino**
+  - `_intake/canon-profiles/marino-andrew.md`
+  - # Andrew Marino
+
+**Slug**: `marino-andrew`  ·  **FTS query**: `Marino AND (<<electromagnetic>> OR <<EMF>> OR Becker)`  ·  **Hits**: 25
+
+
+## pubmed (4)
+
+- **Low-frequency <<electromagnetic>> fields alter the … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … WHO(82), AGE(34), melanin(18), Rockefeller(11), <<EMF>>(7), mitochondria(5), iron(5), Becker(5), mitochondrial(4), collagen(4), photosynthesis(3), <<electromagnetic>>(3 … 
@@ -54,9 +56,11 @@ The characteristic biological effects of low-frequency <<electromagnetic>> field
   -  … From the Earth’ magnetic signal to visible light in the <<EMF>> spectrum, the filling in of the <<electromagnetic>> spectrum is astounding as we laid … 
 - **bone-bioelectric-becker**
   - `_intake/concept-digests/bone-bioelectric-becker.md`
-  -  … The same … 
-- **<<EMF>> 5: What are the Biologic Effects of <<EMF>>?**
-  - `_intake/kruse-blog-corpus/articles/<<emf>>-5-what-are-the-biologic-effects-of … 
+  -  … <<emf>>-non-thermal.md`
+  -  … resonance above the normal frequencies found on … 
+- **<<bone>>-<<bioelectric>>-<<becker>>**
+  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
+  -  … The <<<<Electromagnetic>>>> Blueprint … 
 - **Quantum Biology #1: The Zero Entropy System**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
   -  … of ‘man-made’ <<electromagnetic>> pollution in our modern environment,  what was the[ biologic effect on all life](https://jackkruse.com/<<emf>>-5-what-are … 
@@ -78,6 +82,11 @@ It is where <<electromagnetic>> field …
 - **Energy and Epigenetics 8: Quantum Autism**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-8-autism.md`
   -  … The lower end of the <<electromagnetic>> spectrum of energies do not exhibit these physical properties. The <<EMFs>> above the lowest end, the microwave range … 
+- **schumann-cme**
+  - `_intake/concept-digests/schumann-cme.md`
+  -  … This is an foundational physical finding that … 
+- **<<EMF>> 5: What are the Biologic Effects of <<EMF>>?**
+  - `_intake/kruse-blog-corpus/articles/<<emf>>-5-what … 
 - **EMF 6: Quantum Time**
   - `_intake/kruse-blog-corpus/articles/emf-6-quantum-time.md`
   -  … with <<EMF>> and EMR is that in most communities there is no non-exposed reference group because we live in homes with <<electromagnetic>> fields … 
@@ -87,14 +96,16 @@ It is where <<electromagnetic>> field …
 - **CPC #9:   HASHIMOTO's AND MELASMA:  GATEWAY DISEASES**
   - `_intake/kruse-blog-corpus/articles/hashimotos-and-melasma.md`
   -  … Another link to the second law of thermodynamics and the mass equivalence relationship of physics,  I spoke about in [<<EMF>> 2](/<<emf>>-2-einstein … 
-- **schumann-cme**
-  - `_intake/concept-digests/schumann-cme.md`
-  -  … What are the Biologic Effects of <<EMF>>?**
-  - `_intake/kruse-blog-corpus/articles/<<emf>>-5-what-are-the-biologic-effects-of-<<emf>>.md`
-  -  … Extremely low … 
 - **Energy and Epigenetics 13: Quantum Water Chemistry**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-13-quantum-water-chemistry-2.md`
   -  … expression is altered by the <<electromagnetic>> signals coming from RNA and DNA** and the non-ionizing frequency <<EMF>> bands do change this information processing … 
+- **Robert O. Becker**
+  - `_intake/canon-profiles/becker-robert-o.md`
+  -  … <<emf>>-non-thermal.md`
+  -  … resonance above the normal frequencies found on … 
+- **<<bone>>-<<bioelectric>>-<<becker>>**
+  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
+  -  … The <<<<Electromagnetic>>>> Blueprint … 
 - **EMF 3: The Origin of Life**
   - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
   -  … https://jackkruse.com/<<emf>>-3-the-origin-of-life/
@@ -144,9 +155,3 @@ It is where <<electromagnetic>> field …
   -  … took control of the <<electromagnetic>> force for its own devices, in my opinion.
 
 Look at my [CO2 and <<EMF>> thread on my forum](http … 
-- **methylene-blue**
-  - `_intake/concept-digests/methylene-blue.md`
-  -  … iron(30), Becker(26), <<methylene blue>>(21), <<electromagnetic>> … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … <<emf>>-non-thermal.md) — 25 hits  (intake:3, youtube … 

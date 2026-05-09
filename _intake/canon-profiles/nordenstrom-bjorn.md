@@ -1,6 +1,6 @@
 # Björn Nordenström
 
-**Slug**: `nordenstrom-bjorn`  ·  **FTS query**: `Nordenstrom OR Nordenström OR BCEC`  ·  **Hits**: 10
+**Slug**: `nordenstrom-bjorn`  ·  **FTS query**: `Nordenstrom OR Nordenström OR BCEC`  ·  **Hits**: 14
 
 
 ## archive (2)
@@ -54,8 +54,18 @@ structures are described as partly caused by …
 - **MeSH**: Adenocarcinoma, Aged, Blood Vessels, Carcinoma, Small Cell, Carcinoma, Squamous Cell, Electrophysiology, Female, Hamartoma, Humans, Liposarcoma
 - **URL**: https://pubmed.ncbi.nlm … 
 
-## intake (3)
+## intake (7)
 
+- **Björn Nordenström**
+  - `_intake/canon-profiles/nordenstrom-bjorn.md`
+  - # Björn <<Nordenström>>
+
+**Slug**: `<<nordenstrom>>-bjorn`  ·  **FTS query**: `<<Nordenstrom>> OR <<Nordenström>> OR <<BCEC>>`  ·  **Hits**: 10
+
+
+## archive (2)
+
+- **Biokinetic Impacts on Structure and Imaging of the … 
 - **Björn Nordenström — canon-target intake**
   - `_intake/nordenstrom-bjorn/README.md`
   -  … Circuits (1983)
@@ -75,7 +85,23 @@ book copyrighted …
 | `<<nordenstrom>>-1983` | Björn <<Nordenström>> — *Biologically Closed Electric Circuits* (1983) | Cited heavily by Becker; Swedish radiologist's <<BCEC>> theory. |
 
 ### Jack Kruse — recommended … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  -  … peter`](mitchell-peter.md) — Peter Mitchell — 25 hits
+- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> — 10 hits
+- [`russell-walter`](russell-walter.md) — Walter Russell … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … 1978 | Chemiosmotic theory papers, mitochondrial proton gradient | 05-biophysics | 4 |
 | `<<nordenstrom>>-bjorn` | **Björn <<Nordenström>>** (1919–2006), Karolinska radiologist | *Biologically Closed Electric Circuits* (1983) | 05 … 
+- **Alan Turing**
+  - `_intake/canon-profiles/turing-alan.md`
+  -  … Imaging of the Lung the Concept of Biologically Closed Electric Circuits - <<Nordenstrom>> AJR 1985**
+  - `archive/biokinetic-impacts-on-structure-and-imaging-of-the-lung … 
+- **Peter Mitchell**
+  - `_intake/canon-profiles/mitchell-peter.md`
+  -  … Nobel 1978 | <<Chemiosmotic>> theory papers, mitochondrial <<proton>> gradient | 05-biophysics | 4 |
+| `<<nordenstrom>>-bjorn … 
+- **Peter Mitchell — canon-target intake**
+  - `_intake/mitchell-peter/README.md`
+  -  … <<Mitchell … 

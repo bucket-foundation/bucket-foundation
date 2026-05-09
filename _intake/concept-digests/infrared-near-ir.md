@@ -3,14 +3,6 @@
 **Query**: `infrared OR "near IR" OR "near-infrared"`  ·  **Hits**: 30
 
 
-## archive (1)
-
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
-  -  … This  wavelength  corresponds  to  the  <<near  infrared>>.  It  is  thus 
-this  spectral  region  which  will  have  the  greatest  direct  interest  for 
-the  biologists.  It … 
-
 ## pubmed (9)
 
 - **Recent near-infrared approaches to cytochrome-c-oxidase monitoring: a systematic review of instruments and algorithms.**
@@ -48,7 +40,7 @@ the  biologists.  It …
   - `pubmed/PMID-41067675-photobiomodulation-in-stroke-prevention-and-treatment-neurop/info.md`
   -  … It also highlights the therapeutic effects of red and <<near-infrared>> light, while considering water as a crucial chromophore that may enhance treatment efficacy … 
 
-## youtube (12)
+## youtube (11)
 
 - **Dr. Jack Kruse on How Light Controls Metabolism & Diabetes | Blue Light and Brain Damage | Bitcoin**
   - `yt/tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue/transcript.txt`
@@ -82,6 +74,12 @@ everybody should have had done
 instead of an intubation tube?
 Everybody should have had <<near infrared>>
 light because guess what happens … 
+- **Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & Sunlight Medicine | Dr. Jack Kruse**
+  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl/transcript.txt`
+  -  … big big uh switch is I
+have to have <<near infrared>> <<near infrared>>
+<<near infrared>> yes goes a little further
+because there's a … 
 - **Gerald Pollack| EZ Water, What is it, Why Do I Need It & How Do I Make It**
   - `yt/47FzeZNCYL0-gerald-pollack-ez-water-what-is-it-why-do-i-need-it-how-do-i/transcript.txt`
   -  … I
@@ -89,24 +87,18 @@ personally use mine every morning and
 every evening red and <<near infrared>>
 light is extremely beneficial energy
 production in our body because it … 
-- **Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & Sunlight Medicine | Dr. Jack Kruse**
-  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl/transcript.txt`
-  -  … big big uh switch is I
-have to have <<near infrared>> <<near infrared>>
-<<near infrared>> yes goes a little further
-because there's a … 
-- **Gerald Pollack:The Fourth Phase of Water | SNC 2018**
-  - `yt/NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018/transcript.txt`
-  -  … First question is um
-what nanometer range red lights does um
-water mostly absorb? Is it <<near infrared>>
-or far <<infrared>> or all of … 
 - **Functional Medicine Mistakes, EMF, Sunlight, and Your Mitochondria Dr. Jack Kruse  | Podcast #135**
   - `yt/qPY6FBkjqwA-functional-medicine-mistakes-emf-sunlight-and-your-mitochond/transcript.txt`
   -  … Why? Because
 42% of sunlight is <<near infrared>>. It's
 <<infrared>> A. It's 42%. Do you know why?
 This is what we talked … 
+- **Gerald Pollack:The Fourth Phase of Water | SNC 2018**
+  - `yt/NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018/transcript.txt`
+  -  … First question is um
+what nanometer range red lights does um
+water mostly absorb? Is it <<near infrared>>
+or far <<infrared>> or all of … 
 - **#57 - Dr. Jack Kruse**
   - `yt/drdn_hDGALk-57-dr-jack-kruse/transcript.txt`
   -  … bad light, not having UV and <<near
@@ -119,14 +111,8 @@ photo repair in mammals. The …
 the red end of the spectrum <<near
 infrared>> uh builds easy water and that's
 what you want in … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … asteroid you lock out
-and block out a lot of <<infrared>> a <<near
-infrared>> and UV but guess what you don't
-block out … 
 
-## intake (8)
+## intake (10)
 
 - **infrared-near-ir**
   - `_intake/concept-digests/infrared-near-ir.md`
@@ -142,31 +128,55 @@ block out …
   -  … This  wavelength  corresponds … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … md) — 30 hits  (intake:15, pubmed:4, youtube:11)
-- [`<<infrared>>-<<near-ir>>`](<<infrared>>-<<near-ir>>.md) — 30 hits  (archive:1, intake:9, pubmed:4 … 
+  -  … md) — 30 hits  (intake:12, pubmed:11, youtube:7)
+- [`<<infrared>>-<<near-ir>>`](<<infrared>>-<<near-ir>>.md) — 30 hits  (archive:1, intake:8, pubmed:9 … 
+- **Gerald Pollack**
+  - `_intake/canon-profiles/pollack-gerald.md`
+  -  … L-glutamine (Gln) has long been … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … Gerald <<Pollack>>| <<EZ>> <<Water>>, What is it, Why … 
 - **ez-water-pollack**
   - `_intake/concept-digests/ez-water-pollack.md`
-  -  … fourth-phase-of-<<water>>-gerald-<<pollack>>-phd … 
+  -  … is-it-why-do-i-need-it … 
 - **<<infrared>>-<<near-ir>>**
   - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
   -  … The … 
-- **<<Water>>: The Matrix and Engine of … 
-- **fourth-phase-water**
-  - `_intake/concept-digests/fourth-phase-water.md`
-  -  … fourth-phase>>-of-water-gerald-pollack-phd … 
+- **Gerald <<Pollack>>:The Fourth Phase of … 
+- **uv-uva-uvb**
+  - `_intake/concept-digests/uv-uva-uvb.md`
+  -  … of <<UVA>>, with the small remainder <<UVB>> … 
 - **<<infrared>>-<<near-ir>>**
   - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … Gerald Pollack**
-  - `yt/8qqyCA9vz_s-the-<<fourth … 
+  -  … pineal melatonin … 
+- **<<uv>>-<<uva>>-<<uvb>>**
+  - `_intake/concept … 
+- **biophoton-popp**
+  - `_intake/concept-digests/biophoton-popp.md`
+  -  … Kruse References Mined**
+  - `_intake/kruse-references-mined … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … IS TIME TOLD BY <<BIOPHOTON>> EMISSION?**
+  - `_intake … 
+- **AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … For Energy _Heart Health _Memory & <<Ageing>>**
+  - `yt … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … hits  (archive:1, intake:1, pubmed:4 … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … queued (not yet … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … The … 
+- **Gerald Pollack:The <<Fourth Phase>> of Water | SNC 2018**
+  - `yt … 
 - **PERI-OPERATIVE OPTIMAL SURGICAL CONSIDERATIONS**
   - `_intake/kruse-blog-corpus/articles/peri-operative-optimal-surgical-considerations.md`
   -  … There are two <<near infrared>> maxima that have been shown to be helpful in the peak positions in the range 750.7-772.3 … 
 - **TIME # 19:  IS TIME TOLD BY BIOPHOTON EMISSION?**
   - `_intake/kruse-blog-corpus/articles/time-for-biophotons.md`
   -  … very low levels of visible and near-visible {ultraviolet (**UV**) and <<near-infrared>> (**NIR**)} photons that today are called biophotons. In cancer states, the … 
-- **TIME #23:  DNA CODES FOR A QUANTUM EVOLUTION**
-  - `_intake/kruse-blog-corpus/articles/time-23-dna-codes-quantum-evolution.md`
-  -  … before eukaryotes showed up on Earth.  Our sun peaks in the <<near-infrared>> when plotted in frequency units. Many people do not realize this … 
-- **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
-  - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
-  -  … For example, the <<near-infrared>> and the red light, which we find in sunlight in a pretty large amount, these longer wavelengths, they provide … 

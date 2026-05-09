@@ -3,7 +3,7 @@
 **Slug**: `mitchell-peter`  ·  **FTS query**: `Mitchell AND (chemiosmotic OR proton OR oxidative)`  ·  **Hits**: 25
 
 
-## pubmed (12)
+## pubmed (11)
 
 - **Chemiosmotic coupling in oxidative and photosynthetic phosphorylation. 1966.**
   - `pubmed/PMID-22082452-chemiosmotic-coupling-in-oxidative-and-photosynthetic-phosph/info.md`
@@ -75,11 +75,6 @@
   -  … Peter D <<Mitchell>>
 - **MeSH**: Biochemistry, Biological Transport, Biological Transport, Active, Catalysis, Chemistry, Diffusion, Electron Transport, Genetic Vectors, Ligands, Light
 - **URL**: https://pubmed.ncbi.nlm … 
-- **Acid-base titration across the membrane system of rat-liver mitochondria. Catalysis by uncouplers.**
-  - `pubmed/PMID-6048801-acid-base-titration-across-the-membrane-system-of-rat-liver/info.md`
-  -  … P <<Mitchell>>, J Moyle
-- **MeSH**: Animals, Dinitrophenols, Hydrogen-Ion Concentration, Hypoxia, In Vitro Techniques, Kinetics, Liver, Male, Membrane Potentials, Mitochondria
-- **URL**: https://pubmed.ncbi … 
 
 ## youtube (1)
 
@@ -90,8 +85,18 @@ in 1978 to English scientist Peter
 <<Mitchell>> for his <<chemiosmotic>> hypothesis
 to award a Nobel Prize for an as yet … 
 
-## intake (12)
+## intake (13)
 
+- **Peter Mitchell**
+  - `_intake/canon-profiles/mitchell-peter.md`
+  - # Peter <<Mitchell>>
+
+**Slug**: `<<mitchell>>-peter`  ·  **FTS query**: `<<Mitchell>> AND (<<chemiosmotic>> OR <<proton>> OR <<oxidative>>)`  ·  **Hits**: 25
+
+
+## pubmed (12)
+
+- **<<Chemiosmotic>> coupling in <<oxidative>> and photosynthetic … 
 - **chemiosmotic-mitchell**
   - `_intake/concept-digests/chemiosmotic-mitchell.md`
   - # <<chemiosmotic>>-<<mitchell>>
@@ -99,18 +104,28 @@ to award a Nobel Prize for an as yet …
 **Query**: `<<chemiosmotic>> OR <<Mitchell>>`  ·  **Hits**: 30
 
 
-## pubmed (5)
+## pubmed (12)
 
 - **<<Chemiosmotic>> coupling in <<oxidative>> and photosynthetic phosphorylation. 1966.**
   - `pubmed/PMID-22082452-<<chemiosmotic>>-coupling-in … 
 - **EMF 3: The Origin of Life**
   - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
   -  … The <<oxidative>> chemicals would have been provided by the sun’s <<oxidative>> powers of the ocean at its surface. Even today, <<Mitchell>>’s version … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … blog](https://jackkruse.com/<<quantum>>-<<biology>>-1-the … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … <<QUANTUM>> NOISE AND FIDELITY OF LIFE**
+  - `_intake/kruse … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … Induction Hypothesis | 05-biophysics | 5 |
 | `<<mitchell>>-peter` | **Peter <<Mitchell>>** (1920–1992), Nobel 1978 | <<Chemiosmotic>> theory papers, mitochondrial <<proton>> gradient | 05-biophysics | 4 |
 | `nordenstrom-bjorn … 
+- **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
+  -  … I’d have you remember that <<protons>> are positively charged and electrons are negatively charged. In the mitochondrial matrix, <<protons>> are stripped of most … 
 - **Peter Mitchell — canon-target intake**
   - `_intake/mitchell-peter/README.md`
   -  … <<Mitchell>> P <<chemiosmotic>>
@@ -123,35 +138,30 @@ institutional archive + Nobel materials
 
 1. Identify lowest-friction source (PD > OA > author-site > publisher).
 2. Pull primary materials … 
-- **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
-  -  … I’d have you remember that <<protons>> are positively charged and electrons are negatively charged. In the mitochondrial matrix, <<protons>> are stripped of most … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … 13)
+  -  … 14)
 - [`mitochondrial-redox`](mitochondrial-redox.md) — 30 hits  (intake:30)
-- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 30 hits  (intake:22, pubmed:5, youtube:3)
+- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 30 hits  (intake:16, pubmed:12, youtube:2)
 - [`photoelectric … 
+- **association-induction-ling**
+  - `_intake/concept-digests/association-induction-ling.md`
+  -  … Induction>> hypothesis.
+
+**QUANTUM NEURO-DEGENERATION**    This turns out … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED … 
 - **Energy and Epigenetics 12:  Is Your Battery Charged?**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
   -  … When a cell is <<oxidized>>,  its pH is low, and pH is a measure of the strength of <<proton>> transfer to make ATP.  This … 
-- **EMF 7: Quantum Prometheus**
-  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
-  -  … For solid materials, like a liquid crystalline lattice of water in a nanotube,  a breakdown event severely degrades <<proton>> and electron currents, or even … 
 - **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
   - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
   -  … This is why Wallace needs Pollack’s perspective and should not rely too much on Peter <<Mitchell>>’s perspective that the <<proton>> gradient is … 
-- **Mitchell chemiosmosis / ETC / proton gradient — concept canon-target intake**
-  - `_intake/concept-mitochondrial-chemiosmosis/README.md`
-  - # <<Mitchell>> chemiosmosis / ETC / <<proton>> gradient — concept canon-target intake
-
-- **Slug**: `concept-mitochondrial-chemiosmosis`
-- **Canon branch**: 05-biophysics
-- **Status**: queued (not yet researched)
-- **Initiated**: 2026 … 
+- **EMF 7: Quantum Prometheus**
+  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
+  -  … For solid materials, like a liquid crystalline lattice of water in a nanotube,  a breakdown event severely degrades <<proton>> and electron currents, or even … 
 - **Quantum Biology #1: The Zero Entropy System**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
   -  … the key missing piece to <<Mitchell>>’s ideas.  When we split water we get OH– and lots of <<protons>>.  Might this reaction hold the … 
-- **UBIQUITINATION 11: YOUR QUANTIZED ECOSYSTEM**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-11-your-quantized-ecosystem.md`
-  -  … <<Oxidized>> cholesterol loses this ability.  This is why finding <<oxidized>> cholesterol in your artery matters little.  Its charge however is what really matters!!!!  That … 

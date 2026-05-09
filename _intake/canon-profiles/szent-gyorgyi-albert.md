@@ -1,9 +1,9 @@
 # Albert Szent-Györgyi
 
-**Slug**: `szent-gyorgyi-albert`  ·  **FTS query**: `"Szent-Györgyi" OR "Szent Gyorgyi" OR Szent`  ·  **Hits**: 23
+**Slug**: `szent-gyorgyi-albert`  ·  **FTS query**: `"Szent-Györgyi" OR "Szent Gyorgyi" OR Szent`  ·  **Hits**: 25
 
 
-## archive (2)
+## archive (3)
 
 - **Bioenergetics**
   - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
@@ -41,6 +41,11 @@ Woods …
 - **Date**: 1957
 - **Publisher**: New York, Academic Press
 - **Language … 
+- **Linus Pauling PhD: How To Live Longer And Feel Better pdf**
+  - `archive/How_To_Live_Longer_And_Feel_Better_PDF/How to live longer and feel better - Pauling, Linus, 1901-1994_djvu.txt`
+  -  … He and his 
+collaborators, and also the American investigators Waugh and King, 
+showed in 1932 that <<Szent-Gyorgyi>>’s substance was vitamin C. <<Szent>> … 
 
 ## pubmed (5)
 
@@ -90,8 +95,19 @@ are expecting …
 you are here with us my name is Kristen
 Brett Harris I am the host of great … 
 
-## intake (13)
+## intake (14)
 
+- **Albert Szent-Györgyi**
+  - `_intake/canon-profiles/szent-gyorgyi-albert.md`
+  - # Albert <<Szent-Györgyi>>
+
+**Slug**: `<<szent-gyorgyi>>-albert`  ·  **FTS query**: `"<<Szent-Györgyi>>" OR "<<Szent Gyorgyi>>" OR <<Szent>>`  ·  **Hits**: 23
+
+
+## archive (2)
+
+- **Bioenergetics**
+  - `archive/bioenergetics00szen/bioenergetics00szen … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   - # Kruse Canon Targets — Curated from 3 Transcripts (12hr+)
@@ -114,12 +130,11 @@ Brett Harris I am the host of great …
 <<Szent Gyorgyi>>, A. 1976, Electronic Biology and Cancer, Marcel Dekker, New York.
 
 <<Szent Gyorgyi>>, A. 1976, The Living State and Cancer, Marcel … 
-- **exclusion-zone-water**
-  - `_intake/concept-digests/exclusion-zone-water.md`
-  -  … zone>> water papers | 05-biophysics | 4+ via "<<fourth phase>>" |
-| `<<szent-gyorgyi>>-albert` | **Albert <<Szent>> … 
-- **EZ water / fourth phase / <<exclusion>> <<zone>> — concept canon … 
-- **UBIQUITINATION 14 … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  -  … Becker — 25 hits
+- [`pollack-gerald`](pollack-gerald.md) — Gerald Pollack — 25 hits
+- [`<<szent-gyorgyi>>-albert`](<<szent-gyorgyi>>-albert.md) — Albert <<Szent-Györgyi>> — 23 hits … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … UW Seattle. |
@@ -143,7 +158,13 @@ Brett Harris I am the host of great …
 **<<PHOTOSYNTHESIS>> EXCITION THEORY AND <<SZENT GYORGYI>>**
 
 The central mystery of <<quantum>> … 
-- **Quantum biology — coherence, tunneling, photosynthesis — concept … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #6:  THE MITOCHONDRIAL … 
+- **exclusion-zone-water**
+  - `_intake/concept-digests/exclusion-zone-water.md`
+  -  … 2013), <<exclusion>>-<<zone>> water papers | 05-biophysics | 4+ via "fourth phase" |
+| `<<szent-gyorgyi>>-albert … 
+- **CPC #12:  KAWASAKI'S DISEASE**
+  - `_intake/kruse-blog-corpus/articles … 
 - **Energy and Epigenetics 9: Quantum Sleep**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
   -  … In fact, <<Szent Gyorgyi>>’s on March 21, 1941, gave a speech to the Budapest Academy when we mentioned that he felt electricity had … 
@@ -156,6 +177,3 @@ The central mystery of <<quantum>> …
 - **Energy and Epigenetics 10: The Quantum Puzzle**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-10-quantum-puzzle.md`
   -  … I had also read Albert <<Szent>>-Györgi’s famous speech about semiconduction to the Budapest Academy in 1941 by that time, and I immediately … 
-- **Energy and Epigenetics 4:  Light, Water, Magnetism**
-  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-4-light-water-magnetism.md`
-  -  … Albert <<Szent>> Georgyi knew electrons and photons held the key to life. He just did not follow that pathway of physics. He was a … 

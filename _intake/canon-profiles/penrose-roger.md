@@ -1,10 +1,13 @@
 # Roger Penrose
 
-**Slug**: `penrose-roger`  ·  **FTS query**: `Penrose AND (consciousness OR microtubule OR objective)`  ·  **Hits**: 20
+**Slug**: `penrose-roger`  ·  **FTS query**: `Penrose AND (consciousness OR microtubule OR objective)`  ·  **Hits**: 25
 
 
-## archive (1)
+## archive (2)
 
+- **The Oxford book of modern science writing**
+  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
+  -  … a meditation on the unity of <<consciousness>>' / Nicholas Humphrey -- Steven Pinker, from The language instinct, and How the mind works -- Jared Diamond, from The … 
 - **LogicalCross**
   - `archive/logicalcross/essay_djvu.txt`
   -  … Still, for an <<object>> like 
@@ -50,7 +53,7 @@ Suppose we have an <<object>>, such as …
 
 - **Quantum Computation in Brain Microtubules? Decoherence and Biological Feasibility**
   - `arxiv/quant-ph_0005025-quantum-computation-in-brain-microtubules-decoherence-and-bi/info.md`
-  -  … 2026-05-09T09:21:58
+  -  … 2026-05-09T09:45:09
 
 ## Abstract
 
@@ -94,14 +97,41 @@ retrospective on the mind in general,
 <<consciousness>> in particular, in which
 you have … 
 
-## intake (5)
+## intake (9)
 
+- **Roger Penrose**
+  - `_intake/canon-profiles/penrose-roger.md`
+  - # Roger <<Penrose>>
+
+**Slug**: `<<penrose>>-roger`  ·  **FTS query**: `<<Penrose>> AND (<<consciousness>> OR <<microtubule>> OR <<objective>>)`  ·  **Hits**: 20
+
+
+## archive (1)
+
+- **LogicalCross**
+  - `archive/logicalcross/essay_djvu.txt … 
+- **Stuart Hameroff**
+  - `_intake/canon-profiles/hameroff-stuart.md`
+  -  … <<consciousness>>>> is a collective quantum state of <<<<microtubules>>>> and is specifically predicted by the Orchestrated <<Objective>> Reduction theory of <<Penrose>> and <<Hameroff>>. I … 
+- **<<Consciousness>> … 
 - **Do Food Electrons Impart a Quantum Effect?**
   - `_intake/kruse-blog-corpus/articles/do-food-electrons-impart-a-quantum-effect.md`
   -  … of select brain proteins to ablate <<consciousness>>. **It’s called the induction of gamma coherence of neuronal <<microtubules>>.** The quantum field theory mathematics and … 
 - **Quantum Biology 5: COHERENT WATER = EZ WATER**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-5-coherent-water.md`
   -  … <<Penrose>>.  You have heard me mention him before in the Brain Gut series for his work on <<consciousness>> and <<microtubules>> and gamma coherence.  <<Penrose>> … 
+- **Erwin Schrödinger**
+  - `_intake/canon-profiles/schrodinger-erwin.md`
+  -  … <<CONSCIOUSNESS>> AND THE PHYSICS OF THE BRAIN**
+  - `yt/xGbgDf4HCHU-sir-roger-<<penrose>>-dr-stuart-hameroff-<<consciousness>>-and-the-p/transcript.txt`
+  -  … out
+into space … 
+- **Alan Turing**
+  - `_intake/canon-profiles/turing-alan.md`
+  -  … <<CONSCIOUSNESS>> AND THE PHYSICS OF THE BRAIN**
+  - `yt/xGbgDf4HCHU-sir-roger-<<penrose>>-dr-stuart-hameroff-<<consciousness>>-and-the-p/transcript.txt`
+  -  … we
+this is … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … 1989` | <<Penrose>> — *The Emperor's New Mind* (1989) | Mind/physics bridge. |

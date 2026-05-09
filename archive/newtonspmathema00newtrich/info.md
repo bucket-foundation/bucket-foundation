@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Newton, Isaac, Sir, 1642-1727, Mechanics -- Early works to 1800, Celestial mechanics -- Early works to 1800
-- **Captured**: 2026-05-09T09:03:37
+- **Captured**: 2026-05-09T09:45:15
 
 ## Description
 

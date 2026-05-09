@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Argon, Chemistry, Periodic law
-- **Captured**: 2026-05-09T08:59:24
+- **Captured**: 2026-05-09T09:45:09
 
 ## Description
 

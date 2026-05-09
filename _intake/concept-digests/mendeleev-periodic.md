@@ -3,8 +3,18 @@
 **Query**: `Mendeleev OR periodic AND table`  ·  **Hits**: 30
 
 
-## archive (6)
+## archive (5)
 
+- **A Modern Handbook Of Physics**
+  - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook-of-Physics-Mir-1982_djvu.txt`
+  -  … <<PERIODIC>>  <<TABLE>>  561 
+
+
+39.3  Pauli  Exclusion  Principle.  <<Mendeleev>>'s 
+<<Periodic>>  <<Table>> 
+
+69.3.1  The  simplest  statement  of  the  Pauli  exclusion  principle 
+is … 
 - **The principles of chemistry**
   - `archive/principlesofchem00menduoft/info.md`
   -  … chemistry
@@ -25,30 +35,17 @@
 - **Date**: 1901
 - **Publisher**: New York, Collier
 - **Language**: eng … 
-- **Newton's Principia : the mathematical principles of natural philosophy**
-  - `archive/newtonspmathema00newtrich/newtonspmathema00newtrich_djvu.txt`
-  -  … he  opened  his  Principia, 
-which  laid  on  the  <<table>>,  and  showed  me  the  particular  <<periods>>, 
-viz.:  1st.  The  Julium  Sidus,  in  the  time  of … 
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
-  -  … The  results,  which  have  no  pretense  of 
+- **On the sensations of tone as a physiological basis for the theory of music**
+  - `archive/onsensationsofto00helmrich/onsensationsofto00helmrich_djvu.txt`
+  -  … This  time  is  given 
+in  the  <<table>>  in  fractions  of  the  <<periodic>>  time  of  the  prime  tone.  To  this  is  added 
+a  calculation  for … 
+- **['Introduction To Quantum Mechanics', 'With Applications To Chemistry.']**
+  - `archive/introductiontoqu031712mbp/introductiontoqu031712mbp_djvu.txt`
+  -  … Construct <<tables>> similar to <<Table>> 30-2 for the configura- 
+tions np 3 and nd 2 . 
 
-
-115 
-
-originality,  are  summed  up  in  <<Table>>  III.^  As  the  <<table>>  shows,  tlie 
-action  has  a  remarkable … 
-- **chestnut-multimedia**
-  - `archive/sharware/info.md`
-  -  … surface;surgery;surveillance;survey;suspension;sweet;switch;symptoms;sys;systems;tab;<<table>>;<<tables>>;tag;tags;tag_sim;taken;takes;taking;tale;talent;talk;talking … 
-- **LogicalCross**
-  - `archive/logicalcross/essay_djvu.txt`
-  -  … But, we do have some <<tables>> below which include 
-values from (~) above, out to an eighth order expansion. And here they are ... 
-
-
-<<TABLE>> OF … 
+30c. Factorization and Solution of the Secular Equation … 
 
 ## youtube (2)
 
@@ -66,7 +63,7 @@ has the highest amount of electron
 negativity of any atom that life uses
 if you look at the <<periodic>> of the … 
 
-## intake (22)
+## intake (23)
 
 - **mendeleev-periodic**
   - `_intake/concept-digests/mendeleev-periodic.md`
@@ -82,6 +79,28 @@ if you look at the <<periodic>> of the …
   -  … chemistry
 
 - **Archive identifier**: `principlesofchem00menduoft … 
+- **Dmitri Mendeleev**
+  - `_intake/canon-profiles/mendeleev-dmitri.md`
+  -  … DELIVERED  AT … 
+
+## intake (9)
+
+- **<<mendeleev>>-<<periodic>>**
+  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
+  - # <<<<mendeleev>>>>-<<periodic>>
+
+**Query**: `<<<<Mendeleev>>>> OR <<periodic>> AND <<table>>`  ·  **Hits**: 30
+
+
+## archive (6 … 
+- **Walter Russell**
+  - `_intake/canon-profiles/russell-walter.md`
+  -  … Walter <<Russell>>**
+  - `archive/the-<<universal>> … 
+- **<<mendeleev>>-<<periodic>>**
+  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
+  -  … <<russell>>-<<cosmology>>.md`
+  -  … <<russell>>>>-<<<<periodic>>>>-<<<<table>>>>-1926` | Walter <<<<Russell>>>> "The <<<<Universal … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … biophysics | inferred via "biophoton" 8 |
@@ -101,14 +120,12 @@ if you look at the <<periodic>> of the …
 | `<<mendeleev>>-1869-original` | <<Mendeleev>>'s 1869 paper "Соотношение свойств … 
 - **walter-russell-cosmology**
   - `_intake/concept-digests/walter-russell-cosmology.md`
-  -  … rhythms>> of genetically tweaked mice … 
+  -  … Walter <<Russell>>**
+  - `archive/the-<<universal>> … 
 - **<<mendeleev>>-<<periodic>>**
   - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
-  -  … And here they are ... 
-
-
-<<<<TABLE>>>> OF … 
-- **The <<Universal>> One 1926 Walter … 
+  -  … <<russell>>-cosmology.md`
+  -  … <<russell>>>>-<<<<periodic>>>>-<<<<table>>>>-1926` | Walter <<<<Russell>>>> "The <<<<Universal … 
 - **Dmitri Mendeleev — canon-target intake**
   - `_intake/mendeleev-dmitri/README.md`
   -  … mentioned in Kruse × WiM podcasts (transcripts in `bucket-foundation/yt/`)
@@ -116,39 +133,51 @@ if you look at the <<periodic>> of the …
 ## Key works to ingest
 
 1869 Russian original + 1871 English revision; full <<periodic>> <<table>> papers … 
+- **Isaac Newton**
+  - `_intake/canon-profiles/newton-isaac.md`
+  -  … physics | 10 |
+| `tesla-nikola` | Tesla | Patents, papers on … 
+- **<<mendeleev>>-<<periodic>>**
+  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
+  -  … eng … 
+- **<<Newton>>'s <<Principia>> : the mathematical principles of … 
 - **biophoton-popp**
   - `_intake/concept-digests/biophoton-popp.md`
-  -  … biophoton>> … 
+  -  … 11), leptin(10), <<biophoton>>(7), ATP(7), Becker(7 … 
 - **<<mendeleev>>-periodic**
   - `_intake/concept-digests/<<mendeleev>>-periodic.md`
-  -  … 12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … biophysics | inferred via "<<biophoton>>" 8 |
-| `<<<<mendeleev>>>>-dmitri … 
+  -  … 4, youtube:10)
+- **<<biophoton>>-popp**
+  - `_intake/concept … 
+- **Fritz-Albert Popp**
+  - `_intake/canon-profiles/popp-fritz-albert.md`
+  -  … 30 hits  (intake:20, pubmed:5, youtube:5)
+- [`circadian … 
+- **<<mendeleev>>-periodic**
+  - `_intake/concept-digests/<<mendeleev>>-periodic.md`
+  -  … 4, youtube:10)
+- **<<biophoton>>-<<popp>>**
+  - `_intake/concept … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  -  … fritz-albert.md) — Fritz-Albert Popp — 20 hits
+- [`<<mendeleev>>-dmitri`](<<mendeleev>>-dmitri.md) — Dmitri <<Mendeleev>> — 13 hits
+- [`einstein-albert`](einstein-albert.md) — Albert Einstein … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … russell-cosmology.md) — 26 hits  (archive:5, intake:17, youtube:4)
-- [`<<mendeleev>>-periodic`](<<mendeleev>>-periodic.md) — 30 hits  (archive:6, intake:21, youtube:3)
-- **fourth-phase-water**
-  - `_intake/concept-digests/fourth-phase-water.md`
-  -  … deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
-- **<<mendeleev>>-periodic**
-  - `_intake/concept-digests/<<mendeleev>>-periodic.md`
-  -  … But it … 
-- **Uncovering the Secrets of Life … 
-- **ez-water-pollack**
-  - `_intake/concept-digests/ez-water-pollack.md`
-  -  … provide answers to the questions of <<water>>, electricity and … 
-- **<<mendeleev>>-periodic**
-  - `_intake/concept-digests/<<mendeleev>>-periodic.md`
-  -  … The
-story of magnesium, the reason why … 
+  -  … russell-cosmology.md) — 27 hits  (archive:5, intake:17, youtube:5)
+- [`<<mendeleev>>-periodic`](<<mendeleev>>-periodic.md) — 30 hits  (archive:6, intake:22, youtube:2)
 - **TENSEGRITY #6:  HYDROGEN BONDING NETWORKS IN WATER**
   - `_intake/kruse-blog-corpus/articles/tensegrity-6-hydrogen-bonding-networks-water.md`
   -  … The biologic ideas and constructs of life are built around a stable <<periodic>> <<table>> of atoms. *The <<periodic>> <<table>> is no longer considered stable … 
 - **TENSEGRITY #8:  WHERE DID FISH OIL COME FROM?**
   - `_intake/kruse-blog-corpus/articles/tensegrity-8-dha-come.md`
   -  … Remember the <<periodic>> <<table>> is a quantum based document. One of the lesser-known <<periodic>> <<table>> quantum links between sulfur and molybdenum when coupled … 
+- **Niels Bohr**
+  - `_intake/canon-profiles/bohr-niels.md`
+  -  … THE POWER MATRIX**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-10.md`
+  -  … As <<atomic>> physics and chemistry began to explain the <<periodic>> <<table>> with the … 
 - **REALITY #7:   BLOOD AND CHLOROPHYLL TYPES AND FOOD**
   - `_intake/kruse-blog-corpus/articles/reality-7-blood-chlorophyll-types-food.md`
   -  … This is why I mito-hack the <<periodic>> <<table>> of elements in many ways to gain insights into how life works.   We now know … 
@@ -160,6 +189,9 @@ story of magnesium, the reason why …
 - **The Tilted Quilt: Random Musings 1**
   - `_intake/kruse-blog-corpus/articles/tilted-quilt-random-musings-1.md`
   -  … All hydrides in the first row of the <<periodic>> <<table>> of elements all are all gases at temperatures above 20 degrees C, except water … 
+- **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
+  -  … Biologic life tends to copy things because of fractal nature of the atoms in the <<periodic>> <<table>> are also quantized.  Remember hydrogen is the … 
 - **Walter Russell — canon-target intake**
   - `_intake/russell-walter/README.md`
   -  … Universal One (1926, PD); A New Concept of the Universe (1953); <<periodic>> <<table>> chart
@@ -167,9 +199,6 @@ story of magnesium, the reason why …
 ## Source candidates (in priority order)
 
 - archive.org: The Universal One … 
-- **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
-  -  … Biologic life tends to copy things because of fractal nature of the atoms in the <<periodic>> <<table>> are also quantized.  Remember hydrogen is the … 
 - **ORGANIZATIONAL STRUCTURAL FAILURE 3:  DARWIN WAS WRONG**
   - `_intake/kruse-blog-corpus/articles/osf-3-darwin-was-wrong.md`
   -  … When this happened, the result was hydrogen gas (element one on the <<periodic>> <<table>> of elements).  Hydrogen is a new form of matter formed … 
@@ -179,14 +208,3 @@ story of magnesium, the reason why …
 - **TIME #18:  DIVORCING EINSTEIN USING TIME'S POINTED ARROW**
   - `_intake/kruse-blog-corpus/articles/time-18-divorcing-einstein-using-times-pointed-arrow.md`
   -  … This is why the first 30 elements of the <<periodic>> <<table>> of elements form 99% of biologically evolved molecules.  It should also be intuitive … 
-- **Quantum Biology 3: Queer Water**
-  - `_intake/kruse-blog-corpus/articles/quantum-biology-3-queer-water.md`
-  -  … chemical formula for water, H2O, compared to its neighbors on the <<periodic>> <<table>> water’s abilities really make it stick out for the astute … 
-- **TENSEGRITY #12:  THE QUANTUM CELL MEMBRANE**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-12-quantum-cell-membrane.md`
-  -  … Here you can see how hydrogen once again is acting as the rogue element of the <<periodic>> <<table>>.
-
-What do these protons do between … 
-- **Quantum Biology 9: Photosynthesis**
-  - `_intake/kruse-blog-corpus/articles/quantum-biology-9-photosynthesis.md`
-  -  … dust.  From this star dust,  all the other elements on chemistry <<periodic>> <<table>> come.  We are made from the remnants of that very same … 

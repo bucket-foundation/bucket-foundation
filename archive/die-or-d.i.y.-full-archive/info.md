@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: audio
 - **Subjects**: Soviet Fusion; Kosmiche; Siberian Punk; punk; Soviet Disco Weirdness; Abstract; DIY; Industrial; Anarcho Punk; New Wave; Post Punk; Freecore; Early Electronic; Modern Composition; Alternative; Folk; Psychadelic; Avant Rock; Pub Rock
-- **Captured**: 2026-05-09T09:07:59
+- **Captured**: 2026-05-09T09:45:55
 
 ## Description
 

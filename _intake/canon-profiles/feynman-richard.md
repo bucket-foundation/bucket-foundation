@@ -3,13 +3,16 @@
 **Slug**: `feynman-richard`  ·  **FTS query**: `Feynman`  ·  **Hits**: 25
 
 
-## archive (1)
+## archive (2)
 
 - **[Coursera] Exploring Quantum Physics**
   - `archive/academictorrents_f24122f15283757aa8a9bf9cb638db266273442d/info.md`
   -  … Richard <<Feynman>> once said, “I think I can safely say that nobody understands quantum mechanics.” We say, that’s no reason not to try … 
+- **The Oxford book of modern science writing**
+  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
+  -  … science' / Albert Einstein -- Carl Sagan, from The demon-haunted world -- Richard <<Feynman>>, from The character of physical law -- Erwin Schrödinger, from What is life … 
 
-## youtube (3)
+## youtube (2)
 
 - **Dr Gerald Pollack _The Importance Of Water For Energy _Heart Health _Memory & Ageing**
   - `yt/EWthpbsfMJI-dr-gerald-pollack-the-importance-of-water-for-energy-heart-h/transcript.txt`
@@ -25,19 +28,48 @@ um
 yeah so practically every graduate
 student in physics uh reads the set of
 lectures of Richard <<Feynman>> it's a … 
-- **Buried Treasure: Jesus and physicist John Wheeler agree, this reality is a matter of Yes or No!**
-  - `yt/z8FVueTcz6E-buried-treasure-jesus-and-physicist-john-wheeler-agree-this-/transcript.txt`
-  -  … with
-Niels Bohr and he was a teacher to
-people like <<Feynman>> who is the one that
-figured out why this the Challenger
-exploded … 
 
 ## intake (21)
 
+- **Richard Feynman**
+  - `_intake/canon-profiles/feynman-richard.md`
+  - # Richard <<Feynman>>
+
+**Slug**: `<<feynman>>-richard`  ·  **FTS query**: `<<Feynman>>`  ·  **Hits**: 25
+
+
+## archive (1)
+
+- **[Coursera] Exploring Quantum Physics**
+  - `archive/academictorrents_f24122f15283757aa8a9bf9cb638db266273442d/info.md`
+  -  … Richard <<<<Feynman>>>> once … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  -  … niels`](bohr-niels.md) — Niels Bohr — 21 hits
+- [`<<feynman>>-richard`](<<feynman>>-richard.md) — Richard <<Feynman>> — 25 hits
+- [`shannon-claude`](shannon-claude.md) — Claude Shannon … 
 - **TIME #7: THE PHOTOELECTRIC EFFECT**
   - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
   -  … This raises the question, why has nature specifically continued to use DHA exclusively even when experiments show it has an ugly side?  <<Feynman>>’s … 
+- **John Archibald Wheeler**
+  - `_intake/canon-profiles/wheeler-john.md`
+  -  … 9)
+
+- **The Quantum Labyrinth - Richard <<Feynman>> & John Wheeler - Quantum Reality & Time**
+  - `yt/KCcX03Q6Lkw-the-quantum-labyrinth-richard-<<feynman>>-john-wheeler-quantum-r/transcript.txt … 
+- **Niels Bohr**
+  - `_intake/canon-profiles/bohr-niels.md`
+  -  … The  second  step  of  the  history  of  chemistry  was  heralded  by 
+<<Bohr>> … 
+
+## youtube (6)
+
+- **The Quantum Labyrinth - Richard <<Feynman>> & John Wheeler - Quantum Reality & Time … 
+- **Erwin Schrödinger**
+  - `_intake/canon-profiles/schrodinger-erwin.md`
+  -  … that … 
+- **The Quantum Labyrinth - Richard <<Feynman>> & John Wheeler - Quantum Reality & Time**
+  - `yt/KCcX03Q6Lkw-the-quantum-labyrinth-richard-<<feynman>>-john-wheeler-quantum-r/transcript.txt … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … Dirac — *The Principles of Quantum Mechanics* (1930) | Foundational QM textbook. |
@@ -51,12 +83,12 @@ exploded …
 - **Energy and Epigenetics 3: Autoimmunity, Cancer, Autism**
   - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-3-autoimmunity-cancer-autism.md`
   -  … This is when I dove head deep into the work of Richard <<Feynman>>. <<Feynman>> took Einstein’s photoelectric effect and developed Quantum Electrodynamic theory … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … WHO(43), infrared(17), exclusion zone(16), EPA(9), fourth phase of water(8), <<Feynman>>(7), electron(6), AGE(5), ATP(4), EMF(2 … 
 - **ORGANIZATIONAL STRUCTURAL FAILURE 3:  DARWIN WAS WRONG**
   - `_intake/kruse-blog-corpus/articles/osf-3-darwin-was-wrong.md`
   -  … He is a biologist, not a physicist.  If you’re smart, you would pay attention to <<Feynman>>’s insights.  Dawkins reads the second law … 
+- **Per-Video References**
+  - `_intake/kruse-references-mined/PER-VIDEO.md`
+  -  … WHO(43), infrared(17), exclusion zone(16), EPA(9), fourth phase of water(8), <<Feynman>>(7), electron(6), AGE(5), ATP(4), EMF(2 … 
 - **Quantum Biology 3: Queer Water**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-3-queer-water.md`
   -  … 283–288.
@@ -112,26 +144,3 @@ That quote was made about the epic NASA failures during the [
 Now stop………where have you heard that advice from me before?   [EMF 2.](/emf-2-einstein-meet-leptin/)
 
 <<Feynman>> has a … 
-- **TIME 10:  SENSORY INTEGRATION = MITOCHONDRIAL TIME**
-  - `_intake/kruse-blog-corpus/articles/time-10-sensory-integration.md`
-  -  … in determining how we may handle electrons and protons from food. <<Feynman>>’s interview describing waves all around us is quite instructional to my … 
-- **Energy and Epigenetics 9: Quantum Sleep**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
-  -  … Richard <<Feynman>> did some amazing foundational work on quantum vortices in the 50s and 60s. Here again we see how QED scales from cosmologic … 
-- **TENSEGRITY 2:  CORTISOL = POWER OF AM SUNLIGHT**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-2-cortisolam-sunlight.md`
-  -  … mean?
-
-Any thing that breaks the second law is a falsehood.
-
-<<Feynman>> said when your experiment does not meet your theory,  no matter how … 
-- **THE TILTED QUILT:  RANDOM MUSING'S #4**
-  - `_intake/kruse-blog-corpus/articles/tilted-quilt-random-musings-4.md`
-  -  … certainty — some most unsure, some nearly sure, none absolutely certain.”
-
-–Richard <<Feynman>>
-
-When cytokines like IL-6 are raised in a human gut, plasma … 
-- **EMF 1: Does Your Rolex Work?**
-  - `_intake/kruse-blog-corpus/articles/emf-1-does-your-rolex-work.md`
-  -  … It is pretty simple if you look back to Nobel Prize winner physicist, Richard <<Feynman>>’s 1960’s lectures on the Earth’s subtle … 

@@ -1,6 +1,6 @@
 # Ray Peat
 
-**Slug**: `peat-ray`  ·  **FTS query**: `Peat AND (thyroid OR progesterone OR hormone OR PUFA OR estrogen)`  ·  **Hits**: 12
+**Slug**: `peat-ray`  ·  **FTS query**: `Peat AND (thyroid OR progesterone OR hormone OR PUFA OR estrogen)`  ·  **Hits**: 13
 
 
 ## archive (2)
@@ -17,8 +17,19 @@ the  <<thyroid>>  are  iodine  compounds  and  they  play  a  major …
 3.4.2a. Brain Injury. Since ESP must be at least mediated by the 
 brain, one might expect … 
 
-## intake (10)
+## intake (11)
 
+- **Ray Peat**
+  - `_intake/canon-profiles/peat-ray.md`
+  - # Ray <<Peat>>
+
+**Slug**: `<<peat>>-ray`  ·  **FTS query**: `<<Peat>> AND (<<thyroid>> OR <<progesterone>> OR <<hormone>> OR <<PUFA>> OR <<estrogen>>)`  ·  **Hits**: 12
+
+
+## archive (2)
+
+- **Bioenergetics**
+  - `archive … 
 - **Hormones 101: Clinical thoughts revealed**
   - `_intake/kruse-blog-corpus/articles/hormone-cascade-101.md`
   -  … <<Progesterone>> is the base <<hormone>> for the testosterone, <<estrogen>>, DHEA, etc (the <<hormones>> of fertility)……..The more we shunt to survival mode <<hormones>> the … 
@@ -49,9 +60,6 @@ brain, one might expect …
 
 						**Jack**
 						May … 
-- **WHY PERSPECTIVE MATTERS?**
-  - `_intake/kruse-blog-corpus/articles/why-perspective-matters.md`
-  -  … It is also why the flawed WHI on <<hormone>> replacement is toilet paper in my eyes.  Medroxy-<<progesterone>> does not equal real human <<progesterone>> … 
 - **Cold Thermogenesis 5: Biologic magnetism**
   - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-5-biologic-magnetism.md`
   -  … Assuming its <<hormonal>> balancing? <<Thyroid>> related (I have hashimoto’s)?
@@ -70,6 +78,9 @@ brain, one might expect …
 
 						**LinD**
 						March … 
+- **WHY PERSPECTIVE MATTERS?**
+  - `_intake/kruse-blog-corpus/articles/why-perspective-matters.md`
+  -  … It is also why the flawed WHI on <<hormone>> replacement is toilet paper in my eyes.  Medroxy-<<progesterone>> does not equal real human <<progesterone>> … 
 - **TIME #7: THE PHOTOELECTRIC EFFECT**
   - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
   -  … Melatonin interacts with the ubiquitin-proteasome system to regulate the central activity of <<thyroid>> <<hormone>> type 2 deiodinase; the subsequent regulation of T3 is … 

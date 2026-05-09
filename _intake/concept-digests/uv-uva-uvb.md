@@ -24,13 +24,6 @@ uh that has <<UVA>> and <<UVB>> …
 releases extreme low frequency <<UV>> light
 that <<UV>> light is you've seen more <<UVA>> or
 B UVC you didn't you … 
-- **Dr. Jack Kruse on How Light Controls Metabolism & Diabetes | Blue Light and Brain Damage | Bitcoin**
-  - `yt/tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue/transcript.txt`
-  -  … Andreas, what translates melanin
-from pomsy? <<UV>> light. What makes nitric
-oxide? <<UV>> light. <<UV>>.
-&gt;&gt; What makes vitamin D?
-&gt;&gt; <<UV>> … 
 - **Regenerative Energy & the Light Inside You | Jack Kruse | 221**
   - `yt/67sLlXeMg2I-regenerative-energy-the-light-inside-you-jack-kruse-221/transcript.txt`
   -  … Why?
@@ -38,6 +31,13 @@ Because then you'll make <<UV>>, you'll make
 VUV, UVC, <<UVB>>, and <<UVA>> from your
 mitochondria. Why? Because you're an
 uncoupled … 
+- **Dr. Jack Kruse on How Light Controls Metabolism & Diabetes | Blue Light and Brain Damage | Bitcoin**
+  - `yt/tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue/transcript.txt`
+  -  … Andreas, what translates melanin
+from pomsy? <<UV>> light. What makes nitric
+oxide? <<UV>> light. <<UV>>.
+&gt;&gt; What makes vitamin D?
+&gt;&gt; <<UV>> … 
 
 ## intake (24)
 
@@ -48,23 +48,22 @@ uncoupled …
 **Query**: `<<UV>> OR <<UVA>> OR <<UVB>> OR <<ultraviolet>>`  ·  **Hits**: 30
 
 
-## youtube (7)
+## pubmed (2)
 
-- **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution … 
+- **Imaging of ultraweak photon emission for evaluating the oxidative … 
 - **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
   - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
   -  … Moreover, <<UV>> light is known to break down most of the sex steroids in the skin under sun exposure. <<UVA>> and <<UVB>> do this … 
 - **TENSEGRITY #14: COMMUNICATION BREAKDOWN IN THE GUT**
   - `_intake/kruse-blog-corpus/articles/tensegrity-8-communication-breakdown-gut.md`
   -  … Of the <<ultraviolet>> radiation that reaches the Earth’s surface, more than 95% is the longer wavelengths of <<UVA>>, with the small remainder <<UVB>> … 
-- **infrared-near-ir**
-  - `_intake/concept-digests/infrared-near-ir.md`
-  -  … pineal melatonin … 
+- **biophoton-popp**
+  - `_intake/concept-digests/biophoton-popp.md`
+  -  … c oxidase but also electron transfer and … 
 - **<<uv>>-<<uva>>-<<uvb>>**
   - `_intake/concept-digests/<<uv>>-<<uva>>-<<uvb>>.md`
-  -  … Turns out he
-proteins their action spectra are <<<<UV>>>> and
-<<infrared>> sometimes … 
+  -  … IS TIME TOLD BY <<BIOPHOTON>> EMISSION?**
+  - `_intake … 
 - **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
   - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
   -  … us?  <<UVA>> light shows up in late AM and earlier than <<UVB>> light which shows up closer to midday.  All frequencies of <<UV>> light … 
@@ -74,23 +73,33 @@ proteins their action spectra are <<<<UV>>>> and
 - **TIME #4: HOW CAN MAN HELP OUR EYE CLOCK IN A TECH WORLD?**
   - `_intake/kruse-blog-corpus/articles/how-man-helps-the-eye-clock.md`
   -  … That <<UVA>> or <<UVB>> light is not present 24/7 on the globe anywhere.* This includes the equator because of how <<UV>> light traverses … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … Electromagnetism and the … 
+- **<<photoelectric>>-<<biology>>**
+  - `_intake/concept-digests/<<photoelectric>>-<<biology>>.md`
+  -  … MAPPING-QUEUE … 
+- **<<uv>>-<<uva>>-<<uvb>>**
+  - `_intake/concept-digests/<<uv>>-<<uva>>-<<uvb>>.md`
+  -  … PSORIASIS … 
 - **methylene-blue**
   - `_intake/concept-digests/methylene-blue.md`
-  -  … 05-01/terms … 
+  -  … WHO(63), <<electron … 
 - **<<uv>>-<<uva>>-<<uvb>>**
   - `_intake/concept-digests/<<uv>>-<<uva>>-<<uvb>>.md`
   -  … 8), circadian(6), ATP(6), quantum(6), <<<<UVA>>>>(5), electron(5 … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … hits  (archive:1, intake:9, pubmed:4, youtube:16)
-- [`<<uv>>-<<uva>>-<<uvb>>`](<<uv>>-<<uva>>-<<uvb>>.md) — 30 hits  (intake:23, youtube:7)
-- [`blue-light … 
-- **deuterium-depleted-water**
-  - `_intake/concept-digests/deuterium-depleted-water.md`
-  -  … phase-of-<<water>>-cellular-redox-re/transcript … 
+  -  … hits  (archive:1, intake:8, pubmed:9, youtube:12)
+- [`<<uv>>-<<uva>>-<<uvb>>`](<<uv>>-<<uva>>-<<uvb>>.md) — 30 hits  (intake:24, pubmed:2, youtube:4 … 
+- **vitamin-d-sunlight**
+  - `_intake/concept-digests/vitamin-d-sunlight.md`
+  -  … vitamin D>>>>** — 129 … 
 - **<<uv>>-<<uva>>-<<uvb>>**
   - `_intake/concept-digests/<<uv>>-<<uva>>-<<uvb>>.md`
-  -  … <<Water>>, Light and Magnetism for Health with … 
+  -  … What makes nitric
+oxide? <<<<UV>>>> light. <<<<UV>>>>.
+&gt;&gt; What makes … 
 - **TIME # 19:  IS TIME TOLD BY BIOPHOTON EMISSION?**
   - `_intake/kruse-blog-corpus/articles/time-for-biophotons.md`
   -  … humans need strong <<UV>> light every day at some level to keep autophagy and apoptosis working to self-regulate themselves.**  <<UVA>> light is present … 
@@ -103,23 +112,23 @@ proteins their action spectra are <<<<UV>>>> and
 - **TIME #11   CAN YOU SUPPLEMENT SUNLIGHT?**
   - `_intake/kruse-blog-corpus/articles/time-10-can-you-supplement-sunlight.md`
   -  … of <<UVB>> light at our skin surface when Vitamin D3 is made.  Experiments have proven this.   What happens if you have no <<UV>> light … 
-- **Quantum Thermodynamics #2: Why stopping oral vitamin D3 in a 5G world is wise**
-  - `_intake/kruse-blog-corpus/articles/quantum-thermodynamics-2-why-stopping-oral-vitamin-d3-in-a-5g-world-is-wise.md`
-  -  … in the skin by <<UV>> light exposure of the skin…….so if you do not get the <<UVA>> and <<UVB>> light frequencies in diurnal … 
 - **Quantum Biology 7: Sulfated Vitamin D3**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
   -  … in the skin involves <<UVB>> radiation which effectively penetrates only the epidermal layers of skin. 7-Dehydrocholesterol absorbs <<UV>> light most effectively at wavelengths … 
+- **Quantum Thermodynamics #2: Why stopping oral vitamin D3 in a 5G world is wise**
+  - `_intake/kruse-blog-corpus/articles/quantum-thermodynamics-2-why-stopping-oral-vitamin-d3-in-a-5g-world-is-wise.md`
+  -  … in the skin by <<UV>> light exposure of the skin…….so if you do not get the <<UVA>> and <<UVB>> light frequencies in diurnal … 
 - **TIME #6:  IS BIOLOGIC TIME LINKED TO DOPAMINE LEVELS?**
   - `_intake/kruse-blog-corpus/articles/time-6-time-and-dopamine.md`
   -  … Bright full spectrum light contains <<UVA>> light.  When <<UV>> light is missing dopamine levels are lower in the eye.  Anytime dopamine is lowered, it … 
+- **TENSEGRITY #7:  BLACK HOLE SUN,  HERE WE COME**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-7-black-hole-sun-come.md`
+  -  … eNOS stimulates nitric oxide from L- Arginine and it stimulates sulfate production from sulfur in the presence of <<UVB>> and IR light. **eNOS switches … 
 - **UBIQUITINATION 20:  LINKING LIGHT TO PLANTS AND ANIMALS**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-20-linking-light-to-plants-and-animals.md`
   -  … Something must have constricted the spectrum of light between <<UV>> and IR for a reason.
 
 I decided to look into the topic our perception … 
-- **TENSEGRITY #7:  BLACK HOLE SUN,  HERE WE COME**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-7-black-hole-sun-come.md`
-  -  … eNOS stimulates nitric oxide from L- Arginine and it stimulates sulfate production from sulfur in the presence of <<UVB>> and IR light. **eNOS switches … 
 - **TIME #20:  IS FAT BURNING DUE TO 100 HZ VIBRATION IN MITOCHONDRIA?**
   - `_intake/kruse-blog-corpus/articles/time-20-fat-burning-due-100-hz-vibration-mitochondria.md`
   -  … the DC electric are present it is a signal that <<UVA>> or <<UVB>> light is present to generate enough current and voltage to affect … 
@@ -137,12 +146,9 @@ I decided to look into the topic our perception …
 - **infrared** — 329
 - **blue light** — 311
 - **EPA** — 294 … 
-- **TIME #7: THE PHOTOELECTRIC EFFECT**
-  - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
-  -  … increases.  In visible light, this describes the <<ultraviolet>> part of the visible spectrum.  *Higher powered <<UV>> light acts more like a particle and less … 
 - **Vitamin D:  The Sunshine of Your Life?**
   - `_intake/kruse-blog-corpus/articles/the-sunshine-of-your-life.md`
   -  … This paper reviews ecological studies of the <<ultraviolet>>-B (<<UVB>>)-vitamin D-cancer hypothesis based on geographical variation of cancer incidence and/or mortality … 
-- **THREE ESSENTIAL BIOHACKS (WHY BIOHACKING STARTS WITH YOUR ENVIRONMENT)**
-  - `_intake/kruse-blog-corpus/articles/three-essential-biohacks-why-biohacking-starts-with-your-environment.md`
-  -  … in the brain, which levels increase due to <<ultraviolet>> light exposure.[31-33] <<Ultraviolet>> light (<<UV>>) is the purple color in the light spectrum … 
+- **TIME #7: THE PHOTOELECTRIC EFFECT**
+  - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
+  -  … increases.  In visible light, this describes the <<ultraviolet>> part of the visible spectrum.  *Higher powered <<UV>> light acts more like a particle and less … 

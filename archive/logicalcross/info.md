@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Bible; Spirituality; NDE; Einstein; General Relativity; Dark Energy; Quantum Gravity; Singularities; Cosmology; Riemann Zeta Function; Philosophy of Physics; Laplace Transform; Fourier Transform; Fourier Analysis; Noether; Bessel; Symmetry, Cross, Resurrection, Religion, Physics, Psychic
-- **Captured**: 2026-05-09T09:09:31
+- **Captured**: 2026-05-09T09:46:09
 
 ## Description
 

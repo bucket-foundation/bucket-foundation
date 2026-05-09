@@ -1,19 +1,59 @@
 # Erwin Schrödinger
 
-**Slug**: `schrodinger-erwin`  ·  **FTS query**: `Schrödinger OR Schrodinger`  ·  **Hits**: 21
+**Slug**: `schrodinger-erwin`  ·  **FTS query**: `Schrödinger OR Schrodinger`  ·  **Hits**: 25
 
 
-## archive (2)
+## archive (5)
 
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
-  -  … The  theory  came  of  age  in  1927  with 
-<<Schrodinger>>'s  wave  equation.  In  this  theory,  the  atom  is  no  more 
-an  indivisible  unit,  but … 
-- **LogicalCross**
-  - `archive/logicalcross/essay_djvu.txt`
-  -  … appear everywhere in nature, from electromagnetic waves, to heat conduction and 
-acoustics, fluid flow and even <<Schrodinger>>’s equation ... there you’ll find them … 
+- **WHAT IS LIFE? - ERWIN SCHRODINGER**
+  - `archive/WhatIsLife-EdwardSchrodinger/info.md`
+  - # WHAT IS LIFE? - ERWIN <<SCHRODINGER>>
+
+- **Archive identifier**: `WhatIsLife-EdwardSchrodinger`
+- **URL**: https://archive.org/details/WhatIsLife-EdwardSchrodinger
+- **Creator**: ERWIN <<SCHRODINGER>>
+- **Date**: 
+- **Publisher**: 
+- **Language**: English
+- **License … 
+- **['Introduction To Quantum Mechanics', 'With Applications To Chemistry.']**
+  - `archive/introductiontoqu031712mbp/introductiontoqu031712mbp_djvu.txt`
+  -  … 47 
+
+v 
+
+
+
+vi CONTENTS 
+
+SECTION PAGE 
+
+CHAPTER III 
+
+THE <<SCHRODINGER>> WAVE EQUATION WITH THE 
+HARMONIC OSCILLATOR AS AN EXAMPLE 
+
+9. The <<Schrodinger>> Wave Equation … 
+- **The Oxford book of modern science writing**
+  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
+  -  … haunted world -- Richard Feynman, from The character of physical law -- Erwin <<Schrödinger>>, from What is life? -- Daniel Dennett, from Darwin's dangerous idea, and … 
+- **WHAT IS LIFE? - ERWIN SCHRODINGER**
+  - `archive/WhatIsLife-EdwardSchrodinger/whatislife-schrodinger_djvu.txt`
+  - WHAT IS LIFE? 
+
+ERWIN <<SCHRODINGER>> 
+First published 1944 
+
+What is life? The Physical Aspect of the Living 
+Cell. 
+
+Based on lectures delivered under the … 
+- **A Modern Handbook Of Physics**
+  - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook-of-Physics-Mir-1982_djvu.txt`
+  -  … 38.2  <<Schrodinger>>  Wave  Equation 
+
+38.2.1  The  position  of  a  particle  in  space  at  a  given  instant 
+of  time  is  determined  in … 
 
 ## pubmed (1)
 
@@ -21,7 +61,7 @@ acoustics, fluid flow and even <<Schrodinger>>’s equation ... there you’ll f
   - `pubmed/PMID-24070914-consciousness-in-the-universe-a-review-of-the-orch-or-theory/info.md`
   -  … and regulate, neuronal synaptic and membrane activity, and that the continuous <<Schrödinger>> evolution of each such process terminates in accordance with the specific Diósi … 
 
-## youtube (7)
+## youtube (6)
 
 - **Sir Roger Penrose & Dr. Stuart Hameroff: CONSCIOUSNESS AND THE PHYSICS OF THE BRAIN**
   - `yt/xGbgDf4HCHU-sir-roger-penrose-dr-stuart-hameroff-consciousness-and-the-p/transcript.txt`
@@ -62,13 +102,26 @@ which makes it difficult to do things …
 guys know about
 ehrman <<schrodinger>> in 1944 he wrote a
 book what is life what is he … 
-- **Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podcast) - PART 1**
-  - `yt/zs82rGFo6qg-jack-kruse-andrew-huberman-rick-rubin-tetragrammaton-podcast/transcript.txt`
-  -  … guy that I know both of you have heard&nbsp; Erwin <<Schrodinger>> wrote a book called what is&nbsp;&nbsp;
-life this is the … 
 
-## intake (11)
+## intake (13)
 
+- **Erwin Schrödinger**
+  - `_intake/canon-profiles/schrodinger-erwin.md`
+  - # Erwin <<Schrödinger>>
+
+**Slug**: `<<schrodinger>>-erwin`  ·  **FTS query**: `<<Schrödinger>> OR <<Schrodinger>>`  ·  **Hits**: 21
+
+
+## archive (2)
+
+- **Bioenergetics**
+  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
+  -  … The  theory  came  of … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  -  … stuart`](hameroff-stuart.md) — Stuart Hameroff — 18 hits
+- [`<<schrodinger>>-erwin`](<<schrodinger>>-erwin.md) — Erwin <<Schrödinger>> — 21 hits
+- [`bohr-niels`](bohr-niels.md) — Niels Bohr … 
 - **Energy and Epigenetics 10: The Quantum Puzzle**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-10-quantum-puzzle.md`
   -  … I got that idea long before I was physician when I read a physics book called [“What is Life”, by Erwin <<Schrodinger>>](http://www … 

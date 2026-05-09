@@ -9,7 +9,7 @@
   - `archive/sharware/info.md`
   -  … template;templates;temple;tenant;tenants;tend;tennis;tension;term;terms;terrain;<<tesla>>;test;tested;testimony;testing;testosterone;tests;texas;text;texture;thailand;thanks;theater … 
 
-## youtube (8)
+## youtube (6)
 
 - **Disconnecting one side of Dr. Becker's regenerative circuit.**
   - `yt/7LHwUIv5zOo-disconnecting-one-side-of-dr-becker-s-regenerative-circuit/transcript.txt`
@@ -44,23 +44,21 @@ years on the planet from when <<Tesla>> made the AC&nbsp; power grid we've been 
 involved in the power Wars between <<Tesla>>
 and Westinghouse and and Thomas Edison
 dude that's how this all … 
-- **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
-  - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
-  -  … talk about
-the penultimate mammals which is us
-125 years ago <<Tesla>> electrified the
-surface of the planet at the World's
-Fair in … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … it
-turns out why is a magnetic monopole
-really important well <<Tesla>> used this
-idea that if a monopole exists you can
-form unlimited … 
 
-## intake (16)
+## intake (18)
 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  - # Nikola <<Tesla>>
+
+**Slug**: `<<tesla>>-nikola`  ·  **FTS query**: `<<Tesla>>`  ·  **Hits**: 25
+
+
+## archive (1)
+
+- **chestnut-multimedia**
+  - `archive/sharware/info.md`
+  -  … template;templates;temple;tenant;tenants;tend … 
 - **Nikola Tesla — canon-target intake**
   - `_intake/tesla-nikola/README.md`
   - # Nikola <<Tesla>> — canon-target intake
@@ -70,6 +68,11 @@ form unlimited …
 - **Status**: queued (not yet ingested)
 - **Initiated**: 2026-05-08
 - **Source signal**: mentioned … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  -  … michael`](faraday-michael.md) — Michael Faraday — 25 hits
+- [`<<tesla>>-nikola`](<<tesla>>-nikola.md) — Nikola <<Tesla>> — 25 hits
+- [`warburg-otto`](warburg-otto.md) — Otto Warburg … 
 - **REDOX Rx 2:  BIOHACKING YOUR MRI**
   - `_intake/kruse-blog-corpus/articles/redox-rx-2-biohacking-mri.md`
   -  … It turns out the difference of a 1.5 <<tesla>> and 1.0 <<tesla>> magnetic field is seen in only ***50 protons*** per 1 … 
@@ -90,6 +93,13 @@ form unlimited …
 | `newton-isaac` | Newton | *Principia* (1687) | 02-physics | 10 |
 | `<<tesla>>-nikola` | <<Tesla>> | Patents, papers on resonance | 02-physics | 4 |
 | `faraday-michael` | Faraday | *Experimental … 
+- **Isaac Newton**
+  - `_intake/canon-profiles/newton-isaac.md`
+  -  … physics | 14 |
+| `<<newton>>-isaac` | <<Newton>> | *<<Principia>>* (1687) | 02-physics | 10 |
+| `<<tesla>>-nikola` | <<Tesla>> | Patents, papers on … 
+- **mendeleev-periodic**
+  - `_intake/concept-digests/mendeleev-periodic.md … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … Newton** — 48
@@ -108,19 +118,22 @@ form unlimited …
 - **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
   - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
   -  … the basic tools needed for wireless communication? <<Tesla>> did when he built his first <<Tesla>> coil. <<Tesla>> used induction coils and capacitors, a device … 
-- **photoelectric-biology**
-  - `_intake/concept-digests/photoelectric-biology.md`
-  -  … FDA** — 50
-- **NIH** — 49
-- **Newton** — 48
-- **<<photoelectric>>** — 48
-- **seafood** — 42
-- **quantum <<biology>>** — 41
-- **collagen** — 40
-- **<<Tesla>>** — 38
-- **<<photoelectric>> effect** — 36
-- **copper** — 35
-- **cortisol** — 33 … 
+- **Niels Bohr**
+  - `_intake/canon-profiles/bohr-niels.md`
+  -  … light to
+communicate because remember when
+<<quantum>> mechanics
+was innovated from <<Tesla>> to Niels <<Bohr>>
+no one ever thought because remember
+biochemistry wasn … 
+
+## intake … 
+- **Michael Faraday**
+  - `_intake/canon-profiles/faraday-michael.md`
+  -  … from 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
+  -  … <<Tesla>> | Patents, papers on resonance | 02-physics | 4 |
+| `<<faraday>>-michael` | <<Faraday>> | *<<Experimental>> Researches … 
 - **UBIQUITINATION 9:  FREQUENCY AWAKENING**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-9-frequency-awakening.md`
   -  … There is no matter.” – Albert Einstein
@@ -145,9 +158,3 @@ So the …
 - **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
   - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
   -  … 19th century (the 1880’s) and the effect was extended by <<Tesla>>’s AC induction motors for cities in 1893. This made nighttime light … 
-- **REALITY #14: WARBURG'S PROOF: THE DATA POINTS TO MITOCHONDRIAL GENOME?**
-  - `_intake/kruse-blog-corpus/articles/reality-14-warburgs-proof.md`
-  -  … Chicago was electrified in 1893 at the World’s Fair by <<Tesla>> and Westinghouse?   Paris was fully electrified and lit by bulbs at night … 
-- **REALITY 11:  OPTICS IN A NON LINEAR WORLD:  WHEN UV LIGHT CHANGED EARTH**
-  - `_intake/kruse-blog-corpus/articles/reality-11-optics-non-linear-world-uv-light-changed-earth.md`
-  -  … now), the current in the wire disappears.  This is precisely how <<Tesla>> figured out how to generate electricity in power stations in the late … 

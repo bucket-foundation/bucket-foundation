@@ -65,12 +65,32 @@ When <<mitochondria>> …
   -  … <<Protons>> have a positive charge and electrons have a negative charge.  These are the particles that the force acts upon in our <<mitochondria>>.
 
 Ling … 
+- **Peter Mitchell**
+  - `_intake/canon-profiles/mitchell-peter.md`
+  -  … In the mitochondrial matrix, <<<<protons>>>> are stripped of most … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … 13)
+- [`mitochondrial-<<redox>>`](mitochondrial-<<redox>>.md) — 30 hits … 
 - **CPC #9:   HASHIMOTO's AND MELASMA:  GATEWAY DISEASES**
   - `_intake/kruse-blog-corpus/articles/hashimotos-and-melasma.md`
   -  … Antibodies’s are a great [<<Redox>> Rx indicator](/<<redox>>-rx/).  When iodine levels are low, women have a <<proton>> disorder, and this causes estrogen … 
 - **Quantum Biology 4:  Metabolic Syndrome**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-4-metabolic-syndrome.md`
   -  … As the <<mitochondria>> continues the process of <<redox>> shifting, glutathione cycling is altered, pseudohypoxia develops, and NAD+ levels drop, while lactate rises and pyruvate … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … THE PHOTOELECTRIC EFFECT**
+  - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
+  -  … All <<heme>> proteins absorb red light.  <<Cytochrome>> C in <<mitochondria>> is … 
+- **chemiosmotic-mitchell**
+  - `_intake/concept-digests/chemiosmotic-mitchell.md`
+  -  … Pull primary materials … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … 13)
+- [`mitochondrial-<<redox>>`](mitochondrial-<<redox>>.md) — 30 hits  (intake:30)
+- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell … 
 - **TIME # 19:  IS TIME TOLD BY BIOPHOTON EMISSION?**
   - `_intake/kruse-blog-corpus/articles/time-for-biophotons.md`
   -  … by <<cytochrome>> c oxidase but also electron transfer and <<proton>> pumping activity of this enzyme.
@@ -81,26 +101,12 @@ Generally, in plants and budding yeast <<mitochondria>> are …
 - **TIME # 3 : CAN A CHART TELL YOU SOMETHING ABOUT TIME?**
   - `_intake/kruse-blog-corpus/articles/time-what-can-a-chart-tell-you.md`
   -  … Roeland van Wijk has shown in his latest book biochemistry transitions away from the oxidative condition.   As the <<mitochondria>> continue the process of <<redox>> … 
-- **AGEs-RAGE-glycation**
-  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
-  -  … <<redox>>.md`
-  -  … 171
-- **<<<<proton>>>>** — 168
-- **Einstein** — 155
-- **DHA** — 144
-- **magnetic field** — 139
-- **vitamin D** — 129
-- **hemoglobin** — 125
-- **<<AGEs>>** — 114
-- **Rockefeller** — 113
-- **<<RAGE>>** — 107
-- **<<<<cytochrome>> … 
-- **TENSEGRITY 2:  CORTISOL = POWER OF AM SUNLIGHT**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-2-cortisolam-sunlight.md`
-  -  … <<mitochondria>> with respect to which <<cytochrome>> is being fed in <<mitochondria>>.  If you are a carbophile you are mostly delivering food electrons to <<cytochrome>> … 
 - **TIME #2:  HOW IS TIME BUILT?**
   - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
   -  … When they do not or cannot, it has a massive effect on how the electrons and <<protons>> in your body flow in our <<mitochondria>> … 
+- **TENSEGRITY 2:  CORTISOL = POWER OF AM SUNLIGHT**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-2-cortisolam-sunlight.md`
+  -  … <<mitochondria>> with respect to which <<cytochrome>> is being fed in <<mitochondria>>.  If you are a carbophile you are mostly delivering food electrons to <<cytochrome>> … 
 - **UBIQUITINATION 7:  PALEO's BITTER TRUTH**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-7-paleos-bitter-truth.md`
   -  … vanishes from <<cytochrome>> 1,  there is no signal for mitochondrial biogenesis.  Without mitochondrial biogenesis, you work with old, <<redox>> shifted <<mitochondria>>, hence, they can … 
@@ -110,18 +116,20 @@ Generally, in plants and budding yeast <<mitochondria>> are …
 - **TIME #7: THE PHOTOELECTRIC EFFECT**
   - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
   -  … <<mitochondria>> by nature.  Its matrix is filled with <<protons>> and it feeds them through the ATPase and it shoots them out of a <<cytochrome>> … 
-- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
-  -  … <<protons>> in his <<mitochondria>> due to a poor <<redox>> potential in and around his <<mitochondria>>. Ben has a different <<redox>> state in his <<mitochondria>> … 
+- **methylene-blue**
+  - `_intake/concept-digests/methylene-blue.md`
+  -  … heme-<<redox>>.md`
+  -  … This lowers are <<<<redox>>>> power … 
+- **<<methylene-blue>>**
+  - `_intake/concept-digests/<<methylene-blue>>.md`
+  -  … 114
+- **Rockefeller** — 113
+- **RAGE** — 107
+- **<<cytochrome>>** — 98
+- **NAD … 
 - **TIME #14: BIOHACKING "TIME" WITH METHYLENE BLUE**
   - `_intake/kruse-blog-corpus/articles/biohacking-time-with-methylene-blue.md`
   -  … from the sun using electrons and <<protons>>. It is why all <<cytochromes>> use Iron- sulfur (Fe-S) <<redox>> complexes where quantum mechanisms dominate what … 
 - **REALITY 11:  OPTICS IN A NON LINEAR WORLD:  WHEN UV LIGHT CHANGED EARTH**
   - `_intake/kruse-blog-corpus/articles/reality-11-optics-non-linear-world-uv-light-changed-earth.md`
   -  … falls at <<cytochrome>> 1.  This changes the free radical repsonse and cause a higher heteroplasmy rate in <<mitochondria>>.  This lowers the <<redox>> potential inside … 
-- **ORGANIZATIONAL STRUCTURAL FAILURE #10:  MULTIPLE SCLEROSIS**
-  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-10-multiple-sclerosis.md`
-  -  … This is why they get cognitive losses.  What happens in a <<mitochondria>> when there is too few electrons and too many <<protons>>? <<Cytochrome>> c … 
-- **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
-  - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
-  -  … The EZ is DESTROYED by acid pH and <<protons>> are excluded in the intermembrane space of the <<mitochondria>>. This is radically different than what … 

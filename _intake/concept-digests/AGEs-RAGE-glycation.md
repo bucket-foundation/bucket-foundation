@@ -3,16 +3,7 @@
 **Query**: `("AGEs" OR glycation OR RAGE)`  ·  **Hits**: 30
 
 
-## youtube (1)
-
-- **Dr. Jack Kruse: The CIA DON’T Want You To Know This | EP 502**
-  - `yt/BrwjP3zpm64-dr-jack-kruse-the-cia-don-t-want-you-to-know-this-ep-502/transcript.txt`
-  -  … U not understandable or
-clear they would defer to the regulatory
-<<ages>> to Mak those decisions so you
-wonder well how did Child Protection … 
-
-## intake (29)
+## intake (30)
 
 - **AGEs-RAGE-glycation**
   - `_intake/concept-digests/AGEs-RAGE-glycation.md`
@@ -21,52 +12,68 @@ wonder well how did Child Protection …
 **Query**: `("<<AGEs>>" OR <<glycation>> OR <<RAGE>>)`  ·  **Hits**: 30
 
 
-## youtube (2)
+## youtube (1)
 
 - **Dr. Jack Kruse: The CIA DON’T Want You To Know … 
-- **methylene-blue**
-  - `_intake/concept-digests/methylene-blue.md`
-  -  … UVA** — 62
-- **heme** — 58
-- **biophoton … 
-- **<<AGEs>>-<<RAGE>>-<<glycation>>**
-  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … 114
-- **Rockefeller** — 113
-- **<<<<RAGE>>>>** — 107
-- **cytochrome** — 98
-- **NAD** — 95 … 
 - **schumann-cme**
   - `_intake/concept-digests/schumann-cme.md`
-  -  … the <<Schumann>> resonance … 
+  -  … queued (not yet … 
 - **<<AGEs>>-<<RAGE>>-<<glycation>>**
   - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … iron(12), magnetic field(9), WHO(9), <<<<RAGE>>>>(4), EPA(2 … 
+  -  … digests/<<schumann>>-<<cme>>.md`
+  -  … electromagnetic(22), <<<<AGE>>>>(13), Becker(13), iron … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … How To Heal … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
+  -  … WHO(12), <<iron>>(9), exclusion zone(8), <<<<RAGE>>>>(7), EPA(5 … 
+- **methylene-blue**
+  - `_intake/concept-digests/methylene-blue.md`
+  -  … methylene blue>>(21), electromagnetic … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
+  -  … 2), <<geomagnetic>>(2), UV(1), <<<<AGEs>>>>(1)
+
+
+**Titled … 
+- **<<methylene-blue … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
   -  … schumann-cme.md) — 30 hits  (intake:27, youtube:3)
-- [`<<AGEs>>-<<RAGE>>-<<glycation>>`](<<AGEs>>-<<RAGE>>-<<glycation>>.md) — 30 hits  (intake:28, youtube:2)
+- [`<<AGEs>>-<<RAGE>>-<<glycation>>`](<<AGEs>>-<<RAGE>>-<<glycation>>.md) — 30 hits  (intake:29, youtube:1)
 - [`iron-heme … 
 - **deuterium-depleted-water**
   - `_intake/concept-digests/deuterium-depleted-water.md`
-  -  … Normal bulk <<water>> has … 
+  -  … queued (not yet researched … 
 - **<<AGEs>>-<<RAGE>>-<<glycation>>**
   - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … a scoping review.**
-  - `pubmed/PMID-39397213-nutritional-<<deuterium>>-depletion-and … 
-- **ez-water-pollack**
-  - `_intake/concept-digests/ez-water-pollack.md`
-  -  … <<AGEs>>-<<RAGE>>-<<glycation>>**
-  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … Dr Gerald <<Pollack>> _The Importance Of <<Water>> For Energy _Heart Health _Memory & <<Ageing>>**
-  - `yt … 
-- **infrared-near-ir**
-  - `_intake/concept-digests/infrared-near-ir.md`
-  -  … hits  (archive:1, intake:1, pubmed:4 … 
+  -  … truth-about … 
+- **<<deuterium>>-depleted-<<water>>**
+  - `_intake/concept-digests/<<deuterium>>-depleted … 
+- **exclusion-zone-water**
+  - `_intake/concept-digests/exclusion-zone-water.md`
+  -  … 7), proton(5), <<AGEs>>(4), red light(3), heme(3), fourth phase … 
 - **<<AGEs>>-<<RAGE>>-<<glycation>>**
   - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … A Hypothesis Paper.**
-  - `pubmed/PMID-41994801-optimizing … 
+  -  … 98
+- **NAD … 
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
+  -  … the <<mitochondria>> continue the process of <<redox>> … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
+  -  … <<redox>>.md`
+  -  … 171
+- **<<<<proton>>>>** — 168
+- **Einstein** — 155 … 
+- **vitamin-d-sunlight**
+  - `_intake/concept-digests/vitamin-d-sunlight.md`
+  -  … All eukaryotic life uses <<Vitamin D>> at … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
+  -  … <<vitamin-d>>-sunlight**
+  - `_intake/concept-digests/<<vitamin … 
 - **WHAT IS BIOLOGIC CONCRETE?**
   - `_intake/kruse-blog-corpus/articles/what-is-biologic-concrete.md`
   -  … What are the consequences if I ignore this biologic process?
@@ -81,10 +88,10 @@ We established in the Quilt what [<<glycation>>](/the-quilthow-to-beat-agin/#<<A
 - **WHY THE EPI-PALEO DIET IS STAT PAGING YOUR BRAIN?**
   - `_intake/kruse-blog-corpus/articles/why-the-epi-paleo-rx-is-stat-paging-your-brain.md`
   -  … This is a compensatory mechanism that the body is using to offset the depletion of cholesterol in the brain due to <<glycation>> [(<<AGE>>’s … 
-- **biophoton-popp**
-  - `_intake/concept-digests/biophoton-popp.md`
-  -  … PER-VIDEO.md`
-  -  … mitochondria(32), iron(30), WHO(27), melanin(14), <<AGE>>(14), mitochondrial(12), UV(12), hemoglobin(11), leptin(10), <<biophoton>>(7), ATP … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … kruse-references-mined/PER-VIDEO.md`
+  -  … <<AGE>>(11), electron(9), WHO(6), Becker(6), <<Tesla>>(6), <<RAGE>>(5), proton(3), iron(1), DHA(1 … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … 144
@@ -98,6 +105,11 @@ We established in the Quilt what [<<glycation>>](/the-quilthow-to-beat-agin/#<<A
 - **NAD** — 95
 - **melatonin** — 91
 - **methylene blue** — 81 … 
+- **Michael Faraday**
+  - `_intake/canon-profiles/faraday-michael.md`
+  -  … electromagnetic(22), <<AGE>>(14), iron(12), Becker(12), <<magnetic>> field(8), WHO(8), <<RAGE>> … 
+- **UBIQUITINATION 3:  THE RHYTHM IS GONNA GET YOU**
+  - `_intake/kruse … 
 - **Central Leptin Dominance: Part 3 – King of The Hill**
   - `_intake/kruse-blog-corpus/articles/central-leptin-dominance-part-3-king-of-hill.md`
   -  … The effect of neolithic diseases is directly proportional to <<aging>>. Neolithic disease increases as we <<age>> in all studies. So the diet we should … 
@@ -113,17 +125,6 @@ Cancer feeds on sugar. Cancer …
   - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-6-mitochondrial-rx.md`
   -  … Notably, the phase of life extended was youth, not old <<age>>.
 The hydroxyl radical can damage virtually all types of macromolecules by energizing their … 
-- **iron-heme-redox**
-  - `_intake/concept-digests/iron-heme-redox.md`
-  -  … This lowers are <<redox>> power … 
-- **methylene-blue**
-  - `_intake/concept-digests/methylene-blue.md`
-  -  … 114
-- **Rockefeller** — 113
-- **<<RAGE>>** — 107
-- **cytochrome** — 98
-- **NAD** — 95
-- **melatonin** — 91 … 
 - **TENSEGRITY #7:  BLACK HOLE SUN,  HERE WE COME**
   - `_intake/kruse-blog-corpus/articles/tensegrity-7-black-hole-sun-come.md`
   -  … Nature couples these effects of sunlight on food to limit RBC and WBC <<glycation>>. Today these things are uncoupled in modern humans by our … 
@@ -148,6 +149,9 @@ The hydroxyl radical can damage virtually all types of macromolecules by energiz
 
 
 ![](https://secure.gravatar.com/avatar/3cf8534b1f21422c270f6be9648e367db61e5ddba48aae129b31a6e88546d0cc … 
+- **THE DOPAMINE Rx  =  GOOD CHOICES OR BAD**
+  - `_intake/kruse-blog-corpus/articles/the-dopamine-rx-good-choices-or-bad.md`
+  -  … We covered this in the Adrenal Fatigue blog.  It implies you are <<aging>> faster than normal, and this can put you at risk for … 
 - **UBIQUITINATION 22: HOW DO PLANTS CONTROL THEIR GROWTH PROCESS?**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-22-how-do-plants-control-their-growth-process.md`
   -  … 27_Interior%5B1%5D.jpg)
@@ -155,9 +159,6 @@ The hydroxyl radical can damage virtually all types of macromolecules by energiz
 Hi tech weed regions are the <<rage>>
 
 In this high solar powered environment, lower temperatures are better tolerated, and … 
-- **THE DOPAMINE Rx  =  GOOD CHOICES OR BAD**
-  - `_intake/kruse-blog-corpus/articles/the-dopamine-rx-good-choices-or-bad.md`
-  -  … We covered this in the Adrenal Fatigue blog.  It implies you are <<aging>> faster than normal, and this can put you at risk for … 
 - **Brain Gut 4: What was Homo's Solution?**
   - `_intake/kruse-blog-corpus/articles/brain-gut-4-what-was-homos-solution.md`
   -  … Moreover, we are becoming more feeble and useless as we <<age>> because of how broken we are metabolically from a physiologic stand point. This … 
@@ -167,14 +168,14 @@ In this high solar powered environment, lower temperatures are better tolerated,
 - **Hormone CPC #1: DHEA**
   - `_intake/kruse-blog-corpus/articles/hormone-cpc-1-dhea.md`
   -  … The marked decline in serum DHEA with <<age>> is believed to play a role in health problems associated with <<aging>> and loss of immune … 
+- **Cold Thermogenesis 6: The Ancient Pathway**
+  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-6-the-ancient-pathway.md`
+  -  … Some are <<age>> related but they don’t tell you that. If you want the range for a different <<age>> group you are out … 
 - **Cold Thermogensis 2**
   - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-two.md`
   -  … the <<aging>> of the eye.
 
 The gradual yellowing of the lens and the narrowing of the pupil that occur with <<age>> disturb the body … 
-- **Cold Thermogenesis 6: The Ancient Pathway**
-  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-6-the-ancient-pathway.md`
-  -  … Some are <<age>> related but they don’t tell you that. If you want the range for a different <<age>> group you are out … 
 - **EMF 2: Einstein, Meet Leptin**
   - `_intake/kruse-blog-corpus/articles/emf-2-einstein-meet-leptin.md`
   -  … This implied we would <<age>> less!
@@ -182,6 +183,3 @@ The gradual yellowing of the lens and the narrowing of the pupil that occur with
 **If we could increase electron flow from any source it could reverse <<aging>> and disease!!!**
 
 At this point … 
-- **So You Completed The Leptin Rx? What's Next?**
-  - `_intake/kruse-blog-corpus/articles/so-you-completed-the-leptin-rx-what-is-next-2.md`
-  -  … People forget that <<aging>> is a biologic novelty of recent times.  What may be good for performance when we are hormonally optimally as a … 

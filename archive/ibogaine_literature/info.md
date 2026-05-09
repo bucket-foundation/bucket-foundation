@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Iboga, Ibogaine
-- **Captured**: 2026-05-09T09:08:24
+- **Captured**: 2026-05-09T09:46:04
 
 ## Description
 

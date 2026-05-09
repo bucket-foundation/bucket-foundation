@@ -3,7 +3,7 @@
 **Query**: `exclusion AND zone`  ·  **Hits**: 30
 
 
-## pubmed (5)
+## pubmed (4)
 
 - **Magnetic fields induce exclusion zones in water.**
   - `pubmed/PMID-35622780-magnetic-fields-induce-exclusion-zones-in-water/info.md`
@@ -33,9 +33,6 @@
 - **PMID**: 38802675
 - **DOI**: 10.1186/1471-2229-9-45
 - **PMCID**: PMC2680855 (full-text saved … 
-- **Propolis-induced exclusion of colloids: Possible new mechanism of biological action.**
-  - `pubmed/PMID-32864353-propolis-induced-exclusion-of-colloids-possible-new-mechanis/info.md`
-  -  … We show that propolis-bearing surfaces generate an extensive <<exclusion>> <<zone>> (EZ) water layer. EZ is an interfacial region of water capable of excluding … 
 
 ## youtube (7)
 
@@ -86,7 +83,7 @@ It runs like that …
 because it excludes. So it's basically a
 liquid … 
 
-## intake (18)
+## intake (19)
 
 - **exclusion-zone-water**
   - `_intake/concept-digests/exclusion-zone-water.md`
@@ -95,69 +92,71 @@ liquid …
 **Query**: `<<exclusion>> AND <<zone>>`  ·  **Hits**: 30
 
 
-## youtube (6)
+## pubmed (5)
 
-- **Dr Gerald Pollack _The Importance Of Water For Energy _Heart Health _Memory & Ageing … 
+- **Magnetic fields induce <<exclusion>> <<zones>> in water.**
+  - `pubmed/PMID-35622780-magnetic-fields-induce … 
+- **Gerald Pollack**
+  - `_intake/canon-profiles/pollack-gerald.md`
+  - # Gerald Pollack
+
+**Slug**: `pollack-gerald`  ·  **FTS query**: `Pollack AND (water OR <<exclusion>> OR EZ)`  ·  **Hits**: 25
+
+
+## pubmed (6)
+
+- **Healthy fats and <<exclusion>>-<<zone>> size … 
+- **ez-water-pollack**
+  - `_intake/concept-digests/ez-water-pollack.md`
+  -  … 2026 … 
+- **Healthy fats and <<exclusion>>-<<zone>> size.**
+  - `pubmed/PMID-32066069-healthy-fats-and-<<exclusion>>-<<zone>>-size/info.md`
+  -  … Abha Sharma, Gerald H <<Pollack>>
+- **MeSH … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … Salient features include <<exclusion>> … 
+- **<<Exclusion>>-<<zone>> water inside and outside of plant xylem vessels.**
+  - `pubmed/PMID-38802675-<<exclusion>>-<<zone>>-water-inside-and-outside-of … 
 - **biophoton-popp**
   - `_intake/concept-digests/biophoton-popp.md`
-  -  … Cruz … 
+  -  … <<exclusion>> <<zone>>** — 77
+- **<<redox>>** — 73
+- **UVA** — 62
+- **<<heme>>** — 58
+- **<<biophoton>> … 
+- **<<exclusion>>-<<zone>>-water**
+  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
+  -  … mined/REFERENCES … 
+- **<<exclusion>>-<<zone>> … 
+- **Albert Szent-Györgyi**
+  - `_intake/canon-profiles/szent-gyorgyi-albert.md`
+  -  … 1976, The Living State and Cancer, Marcel … 
+- **<<exclusion>>-<<zone>>-water**
+  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
+  -  … <<zone>>>> water papers | 05-biophysics | 4+ via … 
+- **Per-Video References**
+  - `_intake/kruse-references-mined/PER-VIDEO.md`
+  -  … WHO(48), infrared(24), AGE(20), <<exclusion>> <<zone>>(15), photosynthesis(10), EPA(7), proton(5), AGEs(4), red light(3), heme(3), fourth phase … 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  -  … depleted-<<water>>**
+  - `_intake/concept-digests/<<deuterium>>-depleted-<<water>> … 
+- **<<exclusion>>-<<zone>>-water**
+  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
+  -  … queued (not yet … 
+- **Concept Digests**
+  - `_intake … 
 - **iron-heme-redox**
   - `_intake/concept-digests/iron-heme-redox.md`
+  -  … This lowers are <<redox>> power … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
   -  … 95
 - **melatonin** — 91
 - **methylene blue** — 81
 - **<<exclusion>> <<zone>>** — 77
-- **<<redox>>** — 73
-- **UVA** — 62 … 
-- **fourth-phase-water**
-  - `_intake/concept-digests/fourth-phase-water.md`
-  -  … Water - Beyond the Three You Already Know (RTF … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
-  -  … It runs like that … 
-- **THE <<FOURTH … 
-- **ez-water-pollack**
-  - `_intake/concept-digests/ez-water-pollack.md`
-  -  … matrix-and-engine-of-life-pioneer-in-<<water>> … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
-  -  … It runs like that … 
-- **THE FOURTH … 
-- **methylene-blue**
-  - `_intake/concept-digests/methylene-blue.md`
-  -  … methylene blue>>** — 81
-- **<<exclusion>> <<zone>>** — 77
-- **<<redox>>** — 73
-- **UVA** — 62
-- **<<heme>>** — 58
-- **biophoton … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
-  -  … mined … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … WHO(48), infrared(24), AGE(20), <<exclusion>> <<zone>>(15), photosynthesis(10), EPA(7), proton(5), AGEs(4), red light(3), heme(3), fourth phase … 
-- **AGEs-RAGE-glycation**
-  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
-  -  … 98
-- **NAD … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
-  -  … VIDEO.md`
-  -  … WHO(48), infrared(24), <<AGE>>(20), <<<<exclusion>>>> <<<<zone>>>>(15), photosynthesis … 
-- **iron-heme-redox**
-  - `_intake/concept-digests/iron-heme-redox.md`
-  -  … RAGE** — 107
-- **cytochrome** — 98
-- **NAD** — 95
-- **melatonin** — 91
-- **<<methylene blue>>** — 81
-- **<<exclusion>> <<zone>>** — 77
-- **<<redox>>** — 73
-- **UVA** — 62
-- **<<heme>>** — 58
-- **biophoton … 
-- **Kruse References Mined … 
+- **<<redox … 
 - **UBIQUITINATION 14:   ANTENNA FAILURE**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-14-electrosensitivity-is-antenna-failure.md`
   -  … In experiments water clusters have been shown to [transduce mechanical signals on the micrometer range within the <<exclusion>> <<zone>>](http://www.ncbi.nlm.nih … 
@@ -168,6 +167,18 @@ liquid …
 - **Slug**: `concept-ez-water-fourth-phase`
 - **Canon branch**: 05-biophysics
 - **Status**: queued (not yet … 
+- **TIME #7: THE PHOTOELECTRIC EFFECT**
+  - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
+  -  … particle.  * Light has a duality = particle and wave functions.   The water <<exclusion>> <<zone>> allows us to interact with light’s wave qualities by [changing … 
+- **Fritz-Albert Popp**
+  - `_intake/canon-profiles/popp-fritz-albert.md`
+  -  … 8 |
+| `mendeleev-dmitri … 
+- **<<exclusion>>-<<zone>>-water**
+  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
+  -  … of water that have markedly different exclsion <<<<zones>>>> … 
+- **<<biophoton>>-<<popp>>**
+  - `_intake … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
   -  … FTS5 index over `bucket-foundation` corpus.*
@@ -175,27 +186,21 @@ liquid …
 
 ## Topics
 
-- [`deuterium-depleted-water`](deuterium-depleted-water.md) — 30 hits  (intake:18, pubmed:5, youtube:7)
+- [`deuterium-depleted-water`](deuterium-depleted-water.md) — 30 hits  (intake:16, pubmed:5, youtube:9)
 - [`<<exclusion>>-<<zone>> … 
-- **TIME #7: THE PHOTOELECTRIC EFFECT**
-  - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
-  -  … particle.  * Light has a duality = particle and wave functions.   The water <<exclusion>> <<zone>> allows us to interact with light’s wave qualities by [changing … 
 - **TIME #22:  THE BASICS OF HOW CIRCADIAN TIMING TUNES LIFE**
   - `_intake/kruse-blog-corpus/articles/time-22-basics-circadian-timing-tunes-life.md`
   -  … Stated another way, incident light rays impacting our mitochondria can develop oscillations in the mitochondria to condition the <<exclusion>> <<zone>> of water in cells … 
-- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … Gerald Pollack**, U Washington Seattle | *The Fourth Phase of Water* (2013), <<exclusion>>-<<zone>> water papers | 05-biophysics | 4+ via "fourth phase" |
-| `szent-gyorgyi-albert … 
 - **CPC #12:  KAWASAKI'S DISEASE**
   - `_intake/kruse-blog-corpus/articles/cpc-12-kawasakis-disease.md`
   -  … Pressure changes in air can alter the size of <<exclusion>> <<zone>> of water.  The size of the <<exclusion>> <<zone>> is also linked to how … 
 - **TIME #13:  SPACE TIME IS NOT EARTH TIME**
   - `_intake/kruse-blog-corpus/articles/time-13-space-time-not-earth-time.md`
   -  … All frequencies of light affect cell water but UV and IR light build water into a battery by making something called the <<exclusion>> <<zone>> … 
+- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
+  -  … Gerald Pollack**, U Washington Seattle | *The Fourth Phase of Water* (2013), <<exclusion>>-<<zone>> water papers | 05-biophysics | 4+ via "fourth phase" |
+| `szent-gyorgyi-albert … 
 - **Setting Up Your Water System at Home**
   - `_intake/kruse-blog-corpus/articles/setting-up-your-water-system.md`
   -  … Good water increases our [<<exclusion>> <<zone>> (EZ), or the area where energy transfers take place for cell functioning, thus improving blood flow and our … 
-- **TIME #15: MIGHT YOUR SEA OF CHANGE BE A SEA OF CHARGE?**
-  - `_intake/kruse-blog-corpus/articles/sea-of-change-could-be-a-sea-of-charge.md`
-  -  … Clearly their are other states or plasma’s.  I think the <<exclusion>> <<zone>> (EZ) and the H+ inside of the mitochondria matrix are other … 

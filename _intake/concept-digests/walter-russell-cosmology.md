@@ -1,9 +1,9 @@
 # walter-russell-cosmology
 
-**Query**: `Russell AND (universal OR octave OR rhythm)`  ·  **Hits**: 27
+**Query**: `Russell AND (universal OR octave OR rhythm)`  ·  **Hits**: 30
 
 
-## archive (5)
+## archive (7)
 
 - **The Universal One 1926 Walter Russell**
   - `archive/the-universal-one-1926-walter-russell/TheUniversalOne1926WalterRussell_djvu.txt`
@@ -18,20 +18,27 @@ Ten <<octaves>> constitute one cycle …
 
 - **Archive identifier**: `the-<<universal>>-one-1926-walter-<<russell>>`
 - **URL**: https://archive.org/details/the-<<universal>>-one-1926-walter … 
+- **The Oxford book of modern science writing**
+  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
+  -  … Tompkins -- Paul Davies, from The Goldilocks enigma -- <<Russell>> Stannard, from The time and space of Uncle Albert -- Brian Greene, from The elegant <<universe>> -- Stephen … 
 - **chestnut-multimedia**
   - `archive/sharware/info.md`
   -  … uk;ultegra;ultimately;understand;understanding;unemployment;union;unique;unit;united;units;<<universe>>;<<university>>;unless;update;updated;updates;upgrade;upload;upright;urban;url;usage;usb … 
+- **CIA Reading Room cia-rdp96-00787r000500380004-4: PSYCHIC PROCESS, ENERGY TRANSFER, AND THINGS THAT GO BUMP IN THE NIGHT**
+  - `archive/cia-readingroom-document-cia-rdp96-00787r000500380004-4/cia-rdp96-00787r000500380004-4_djvu.txt`
+  -  … That winter I happened to be on leave at Stanford, where more 
+interest is shown in this field than at most <<universities>>. Carol was … 
 - **Notes on the Paranormal**
   - `archive/ExtrasensoryPerceptionResearchFinding/Extrasensory_Perception_Research_Finding_djvu.txt`
   -  … The only threat posed by parapsychology is to the <<universality>> of those 
 laws, a <<universality>> that should never be assumed in the first place … 
-- **Euclid's Elements Books I II Volume 1 Heath**
-  - `archive/EuclidsElementsBooksIIIVolume1Heath/Euclid's_Elements_Books_I-II_Volume_1-Heath_djvu.txt`
-  -  … Designed for the use of the higher forms in Public Schools and 
-students ‘in the <<Universities>> (Cambridge <<University>> Press, and 
-London, John W. Parker … 
+- **Linus Pauling PhD: How To Live Longer And Feel Better pdf**
+  - `archive/How_To_Live_Longer_And_Feel_Better_PDF/How to live longer and feel better - Pauling, Linus, 1901-1994_djvu.txt`
+  -  … Of five thousand 
+students at the <<University>> of Minnesota, half were given large doses of C, 
+half a placebo. Their medical histories were followed … 
 
-## youtube (5)
+## youtube (4)
 
 - **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
   - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
@@ -60,37 +67,54 @@ that actually control your circadian
 <<rhythm>>. They also go to another place
 called the habenial nucleus that
 controls the new … 
-- **Uncomfortable Truths with Dr Jack Kruse**
-  - `yt/Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse/transcript.txt`
-  -  … on my theories they're
-based on the laws
-of the <<universe>> equals mc squared
-norther's theorem relativity quantum
-mechanics Quantum field Theory … 
 
-## intake (17)
+## intake (19)
 
 - **walter-russell-cosmology**
   - `_intake/concept-digests/walter-russell-cosmology.md`
   - # walter-<<russell>>-cosmology
 
-**Query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<rhythm>>)`  ·  **Hits**: 26
+**Query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<rhythm>>)`  ·  **Hits**: 27
 
 
 ## archive (5)
 
 - **The <<Universal>> One 1926 Walter <<Russell>>**
   - `archive/the-<<universal>> … 
-- **mendeleev-periodic**
-  - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … <<russell>>-cosmology.md`
-  -  … <<russell>>>>-<<periodic>>-<<table>>-1926` | Walter <<<<Russell>>>> "The <<<<Universal>>>> One" (1926) + "A New Concept of the <<<<Universe>>>>" (1953). <<<<Russell>>>>'s spiral/<<<<octave>> … 
+- **Walter Russell**
+  - `_intake/canon-profiles/russell-walter.md`
+  - # Walter <<Russell>>
+
+**Slug**: `<<russell>>-walter`  ·  **FTS query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR cosmology OR <<rhythm>>)`  ·  **Hits**: 25
+
+
+## archive (4)
+
+- **The <<Universal>> One 1926 … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … walter-<<russell>>-periodic-table-1926` | Walter <<Russell>> "The <<Universal>> One" (1926) + "A New Concept of the <<Universe>>" (1953). <<Russell>>'s spiral/<<octave>> periodic table … 
 - **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
   - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
   -  … <<Russell>> van Gelder, M.D., Ph.D., a professor of ophthalmology at the <<University>> of Washington, studied the circadian <<rhythms>> of genetically tweaked mice … 
+- **mendeleev-periodic**
+  - `_intake/concept-digests/mendeleev-periodic.md`
+  -  … <<russell>>-cosmology.md`
+  -  … <<rhythms>>>> of genetically tweaked mice … 
+- **<<mendeleev>>-<<periodic>>**
+  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
+  -  … And here they are ... 
+
+
+<<<<TABLE>>>> OF … 
+- **The <<<<Universal>> … 
+- **Dmitri Mendeleev**
+  - `_intake/canon-profiles/mendeleev-dmitri.md`
+  -  … intake:21, youtube:3)
+- **walter-<<russell>>-cosmology**
+  - `_intake/concept-digests/walter-<<russell>>-cosmology.md`
+  -  … Washington, studied the circadian <<<<rhythms>>>> of genetically tweaked mice … 
+- **<<mendeleev … 
 - **Walter Russell — canon-target intake**
   - `_intake/russell-walter/README.md`
   - # Walter <<Russell>> — canon-target intake
@@ -100,13 +124,19 @@ mechanics Quantum field Theory …
 - **Status**: queued (not yet ingested)
 - **Initiated**: 2026-05-08
 - **Source signal … 
+- **EMF 3: The Origin of Life**
+  - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
+  -  … Herbert König, who became Schumann’s successor at Munich <<University>>, later demonstrated a correlation between Schumann resonances and the alpha brain <<rhythms>>.  These waves … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … biophysics | mentioned via Becker |
 | `<<russell>>-walter` | **Walter <<Russell>>** (1871–1963) | *The <<Universal>> One* (1926), *A New Concept of the <<Universe>>* (1953), spiral periodic table … 
-- **EMF 3: The Origin of Life**
-  - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
-  -  … Herbert König, who became Schumann’s successor at Munich <<University>>, later demonstrated a correlation between Schumann resonances and the alpha brain <<rhythms>>.  These waves … 
+- **Isaac Newton**
+  - `_intake/canon-profiles/newton-isaac.md`
+  -  … on  this  foundation  erected  the … 
+- **The <<Universal>> One 1926 Walter <<Russell>>**
+  - `archive/the-<<universal>>-one-1926-walter-<<russell>>/TheUniversalOne1926WalterRussell_djvu.txt`
+  -  … This results in … 
 - **EMF 1: Does Your Rolex Work?**
   - `_intake/kruse-blog-corpus/articles/emf-1-does-your-rolex-work.md`
   -  … The findings of a team of researchers from the Imperial College in London and the <<University>> of Washington’s Department of Environmental and Occupational … 
@@ -147,12 +177,9 @@ mechanics Quantum field Theory …
 - **MY TOP TEN PALEOFX MOMENTS:**
   - `_intake/kruse-blog-corpus/articles/my-top-ten-paleo-fx-moments.md`
   -  … My flight was a bit late and the navigation in my rental car took me an hour away from the <<University>> of Texas Spark … 
-- **Brain Gut 1: Who Are We, Really?**
-  - `_intake/kruse-blog-corpus/articles/brain-gut-1-who-are-we-really.md`
-  -  … If you are dental specialist, like <<University>> of Arkansas professor, Dr. Peter Ungar you think it’s all about the mammalian teeth. Today’s … 
 - **Cold Thermogenesis 12: Getting Back "On Board" With My Message**
   - `_intake/kruse-blog-corpus/articles/ct-12-getting-back-on-board-with-my-message.md`
   -  … There’s a couple studies out in PubMed-land that seem to have used these types of colored lenses to re-establish circadian <<rhythms>> … 
-- **Cold Thermogenesis 6: The Ancient Pathway**
-  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-6-the-ancient-pathway.md`
-  -  … In experimental work at <<University>> of Alaska Fairbanks, a 1000 liter biogas digester using psychrophiles harvested from “mud from a frozen lake in Alaska … 
+- **Brain Gut 1: Who Are We, Really?**
+  - `_intake/kruse-blog-corpus/articles/brain-gut-1-who-are-we-really.md`
+  -  … If you are dental specialist, like <<University>> of Arkansas professor, Dr. Peter Ungar you think it’s all about the mammalian teeth. Today’s … 

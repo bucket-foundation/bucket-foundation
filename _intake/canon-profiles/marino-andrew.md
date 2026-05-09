@@ -31,7 +31,7 @@ The characteristic biological effects of low-frequency <<electromagnetic>> field
 
 Studies of the effects of power-frequency <<electromagnetic>> fields (<<EMFs>>) on the immune and other body systems produced … 
 
-## youtube (10)
+## youtube (7)
 
 - **#39 - Dr. Andrew Marino**
   - `yt/18lVJi_ioFk-39-dr-andrew-marino/transcript.txt`
@@ -78,30 +78,25 @@ He's the one …
 that I was really disappointed with in
 that podcast is <<Marino>> clearly didn't do
 any of <<Becker>>'s work. All … 
-- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … when <<Becker>> was challenged with
-doing this he had a gentleman in his lab
-who was a physicist a biophysicist named
-Andrew <<Marino>> Mourinho … 
-- **A Firebreathing Conversation With Dr. Jack Kruse on Technology, Health & the Future of Society**
-  - `yt/QEzULMNHygM-a-firebreathing-conversation-with-dr-jack-kruse-on-technolog/transcript.txt`
-  -  … Who did
-they weaponize against <<Becker>>? A guy
-named Philip Handler. And if you've ever
-read Andrew <<Marino>>'s book, Going
-Somewhere, he … 
-- **Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DHA, Cold, Sun and Sleep**
-  - `yt/kZZSLQFZnQM-dr-jack-kruse-on-biohacking-your-water-emfs-blue-light-dha-c/transcript.txt`
-  -  … was published in
-1970 uh Dr Andrew <<Marino>> is a physicist
-who was Robert o <<Becker>>'s right-hand man
-took it further and … 
 
-## intake (11)
+## intake (14)
 
+- **Andrew Marino**
+  - `_intake/canon-profiles/marino-andrew.md`
+  - # Andrew <<Marino>>
+
+**Slug**: `<<marino>>-andrew`  ·  **FTS query**: `<<Marino>> AND (<<electromagnetic>> OR <<EMF>> OR <<Becker>>)`  ·  **Hits**: 25
+
+
+## pubmed (4)
+
+- **Low-frequency <<electromagnetic>> fields alter the … 
 - **bone-bioelectric-becker**
   - `_intake/concept-digests/bone-bioelectric-becker.md`
+  -  … Andrew <<Marino>> PhD ON Dr. Robert O <<Becker>> & <<Electromagnetism>> and Life (ENGLISH PODACAST )**
+  - `yt/lfkqB1BONMI-dr-andrew-<<marino>>-phd-on-dr-robert-o-<<becker>> … 
+- **Robert O. Becker**
+  - `_intake/canon-profiles/becker-robert-o.md`
   -  … Andrew <<Marino>> PhD ON Dr. Robert O <<Becker>> & <<Electromagnetism>> and Life (ENGLISH PODACAST )**
   - `yt/lfkqB1BONMI-dr-andrew-<<marino>>-phd-on-dr-robert-o-<<becker>> … 
 - **Per-Video References**
@@ -146,6 +141,12 @@ took it further and …
   -  … DNA has already been shown to emit <<EMF>> signals. The signals it emits is different when it is hydrated.
 
 It is where <<electromagnetic>> field … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  - # Canon Person Profiles
+
+- [`<<becker>>-robert-o`](<<becker>>-robert-o.md) — Robert O. <<Becker>> — 25 hits
+- [`pollack-gerald`](pollack-gerald.md) — Gerald Pollack — 25 hits … 
 - **UBIQUITINATION 13:  MICROWAVING KRESSER**
   - `_intake/kruse-blog-corpus/articles/microwaving-kresser.md`
   -  … Andrew <<Marino>>, [a true expert on <<EMF>>](http://www.emfscientist.org/index.php/<<emf>>-scientist-appeal).  He holds a PhD in physics and owns … 

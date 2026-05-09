@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Celestial mechanics -- Early works to 1800, Mechanics -- Early works to 1800
-- **Captured**: 2026-05-09T09:05:19
+- **Captured**: 2026-05-09T09:45:16
 
 ## Description
 

@@ -3,7 +3,7 @@
 **Slug**: `faraday-michael`  ·  **FTS query**: `Faraday AND (electric OR experimental OR magnetic)`  ·  **Hits**: 25
 
 
-## archive (2)
+## archive (4)
 
 - **The scientific papers of James Clerk Maxwell**
   - `archive/scientificpapers01maxw/scientificpapers01maxw_djvu.txt`
@@ -24,8 +24,21 @@ T:  2
 
 
 292  THE    <<ELECTRIC>>    CURRENT … 
+- **A Modern Handbook Of Physics**
+  - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook-of-Physics-Mir-1982_djvu.txt`
+  -  … <<Experimental>>  determination  of  this 
+charge-to-mass  ratio  is  based  on  measuring  the  deflection  of  the 
+particles  in  <<electric>>  and  <<magnetic>>  fields  acting  jointly … 
+- **['Introduction To Quantum Mechanics', 'With Applications To Chemistry.']**
+  - `archive/introductiontoqu031712mbp/introductiontoqu031712mbp_djvu.txt`
+  -  … References on <<Magnetic>> and <<Electric>> Moments 
 
-## youtube (4)
+J. H. VAN VLECK: "The Theory of <<Electric>> and <<Magnetic>> Suscepti- 
+bilities," Oxford University Press, 1932. 
+
+C. P … 
+
+## youtube (3)
 
 - **The Jack Kruse Series 001**
   - `yt/T3Ob-DMtR1M-the-jack-kruse-series-001/transcript.txt`
@@ -48,15 +61,19 @@ he said you …
 cages and he built a <<faraday>> cage that
 completely ablate the <<magnetic>> field of
 the earth which is … 
-- **Dr Jack Kruse On What Big Pharma & Big Food DON’T Want You to Know, Light & Magnetism Health Impact**
-  - `yt/tha7IPtUTAU-dr-jack-kruse-on-what-big-pharma-big-food-don-t-want-you-to-/transcript.txt`
-  -  … <<electric>> field and
-a <<magnetic>> field they're at 90 degrees
-to each other but <<magnetism>> and biology
-is very different it uses <<magnetic>> … 
 
-## intake (19)
+## intake (18)
 
+- **Michael Faraday**
+  - `_intake/canon-profiles/faraday-michael.md`
+  - # Michael <<Faraday>>
+
+**Slug**: `<<faraday>>-michael`  ·  **FTS query**: `<<Faraday>> AND (<<electric>> OR <<experimental>> OR <<magnetic>>)`  ·  **Hits**: 25
+
+
+## archive (2)
+
+- **The scientific papers of James Clerk … 
 - **TIME # 25: HOW DO MONOPOLES MAKE TIME FOR CELLS?**
   - `_intake/kruse-blog-corpus/articles/monopoles-make-time.md`
   -  … <<Magnetic>> fields cannot exist without causative <<electric>> currents.  We learned this from <<Faraday>> and Ampere experiments.  From many other experiments, we’ve learned life … 
@@ -71,6 +88,13 @@ is very different it uses <<magnetic>> …
   -  … Tesla | Patents, papers on resonance | 02-physics | 4 |
 | `<<faraday>>-michael` | <<Faraday>> | *<<Experimental>> Researches in <<Electricity>>* | 02-physics | 2 |
 | `wheeler-john-archibald` | Wheeler | "Information, Physics … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … tesla>>-nikola` | <<Tesla>> | Patents, papers on resonance | 02-physics | 4 |
+| `<<faraday>>-michael` | <<Faraday>> | *<<Experimental>> … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … Newton … 
 - **Michael Faraday — canon-target intake**
   - `_intake/faraday-michael/README.md`
   -  … mentioned in Kruse × WiM podcasts (transcripts in `bucket-foundation/yt/`)
@@ -108,6 +132,19 @@ The <<Faraday>> effect generates <<magnetic>> fields in tissues when those prote
 - **UBIQUITINATION 3:  THE RHYTHM IS GONNA GET YOU**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-3-the-rhythm-is-gonna-get-you.md`
   -  … Our talents need this <<electric>> spark; few people understand the science of <<electric>> and <<magnetic>> currents, but most of us know how to use … 
+- **James Clerk Maxwell**
+  - `_intake/canon-profiles/maxwell-james-clerk.md`
+  -  … 25
+
+
+## archive (4)
+
+- **A treatise on <<electricity>> and <<magnetism>>**
+  - `archive/electricandmagne01maxwrich/info.md`
+  - # A <<treatise>> on <<<<electricity>>>> and <<magnetism>>
+
+- **Archive identifier**: `electricandmagne01maxwrich`
+- **URL**: https … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   - # Kruse References Mined
@@ -123,15 +160,3 @@ The <<Faraday>> effect generates <<magnetic>> fields in tissues when those prote
   -  … separating <<electric>> and <<magnetic>> charges from <<electric>> and <<magnetic>> forces.
 
 This is why water and UV light are the ideal natural <<Faraday>> cages in … 
-- **TENSEGRITY # 4:  MAGNETISM, SLEEP, AND ELECTRONS**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-4-magnetism-electrons-sleep.md`
-  -  … Liquid crystals (think water) are relatively easily aligned with <<electric>> and <<magnetic>> fields, which is the basis of the liquid crystal display screens that … 
-- **REDOX Rx 2:  BIOHACKING YOUR MRI**
-  - `_intake/kruse-blog-corpus/articles/redox-rx-2-biohacking-mri.md`
-  -  … you (nucleic acids),  <<electric>> circuits you face now daily like ipods, laptops and TV’s generate the non native <<magnetic>> fields to slow spinning … 
-- **TENSEGRITY #10: THE POWER MATRIX**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-10.md`
-  -  … <<Faraday>>’s law says that a changing <<magnetic>> field produces an <<electric>> field. If charges are free to move, the <<electric>> field will cause … 
-- **TIME #22:  THE BASICS OF HOW CIRCADIAN TIMING TUNES LIFE**
-  - `_intake/kruse-blog-corpus/articles/time-22-basics-circadian-timing-tunes-life.md`
-  -  … A solid-state biochemist (a mitochondriac) knows that substrate biochemistry is controlled by changes in <<electric>>, mechanical, and <<magnetic>> wave within a cell.  The … 

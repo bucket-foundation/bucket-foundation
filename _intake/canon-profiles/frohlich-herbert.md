@@ -1,6 +1,6 @@
 # Herbert Fröhlich
 
-**Slug**: `frohlich-herbert`  ·  **FTS query**: `Fröhlich OR Frohlich AND (coherent OR vibration)`  ·  **Hits**: 10
+**Slug**: `frohlich-herbert`  ·  **FTS query**: `Fröhlich OR Frohlich AND (coherent OR vibration)`  ·  **Hits**: 11
 
 
 ## pubmed (4)
@@ -30,8 +30,18 @@
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov … 
 
-## intake (6)
+## intake (7)
 
+- **Herbert Fröhlich**
+  - `_intake/canon-profiles/frohlich-herbert.md`
+  - # Herbert <<Fröhlich>>
+
+**Slug**: `<<frohlich>>-herbert`  ·  **FTS query**: `<<Fröhlich>> OR <<Frohlich>> AND (<<coherent>> OR <<vibration>>)`  ·  **Hits**: 10
+
+
+## pubmed (4)
+
+- **Biological effects of microwaves and the … 
 - **Herbert Fröhlich — canon-target intake**
   - `_intake/frohlich-herbert/README.md`
   -  … Key works to ingest
@@ -45,15 +55,6 @@
 - **Energy and Epigenetics 6: Quantum Cell Theory, Life as a Collective Phenomena**
   - `_intake/kruse-blog-corpus/articles/ee-6-quantum-cell-theory-life-collective-phenomena.md`
   -  … How this system actually works, in my opinion, has absorbed many of <<Frohlich>>’s ideas on biologic <<coherence>>. I then innovated the ideas of … 
-- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … Engineers*, semiconductor textbooks | 02-physics / 04-information | 4 |
-| `<<frohlich>>-herbert` | **Herbert <<Fröhlich>>** (1905–1991) | <<Coherent>> <<vibrations>> in biological systems papers (1968+) | 02-physics / 05 … 
-- **Bucket Foundation — Research Mapping Queue**
-  - `_intake/RESEARCH-MAPPING-QUEUE.md`
-  -  … ray-peat.org has full corpus. |
-| `<<frohlich>>-<<coherent>>-1968` | Herbert <<Fröhlich>> — <<coherent>> <<vibrations>> in biological systems papers | Underlies Kruse's quantum biology framing. |
-| `mcclare … 
 - **Quantum Biology #1: The Zero Entropy System**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
   -  … 13–22.
@@ -61,10 +62,17 @@
 - <<Frohlich>>, H. Long range <<coherence>> and the action of enzymes. Nature 1970, doi:10.1038/2281093a0.
 
 - <<Frohlich>>,H.The biological effects of … 
-- **biophoton-popp**
-  - `_intake/concept-digests/biophoton-popp.md`
-  -  … of <<biophoton>> emission originating from a delocalized <<coherent>> electromagnetic field and <<Frohlich>>' s idea of <<coherent>> long-range interactions in … 
-
-## youtube (5)
-
-- **Dr. Jack … 
+- **Bucket Foundation — Research Mapping Queue**
+  - `_intake/RESEARCH-MAPPING-QUEUE.md`
+  -  … ray-peat.org has full corpus. |
+| `<<frohlich>>-<<coherent>>-1968` | Herbert <<Fröhlich>> — <<coherent>> <<vibrations>> in biological systems papers | Underlies Kruse's quantum biology framing. |
+| `mcclare … 
+- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
+  -  … Engineers*, semiconductor textbooks | 02-physics / 04-information | 4 |
+| `<<frohlich>>-herbert` | **Herbert <<Fröhlich>>** (1905–1991) | <<Coherent>> <<vibrations>> in biological systems papers (1968+) | 02-physics / 05 … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  -  … andrew`](marino-andrew.md) — Andrew Marino — 25 hits
+- [`<<frohlich>>-herbert`](<<frohlich>>-herbert.md) — Herbert <<Fröhlich>> — 10 hits
+- [`popp-fritz-albert`](popp-fritz-albert.md … 

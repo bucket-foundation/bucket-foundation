@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Physics, Mathematics, Electromagnetism, Gases, Matter
-- **Captured**: 2026-05-09T09:07:02
+- **Captured**: 2026-05-09T09:45:23
 
 ## Description
 

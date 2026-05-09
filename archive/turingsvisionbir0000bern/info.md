@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Turing, Alan, 1912-1954, Turing, Alan 1912-1954, Turing, Alan Mathison, (1912-1954), Computer engineering -- Great Britain -- History, Mathematicians -- Great Britain -- Biography, Computer algorithms -- History, Ordinateurs -- Conception et construction -- Grande-Bretagne -- Histoire, Mathématiciens -- Grande-Bretagne -- Biographies, Algorithmes -- Histoire, BIOGRAPHY & AUTOBIOGRAPHY -- Science & Technology
-- **Captured**: 2026-05-09T09:10:13
+- **Captured**: 2026-05-09T09:46:38
 
 ## Description
 

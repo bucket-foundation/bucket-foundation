@@ -3,6 +3,14 @@
 **Query**: `chemiosmotic OR Mitchell`  ·  **Hits**: 30
 
 
+## archive (1)
+
+- **CIA Reading Room cia-rdp96-00787r000500380004-4: PSYCHIC PROCESS, ENERGY TRANSFER, AND THINGS THAT GO BUMP IN THE NIGHT**
+  - `archive/cia-readingroom-document-cia-rdp96-00787r000500380004-4/cia-rdp96-00787r000500380004-4_djvu.txt`
+  -  … This was expressed rather well 
+by our ex-astronaut, Edgar <<Mitchell>>, who has been for some time an 
+advocate of this field, and who … 
+
 ## pubmed (12)
 
 - **Chemiosmotic coupling in oxidative and photosynthetic phosphorylation. 1966.**
@@ -96,7 +104,7 @@
 - **MeSH**: Animals, Dinitrophenols, Hydrogen-Ion Concentration, Hypoxia, In Vitro Techniques, Kinetics, Liver, Male, Membrane Potentials, Mitochondria
 - **URL**: https://pubmed.ncbi … 
 
-## youtube (2)
+## youtube (1)
 
 - **Who the heck is Gilbert Ling?**
   - `yt/qHnE8yfuT_E-who-the-heck-is-gilbert-ling/transcript.txt`
@@ -104,12 +112,6 @@
 in 1978 to English scientist Peter
 <<Mitchell>> for his <<chemiosmotic>> hypothesis
 to award a Nobel Prize for an as yet … 
-- **Dr. Jack Kruse's MINDBLOWING Answer to "Who is Satoshi Nakamoto?"**
-  - `yt/sIpXCMINceE-dr-jack-kruse-s-mindblowing-answer-to-who-is-satoshi-nakamot/transcript.txt`
-  -  … and and Nixon's guy
-who's going to be John <<Mitchell>> and um
-Ira tells Lansky look the the Israel
-guys set up … 
 
 ## intake (16)
 
@@ -120,10 +122,20 @@ guys set up …
 **Query**: `<<chemiosmotic>> OR <<Mitchell>>`  ·  **Hits**: 30
 
 
-## pubmed (5)
+## pubmed (12)
 
 - **<<Chemiosmotic>> coupling in oxidative and photosynthetic phosphorylation. 1966.**
   - `pubmed/PMID-22082452-<<chemiosmotic>>-coupling-in … 
+- **Peter Mitchell**
+  - `_intake/canon-profiles/mitchell-peter.md`
+  - # Peter <<Mitchell>>
+
+**Slug**: `<<mitchell>>-peter`  ·  **FTS query**: `<<Mitchell>> AND (<<chemiosmotic>> OR proton OR oxidative)`  ·  **Hits**: 25
+
+
+## pubmed (12)
+
+- **<<Chemiosmotic>> coupling in oxidative and photosynthetic … 
 - **Peter Mitchell — canon-target intake**
   - `_intake/mitchell-peter/README.md`
   -  … <<Mitchell>> P <<chemiosmotic>>
@@ -138,10 +150,26 @@ institutional archive + Nobel materials
 2. Pull primary materials … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … 13)
+  -  … 14)
 - [`mitochondrial-redox`](mitochondrial-redox.md) — 30 hits  (intake:30)
-- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 30 hits  (intake:22, pubmed:5, youtube:3)
+- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 30 hits  (intake:16, pubmed:12, youtube:2)
 - [`photoelectric … 
+- **association-induction-ling**
+  - `_intake/concept-digests/association-induction-ling.md`
+  -  … Induction>> hypothesis.
+
+**QUANTUM NEURO-DEGENERATION**    This turns out … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … blog](https://jackkruse.com/<<quantum>>-<<biology>>-1-the … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … <<QUANTUM>> NOISE AND FIDELITY OF LIFE**
+  - `_intake/kruse … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … 1962), Association-Induction Hypothesis | 05-biophysics | 5 |
@@ -152,9 +180,23 @@ institutional archive + Nobel materials
 - **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
   - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
   -  … Peter <<Mitchell>> won a Nobel Prize in 1978 for something that can’t possibly work in our cells, based upon the energy required for … 
+- **Björn Nordenström**
+  - `_intake/canon-profiles/nordenstrom-bjorn.md`
+  -  … 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
+  -  … 1978 | <<Chemiosmotic>> theory papers, mitochondrial proton gradient | 05-biophysics | 4 |
+| `<<nordenstrom>>-bjorn` | **Björn <<Nordenström … 
 - **Energy and Epigenetics 12:  Is Your Battery Charged?**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
   -  … Na/K ATPase that was laid on top of Peter <<Mitchell>>’s flawed <<chemiosmotic>> model.  **The proposed ATPase energy calculations broke the second law … 
+- **Canon Person Profiles**
+  - `_intake/canon-profiles/INDEX.md`
+  -  … gilbert`](ling-gilbert.md) — Gilbert Ling — 25 hits
+- [`<<mitchell>>-peter`](<<mitchell>>-peter.md) — Peter <<Mitchell>> — 25 hits
+- [`nordenstrom-bjorn`](nordenstrom-bjorn.md) — Björn Nordenström … 
+- **EMF 7: Quantum Prometheus**
+  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
+  -  … It is also is why I have believed Peter <<Mitchell>> is dead wrong too now, and he should have never won a Nobel Prize … 
 - **Mitchell chemiosmosis / ETC / proton gradient — concept canon-target intake**
   - `_intake/concept-mitochondrial-chemiosmosis/README.md`
   - # <<Mitchell>> chemiosmosis / ETC / proton gradient — concept canon-target intake
@@ -163,44 +205,9 @@ institutional archive + Nobel materials
 - **Canon branch**: 05-biophysics
 - **Status**: queued (not yet researched)
 - **Initiated**: 2026 … 
-- **EMF 7: Quantum Prometheus**
-  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
-  -  … It is also is why I have believed Peter <<Mitchell>> is dead wrong too now, and he should have never won a Nobel Prize … 
 - **Quantum Biology #1: The Zero Entropy System**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
   -  … <<Mitchell>> theories just could not account for these reactions that we know happened in life.  I really struggled with this until I realized how … 
 - **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
   - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
   -  … This lowers the voltage of the inner mitochondrial membrane and it should short out the <<Mitchell>>/Wallace’s version of a capacitor. I believe … 
-- **REALITY #17:  HOW DOES LIGHT SCULPT LIFE?**
-  - `_intake/kruse-blog-corpus/articles/reality-17-light-sculpt-life.md`
-  -  … gravatar.com/avatar/3f38c786e2c1fd175463f73036c77dd7f3a7f1bde475fe24f159e4982bdd1345?s=54&d=mm&r=g)
-
-
-
-						**rebecca <<mitchell>>**
-						August 6, 2018 at 3:24 pm
-
-
-
-I heard you mention on … 
-- **REALITY #15:  ANIMAL PHOTOSYNTHESIS**
-  - `_intake/kruse-blog-corpus/articles/reality-15-animal-photosynthesis.md`
-  -  … We use hydrated proteins made from aromatic amino acids to separate water to make energy in human cells.  The old viewpoint is myopic (<<Mitchell>> … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … 9
-- Peter Addy — 9
-- Satoshi Nakamoto — 9
-- Jack Ruby — 9
-- Peter <<Mitchell>> — 9
-- Usain Bolt — 9
-- North Carolina — 9
-- Albert Einstein — 8
-- Peter Adia … 
-- **EMF 6: Quantum Time**
-  - `_intake/kruse-blog-corpus/articles/emf-6-quantum-time.md`
-  -  … filed theory.  To see how blind biology really is, they gave <<Mitchell>> a Noble prize for this in 1978.  Because of this alone, I … 
-- **WHAT POWERS LIFE AND DEATH**
-  - `_intake/kruse-blog-corpus/articles/what-powers-life-and-death.md`
-  -  … Peter <<Mitchell>> was initially ridiculed for his theories on bio-energentics of mitochondria. He showed how effective this evolutionary maneuver was. He showed that … 

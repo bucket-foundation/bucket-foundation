@@ -30,37 +30,46 @@ A fourth phase of <<water>>, labeled <<exclusion>>-zone or "<<EZ>>," extends fro
 
 ## intake (19)
 
-- **exclusion-zone-water**
-  - `_intake/concept-digests/exclusion-zone-water.md`
-  -  … the
-<<<<exclusion>>>> <<zone>> the negatively charged
-<<<<exclusion>>>> <<zone>>
-away from the gel
-we found positive charge. So
-if you … 
-- **Gerald <<Pollack>>| <<EZ>> <<Water>>, What … 
+- **Gerald Pollack**
+  - `_intake/canon-profiles/pollack-gerald.md`
+  - # Gerald <<Pollack>>
+
+**Slug**: `<<pollack>>-gerald`  ·  **FTS query**: `<<Pollack>> AND (<<water>> OR <<exclusion>> OR <<EZ>>)`  ·  **Hits**: 25
+
+
+## pubmed (6)
+
+- **Healthy fats and <<exclusion>>-zone size … 
 - **ez-water-pollack**
   - `_intake/concept-digests/ez-water-pollack.md`
-  - # <<ez>>-<<water>>-<<pollack>>
+  -  … <<exclusion>> zone (<<EZ>>) <<<<water>>>> layer. <<EZ>> is an interfacial region of <<<<water>>>> capable of excluding … 
 
-**Query**: `<<Pollack>> AND <<water>>`  ·  **Hits**: 30
-
-
-## intake (30)
+## intake (20)
 
 - **<<ez>>-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/<<ez>>-<<water>>-<<pollack>>.md`
-  - # <<ez>>-<<<<water>>>>-<<<<pollack>> … 
+  - `_intake/concept-digests/<<ez>> … 
+- **exclusion-zone-water**
+  - `_intake/concept-digests/exclusion-zone-water.md`
+  -  … <<exclusion>>>>-<<zone>>-<<water>>**
+  - `_intake/concept-digests/<<<<exclusion>>>>-<<zone>>-<<water>>.md`
+  -  … It runs like that … 
+- **THE <<FOURTH … 
+- **<<ez>>-<<water>>-<<pollack>>**
+  - `_intake/concept-digests/<<ez>>-<<water>> … 
 - **fourth-phase-water**
   - `_intake/concept-digests/fourth-phase-water.md`
-  -  … 21
-
-
-## youtube (15)
-
-- **Uncovering the Secrets of Life - The <<4th Phase>> of <<Water>> with … 
+  -  … fourth-phase>>-<<water>>.md`
+  -  … <<Deuterium>>, <<4th phase>> of <<<<WATER>>>>, & cellular redox | Regenerative Health … 
 - **<<ez>>-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/<<ez>>-<<water>>-<<pollack>>.md … 
+  - `_intake/concept-digests/<<ez>>-<<water>>-<<pollack>>.md`
+  -  … 14 … 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  -  … <<pollack>>>>`](<<ez>>-<<<<<<water>>>>>>-<<<<pollack>>>>.md) — 14 hits  (intake:5, youtube:9)
+- [`schumann-cme`](schumann … 
+- **<<deuterium>>-depleted-<<<<water>>>>**
+  - `_intake/concept-digests/<<deuterium>>-depleted-<<<<water>>>> … 
+- **<<exclusion>> … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … gerald-<<pollack>>-the-fourth-phase-of-<<water>>-snc-2018
@@ -75,9 +84,9 @@ if you …
 | `concept-<<ez>>-<<water>>-fourth-phase` | <<EZ>> <<water>> / fourth phase / <<exclusion>> zone … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … d-sunlight.md) — 30 hits  (intake:23, youtube:7)
-- [`<<ez>>-<<water>>-<<pollack>>`](<<ez>>-<<water>>-<<pollack>>.md) — 30 hits  (intake:30)
-- [`schumann-cme`](schumann-cme … 
+  -  … d-sunlight.md) — 30 hits  (intake:26, youtube:4)
+- [`<<ez>>-<<water>>-<<pollack>>`](<<ez>>-<<water>>-<<pollack>>.md) — 30 hits  (intake:20, pubmed:10)
+- [`schumann-cme … 
 - **REALITY #12:  DOPAMINE BLINDS US FROM NATURE'S FRACTAL FABRIC**
   - `_intake/kruse-blog-corpus/articles/reality-12-dopamine-blinds-us-from-natures-fractal-fabric.md`
   -  … collagen’s that make a large coherent domain in <<exclusion>> zone (<<EZ>>) of <<water>>.  It also slows light down from its speed in space … 
@@ -87,20 +96,23 @@ if you …
 - **UBIQUITINATION 23: LOOKING BACK FOR A QUANTUM LEAP FORWARD**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-23-looking-back-for-a-quantum-leap-forward.md`
   -  … linked this finding to Gerald <<Pollack>>’s work on the size of the <<exclusion>> zone (<<EZ>>) of <<water>>. L-glutamine (Gln) has long been … 
-- **infrared-near-ir**
-  - `_intake/concept-digests/infrared-near-ir.md`
-  -  … Gerald <<Pollack>>| <<EZ>> <<Water>>, What is it, Why Do I Need It & How Do I Make It**
-  - `yt/47FzeZNCYL0-gerald-<<pollack>>-<<ez>>-<<water>>-what … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … prevents junk molecules from sticking to <<cell>> … 
+- **<<ez>>-<<water>>-<<pollack>>**
+  - `_intake/concept-digests/<<ez>>-<<water>>-<<pollack>>.md`
+  -  … <<photoelectric>>-<<biology>>**
+  - `_intake/concept-digests/<<photoelectric>>-<<biology … 
 - **UBIQUITINATION 14:   ANTENNA FAILURE**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-14-electrosensitivity-is-antenna-failure.md`
   -  … stored.  *When <<water>> is charge separated into an <<exclusion>> zone the dielectric constant rises to 160 from 78.  This makes <<EZ>> <<water>> the ultimate … 
+- **TIME #13:  SPACE TIME IS NOT EARTH TIME**
+  - `_intake/kruse-blog-corpus/articles/time-13-space-time-not-earth-time.md`
+  -  … called the <<exclusion>> zone of <<water>>. It has a net negative charge and excludes protons from it. This [<<EZ>> of <<water>> ](http://www.sciencealert … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … the-secrets-of-life-the-4th-phase-of-<<water>>-with-g`
 - `47FzeZNCYL0-gerald-<<pollack>>-<<ez>>-<<water>>-what-is-it-why-do-i-need-it … 
-- **TIME #13:  SPACE TIME IS NOT EARTH TIME**
-  - `_intake/kruse-blog-corpus/articles/time-13-space-time-not-earth-time.md`
-  -  … called the <<exclusion>> zone of <<water>>. It has a net negative charge and excludes protons from it. This [<<EZ>> of <<water>> ](http://www.sciencealert … 
 - **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
   - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
   -  … Not only that, <<EZ>> <<water>> can store light for years. Piccardi and Voeikov work discussed on pg. 107 <<Pollack>>’s <<water>> book is the … 
@@ -110,11 +122,3 @@ if you …
 - **TIME #17:  MELATONIN AND INSULIN ARE SOLAR METRONOMES**
   - `_intake/kruse-blog-corpus/articles/time-17-melatonin-insulin-solar-metronomes.md`
   -  … <<exclusion>> zone (<<EZ>>) memorized its signals.  <<EZ>> <<water>> is a sea of coherent free electrons that can store energy and information in protons.  <<Pollack>> … 
-- **Energy and Epigenetics 13: Quantum Water Chemistry**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-13-quantum-water-chemistry-2.md`
-  -  … Light is quite versatile. **<<Pollack>>’s experiments have found definitively that infrared light (IR) is what builds <<Exclusions>> Zones (<<EZs>>) best**.  Visible light also … 
-- **Bucket Foundation — Research Mapping Queue**
-  - `_intake/RESEARCH-MAPPING-QUEUE.md`
-  -  … Slug | Source | Notes |
-|---|---|---|
-| `<<pollack>>-fourth-phase-<<water>>-2013` | Gerald <<Pollack>> — *The Fourth Phase of <<Water>>* | Kruse cites constantly. <<EZ>> <<water>> / <<exclusion>> zone. UW Seattle … 

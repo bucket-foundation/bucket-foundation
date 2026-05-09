@@ -1,7 +1,13 @@
 # Claude Shannon
 
-**Slug**: `shannon-claude`  ·  **FTS query**: `Shannon AND (information OR communication OR entropy)`  ·  **Hits**: 16
+**Slug**: `shannon-claude`  ·  **FTS query**: `Shannon AND (information OR communication OR entropy)`  ·  **Hits**: 18
 
+
+## archive (1)
+
+- **The Oxford book of modern science writing**
+  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
+  -  … <<Shannon>> and Warren Weaver, from The mathematical theory of <<communication>> -- Alan Turing, from Computing machinery and intelligence -- Albert Einstein, from 'What is the theory … 
 
 ## pubmed (1)
 
@@ -64,8 +70,18 @@ be precise and powerful, it has to …
 people on her podcast and in <<Shannon>>
 Joyy's … 
 
-## intake (7)
+## intake (8)
 
+- **Claude Shannon**
+  - `_intake/canon-profiles/shannon-claude.md`
+  - # Claude <<Shannon>>
+
+**Slug**: `<<shannon>>-claude`  ·  **FTS query**: `<<Shannon>> AND (<<information>> OR <<communication>> OR <<entropy>>)`  ·  **Hits**: 16
+
+
+## pubmed (1)
+
+- **Mitochondrial hyperoxidation contributes to warm ischemia … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … Meltzer translation. |

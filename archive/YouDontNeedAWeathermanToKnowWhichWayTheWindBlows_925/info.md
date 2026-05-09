@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: communism; New Left; terrorism
-- **Captured**: 2026-05-09T09:09:46
+- **Captured**: 2026-05-09T09:46:17
 
 ## Description
 

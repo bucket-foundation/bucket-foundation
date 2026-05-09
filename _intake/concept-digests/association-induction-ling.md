@@ -3,7 +3,7 @@
 **Query**: `Ling AND (association OR induction OR cells AND gels)`  ·  **Hits**: 30
 
 
-## pubmed (6)
+## pubmed (5)
 
 - **A quantitative theory of solute distribution in cell water according to molecular size.**
   - `pubmed/PMID-8115492-a-quantitative-theory-of-solute-distribution-in-cell-water-a/info.md`
@@ -24,9 +24,6 @@ A quantitative theory (based on polarized multilayer (PM) theory of <<cell>> wat
 - **Explaining on request a correlation between membrane Na,K-ATPase and K+ content in erythrocytes and other findings in the preceding paper.**
   - `pubmed/PMID-9807237-explaining-on-request-a-correlation-between-membrane-na-k-at/info.md`
   -  … observations they and others had made in the context of the <<association>>-<<induction>> hypothesis. (1) Why is Rb+ accumulated in human red blood cells … 
-- **The physical state of potassium ion in the living cell.**
-  - `pubmed/PMID-2080436-the-physical-state-of-potassium-ion-in-the-living-cell/info.md`
-  -  … of experimental testing (and confirmation) of a key postulate of the <<association>>-<<induction>> (AI) hypothesis: most K+ ions in resting cells are adsorbed on … 
 
 ## youtube (12)
 
@@ -89,11 +86,6 @@ wrote this book um, <<Cells>> …
 thinking and and what I wrote about in
 in the first book, <<Cells>>, <<Gels>>, and the
 Engines of … 
-- **Gerald Pollack| EZ Water, What is it, Why Do I Need It & How Do I Make It**
-  - `yt/47FzeZNCYL0-gerald-pollack-ez-water-what-is-it-why-do-i-need-it-how-do-i/transcript.txt`
-  -  … <<gel>> right and it turns out
-turns out that if you stick an electrode
-into a <<gel>> not the <<cell>> into a <<gel>> you … 
 - **#253 THE FOURTH PHASE OF WATER - GERALD H. POLLACK | Being Human**
   - `yt/xT8Qtt8LCV0-253-the-fourth-phase-of-water-gerald-h-pollack-being-human/transcript.txt`
   -  … Gilbert <<Ling>> spent a good part of
@@ -108,8 +100,13 @@ popular book to popularize Gilbert
 <<Ling>>'s
 ideas and the book is called <<cells>> <<gels>>
 and the engines of life and it … 
+- **Gerald Pollack| EZ Water, What is it, Why Do I Need It & How Do I Make It**
+  - `yt/47FzeZNCYL0-gerald-pollack-ez-water-what-is-it-why-do-i-need-it-how-do-i/transcript.txt`
+  -  … <<gel>> right and it turns out
+turns out that if you stick an electrode
+into a <<gel>> not the <<cell>> into a <<gel>> you … 
 
-## intake (12)
+## intake (13)
 
 - **association-induction-ling**
   - `_intake/concept-digests/association-induction-ling.md`
@@ -118,42 +115,51 @@ and the engines of life and it …
 **Query**: `<<Ling>> AND (<<association>> OR <<induction>> OR <<cells>> AND <<gels>>)`  ·  **Hits**: 30
 
 
-## pubmed (5)
+## pubmed (6)
 
-- **The new <<cell>> physiology: an outline, presented … 
-- **Bucket Foundation — Research Mapping Queue**
-  - `_intake/RESEARCH-MAPPING-QUEUE.md`
-  -  … <<induction>>-1962` | Gilbert <<Ling>> — *A Physical Theory of the Living State* + <<Association>>-<<Induction>> Hypothesis papers | Kruse cites; alternative to membrane-pump theory. <<Cells>> & <<gels>> … 
+- **A quantitative theory of solute distribution in … 
+- **Gilbert Ling**
+  - `_intake/canon-profiles/ling-gilbert.md`
+  -  … <<association>>-<<induction>>-<<ling>>**
+  - `_intake/concept-digests/<<association>>-<<induction>>-<<ling>>.md`
+  - # <<<<association>>>>-<<induction>>-<<<<ling>>>>
+
+**Query**: `<<<<Ling>>>> AND (<<<<association>>>> OR <<induction>> OR <<<<cells>>>> AND <<<<gels>>>>)`  ·  **Hits … 
+- **ez-water-pollack**
+  - `_intake/concept-digests/ez-water-pollack.md`
+  -  … intake/concept-digests/ez-<<water>>-<<pollack>>.md … 
+- **<<association>>-<<induction>>-<<ling>>**
+  - `_intake/concept-digests/<<association>>-<<induction>>-<<ling>>.md`
+  -  … The Matrix and Engine of Life - Pioneer … 
 - **fourth-phase-water**
   - `_intake/concept-digests/fourth-phase-water.md`
   -  … fourth-phase>>-of-water-gerald-pollack-phd … 
 - **<<association>>-<<induction>>-<<ling>>**
   - `_intake/concept-digests/<<association>>-<<induction>>-<<ling>>.md`
-  -  … In this … 
-
-## youtube (12)
-
-- **THE <<FOURTH PHASE … 
+  -  … Gerald Pollack**
+  - `yt/8qqyCA9vz_s-the-<<fourth … 
+- **Bucket Foundation — Research Mapping Queue**
+  - `_intake/RESEARCH-MAPPING-QUEUE.md`
+  -  … <<induction>>-1962` | Gilbert <<Ling>> — *A Physical Theory of the Living State* + <<Association>>-<<Induction>> Hypothesis papers | Kruse cites; alternative to membrane-pump theory. <<Cells>> & <<gels>> … 
 - **Energy and Epigenetics 10: The Quantum Puzzle**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-10-quantum-puzzle.md`
   -  … to listen to, let alone accommodate, the alternate, <<Ling>>/Pollack (<<Associated>> <<Induction>>) understanding of the <<cell>> and its membrane. But, Fahnestock contends, there are … 
 - **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
   - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
   -  … <<cell>> and I no longer do because of <<Ling>> and Pollack.  <<Ling>>’s calculation that we need 5000 times more ATP than a <<cell>> … 
+- **bone-bioelectric-becker**
+  - `_intake/concept-digests/bone-bioelectric-becker.md`
+  -  … The same … 
+- **<<association>>-<<induction>>-<<ling>>**
+  - `_intake/concept-digests/<<association>>-<<induction>>-<<ling>>.md`
+  -  … ATP than a <<cell>> … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … <<bioelectric … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
   -  … bioelectric-becker.md) — 30 hits  (intake:16, youtube:14)
-- [`<<association>>-<<induction>>-<<ling>>`](<<association>>-<<induction>>-<<ling>>.md) — 30 hits  (intake:13, pubmed:5, youtube:12 … 
-- **ez-water-pollack**
-  - `_intake/concept-digests/ez-water-pollack.md`
-  -  … fourth-phase-of-<<water>>-gerald-<<pollack>>-phd … 
-- **<<association>>-<<induction>>-<<ling>>**
-  - `_intake/concept-digests/<<association>>-<<induction>>-<<ling>>.md`
-  -  … In this … 
-
-## youtube (12)
-
-- **THE FOURTH PHASE … 
+- [`<<association>>-<<induction>>-<<ling>>`](<<association>>-<<induction>>-<<ling>>.md) — 30 hits  (intake:12, pubmed:6, youtube:12 … 
 - **Gilbert Ling — canon-target intake**
   - `_intake/ling-gilbert/README.md`
   -  … State (1962); <<Association>>-<<Induction>> Hypothesis papers
@@ -170,12 +176,6 @@ and the engines of life and it …
   -  … where wellness and life’s magic occur.  <<Ling>> gave us how it begins with his <<Association>> <<Induction>> hypothesis.
 
 **QUANTUM NEURO-DEGENERATION**    This turns out … 
-- **chemiosmotic-mitchell**
-  - `_intake/concept-digests/chemiosmotic-mitchell.md`
-  -  … 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … 1962), <<Association>>-<<Induction>> Hypothesis | 05-biophysics | 5 |
-| `<<mitchell>>-peter` | **Peter <<Mitchell>>** (1920–1992), Nobel … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … biophysics (lens) | 5 |

@@ -1,10 +1,21 @@
 # Niels Bohr
 
-**Slug**: `bohr-niels`  ·  **FTS query**: `Bohr AND (atom OR quantum OR complementarity)`  ·  **Hits**: 21
+**Slug**: `bohr-niels`  ·  **FTS query**: `Bohr AND (atom OR quantum OR complementarity)`  ·  **Hits**: 25
 
 
-## archive (1)
+## archive (4)
 
+- **['Introduction To Quantum Mechanics', 'With Applications To Chemistry.']**
+  - `archive/introductiontoqu031712mbp/introductiontoqu031712mbp_djvu.txt`
+  -  … <<Bohr>>'s 
+treatment of the hydrogen <<atom>> marked the beginning of the old 
+<<quantum>> theory of <<atomic>> structure, and wave mechanics had 
+its inception … 
+- **A Modern Handbook Of Physics**
+  - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook-of-Physics-Mir-1982_djvu.txt`
+  -  … It  follows  from  <<quantum>>-mechanical  calculations  that 
+when  two  hydrogen  <<atoms>>  approach  each  other  to  a  distance 
+commensurable  with  the  <<Bohr>>  radius  (39.1 … 
 - **Bioenergetics**
   - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
   -  … <<atoms>>  and 
@@ -12,6 +23,11 @@ bonds  in  their  way  through  the  maze  of  biological  reactions.
 
 The  second  step  of  the  history  of  chemistry  was  heralded  by 
 <<Bohr>> … 
+- **Lectures on Gas Theory -  Ludwig Boltzmann, Stephen G. Brush**
+  - `archive/lectures-on-gas-theory-ludwig-boltzmann/Lectures on Gas Theory - Ludwig Boltzmann_djvu.txt`
+  -  … In particular, we know that one cannot expect 
+to develop an adequate theory of <<atomic>> phenomena without using <<quantum>> mechanics. 
+However, it turns out … 
 
 ## youtube (6)
 
@@ -53,8 +69,19 @@ was innovated from Tesla to Niels <<Bohr>>
 no one ever thought because remember
 biochemistry wasn … 
 
-## intake (14)
+## intake (15)
 
+- **Niels Bohr**
+  - `_intake/canon-profiles/bohr-niels.md`
+  - # Niels <<Bohr>>
+
+**Slug**: `<<bohr>>-niels`  ·  **FTS query**: `<<Bohr>> AND (<<atom>> OR <<quantum>> OR <<complementarity>>)`  ·  **Hits**: 21
+
+
+## archive (1)
+
+- **Bioenergetics**
+  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt … 
 - **Quantum Biology 7: Sulfated Vitamin D3**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
   -  … <<atoms>> and accurately predict how groups of them would behave together.  With his imagination as his canvas, he created the foundation of <<quantum>> mechanics … 
@@ -64,6 +91,9 @@ biochemistry wasn …
 - **TIME # 25: HOW DO MONOPOLES MAKE TIME FOR CELLS?**
   - `_intake/kruse-blog-corpus/articles/monopoles-make-time.md`
   -  … thesis, for which he later won the Nobel Prize.  The problem for physics back then, was <<Bohr>>’s version of <<quantum>> mechanics largely ignores … 
+- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
+  -  … They can create other possible <<quantum>> possibilities for protons and electrons within a mitochondria by creating something called an **“exotic <<atom>>”**. *This <<atom>> would … 
 - **CPC #16: Quantum Breathing Effects**
   - `_intake/kruse-blog-corpus/articles/cpc-16-quantum-breathing-effects.md`
   -  … https://jackkruse.com/cpc-16-<<quantum>>-breathing-effects/
@@ -75,9 +105,6 @@ biochemistry wasn …
 
 
 The <<Bohr>> effect hinges around the electromagnetic allosteric interactions between the … 
-- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
-  -  … They can create other possible <<quantum>> possibilities for protons and electrons within a mitochondria by creating something called an **“exotic <<atom>>”**. *This <<atom>> would … 
 - **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
   - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
   -  … SUMMARY:**
@@ -111,6 +138,11 @@ As <<atomic>> physics and chemistry began to explain the periodic table with the
 - **ORGANIZATIONAL STRUCTURAL FAILURE 3:  DARWIN WAS WRONG**
   - `_intake/kruse-blog-corpus/articles/osf-3-darwin-was-wrong.md`
   -  … <<Quantum>> evolution of DHA affects the chemical evolution of <<atoms>> in lipids and proteins to create proteins that reduce entropy in cells.  Here you … 
+- **Richard Feynman**
+  - `_intake/canon-profiles/feynman-richard.md`
+  -  … <<Quantum>> Sleep**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-<<quantum>>-sleep.md`
+  -  … Richard <<Feynman>> did some amazing foundational work on <<quantum>> vortices in … 
 - **Quantum Biology 12: Do We Need DNA To Tell Time?**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-12-do-we-need-dna-to-tell-time.md`
   -  … on the inner mitochondrial membrane where <<quantum>> tunneling acts.  People think that time is linear.  Neils <<Bohr>> wrote early in the 20th century that … 
@@ -136,16 +168,3 @@ As <<atomic>> physics and chemistry began to explain the periodic table with the
 
 
 ### Readers … 
-- **Cold Thermogenesis 8**
-  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-8.md`
-  -  … <<Bohr>> was father to Niels <<Bohr>>, who used the early <<quantum>> theory in his collaboration with Rutherford.
-
-
-
-
-
--
-
-
-
-![](https://secure.gravatar.com/avatar/536340d4dfa7fd7bfd8ea08e05fe9e3417d9006c2ae7d9af332df830cee83e61?s … 

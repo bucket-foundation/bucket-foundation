@@ -1,6 +1,6 @@
 # Stuart Hameroff
 
-**Slug**: `hameroff-stuart`  ·  **FTS query**: `Hameroff AND (microtubule OR consciousness OR Orch)`  ·  **Hits**: 18
+**Slug**: `hameroff-stuart`  ·  **FTS query**: `Hameroff AND (microtubule OR consciousness OR Orch)`  ·  **Hits**: 22
 
 
 ## pubmed (8)
@@ -40,7 +40,7 @@
 
 - **Quantum Computation in Brain Microtubules? Decoherence and Biological Feasibility**
   - `arxiv/quant-ph_0005025-quantum-computation-in-brain-microtubules-decoherence-and-bi/info.md`
-  -  … 2026-05-09T09:21:58
+  -  … 2026-05-09T09:45:09
 
 ## Abstract
 
@@ -84,8 +84,27 @@ after that were joined by Stuart
 The theory has been extant for
 many … 
 
-## intake (4)
+## intake (8)
 
+- **Stuart Hameroff**
+  - `_intake/canon-profiles/hameroff-stuart.md`
+  - # Stuart <<Hameroff>>
+
+**Slug**: `<<hameroff>>-stuart`  ·  **FTS query**: `<<Hameroff>> AND (<<microtubule>> OR <<consciousness>> OR <<Orch>>)`  ·  **Hits**: 18
+
+
+## pubmed (8)
+
+- **How quantum brain biology can rescue … 
+- **Roger Penrose**
+  - `_intake/canon-profiles/penrose-roger.md`
+  -  … <<microtubules>>>> and is specifically predicted by the Orchestrated <<Objective>> Reduction theory of <<Penrose>> and <<Hameroff>> … 
+- **<<Consciousness>> in the universe: a review of the '<<Orch>> … 
+- **Erwin Schrödinger**
+  - `_intake/canon-profiles/schrodinger-erwin.md`
+  -  … Stuart <<Hameroff>>: <<CONSCIOUSNESS>> AND THE PHYSICS OF THE BRAIN**
+  - `yt/xGbgDf4HCHU-sir-roger-penrose-dr-stuart-<<hameroff>>-<<consciousness>>-and-the-p/transcript.txt`
+  -  … out … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … New Mind* (1989) | Mind/physics bridge. |
@@ -94,6 +113,11 @@ many …
 - **Do Food Electrons Impart a Quantum Effect?**
   - `_intake/kruse-blog-corpus/articles/do-food-electrons-impart-a-quantum-effect.md`
   -  … of select brain proteins to ablate <<consciousness>>. **It’s called the induction of gamma coherence of neuronal <<microtubules>>.** The quantum field theory mathematics and … 
+- **Alan Turing**
+  - `_intake/canon-profiles/turing-alan.md`
+  -  … Stuart <<Hameroff>>: <<CONSCIOUSNESS>> AND THE PHYSICS OF THE BRAIN**
+  - `yt/xGbgDf4HCHU-sir-roger-penrose-dr-stuart-<<hameroff>>-<<consciousness>>-and-the-p/transcript.txt`
+  -  … we … 
 - **REALITY # 2:  CAN LIFE SKIRT THE UNCERTAINTY PRINCIPLE AND THE SECOND LAW OF THERMODYNAMICS?**
   - `_intake/kruse-blog-corpus/articles/reality-2-can-life-skirt-uncertainty-principle-second-law-thermodynamics.md`
   -  … Scholes “Life—Warm, wet and noisy? Comment on “<<Consciousness>> in the Universe: A Review of the ‘<<Orch>> OR’ Theory” by <<Hameroff>> and Penrose.” J … 

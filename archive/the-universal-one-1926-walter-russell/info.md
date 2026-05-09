@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: One, um, uno, Deus, God, Dog
-- **Captured**: 2026-05-09T08:59:06
+- **Captured**: 2026-05-09T09:45:08
 
 ## Description
 

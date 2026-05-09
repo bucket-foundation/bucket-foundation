@@ -3,28 +3,7 @@
 **Query**: `"fourth phase" OR "4th phase"`  ·  **Hits**: 30
 
 
-## pubmed (3)
-
-- **Why Hydrogels Don't Dribble Water.**
-  - `pubmed/PMID-30920538-why-hydrogels-don-t-dribble-water/info.md`
-  -  … This "<<fourth phase>>" of water sticks securely to the solid gel matrix, ensuring that the water does not leak out.
-
-- **Healthy fats and exclusion-zone size.**
-  - `pubmed/PMID-32066069-healthy-fats-and-exclusion-zone-size/info.md`
-  -  … 2026-05-09T09:30:36
-
-## Abstract
-
-A <<fourth phase>> of water, labeled exclusion-zone or "EZ," extends from hydrophilic surfaces. Salient features include exclusion … 
-- **Exclusion-zone water inside and outside of plant xylem vessels.**
-  - `pubmed/PMID-38802675-exclusion-zone-water-inside-and-outside-of-plant-xylem-vesse/info.md`
-  -  … 2026-05-09T09:30:43
-
-## Abstract
-
-The <<fourth phase>> of water has garnered increased attention within the scientific community due to its distinct properties … 
-
-## youtube (11)
+## youtube (6)
 
 - **Uncovering the Secrets of Life - The 4th Phase of Water with Gerald Pollack**
   - `yt/3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-4th-phase-of-water-with-g/transcript.txt`
@@ -67,40 +46,8 @@ book it's called the <<fourth phase>> of
 water
 uh and hypothesizes that uh we may have
 an … 
-- **Gerald Pollack| EZ Water, What is it, Why Do I Need It & How Do I Make It**
-  - `yt/47FzeZNCYL0-gerald-pollack-ez-water-what-is-it-why-do-i-need-it-how-do-i/transcript.txt`
-  -  … he's the author of many books including
-the bestseller the <<fourth phase>> of water
-really a Pioneer in this space and you
-know … 
-- **The Unknown Truth About the Water | Dr. Gerald H. Pollack, University of Washington**
-  - `yt/I7r97vidvm4-the-unknown-truth-about-the-water-dr-gerald-h-pollack-univer/transcript.txt`
-  -  … found a <<fourth phase>> and the
-reason that I placed the <<fourth phase>>
-the easy phase or we call it <<fourth
-phase>> um the … 
-- **Water: The Matrix and Engine of Life - Pioneer in Water Research Jerry Pollack**
-  - `yt/YrwbDsTx0Uw-water-the-matrix-and-engine-of-life-pioneer-in-water-researc/transcript.txt`
-  -  … Then comes the easy
-or <<fourth phase>> of water negatively
-charged and beyond that positive charges
-just basically situated in in in the
-water … 
-- **Homeopathy New Evidence – ‘Fourth Phase of Water: A Central Role in Health’ (Prof. Gerald Pollack)**
-  - `yt/uEwYlfekOIY-homeopathy-new-evidence-fourth-phase-of-water-a-central-role/transcript.txt`
-  -  … this
-really special event so i want to talk
-about the <<fourth phase>> of water and
-particularly in general about about
-water yeah I … 
-- **Dr. Gerald H. Pollack: The 'Water & Electrons' Interview | NION Health**
-  - `yt/m3YVmZ-Xm3g-dr-gerald-h-pollack-the-water-electrons-interview-nion-healt/transcript.txt`
-  -  … and and it was kind
-of like 12 years between cells gels and
-then the <<fourth phase>> it seems like kind
-of a 12 … 
 
-## intake (16)
+## intake (24)
 
 - **fourth-phase-water**
   - `_intake/concept-digests/fourth-phase-water.md`
@@ -109,41 +56,69 @@ of a 12 …
 **Query**: `"<<fourth phase>>" OR "<<4th phase>>"`  ·  **Hits**: 30
 
 
-## youtube (7)
+## pubmed (3)
 
-- **Uncovering the Secrets of Life - The <<4th Phase>> of Water with … 
+- **Why Hydrogels Don't Dribble Water.**
+  - `pubmed/PMID-30920538-why-hydrogels … 
 - **deuterium-depleted-water**
   - `_intake/concept-digests/deuterium-depleted-water.md`
-  -  … chemistry / 05-biophysics | 1 (chapter … 
-- **<<fourth-phase>>-water**
-  - `_intake/concept-digests/<<fourth-phase>>-water.md`
-  -  … <<Deuterium>>, <<4th phase>> of <<WATER>>, & cellular redox | Regenerative Health … 
-- **ez-water-pollack**
-  - `_intake/concept-digests/ez-water-pollack.md`
-  -  … 14
-
-
-## youtube (9)
-
-- **Dr Gerald <<Pollack>> _The Importance Of <<Water>> For Energy _Heart Health _Memory & Ageing … 
-- **<<fourth-phase>>-water**
-  - `_intake/concept-digests/<<fourth-phase>> … 
+  -  … digests/<<fourth-phase>>-water.md`
+  -  … and the sun half … 
+- **<<deuterium>>-depleted-<<water>>**
+  - `_intake/concept-digests/<<deuterium>>-depleted-<<water>>.md`
+  -  … <<Deuterium>>, <<<<4th phase>>>> of <<WATER … 
+- **Gilbert Ling**
+  - `_intake/canon-profiles/ling-gilbert.md`
+  -  … Pollack**
+  - `yt/5p2H9aTJTfg-11-the-<<fourth-phase>>-of-water-why-the-water-in-your-body-is-c/transcript.txt`
+  -  … <<ling>> was
+a kind of … 
 - **exclusion-zone-water**
   - `_intake/concept-digests/exclusion-zone-water.md`
   -  … It runs like that … 
 - **THE <<FOURTH PHASE>> OF WATER - Gerald Pollack PhD #79**
   - `yt/dOJt-wFNe3E-the-<<fourth-phase>>-of-water-gerald-pollack-phd … 
-- **association-induction-ling**
-  - `_intake/concept-digests/association-induction-ling.md`
-  -  … Gerald Pollack**
-  - `yt/8qqyCA9vz_s-the-<<fourth-phase>>-of-water-beyond-the-three-you-already-know-/transcript.txt`
-  -  … look healthy because all their
-<<cells … 
+- **ez-water-pollack**
+  - `_intake/concept-digests/ez-water-pollack.md`
+  -  … pollack>> … 
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … 21
+
+
+## youtube (15)
+
+- **Uncovering the Secrets of Life - The <<<<4th Phase>>>> of <<Water … 
+- **Gerald Pollack**
+  - `_intake/canon-profiles/pollack-gerald.md`
+  -  … pollack>> … 
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … 21
+
+
+## youtube (15)
+
+- **Uncovering the Secrets of Life - The <<<<4th Phase>>>> of <<Water … 
+- **melanin-semiconductor**
+  - `_intake/concept-digests/melanin-semiconductor.md`
+  -  … Do We Need DNA To Tell Time?**
+  - `_intake … 
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … <<4th-phase>>>>-of-water-cellular-redox … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … jack-kruse-explains-wtf`
 - `3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-<<4th-phase>>-of-water-with-g`
 - `47FzeZNCYL0-gerald-pollack-ez-water-what-is … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … heme>>-<<redox>>.md`
+  -  … <<Deuterium>>, <<4th phase>> of <<WATER>>, & cellular <<redox>> | Regenerative Health … 
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … water-cellular … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … Jack Cruz(2), Hazen(2), Brandon Crawford(1), Jack
@@ -154,15 +129,48 @@ Crawford(1)
 **Citations**: 
 
 ## 3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-<<4th-phase>> … 
-- **melanin-semiconductor**
-  - `_intake/concept-digests/melanin-semiconductor.md`
+- **Dmitri Mendeleev**
+  - `_intake/canon-profiles/mendeleev-dmitri.md`
+  -  … с атомным весом элементов" + 1871 … 
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … deuterium-<<<<4th-phase>>>>-of-water-cellular-redox-re/transcript … 
+- **mendeleev-periodic**
+  - `_intake/concept-digests/mendeleev-periodic.md`
+  -  … 6, intake:21, youtube:3)
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … deuterium-<<<<4th-phase>>>>-of-water-cellular-redox-re/transcript … 
+- **Otto Warburg**
+  - `_intake/canon-profiles/warburg-otto.md`
   -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
   - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
-- **iron-heme-redox**
-  - `_intake/concept-digests/iron-heme-redox.md`
-  -  … semiconductor.md`
-  -  … Deuterium, <<4th phase>> of WATER, & cellular <<redox>> | Regenerative Health Podcast**
-  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-<<redox … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … ANIMAL <<PHOTOSYNTHESIS>>](https://jackkruse.com/reality … 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  -  … <<4th-phase>>-of-<<water>>-cellular-redox-re/transcript … 
+- **association-induction-ling**
+  - `_intake/concept-digests/association-induction-ling.md`
+  -  … Gerald Pollack**
+  - `yt/8qqyCA9vz_s-the-<<fourth-phase>>-of-water-beyond-the-three-you-already-know-/transcript.txt`
+  -  … look healthy because all their
+<<cells … 
+- **Albert Szent-Györgyi**
+  - `_intake/canon-profiles/szent-gyorgyi-albert.md`
+  -  … cited foundational … 
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … zone water papers | 05-biophysics | 4+ via "<<<<fourth phase>>>>" |
+| `<<szent-gyorgyi>>-albert … 
+- **infrared-near-ir**
+  - `_intake/concept-digests/infrared-near-ir.md`
+  -  … The Matrix and Engine of … 
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … <<fourth-phase>>>>-of-water-gerald-pollack-phd … 
+- **<<infrared>>-<<near … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … U Washington Seattle | *The <<Fourth Phase>> of Water* (2013), exclusion-zone water papers | 05-biophysics | 4+ via "<<fourth phase>>" |
@@ -174,17 +182,24 @@ Crawford(1)
 - **Slug**: `concept-ez-water-<<fourth-phase>>`
 - **Canon branch**: 05-biophysics
 - **Status**: queued (not yet … 
-- **infrared-near-ir**
-  - `_intake/concept-digests/infrared-near-ir.md`
-  -  … The … 
-- **Gerald Pollack:The <<Fourth Phase>> of Water | SNC 2018**
-  - `yt/NnRMRGsAHfA-gerald-pollack-the-<<fourth-phase>>-of-water-snc-2018/transcript.txt`
-  -  … First … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … In each of our <<cells>>, there is a … 
+- **<<fourth-phase>>-water**
+  - `_intake/concept-digests/<<fourth-phase>>-water.md`
+  -  … Water & Rethinking <<Cell>> <<Biology>> | Ricci Flow … 
+- **Richard Feynman**
+  - `_intake/canon-profiles/feynman-richard.md`
+  -  … POLLACK | Being Human**
+  - `yt/xT8Qtt8LCV0-253-the-<<fourth-phase>>-of-water-gerald-h-pollack-being-human/transcript.txt`
+  -  … physicist Richard
+<<Feynman>>
+um
+yeah so … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … zone-water.md) — 30 hits  (intake:24, youtube:6)
-- [`<<fourth-phase>>-water`](<<fourth-phase>>-water.md) — 30 hits  (intake:23, youtube:7)
-- [`melanin-semiconductor … 
+  -  … md) — 30 hits  (intake:18, pubmed:5, youtube:7)
+- [`<<fourth-phase>>-water`](<<fourth-phase>>-water.md) — 30 hits  (intake:16, pubmed:3, youtube:11 … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … Kruse blog index for "recommended reading" + interview transcripts
@@ -196,10 +211,3 @@ where he names books.
 - **REALITY #5:  SCOMPY'S QUANTUM QUIZ FOR MITO-HACKING YOUR LIFE**
   - `_intake/kruse-blog-corpus/articles/reality-5-scompys-quantum-quiz-mito-hacking-life.md`
   -  … When I pursued deeper knowledge of the mitochondria, the Electromagnetic Spectrum, Wallace’s mitochondrial works, Pollack’s <<4th Phase>> of Water and the list … 
-- **Gerald Pollack — canon-target intake**
-  - `_intake/pollack-gerald/README.md`
-  -  … mentioned in Kruse × WiM podcasts (transcripts in `bucket-foundation/yt/`)
-
-## Key works to ingest
-
-The <<Fourth Phase>> of Water (2013); ~150 papers on EZ … 
