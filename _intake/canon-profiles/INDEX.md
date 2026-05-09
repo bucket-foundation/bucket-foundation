@@ -1,0 +1,28 @@
+# Canon Person Profiles
+
+- [`becker-robert-o`](becker-robert-o.md) — Robert O. Becker — 25 hits
+- [`pollack-gerald`](pollack-gerald.md) — Gerald Pollack — 25 hits
+- [`szent-gyorgyi-albert`](szent-gyorgyi-albert.md) — Albert Szent-Györgyi — 23 hits
+- [`peat-ray`](peat-ray.md) — Ray Peat — 12 hits
+- [`ling-gilbert`](ling-gilbert.md) — Gilbert Ling — 25 hits
+- [`mitchell-peter`](mitchell-peter.md) — Peter Mitchell — 25 hits
+- [`nordenstrom-bjorn`](nordenstrom-bjorn.md) — Björn Nordenström — 10 hits
+- [`russell-walter`](russell-walter.md) — Walter Russell — 25 hits
+- [`marino-andrew`](marino-andrew.md) — Andrew Marino — 25 hits
+- [`frohlich-herbert`](frohlich-herbert.md) — Herbert Fröhlich — 10 hits
+- [`popp-fritz-albert`](popp-fritz-albert.md) — Fritz-Albert Popp — 20 hits
+- [`mendeleev-dmitri`](mendeleev-dmitri.md) — Dmitri Mendeleev — 13 hits
+- [`einstein-albert`](einstein-albert.md) — Albert Einstein — 25 hits
+- [`maxwell-james-clerk`](maxwell-james-clerk.md) — James Clerk Maxwell — 25 hits
+- [`newton-isaac`](newton-isaac.md) — Isaac Newton — 25 hits
+- [`faraday-michael`](faraday-michael.md) — Michael Faraday — 25 hits
+- [`tesla-nikola`](tesla-nikola.md) — Nikola Tesla — 25 hits
+- [`warburg-otto`](warburg-otto.md) — Otto Warburg — 25 hits
+- [`wheeler-john`](wheeler-john.md) — John Archibald Wheeler — 17 hits
+- [`penrose-roger`](penrose-roger.md) — Roger Penrose — 20 hits
+- [`hameroff-stuart`](hameroff-stuart.md) — Stuart Hameroff — 18 hits
+- [`schrodinger-erwin`](schrodinger-erwin.md) — Erwin Schrödinger — 21 hits
+- [`bohr-niels`](bohr-niels.md) — Niels Bohr — 21 hits
+- [`feynman-richard`](feynman-richard.md) — Richard Feynman — 25 hits
+- [`shannon-claude`](shannon-claude.md) — Claude Shannon — 16 hits
+- [`turing-alan`](turing-alan.md) — Alan Turing — 25 hits

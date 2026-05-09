@@ -1,0 +1,14 @@
+# Thermomodulation studies of heat transport in heavy-doped n-GaAs by using the temperature dependence of metal-semiconductor contact resistance
+
+- **arXiv ID**: `cond-mat/0501160`
+- **URL**: https://arxiv.org/abs/cond-mat/0501160
+- **Authors**: A. Ya. Shul'man, N. A. Mordovets, I. N. Kotel'nikov
+- **Published**: 2005-01-08T07:39:36Z
+- **Updated**: 2005-01-08T07:39:36Z
+- **Primary category**: cond-mat.mtrl-sci
+- **All categories**: cond-mat.mtrl-sci, cond-mat.stat-mech
+- **Captured**: 2026-05-09T09:45:19
+
+## Abstract
+
+The heat transport in heavy-doped n-GaAs has been investigated at temperatures T=300 K and 77 K using the irradiation of the metal-semiconductor contact by modulated CO_{2}-laser radiation. It is shown this approach giving an opportunity to determine the thermo-diffusion coefficient $χ$ and Seebeck coefficient S_{T} without direct measurements of the temperature gradient. It was also found out that the thermalization length of hot electrons exceeds in of order of magnitude the assessment which can be done based on the reference data for GaAs. To elucidate the origin of the observed phenomenon the measurements were conducted out with Schottky contacts made on the thin doped GaAs layer epitaxially grown on the semi-insulating GaAs substrate. In this case the degenerate electron gas occupies only insignificant part of the heat-conducting medium. In addition, the injection of hot electrons into the semiconductor by current pulses through the Schottky barrier was used to clear up whether there is a dependence of the effect on the method of the electron heating. The nonequilibrium of LO-phonons and the change in the electron-phonon collisional integral due to the non-equilibrium pair correlations of the electrons are suggested as a possible explanation.

@@ -7,7 +7,7 @@
 - **Updated**: 2019-02-28T07:01:02Z
 - **Primary category**: gr-qc
 - **All categories**: gr-qc, math.DG
-- **Captured**: 2026-05-09T09:22:11
+- **Captured**: 2026-05-09T09:45:10
 
 ## Abstract
 
