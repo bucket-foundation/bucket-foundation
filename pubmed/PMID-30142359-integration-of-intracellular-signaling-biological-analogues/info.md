@@ -1,0 +1,14 @@
+# Integration of intracellular signaling: Biological analogues of wires, processors and memories organized by a centrosome 3D reference system.
+
+- **PMID**: 30142359
+- **DOI**: 10.1016/j.biosystems.2018.08.007
+- **PMCID**:  
+- **Journal**: Bio Systems  ·  **Year**: 2018
+- **Authors**: Nadezhda Barvitenko, Alfons Lawen, Muhammad Aslam, Antonella Pantaleo, Carlota Saldanha, Elisaveta Skverchinskaya, Marco Regolini, Jack A Tuszynski
+- **MeSH**: Actins, Animals, Apoptosis, Cell Lineage, Cell Membrane, Centrosome, Cytoskeleton, Decision Making, Humans, Ions
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30142359/
+- **Captured**: 2026-05-09T09:42:08
+
+## Abstract
+
+Myriads of signaling pathways in a single cell function to achieve the highest spatio-temporal integration. Data are accumulating on the role of electromechanical soliton-like waves in signal transduction processes. Theoretical studies strongly suggest feasibility of both classical and quantum computing involving microtubules. A theoretical study of the role of the complex composed of the plasma membrane and the microtubule-based cytoskeleton as a system that transmits, stores and processes information. Theoretical analysis presented here refers to (i) the Penrose-Hameroff theory of consciousness (Orchestrated Objective Reduction; Orch OR), (ii) the description of the centrosome as a reference system for construction of the 3D map of the cell proposed by Regolini, (iii) the Heimburg-Jackson model of the nerve pulse propagation along axons' lipid bilayer as soliton-like electro-mechanical waves. The ideas presented in this paper provide a qualitative model for the decision-making processes in a living cell undergoing a differentiation process. This paper paves the way for the real-time live-cell observation of information processing by microtubule-based cytoskeleton and cell fate decision making.

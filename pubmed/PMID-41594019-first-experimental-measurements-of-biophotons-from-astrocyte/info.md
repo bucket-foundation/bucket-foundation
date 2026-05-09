@@ -1,0 +1,14 @@
+# First Experimental Measurements of Biophotons from Astrocytes and Glioblastoma Cell Cultures.
+
+- **PMID**: 41594019
+- **DOI**: 10.1016/j.radmp.2024.06.004
+- **PMCID**: PMC5699883 (full-text saved)
+- **Journal**: Entropy (Basel, Switzerland)  ·  **Year**: 2026
+- **Authors**: Luca De Paolis, Elisabetta Pace, Chiara Maria Mazzanti, Mariangela Morelli, Francesca Di Lorenzo, Lucio Tonello, Catalina Curceanu, Alberto Clozza, Maurizio Grandi, Ivan Davoli, Angelo Gemignani, Paolo Grigolini, Maurizio Benfatto
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41594019/
+- **Captured**: 2026-05-09T09:42:13
+
+## Abstract
+
+Biophotons are non-thermal and non-bioluminescent ultraweak photon emissions, first hypothesised by Gurwitsch as a regulatory mechanism in cell division, and then experimentally observed in living organisms. Today, two main hypotheses explain their origin: stochastic decay of excited molecules and coherent electromagnetic fields produced in biochemical processes. Recent interest focuses on the role of biophotons in cellular communication and disease monitoring. This study presents the first campaign of biophoton emission measurements from cultured astrocytes and glioblastoma cells, conducted at Fondazione Pisana per la Scienza (FPS) using two ultra-sensitive setups developed in collaboration between the National Laboratories of Frascati (LNF-INFN) and the University of Rome II Tor Vergata. The statistical analyses of the collected data revealed a clear separation between cellular signals and dark noise, confirming the high sensitivity of the apparatus. The Diffusion Entropy Analysis (DEA) was applied to the data to uncover dynamic patterns, revealing anomalous diffusion and long-range memory effects that may be related to intercellular signaling and cellular communication. These findings support the hypothesis that biophoton emissions encode rich information beyond intensity, reflecting metabolic and pathological states. The differences revealed by applying the Diffusion Entropy Analysis to the biophotonic signals of Astrocytes and Glioblastoma are highlighted and discussed in the paper. This work lays the groundwork for future studies on neuronal cultures and proposes biophoton dynamics as a promising tool for non-invasive diagnostics and the study of cellular communication.

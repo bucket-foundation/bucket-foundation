@@ -7,7 +7,7 @@
 - **Authors**: B E Nordenström, A C Kinn, J Elbarouni
 - **MeSH**: Animals, Contrast Media, Diatrizoate Meglumine, Doxorubicin, Electrophysiology, Injections, Intravenous, Iohexol, Ioxaglic Acid, Kidney, Osmolar Concentration
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/2055716/
-- **Captured**: 2026-05-09T09:22:09
+- **Captured**: 2026-05-09T09:41:44
 
 ## Abstract
 

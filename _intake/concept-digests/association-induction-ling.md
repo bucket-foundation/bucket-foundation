@@ -3,23 +3,30 @@
 **Query**: `Ling AND (association OR induction OR cells AND gels)`  ·  **Hits**: 30
 
 
-## pubmed (5)
+## pubmed (6)
 
+- **A quantitative theory of solute distribution in cell water according to molecular size.**
+  - `pubmed/PMID-8115492-a-quantitative-theory-of-solute-distribution-in-cell-water-a/info.md`
+  -  … 2026-05-09T09:41:35
+
+## Abstract
+
+A quantitative theory (based on polarized multilayer (PM) theory of <<cell>> water, a subsidiary of the <<association>>-<<induction>> … 
 - **The new cell physiology: an outline, presented against its full historical background, beginning from the beginning.**
   - `pubmed/PMID-7938224-the-new-cell-physiology-an-outline-presented-against-its-ful/info.md`
   -  … First introduced in 1962 under the title of the <<association>>-<<induction>> hypothesis, the theory is now confirmed in its essence, after more than thirty … 
+- **Can we see living structure in a cell?**
+  - `pubmed/PMID-1462129-can-we-see-living-structure-in-a-cell/info.md`
+  -  … In a new theory of the living cell called the <<association>>-<<induction>> (AI) hypothesis, the three major components of the living cell (water, proteins … 
 - **Can we see living structure in a cell?**
   - `pubmed/PMID-25854101-can-we-see-living-structure-in-a-cell/info.md`
   -  … In a new theory of the living cell called the <<association>>-<<induction>> (AI) hypothesis, the three major components of the living cell (water, proteins … 
 - **Explaining on request a correlation between membrane Na,K-ATPase and K+ content in erythrocytes and other findings in the preceding paper.**
   - `pubmed/PMID-9807237-explaining-on-request-a-correlation-between-membrane-na-k-at/info.md`
   -  … observations they and others had made in the context of the <<association>>-<<induction>> hypothesis. (1) Why is Rb+ accumulated in human red blood cells … 
-- **Truth in basic biomedical science will set future mankind free.**
-  - `pubmed/PMID-21970156-truth-in-basic-biomedical-science-will-set-future-mankind-fr/info.md`
-  -  … In addition, I have also included an introduction of the <<association>>-<<induction>> hypothesis, which is the one and only unifying theory of the living … 
-- **A historically significant study that at once disproves the membrane (pump) theory and confirms that nano-protoplasm is the ultimate physical basis of life--yet so simple and low-cost that it could easily be repeated in many high school biology classrooms worldwide.**
-  - `pubmed/PMID-20070042-a-historically-significant-study-that-at-once-disproves-the/info.md`
-  -  … Named the <<association>>-<<induction>> hypothesis (AIH), it has been presented thus far in four books dated 1962, 1984, 1992 and 2001 respectively. In this … 
+- **The physical state of potassium ion in the living cell.**
+  - `pubmed/PMID-2080436-the-physical-state-of-potassium-ion-in-the-living-cell/info.md`
+  -  … of experimental testing (and confirmation) of a key postulate of the <<association>>-<<induction>> (AI) hypothesis: most K+ ions in resting cells are adsorbed on … 
 
 ## youtube (12)
 
@@ -42,13 +49,6 @@ actually mean <<Association>> refers to …
 articles and several books including
 <<cell>>'s <<gels>> in the engines of life as
 well as the fourth phase … 
-- **The Fourth Phase of Water - Beyond the Three You Already Know (RTF Lecture with Dr. Gerald Pollack**
-  - `yt/8qqyCA9vz_s-the-fourth-phase-of-water-beyond-the-three-you-already-know-/transcript.txt`
-  -  … look healthy because all their
-<<cells>> are basically filled with easy
-water um your
-<<cells>> as Gilbert <<Ling>> was was talking
-about um ordered … 
 - **THE FOURTH PHASE OF WATER - Gerald Pollack PhD #79**
   - `yt/dOJt-wFNe3E-the-fourth-phase-of-water-gerald-pollack-phd-79/transcript.txt`
   -  … He's
@@ -56,6 +56,27 @@ the author of over 300 scientific papers
 and four books for the general public,
 including <<Cells>>, <<Gels>>, and the Engines
 of Life … 
+- **The Fourth Phase of Water - Beyond the Three You Already Know (RTF Lecture with Dr. Gerald Pollack**
+  - `yt/8qqyCA9vz_s-the-fourth-phase-of-water-beyond-the-three-you-already-know-/transcript.txt`
+  -  … look healthy because all their
+<<cells>> are basically filled with easy
+water um your
+<<cells>> as Gilbert <<Ling>> was was talking
+about um ordered … 
+- **The Great Gilbert Ling: Cell Physiologist, Biochemist and scientific investigator: Short Documentary**
+  - `yt/ODPdr_vaJ3w-the-great-gilbert-ling-cell-physiologist-biochemist-and-scie/transcript.txt`
+  -  … radical new
+theory on the workings of the cell
+titled the <<association>> <<induction>>
+hypothesis this theory reports that it's
+the special arrangement of … 
+- **On the Back of a Tiger: Episode One, Gilbert Ling**
+  - `yt/fVIbcg3La_E-on-the-back-of-a-tiger-episode-one-gilbert-ling/transcript.txt`
+  -  … radical new theory on
+the workings of the cell titled the
+<<association>> <<induction>> hypothesis this
+theory purports that it's the special
+arrangement of … 
 - **Gerald Pollack:The Fourth Phase of Water | SNC 2018**
   - `yt/NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018/transcript.txt`
   -  … <<Ling>> has a
@@ -73,49 +94,46 @@ Engines of …
   -  … <<gel>> right and it turns out
 turns out that if you stick an electrode
 into a <<gel>> not the <<cell>> into a <<gel>> you … 
-- **The Great Gilbert Ling: Cell Physiologist, Biochemist and scientific investigator: Short Documentary**
-  - `yt/ODPdr_vaJ3w-the-great-gilbert-ling-cell-physiologist-biochemist-and-scie/transcript.txt`
-  -  … radical new
-theory on the workings of the cell
-titled the <<association>> <<induction>>
-hypothesis this theory reports that it's
-the special arrangement of … 
-- **On the Back of a Tiger: Episode One, Gilbert Ling**
-  - `yt/fVIbcg3La_E-on-the-back-of-a-tiger-episode-one-gilbert-ling/transcript.txt`
-  -  … radical new theory on
-the workings of the cell titled the
-<<association>> <<induction>> hypothesis this
-theory purports that it's the special
-arrangement of … 
-- **Uncovering the Secrets of Life - The 4th Phase of Water with Gerald Pollack**
-  - `yt/3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-4th-phase-of-water-with-g/transcript.txt`
-  -  … because the easy water is a <<gel>>
-and the <<gel>> sticks to the solids inside
-the <<cell>> and so it doesn't come out … 
-- **Water: The Matrix and Engine of Life - Pioneer in Water Research Jerry Pollack**
-  - `yt/YrwbDsTx0Uw-water-the-matrix-and-engine-of-life-pioneer-in-water-researc/transcript.txt`
-  -  … So the water starts
-like if you consider a muscle <<cell>> and
-in the relaxed state the muscle <<cell>> the
-water is Gilbert <<Ling>> … 
+- **#253 THE FOURTH PHASE OF WATER - GERALD H. POLLACK | Being Human**
+  - `yt/xT8Qtt8LCV0-253-the-fourth-phase-of-water-gerald-h-pollack-being-human/transcript.txt`
+  -  … Gilbert <<Ling>> spent a good part of
+his life
+Gathering evidence to demonstrate that
+the water in the <<cells>> in your <<cells>>
+myself differ … 
+- **Homeopathy New Evidence – ‘Fourth Phase of Water: A Central Role in Health’ (Prof. Gerald Pollack)**
+  - `yt/uEwYlfekOIY-homeopathy-new-evidence-fourth-phase-of-water-a-central-role/transcript.txt`
+  -  … kind of
+popular book to popularize Gilbert
+<<Ling>>'s
+ideas and the book is called <<cells>> <<gels>>
+and the engines of life and it … 
 
-## intake (13)
+## intake (12)
 
 - **association-induction-ling**
   - `_intake/concept-digests/association-induction-ling.md`
   - # <<association>>-<<induction>>-<<ling>>
 
-**Query**: `<<Ling>> AND (<<association>> OR <<induction>> OR <<cells>> AND <<gels>>)`  ·  **Hits**: 24
+**Query**: `<<Ling>> AND (<<association>> OR <<induction>> OR <<cells>> AND <<gels>>)`  ·  **Hits**: 30
 
 
-## archive (4)
+## pubmed (5)
 
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
-  -  … were … 
+- **The new <<cell>> physiology: an outline, presented … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … <<induction>>-1962` | Gilbert <<Ling>> — *A Physical Theory of the Living State* + <<Association>>-<<Induction>> Hypothesis papers | Kruse cites; alternative to membrane-pump theory. <<Cells>> & <<gels>> … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … fourth-phase>>-of-water-gerald-pollack-phd … 
+- **<<association>>-<<induction>>-<<ling>>**
+  - `_intake/concept-digests/<<association>>-<<induction>>-<<ling>>.md`
+  -  … In this … 
+
+## youtube (12)
+
+- **THE <<FOURTH PHASE … 
 - **Energy and Epigenetics 10: The Quantum Puzzle**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-10-quantum-puzzle.md`
   -  … to listen to, let alone accommodate, the alternate, <<Ling>>/Pollack (<<Associated>> <<Induction>>) understanding of the <<cell>> and its membrane. But, Fahnestock contends, there are … 
@@ -124,8 +142,18 @@ water is Gilbert <<Ling>> …
   -  … <<cell>> and I no longer do because of <<Ling>> and Pollack.  <<Ling>>’s calculation that we need 5000 times more ATP than a <<cell>> … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … bioelectric-becker.md) — 25 hits  (intake:3, youtube:22)
-- [`<<association>>-<<induction>>-<<ling>>`](<<association>>-<<induction>>-<<ling>>.md) — 24 hits  (archive:4, intake:3, pubmed:5 … 
+  -  … bioelectric-becker.md) — 30 hits  (intake:16, youtube:14)
+- [`<<association>>-<<induction>>-<<ling>>`](<<association>>-<<induction>>-<<ling>>.md) — 30 hits  (intake:13, pubmed:5, youtube:12 … 
+- **ez-water-pollack**
+  - `_intake/concept-digests/ez-water-pollack.md`
+  -  … fourth-phase-of-<<water>>-gerald-<<pollack>>-phd … 
+- **<<association>>-<<induction>>-<<ling>>**
+  - `_intake/concept-digests/<<association>>-<<induction>>-<<ling>>.md`
+  -  … In this … 
+
+## youtube (12)
+
+- **THE FOURTH PHASE … 
 - **Gilbert Ling — canon-target intake**
   - `_intake/ling-gilbert/README.md`
   -  … State (1962); <<Association>>-<<Induction>> Hypothesis papers
@@ -142,6 +170,12 @@ water is Gilbert <<Ling>> …
   -  … where wellness and life’s magic occur.  <<Ling>> gave us how it begins with his <<Association>> <<Induction>> hypothesis.
 
 **QUANTUM NEURO-DEGENERATION**    This turns out … 
+- **chemiosmotic-mitchell**
+  - `_intake/concept-digests/chemiosmotic-mitchell.md`
+  -  … 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
+  -  … 1962), <<Association>>-<<Induction>> Hypothesis | 05-biophysics | 5 |
+| `<<mitchell>>-peter` | **Peter <<Mitchell>>** (1920–1992), Nobel … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … biophysics (lens) | 5 |
@@ -149,17 +183,3 @@ water is Gilbert <<Ling>> …
 - **ORGANIZATION STRUCTURAL FAILURE 2:  MAGNETIC MEMORY**
   - `_intake/kruse-blog-corpus/articles/organization-structural-failure-2-magnetism.md`
   -  … It is an extension of Gilbert <<Ling>>’s work from his AI <<induction>> hypothesis.  From Dr. Gilbert <<Ling>>’s work,  Ray Damadian M.D … 
-- **UBIQUITINATION 22: HOW DO PLANTS CONTROL THEIR GROWTH PROCESS?**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-22-how-do-plants-control-their-growth-process.md`
-  -  … Ho, Mae-Wan (2011). “Electronic <<Induction>> Animates the Cell”. Institute of Science in Society (52). ISSN 1474-1814.
-
-<<Ling>>, Gilbert; Gerard, R. W. (December … 
-- **EMF 3: The Origin of Life**
-  - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
-  -  … <<Ling>>’s idea was so radical that no one could accept it.  His idea was born of electonic <<induction>> of proteins in intracellular water … 
-- **CPC #9:   HASHIMOTO's AND MELASMA:  GATEWAY DISEASES**
-  - `_intake/kruse-blog-corpus/articles/hashimotos-and-melasma.md`
-  -  … system is activated by the [AI <<induction>> hypothesis (<<LING>>)](http://en.wikipedia.org/wiki/Gilbert_<<Ling>>#<<Association>>_<<induction>>_hypothesis) and how it ties directly … 
-- **TENSEGRITY #12:  THE QUANTUM CELL MEMBRANE**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-12-quantum-cell-membrane.md`
-  -  … Life begins by creating wireless power transmitters in our surface membranes that work by collecting magnetic resonance and <<induction>> from our environment. This is … 

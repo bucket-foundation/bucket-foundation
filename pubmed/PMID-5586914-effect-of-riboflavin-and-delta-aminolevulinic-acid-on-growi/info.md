@@ -7,7 +7,7 @@
 - **Authors**: O Warburg, A W Geissler, S Lorenz
 - **MeSH**: Amino Acids, Animals, Carcinoma, Ehrlich Tumor, Culture Media, Culture Techniques, Depression, Chemical, Levulinic Acids, Mice, Oxygen Consumption, Riboflavin
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/5586914/
-- **Captured**: 2026-05-09T09:22:21
+- **Captured**: 2026-05-09T09:41:39
 
 ## Abstract
 

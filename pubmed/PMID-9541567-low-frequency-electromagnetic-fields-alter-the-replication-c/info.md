@@ -1,0 +1,14 @@
+# Low-frequency electromagnetic fields alter the replication cycle of MS2 bacteriophage.
+
+- **PMID**: 9541567
+- **DOI**: 10.1007/s002849900313
+- **PMCID**:  
+- **Journal**: Current microbiology  ·  **Year**: 1998
+- **Authors**: J Staczek, A A Marino, L B Gilleland, A Pizarro, H E Gilleland
+- **MeSH**: Electromagnetic Fields, Levivirus, Virus Replication
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9541567/
+- **Captured**: 2026-05-09T09:41:27
+
+## Abstract
+
+The effect of exposure to 60-Hz electromagnetic fields (EMFs) on RNA coliphage MS2 replication was studied. EMF exposure commenced when the bacterial cultures were inoculated with the phage (t = 0). In 12 experiments in which the strength of the field was 5 G, a significant delay in phage yield was found in the EMF-exposed cultures 45-65 min after inoculation, compared with control cultures. However, the EMF did not alter the final phage concentration. Experiments at 25 G (N = 5) suggested that the stronger field resulted in both impeded phage replication and increased phage yield. No differences between test groups were found in experiments involving sham-EMF exposure, thereby indicating that the results obtained with the EMFs were not due to systematic error. It appears that MS2, which codes for only four proteins, is the simplest biological system in which an EMF-induced effect has been demonstrated. The MS2 system is, therefore, conducive to follow-up studies aimed at understanding the level and nature of the underlying interaction process, and perhaps to biophysical modeling of the interaction process.

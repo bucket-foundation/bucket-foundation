@@ -7,7 +7,7 @@
 - **Authors**: Laurent Schwartz, Ashraf Bakkar, Frederic Bouillaud, Romain Attal, Marion Leboyer
 - **MeSH**: Humans, Mental Disorders, Animals, Energy Metabolism, Brain
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41628532/
-- **Captured**: 2026-05-09T09:22:27
+- **Captured**: 2026-05-09T09:41:47
 
 ## Abstract
 

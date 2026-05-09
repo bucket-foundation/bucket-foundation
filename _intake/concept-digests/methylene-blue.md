@@ -3,8 +3,41 @@
 **Query**: `"methylene blue"`  ·  **Hits**: 30
 
 
-## pubmed (4)
+## pubmed (11)
 
+- **Methylene blue protects oligodendroglial cell models of multiple systems atrophy against hydrogen peroxide-mediated oxidative stress.**
+  - `pubmed/PMID-41412473-methylene-blue-protects-oligodendroglial-cell-models-of-mult/info.md`
+  - # <<Methylene blue>> protects oligodendroglial cell models of multiple systems atrophy against hydrogen peroxide-mediated oxidative stress.
+
+- **PMID**: 41412473
+- **DOI**: 10.1016/j.neuro.2025 … 
+- **Conjugates of Methylene Blue with Cycloalkaneindoles as New Multifunctional Agents for Potential Treatment of Neurodegenerative Disease.**
+  - `pubmed/PMID-36430413-conjugates-of-methylene-blue-with-cycloalkaneindoles-as-new/info.md`
+  - # Conjugates of <<Methylene Blue>> with Cycloalkaneindoles as New Multifunctional Agents for Potential Treatment of Neurodegenerative Disease.
+
+- **PMID**: 36430413
+- **DOI**: 10.14529/jsfi190201
+- **PMCID**: PMC2760638 … 
+- **Methylene Blue Attenuates 3-Nitropropionic Acid-Induced Oxidative Stress and Mitochondrial Dysfunction in Striatal Cells: Therapeutic Implications in Huntington's Disease Neuropathology.**
+  - `pubmed/PMID-41226707-methylene-blue-attenuates-3-nitropropionic-acid-induced-oxid/info.md`
+  -  … Oxidative Stress, Huntington Disease, Nitro Compounds, Propionates, <<Methylene Blue>>, Mitochondria, Animals, Corpus Striatum, Humans, Reactive Oxygen Species
+- **URL**: https://pubmed.ncbi.nlm.nih.gov … 
+- **Methylene blue and its potential in the treatment of traumatic brain injury, brain ischemia, and Alzheimer's disease.**
+  - `pubmed/PMID-38530227-methylene-blue-and-its-potential-in-the-treatment-of-traumat/info.md`
+  -  … Humans, <<Methylene Blue>>, Alzheimer Disease, Brain Injuries, Traumatic, Animals, Brain Ischemia, Neuroprotective Agents
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38530227/
+- **Captured**: 2026-05 … 
+- **Methylene Blue Pretreatment Protects Against Repeated Neonatal Isoflurane Exposure-Induced Brain Injury and Memory Loss.**
+  - `pubmed/PMID-38233687-methylene-blue-pretreatment-protects-against-repeated-neonat/info.md`
+  -  … Animals, Isoflurane, Animals, Newborn, Memory Disorders, <<Methylene Blue>>, Brain Injuries, Rats, Sprague-Dawley, Male, Apoptosis, Neuroprotective Agents
+- **URL**: https://pubmed.ncbi.nlm.nih.gov … 
+- **Intranasal methylene blue administration confers neuroprotection in rats subjected to exhaustive exercise training.**
+  - `pubmed/PMID-41064749-intranasal-methylene-blue-administration-confers-neuroprotec/info.md`
+  - # Intranasal <<methylene blue>> administration confers neuroprotection in rats subjected to exhaustive exercise training.
+
+- **PMID**: 41064749
+- **DOI**: 10.3389/fnins.2022.998507
+- **PMCID**: PMC9579438 (full … 
 - **Methylene blue restores NAD**
   - `pubmed/PMID-42058931-methylene-blue-restores-nad/info.md`
   - # <<Methylene blue>> restores NAD
@@ -16,6 +49,11 @@
 - **Mitochondrial hyperoxidation contributes to warm ischemia-reperfusion injury in rat and pig livers.**
   - `pubmed/PMID-41922695-mitochondrial-hyperoxidation-contributes-to-warm-ischemia-re/info.md`
   -  … This guides us to test <<methylene blue>>, which acts as an alternate electron donor to bypass complex III, as treatment rescuing mitochondria from WI … 
+- **Mitochondrial Effects of Hydromethylthionine, Rivastigmine and Memantine in Tau-Transgenic Mice.**
+  - `pubmed/PMID-37445987-mitochondrial-effects-of-hydromethylthionine-rivastigmine-an/info.md`
+  -  … Mice, Animals, Rivastigmine, Memantine, tau Proteins, Mice, Transgenic, Cholinesterase Inhibitors, Alzheimer Disease, Mitochondria, <<Methylene Blue>>
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37445987/
+- **Captured … 
 - **Metabolic shifts, a consequence of hyperosmolarity, are a hallmark of mental disorders.**
   - `pubmed/PMID-41628532-metabolic-shifts-a-consequence-of-hyperosmolarity-are-a-hall/info.md`
   -  … Drugs known to interfere with metabolism such as <<methylene blue>> and lipoic acid have been found to have antidepressant, anxiolytic, and neuroprotective effects (both … 
@@ -23,7 +61,7 @@
   - `pubmed/PMID-41578751-lipid-droplet-dynamics-in-hepatocytes-during-lipotoxic-stres/info.md`
   -  … Semi-thin sections were stained with <<methylene blue>>-azure II and analyzed with light microscopy. Ultrathin sections were double-stained with uranyl acetate and … 
 
-## youtube (11)
+## youtube (7)
 
 - **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
   - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
@@ -65,45 +103,18 @@ structure except the it …
 use <<methylene blue>>. So I want you to
 understand what did <<methylene blue>> is it
 really used for? It can be an … 
-- **Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & Sunlight Medicine | Dr. Jack Kruse**
-  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl/transcript.txt`
-  -  … use
-Hydrochloric coin and <<methylene blue>> you
-know why for
-yeah Hydrochloric coin comes from
-<<methylene blue>> and <<methylene blue>> works
-for Co and … 
-- **Sunlight Is the Source of Life | Dr. Jack Kruse | EP 04**
-  - `yt/6ClqKnD10p4-sunlight-is-the-source-of-life-dr-jack-kruse-ep-04/transcript.txt`
-  -  … that's where I came up
-with the idea to use <<methylene blue>> for
-him while he was on cardiovascular
-bypass and I he … 
-- **Dr. Jack Kruse: Decentralizing Medicine and Shaping Future Healthcare**
-  - `yt/OJaR2XgTmPI-dr-jack-kruse-decentralizing-medicine-and-shaping-future-hea/transcript.txt`
-  -  … of <<methylene blue>> you know
-what that means the <<methylene blue>> could
-have been used to treat coid very
-successfully now <<methylene blue>> is … 
-- **Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal Your Mitochondria**
-  - `yt/mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit/transcript.txt`
-  -  … knew that if I can get him on&nbsp; you know <<methylene blue>> when he was on pump&nbsp;&nbsp;
-that that we would … 
-- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
-  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
-  -  … <<methylene
-blue>> that has got uses but again that's
-going to explode out into the population
-and people don't understand how
-<<methylene>> … 
+- **Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podcast) - PART 1**
+  - `yt/zs82rGFo6qg-jack-kruse-andrew-huberman-rick-rubin-tetragrammaton-podcast/transcript.txt`
+  -  … to do with why the <<methylene blue>> worked I&nbsp;&nbsp;
+told you at lunch the reason <<methylene blue>> works&nbsp; it's so … 
 
-## intake (15)
+## intake (12)
 
 - **methylene-blue**
   - `_intake/concept-digests/methylene-blue.md`
   - # <<methylene-blue>>
 
-**Query**: `"<<methylene blue>>"`  ·  **Hits**: 19
+**Query**: `"<<methylene blue>>"`  ·  **Hits**: 30
 
 
 ## pubmed (4)
@@ -124,62 +135,62 @@ Source: https://jackkruse.com/biohacking-time-with-<<methylene-blue>>/
 
 
 **BLOG TAKE AWAY … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … AGE(79), WHO(63), electron(47), mitochondria(45), semiconductor(36), quantum(35), melanin(32), UV(31), iron(30), Becker(26), <<methylene blue>>(21), electromagnetic … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … emf-non-thermal.md) — 25 hits  (intake:3, youtube:22)
-- [`<<methylene-blue>>`](<<methylene-blue>>.md) — 19 hits  (intake:2, pubmed:4, youtube:13)
-- [`infrared … 
 - **iron-heme-redox**
   - `_intake/concept-digests/iron-heme-redox.md`
-  -  … References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … This lowers are <<redox>> power … 
+- **<<methylene-blue>>**
+  - `_intake/concept-digests/<<methylene-blue>>.md`
+  -  … 114
+- **Rockefeller** — 113
+- **RAGE** — 107
+- **cytochrome** — 98
+- **NAD** — 95
+- **melatonin** — 91 … 
+- **biophoton-popp**
+  - `_intake/concept-digests/biophoton-popp.md`
+  -  … Cruz … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
   -  … 95
 - **melatonin** — 91
 - **<<methylene blue>>** — 81
 - **exclusion zone** — 77
 - **<<redox>>** — 73
-- **UVA** — 62
-- **<<heme>>** — 58
-- **biophoton … 
-- **exclusion-zone-water**
-  - `_intake/concept-digests/exclusion-zone-water.md`
-  -  … mined/REFERENCES.md`
-  -  … RAGE** — 107
-- **cytochrome** — 98
-- **NAD** — 95
-- **melatonin** — 91
-- **<<methylene blue>>** — 81
-- **<<exclusion>> <<zone>>** — 77
-- **redox** — 73
-- **UVA** — 62
-- **heme** — 58
-- **biophoton … 
+- **UVA** — 62 … 
+- **Per-Video References**
+  - `_intake/kruse-references-mined/PER-VIDEO.md`
+  -  … AGE(79), WHO(63), electron(47), mitochondria(45), semiconductor(36), quantum(35), melanin(32), UV(31), iron(30), Becker(26), <<methylene blue>>(21), electromagnetic … 
 - **AGEs-RAGE-glycation**
   - `_intake/concept-digests/AGEs-RAGE-glycation.md`
-  -  … 114
-- **Rockefeller** — 113
-- **<<RAGE>>** — 107
-- **cytochrome** — 98
-- **NAD** — 95
-- **melatonin** — 91
-- **<<methylene blue>>** — 81 … 
-- **Terms and Conditions - Everychem**
-  - `_intake/everychem/2026-05-01/terms … 
+  -  … 2), <<geomagnetic>>(2), UV(1), <<AGEs>>(1)
+
+
+**Titled … 
+- **<<methylene-blue>>**
+  - `_intake/concept-digests/<<methylene-blue>>.md`
+  -  … Dr Jack Kruse _Anti-<<aging>> scientists wrong! Truth … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … non-thermal`](emf-non-thermal.md) — 30 hits  (intake:30)
+- [`<<methylene-blue>>`](<<methylene-blue>>.md) — 30 hits  (intake:15, pubmed:4, youtube:11)
+- [`infrared … 
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
+  -  … BIOHACKING "TIME" WITH <<METHYLENE BLUE>>**
+  - `_intake/kruse-blog-corpus/articles/biohacking-time-with-<<methylene-blue>>.md`
+  -  … from the sun using electrons and <<protons>>. It … 
+- **melanin-semiconductor**
+  - `_intake/concept-digests/melanin-semiconductor.md`
+  -  … them to share <<electrons>> in many molecular configuration … 
+- **<<methylene-blue>>**
+  - `_intake/concept-digests/<<methylene-blue>>.md`
+  -  … PER-VIDEO.md`
+  -  … AGE(79), WHO(63), <<electron … 
 - **uv-uva-uvb**
   - `_intake/concept-digests/uv-uva-uvb.md`
   -  … 8), circadian(6), ATP(6), quantum(6), <<UVA>>(5), electron(5), <<methylene blue>> … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … 2918
-- **AGE … 
-- **TIME #6:  IS BIOLOGIC TIME LINKED TO DOPAMINE LEVELS?**
-  - `_intake/kruse-blog-corpus/articles/time-6-time-and-dopamine.md`
-  -  … to obesity and other neolithic diseases.  Can we use things like <<methylene blue>> to mito-hack our deficits?  Yep.
-
-![](https://jackkruse.com/wp-content … 
+- **UBIQUITINATION #24: ARE MYOPIA, LIGHT, AND AGING LINKED?**
+  - `_intake/kruse-blog … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … 114
@@ -194,22 +205,8 @@ Source: https://jackkruse.com/biohacking-time-with-<<methylene-blue>>/
 - **UVA** — 62
 - **heme** — 58
 - **biophoton … 
-- **UBIQUITINATION 21:  EPI-ONCO-GENESIS**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-21-epi-onco-genesis.md`
-  -  … An example would be [<<methylene blue>>.](http://www.sciencedirect.com/science/article/pii/S2213231714000500)  The plot thickness as the series continues……………….
+- **TIME #6:  IS BIOLOGIC TIME LINKED TO DOPAMINE LEVELS?**
+  - `_intake/kruse-blog-corpus/articles/time-6-time-and-dopamine.md`
+  -  … to obesity and other neolithic diseases.  Can we use things like <<methylene blue>> to mito-hack our deficits?  Yep.
 
-**CITES:**
-
-Common to … 
-- **Energy and Epigenetics 5: The Quantum Brain**
-  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-5-the-quantum-brain.md`
-  -  … Normally, <<methylene blue>> is excluded from entering the brain by the BBB. When the field was altered, the surface of the brain was turned … 
-- **UBIQUITIN Rx:  IMPLICATIONS FOR MANKIND**
-  - `_intake/kruse-blog-corpus/articles/ubiquitin-rx-implications-for-mankind.md`
-  -  … They also might begin to limit your coffee intake and make you understand why nicotine and <<methylene blue>> might be better bi-hacks than … 
-- **EMF Rx: The Top Ten EMF FAQs**
-  - `_intake/kruse-blog-corpus/articles/emf-rx-the-top-ten-emf-faqs.md`
-  -  … Frey injected <<methylene blue>> dye into the veins of rats. The dye was absorbed in all the tissues **except** for the brain. That is … 
-- **Energy and Epigenetics 8: Quantum Autism**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-8-autism.md`
-  -  … causing the BBB to leak in Allan Frey’s studies with <<methylene blue>>. Fenton reactions all reduce levels of melatonin. Melatonin is the major … 
+![](https://jackkruse.com/wp-content … 

@@ -9,29 +9,28 @@
   - `_intake/concept-digests/mitochondrial-redox.md`
   - # mitochondrial-<<redox>>
 
-**Query**: `<<mitochondria>> AND (<<redox>> OR <<cytochrome>> OR <<proton>>)`  ·  **Hits**: 25
+**Query**: `<<mitochondria>> AND (<<redox>> OR <<cytochrome>> OR <<proton>>)`  ·  **Hits**: 30
 
 
-## archive (1)
+## intake (30)
 
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
-  -  … are 
-unable  to  accept … 
+- **mitochondrial-<<redox>>**
+  - `_intake/concept-digests/mitochondrial-<<redox>>.md`
+  - # mitochondrial-<<<<redox>> … 
 - **ORGANIZATIONAL STRUCTURAL FAILURE #7: FAILURE OF AUTOPHAGY**
   - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-7-autophagy-fail.md`
   -  … <<protons>> they contain and few electrons they process.  This is what makes up their <<redox>> potential.  A poorly functioning <<mitochondria>> has a poor <<redox>> … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … WHO(64), <<mitochondria>>(58), electron(40), deuterium(31), quantum(24), <<redox>>(24), iron(22), mitochondrial(17), melanin(12), EPA(12), AGE(10), <<proton>>(9 … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #7  AUTOPHAGY FAILURE**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-7-autophagy-failure.md`
+  -  … The <<redox>> potential is buried in the ratio of electrons to <<protons>> produced by this <<mitochondria>> and it is transmitted in the CSF. When … 
 - **ORGANIZATIONAL STRUCTURAL FAILURE #6:  THE MITOCHONDRIAL Rx**
   - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-6-mitochondrial-rx.md`
   -  … <<protons>>.  We need more negatively charged electrons to run our <<mitochondria>> and proteins well.  This is our <<redox>> sink or bank account.
 
 When <<mitochondria>> … 
-- **ORGANIZATIONAL STRUCTURAL FAILURE #7  AUTOPHAGY FAILURE**
-  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-7-autophagy-failure.md`
-  -  … The <<redox>> potential is buried in the ratio of electrons to <<protons>> produced by this <<mitochondria>> and it is transmitted in the CSF. When … 
 - **CPC #8:    Brain Cancer**
   - `_intake/kruse-blog-corpus/articles/cpc-8-quantum-brain-cancer.md`
   -  … the pH gradient of the <<proton>> motive force in <<mitochondria>>.  This directly destroys proper <<redox>> signaling in <<mitochondria>>. The charge on the inner mitochondrial … 
@@ -46,12 +45,12 @@ When <<mitochondria>> …
 - **REALITY #14: WARBURG'S PROOF: THE DATA POINTS TO MITOCHONDRIAL GENOME?**
   - `_intake/kruse-blog-corpus/articles/reality-14-warburgs-proof.md`
   -  … of <<cytochrome>> 1 where NAD+  is chronically low because of pseudohypoxia in the <<mitochondria>>.  It does this by controlling the flow of <<protons>> in … 
-- **UBIQUITINATION 25:  UV LIGHT AND POOP PLANTS**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-25-uv-light-and-poop-plants.md`
-  -  … <<mitochondria>>, the eye, gut, skin, and lung surfaces are unable to absorb and assimilate UV light efficiently from NADH/NAD+ <<redox>> couple in <<cytochrome>> … 
 - **TIME #17:  MELATONIN AND INSULIN ARE SOLAR METRONOMES**
   - `_intake/kruse-blog-corpus/articles/time-17-melatonin-insulin-solar-metronomes.md`
   -  … They both carry electrons and <<protons>> in animals. That is the <<redox>> couple in <<cytochrome>> 1 of <<mitochondria>>. These electrons are ferried to oxygen … 
+- **UBIQUITINATION 25:  UV LIGHT AND POOP PLANTS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-25-uv-light-and-poop-plants.md`
+  -  … <<mitochondria>>, the eye, gut, skin, and lung surfaces are unable to absorb and assimilate UV light efficiently from NADH/NAD+ <<redox>> couple in <<cytochrome>> … 
 - **UBIQUITINATION 17: GEARS OF THE "EYE CLOCK"**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-17-gears-of-the-eye-clock.md`
   -  … <<redox>> potential](https://jackkruse.com/<<redox>>-rx/) in cells.  This relationship is linked to amount of free radical leak in your <<mitochondria>> at <<cytochrome>> … 
@@ -82,12 +81,26 @@ Generally, in plants and budding yeast <<mitochondria>> are …
 - **TIME # 3 : CAN A CHART TELL YOU SOMETHING ABOUT TIME?**
   - `_intake/kruse-blog-corpus/articles/time-what-can-a-chart-tell-you.md`
   -  … Roeland van Wijk has shown in his latest book biochemistry transitions away from the oxidative condition.   As the <<mitochondria>> continue the process of <<redox>> … 
-- **TIME #2:  HOW IS TIME BUILT?**
-  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
-  -  … When they do not or cannot, it has a massive effect on how the electrons and <<protons>> in your body flow in our <<mitochondria>> … 
+- **AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … <<redox>>.md`
+  -  … 171
+- **<<<<proton>>>>** — 168
+- **Einstein** — 155
+- **DHA** — 144
+- **magnetic field** — 139
+- **vitamin D** — 129
+- **hemoglobin** — 125
+- **<<AGEs>>** — 114
+- **Rockefeller** — 113
+- **<<RAGE>>** — 107
+- **<<<<cytochrome>> … 
 - **TENSEGRITY 2:  CORTISOL = POWER OF AM SUNLIGHT**
   - `_intake/kruse-blog-corpus/articles/tensegrity-2-cortisolam-sunlight.md`
   -  … <<mitochondria>> with respect to which <<cytochrome>> is being fed in <<mitochondria>>.  If you are a carbophile you are mostly delivering food electrons to <<cytochrome>> … 
+- **TIME #2:  HOW IS TIME BUILT?**
+  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
+  -  … When they do not or cannot, it has a massive effect on how the electrons and <<protons>> in your body flow in our <<mitochondria>> … 
 - **UBIQUITINATION 7:  PALEO's BITTER TRUTH**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-7-paleos-bitter-truth.md`
   -  … vanishes from <<cytochrome>> 1,  there is no signal for mitochondrial biogenesis.  Without mitochondrial biogenesis, you work with old, <<redox>> shifted <<mitochondria>>, hence, they can … 
@@ -97,21 +110,18 @@ Generally, in plants and budding yeast <<mitochondria>> are …
 - **TIME #7: THE PHOTOELECTRIC EFFECT**
   - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
   -  … <<mitochondria>> by nature.  Its matrix is filled with <<protons>> and it feeds them through the ATPase and it shoots them out of a <<cytochrome>> … 
-- **TIME #14: BIOHACKING "TIME" WITH METHYLENE BLUE**
-  - `_intake/kruse-blog-corpus/articles/biohacking-time-with-methylene-blue.md`
-  -  … from the sun using electrons and <<protons>>. It is why all <<cytochromes>> use Iron- sulfur (Fe-S) <<redox>> complexes where quantum mechanisms dominate what … 
-- **ORGANIZATIONAL STRUCTURAL FAILURE #10:  MULTIPLE SCLEROSIS**
-  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-10-multiple-sclerosis.md`
-  -  … This is why they get cognitive losses.  What happens in a <<mitochondria>> when there is too few electrons and too many <<protons>>? <<Cytochrome>> c … 
-- **REALITY 11:  OPTICS IN A NON LINEAR WORLD:  WHEN UV LIGHT CHANGED EARTH**
-  - `_intake/kruse-blog-corpus/articles/reality-11-optics-non-linear-world-uv-light-changed-earth.md`
-  -  … falls at <<cytochrome>> 1.  This changes the free radical repsonse and cause a higher heteroplasmy rate in <<mitochondria>>.  This lowers the <<redox>> potential inside … 
-- **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
-  - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
-  -  … The EZ is DESTROYED by acid pH and <<protons>> are excluded in the intermembrane space of the <<mitochondria>>. This is radically different than what … 
 - **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
   - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
   -  … <<protons>> in his <<mitochondria>> due to a poor <<redox>> potential in and around his <<mitochondria>>. Ben has a different <<redox>> state in his <<mitochondria>> … 
-- **UBIQUITIN Rx:  IMPLICATIONS FOR MANKIND**
-  - `_intake/kruse-blog-corpus/articles/ubiquitin-rx-implications-for-mankind.md`
-  -  … higher positive charges (<<protons>>) in proteins making them less hydrophilic = low intracellular pH = low <<redox>> potential = cell and mitochondrial swelling (<<cytochrome>> c release) = lowered … 
+- **TIME #14: BIOHACKING "TIME" WITH METHYLENE BLUE**
+  - `_intake/kruse-blog-corpus/articles/biohacking-time-with-methylene-blue.md`
+  -  … from the sun using electrons and <<protons>>. It is why all <<cytochromes>> use Iron- sulfur (Fe-S) <<redox>> complexes where quantum mechanisms dominate what … 
+- **REALITY 11:  OPTICS IN A NON LINEAR WORLD:  WHEN UV LIGHT CHANGED EARTH**
+  - `_intake/kruse-blog-corpus/articles/reality-11-optics-non-linear-world-uv-light-changed-earth.md`
+  -  … falls at <<cytochrome>> 1.  This changes the free radical repsonse and cause a higher heteroplasmy rate in <<mitochondria>>.  This lowers the <<redox>> potential inside … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #10:  MULTIPLE SCLEROSIS**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-10-multiple-sclerosis.md`
+  -  … This is why they get cognitive losses.  What happens in a <<mitochondria>> when there is too few electrons and too many <<protons>>? <<Cytochrome>> c … 
+- **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
+  - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
+  -  … The EZ is DESTROYED by acid pH and <<protons>> are excluded in the intermembrane space of the <<mitochondria>>. This is radically different than what … 

@@ -1,0 +1,14 @@
+# Methylene Blue Pretreatment Protects Against Repeated Neonatal Isoflurane Exposure-Induced Brain Injury and Memory Loss.
+
+- **PMID**: 38233687
+- **DOI**: 10.3844/ajptsp.2008.72.79
+- **PMCID**: 2867617 (full-text saved)
+- **Journal**: Molecular neurobiology  ·  **Year**: 2024
+- **Authors**: Chongyun Wu, Qianting Deng, Ling Zhu, Timon Cheng-Yi Liu, Rui Duan, Luodan Yang
+- **MeSH**: Animals, Isoflurane, Animals, Newborn, Memory Disorders, Methylene Blue, Brain Injuries, Rats, Sprague-Dawley, Male, Apoptosis, Neuroprotective Agents
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38233687/
+- **Captured**: 2026-05-09T09:41:52
+
+## Abstract
+
+Perioperative neurocognitive impairment (PND) is a common medical complication in the postoperative period. General anesthesia through volatile anesthetics poses a high risk of POCD. Moreover, the developing brain is especially vulnerable to anesthesia-induced neurotoxicity. Therefore, finding a practical approach to prevent or alleviate neonatal isoflurane (ISO) exposure-induced brain injury and cognitive decline is essential for reducing medical complications following major surgery during the early postnatal period. Using a repeated neonatal ISO exposure-induced PND rat model, we investigated the effects of methylene blue (MB) pretreatment on repeated neonatal isoflurane exposure-induced brain injury and memory loss. Intraperitoneal injection of low-dose MB (1 mg/kg) was conducted three times 24 h before each ISO exposure. The Barnes maze and novel objection test were conducted to assess learning and memory. Immunofluorescence staining, F-Jade C staining, TUNEL staining, and Western blot analysis were performed to determine mitochondrial fragmentation, neuronal injury, degeneration, and apoptosis. Evans blue extravasation assay, total antioxidant capacity assay, MDA assay kit, and related inflammatory assay kits were used to test blood-brain barrier (BBB) disruption, antioxidant capacity, and neuroinflammation. Behavioral tests revealed that MB pretreatment significantly ameliorated ISO exposure-induced cognitive deficits. In addition, MB pretreatment alleviates neuronal injury, apoptosis, and degeneration. Furthermore, the BBB integrity was preserved by MB pretreatment. Additional studies revealed that ISO-induced excessive mitochondrial fragmentation, oxidative stress, and neuroinflammation were significantly attenuated by MB pretreatment in the PND rat model. Our findings suggest that MB pretreatment alleviates ISO exposure-induced brain injury and memory loss for the first time, supporting MB pretreatment as a promising approach to protect the brain against neonatal ISO exposure-induced postoperative cognitive dysfunction.

@@ -7,7 +7,7 @@
 - **Authors**: B E Nordenström
 - **MeSH**: Animals, Bioelectric Energy Sources, Cell Transformation, Neoplastic, Electricity, Electromagnetic Fields, Electrophysiology, Humans, International Cooperation, Medicine, East Asian Traditional, Neoplasms
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/7531025/
-- **Captured**: 2026-05-09T09:22:07
+- **Captured**: 2026-05-09T09:41:41
 
 ## Abstract
 

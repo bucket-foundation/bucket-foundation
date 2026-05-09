@@ -1,0 +1,14 @@
+# Coincident nonlinear changes in the endocrine and immune systems due to low-frequency magnetic fields.
+
+- **PMID**: 11549888
+- **DOI**: 10.1159/000049009
+- **PMCID**:  
+- **Journal**: Neuroimmunomodulation  ·  **Year**: 2001
+- **Authors**: A A Marino, R M Wolcott, R Chervenak, F Jourd'heuil, E Nilsen, C Frilot, S B Pruett
+- **MeSH**: Animals, Bone Marrow Cells, Corticosterone, Dose-Response Relationship, Radiation, Electromagnetic Fields, Endocrine System, Immune System, Killer Cells, Natural, Male, Mice
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11549888/
+- **Captured**: 2026-05-09T09:41:24
+
+## Abstract
+
+The characteristic biological effects of low-frequency electromagnetic fields (EMFs) appear to be functional changes in the central nervous, endocrine and immune systems. For unapparent reasons, however, the results of similar studies have often differed markedly from one another. We recognized that it had generally been assumed, in the studies, that EMF effects would exhibit a dose-effect relationship, which is a basic property of linear systems. Prompted by recent developments in the theory on nonlinear systems, we hypothesized that there was a nonlinear relationship between EMFs and the effects they produced in the endocrine and immune systems. We developed a novel analytical method that could be used to distinguish between linear and nonlinear effects, and we employed it to examine the effect of EMFs on the endocrine and immune systems. Mice exposed to 5 G, 60 Hz for 1-175 days in 7 independent experiments reliably exhibited changes in serum corticosterone and lymphoid phenotype when the data were analyzed while allowing that the field exposure and the resulting effects could be nonlinearly related. When the analysis was restricted to linear relationships, no effects due to the field were found. The results indicated that transduction of EMFs resulted in changes in both the endocrine and immune systems, and that the laws governing the changes in each system were not the type that govern conventional dose-effect relationships. Evidence based on mathematical modeling was found suggesting that the coincident changes could have been causally related.

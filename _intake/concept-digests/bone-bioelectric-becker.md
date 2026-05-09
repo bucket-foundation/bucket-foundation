@@ -106,13 +106,12 @@ project on <<bone>> <<regeneration>> I …
   - `_intake/concept-digests/bone-bioelectric-becker.md`
   - # <<bone>>-<<bioelectric>>-<<becker>>
 
-**Query**: `<<Becker>> AND (<<bone>> OR <<regeneration>> OR <<bioelectric>>)`  ·  **Hits**: 25
+**Query**: `<<Becker>> AND (<<bone>> OR <<regeneration>> OR <<bioelectric>>)`  ·  **Hits**: 30
 
 
-## youtube (22)
+## youtube (14)
 
-- **Interview with Dr. Jack Kruse (04-08-2025)**
-  - `yt … 
+- **Cancer Beyond Metabolism: <<Bioelectricity>>, Mitochondria & Quantum Biology | Dr. Jack … 
 - **Andrew Marino — canon-target intake**
   - `_intake/marino-andrew/README.md`
   -  … <<Becker>> on the
@@ -120,9 +119,15 @@ Syracuse VA <<bioelectricity>> research (1960s–1980s). Co-authored ~40 papers
 with <<Becker>> on <<bone>> <<regeneration>>, EMF biology, electric currents in tissue … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … circadian-scn.md) — 25 hits  (intake:4, youtube:21)
-- [`<<bone>>-<<bioelectric>>-<<becker>>`](<<bone>>-<<bioelectric>>-<<becker>>.md) — 25 hits  (intake:3, youtube:22)
+  -  … circadian-scn`](circadian-scn.md) — 30 hits  (intake:30)
+- [`<<bone>>-<<bioelectric>>-<<becker>>`](<<bone>>-<<bioelectric>>-<<becker>>.md) — 30 hits  (intake:16, youtube:14)
 - [`association-induction … 
+- **emf-non-thermal**
+  - `_intake/concept-digests/emf-non-thermal.md`
+  -  … resonance above the normal frequencies found on … 
+- **<<bone>>-<<bioelectric>>-<<becker>>**
+  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
+  -  … The <<Electromagnetic>> Blueprint of Life - Jack Kruse … 
 - **Robert O. Becker — canon-target intake**
   - `_intake/becker-robert-o/README.md`
   -  … search "body electric <<becker>>"
@@ -136,14 +141,6 @@ with <<Becker>> on <<bone>> <<regeneration>>, EMF biology, electric currents in 
 | Slug | Source | Notes |
 |---|---|---|
 | `<<becker>>-body-electric-1985` | <<Becker>> & Selden — *The Body Electric: Electromagnetism and the … 
-- **photoelectric-biology**
-  - `_intake/concept-digests/photoelectric-biology.md`
-  -  … MAPPING-QUEUE.md`
-  -  … <<Becker>> — light, water, plasma, <<bioelectricity>> (canon, branch 05-biophysics)
-
-| Slug | Source | Notes |
-|---|---|---|
-| `<<becker>>-<<body>>-electric-1985` | <<Becker>> & Selden — *The <<Body>> Electric … 
 - **Energy and Epigenetics 9: Quantum Sleep**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
   -  … Tissue <<regeneration>> and <<bone>> <<regeneration>> is what made Dr. <<Becker>> famous in the next 20 years. This is how I learned about his work … 
@@ -169,16 +166,18 @@ with <<Becker>> on <<bone>> <<regeneration>>, EMF biology, electric currents in 
 - **UBIQUITINATION 8:  THE MAMMALIAN BATTERY**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-8-the-mammalian-battery.md`
   -  … <<Becker>> found that human <<bone>> a direct photoelectric effect that was very sensitive to the current’s direction from nerves in periosteum. The same … 
-- **EMF 5: What are the Biologic Effects of EMF?**
-  - `_intake/kruse-blog-corpus/articles/emf-5-what-are-the-biologic-effects-of-emf.md`
-  -  … it to <<regenerate>> in all kingdoms.  We have experimental proof of it already in plants and all animals thanks to <<Becker>> and others.  This … 
-- **emf-non-thermal**
-  - `_intake/concept-digests/emf-non-thermal.md`
-  -  … Co-authored ~40 papers
-with <<Becker>> on <<bone>> <<regeneration>>, <<EMF>> biology, electric currents in tissue.
-Continued the work post-<<Becker>> as professor at LSU … 
+- **association-induction-ling**
+  - `_intake/concept-digests/association-induction-ling.md`
+  -  … ATP than a <<cell>> … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … <<bioelectric>>-<<becker>>.md) — 25 hits  (intake:3, youtube:22)
+- [`<<association>>-<<induction>>-<<ling>>`](<<association … 
 - **Quantum Biology 7: Sulfated Vitamin D3**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
   -  … <<Becker>> and orthopedic surgeon who worked out how human <<bone>> <<regenerates>>.
 
 Many physicians have confided in me that just do not believe that Vitamin … 
+- **EMF 5: What are the Biologic Effects of EMF?**
+  - `_intake/kruse-blog-corpus/articles/emf-5-what-are-the-biologic-effects-of-emf.md`
+  -  … it to <<regenerate>> in all kingdoms.  We have experimental proof of it already in plants and all animals thanks to <<Becker>> and others.  This … 

@@ -1,0 +1,14 @@
+# A Narrative Review on Photobiomodulation-Guided Immunomodulation: Reprogramming Tumor-Associated Macrophages.
+
+- **PMID**: 41574502
+- **DOI**: 10.1177/25785478251406479
+- **PMCID**:  
+- **Journal**: Photobiomodulation, photomedicine, and laser surgery  ·  **Year**: 2026
+- **Authors**: Dilpreet Singh
+- **MeSH**: Low-Level Light Therapy, Humans, Tumor Microenvironment, Tumor-Associated Macrophages, Immunomodulation, Neoplasms, Animals
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41574502/
+- **Captured**: 2026-05-09T09:41:59
+
+## Abstract
+
+Tumor-associated macrophages (TAMs) constitute a major component of the tumor microenvironment (TME) and are frequently skewed toward an M2-like phenotype that promotes immune suppression, angiogenesis, and tumor progression. Reprogramming these macrophages into an M1-like, pro-inflammatory state has emerged as a promising strategy to reinvigorate antitumor immunity and enhance the efficacy of immunotherapeutic interventions. Photobiomodulation (PBM), a non-invasive therapeutic modality utilizing low-intensity red to near-infrared light (600-1100 nm), has shown growing potential in immunomodulation through its effects on mitochondrial bioenergetics, redox signaling, and transcriptional regulation. This review presents a comprehensive analysis of the molecular mechanisms by which PBM influences macrophage polarization, including activation of cytochrome c oxidase, transient increases in reactive oxygen species (ROS) and adenosine triphosphate (ATP), and downstream activation of nuclear factor κB, signal transducer and activator of transcription 1, and hypoxia-inducible factor-1alpha pathways. Pre-clinical evidence demonstrates that PBM can effectively reprogram M2-polarized TAMs toward an M1 phenotype, characterized by increased expression of inducible nitric oxide synthase and interleukin (IL)-12 and reduced levels of CD206 and IL-10. When combined with immune checkpoint inhibitors, PBM further enhances CD8 Collectively, PBM offers a spatiotemporally controlled, drug-free approach to modulate tumor immunity by reeducating TAMs and reshaping the TME. Its integration with existing immunotherapies and nanomedicine holds significant promise for next-generation precision oncology strategies.

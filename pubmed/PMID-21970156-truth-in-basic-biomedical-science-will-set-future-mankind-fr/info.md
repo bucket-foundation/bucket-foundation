@@ -7,7 +7,7 @@
 - **Authors**: Gilbert N Ling
 - **MeSH**: Biomedical Research, Cell Membrane, Cell Membrane Permeability, Cell Size, Cell Survival, Collodion, Glass, Lipid Bilayers, Magnesium, Membrane Potentials
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/21970156/
-- **Captured**: 2026-05-09T09:22:05
+- **Captured**: 2026-05-09T09:41:32
 
 ## Abstract
 

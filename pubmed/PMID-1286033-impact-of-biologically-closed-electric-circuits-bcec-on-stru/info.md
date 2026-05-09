@@ -7,7 +7,7 @@
 - **Authors**: B E Nordenström
 - **MeSH**: Animals, Blood Vessels, Electromagnetic Fields, Electrophysiology, Humans, Neoplasms
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/1286033/
-- **Captured**: 2026-05-09T09:22:08
+- **Captured**: 2026-05-09T09:41:42
 
 ## Abstract
 

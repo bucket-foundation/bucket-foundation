@@ -1,0 +1,14 @@
+# A quantitative theory of solute distribution in cell water according to molecular size.
+
+- **PMID**: 8115492
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Physiological chemistry and physics and medical NMR  ·  **Year**: 1993
+- **Authors**: G N Ling
+- **MeSH**: Animals, Body Water, Cattle, Cell Physiological Phenomena, Extracellular Space, Hemoglobins, Mathematics, Models, Biological, Polyethylene Glycols, Protein Denaturation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/8115492/
+- **Captured**: 2026-05-09T09:41:35
+
+## Abstract
+
+A quantitative theory (based on polarized multilayer (PM) theory of cell water, a subsidiary of the association-induction (AI) hypothesis) for the distribution in cell water of solutes of different molecular size is presented. From this theory, three predictions are derived: (1) linear distribution: when the equilibrium concentration of a solute in cell or model water is plotted against its concentration in the external solution, a straight line is obtained, with a slope equal to the equilibrium distribution coefficient or q-value of that solute in the cell water.(2): the size rule; the q-value is, as a rule, size-dependent: the larger the solute, the lower the q-value.(3): solutes with exceptionally high q-value may act as cryoprotectants. Earlier published data on the distribution of various nonelectrolytes in solutions of 15% poly(ethylene oxide)(PEO), 20% NaOH-denatured hemoglobin and 18% gelatin gel agree in general with the predictions of the theory. They demonstrate linear distribution and obey the size rule. The q-value vs. molecular volume plots can be fitted by theoretical curves after correction had been made for a minor fraction of free water in the system. The new theory has made it possible for the first time to estimate quantitatively the intensities of (bulk-phase) water polarization. In the 20% solution of NaOH-denatured bovine hemoglobin, 18% gelatin gel, 15% PEO solution, and 39% native bovine hemoglobin solution, the intensities of polarization of the bulk-phase water (over and above the vastly greater water-to-water interaction in normal liquid water) are respectively estimated at 16.5, 14.9, 11.7, and 3.8 cal per mole of water. The intensity of water polarization is higher in sulfonate ion exchange resin in the Li+ form (55.2 cal/mole) than in the Rb+ form (26.6 cal/mole). The theory has also made it possible to demonstrate that from 72% to 75% of the water in gelatin gel and in solution of NaOH-denatured hemoglobin, and of the PEO are polarized and are endowed with solvency properties quite different from normal liquid water. It has also been demonstrated that each polar site in the model system polarizes all water molecules in the first and second layer and at least some water molecules in the third layer of water surrounding each polar site. The multiplicity in the number of layers of water molecules polarized is thus established in these model systems.

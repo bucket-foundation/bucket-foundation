@@ -1,0 +1,14 @@
+# Consciousness in the universe: a review of the 'Orch OR' theory.
+
+- **PMID**: 24070914
+- **DOI**: 10.1016/j.plrev.2013.08.002
+- **PMCID**:  
+- **Journal**: Physics of life reviews  ·  **Year**: 2014
+- **Authors**: Stuart Hameroff, Roger Penrose
+- **MeSH**: Animals, Brain, Consciousness, Humans, Neurons, Quantum Theory
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24070914/
+- **Captured**: 2026-05-09T09:42:09
+
+## Abstract
+
+The nature of consciousness, the mechanism by which it occurs in the brain, and its ultimate place in the universe are unknown. We proposed in the mid 1990's that consciousness depends on biologically 'orchestrated' coherent quantum processes in collections of microtubules within brain neurons, that these quantum processes correlate with, and regulate, neuronal synaptic and membrane activity, and that the continuous Schrödinger evolution of each such process terminates in accordance with the specific Diósi-Penrose (DP) scheme of 'objective reduction' ('OR') of the quantum state. This orchestrated OR activity ('Orch OR') is taken to result in moments of conscious awareness and/or choice. The DP form of OR is related to the fundamentals of quantum mechanics and space-time geometry, so Orch OR suggests that there is a connection between the brain's biomolecular processes and the basic structure of the universe. Here we review Orch OR in light of criticisms and developments in quantum biology, neuroscience, physics and cosmology. We also introduce a novel suggestion of 'beat frequencies' of faster microtubule vibrations as a possible source of the observed electro-encephalographic ('EEG') correlates of consciousness. We conclude that consciousness plays an intrinsic role in the universe.

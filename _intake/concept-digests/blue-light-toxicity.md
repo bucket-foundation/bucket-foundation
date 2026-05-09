@@ -19,10 +19,10 @@ um …
   - `_intake/concept-digests/blue-light-toxicity.md`
   - # <<blue-light>>-toxicity
 
-**Query**: `"<<blue light>>"`  ·  **Hits**: 25
+**Query**: `"<<blue light>>"`  ·  **Hits**: 30
 
 
-## youtube (23)
+## youtube (1)
 
 - **Dr. Jack Kruse, Andrew Huberman, Rick Rubin Podcast - FULL BREAKDOWN (Part 1)**
   - `yt/KV … 
@@ -81,9 +81,6 @@ Source: https://jackkruse.com/cpc-47-diabetes-and-<<blue-light>>-are-bedfellows/
 ---
 
 ## CPC #47: Diabetes and <<Blue Light>> … 
-- **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
-  - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
-  -  … Further evidence underpinning a link between <<blue light>> and UM comes from neonatal <<blue light>> therapy studies. <<Blue light>> therapy is an essential tool … 
 - **HYPOXIA #15:  BLUE LIGHT CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS**
   - `_intake/kruse-blog-corpus/articles/hypoxia-15-blue-light-causes-irreversible-hypoxia-in-all-cells.md`
   -  … https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/
@@ -94,6 +91,9 @@ Source: https://jackkruse.com/cpc-47-diabetes-and-<<blue-light>>-are-bedfellows/
 
 
 Several … 
+- **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
+  - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
+  -  … Further evidence underpinning a link between <<blue light>> and UM comes from neonatal <<blue light>> therapy studies. <<Blue light>> therapy is an essential tool … 
 - **TIME #1:  IS OUR RETINA OUR METRONOME?**
   - `_intake/kruse-blog-corpus/articles/time-1-is-our-retina-our-metronome.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
@@ -132,9 +132,6 @@ Several …
 - **UBIQUITINATION 21:  EPI-ONCO-GENESIS**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-21-epi-onco-genesis.md`
   -  … In winter we have on average 13 % <<blue light>> in sun light. In summer, we have up to 26% <<blue light>> present. This varies … 
-- **UBIQUITINATION 10:  BIO-HACKING ROS AND RNS**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-10-bio-hacking-ros-and-rns.md`
-  -  … So why does life use <<blue light>> for this purpose, specifically? Simple, it is because <<blue light>> bends most under the force of gravity … 
 - **How the Eye Controls Metabolic Rate**
   - `_intake/kruse-blog-corpus/articles/how-the-eye-controls-metabolic-rate.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
@@ -148,6 +145,9 @@ Several …
 
 
 						[](https://jackkruse.com … 
+- **UBIQUITINATION 10:  BIO-HACKING ROS AND RNS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-10-bio-hacking-ros-and-rns.md`
+  -  … So why does life use <<blue light>> for this purpose, specifically? Simple, it is because <<blue light>> bends most under the force of gravity … 
 - **UBIQUITINATION 25:  UV LIGHT AND POOP PLANTS**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-25-uv-light-and-poop-plants.md`
   -  … It turns out that the <<blue light>> emitter, NAD+ is adjacent to FMH, the <<blue light>> absorber, in cytochrome 1 and 2 of the … 
@@ -169,9 +169,6 @@ Several …
 
 
 						[](https://jackkruse.com … 
-- **REALITY # 2:  CAN LIFE SKIRT THE UNCERTAINTY PRINCIPLE AND THE SECOND LAW OF THERMODYNAMICS?**
-  - `_intake/kruse-blog-corpus/articles/reality-2-can-life-skirt-uncertainty-principle-second-law-thermodynamics.md`
-  -  … Since <<blue light>> has more power than red light, it scatters most and this is why the sky is blue on Earth. <<Blue light>> … 
 - **Circular Thermodynamics By Light**
   - `_intake/kruse-blog-corpus/articles/circular-thermodynamics-by-light.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
@@ -198,26 +195,11 @@ Several …
 
 
 						[](https://jackkruse.com … 
+- **REALITY # 2:  CAN LIFE SKIRT THE UNCERTAINTY PRINCIPLE AND THE SECOND LAW OF THERMODYNAMICS?**
+  - `_intake/kruse-blog-corpus/articles/reality-2-can-life-skirt-uncertainty-principle-second-law-thermodynamics.md`
+  -  … Since <<blue light>> has more power than red light, it scatters most and this is why the sky is blue on Earth. <<Blue light>> … 
 - **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
   - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
-  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
-
-
-
-
-
-
-
-
-
-						[](https://jackkruse.com … 
-- **emf-non-thermal**
-  - `_intake/concept-digests/emf-non-thermal.md`
-  -  … What's the other thing that
-happens in the mid portion of the … 
-- **Red Light, <<Blue Light>>, Brain Damage: Dr. Jack Kruse Explains WTF … 
-- **TIME #4: HOW CAN MAN HELP OUR EYE CLOCK IN A TECH WORLD?**
-  - `_intake/kruse-blog-corpus/articles/how-man-helps-the-eye-clock.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
 
 
@@ -242,6 +224,42 @@ happens in the mid portion of the …
 
 
 						[](https://jackkruse.com … 
-- **ORGANIZATIONAL STRUCTURAL FAILURE #7  AUTOPHAGY FAILURE**
-  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-7-autophagy-failure.md`
-  -  … Excessive <<blue light>> is a form of non native EMF. Chronic <<blue light>> exposure from modern technology deplete you of DHA even if you … 
+- **LISTEN NOW : Podcast Interview with Extreme Health Radio**
+  - `_intake/kruse-blog-corpus/articles/listen-now-podcast-interview-extreme-health-radio.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **QT #22: Leptin Resistance is Melanopsin Dysfunction**
+  - `_intake/kruse-blog-corpus/articles/qt-22-leptin-resistance-is-melanopsin-dysfunction.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **The Best Podcast I've Ever Done to Date**
+  - `_intake/kruse-blog-corpus/articles/the-best-podcast-ive-ever-done-to-date.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 

@@ -3,11 +3,11 @@
 **Query**: `chemiosmotic OR Mitchell`  ·  **Hits**: 30
 
 
-## pubmed (5)
+## pubmed (12)
 
 - **Chemiosmotic coupling in oxidative and photosynthetic phosphorylation. 1966.**
   - `pubmed/PMID-22082452-chemiosmotic-coupling-in-oxidative-and-photosynthetic-phosph/info.md`
-  -  … 2026-05-09T09:21:58
+  -  … 2026-05-09T09:41:11
 
 ## Abstract
 
@@ -16,6 +16,58 @@
   - `pubmed/PMID-2410291-chemiosmotic-coupling-in-cytochrome-oxidase-possible-protonm/info.md`
   -  … P <<Mitchell>>, R <<Mitchell>>, A J Moody, I C West, H Baum, J M Wrigglesworth
 - **MeSH**: Biological Transport, Chemical Phenomena, Chemistry, Copper, Electron Transport … 
+- **The Ninth Sir Hans Krebs Lecture. Compartmentation and communication in living systems. Ligand conduction: a general catalytic principle in chemical, osmotic and chemiosmotic reaction systems.**
+  - `pubmed/PMID-378655-the-ninth-sir-hans-krebs-lecture-compartmentation-and-commun/info.md`
+  -  … a general catalytic principle in chemical, osmotic and <<chemiosmotic>> reaction systems.
+
+- **PMID**: 378655
+- **DOI**: 10.1111/j.1432-1033.1979.tb12934.x
+- **PMCID**:  
+- **Journal … 
+- **Vectorial chemiosmotic processes.**
+  - `pubmed/PMID-20043-vectorial-chemiosmotic-processes/info.md`
+  - # Vectorial <<chemiosmotic>> processes.
+
+- **PMID**: 20043
+- **DOI**: 10.1146/annurev.bi.46.070177.005024
+- **PMCID**:  
+- **Journal**: Annual review of biochemistry  ·  **Year**: 1977
+- **Authors**: P <<Mitchell>> … 
+- **Aspects of the chemiosmotic hypothesis.**
+  - `pubmed/PMID-4244889-aspects-of-the-chemiosmotic-hypothesis/info.md`
+  -  … the <<chemiosmotic>> hypothesis.
+
+- **PMID**: 4244889
+- **DOI**: 10.1042/bj1160005p
+- **PMCID**: PMC1185429 (full-text saved)
+- **Journal**: The Biochemical journal  ·  **Year**: 1970
+- **Authors**: P <<Mitchell>>
+- **MeSH … 
+- **Chemiosmotic coupling in energy transduction: a logical development of biochemical knowledge.**
+  - `pubmed/PMID-4263930-chemiosmotic-coupling-in-energy-transduction-a-logical-devel/info.md`
+  -  … P <<Mitchell>>
+- **MeSH**: Adenosine Triphosphatases, Biological Transport, Electron Transport, Energy Transfer, Membrane Potentials, Models, Biological, Osmosis, Oxidative Phosphorylation, Photophosphorylation
+- **URL**: https://pubmed.ncbi.nlm … 
+- **Keilin's respiratory chain concept and its chemiosmotic consequences.**
+  - `pubmed/PMID-388618-keilin-s-respiratory-chain-concept-and-its-chemiosmotic-cons/info.md`
+  -  … its <<chemiosmotic>> consequences.
+
+- **PMID**: 388618
+- **DOI**: 10.1126/science.388618
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 1979
+- **Authors**: P <<Mitchell>>
+- **MeSH**: Bacterial … 
+- **Vectorial chemistry and the molecular mechanics of chemiosmotic coupling: power transmission by proticity.**
+  - `pubmed/PMID-137147-vectorial-chemistry-and-the-molecular-mechanics-of-chemiosmo/info.md`
+  -  … of <<chemiosmotic>> coupling: power transmission by proticity.
+
+- **PMID**: 137147
+- **DOI**: 10.1042/bst0040399
+- **PMCID**:  
+- **Journal**: Biochemical Society transactions  ·  **Year**: 1976
+- **Authors**: P <<Mitchell>>
+- **MeSH … 
 - **Strategy of research on the chemiosmotic mechanism of cytochrome oxidase.**
   - `pubmed/PMID-2834228-strategy-of-research-on-the-chemiosmotic-mechanism-of-cytoch/info.md`
   -  … <<chemiosmotic>> mechanism of cytochrome oxidase.
@@ -38,8 +90,13 @@
   -  … Peter D <<Mitchell>>
 - **MeSH**: Biochemistry, Biological Transport, Biological Transport, Active, Catalysis, Chemistry, Diffusion, Electron Transport, Genetic Vectors, Ligands, Light
 - **URL**: https://pubmed.ncbi.nlm … 
+- **Acid-base titration across the membrane system of rat-liver mitochondria. Catalysis by uncouplers.**
+  - `pubmed/PMID-6048801-acid-base-titration-across-the-membrane-system-of-rat-liver/info.md`
+  -  … P <<Mitchell>>, J Moyle
+- **MeSH**: Animals, Dinitrophenols, Hydrogen-Ion Concentration, Hypoxia, In Vitro Techniques, Kinetics, Liver, Male, Membrane Potentials, Mitochondria
+- **URL**: https://pubmed.ncbi … 
 
-## youtube (3)
+## youtube (2)
 
 - **Who the heck is Gilbert Ling?**
   - `yt/qHnE8yfuT_E-who-the-heck-is-gilbert-ling/transcript.txt`
@@ -53,27 +110,20 @@ to award a Nobel Prize for an as yet …
 who's going to be John <<Mitchell>> and um
 Ira tells Lansky look the the Israel
 guys set up … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … that I can't utilizing Peter
-<<Mitchell>>'s idea the only thing I can
-extract from Peter <<Mitchell>>'s idea it
-explains the inner … 
 
-## intake (22)
+## intake (16)
 
 - **chemiosmotic-mitchell**
   - `_intake/concept-digests/chemiosmotic-mitchell.md`
   - # <<chemiosmotic>>-<<mitchell>>
 
-**Query**: `<<chemiosmotic>> OR <<Mitchell>>`  ·  **Hits**: 20
+**Query**: `<<chemiosmotic>> OR <<Mitchell>>`  ·  **Hits**: 30
 
 
-## archive (3)
+## pubmed (5)
 
-- **Notes on the Paranormal**
-  - `archive/ExtrasensoryPerceptionResearchFinding/Extrasensory_Perception_Research_Finding_djvu.txt`
-  -  … The most … 
+- **<<Chemiosmotic>> coupling in oxidative and photosynthetic phosphorylation. 1966.**
+  - `pubmed/PMID-22082452-<<chemiosmotic>>-coupling-in … 
 - **Peter Mitchell — canon-target intake**
   - `_intake/mitchell-peter/README.md`
   -  … <<Mitchell>> P <<chemiosmotic>>
@@ -88,8 +138,10 @@ institutional archive + Nobel materials
 2. Pull primary materials … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … 25 hits  (archive:1, intake:2, pubmed:2, youtube:20)
-- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 20 hits  (archive:3, intake:4, pubmed:5, youtube … 
+  -  … 13)
+- [`mitochondrial-redox`](mitochondrial-redox.md) — 30 hits  (intake:30)
+- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 30 hits  (intake:22, pubmed:5, youtube:3)
+- [`photoelectric … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … 1962), Association-Induction Hypothesis | 05-biophysics | 5 |
@@ -103,9 +155,6 @@ institutional archive + Nobel materials
 - **Energy and Epigenetics 12:  Is Your Battery Charged?**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
   -  … Na/K ATPase that was laid on top of Peter <<Mitchell>>’s flawed <<chemiosmotic>> model.  **The proposed ATPase energy calculations broke the second law … 
-- **EMF 7: Quantum Prometheus**
-  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
-  -  … It is also is why I have believed Peter <<Mitchell>> is dead wrong too now, and he should have never won a Nobel Prize … 
 - **Mitchell chemiosmosis / ETC / proton gradient — concept canon-target intake**
   - `_intake/concept-mitochondrial-chemiosmosis/README.md`
   - # <<Mitchell>> chemiosmosis / ETC / proton gradient — concept canon-target intake
@@ -114,6 +163,9 @@ institutional archive + Nobel materials
 - **Canon branch**: 05-biophysics
 - **Status**: queued (not yet researched)
 - **Initiated**: 2026 … 
+- **EMF 7: Quantum Prometheus**
+  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
+  -  … It is also is why I have believed Peter <<Mitchell>> is dead wrong too now, and he should have never won a Nobel Prize … 
 - **Quantum Biology #1: The Zero Entropy System**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
   -  … <<Mitchell>> theories just could not account for these reactions that we know happened in life.  I really struggled with this until I realized how … 
@@ -135,9 +187,6 @@ I heard you mention on …
 - **REALITY #15:  ANIMAL PHOTOSYNTHESIS**
   - `_intake/kruse-blog-corpus/articles/reality-15-animal-photosynthesis.md`
   -  … We use hydrated proteins made from aromatic amino acids to separate water to make energy in human cells.  The old viewpoint is myopic (<<Mitchell>> … 
-- **EMF 6: Quantum Time**
-  - `_intake/kruse-blog-corpus/articles/emf-6-quantum-time.md`
-  -  … filed theory.  To see how blind biology really is, they gave <<Mitchell>> a Noble prize for this in 1978.  Because of this alone, I … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … 9
@@ -149,28 +198,9 @@ I heard you mention on …
 - North Carolina — 9
 - Albert Einstein — 8
 - Peter Adia … 
-- **EMF 8: Quantum Bone**
-  - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
-  -  … This should have stopped all biochemists dead in their tracks when he did but all them were married to <<Mitchell>>’s thesis.  Semiconduction only … 
-- **REALITY #7:   BLOOD AND CHLOROPHYLL TYPES AND FOOD**
-  - `_intake/kruse-blog-corpus/articles/reality-7-blood-chlorophyll-types-food.md`
-  -  … H+ translocation at the cytochromes generates the <<chemiosmotic>> gradient necessary for ADP phosphorylation. This H+ version of hydrogen has some pretty special abilities when … 
+- **EMF 6: Quantum Time**
+  - `_intake/kruse-blog-corpus/articles/emf-6-quantum-time.md`
+  -  … filed theory.  To see how blind biology really is, they gave <<Mitchell>> a Noble prize for this in 1978.  Because of this alone, I … 
 - **WHAT POWERS LIFE AND DEATH**
   - `_intake/kruse-blog-corpus/articles/what-powers-life-and-death.md`
   -  … Peter <<Mitchell>> was initially ridiculed for his theories on bio-energentics of mitochondria. He showed how effective this evolutionary maneuver was. He showed that … 
-- **UBIQUITINATION 11: YOUR QUANTIZED ECOSYSTEM**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-11-your-quantized-ecosystem.md`
-  -  … Gilbert Ling’s brilliance, proved <<Mitchell>>’s theory did,  and modern biology continues to ignore Ling’s work to our detriment.
-
-This is why … 
-- **Energy and Epigenetics 6: Quantum Cell Theory, Life as a Collective Phenomena**
-  - `_intake/kruse-blog-corpus/articles/ee-6-quantum-cell-theory-life-collective-phenomena.md`
-  -  … Peter <<Mitchell>> was initially ridiculed for his theories on bio-energentics of mitochondria. He showed how effective this evolutionary maneuver was. He showed that … 
-- **UBIQUITINATION 22: HOW DO PLANTS CONTROL THEIR GROWTH PROCESS?**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-22-how-do-plants-control-their-growth-process.md`
-  -  … oe=564CBDBB)
-
-This is why Gilbert Ling has argued with Peter <<Mitchell>> for 50 years. He was right, but not with enough scientific precision … 
-- **UBIQUITINATION 23: LOOKING BACK FOR A QUANTUM LEAP FORWARD**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-23-looking-back-for-a-quantum-leap-forward.md`
-  -  … a lot of free protons outside the matrix.  This sets up <<chemiosmotic>> gradient between the two areas of a cell.  This can be used … 

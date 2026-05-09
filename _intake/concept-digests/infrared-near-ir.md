@@ -11,7 +11,7 @@
 this  spectral  region  which  will  have  the  greatest  direct  interest  for 
 the  biologists.  It … 
 
-## pubmed (4)
+## pubmed (9)
 
 - **Recent near-infrared approaches to cytochrome-c-oxidase monitoring: a systematic review of instruments and algorithms.**
   - `pubmed/PMID-42013903-recent-near-infrared-approaches-to-cytochrome-c-oxidase-moni/info.md`
@@ -26,14 +26,29 @@ the  biologists.  It …
 - **PMID**: 41994801
 - **DOI**: 10.7759/cureus.105322
 - **PMCID**: PMC10917684 (full-text … 
+- **Full-Spectrum phototherapy in hair loss management: a systematic review of wavelength-dependent mechanisms, clinical efficacy, and future directions.**
+  - `pubmed/PMID-40968340-full-spectrum-phototherapy-in-hair-loss-management-a-systema/info.md`
+  -  … Short-wavelength <<near-infrared>> light enhances hair follicle angiogenesis and metabolic activity by penetrating deep tissues. Long-wavelength <<near-infrared>> and mid-<<infrared>> light … 
+- **Transcranial Photobiomodulation Modulates Oxidative Stress Biomarkers and Complex IV Activity in Anhedonic-Like Behavior.**
+  - `pubmed/PMID-41721935-transcranial-photobiomodulation-modulates-oxidative-stress-b/info.md`
+  -  … Photobiomodulation (PBM), particularly transcranial PBM (tPBM) using red to <<near-infrared>> light, has emerged as a promising non-invasive intervention. However, optimal parameters and … 
 - **Multimodal NIRS-MRI reveals cortical hypoperfusion, hypoxia, and mitochondrial changes in a mouse model of autoimmune inflammatory diseases.**
   - `pubmed/PMID-41938660-multimodal-nirs-mri-reveals-cortical-hypoperfusion-hypoxia-a/info.md`
   -  … In this study, we apply a multimodal imaging approach-combining <<near-infrared>> spectroscopy (NIRS) with 9.4T MRI-to investigate the cortical gray matter … 
 - **What to Look for in Red Light Therapy: A Product Guide Backed by Science.**
   - `pubmed/PMID-42005232-what-to-look-for-in-red-light-therapy-a-product-guide-backed/info.md`
   -  … modality for skin rejuvenation that utilizes specific wavelengths of red and <<near-infrared>> (NIR) light to enhance mitochondrial function and promote cellular repair. The … 
+- **Human high intelligence is involved in spectral redshift of biophotonic activities in the brain.**
+  - `pubmed/PMID-27432962-human-high-intelligence-is-involved-in-spectral-redshift-of/info.md`
+  -  … mouse, chicken, pig, and monkey) to humans, even up to a <<near-infrared>> wavelength (∼865 nm) in the human brain. This brain property may … 
+- **A Narrative Review on Photobiomodulation-Guided Immunomodulation: Reprogramming Tumor-Associated Macrophages.**
+  - `pubmed/PMID-41574502-a-narrative-review-on-photobiomodulation-guided-immunomodula/info.md`
+  -  … Photobiomodulation (PBM), a non-invasive therapeutic modality utilizing low-intensity red to <<near-infrared>> light (600-1100 nm), has shown growing potential in immunomodulation … 
+- **Photobiomodulation in stroke prevention and treatment: neuroprotective mechanisms and therapeutic challenges.**
+  - `pubmed/PMID-41067675-photobiomodulation-in-stroke-prevention-and-treatment-neurop/info.md`
+  -  … It also highlights the therapeutic effects of red and <<near-infrared>> light, while considering water as a crucial chromophore that may enhance treatment efficacy … 
 
-## youtube (16)
+## youtube (12)
 
 - **Dr. Jack Kruse on How Light Controls Metabolism & Diabetes | Blue Light and Brain Damage | Bitcoin**
   - `yt/tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue/transcript.txt`
@@ -67,12 +82,6 @@ everybody should have had done
 instead of an intubation tube?
 Everybody should have had <<near infrared>>
 light because guess what happens … 
-- **Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & Sunlight Medicine | Dr. Jack Kruse**
-  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl/transcript.txt`
-  -  … big big uh switch is I
-have to have <<near infrared>> <<near infrared>>
-<<near infrared>> yes goes a little further
-because there's a … 
 - **Gerald Pollack| EZ Water, What is it, Why Do I Need It & How Do I Make It**
   - `yt/47FzeZNCYL0-gerald-pollack-ez-water-what-is-it-why-do-i-need-it-how-do-i/transcript.txt`
   -  … I
@@ -80,6 +89,18 @@ personally use mine every morning and
 every evening red and <<near infrared>>
 light is extremely beneficial energy
 production in our body because it … 
+- **Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & Sunlight Medicine | Dr. Jack Kruse**
+  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl/transcript.txt`
+  -  … big big uh switch is I
+have to have <<near infrared>> <<near infrared>>
+<<near infrared>> yes goes a little further
+because there's a … 
+- **Gerald Pollack:The Fourth Phase of Water | SNC 2018**
+  - `yt/NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018/transcript.txt`
+  -  … First question is um
+what nanometer range red lights does um
+water mostly absorb? Is it <<near infrared>>
+or far <<infrared>> or all of … 
 - **Functional Medicine Mistakes, EMF, Sunlight, and Your Mitochondria Dr. Jack Kruse  | Podcast #135**
   - `yt/qPY6FBkjqwA-functional-medicine-mistakes-emf-sunlight-and-your-mitochond/transcript.txt`
   -  … Why? Because
@@ -92,12 +113,6 @@ This is what we talked …
 infrared>> light exacerbators to this
 effect. Why? Because that's what drives
 photo repair in mammals. The … 
-- **Gerald Pollack:The Fourth Phase of Water | SNC 2018**
-  - `yt/NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018/transcript.txt`
-  -  … First question is um
-what nanometer range red lights does um
-water mostly absorb? Is it <<near infrared>>
-or far <<infrared>> or all of … 
 - **Water: The Matrix and Engine of Life - Pioneer in Water Research Jerry Pollack**
   - `yt/YrwbDsTx0Uw-water-the-matrix-and-engine-of-life-pioneer-in-water-researc/transcript.txt`
   -  … So <<infrared>> light or at
@@ -110,38 +125,14 @@ what you want in …
 and block out a lot of <<infrared>> a <<near
 infrared>> and UV but guess what you don't
 block out … 
-- **A Firebreathing Conversation With Dr. Jack Kruse on Technology, Health & the Future of Society**
-  - `yt/QEzULMNHygM-a-firebreathing-conversation-with-dr-jack-kruse-on-technolog/transcript.txt`
-  -  … They have to get rid of 380 nmter light
-and <<near infrared>> light. And they've
-convinced all of you the sun is toxic … 
-- **It Took A Brain Surgeon To Uncover Insane Bitcoin Connection No One Sees | Dr. Jack Kruse**
-  - `yt/MIWmqyacaOo-it-took-a-brain-surgeon-to-uncover-insane-bitcoin-connection/transcript.txt`
-  -  … When <<near infrared>> light and
-UV interact in your body, that means
-through your eye or your skin, that
-signal is sent to cytochrome … 
-- **Dr. Jack Kruse, Andrew Huberman, Rick Rubin Podcast - FULL BREAKDOWN (Part 1)**
-  - `yt/KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick-rubin-podcast-full-breakd/transcript.txt`
-  -  … light and specifically
-<<infrared>> a light um water actually
-absorbs this spectrum of light it's
-actually a chromophor for <<infrared>> a
-light and … 
-- **Medisun Podcast #19 Dr. Jack Kruse: Epstein cabal, circus maximus and the 49er's EMF situation**
-  - `yt/52BwgibSVWU-medisun-podcast-19-dr-jack-kruse-epstein-cabal-circus-maximu/transcript.txt`
-  -  … And I've I've heard uh Jason
-Tatum's been using uh <<near infrared>>
-blankets and things like that and it's
-like … 
 
-## intake (9)
+## intake (8)
 
 - **infrared-near-ir**
   - `_intake/concept-digests/infrared-near-ir.md`
   - # <<infrared>>-<<near-ir>>
 
-**Query**: `<<infrared>> OR "<<near IR>>" OR "<<near-infrared>>"`  ·  **Hits**: 25
+**Query**: `<<infrared>> OR "<<near IR>>" OR "<<near-infrared>>"`  ·  **Hits**: 30
 
 
 ## archive (1)
@@ -151,19 +142,22 @@ like …
   -  … This  wavelength  corresponds … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … md) — 19 hits  (intake:2, pubmed:4, youtube:13)
-- [`<<infrared>>-<<near-ir>>`](<<infrared>>-<<near-ir>>.md) — 25 hits  (archive:1, intake:1, pubmed:4 … 
-- **AGEs-RAGE-glycation**
-  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
-  -  … A Hypothesis Paper.**
-  - `pubmed/PMID-41994801-optimizing-brain-biology-through-<<near-infrared>>-induced-mitoc/info.md`
-  -  … Concurrently, <<age>>-related declines in both pineal melatonin … 
-- **uv-uva-uvb**
-  - `_intake/concept-digests/uv-uva-uvb.md`
-  -  … Turns out he
-proteins their action spectra are <<UV>> and
-<<infrared>> sometimes <<near infrared>>. Red … 
-- **Optimize Your Health in the Modern World with Dr … 
+  -  … md) — 30 hits  (intake:15, pubmed:4, youtube:11)
+- [`<<infrared>>-<<near-ir>>`](<<infrared>>-<<near-ir>>.md) — 30 hits  (archive:1, intake:9, pubmed:4 … 
+- **ez-water-pollack**
+  - `_intake/concept-digests/ez-water-pollack.md`
+  -  … fourth-phase-of-<<water>>-gerald-<<pollack>>-phd … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … The … 
+- **<<Water>>: The Matrix and Engine of … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … fourth-phase>>-of-water-gerald-pollack-phd … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … Gerald Pollack**
+  - `yt/8qqyCA9vz_s-the-<<fourth … 
 - **PERI-OPERATIVE OPTIMAL SURGICAL CONSIDERATIONS**
   - `_intake/kruse-blog-corpus/articles/peri-operative-optimal-surgical-considerations.md`
   -  … There are two <<near infrared>> maxima that have been shown to be helpful in the peak positions in the range 750.7-772.3 … 
@@ -176,6 +170,3 @@ proteins their action spectra are <<UV>> and
 - **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
   - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
   -  … For example, the <<near-infrared>> and the red light, which we find in sunlight in a pretty large amount, these longer wavelengths, they provide … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … WHO(48), <<infrared>>(24), AGE(20), exclusion zone(15), photosynthesis(10), EPA(7), proton(5), AGEs(4), red light(3), heme(3), fourth phase … 

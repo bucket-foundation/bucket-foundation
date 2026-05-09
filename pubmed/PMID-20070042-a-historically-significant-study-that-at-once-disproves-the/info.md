@@ -7,7 +7,7 @@
 - **Authors**: Gilbert N Ling, Margaret M Ochsenfeld
 - **MeSH**: Adenosine Triphosphate, Animals, Biological Transport, Biology, Cattle, Chlorides, Cytoplasm, Electrons, Erythrocytes, Hemoglobins
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/20070042/
-- **Captured**: 2026-05-09T09:22:05
+- **Captured**: 2026-05-09T09:41:32
 
 ## Abstract
 

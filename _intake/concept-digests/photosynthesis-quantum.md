@@ -28,17 +28,24 @@ to <<photosynthesis>> or was it created …
   - `_intake/concept-digests/photosynthesis-quantum.md`
   - # <<photosynthesis>>-<<quantum>>
 
-**Query**: `<<photosynthesis>> AND <<quantum>>`  ·  **Hits**: 25
+**Query**: `<<photosynthesis>> AND <<quantum>>`  ·  **Hits**: 30
 
 
-## archive (1)
+## arxiv (1)
 
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
-  -  … This  reaction  is 
+- **Functional <<quantum>> biology in <<photosynthesis>> and magnetoreception**
+  - `arxiv/1205.0883-functional-<<quantum>>-biology-in … 
+- **quantum-biology**
+  - `_intake/concept-digests/quantum-biology.md`
+  -  … <<Photosynthesis>>**
+  - `_intake/kruse-blog-corpus/articles/<<quantum>>-biology-9-<<photosynthesis>>.md`
+  - # <<<<Quantum>>>> <<Biology>> 9: <<Photosynthesis>>
 
+Source: https://jackkruse.com/<<<<quantum>>>>-<<biology>>-9-<<photosynthesis>>/
 
-<<<<photosynthesis>>>>,  in  which  the  solar … 
+---
+
+](https … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … WHO(45), melanin(29), <<quantum>>(24), mitochondria(23), iron(23), AGE(23), Newton(20), Einstein(17), semiconductor(14), <<photosynthesis>>(13), blue light(10), red … 
@@ -70,15 +77,11 @@ to <<photosynthesis>> or was it created …
 - **REALITY #7:   BLOOD AND CHLOROPHYLL TYPES AND FOOD**
   - `_intake/kruse-blog-corpus/articles/reality-7-blood-chlorophyll-types-food.md`
   -  … in our eye, skin, gut, and lung, just as the <<quantum>> yield of <<photosynthesis>> in plants is affected by leaf temperatures.  I covered these … 
-- **quantum-biology**
-  - `_intake/concept-digests/quantum-biology.md`
-  -  … https://pubmed.ncbi.nlm.nih.gov/15244259/
-- **Captured … 
-
-## arxiv (2)
-
-- **Functional <<quantum>> biology in <<photosynthesis>> and magnetoreception**
-  - `arxiv/1205.0883-functional-<<quantum>>-biology-in … 
+- **melanin-semiconductor**
+  - `_intake/concept-digests/melanin-semiconductor.md`
+  -  … In a semiconducting object, <<electrons>> are induced into movement across the surface of the <<conductor>> from one side of … 
+- **<<photosynthesis>>-<<quantum>>**
+  - `_intake/concept-digests … 
 - **Quantum Biology 7: Sulfated Vitamin D3**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
   -  … <<Photosynthesis>> uses the <<quantum>> science of ‘water-energy/information’ to its huge advantage.  When light and water interact in a plants pigments or in … 
@@ -87,19 +90,14 @@ to <<photosynthesis>> or was it created …
   -  … <<Photosynthesis>> forms the basis of all food chains.  Understanding <<photosynthesis>> is critical to understanding all of biology.
 
 This means O2 production is pH and … 
+- **REALITY # 2:  CAN LIFE SKIRT THE UNCERTAINTY PRINCIPLE AND THE SECOND LAW OF THERMODYNAMICS?**
+  - `_intake/kruse-blog-corpus/articles/reality-2-can-life-skirt-uncertainty-principle-second-law-thermodynamics.md`
+  -  … critical to the <<quantum>> efficiency of <<photosynthesis>>.  This stored energy in water is the basis of life on Earth, because <<photosynthesis>> is basis of … 
 - **UBIQUITINATION 12:  NITROGEN CYCLE ECODYNAMICS**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-12-nitrogen-cycle-ecodynamics.md`
   -  … seas for <<photosynthesis>> to occur with algae and cyanobacteria.
 
 Man’s dumping of N-14 into the oceans have disturbed this <<quantum>> balance with … 
-- **REALITY # 2:  CAN LIFE SKIRT THE UNCERTAINTY PRINCIPLE AND THE SECOND LAW OF THERMODYNAMICS?**
-  - `_intake/kruse-blog-corpus/articles/reality-2-can-life-skirt-uncertainty-principle-second-law-thermodynamics.md`
-  -  … critical to the <<quantum>> efficiency of <<photosynthesis>>.  This stored energy in water is the basis of life on Earth, because <<photosynthesis>> is basis of … 
-- **melanin-semiconductor**
-  - `_intake/concept-digests/melanin-semiconductor.md`
-  -  … DARPA Mind Control, <<Quantum>> Biology & Sunlight Medicine | Dr. Jack Kruse**
-  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-<<quantum>>-biology-sunl/transcript.txt`
-  -  … only … 
 - **UBIQUITINATION 8:  THE MAMMALIAN BATTERY**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-8-the-mammalian-battery.md`
   -  … characteristics that are seen in plant based <<photosynthesis>>.  [I covered this here already.](https://jackkruse.com/<<quantum>>-biology-7-vitamin-d/)   Equatorial animals can … 
@@ -144,15 +142,30 @@ Man’s dumping of N-14 into the oceans have disturbed this <<quantum>> balance 
 
 ####
 								[REALITY #15:  ANIMAL <<PHOTOSYNTHESIS>>](https://jackkruse.com/reality … 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  -  … 4th-phase-of-<<water>>-cellular-redox-re/transcript … 
+- **<<photosynthesis>>-<<quantum>>**
+  - `_intake/concept-digests/<<photosynthesis>>-<<quantum>>.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative … 
+- **Quantum biology — coherence, tunneling, photosynthesis — concept canon-target intake**
+  - `_intake/concept-quantum-biology/README.md`
+  - # <<Quantum>> biology — coherence, tunneling, <<photosynthesis>> — concept canon-target intake
+
+- **Slug**: `concept-<<quantum>>-biology`
+- **Canon branch**: 02-physics ↔ 05-biophysics
+- **Status**: queued (not yet researched … 
 - **UBIQUITINATION 11: YOUR QUANTIZED ECOSYSTEM**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-11-your-quantized-ecosystem.md`
   -  … involved in <<photosynthesis>> in <<quantum>> fashion. All plants are coupled to animal life by way of he CO2 and O2 cycles.  <<Photosynthesis>> operates most … 
 - **REALITY #13:  CAN YOU SEE THE REAL ME?   VERMONT 2017**
   - `_intake/kruse-blog-corpus/articles/reality-13-can-see-real-vermont-2017.md`
   -  … that <<quantum>> biology is likely the missing link to modern WAPF dogma. Light had to be connected to food because of how <<photosynthesis>> creates … 
-- **ORGANIZATIONAL STRUCTURAL FAILURE #6:  THE MITOCHONDRIAL Rx**
-  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-6-mitochondrial-rx.md`
-  -  … Water surrounds MINOS wherever it is found in us.  [<<Photosynthesis>>](/<<quantum>>-biology-9-<<photosynthesis>>/) and oxidative phosphorylation in mitochondrion have some major things in … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … iron-heme-redox.md) — 30 hits  (intake:29, youtube:1)
+- [`<<photosynthesis>>-<<quantum>>`](<<photosynthesis>>-<<quantum>>.md) — 30 hits  (arxiv:1, intake:28, youtube:1)
+- [`walter … 
 - **REALITY #1:   HOLES IN REALITY MAKE TIME**
   - `_intake/kruse-blog-corpus/articles/reality-1-holes-reality-make-time.md`
   -  … <<quantum>> mechanically.
@@ -162,13 +175,9 @@ Man’s dumping of N-14 into the oceans have disturbed this <<quantum>> balance 
 **<<PHOTOSYNTHESIS>> EXCITION THEORY AND SZENT GYORGYI**
 
 The central mystery of <<quantum>> … 
-- **Quantum biology — coherence, tunneling, photosynthesis — concept canon-target intake**
-  - `_intake/concept-quantum-biology/README.md`
-  - # <<Quantum>> biology — coherence, tunneling, <<photosynthesis>> — concept canon-target intake
-
-- **Slug**: `concept-<<quantum>>-biology`
-- **Canon branch**: 02-physics ↔ 05-biophysics
-- **Status**: queued (not yet researched … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #6:  THE MITOCHONDRIAL Rx**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-6-mitochondrial-rx.md`
+  -  … Water surrounds MINOS wherever it is found in us.  [<<Photosynthesis>>](/<<quantum>>-biology-9-<<photosynthesis>>/) and oxidative phosphorylation in mitochondrion have some major things in … 
 - **UBIQUITINATION 21:  EPI-ONCO-GENESIS**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-21-epi-onco-genesis.md`
   -  … <<photosynthesis>>. You might begin to understand why I value the new book, “Life at the Edge”, by Jim Al Khalili. There was a <<quantum>> … 
@@ -191,10 +200,6 @@ The central mystery of <<quantum>> …
 
 ####
 								[REALITY #15:  ANIMAL <<PHOTOSYNTHESIS>>](https://jackkruse.com/reality … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … iron-heme-redox.md) — 14 hits  (intake:2, youtube:12)
-- [`<<photosynthesis>>-<<quantum>>`](<<photosynthesis>>-<<quantum>>.md) — 25 hits  (archive:1, arxiv:1, intake:3, youtube … 
 - **UBIQUITINATION 23: LOOKING BACK FOR A QUANTUM LEAP FORWARD**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-23-looking-back-for-a-quantum-leap-forward.md`
   -  … Now you may be understanding why I recommend the books I do, to understand this very <<quantum>> process. **<<Photosynthesis>> happens at surfaces of leaves … 
@@ -217,12 +222,13 @@ The central mystery of <<quantum>> …
 
 ####
 								[REALITY #15:  ANIMAL <<PHOTOSYNTHESIS>>](https://jackkruse.com/reality … 
-- **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
-  - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
-  -  … Why is all this important? It links to how <<photosynthesis>> works in <<quantum>> fashion.  The first step in <<photosynthesis>> and in the blood plasma … 
-- **TIME #11   CAN YOU SUPPLEMENT SUNLIGHT?**
-  - `_intake/kruse-blog-corpus/articles/time-10-can-you-supplement-sunlight.md`
-  -  … protection of Nature’s quality assurance program built by <<photosynthesis>> to control the <<quantum>> spin of things in a chloroplast.  When you eat processed … 
-- **EMF 3: The Origin of Life**
-  - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
-  -  … Life would have died out, unless a process like <<photosynthesis>> could supply that energy source.  <<Photosynthesis>> is a process that uses <<quantum>> physics to … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … <<Photosynthesis>>**
+  - `_intake/kruse-blog-corpus/articles/<<quantum>>-biology-9-<<photosynthesis>>.md`
+  -  … that in [<<Quantum>> <<biology>> one blog](https://jackkruse.com/<<quantum>>-<<biology>>-1-the … 
+- **chemiosmotic-mitchell**
+  - `_intake/concept-digests/chemiosmotic-mitchell.md`
+  -  … <<QUANTUM>> NOISE AND FIDELITY OF LIFE**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-13-<<quantum>>-fidelity-sleep.md`
+  -  … Peter <<Mitchell>> won a Nobel Prize in … 

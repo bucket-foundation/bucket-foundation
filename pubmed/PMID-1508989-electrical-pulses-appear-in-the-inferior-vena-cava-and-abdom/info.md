@@ -7,7 +7,7 @@
 - **Authors**: B E Nordenström
 - **MeSH**: Animals, Aorta, Abdominal, Extremities, Membrane Potentials, Models, Biological, Muscle Contraction, Muscle, Smooth, Vascular, Muscles, Neuromuscular Junction, Rats
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/1508989/
-- **Captured**: 2026-05-09T09:22:08
+- **Captured**: 2026-05-09T09:41:43
 
 ## Abstract
 

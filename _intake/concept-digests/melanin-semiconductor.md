@@ -28,7 +28,7 @@
 
 The <<semiconductor>> behavior of … 
 
-## youtube (13)
+## youtube (14)
 
 - **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
   - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
@@ -45,6 +45,10 @@ proteins look like they have an
 like <<semiconductors>> now
 realize at this time quantum mechanics
 is in … 
+- **Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podcast) - PART 1**
+  - `yt/zs82rGFo6qg-jack-kruse-andrew-huberman-rick-rubin-tetragrammaton-podcast/transcript.txt`
+  -  … <<melanin>>&nbsp; feel <<melanin>> and neuro <<melanin>> do you know what&nbsp;&nbsp;
+the difference between those three are how&nbsp; the <<semiconductor>> is … 
 - **Regenerative Energy & the Light Inside You | Jack Kruse | 221**
   - `yt/67sLlXeMg2I-regenerative-energy-the-light-inside-you-jack-kruse-221/transcript.txt`
   -  … But basically what leptin
@@ -52,18 +56,18 @@ does, it works specifically with the
 third <<semiconductor>> which is <<melanin>>.
 And <<melanin>> comes from alpha msh which
 is cleaved … 
-- **Dr. Jack Kruse: Silent Weapons for Silent Wars**
-  - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
-  -  … When <<melanin>> is hydrated, it
-becomes a poor electrical <<conductor>>. So
-it went from the best to the worst just
-by covered. So that … 
 - **Dr Jack Kruse: Deuterium, 4th phase of WATER, & cellular redox | Regenerative Health Podcast**
   - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re/transcript.txt`
   -  … told you everything in US is
 about <<semiconductor>> you need a lot of
 <<electrons>> for 170 <<conductors>> and it
 turns out uh the real … 
+- **Dr. Jack Kruse: Silent Weapons for Silent Wars**
+  - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
+  -  … When <<melanin>> is hydrated, it
+becomes a poor electrical <<conductor>>. So
+it went from the best to the worst just
+by covered. So that … 
 - **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
   - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
   -  … efficient when in <<melanin>> is
@@ -118,13 +122,13 @@ of funny but everything DNA codes for
 looks like a <<semiconductor>> because of
 its <<electronic>> structure. And … 
 
-## intake (14)
+## intake (13)
 
 - **melanin-semiconductor**
   - `_intake/concept-digests/melanin-semiconductor.md`
   - # <<melanin>>-<<semiconductor>>
 
-**Query**: `<<melanin>> AND (<<semiconductor>> OR <<conductor>> OR <<electron>>)`  ·  **Hits**: 25
+**Query**: `<<melanin>> AND (<<semiconductor>> OR <<conductor>> OR <<electron>>)`  ·  **Hits**: 30
 
 
 ## pubmed (3)
@@ -142,23 +146,32 @@ its <<electronic>> structure. And …
 - **ORGANIZATIONAL STRUCTURAL FAILURE # 5  PRIONS ARE COMPLIANT DESIGN FLAWS**
   - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-5-prions-are-compliant-design-flaws.md`
   -  … it does within a <<semiconductor>>. In a semiconducting object, <<electrons>> are induced into movement across the surface of the <<conductor>> from one side of … 
-- **photosynthesis-quantum**
-  - `_intake/concept-digests/photosynthesis-quantum.md`
-  -  … VIDEO.md`
-  -  … WHO(45), <<melanin>>(29), <<quantum>>(24), mitochondria(23), iron(23), AGE(23), Newton(20), Einstein(17), <<semiconductor>>(14), <<photosynthesis>>(13), blue light … 
 - **photoelectric-biology**
   - `_intake/concept-digests/photoelectric-biology.md`
   -  … Photoelectric>> effect applied to <<biology>> | 02-physics ↔ 05-biophysics | 7 |
 | `concept-<<melanin>>-<<semiconductor>> … 
-- **Photoelectric effect in biology — concept canon-target intake**
-  - `_intake/concept-photoelectric … 
-- **Energy and Epigenetics 8: Quantum Autism**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-8-autism.md`
-  -  … Transition metals are highly conductive because they have a ton of D shell <<electrons>> that allow them to share <<electrons>> in many molecular configuration … 
+- **Quantum Biology 12: Do We Need DNA To Tell Time?**
+  - `_intake … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … 4th-phase>>-of-water-cellular-redox-re/transcript … 
+- **<<melanin>>-<<semiconductor>>**
+  - `_intake/concept-digests/<<melanin>>-<<semiconductor>>.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … 14 hits  (intake:2, youtube:12)
+- [`photosynthesis-quantum … 
+- **<<melanin>>-<<semiconductor>>**
+  - `_intake/concept-digests/<<melanin>>-<<semiconductor>>.md`
+  -  … Deuterium, 4th phase of WATER, & cellular <<redox>> | Regenerative … 
 - **methylene-blue**
   - `_intake/concept-digests/methylene-blue.md`
   -  … PER-VIDEO.md`
   -  … AGE(79), WHO(63), <<electron>>(47), mitochondria(45), <<semiconductor>>(36), quantum(35), <<melanin>>(32), UV(31), iron(30), Becker(26), <<methylene … 
+- **Energy and Epigenetics 8: Quantum Autism**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-8-autism.md`
+  -  … Transition metals are highly conductive because they have a ton of D shell <<electrons>> that allow them to share <<electrons>> in many molecular configuration … 
 - **TIME #11   CAN YOU SUPPLEMENT SUNLIGHT?**
   - `_intake/kruse-blog-corpus/articles/time-10-can-you-supplement-sunlight.md`
   -  … means food <<electrons>> are only “particle-like” before processing in our mitochondria, but when the <<electrons>> are liberated from the <<semiconductors>> in the food … 
@@ -185,13 +198,3 @@ its <<electronic>> structure. And …
 - **Canon branch**: 05-biophysics
 - **Status**: queued (not yet researched)
 - **Initiated**: 2026-05 … 
-- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … applied to biology | 02-physics ↔ 05-biophysics | 7 |
-| `concept-<<melanin>>-<<semiconductor>>` | <<Melanin>> as biological <<semiconductor>> | 05-biophysics | 42 + 37 |
-| `concept-mitochondrial-membrane-potential` | ETC … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … fourth-phase-water.md) — 21 hits  (intake:6, youtube:15)
-- [`<<melanin>>-<<semiconductor>>`](<<melanin>>-<<semiconductor>>.md) — 25 hits  (intake:4, pubmed:3, youtube:18)
-- [`mitochondrial … 

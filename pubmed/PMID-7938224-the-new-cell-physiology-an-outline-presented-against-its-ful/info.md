@@ -7,7 +7,7 @@
 - **Authors**: G N Ling
 - **MeSH**: Animals, Cell Physiological Phenomena, History, 18th Century, History, 19th Century, History, 20th Century, Humans
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/7938224/
-- **Captured**: 2026-05-09T09:22:06
+- **Captured**: 2026-05-09T09:41:34
 
 ## Abstract
 

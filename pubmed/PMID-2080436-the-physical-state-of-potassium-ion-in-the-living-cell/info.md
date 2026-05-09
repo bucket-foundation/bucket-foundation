@@ -1,0 +1,14 @@
+# The physical state of potassium ion in the living cell.
+
+- **PMID**: 2080436
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Scanning microscopy  ·  **Year**: 1990
+- **Authors**: G N Ling
+- **MeSH**: Animals, Cells, Humans, Ions, Potassium
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2080436/
+- **Captured**: 2026-05-09T09:41:36
+
+## Abstract
+
+This review summarizes more than 30 years of experimental testing (and confirmation) of a key postulate of the association-induction (AI) hypothesis: most K+ ions in resting cells are adsorbed on beta- and gamma-carboxyl group of cell proteins in a close-contact one ion-one site manner. Failure of healthy, cytoplasm-free, squid axon-membrane sacs to selectively accumulate K+ over Na+ and success of muscle cells without a functional cell membrane (and postulated pumps) to achieve the same, point to the cytoplasm as the seat of selective K+ accumulation. Four independent techniques unanimously confirmed the predicted localization in striated muscle cells, of the bulk of cell K+ in the A-bands where 65% of the beta- and gamma-carboxyl groups are located. Strict adherence to the Langmuir adsorption isotherm in the equilibrium distribution of K+ in muscle cells in the absence and presence of competing ions, proved one ion-one site, close contact adsorption of cell K+ on anionic groups. The "effectively membrane-pumpless open-ended cell" (EMOC) technique, further helped to establish close contact adsorption of K+ to take place in the cytoplasm rather than the cell membrane. A pK, of 3.9 obtained by titration of the cytoplasmic anions groups and a sensitivity to specific carboxyl group-reagent, 1-ethyl-3-(3-dimethylamino-propyl) carbodimide HCl combine to establish that the cytoplasmic anionic sites adsorbing K+ are indeed beta- and gamma-carboxyl groups.

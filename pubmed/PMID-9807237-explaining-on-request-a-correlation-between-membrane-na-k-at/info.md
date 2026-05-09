@@ -7,7 +7,7 @@
 - **Authors**: G N Ling
 - **MeSH**: Animals, Erythrocyte Membrane, Erythrocytes, Homeostasis, Horses, Humans, Models, Biological, Ouabain, Potassium, Rubidium
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/9807237/
-- **Captured**: 2026-05-09T09:22:06
+- **Captured**: 2026-05-09T09:41:34
 
 ## Abstract
 

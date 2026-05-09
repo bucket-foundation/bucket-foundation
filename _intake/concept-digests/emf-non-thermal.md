@@ -3,18 +3,44 @@
 **Query**: `EMF OR electromagnetic`  ·  **Hits**: 30
 
 
-## intake (30)
+## pubmed (3)
+
+- **Low-frequency electromagnetic fields alter the replication cycle of MS2 bacteriophage.**
+  - `pubmed/PMID-9541567-low-frequency-electromagnetic-fields-alter-the-replication-c/info.md`
+  -  … 2026-05-09T09:41:27
+
+## Abstract
+
+The effect of exposure to 60-Hz <<electromagnetic>> fields (<<EMFs>>) on RNA coliphage MS2 replication was studied. <<EMF>> … 
+- **Spatiotemporal trends of ambient radiofrequency electromagnetic fields (RF-EMF) during the 5G rollout in Switzerland.**
+  - `pubmed/PMID-42098444-spatiotemporal-trends-of-ambient-radiofrequency-electromagne/info.md`
+  - # Spatiotemporal trends of ambient radiofrequency <<electromagnetic>> fields (RF-<<EMF>>) during the 5G rollout in Switzerland.
+
+- **PMID**: 42098444
+- **DOI**: 10.1109/ACCESS.2019.2897921
+- **PMCID … 
+- **Coincident nonlinear changes in the endocrine and immune systems due to low-frequency magnetic fields.**
+  - `pubmed/PMID-11549888-coincident-nonlinear-changes-in-the-endocrine-and-immune-sys/info.md`
+  -  … 2026-05-09T09:41:24
+
+## Abstract
+
+The characteristic biological effects of low-frequency <<electromagnetic>> fields (<<EMFs>>) appear to be functional changes in the central … 
+
+## intake (27)
 
 - **emf-non-thermal**
   - `_intake/concept-digests/emf-non-thermal.md`
   - # <<emf>>-non-thermal
 
-**Query**: `<<EMF>> OR <<electromagnetic>>`  ·  **Hits**: 25
+**Query**: `<<EMF>> OR <<electromagnetic>>`  ·  **Hits**: 30
 
 
-## youtube (22)
+## intake (30)
 
-- **The War on Sunlight Is Real (And It’s Not an Accident) | Dr … 
+- **<<emf>>-non-thermal**
+  - `_intake/concept-digests/<<emf>>-non-thermal.md`
+  - # <<<<emf>>>>-non-thermal … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … WHO(82), AGE(34), melanin(18), Rockefeller(11), <<EMF>>(7), mitochondria(5), iron(5), Becker(5), mitochondrial(4), collagen(4), photosynthesis(3), <<electromagnetic>>(3 … 
@@ -26,6 +52,11 @@
 - **EMF 8: Quantum Bone**
   - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
   -  … From the Earth’ magnetic signal to visible light in the <<EMF>> spectrum, the filling in of the <<electromagnetic>> spectrum is astounding as we laid … 
+- **bone-bioelectric-becker**
+  - `_intake/concept-digests/bone-bioelectric-becker.md`
+  -  … The same … 
+- **<<EMF>> 5: What are the Biologic Effects of <<EMF>>?**
+  - `_intake/kruse-blog-corpus/articles/<<emf>>-5-what-are-the-biologic-effects-of … 
 - **Quantum Biology #1: The Zero Entropy System**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
   -  … of ‘man-made’ <<electromagnetic>> pollution in our modern environment,  what was the[ biologic effect on all life](https://jackkruse.com/<<emf>>-5-what-are … 
@@ -56,6 +87,11 @@ It is where <<electromagnetic>> field …
 - **CPC #9:   HASHIMOTO's AND MELASMA:  GATEWAY DISEASES**
   - `_intake/kruse-blog-corpus/articles/hashimotos-and-melasma.md`
   -  … Another link to the second law of thermodynamics and the mass equivalence relationship of physics,  I spoke about in [<<EMF>> 2](/<<emf>>-2-einstein … 
+- **schumann-cme**
+  - `_intake/concept-digests/schumann-cme.md`
+  -  … What are the Biologic Effects of <<EMF>>?**
+  - `_intake/kruse-blog-corpus/articles/<<emf>>-5-what-are-the-biologic-effects-of-<<emf>>.md`
+  -  … Extremely low … 
 - **Energy and Epigenetics 13: Quantum Water Chemistry**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-13-quantum-water-chemistry-2.md`
   -  … expression is altered by the <<electromagnetic>> signals coming from RNA and DNA** and the non-ionizing frequency <<EMF>> bands do change this information processing … 
@@ -74,21 +110,17 @@ It is where <<electromagnetic>> field …
 
 
 ## <<EMF>> 3: The … 
-- **Energy and Epigenetics 9: Quantum Sleep**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
-  -  … The <<electromagnetic>> radiation from light and the Earth’s magnetic field oxidizes neural circuits with native <<EMF>> from the sun. This native <<EMF>>, uses … 
 - **EMF 1: Does Your Rolex Work?**
   - `_intake/kruse-blog-corpus/articles/emf-1-does-your-rolex-work.md`
   -  … is brought down.
 
 - Grounding powerfully reduces <<electromagnetic>> fields (<<EMFs>>) that have an effect on the body. <<EMF>> resonance above the normal frequencies found on … 
-- **bone-bioelectric-becker**
-  - `_intake/concept-digests/bone-bioelectric-becker.md`
-  -  … The <<Electromagnetic>> Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-<<electromagnetic>>-blueprint-of-life-jack-kruse-/transcript.txt … 
 - **EMF Rx: The Top Ten EMF FAQs**
   - `_intake/kruse-blog-corpus/articles/emf-rx-the-top-ten-emf-faqs.md`
   -  … Sheet N181, “<<Electromagnetic>> Fields and Public Health, The International <<EMF>> Project,” reviewed May 1998 and World Health Organization Fact Sheet N182, “<<Electromagnetic>> Fields and … 
+- **Energy and Epigenetics 9: Quantum Sleep**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
+  -  … The <<electromagnetic>> radiation from light and the Earth’s magnetic field oxidizes neural circuits with native <<EMF>> from the sun. This native <<EMF>>, uses … 
 - **Energy and Epigenetics 12:  Is Your Battery Charged?**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
   -  … The sun generates massive energies across the entire <<electromagnetic>> spectrum.  Water stores those energies.  Water is the conduit for the <<electromagnetic>> spectrum to act … 
@@ -101,6 +133,9 @@ It is where <<electromagnetic>> field …
 - **EMF 7: Quantum Prometheus**
   - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
   -  … quanta”, to the <<electromagnetic>> field. Originally, his principal motivation was to explain the thermodynamics of radiation.  Non thermal pulsed <<EMF>> is the domain of … 
+- **Energy and Epigenetics 4:  Light, Water, Magnetism**
+  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-4-light-water-magnetism.md`
+  -  … When the <<electromagnetic>> field becomes altered for any reason at all, or blocked by man made <<EMF>> field signals, all life forms lose energy … 
 - **Energy and Epigenetics 5: The Quantum Brain**
   - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-5-the-quantum-brain.md`
   -  … When basal metabolic rates rise, we [lose quantum timing](/<<emf>>-6-quantum-time/), because time is relative to the <<electromagnetic>> field one inhabits. This … 
@@ -109,23 +144,9 @@ It is where <<electromagnetic>> field …
   -  … took control of the <<electromagnetic>> force for its own devices, in my opinion.
 
 Look at my [CO2 and <<EMF>> thread on my forum](http … 
-- **Energy and Epigenetics 4:  Light, Water, Magnetism**
-  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-4-light-water-magnetism.md`
-  -  … When the <<electromagnetic>> field becomes altered for any reason at all, or blocked by man made <<EMF>> field signals, all life forms lose energy … 
-- **TENSEGRITY # 4:  MAGNETISM, SLEEP, AND ELECTRONS**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-4-magnetism-electrons-sleep.md`
-  -  … The <<electromagnetic>> force is the building where the stage is located.  If <<electromagnetic>> energies are varied for any reason at all, you get a … 
-- **REALITY #14: WARBURG'S PROOF: THE DATA POINTS TO MITOCHONDRIAL GENOME?**
-  - `_intake/kruse-blog-corpus/articles/reality-14-warburgs-proof.md`
-  -  … incident <<EMF>> allows for proper AMPk control and free radical signaling.  Blue light from man-made devices is a different incident <<electromagnetic>> wave that … 
-- **blue-light-toxicity**
-  - `_intake/concept-digests/blue-light-toxicity.md`
-  -  … <<Electromagnetic>> Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-<<electromagnetic>>-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … <<EMF>> … 
-- **CPC #14: TINNITUS, THE QUANTUM VIEW POINT**
-  - `_intake/kruse-blog-corpus/articles/cpc-14-tinnitus-quantum-view-point.md`
-  -  … mitochondrion makes.  This makes the incoming <<EMF>> frequency very critical part of the mechanism in tinnitus.   <<Electromagnetic>> fields can activate of voltage-gated calcium … 
-- **EMF 2: Einstein, Meet Leptin**
-  - `_intake/kruse-blog-corpus/articles/emf-2-einstein-meet-leptin.md`
-  -  … I established that in [<<EMF>> 1](https://jackkruse.com/<<emf>>-1-does-your-rolex-work/)‘s blog post as well. <<EMF>>’s main problem … 
+- **methylene-blue**
+  - `_intake/concept-digests/methylene-blue.md`
+  -  … iron(30), Becker(26), <<methylene blue>>(21), <<electromagnetic>> … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … <<emf>>-non-thermal.md) — 25 hits  (intake:3, youtube … 

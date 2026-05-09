@@ -3,8 +3,12 @@
 **Query**: `"vitamin D"`  ·  **Hits**: 30
 
 
-## youtube (7)
+## youtube (4)
 
+- **Banned Neurosurgeon: Decentralize Your Health B4 It's Too Late! | Dr Jack Kruse**
+  - `yt/unUTOBIXvdc-banned-neurosurgeon-decentralize-your-health-b4-it-s-too-lat/transcript.txt`
+  -  … <<vitamin D>>'s through the roof&nbsp;&nbsp;
+right but it turns out the people that get those&nbsp; free cancers have low <<vitamin>> … 
 - **Weight Loss, Mitochondria Health & Vitamin D  with Dr. Jack Kruse**
   - `yt/PfEOtlJapfg-weight-loss-mitochondria-health-vitamin-d-with-dr-jack-kruse/transcript.txt`
   -  … <<vitamin d>> low you
@@ -22,45 +26,20 @@ on the equator, you don't make any
 interesting that also on the inner
 mitochondrial membrane there's a <<vitamin
 D>> receptor. So everybody knows that … 
-- **Why Mitochondria, Water, Light, Magnetism, & MitoHacking with Dr. Jack Kruse**
-  - `yt/7SYSPlQa5eY-why-mitochondria-water-light-magnetism-mitohacking-with-dr-j/transcript.txt`
-  -  … Arizona is in <<vitamin D>> winter
-you have to be below Jackson Mississippi
-in the United States to make <<vitamin D>>
-this time of … 
-- **Sunlight is King! w/ Dr. Jack Kruse**
-  - `yt/2-AKskkKZzA-sunlight-is-king-w-dr-jack-kruse/transcript.txt`
-  -  … Epithelial organs all
-respond to <<vitamin D>>. So if you have
-enough <<vitamin D>> above 60 nanogs per
-deciliter, the chance of you getting … 
-- **Unraveling the Medical Matrix w/ Dr. Jack Kruse**
-  - `yt/Iq3tDpoFVL0-unraveling-the-medical-matrix-w-dr-jack-kruse/transcript.txt`
-  -  … the
-lowest levels of <<vitamin D>> associated
-with them well don't all cancers
-generally have low <<vitamin D>> not all of
-them but … 
-- **Nature’s Hidden Healing Powers w/ Dr. Jack Kruse**
-  - `yt/CVz-5qK4zBE-nature-s-hidden-healing-powers-w-dr-jack-kruse/transcript.txt`
-  -  … tan and still have
-low <<vitamin D>> levels I know I my doctor
-is surprised my <<vitamin D>> is off the
-charts she's … 
 
-## intake (23)
+## intake (26)
 
 - **vitamin-d-sunlight**
   - `_intake/concept-digests/vitamin-d-sunlight.md`
   - # <<vitamin-d>>-sunlight
 
-**Query**: `"<<vitamin D>>"`  ·  **Hits**: 25
+**Query**: `"<<vitamin D>>"`  ·  **Hits**: 30
 
 
-## youtube (23)
+## youtube (7)
 
-- **Functional Medicine Mistakes, EMF, Sunlight, and Your Mitochondria Dr. Jack Kruse  | Podcast #135**
-  - `yt … 
+- **Weight Loss, Mitochondria Health & <<Vitamin D>>  with Dr. Jack Kruse**
+  - `yt/PfEOtlJapfg-weight-loss … 
 - **Vitamin D:  The Sunshine of Your Life?**
   - `_intake/kruse-blog-corpus/articles/the-sunshine-of-your-life.md`
   -  … Why? In order for circulating <<vitamin D>> to perform its functions, it must first activate the <<vitamin D>> receptor (VDR). The gut is broken … 
@@ -88,15 +67,53 @@ charts she's …
 - **ORGANIZATIONAL STRUCTURAL FAILURE #10:  MULTIPLE SCLEROSIS**
   - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-10-multiple-sclerosis.md`
   -  … Most people do not understand why <<Vitamin D>> drops in MS.  Let us look at this deeper.  All eukaryotic life uses <<Vitamin D>> at … 
+- **AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … <<vitamin-d>>-sunlight**
+  - `_intake/concept-digests/<<vitamin-d>>-sunlight.md`
+  -  … dopamine** — 171
+- **proton** — 168
+- **Einstein** — 155
+- **DHA** — 144
+- **magnetic field** — 139
+- **<<<<vitamin D>>>>** — 129 … 
+- **uv-uva-uvb**
+  - `_intake/concept-digests/uv-uva-uvb.md`
+  -  … What makes nitric
+oxide? <<UV>> light. <<UV>>.
+&gt;&gt; What makes <<vitamin D>>?
+&gt;&gt; <<UV>> … 
+- **Regenerative Energy & the Light Inside You | Jack Kruse … 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  -  … Jack Kruse**
+  - `yt/PfEOtlJapfg-weight-loss-mitochondria-health-<<vitamin-d>>-with-dr-jack-kruse/transcript.txt`
+  -  … the highest levels of <<deuterium>> in it
+and … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … Neill Lambert, Yueh-Nan Chen … 
+
+## youtube (1)
+
+- **Weight Loss, Mitochondria Health & <<Vitamin D>>  with Dr. Jack Kruse**
+  - `yt/PfEOtlJapfg-weight-loss-mitochondria-health-<<vitamin>> … 
+- **quantum-biology**
+  - `_intake/concept-digests/quantum-biology.md`
+  -  … The Quantum Brain**
+  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-5-the-quantum-brain.md`
+  -  … <<Vitamin D>>](/<<quantum>>-<<biology>>-7-<<vitamin-d>>/)
+
+- [<<Quantum … 
 - **THE TILTED QUILT:  RANDOM MUSING'S #4**
   - `_intake/kruse-blog-corpus/articles/tilted-quilt-random-musings-4.md`
   -  … These changes are so perverse that the current beliefs in ancestral health my be problematic.  In leptin sensitive humans, aggressive supplementation of <<Vitamin D>> … 
-- **The Osteoporosis Rx**
-  - `_intake/kruse-blog-corpus/articles/the-osteoporosis-rx.md`
-  -  … This is due to the SAD, which causes high inflammation levels, low <<vitamin D>> levels (from lack of D in the diet), pregnenolone steal … 
 - **Cancer Q&A Teleseminar**
   - `_intake/kruse-blog-corpus/articles/cancer-qa-call.md`
   -  … can also produce <<vitamin D>> for us to absorb, if that’s true, couldn’t some of our <<vitamin D>> deficiency       be from an … 
+- **The Osteoporosis Rx**
+  - `_intake/kruse-blog-corpus/articles/the-osteoporosis-rx.md`
+  -  … This is due to the SAD, which causes high inflammation levels, low <<vitamin D>> levels (from lack of D in the diet), pregnenolone steal … 
 - **UBIQUITINATION 8:  THE MAMMALIAN BATTERY**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-8-the-mammalian-battery.md`
   -  … Me and my family always test neagtive for <<vitamin d>>. So do we lack in other minerals which stops us for assimilating it. We … 
@@ -120,6 +137,11 @@ charts she's …
 - **The Leaky Gut Prescription**
   - `_intake/kruse-blog-corpus/articles/the-leaky-gut-prescription.md`
   -  … Indeed, the relation- ship between low <<vitamin D>> and cancer is so well established that there is widespread research on <<vitamin D>> analogs as … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … light-toxicity.md) — 30 hits  (intake:29, youtube:1)
+- [`<<vitamin-d>>-sunlight`](<<vitamin-d>>-sunlight.md) — 30 hits  (intake:23, youtube:7)
+- [`ez-water … 
 - **Hormones 101: Clinical thoughts revealed**
   - `_intake/kruse-blog-corpus/articles/hormone-cascade-101.md`
   -  … Clinical thoughts revealed
@@ -134,11 +156,6 @@ charts she's …
 - **Osteoporosis 3: Related Drugs and Diseases**
   - `_intake/kruse-blog-corpus/articles/osteoporosis-three-related-drugs-and-diseases.md`
   -  … I believe this is because most of these children have severe underlying <<Vitamin D>> deficiency and a leaky gut, but this has never been … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … light-toxicity.md) — 25 hits  (intake:2, youtube:23)
-- [`<<vitamin-d>>-sunlight`](<<vitamin-d>>-sunlight.md) — 25 hits  (intake:2, youtube:23)
-- [`ez-water … 
 - **The Redox Rx: How to Improve Your Redox Potential**
   - `_intake/kruse-blog-corpus/articles/redox-rx.md`
   -  … There are three metabolic transactions from cholesterol (Cholecalciferol) that occur under the skin's surface where our "storage version" of <<vitamin D>> (Calcidiol) is … 
@@ -156,9 +173,3 @@ charts she's …
 
 
 ![](https … 
-- **Osteoporosis 2: The Vitamin K2 Story**
-  - `_intake/kruse-blog-corpus/articles/osteoporosis-two-the-vitamin-k2-story.md`
-  -  … I also screen the HS CRP and <<Vitamin D>> levels as well to get a clearer idea of what the losses might be in … 
-- **CPC #31: The History of the Modern Human Decline**
-  - `_intake/kruse-blog-corpus/articles/cpc-31-the-history-of-the-modern-human-decline.md`
-  -  … Back in the mid to late 1800’s no one walked around naked making enough <<Vitamin D>> (70ng/dl for EHS from sun). In … 

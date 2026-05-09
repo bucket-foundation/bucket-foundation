@@ -1,0 +1,14 @@
+# Imaging of ultraweak photon emission for evaluating the oxidative stress of human skin.
+
+- **PMID**: 31349151
+- **DOI**: 10.1016/j.jphotobiol.2019.111562
+- **PMCID**:  
+- **Journal**: Journal of photochemistry and photobiology. B, Biology  ·  **Year**: 2019
+- **Authors**: Katsuhiko Tsuchida, Torai Iwasa, Masaki Kobayashi
+- **MeSH**: Antioxidants, Humans, Light, Male, Oxidative Stress, Photography, Photons, Reactive Oxygen Species, Skin, Ultraviolet Rays
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31349151/
+- **Captured**: 2026-05-09T09:42:17
+
+## Abstract
+
+Ultraweak photon emission (UPE) is generally observed in living organisms and often designated as biophoton emission. UPE is detectable from human skin, and its intensity increases by external stress such as ultraviolet (UV) irradiation. Presently, UPE measurement is used to evaluate oxidation status. The fact that the electronically excited species responsible for UPE are formed by reactive oxygen species (ROS)-induced lipid peroxidation and protein and nucleic acid oxidation is well known. The human skin undergoes oxidative stress by UV irradiation, resulting in various skin complications; therefore, it is essential to know the oxidation status of the skin. In this study, we assessed the characteristics of UV-induced UPE in the skin by the imaging and spectroscopy systems. Two-dimensional images obtained by a highly sensitive imaging system using a cooled charge-coupled device (CCD) camera revealed that UPE intensity increases with the amount of UV and is suppressed by antioxidants. Additionally, it is indicated that UPE is generated not only from the epidermis but also from the dermis. The spectra of UPE induced by UVA or UVB showed similar peaks in the visible light region. Furthermore, we confirmed the efficiency of sunscreen by the imaging technique. UPE measurement is a useful method to evaluate UV-induced oxidation in the human skin, and UPE imaging is an effective method to visually evaluate oxidative stress in the human skin.

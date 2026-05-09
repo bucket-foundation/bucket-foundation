@@ -7,7 +7,7 @@
 - **Authors**: Gilbert N Ling
 - **MeSH**: Biochemistry, Cell Physiological Phenomena, Colloids, Cytoplasm, Microscopy, Electron, Potassium, Proteins, Water
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/25854101/
-- **Captured**: 2026-05-09T09:22:05
+- **Captured**: 2026-05-09T09:41:31
 
 ## Abstract
 

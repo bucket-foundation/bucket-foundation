@@ -7,7 +7,7 @@
 - **Authors**: B E Nordenström
 - **MeSH**: Adenocarcinoma, Aged, Blood Vessels, Carcinoma, Small Cell, Carcinoma, Squamous Cell, Electrophysiology, Female, Hamartoma, Humans, Liposarcoma
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/2992253/
-- **Captured**: 2026-05-09T09:22:10
+- **Captured**: 2026-05-09T09:41:45
 
 ## Abstract
 
