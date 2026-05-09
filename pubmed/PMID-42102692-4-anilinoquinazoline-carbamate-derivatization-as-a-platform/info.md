@@ -1,0 +1,14 @@
+# 4-Anilinoquinazoline carbamate derivatization as a platform for prodrug design and localized drug delivery.
+
+- **PMID**: 42102692
+- **DOI**: 10.1016/j.bioorg.2026.109912
+- **PMCID**:  
+- **Journal**: Bioorganic chemistry  ·  **Year**: 2026
+- **Authors**: Mabel Barreiro Carpio, Coleman D Walker, Audrey Fikes, Tuomo Laitinen, M Alejandro Valdes-Pena, Osman Gani, Micah Mallory, Christopher R M Asquith, Yevgeny Brudno, Joshua G Pierce
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42102692/
+- **Captured**: 2026-05-09T09:31:16
+
+## Abstract
+
+Tyrosine kinase inhibitors (TKI) based on the 4-anilinoquinazoline (AQ) scaffold, including gefitinib, lapatinib, erlotinib, etc., are limited clinically by undesired inhibition of the Epidermal Growth Factor Receptor (EGFR) in healthy tissues, causing toxicities and narrow therapeutic windows. Here, we evaluate carbamate masking of the AQ hinge nitrogen as a scaffold-centered strategy to modulate exposure and enable controlled activation across a panel of EGFR-TKIs (PD153035, erlotinib, afatinib, lapatinib). We first explored a β-eliminative sulfone linker design for localized release from alginate hydrogels. Hydrolysis profiling revealed that efficient parent drug release occurred only at basic pH, defining key constraints for depot formulations in mildly acidic tumor microenvironments. In parallel, we developed nitroreductase (NTR)-activatable AQ-TKI prodrugs. The nitroimidazole carbamate increased polarity and adjusted solubility while maintaining overall drug-like SwissADME profiles. All prodrugs were chemically stable under physiologically relevant conditions and underwent efficient NTR-dependent uncaging to regenerate the parent TKIs. Molecular dynamics simulations and Boltz-2 protein-ligand affinity predictions showed weakened binding and reduced kinase target space for intact prodrugs relative to parents, consistent with higher IC₅₀ values in cell-free EGFR assays and supporting attenuated basal activity prior to activation. Together, these results establish AQ carbamate derivatization as a generalizable platform for EGFR-TKI prodrug design and provide quantitative design rules linking scaffold masking, stability, activation, and target engagement.

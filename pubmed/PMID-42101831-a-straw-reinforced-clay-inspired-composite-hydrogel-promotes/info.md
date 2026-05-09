@@ -1,0 +1,14 @@
+# A Straw-Reinforced-Clay-Inspired Composite Hydrogel Promotes Diabetic Bone Regeneration via Driving the Immune-Osteogenic Cascade to Remodel Mitochondrial Homeostasis.
+
+- **PMID**: 42101831
+- **DOI**: 10.1021/acsnano.6c02616
+- **PMCID**:  
+- **Journal**: ACS nano  ·  **Year**: 2026
+- **Authors**: Yuanyang Li, Zhuoya Cui, Hanrui Liao, Xiaoxuan Han, Kehong Guo, Zitong Xia, Rui Cai, Dan Zhao, Gang Tao
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42101831/
+- **Captured**: 2026-05-09T09:31:04
+
+## Abstract
+
+Diabetes mellitus (DM) is a chronic metabolic disorder. Bone defect repair in this condition faces significant challenges due to hyperglycemia-induced oxidative stress, chronic inflammation, and dysregulation of the immuno-osteogenic cascade. Macrophage-mediated immuno-osteogenic cascade dysfunction compromises mitochondrial homeostasis in bone marrow mesenchymal stem cells (BMSCs), disrupting the balance of bone regeneration. Therefore, modulating the immune microenvironment to restore BMSCs' mitochondrial homeostasis and osteogenic potential is crucial. This study constructed a reactive oxygen species (ROS)-responsive hydrogel matrix (AP) based on boronic ester bonds. Inspired by the "straw-reinforced clay" structure, mineralized silk fibroin short fibers doped with strontium hydroxyapatite (mSF) were introduced. These fibers were designed to enhance both the mechanical properties and the pro-angiogenic and osteogenic performance of the hydrogel. Finally, EGCG-Met nanoparticles (EM NPs) were loaded to obtain the EM@mSF-AP hydrogel. In a high-ROS microenvironment, this hydrogel intelligently releases EM NPs, scavenges ROS, and promotes macrophage polarization toward the M2 phenotype. This subsequently drives immuno-osteogenic cascade regulation, systemically restoring mitochondrial homeostasis in BMSCs: it activates the Sod2-Cat axis to enhance endogenous antioxidant capacity, restores mitochondrial membrane potential and dynamics stability, upregulates the key ATP-synthesizing enzyme COX IV, and re-establishes efficient energy metabolism. Meanwhile, mSF within the hydrogel further synergistically promotes angiogenesis and osteogenic differentiation. In animal experiments, this hydrogel improved the immune microenvironment, enhanced energy metabolism, and stimulated angiogenesis in a diabetic rat calvarial defect model, significantly accelerating new bone formation. In summary, inspired by the "straw-reinforced clay" structure, this study developed a ROS-responsive EM@mSF-AP hydrogel, elucidating a cascade therapeutic strategy centered on "immunomodulation-mitochondrial homeostasis restoration-osteogenic coupling", offering an alternative strategy for diabetic bone regeneration.

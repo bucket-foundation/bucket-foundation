@@ -1,0 +1,14 @@
+# Magnetite sand as a low-cost material for electromagnetic shielding and mechanical enhancement of concrete.
+
+- **PMID**: 42098260
+- **DOI**: 10.1016/j.ijmecsci.2024.109895
+- **PMCID**: PMC8481330 (full-text saved)
+- **Journal**: Scientific reports  ·  **Year**: 2026
+- **Authors**: Shady H El-Gohary, Wegdan W El-Nadoury, Ehab A Kholief, Ahmed S I Amar, Adel M Soliman
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42098260/
+- **Captured**: 2026-05-09T09:30:50
+
+## Abstract
+
+The widespread use of electromagnetic waves in various fields, such as communications, medicine, and household use, has become a tangible reality. However, this increasing use is surrounded by concerns about the harmful effects of electromagnetic waves. In this study, samples of concrete used in buildings were prepared, and conventional sand was replaced with magnetite sand extracted from Egyptian black sand at ratios of 10, 20, 30, and 40% of the total sand content. Their ability to absorb electromagnetic waves in the frequency range of 2 to 12 GHz was evaluated. The results showed that magnetite can absorb electromagnetic waves with an efficiency of up to 18 dB at a frequency of 8 GHz for the sample in which conventional sand was replaced by magnetite sand by 40%. Moreover, the addition of magnetite sand to the concrete improved the mechanical properties. The compressive strength increased progressively from 35 to 47.25 MPa, and the tensile strength improved from 4.14 to 4.80 MPa. There were also less pronounced cracks, more compact fractured surfaces, and signs of energy dissipation, indicating quasi-brittle or tougher behavior.

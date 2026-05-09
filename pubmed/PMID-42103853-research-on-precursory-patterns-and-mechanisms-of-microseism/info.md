@@ -1,0 +1,14 @@
+# Research on precursory patterns and mechanisms of microseism and electromagnetic radiation during the evolution process of rock burst.
+
+- **PMID**: 42103853
+- **DOI**: 10.1038/s41598-026-52096-4
+- **PMCID**:  
+- **Journal**: Scientific reports  ·  **Year**: 2026
+- **Authors**: Yafei Zhu, Kai Yang, Xuelong Li, Bingxiao Jiang, Liming Qiu
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42103853/
+- **Captured**: 2026-05-09T09:31:30
+
+## Abstract
+
+To address the frequent occurrence of rock burst in deep mining at Yuejin Coal Mine and the inaccuracy of traditional single-index early warning, this study integrates electromagnetic radiation (EMR), microseismic (MS) monitoring, and on-site observations to systematically analyze the precursors and mechanisms of rock burst in the 25,110 working face. The results show that EMR signals exhibit three temporal patterns: rise-then-fall (71.4% of events), continuous fall, and continuous rise. Spatially, EMR intensity in the damage zone increases significantly 1-2 days before a rock burst, and bursts mainly occur in areas 0-50 m or beyond 200 m from the working face. MS signals follow a consistent rise-then-fall pattern: energy and frequency increase 4-9 days before the burst, peak 1-5 days later, then decline, with the burst occurring 2-3 days after the decline begins. Based on the energy response and perturbation effect of EMR signals, three precursory mechanisms are identified: "rising (falling)", "∧" shaped, and "N" shaped, corresponding to different failure stages of coal-rock under loading. These findings provide theoretical support for precise, multi-parameter early warning of rock burst in coal mines.

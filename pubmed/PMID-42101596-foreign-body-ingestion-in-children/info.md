@@ -1,0 +1,14 @@
+# Foreign Body Ingestion in Children.
+
+- **PMID**: 42101596
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: American family physician  ·  **Year**: 2026
+- **Authors**: Christina Valerio, Ryan Williamson
+- **MeSH**: Humans, Foreign Bodies, Child, Endoscopy, Digestive System, Child, Preschool, Magnets
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42101596/
+- **Captured**: 2026-05-09T09:31:02
+
+## Abstract
+
+Foreign body ingestions are a common reason for visits to the emergency department in the United States. The most commonly ingested objects include coins and toys, whereas button batteries and magnets are most likely to cause serious complications. Most ingestions are unwitnessed and do not cause symptoms, but choking and vomiting may occur. Diagnosis should begin with plain radiography because it is most sensitive for metallic objects. Management can include watchful waiting, esophagogastroduodenoscopy (EGD), and general or cardiothoracic surgery, depending on the type of object ingested, its location, and symptoms. Coins often pass spontaneously, but large or proximally lodged coins in young children may require EGD. Button battery ingestion is a medical emergency due to rapid tissue damage and risk of fatal vascular injury; honey or sucralfate can be used as interim treatment before emergent EGD. Magnet ingestion, especially when it involves multiple high-powered magnets, poses a severe risk of gastrointestinal injury and often necessitates emergent EGD or surgical intervention. Sharp objects may cause perforation and require close monitoring for removal with emergent or urgent EGD. Food impactions and absorptive objects also require emergent EGD because of their propensity to obstruct the esophagus. Prompt evaluation, imaging, and object-specific management are critical to prevent complications.

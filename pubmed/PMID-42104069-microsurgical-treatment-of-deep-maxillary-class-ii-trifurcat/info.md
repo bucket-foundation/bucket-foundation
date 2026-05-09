@@ -1,0 +1,14 @@
+# Microsurgical treatment of deep maxillary Class II trifurcation defects combining root resection and guided tissue regeneration: a case series.
+
+- **PMID**: 42104069
+- **DOI**: 10.1038/s41415-026-9527-8
+- **PMCID**:  
+- **Journal**: British dental journal  ·  **Year**: 2026
+- **Authors**: Pedro Franco Ferreira, Milenna Silva Fuly, Márcio Fernando de Moraes Grisi, Ana Carolina Fragoso Motta
+- **MeSH**: Humans, Guided Tissue Regeneration, Periodontal, Microsurgery, Adult, Maxilla, Female, Male, Furcation Defects, Molar, Tooth Root
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42104069/
+- **Captured**: 2026-05-09T09:31:35
+
+## Abstract
+
+Furcation defects pose a significant challenge in periodontal therapy. While regenerative approaches are generally preferred, resective procedures may remain essential depending on defect morphology and root configuration. This case series aims to demonstrate the clinical benefits of combining resective and regenerative techniques using periodontal microsurgery to treat maxillary molars with deep trifurcation defects. Three patients with extensive Class II trifurcation defects in maxillary molars, unresponsive to prior non-surgical periodontal therapy, were managed using a dental operating microscope and cone-beam computed tomography for accurate diagnosis and planning. The surgical protocol included selective buccal root resection alongside guided tissue regeneration using enamel matrix derivative, collagen membrane and heterologous bone graft. Short- and long-term post-operative follow-ups, including clinical and radiographic evaluations during supportive periodontal care, demonstrated tissue volume preservation and complete resolution of the infection. These cases indicate that, when appropriately selected, the combined microsurgical resective-regenerative approach offers a predictable, minimally invasive treatment option for advanced Class II trifurcation defects in maxillary molars, providing a valuable alternative to extraction and implant placement.

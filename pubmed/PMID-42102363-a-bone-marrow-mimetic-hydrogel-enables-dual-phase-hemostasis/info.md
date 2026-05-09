@@ -1,0 +1,14 @@
+# A Bone Marrow-Mimetic Hydrogel Enables Dual-Phase Hemostasis and Vascularized Osteogenesis for Cranial Defects.
+
+- **PMID**: 42102363
+- **DOI**: 10.1002/advs.75590
+- **PMCID**:  
+- **Journal**: Advanced science (Weinheim, Baden-Wurttemberg, Germany)  ·  **Year**: 2026
+- **Authors**: Lingbin Che, Donghong Li, Huan Zhang, Tingting Xu, Juhan Li, Xuanzhou Chen, Louis D Zhang, Shuguang Wang, Dianwen Song, Dongyong Sha
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42102363/
+- **Captured**: 2026-05-09T09:31:10
+
+## Abstract
+
+Critical-sized cranial defects present two sequential clinical challenges. These include an acute need for rapid hemostasis and a long-term requirement for vascularized bone regeneration. Current implants fail to address these sequential demands. To overcome this limitation, a bone marrow-mimetic composite hydrogel (FE-PDA@Fib/Gel-TG) is engineered. This system integrates transglutaminase crosslinked gelatin, rigid polydopamine-coated hydroxyapatite/poly(L-lactic acid) (HAp/PLLA) short fibers, and cell-free fat extract (FE). These components together recapitulate key biochemical and biomechanical features of native bone marrow. The hierarchically designed scaffold immediately achieves hemostasis through fiber-mediated mechanical sealing and catechol-assisted clot stabilization. Furthermore, the sustained release of FE establishes a pro-regenerative microenvironment. This milieu significantly enhances cell recruitment, endothelial network formation, and osteogenic differentiation. It also promotes heterotypic crosstalk between endothelial and osteoprogenitor cells. Transcriptomic analyses reveal that this vascular-bone coupling is driven by the convergent activation of VEGF/VEGFR-PI3K-AKT signaling pathways. In a critical-sized calvarial defect model, the hydrogel actively steers macrophage polarization toward an anti-inflammatory phenotype. Consequently, it induces the robust regeneration of morphologically mature, highly vascularized bone tissue. By successfully coupling rapid hemostatic control with spatiotemporally programmed osteo-angiogenesis, this multifunctional biomimetic platform represents a highly translatable advancement for effective cranial defect repair.

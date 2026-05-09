@@ -1,0 +1,14 @@
+# Exclusion-zone water inside and outside of plant xylem vessels.
+
+- **PMID**: 38802675
+- **DOI**: 10.1186/1471-2229-9-45
+- **PMCID**: PMC2680855 (full-text saved)
+- **Journal**: Scientific reports  ·  **Year**: 2024
+- **Authors**: Anqi Wang, Gerald H Pollack
+- **MeSH**: Xylem, Water, Hydrophobic and Hydrophilic Interactions
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38802675/
+- **Captured**: 2026-05-09T09:30:43
+
+## Abstract
+
+The fourth phase of water has garnered increased attention within the scientific community due to its distinct properties that differentiate it from regular water. This unique state seems to arise potentially from a liquid crystalline structure, which has been observed near various hydrophilic surfaces to possess the capability of excluding microspheres. Consequently, it has been labeled as exclusion zone (EZ) water. When in contact with hydrophilic surfaces, water could exhibit the ability to form organized layers of EZ water. In this study, we investigated the quick buildup of EZ water exposed to xylem vessels of four vegetable plants: cabbage, celery, asparagus, and pumpkin. Among them, pumpkin vessels showed larger EZs, up to 240 ± 56 μm in width. The width of EZ water found near the xylem vessels of the other plants ranged from 133 ± 22 to 142 ± 20 μm. EZ water generally excludes a wide range of particles, including polystyrene microspheres with various surface modifications, as well as silica microspheres. This implies that the formation of EZ water is not an artificial result of using specific microsphere types but rather demonstrates EZ's ability to exclude particles regardless of their composition. Inside single xylem vessels of the pumpkin, we could observe the dynamics of EZ buildup, growing from the inside edge of the vessel toward the center. The relationship between vessel diameter, vessel length, and salt concentration on EZ generation inside the xylem vessel was also explored. The results showed that EZ water can build up both inside and outside the xylem vessels. Our findings suggest that EZ generation inside xylem vessels is associated with water flow, likely driven by a proton gradient. Further research is warranted to elucidate the role of EZ water in the physiology of living plants, particularly considering the limitations of the current experiments conducted on cut-out xylem vessel samples.

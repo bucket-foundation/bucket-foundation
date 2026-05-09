@@ -1,0 +1,14 @@
+# Efficacy and Safety of Negative Pressure Wound Therapy in Managing Lower Limb Amputation; An Updated Systematic Review and Meta-Analysis With Individual Patients Data Meta-Analysis and GRADE Assessment.
+
+- **PMID**: 42104534
+- **DOI**: 10.1111/wrr.70162
+- **PMCID**:  
+- **Journal**: Wound repair and regeneration : official publication of the Wound Healing Society [and] the European Tissue Repair Society  ·  **Year**: 2026
+- **Authors**: Abdullah Elrefae, Mohamed Elghouneimy, Mirna Morad Mashhour, Mohamed H Khater, Mohamed Wahb, Miqdad Qandeel, Mohamed Fahmy, Mustafa Makkiyah, Ali Mohamed Seif, Mohammad Amgad Seddek, Omar Ahmed Abdelwahab
+- **MeSH**: Humans, Negative-Pressure Wound Therapy, Amputation, Surgical, Wound Healing, Surgical Wound Infection, Lower Extremity, Treatment Outcome, Surgical Wound Dehiscence, Amputation Stumps
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42104534/
+- **Captured**: 2026-05-09T09:31:39
+
+## Abstract
+
+Major lower-limb amputation often leads to wound complications that delay recovery and prosthetic use. Negative Pressure Wound Therapy (NPWT) has been suggested to improve outcomes, but evidence is inconsistent. The objective of this study is to compare NPWT with standard wound therapy in fresh amputation stumps. A systematic review and meta-analysis following PRISMA and Cochrane guidelines included randomised and controlled observational trials. Primary outcomes were wound complications, including surgical-site infections (SSI) and wound dehiscence. Secondary outcomes included re-amputation, healing, and resource use. Seventeen papers including over 6745 patients were analysed. NPWT significantly reduced total wound complications (RR 0.49, 95% CI 0.37-0.66) and SSIs (RR 0.50, 95% CI 0.27-0.90), including both superficial (RR 0.30, 95% CI 0.12-0.73) and deep infections (RR 0.26, 95% CI 0.11-0.63). The secondary amputation risk was lowered by one-third (RR 0.67, 95% CI 0.50-0.89). Wound dehiscence risk decreased (RR 0.53, 95% CI 0.30-0.94). Mortality, readmission, and hospital stay showed no significant differences between groups. Healing outcomes strongly favoured NPWT: mean time to ≥ 76% granulation was shortened by 25 days, while complete closure occurred nearly two weeks earlier. Kaplan-Meier reconstruction confirmed that NPWT accelerated wound maturation by 77% (HR 0.23, 95% CI 0.12-0.44). Economic evaluations, though limited, indicated fewer dressing changes, reduced outpatient visits, and overall cost savings. NPWT after major lower-limb amputation halves wound complications and infections, lowers re-amputation, and accelerates healing. Despite unchanged systemic outcomes, the local benefits are clinically significant, supporting its use in standard post-amputation care. Trial Registration: CRD420251088214.

@@ -1,0 +1,14 @@
+# Critical Power Model Parameters Reflect Distinct Aerobic and Mechanical Performance Characteristics in Male Track-and-Field Athletes.
+
+- **PMID**: 42103291
+- **DOI**: 10.1123/ijspp.2025-0688
+- **PMCID**:  
+- **Journal**: International journal of sports physiology and performance  ·  **Year**: 2026
+- **Authors**: Ryoya Oga, Seiya Fujita, Tomoya Kadi, Hiroyuki Tamaki, Futoshi Ogita
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42103291/
+- **Captured**: 2026-05-09T09:31:22
+
+## Abstract
+
+The critical power (CP) model is widely used to evaluate high-intensity exercise tolerance; however, the performance characteristics reflected by its parameters may differ across athletes with diverse physiological and neuromuscular profiles. This study examined how CP-model parameters relate to aerobic power, indices of anaerobic performance, and nonoxidative energy contribution in male track-and-field athletes. Twenty male track-and-field athletes completed assessments of maximal oxygen uptake (V˙O2max), CP and the curvature constant (W'), maximal accumulated oxygen deficit, maximal anaerobic power, and a 30-second Wingate test. Body composition variables were assessed using high-frequency bioelectrical impedance analysis. Associations between CP-model parameters and performance indices were examined using correlation analysis. CP was significantly and positively correlated with V˙O2max (r = .64, P = .002) and negatively correlated with several mechanical indices of anaerobic performance. In contrast, W' was positively associated with mechanically expressed anaerobic performance, including maximal anaerobic power and Wingate-derived peak and mean power (r = .73-.75, P < .001), as well as body composition variables. No statistically significant association was observed between W' and maximal accumulated oxygen deficit. These findings indicate that CP and W' reflect distinct aerobic and mechanical performance characteristics, with CP primarily reflecting aerobic power and W' representing a mechanically expressed work reserve rather than a purely metabolic index of nonoxidative energy contribution. This distinction highlights the complementary roles of CP-model parameters in performance evaluation.

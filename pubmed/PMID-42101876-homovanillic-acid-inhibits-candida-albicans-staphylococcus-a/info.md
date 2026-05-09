@@ -1,0 +1,14 @@
+# Homovanillic acid inhibits Candida albicans-Staphylococcus aureus polymicrobial biofilm: in vitro and in vivo evaluation.
+
+- **PMID**: 42101876
+- **DOI**: 10.1093/jambio/lxag111
+- **PMCID**:  
+- **Journal**: Journal of applied microbiology  ·  **Year**: 2026
+- **Authors**: Anmol Kulshrestha, Pratima Gupta, Sumit Sahu, Priya Komre, Sanjay Kumar Gupta, Avani Tiwari
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42101876/
+- **Captured**: 2026-05-09T09:31:05
+
+## Abstract
+
+Candida albicans and Staphylococcus aureus polymicrobial biofilms cause chronic wound infections and tolerate standard antimicrobials poorly. Their endurance is driven by fungal hyphal morphogenesis, interkingdom co-aggregation, and virulence proteins, including SAP5, which create a strong polymicrobial biofilm. Homovanillic acid, a plant-derived phenolic molecule, was tested for its antibiofilm effects on hyphal growth, bacterial-fungal interactions, and SAP5-associated pathogenicity. Integrated in vitro, real-time dynamic, and in vivo methods were used to assess antibiofilm activity. Microtiter plate experiments evaluated the minimum biofilm inhibitory concentration (MBIC), whereas a real-time Biofilm Infection Simulator System examined biofilm formation under flow circumstances. SAP5 proteinase activity was measured spectrophotometrically, and microbiological and histological investigations confirmed in vivo efficacy in a catheter-associated rat wound model. HVA significantly inhibited polymicrobial biofilm initiation at sub-inhibitory concentrations, with an MBIC of 128 µg mL-1 corresponding to an 82.18% reduction in biofilm formation. Real-time analysis confirmed substantial suppression of biofilm development. Inhibition of C. albicans hyphal morphogenesis impaired S. aureus adhesion and destabilized biofilm architecture, while SAP5 activity was reduced by 53.37%. In vivo treatment promoted effective wound healing, marked by reduced inflammation, near-complete epithelial regeneration, and organized collagen deposition by day 14. HVA demonstrates potent multitarget antibiofilm activity and represents a promising plant-derived therapeutic candidate for managing polymicrobial biofilm-associated wound infections.

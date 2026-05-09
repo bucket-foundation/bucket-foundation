@@ -1,0 +1,14 @@
+# Serpinh1 promotes fracture healing by enhancing osteogenesis via activation of the Wnt/β-catenin signaling pathway.
+
+- **PMID**: 42102673
+- **DOI**: 10.1016/j.bbrc.2026.153864
+- **PMCID**:  
+- **Journal**: Biochemical and biophysical research communications  ·  **Year**: 2026
+- **Authors**: Zhehui Tu, Chenchen Xu, Yuanxin Zhu, Yiqiang Li Li, Hongwen Xu
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42102673/
+- **Captured**: 2026-05-09T09:31:15
+
+## Abstract
+
+The process of fracture healing encompasses tightly regulated cellular and molecular interactions. However, the precise regulatory mechanisms that orchestrate osteogenesis during bone regeneration remain unclear. Fracture healing-related key genes were identified by integrating transcriptomic datasets (GSE157460 and GSE152677) with four machine learning algorithms. Gain- and loss-of-function experiments were performed by inducing serine (or cysteine) peptidase inhibitor, clade H, member 1 (Serpinh1) overexpression in murine fracture sites and mouse bone marrow mesenchymal stem cells (mBMSCs), and by siRNA-mediated Serpinh1 knockdown in mBMSCs. Hematoxylin and eosin staining, Masson's trichrome staining, Western blot, quantitative real-time PCR, Alizarin Red S staining, alkaline phosphatase activity assay, and TOP/FOP luciferase reporter assay, were used to evaluate callus formation, osteogenic differentiation, and extracellular matrix remodeling. Four key genes, including biglycan (Bgn), collagen, type XI, alpha 1(Col11a1), collagen, type V, alpha 1 (Col5a1), and Serpinh1 were upregulated in the mouse model of fracture healing. In the murine fracture model, Serpinh1 overexpression promoted fracture healing, collagen deposition, and osteogenic marker expression. In mBMSCs, Serpinh1 overexpression enhanced the expression of osteogenesis-related proteins, increased mineralized nodule formation, and elevated alkaline phosphatase staining and activity, whereas Serpinh1 knockdown exerted the opposite effects. Mechanistically, Serpinh1 activated the Wnt/β-catenin pathway, and its pro-osteogenic effects were markedly abolished by methyl 3-[(4-methylphenyl)sulfonyl]amino-benzoate, a specific inhibitor of β-catenin. Serpinh1 promotes fracture healing by enhancing osteogenic differentiation via Wnt/β-catenin signaling, suggesting that it may serve as a potential therapeutic target.

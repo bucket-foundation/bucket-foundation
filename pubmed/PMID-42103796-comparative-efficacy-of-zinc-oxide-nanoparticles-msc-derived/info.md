@@ -1,0 +1,14 @@
+# Comparative efficacy of zinc oxide nanoparticles, MSC-derived microvesicles, and platelet-rich fibrin in rabbit tendon regeneration.
+
+- **PMID**: 42103796
+- **DOI**: 10.1038/s41598-026-46509-7
+- **PMCID**:  
+- **Journal**: Scientific reports  ·  **Year**: 2026
+- **Authors**: Mohamed Marzok, Mahmoud Hassan, Mohamed Abd Elkawi, Zakarya Al Mohamed, Abdelrahman Hereba, Yamen Hegazy, Mohamed El-Sherif
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42103796/
+- **Captured**: 2026-05-09T09:31:29
+
+## Abstract
+
+Tendon injuries represent a significant clinical challenge because of their poor vascularity and limited intrinsic healing potential. This study aimed to comparatively evaluate the regenerative efficacy of zinc oxide nanoparticles (ZnONPs), mesenchymal stem cell-derived microvesicles (MVs), and advanced platelet-rich fibrin (A-PRF) in promoting Achilles tendon repair in a rabbit model. Thirty-six adult New Zealand rabbits were assigned to four groups: untreated control, (0.5 mL of 0.2% sterile dispersion), (1 mL gel injected twice within one week), and A-PRF (membrane applied at surgery) groups. Standardized full-thickness Achilles tendon defects were surgically induced. The animals were euthanized at 2, 4, and 6 weeks via sedation with xylazine (5 mg/kg) followed by thiopental sodium (100 mg/kg IV). Histopathological healing scores and the mRNA expression of proinflammatory (TNF-α, IL-1β, and IL-6) and anti-inflammatory (TGF-β and IL-10) genes were analyzed via real-time PCR. Treatment resulted in the most advanced histological remodeling by week 6, characterized by continuous, well-aligned collagen fibers, minimal inflammation, and normalized cellularity. Compared with the control groups, both the ZnONPs and MVs groups presented significant downregulation of TNF-α, IL-1β, and IL-6 and concurrent upregulation of TGF-β and IL-10 (p < 0.05). Compared with ZnONPs, A-PRF induced early vascularization and fibroblast proliferation but delayed collagen maturation. ZnONPs exhibited the greatest capacity to accelerate tendon regeneration through the modulation of inflammatory mediators and collagen synthesis, suggesting their potential as cost-effective biomaterials for tendon repair.

@@ -1,0 +1,14 @@
+# Post-Transbronchial Microwave Ablation Bronchopleural Fistula-A Case Series and Unique Insight.
+
+- **PMID**: 42102250
+- **DOI**: 10.1093/ejcts/ezaf456
+- **PMCID**:  
+- **Journal**: European journal of cardio-thoracic surgery : official journal of the European Association for Cardio-thoracic Surgery  ·  **Year**: 2026
+- **Authors**: Aliss T C Chang, Cindy S Y Cho, Joyce W Y Chan, Wei Liu, Rainbow W H Lau, Calvin S H Ng
+- **MeSH**: Humans, Bronchial Fistula, Pleural Diseases, Male, Retrospective Studies, Female, Aged, Middle Aged, Lung Neoplasms, Microwaves
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42102250/
+- **Captured**: 2026-05-09T09:31:08
+
+## Abstract
+
+This case series aims to evaluate the incidence, mechanisms, and management of bronchopleural fistula (BPF) following transbronchial microwave ablation (TMWA) for lung tumours and to explore innovative strategies for prevention and treatment. A retrospective review was conducted on 173 patients who underwent 209 sessions of TMWA from March 2019 to May 2025 at a single centre. Four cases of BPF confirmed by imaging and clinical presentation were analysed. Data collected included procedural details, mechanisms of BPF formation, management strategies, and patient outcomes. Techniques such as intraoperative fibrin glue injection and endobronchial valve placement were documented. BPF occurred in 4 patients (1.9%) and was associated with mechanisms including extensive ablation zone with cavitation, tissue contraction, and inadvertent pleural puncture. Treatments varied from conservative drainage and antibiotics to targeted endobronchial interventions, with all BPF successfully resolved. The use of innovative techniques, such as intraoperative fibrin glue injection, demonstrated promising results with minimal invasiveness. Patients with BPF experienced longer hospital stays compared to those without complications. Although rare, BPF is a significant complication after TMWA, often requiring individualized management. Early recognition through vigilant monitoring and advanced imaging facilitates prompt intervention. Further prospective studies are needed to refine prevention and management strategies for this serious complication.

@@ -1,0 +1,14 @@
+# Optimal Control-Based Generic Framework for Radiofrequency Pulse Design in MRI.
+
+- **PMID**: 42104602
+- **DOI**: 10.1002/nbm.70307
+- **PMCID**:  
+- **Journal**: NMR in biomedicine  ·  **Year**: 2026
+- **Authors**: Emilio Molina, Hélène Ratiney, Eric Van Reeth
+- **MeSH**: Magnetic Resonance Imaging, Radio Waves, Algorithms, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42104602/
+- **Captured**: 2026-05-09T09:31:40
+
+## Abstract
+
+This work proposes a general framework for the optimal design of radiofrequency pulses in MRI. Based on optimal control theory, it proposes a Python-based numerical implementation using state-of-the-art nonlinear optimization solver (IPOPT). This study proposes three main contributions. It allows the incorporation of hard constraints to the problem and their consistent integration into the optimization process. It proposes to express the pulse as wavelet coefficients which proves to be highly effective in an applicative context. Finally, an innovative approach to minimize the pulse peak amplitude is presented by taking advantage of the efficient constraint management. The proposed framework is made available through a Python package, along with Jupyter Notebooks to reproduce the paper results. It also allows external users to solve their own design problem, benefiting from the generality and flexibility of the proposed implementation. The efficacy of the proposed method is validated in the context of short- 
