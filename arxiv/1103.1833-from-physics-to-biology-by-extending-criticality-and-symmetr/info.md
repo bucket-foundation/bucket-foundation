@@ -1,0 +1,14 @@
+# From Physics to Biology by Extending Criticality and Symmetry Breakings
+
+- **arXiv ID**: `1103.1833`
+- **URL**: https://arxiv.org/abs/1103.1833
+- **Authors**: Giuseppe Longo, Maël Montévil
+- **Published**: 2011-03-09T17:08:48Z
+- **Updated**: 2012-04-06T03:42:47Z
+- **Primary category**: q-bio.OT
+- **All categories**: q-bio.OT
+- **Captured**: 2026-05-09T09:22:06
+
+## Abstract
+
+Symmetries play a major role in physics, in particular since the work by E. Noether and H. Weyl in the first half of last century. Herein, we briefly review their role by recalling how symmetry changes allow to conceptually move from classical to relativistic and quantum physics. We then introduce our ongoing theoretical analysis in biology and show that symmetries play a radically different role in this discipline, when compared to those in current physics. By this comparison, we stress that symmetries must be understood in relation to conservation and stability properties, as represented in the theories. We posit that the dynamics of biological organisms, in their various levels of organization, are not "just" processes, but permanent (extended, in our terminology) critical transitions and, thus, symmetry changes. Within the limits of a relative structural stability (or interval of viability), variability is at the core of these transitions.

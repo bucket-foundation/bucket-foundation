@@ -1,0 +1,14 @@
+# Chemiosmotic coupling in oxidative and photosynthetic phosphorylation. 1966.
+
+- **PMID**: 22082452
+- **DOI**: 10.1016/j.bbabio.2011.09.018
+- **PMCID**:  
+- **Journal**: Biochimica et biophysica acta  ·  **Year**: 2011
+- **Authors**: Peter Mitchell
+- **MeSH**: Adenosine Triphosphate, Biochemistry, Electron Transport, History, 20th Century, Humans, Intracellular Membranes, Nobel Prize, Oxidation-Reduction, Photophosphorylation, Proton-Motive Force
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22082452/
+- **Captured**: 2026-05-09T09:21:58
+
+## Abstract
+
+50 years ago Peter Mitchell proposed the chemiosmotic hypothesis for which he was awarded the Nobel Prize for Chemistry in 1978. His comprehensive review on chemiosmotic coupling known as the first "Grey Book", has been reprinted here with permission, to offer an electronic record and easy access to this important contribution to the biochemical literature. This remarkable account of Peter Mitchell's ideas originally published in 1966 is a landmark and must-read publication for any scientist in the field of bioenergetics. As far as was possible, the wording and format of the original publication have been retained. Some changes were required for consistency with BBA formats though these do not affect scientific meaning. A scanned version of the original publication is also provided as a downloadable file in Supplementary Information and can be found online at doi:10.1016/j.bbabio.2011.09.018. See also Editorial in this issue by Peter R. Rich. Original title: CHEMIOSMOTIC COUPLING IN OXIDATIVE AND PHOTOSYNTHETIC PHOSPHORYLATION, by Peter Mitchell, Glynn Research Laboratories, Bodmin, Cornwall, England.

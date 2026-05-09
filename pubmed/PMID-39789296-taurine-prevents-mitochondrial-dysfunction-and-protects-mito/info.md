@@ -1,0 +1,14 @@
+# Taurine prevents mitochondrial dysfunction and protects mitochondria from reactive oxygen species and deuterium toxicity.
+
+- **PMID**: 39789296
+- **DOI**: 10.1126/science.abd5491
+- **PMCID**: PMC8241437 (full-text saved)
+- **Journal**: Amino acids  ·  **Year**: 2025
+- **Authors**: Stephanie Seneff, Anthony M Kyriakopoulos
+- **MeSH**: Taurine, Humans, Mitochondria, Deuterium, Reactive Oxygen Species, Oxidative Stress, Animals, Gastrointestinal Microbiome
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/39789296/
+- **Captured**: 2026-05-09T09:22:36
+
+## Abstract
+
+Taurine, although not a coding amino acid, is the most common free amino acid in the body. Taurine has multiple and complex functions in protecting mitochondria against oxidative-nitrosative stress. In this comprehensive review paper, we introduce a novel potential role for taurine in protecting from deuterium (heavy hydrogen) toxicity. This can be of crucial impact to either normal or cancer cells that have highly different mitochondrial redox status. Deuterium is an isotope of hydrogen with a neutron as well as a proton, making it about twice as heavy as hydrogen. We first explain the important role that the gut microbiome and the gut sulfomucin barrier play in deuterium management. We describe the synergistic effects of taurine in the gut to protect against the deleterious accumulation of deuterium in the mitochondria, which disrupts ATP synthesis by ATPase pumps. Moreover, taurine's derivatives, N-chlorotaurine (NCT) and N-bromotaurine (NBrT), produced through spontaneous reaction of taurine with hypochlorite and hypobromite, have fascinating regulatory roles to protect from oxidative stress and beyond. We describe how taurine could potentially alleviate deuterium stress, primarily through metabolic collaboration among various gut microflora to produce deuterium depleted nutrients and deuterium depleted water, and in this way protect against leaky gut barrier, inflammatory bowel disease, and colon cancer.

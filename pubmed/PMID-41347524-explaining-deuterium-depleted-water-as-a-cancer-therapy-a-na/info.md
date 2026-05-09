@@ -1,0 +1,14 @@
+# Explaining deuterium-depleted water as a cancer therapy: a narrative review.
+
+- **PMID**: 41347524
+- **DOI**: 10.1097/CEJ.0000000000000953
+- **PMCID**: PMC7768873 (full-text saved)
+- **Journal**: European journal of cancer prevention : the official journal of the European Cancer Prevention Organisation (ECP)  ·  **Year**: 2026
+- **Authors**: Anthony M Kyriakopoulos, Stephanie Seneff
+- **MeSH**: Humans, Deuterium, Neoplasms, Mitochondria, Water, Reactive Oxygen Species
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41347524/
+- **Captured**: 2026-05-09T09:22:34
+
+## Abstract
+
+Deuterium is a natural heavy isotope of hydrogen, containing a neutron and a proton. This gives it distinct biophysical and biochemical properties, compared with hydrogen. Deuterium alters enzymatic activity in significant ways. Human metabolic processes minimize the amount of deuterium in mitochondrial water, because it causes a dysfunction in mitochondrial ATPase pumps, leading to excessive reactive oxygen species (ROS) and loss of ATP production. Mitochondrial dysfunction is a characteristic feature of cancer and many other diseases. Lactate plays an important role in cancer progression, and a central role holds also for vacuolar ATPases (V-ATPases). In the presence of excess deuterium, cancer cells show a remarkably altered metabolic policy, enabling invasion and proliferation. Cancer cells protect their mitochondria from excessive ROS by minimizing the use of ATPase to synthesize ATP. Instead, they rely on glycolysis to supply ATP and support the massive synthesis of lactate, which is excreted into the microenvironment. They also use V-ATPases in an unusual way at the plasma membrane to pump deuterium-depleted protons out of the cell, enriching cytoplasmic deuterium. These complex processes suggest that cancer cells are able to sense deuterium levels in the medium and commit apoptosis when deuterium levels are low or proliferate when they are high. Tumorigenesis involves a metabolic switch that supports increased cellular deuterium levels, decreasing the deuterium burden overall in the organism. Strong clinical evidence supports deuterium-depleted water (DDW) as an anticancer treatment. More investigations on cancer autophagic behavior are needed to guide DDW clinical use.

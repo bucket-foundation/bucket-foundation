@@ -1,0 +1,14 @@
+# Truth in basic biomedical science will set future mankind free.
+
+- **PMID**: 21970156
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Physiological chemistry and physics and medical NMR  ·  **Year**: 2011
+- **Authors**: Gilbert N Ling
+- **MeSH**: Biomedical Research, Cell Membrane, Cell Membrane Permeability, Cell Size, Cell Survival, Collodion, Glass, Lipid Bilayers, Magnesium, Membrane Potentials
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21970156/
+- **Captured**: 2026-05-09T09:22:05
+
+## Abstract
+
+It is self-evident that continued wellbeing and prosperity of our species in time to come depends upon a steady supply of major scientific and technologic innovations. However, major scientific and technical innovations are rare. As a rule, they grow only in the exceptionally fertile minds of men and women, who have fully mastered the underlying basic sciences. To waken their interest in science at an early critical age and to nurture and enhance that interest afterward, good textbooks at all level of education that accurately portray the relevant up-to-date knowledge are vital. As of now, the field of science that offers by far the greatest promise for the future of humanity is the science of life at the most basic cell and below-cell level. Unfortunately, it is precisely this crucial part of the (standardized) biological textbooks for all high schools and colleges in the US and abroad that have become, so to speak, fossilized. As a result, generation after generation of (educated) young men and women have been and are still being force-fed as established scientific truth an obsolete membrane (pump) theory, which has been categorically disproved half a century ago (see Endnote 1.) To reveal this Trojan horse of a theory for what it really is demands the concerted efforts of many courageous individuals especially young biology teachers who take themselves and their career seriously. But even the most courageous and the most resourceful won't find the task easy. To begin with, they would find it hard to access the critical scientific knowledge, with which to convert the skeptic and to rally the friendly. For the wealth of mutually supportive evidence against the membrane (pump) theory are often hidden in inaccessible publications and/or in languages other than English. To overcome this seemingly trivial but in fact formidable obstacle and to reveal the beauty and coherence of the existing but untaught truth, I put together in this small package a collection of the major clenching theoretical and experimental findings. These findings will remove the last trace of uncertainty about the total disproof of the membrane theory. In addition, I have also included an introduction of the association-induction hypothesis, which is the one and only unifying theory of the living cell that has survived and unwaveringly grown more comprehensive and powerful after more than half of a century of worldwide testing.

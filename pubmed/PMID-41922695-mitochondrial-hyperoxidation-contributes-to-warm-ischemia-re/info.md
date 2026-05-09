@@ -1,0 +1,14 @@
+# Mitochondrial hyperoxidation contributes to warm ischemia-reperfusion injury in rat and pig livers.
+
+- **PMID**: 41922695
+- **DOI**: 10.1038/s43856-026-01551-4
+- **PMCID**:  
+- **Journal**: Communications medicine  ·  **Year**: 2026
+- **Authors**: Khanh T Nguyen, O Sila Ozgur, Rohil Jain, Christopher Taveras, Emmanuella O Ajenu, Tyler Pugeda, Alona Muzikansky, Seyed Alireza Rabi, Asishana A Osho, John N Kheir, Daryoosh Vakhshoori, Korkut Uygun, Padraic Romfh, Shannon N Tessier
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41922695/
+- **Captured**: 2026-05-09T09:22:25
+
+## Abstract
+
+Mitochondrial dysfunction is a critical factor in several diseases, but current in situ assessment methods are severely limited. Non-invasive monitoring of mitochondrial redox state using resonance Raman Spectroscopy (RRS) offers a promising solution. This study aims to demonstrate RRS utility with liver models of warm ischemia-reperfusion injury in organ transplantation. Lewis rat (female) and Yorkshire pig (both sexes) livers were evaluated during reperfusion by subnormothermic machine perfusion, with 3-6 replicates per study group, and statistical comparisons using unpaired two-tailed Student's t-tests with Welch's correction for potentially unequal variance. RRS provides in situ quantification of the overall mitochondrial redox state, and herein further refined to resolve the redox state of individual complex III and IV. Here we show that RRS can differentiate non-viable rat livers (3 h warm ischemia, WI) from viable 1 h WI and fresh controls as early as 30 mins into reperfusion. RRS also identifies dysfunction at complex III characterized by hyperoxidation during reperfusion. This guides us to test methylene blue, which acts as an alternate electron donor to bypass complex III, as treatment rescuing mitochondria from WI-induced reperfusion injury. When tested on pig marginal livers with extended WI (30-45 mins), our RRS-guided treatment enables recovery of hemodynamics and oxygen/lactate values that approached controls without WI. RRS assessment and guided treatment with methylene blue provide two lines of evidence indicating that mitochondrial hyperoxidation, specifically at complex III, is a critical mechanism underlying warm ischemia-reperfusion injury. This study demonstrates the potential of RRS for transplantation and broader applications.
