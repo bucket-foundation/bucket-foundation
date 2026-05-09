@@ -1,9 +1,9 @@
 # fourth-phase-water
 
-**Query**: `"fourth phase" OR "4th phase"`  ·  **Hits**: 21
+**Query**: `"fourth phase" OR "4th phase"`  ·  **Hits**: 30
 
 
-## youtube (15)
+## youtube (7)
 
 - **Uncovering the Secrets of Life - The 4th Phase of Water with Gerald Pollack**
   - `yt/3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-4th-phase-of-water-with-g/transcript.txt`
@@ -51,60 +51,48 @@ water …
 is that you must have a <<fourth phase>>.
 So, he suggested that without a lot of
 evidence more … 
-- **Dr Jack Kruse: Deuterium, 4th phase of WATER, & cellular redox | Regenerative Health Podcast**
-  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re/transcript.txt`
-  -  … at the University of
-Washington
-he wrote a book called the <<fourth phase>>
-of water I'd strongly recommend any of
-your readers if … 
-- **The Fourth Phase of Water - Beyond the Three You Already Know (RTF Lecture with Dr. Gerald Pollack**
-  - `yt/8qqyCA9vz_s-the-fourth-phase-of-water-beyond-the-three-you-already-know-/transcript.txt`
-  -  … we
-began to call this <<fourth phase>> water
-and I will refer to it either as <<fourth
-phase>> or easy or something like that … 
-- **Dr. Jack Kruse, Andrew Huberman, Rick Rubin Podcast - FULL BREAKDOWN (Part 1)**
-  - `yt/KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick-rubin-podcast-full-breakd/transcript.txt`
-  -  … called structured water um Pollock also
-called it exclusion zone or <<fourth phase>>
-water um Dr Jack Cruz and other papers
-in the literature … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … fully
-accurate is Gerald Pollock's book that
-you had the <<fourth phase>> of water the
-reason Jerry's book is not definitive is … 
-- **Sunlight is King! w/ Dr. Jack Kruse**
-  - `yt/2-AKskkKZzA-sunlight-is-king-w-dr-jack-kruse/transcript.txt`
-  -  … Um Gerald
-Pollock's book, um U the <<Fourth Phase>> of
-Water. And then my favorite
-mitochondrial book is Nick Lane, Power
-Second Suicide … 
-- **Nature’s Hidden Healing Powers w/ Dr. Jack Kruse**
-  - `yt/CVz-5qK4zBE-nature-s-hidden-healing-powers-w-dr-jack-kruse/transcript.txt`
-  -  … third grader Gerald Pollock
-wrote a book it's called the <<fourth
-phase>> of water
-a third grader could understand this you
-learn things … 
-- **UC 327: Water, Light and Magnetism for Health with Dr Jack Kruse**
-  - `yt/MSJk1RDH7Aw-uc-327-water-light-and-magnetism-for-health-with-dr-jack-kru/transcript.txt`
-  -  … It's called
-The <<Fourth Phase>> of Water. You need to
-learn everything you possibly can about
-water. The next book is called Light … 
-- **The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The Life Stylist Podcast**
-  - `yt/5W6x7EsE8C4-the-most-epic-jack-kruse-interview-ever-ep-75-76-the-life-st/transcript.txt`
-  -  … The books that I would tell people to
-read, the first one, Gerald Pollack's
-The <<Fourth Phase>> of Water.
-Second one be Roland … 
 
-## intake (6)
+## intake (23)
 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  - # <<fourth-phase>>-water
+
+**Query**: `"<<fourth phase>>" OR "<<4th phase>>"`  ·  **Hits**: 21
+
+
+## youtube (15)
+
+- **Uncovering the Secrets of Life - The <<4th Phase>> of Water with … 
+- **ez-water-pollack**
+  - `_intake/concept-digests/ez-water-pollack.md`
+  -  … So it starts
+as H2O and what happens is in the
+presence … 
+- **The <<Fourth Phase>> of Water - Beyond the Three You Already Know (RTF … 
+- **exclusion-zone-water**
+  - `_intake/concept-digests/exclusion-zone-water.md`
+  -  … It runs like that … 
+- **THE <<FOURTH PHASE>> OF WATER - Gerald Pollack PhD #79**
+  - `yt/dOJt-wFNe3E-the-<<fourth-phase>>-of-water-gerald-pollack-phd … 
+- **association-induction-ling**
+  - `_intake/concept-digests/association-induction-ling.md`
+  -  … In this … 
+
+## youtube (12)
+
+- **THE <<FOURTH PHASE>> OF WATER - Gerald Pollack PhD #79**
+  - `yt/dOJt-wFNe3E-the-<<fourth-phase>>-of-water-gerald-pollack-phd … 
+- **infrared-near-ir**
+  - `_intake/concept-digests/infrared-near-ir.md`
+  -  … Gerald Pollack**
+  - `yt/8qqyCA9vz_s-the-<<fourth-phase>>-of-water-beyond-the-three-you-already-know-/transcript.txt`
+  -  … <<infrared>>
+energy and the sun half … 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … jack-kruse-explains-wtf`
@@ -120,6 +108,39 @@ Crawford(1)
 **Citations**: 
 
 ## 3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-<<4th-phase>> … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
+- **mendeleev-periodic**
+  - `_intake/concept-digests/mendeleev-periodic.md`
+  -  … But it … 
+- **Uncovering the Secrets of Life - The <<4th Phase>> of Water with Gerald Pollack**
+  - `yt/3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-<<4th>> … 
+- **quantum-biology**
+  - `_intake/concept-digests/quantum-biology.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
+- **melanin-semiconductor**
+  - `_intake/concept-digests/melanin-semiconductor.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
+- **vitamin-d-sunlight**
+  - `_intake/concept-digests/vitamin-d-sunlight.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
+  -  … Deuterium, <<4th phase>> of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-<<4th-phase>>-of-water-cellular-redox-re/transcript … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … U Washington Seattle | *The <<Fourth Phase>> of Water* (2013), exclusion-zone water papers | 05-biophysics | 4+ via "<<fourth phase>>" |
@@ -131,6 +152,11 @@ Crawford(1)
 - **Slug**: `concept-ez-water-<<fourth-phase>>`
 - **Canon branch**: 05-biophysics
 - **Status**: queued (not yet … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … md) — 25 hits  (archive:6, intake:5, youtube:14)
+- [`<<fourth-phase>>-water`](<<fourth-phase>>-water.md) — 21 hits  (intake:6, youtube:15)
+- [`melanin-semiconductor … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … Kruse blog index for "recommended reading" + interview transcripts
@@ -146,3 +172,9 @@ where he names books.
 ## Key works to ingest
 
 The <<Fourth Phase>> of Water (2013); ~150 papers on EZ … 
+- **REALITY #5:  SCOMPY'S QUANTUM QUIZ FOR MITO-HACKING YOUR LIFE**
+  - `_intake/kruse-blog-corpus/articles/reality-5-scompys-quantum-quiz-mito-hacking-life.md`
+  -  … When I pursued deeper knowledge of the mitochondria, the Electromagnetic Spectrum, Wallace’s mitochondrial works, Pollack’s <<4th Phase>> of Water and the list … 
+- **ORGANIZATION STRUCTURAL FAILURE 2:  MAGNETIC MEMORY**
+  - `_intake/kruse-blog-corpus/articles/organization-structural-failure-2-magnetism.md`
+  -  … make an electrical switch that controls magnetic domains.  I covered this <<fourth phase>> of matter in the [February 2014 webinar.   ](/february-2014-webinar/)Electrons … 

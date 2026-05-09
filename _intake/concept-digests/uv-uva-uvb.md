@@ -1,18 +1,9 @@
 # uv-uva-uvb
 
-**Query**: `UV OR UVA OR UVB OR ultraviolet`  ·  **Hits**: 25
+**Query**: `UV OR UVA OR UVB OR ultraviolet`  ·  **Hits**: 30
 
 
-## archive (1)
-
-- **Blue Planet Project UFO TECHNOLOGY**
-  - `archive/BluePlanetProjectUFOTECHNOLOGY/Blue Planet Project UFO TECHNOLOGY_djvu.txt`
-  -  … Of course if you were able to detect the device using infrared or <<ultraviolet>> equipment, then 
-you would be able to see it 
-
-The … 
-
-## youtube (21)
+## youtube (7)
 
 - **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
   - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
@@ -20,6 +11,13 @@ The …
 releases extreme low frequency <<UV>> light
 that <<UV>> light is you've seen more <<UVA>> or
 B UVC you didn't you … 
+- **Dr. Jack Kruse on How Light Controls Metabolism & Diabetes | Blue Light and Brain Damage | Bitcoin**
+  - `yt/tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue/transcript.txt`
+  -  … Andreas, what translates melanin
+from pomsy? <<UV>> light. What makes nitric
+oxide? <<UV>> light. <<UV>>.
+&gt;&gt; What makes vitamin D?
+&gt;&gt; <<UV>> … 
 - **Regenerative Energy & the Light Inside You | Jack Kruse | 221**
   - `yt/67sLlXeMg2I-regenerative-energy-the-light-inside-you-jack-kruse-221/transcript.txt`
   -  … Why?
@@ -27,6 +25,12 @@ Because then you'll make <<UV>>, you'll make
 VUV, UVC, <<UVB>>, and <<UVA>> from your
 mitochondria. Why? Because you're an
 uncoupled … 
+- **Sunlight Is the Source of Life | Dr. Jack Kruse | EP 04**
+  - `yt/6ClqKnD10p4-sunlight-is-the-source-of-life-dr-jack-kruse-ep-04/transcript.txt`
+  -  … infrared a light
+you do need infrared I should say <<UVA>>
+and <<UVB>> for different things
+but if you do those things to the … 
 - **Functional Medicine Mistakes, EMF, Sunlight, and Your Mitochondria Dr. Jack Kruse  | Podcast #135**
   - `yt/qPY6FBkjqwA-functional-medicine-mistakes-emf-sunlight-and-your-mitochond/transcript.txt`
   -  … Do you know what
@@ -34,12 +38,6 @@ the off switch is for the pituitary
 gland?
 &gt;&gt; Melatonin,
 &gt;&gt; <<UVA>>, and <<UVB>> light. When the sunlight … 
-- **The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The Life Stylist Podcast**
-  - `yt/5W6x7EsE8C4-the-most-epic-jack-kruse-interview-ever-ep-75-76-the-life-st/transcript.txt`
-  -  … There's other
-frequencies, but the one frequency
-that's not present is <<UVA>> and <<UVB>>. Why?
-Cuz that comes a little bit later … 
 - **Sunlight is King! w/ Dr. Jack Kruse**
   - `yt/2-AKskkKZzA-sunlight-is-king-w-dr-jack-kruse/transcript.txt`
   -  … You have to have purple
@@ -47,112 +45,86 @@ light, which is <<UVA>>, <<UVB>>. <<UVA>> light is
 important for melanin which is the solar
 panel you just
 &gt … 
-- **Dr. Jack Kruse: The CIA DON’T Want You To Know This | EP 502**
-  - `yt/BrwjP3zpm64-dr-jack-kruse-the-cia-don-t-want-you-to-know-this-ep-502/transcript.txt`
-  -  … on kids
-that were
-jaist um has been done with <<UVA>> or <<UVB>>
-light subtracted from the other six
-turns out the antidote for … 
-- **Dr. Jack Kruse: Fix The Money, Fix The Body. (Orange Pill Order: Episode 1)**
-  - `yt/yTrSFddva8Q-dr-jack-kruse-fix-the-money-fix-the-body-orange-pill-order-e/transcript.txt`
-  -  … gt;&gt; Mhm.
-&gt;&gt; That's explains the <<ultraviolet>>
-catastrophe. It turns out <<UV>> light is
-the key to the photoelectric effect. In … 
-- **Dr. Jack Kruse, Andrew Huberman, Rick Rubin Podcast - FULL BREAKDOWN (Part 1)**
-  - `yt/KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick-rubin-podcast-full-breakd/transcript.txt`
-  -  … nanometer light
-which is <<UV>> light uh vitamin A created
-at 300 to 350 nanometer light which is
-<<UVA>> and sorry I shouldn't … 
-- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
-  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
-  -  … red light stimulates the atps
-so the combination of <<UV>> light whether
-it's <<UVA>> b c or vuv light
-will stop
-electron Train … 
-- **#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Sunlight & Longevity**
-  - `yt/-VFTXZrbyNA-58-dr-jack-kruse-high-latitude-living-cold-exposure-sunlight/transcript.txt`
-  -  … because it's correlated with
-high latitude that is poor <<UVA>> and <<UVB>>
-light it's also the reason why metabolic
-syndrome and obesity … 
-- **Nature’s Hidden Healing Powers w/ Dr. Jack Kruse**
-  - `yt/CVz-5qK4zBE-nature-s-hidden-healing-powers-w-dr-jack-kruse/transcript.txt`
-  -  … photo receptor called
-neuropsin okay neuropsin is a <<UVA>>
-detector that's <<UVA>> light <<UVA>> lights one
-of the lights that turns on melanin … 
-- **Dr. Jack Kruse: Silent Weapons for Silent Wars**
-  - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
-  -  … It's a
-lack of <<UV>> and IR light. Turns out he
-proteins their action spectra are <<UV>> and
-infrared sometimes near infrared. Red … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … you know what
-clears
-um the universe uh <<UV>> light stars begin
-to make <<UV>> light because those clouds
-Clump together and then become … 
-- **Red Light, Blue Light, Brain Damage: Dr. Jack Kruse Explains WTF Is Actually Happening**
-  - `yt/2njvFN-W4zc-red-light-blue-light-brain-damage-dr-jack-kruse-explains-wtf/transcript.txt`
-  -  … We're talking about
-light that's in the <<UV>> and just getting
-into the red range. Hemoglobin has a
-sharp cut off at … 
-- **Uncomfortable Truths with Dr Jack Kruse**
-  - `yt/Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse/transcript.txt`
-  -  … really worked with <<UV>> light and
-deuterium and how we're designed to
-squeeze the deuterium to make the <<UV>>
-light this goes back … 
-- **Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & Sunlight Medicine | Dr. Jack Kruse**
-  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl/transcript.txt`
-  -  … is oh well
-they burn too much energy because they
-have <<UV>> light and red light in it and
-that makes heat so therefore … 
-- **Dr. Jack Kruse UNFILTERED: The FULL 1-Hour Interview They Don't Want You to Hear**
-  - `yt/usB5IKPK04E-dr-jack-kruse-unfiltered-the-full-1-hour-interview-they-don-/transcript.txt`
-  -  … Extreme low frequency <<UV>> light.
-And then you start going back to the
-story. All the aromatic chemicals
-are all have this kind of … 
-- **Neurosurgeon talks about genetics and longevity: Dr jack kruse exclusive interview**
-  - `yt/sf9VNlTiq5s-neurosurgeon-talks-about-genetics-and-longevity-dr-jack-krus/transcript.txt`
-  -  … So what
-did I just describe to you? Because
-you're tapped to nature and you're
-getting <<UVA>> light which is 380 nmter … 
-- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … or Eukarya have all
-been shown to release Ultra weak uh <<UV>>
-light
-ask yourself a question what is life
-fundamentally doing at that … 
-- **UC 327: Water, Light and Magnetism for Health with Dr Jack Kruse**
-  - `yt/MSJk1RDH7Aw-uc-327-water-light-and-magnetism-for-health-with-dr-jack-kru/transcript.txt`
-  -  … When it gets to
-midlife it starts to emit 10% more <<UV>>
-light. The light that your people down
-there thinks killing them. But … 
-- **Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DHA, Cold, Sun and Sleep**
-  - `yt/kZZSLQFZnQM-dr-jack-kruse-on-biohacking-your-water-emfs-blue-light-dha-c/transcript.txt`
-  -  … what does it allow you to collect
-infrared and <<UV>> why is that <<UVB>> makes
-vitamin D3 which becomes sulfated why
-you need IR … 
+- **The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The Life Stylist Podcast**
+  - `yt/5W6x7EsE8C4-the-most-epic-jack-kruse-interview-ever-ep-75-76-the-life-st/transcript.txt`
+  -  … There's other
+frequencies, but the one frequency
+that's not present is <<UVA>> and <<UVB>>. Why?
+Cuz that comes a little bit later … 
 
-## intake (3)
+## intake (23)
 
+- **uv-uva-uvb**
+  - `_intake/concept-digests/uv-uva-uvb.md`
+  - # <<uv>>-<<uva>>-<<uvb>>
+
+**Query**: `<<UV>> OR <<UVA>> OR <<UVB>> OR <<ultraviolet>>`  ·  **Hits**: 25
+
+
+## archive (1)
+
+- **Blue Planet Project UFO TECHNOLOGY**
+  - `archive/BluePlanetProjectUFOTECHNOLOGY/Blue Planet … 
+- **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
+  - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
+  -  … Moreover, <<UV>> light is known to break down most of the sex steroids in the skin under sun exposure. <<UVA>> and <<UVB>> do this … 
+- **TENSEGRITY #14: COMMUNICATION BREAKDOWN IN THE GUT**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-8-communication-breakdown-gut.md`
+  -  … Of the <<ultraviolet>> radiation that reaches the Earth’s surface, more than 95% is the longer wavelengths of <<UVA>>, with the small remainder <<UVB>> … 
+- **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
+  - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
+  -  … us?  <<UVA>> light shows up in late AM and earlier than <<UVB>> light which shows up closer to midday.  All frequencies of <<UV>> light … 
+- **TIME #8:  PSORIASIS AND THE PHOTOELECTRIC EFFECT**
+  - `_intake/kruse-blog-corpus/articles/time-8-psoriasis-and-the-photoelectric-effect.md`
+  -  … absorb the <<UVA>> and <<UVB>> light at the surface.  <<UVA>> and <<UVB>> light does not penetrate deep.  TO absorb the <<UV>> light we need … 
+- **TIME #4: HOW CAN MAN HELP OUR EYE CLOCK IN A TECH WORLD?**
+  - `_intake/kruse-blog-corpus/articles/how-man-helps-the-eye-clock.md`
+  -  … That <<UVA>> or <<UVB>> light is not present 24/7 on the globe anywhere.* This includes the equator because of how <<UV>> light traverses … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … hits  (archive:1, intake:1, pubmed:4, youtube:19)
+- [`<<uv>>-<<uva>>-<<uvb>>`](<<uv>>-<<uva>>-<<uvb>>.md) — 25 hits  (archive:1, intake:3, youtube:21 … 
+- **TIME # 19:  IS TIME TOLD BY BIOPHOTON EMISSION?**
+  - `_intake/kruse-blog-corpus/articles/time-for-biophotons.md`
+  -  … humans need strong <<UV>> light every day at some level to keep autophagy and apoptosis working to self-regulate themselves.**  <<UVA>> light is present … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … 11), melatonin(10), cortisol(10), <<UV>>(9), iron(9), vitamin D(8), circadian(6), ATP(6), quantum(6), <<UVA>>(5), electron(5), methylene blue … 
+- **UBIQUITINATION #24: ARE MYOPIA, LIGHT, AND AGING LINKED?**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-24-are-myopia-light-and-aging-linked.md`
+  -  … the far shortwave (<<UVA>>), except for trace amounts.  Natural sunlight, however, allows [quite a bit of near long wavelength <<UV>> light.](http://nvlpubs.nist … 
+- **Quantum Biology 7: Sulfated Vitamin D3**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
+  -  … in the skin involves <<UVB>> radiation which effectively penetrates only the epidermal layers of skin. 7-Dehydrocholesterol absorbs <<UV>> light most effectively at wavelengths … 
+- **TIME #11   CAN YOU SUPPLEMENT SUNLIGHT?**
+  - `_intake/kruse-blog-corpus/articles/time-10-can-you-supplement-sunlight.md`
+  -  … of <<UVB>> light at our skin surface when Vitamin D3 is made.  Experiments have proven this.   What happens if you have no <<UV>> light … 
+- **Quantum Thermodynamics #2: Why stopping oral vitamin D3 in a 5G world is wise**
+  - `_intake/kruse-blog-corpus/articles/quantum-thermodynamics-2-why-stopping-oral-vitamin-d3-in-a-5g-world-is-wise.md`
+  -  … in the skin by <<UV>> light exposure of the skin…….so if you do not get the <<UVA>> and <<UVB>> light frequencies in diurnal … 
+- **TIME #6:  IS BIOLOGIC TIME LINKED TO DOPAMINE LEVELS?**
+  - `_intake/kruse-blog-corpus/articles/time-6-time-and-dopamine.md`
+  -  … Bright full spectrum light contains <<UVA>> light.  When <<UV>> light is missing dopamine levels are lower in the eye.  Anytime dopamine is lowered, it … 
+- **UBIQUITINATION 20:  LINKING LIGHT TO PLANTS AND ANIMALS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-20-linking-light-to-plants-and-animals.md`
+  -  … Something must have constricted the spectrum of light between <<UV>> and IR for a reason.
+
+I decided to look into the topic our perception … 
+- **TENSEGRITY #7:  BLACK HOLE SUN,  HERE WE COME**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-7-black-hole-sun-come.md`
+  -  … eNOS stimulates nitric oxide from L- Arginine and it stimulates sulfate production from sulfur in the presence of <<UVB>> and IR light. **eNOS switches … 
+- **Vitamin D:  The Sunshine of Your Life?**
+  - `_intake/kruse-blog-corpus/articles/the-sunshine-of-your-life.md`
+  -  … This paper reviews ecological studies of the <<ultraviolet>>-B (<<UVB>>)-vitamin D-cancer hypothesis based on geographical variation of cancer incidence and/or mortality … 
+- **TIME #7: THE PHOTOELECTRIC EFFECT**
+  - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
+  -  … increases.  In visible light, this describes the <<ultraviolet>> part of the visible spectrum.  *Higher powered <<UV>> light acts more like a particle and less … 
+- **TIME #20:  IS FAT BURNING DUE TO 100 HZ VIBRATION IN MITOCHONDRIA?**
+  - `_intake/kruse-blog-corpus/articles/time-20-fat-burning-due-100-hz-vibration-mitochondria.md`
+  -  … the DC electric are present it is a signal that <<UVA>> or <<UVB>> light is present to generate enough current and voltage to affect … 
+- **THREE ESSENTIAL BIOHACKS (WHY BIOHACKING STARTS WITH YOUR ENVIRONMENT)**
+  - `_intake/kruse-blog-corpus/articles/three-essential-biohacks-why-biohacking-starts-with-your-environment.md`
+  -  … in the brain, which levels increase due to <<ultraviolet>> light exposure.[31-33] <<Ultraviolet>> light (<<UV>>) is the purple color in the light spectrum … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … 2918
@@ -167,6 +139,9 @@ you need IR …
 - **infrared** — 329
 - **blue light** — 311
 - **EPA** — 294 … 
-- **NASA-UAP-D5, Apollo 17 Crew Debriefing for Science, 1973**
-  - `_intake/war-gov-pursue-release-01/records/pursue-r01-143-nasa-uap-d5-apollo-17-crew-debriefing-for-science-1973.md`
-  -  … In the <<UV>>, nobody knows, but you never know until you look. You do have to deal with this background of stars that we … 
+- **TIME#16: TIME SUBTRACTION = LOSS OF THE SPINNING ATPase**
+  - `_intake/kruse-blog-corpus/articles/time-subtraction-cancer-diagnosis.md`
+  -  … and glutamine to maintain ECT function while inhibiting apoptosis because <<UVA>> and <<UVB>> light cannot stop ECT flow before the ATPase.  Anytime intracellular water … 
+- **Reality #20: Was it really the "Ultimate Health Podcast"?**
+  - `_intake/kruse-blog-corpus/articles/reality-20-was-it-really-the-ultimate-health-podcast.md`
+  -  … work on this rocky planet when the sun refuses to shine.  <<UVA>>/<<UVB>> depelete us deuterium and so does cold.  This is why both … 

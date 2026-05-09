@@ -1,143 +1,142 @@
 # quantum-biology
 
-**Query**: `quantum AND biology`  ·  **Hits**: 25
+**Query**: `quantum AND biology`  ·  **Hits**: 30
+
+
+## intake (30)
+
+- **quantum-biology**
+  - `_intake/concept-digests/quantum-biology.md`
+  - # <<quantum>>-<<biology>>
+
+**Query**: `<<quantum>> AND <<biology>>`  ·  **Hits**: 25
 
 
 ## pubmed (1)
 
 - **Properties of biophotons and their theoretical implications.**
-  - `pubmed/PMID-15244259-properties-of-biophotons-and-their-theoretical-implications/info.md`
-  -  … Indian journal of experimental <<biology>>  ·  **Year**: 2003
-- **Authors**: Fritz-Albert Popp
-- **MeSH**: Animals, <<Biology>>, Photons
-- **URL**: https://pubmed.ncbi.nlm.nih.gov/15244259/
-- **Captured … 
+  - `pubmed/PMID-15244259-properties-of-biophotons-and … 
+- **Quantum Biology 12: Do We Need DNA To Tell Time?**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-12-do-we-need-dna-to-tell-time.md`
+  - # <<Quantum>> <<Biology>> 12: Do We Need DNA To Tell Time?
 
-## arxiv (2)
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-12-do-we-need-dna-to-tell-time … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … In  this  reaction  the  radiation  is  captured … 
 
-- **Functional quantum biology in photosynthesis and magnetoreception**
-  - `arxiv/1205.0883-functional-quantum-biology-in-photosynthesis-and-magnetorece/info.md`
-  - # Functional <<quantum>> <<biology>> in photosynthesis and magnetoreception
+## arxiv (1)
 
-- **arXiv ID**: `1205.0883`
-- **URL**: https://arxiv.org/abs/1205.0883
-- **Authors**: Neill Lambert, Yueh-Nan Chen … 
-- **From Physics to Biology by Extending Criticality and Symmetry Breakings**
-  - `arxiv/1103.1833-from-physics-to-biology-by-extending-criticality-and-symmetr/info.md`
-  -  … move from classical to relativistic and <<quantum>> physics. We then introduce our ongoing theoretical analysis in <<biology>> and show that symmetries play a radically … 
+- **Functional <<quantum>> <<biology>> in photosynthesis and magnetoreception**
+  - `arxiv/1205.0883-functional-<<quantum>>-<<biology>>-in-photosynthesis … 
+- **Quantum Biology 9: Photosynthesis**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-9-photosynthesis.md`
+  - # <<Quantum>> <<Biology>> 9: Photosynthesis
 
-## youtube (17)
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-9-photosynthesis/
 
-- **#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Sunlight & Longevity**
-  - `yt/-VFTXZrbyNA-58-dr-jack-kruse-high-latitude-living-cold-exposure-sunlight/transcript.txt`
-  -  … our <<biology>> and
-health yeah my name is Jack Cruz I'm a
-neurosurgeon uh started down the pathway
-of uh <<Quantum>> <<biology>> probably … 
-- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
-  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
-  -  … an expert in
-biophysics especially light water
-magnetism mitochondria and how <<Quantum>>
-<<biology>> Works in mammals and humans in
-this podcast we jump around … 
-- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … think that in <<biology>> that I
-think the big idea
-is that <<Quantum>> <<biology>> is here to stay
-and <<Quantum>> <<biology>> is going to … 
-- **Neurosurgeon talks about genetics and longevity: Dr jack kruse exclusive interview**
-  - `yt/sf9VNlTiq5s-neurosurgeon-talks-about-genetics-and-longevity-dr-jack-krus/transcript.txt`
-  -  … And to me
-that answer is wholly tied to <<quantum>>
-<<biology>>. I mean if you don't understand
-the <<quantum>> <<biology>> then you have … 
-- **Dr Jack Kruse: Deuterium, 4th phase of WATER, & cellular redox | Regenerative Health Podcast**
-  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re/transcript.txt`
-  -  … one of the major effects
-<<Quantum>> mechanically of a mitochondria
-besides energy production is to create
-um
-a <<quantum>> entanglement
-and the way you … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … to do that
-because it uses <<quantum>> mechanics right
-to it and that's where <<Quantum>> <<biology>>
-comes from this is this is the … 
-- **Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal Your Mitochondria**
-  - `yt/mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit/transcript.txt`
-  -  … inventor looking&nbsp;&nbsp;
-at <<Quantum>> at the <<quantum>> level to explain&nbsp; how nature Works in <<biology>> he's a member&nbsp;&nbsp … 
-- **Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DHA, Cold, Sun and Sleep**
-  - `yt/kZZSLQFZnQM-dr-jack-kruse-on-biohacking-your-water-emfs-blue-light-dha-c/transcript.txt`
-  -  … now stop for a minute
-go read my ct7 blog post and look at the
-circadium <<biology>> of hormone release and
-you know what … 
-- **Dr. Jack Kruse: Decentralizing Medicine and Shaping Future Healthcare**
-  - `yt/OJaR2XgTmPI-dr-jack-kruse-decentralizing-medicine-and-shaping-future-hea/transcript.txt`
-  -  … is a thought
-leader who has ventured into the Realms
-of <<quantum>> <<biology>> decentralized
-medicine and even the financial world of
-Bitcoin all in … 
-- **Dr Jack Kruse on The Biological Implications of Time - Cancer and the Timing Phenomenon**
-  - `yt/Omug2kdB8VM-dr-jack-kruse-on-the-biological-implications-of-time-cancer-/transcript.txt`
-  -  … part which is the circadian
-<<biology>> then the micro nano which is
-actually what happens at that <<quantum>>
-scale and um when you add … 
-- **MEN OF LAW Podcast 19 with Dr. Jack Kruse**
-  - `yt/NG98vFRYYSc-men-of-law-podcast-19-with-dr-jack-kruse/transcript.txt`
-  -  … Why is it there? I don't have to teach
-rhinoceros <<quantum>> physics or <<quantum>>
-<<biology>>.
-They know exactly what to do in Africa … 
-- **Water: The Matrix and Engine of Life - Pioneer in Water Research Jerry Pollack**
-  - `yt/YrwbDsTx0Uw-water-the-matrix-and-engine-of-life-pioneer-in-water-researc/transcript.txt`
-  -  … <<quantum>> nutritionist,
-we will be inviting expert scientists,
-clinicians, survivors, and thrivers to
-distill their pearls of wisdom attained
-from applying <<quantum>> <<biology>> to … 
-- **Unraveling the Medical Matrix w/ Dr. Jack Kruse**
-  - `yt/Iq3tDpoFVL0-unraveling-the-medical-matrix-w-dr-jack-kruse/transcript.txt`
-  -  … in medicine are <<quantum>> mechanical what
-does that mean in
-English the law of nature follows
-<<quantum>> mechanics what does <<quantum>>
-mechanics say there … 
-- **We Made a Huge Mistake Ignoring the Sun... | Dr. Jack Kruse**
-  - `yt/f3CLZVZfTH8-we-made-a-huge-mistake-ignoring-the-sun-dr-jack-kruse/transcript.txt`
-  -  … 150 times a day and that blue light
-destroys their circadian <<biology>>
-that's your job that's your job to ask
-is the … 
-- **Dr Jack Kruse On What Big Pharma & Big Food DON’T Want You to Know, Light & Magnetism Health Impact**
-  - `yt/tha7IPtUTAU-dr-jack-kruse-on-what-big-pharma-big-food-don-t-want-you-to-/transcript.txt`
-  -  … into English
-because at that time there was no books
-on <<Quantum>> <<biology>> now people listening
-to this podcast you won't have to … 
-- **Regenerative Energy & the Light Inside You | Jack Kruse | 221**
-  - `yt/67sLlXeMg2I-regenerative-energy-the-light-inside-you-jack-kruse-221/transcript.txt`
-  -  … I said, "Your journey
-through <<quantum>> <<biology>> should begin in
-1927." I said, "There's a guy named
-Alexander Gerwitch who is a Russian … 
-- **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
-  - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
-  -  … difference between
-David and myself was that he minded a
-circadian <<biology>> and I didn't and that
-the light environment had changed
-and … 
+---
 
-## intake (5)
+](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain-tablethumb.png … 
+- **Quantum Biology 8: Quantum Scaling**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-8-quantum-scaling.md`
+  - # <<Quantum>> <<Biology>> 8: <<Quantum>> Scaling
 
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-8-<<quantum>>-scaling/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain … 
+- **Quantum Biology 7: Sulfated Vitamin D3**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
+  - # <<Quantum>> <<Biology>> 7: Sulfated Vitamin D3
+
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-7-vitamin-d/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013/07/jk … 
+- **Quantum Biology #1: The Zero Entropy System**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
+  - # <<Quantum>> <<Biology>> #1: The Zero Entropy System
+
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-1-the-zero-entropy-system/
+
+---
+
+](https://jackkruse.com/wp-content/uploads … 
+- **Quantum Biology 3: Queer Water**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-3-queer-water.md`
+  - # <<Quantum>> <<Biology>> 3: Queer Water
+
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-3-queer-water/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013/03/542813_574722835879746 … 
+- **Quantum Biology 2: Quantum PCOS**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-2-quantum-pcos.md`
+  - # <<Quantum>> <<Biology>> 2: <<Quantum>> PCOS
+
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-2-<<quantum>>-pcos/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain … 
+- **Quantum Biology 4:  Metabolic Syndrome**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-4-metabolic-syndrome.md`
+  - # <<Quantum>> <<Biology>> 4:  Metabolic Syndrome
+
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-4-metabolic-syndrome/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain … 
+- **Energy and Epigenetics 10: The Quantum Puzzle**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-10-quantum-puzzle.md`
+  -  … A <<quantum>> cell takes the disorder present on Earth, and it makes sense of it.
+
+## The <<Quantum>> Leap <<Biology>> Must Make Soon to Get … 
+- **Quantum Biology 5: COHERENT WATER = EZ WATER**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-5-coherent-water.md`
+  - # <<Quantum>> <<Biology>> 5: COHERENT WATER = EZ WATER
+
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-5-coherent-water/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013/07 … 
+- **EMF 6: Quantum Time**
+  - `_intake/kruse-blog-corpus/articles/emf-6-quantum-time.md`
+  -  … He did not understand <<quantum>> field physics.   Of the two, he said he knew, the latter was the most powerful force in <<biology>>.  He … 
+- **Energy and Epigenetics 6: Quantum Cell Theory, Life as a Collective Phenomena**
+  - `_intake/kruse-blog-corpus/articles/ee-6-quantum-cell-theory-life-collective-phenomena.md`
+  -  … Paradigm Drifts Paradigm Shifts – Epi-Paleo ](/brain-gut-5-paradigm-drifts-paradigm-shifts-epi-paleo/)
+
+- [<<Quantum>> <<Biology>> 8: <<Quantum>> Scaling](/<<quantum>>-<<biology>>-8-<<quantum>> … 
+- **Quantum Biology 6:     Bipedalism**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-6-bipedalism.md`
+  - # <<Quantum>> <<Biology>> 6:     Bipedalism
+
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-6-bipedalism/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain-tablethumb.png … 
+- **Quantum Biology 11: Is Their Reality, Your Reality?**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-11-is-their-reality-your-reality.md`
+  - # <<Quantum>> <<Biology>> 11: Is Their Reality, Your Reality?
+
+Source: https://jackkruse.com/<<quantum>>-<<biology>>-11-is-their-reality-your-reality/
+
+---
+
+](https://jackkruse.com/wp … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE 3:  DARWIN WAS WRONG**
+  - `_intake/kruse-blog-corpus/articles/osf-3-darwin-was-wrong.md`
+  -  … <<Biology>> and medicine just do not see the implication of the <<quantum>> mechanism.
+
+I chuckle because Lynn Marguilis was the first person to point … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … Rockfell 1983(1)
@@ -145,25 +144,86 @@ and …
 ## SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-<<quantum>>-<<biology>>-sunl
 
 **Concepts**: WHO(188), AGE(39), Becker(36), blue light(28), electron … 
-- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … concept-<<quantum>>-<<biology>>` | <<Quantum>> <<biology>> framing | 02-physics ↔ 05-biophysics | 58 <<quantum>> + 6 explicit |
-| `concept-circadian-light-environment` | Circadian / SCN / light-environment <<biology>> | 05 … 
-- **Quantum biology — coherence, tunneling, photosynthesis — concept canon-target intake**
-  - `_intake/concept-quantum-biology/README.md`
-  - # <<Quantum>> <<biology>> — coherence, tunneling, photosynthesis — concept canon-target intake
+- **Energy and Epigenetics 11: Is the Force With You?**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-11-force.md`
+  -  … Why Might You Need Carbs for Performance](/emf-4-why-might-you-need-carbs-for-performance/)
 
-- **Slug**: `concept-<<quantum>>-<<biology>>`
-- **Canon branch**: 02-physics ↔ 05-biophysics
-- **Status**: queued (not yet researched … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … jack-kruse-on-technolog`
-- `SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-<<quantum>>-<<biology>>-sunl`
-- `VO4JwdXuXXs-13-jack-kruse`
-- `W5w0WainlMM-dr-jack-kruse-deuterium-4th … 
-- **Bucket Foundation — Research Mapping Queue**
-  - `_intake/RESEARCH-MAPPING-QUEUE.md`
-  -  … ray-peat.org has full corpus. |
-| `frohlich-coherent-1968` | Herbert Fröhlich — coherent vibrations in biological systems papers | Underlies Kruse's <<quantum>> <<biology>> framing. |
-| `mcclare … 
+- [<<Quantum>> <<Biology>> 9: Photosynthesis](/<<quantum>>-<<biology>>-9-photosynthesis … 
+- **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
+  -  … Counterintuitive truth bomb buried in <<quantum>> <<biology>>
+
+When the <<quantum>> noise mechanism is altered, we usually see mis-folded proteins result in cells. When … 
+- **EMF 8: Quantum Bone**
+  - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
+  -  … <<Quantum>> Bone
+
+
+
+### Readers Summary:
+
+- **How does physics meet <<biology>> and chemistry**
+
+- **What organ system can we use to show semiconduction in humans?**
+
+- **Does bone … 
+- **Energy and Epigenetics 12:  Is Your Battery Charged?**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
+  -  … Obesity Qualia ](/cpc-7-obesity-qualia/)
+
+- [<<Quantum>> <<Biology>> 8: <<Quantum>> Scaling](/<<quantum>>-<<biology>>-8-<<quantum>>-scaling/)
+
+- [<<Quantum>> <<Biology>> 9: Photosynthesis](/<<quantum>>-<<biology>>-9-photosynthesis … 
+- **Energy and Epigenetics 13: Quantum Water Chemistry**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-13-quantum-water-chemistry-2.md`
+  -  … As with most things in the <<quantum>> world, mystery and paradox rule the day.  <<Quantum>> mechanics experiments say “all of <<biology>>” occurs on the … 
+- **EMF 7: Quantum Prometheus**
+  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
+  -  … I can say this without reservation all of <<biology>> is all based upon <<quantum>> mechanics in my opinion. What modern <<biology>> believes to be … 
+- **The Bio-Physics of ADHD**
+  - `_intake/kruse-blog-corpus/articles/the-bio-physics-of-adhd.md`
+  -  … The Infant Brain is Unique](https://jackkruse.com/energy-epigenetics-1-the-infant-brain-is-unique/)
+
+
+
+
+								August 4th, 2013
+
+
+
+
+
+
+
+
+
+
+
+														[<<Quantum>> <<Biology>> 12: Do We … 
+- **UBIQUITINATION 1:  Bio-hacking altitude, suicide, and loss of muscle mass**
+  - `_intake/kruse-blog-corpus/articles/ubiquination-1-bio-hacking-altitude-suicide-loss-muscle-mass.md`
+  -  … Below [this edge](http://www.amazon.com/Life-Edge-Coming-<<Quantum>>-<<Biology>>-ebook/dp/B00LW3YISO), is all the <<quantum>> mechanisms that I speak about … 
+- **Quantum Biology 10: Hormones 102**
+  - `_intake/kruse-blog-corpus/articles/quantum-bio-10-hormone-102-drawn-to-light.md`
+  - # <<Quantum>> <<Biology>> 10: Hormones 102
+
+Source: https://jackkruse.com/<<quantum>>-bio-10-hormone-102-drawn-to-light/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013 … 
+- **TENSEGRITY # 4:  MAGNETISM, SLEEP, AND ELECTRONS**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-4-magnetism-electrons-sleep.md`
+  -  … I clearly see the world differently, because [my scale of observation](/<<quantum>>-<<biology>>-8-<<quantum>>-scaling/) is different.  **Thoughts are absurd by what they … 
+- **Energy and Epigenetics 5: The Quantum Brain**
+  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-5-the-quantum-brain.md`
+  -  … Vitamin D](/<<quantum>>-<<biology>>-7-vitamin-d/)
+
+- [<<Quantum>> <<Biology>> 8: <<Quantum>> Scaling](/<<quantum>>-<<biology>>-8-<<quantum>>-scaling/)
+
+- [<<Quantum>> <<Biology>> 9: Photosynthesis](/<<quantum>>-<<biology>>-9 … 
+- **Energy and Epigenetics 8: Quantum Autism**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-8-autism.md`
+  -  … Einstein, Meet Leptin](https://jackkruse.com/emf-2-einstein-meet-leptin/)
+
+- [<<Quantum>> <<Biology>> series](https://jackkruse.com/<<quantum>>-<<biology>>-1-the-zero-entropy-system … 

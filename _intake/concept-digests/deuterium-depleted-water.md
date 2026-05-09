@@ -1,6 +1,6 @@
 # deuterium-depleted-water
 
-**Query**: `deuterium AND water`  ·  **Hits**: 19
+**Query**: `deuterium AND water`  ·  **Hits**: 30
 
 
 ## pubmed (5)
@@ -29,8 +29,15 @@
   - `pubmed/PMID-39789296-taurine-prevents-mitochondrial-dysfunction-and-protects-mito/info.md`
   -  … potentially alleviate <<deuterium>> stress, primarily through metabolic collaboration among various gut microflora to produce <<deuterium>> depleted nutrients and <<deuterium>> depleted <<water>>, and in this … 
 
-## youtube (10)
+## youtube (7)
 
+- **Dr. Jack Kruse - Magnetism and Health**
+  - `yt/0MmyVoqjkwQ-dr-jack-kruse-magnetism-and-health/transcript.txt`
+  -  … When mammals go deep
+in the ocean,
+they're being squeezed by the <<water>>
+above it to get the <<deuterium>> out. What
+does that … 
 - **Dr Jack Kruse: Deuterium, 4th phase of WATER, & cellular redox | Regenerative Health Podcast**
   - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re/transcript.txt`
   -  … on how much <<deuterium>> is in
@@ -39,13 +46,6 @@ uh the flip side is mitochondrial
 respiration only makes <<deuterium>>
 depleted <<water>>
 so again that's … 
-- **Dr. Jack Kruse - Magnetism and Health**
-  - `yt/0MmyVoqjkwQ-dr-jack-kruse-magnetism-and-health/transcript.txt`
-  -  … When mammals go deep
-in the ocean,
-they're being squeezed by the <<water>>
-above it to get the <<deuterium>> out. What
-does that … 
 - **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
   - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
   -  … your experiments
@@ -53,13 +53,6 @@ with <<deuterium>> depleted <<water>> why
 because that's the <<water>> that a
 mitochondria makes it doesn't make <<water>>
 that has 155 … 
-- **Ep. 57: Guest Interview - Dr. Jack Kruse - Kruse Longevity Center**
-  - `yt/oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center/transcript.txt`
-  -  … did
-these guys do they use <<deuterium>>
-depleted <<water>> wow they recovered okay
-now <<deuterium>> depleted <<water>> is tough to
-find it's going … 
 - **Uncomfortable Truths with Dr Jack Kruse**
   - `yt/Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse/transcript.txt`
   -  … prejudice against
@@ -67,6 +60,19 @@ find it's going …
 the <<water>> that mitochondria makes its
 cytochrome C oxidase is <<deuterium>>
 depleted why would … 
+- **Weight Loss, Mitochondria Health & Vitamin D  with Dr. Jack Kruse**
+  - `yt/PfEOtlJapfg-weight-loss-mitochondria-health-vitamin-d-with-dr-jack-kruse/transcript.txt`
+  -  … the highest levels of <<deuterium>> in it
+and it turns out <<deuterium>> content is
+also linked to the <<water>>
+so why do we have … 
+- **Ep. 57: Guest Interview - Dr. Jack Kruse - Kruse Longevity Center**
+  - `yt/oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center/transcript.txt`
+  -  … did
+these guys do they use <<deuterium>>
+depleted <<water>> wow they recovered okay
+now <<deuterium>> depleted <<water>> is tough to
+find it's going … 
 - **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
   - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
   -  … that process but we don't
@@ -74,33 +80,31 @@ make
 <<water>> which is here we make <<deuterium>>
 depleted <<water>> so there is a difference
 in the mirror … 
-- **Interview with Dr. Jack Kruse (04-08-2025)**
-  - `yt/wwNutyiyQ2I-interview-with-dr-jack-kruse-04-08-2025/transcript.txt`
-  -  … So, why does
-nature come up with the first heme
-protein that's likely CCO? Cuz it makes
-<<deuterium>>-depleted <<water>> by reversing
-the … 
-- **Gerald Pollack:The Fourth Phase of Water | SNC 2018**
-  - `yt/NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018/transcript.txt`
-  -  … Okay, and the second the second question
-is does <<deuterium>> affect
-creating easy <<water>> at all in in in any
-capacity?
-We studied <<deuterium>> … 
-- **Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal Your Mitochondria**
-  - `yt/mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit/transcript.txt`
-  -  … we imprint our life energies on uh <<water>>&nbsp; what happens when light hits <<water>> <<water>> gets&nbsp;&nbsp;
-more coherent domains what does … 
-- **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
-  - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
-  -  … ionization energy of of uh <<water>> I
-said because you know in third grade I
-learned CO2 plus <<water>> and sunlight
-makes sugar you … 
 
-## intake (4)
+## intake (18)
 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  - # <<deuterium>>-depleted-<<water>>
+
+**Query**: `<<deuterium>> AND <<water>>`  ·  **Hits**: 19
+
+
+## pubmed (5)
+
+- **Explaining <<deuterium>>-depleted <<water>> as a cancer therapy: a narrative review.**
+  - `pubmed/PMID … 
+- **Deuterium Depletion = Survival**
+  - `_intake/kruse-blog-corpus/articles/deuterium-depletion-survival.md`
+  -  … <<Deuterium>> Depletion = Survival
+
+
+
+“We live by a small trickle of electricity from the sun.” The green of our garden, the algae in our <<water>> … 
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re/transcript … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … infrared(29), AGE(16), EZ <<water>>(14), WHO(12), iron(9), exclusion zone(8), RAGE(7), EPA(5), photosynthesis(4), <<deuterium>>(3), proton(3 … 
@@ -111,6 +115,28 @@ makes sugar you …
 - **Slug**: `concept-<<deuterium>>-depleted-<<water>>`
 - **Canon branch**: 03-chemistry / 05-biophysics
 - **Status**: queued (not yet researched … 
+- **quantum-biology**
+  - `_intake/concept-digests/quantum-biology.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re/transcript … 
+- **vitamin-d-sunlight**
+  - `_intake/concept-digests/vitamin-d-sunlight.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re/transcript … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … FTS5 index over `bucket-foundation` corpus.*
+
+
+## Topics
+
+- [`<<deuterium>>-depleted-<<water>>`](<<deuterium>>-depleted-<<water>>.md) — 19 hits  (intake:4, pubmed:5, youtube:10)
+- [`exclusion-zone … 
+- **Quantum Biology 5: COHERENT WATER = EZ WATER**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-5-coherent-water.md`
+  -  … <<water>> via dipole coupling in the H-bonded network.  This was proven in their work on **heavy <<water>>** (<<deuterium>> oxide).
+
+Traditional bulk <<water>> is … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … Concepts to map (own canon entries)
@@ -118,8 +144,35 @@ makes sugar you …
 | Slug | Concept | Branch | Mentions |
 |---|---|---|---|
 | `concept-<<deuterium>>-depleted-<<water>>` | <<Deuterium>>-depleted <<water>> (DDW) | 03-chemistry / 05-biophysics | 1 (chapter … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re`
-- `YCN-kgAH2hM-dr-kruse-patient-interview`
-- `YrwbDsTx0Uw-<<water>>-the-matrix-and-engine … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re/transcript … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re/transcript … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re/transcript … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re/transcript … 
+- **uv-uva-uvb**
+  - `_intake/concept-digests/uv-uva-uvb.md`
+  -  … <<Water>>, Light and Magnetism for Health with Dr Jack Kruse**
+  - `yt/MSJk1RDH7Aw-uc-327-<<water>>-light-and-magnetism-for-health-with-dr-jack-kru … 
+- **melanin-semiconductor**
+  - `_intake/concept-digests/melanin-semiconductor.md`
+  -  … <<Deuterium>>, 4th phase of <<WATER>>, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re/transcript … 
+- **TENSEGRITY #10: THE POWER MATRIX**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-10.md`
+  -  … The fast adaptive behavior of these H+ networks in <<water>>, ***alone*** determine the dielectric constant of medium they are within. Normal bulk <<water>> has … 
+- **AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … a scoping review.**
+  - `pubmed/PMID-39397213-nutritional-<<deuterium>>-depletion-and-health-a-scoping-review/info.md`
+  -  … cancer prevention, cancer treatment, depression, diabetes, long-term … 

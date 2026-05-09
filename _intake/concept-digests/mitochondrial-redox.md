@@ -1,6 +1,15 @@
 # mitochondrial-redox
 
-**Query**: `mitochondria AND (redox OR cytochrome OR proton)`  ·  **Hits**: 25
+**Query**: `mitochondria AND (redox OR cytochrome OR proton)`  ·  **Hits**: 30
+
+
+## intake (30)
+
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
+  - # mitochondrial-<<redox>>
+
+**Query**: `<<mitochondria>> AND (<<redox>> OR <<cytochrome>> OR <<proton>>)`  ·  **Hits**: 25
 
 
 ## archive (1)
@@ -8,166 +17,101 @@
 - **Bioenergetics**
   - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
   -  … are 
-unable  to  accept  or  give  off  <<protons>>.  Accordingly,  their  fluorescence 
-is  independent  of  pH  and  <<redox>>  potential.  Their  absorption  lies 
-mostly  in  the … 
-
-## pubmed (2)
-
-- **Taurine prevents mitochondrial dysfunction and protects mitochondria from reactive oxygen species and deuterium toxicity.**
-  - `pubmed/PMID-39789296-taurine-prevents-mitochondrial-dysfunction-and-protects-mito/info.md`
-  -  … have highly different mitochondrial <<redox>> status. Deuterium is an isotope of hydrogen with a neutron as well as a <<proton>>, making it about twice … 
-- **Mitochondrial hyperoxidation contributes to warm ischemia-reperfusion injury in rat and pig livers.**
-  - `pubmed/PMID-41922695-mitochondrial-hyperoxidation-contributes-to-warm-ischemia-re/info.md`
-  -  … RRS provides in situ quantification of the overall mitochondrial <<redox>> state, and herein further refined to resolve the <<redox>> state of individual complex III … 
-
-## youtube (20)
-
-- **Dr Jack Kruse: Deuterium, 4th phase of WATER, & cellular redox | Regenerative Health Podcast**
-  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re/transcript.txt`
-  -  … in <<mitochondria>> which is nadh or NAD
-positive not H positive has to be
-protein and it has to recycle that
-<<cytochrome>> one so … 
-- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … was because of the <<protons>> that
-transferred in so when you have a loss
-of mitochondrial <<redox>> power between
-<<cytochrome>> 1 and oxygen what … 
-- **Ep. 57: Guest Interview - Dr. Jack Kruse - Kruse Longevity Center**
-  - `yt/oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center/transcript.txt`
-  -  … <<proton>>
-no you want h plus you want the <<proton>>
-by itself that's what runs your hydrogen
-heat engine in your <<mitochondria>> that … 
-- **Regenerative Energy & the Light Inside You | Jack Kruse | 221**
-  - `yt/67sLlXeMg2I-regenerative-energy-the-light-inside-you-jack-kruse-221/transcript.txt`
-  -  … Why? Because all those electrons
-and <<protons>> come in at <<cytochrome>> 2.
-You're bypassing <<cytochrome>> one. That's
-what we want. And if … 
-- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
-  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
-  -  … the water in the cell the
-<<mitochondria>> what makes most of the
-melatonin in the body
-the <<mitochondria>> see we're back to the … 
-- **MEN OF LAW Podcast 19 with Dr. Jack Kruse**
-  - `yt/NG98vFRYYSc-men-of-law-podcast-19-with-dr-jack-kruse/transcript.txt`
-  -  … That's
-what the <<redox>> potential is from
-<<cytochrome>> one to <<cytochrome>> four.
-And you need about a negative 400 mV
-charge there. When … 
-- **Functional Medicine Mistakes, EMF, Sunlight, and Your Mitochondria Dr. Jack Kruse  | Podcast #135**
-  - `yt/qPY6FBkjqwA-functional-medicine-mistakes-emf-sunlight-and-your-mitochond/transcript.txt`
-  -  … And the interesting thing if
-you look at a <<mitochondria>> as it's laid
-out, <<cytochrome>> one and <<cytochrome>> 5,
-which is the ATPAS … 
-- **Dr. Jack Kruse, Andrew Huberman, Rick Rubin Podcast - FULL BREAKDOWN (Part 1)**
-  - `yt/KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick-rubin-podcast-full-breakd/transcript.txt`
-  -  … understand so additionally our
-<<mitochondria>> actually are sensing and
-absorbing the light in the environment
-so the mitochondrial <<cytochrome>> proteins
-1 through five are … 
-- **Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal Your Mitochondria**
-  - `yt/mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit/transcript.txt`
-  -  … actually creates less water in your <<mitochondria>>&nbsp;&nbsp;
-so anything that makes you hypoxic changes&nbsp; <<cytochrome>> one that's where NAD positive … 
-- **The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The Life Stylist Podcast**
-  - `yt/5W6x7EsE8C4-the-most-epic-jack-kruse-interview-ever-ep-75-76-the-life-st/transcript.txt`
-  -  … It turns out one of those <<cytochromes>> in
-our <<mitochondria>> is called <<cytochrome>> C
-oxidase, and it has four absorption
-spectrums. And guess what … 
-- **Interview with Dr. Jack Kruse (04-08-2025)**
-  - `yt/wwNutyiyQ2I-interview-with-dr-jack-kruse-04-08-2025/transcript.txt`
-  -  … And it turns out that's the
-CCO
-enzyme, <<cytochrome>> c oxidase. Why?
-Because where does that
-<<cytochrome>> Where is it found? This is … 
-- **Dr Jack Kruse on The Biological Implications of Time - Cancer and the Timing Phenomenon**
-  - `yt/Omug2kdB8VM-dr-jack-kruse-on-the-biological-implications-of-time-cancer-/transcript.txt`
-  -  … can enter the <<mitochondria>> at that level
-nothing else can everything else got to
-funnel through <<cytochrome>> 2. What is
-<<cytochrome>> 2?
-FAD H2 … 
-- **Red Light, Blue Light, Brain Damage: Dr. Jack Kruse Explains WTF Is Actually Happening**
-  - `yt/2njvFN-W4zc-red-light-blue-light-brain-damage-dr-jack-kruse-explains-wtf/transcript.txt`
-  -  … Like
-yes, when you say
-telepathy, <<mitochondria>> clearly are
-telepathic because they're the wireless
-connection between the sun and the
-colony of <<mitochondria>> … 
-- **UC 327: Water, Light and Magnetism for Health with Dr Jack Kruse**
-  - `yt/MSJk1RDH7Aw-uc-327-water-light-and-magnetism-for-health-with-dr-jack-kru/transcript.txt`
-  -  … And it turns out your
-<<mitochondria>> only cares about electrons
-and <<protons>>. That's why the input is
-called electron chain transport. What
-sits … 
-- **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
-  - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
-  -  … the <<mitochondria>>
-because the <<mitochondria>>
-um as we've just said emit light but
-they also receive light because they
-have these <<cytochromes>> that … 
-- **Uncomfortable Truths with Dr Jack Kruse**
-  - `yt/Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse/transcript.txt`
-  -  … <<mitochondria>> in fact your
-<<mitochondria>> is prejudice against
-deuterium doesn't want any of it around
-the water that <<mitochondria>> makes its
-<<cytochrome>> C … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … like for example the
-question you just asked me <<cytochrome>>
-one in the <<mitochondria>> which is NAD
-positive nadh which most people know
-about … 
-- **Sunlight is King! w/ Dr. Jack Kruse**
-  - `yt/2-AKskkKZzA-sunlight-is-king-w-dr-jack-kruse/transcript.txt`
-  -  … <<Mitochondria>>.
-&gt;&gt; Can you explain it like you're talking
-to a 5-year-old?
-&gt;&gt; Yeah, <<mitochondria>> means a lot of … 
-- **Dr. Jack Kruse UNFILTERED: The FULL 1-Hour Interview They Don't Want You to Hear**
-  - `yt/usB5IKPK04E-dr-jack-kruse-unfiltered-the-full-1-hour-interview-they-don-/transcript.txt`
-  -  … But what happens when timing
-is off and the IMJS in your <<mitochondria>>
-look like [&nbsp;__&nbsp;] Like instead of your
-<<mitochondria>> is looking … 
-- **Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DHA, Cold, Sun and Sleep**
-  - `yt/kZZSLQFZnQM-dr-jack-kruse-on-biohacking-your-water-emfs-blue-light-dha-c/transcript.txt`
-  -  … wipe off the program that's built into
-your <<mitochondria>> that handles electrons
-and <<protons>> so your personal
-thunderstorm dictates the way you can … 
-
-## intake (2)
-
+unable  to  accept … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #7: FAILURE OF AUTOPHAGY**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-7-autophagy-fail.md`
+  -  … <<protons>> they contain and few electrons they process.  This is what makes up their <<redox>> potential.  A poorly functioning <<mitochondria>> has a poor <<redox>> … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … WHO(64), <<mitochondria>>(58), electron(40), deuterium(31), quantum(24), <<redox>>(24), iron(22), mitochondrial(17), melanin(12), EPA(12), AGE(10), <<proton>>(9 … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … 171
-- **<<proton>>** — 168
-- **Einstein** — 155
-- **DHA** — 144
-- **magnetic field** — 139
-- **vitamin D** — 129
-- **hemoglobin** — 125
-- **AGEs** — 114
-- **Rockefeller** — 113
-- **RAGE** — 107
-- **<<cytochrome>>** — 98
-- **NAD … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #6:  THE MITOCHONDRIAL Rx**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-6-mitochondrial-rx.md`
+  -  … <<protons>>.  We need more negatively charged electrons to run our <<mitochondria>> and proteins well.  This is our <<redox>> sink or bank account.
+
+When <<mitochondria>> … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #7  AUTOPHAGY FAILURE**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-7-autophagy-failure.md`
+  -  … The <<redox>> potential is buried in the ratio of electrons to <<protons>> produced by this <<mitochondria>> and it is transmitted in the CSF. When … 
+- **CPC #8:    Brain Cancer**
+  - `_intake/kruse-blog-corpus/articles/cpc-8-quantum-brain-cancer.md`
+  -  … the pH gradient of the <<proton>> motive force in <<mitochondria>>.  This directly destroys proper <<redox>> signaling in <<mitochondria>>. The charge on the inner mitochondrial … 
+- **Energy and Epigenetics 12:  Is Your Battery Charged?**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
+  -  … his ruins your ability to perform electron and <<proton>> transfers*** in your <<mitochondria>>’s <<cytochromes>>,  as you will soon find out.
+
+**GLUTATHIONE **is a … 
+- **TENSEGRITY #9: ELECTRON SPIN MEETS MITOCHONDRIAL FXN**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-9-magnetic-mitochondria-memory-creates-coherence.md`
+  -  … of the <<mitochondria>>, in which oxygen is reduced to water by combining with <<protons>> and electrons. The irony is the <<cytochrome>> c oxidase, pumps … 
+- **REALITY #14: WARBURG'S PROOF: THE DATA POINTS TO MITOCHONDRIAL GENOME?**
+  - `_intake/kruse-blog-corpus/articles/reality-14-warburgs-proof.md`
+  -  … of <<cytochrome>> 1 where NAD+  is chronically low because of pseudohypoxia in the <<mitochondria>>.  It does this by controlling the flow of <<protons>> in … 
+- **UBIQUITINATION 25:  UV LIGHT AND POOP PLANTS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-25-uv-light-and-poop-plants.md`
+  -  … <<mitochondria>>, the eye, gut, skin, and lung surfaces are unable to absorb and assimilate UV light efficiently from NADH/NAD+ <<redox>> couple in <<cytochrome>> … 
+- **TIME #17:  MELATONIN AND INSULIN ARE SOLAR METRONOMES**
+  - `_intake/kruse-blog-corpus/articles/time-17-melatonin-insulin-solar-metronomes.md`
+  -  … They both carry electrons and <<protons>> in animals. That is the <<redox>> couple in <<cytochrome>> 1 of <<mitochondria>>. These electrons are ferried to oxygen … 
+- **UBIQUITINATION 17: GEARS OF THE "EYE CLOCK"**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-17-gears-of-the-eye-clock.md`
+  -  … <<redox>> potential](https://jackkruse.com/<<redox>>-rx/) in cells.  This relationship is linked to amount of free radical leak in your <<mitochondria>> at <<cytochrome>> … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE # 5  PRIONS ARE COMPLIANT DESIGN FLAWS**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-5-prions-are-compliant-design-flaws.md`
+  -  … this protein is highly <<redox>>-sensitive. [<<Cytochrome>> c](http://en.wikipedia.org/wiki/<<Cytochrome>>_c) locates in inner <<mitochondria>> membrane and interacts with the … 
+- **UBIQUITINATION 23: LOOKING BACK FOR A QUANTUM LEAP FORWARD**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-23-looking-back-for-a-quantum-leap-forward.md`
+  -  … This pathway helps cells get rid of <<redox>> shifted <<mitochondria>> that cannot make energy well.  I spoke about them in the Ubi 4-7 … 
+- **Energy and Epigenetics 11: Is the Force With You?**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-11-force.md`
+  -  … <<Protons>> have a positive charge and electrons have a negative charge.  These are the particles that the force acts upon in our <<mitochondria>>.
+
+Ling … 
+- **CPC #9:   HASHIMOTO's AND MELASMA:  GATEWAY DISEASES**
+  - `_intake/kruse-blog-corpus/articles/hashimotos-and-melasma.md`
+  -  … Antibodies’s are a great [<<Redox>> Rx indicator](/<<redox>>-rx/).  When iodine levels are low, women have a <<proton>> disorder, and this causes estrogen … 
+- **Quantum Biology 4:  Metabolic Syndrome**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-4-metabolic-syndrome.md`
+  -  … As the <<mitochondria>> continues the process of <<redox>> shifting, glutathione cycling is altered, pseudohypoxia develops, and NAD+ levels drop, while lactate rises and pyruvate … 
+- **TIME # 19:  IS TIME TOLD BY BIOPHOTON EMISSION?**
+  - `_intake/kruse-blog-corpus/articles/time-for-biophotons.md`
+  -  … by <<cytochrome>> c oxidase but also electron transfer and <<proton>> pumping activity of this enzyme.
+
+**TENSEGRITY**
+
+Generally, in plants and budding yeast <<mitochondria>> are … 
+- **TIME # 3 : CAN A CHART TELL YOU SOMETHING ABOUT TIME?**
+  - `_intake/kruse-blog-corpus/articles/time-what-can-a-chart-tell-you.md`
+  -  … Roeland van Wijk has shown in his latest book biochemistry transitions away from the oxidative condition.   As the <<mitochondria>> continue the process of <<redox>> … 
+- **TIME #2:  HOW IS TIME BUILT?**
+  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
+  -  … When they do not or cannot, it has a massive effect on how the electrons and <<protons>> in your body flow in our <<mitochondria>> … 
+- **TENSEGRITY 2:  CORTISOL = POWER OF AM SUNLIGHT**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-2-cortisolam-sunlight.md`
+  -  … <<mitochondria>> with respect to which <<cytochrome>> is being fed in <<mitochondria>>.  If you are a carbophile you are mostly delivering food electrons to <<cytochrome>> … 
+- **UBIQUITINATION 7:  PALEO's BITTER TRUTH**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-7-paleos-bitter-truth.md`
+  -  … vanishes from <<cytochrome>> 1,  there is no signal for mitochondrial biogenesis.  Without mitochondrial biogenesis, you work with old, <<redox>> shifted <<mitochondria>>, hence, they can … 
+- **TIME #6:  IS BIOLOGIC TIME LINKED TO DOPAMINE LEVELS?**
+  - `_intake/kruse-blog-corpus/articles/time-6-time-and-dopamine.md`
+  -  … on top of liquid water.  Red light shrinks <<cytochrome>> oxidase (Cox) in <<mitochondria>> too. <<Cytochrome>> oxidase c has a key role in neuron physiology … 
+- **TIME #7: THE PHOTOELECTRIC EFFECT**
+  - `_intake/kruse-blog-corpus/articles/time-7-photoelectric-effect.md`
+  -  … <<mitochondria>> by nature.  Its matrix is filled with <<protons>> and it feeds them through the ATPase and it shoots them out of a <<cytochrome>> … 
+- **TIME #14: BIOHACKING "TIME" WITH METHYLENE BLUE**
+  - `_intake/kruse-blog-corpus/articles/biohacking-time-with-methylene-blue.md`
+  -  … from the sun using electrons and <<protons>>. It is why all <<cytochromes>> use Iron- sulfur (Fe-S) <<redox>> complexes where quantum mechanisms dominate what … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #10:  MULTIPLE SCLEROSIS**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-10-multiple-sclerosis.md`
+  -  … This is why they get cognitive losses.  What happens in a <<mitochondria>> when there is too few electrons and too many <<protons>>? <<Cytochrome>> c … 
+- **REALITY 11:  OPTICS IN A NON LINEAR WORLD:  WHEN UV LIGHT CHANGED EARTH**
+  - `_intake/kruse-blog-corpus/articles/reality-11-optics-non-linear-world-uv-light-changed-earth.md`
+  -  … falls at <<cytochrome>> 1.  This changes the free radical repsonse and cause a higher heteroplasmy rate in <<mitochondria>>.  This lowers the <<redox>> potential inside … 
+- **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
+  - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
+  -  … The EZ is DESTROYED by acid pH and <<protons>> are excluded in the intermembrane space of the <<mitochondria>>. This is radically different than what … 
+- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
+  -  … <<protons>> in his <<mitochondria>> due to a poor <<redox>> potential in and around his <<mitochondria>>. Ben has a different <<redox>> state in his <<mitochondria>> … 
+- **UBIQUITIN Rx:  IMPLICATIONS FOR MANKIND**
+  - `_intake/kruse-blog-corpus/articles/ubiquitin-rx-implications-for-mankind.md`
+  -  … higher positive charges (<<protons>>) in proteins making them less hydrophilic = low intracellular pH = low <<redox>> potential = cell and mitochondrial swelling (<<cytochrome>> c release) = lowered … 

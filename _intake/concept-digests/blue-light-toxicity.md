@@ -1,9 +1,9 @@
 # blue-light-toxicity
 
-**Query**: `"blue light"`  ·  **Hits**: 25
+**Query**: `"blue light"`  ·  **Hits**: 30
 
 
-## youtube (23)
+## youtube (1)
 
 - **Dr. Jack Kruse, Andrew Huberman, Rick Rubin Podcast - FULL BREAKDOWN (Part 1)**
   - `yt/KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick-rubin-podcast-full-breakd/transcript.txt`
@@ -12,152 +12,236 @@ you're actually blocking <<blue light>>
 through your eyes but your Skin's
 getting exposed to <<Blue Light>>
 um … 
-- **Nature’s Hidden Healing Powers w/ Dr. Jack Kruse**
-  - `yt/CVz-5qK4zBE-nature-s-hidden-healing-powers-w-dr-jack-kruse/transcript.txt`
-  -  … <<blue light>> glasses for him we have
-some for you it's uh courtesy of Dan
-Huber Luchia eyes who brought us these
-<<blue>> … 
-- **The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The Life Stylist Podcast**
-  - `yt/5W6x7EsE8C4-the-most-epic-jack-kruse-interview-ever-ep-75-76-the-life-st/transcript.txt`
-  -  … And I
-think most of your listeners
-probably know that chronic <<blue light>>
-has been well shown in the literature to
-destroy melatonin. Well … 
-- **Dr. Jack Kruse: Reclaim Your Health, Wealth & Freedom in the Face of Medical Tyranny**
-  - `yt/zik08V9waJk-dr-jack-kruse-reclaim-your-health-wealth-freedom-in-the-face/transcript.txt`
-  -  … <<blue light>> was the source of a lot
-of the problems that he had and he
-realized that the gangs were influenced
-by <<Blue>> … 
-- **Ep. 57: Guest Interview - Dr. Jack Kruse - Kruse Longevity Center**
-  - `yt/oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center/transcript.txt`
-  -  … gym
-and what kind of light are they under
-<<blue light>>
-guess what <<blue light>> stimulates blood
-glucose and insulin so I want you … 
-- **Dr. Jack Kruse: Silent Weapons for Silent Wars**
-  - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
-  -  … Just
-remember that the story gets more
-interesting because when we find out
-that this <<blue light>> detector is
-everywhere, but <<blue light>> is … 
-- **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
-  - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
-  -  … <<blue light>> we're
-exactly the opposite
-of the little furry creatures that lived
-under the ground why because it turns
-out <<blue light>> … 
-- **Functional Medicine Mistakes, EMF, Sunlight, and Your Mitochondria Dr. Jack Kruse  | Podcast #135**
-  - `yt/qPY6FBkjqwA-functional-medicine-mistakes-emf-sunlight-and-your-mitochond/transcript.txt`
-  -  … The key frequencies in the
-morning um is <<blue light>>. And <<blue light>>
-is good when it comes from the sun
-because that's … 
-- **UC 327: Water, Light and Magnetism for Health with Dr Jack Kruse**
-  - `yt/MSJk1RDH7Aw-uc-327-water-light-and-magnetism-for-health-with-dr-jack-kru/transcript.txt`
-  -  … I
-was in em in a little bit too much in
-that non-native EMF and <<blue light>>. And
-it made me leptin resistant … 
-- **Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & Sunlight Medicine | Dr. Jack Kruse**
-  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl/transcript.txt`
-  -  … what destroys your sex
-uh the <<blue light>> the <<blue light>> right
-yeah yeah yeah <<blue light>> screens non9
-vmf RF microwaves take it … 
-- **Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DHA, Cold, Sun and Sleep**
-  - `yt/kZZSLQFZnQM-dr-jack-kruse-on-biohacking-your-water-emfs-blue-light-dha-c/transcript.txt`
-  -  … <<blue light>> and the reason why <<Blue Light>>
-which is also the number one non-native
-EMF that's out there <<blue light>>
-radically … 
-- **Dr Jack Kruse On What Big Pharma & Big Food DON’T Want You to Know, Light & Magnetism Health Impact**
-  - `yt/tha7IPtUTAU-dr-jack-kruse-on-what-big-pharma-big-food-don-t-want-you-to-/transcript.txt`
-  -  … the screen technology that we
-all use screen technology creates <<blue
-light>> <<blue light>> destroys uh the
-signaling the optical signaling in the
-leptin … 
-- **#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Sunlight & Longevity**
-  - `yt/-VFTXZrbyNA-58-dr-jack-kruse-high-latitude-living-cold-exposure-sunlight/transcript.txt`
-  -  … of <<blue light>> I spoke to an
-opthalmologist about this about like
-<<blue light>> and he said the most of the
-<<blue light>> we … 
-- **Dr. Jack Kruse: The CIA DON’T Want You To Know This | EP 502**
-  - `yt/BrwjP3zpm64-dr-jack-kruse-the-cia-don-t-want-you-to-know-this-ep-502/transcript.txt`
-  -  … screen that is non
-blue lit and the reason why is <<blue
-light>> has been shown to destroy
-melatonin and it's been to … 
-- **"These People Must Pay" Bitcoin, Trump, COVID, and Zionism with Dr. Jack Kruse Ep. 2 (WiM545)**
-  - `yt/yALOChgRrHQ-these-people-must-pay-bitcoin-trump-covid-and-zionism-with-d/transcript.txt`
-  -  … at the light
-bulbs I'm like could <<blue light>> affect
-wound healing could <<blue light>> be the
-reason why people are getting
-osteoporosis … 
-- **Regenerative Energy & the Light Inside You | Jack Kruse | 221**
-  - `yt/67sLlXeMg2I-regenerative-energy-the-light-inside-you-jack-kruse-221/transcript.txt`
-  -  … Why? Because it turns
-out <<blue light>> and non-native EMF,
-remember I told you the story before
-that light is able to photo … 
-- **Unraveling the Medical Matrix w/ Dr. Jack Kruse**
-  - `yt/Iq3tDpoFVL0-unraveling-the-medical-matrix-w-dr-jack-kruse/transcript.txt`
-  -  … deeper into your healing with
-all of these different thoughts about
-<<blue light>> and regular light and so much
-more and listen it's … 
-- **Uncomfortable Truths with Dr Jack Kruse**
-  - `yt/Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse/transcript.txt`
-  -  … different retinas
-but then they study them in a lab under
-<<blue light>> and what did what did you
-hear in the Reuben podcast … 
-- **Dr Jack Kruse on The Biological Implications of Time - Cancer and the Timing Phenomenon**
-  - `yt/Omug2kdB8VM-dr-jack-kruse-on-the-biological-implications-of-time-cancer-/transcript.txt`
-  -  … The question becomes, okay, what
-happens if the light that the mammal is
-in is no longer sunlight and it's <<blue
-light>>? Well … 
-- **Red Light, Blue Light, Brain Damage: Dr. Jack Kruse Explains WTF Is Actually Happening**
-  - `yt/2njvFN-W4zc-red-light-blue-light-brain-damage-dr-jack-kruse-explains-wtf/transcript.txt`
-  -  … So, do you know what you
-know what <<blue light>> does to oxygen? I
-should say to iron turns it to a plus
-three … 
-- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … EMF fields
-and <<blue light>> and what do we know now
-we know that putting any mammal in <<Blue
-Light>> raises ampk pathway blood … 
-- **The War on Sunlight Is Real (And It’s Not an Accident) | Dr. Jack Kruse**
-  - `yt/qa3FaUXZFSc-the-war-on-sunlight-is-real-and-it-s-not-an-accident-dr-jack/transcript.txt`
-  -  … And it turned out the answer was
-<<blue light>>. And the reason why was
-pretty simple. It's because it was able
-to ruin … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … A okay
-so what is that part that part is <<blue
-light>> <<blue light>> is actually how our
-clock tells circadian time how do … 
 
-## intake (2)
+## intake (29)
 
+- **blue-light-toxicity**
+  - `_intake/concept-digests/blue-light-toxicity.md`
+  - # <<blue-light>>-toxicity
+
+**Query**: `"<<blue light>>"`  ·  **Hits**: 25
+
+
+## youtube (23)
+
+- **Dr. Jack Kruse, Andrew Huberman, Rick Rubin Podcast - FULL BREAKDOWN (Part 1)**
+  - `yt/KV … 
+- **QT #10: Why daytime indoor blue light is toxic**
+  - `_intake/kruse-blog-corpus/articles/qt-10-why-daytime-indoor-blue-light-is-toxic.md`
+  -  … Why daytime indoor <<blue light>> is toxic
+
+Source: https://jackkruse.com/qt-10-why-daytime-indoor-<<blue-light>>-is-toxic/
+
+---
+
+## QT #10: Why daytime … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … WHO(45), melanin(29), quantum(24), mitochondria(23), iron(23), AGE(23), Newton(20), Einstein(17), semiconductor(14), photosynthesis(13), <<blue light>>(10), red … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … o-becker-electromedicine-hieronimus-september-16-1990`
-- `2njvFN-W4zc-red-light-<<blue-light>>-brain-damage-dr-jack-kruse-explains-wtf`
-- `3SEmyFm8ZAc-uncovering-the-secrets … 
+- **UBIQUITINATION 7:  PALEO's BITTER TRUTH**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-7-paleos-bitter-truth.md`
+  -  … <<Blue light>>, a form of non native EMF, is paleo’s real issue.  It is LCHF issue, as well.  **Chronic <<blue light>> exposure essentially … 
+- **QT #19: Diabetes is a blue light hazard disease**
+  - `_intake/kruse-blog-corpus/articles/qt-19-diabetes-is-a-blue-light-hazard-disease.md`
+  -  … Diabetes is a <<blue light>> hazard disease
+
+Source: https://jackkruse.com/qt-19-diabetes-is-a-<<blue-light>>-hazard-disease/
+
+---
+
+## QT #19: Diabetes is … 
+- **HYPOXIA #4: RED LIGHT, BLUE LIGHT, 1…2…3.**
+  - `_intake/kruse-blog-corpus/articles/hypoxia-4-red-light-blue-light-1-2-3.md`
+  -  … RED LIGHT, <<BLUE LIGHT>>, 1…2…3.
+
+Source: https://jackkruse.com/hypoxia-4-red-light-<<blue-light>>-1-2-3/
+
+---
+
+## HYPOXIA #4: RED LIGHT … 
+- **CPC #34: Does Retinol in Blue Light or nnEMF Become the Agent of Doom to Human Photo-receptors?**
+  - `_intake/kruse-blog-corpus/articles/cpc-34-does-retinol-in-blue-light-or-nnemf-become-the-agent-of-doom-to-human-photo-receptors.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **CPC #47: Diabetes and Blue Light are Bedfellows**
+  - `_intake/kruse-blog-corpus/articles/cpc-47-diabetes-and-blue-light-are-bedfellows.md`
+  -  … Diabetes and <<Blue Light>> are Bedfellows
+
+Source: https://jackkruse.com/cpc-47-diabetes-and-<<blue-light>>-are-bedfellows/
+
+---
+
+## CPC #47: Diabetes and <<Blue Light>> … 
+- **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
+  - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
+  -  … Further evidence underpinning a link between <<blue light>> and UM comes from neonatal <<blue light>> therapy studies. <<Blue light>> therapy is an essential tool … 
+- **HYPOXIA #15:  BLUE LIGHT CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS**
+  - `_intake/kruse-blog-corpus/articles/hypoxia-15-blue-light-causes-irreversible-hypoxia-in-all-cells.md`
+  -  … https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/
+
+---
+
+## HYPOXIA #15:  <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS
+
+
+Several … 
+- **TIME #1:  IS OUR RETINA OUR METRONOME?**
+  - `_intake/kruse-blog-corpus/articles/time-1-is-our-retina-our-metronome.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **TIME # 3 : CAN A CHART TELL YOU SOMETHING ABOUT TIME?**
+  - `_intake/kruse-blog-corpus/articles/time-what-can-a-chart-tell-you.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **UBIQUITINATION 20:  LINKING LIGHT TO PLANTS AND ANIMALS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-20-linking-light-to-plants-and-animals.md`
+  -  … <<Blue light>> fits that bill because it is highly powered; as light becomes more blue, especially at night, the situation worsens.  <<Blue light>> in … 
+- **VOICE & EXIT ATX AUSTIN 2015:  HOW CAN WE FLOURISH?**
+  - `_intake/kruse-blog-corpus/articles/voice-exit-atx-austin-2015-how-can-we-flourish.md`
+  -  … Can your time on this planet be destroyed by technology using <<blue light>> in some way? <<Blue light>> is how the gears of the … 
+- **TIME #2:  HOW IS TIME BUILT?**
+  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
+  -  … <<Blue light>> alters both types of fields.  When you consider that modern life uses <<blue light>> for lighting its screens, the problem should become … 
+- **UBIQUITINATION 21:  EPI-ONCO-GENESIS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-21-epi-onco-genesis.md`
+  -  … In winter we have on average 13 % <<blue light>> in sun light. In summer, we have up to 26% <<blue light>> present. This varies … 
+- **UBIQUITINATION 10:  BIO-HACKING ROS AND RNS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-10-bio-hacking-ros-and-rns.md`
+  -  … So why does life use <<blue light>> for this purpose, specifically? Simple, it is because <<blue light>> bends most under the force of gravity … 
+- **How the Eye Controls Metabolic Rate**
+  - `_intake/kruse-blog-corpus/articles/how-the-eye-controls-metabolic-rate.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **UBIQUITINATION 25:  UV LIGHT AND POOP PLANTS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-25-uv-light-and-poop-plants.md`
+  -  … It turns out that the <<blue light>> emitter, NAD+ is adjacent to FMH, the <<blue light>> absorber, in cytochrome 1 and 2 of the … 
+- **UBIQUITIN Rx:  IMPLICATIONS FOR MANKIND**
+  - `_intake/kruse-blog-corpus/articles/ubiquitin-rx-implications-for-mankind.md`
+  -  … The same is now true with chronic <<blue light>> and nnEMF exposures on our surfaces.
+
+<<Blue light>> exposure with a high color temperature (fake … 
+- **January 2017: The Bazan Effect**
+  - `_intake/kruse-blog-corpus/articles/january-2017-the-bazan-effect.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **REALITY # 2:  CAN LIFE SKIRT THE UNCERTAINTY PRINCIPLE AND THE SECOND LAW OF THERMODYNAMICS?**
+  - `_intake/kruse-blog-corpus/articles/reality-2-can-life-skirt-uncertainty-principle-second-law-thermodynamics.md`
+  -  … Since <<blue light>> has more power than red light, it scatters most and this is why the sky is blue on Earth. <<Blue light>> … 
+- **Circular Thermodynamics By Light**
+  - `_intake/kruse-blog-corpus/articles/circular-thermodynamics-by-light.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **CPC #35: The Woman Code: Food/Skin/Makeup**
+  - `_intake/kruse-blog-corpus/articles/cpc-35-the-woman-code-food-skin-makeup.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
+  - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **emf-non-thermal**
+  - `_intake/concept-digests/emf-non-thermal.md`
+  -  … What's the other thing that
+happens in the mid portion of the … 
+- **Red Light, <<Blue Light>>, Brain Damage: Dr. Jack Kruse Explains WTF … 
+- **TIME #4: HOW CAN MAN HELP OUR EYE CLOCK IN A TECH WORLD?**
+  - `_intake/kruse-blog-corpus/articles/how-man-helps-the-eye-clock.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **November 2018 Webinar: 5G Hit, What to do?**
+  - `_intake/kruse-blog-corpus/articles/november-2018-webinar-5g-hit-what-to-do.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #7  AUTOPHAGY FAILURE**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-7-autophagy-failure.md`
+  -  … Excessive <<blue light>> is a form of non native EMF. Chronic <<blue light>> exposure from modern technology deplete you of DHA even if you … 

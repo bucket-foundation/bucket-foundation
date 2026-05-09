@@ -1,172 +1,131 @@
 # emf-non-thermal
 
-**Query**: `EMF OR electromagnetic`  ·  **Hits**: 25
+**Query**: `EMF OR electromagnetic`  ·  **Hits**: 30
+
+
+## intake (30)
+
+- **emf-non-thermal**
+  - `_intake/concept-digests/emf-non-thermal.md`
+  - # <<emf>>-non-thermal
+
+**Query**: `<<EMF>> OR <<electromagnetic>>`  ·  **Hits**: 25
 
 
 ## youtube (22)
 
-- **The War on Sunlight Is Real (And It’s Not an Accident) | Dr. Jack Kruse**
-  - `yt/qa3FaUXZFSc-the-war-on-sunlight-is-real-and-it-s-not-an-accident-dr-jack/transcript.txt`
-  -  … buy <<EMF>> uh meters. You know, we have
-Geiger counters for radiation. Remember,
-radiation is ionizing, radioactivity.
-That's part of the <<electromagnetic>>
-spectrum … 
-- **Dr. Andrew Marino PhD ON Dr. Robert O Becker & Electromagnetism and Life (ENGLISH PODACAST )**
-  - `yt/lfkqB1BONMI-dr-andrew-marino-phd-on-dr-robert-o-becker-electromagnetism-/transcript.txt`
-  -  … role of <<emfs>> or EFS or whatever you want
-to call them like non-native <<emfs>> or
-extremely low frequency <<electromagnetic>>
-fields that could … 
-- **UC 327: Water, Light and Magnetism for Health with Dr Jack Kruse**
-  - `yt/MSJk1RDH7Aw-uc-327-water-light-and-magnetism-for-health-with-dr-jack-kru/transcript.txt`
-  -  … <<EMFs>>
-that do not come from sunlight, which is
-250 to 780 nanometer light in the
-visible range, every single part of the
-<<electromagnetic>> … 
-- **Dr. Jack Kruse: Silent Weapons for Silent Wars**
-  - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
-  -  … Um, that was <<electromagnetic>>.
-It's also where we learned that the
-CIA had 400 operatives in the media.
-It's where we found … 
-- **Dr Jack Kruse On What Big Pharma & Big Food DON’T Want You to Know, Light & Magnetism Health Impact**
-  - `yt/tha7IPtUTAU-dr-jack-kruse-on-what-big-pharma-big-food-don-t-want-you-to-/transcript.txt`
-  -  … insights on biohacking sleep
-optimization and even the impact of
-<<electromagnetic>> fields <<EMF>> on our
-health Dr Cruz aims to empower
-individuals to take … 
-- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … electric force
-which is part of the <<electromagnetic>>
-force what is the force carrier of the
-<<electromagnetic>> force I mean you can't
-start … 
-- **Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DHA, Cold, Sun and Sleep**
-  - `yt/kZZSLQFZnQM-dr-jack-kruse-on-biohacking-your-water-emfs-blue-light-dha-c/transcript.txt`
-  -  … with the uh effect like for
-example <<EMF>> you're saying well it's not
-only <<EMF>> but you're also disconnecting
-from the … 
-- **Regenerative Energy & the Light Inside You | Jack Kruse | 221**
-  - `yt/67sLlXeMg2I-regenerative-energy-the-light-inside-you-jack-kruse-221/transcript.txt`
-  -  … So food is an
-<<electromagnetic>> barcode of sunlight that
-comes here. What's the other thing that
-happens in the mid portion of the … 
-- **Red Light, Blue Light, Brain Damage: Dr. Jack Kruse Explains WTF Is Actually Happening**
-  - `yt/2njvFN-W4zc-red-light-blue-light-brain-damage-dr-jack-kruse-explains-wtf/transcript.txt`
-  -  … Do you think that the poor light
-environment in uterero and then the
-continuation of non-native <<EMF>> exposure
-in these individuals is what … 
-- **The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The Life Stylist Podcast**
-  - `yt/5W6x7EsE8C4-the-most-epic-jack-kruse-interview-ever-ep-75-76-the-life-st/transcript.txt`
-  -  … <<EMF>>, and that's what we use
-to communicate. But, what people don't
-realize is when the incident ray the
-incident <<electromagnetic>> ray … 
-- **Medisun Podcast #19 Dr. Jack Kruse: Epstein cabal, circus maximus and the 49er's EMF situation**
-  - `yt/52BwgibSVWU-medisun-podcast-19-dr-jack-kruse-epstein-cabal-circus-maximu/transcript.txt`
-  -  … It's it's a lot of different
-things, but the ultimate effect of
-non-native <<EMF>>, whether it be blue light
-or any … 
-- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
-  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
-  -  … accept which are non-native
-<<emfs>> and again I just think how can you
-not
-understand non-native <<emfs>> and the
-effect they have … 
-- **MEN OF LAW Podcast 19 with Dr. Jack Kruse**
-  - `yt/NG98vFRYYSc-men-of-law-podcast-19-with-dr-jack-kruse/transcript.txt`
-  -  … So,
-to answer your question simply, you need
-to go on a non-native <<EMF>> polarized
-light diet. The problem is that's really … 
-- **Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal Your Mitochondria**
-  - `yt/mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit/transcript.txt`
-  -  … damaging effects of artificial blue light and&nbsp;&nbsp;
-non-native <<emfs>> to heal at the cellular level&nbsp; why are professional athletes suddenly … 
-- **Nature’s Hidden Healing Powers w/ Dr. Jack Kruse**
-  - `yt/CVz-5qK4zBE-nature-s-hidden-healing-powers-w-dr-jack-kruse/transcript.txt`
-  -  … live in an environment
-where the <<electromagnetic>> pollution is
-off the chain why and when you say
-<<electromagnetic>> pollution you're talking
-about 5G … 
-- **"These People Must Pay" Bitcoin, Trump, COVID, and Zionism with Dr. Jack Kruse Ep. 2 (WiM545)**
-  - `yt/yALOChgRrHQ-these-people-must-pay-bitcoin-trump-covid-and-zionism-with-d/transcript.txt`
-  -  … heard of it was linear
-accelerator creates all frequency in the
-<<electromagnetic>> spectrum from gamma rays
-all the way down to RF okay it … 
-- **#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Sunlight & Longevity**
-  - `yt/-VFTXZrbyNA-58-dr-jack-kruse-high-latitude-living-cold-exposure-sunlight/transcript.txt`
-  -  … the
-changing <<EMF>> environment the Sun the
-problem is we happen to be the silly
-talking monkeys that have changed the
-<<EMF>> environment because … 
-- **Functional Medicine Mistakes, EMF, Sunlight, and Your Mitochondria Dr. Jack Kruse  | Podcast #135**
-  - `yt/qPY6FBkjqwA-functional-medicine-mistakes-emf-sunlight-and-your-mitochond/transcript.txt`
-  -  … One was
-the top functional medicine mistakes and
-you were kind of echoing some of the <<EMF>>
-stuff, some of the sunlight stuff. So … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … comes from why because they're
-<<electromagnetic>> antennas okay that's my
-next question is
-<<electromagnetism>> so <<electromagnetism>>
-includes light I think yes but … 
-- **Dr. Jack Kruse: Decentralizing Medicine and Shaping Future Healthcare**
-  - `yt/OJaR2XgTmPI-dr-jack-kruse-decentralizing-medicine-and-shaping-future-hea/transcript.txt`
-  -  … solutions to changes that
-occurred in the <<electromagnetic>>
-environment what is that change in the
-<<electromagnetic>> environment that you and
-I have have taught … 
-- **Dr. Jack Kruse: The CIA DON’T Want You To Know This | EP 502**
-  - `yt/BrwjP3zpm64-dr-jack-kruse-the-cia-don-t-want-you-to-know-this-ep-502/transcript.txt`
-  -  … infrared light and you're bathing in
-blue and non-native <<EMF>> you get this
-fundamental belief that you have to eat
-a k … 
-- **Unraveling the Medical Matrix w/ Dr. Jack Kruse**
-  - `yt/Iq3tDpoFVL0-unraveling-the-medical-matrix-w-dr-jack-kruse/transcript.txt`
-  -  … truly control us we are
-evolved to the <<electromagnetic>>
-environment that nature provides that
-<<electromagnetic>> environment is called
-the Sun and there's two … 
-
-## intake (3)
-
+- **The War on Sunlight Is Real (And It’s Not an Accident) | Dr … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … WHO(82), AGE(34), melanin(18), Rockefeller(11), <<EMF>>(7), mitochondria(5), iron(5), Becker(5), mitochondrial(4), collagen(4), photosynthesis(3), <<electromagnetic>>(3 … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … 329
-- **blue light** — 311
-- **EPA** — 294
-- **<<electromagnetic>>** — 275
-- **mitochondrial** — 266
-- **leptin** — 255
-- **circadian** — 206
-- **ATP** — 193
-- **<<EMF>>** — 192
-- **semiconductor** — 189
-- **photosynthesis** — 187
-- **red light … 
-- **Andrew Marino — canon-target intake**
-  - `_intake/marino-andrew/README.md`
-  -  … Co-authored ~40 papers
-with Becker on bone regeneration, <<EMF>> biology, electric currents in tissue.
-Continued the work post-Becker as professor at LSU … 
+- **EMF 5: What are the Biologic Effects of EMF?**
+  - `_intake/kruse-blog-corpus/articles/emf-5-what-are-the-biologic-effects-of-emf.md`
+  -  … WHO Conference on the Precautionary Principle, Rome, June 2001.
+
+- [Precautionary approaches to regulation of <<electromagnetic>> field exposure. WHO <<EMF>> Standards Harmonization Meeting, Varna, Bulgaria … 
+- **EMF 8: Quantum Bone**
+  - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
+  -  … From the Earth’ magnetic signal to visible light in the <<EMF>> spectrum, the filling in of the <<electromagnetic>> spectrum is astounding as we laid … 
+- **Quantum Biology #1: The Zero Entropy System**
+  - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
+  -  … of ‘man-made’ <<electromagnetic>> pollution in our modern environment,  what was the[ biologic effect on all life](https://jackkruse.com/<<emf>>-5-what-are … 
+- **Energy and Epigenetics 3: Autoimmunity, Cancer, Autism**
+  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-3-autoimmunity-cancer-autism.md`
+  -  … The <<electromagnetic>> field can carry waves and particles. In this <<EMF>> field, the waves can act very unusual. When the <<electromagnetic>> frequency of these … 
+- **Energy and Epigenetics 11: Is the Force With You?**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-11-force.md`
+  -  … Feynman
+
+That quote was made about the epic NASA failures during the [
+
+![<<EMF>>-Force](https://jackkruse.com/wp-content/uploads/2014/01/<<EMF>>-Force … 
+- **Energy and Epigenetics 6: Quantum Cell Theory, Life as a Collective Phenomena**
+  - `_intake/kruse-blog-corpus/articles/ee-6-quantum-cell-theory-life-collective-phenomena.md`
+  -  … DNA has already been shown to emit <<EMF>> signals. The signals it emits is different when it is hydrated.
+
+It is where <<electromagnetic>> field … 
+- **Energy and Epigenetics 8: Quantum Autism**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-8-autism.md`
+  -  … The lower end of the <<electromagnetic>> spectrum of energies do not exhibit these physical properties. The <<EMFs>> above the lowest end, the microwave range … 
+- **EMF 6: Quantum Time**
+  - `_intake/kruse-blog-corpus/articles/emf-6-quantum-time.md`
+  -  … with <<EMF>> and EMR is that in most communities there is no non-exposed reference group because we live in homes with <<electromagnetic>> fields … 
+- **ORGANIZATION STRUCTURAL FAILURE 2:  MAGNETIC MEMORY**
+  - `_intake/kruse-blog-corpus/articles/organization-structural-failure-2-magnetism.md`
+  -  … The implications of  [<<EMF>> 2 ](https://jackkruse.com/<<emf>>-2-einstein-meet-leptin/)and [<<EMF>> 3](/<<emf>>-3-the-origin-of-life/) are massive … 
+- **CPC #9:   HASHIMOTO's AND MELASMA:  GATEWAY DISEASES**
+  - `_intake/kruse-blog-corpus/articles/hashimotos-and-melasma.md`
+  -  … Another link to the second law of thermodynamics and the mass equivalence relationship of physics,  I spoke about in [<<EMF>> 2](/<<emf>>-2-einstein … 
+- **Energy and Epigenetics 13: Quantum Water Chemistry**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-13-quantum-water-chemistry-2.md`
+  -  … expression is altered by the <<electromagnetic>> signals coming from RNA and DNA** and the non-ionizing frequency <<EMF>> bands do change this information processing … 
+- **EMF 3: The Origin of Life**
+  - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
+  -  … https://jackkruse.com/<<emf>>-3-the-origin-of-life/
+
+---
+
+](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain-tablethumb.png)
+
+
+
+
+
+
+
+## <<EMF>> 3: The … 
+- **Energy and Epigenetics 9: Quantum Sleep**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
+  -  … The <<electromagnetic>> radiation from light and the Earth’s magnetic field oxidizes neural circuits with native <<EMF>> from the sun. This native <<EMF>>, uses … 
+- **EMF 1: Does Your Rolex Work?**
+  - `_intake/kruse-blog-corpus/articles/emf-1-does-your-rolex-work.md`
+  -  … is brought down.
+
+- Grounding powerfully reduces <<electromagnetic>> fields (<<EMFs>>) that have an effect on the body. <<EMF>> resonance above the normal frequencies found on … 
+- **bone-bioelectric-becker**
+  - `_intake/concept-digests/bone-bioelectric-becker.md`
+  -  … The <<Electromagnetic>> Blueprint of Life - Jack Kruse, MD DSci Pod 187**
+  - `yt/zrdRVDk66JE-beyond-dna-the-<<electromagnetic>>-blueprint-of-life-jack-kruse-/transcript.txt … 
+- **EMF Rx: The Top Ten EMF FAQs**
+  - `_intake/kruse-blog-corpus/articles/emf-rx-the-top-ten-emf-faqs.md`
+  -  … Sheet N181, “<<Electromagnetic>> Fields and Public Health, The International <<EMF>> Project,” reviewed May 1998 and World Health Organization Fact Sheet N182, “<<Electromagnetic>> Fields and … 
+- **Energy and Epigenetics 12:  Is Your Battery Charged?**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
+  -  … The sun generates massive energies across the entire <<electromagnetic>> spectrum.  Water stores those energies.  Water is the conduit for the <<electromagnetic>> spectrum to act … 
+- **CPC #8:    Brain Cancer**
+  - `_intake/kruse-blog-corpus/articles/cpc-8-quantum-brain-cancer.md`
+  -  … expression is altered by the <<electromagnetic>> signals coming from RNA and DNA** and the non-ionizing frequency <<EMF>> bands do change this information processing … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE #6:  THE MITOCHONDRIAL Rx**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-6-mitochondrial-rx.md`
+  -  … Here we have an example of how “an <<EMF>>” brings life to life.  Mitochondrion use the Vitamin A and D cycle in your brain … 
+- **EMF 7: Quantum Prometheus**
+  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
+  -  … quanta”, to the <<electromagnetic>> field. Originally, his principal motivation was to explain the thermodynamics of radiation.  Non thermal pulsed <<EMF>> is the domain of … 
+- **Energy and Epigenetics 5: The Quantum Brain**
+  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-5-the-quantum-brain.md`
+  -  … When basal metabolic rates rise, we [lose quantum timing](/<<emf>>-6-quantum-time/), because time is relative to the <<electromagnetic>> field one inhabits. This … 
+- **UBIQUITINATION 18:  THE FLOW AND DIRECTION OF ENERGY**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-18-flow-and-energy-direction.md`
+  -  … took control of the <<electromagnetic>> force for its own devices, in my opinion.
+
+Look at my [CO2 and <<EMF>> thread on my forum](http … 
+- **Energy and Epigenetics 4:  Light, Water, Magnetism**
+  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-4-light-water-magnetism.md`
+  -  … When the <<electromagnetic>> field becomes altered for any reason at all, or blocked by man made <<EMF>> field signals, all life forms lose energy … 
+- **TENSEGRITY # 4:  MAGNETISM, SLEEP, AND ELECTRONS**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-4-magnetism-electrons-sleep.md`
+  -  … The <<electromagnetic>> force is the building where the stage is located.  If <<electromagnetic>> energies are varied for any reason at all, you get a … 
+- **REALITY #14: WARBURG'S PROOF: THE DATA POINTS TO MITOCHONDRIAL GENOME?**
+  - `_intake/kruse-blog-corpus/articles/reality-14-warburgs-proof.md`
+  -  … incident <<EMF>> allows for proper AMPk control and free radical signaling.  Blue light from man-made devices is a different incident <<electromagnetic>> wave that … 
+- **blue-light-toxicity**
+  - `_intake/concept-digests/blue-light-toxicity.md`
+  -  … <<Electromagnetic>> Blueprint of Life - Jack Kruse, MD DSci Pod 187**
+  - `yt/zrdRVDk66JE-beyond-dna-the-<<electromagnetic>>-blueprint-of-life-jack-kruse-/transcript.txt`
+  -  … <<EMF>> … 
+- **CPC #14: TINNITUS, THE QUANTUM VIEW POINT**
+  - `_intake/kruse-blog-corpus/articles/cpc-14-tinnitus-quantum-view-point.md`
+  -  … mitochondrion makes.  This makes the incoming <<EMF>> frequency very critical part of the mechanism in tinnitus.   <<Electromagnetic>> fields can activate of voltage-gated calcium … 
+- **EMF 2: Einstein, Meet Leptin**
+  - `_intake/kruse-blog-corpus/articles/emf-2-einstein-meet-leptin.md`
+  -  … I established that in [<<EMF>> 1](https://jackkruse.com/<<emf>>-1-does-your-rolex-work/)‘s blog post as well. <<EMF>>’s main problem … 

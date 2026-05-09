@@ -1,6 +1,6 @@
 # melanin-semiconductor
 
-**Query**: `melanin AND (semiconductor OR conductor OR electron)`  ·  **Hits**: 25
+**Query**: `melanin AND (semiconductor OR conductor OR electron)`  ·  **Hits**: 30
 
 
 ## pubmed (3)
@@ -28,7 +28,7 @@
 
 The <<semiconductor>> behavior of … 
 
-## youtube (18)
+## youtube (13)
 
 - **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
   - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
@@ -52,18 +52,18 @@ does, it works specifically with the
 third <<semiconductor>> which is <<melanin>>.
 And <<melanin>> comes from alpha msh which
 is cleaved … 
-- **Dr Jack Kruse: Deuterium, 4th phase of WATER, & cellular redox | Regenerative Health Podcast**
-  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re/transcript.txt`
-  -  … told you everything in US is
-about <<semiconductor>> you need a lot of
-<<electrons>> for 170 <<conductors>> and it
-turns out uh the real … 
 - **Dr. Jack Kruse: Silent Weapons for Silent Wars**
   - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
   -  … When <<melanin>> is hydrated, it
 becomes a poor electrical <<conductor>>. So
 it went from the best to the worst just
 by covered. So that … 
+- **Dr Jack Kruse: Deuterium, 4th phase of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re/transcript.txt`
+  -  … told you everything in US is
+about <<semiconductor>> you need a lot of
+<<electrons>> for 170 <<conductors>> and it
+turns out uh the real … 
 - **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
   - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
   -  … efficient when in <<melanin>> is
@@ -78,6 +78,12 @@ plus …
 better than hemoglobin called <<melanin>>
 yeah and what does <<melanin>> do <<melanin>> is
 the most special <<semiconductor>> on the … 
+- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
+  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
+  -  … semiconductive pathway by removing
+<<electrons>> well what puts the <<electrons>>
+in well that's where <<melanin>> comes in
+<<melanin>> is the the condensed matter … 
 - **Dr. Jack Kruse: Decentralizing Medicine and Shaping Future Healthcare**
   - `yt/OJaR2XgTmPI-dr-jack-kruse-decentralizing-medicine-and-shaping-future-hea/transcript.txt`
   -  … both
@@ -85,12 +91,6 @@ coales um they both coales and <<melanin>>
 why because <<melanin>> is a huge wideband
 <<semiconductor>> now even the guys in
 Silicon Valley the … 
-- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
-  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
-  -  … semiconductive pathway by removing
-<<electrons>> well what puts the <<electrons>>
-in well that's where <<melanin>> comes in
-<<melanin>> is the the condensed matter … 
 - **#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Sunlight & Longevity**
   - `yt/-VFTXZrbyNA-58-dr-jack-kruse-high-latitude-living-cold-exposure-sunlight/transcript.txt`
   -  … <<melanin>> in terms of
@@ -111,48 +111,57 @@ created uh by the charge separation of
 water from sunlight hitting <<melanin>> or
 light hitting <<melanin>> um these free
 <<electrons>> can … 
-- **Dr. EnQi What is the Origin of BioElectricty? Dr. Sebi & Robert O Becker**
-  - `yt/s9vsbINyIWQ-dr-enqi-what-is-the-origin-of-bioelectricty-dr-sebi-robert-o/transcript.txt`
-  - e
-[Music]
-my name is Minister Inky I am the
-naturopathic doctor and the spokesman
-for the <<melanin>> vers diabetes Ministry
-every time you … 
-- **Ep. 57: Guest Interview - Dr. Jack Kruse - Kruse Longevity Center**
-  - `yt/oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center/transcript.txt`
-  -  … is called Alpha msh
-what does alpha msh make <<melanin>> <<melanin>>
-is the key <<Semiconductor>> in all of your
-clients and you need to … 
-- **Interview with Dr. Jack Kruse (04-08-2025)**
-  - `yt/wwNutyiyQ2I-interview-with-dr-jack-kruse-04-08-2025/transcript.txt`
-  -  … nature put the third <<semiconductor>>
-there to protect it. Not only do you
-have heme protection, but you have
-<<melanin>> there to do the … 
-- **Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & Sunlight Medicine | Dr. Jack Kruse**
-  - `yt/SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl/transcript.txt`
-  -  … only creates two
-<<electrons>> <<melanin>> the minimum is four
-but it can create way more because it's
-a wideband <<semiconductor>> you heard me … 
-- **Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal Your Mitochondria**
-  - `yt/mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit/transcript.txt`
-  -  … have <<electrons>> in it&nbsp; so that means it's the winter type of cholesterol&nbsp;&nbsp;
-HDL cholesterol has more <<electrons>> in it … 
-- **Nature’s Hidden Healing Powers w/ Dr. Jack Kruse**
-  - `yt/CVz-5qK4zBE-nature-s-hidden-healing-powers-w-dr-jack-kruse/transcript.txt`
-  -  … tells you functionally
-they have no <<melanin>> inside their body
-so that's the inside no <<melanin>> cancer
-right well I wouldn't say … 
+- **Dr. Jack Kruse on How Light Controls Metabolism & Diabetes | Blue Light and Brain Damage | Bitcoin**
+  - `yt/tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue/transcript.txt`
+  -  … Georgie told us hey it's kind
+of funny but everything DNA codes for
+looks like a <<semiconductor>> because of
+its <<electronic>> structure. And … 
 
-## intake (4)
+## intake (14)
 
+- **melanin-semiconductor**
+  - `_intake/concept-digests/melanin-semiconductor.md`
+  - # <<melanin>>-<<semiconductor>>
+
+**Query**: `<<melanin>> AND (<<semiconductor>> OR <<conductor>> OR <<electron>>)`  ·  **Hits**: 25
+
+
+## pubmed (3)
+
+- **The function of <<melanin>> or six blind people examine an … 
+- **TIME #2:  HOW IS TIME BUILT?**
+  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
+  -  … This allows flow from things with a higher <<electron>> density to one with a lower density of <<electrons>>. If there is no <<conductor>> present … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … <<melanin>>(77), UV(73), WHO(64), mitochondria(39), leptin(37), AGE(29), <<semiconductor>>(25), blue light(24), iron(22), photosynthesis(20), DHA(18), <<electron>> … 
+- **CPC #6: Pseudotumor Cerebri**
+  - `_intake/kruse-blog-corpus/articles/cpc-6-pseudotumor-cerebri.md`
+  -  … acts as a super <<conductor>> for <<electrons>> and protons and collagen and protein are the other major one <<semiconductors>> in the body.  If one … 
+- **ORGANIZATIONAL STRUCTURAL FAILURE # 5  PRIONS ARE COMPLIANT DESIGN FLAWS**
+  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-5-prions-are-compliant-design-flaws.md`
+  -  … it does within a <<semiconductor>>. In a semiconducting object, <<electrons>> are induced into movement across the surface of the <<conductor>> from one side of … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … VIDEO.md`
+  -  … WHO(45), <<melanin>>(29), <<quantum>>(24), mitochondria(23), iron(23), AGE(23), Newton(20), Einstein(17), <<semiconductor>>(14), <<photosynthesis>>(13), blue light … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … Photoelectric>> effect applied to <<biology>> | 02-physics ↔ 05-biophysics | 7 |
+| `concept-<<melanin>>-<<semiconductor>> … 
+- **Photoelectric effect in biology — concept canon-target intake**
+  - `_intake/concept-photoelectric … 
+- **Energy and Epigenetics 8: Quantum Autism**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-8-autism.md`
+  -  … Transition metals are highly conductive because they have a ton of D shell <<electrons>> that allow them to share <<electrons>> in many molecular configuration … 
+- **methylene-blue**
+  - `_intake/concept-digests/methylene-blue.md`
+  -  … PER-VIDEO.md`
+  -  … AGE(79), WHO(63), <<electron>>(47), mitochondria(45), <<semiconductor>>(36), quantum(35), <<melanin>>(32), UV(31), iron(30), Becker(26), <<methylene … 
+- **TIME #11   CAN YOU SUPPLEMENT SUNLIGHT?**
+  - `_intake/kruse-blog-corpus/articles/time-10-can-you-supplement-sunlight.md`
+  -  … means food <<electrons>> are only “particle-like” before processing in our mitochondria, but when the <<electrons>> are liberated from the <<semiconductors>> in the food … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
   -  … across all transcripts)
@@ -181,3 +190,8 @@ right well I wouldn't say …
   -  … applied to biology | 02-physics ↔ 05-biophysics | 7 |
 | `concept-<<melanin>>-<<semiconductor>>` | <<Melanin>> as biological <<semiconductor>> | 05-biophysics | 42 + 37 |
 | `concept-mitochondrial-membrane-potential` | ETC … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … fourth-phase-water.md) — 21 hits  (intake:6, youtube:15)
+- [`<<melanin>>-<<semiconductor>>`](<<melanin>>-<<semiconductor>>.md) — 25 hits  (intake:4, pubmed:3, youtube:18)
+- [`mitochondrial … 
