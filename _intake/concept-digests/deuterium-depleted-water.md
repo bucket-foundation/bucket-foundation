@@ -1,0 +1,125 @@
+# deuterium-depleted-water
+
+**Query**: `deuterium AND water`  ·  **Hits**: 19
+
+
+## pubmed (5)
+
+- **Explaining deuterium-depleted water as a cancer therapy: a narrative review.**
+  - `pubmed/PMID-41347524-explaining-deuterium-depleted-water-as-a-cancer-therapy-a-na/info.md`
+  - # Explaining <<deuterium>>-depleted <<water>> as a cancer therapy: a narrative review.
+
+- **PMID**: 41347524
+- **DOI**: 10.1097/CEJ.0000000000000953
+- **PMCID**: PMC7768873 (full-text saved)
+- **Journal … 
+- **Is Deuterium Sequestering by Reactive Carbon Atoms an Important Mechanism to Reduce Deuterium Content in Biological Water?**
+  - `pubmed/PMID-40496345-is-deuterium-sequestering-by-reactive-carbon-atoms-an-import/info.md`
+  - # Is <<Deuterium>> Sequestering by Reactive Carbon Atoms an Important Mechanism to Reduce <<Deuterium>> Content in Biological <<Water>>?
+
+- **PMID**: 40496345
+- **DOI**: 10.1136/jech-2020 … 
+- **Nutritional deuterium depletion and health: a scoping review.**
+  - `pubmed/PMID-39397213-nutritional-deuterium-depletion-and-health-a-scoping-review/info.md`
+  -  … complete mitochondrial fatty acid oxidation with the production of <<deuterium>> depleted (deupleted) metabolic <<water>>. A protocol process approach was used to retrieve current research … 
+- **The essential role of hydrogen gas recycling by gut microbes in reducing deuterium load in host mitochondria: is trimethylamine oxide a deuterium sensor?**
+  - `pubmed/PMID-42050215-the-essential-role-of-hydrogen-gas-recycling-by-gut-microbes/info.md`
+  -  … Excess <<deuterium>> (heavy hydrogen) damages mitochondrial ATP synthase nanomotors, leading to a decrease in matrix <<water>> production with increased reactive oxygen species (ROS) and … 
+- **Taurine prevents mitochondrial dysfunction and protects mitochondria from reactive oxygen species and deuterium toxicity.**
+  - `pubmed/PMID-39789296-taurine-prevents-mitochondrial-dysfunction-and-protects-mito/info.md`
+  -  … potentially alleviate <<deuterium>> stress, primarily through metabolic collaboration among various gut microflora to produce <<deuterium>> depleted nutrients and <<deuterium>> depleted <<water>>, and in this … 
+
+## youtube (10)
+
+- **Dr Jack Kruse: Deuterium, 4th phase of WATER, & cellular redox | Regenerative Health Podcast**
+  - `yt/W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re/transcript.txt`
+  -  … on how much <<deuterium>> is in
+the <<water>>
+uh the flip side is mitochondrial
+respiration only makes <<deuterium>>
+depleted <<water>>
+so again that's … 
+- **Dr. Jack Kruse - Magnetism and Health**
+  - `yt/0MmyVoqjkwQ-dr-jack-kruse-magnetism-and-health/transcript.txt`
+  -  … When mammals go deep
+in the ocean,
+they're being squeezed by the <<water>>
+above it to get the <<deuterium>> out. What
+does that … 
+- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
+  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
+  -  … your experiments
+with <<deuterium>> depleted <<water>> why
+because that's the <<water>> that a
+mitochondria makes it doesn't make <<water>>
+that has 155 … 
+- **Ep. 57: Guest Interview - Dr. Jack Kruse - Kruse Longevity Center**
+  - `yt/oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center/transcript.txt`
+  -  … did
+these guys do they use <<deuterium>>
+depleted <<water>> wow they recovered okay
+now <<deuterium>> depleted <<water>> is tough to
+find it's going … 
+- **Uncomfortable Truths with Dr Jack Kruse**
+  - `yt/Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse/transcript.txt`
+  -  … prejudice against
+<<deuterium>> doesn't want any of it around
+the <<water>> that mitochondria makes its
+cytochrome C oxidase is <<deuterium>>
+depleted why would … 
+- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
+  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
+  -  … that process but we don't
+make
+<<water>> which is here we make <<deuterium>>
+depleted <<water>> so there is a difference
+in the mirror … 
+- **Interview with Dr. Jack Kruse (04-08-2025)**
+  - `yt/wwNutyiyQ2I-interview-with-dr-jack-kruse-04-08-2025/transcript.txt`
+  -  … So, why does
+nature come up with the first heme
+protein that's likely CCO? Cuz it makes
+<<deuterium>>-depleted <<water>> by reversing
+the … 
+- **Gerald Pollack:The Fourth Phase of Water | SNC 2018**
+  - `yt/NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018/transcript.txt`
+  -  … Okay, and the second the second question
+is does <<deuterium>> affect
+creating easy <<water>> at all in in in any
+capacity?
+We studied <<deuterium>> … 
+- **Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal Your Mitochondria**
+  - `yt/mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit/transcript.txt`
+  -  … we imprint our life energies on uh <<water>>&nbsp; what happens when light hits <<water>> <<water>> gets&nbsp;&nbsp;
+more coherent domains what does … 
+- **Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Disease**
+  - `yt/Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease/transcript.txt`
+  -  … ionization energy of of uh <<water>> I
+said because you know in third grade I
+learned CO2 plus <<water>> and sunlight
+makes sugar you … 
+
+## intake (4)
+
+- **Per-Video References**
+  - `_intake/kruse-references-mined/PER-VIDEO.md`
+  -  … infrared(29), AGE(16), EZ <<water>>(14), WHO(12), iron(9), exclusion zone(8), RAGE(7), EPA(5), photosynthesis(4), <<deuterium>>(3), proton(3 … 
+- **Deuterium-depleted water (DDW) — concept canon-target intake**
+  - `_intake/concept-deuterium-depleted-water/README.md`
+  - # <<Deuterium>>-depleted <<water>> (DDW) — concept canon-target intake
+
+- **Slug**: `concept-<<deuterium>>-depleted-<<water>>`
+- **Canon branch**: 03-chemistry / 05-biophysics
+- **Status**: queued (not yet researched … 
+- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
+  -  … Concepts to map (own canon entries)
+
+| Slug | Concept | Branch | Mentions |
+|---|---|---|---|
+| `concept-<<deuterium>>-depleted-<<water>>` | <<Deuterium>>-depleted <<water>> (DDW) | 03-chemistry / 05-biophysics | 1 (chapter … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … W5w0WainlMM-dr-jack-kruse-<<deuterium>>-4th-phase-of-<<water>>-cellular-redox-re`
+- `YCN-kgAH2hM-dr-kruse-patient-interview`
+- `YrwbDsTx0Uw-<<water>>-the-matrix-and-engine … 
