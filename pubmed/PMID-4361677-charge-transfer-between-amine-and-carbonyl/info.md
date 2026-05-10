@@ -7,7 +7,7 @@
 - **Authors**: H Kon, A Szent-Györgyi
 - **MeSH**: Aldehydes, Electron Spin Resonance Spectroscopy, Electron Transport, Glyoxal, Phenylenediamines
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/4361677/
-- **Captured**: 2026-05-10T11:37:10
+- **Captured**: 2026-05-10T12:09:29
 
 ## Abstract
 

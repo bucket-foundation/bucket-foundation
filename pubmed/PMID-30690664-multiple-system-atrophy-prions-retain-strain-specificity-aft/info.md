@@ -7,7 +7,7 @@
 - **Authors**: Amanda L Woerman, Abby Oehler, Sabeen A Kazmi, Jisoo Lee, Glenda M Halliday, Lefkos T Middleton, Steve M Gentleman, Daniel A Mordes, Salvatore Spina, Lea T Grinberg, Steven H Olson, Stanley B Prusiner
 - **MeSH**: Animals, Humans, Mice, Mice, Transgenic, Multiple System Atrophy, Prion Diseases, Prions, alpha-Synuclein
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/30690664/
-- **Captured**: 2026-05-10T11:31:55
+- **Captured**: 2026-05-10T12:08:57
 
 ## Abstract
 

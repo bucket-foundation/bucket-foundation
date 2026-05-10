@@ -7,7 +7,7 @@
 - **Authors**: I Banga, A Szent-Györgyi
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16745554/
-- **Captured**: 2026-05-10T11:07:58
+- **Captured**: 2026-05-10T12:08:08
 
 ## Abstract
 

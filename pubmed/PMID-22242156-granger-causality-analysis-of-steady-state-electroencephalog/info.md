@@ -7,7 +7,7 @@
 - **Authors**: Adam B Barrett, Michael Murphy, Marie-Aurélie Bruno, Quentin Noirhomme, Mélanie Boly, Steven Laureys, Anil K Seth
 - **MeSH**: Anesthesia, Computer Simulation, Consciousness, Cortical Synchronization, Electroencephalography, Gyrus Cinguli, Humans, Propofol, Signal Processing, Computer-Assisted, Statistics as Topic
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/22242156/
-- **Captured**: 2026-05-10T11:24:10
+- **Captured**: 2026-05-10T12:08:33
 
 ## Abstract
 

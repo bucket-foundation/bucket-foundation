@@ -7,7 +7,7 @@
 - **Authors**: Nicholas M Levinson, Olga Kuchment, Kui Shen, Matthew A Young, Michael Koldobskiy, Martin Karplus, Philip A Cole, John Kuriyan
 - **MeSH**: Amino Acid Motifs, Antineoplastic Agents, Benzamides, Binding Sites, Drug Resistance, Neoplasm, Enzyme Activation, Humans, Imatinib Mesylate, Leukemia, Myelogenous, Chronic, BCR-ABL Positive, Models, Molecular
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16640460/
-- **Captured**: 2026-05-10T11:19:14
+- **Captured**: 2026-05-10T12:08:05
 
 ## Abstract
 

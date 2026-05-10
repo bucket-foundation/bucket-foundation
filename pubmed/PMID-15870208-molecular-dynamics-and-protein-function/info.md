@@ -7,7 +7,7 @@
 - **Authors**: M Karplus, J Kuriyan
 - **MeSH**: Animals, Antineoplastic Agents, Benzamides, Biophysics, Catalysis, Computational Biology, Computer Simulation, Enzymes, Humans, Hydrogen
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/15870208/
-- **Captured**: 2026-05-10T11:18:44
+- **Captured**: 2026-05-10T12:07:38
 
 ## Abstract
 

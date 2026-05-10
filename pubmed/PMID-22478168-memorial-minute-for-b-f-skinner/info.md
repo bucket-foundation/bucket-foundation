@@ -7,7 +7,7 @@
 - **Authors**: P B Dews, W K Estes, W H Morse, W V Quine, R J Herrnstein
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/22478168/
-- **Captured**: 2026-05-10T11:24:25
+- **Captured**: 2026-05-10T12:08:34
 
 ## Abstract
 

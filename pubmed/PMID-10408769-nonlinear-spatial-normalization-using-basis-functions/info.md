@@ -7,7 +7,7 @@
 - **Authors**: J Ashburner, K J Friston
 - **MeSH**: Algorithms, Bayes Theorem, Brain, Brain Mapping, Humans, Magnetic Resonance Imaging, Models, Neurological, Nonlinear Dynamics, Stereotaxic Techniques, Tomography, Emission-Computed
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/10408769/
-- **Captured**: 2026-05-10T10:52:13
+- **Captured**: 2026-05-10T12:07:26
 
 ## Abstract
 

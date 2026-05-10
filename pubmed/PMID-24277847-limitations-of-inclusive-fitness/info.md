@@ -7,7 +7,7 @@
 - **Authors**: Benjamin Allen, Martin A Nowak, Edward O Wilson
 - **MeSH**: Biological Evolution, Data Interpretation, Statistical, Gene Frequency, Genetic Fitness, Genetics, Population, Models, Genetic, Regression Analysis, Social Behavior
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/24277847/
-- **Captured**: 2026-05-10T11:25:56
+- **Captured**: 2026-05-10T12:08:41
 
 ## Abstract
 

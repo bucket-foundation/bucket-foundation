@@ -7,7 +7,7 @@
 - **Authors**: Karl Friston, Jérémie Mattout, James Kilner
 - **MeSH**: Bayes Theorem, Cybernetics, Handwriting, Humans, Models, Neurological, Motor Neurons, Nonlinear Dynamics, Perception, Psychomotor Performance, Sensation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/21327826/
-- **Captured**: 2026-05-10T11:23:13
+- **Captured**: 2026-05-10T12:08:28
 
 ## Abstract
 

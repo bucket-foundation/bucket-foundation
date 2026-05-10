@@ -7,7 +7,7 @@
 - **Authors**: E Zuckerkandl, R T Jones, L Pauling
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16590757/
-- **Captured**: 2026-05-10T11:07:43
+- **Captured**: 2026-05-10T12:07:58
 
 ## Abstract
 

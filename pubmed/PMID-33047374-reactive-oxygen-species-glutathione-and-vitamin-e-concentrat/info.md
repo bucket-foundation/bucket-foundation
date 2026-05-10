@@ -7,7 +7,7 @@
 - **Authors**: Andrew D Woolcock, Priscila B S Serpa, Andrea P Santos, John A Christian, George E Moore
 - **MeSH**: Anemia, Anemia, Hemolytic, Animals, Cross-Sectional Studies, Dog Diseases, Dogs, Erythrocytes, Glutathione, Oxidative Stress, Prospective Studies
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/33047374/
-- **Captured**: 2026-05-10T12:03:57
+- **Captured**: 2026-05-10T12:09:06
 
 ## Abstract
 

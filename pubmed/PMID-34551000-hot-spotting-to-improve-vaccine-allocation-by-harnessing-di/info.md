@@ -7,7 +7,7 @@
 - **Authors**: Mark D Penney, Yigit Yargic, Lee Smolin, Edward W Thommes, Madhur Anand, Chris T Bauch
 - **MeSH**: COVID-19, COVID-19 Vaccines, Contact Tracing, Humans, Immunity, Herd, Mass Vaccination, Mobile Applications, Models, Statistical, SARS-CoV-2
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/34551000/
-- **Captured**: 2026-05-10T11:33:28
+- **Captured**: 2026-05-10T12:09:10
 
 ## Abstract
 

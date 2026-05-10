@@ -7,7 +7,7 @@
 - **Authors**: E F Brunngraber, E Chargaff
 - **MeSH**: Chromatography, Affinity, Escherichia coli, NAD, Phosphotransferases, Ribonucleosides, Ribonucleotides, Substrate Specificity
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/198775/
-- **Captured**: 2026-05-10T11:22:39
+- **Captured**: 2026-05-10T12:08:21
 
 ## Abstract
 

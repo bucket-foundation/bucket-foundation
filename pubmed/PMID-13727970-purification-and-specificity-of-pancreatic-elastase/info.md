@@ -7,7 +7,7 @@
 - **Authors**: M A NAUGHTON, F SANGER
 - **MeSH**: Endopeptidases, Hydrolases, Pancreas, Pancreatic Elastase, Peptide Hydrolases, Sensitivity and Specificity
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/13727970/
-- **Captured**: 2026-05-10T11:17:28
+- **Captured**: 2026-05-10T12:07:29
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: L Nyitray, A Jancsó, Y Ochiai, L Gráf, A G Szent-Györgyi
 - **MeSH**: Alternative Splicing, Amino Acid Sequence, Animals, DNA, Complementary, Exons, Gene Expression, Genes, Introns, Isoenzymes, Molecular Sequence Data
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/7809102/
-- **Captured**: 2026-05-10T11:51:09
+- **Captured**: 2026-05-10T12:09:36
 
 ## Abstract
 

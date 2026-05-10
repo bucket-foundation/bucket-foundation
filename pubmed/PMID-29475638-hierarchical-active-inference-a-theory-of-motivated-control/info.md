@@ -7,7 +7,7 @@
 - **Authors**: Giovanni Pezzulo, Francesco Rigoli, Karl J Friston
 - **MeSH**: Executive Function, Humans, Motivation, Perception, Prefrontal Cortex, Psychological Theory, Thinking
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/29475638/
-- **Captured**: 2026-05-10T11:31:13
+- **Captured**: 2026-05-10T12:08:56
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: F Sanger
 - **MeSH**: Insulin
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16747948/
-- **Captured**: 2026-05-10T11:19:24
+- **Captured**: 2026-05-10T12:08:09
 
 ## Abstract
 

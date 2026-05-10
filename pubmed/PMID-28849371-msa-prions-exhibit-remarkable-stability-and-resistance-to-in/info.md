@@ -7,7 +7,7 @@
 - **Authors**: Amanda L Woerman, Sabeen A Kazmi, Smita Patel, Yevgeniy Freyman, Abby Oehler, Atsushi Aoyagi, Daniel A Mordes, Glenda M Halliday, Lefkos T Middleton, Steve M Gentleman, Steven H Olson, Stanley B Prusiner
 - **MeSH**: Animals, Biological Transport, Brain, Detergents, Disease Models, Animal, Fixatives, Formaldehyde, HEK293 Cells, Humans, Mice, Transgenic
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/28849371/
-- **Captured**: 2026-05-10T11:29:10
+- **Captured**: 2026-05-10T12:08:50
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: Y Zhou, M Karplus
 - **MeSH**: Animals, Humans, Models, Molecular, Models, Theoretical, Molecular Sequence Data, Protein Folding, Proteins, Staphylococcus aureus, Thermodynamics
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/9405629/
-- **Captured**: 2026-05-10T11:53:26
+- **Captured**: 2026-05-10T12:09:40
 
 ## Abstract
 

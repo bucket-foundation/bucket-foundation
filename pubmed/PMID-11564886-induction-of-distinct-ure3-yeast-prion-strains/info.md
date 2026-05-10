@@ -7,7 +7,7 @@
 - **Authors**: M Schlumpberger, S B Prusiner, I Herskowitz
 - **MeSH**: Endopeptidase K, Fungal Proteins, Genes, Reporter, Genetic Techniques, Glutathione Peroxidase, Guanidine, Models, Genetic, Phenotype, Plasmids, Prions
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11564886/
-- **Captured**: 2026-05-10T11:15:54
+- **Captured**: 2026-05-10T12:07:27
 
 ## Abstract
 

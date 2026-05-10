@@ -7,7 +7,7 @@
 - **Authors**: Xiaofei Chen, Ryan Overcash, Thomas Green, Donald Hoffman, Adam S Asch, Maria J Ruiz-Echevarría
 - **MeSH**: Animals, Cell Line, Tumor, Glycine, HEK293 Cells, Humans, Male, Membrane Proteins, Mice, NIH 3T3 Cells, Neoplasm Proteins
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/21393249/
-- **Captured**: 2026-05-10T11:23:14
+- **Captured**: 2026-05-10T12:08:29
 
 ## Abstract
 

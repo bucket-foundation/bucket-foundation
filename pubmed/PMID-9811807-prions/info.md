@@ -7,7 +7,7 @@
 - **Authors**: S B Prusiner
 - **MeSH**: Animals, Cattle, Genome, Viral, Humans, Mice, Mutation, Prion Diseases, Prions
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/9811807/
-- **Captured**: 2026-05-10T11:53:59
+- **Captured**: 2026-05-10T12:09:42
 
 ## Abstract
 

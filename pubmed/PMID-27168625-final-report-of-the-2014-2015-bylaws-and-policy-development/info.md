@@ -7,7 +7,7 @@
 - **Authors**: 
 - **MeSH**: Advisory Committees, Humans, Policy Making, Societies, Pharmaceutical
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/27168625/
-- **Captured**: 2026-05-10T11:27:59
+- **Captured**: 2026-05-10T12:08:45
 
 ## Abstract
 

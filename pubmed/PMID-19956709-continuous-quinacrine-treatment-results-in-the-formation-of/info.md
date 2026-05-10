@@ -7,7 +7,7 @@
 - **Authors**: Sina Ghaemmaghami, Misol Ahn, Pierre Lessard, Kurt Giles, Giuseppe Legname, Stephen J DeArmond, Stanley B Prusiner
 - **MeSH**: ATP Binding Cassette Transporter, Subfamily B, Animals, Brain Chemistry, Cells, Cultured, Drug Resistance, Mice, Mice, Knockout, Neuroblastoma, PrPSc Proteins, Prion Diseases
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/19956709/
-- **Captured**: 2026-05-10T11:22:40
+- **Captured**: 2026-05-10T12:08:22
 
 ## Abstract
 

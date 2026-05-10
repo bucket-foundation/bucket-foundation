@@ -7,7 +7,7 @@
 - **Authors**: K H PRIBRAM, K W GARDNER, G L PRESSMAN, M BAGSHAW
 - **MeSH**: Choice Behavior, Discrimination Learning, Electronic Data Processing
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/13986120/
-- **Captured**: 2026-05-10T11:02:43
+- **Captured**: 2026-05-10T12:07:29
 
 ## Abstract
 

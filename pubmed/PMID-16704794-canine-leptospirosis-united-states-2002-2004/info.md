@@ -7,7 +7,7 @@
 - **Authors**: George E Moore, Lynn F Guptill, Nita W Glickman, Richard J Caldanaro, David Aucoin, Lawrence T Glickman
 - **MeSH**: Animals, Dog Diseases, Dogs, Leptospira, Leptospirosis, United States
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16704794/
-- **Captured**: 2026-05-10T12:02:29
+- **Captured**: 2026-05-10T12:08:06
 
 ## Abstract
 

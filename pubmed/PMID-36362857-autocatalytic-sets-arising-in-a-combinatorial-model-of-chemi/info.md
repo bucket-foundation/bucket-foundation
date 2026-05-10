@@ -7,7 +7,7 @@
 - **Authors**: Wim Hordijk, Mike Steel, Stuart Kauffman
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/36362857/
-- **Captured**: 2026-05-10T11:34:28
+- **Captured**: 2026-05-10T12:09:16
 
 ## Abstract
 

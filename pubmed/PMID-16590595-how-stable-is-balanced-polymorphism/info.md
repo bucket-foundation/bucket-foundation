@@ -7,7 +7,7 @@
 - **Authors**: T Dobzhansky, O Pavlovsky
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16590595/
-- **Captured**: 2026-05-10T11:19:09
+- **Captured**: 2026-05-10T12:07:57
 
 ## Abstract
 

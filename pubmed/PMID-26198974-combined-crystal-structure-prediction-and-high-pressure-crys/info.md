@@ -7,7 +7,7 @@
 - **Authors**: M A Neumann, J van de Streek, F P A Fabbiani, P Hidber, O Grassmann
 - **MeSH**: Amides, Computer Simulation, Crystallization, Esters, Models, Chemical, Pressure, Sulfhydryl Compounds
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/26198974/
-- **Captured**: 2026-05-10T11:27:24
+- **Captured**: 2026-05-10T12:08:43
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: L Pauling, B Kamb
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16593698/
-- **Captured**: 2026-05-10T11:07:54
+- **Captured**: 2026-05-10T12:08:04
 
 ## Abstract
 

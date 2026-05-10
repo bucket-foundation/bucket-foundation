@@ -7,7 +7,7 @@
 - **Authors**: H M Schätzl, L Laszlo, D M Holtzman, J Tatzelt, S J DeArmond, R I Weiner, W C Mobley, S B Prusiner
 - **MeSH**: Animals, Apoptosis, Cell Line, Cell Survival, DNA Fragmentation, Gene Expression, Hypothalamus, Mice, Microscopy, Electron, Models, Biological
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/9343242/
-- **Captured**: 2026-05-10T11:53:13
+- **Captured**: 2026-05-10T12:09:38
 
 ## Abstract
 

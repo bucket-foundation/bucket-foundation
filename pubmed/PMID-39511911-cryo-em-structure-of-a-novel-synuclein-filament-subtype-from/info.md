@@ -7,7 +7,7 @@
 - **Authors**: Nicholas L Yan, Francisco Candido, Eric Tse, Arthur A Melo, Stanley B Prusiner, Daniel A Mordes, Daniel R Southworth, Nick A Paras, Gregory E Merz
 - **MeSH**: alpha-Synuclein, Multiple System Atrophy, Cryoelectron Microscopy, Humans, Models, Molecular
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/39511911/
-- **Captured**: 2026-05-10T11:35:43
+- **Captured**: 2026-05-10T12:09:26
 
 ## Abstract
 

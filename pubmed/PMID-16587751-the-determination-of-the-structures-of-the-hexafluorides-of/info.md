@@ -7,7 +7,7 @@
 - **Authors**: L O Brockway, L Pauling
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16587751/
-- **Captured**: 2026-05-10T11:07:11
+- **Captured**: 2026-05-10T12:07:44
 
 ## Abstract
 

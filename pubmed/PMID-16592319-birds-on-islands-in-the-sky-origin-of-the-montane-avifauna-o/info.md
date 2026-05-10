@@ -7,7 +7,7 @@
 - **Authors**: E Mayr, J M Diamond
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16592319/
-- **Captured**: 2026-05-10T11:19:11
+- **Captured**: 2026-05-10T12:08:00
 
 ## Abstract
 

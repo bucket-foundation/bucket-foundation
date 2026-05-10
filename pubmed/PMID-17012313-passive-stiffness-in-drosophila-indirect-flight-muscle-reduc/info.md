@@ -7,7 +7,7 @@
 - **Authors**: Yudong Hao, Mark S Miller, Douglas M Swank, Hongjun Liu, Sanford I Bernstein, David W Maughan, Gerald H Pollack
 - **MeSH**: Animals, Animals, Genetically Modified, Drosophila, Drosophila Proteins, Flight, Animal, Microscopy, Electron, Transmission, Muscles, Mutation, Myofibrils, Myosin Subfragments
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/17012313/
-- **Captured**: 2026-05-10T11:08:09
+- **Captured**: 2026-05-10T12:08:10
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: I Isenberg, A Szent-Györgyi
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16590496/
-- **Captured**: 2026-05-10T11:07:41
+- **Captured**: 2026-05-10T12:07:56
 
 ## Abstract
 

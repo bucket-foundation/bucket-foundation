@@ -7,7 +7,7 @@
 - **Authors**: R Pethig, P R Gascoyne, J A McLaughlin, A Szent-Györgyi
 - **MeSH**: Animals, Ascorbic Acid, Benzoquinones, Carcinoma, Ehrlich Tumor, Cell Membrane, Electric Conductivity, Ethylmaleimide, Free Radicals, Kinetics, Mice
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/6585788/
-- **Captured**: 2026-05-10T11:49:39
+- **Captured**: 2026-05-10T12:09:34
 
 ## Abstract
 

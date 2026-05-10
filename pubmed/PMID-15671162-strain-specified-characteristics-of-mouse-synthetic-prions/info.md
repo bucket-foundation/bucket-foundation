@@ -7,7 +7,7 @@
 - **Authors**: Giuseppe Legname, Hoang-Oanh B Nguyen, Ilia V Baskakov, Fred E Cohen, Stephen J Dearmond, Stanley B Prusiner
 - **MeSH**: Animals, Brain, Cattle, Humans, Mice, Mice, Transgenic, Peptide Fragments, PrPSc Proteins, Prions, Protein Conformation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/15671162/
-- **Captured**: 2026-05-10T11:18:40
+- **Captured**: 2026-05-10T12:07:37
 
 ## Abstract
 

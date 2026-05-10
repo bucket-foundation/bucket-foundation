@@ -7,7 +7,7 @@
 - **Authors**: P Tremblay, Z Meiner, M Galou, C Heinrich, C Petromilli, T Lisse, J Cayetano, M Torchia, W Mobley, H Bujard, S J DeArmond, S B Prusiner
 - **MeSH**: Animals, Astrocytes, Doxycycline, Gene Expression Regulation, Gliosis, Mice, Mice, Transgenic, Slow Virus Diseases, Transgenes
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/9770528/
-- **Captured**: 2026-05-10T11:53:55
+- **Captured**: 2026-05-10T12:09:41
 
 ## Abstract
 

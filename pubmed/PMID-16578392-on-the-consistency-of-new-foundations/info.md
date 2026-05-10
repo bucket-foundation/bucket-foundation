@@ -7,7 +7,7 @@
 - **Authors**: W V Quine
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16578392/
-- **Captured**: 2026-05-10T11:05:13
+- **Captured**: 2026-05-10T12:07:42
 
 ## Abstract
 

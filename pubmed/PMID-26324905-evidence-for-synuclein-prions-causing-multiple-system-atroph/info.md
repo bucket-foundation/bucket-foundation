@@ -7,7 +7,7 @@
 - **Authors**: Stanley B Prusiner, Amanda L Woerman, Daniel A Mordes, Joel C Watts, Ryan Rampersaud, David B Berry, Smita Patel, Abby Oehler, Jennifer K Lowe, Stephanie N Kravitz, Daniel H Geschwind, David V Glidden, Glenda M Halliday, Lefkos T Middleton, Steve M Gentleman, Lea T Grinberg, Kurt Giles
 - **MeSH**: Aged, Animals, Brain, Exons, Female, HEK293 Cells, Humans, Immunohistochemistry, Male, Mice
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/26324905/
-- **Captured**: 2026-05-10T11:27:28
+- **Captured**: 2026-05-10T12:08:44
 
 ## Abstract
 

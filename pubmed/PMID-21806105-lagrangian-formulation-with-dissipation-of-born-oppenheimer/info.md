@@ -7,7 +7,7 @@
 - **Authors**: Guishan Zheng, Anders M N Niklasson, Martin Karplus
 - **MeSH**: Amino Acids, Molecular Dynamics Simulation, Quantum Theory, Water
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/21806105/
-- **Captured**: 2026-05-10T11:23:40
+- **Captured**: 2026-05-10T12:08:30
 
 ## Abstract
 

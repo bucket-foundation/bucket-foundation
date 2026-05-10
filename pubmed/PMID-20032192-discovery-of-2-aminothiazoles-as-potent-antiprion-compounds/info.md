@@ -7,7 +7,7 @@
 - **Authors**: Sina Ghaemmaghami, Barnaby C H May, Adam R Renslo, Stanley B Prusiner
 - **MeSH**: Animals, Cell Line, Tumor, Drug Discovery, Enzyme-Linked Immunosorbent Assay, High-Throughput Screening Assays, Mice, PrPSc Proteins, Prion Diseases, Prions, Structure-Activity Relationship
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/20032192/
-- **Captured**: 2026-05-10T11:22:42
+- **Captured**: 2026-05-10T12:08:24
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: Michael Schartner, Anil Seth, Quentin Noirhomme, Melanie Boly, Marie-Aurelie Bruno, Steven Laureys, Adam Barrett
 - **MeSH**: Anesthesia, General, Area Under Curve, Cerebral Cortex, Computer Simulation, Electrodes, Electroencephalography, Entropy, Humans, Models, Theoretical, Propofol
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/26252378/
-- **Captured**: 2026-05-10T11:27:25
+- **Captured**: 2026-05-10T12:08:44
 
 ## Abstract
 

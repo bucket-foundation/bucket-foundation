@@ -7,7 +7,7 @@
 - **Authors**: L PAULING, R B COREY, H R BRANSON
 - **MeSH**: Hydrogen, Peptides, Proteins
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/14816373/
-- **Captured**: 2026-05-10T10:53:24
+- **Captured**: 2026-05-10T12:07:32
 
 ## Abstract
 

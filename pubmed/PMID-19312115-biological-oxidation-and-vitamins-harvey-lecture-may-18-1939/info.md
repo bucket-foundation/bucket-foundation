@@ -7,7 +7,7 @@
 - **Authors**: A Szent-Györgyi
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/19312115/
-- **Captured**: 2026-05-10T11:10:56
+- **Captured**: 2026-05-10T12:08:19
 
 ## Abstract
 

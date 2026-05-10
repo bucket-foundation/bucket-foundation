@@ -7,7 +7,7 @@
 - **Authors**: E O Wilson, B Hölldobler
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16592808/
-- **Captured**: 2026-05-10T11:19:13
+- **Captured**: 2026-05-10T12:08:03
 
 ## Abstract
 

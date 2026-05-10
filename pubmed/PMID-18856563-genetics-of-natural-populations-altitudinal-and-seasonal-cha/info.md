@@ -7,7 +7,7 @@
 - **Authors**: T DOBZHANSKY
 - **MeSH**: Animals, Drosophila, Genetics, Seasons, Selection, Genetic
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/18856563/
-- **Captured**: 2026-05-10T11:22:13
+- **Captured**: 2026-05-10T12:08:15
 
 ## Abstract
 

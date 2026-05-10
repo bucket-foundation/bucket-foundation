@@ -7,7 +7,7 @@
 - **Authors**: F SANGER
 - **MeSH**: Humans, Insulin, Peptides
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/15396627/
-- **Captured**: 2026-05-10T11:18:29
+- **Captured**: 2026-05-10T12:07:36
 
 ## Abstract
 

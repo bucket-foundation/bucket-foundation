@@ -7,7 +7,7 @@
 - **Authors**: H E ter Keurs, T Iwazumi, G H Pollack
 - **MeSH**: Animals, Anura, Lasers, Muscle Contraction, Muscles, Myofibrils, Optics and Photonics, Rana pipiens
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/309929/
-- **Captured**: 2026-05-10T11:32:10
+- **Captured**: 2026-05-10T12:08:59
 
 ## Abstract
 

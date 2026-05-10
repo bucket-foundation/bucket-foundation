@@ -7,7 +7,7 @@
 - **Authors**: L G Együd, A Szent-Györgyi
 - **MeSH**: Aldehydes, Antineoplastic Agents, Cell Division, Escherichia coli, In Vitro Techniques, Sulfhydryl Compounds
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/5328727/
-- **Captured**: 2026-05-10T11:47:12
+- **Captured**: 2026-05-10T12:09:33
 
 ## Abstract
 

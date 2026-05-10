@@ -7,7 +7,7 @@
 - **Authors**: Robert Becker, Alexis Hervais-Adelman
 - **MeSH**: Brain, Brain Mapping, Connectome, Humans, Magnetoencephalography, Nerve Net, Rest
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/32826259/
-- **Captured**: 2026-05-10T11:32:57
+- **Captured**: 2026-05-10T12:09:02
 
 ## Abstract
 

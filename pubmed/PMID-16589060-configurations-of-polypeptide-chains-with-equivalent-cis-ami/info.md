@@ -7,7 +7,7 @@
 - **Authors**: L Pauling, R B Corey
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16589060/
-- **Captured**: 2026-05-10T11:07:27
+- **Captured**: 2026-05-10T12:07:54
 
 ## Abstract
 

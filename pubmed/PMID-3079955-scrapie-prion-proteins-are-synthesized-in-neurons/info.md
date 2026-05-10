@@ -7,7 +7,7 @@
 - **Authors**: H A Kretzschmar, S B Prusiner, L E Stowring, S J DeArmond
 - **MeSH**: Animals, Astrocytes, Brain, Cerebellum, Cricetinae, DNA, Glial Fibrillary Acidic Protein, Hippocampus, Neurons, Nucleic Acid Hybridization
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/3079955/
-- **Captured**: 2026-05-10T11:31:58
+- **Captured**: 2026-05-10T12:08:58
 
 ## Abstract
 

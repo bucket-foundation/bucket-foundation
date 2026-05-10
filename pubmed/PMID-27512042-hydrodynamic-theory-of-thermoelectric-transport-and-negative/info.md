@@ -7,7 +7,7 @@
 - **Authors**: Andrew Lucas, Richard A Davison, Subir Sachdev
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/27512042/
-- **Captured**: 2026-05-10T11:28:13
+- **Captured**: 2026-05-10T12:08:47
 
 ## Abstract
 

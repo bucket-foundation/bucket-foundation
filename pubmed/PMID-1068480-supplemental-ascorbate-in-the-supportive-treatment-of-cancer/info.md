@@ -7,7 +7,7 @@
 - **Authors**: E Cameron, L Pauling
 - **MeSH**: Adult, Aged, Ascorbic Acid, Breast Neoplasms, Bronchial Neoplasms, Colonic Neoplasms, Female, Humans, Kidney Neoplasms, Male
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/1068480/
-- **Captured**: 2026-05-10T10:52:15
+- **Captured**: 2026-05-10T12:07:26
 
 ## Abstract
 

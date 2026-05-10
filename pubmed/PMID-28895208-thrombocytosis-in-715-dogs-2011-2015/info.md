@@ -7,7 +7,7 @@
 - **Authors**: A D Woolcock, A Keenan, C Cheung, J A Christian, G E Moore
 - **MeSH**: Animals, Autoimmune Diseases, Dog Diseases, Dogs, Endocrine System Diseases, Female, Glucocorticoids, Inflammation, Male, Neoplasms
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/28895208/
-- **Captured**: 2026-05-10T12:03:28
+- **Captured**: 2026-05-10T12:08:54
 
 ## Abstract
 

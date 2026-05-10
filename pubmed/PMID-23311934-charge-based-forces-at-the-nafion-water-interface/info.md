@@ -7,7 +7,7 @@
 - **Authors**: Ronnie Das, Gerald H Pollack
 - **MeSH**: Fluorocarbon Polymers, Particle Size, Surface Properties, Water
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/23311934/
-- **Captured**: 2026-05-10T10:40:13
+- **Captured**: 2026-05-10T12:08:38
 
 ## Abstract
 

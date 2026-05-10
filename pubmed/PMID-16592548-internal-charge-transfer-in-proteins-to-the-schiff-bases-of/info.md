@@ -7,7 +7,7 @@
 - **Authors**: P Otto, J Ladik, K Laki, A Szent-Györgyi
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16592548/
-- **Captured**: 2026-05-10T11:07:53
+- **Captured**: 2026-05-10T12:08:01
 
 ## Abstract
 

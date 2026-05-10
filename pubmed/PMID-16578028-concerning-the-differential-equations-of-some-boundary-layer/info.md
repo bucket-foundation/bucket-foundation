@@ -7,7 +7,7 @@
 - **Authors**: H Weyl
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16578028/
-- **Captured**: 2026-05-10T11:05:12
+- **Captured**: 2026-05-10T12:07:41
 
 ## Abstract
 

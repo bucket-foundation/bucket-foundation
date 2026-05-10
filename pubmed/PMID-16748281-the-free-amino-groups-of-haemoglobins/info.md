@@ -7,7 +7,7 @@
 - **Authors**: R R Porter, F Sanger
 - **MeSH**: Hemoglobins, Humans
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16748281/
-- **Captured**: 2026-05-10T11:19:26
+- **Captured**: 2026-05-10T12:08:09
 
 ## Abstract
 

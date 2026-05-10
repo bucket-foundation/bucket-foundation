@@ -7,7 +7,7 @@
 - **Authors**: M Gasset, M A Baldwin, D H Lloyd, J M Gabriel, D M Holtzman, F Cohen, R Fletterick, S B Prusiner
 - **MeSH**: Amino Acid Sequence, Animals, Birds, Birefringence, Fourier Analysis, Mammals, Microscopy, Electron, Molecular Sequence Data, Peptides, Prions
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/1438300/
-- **Captured**: 2026-05-10T11:17:59
+- **Captured**: 2026-05-10T12:07:31
 
 ## Abstract
 

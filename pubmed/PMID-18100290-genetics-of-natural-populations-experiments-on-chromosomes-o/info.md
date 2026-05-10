@@ -7,7 +7,7 @@
 - **Authors**: T DOBZHANSKY
 - **MeSH**: Animals, Chromosomes, Drosophila, Genetics, Selection, Genetic
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/18100290/
-- **Captured**: 2026-05-10T11:19:59
+- **Captured**: 2026-05-10T12:08:13
 
 ## Abstract
 

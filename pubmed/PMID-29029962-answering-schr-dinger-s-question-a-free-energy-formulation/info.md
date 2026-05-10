@@ -7,7 +7,7 @@
 - **Authors**: Maxwell James Désormeau Ramstead, Paul Benjamin Badcock, Karl John Friston
 - **MeSH**: Heuristics, Neurons, Neurosciences, Thermodynamics
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/29029962/
-- **Captured**: 2026-05-10T11:29:13
+- **Captured**: 2026-05-10T12:08:54
 
 ## Abstract
 

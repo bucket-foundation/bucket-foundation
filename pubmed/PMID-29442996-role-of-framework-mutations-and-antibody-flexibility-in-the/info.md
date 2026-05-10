@@ -7,7 +7,7 @@
 - **Authors**: Victor Ovchinnikov, Joy E Louveau, John P Barton, Martin Karplus, Arup K Chakraborty
 - **MeSH**: Antibodies, Neutralizing, Antibody Affinity, B-Lymphocytes, Epitopes, B-Lymphocyte, Evolution, Molecular, HIV Antibodies, Models, Molecular, Molecular Dynamics Simulation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/29442996/
-- **Captured**: 2026-05-10T11:31:12
+- **Captured**: 2026-05-10T12:08:55
 
 ## Abstract
 

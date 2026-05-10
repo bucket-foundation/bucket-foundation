@@ -7,7 +7,7 @@
 - **Authors**: Travis J A Craddock, Marc St George, Holly Freedman, Khaled H Barakat, Sambasivarao Damaraju, Stuart Hameroff, Jack A Tuszynski
 - **MeSH**: Anesthesia, General, Anesthetics, Computer Simulation, Cytoskeleton, Halothane, Humans, Microtubules, Models, Chemical, Neurodegenerative Diseases, Protein Conformation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/22761654/
-- **Captured**: 2026-05-10T11:24:42
+- **Captured**: 2026-05-10T12:08:37
 
 ## Abstract
 

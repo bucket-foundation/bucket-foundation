@@ -7,7 +7,7 @@
 - **Authors**: S H Northrup, M R Pear, C Y Lee, J A McCammon, M Karplus
 - **MeSH**: Chemical Phenomena, Chemistry, Physical, Mathematics, Models, Biological, Protein Conformation, Proteins
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/6955788/
-- **Captured**: 2026-05-10T11:50:10
+- **Captured**: 2026-05-10T12:09:35
 
 ## Abstract
 

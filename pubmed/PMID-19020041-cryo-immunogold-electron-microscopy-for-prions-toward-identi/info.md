@@ -7,7 +7,7 @@
 - **Authors**: Susan F Godsave, Holger Wille, Pekka Kujala, Diane Latawiec, Stephen J DeArmond, Ana Serban, Stanley B Prusiner, Peter J Peters
 - **MeSH**: Animals, Cryoelectron Microscopy, Dendrites, Disease Models, Animal, Hippocampus, Mice, Mice, Knockout, Neurons, Neuropil, PrPC Proteins
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/19020041/
-- **Captured**: 2026-05-10T11:22:28
+- **Captured**: 2026-05-10T12:08:18
 
 ## Abstract
 

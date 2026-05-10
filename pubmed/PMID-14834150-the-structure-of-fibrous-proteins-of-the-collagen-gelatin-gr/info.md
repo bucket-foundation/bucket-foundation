@@ -7,7 +7,7 @@
 - **Authors**: L PAULING, R B COREY
 - **MeSH**: Collagen, Gelatin, Scleroproteins
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/14834150/
-- **Captured**: 2026-05-10T11:03:55
+- **Captured**: 2026-05-10T12:07:34
 
 ## Abstract
 

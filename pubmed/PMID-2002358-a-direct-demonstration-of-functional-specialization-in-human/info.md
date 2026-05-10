@@ -7,7 +7,7 @@
 - **Authors**: S Zeki, J D Watson, C J Lueck, K J Friston, C Kennard, R S Frackowiak
 - **MeSH**: Adult, Analysis of Variance, Animals, Cerebrovascular Circulation, Color Perception, Hominidae, Humans, Male, Motion Perception, Reference Values
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/2002358/
-- **Captured**: 2026-05-10T11:11:43
+- **Captured**: 2026-05-10T12:08:24
 
 ## Abstract
 

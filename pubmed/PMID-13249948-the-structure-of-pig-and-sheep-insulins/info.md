@@ -7,7 +7,7 @@
 - **Authors**: H BROWN, F SANGER, R KITAI
 - **MeSH**: Animals, Insulin, Insulins, Sheep, Sheep, Domestic, Sus scrofa, Swine
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/13249948/
-- **Captured**: 2026-05-10T11:16:57
+- **Captured**: 2026-05-10T12:07:28
 
 ## Abstract
 

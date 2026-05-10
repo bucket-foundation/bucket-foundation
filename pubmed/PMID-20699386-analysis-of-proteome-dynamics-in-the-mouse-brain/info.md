@@ -7,7 +7,7 @@
 - **Authors**: John C Price, Shenheng Guan, Alma Burlingame, Stanley B Prusiner, Sina Ghaemmaghami
 - **MeSH**: Animals, Blood, Brain, Isotope Labeling, Kinetics, Liver, Mice, Proteins, Proteome, Proteomics
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/20699386/
-- **Captured**: 2026-05-10T11:22:56
+- **Captured**: 2026-05-10T12:08:26
 
 ## Abstract
 

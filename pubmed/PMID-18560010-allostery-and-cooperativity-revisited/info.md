@@ -7,7 +7,7 @@
 - **Authors**: Qiang Cui, Martin Karplus
 - **MeSH**: Allosteric Regulation, Allosteric Site, Animals, Dimerization, Hemoglobins, Humans, Models, Molecular, Protein Structure, Quaternary, Protein Structure, Tertiary, Proteins
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/18560010/
-- **Captured**: 2026-05-10T11:22:12
+- **Captured**: 2026-05-10T12:08:14
 
 ## Abstract
 

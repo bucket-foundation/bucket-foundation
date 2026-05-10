@@ -7,7 +7,7 @@
 - **Authors**: B Wallace, T Dobzhansky
 - **MeSH**: Animals, Drosophila, Light, Sexual Behavior
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16578209/
-- **Captured**: 2026-05-10T11:18:56
+- **Captured**: 2026-05-10T12:07:42
 
 ## Abstract
 

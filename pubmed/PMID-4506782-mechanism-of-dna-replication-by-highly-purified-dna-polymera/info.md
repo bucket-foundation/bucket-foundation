@@ -7,7 +7,7 @@
 - **Authors**: J G Stavrianopoulos, J D Karkas, E Chargaff
 - **MeSH**: Adenine Nucleotides, Animals, Carbon Isotopes, Cattle, Chick Embryo, Chromatography, Gel, Coliphages, DNA, DNA Nucleotidyltransferases, DNA Replication
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/4506782/
-- **Captured**: 2026-05-10T11:37:26
+- **Captured**: 2026-05-10T12:09:31
 
 ## Abstract
 

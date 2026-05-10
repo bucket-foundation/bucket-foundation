@@ -7,7 +7,7 @@
 - **Authors**: T J Berger, J A Spadaro, S E Chapin, R O Becker
 - **MeSH**: Animals, Bacteria, Bone Marrow, Bone Marrow Cells, Cells, Cultured, Electrolysis, Mice, Microbial Sensitivity Tests, Silver
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/944551/
-- **Captured**: 2026-05-10T10:40:55
+- **Captured**: 2026-05-10T12:09:40
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: E Mayr, T Dobzhansky
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16588688/
-- **Captured**: 2026-05-10T11:18:58
+- **Captured**: 2026-05-10T12:07:50
 
 ## Abstract
 

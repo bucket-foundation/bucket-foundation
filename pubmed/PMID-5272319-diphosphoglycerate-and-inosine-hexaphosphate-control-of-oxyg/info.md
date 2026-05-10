@@ -7,7 +7,7 @@
 - **Authors**: G N Ling
 - **MeSH**: Adsorption, Chemical Phenomena, Chemistry, Hemoglobins, Mathematics, Nucleotides, Oxygen, Phosphoglycerate Kinase, Protein Binding
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/5272319/
-- **Captured**: 2026-05-10T11:46:58
+- **Captured**: 2026-05-10T12:09:32
 
 ## Abstract
 

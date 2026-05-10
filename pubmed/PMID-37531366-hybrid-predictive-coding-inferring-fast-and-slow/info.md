@@ -7,7 +7,7 @@
 - **Authors**: Alexander Tscshantz, Beren Millidge, Anil K Seth, Christopher L Buckley
 - **MeSH**: Bayes Theorem, Learning, Visual Perception
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/37531366/
-- **Captured**: 2026-05-10T11:34:55
+- **Captured**: 2026-05-10T12:09:19
 
 ## Abstract
 

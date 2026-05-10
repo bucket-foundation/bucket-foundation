@@ -7,7 +7,7 @@
 - **Authors**: H B Creighton, B McClintock
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16587948/
-- **Captured**: 2026-05-10T11:07:13
+- **Captured**: 2026-05-10T12:07:46
 
 ## Abstract
 

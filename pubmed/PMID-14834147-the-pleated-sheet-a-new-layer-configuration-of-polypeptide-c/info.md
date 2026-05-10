@@ -7,7 +7,7 @@
 - **Authors**: L PAULING, R B COREY
 - **MeSH**: Peptides
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/14834147/
-- **Captured**: 2026-05-10T10:53:25
+- **Captured**: 2026-05-10T12:07:33
 
 ## Abstract
 

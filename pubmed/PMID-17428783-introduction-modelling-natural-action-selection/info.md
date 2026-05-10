@@ -7,7 +7,7 @@
 - **Authors**: Tony J Prescott, Joanna J Bryson, Anil K Seth
 - **MeSH**: Animals, Behavior, Behavior, Animal, Brain, Conflict, Psychological, Decision Making, Humans, Models, Biological, Neurons
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/17428783/
-- **Captured**: 2026-05-10T11:08:39
+- **Captured**: 2026-05-10T12:08:13
 
 ## Abstract
 

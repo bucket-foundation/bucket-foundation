@@ -7,7 +7,7 @@
 - **Authors**: L Pauling, J Sherman
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16587899/
-- **Captured**: 2026-05-10T11:07:12
+- **Captured**: 2026-05-10T12:07:44
 
 ## Abstract
 

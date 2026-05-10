@@ -7,7 +7,7 @@
 - **Authors**: Suresh D Muthukumaraswamy, Robin L Carhart-Harris, Rosalyn J Moran, Matthew J Brookes, Tim M Williams, David Errtizoe, Ben Sessa, Andreas Papadopoulos, Mark Bolstridge, Krish D Singh, Amanda Feilding, Karl J Friston, David J Nutt
 - **MeSH**: Adult, Analysis of Variance, Cerebral Cortex, Cortical Synchronization, Electrocardiography, Hallucinogens, Humans, Magnetoencephalography, Male, Models, Neurological
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/24048847/
-- **Captured**: 2026-05-10T11:25:40
+- **Captured**: 2026-05-10T12:08:40
 
 ## Abstract
 

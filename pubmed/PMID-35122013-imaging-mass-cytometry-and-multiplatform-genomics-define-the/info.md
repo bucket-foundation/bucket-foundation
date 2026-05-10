@@ -7,7 +7,7 @@
 - **Authors**: H Raza Ali, Hartland W Jackson, Vito R T Zanotelli, Esther Danenberg, Jana R Fischer, Helen Bardwell, Elena Provenzano, Oscar M Rueda, Suet-Feung Chin, Samuel Aparicio, Carlos Caldas, Bernd Bodenmiller
 - **MeSH**: Breast Neoplasms, Ecosystem, Female, Genomics, Humans, Image Cytometry, Prognosis
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/35122013/
-- **Captured**: 2026-05-10T11:33:55
+- **Captured**: 2026-05-10T12:09:11
 
 ## Abstract
 

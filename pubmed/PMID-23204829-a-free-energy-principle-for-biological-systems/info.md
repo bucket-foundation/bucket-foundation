@@ -7,7 +7,7 @@
 - **Authors**: Friston Karl
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/23204829/
-- **Captured**: 2026-05-10T11:24:58
+- **Captured**: 2026-05-10T12:08:38
 
 ## Abstract
 

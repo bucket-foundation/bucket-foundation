@@ -7,7 +7,7 @@
 - **Authors**: Travis John Adrian Craddock, Douglas Friesen, Jonathan Mane, Stuart Hameroff, Jack A Tuszynski
 - **MeSH**: Computer Simulation, Energy Transfer, Light-Harvesting Protein Complexes, Microtubules, Models, Chemical, Molecular Dynamics Simulation, Tubulin
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/25232047/
-- **Captured**: 2026-05-10T11:26:43
+- **Captured**: 2026-05-10T12:08:42
 
 ## Abstract
 

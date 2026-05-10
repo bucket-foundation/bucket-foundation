@@ -7,7 +7,7 @@
 - **Authors**: Roberto Salgado, Helen Moore, John W M Martens, Tracy Lively, Shakun Malik, Ultan McDermott, Stefan Michiels, Jeffrey A Moscow, Sabine Tejpar, Tawnya McKee, Denis Lacombe
 - **MeSH**: Advertising, Biomarkers, Tumor, Gene Expression Profiling, Genetic Predisposition to Disease, Guideline Adherence, Guidelines as Topic, Humans, Marketing of Health Services, Neoplasms, Phenotype
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/28865260/
-- **Captured**: 2026-05-10T11:29:12
+- **Captured**: 2026-05-10T12:08:52
 
 ## Abstract
 

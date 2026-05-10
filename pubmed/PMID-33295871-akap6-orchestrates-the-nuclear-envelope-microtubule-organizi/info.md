@@ -7,7 +7,7 @@
 - **Authors**: Silvia Vergarajauregui, Robert Becker, Ulrike Steffen, Maria Sharkova, Tilman Esser, Jana Petzold, Florian Billing, Michael S Kapiloff, George Schett, Ingo Thievessen, Felix B Engel
 - **MeSH**: A Kinase Anchor Proteins, Animals, Antigens, Cell Line, Cytoskeletal Proteins, Gene Expression Regulation, Golgi Apparatus, Humans, Mice, Microtubule-Organizing Center
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/33295871/
-- **Captured**: 2026-05-10T11:33:09
+- **Captured**: 2026-05-10T12:09:09
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: Stefan J Kiebel, Jean Daunizeau, Karl J Friston
 - **MeSH**: Animals, Brain, Computer Simulation, Models, Neurological, Vocalization, Animal
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/19008936/
-- **Captured**: 2026-05-10T11:10:40
+- **Captured**: 2026-05-10T12:08:17
 
 ## Abstract
 
