@@ -1,0 +1,14 @@
+# Decision Making Strategy and the Simultaneous Processing of Syntactic Dependencies in Language and Music.
+
+- **PMID**: 29441035
+- **DOI**: 10.1016/j.brainres.2016.09.015
+- **PMCID**: PMC5069926 (full-text saved)
+- **Journal**: Frontiers in psychology  ·  **Year**: 2018
+- **Authors**: M P Roncaglia-Denissen, Fleur L Bouwer, Henkjan Honing
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29441035/
+- **Captured**: 2026-05-10T16:21:59
+
+## Abstract
+
+Despite differences in their function and domain-specific elements, syntactic processing in music and language is believed to share cognitive resources. This study aims to investigate whether the simultaneous processing of language and music share the use of a common syntactic processor or more general attentional resources. To investigate this matter we tested musicians and non-musicians using visually presented sentences and aurally presented melodies containing syntactic local and long-distance dependencies. Accuracy rates and reaction times of participants' responses were collected. In both sentences and melodies, unexpected syntactic anomalies were introduced. This is the first study to address the processing of local and long-distance dependencies in language and music combined while reducing the effect of sensory memory. Participants were instructed to focus on language (language session), music (music session), or both (dual session). In the language session, musicians and non-musicians performed comparably in terms of accuracy rates and reaction times. As expected, groups' differences appeared in the music session, with musicians being more accurate in their responses than non-musicians and only the latter showing an interaction between the accuracy rates for music and language syntax. In the dual session musicians were overall more accurate than non-musicians. However, both groups showed comparable behavior, by displaying an interaction between the accuracy rates for language and music syntax responses. In our study, accuracy rates seem to better capture the interaction between language and music syntax; and this interaction seems to indicate the use of distinct, however, interacting mechanisms as part of decision making strategy. This interaction seems to be subject of an increase of attentional load and domain proficiency. Our study contributes to the long-lasting debate about the commonalities between language and music by providing evidence for their interaction at a more domain-general level.

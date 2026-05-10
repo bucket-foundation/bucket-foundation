@@ -1,0 +1,14 @@
+# Evidence for active role of cilia in sensory transduction.
+
+- **PMID**: 265544
+- **DOI**: 10.1073/pnas.74.2.793
+- **PMCID**: PMC392381 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1977
+- **Authors**: D T Moran, F J Varela, J C Rowley
+- **MeSH**: Animals, Cilia, Grasshoppers, Mechanoreceptors, Microscopy, Electron, Sense Organs
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/265544/
+- **Captured**: 2026-05-10T16:19:41
+
+## Abstract
+
+Combined high-voltage electron-microscopic and electrophysiological studies strongly suggest that cilia play an active role in sensory transduction in the grasshopper proximal femoral chordotonal organ (FCO) a ciliated mechanoreceptor. The FCO of pro- and mesothoracic legs of Melanoplus bivittatus contains a group of several hundred chorodontal sensilla arranged in a near-parallel bundle and slung between the proximal femur and the knee joint. Both flexion and extension of the tibia stimulate the FCO, which appears to measure the femoro-tibial angle. The FCO's U-shaped response curve indicates that progressive flexion or extension from the resting joint angle of 90 degrees increases the response frequency of individual receptors and recruits additional units as well. Since the FCO is a purely tonic mechanoreceptor, it is possible to fix FCOs during maximum and minimum states of stimulation and electron-microscopically observed changes in the receptor's fine structure. The most conspicuous change is the production of a pronounced bend at the base of the sensory cilia in chordotonal sensilla of maximally stimulated femoral chordotonal organs.

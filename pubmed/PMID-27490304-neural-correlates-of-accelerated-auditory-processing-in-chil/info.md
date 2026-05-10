@@ -1,0 +1,14 @@
+# Neural correlates of accelerated auditory processing in children engaged in music training.
+
+- **PMID**: 27490304
+- **DOI**: 10.1016/j.dcn.2016.04.003
+- **PMCID**: PMC4508274 (full-text saved)
+- **Journal**: Developmental cognitive neuroscience  ·  **Year**: 2016
+- **Authors**: Assal Habibi, B Rael Cahn, Antonio Damasio, Hanna Damasio
+- **MeSH**: Acoustic Stimulation, Adult, Auditory Cortex, Auditory Perception, Brain Mapping, Child, Evoked Potentials, Auditory, Female, Humans, Longitudinal Studies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27490304/
+- **Captured**: 2026-05-10T16:20:33
+
+## Abstract
+
+Several studies comparing adult musicians and non-musicians have shown that music training is associated with brain differences. It is unknown, however, whether these differences result from lengthy musical training, from pre-existing biological traits, or from social factors favoring musicality. As part of an ongoing 5-year longitudinal study, we investigated the effects of a music training program on the auditory development of children, over the course of two years, beginning at age 6-7. The training was group-based and inspired by El-Sistema. We compared the children in the music group with two comparison groups of children of the same socio-economic background, one involved in sports training, another not involved in any systematic training. Prior to participating, children who began training in music did not differ from those in the comparison groups in any of the assessed measures. After two years, we now observe that children in the music group, but not in the two comparison groups, show an enhanced ability to detect changes in tonal environment and an accelerated maturity of auditory processing as measured by cortical auditory evoked potentials to musical notes. Our results suggest that music training may result in stimulus specific brain changes in school aged children.

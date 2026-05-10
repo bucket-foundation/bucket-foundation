@@ -1,0 +1,14 @@
+# Disentangling beat perception from sequential learning and examining the influence of attention and musical abilities on ERP responses to rhythm.
+
+- **PMID**: 26972966
+- **DOI**: 10.1016/j.neuropsychologia.2016.02.018
+- **PMCID**:  
+- **Journal**: Neuropsychologia  ·  **Year**: 2016
+- **Authors**: Fleur L Bouwer, Carola M Werner, Myrthe Knetemann, Henkjan Honing
+- **MeSH**: Acoustic Stimulation, Adult, Analysis of Variance, Attention, Auditory Perception, Electroencephalography, Evoked Potentials, Auditory, Female, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26972966/
+- **Captured**: 2026-05-10T16:20:08
+
+## Abstract
+
+Beat perception is the ability to perceive temporal regularity in musical rhythm. When a beat is perceived, predictions about upcoming events can be generated. These predictions can influence processing of subsequent rhythmic events. However, statistical learning of the order of sounds in a sequence can also affect processing of rhythmic events and must be differentiated from beat perception. In the current study, using EEG, we examined the effects of attention and musical abilities on beat perception. To ensure we measured beat perception and not absolute perception of temporal intervals, we used alternating loud and soft tones to create a rhythm with two hierarchical metrical levels. To control for sequential learning of the order of the different sounds, we used temporally regular (isochronous) and jittered rhythmic sequences. The order of sounds was identical in both conditions, but only the regular condition allowed for the perception of a beat. Unexpected intensity decrements were introduced on the beat and offbeat. In the regular condition, both beat perception and sequential learning were expected to enhance detection of these deviants on the beat. In the jittered condition, only sequential learning was expected to affect processing of the deviants. ERP responses to deviants were larger on the beat than offbeat in both conditions. Importantly, this difference was larger in the regular condition than in the jittered condition, suggesting that beat perception influenced responses to rhythmic events in addition to sequential learning. The influence of beat perception was present both with and without attention directed at the rhythm. Moreover, beat perception as measured with ERPs correlated with musical abilities, but only when attention was directed at the stimuli. Our study shows that beat perception is possible when attention is not directed at a rhythm. In addition, our results suggest that attention may mediate the influence of musical abilities on beat perception.

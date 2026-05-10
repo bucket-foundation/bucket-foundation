@@ -1,0 +1,14 @@
+# Experimentally-constrained biophysical models of tonic and burst firing modes in thalamocortical neurons.
+
+- **PMID**: 31095552
+- **DOI**: 10.1007/978-1-4614-7320-6_172-1
+- **PMCID**: PMC2211531 (full-text saved)
+- **Journal**: PLoS computational biology  ·  **Year**: 2019
+- **Authors**: Elisabetta Iavarone, Jane Yi, Ying Shi, Bas-Jan Zandt, Christian O'Reilly, Werner Van Geit, Christian Rössert, Henry Markram, Sean L Hill
+- **MeSH**: Action Potentials, Animals, Biophysical Phenomena, Biophysics, Cerebral Cortex, Dendrites, Female, Male, Models, Neurological, Neurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31095552/
+- **Captured**: 2026-05-10T16:23:28
+
+## Abstract
+
+Somatosensory thalamocortical (TC) neurons from the ventrobasal (VB) thalamus are central components in the flow of sensory information between the periphery and the cerebral cortex, and participate in the dynamic regulation of thalamocortical states including wakefulness and sleep. This property is reflected at the cellular level by the ability to generate action potentials in two distinct firing modes, called tonic firing and low-threshold bursting. Although the general properties of TC neurons are known, we still lack a detailed characterization of their morphological and electrical properties in the VB thalamus. The aim of this study was to build biophysically-detailed models of VB TC neurons explicitly constrained with experimental data from rats. We recorded the electrical activity of VB neurons (N = 49) and reconstructed morphologies in 3D (N = 50) by applying standardized protocols. After identifying distinct electrical types, we used a multi-objective optimization to fit single neuron electrical models (e-models), which yielded multiple solutions consistent with the experimental data. The models were tested for generalization using electrical stimuli and neuron morphologies not used during fitting. A local sensitivity analysis revealed that the e-models are robust to small parameter changes and that all the parameters were constrained by one or more features. The e-models, when tested in combination with different morphologies, showed that the electrical behavior is substantially preserved when changing dendritic structure and that the e-models were not overfit to a specific morphology. The models and their analysis show that automatic parameter search can be applied to capture complex firing behavior, such as co-existence of tonic firing and low-threshold bursting over a wide range of parameter sets and in combination with different neuron morphologies.

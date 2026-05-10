@@ -1,0 +1,14 @@
+# Regular rhythmic primes boost P600 in grammatical error processing in dyslexic adults and matched controls.
+
+- **PMID**: 31877312
+- **DOI**: 10.1016/j.neuropsychologia.2019.107324
+- **PMCID**:  
+- **Journal**: Neuropsychologia  ·  **Year**: 2020
+- **Authors**: Laure-Hélène Canette, Anna Fiveash, Jennifer Krzonowski, Alexandra Corneyllie, Philippe Lalitte, Dave Thompson, Laurel Trainor, Nathalie Bedoin, Barbara Tillmann
+- **MeSH**: Adult, Auditory Perception, Cerebral Cortex, Dyslexia, Electroencephalography, Evoked Potentials, Female, Humans, Male, Music
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31877312/
+- **Captured**: 2026-05-10T16:24:04
+
+## Abstract
+
+Regular musical rhythms orient attention over time and facilitate processing. Previous research has shown that regular rhythmic stimulation benefits subsequent syntax processing in children with dyslexia and specific language impairment. The present EEG study examined the influence of a rhythmic musical prime on the P600 late evoked-potential, associated with grammatical error detection for dyslexic adults and matched controls. Participants listened to regular or irregular rhythmic prime sequences followed by grammatically correct and incorrect sentences. They were required to perform grammaticality judgments for each auditorily presented sentence while EEG was recorded. In addition, tasks on syntax violation detection as well as rhythm perception and production were administered. For both participant groups, ungrammatical sentences evoked a P600 in comparison to grammatical sentences and its mean amplitude was larger after regular than irregular primes. Peak analyses of the P600 difference wave confirmed larger peak amplitudes after regular primes for both groups. They also revealed overall a later peak for dyslexic participants, particularly at posterior sites, compared to controls. Results extend rhythmic priming effects on language processing to underlying electrophysiological correlates of morpho-syntactic violation detection in dyslexic adults and matched controls. These findings are interpreted in the theoretical framework of the Dynamic Attending Theory (Jones, 1976, 2019) and the Temporal Sampling Framework for developmental disorders (Goswami, 2011).

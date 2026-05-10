@@ -1,0 +1,14 @@
+# Prenatal Maternal Cortisol Has Sex-Specific Associations with Child Brain Network Properties.
+
+- **PMID**: 27664961
+- **DOI**: 10.1093/cercor/bhw303
+- **PMCID**: PMC6623027 (full-text saved)
+- **Journal**: Cerebral cortex (New York, N.Y. : 1991)  ·  **Year**: 2017
+- **Authors**: Dae-Jin Kim, Elysia Poggi Davis, Curt A Sandman, Olaf Sporns, Brian F O'Donnell, Claudia Buss, William P Hetrick
+- **MeSH**: Brain, Child, Female, Humans, Hydrocortisone, Image Processing, Computer-Assisted, Longitudinal Studies, Magnetic Resonance Imaging, Male, Neural Pathways
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27664961/
+- **Captured**: 2026-05-10T16:20:39
+
+## Abstract
+
+Elevated maternal cortisol concentrations have the potential to alter fetal development in a sex-specific manner. Female brains are known to show adaptive behavioral and anatomical flexibility in response to early-life exposure to cortisol, but it is not known how these sex-specific effects manifest at the whole-brain structural networks. A prospective longitudinal study of 49 mother child dyads was conducted with serial assessments of maternal cortisol levels from 15 to 37 gestational weeks. We modeled the structural network of typically developing children (aged 6-9 years) and examined its global connectome properties, rich-club organization, and modular architecture. Network segregation was susceptible only for girls to variations in exposure to maternal cortisol during pregnancy. Girls generated more connections than boys to maintain topologically capable and efficient neural circuits, and this increase in neural cost was associated with higher levels of internalizing problems. Maternal cortisol concentrations at 31 gestational weeks gestation were most strongly associated with altered neural connectivity in girls, suggesting a sensitive period for the maternal cortisol-offspring brain associations. Our data suggest that girls exhibit an adaptive response by increasing the neural network connectivity necessary for maintaining homeostasis and efficient brain function across the lifespan.

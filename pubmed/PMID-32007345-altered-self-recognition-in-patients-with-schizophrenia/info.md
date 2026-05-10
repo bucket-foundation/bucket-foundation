@@ -1,0 +1,14 @@
+# Altered self-recognition in patients with schizophrenia.
+
+- **PMID**: 32007345
+- **DOI**: 10.1016/j.schres.2020.01.022
+- **PMCID**:  
+- **Journal**: Schizophrenia research  ·  **Year**: 2020
+- **Authors**: Karl Erik Sandsten, Julie Nordgaard, Troels Wesenberg Kjaer, Vittorio Gallese, Martina Ardizzi, Francesca Ferroni, Janne Petersen, Josef Parnas
+- **MeSH**: Body Image, Humans, Illusions, Schizophrenia, Touch, Touch Perception, Visual Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32007345/
+- **Captured**: 2026-05-10T16:24:11
+
+## Abstract
+
+Self-alienation is a common characterization of various disturbing experiences in patients with schizophrenia. A vivid example comes from patient reports of not recognizing themselves when inspecting their specular image in the mirror. By applying the multisensory paradigm of the Enfacement Illusion, this study empirically addresses the specular Self-Other discrimination in patients with schizophrenia. 35 patients diagnosed with schizophrenia and 35 healthy matched controls were enrolled in the study. Results found that the group of patients with schizophrenia had a significant skewed self-other discrimination towards the other at baseline. Furthermore, the effect of visuo-tactile stimulation on self-recognition in the schizophrenia patients was significantly altered after both synchronous and asynchronous stimulation compared to baseline. This contrasted with healthy controls which in line with earlier studies only had significantly different self-recognition after synchronous stimulation. The study thus suggests that patients with schizophrenia have deviations in their specular self-recognition compared to healthy controls. Moreover, that temporal factors in multisensory integration may contribute to alterations of self-related stimuli in patients with schizophrenia.

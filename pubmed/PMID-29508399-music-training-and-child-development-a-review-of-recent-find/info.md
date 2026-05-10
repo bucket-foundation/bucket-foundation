@@ -1,0 +1,14 @@
+# Music training and child development: a review of recent findings from a longitudinal study.
+
+- **PMID**: 29508399
+- **DOI**: 10.1111/nyas.13606
+- **PMCID**:  
+- **Journal**: Annals of the New York Academy of Sciences  ·  **Year**: 2018
+- **Authors**: Assal Habibi, Antonio Damasio, Beatriz Ilari, Matthew Elliott Sachs, Hanna Damasio
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29508399/
+- **Captured**: 2026-05-10T16:22:04
+
+## Abstract
+
+Evidence suggests that learning to play music enhances musical processing skills and benefits other cognitive abilities. Furthermore, studies of children and adults indicate that the brains of musicians and nonmusicians are different. It has not been determined, however, whether such differences result from pre-existing traits, musical training, or an interaction between the two. As part of an ongoing longitudinal study, we investigated the effects of music training on children's brain and cognitive development. The target group of children was compared with two groups of children, one involved in sports and another not enrolled in any systematic afterschool training. Two years after training, we observed that children in the music group had better performance than comparison groups in musically relevant auditory skills and showed related brain changes. For nonmusical skills, children with music training, compared with children without music or with sports training, showed stronger neural activation during a cognitive inhibition task in regions involved in response inhibition despite no differences in performance on behavioral measures of executive function. No such differences were found between music and sports groups. We conclude that music training induces brain and behavioral changes in children, and those changes are not attributable to pre-existing biological traits.

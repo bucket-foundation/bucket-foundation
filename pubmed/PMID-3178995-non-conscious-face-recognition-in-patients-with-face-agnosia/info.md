@@ -1,0 +1,14 @@
+# Non-conscious face recognition in patients with face agnosia.
+
+- **PMID**: 3178995
+- **DOI**: 10.1016/0166-4328(88)90166-0
+- **PMCID**:  
+- **Journal**: Behavioural brain research  ·  **Year**: 1988
+- **Authors**: D Tranel, A R Damasio
+- **MeSH**: Adult, Aged, Agnosia, Amnesia, Brain Concussion, Brain Damage, Chronic, Brain Mapping, Cerebral Infarction, Encephalitis, Face
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3178995/
+- **Captured**: 2026-05-10T16:24:01
+
+## Abstract
+
+Four patients with face agnosia, a condition in which there is a failure to recognize previously known faces or faces that ought to have been learned without difficulty, were studied with an experimental paradigm in which both overt (verbal self-report) and covert (electrodermal skin conductance response) probes of recognition were used. The results showed a striking dissociation between the two indices: (1) all 4 patients generated more frequent and significantly larger-amplitude skin conductance responses to familiar faces, as compared to unfamiliar ones. This outcome contrasts with the finding that (2) none of the patients was able to give discriminatory verbal ratings of familiar versus unfamiliar faces. The positive electrodermal discrimination is interpreted as an index of the rich co-activation of records that is produced when familiar facial stimuli successfully trigger the reassembly of previously acquired representations of the physical structure of faces. The results of this co-activation, however, are unavailable to consciousness. This is seen as the consequence of lesion-related disruption of linkages between face records, on the one hand, and non-face records that contain information uniquely and unequivocally apposite to the possessor of a particular face.

@@ -1,0 +1,14 @@
+# Children's intellectual ability is associated with structural network integrity.
+
+- **PMID**: 26385010
+- **DOI**: 10.1016/j.neuroimage.2015.09.012
+- **PMCID**: PMC3372854 (full-text saved)
+- **Journal**: NeuroImage  ·  **Year**: 2016
+- **Authors**: Dae-Jin Kim, Elysia Poggi Davis, Curt A Sandman, Olaf Sporns, Brian F O'Donnell, Claudia Buss, William P Hetrick
+- **MeSH**: Brain, Child, Cross-Sectional Studies, Diffusion Tensor Imaging, Female, Humans, Intelligence, Intelligence Tests, Magnetic Resonance Imaging, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26385010/
+- **Captured**: 2026-05-10T16:19:29
+
+## Abstract
+
+Recent structural and functional neuroimaging studies of adults suggest that efficient patterns of brain connectivity are fundamental to human intelligence. Specifically, whole brain networks with an efficient small-world organization, along with specific brain regions (i.e., Parieto-Frontal Integration Theory, P-FIT) appear related to intellectual ability. However, these relationships have not been studied in children using structural network measures. This cross-sectional study examined the relation between non-verbal intellectual ability and structural network organization in 99 typically developing healthy preadolescent children. We showed a strong positive association between the network's global efficiency and intelligence, in which a subtest for visuo-spatial motor processing (Block Design, BD) was prominent in both global brain structure and local regions included within P-FIT as well as temporal regions involved with pattern and form processing. BD was also associated with rich club organization, which encompassed frontal, occipital, temporal, hippocampal, and neostriatal regions. This suggests that children's visual construction ability is significantly related to how efficiently children's brains are globally and locally integrated. Our findings indicate that visual construction and reasoning may make general demands on globally integrated processing by the brain.

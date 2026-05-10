@@ -1,0 +1,14 @@
+# How Context Influences Our Perception of Emotional Faces: A Behavioral Study on the Kuleshov Effect.
+
+- **PMID**: 29046652
+- **DOI**: 10.3389/fpsyg.2012.00471
+- **PMCID**: PMC3487423 (full-text saved)
+- **Journal**: Frontiers in psychology  ·  **Year**: 2017
+- **Authors**: Marta Calbi, Katrin Heimann, Daniel Barratt, Francesca Siri, Maria A Umiltà, Vittorio Gallese
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29046652/
+- **Captured**: 2026-05-10T16:21:41
+
+## Abstract
+
+Facial expressions are of major importance in understanding the mental and emotional states of others. So far, most studies on the perception and comprehension of emotions have used isolated facial expressions as stimuli; for example, photographs of actors displaying facial expressions corresponding to one of the so called 'basic emotions.' However, our real experience during social interactions is different: facial expressions of emotion are mostly perceived in a wider context, constituted by body language, the surrounding environment, and our beliefs and expectations. Already in the early twentieth century, the Russian filmmaker Lev Kuleshov argued that such context, established by intermediate shots of strong emotional content, could significantly change our interpretation of facial expressions in film. Prior experiments have shown behavioral effects pointing in this direction, but have only used static images as stimuli. Our study used a more ecological design with participants watching film sequences of neutral faces, crosscut with scenes of strong emotional content (evoking happiness or fear, plus neutral stimuli as a baseline condition). The task was to rate the emotion displayed by a target person's face in terms of valence, arousal, and category. Results clearly demonstrated the presence of a significant effect in terms of both valence and arousal in the fear condition only. Moreover, participants tended to categorize the target person's neutral facial expression choosing the emotion category congruent with the preceding context. Our results highlight the context-sensitivity of emotions and the importance of studying them under ecologically valid conditions.

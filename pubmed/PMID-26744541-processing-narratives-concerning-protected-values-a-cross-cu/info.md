@@ -1,0 +1,14 @@
+# Processing Narratives Concerning Protected Values: A Cross-Cultural Investigation of Neural Correlates.
+
+- **PMID**: 26744541
+- **DOI**: 10.1093/cercor/bhv325
+- **PMCID**:  
+- **Journal**: Cerebral cortex (New York, N.Y. : 1991)  ·  **Year**: 2017
+- **Authors**: Jonas T Kaplan, Sarah I Gimbel, Morteza Dehghani, Mary Helen Immordino-Yang, Kenji Sagae, Jennifer D Wong, Christine M Tipper, Hanna Damasio, Andrew S Gordon, Antonio Damasio
+- **MeSH**: Adult, Brain, China, Cross-Cultural Comparison, Decision Making, Female, Humans, Iran, Magnetic Resonance Imaging, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26744541/
+- **Captured**: 2026-05-10T16:19:48
+
+## Abstract
+
+Narratives are an important component of culture and play a central role in transmitting social values. Little is known, however, about how the brain of a listener/reader processes narratives. A receiver's response to narration is influenced by the narrator's framing and appeal to values. Narratives that appeal to "protected values," including core personal, national, or religious values, may be particularly effective at influencing receivers. Protected values resist compromise and are tied with identity, affective value, moral decision-making, and other aspects of social cognition. Here, we investigated the neural mechanisms underlying reactions to protected values in narratives. During fMRI scanning, we presented 78 American, Chinese, and Iranian participants with real-life stories distilled from a corpus of over 20 million weblogs. Reading these stories engaged the posterior medial, medial prefrontal, and temporo-parietal cortices. When participants believed that the protagonist was appealing to a protected value, signal in these regions was increased compared with when no protected value was perceived, possibly reflecting the intensive and iterative search required to process this material. The effect strength also varied across groups, potentially reflecting cultural differences in the degree of concern for protected values.

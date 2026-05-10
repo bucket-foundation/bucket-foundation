@@ -1,0 +1,14 @@
+# Heading direction with respect to a reference point modulates place-cell activity.
+
+- **PMID**: 31133685
+- **DOI**: 10.1002/hipo.450040404
+- **PMCID**: PMC2039924 (full-text saved)
+- **Journal**: Nature communications  ·  **Year**: 2019
+- **Authors**: P E Jercog, Y Ahmadian, C Woodruff, R Deb-Sen, L F Abbott, E R Kandel
+- **MeSH**: Animals, CA1 Region, Hippocampal, Electrodes, Implanted, Electrophysiological Phenomena, Male, Mice, Mice, Inbred C57BL, Models, Animal, Models, Neurological, Orientation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31133685/
+- **Captured**: 2026-05-10T16:23:33
+
+## Abstract
+
+The tuning of neurons in area CA1 of the hippocampus emerges through a combination of non-spatial input from different sensory modalities and spatial information about the animal's position and heading direction relative to the spatial enclosure being navigated. The positional modulation of CA1 neuronal responses has been widely studied (e.g. place tuning), but less is known about the modulation of these neurons by heading direction. Here, utilizing electrophysiological recordings from CA1 pyramidal cells in freely moving mice, we report that a majority of neural responses are modulated by the heading-direction of the animal relative to a point within or outside their enclosure that we call a reference point. The finding of heading-direction modulation relative to reference points identifies a novel representation encoded in the neuronal responses of the dorsal hippocampus.

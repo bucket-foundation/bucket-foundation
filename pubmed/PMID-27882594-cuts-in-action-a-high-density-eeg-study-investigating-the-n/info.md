@@ -1,0 +1,14 @@
+# "Cuts in Action": A High-Density EEG Study Investigating the Neural Correlates of Different Editing Techniques in Film.
+
+- **PMID**: 27882594
+- **DOI**: 10.1111/cogs.12439
+- **PMCID**:  
+- **Journal**: Cognitive science  ·  **Year**: 2017
+- **Authors**: Katrin S Heimann, Sebo Uithol, Marta Calbi, Maria A Umiltà, Michele Guerra, Vittorio Gallese
+- **MeSH**: Adult, Attention, Awareness, Brain, Cognition, Comprehension, Electroencephalography, Evoked Potentials, Female, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27882594/
+- **Captured**: 2026-05-10T16:20:51
+
+## Abstract
+
+In spite of their striking differences with real-life perception, films are perceived and understood without effort. Cognitive film theory attributes this to the system of continuity editing, a system of editing guidelines outlining the effect of different cuts and edits on spectators. A major principle in this framework is the 180° rule, a rule recommendation that, to avoid spectators' attention to the editing, two edited shots of the same event or action should not be filmed from angles differing in a way that expectations of spatial continuity are strongly violated. In the present study, we used high-density EEG to explore the neural underpinnings of this rule. In particular, our analysis shows that cuts and edits in general elicit early ERP component indicating the registration of syntactic violations as known from language, music, and action processing. However, continuity edits and cuts-across the line differ from each other regarding later components likely to be indicating the differences in spatial remapping as well as in the degree of conscious awareness of one's own perception. Interestingly, a time-frequency analysis of the occipital alpha rhythm did not support the hypothesis that such differences in processing routes are mainly linked to visual attention. On the contrary, our study found specific modulations of the central mu rhythm ERD as an indicator of sensorimotor activity, suggesting that sensorimotor networks might play an important role. We think that these findings shed new light on current discussions about the role of attention and embodied perception in film perception and should be considered when explaining spectators' different experience of different kinds of cuts.

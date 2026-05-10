@@ -1,0 +1,14 @@
+# A fast and general method to empirically estimate the complexity of brain responses to transcranial and intracranial stimulations.
+
+- **PMID**: 31133480
+- **DOI**: 10.1016/j.brs.2019.05.013
+- **PMCID**:  
+- **Journal**: Brain stimulation  ·  **Year**: 2019
+- **Authors**: Renzo Comolatti, Andrea Pigorini, Silvia Casarotto, Matteo Fecchio, Guilherme Faria, Simone Sarasso, Mario Rosanova, Olivia Gosseries, Mélanie Boly, Olivier Bodart, Didier Ledoux, Jean-François Brichant, Lino Nobili, Steven Laureys, Giulio Tononi, Marcello Massimini, Adenauer G Casali
+- **MeSH**: Adult, Brain, Consciousness, Electroencephalography, Empirical Research, Female, Humans, Male, Sleep, Time Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31133480/
+- **Captured**: 2026-05-10T16:23:32
+
+## Abstract
+
+The Perturbational Complexity Index (PCI) was recently introduced to assess the capacity of thalamocortical circuits to engage in complex patterns of causal interactions. While showing high accuracy in detecting consciousness in brain-injured patients, PCI depends on elaborate experimental setups and offline processing, and has restricted applicability to other types of brain signals beyond transcranial magnetic stimulation and high-density EEG (TMS/hd-EEG) recordings. We aim to address these limitations by introducing PCI PCI When calculated on TMS/hd-EEG potentials, PCI PCI

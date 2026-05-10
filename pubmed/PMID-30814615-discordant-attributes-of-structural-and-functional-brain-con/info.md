@@ -1,0 +1,14 @@
+# Discordant attributes of structural and functional brain connectivity in a two-layer multiplex network.
+
+- **PMID**: 30814615
+- **DOI**: 10.1016/j.neuroimage.2016.11.052
+- **PMCID**: PMC5489207 (full-text saved)
+- **Journal**: Scientific reports  ·  **Year**: 2019
+- **Authors**: Sol Lim, Filippo Radicchi, Martijn P van den Heuvel, Olaf Sporns
+- **MeSH**: Brain, Brain Mapping, Connectome, Functional Laterality, Humans, Image Processing, Computer-Assisted, Magnetic Resonance Imaging, Nerve Net
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30814615/
+- **Captured**: 2026-05-10T16:23:15
+
+## Abstract
+
+Several studies have suggested that functional connectivity (FC) is constrained by the underlying structural connectivity (SC) and mutually correlated. However, not many studies have focused on differences in the network organization of SC and FC, and on how these differences may inform us about their mutual interaction. To explore this issue, we adopt a multi-layer framework, with SC and FC, constructed using Magnetic Resonance Imaging (MRI) data from the Human Connectome Project, forming a two-layer multiplex network. In particular, we examine node strength assortativity within and between the SC and FC layer. We find that, in general, SC is organized assortatively, indicating brain regions are on average connected to other brain regions with similar node strengths. On the other hand, FC shows disassortative mixing. This discrepancy is apparent also among individual resting-state networks within SC and FC. In addition, these patterns show lateralization, with disassortative mixing within FC subnetworks mainly driven from the left hemisphere. We discuss our findings in the context of robustness to structural failure, and we suggest that discordant and lateralized patterns of associativity in SC and FC may provide clues to understand laterality of some neurological dysfunctions and recovery.

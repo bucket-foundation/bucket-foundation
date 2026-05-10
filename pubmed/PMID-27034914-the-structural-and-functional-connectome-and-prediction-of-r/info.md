@@ -1,0 +1,14 @@
+# The Structural and Functional Connectome and Prediction of Risk for Cognitive Impairment in Older Adults.
+
+- **PMID**: 27034914
+- **DOI**: 10.1007/s40473-015-0056-z
+- **PMCID**: PMC3386248 (full-text saved)
+- **Journal**: Current behavioral neuroscience reports  ·  **Year**: 2015
+- **Authors**: Joey A Contreras, Joaquín Goñi, Shannon L Risacher, Olaf Sporns, Andrew J Saykin
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27034914/
+- **Captured**: 2026-05-10T16:20:12
+
+## Abstract
+
+The human connectome refers to a comprehensive description of the brain's structural and functional connections in terms of brain networks. As the field of brain connectomics has developed, data acquisition, subsequent processing and modeling, and ultimately the representation of the connectome have become better defined and integrated with network science approaches. In this way, the human connectome has provided a way to elucidate key features of not only the healthy brain but also diseased brains. The field has quickly evolved, offering insights into network disruptions that are characteristic for specific neurodegenerative disorders. In this paper, we provide a brief review of the field of brain connectomics, as well as a more in-depth survey of recent studies that have provided new insights into brain network pathologies, including those found in Alzheimer's disease (AD), patients with mild cognitive impairment (MCI), and finally in people classified as being "at risk". Until the emergence of brain connectomics, most previous studies had assessed neurodegenerative diseases mainly by focusing on specific and dispersed locales in the brain. Connectomics-based approaches allow us to model the brain as a network, which allows for inferences about how dynamic changes in brain function would be affected in relation to structural changes. In fact, looking at diseases using network theory gives rise to new hypotheses on mechanisms of pathophysiology and clinical symptoms. Finally, we discuss the future of this field and how understanding both the functional and structural connectome can aid in gaining sharper insight into changes in biological brain networks associated with cognitive impairment and dementia.

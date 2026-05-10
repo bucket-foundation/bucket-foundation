@@ -1,0 +1,14 @@
+# Timed Synaptic Inhibition Shapes NMDA Spikes, Influencing Local Dendritic Processing and Global I/O Properties of Cortical Neurons.
+
+- **PMID**: 29117560
+- **DOI**: 10.1016/j.celrep.2017.10.035
+- **PMCID**:  
+- **Journal**: Cell reports  ·  **Year**: 2017
+- **Authors**: Michael Doron, Giuseppe Chindemi, Eilif Muller, Henry Markram, Idan Segev
+- **MeSH**: Calcium, Dendrites, Models, Biological, N-Methylaspartate, Neurons, Receptors, GABA-A, Receptors, N-Methyl-D-Aspartate, Synapses
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29117560/
+- **Captured**: 2026-05-10T16:21:45
+
+## Abstract
+
+The NMDA spike is a long-lasting nonlinear phenomenon initiated locally in the dendritic branches of a variety of cortical neurons. It plays a key role in synaptic plasticity and in single-neuron computations. Combining dynamic system theory and computational approaches, we now explore how the timing of synaptic inhibition affects the NMDA spike and its associated membrane current. When impinging on its early phase, individual inhibitory synapses strongly, but transiently, dampen the NMDA spike; later inhibition prematurely terminates it. A single inhibitory synapse reduces the NMDA-mediated Ca

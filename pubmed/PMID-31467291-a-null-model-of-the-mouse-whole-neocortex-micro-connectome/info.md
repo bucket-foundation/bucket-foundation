@@ -1,0 +1,14 @@
+# A null model of the mouse whole-neocortex micro-connectome.
+
+- **PMID**: 31467291
+- **DOI**: 10.1038/nature05453
+- **PMCID**: PMC1054880 (full-text saved)
+- **Journal**: Nature communications  ·  **Year**: 2019
+- **Authors**: Michael W Reimann, Michael Gevaert, Ying Shi, Huanxiang Lu, Henry Markram, Eilif Muller
+- **MeSH**: Animals, Brain, Connectome, Mice, Models, Animal, Models, Statistical, Neocortex, Nerve Net, Neural Networks, Computer, Neurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31467291/
+- **Captured**: 2026-05-10T16:23:46
+
+## Abstract
+
+In connectomics, the study of the network structure of connected neurons, great advances are being made on two different scales: that of macro- and meso-scale connectomics, studying the connectivity between populations of neurons, and that of micro-scale connectomics, studying connectivity between individual neurons. We combine these two complementary views of connectomics to build a first draft statistical model of the micro-connectome of a whole mouse neocortex based on available data on region-to-region connectivity and individual whole-brain axon reconstructions. This process reveals a targeting principle that allows us to predict the innervation logic of individual axons from meso-scale data. The resulting connectome recreates biological trends of targeting on all scales and predicts that an established principle of scale invariant topological organization of connectivity can be extended down to the level of individual neurons. It can serve as a powerful null model and as a substrate for whole-brain simulations.

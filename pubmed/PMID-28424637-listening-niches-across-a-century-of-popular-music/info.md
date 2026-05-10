@@ -1,0 +1,14 @@
+# Listening Niches across a Century of Popular Music.
+
+- **PMID**: 28424637
+- **DOI**: 10.1196/annals.1360.052
+- **PMCID**: PMC58814 (full-text saved)
+- **Journal**: Frontiers in psychology  ·  **Year**: 2017
+- **Authors**: Carol Lynne Krumhansl
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28424637/
+- **Captured**: 2026-05-10T16:21:11
+
+## Abstract
+
+This article investigates the contexts, or "listening niches", in which people hear popular music. The study spanned a century of popular music, divided into 10 decades, with participants born between 1940 and 1999. It asks about whether they know and like the music in each decade, and their emotional reactions. It also asks whether the music is associated with personal memories and, if so, with whom they were listening, or whether they were listening alone. Finally, it asks what styles of music they were listening to, and the music media they were listening with, in different periods of their lives. The results show a regular progression through the life span of listening with different individuals (from parents to children) and with different media (from records to streaming services). A number of effects found in previous studies were replicated, but the study also showed differences across the birth cohorts. Overall, there was a song specific age effect with preferences for music of late adolescence and early adulthood; however, this effect was stronger for the older participants. In general, music of the 1940s, 1960s, and 1980s was preferred, particularly among younger participants. Music of these decades also produced the strongest emotional responses, and the most frequent and specific personal memories. When growing up, the participants tended to listen to the older music on the older media, but rapidly shifted to the new music technologies in their late teens and early 20s. Younger listeners are currently listening less to music alone than older listeners, suggesting an important role of socially sharing music, but they also report feeling sadder when listening to music. Finally, the oldest listeners had the broadest taste, liking music that they had been exposed to during their lifetimes in different listening niches.

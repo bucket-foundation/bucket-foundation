@@ -1,0 +1,14 @@
+# Affective neuroscience of self-generated thought.
+
+- **PMID**: 29754412
+- **DOI**: 10.1111/nyas.13740
+- **PMCID**:  
+- **Journal**: Annals of the New York Academy of Sciences  ·  **Year**: 2018
+- **Authors**: Kieran C R Fox, Jessica R Andrews-Hanna, Caitlin Mills, Matthew L Dixon, Jelena Markovic, Evan Thompson, Kalina Christoff
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29754412/
+- **Captured**: 2026-05-10T16:22:17
+
+## Abstract
+
+Despite increasing scientific interest in self-generated thought-mental content largely independent of the immediate environment-there has yet to be any comprehensive synthesis of the subjective experience and neural correlates of affect in these forms of thinking. Here, we aim to develop an integrated affective neuroscience encompassing many forms of self-generated thought-normal and pathological, moderate and excessive, in waking and in sleep. In synthesizing existing literature on this topic, we reveal consistent findings pertaining to the prevalence, valence, and variability of emotion in self-generated thought, and highlight how these factors might interact with self-generated thought to influence general well-being. We integrate these psychological findings with recent neuroimaging research, bringing attention to the neural correlates of affect in self-generated thought. We show that affect in self-generated thought is prevalent, positively biased, highly variable (both within and across individuals), and consistently recruits many brain areas implicated in emotional processing, including the orbitofrontal cortex, amygdala, insula, and medial prefrontal cortex. Many factors modulate these typical psychological and neural patterns, however; the emerging affective neuroscience of self-generated thought must endeavor to link brain function and subjective experience in both everyday self-generated thought as well as its dysfunctions in mental illness.

@@ -1,0 +1,14 @@
+# Beta oscillatory power modulation reflects the predictability of pitch change.
+
+- **PMID**: 30053731
+- **DOI**: 10.1016/j.cortex.2018.06.008
+- **PMCID**:  
+- **Journal**: Cortex; a journal devoted to the study of the nervous system and behavior  ·  **Year**: 2018
+- **Authors**: Andrew Chang, Dan J Bosnyak, Laurel J Trainor
+- **MeSH**: Acoustic Stimulation, Adolescent, Adult, Auditory Cortex, Brain Mapping, Electroencephalography, Evoked Potentials, Auditory, Female, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30053731/
+- **Captured**: 2026-05-10T16:22:34
+
+## Abstract
+
+Humans process highly dynamic auditory information in real time, and regularities in stimuli such as speech and music can aid such processing by allowing sensory predictions for upcoming events. Auditory sequences contain information about both the identity of sounds (what) and their timing (when they occur). Temporal prediction in isochronous sequences is reflected in neural oscillatory power modulation in the beta band (∼20 Hz). Specifically, power decreases (desynchronization) after tone onset and then increases (resynchronization) to reach a maximum around the expected time of the next tone. The current study investigates whether the predictability of the pitch of a tone (what) is also reflected in beta power modulation. We presented two isochronous auditory oddball sequences, each with 20% of tones at a deviant pitch. In one sequence the deviant tones occurred regularly every fifth tone (predictably), but in the other sequence they occurred pseudorandomly (unpredictably). We recorded the electroencephalogram (EEG) while participants listened passively to these sequences. The results showed that auditory beta power desynchronization was larger prior to a predictable than an unpredictable pitch change. A single-trial correlation analysis using linear mixed-effect (LME) models further showed that the deeper the pre-deviant beta desynchronization depth, the smaller the event-related P3a amplitude following the deviant, and this effect only occurred when the pitch change was predictable. Given that P3a is associated with attentional response to prediction error, larger beta desynchronization depth indicates better prediction of an upcoming deviant pitch. Thus, these findings suggest that beta oscillations reflect predictions for what in additional to when during dynamic auditory information processing.

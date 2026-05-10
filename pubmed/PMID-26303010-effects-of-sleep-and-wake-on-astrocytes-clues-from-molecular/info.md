@@ -1,0 +1,14 @@
+# Effects of sleep and wake on astrocytes: clues from molecular and ultrastructural studies.
+
+- **PMID**: 26303010
+- **DOI**: 10.1111/j.1365-2818.2005.01466.x
+- **PMCID**: PMC3378562 (full-text saved)
+- **Journal**: BMC biology  ·  **Year**: 2015
+- **Authors**: Michele Bellesi, Luisa de Vivo, Giulio Tononi, Chiara Cirelli
+- **MeSH**: Animals, Astrocytes, Gene Expression Regulation, Mice, Mice, Inbred C57BL, Prosencephalon, Sleep, Wakefulness
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26303010/
+- **Captured**: 2026-05-10T16:19:26
+
+## Abstract
+
+Astrocytes can mediate neurovascular coupling, modulate neuronal excitability, and promote synaptic maturation and remodeling. All these functions are likely to be modulated by the sleep/wake cycle, because brain metabolism, neuronal activity and synaptic turnover change as a function of behavioral state. Yet, little is known about the effects of sleep and wake on astrocytes. Here we show that sleep and wake strongly affect both astrocytic gene expression and ultrastructure in the mouse brain. Using translating ribosome affinity purification technology and microarrays, we find that 1.4 % of all astrocytic transcripts in the forebrain are dependent on state (three groups, sleep, wake, short sleep deprivation; six mice per group). Sleep upregulates a few select genes, like Cirp and Uba1, whereas wake upregulates many genes related to metabolism, the extracellular matrix and cytoskeleton, including Trio, Synj2 and Gem, which are involved in the elongation of peripheral astrocytic processes. Using serial block face scanning electron microscopy (three groups, sleep, short sleep deprivation, chronic sleep restriction; three mice per group, >100 spines per mouse, 3D), we find that a few hours of wake are sufficient to bring astrocytic processes closer to the synaptic cleft, while chronic sleep restriction also extends the overall astrocytic coverage of the synapse, including at the axon-spine interface, and increases the available astrocytic surface in the neuropil. Wake-related changes likely reflect an increased need for glutamate clearance, and are consistent with an overall increase in synaptic strength when sleep is prevented. The reduced astrocytic coverage during sleep, instead, may favor glutamate spillover, thus promoting neuronal synchronization during non-rapid eye movement sleep.

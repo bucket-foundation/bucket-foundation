@@ -1,0 +1,14 @@
+# The birth, death and resurrection of avoidance: a reconceptualization of a troubled paradigm.
+
+- **PMID**: 27752080
+- **DOI**: 10.1038/mp.2016.166
+- **PMCID**: PMC3653747 (full-text saved)
+- **Journal**: Molecular psychiatry  ·  **Year**: 2017
+- **Authors**: J E LeDoux, J Moscarello, R Sears, V Campese
+- **MeSH**: Animals, Anxiety, Avoidance Learning, Conditioning, Classical, Conditioning, Operant, Conditioning, Psychological, Fear, Humans, Reinforcement, Psychology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27752080/
+- **Captured**: 2026-05-10T16:20:42
+
+## Abstract
+
+Research on avoidance conditioning began in the late 1930s as a way to use laboratory experiments to better understand uncontrollable fear and anxiety. Avoidance was initially conceived of as a two-factor learning process in which fear is first acquired through Pavlovian aversive conditioning (so-called fear conditioning), and then behaviors that reduce the fear aroused by the Pavlovian conditioned stimulus are reinforced through instrumental conditioning. Over the years, criticisms of both the avoidance paradigm and the two-factor fear theory arose. By the mid-1980s, avoidance had fallen out of favor as an experimental model relevant to fear and anxiety. However, recent progress in understanding the neural basis of Pavlovian conditioning has stimulated a new wave of research on avoidance. This new work has fostered new insights into contributions of not only Pavlovian and instrumental learning but also habit learning, to avoidance, and has suggested that the reinforcing event underlying the instrumental phase should be conceived in terms of cellular and molecular events in specific circuits rather than in terms of vague notions of fear reduction. In our approach, defensive reactions (freezing), actions (avoidance) and habits (habitual avoidance) are viewed as being controlled by unique circuits that operate nonconsciously in the control of behavior, and that are distinct from the circuits that give rise to conscious feelings of fear and anxiety. These refinements, we suggest, overcome older criticisms, justifying the value of the new wave of research on avoidance, and offering a fresh perspective on the clinical implications of this work.

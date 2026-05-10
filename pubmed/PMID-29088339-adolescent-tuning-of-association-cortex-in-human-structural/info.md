@@ -1,0 +1,14 @@
+# Adolescent Tuning of Association Cortex in Human Structural Brain Networks.
+
+- **PMID**: 29088339
+- **DOI**: 10.1101/183004
+- **PMCID**: PMC2964249 (full-text saved)
+- **Journal**: Cerebral cortex (New York, N.Y. : 1991)  ·  **Year**: 2018
+- **Authors**: František Váša, Jakob Seidlitz, Rafael Romero-Garcia, Kirstie J Whitaker, Gideon Rosenthal, Petra E Vértes, Maxwell Shinn, Aaron Alexander-Bloch, Peter Fonagy, Raymond J Dolan, Peter B Jones, Ian M Goodyer, Olaf Sporns, Edward T Bullmore
+- **MeSH**: Adolescent, Cohort Studies, Connectome, Female, Frontal Lobe, Humans, Magnetic Resonance Imaging, Male, Neural Pathways, Young Adult
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29088339/
+- **Captured**: 2026-05-10T16:21:42
+
+## Abstract
+
+Motivated by prior data on local cortical shrinkage and intracortical myelination, we predicted age-related changes in topological organization of cortical structural networks during adolescence. We estimated structural correlation from magnetic resonance imaging measures of cortical thickness at 308 regions in a sample of N = 297 healthy participants, aged 14-24 years. We used a novel sliding-window analysis to measure age-related changes in network attributes globally, locally and in the context of several community partitions of the network. We found that the strength of structural correlation generally decreased as a function of age. Association cortical regions demonstrated a sharp decrease in nodal degree (hubness) from 14 years, reaching a minimum at approximately 19 years, and then levelling off or even slightly increasing until 24 years. Greater and more prolonged age-related changes in degree of cortical regions within the brain network were associated with faster rates of adolescent cortical myelination and shrinkage. The brain regions that demonstrated the greatest age-related changes were concentrated within prefrontal modules. We conclude that human adolescence is associated with biologically plausible changes in structural imaging markers of brain network organization, consistent with the concept of tuning or consolidating anatomical connectivity between frontal cortex and the rest of the connectome.

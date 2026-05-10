@@ -1,0 +1,14 @@
+# What Is Wrong with the No-Report Paradigm and How to Fix It.
+
+- **PMID**: 31676213
+- **DOI**: 10.1016/j.tics.2019.10.001
+- **PMCID**:  
+- **Journal**: Trends in cognitive sciences  ·  **Year**: 2019
+- **Authors**: Ned Block
+- **MeSH**: Animals, Cerebral Cortex, Consciousness, Humans, Neuropsychological Tests, Neurosciences, Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31676213/
+- **Captured**: 2026-05-10T16:23:58
+
+## Abstract
+
+Is consciousness based in prefrontal circuits involved in cognitive processes like thought, reasoning, and memory or is it based in sensory areas in the back of the neocortex? The no-report paradigm has been crucial to this debate because it aims to separate the neural basis of the cognitive processes underlying post-perceptual decision and report from the neural basis of conscious perception itself. However, the no-report paradigm is problematic because, even in the absence of report, subjects might engage in post-perceptual cognitive processing. Therefore, to isolate the neural basis of consciousness, a no-cognition paradigm is needed. Here, I describe a no-cognition approach to binocular rivalry and outline how this approach can help to resolve debates about the neural basis of consciousness.

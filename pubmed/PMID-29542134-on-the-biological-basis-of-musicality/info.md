@@ -1,0 +1,14 @@
+# On the biological basis of musicality.
+
+- **PMID**: 29542134
+- **DOI**: 10.1111/nyas.13638
+- **PMCID**:  
+- **Journal**: Annals of the New York Academy of Sciences  ·  **Year**: 2018
+- **Authors**: Henkjan Honing
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29542134/
+- **Captured**: 2026-05-10T16:22:07
+
+## Abstract
+
+In recent years, music and musicality have been the focus of an increasing amount of research effort. This has led to a growing role and visibility of the contribution of (bio)musicology to the field of neuroscience and cognitive sciences at large. While it has been widely acknowledged that there are commonalities between speech, language, and musicality, several researchers explain this by considering musicality as an epiphenomenon of language. However, an alternative hypothesis is that musicality is an innate and widely shared capacity for music that can be seen as a natural, spontaneously developing set of traits based on and constrained by our cognitive abilities and their underlying biology. A comparative study of musicality in humans and well-known animal models (monkeys, birds, pinnipeds) will further our insights on which features of musicality are exclusive to humans and which are shared between humans and nonhuman animals, contribute to an understanding of the musical phenotype, and further constrain existing evolutionary theories of music and musicality.

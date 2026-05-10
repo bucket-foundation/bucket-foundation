@@ -1,0 +1,14 @@
+# Effects of Auditory Rhythm and Music on Gait Disturbances in Parkinson's Disease.
+
+- **PMID**: 26617566
+- **DOI**: 10.1007/s00221-015-4346-1
+- **PMCID**: PMC2957229 (full-text saved)
+- **Journal**: Frontiers in neurology  ·  **Year**: 2015
+- **Authors**: Aidin Ashoori, David M Eagleman, Joseph Jankovic
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26617566/
+- **Captured**: 2026-05-10T16:19:44
+
+## Abstract
+
+Gait abnormalities, such as shuffling steps, start hesitation, and freezing, are common and often incapacitating symptoms of Parkinson's disease (PD) and other parkinsonian disorders. Pharmacological and surgical approaches have only limited efficacy in treating these gait disorders. Rhythmic auditory stimulation (RAS), such as playing marching music and dance therapy, has been shown to be a safe, inexpensive, and an effective method in improving gait in PD patients. However, RAS that adapts to patients' movements may be more effective than rigid, fixed-tempo RAS used in most studies. In addition to auditory cueing, immersive virtual reality technologies that utilize interactive computer-generated systems through wearable devices are increasingly used for improving brain-body interaction and sensory-motor integration. Using multisensory cues, these therapies may be particularly suitable for the treatment of parkinsonian freezing and other gait disorders. In this review, we examine the affected neurological circuits underlying gait and temporal processing in PD patients and summarize the current studies demonstrating the effects of RAS on improving these gait deficits.

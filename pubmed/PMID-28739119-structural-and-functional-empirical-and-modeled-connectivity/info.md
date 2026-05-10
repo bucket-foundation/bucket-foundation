@@ -1,0 +1,14 @@
+# Structural and functional, empirical and modeled connectivity in the cerebral cortex of the rat.
+
+- **PMID**: 28739119
+- **DOI**: 10.1016/j.neuroimage.2013.03.004
+- **PMCID**: PMC3896129 (full-text saved)
+- **Journal**: NeuroImage  ·  **Year**: 2017
+- **Authors**: Antonio Díaz-Parra, Zachary Osborn, Santiago Canals, David Moratal, Olaf Sporns
+- **MeSH**: Animals, Cerebral Cortex, Connectome, Magnetic Resonance Imaging, Neural Pathways, Rats, Rats, Wistar
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28739119/
+- **Captured**: 2026-05-10T16:21:29
+
+## Abstract
+
+Connectomics data from animal models provide an invaluable opportunity to reveal the complex interplay between structure and function in the mammalian brain. In this work, we investigate the relationship between structural and functional connectivity in the rat brain cortex using a directed anatomical network generated from a carefully curated meta-analysis of published tracing data, along with resting-state functional MRI data obtained from a group of 14 anesthetized Wistar rats. We found a high correspondence between the strength of functional connections, measured as blood oxygen level dependent (BOLD) signal correlations between cortical regions, and the weight of the corresponding anatomical links in the connectome graph (maximum Spearman rank-order correlation ρ=0.48). At the network-level, regions belonging to the same functionally defined community tend to form more mutual weighted connections between each other compared to regions located in different communities. We further found that functional communities in resting-state networks are enriched in densely connected anatomical motifs. Importantly, these higher-order structural subgraphs cannot be explained by lower-order topological properties, suggesting that dense structural patterns support functional associations in the resting brain. Simulations of brain-wide resting-state activity based on neural mass models implemented on the empirical rat anatomical connectome demonstrated high correlation between the simulated and the measured functional connectivity (maximum Pearson correlation ρ=0.53), further suggesting that the topology of structural connections plays an important role in shaping functional cortical networks.

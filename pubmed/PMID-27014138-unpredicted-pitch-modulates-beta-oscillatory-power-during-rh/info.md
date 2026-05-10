@@ -1,0 +1,14 @@
+# Unpredicted Pitch Modulates Beta Oscillatory Power during Rhythmic Entrainment to a Tone Sequence.
+
+- **PMID**: 27014138
+- **DOI**: 10.1126/science.1589767
+- **PMCID**: PMC4402002 (full-text saved)
+- **Journal**: Frontiers in psychology  ·  **Year**: 2016
+- **Authors**: Andrew Chang, Dan J Bosnyak, Laurel J Trainor
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27014138/
+- **Captured**: 2026-05-10T16:20:10
+
+## Abstract
+
+Extracting temporal regularities in external stimuli in order to predict upcoming events is an essential aspect of perception. Fluctuations in induced power of beta band (15-25 Hz) oscillations in auditory cortex are involved in predictive timing during rhythmic entrainment, but whether such fluctuations are affected by prediction in the spectral (frequency/pitch) domain remains unclear. We tested whether unpredicted (i.e., unexpected) pitches in a rhythmic tone sequence modulate beta band activity by recording EEG while participants passively listened to isochronous auditory oddball sequences with occasional unpredicted deviant pitches at two different presentation rates. The results showed that the power in low-beta (15-20 Hz) was larger around 200-300 ms following deviant tones compared to standard tones, and this effect was larger when the deviant tones were less predicted. Our results suggest that the induced beta power activities in auditory cortex are consistent with a role in sensory prediction of both "when" (timing) upcoming sounds will occur as well as the prediction precision error of "what" (spectral content in this case). We suggest, further, that both timing and content predictions may co-modulate beta oscillations via attention. These findings extend earlier work on neural oscillations by investigating the functional significance of beta oscillations for sensory prediction. The findings help elucidate the functional significance of beta oscillations in perception.

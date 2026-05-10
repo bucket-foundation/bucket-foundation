@@ -1,0 +1,14 @@
+# Macroscale intrinsic network architecture of the hypothalamus.
+
+- **PMID**: 30923123
+- **DOI**: 10.1073/pnas.1819448116
+- **PMCID**: PMC6602535 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2019
+- **Authors**: Joel D Hahn, Olaf Sporns, Alan G Watts, Larry W Swanson
+- **MeSH**: Animals, Computational Biology, Connectome, Hypothalamus, Male, Models, Neurological, Neural Pathways, Rats, Rats, Sprague-Dawley
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30923123/
+- **Captured**: 2026-05-10T16:23:21
+
+## Abstract
+
+Control of multiple life-critical physiological and behavioral functions requires the hypothalamus. Here, we provide a comprehensive description and rigorous analysis of mammalian intrahypothalamic network architecture. To achieve this at the gray matter region (macroscale) level, macroscale connection (macroconnection) data for the rat hypothalamus were extracted from the primary literature. The dataset indicated the existence of 7,982 (of 16,770 possible) intrahypothalamic macroconnections. Network analysis revealed that the intrahypothalamic macroconnection network (its macroscale subconnectome) is divided into two identical top-level subsystems (or subnetworks), each composed of two nested second-level subsystems. At the top-level, this suggests a deeply integrated network; however, regional grouping of the two second-level subsystems suggested a partial separation between control of physiological functions and behavioral functions. Furthermore, inclusion of four candidate hubs (dominant network nodes) in the second-level subsystem that is associated prominently with physiological control suggests network primacy with respect to this function. In addition, comparison of network analysis with expression of gene markers associated with inhibitory (GAD65) and excitatory (VGLUT2) neurotransmission revealed a significant positive correlation between measures of network centrality (dominance) and the inhibitory marker. We discuss these results in relation to previous understandings of hypothalamic organization and provide, and selectively interrogate, an updated hypothalamus structure-function network model to encourage future hypothesis-driven investigations of identified hypothalamic subsystems.

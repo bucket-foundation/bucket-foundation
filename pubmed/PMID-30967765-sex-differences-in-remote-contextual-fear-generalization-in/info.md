@@ -1,0 +1,14 @@
+# Sex Differences in Remote Contextual Fear Generalization in Mice.
+
+- **PMID**: 30967765
+- **DOI**: 10.1016/j.pnpbp.2018.08.014
+- **PMCID**: PMC2928141 (full-text saved)
+- **Journal**: Frontiers in behavioral neuroscience  ·  **Year**: 2019
+- **Authors**: Arun Asok, Joud Hijazi, Lucas R Harvey, Stylianos Kosmidis, Eric R Kandel, Joseph B Rayman
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30967765/
+- **Captured**: 2026-05-10T16:23:22
+
+## Abstract
+
+The generalization of fear is adaptive in that it allows an animal to respond appropriately to novel threats that are not identical to previous experiences. In contrast, the overgeneralization of fear is maladaptive and is a hallmark of post-traumatic stress disorder (PTSD), a psychiatric illness that is characterized by chronic symptomatology and a higher incidence in women compared to men. Therefore, understanding the neural basis of fear generalization at remote time-points in female animals is of particular translational relevance. However, our understanding of the neurobiology of fear generalization is largely restricted to studies employing male mice and focusing on recent time-points (i.e., within 24-48 h following conditioning). To address these limitations, we examined how male and female mice generalize contextual fear at remote time intervals (i.e., 3 weeks after conditioning). In agreement with earlier studies of fear generalization at proximal time-points, we find that the test order of training and generalization contexts is a critical determinant of generalization and context discrimination, particularly for female mice. However, tactile elements that are present during fear conditioning are more salient for male mice. Our study highlights long-term sex differences in defensive behavior between male and female mice and may provide insight into sex differences in the processing and retrieval of remote fear memory observed in humans.

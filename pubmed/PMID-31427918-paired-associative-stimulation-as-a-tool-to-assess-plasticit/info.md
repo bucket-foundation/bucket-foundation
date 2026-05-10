@@ -1,0 +1,14 @@
+# Paired Associative Stimulation as a Tool to Assess Plasticity Enhancers in Chronic Stroke.
+
+- **PMID**: 31427918
+- **DOI**: 10.1016/j.clinph.2014.08.028
+- **PMCID**: PMC6730462 (full-text saved)
+- **Journal**: Frontiers in neuroscience  ·  **Year**: 2019
+- **Authors**: Joshua Silverstein, Mar Cortes, Katherine Zoe Tsagaris, Alejandra Climent, Linda M Gerber, Clara Oromendia, Pasquale Fonzetti, Rajiv R Ratan, Tomoko Kitago, Marco Iacoboni, Allan Wu, Bruce Dobkin, Dylan J Edwards
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31427918/
+- **Captured**: 2026-05-10T16:23:43
+
+## Abstract
+
+The potential for adaptive plasticity in the post-stroke brain is difficult to estimate, as is the demonstration of central nervous system (CNS) target engagement of drugs that show promise in facilitating stroke recovery. We set out to determine if paired associative stimulation (PAS) can be used (a) as an assay of CNS plasticity in patients with chronic stroke, and (b) to demonstrate CNS engagement by memantine, a drug which has potential plasticity-modulating effects for use in motor recovery following stroke. We examined the effect of PAS in fourteen participants with chronic hemiparetic stroke at five time-points in a within-subjects repeated measures design study: baseline off-drug, and following a week of orally administered memantine at doses of 5, 10, 15, and 20 mg, comprising a total of seventy sessions. Each week, MEP amplitude pre and post-PAS was assessed in the contralesional hemisphere as a marker of enhanced or diminished plasticity. Strength and dexterity were recorded each week to monitor motor-specific clinical status across the study period. We found that MEP amplitude was significantly larger after PAS in baseline sessions off-drug, and responsiveness to PAS in these sessions was associated with increased clinical severity. There was no observed increase in MEP amplitude after PAS with memantine at any dose. Motor threshold (MT), strength, and dexterity remained unchanged during the study. Paired associative stimulation successfully induced corticospinal excitability enhancement in chronic stroke subjects at the group level. However, this response did not occur in all participants, and was associated with increased clinical severity. This could be an important way to stratify patients for future PAS-drug studies. PAS was suppressed by memantine at all doses, regardless of responsiveness to PAS off-drug, indicating CNS engagement.

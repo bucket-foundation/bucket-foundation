@@ -1,0 +1,14 @@
+# From Neuron Biophysics to Orientation Selectivity in Electrically Coupled Networks of Neocortical L2/3 Large Basket Cells.
+
+- **PMID**: 27288316
+- **DOI**: 10.1093/cercor/bhw166
+- **PMCID**: PMC6578792 (full-text saved)
+- **Journal**: Cerebral cortex (New York, N.Y. : 1991)  ·  **Year**: 2016
+- **Authors**: Oren Amsalem, Werner Van Geit, Eilif Muller, Henry Markram, Idan Segev
+- **MeSH**: Animals, Axons, Computer Simulation, Dendrites, Gap Junctions, Interneurons, Membrane Potentials, Models, Neurological, Neocortex, Rats
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27288316/
+- **Captured**: 2026-05-10T16:20:24
+
+## Abstract
+
+In the neocortex, inhibitory interneurons of the same subtype are electrically coupled with each other via dendritic gap junctions (GJs). The impact of multiple GJs on the biophysical properties of interneurons and thus on their input processing is unclear. The present experimentally based theoretical study examined GJs in L2/3 large basket cells (L2/3 LBCs) with 3 goals in mind: (1) To evaluate the errors due to GJs in estimating the cable properties of individual L2/3 LBCs and suggest ways to correct these errors when modeling these cells and the networks they form; (2) to bracket the GJ conductance value (0.05-0.25 nS) and membrane resistivity (10 000-40 000 Ω cm(2)) of L2/3 LBCs; these estimates are tightly constrained by in vitro input resistance (131 ± 18.5 MΩ) and the coupling coefficient (1-3.5%) of these cells; and (3) to explore the functional implications of GJs, and show that GJs: (i) dynamically modulate the effective time window for synaptic integration; (ii) improve the axon's capability to encode rapid changes in synaptic inputs; and (iii) reduce the orientation selectivity, linearity index, and phase difference of L2/3 LBCs. Our study provides new insights into the role of GJs and calls for caution when using in vitro measurements for modeling electrically coupled neuronal networks.

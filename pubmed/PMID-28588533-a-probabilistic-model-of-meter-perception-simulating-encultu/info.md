@@ -1,0 +1,14 @@
+# A Probabilistic Model of Meter Perception: Simulating Enculturation.
+
+- **PMID**: 28588533
+- **DOI**: 10.1371/journal.pone.0094446
+- **PMCID**: PMC3989225 (full-text saved)
+- **Journal**: Frontiers in psychology  ·  **Year**: 2017
+- **Authors**: Bastiaan van der Weij, Marcus T Pearce, Henkjan Honing
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28588533/
+- **Captured**: 2026-05-10T16:21:21
+
+## Abstract
+
+Enculturation is known to shape the perception of meter in music but this is not explicitly accounted for by current cognitive models of meter perception. We hypothesize that the induction of meter is a result of predictive coding: interpreting onsets in a rhythm relative to a periodic meter facilitates prediction of future onsets. Such prediction, we hypothesize, is based on previous exposure to rhythms. As such, predictive coding provides a possible explanation for the way meter perception is shaped by the cultural environment. Based on this hypothesis, we present a probabilistic model of meter perception that uses statistical properties of the relation between rhythm and meter to infer meter from quantized rhythms. We show that our model can successfully predict annotated time signatures from quantized rhythmic patterns derived from folk melodies. Furthermore, we show that by inferring meter, our model improves prediction of the onsets of future events compared to a similar probabilistic model that does not infer meter. Finally, as a proof of concept, we demonstrate how our model can be used in a simulation of enculturation. From the results of this simulation, we derive a class of rhythms that are likely to be interpreted differently by enculturated listeners with different histories of exposure to rhythms.

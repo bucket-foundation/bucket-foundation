@@ -1,0 +1,27 @@
+{
+  "pmid": "27663980",
+  "title": "Optimizing detection and analysis of slow waves in sleep EEG.",
+  "abstract": "Analysis of individual slow waves in EEG recording during sleep provides both greater sensitivity and specificity compared to spectral power measures. However, parameters for detection and analysis have not been widely explored and validated. We present a new, open-source, Matlab based, toolbox for the automatic detection and analysis of slow waves; with adjustable parameter settings, as well as manual correction and exploration of the results using a multi-faceted visualization tool. We explore a large search space of parameter settings for slow wave detection and measure their effects on a selection of outcome parameters. Every choice of parameter setting had some effect on at least one outcome parameter. In general, the largest effect sizes were found when choosing the EEG reference, type of canonical waveform, and amplitude thresholding. Previously published methods accurately detect large, global waves but are conservative and miss the detection of smaller amplitude, local slow waves. The toolbox has additional benefits in terms of speed, user-interface, and visualization options to compare and contrast slow waves. The exploration of parameter settings in the toolbox highlights the importance of careful selection of detection METHODS: The sensitivity and specificity of the automated detection can be improved by manually adding or deleting entire waves and or specific channels using the toolbox visualization functions. The toolbox standardizes the detection procedure, sets the stage for reliable results and comparisons and is easy to use without previous programming experience.",
+  "authors": [
+    "Armand Mensen",
+    "Brady Riedner",
+    "Giulio Tononi"
+  ],
+  "journal": "Journal of neuroscience methods",
+  "year": "2016",
+  "doi": "10.1016/j.jneumeth.2016.09.006",
+  "pmcid": "",
+  "mesh": [
+    "Adult",
+    "Algorithms",
+    "Brain Mapping",
+    "Brain Waves",
+    "Cerebral Cortex",
+    "Electroencephalography",
+    "Electronic Data Processing",
+    "Humans",
+    "Male",
+    "Principal Component Analysis",
+    "Sleep"
+  ]
+}
