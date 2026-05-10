@@ -1,0 +1,2684 @@
+{
+  "id": "https://openalex.org/W3002960176",
+  "doi": "https://doi.org/10.1038/s41419-020-2249-y",
+  "title": "Intravenous immunoglobulin mediates anti-inflammatory effects in peripheral blood mononuclear cells by inducing autophagy",
+  "display_name": "Intravenous immunoglobulin mediates anti-inflammatory effects in peripheral blood mononuclear cells by inducing autophagy",
+  "publication_year": 2020,
+  "publication_date": "2020-01-23",
+  "ids": {
+    "openalex": "https://openalex.org/W3002960176",
+    "doi": "https://doi.org/10.1038/s41419-020-2249-y",
+    "mag": "3002960176",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/31974400"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1038/s41419-020-2249-y",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1038/s41419-020-2249-y",
+    "pdf_url": "https://www.nature.com/articles/s41419-020-2249-y.pdf",
+    "source": {
+      "id": "https://openalex.org/S185208586",
+      "display_name": "Cell Death and Disease",
+      "issn_l": "2041-4889",
+      "issn": [
+        "2041-4889"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319965",
+      "host_organization_name": "Springer Nature",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cell Death &amp; Disease",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "gold",
+    "oa_url": "https://www.nature.com/articles/s41419-020-2249-y.pdf",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5101453371",
+        "display_name": "Mrinmoy Das",
+        "orcid": "https://orcid.org/0000-0002-9932-9548"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210088869",
+          "display_name": "Institut National de Recherche en Santé Publique",
+          "ror": "https://ror.org/005haay02",
+          "country_code": "ML",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "ML"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Mrinmoy Das",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale",
+        "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale",
+          "institution_ids": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5008242508",
+        "display_name": "Anupama Karnam",
+        "orcid": "https://orcid.org/0000-0001-8770-186X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210088869",
+          "display_name": "Institut National de Recherche en Santé Publique",
+          "ror": "https://ror.org/005haay02",
+          "country_code": "ML",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "ML"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Anupama Karnam",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale",
+          "institution_ids": [
+            "https://openalex.org/I4210088869"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5028249308",
+        "display_name": "Emmanuel Stephen‐Victor",
+        "orcid": "https://orcid.org/0000-0001-5049-7017"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210088869",
+          "display_name": "Institut National de Recherche en Santé Publique",
+          "ror": "https://ror.org/005haay02",
+          "country_code": "ML",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "ML"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Emmanuel Stephen-Victor",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale",
+        "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale",
+          "institution_ids": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5052054371",
+        "display_name": "Laurent Gilardin",
+        "orcid": "https://orcid.org/0000-0001-9212-0859"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210088869",
+          "display_name": "Institut National de Recherche en Santé Publique",
+          "ror": "https://ror.org/005haay02",
+          "country_code": "ML",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210097159",
+          "display_name": "Assistance Publique – Hôpitaux de Paris",
+          "ror": "https://ror.org/00pg5jh14",
+          "country_code": "FR",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I4210097159"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210121705",
+          "display_name": "Pitié-Salpêtrière Hospital",
+          "ror": "https://ror.org/02mh9a093",
+          "country_code": "FR",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I4210097159",
+            "https://openalex.org/I4210121705"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "ML"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Laurent Gilardin",
+      "raw_affiliation_strings": [
+        "Département de Médecine Interne et Immunologie Clinique, Hôpital Pitié-Salpêtrière, AP-HP, 75013, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale",
+        "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Département de Médecine Interne et Immunologie Clinique, Hôpital Pitié-Salpêtrière, AP-HP, 75013, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I4210121705",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210097159"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale",
+          "institution_ids": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5011957483",
+        "display_name": "Bharat Bhatt",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I59270414",
+          "display_name": "Indian Institute of Science Bangalore",
+          "ror": "https://ror.org/04dese585",
+          "country_code": "IN",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I59270414"
+          ]
+        }
+      ],
+      "countries": [
+        "IN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Bharat Bhatt",
+      "raw_affiliation_strings": [
+        "Department of Microbiology and Cell Biology, Indian Institute of Science, Bangalore, 560012, India"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Microbiology and Cell Biology, Indian Institute of Science, Bangalore, 560012, India",
+          "institution_ids": [
+            "https://openalex.org/I59270414"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5024525629",
+        "display_name": "Varun Kumar Sharma",
+        "orcid": "https://orcid.org/0000-0001-8575-6939"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210088869",
+          "display_name": "Institut National de Recherche en Santé Publique",
+          "ror": "https://ror.org/005haay02",
+          "country_code": "ML",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "ML"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Varun Kumar Sharma",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale",
+          "institution_ids": [
+            "https://openalex.org/I4210088869"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5037652352",
+        "display_name": "Naresh Rambabu",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210088869",
+          "display_name": "Institut National de Recherche en Santé Publique",
+          "ror": "https://ror.org/005haay02",
+          "country_code": "ML",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "ML"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Naresh Rambabu",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale",
+        "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale",
+          "institution_ids": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5043796523",
+        "display_name": "Veerupaxagouda Patil",
+        "orcid": "https://orcid.org/0000-0001-9849-7040"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210088869",
+          "display_name": "Institut National de Recherche en Santé Publique",
+          "ror": "https://ror.org/005haay02",
+          "country_code": "ML",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "ML"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Veerupaxagouda Patil",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale",
+          "institution_ids": [
+            "https://openalex.org/I4210088869"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5012675502",
+        "display_name": "Maxime Lecerf",
+        "orcid": "https://orcid.org/0000-0002-1477-2162"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I110736937",
+          "display_name": "Délégation Paris 5",
+          "ror": "https://ror.org/02e0y6e06",
+          "country_code": "FR",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I110736937",
+            "https://openalex.org/I154526488"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I204730241",
+          "display_name": "Université Paris Cité",
+          "ror": "https://ror.org/05f82e368",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I204730241"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210088869",
+          "display_name": "Institut National de Recherche en Santé Publique",
+          "ror": "https://ror.org/005haay02",
+          "country_code": "ML",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210088869"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210091437",
+          "display_name": "Sorbonne Paris Cité",
+          "ror": "https://ror.org/001z21q04",
+          "country_code": "FR",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I4210091437"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "ML"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Maxime Lecerf",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Université Paris Descartes, Sorbonne Paris Cité, 75006, Paris, France",
+        "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Université Paris Descartes, Sorbonne Paris Cité, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I110736937",
+            "https://openalex.org/I4210091437",
+            "https://openalex.org/I204730241"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale",
+          "institution_ids": [
+            "https://openalex.org/I4210088869"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5085362965",
+        "display_name": "Fabian Käsermann",
+        "orcid": "https://orcid.org/0000-0002-4255-9350"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I62612085",
+          "display_name": "CSL (Switzerland)",
+          "ror": "https://ror.org/01400tq86",
+          "country_code": "CH",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210153402",
+            "https://openalex.org/I62612085"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Fabian Käsermann",
+      "raw_affiliation_strings": [
+        "CSL Behring, Research, CSL Biologics Research Center, 3014, Bern, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CSL Behring, Research, CSL Biologics Research Center, 3014, Bern, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I62612085"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5028555797",
+        "display_name": "Patrick Bruneval",
+        "orcid": "https://orcid.org/0000-0002-2350-2914"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210102325",
+          "display_name": "Hôpital Européen Georges-Pompidou",
+          "ror": "https://ror.org/016vx5156",
+          "country_code": "FR",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I4210097159",
+            "https://openalex.org/I4210102325",
+            "https://openalex.org/I4210120235"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210109141",
+          "display_name": "Hôpital Européen",
+          "ror": "https://ror.org/01tfhsg94",
+          "country_code": "FR",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I4210109141"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Patrick Bruneval",
+      "raw_affiliation_strings": [
+        "Service d'anatomie pathologique, Hôpital Européen Georges Pompidou, 75015, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Service d'anatomie pathologique, Hôpital Européen Georges Pompidou, 75015, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I4210109141",
+            "https://openalex.org/I4210102325"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5068809657",
+        "display_name": "Kithiganahalli Narayanaswamy Balaji",
+        "orcid": "https://orcid.org/0000-0002-0006-5707"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I59270414",
+          "display_name": "Indian Institute of Science Bangalore",
+          "ror": "https://ror.org/04dese585",
+          "country_code": "IN",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I59270414"
+          ]
+        }
+      ],
+      "countries": [
+        "IN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Kithiganahalli Narayanaswamy Balaji",
+      "raw_affiliation_strings": [
+        "Department of Microbiology and Cell Biology, Indian Institute of Science, Bangalore, 560012, India"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Microbiology and Cell Biology, Indian Institute of Science, Bangalore, 560012, India",
+          "institution_ids": [
+            "https://openalex.org/I59270414"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5027640760",
+        "display_name": "Olivier Benvéniste",
+        "orcid": "https://orcid.org/0000-0002-1167-5797"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210091437",
+          "display_name": "Sorbonne Paris Cité",
+          "ror": "https://ror.org/001z21q04",
+          "country_code": "FR",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I4210091437"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210097159",
+          "display_name": "Assistance Publique – Hôpitaux de Paris",
+          "ror": "https://ror.org/00pg5jh14",
+          "country_code": "FR",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I4210097159"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210121705",
+          "display_name": "Pitié-Salpêtrière Hospital",
+          "ror": "https://ror.org/02mh9a093",
+          "country_code": "FR",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I4210097159",
+            "https://openalex.org/I4210121705"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Olivier Benveniste",
+      "raw_affiliation_strings": [
+        "Département de Médecine Interne et Immunologie Clinique, Hôpital Pitié-Salpêtrière, AP-HP, 75013, Paris, France",
+        "Institut National de la Santé et de la Recherche Médicale Unité 974, Sorbonne Université, 75013, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Département de Médecine Interne et Immunologie Clinique, Hôpital Pitié-Salpêtrière, AP-HP, 75013, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I4210121705",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210097159"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale Unité 974, Sorbonne Université, 75013, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210091437"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5089079882",
+        "display_name": "Srini V. Kaveri",
+        "orcid": "https://orcid.org/0000-0002-0837-4053"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I110736937",
+          "display_name": "Délégation Paris 5",
+          "ror": "https://ror.org/02e0y6e06",
+          "country_code": "FR",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I110736937",
+            "https://openalex.org/I154526488"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I204730241",
+          "display_name": "Université Paris Cité",
+          "ror": "https://ror.org/05f82e368",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I204730241"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210091437",
+          "display_name": "Sorbonne Paris Cité",
+          "ror": "https://ror.org/001z21q04",
+          "country_code": "FR",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I4210091437"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Srini V. Kaveri",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+        "Université Paris Descartes, Sorbonne Paris Cité, 75006, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Université Paris Descartes, Sorbonne Paris Cité, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I110736937",
+            "https://openalex.org/I4210091437",
+            "https://openalex.org/I204730241"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5086147416",
+        "display_name": "Jagadeesh Bayry",
+        "orcid": "https://orcid.org/0000-0003-0498-9808"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I110736937",
+          "display_name": "Délégation Paris 5",
+          "ror": "https://ror.org/02e0y6e06",
+          "country_code": "FR",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I110736937",
+            "https://openalex.org/I154526488"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I204730241",
+          "display_name": "Université Paris Cité",
+          "ror": "https://ror.org/05f82e368",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I204730241"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I39804081",
+          "display_name": "Sorbonne Université",
+          "ror": "https://ror.org/02en5vm52",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39804081"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210091437",
+          "display_name": "Sorbonne Paris Cité",
+          "ror": "https://ror.org/001z21q04",
+          "country_code": "FR",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I4210091437"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210092322",
+          "display_name": "Centre de Recherche des Cordeliers",
+          "ror": "https://ror.org/00dmms154",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jagadeesh Bayry",
+      "raw_affiliation_strings": [
+        "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France. jagadeesh.bayry@crc.jussieu.fr",
+        "Université Paris Descartes, Sorbonne Paris Cité, 75006, Paris, France. jagadeesh.bayry@crc.jussieu.fr",
+        "Université Paris Descartes, Sorbonne Paris Cité, 75006, Paris, France"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0003-0498-9808",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut National de la Santé et de la Recherche Médicale; Centre de Recherche des Cordeliers, Equipe- Immunopathologie et Immunointervention Thérapeutique, Sorbonne Université, 75006, Paris, France. jagadeesh.bayry@crc.jussieu.fr",
+          "institution_ids": [
+            "https://openalex.org/I39804081",
+            "https://openalex.org/I4210092322"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Université Paris Descartes, Sorbonne Paris Cité, 75006, Paris, France. jagadeesh.bayry@crc.jussieu.fr",
+          "institution_ids": [
+            "https://openalex.org/I204730241",
+            "https://openalex.org/I110736937"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Université Paris Descartes, Sorbonne Paris Cité, 75006, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I110736937",
+            "https://openalex.org/I4210091437",
+            "https://openalex.org/I204730241"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 4,
+  "institutions_distinct_count": 15,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5101453371"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I39804081",
+    "https://openalex.org/I4210088869",
+    "https://openalex.org/I4210092322"
+  ],
+  "apc_list": {
+    "value": 2790,
+    "currency": "GBP",
+    "value_usd": 3422
+  },
+  "apc_paid": {
+    "value": 2790,
+    "currency": "GBP",
+    "value_usd": 3422
+  },
+  "fwci": 6.7973,
+  "has_fulltext": true,
+  "cited_by_count": 60,
+  "citation_normalized_percentile": {
+    "value": 0.97747084,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 90,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "11",
+    "issue": "1",
+    "first_page": "50",
+    "last_page": "50"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10587",
+    "display_name": "Autophagy in Disease and Therapy",
+    "score": 0.9990000128746033,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2713",
+      "display_name": "Epidemiology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/27",
+      "display_name": "Medicine"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/4",
+      "display_name": "Health Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10587",
+      "display_name": "Autophagy in Disease and Therapy",
+      "score": 0.9990000128746033,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2713",
+        "display_name": "Epidemiology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11020",
+      "display_name": "Immune Cell Function and Interaction",
+      "score": 0.9983000159263611,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2403",
+        "display_name": "Immunology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/24",
+        "display_name": "Immunology and Microbiology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12286",
+      "display_name": "Erythrocyte Function and Pathophysiology",
+      "score": 0.9980999827384949,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2737",
+        "display_name": "Physiology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/autophagy",
+      "display_name": "Autophagy",
+      "score": 0.782976508140564
+    },
+    {
+      "id": "https://openalex.org/keywords/immunology",
+      "display_name": "Immunology",
+      "score": 0.6302403211593628
+    },
+    {
+      "id": "https://openalex.org/keywords/immune-system",
+      "display_name": "Immune system",
+      "score": 0.6181082129478455
+    },
+    {
+      "id": "https://openalex.org/keywords/peripheral-blood-mononuclear-cell",
+      "display_name": "Peripheral blood mononuclear cell",
+      "score": 0.5293446779251099
+    },
+    {
+      "id": "https://openalex.org/keywords/antibody",
+      "display_name": "Antibody",
+      "score": 0.4950379431247711
+    },
+    {
+      "id": "https://openalex.org/keywords/inflammation",
+      "display_name": "Inflammation",
+      "score": 0.4926639199256897
+    },
+    {
+      "id": "https://openalex.org/keywords/innate-immune-system",
+      "display_name": "Innate immune system",
+      "score": 0.4887223243713379
+    },
+    {
+      "id": "https://openalex.org/keywords/atg16l1",
+      "display_name": "ATG16L1",
+      "score": 0.4540168046951294
+    },
+    {
+      "id": "https://openalex.org/keywords/medicine",
+      "display_name": "Medicine",
+      "score": 0.40674853324890137
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.34003520011901855
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C203522944",
+      "wikidata": "https://www.wikidata.org/wiki/Q288322",
+      "display_name": "Autophagy",
+      "level": 3,
+      "score": 0.782976508140564
+    },
+    {
+      "id": "https://openalex.org/C203014093",
+      "wikidata": "https://www.wikidata.org/wiki/Q101929",
+      "display_name": "Immunology",
+      "level": 1,
+      "score": 0.6302403211593628
+    },
+    {
+      "id": "https://openalex.org/C8891405",
+      "wikidata": "https://www.wikidata.org/wiki/Q1059",
+      "display_name": "Immune system",
+      "level": 2,
+      "score": 0.6181082129478455
+    },
+    {
+      "id": "https://openalex.org/C137061746",
+      "wikidata": "https://www.wikidata.org/wiki/Q736033",
+      "display_name": "Peripheral blood mononuclear cell",
+      "level": 3,
+      "score": 0.5293446779251099
+    },
+    {
+      "id": "https://openalex.org/C159654299",
+      "wikidata": "https://www.wikidata.org/wiki/Q79460",
+      "display_name": "Antibody",
+      "level": 2,
+      "score": 0.4950379431247711
+    },
+    {
+      "id": "https://openalex.org/C2776914184",
+      "wikidata": "https://www.wikidata.org/wiki/Q101991",
+      "display_name": "Inflammation",
+      "level": 2,
+      "score": 0.4926639199256897
+    },
+    {
+      "id": "https://openalex.org/C136449434",
+      "wikidata": "https://www.wikidata.org/wiki/Q428253",
+      "display_name": "Innate immune system",
+      "level": 3,
+      "score": 0.4887223243713379
+    },
+    {
+      "id": "https://openalex.org/C187092789",
+      "wikidata": "https://www.wikidata.org/wiki/Q4654662",
+      "display_name": "ATG16L1",
+      "level": 4,
+      "score": 0.4540168046951294
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.40674853324890137
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.34003520011901855
+    },
+    {
+      "id": "https://openalex.org/C202751555",
+      "wikidata": "https://www.wikidata.org/wiki/Q221681",
+      "display_name": "In vitro",
+      "level": 2,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C190283241",
+      "wikidata": "https://www.wikidata.org/wiki/Q14599311",
+      "display_name": "Apoptosis",
+      "level": 2,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000071186",
+      "descriptor_name": "Beclin-1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000071186",
+      "descriptor_name": "Beclin-1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000071186",
+      "descriptor_name": "Beclin-1",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000263",
+      "descriptor_name": "Adenylate Kinase",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000263",
+      "descriptor_name": "Adenylate Kinase",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000263",
+      "descriptor_name": "Adenylate Kinase",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000893",
+      "descriptor_name": "Anti-Inflammatory Agents",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000893",
+      "descriptor_name": "Anti-Inflammatory Agents",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000893",
+      "descriptor_name": "Anti-Inflammatory Agents",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001343",
+      "descriptor_name": "Autophagy",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001343",
+      "descriptor_name": "Autophagy",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001343",
+      "descriptor_name": "Autophagy",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002460",
+      "descriptor_name": "Cell Line",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002460",
+      "descriptor_name": "Cell Line",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002460",
+      "descriptor_name": "Cell Line",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003713",
+      "descriptor_name": "Dendritic Cells",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004705",
+      "descriptor_name": "Endocytosis",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004705",
+      "descriptor_name": "Endocytosis",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004705",
+      "descriptor_name": "Endocytosis",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007113",
+      "descriptor_name": "Immunity, Innate",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007113",
+      "descriptor_name": "Immunity, Innate",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007113",
+      "descriptor_name": "Immunity, Innate",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007140",
+      "descriptor_name": "Immunoglobulin Fab Fragments",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007140",
+      "descriptor_name": "Immunoglobulin Fab Fragments",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007140",
+      "descriptor_name": "Immunoglobulin Fab Fragments",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007963",
+      "descriptor_name": "Leukocytes, Mononuclear",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007963",
+      "descriptor_name": "Leukocytes, Mononuclear",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007963",
+      "descriptor_name": "Leukocytes, Mononuclear",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007963",
+      "descriptor_name": "Leukocytes, Mononuclear",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007963",
+      "descriptor_name": "Leukocytes, Mononuclear",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007963",
+      "descriptor_name": "Leukocytes, Mononuclear",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008070",
+      "descriptor_name": "Lipopolysaccharides",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008070",
+      "descriptor_name": "Lipopolysaccharides",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008070",
+      "descriptor_name": "Lipopolysaccharides",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008264",
+      "descriptor_name": "Macrophages",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008264",
+      "descriptor_name": "Macrophages",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008264",
+      "descriptor_name": "Macrophages",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008264",
+      "descriptor_name": "Macrophages",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008264",
+      "descriptor_name": "Macrophages",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008264",
+      "descriptor_name": "Macrophages",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009000",
+      "descriptor_name": "Monocytes",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009000",
+      "descriptor_name": "Monocytes",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009000",
+      "descriptor_name": "Monocytes",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009000",
+      "descriptor_name": "Monocytes",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009000",
+      "descriptor_name": "Monocytes",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009000",
+      "descriptor_name": "Monocytes",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010766",
+      "descriptor_name": "Phosphorylation",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010766",
+      "descriptor_name": "Phosphorylation",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010766",
+      "descriptor_name": "Phosphorylation",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014019",
+      "descriptor_name": "Tissue Donors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014019",
+      "descriptor_name": "Tissue Donors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014019",
+      "descriptor_name": "Tissue Donors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015388",
+      "descriptor_name": "Organelles",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016756",
+      "descriptor_name": "Immunoglobulins, Intravenous",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016756",
+      "descriptor_name": "Immunoglobulins, Intravenous",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016756",
+      "descriptor_name": "Immunoglobulins, Intravenous",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D048051",
+      "descriptor_name": "p38 Mitogen-Activated Protein Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D048051",
+      "descriptor_name": "p38 Mitogen-Activated Protein Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D048051",
+      "descriptor_name": "p38 Mitogen-Activated Protein Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D058539",
+      "descriptor_name": "Phosphatidylinositol 3-Kinase",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D058539",
+      "descriptor_name": "Phosphatidylinositol 3-Kinase",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D058539",
+      "descriptor_name": "Phosphatidylinositol 3-Kinase",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D058570",
+      "descriptor_name": "TOR Serine-Threonine Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D058570",
+      "descriptor_name": "TOR Serine-Threonine Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D058570",
+      "descriptor_name": "TOR Serine-Threonine Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 7,
+  "locations": [
+    {
+      "id": "doi:10.1038/s41419-020-2249-y",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1038/s41419-020-2249-y",
+      "pdf_url": "https://www.nature.com/articles/s41419-020-2249-y.pdf",
+      "source": {
+        "id": "https://openalex.org/S185208586",
+        "display_name": "Cell Death and Disease",
+        "issn_l": "2041-4889",
+        "issn": [
+          "2041-4889"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319965",
+        "host_organization_name": "Springer Nature",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Cell Death &amp; Disease",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:31974400",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/31974400",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Cell death & disease",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:eprints.iisc.ac.in:64549",
+      "is_oa": false,
+      "landing_page_url": "http://eprints.iisc.ac.in/64549/2/41419_2020_2249_MOESM1_ESM.docx",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196533",
+        "display_name": "ePrints-IISc. (Indian Institute of Science Bangalore)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I59270414",
+        "host_organization_name": "Indian Institute of Science Bangalore",
+        "host_organization_lineage": [
+          "https://openalex.org/I59270414"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "acceptedVersion",
+      "is_accepted": true,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Journal Article"
+    },
+    {
+      "id": "pmh:oai:HAL:inserm-02455428v1",
+      "is_oa": true,
+      "landing_page_url": "https://www.hal.inserm.fr/inserm-02455428",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402512",
+        "display_name": "HAL (Le Centre pour la Communication Scientifique Directe)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1294671590",
+        "host_organization_name": "Centre National de la Recherche Scientifique",
+        "host_organization_lineage": [
+          "https://openalex.org/I1294671590"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "ISSN: 2041-4889",
+      "raw_type": "info:eu-repo/semantics/article"
+    },
+    {
+      "id": "pmh:oai:HAL:inserm-02553444v1",
+      "is_oa": true,
+      "landing_page_url": "https://inserm.hal.science/inserm-02553444",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402512",
+        "display_name": "HAL (Le Centre pour la Communication Scientifique Directe)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1294671590",
+        "host_organization_name": "Centre National de la Recherche Scientifique",
+        "host_organization_lineage": [
+          "https://openalex.org/I1294671590"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "other-oa",
+      "license_id": "https://openalex.org/licenses/other-oa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Cell Death and Disease, 2020, 11 (1), pp.50. &#x27E8;10.1038/s41419-020-2249-y&#x27E9;",
+      "raw_type": "Journal articles"
+    },
+    {
+      "id": "pmh:oai:doaj.org/article:9cd6ccc4a24e4d178935d1cbff063b27",
+      "is_oa": false,
+      "landing_page_url": "https://doaj.org/article/9cd6ccc4a24e4d178935d1cbff063b27",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401280",
+        "display_name": "DOAJ (DOAJ: Directory of Open Access Journals)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Cell Death and Disease, Vol 11, Iss 1, Pp 1-14 (2020)",
+      "raw_type": "article"
+    },
+    {
+      "id": "pmh:oai:pubmedcentral.nih.gov:6978335",
+      "is_oa": true,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6978335",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S2764455111",
+        "display_name": "PubMed Central",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Cell Death Dis",
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1038/s41419-020-2249-y",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1038/s41419-020-2249-y",
+    "pdf_url": "https://www.nature.com/articles/s41419-020-2249-y.pdf",
+    "source": {
+      "id": "https://openalex.org/S185208586",
+      "display_name": "Cell Death and Disease",
+      "issn_l": "2041-4889",
+      "issn": [
+        "2041-4889"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319965",
+      "host_organization_name": "Springer Nature",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cell Death &amp; Disease",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [
+    {
+      "score": 0.8399999737739563,
+      "id": "https://metadata.un.org/sdg/3",
+      "display_name": "Good health and well-being"
+    }
+  ],
+  "awards": [
+    {
+      "id": "https://openalex.org/G3692612192",
+      "display_name": null,
+      "funder_award_id": "FDT201805005552",
+      "funder_id": "https://openalex.org/F4320321589",
+      "funder_display_name": "Fondation pour la Recherche Médicale"
+    }
+  ],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320310420",
+      "display_name": "CSL Behring",
+      "ror": "https://ror.org/01jxhxv92"
+    },
+    {
+      "id": "https://openalex.org/F4320320719",
+      "display_name": "Department of Science and Technology, Ministry of Science and Technology, India",
+      "ror": "https://ror.org/0101xrq71"
+    },
+    {
+      "id": "https://openalex.org/F4320320893",
+      "display_name": "Institut National de la Santé et de la Recherche Médicale",
+      "ror": "https://ror.org/02vjkv261"
+    },
+    {
+      "id": "https://openalex.org/F4320321027",
+      "display_name": "Indo-French Centre for the Promotion of Advanced Research",
+      "ror": "https://ror.org/017aem598"
+    },
+    {
+      "id": "https://openalex.org/F4320321589",
+      "display_name": "Fondation pour la Recherche Médicale",
+      "ror": "https://ror.org/04w6kn183"
+    },
+    {
+      "id": "https://openalex.org/F4320323296",
+      "display_name": "Université Paris Descartes",
+      "ror": "https://ror.org/0220k9r37"
+    },
+    {
+      "id": "https://openalex.org/F4320330232",
+      "display_name": "Sorbonne Université",
+      "ror": null
+    }
+  ],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W3002960176.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W3002960176.grobid-xml"
+  },
+  "referenced_works_count": 82,
+  "referenced_works": [
+    "https://openalex.org/W1512739483",
+    "https://openalex.org/W1513024220",
+    "https://openalex.org/W1557312589",
+    "https://openalex.org/W1559721632",
+    "https://openalex.org/W1587080057",
+    "https://openalex.org/W1838834699",
+    "https://openalex.org/W1862461292",
+    "https://openalex.org/W1901654115",
+    "https://openalex.org/W1906432510",
+    "https://openalex.org/W1936038771",
+    "https://openalex.org/W1954209695",
+    "https://openalex.org/W1964188773",
+    "https://openalex.org/W1964361947",
+    "https://openalex.org/W1968419089",
+    "https://openalex.org/W1970110195",
+    "https://openalex.org/W1970637701",
+    "https://openalex.org/W1972985967",
+    "https://openalex.org/W1977587396",
+    "https://openalex.org/W1977767269",
+    "https://openalex.org/W1978471536",
+    "https://openalex.org/W1984832962",
+    "https://openalex.org/W1985075809",
+    "https://openalex.org/W1985474124",
+    "https://openalex.org/W1986680425",
+    "https://openalex.org/W1992324654",
+    "https://openalex.org/W1998984179",
+    "https://openalex.org/W1999635097",
+    "https://openalex.org/W2000302322",
+    "https://openalex.org/W2011197968",
+    "https://openalex.org/W2013362643",
+    "https://openalex.org/W2018071293",
+    "https://openalex.org/W2019951158",
+    "https://openalex.org/W2024501183",
+    "https://openalex.org/W2029246797",
+    "https://openalex.org/W2030130606",
+    "https://openalex.org/W2030345966",
+    "https://openalex.org/W2030778237",
+    "https://openalex.org/W2036169992",
+    "https://openalex.org/W2044459637",
+    "https://openalex.org/W2048326114",
+    "https://openalex.org/W2051948533",
+    "https://openalex.org/W2076274573",
+    "https://openalex.org/W2085771011",
+    "https://openalex.org/W2086104998",
+    "https://openalex.org/W2086854604",
+    "https://openalex.org/W2087365268",
+    "https://openalex.org/W2089820020",
+    "https://openalex.org/W2091948625",
+    "https://openalex.org/W2095774140",
+    "https://openalex.org/W2096308078",
+    "https://openalex.org/W2100434800",
+    "https://openalex.org/W2105258856",
+    "https://openalex.org/W2107551122",
+    "https://openalex.org/W2110330644",
+    "https://openalex.org/W2110436264",
+    "https://openalex.org/W2122031852",
+    "https://openalex.org/W2130130444",
+    "https://openalex.org/W2131089732",
+    "https://openalex.org/W2143468050",
+    "https://openalex.org/W2143620061",
+    "https://openalex.org/W2144721017",
+    "https://openalex.org/W2154663531",
+    "https://openalex.org/W2157638939",
+    "https://openalex.org/W2157783220",
+    "https://openalex.org/W2166521885",
+    "https://openalex.org/W2261751990",
+    "https://openalex.org/W2315610003",
+    "https://openalex.org/W2466888597",
+    "https://openalex.org/W2567251402",
+    "https://openalex.org/W2586745005",
+    "https://openalex.org/W2594008272",
+    "https://openalex.org/W2609865146",
+    "https://openalex.org/W2726030955",
+    "https://openalex.org/W2752326209",
+    "https://openalex.org/W2755022299",
+    "https://openalex.org/W2808959429",
+    "https://openalex.org/W2890264420",
+    "https://openalex.org/W2892913291",
+    "https://openalex.org/W2904012208",
+    "https://openalex.org/W2920811675",
+    "https://openalex.org/W2944447207",
+    "https://openalex.org/W2968590403"
+  ],
+  "related_works": [
+    "https://openalex.org/W2029590280",
+    "https://openalex.org/W4298124085",
+    "https://openalex.org/W2416195635",
+    "https://openalex.org/W69881358",
+    "https://openalex.org/W2380894833",
+    "https://openalex.org/W2751742604",
+    "https://openalex.org/W2126968146",
+    "https://openalex.org/W1983299722",
+    "https://openalex.org/W1984834899",
+    "https://openalex.org/W3030241412"
+  ],
+  "abstract_inverted_index": {
+    "-dependent": [
+      0
+    ],
+    "but": [
+      1
+    ],
+    "sialylation": [
+      2
+    ],
+    "independent,": [
+      3
+    ],
+    "and": [
+      4,
+      40,
+      48,
+      75,
+      89
+    ],
+    "requires": [
+      5
+    ],
+    "endocytosis": [
+      6
+    ],
+    "of": [
+      7,
+      13,
+      18,
+      60
+    ],
+    "IgG": [
+      8
+    ],
+    "by": [
+      9,
+      81
+    ],
+    "innate": [
+      10,
+      26
+    ],
+    "cells.": [
+      11,
+      28
+    ],
+    "Inhibition": [
+      12
+    ],
+    "autophagy": [
+      14,
+      45
+    ],
+    "compromised": [
+      15
+    ],
+    "the": [
+      16,
+      22,
+      53,
+      57,
+      79
+    ],
+    "ability": [
+      17
+    ],
+    "IVIG": [
+      19,
+      30,
+      83
+    ],
+    "to": [
+      20
+    ],
+    "suppress": [
+      21
+    ],
+    "inflammatory": [
+      23,
+      33,
+      50,
+      90
+    ],
+    "cytokines": [
+      24,
+      51
+    ],
+    "in": [
+      25,
+      32,
+      46,
+      52,
+      77
+    ],
+    "immune": [
+      27,
+      73
+    ],
+    "Moreover,": [
+      29
+    ],
+    "therapy": [
+      31,
+      84
+    ],
+    "myopathies": [
+      34
+    ],
+    "such": [
+      35
+    ],
+    "as": [
+      36
+    ],
+    "dermatomyositis,": [
+      37
+    ],
+    "antisynthetase": [
+      38
+    ],
+    "syndrome": [
+      39
+    ],
+    "immune-mediated": [
+      41
+    ],
+    "necrotizing": [
+      42
+    ],
+    "myopathy": [
+      43
+    ],
+    "induced": [
+      44
+    ],
+    "PBMCs": [
+      47
+    ],
+    "reduced": [
+      49
+    ],
+    "circulation,": [
+      54
+    ],
+    "thus": [
+      55
+    ],
+    "validating": [
+      56
+    ],
+    "translational": [
+      58
+    ],
+    "importance": [
+      59
+    ],
+    "these": [
+      61
+    ],
+    "results.": [
+      62
+    ],
+    "Our": [
+      63
+    ],
+    "data": [
+      64
+    ],
+    "provide": [
+      65
+    ],
+    "insight": [
+      66
+    ],
+    "on": [
+      67
+    ],
+    "how": [
+      68
+    ],
+    "circulating": [
+      69
+    ],
+    "normal": [
+      70
+    ],
+    "immunoglobulins": [
+      71
+    ],
+    "maintain": [
+      72
+    ],
+    "homeostasis": [
+      74
+    ],
+    "explain": [
+      76
+    ],
+    "part": [
+      78
+    ],
+    "mechanism": [
+      80
+    ],
+    "which": [
+      82
+    ],
+    "benefits": [
+      85
+    ],
+    "patients": [
+      86
+    ],
+    "with": [
+      87
+    ],
+    "autoimmune": [
+      88
+    ],
+    "diseases.": [
+      91
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 7
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 23
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 7
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 1
+    }
+  ],
+  "updated_date": "2026-05-06T08:25:59.206177",
+  "created_date": "2025-10-10T00:00:00"
+}

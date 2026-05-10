@@ -1,0 +1,1336 @@
+{
+  "id": "https://openalex.org/W2137904825",
+  "doi": "https://doi.org/10.1177/0962280215588241",
+  "title": "Estimating the sample size for a pilot randomised trial to minimise the overall trial sample size for the external pilot and main trial for a continuous outcome variable",
+  "display_name": "Estimating the sample size for a pilot randomised trial to minimise the overall trial sample size for the external pilot and main trial for a continuous outcome variable",
+  "publication_year": 2015,
+  "publication_date": "2015-06-19",
+  "ids": {
+    "openalex": "https://openalex.org/W2137904825",
+    "doi": "https://doi.org/10.1177/0962280215588241",
+    "mag": "2137904825",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/26092476"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1177/0962280215588241",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1177/0962280215588241",
+    "pdf_url": "https://journals.sagepub.com/doi/pdf/10.1177/0962280215588241",
+    "source": {
+      "id": "https://openalex.org/S150263959",
+      "display_name": "Statistical Methods in Medical Research",
+      "issn_l": "0962-2802",
+      "issn": [
+        "0962-2802",
+        "1477-0334"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320017",
+      "host_organization_name": "SAGE Publishing",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320017"
+      ],
+      "host_organization_lineage_names": [
+        "SAGE Publishing"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Statistical Methods in Medical Research",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "hybrid",
+    "oa_url": "https://journals.sagepub.com/doi/pdf/10.1177/0962280215588241",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5025261981",
+        "display_name": "Amy Whitehead",
+        "orcid": "https://orcid.org/0000-0002-2840-6876"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I91136226",
+          "display_name": "University of Sheffield",
+          "ror": "https://ror.org/05krs5044",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I91136226"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Amy L Whitehead",
+      "raw_affiliation_strings": [
+        "Medical Statistics Group, Design, Trials and Statistics Group, School of Health and Related Research, University of Sheffield, Sheffield, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Medical Statistics Group, Design, Trials and Statistics Group, School of Health and Related Research, University of Sheffield, Sheffield, UK",
+          "institution_ids": [
+            "https://openalex.org/I91136226"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5012315210",
+        "display_name": "Steven A. Julious",
+        "orcid": "https://orcid.org/0000-0002-9917-7636"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I91136226",
+          "display_name": "University of Sheffield",
+          "ror": "https://ror.org/05krs5044",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I91136226"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Steven A Julious",
+      "raw_affiliation_strings": [
+        "Medical Statistics Group, Design, Trials and Statistics Group, School of Health and Related Research, University of Sheffield, Sheffield, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Medical Statistics Group, Design, Trials and Statistics Group, School of Health and Related Research, University of Sheffield, Sheffield, UK",
+          "institution_ids": [
+            "https://openalex.org/I91136226"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5016068781",
+        "display_name": "Cindy Cooper",
+        "orcid": "https://orcid.org/0000-0002-2995-5447"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I91136226",
+          "display_name": "University of Sheffield",
+          "ror": "https://ror.org/05krs5044",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I91136226"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Cindy L Cooper",
+      "raw_affiliation_strings": [
+        "Clinical Trials Research Unit, Design, Trials and Statistics Group, School of Health and Related Research, University of Sheffield, Sheffield, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Clinical Trials Research Unit, Design, Trials and Statistics Group, School of Health and Related Research, University of Sheffield, Sheffield, UK",
+          "institution_ids": [
+            "https://openalex.org/I91136226"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5015440553",
+        "display_name": "Michael J. Campbell",
+        "orcid": "https://orcid.org/0000-0003-3529-2739"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I91136226",
+          "display_name": "University of Sheffield",
+          "ror": "https://ror.org/05krs5044",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I91136226"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Michael J Campbell",
+      "raw_affiliation_strings": [
+        "Medical Statistics Group, Design, Trials and Statistics Group, School of Health and Related Research, University of Sheffield, Sheffield, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Medical Statistics Group, Design, Trials and Statistics Group, School of Health and Related Research, University of Sheffield, Sheffield, UK",
+          "institution_ids": [
+            "https://openalex.org/I91136226"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 4,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5025261981"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I91136226"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 27.1812,
+  "has_fulltext": false,
+  "cited_by_count": 1884,
+  "citation_normalized_percentile": {
+    "value": 0.99774233,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 90,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "25",
+    "issue": "3",
+    "first_page": "1057",
+    "last_page": "1073"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11235",
+    "display_name": "Statistical Methods in Clinical Trials",
+    "score": 0.9998999834060669,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2613",
+      "display_name": "Statistics and Probability"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/26",
+      "display_name": "Mathematics"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11235",
+      "display_name": "Statistical Methods in Clinical Trials",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2613",
+        "display_name": "Statistics and Probability"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10804",
+      "display_name": "Health Systems, Economic Evaluations, Quality of Life",
+      "score": 0.9973000288009644,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2002",
+        "display_name": "Economics and Econometrics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10206",
+      "display_name": "Meta-analysis and systematic reviews",
+      "score": 0.9968000054359436,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1804",
+        "display_name": "Statistics, Probability and Uncertainty"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/sample-size-determination",
+      "display_name": "Sample size determination",
+      "score": 0.9018300771713257
+    },
+    {
+      "id": "https://openalex.org/keywords/pilot-trial",
+      "display_name": "Pilot trial",
+      "score": 0.6815394759178162
+    },
+    {
+      "id": "https://openalex.org/keywords/clinical-trial",
+      "display_name": "Clinical trial",
+      "score": 0.5758489370346069
+    },
+    {
+      "id": "https://openalex.org/keywords/standard-deviation",
+      "display_name": "Standard deviation",
+      "score": 0.5624154210090637
+    },
+    {
+      "id": "https://openalex.org/keywords/outcome",
+      "display_name": "Outcome (game theory)",
+      "score": 0.5034679770469666
+    },
+    {
+      "id": "https://openalex.org/keywords/statistics",
+      "display_name": "Statistics",
+      "score": 0.4937208592891693
+    },
+    {
+      "id": "https://openalex.org/keywords/sample",
+      "display_name": "Sample (material)",
+      "score": 0.48823145031929016
+    },
+    {
+      "id": "https://openalex.org/keywords/medicine",
+      "display_name": "Medicine",
+      "score": 0.48264795541763306
+    },
+    {
+      "id": "https://openalex.org/keywords/randomized-controlled-trial",
+      "display_name": "Randomized controlled trial",
+      "score": 0.4442685544490814
+    },
+    {
+      "id": "https://openalex.org/keywords/range",
+      "display_name": "Range (aeronautics)",
+      "score": 0.41698768734931946
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.2903127372264862
+    },
+    {
+      "id": "https://openalex.org/keywords/surgery",
+      "display_name": "Surgery",
+      "score": 0.14220142364501953
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C129848803",
+      "wikidata": "https://www.wikidata.org/wiki/Q2564360",
+      "display_name": "Sample size determination",
+      "level": 2,
+      "score": 0.9018300771713257
+    },
+    {
+      "id": "https://openalex.org/C2994577977",
+      "wikidata": "https://www.wikidata.org/wiki/Q1203526",
+      "display_name": "Pilot trial",
+      "level": 3,
+      "score": 0.6815394759178162
+    },
+    {
+      "id": "https://openalex.org/C535046627",
+      "wikidata": "https://www.wikidata.org/wiki/Q30612",
+      "display_name": "Clinical trial",
+      "level": 2,
+      "score": 0.5758489370346069
+    },
+    {
+      "id": "https://openalex.org/C22679943",
+      "wikidata": "https://www.wikidata.org/wiki/Q159375",
+      "display_name": "Standard deviation",
+      "level": 2,
+      "score": 0.5624154210090637
+    },
+    {
+      "id": "https://openalex.org/C148220186",
+      "wikidata": "https://www.wikidata.org/wiki/Q7111912",
+      "display_name": "Outcome (game theory)",
+      "level": 2,
+      "score": 0.5034679770469666
+    },
+    {
+      "id": "https://openalex.org/C105795698",
+      "wikidata": "https://www.wikidata.org/wiki/Q12483",
+      "display_name": "Statistics",
+      "level": 1,
+      "score": 0.4937208592891693
+    },
+    {
+      "id": "https://openalex.org/C198531522",
+      "wikidata": "https://www.wikidata.org/wiki/Q485146",
+      "display_name": "Sample (material)",
+      "level": 2,
+      "score": 0.48823145031929016
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.48264795541763306
+    },
+    {
+      "id": "https://openalex.org/C168563851",
+      "wikidata": "https://www.wikidata.org/wiki/Q1436668",
+      "display_name": "Randomized controlled trial",
+      "level": 2,
+      "score": 0.4442685544490814
+    },
+    {
+      "id": "https://openalex.org/C204323151",
+      "wikidata": "https://www.wikidata.org/wiki/Q905424",
+      "display_name": "Range (aeronautics)",
+      "level": 2,
+      "score": 0.41698768734931946
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.2903127372264862
+    },
+    {
+      "id": "https://openalex.org/C141071460",
+      "wikidata": "https://www.wikidata.org/wiki/Q40821",
+      "display_name": "Surgery",
+      "level": 1,
+      "score": 0.14220142364501953
+    },
+    {
+      "id": "https://openalex.org/C159985019",
+      "wikidata": "https://www.wikidata.org/wiki/Q181790",
+      "display_name": "Composite material",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C192562407",
+      "wikidata": "https://www.wikidata.org/wiki/Q228736",
+      "display_name": "Materials science",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C144237770",
+      "wikidata": "https://www.wikidata.org/wiki/Q747534",
+      "display_name": "Mathematical economics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C185592680",
+      "wikidata": "https://www.wikidata.org/wiki/Q2329",
+      "display_name": "Chemistry",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C142724271",
+      "wikidata": "https://www.wikidata.org/wiki/Q7208",
+      "display_name": "Pathology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C43617362",
+      "wikidata": "https://www.wikidata.org/wiki/Q170050",
+      "display_name": "Chromatography",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010865",
+      "descriptor_name": "Pilot Projects",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D010865",
+      "descriptor_name": "Pilot Projects",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D010865",
+      "descriptor_name": "Pilot Projects",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016032",
+      "descriptor_name": "Randomized Controlled Trials as Topic",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016032",
+      "descriptor_name": "Randomized Controlled Trials as Topic",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016032",
+      "descriptor_name": "Randomized Controlled Trials as Topic",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017063",
+      "descriptor_name": "Outcome Assessment, Health Care",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017063",
+      "descriptor_name": "Outcome Assessment, Health Care",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017063",
+      "descriptor_name": "Outcome Assessment, Health Care",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018401",
+      "descriptor_name": "Sample Size",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018401",
+      "descriptor_name": "Sample Size",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018401",
+      "descriptor_name": "Sample Size",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1177/0962280215588241",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1177/0962280215588241",
+      "pdf_url": "https://journals.sagepub.com/doi/pdf/10.1177/0962280215588241",
+      "source": {
+        "id": "https://openalex.org/S150263959",
+        "display_name": "Statistical Methods in Medical Research",
+        "issn_l": "0962-2802",
+        "issn": [
+          "0962-2802",
+          "1477-0334"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320017",
+        "host_organization_name": "SAGE Publishing",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320017"
+        ],
+        "host_organization_lineage_names": [
+          "SAGE Publishing"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Statistical Methods in Medical Research",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:26092476",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/26092476",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Statistical methods in medical research",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:eprints.soton.ac.uk:421780",
+      "is_oa": false,
+      "landing_page_url": null,
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401019",
+        "display_name": "ePrints Soton (University of Southampton)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I43439940",
+        "host_organization_name": "University of Southampton",
+        "host_organization_lineage": [
+          "https://openalex.org/I43439940"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "acceptedVersion",
+      "is_accepted": true,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:europepmc.org:3862693",
+      "is_oa": true,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4876429",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400806",
+        "display_name": "Europe PMC (PubMed Central)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1303153112",
+        "host_organization_name": "European Bioinformatics Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/I1303153112"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1177/0962280215588241",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1177/0962280215588241",
+    "pdf_url": "https://journals.sagepub.com/doi/pdf/10.1177/0962280215588241",
+    "source": {
+      "id": "https://openalex.org/S150263959",
+      "display_name": "Statistical Methods in Medical Research",
+      "issn_l": "0962-2802",
+      "issn": [
+        "0962-2802",
+        "1477-0334"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320017",
+      "host_organization_name": "SAGE Publishing",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320017"
+      ],
+      "host_organization_lineage_names": [
+        "SAGE Publishing"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Statistical Methods in Medical Research",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2137904825.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2137904825.grobid-xml"
+  },
+  "referenced_works_count": 26,
+  "referenced_works": [
+    "https://openalex.org/W632986127",
+    "https://openalex.org/W1509047972",
+    "https://openalex.org/W1851631917",
+    "https://openalex.org/W1986071902",
+    "https://openalex.org/W1995439341",
+    "https://openalex.org/W2006962513",
+    "https://openalex.org/W2017011036",
+    "https://openalex.org/W2017874571",
+    "https://openalex.org/W2023008186",
+    "https://openalex.org/W2037557484",
+    "https://openalex.org/W2046632188",
+    "https://openalex.org/W2048382391",
+    "https://openalex.org/W2067772057",
+    "https://openalex.org/W2082494913",
+    "https://openalex.org/W2087425662",
+    "https://openalex.org/W2097126448",
+    "https://openalex.org/W2108052506",
+    "https://openalex.org/W2129512582",
+    "https://openalex.org/W2130607817",
+    "https://openalex.org/W2132814490",
+    "https://openalex.org/W2143342727",
+    "https://openalex.org/W2159574290",
+    "https://openalex.org/W2170036462",
+    "https://openalex.org/W2170182466",
+    "https://openalex.org/W3148645141",
+    "https://openalex.org/W4243177274"
+  ],
+  "related_works": [
+    "https://openalex.org/W2978999882",
+    "https://openalex.org/W3141031773",
+    "https://openalex.org/W1595686156",
+    "https://openalex.org/W2181392282",
+    "https://openalex.org/W2119369480",
+    "https://openalex.org/W148937441",
+    "https://openalex.org/W2137904825",
+    "https://openalex.org/W4388846211",
+    "https://openalex.org/W2783709266",
+    "https://openalex.org/W1971596941"
+  ],
+  "abstract_inverted_index": {
+    "Sample": [
+      0
+    ],
+    "size": [
+      1,
+      34,
+      105,
+      112,
+      143,
+      148,
+      167
+    ],
+    "justification": [
+      2
+    ],
+    "is": [
+      3,
+      28,
+      81,
+      153
+    ],
+    "an": [
+      4,
+      37,
+      56,
+      78,
+      100
+    ],
+    "important": [
+      5,
+      79
+    ],
+    "consideration": [
+      6,
+      80
+    ],
+    "when": [
+      7,
+      144
+    ],
+    "planning": [
+      8
+    ],
+    "a": [
+      9,
+      29,
+      130,
+      182
+    ],
+    "clinical": [
+      10,
+      116
+    ],
+    "trial,": [
+      11,
+      175
+    ],
+    "not": [
+      12,
+      159
+    ],
+    "only": [
+      13
+    ],
+    "for": [
+      14,
+      20,
+      149,
+      208
+    ],
+    "the": [
+      15,
+      26,
+      32,
+      41,
+      45,
+      59,
+      74,
+      87,
+      110,
+      114,
+      121,
+      124,
+      134,
+      138,
+      145,
+      150,
+      164,
+      173
+    ],
+    "main": [
+      16,
+      75,
+      125,
+      151,
+      183
+    ],
+    "trial": [
+      17,
+      50,
+      103,
+      117,
+      126,
+      141,
+      152,
+      184,
+      196
+    ],
+    "but": [
+      18
+    ],
+    "also": [
+      19,
+      179
+    ],
+    "any": [
+      21
+    ],
+    "preliminary": [
+      22
+    ],
+    "pilot": [
+      23,
+      49,
+      83,
+      102,
+      122,
+      140,
+      174,
+      195
+    ],
+    "trial.": [
+      24,
+      76
+    ],
+    "When": [
+      25
+    ],
+    "outcome": [
+      27,
+      46
+    ],
+    "continuous": [
+      30
+    ],
+    "variable,": [
+      31
+    ],
+    "sample": [
+      33,
+      104,
+      111,
+      142,
+      197
+    ],
+    "calculation": [
+      35
+    ],
+    "requires": [
+      36
+    ],
+    "accurate": [
+      38
+    ],
+    "estimate": [
+      39,
+      57,
+      86
+    ],
+    "of": [
+      40,
+      44,
+      58,
+      113,
+      132,
+      202
+    ],
+    "standard": [
+      42,
+      60,
+      88
+    ],
+    "deviation": [
+      43,
+      89
+    ],
+    "measure.": [
+      47
+    ],
+    "A": [
+      48
+    ],
+    "can": [
+      51,
+      98
+    ],
+    "be": [
+      52,
+      65,
+      71,
+      160,
+      169
+    ],
+    "used": [
+      53,
+      66,
+      170
+    ],
+    "to": [
+      54,
+      67,
+      108,
+      137,
+      162,
+      168,
+      172
+    ],
+    "get": [
+      55
+    ],
+    "deviation,": [
+      61
+    ],
+    "which": [
+      62
+    ],
+    "could": [
+      63
+    ],
+    "then": [
+      64
+    ],
+    "anticipate": [
+      68
+    ],
+    "what": [
+      69
+    ],
+    "may": [
+      70,
+      158
+    ],
+    "observed": [
+      72
+    ],
+    "in": [
+      73,
+      106
+    ],
+    "However,": [
+      77,
+      155
+    ],
+    "that": [
+      82,
+      119,
+      212
+    ],
+    "trials": [
+      84
+    ],
+    "often": [
+      85
+    ],
+    "parameter": [
+      90
+    ],
+    "imprecisely.": [
+      91
+    ],
+    "This": [
+      92
+    ],
+    "paper": [
+      93
+    ],
+    "looks": [
+      94
+    ],
+    "at": [
+      95
+    ],
+    "how": [
+      96
+    ],
+    "we": [
+      97,
+      193
+    ],
+    "choose": [
+      99
+    ],
+    "external": [
+      101
+    ],
+    "order": [
+      107
+    ],
+    "minimise": [
+      109
+    ],
+    "overall": [
+      115
+    ],
+    "programme,": [
+      118
+    ],
+    "is,": [
+      120
+    ],
+    "and": [
+      123,
+      189,
+      206
+    ],
+    "together.": [
+      127
+    ],
+    "We": [
+      128
+    ],
+    "produce": [
+      129
+    ],
+    "method": [
+      131
+    ],
+    "calculating": [
+      133
+    ],
+    "optimal": [
+      135
+    ],
+    "solution": [
+      136
+    ],
+    "required": [
+      139
+    ],
+    "standardised": [
+      146,
+      165,
+      209
+    ],
+    "effect": [
+      147,
+      166,
+      210
+    ],
+    "known.": [
+      154
+    ],
+    "as": [
+      156
+    ],
+    "it": [
+      157
+    ],
+    "possible": [
+      161
+    ],
+    "know": [
+      163
+    ],
+    "prior": [
+      171
+    ],
+    "approximate": [
+      176
+    ],
+    "rules": [
+      177
+    ],
+    "are": [
+      178,
+      213
+    ],
+    "presented.": [
+      180
+    ],
+    "For": [
+      181
+    ],
+    "designed": [
+      185
+    ],
+    "with": [
+      186
+    ],
+    "90%": [
+      187
+    ],
+    "power": [
+      188
+    ],
+    "two-sided": [
+      190
+    ],
+    "5%": [
+      191
+    ],
+    "significance,": [
+      192
+    ],
+    "recommend": [
+      194
+    ],
+    "sizes": [
+      198,
+      211
+    ],
+    "per": [
+      199
+    ],
+    "treatment": [
+      200
+    ],
+    "arm": [
+      201
+    ],
+    "75,": [
+      203
+    ],
+    "25,": [
+      204
+    ],
+    "15": [
+      205
+    ],
+    "10": [
+      207
+    ],
+    "extra": [
+      214
+    ],
+    "small": [
+      215,
+      217
+    ],
+    "(≤0.1),": [
+      216
+    ],
+    "(0.2),": [
+      218
+    ],
+    "medium": [
+      219
+    ],
+    "(0.5)": [
+      220
+    ],
+    "or": [
+      221
+    ],
+    "large": [
+      222
+    ],
+    "(0.8),": [
+      223
+    ],
+    "respectively.": [
+      224
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 128
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 347
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 333
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 272
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 254
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 217
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 163
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 90
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 52
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 1
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2025-10-10T00:00:00"
+}

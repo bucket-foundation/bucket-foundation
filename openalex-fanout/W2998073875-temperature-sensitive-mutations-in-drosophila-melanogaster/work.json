@@ -1,0 +1,796 @@
+{
+  "id": "https://openalex.org/W2998073875",
+  "doi": "https://doi.org/10.1007/bf00267238",
+  "title": "Temperature-sensitive mutations in Drosophila melanogaster",
+  "display_name": "Temperature-sensitive mutations in Drosophila melanogaster",
+  "publication_year": 1973,
+  "publication_date": "1973-06-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2998073875",
+    "doi": "https://doi.org/10.1007/bf00267238",
+    "mag": "2998073875",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/4631264"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1007/bf00267238",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1007/bf00267238",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4210168070",
+      "display_name": "Molecular and General Genetics MGG",
+      "issn_l": "0026-8925",
+      "issn": [
+        "0026-8925",
+        "1432-1874"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319900",
+      "host_organization_name": "Springer Science+Business Media",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319900",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Springer Science+Business Media",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Molecular and General Genetics MGG",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5110250246",
+        "display_name": "Thomas A. Grigliatti",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Thomas A. Grigliatti",
+      "raw_affiliation_strings": [
+        "Biochemistry Department, University of British Columbia, Vancouver 8, B. C., Canada",
+        "Department of Zoology, The University of British Columbia, Vancouver, B. C., Canada"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Biochemistry Department, University of British Columbia, Vancouver 8, B. C., Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Zoology, The University of British Columbia, Vancouver, B. C., Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5005121699",
+        "display_name": "Linda M. Hall",
+        "orcid": "https://orcid.org/0000-0001-7515-6657"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Linda Hall",
+      "raw_affiliation_strings": [
+        "Department of Zoology, The University of British Columbia, Vancouver, B. C., Canada"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Zoology, The University of British Columbia, Vancouver, B. C., Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5071885081",
+        "display_name": "Raja Rosenbluth",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Raja Rosenbluth",
+      "raw_affiliation_strings": [
+        "Department of Zoology, The University of British Columbia, Vancouver, B. C., Canada"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Zoology, The University of British Columbia, Vancouver, B. C., Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5111983223",
+        "display_name": "David T Suzuki",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "David T. Suzuki",
+      "raw_affiliation_strings": [
+        "Department of Zoology, The University of British Columbia, Vancouver, B. C., Canada"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Zoology, The University of British Columbia, Vancouver, B. C., Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 4,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5110250246"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I141945490"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 2.9626,
+  "has_fulltext": false,
+  "cited_by_count": 361,
+  "citation_normalized_percentile": {
+    "value": 0.91962572,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 94,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "120",
+    "issue": "2",
+    "first_page": "107",
+    "last_page": "114"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10423",
+    "display_name": "Neurobiology and Insect Physiology Research",
+    "score": 0.9993000030517578,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2804",
+      "display_name": "Cellular and Molecular Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10423",
+      "display_name": "Neurobiology and Insect Physiology Research",
+      "score": 0.9993000030517578,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2804",
+        "display_name": "Cellular and Molecular Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10676",
+      "display_name": "Genetics, Aging, and Longevity in Model Organisms",
+      "score": 0.9991000294685364,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1302",
+        "display_name": "Aging"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10342",
+      "display_name": "Circadian rhythm and melatonin",
+      "score": 0.9987999796867371,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2807",
+        "display_name": "Endocrine and Autonomic Systems"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.9071475267410278
+    },
+    {
+      "id": "https://openalex.org/keywords/drosophila-melanogaster",
+      "display_name": "Drosophila melanogaster",
+      "score": 0.8072259426116943
+    },
+    {
+      "id": "https://openalex.org/keywords/allele",
+      "display_name": "Allele",
+      "score": 0.8047240972518921
+    },
+    {
+      "id": "https://openalex.org/keywords/locus",
+      "display_name": "Locus (genetics)",
+      "score": 0.7993134260177612
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.7448745965957642
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.22660860419273376
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.9071475267410278
+    },
+    {
+      "id": "https://openalex.org/C2780104201",
+      "wikidata": "https://www.wikidata.org/wiki/Q130888",
+      "display_name": "Drosophila melanogaster",
+      "level": 3,
+      "score": 0.8072259426116943
+    },
+    {
+      "id": "https://openalex.org/C180754005",
+      "wikidata": "https://www.wikidata.org/wiki/Q80726",
+      "display_name": "Allele",
+      "level": 3,
+      "score": 0.8047240972518921
+    },
+    {
+      "id": "https://openalex.org/C84597430",
+      "wikidata": "https://www.wikidata.org/wiki/Q106227",
+      "display_name": "Locus (genetics)",
+      "level": 3,
+      "score": 0.7993134260177612
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.7448745965957642
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.22660860419273376
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000483",
+      "descriptor_name": "Alleles",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000483",
+      "descriptor_name": "Alleles",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000483",
+      "descriptor_name": "Alleles",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002874",
+      "descriptor_name": "Chromosome Mapping",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002874",
+      "descriptor_name": "Chromosome Mapping",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002874",
+      "descriptor_name": "Chromosome Mapping",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004331",
+      "descriptor_name": "Drosophila melanogaster",
+      "qualifier_ui": "Q000196",
+      "qualifier_name": "embryology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004331",
+      "descriptor_name": "Drosophila melanogaster",
+      "qualifier_ui": "Q000196",
+      "qualifier_name": "embryology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004331",
+      "descriptor_name": "Drosophila melanogaster",
+      "qualifier_ui": "Q000196",
+      "qualifier_name": "embryology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007814",
+      "descriptor_name": "Larva",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007814",
+      "descriptor_name": "Larva",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007814",
+      "descriptor_name": "Larva",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009069",
+      "descriptor_name": "Movement Disorders",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009069",
+      "descriptor_name": "Movement Disorders",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009069",
+      "descriptor_name": "Movement Disorders",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009069",
+      "descriptor_name": "Movement Disorders",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009069",
+      "descriptor_name": "Movement Disorders",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009069",
+      "descriptor_name": "Movement Disorders",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009154",
+      "descriptor_name": "Mutation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009154",
+      "descriptor_name": "Mutation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009154",
+      "descriptor_name": "Mutation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D010243",
+      "descriptor_name": "Paralysis",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010243",
+      "descriptor_name": "Paralysis",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010243",
+      "descriptor_name": "Paralysis",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010243",
+      "descriptor_name": "Paralysis",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010243",
+      "descriptor_name": "Paralysis",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010243",
+      "descriptor_name": "Paralysis",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1007/bf00267238",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1007/bf00267238",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4210168070",
+        "display_name": "Molecular and General Genetics MGG",
+        "issn_l": "0026-8925",
+        "issn": [
+          "0026-8925",
+          "1432-1874"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319900",
+        "host_organization_name": "Springer Science+Business Media",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319900",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Springer Science+Business Media",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Molecular and General Genetics MGG",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:4631264",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/4631264",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Molecular & general genetics : MGG",
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 13,
+  "referenced_works": [
+    "https://openalex.org/W1578454154",
+    "https://openalex.org/W1608124574",
+    "https://openalex.org/W1882251974",
+    "https://openalex.org/W1984017224",
+    "https://openalex.org/W1993898140",
+    "https://openalex.org/W2007164126",
+    "https://openalex.org/W2018582505",
+    "https://openalex.org/W2019615496",
+    "https://openalex.org/W2041089401",
+    "https://openalex.org/W2042353773",
+    "https://openalex.org/W2049243174",
+    "https://openalex.org/W2073036589",
+    "https://openalex.org/W2082671154"
+  ],
+  "related_works": [
+    "https://openalex.org/W2125344851",
+    "https://openalex.org/W2124478268",
+    "https://openalex.org/W2413816897",
+    "https://openalex.org/W2042873259",
+    "https://openalex.org/W1902821440",
+    "https://openalex.org/W1989502778",
+    "https://openalex.org/W2361342090",
+    "https://openalex.org/W2055395993",
+    "https://openalex.org/W2056064843",
+    "https://openalex.org/W858891458"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 7
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 9
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 7
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 16
+    }
+  ],
+  "updated_date": "2026-04-10T15:06:20.359241",
+  "created_date": "2020-01-10T00:00:00"
+}

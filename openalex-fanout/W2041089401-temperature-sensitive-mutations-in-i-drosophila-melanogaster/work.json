@@ -1,0 +1,967 @@
+{
+  "id": "https://openalex.org/W2041089401",
+  "doi": "https://doi.org/10.1126/science.170.3959.695",
+  "title": "Temperature-Sensitive Mutations in <i>Drosophila melanogaster</i>",
+  "display_name": "Temperature-Sensitive Mutations in <i>Drosophila melanogaster</i>",
+  "publication_year": 1970,
+  "publication_date": "1970-11-13",
+  "ids": {
+    "openalex": "https://openalex.org/W2041089401",
+    "doi": "https://doi.org/10.1126/science.170.3959.695",
+    "mag": "2041089401",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/5479624"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1126/science.170.3959.695",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1126/science.170.3959.695",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S3880285",
+      "display_name": "Science",
+      "issn_l": "0036-8075",
+      "issn": [
+        "0036-8075",
+        "1095-9203"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315823",
+      "host_organization_name": "American Association for the Advancement of Science",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315823"
+      ],
+      "host_organization_lineage_names": [
+        "American Association for the Advancement of Science"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Science",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5111983223",
+        "display_name": "David T Suzuki",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "David T. Suzuki",
+      "raw_affiliation_strings": [
+        "University of British Columbia, Vancouver, B.C., Canada"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of British Columbia, Vancouver, B.C., Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5111983223"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I141945490"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 8.8581,
+  "has_fulltext": false,
+  "cited_by_count": 240,
+  "citation_normalized_percentile": {
+    "value": 0.98232271,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 90,
+    "max": 99
+  },
+  "biblio": {
+    "volume": "170",
+    "issue": "3959",
+    "first_page": "695",
+    "last_page": "706"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11075",
+    "display_name": "Insect Resistance and Genetics",
+    "score": 0.9995999932289124,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1312",
+      "display_name": "Molecular Biology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11075",
+      "display_name": "Insect Resistance and Genetics",
+      "score": 0.9995999932289124,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10878",
+      "display_name": "CRISPR and Genetic Engineering",
+      "score": 0.9976000189781189,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11403",
+      "display_name": "Invertebrate Immune Response Mechanisms",
+      "score": 0.9908000230789185,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2403",
+        "display_name": "Immunology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/24",
+        "display_name": "Immunology and Microbiology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/drosophila-melanogaster",
+      "display_name": "Drosophila melanogaster",
+      "score": 0.9132901430130005
+    },
+    {
+      "id": "https://openalex.org/keywords/drosophila",
+      "display_name": "Drosophila (subgenus)",
+      "score": 0.5407597422599792
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.49253830313682556
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.4744219183921814
+    },
+    {
+      "id": "https://openalex.org/keywords/mutation",
+      "display_name": "Mutation",
+      "score": 0.4411610960960388
+    },
+    {
+      "id": "https://openalex.org/keywords/melanogaster",
+      "display_name": "Melanogaster",
+      "score": 0.42644989490509033
+    },
+    {
+      "id": "https://openalex.org/keywords/evolutionary-biology",
+      "display_name": "Evolutionary biology",
+      "score": 0.3213818073272705
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.1670636236667633
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2780104201",
+      "wikidata": "https://www.wikidata.org/wiki/Q130888",
+      "display_name": "Drosophila melanogaster",
+      "level": 3,
+      "score": 0.9132901430130005
+    },
+    {
+      "id": "https://openalex.org/C2776041557",
+      "wikidata": "https://www.wikidata.org/wiki/Q3715451",
+      "display_name": "Drosophila (subgenus)",
+      "level": 3,
+      "score": 0.5407597422599792
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.49253830313682556
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.4744219183921814
+    },
+    {
+      "id": "https://openalex.org/C501734568",
+      "wikidata": "https://www.wikidata.org/wiki/Q42918",
+      "display_name": "Mutation",
+      "level": 3,
+      "score": 0.4411610960960388
+    },
+    {
+      "id": "https://openalex.org/C2776998849",
+      "wikidata": "https://www.wikidata.org/wiki/Q3766082",
+      "display_name": "Melanogaster",
+      "level": 4,
+      "score": 0.42644989490509033
+    },
+    {
+      "id": "https://openalex.org/C78458016",
+      "wikidata": "https://www.wikidata.org/wiki/Q840400",
+      "display_name": "Evolutionary biology",
+      "level": 1,
+      "score": 0.3213818073272705
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.1670636236667633
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002875",
+      "descriptor_name": "Chromosomes",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002875",
+      "descriptor_name": "Chromosomes",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002875",
+      "descriptor_name": "Chromosomes",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004330",
+      "descriptor_name": "Drosophila",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D004330",
+      "descriptor_name": "Drosophila",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D004330",
+      "descriptor_name": "Drosophila",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D005799",
+      "descriptor_name": "Genes, Dominant",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005799",
+      "descriptor_name": "Genes, Dominant",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005799",
+      "descriptor_name": "Genes, Dominant",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005804",
+      "descriptor_name": "Genes, Lethal",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005804",
+      "descriptor_name": "Genes, Lethal",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005804",
+      "descriptor_name": "Genes, Lethal",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008675",
+      "descriptor_name": "Metamorphosis, Biological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008675",
+      "descriptor_name": "Metamorphosis, Biological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008675",
+      "descriptor_name": "Metamorphosis, Biological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008855",
+      "descriptor_name": "Microscopy, Electron, Scanning",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008855",
+      "descriptor_name": "Microscopy, Electron, Scanning",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008855",
+      "descriptor_name": "Microscopy, Electron, Scanning",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009154",
+      "descriptor_name": "Mutation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009154",
+      "descriptor_name": "Mutation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009154",
+      "descriptor_name": "Mutation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    }
+  ],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1126/science.170.3959.695",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1126/science.170.3959.695",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S3880285",
+        "display_name": "Science",
+        "issn_l": "0036-8075",
+        "issn": [
+          "0036-8075",
+          "1095-9203"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315823",
+        "host_organization_name": "American Association for the Advancement of Science",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315823"
+        ],
+        "host_organization_lineage_names": [
+          "American Association for the Advancement of Science"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Science",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:5479624",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/5479624",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Science (New York, N.Y.)",
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 112,
+  "referenced_works": [
+    "https://openalex.org/W166411003",
+    "https://openalex.org/W192273355",
+    "https://openalex.org/W309957987",
+    "https://openalex.org/W1418215368",
+    "https://openalex.org/W1457437629",
+    "https://openalex.org/W1472240060",
+    "https://openalex.org/W1479760899",
+    "https://openalex.org/W1482636507",
+    "https://openalex.org/W1542829663",
+    "https://openalex.org/W1573050557",
+    "https://openalex.org/W1576548137",
+    "https://openalex.org/W1578454154",
+    "https://openalex.org/W1608124574",
+    "https://openalex.org/W1619713005",
+    "https://openalex.org/W1726413385",
+    "https://openalex.org/W1775334182",
+    "https://openalex.org/W1783140458",
+    "https://openalex.org/W1786912457",
+    "https://openalex.org/W1801673007",
+    "https://openalex.org/W1811297709",
+    "https://openalex.org/W1814269464",
+    "https://openalex.org/W1859982293",
+    "https://openalex.org/W1895500467",
+    "https://openalex.org/W1907775094",
+    "https://openalex.org/W1915398658",
+    "https://openalex.org/W1943726527",
+    "https://openalex.org/W1944115349",
+    "https://openalex.org/W1965352457",
+    "https://openalex.org/W1973375235",
+    "https://openalex.org/W1975771143",
+    "https://openalex.org/W1976522658",
+    "https://openalex.org/W1978305197",
+    "https://openalex.org/W1984017224",
+    "https://openalex.org/W1984253178",
+    "https://openalex.org/W1988459141",
+    "https://openalex.org/W1988554889",
+    "https://openalex.org/W1989413568",
+    "https://openalex.org/W1999154576",
+    "https://openalex.org/W2000658928",
+    "https://openalex.org/W2007031753",
+    "https://openalex.org/W2007164126",
+    "https://openalex.org/W2009010187",
+    "https://openalex.org/W2011512765",
+    "https://openalex.org/W2016378258",
+    "https://openalex.org/W2018582505",
+    "https://openalex.org/W2019615496",
+    "https://openalex.org/W2023133556",
+    "https://openalex.org/W2025551991",
+    "https://openalex.org/W2026119166",
+    "https://openalex.org/W2027658439",
+    "https://openalex.org/W2032939910",
+    "https://openalex.org/W2036159140",
+    "https://openalex.org/W2039666774",
+    "https://openalex.org/W2042353773",
+    "https://openalex.org/W2043514309",
+    "https://openalex.org/W2044605869",
+    "https://openalex.org/W2046633436",
+    "https://openalex.org/W2049243174",
+    "https://openalex.org/W2050840037",
+    "https://openalex.org/W2057096134",
+    "https://openalex.org/W2061027018",
+    "https://openalex.org/W2061295966",
+    "https://openalex.org/W2062556579",
+    "https://openalex.org/W2063972603",
+    "https://openalex.org/W2064297124",
+    "https://openalex.org/W2064986674",
+    "https://openalex.org/W2073036589",
+    "https://openalex.org/W2073846346",
+    "https://openalex.org/W2078052881",
+    "https://openalex.org/W2078148459",
+    "https://openalex.org/W2079542484",
+    "https://openalex.org/W2079639548",
+    "https://openalex.org/W2079859752",
+    "https://openalex.org/W2082671154",
+    "https://openalex.org/W2088370124",
+    "https://openalex.org/W2091164671",
+    "https://openalex.org/W2094690457",
+    "https://openalex.org/W2101002760",
+    "https://openalex.org/W2102550026",
+    "https://openalex.org/W2107427931",
+    "https://openalex.org/W2119920137",
+    "https://openalex.org/W2121831670",
+    "https://openalex.org/W2123074989",
+    "https://openalex.org/W2139313657",
+    "https://openalex.org/W2147001975",
+    "https://openalex.org/W2150473280",
+    "https://openalex.org/W2150595068",
+    "https://openalex.org/W2152467615",
+    "https://openalex.org/W2157903971",
+    "https://openalex.org/W2160155565",
+    "https://openalex.org/W2161247979",
+    "https://openalex.org/W2161604919",
+    "https://openalex.org/W2165314714",
+    "https://openalex.org/W2166375493",
+    "https://openalex.org/W2172810540",
+    "https://openalex.org/W2173973055",
+    "https://openalex.org/W2182980480",
+    "https://openalex.org/W2206007721",
+    "https://openalex.org/W2255430793",
+    "https://openalex.org/W2312231868",
+    "https://openalex.org/W2317223813",
+    "https://openalex.org/W2324020508",
+    "https://openalex.org/W2324021882",
+    "https://openalex.org/W2328118379",
+    "https://openalex.org/W2330047747",
+    "https://openalex.org/W2356130832",
+    "https://openalex.org/W2399783881",
+    "https://openalex.org/W2419626706",
+    "https://openalex.org/W2425555209",
+    "https://openalex.org/W2472862273",
+    "https://openalex.org/W2586568188",
+    "https://openalex.org/W3152587629"
+  ],
+  "related_works": [
+    "https://openalex.org/W3217674162",
+    "https://openalex.org/W1972794703",
+    "https://openalex.org/W2086842568",
+    "https://openalex.org/W2075087776",
+    "https://openalex.org/W2013474102",
+    "https://openalex.org/W2429278941",
+    "https://openalex.org/W4230768823",
+    "https://openalex.org/W2014093629",
+    "https://openalex.org/W2503941435",
+    "https://openalex.org/W4323037479"
+  ],
+  "abstract_inverted_index": {
+    "Improved": [
+      0
+    ],
+    "methods": [
+      1
+    ],
+    "for": [
+      2
+    ],
+    "rearing": [
+      3
+    ],
+    "and": [
+      4,
+      43,
+      62
+    ],
+    "screening": [
+      5
+    ],
+    "large": [
+      6
+    ],
+    "numbers": [
+      7
+    ],
+    "of": [
+      8,
+      13,
+      55,
+      73
+    ],
+    "flies": [
+      9,
+      24
+    ],
+    "permitted": [
+      10
+    ],
+    "the": [
+      11,
+      27,
+      50,
+      56,
+      79
+    ],
+    "recovery": [
+      12
+    ],
+    "10": [
+      14,
+      28
+    ],
+    "mutations": [
+      15,
+      84
+    ],
+    "exhibiting": [
+      16
+    ],
+    "a": [
+      17,
+      38,
+      47
+    ],
+    "reversible": [
+      18
+    ],
+    "temperature-dependent": [
+      19
+    ],
+    "adult": [
+      20,
+      63,
+      86
+    ],
+    "paralysis": [
+      21,
+      64
+    ],
+    "among": [
+      22
+    ],
+    "1.1×106": [
+      23
+    ],
+    "tested.": [
+      25
+    ],
+    "Of": [
+      26
+    ],
+    "mutations,": [
+      29,
+      81
+    ],
+    "two": [
+      30
+    ],
+    "were": [
+      31,
+      35,
+      88
+    ],
+    "allelic": [
+      32
+    ],
+    "to": [
+      33,
+      78
+    ],
+    "parats,two": [
+      34
+    ],
+    "alleles": [
+      36,
+      58
+    ],
+    "in": [
+      37
+    ],
+    "new": [
+      39
+    ],
+    "locus,": [
+      40
+    ],
+    "stoned": [
+      41
+    ],
+    "(stn),": [
+      42
+    ],
+    "six": [
+      44
+    ],
+    "fell": [
+      45
+    ],
+    "into": [
+      46
+    ],
+    "third": [
+      48
+    ],
+    "area,": [
+      49
+    ],
+    "shibire": [
+      51
+    ],
+    "(shi)": [
+      52
+    ],
+    "locus.": [
+      53
+    ],
+    "Several": [
+      54
+    ],
+    "shi": [
+      57
+    ],
+    "cause": [
+      59
+    ],
+    "embryonic,": [
+      60
+    ],
+    "larval": [
+      61
+    ],
+    "at": [
+      65
+    ],
+    "29°": [
+      66
+    ],
+    "C": [
+      67
+    ],
+    "as": [
+      68,
+      70
+    ],
+    "well": [
+      69
+    ],
+    "structural": [
+      71
+    ],
+    "anomalies": [
+      72
+    ],
+    "various": [
+      74
+    ],
+    "tissues.": [
+      75
+    ],
+    "In": [
+      76
+    ],
+    "addition": [
+      77
+    ],
+    "ts": [
+      80
+    ],
+    "several": [
+      82
+    ],
+    "non-conditional": [
+      83
+    ],
+    "affecting": [
+      85
+    ],
+    "movement": [
+      87
+    ],
+    "recovered.": [
+      89
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 7
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 2
+    }
+  ],
+  "updated_date": "2026-04-10T15:06:20.359241",
+  "created_date": "2016-06-24T00:00:00"
+}
