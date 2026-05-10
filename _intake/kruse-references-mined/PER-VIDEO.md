@@ -1,6 +1,27 @@
 # Per-Video References
 
 
+## -4O4hUwcpDw-wittgenstein-interview-with-prof-michael-potter
+
+**Concepts**: AGE(203), Russell(76), WHO(57), AGEs(12), RAGE(7), EPA(6), heme(3), UV(1), iron(1), electron(1), NIH(1), Einstein(1)
+
+
+**Titled**: Who(2), Michael Potter
+Professor(1), Michael(1)
+
+
+**Citations**: Cambridge 1929(1), Edition 1922(1)
+
+## -IhX_8iVf2w-history-of-jazz-dave-jasen-on-novelty-ragtime-confrey-bargy-
+
+**Concepts**: WHO(12), AGE(6), Einstein(3), NAD(1)
+
+
+**Titled**: 
+
+
+**Citations**: Creations 1926(1)
+
 ## -VFTXZrbyNA-58-dr-jack-kruse-high-latitude-living-cold-exposure-sunlight
 
 **Concepts**: WHO(45), melanin(29), quantum(24), mitochondria(23), iron(23), AGE(23), Newton(20), Einstein(17), semiconductor(14), photosynthesis(13), blue light(10), red light(8), mitochondrial(6), circadian(6), UV(6), EMF(6), quantum biology(6), electron(6), FDA(6), melatonin(5)
@@ -21,6 +42,26 @@
 
 **Citations**: 
 
+## -sB12gk9ESA-a-i-revolution-full-documentary-nova-pbs
+
+**Concepts**: AGE(39), AGEs(11), WHO(7), iron(3), RAGE(3), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: March 2016(1)
+
+## -z95oKVXw9A-archetypes-explained-introduction-to-jung
+
+**Concepts**: WHO(65), AGE(54), AGEs(7), heme(6), NAD(2), EPA(1), NIH(1)
+
+
+**Titled**: 
+
+
+**Citations**: Year 1961(1)
+
 ## 0IjUzKzfIbI-blue-light-kills-the-fit-people-dr-jack-kruse-ep-15
 
 **Concepts**: mitochondria(38), WHO(26), electron(23), blue light(19), iron(18), UV(13), red light(13), AGE(12), mitochondrial(10), NAD(10), DHA(10), infrared(8), EMF(8), photosynthesis(7), electromagnetic(6), proton(6), biophoton(4), melatonin(4), dopamine(4), UVA(4)
@@ -31,6 +72,16 @@ Wallace(1), Cruz(1), Steven Cain(1)
 
 
 **Citations**: Cruise 2023(1)
+
+## 0Km3Bsg3bLg-lecture-recital-a-history-of-the-viol-o-de-sete-cordas
+
+**Concepts**: WHO(17), AGE(12), heme(1), iron(1), AGEs(1), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## 0MmyVoqjkwQ-dr-jack-kruse-magnetism-and-health
 
@@ -53,6 +104,26 @@ Kruse(1), Jack Kruse(1), David Klein(1)
 
 **Citations**: 
 
+## 0UGf6-LeQzU-global-transpersonal-symposium-10022014-2-stanislav-grof
+
+**Concepts**: WHO(41), AGE(21), AGEs(10), iron(2), EPA(2), quantum(1)
+
+
+**Titled**: 
+
+
+**Citations**: Sten 1993(1)
+
+## 0Zld-MX11lA-a-brain-divided-iain-mcgilchrist-ep-168
+
+**Concepts**: WHO(71), AGE(35), EPA(7), iron(5), AGEs(2), quantum(1), Russell(1), Bohm(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 0aw3ydFM9N0-38-minutes-of-jeff-schneider-and-me-teaching-you-how-to-not-
 
 **Concepts**: WHO(6), heme(1), AGE(1), RAGE(1)
@@ -62,6 +133,16 @@ Kruse(1), Jack Kruse(1), David Klein(1)
 
 
 **Citations**: 
+
+## 0rALqcPWuH0-civilization-53-dostoevsky-and-the-soul-of-russia
+
+**Concepts**: WHO(43), AGE(33), AGEs(4), RAGE(2)
+
+
+**Titled**: 
+
+
+**Citations**: Napoleon 1812(2), Russia 1812(1)
 
 ## 18lVJi_ioFk-39-dr-andrew-marino
 
@@ -73,6 +154,16 @@ Georgie(1), Leven(1), Marino(1)
 
 
 **Citations**: University 1939(1)
+
+## 18ll8-Ap-Bw-pict-honorary-lecture-iv-wittgenstein-and-the-history-of-phi
+
+**Concepts**: WHO(48), AGE(43), RAGE(11), Russell(11), AGEs(9), heme(3), EPA(2), iron(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: Italy 1919(1), Tractatus 1919(1), Oxford 1930(1), January 1940(1), Stein 1912(1)
 
 ## 19jF6ZwJm-A-how-i-would-relearn-the-guitar-from-scratch
 
@@ -166,6 +257,16 @@ Becker(1), Robert(1)
 
 **Citations**: 
 
+## 2UEXDs4mouU-why-are-our-brains-divided-hemispheric-differences-and-its-i
+
+**Concepts**: WHO(77), AGE(59), AGEs(15), iron(12), EPA(12), RAGE(3), quantum(2), Bohr(1), Feynman(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 2njvFN-W4zc-red-light-blue-light-brain-damage-dr-jack-kruse-explains-wtf
 
 **Concepts**: mitochondria(32), iron(30), WHO(27), melanin(14), AGE(14), mitochondrial(12), UV(12), hemoglobin(11), leptin(10), biophoton(7), ATP(7), Becker(7), red light(6), EMF(6), Hashimoto(5), EPA(5), electron(5), circadian(4), blue light(4), cytochrome(3)
@@ -174,6 +275,16 @@ Becker(1), Robert(1)
 **Titled**: Jack Cruz(2), Hazen(2), Brandon Crawford(1), Jack
 Cruz(1), Brandon
 Crawford(1)
+
+
+**Citations**: 
+
+## 3ETGclWcZcI-j-dilla-beat-tape-1
+
+**Concepts**: 
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -208,9 +319,40 @@ Crawford(1)
 
 **Citations**: 
 
+## 3dtqt0bXb4Y-12-thomas-pynchon-the-crying-of-lot-49
+
+**Concepts**: AGE(45), WHO(22), NAD(1), AGEs(1), electron(1), Wheeler(1)
+
+
+**Titled**: Amy Hungerford(4), Amy
+Hungerford(3), Hilarius(3)
+
+
+**Citations**: 
+
 ## 3t89Yuhi1Fo-a-lecture-demonstration-by-dr-radha-bhaskar-a-raga-s-journey
 
 **Concepts**: DHA(25), AGE(6), WHO(4), UV(1), UVA(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 3tuqiTMSzkU-carl-jung-and-the-archetypes-dr-kevin-lu-phd
+
+**Concepts**: AGE(51), WHO(30), AGEs(15), heme(6), NAD(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 44-FZTkB5lw-the-beatles-1965-songwriting-blueprint-explained
+
+**Concepts**: AGE(3), WHO(2)
 
 
 **Titled**: 
@@ -248,6 +390,16 @@ Crawford(1)
 
 **Citations**: 
 
+## 4FG8Lynp6Ss-critique-9-13-hannah-arendt-the-human-condition
+
+**Concepts**: AGE(46), WHO(45), AGEs(10), RAGE(5), heme(3), NIH(3), EPA(2), Schrodinger(1)
+
+
+**Titled**: Noreen(1)
+
+
+**Citations**: Tuebingen 2012(1), Prize 2014(1), Revolution 1963(1), Republic 1972(1)
+
 ## 4QQCOugnQL4-jack-kruse-wim-hof-freezer-ice-bath-36degrees-6mins-6-3-19
 
 **Concepts**: WHO(1)
@@ -269,12 +421,42 @@ Cruz(1)
 
 **Citations**: 
 
+## 4_lhKw2Vq50-vrg-the-human-condition-2021-ep-2-the-human-condition
+
+**Concepts**: AGE(56), WHO(45), iron(7), RAGE(7), EPA(6), heme(2), NAD(1), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 4kgGrgF3JhQ-8-jack-kerouac-on-the-road
+
+**Concepts**: AGE(52), WHO(17), AGEs(3), heme(1), EPA(1)
+
+
+**Titled**: Amy Hungerford(1)
+
+
+**Citations**: 
+
 ## 52BwgibSVWU-medisun-podcast-19-dr-jack-kruse-epstein-cabal-circus-maximu
 
 **Concepts**: WHO(82), AGE(34), melanin(18), Rockefeller(11), EMF(7), mitochondria(5), iron(5), Becker(5), mitochondrial(4), collagen(4), photosynthesis(3), electromagnetic(3), leptin(3), copper(3), DHA(3), EPA(3), circadian(2), blue light(2), heme(2), RAGE(2)
 
 
 **Titled**: Cruz(2), Jack Cruz(1), Kartland(1), Courtland(1), Chow(1)
+
+
+**Citations**: 
+
+## 56yLoF-PGbk-alan-watts-philosophy-of-the-tao-pt-1-flow-balance-and-the-c
+
+**Concepts**: WHO(33), AGE(11), EPA(9), RAGE(2), NAD(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -289,6 +471,16 @@ Cruz(1)
 
 **Citations**: Germany 2015(1), Italy 2010(1)
 
+## 591E6zqWqA8-alan-watts-tao-of-philosophy-seeing-through-the-net-1-2
+
+**Concepts**: WHO(21), AGE(8), iron(5), electron(3), quantum(2), EPA(2), AGEs(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 5A8K0kbkmBk-how-morphic-resonance-affects-our-memories-families-rituals-
 
 **Concepts**: WHO(48), AGE(22), EPA(8), AGEs(7), quantum(4), iron(3), NAD(2), heme(1), RAGE(1), Faraday(1)
@@ -299,9 +491,49 @@ Cruz(1)
 
 **Citations**: 
 
+## 5BNPeFHU7QQ-decoding-the-universe-cosmos-full-documentary-nova-pbs
+
+**Concepts**: AGE(18), Einstein(7), WHO(6), Newton(3), AGEs(2), RAGE(2), electromagnetic(1), iron(1), DHA(1), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: Prize 2011(1)
+
+## 5IoqVUEmNrQ-alan-watts-a-journey-through-eastern-and-western-zen-1-3
+
+**Concepts**: WHO(77), AGE(23), iron(12), DHA(12), EPA(8), AGEs(4), UV(2), electron(2), NIR(1), heme(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 5Oa0vdtlu_c-the-power-of-music-brian-eno-and-david-mitchel-in-conversati
+
+**Concepts**: WHO(24), AGE(21), AGEs(3), UV(1), heme(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 5S0adKixvNI-arabic-maqam-beautiful-arabian-oud-music-arabic-ambiant-oud-
 
 **Concepts**: 
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 5VcUJjRC-Hc-stanislav-grof-holotropic-bodywork-workshop-part-1
+
+**Concepts**: WHO(21), AGE(10), RAGE(6), EPA(4), electron(3), iron(1), AGEs(1)
 
 
 **Titled**: 
@@ -342,6 +574,26 @@ Cruz(1)
 ## 5p2H9aTJTfg-11-the-fourth-phase-of-water-why-the-water-in-your-body-is-c
 
 **Concepts**: WHO(24), infrared(23), deuterium(11), mitochondria(10), ATP(9), AGE(9), red light(6), exclusion zone(4), fourth phase of water(3), photosynthesis(3), quantum(2), Newton(2), mitochondrial(1), heme(1), iron(1), copper(1), autoimmune(1), electron(1), Einstein(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 5scxrMeYNc0-alan-watts-lectures-discipline-of-zen
+
+**Concepts**: WHO(22), AGE(5), DHA(1), EPA(1), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 5x2X4jRqq6w-alan-watts-the-strength-of-weakness-zen-judo
+
+**Concepts**: WHO(18), AGE(2), DHA(1), RAGE(1)
 
 
 **Titled**: 
@@ -399,6 +651,16 @@ Cruz(1)
 
 **Citations**: London 1985(1)
 
+## 7HSgMbQfGJo-inside-eienstien-mind-nova-pbs-eienstienmind-cosmicscience-d
+
+**Concepts**: Einstein(88), Newton(13), AGE(12), WHO(9), quantum(2), AGEs(2), Maxwell(2), electromagnetic(1), EPA(1)
+
+
+**Titled**: Robert(1)
+
+
+**Citations**: November 1915(2), Office 1902(1), December 1974(1)
+
 ## 7IjfRQSRLt8-dr-jack-kruse-reveals-insights-banned-ted-talk-2012
 
 **Concepts**: WHO(8), leptin(5), circadian(1), AGE(1), NIH(1)
@@ -408,6 +670,16 @@ Cruz(1)
 
 
 **Citations**: Nashville 2011(1), City 2011(1)
+
+## 7KJ7G8gdqvo-seminar-a-precarious-happiness-adorno-on-negativity-and-norm
+
+**Concepts**: AGE(32), WHO(32), heme(9), EPA(9), AGEs(6), RAGE(3), NIH(1)
+
+
+**Titled**: Dabashi(1)
+
+
+**Citations**: Press 2021(1), Frankfurt 1931(1), Mahler 1962(1), English 1973(1)
 
 ## 7LHwUIv5zOo-disconnecting-one-side-of-dr-becker-s-regenerative-circuit
 
@@ -429,6 +701,36 @@ Cruz(1)
 
 **Citations**: 
 
+## 7bC3AFL80Ag-totalitarianism-freedom-evil-introduction-to-hannah-arendt-l
+
+**Concepts**: WHO(14), AGE(10), EPA(6), AGEs(2)
+
+
+**Titled**: 
+
+
+**Citations**: York 1975(1)
+
+## 7bkFlJfxyF0-23-queer-theory-and-gender-performativity
+
+**Concepts**: AGE(22), WHO(19), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 7g1nxCou1SA-alan-watts-05-03-eastern-and-western-zen-i-unbleached-silk
+
+**Concepts**: WHO(21), DHA(5), AGE(5), UV(1), heme(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 7jnpSs3gMl4-rupert-sheldrake-on-morphic-resonance-telepathy-the-extended
 
 **Concepts**: AGE(47), WHO(41), AGEs(13), EPA(11), magnetic field(6), electromagnetic(6), RAGE(6), Einstein(4), iron(2), quantum(2), Maxwell(2), Faraday(2), electron(1), Russell(1), Newton(1)
@@ -438,6 +740,16 @@ Cruz(1)
 
 
 **Citations**: French 1898(1), English 1911(1)
+
+## 7nZNeQYoQgs-pu-uwai-haokila-the-story-of-how-hawai-i-shaped-modern-music
+
+**Concepts**: WHO(32), AGE(28), EPA(7), AGEs(6), RAGE(2), heme(1)
+
+
+**Titled**: 
+
+
+**Citations**: Fair 1901(1), Schools 1892(1)
 
 ## 7xyGtI7KKIY-lecture-5-part-1-3-karlheinz-stockhausen-four-criteria-of-el
 
@@ -452,6 +764,16 @@ Cruz(1)
 ## 7zAGVbgKsY8-learn-every-chord-in-moonlight-sonata-chord-names-theory-and
 
 **Concepts**: GSH(31), WHO(14), AGE(9)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 88CFLcDqNak-chris-cutrone-lecture-on-adorno-s-negative-dialectics-2
+
+**Concepts**: AGE(37), WHO(27), NAD(11), EPA(10), AGEs(6), iron(3), RAGE(2), UV(1)
 
 
 **Titled**: 
@@ -489,6 +811,16 @@ Cruz(1)
 
 **Citations**: 
 
+## 8oIoY_d6XCc-introdu-o-teoria-da-literatura-17-com-paul-fry-de-yale
+
+**Concepts**: WHO(52), AGE(21), EPA(3), AGEs(3), iron(1), quantum(1)
+
+
+**Titled**: 
+
+
+**Citations**: Curtain 1989(1), Moscow 1926(1)
+
 ## 8qqyCA9vz_s-the-fourth-phase-of-water-beyond-the-three-you-already-know-
 
 **Concepts**: WHO(67), infrared(36), AGE(21), electron(13), EPA(12), exclusion zone(8), red light(7), RAGE(5), proton(5), EZ water(3), photosynthesis(3), electromagnetic(3), iron(3), AGEs(3), UV(2), NAD(1), ATP(1)
@@ -499,9 +831,29 @@ Cruz(1)
 
 **Citations**: 
 
+## 8r8ISkQ4exM-2014-personality-lecture-06-carl-jung-part-1
+
+**Concepts**: WHO(59), AGE(14), NIH(9), RAGE(4), AGEs(3), UV(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 9-P8Qzvdkl8-jack-kruse-sunlight-is-key-for-health
 
 **Concepts**: WHO(9), mitochondria(8), iron(7), blue light(6), electromagnetic(4), electron(4), UV(3), red light(3), NAD(3), photosynthesis(2), cytochrome(2), melatonin(1), mitochondrial(1), UVB(1), hemoglobin(1), EMF(1), NADH(1), ATP(1), quantum(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## 9PL3M_t7Drs-the-hero-s-journey-of-self-discovery
+
+**Concepts**: AGE(15), WHO(15), AGEs(3), RAGE(3), NAD(1), EPA(1)
 
 
 **Titled**: 
@@ -558,6 +910,26 @@ Cruz(1)
 
 
 **Citations**: 
+
+## AZj01XPMIyA-648-civilization-s-imbalance-and-restoring-the-humanities-th
+
+**Concepts**: WHO(40), AGE(30), EPA(9), AGEs(7), iron(6), RAGE(2), Einstein(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## AfYY9v0Q0X4-brian-eno-on-ai-art-and-what-makes-us-human
+
+**Concepts**: WHO(74), AGE(28), RAGE(4), iron(3), EPA(3), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: Museum 1963(1)
 
 ## B8VcGXbKR34-cancer-prevention-secret-sunlight-beats-food-dr-jack-kruse-i
 
@@ -619,6 +991,26 @@ Cruz(1)
 
 **Citations**: 
 
+## C8aa1ic6yWE-carl-jung-the-relations-between-the-ego-and-the-unconscious
+
+**Concepts**: WHO(131), AGE(95), AGEs(28), EPA(18), iron(7), RAGE(6), NAD(2), heme(1), NIH(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## CFHZyse4VGw-2015-personality-lecture-07-depth-psychology-carl-jung-part-
+
+**Concepts**: WHO(41), AGE(26), EPA(4), AGEs(3), RAGE(3)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## CFVjyscaSTc-music-of-the-edo-period-traditional-japanese-music
 
 **Concepts**: 
@@ -670,9 +1062,29 @@ Becker(1)
 
 **Citations**: States 1963(1)
 
+## CmuCkRly-HI-82-jorge-luis-borges-the-garden-of-forking-paths-and-other-s
+
+**Concepts**: AGE(35), WHO(23), AGEs(15), NIH(7), EPA(4), heme(2), iron(1), copper(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## CpJoAUltmgs-dr-jack-kruse-on-neonatal-jaundice-healthtopic-usa-healthpod
 
 **Concepts**: mitochondria(6), mitochondrial(5), circadian(1), blue light(1), vitamin K(1), AGE(1), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## DC0faZiBcG0-lecture-2015-personality-lecture-06-depth-psychology-carl-ju
+
+**Concepts**: WHO(14), AGE(4), NIH(2), UV(1), heme(1), EPA(1)
 
 
 **Titled**: 
@@ -730,6 +1142,16 @@ Becker(1)
 
 **Citations**: 
 
+## DgpIwVvrgc4-martin-heidegger-being-and-time-part-1-9
+
+**Concepts**: AGE(23), WHO(14), heme(12), EPA(8), RAGE(8), AGEs(4), NAD(2), iron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## Dj5CqT9QvR0-how-nicotine-affects-focus-adhd-dr-john-kruse-dr-andrew-hube
 
 **Concepts**: WHO(4)
@@ -780,6 +1202,26 @@ Becker(1)
 
 **Citations**: 
 
+## FFpGf7aPXNA-17-the-frankfurt-school-of-critical-theory
+
+**Concepts**: WHO(47), AGE(20), EPA(3), AGEs(3), NAD(2), iron(1), quantum(1)
+
+
+**Titled**: 
+
+
+**Citations**: Curtain 1989(1), Moscow 1926(1)
+
+## FOsX666lCPk-how-left-brain-thinking-is-killing-civilization-dr-iain-mcgi
+
+**Concepts**: WHO(17), AGE(9), AGEs(3), iron(2)
+
+
+**Titled**: Migle Chris(1), Mel Chris(1)
+
+
+**Citations**: Budapest 2025(1)
+
 ## FSG1LR03ICg-mus-5-sound-in-time-stockhausen-kontakte-explained
 
 **Concepts**: WHO(15), AGE(10), electron(10), EPA(2), iron(1), AGEs(1)
@@ -799,6 +1241,36 @@ Becker(1)
 
 
 **Citations**: October 1964(1)
+
+## Fz_srDeCNTQ-dostoevsky-and-nietzsche
+
+**Concepts**: WHO(35), AGE(17), EPA(2), heme(1), DHA(1), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## G1o-5RYki-g-critique-7-13-negative-dialectics-theodor-adorno
+
+**Concepts**: AGE(42), WHO(30), AGEs(15), EPA(9), NIH(7), UV(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## G8hYx_caMis-women-in-the-history-of-the-classical-guitar-dr-candice-mowb
+
+**Concepts**: AGE(22), WHO(16), heme(4), RAGE(3), schumann(2), NAD(2), Schumann(2), AGEs(2), iron(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## GDKLt5MA5M4-sam-harris-2018-our-perception-as-a-controlled-hallucination
 
@@ -820,9 +1292,29 @@ Becker(1)
 
 **Citations**: 
 
+## GRKcpj6tH2k-2018-icsi-public-lecture-richard-j-bernstein-the-relevance-o
+
+**Concepts**: WHO(46), AGE(22), heme(9), iron(8), NIH(3), RAGE(2), NAD(1), EPA(1), AGEs(1), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: Writing 1948(1)
+
 ## Ghl9gaast-I-dr-jack-kruse-epi-paleo-keto-lchf-hcg-2-0-ha2cg-leptin-reset
 
 **Concepts**: WHO(4), leptin(3), seafood(2), circadian(1), iron(1), redox(1), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## H9nKr6DPxK4-why-music-theory-falls-apart-explaining-this-beatles-hit
+
+**Concepts**: EPA(1), AGE(1)
 
 
 **Titled**: 
@@ -850,6 +1342,16 @@ Georgie(1), Leven(1), Marino(1)
 
 
 **Citations**: University 1939(1)
+
+## HU6LfXNeQM4-your-brain-perception-deception-full-documentary-nova-pbs
+
+**Concepts**: WHO(20), AGE(16), EPA(5), blue light(2), iron(2), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## Hf1q-bZMEo4-what-are-traces-of-consciousness-a-new-breakthrough-unifying
 
@@ -902,6 +1404,26 @@ Cruz(1)
 
 **Citations**: 
 
+## INGBS1LIBCA-5-the-enlightenment-and-the-public-sphere
+
+**Concepts**: WHO(64), AGE(7), iron(1), EPA(1), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## IdbajMwBBUY-chris-cutrone-lecture-on-adorno-s-negative-dialectics
+
+**Concepts**: WHO(40), AGE(36), EPA(12), NAD(4), iron(3), AGEs(3), RAGE(2), UV(1), heme(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## Iq3tDpoFVL0-unraveling-the-medical-matrix-w-dr-jack-kruse
 
 **Concepts**: WHO(28), iron(11), AGE(10), melanin(8), quantum(8), vitamin D(7), circadian(6), mitochondria(5), Einstein(5), mitochondrial(4), blue light(4), electromagnetic(4), Rockefeller(3), dopamine(2), photoelectric(2), infrared(2), UV(2), ketogenic(2), AGEs(2), Becker(2)
@@ -912,6 +1434,16 @@ Monette(1), Allison Monette(1), Zack Bush(1), Who(1)
 
 
 **Citations**: Prize 2016(1)
+
+## Iyvnukd3qQY-carl-jung-archetypes-and-the-collective-unconscious-audioboo
+
+**Concepts**: WHO(502), AGE(302), AGEs(93), EPA(33), iron(18), heme(12), NAD(8), RAGE(8), UV(5), DHA(4), NIH(2)
+
+
+**Titled**: Marian(1)
+
+
+**Citations**: York 1943(1), York 1949(1), London 1950(1)
 
 ## J--0hk89hmU-breakthrough-how-consciousness-creates-the-simulation-dr-don
 
@@ -943,6 +1475,16 @@ Monette(1), Allison Monette(1), Zack Bush(1), Who(1)
 
 **Citations**: 
 
+## JFsUQpP1afM-brian-eno-breaks-down-the-future-of-generative-music-creativ
+
+**Concepts**: WHO(16), EPA(3), iron(2), AGE(2), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## JRicmld6AkU-andrw-a-marino-interviewed-by-dr-kamau-kokayi
 
 **Concepts**: electromagnetic(22), Becker(11), WHO(8), magnetic field(5), AGE(5), EPA(3), FDA(3), iron(2), quantum(1), AGEs(1)
@@ -954,9 +1496,29 @@ Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
 
 **Citations**: 
 
+## JUL8kNYmgsA-brian-eno-on-exploring-creativity-red-bull-music-academy
+
+**Concepts**: WHO(43), AGE(7), iron(3), EPA(3), AGEs(2), electron(2), UV(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## JW_EHdoToZo-find-out-why-dr-jack-kruse-is-shirtless-in-this-interview
 
 **Concepts**: DHA(27), WHO(20), mitochondria(18), Einstein(10), quantum(8), AGE(8), melatonin(7), photosynthesis(6), electromagnetic(6), UV(5), iron(5), photoelectric(4), mitochondrial(4), vitamin D(4), electron(4), Wheeler(4), photoelectric effect(3), red light(3), EPA(3), proton(3)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## JdB-BMdgFbk-the-master-his-emissary-the-meaning-crisis-iain-mcgilchrist-
+
+**Concepts**: WHO(23), AGE(17), EPA(5), iron(3), heme(2), AGEs(2), NIH(1), Wheeler(1)
 
 
 **Titled**: 
@@ -1014,9 +1576,29 @@ Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
 
 **Citations**: 
 
+## KfoUAB9yIPg-harold-bloom-how-to-read-and-why
+
+**Concepts**: AGE(21), WHO(20), iron(10), RAGE(5), AGEs(3)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## KkR24ieh5Ow-033-karl-friston-the-free-energy-principle
 
 **Concepts**: AGE(28), WHO(20), iron(11), EPA(9), quantum(5), heme(4), AGEs(2), RAGE(2), Feynman(2), Maxwell(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## KqfuMM-6yAk-vrg-the-human-condition-2021-ep-1-prologue
+
+**Concepts**: AGE(55), WHO(47), AGEs(9), iron(7), heme(3), EPA(2), RAGE(1)
 
 
 **Titled**: 
@@ -1044,6 +1626,16 @@ Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
 
 **Citations**: 
 
+## L3vn-fSx7VE-awakening-from-the-meaning-crisis-with-john-vervaeke-and-chr
+
+**Concepts**: AGE(31), WHO(28), EPA(10), RAGE(3), NAD(2), iron(1), AGEs(1), Russell(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## L6d7NxK3k04-bernstein-conducting-himself
 
 **Concepts**: WHO(46), AGE(43), EPA(6), NAD(4), AGEs(2), RAGE(2), schumann(1), Schumann(1)
@@ -1054,9 +1646,49 @@ Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
 
 **Citations**: Institute 1939(2), Philharmonic 1978(2), Since 2014(1), Backstage 1951(1), Published 1997(1), Orchestra 1945(1), Montealegre 1951(1), August 1990(1), Tanglewood 1940(1), Philharmonic 1958(1), Boston 2014(1), Tanglewood 1972(1)
 
+## LGXujmTAcUM-uncover-the-history-sound-of-t-rrega-the-tonic-ft-rosie-benn
+
+**Concepts**: WHO(19), AGE(15), AGEs(3), NAD(2), EPA(2), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: Madrid 1830(1), Barcelona 1838(1), Spain 1885(1)
+
+## LGumhl8-kiY-fyodor-dostoevsky-complete-lecture-series-matt-raphael-johns
+
+**Concepts**: WHO(79), NIH(27), AGE(22), heme(5), iron(3), AGEs(3), RAGE(3), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: Russia 1860(1)
+
 ## LXtMSnowOxo-fractalverse-podcast-2-music-of-the-spheres-pythagoras-and-a
 
 **Concepts**: WHO(37), AGE(7), DHA(3), cortisol(2), copper(2), iron(1), NAD(1), EPA(1), AGEs(1), RAGE(1), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## LZ5C11mlTH4-your-brain-has-2-masters-and-one-is-leading-us-astray-dr-iai
+
+**Concepts**: WHO(102), AGE(34), EPA(17), DHA(7), AGEs(7), RAGE(5), heme(1), iron(1), quantum(1), Einstein(1)
+
+
+**Titled**: Ian Mcilchris(1)
+
+
+**Citations**: 
+
+## La9qnPwx3Nc-stanislav-grof-the-healing-potential-of-non-ordinary-states-
+
+**Concepts**: AGE(26), WHO(22), AGEs(13), Newton(7), EPA(4), iron(3), heme(1), NAD(1), quantum(1), RAGE(1)
 
 
 **Titled**: 
@@ -1094,6 +1726,17 @@ Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
 
 **Citations**: 
 
+## M7RlYdoybT4-the-emancipatory-intent-of-critical-theory-j-rgen-habermas-b
+
+**Concepts**: AGE(34), WHO(28), heme(4), NAD(2), EPA(2), RAGE(2), NIH(2), iron(1), GSH(1), DHA(1), AGEs(1)
+
+
+**Titled**: Pas(3), Thomas(3), Koshi Tarakan(1), Gangadaran(1), Koshi
+Tarakan(1)
+
+
+**Citations**: 
+
 ## MAFUdIZnI5o-the-grotesque-legacy-of-music-as-property
 
 **Concepts**: WHO(12), AGE(10), heme(3), RAGE(3), AGEs(2), EPA(1), electron(1), Newton(1)
@@ -1103,6 +1746,16 @@ Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
 
 
 **Citations**: Infamous 2014(1)
+
+## MC3Ztal5gzc-polka
+
+**Concepts**: AGE(26), WHO(22), iron(3), RAGE(3), copper(2), EPA(1), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## MC6ljzgRVfY-morphic-resonance-after-forty-years
 
@@ -1138,6 +1791,16 @@ Cruz(1)
 ## MPqCi9ywzOc-master-class-with-yo-yo-ma
 
 **Concepts**: WHO(7), AGE(6), RAGE(4), heme(3)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## MQv8ObsaG-U-borges-a-poet-s-creed-lecture-1968
+
+**Concepts**: WHO(19), AGE(16), AGEs(3), RAGE(3), iron(1)
 
 
 **Titled**: 
@@ -1221,6 +1884,16 @@ Kruse(1)
 
 **Citations**: Vermont 2018(1), York 1960(1)
 
+## NOwnb6CkFlQ-humanity-s-meaning-crisis-what-ancient-wisdom-modern-psychol
+
+**Concepts**: AGE(73), WHO(45), iron(10), DHA(4), AGEs(4), Einstein(4), heme(3), RAGE(3), NAD(2), dopamine(1), NIH(1), Russell(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## NSs87xQ9hts-nancy-hanks-lecture-2009-wynton-marsalis
 
 **Concepts**: WHO(57), AGE(21), heme(5), RAGE(5), EPA(3), Maxwell(3), AGEs(2), iron(1), NIH(1)
@@ -1251,6 +1924,16 @@ Kruse(1)
 
 **Citations**: Life 2001(1)
 
+## Np72VPguqeI-10-deconstruction-i
+
+**Concepts**: AGE(43), WHO(14), heme(3), AGEs(3), EPA(2)
+
+
+**Titled**: 
+
+
+**Citations**: University 1966(1), Hopkins 1966(1)
+
 ## NtQ-kdLlQiU-improve-focus-with-behavioral-tools-medication-for-adhd-dr-j
 
 **Concepts**: WHO(98), AGE(40), dopamine(20), iron(17), EPA(17), circadian(10), AGEs(10), red light(5), FDA(5), UV(4), NAD(3), DHA(3), RAGE(3), infrared(2), mitochondria(1), mitochondrial(1), heme(1), vitamin D(1), CDC(1)
@@ -1272,6 +1955,16 @@ Cruz Dr(1)
 
 
 **Citations**: 
+
+## OCTgcESeCMM-adorno-hegel-and-negative-dialectics-prof-martin-saar-frankf
+
+**Concepts**: WHO(40), AGE(33), EPA(9), AGEs(4), UV(3), heme(2)
+
+
+**Titled**: 
+
+
+**Citations**: France 1940(1)
 
 ## ODPdr_vaJ3w-the-great-gilbert-ling-cell-physiologist-biochemist-and-scie
 
@@ -1303,6 +1996,16 @@ Weller(1), Jack(1), Jack Cruz(1)
 
 
 **Citations**: Georgie 1937(1), Georgie 1941(1), Prize 1954(1), Vermont 2016(1), Tesla 1893(1)
+
+## OT3ocBG5PPA-the-rise-of-the-virtuoso
+
+**Concepts**: WHO(59), AGE(36), schumann(8), Schumann(8), RAGE(8), AGEs(6), heme(2), EPA(2), Einstein(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## OUFYo1svKgQ-1959-in-jazz-history-with-gil-harel-davis-kind-of-blue
 
@@ -1377,6 +2080,36 @@ Hameroff(1), Brian Keating(1)
 
 **Citations**: 
 
+## Owgc63KhcL8-2014-personality-lecture-02-mythological-representations
+
+**Concepts**: WHO(24), AGE(22), Newton(9), EPA(6), iron(5), RAGE(4), quantum(3), cortisol(1), AGEs(1), NIH(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## OxavWGRTDtM-roger-berkowitz-exploring-the-human-condition
+
+**Concepts**: WHO(61), AGE(18), AGEs(3), iron(2)
+
+
+**Titled**: Roger Berkowitz(1), Botwinick(1), Watson(1)
+
+
+**Citations**: Harvard 2005(1), Since 1991(1)
+
+## P7rxEvIDcIE-lunchbox-lecture-the-development-of-be-bop-by-david-kunian-n
+
+**Concepts**: WHO(70), AGE(7), Russell(7), heme(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## PH1MbzHXPsY-cancer-beyond-metabolism-bioelectricity-mitochondria-quantum
 
 **Concepts**: WHO(33), mitochondria(21), AGE(21), Becker(17), iron(10), quantum(7), proton(6), electron(5), DDW(4), melanin(4), heme(4), electromagnetic(4), vitamin D(3), biophoton(2), hemoglobin(2), EMF(2), ATP(2), EPA(2), AGEs(2), photosynthesis(1)
@@ -1387,12 +2120,42 @@ Hameroff(1), Brian Keating(1)
 
 **Citations**: 
 
+## PIZmDZAI0mU-chris-cutrone-lecture-on-adorno-s-dialectical-epilegomena-19
+
+**Concepts**: AGE(47), WHO(45), NIH(21), EPA(20), RAGE(7), AGEs(5)
+
+
+**Titled**: Fus(1)
+
+
+**Citations**: Germany 1953(1), Manifesto 1956(1), Germany 1967(1)
+
 ## PNYWi996Beg-your-brain-is-a-prediction-machine-not-a-processor-karl-fris
 
 **Concepts**: AGE(39), WHO(15), iron(12), quantum(9), Maxwell(6), EPA(5), Newton(3), UV(2), AGEs(2), dopamine(1), magnetic field(1), electromagnetic(1), RAGE(1), electron(1), Helmholtz(1), Becker(1)
 
 
 **Titled**: Friston(3), Fen(2), Fston(1), Priston(1), Preston(1)
+
+
+**Citations**: 
+
+## PXONvpL2S40-on-uncertainty-wittgenstein-habits-of-thought-and-thoughts-o
+
+**Concepts**: AGE(46), WHO(35), AGEs(7), EPA(6), Russell(5), heme(3), NAD(2), quantum(2), Einstein(2), RAGE(1), Schrodinger(1)
+
+
+**Titled**: Jane Taylor(1), Magnus Hirschfeld(1), Taylor(1)
+
+
+**Citations**: Opera 2010(1), August 1914(1), Russia 1831(1), James 1896(1), Mind 1950(1)
+
+## PaSik_fGCLM-hannah-arendt-s-the-human-condition-part-1
+
+**Concepts**: WHO(25), AGE(17), iron(4), AGEs(3), EPA(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -1417,6 +2180,36 @@ Hameroff(1), Brian Keating(1)
 
 **Citations**: 
 
+## PjplQUPhES4-3-flannery-o-connor-wise-blood
+
+**Concepts**: AGE(32), WHO(23), AGEs(4), EPA(3), heme(2), iron(2), NIH(2)
+
+
+**Titled**: Amy Hungerford(2)
+
+
+**Citations**: Savannah 1925(1)
+
+## PmckTveYNI8-wittgenstein-s-games-by-a-c-grayling
+
+**Concepts**: AGE(102), Russell(47), WHO(26), AGEs(5), heme(3), RAGE(3), EPA(2)
+
+
+**Titled**: 
+
+
+**Citations**: Cambridge 1912(1)
+
+## PvqytpvtV04-alan-watts-lectures-the-life-of-zen
+
+**Concepts**: AGE(15), WHO(14), EPA(13), DHA(6), AGEs(2), UV(1), heme(1), iron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## Pw1mnPzHR-0-anil-seth-bcbt-2017-lecture
 
 **Concepts**: AGE(25), WHO(22), iron(4), AGEs(4), heme(3), EPA(3), electromagnetic(1), RAGE(1), Helmholtz(1)
@@ -1430,6 +2223,26 @@ Hameroff(1), Brian Keating(1)
 ## Q6zAWQo9ioU-quantum-health-and-crypto-with-dr-jack-kruse
 
 **Concepts**: WHO(16), AGE(9), leptin(5), circadian(4), mitochondria(2), mitochondrial(2), quantum(2), Rockefeller(2), UV(1), NAD(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## Q9zR4lWyVN8-the-hero-s-journey-isn-t-what-you-think-joseph-campbell-part
+
+**Concepts**: WHO(22), heme(2), AGE(2), iron(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## QBiVwempeiw-oma-j-dilla-instrumentals-live-at-barouche-2025
+
+**Concepts**: 
 
 
 **Titled**: 
@@ -1458,12 +2271,32 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 **Citations**: 
 
+## R0dhvBZX08Y-the-many-lives-of-brian-eno
+
+**Concepts**: AGE(27), WHO(22), RAGE(5), EPA(4), AGEs(2), iron(1), electron(1), Newton(1), Pauli(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## RI123H9R-68-bernstein-the-unanswered-question-norton-lectures-5-the-twen
 
 **Concepts**: WHO(33), AGE(31), heme(2), AGEs(2), RAGE(2), schumann(1), iron(1), EPA(1), Schumann(1), electron(1), Einstein(1)
 
 
 **Titled**: Faustus(1)
+
+
+**Citations**: 
+
+## RLEL6o24uIA-sean-d-kelly-heidegger-s-being-and-time-part-1
+
+**Concepts**: AGE(219), WHO(174), AGEs(27), iron(21), EPA(16), RAGE(10), heme(7), electron(5), UV(2), NAD(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -1477,6 +2310,16 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 
 **Citations**: Awards 2024(1)
+
+## Ree_q4WweCI-12-introduction-to-critical-theory
+
+**Concepts**: WHO(30), AGE(17), RAGE(5), EPA(2)
+
+
+**Titled**: 
+
+
+**Citations**: Scholars 1922(1)
 
 ## Rz5b4dPhzIQ-the-neuroscience-of-consciousness-anil-seth
 
@@ -1528,6 +2371,16 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 **Citations**: Pharma 1974(1), Tavistock 1921(1), Affair 1965(1), China 1971(1), Hoff 2005(1)
 
+## Sj1d-XBs1nQ-chris-cutrone-lecture-on-adorno-s-negative-dialectics-1
+
+**Concepts**: WHO(64), AGE(37), NIH(14), AGEs(8), EPA(7), heme(4), NAD(4), RAGE(2)
+
+
+**Titled**: Foustus(1)
+
+
+**Citations**: Luxembourg 1918(1)
+
 ## StN9Ed0rG8Q-the-most-important-10-minutes-of-guitar-practice
 
 **Concepts**: AGE(8), WHO(3)
@@ -1574,6 +2427,16 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 
 **Titled**: 
+
+
+**Citations**: 
+
+## TDC9W1K4Rso-iain-mcgilchrist-how-to-escape-left-brain-thinking
+
+**Concepts**: WHO(44), AGE(21), EPA(5), AGEs(4), heme(1), quantum(1), Einstein(1), Bohr(1)
+
+
+**Titled**: Alister(1), Iain(1)
 
 
 **Citations**: 
@@ -1638,6 +2501,26 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 **Citations**: 
 
+## U9GD35Pfa1o-hero-s-journey-explained-joseph-campbell-s-universal-story-o
+
+**Concepts**: WHO(6), AGE(5), EPA(3), NAD(2), AGEs(2)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## UBy0YLub9dU-marianna-chelidoni-the-decline-of-the-guitar-after-1850s-and
+
+**Concepts**: AGE(7), WHO(7), AGEs(4), EPA(2), blue light(1), iron(1), RAGE(1)
+
+
+**Titled**: Who Blossom(1)
+
+
+**Citations**: Germans 1938(1)
+
 ## UZ8BA25T5GA-glyn-johns-recording-the-beatles-the-stones-led-zeppelin-the
 
 **Concepts**: WHO(29), AGE(13), EPA(5), iron(1), RAGE(1)
@@ -1648,12 +2531,32 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 **Citations**: 
 
+## UarXGSuyyrw-22-post-colonial-criticism
+
+**Concepts**: AGE(30), WHO(23), AGEs(6), iron(3), RAGE(2), red light(1)
+
+
+**Titled**: Johnson(1)
+
+
+**Citations**: 
+
 ## Uvm0dho_KRM-dr-jack-kruse-nourish-vermont-2017-q-a-part-10-of-10
 
 **Concepts**: UV(17), mitochondria(10), UVA(7), electron(7), WHO(6), dopamine(4), cytochrome(4), mitochondrial(3), blue light(3), quantum(3), melatonin(2), circadian(2), infrared(2), red light(2), NAD(2), AGE(2), proton(2), electromagnetic(1), EMF(1), iron(1)
 
 
 **Titled**: 
+
+
+**Citations**: 
+
+## VLQMGHBnxVg-eastern-and-western-zen-08-eastern-wisdom-alan-watts
+
+**Concepts**: WHO(173), AGE(72), DHA(60), EPA(15), AGEs(13), iron(8), RAGE(8), NIH(8), NIR(6), heme(4), UV(1)
+
+
+**Titled**: Fleece(1), Radak Krishnan(1)
 
 
 **Citations**: 
@@ -1677,6 +2580,26 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 
 **Citations**: Turing 1951(1), States 2024(1)
+
+## Vc7_VyVXDLs-documentary-the-buddha-pbs-documentary-narrated-by-richard-g
+
+**Concepts**: DHA(187), WHO(57), AGE(33), NIR(10), EPA(10), AGEs(5), iron(4), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## VsMfaIOsT3M-8-semiotics-and-structuralism
+
+**Concepts**: AGE(78), red light(27), WHO(5), AGEs(4), iron(1), EPA(1), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## W0vTZrZny6A-top-psychologist-donald-hoffman-seeing-true-reality-would-ki
 
@@ -1719,6 +2642,26 @@ Camellia(1), Sean(1), Who(1)
 
 **Citations**: 
 
+## WMZBN_76VBE-iain-mcgilchrist-on-the-divided-brain-and-the-master-and-his
+
+**Concepts**: WHO(39), AGE(31), RAGE(5), AGEs(4), iron(2), Bohr(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## WYjdsqmrXqY-ep-23-robert-greenberg-composer-music-historian-pianist-and-
+
+**Concepts**: WHO(107), AGE(56), RAGE(12), iron(11), EPA(5), AGEs(4), Einstein(2), schumann(1), NAD(1), Schumann(1), Newton(1)
+
+
+**Titled**: Greenberg(5), Bob(4), Bob Greenberg(2)
+
+
+**Citations**: University 1976(1), Berkeley 1984(1), October 2019(1), York 1954(1), School 1916(1)
+
 ## WZgv7h0Iy88-history-of-jazz-oxygen-for-the-ears-music-documentary-full-m
 
 **Concepts**: WHO(39), AGE(21), EPA(2), iron(1), RAGE(1)
@@ -1738,6 +2681,16 @@ Camellia(1), Sean(1), Who(1)
 
 
 **Citations**: City 1944(1), Parker 1955(1)
+
+## WgjBaXpuSE4-how-the-earth-was-made-from-molten-rock-to-green-planet-full
+
+**Concepts**: AGE(28), iron(13), WHO(13), AGEs(10), RAGE(4), EPA(3), NAD(2), photosynthesis(1), UV(1)
+
+
+**Titled**: Gideon Mantell(1)
+
+
+**Citations**: England 1822(1)
 
 ## WwxOqw1kQeo-thc-clips-dr-jack-kruse-on-deuterium-depleted-water-water-ma
 
@@ -1779,6 +2732,16 @@ Camellia(1), Sean(1), Who(1)
 
 **Citations**: 
 
+## Xnt-c5i5prM-the-art-of-listening-music-documentary-2021
+
+**Concepts**: WHO(27), AGE(7), heme(1), iron(1), EPA(1), AGEs(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## YCN-kgAH2hM-dr-kruse-patient-interview
 
 **Concepts**: WHO(2), vitamin D(1), DHA(1)
@@ -1792,6 +2755,36 @@ Camellia(1), Sean(1), Who(1)
 ## YRIrf7XzEnA-federico-faggin-bernardo-kastrup-quantum-physics-spiritualit
 
 **Concepts**: quantum(154), WHO(25), AGE(20), EPA(13), NAD(4), electron(3), AGEs(2), Wigner(2), quantum biology(1), Einstein(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## YSLV7t9DvN8-jorge-luis-borges-this-craft-of-verse-lectures-thepostarchiv
+
+**Concepts**: AGE(89), WHO(81), AGEs(22), RAGE(12), EPA(6), iron(5), GSH(2), NAD(1), DHA(1)
+
+
+**Titled**: Watson(2), Rous(1), Jael(1), Johnson Dr(1), Watson Huckleberry Finn(1)
+
+
+**Citations**: 
+
+## YTCF0w_kOFU-sir-niall-ferguson-war-and-peace-by-leo-tolstoy-the-book-clu
+
+**Concepts**: WHO(53), AGE(24), AGEs(6), EPA(5), heme(3), RAGE(3), iron(2), NAD(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## YTI7IIsYPKo-explore-flamenco-and-guitars-in-southern-spain-with-lucy-hal
+
+**Concepts**: AGE(43), WHO(26), AGEs(15), NAD(11), RAGE(2), UV(1), DHA(1), EPA(1), Russell(1), Pauli(1)
 
 
 **Titled**: 
@@ -1829,6 +2822,26 @@ Camellia(1), Sean(1), Who(1)
 
 **Citations**: 
 
+## Z7eTeIt_HiU-full-lecture-by-alan-watts-on-buddhism-zen-reconsidered
+
+**Concepts**: WHO(55), AGE(22), DHA(9), EPA(9), AGEs(5), NIR(3), Newton(3), iron(2), RAGE(2), quantum(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## ZdvGcLXD7mU-alan-watts-philosophies-of-asia-eco-zen-1-2
+
+**Concepts**: WHO(56), AGE(13), EPA(9), iron(5), RAGE(3), AGEs(2), DHA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse
 
 **Concepts**: melanin(62), WHO(59), deuterium(37), AGE(31), dopamine(21), UV(19), electron(19), mitochondria(15), quantum(12), DHA(11), semiconductor(10), blue light(10), red light(10), vitamin D(10), EPA(9), iron(7), ATP(6), Becker(5), melatonin(4), photosynthesis(4)
@@ -1859,6 +2872,16 @@ Camellia(1), Sean(1), Who(1)
 
 **Citations**: Georgia 1890(1), Paris 1890(1), Victor 1890(1), California 1870(1), Hawaii 1920(1), City 1890(1)
 
+## _MPUls6VSzk-being-time-introduction-i
+
+**Concepts**: WHO(35), AGE(28), RAGE(10), EPA(9), heme(3)
+
+
+**Titled**: Chrisley(1)
+
+
+**Citations**: 
+
 ## _QDZqFKmnBo-wittgenstein-wheeler-and-wallace-the-curious-relation-of-phi
 
 **Concepts**: WHO(32), Russell(18), quantum(15), AGE(14), Wheeler(7), electron(6), Newton(6), AGEs(4), RAGE(1), proton(1)
@@ -1868,6 +2891,16 @@ Camellia(1), Sean(1), Who(1)
 
 
 **Citations**: Europe 1900(1)
+
+## _WevaeimzF8-vrg-the-human-condition-2014-ep-1-the-prologue
+
+**Concepts**: AGE(28), WHO(28), iron(7), heme(5), AGEs(4), EPA(3)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## _fDgW9M1NKo-isaac-p-witz-ph-d-award-speech-2023-szent-gy-rgyi-prize
 
@@ -1879,6 +2912,26 @@ Smith(1), Hammer(1), Wade(1), Whit(1), James Alison(1), James Allison(1), Martin
 
 
 **Citations**: Forum 1996(1), Society 2002(1)
+
+## aQUo2KCK2GU-music-historian-robert-greenberg-presents-a-lecture-on-the-l
+
+**Concepts**: 
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## ahW5Qr6ADKI-don-t-force-life-alan-watts-on-wu-wei-zen-gardens-solitude
+
+**Concepts**: WHO(13), AGE(3), iron(2), EPA(2), NIH(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## amM835C0i94-godfather-of-quantum-biology-upbringing-andrew-huberman-ligh
 
@@ -1910,9 +2963,41 @@ Smith(1), Hammer(1), Wade(1), Whit(1), James Alison(1), James Allison(1), Martin
 
 **Citations**: 
 
+## bNxzQSheCkc-firing-line-with-william-f-buckley-jr-borges-south-america-s
+
+**Concepts**: AGE(25), WHO(24), UV(3), AGEs(3), iron(1), NAD(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: Peron 1946(1)
+
 ## bP-te0P_rE8-cbc-presents-glenn-gould-on-bach
 
 **Concepts**: AGE(15), heme(8), WHO(7), Russell(2), AGEs(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## bUMZb_Otta8-harold-bloom-shakespeare-the-invention-of-the-human-1998
+
+**Concepts**: AGE(40), WHO(35), RAGE(10), EPA(6), AGEs(5), NIH(4), heme(1), GSH(1)
+
+
+**Titled**: Bloom(7), Freud(1), Frankenstein(1), Johnson(1), Who(1), Samuel Johnson
+William(1), Harold
+Bloom(1)
+
+
+**Citations**: 
+
+## bme25f0IUb8-martin-heidegger-explained-part-1-being-and-time-1927
+
+**Concepts**: AGE(129), WHO(96), RAGE(42), EPA(13), AGEs(7), heme(6), iron(5), Wheeler(3), NAD(2), NIH(2), GSH(1)
 
 
 **Titled**: 
@@ -1961,6 +3046,16 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 **Citations**: 
 
+## cz0nYh3Z2W4-39-j-dilla-beats-you-ve-probably-never-heard
+
+**Concepts**: WHO(20), AGE(5), iron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## d6NHRB5V1eE-top-physicist-science-spirituality-merge-in-this-new-theory-
 
 **Concepts**: quantum(71), WHO(55), EPA(23), AGE(22), RAGE(13), electron(8), NAD(2), heme(1), iron(1)
@@ -1991,6 +3086,16 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 **Citations**: 
 
+## dogVQDydRGQ-iain-mcgilchrist-wisdom-nature-and-the-brain-the-great-simpl
+
+**Concepts**: WHO(51), AGE(27), AGEs(11), iron(5), EPA(4), RAGE(4), Einstein(2), quantum(1), Bohr(1)
+
+
+**Titled**: Iain(2), Peter Whybrow(1), Ian(1)
+
+
+**Citations**: 
+
 ## drdn_hDGALk-57-dr-jack-kruse
 
 **Concepts**: WHO(43), magnetic field(27), melanin(23), AGE(18), mitochondria(13), dopamine(11), EMF(10), NAD(9), iron(8), leptin(7), ATP(7), EPA(6), Carrington(6), Becker(6), mitochondrial(5), UV(5), red light(5), DHA(5), Rockefeller(5), infrared(4)
@@ -2007,6 +3112,26 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 
 **Titled**: Hippolito(1), Karl Friston(1), Bejan(1), Ippolito(1), Hippolytus(1)
+
+
+**Citations**: 
+
+## epoRGnCWyXw-personality-psychology-lecture-one-official-peterson-academy
+
+**Concepts**: WHO(33), AGE(26), EPA(5), AGEs(4), NAD(2), cortisol(1), iron(1), RAGE(1), NIH(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## epzlGsgbVS8-he-changed-everything-twice-ludwig-wittgenstein-s-complete-p
+
+**Concepts**: AGE(333), WHO(35), EPA(11), AGEs(10), Russell(4), RAGE(3), electron(3), heme(2), NAD(1), quantum(1), DHA(1), NIH(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -2073,6 +3198,16 @@ Kruse(1), Lindsey Duncan(1), Marino(1), Shade(1)
 
 **Citations**: 
 
+## gDjDWA4XUkI-habermas-on-modernity-postmodernity-1984
+
+**Concepts**: WHO(21), AGE(20), EPA(4), AGEs(2), heme(1), iron(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## gXjj2EoElFg-brain-surgeon-vs-pharma-lobbyist-what-s-really-making-you-si
 
 **Concepts**: WHO(101), AGE(81), Rockefeller(18), EMF(10), FDA(9), EPA(5), mitochondria(4), circadian(4), RAGE(4), cytochrome(1), mitochondrial(1), red light(1), AGEs(1), NIH(1)
@@ -2093,6 +3228,16 @@ Kruse(1), Lindsey Duncan(1), Marino(1), Shade(1)
 
 **Citations**: 
 
+## gdabzUSjTLo-the-legendary-stan-groff-holotropic-breathwork-documentary
+
+**Concepts**: WHO(21), AGE(10), RAGE(6), EPA(4), electron(3), iron(1), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## gel94sjJOOo-african-drum-music-tribal-beats-shaman-dance-unleash-your-pr
 
 **Concepts**: 
@@ -2103,9 +3248,29 @@ Kruse(1), Lindsey Duncan(1), Marino(1), Shade(1)
 
 **Citations**: 
 
+## gnbdyhDraIk-introdu-o-teoria-da-literatura-10-com-paul-fry-de-yale
+
+**Concepts**: AGE(45), WHO(16), heme(3), AGEs(3), EPA(2)
+
+
+**Titled**: 
+
+
+**Citations**: University 1966(1), Hopkins 1966(1)
+
 ## goyZbut_KFY-all-9-solfeggio-frequencies-full-body-aura-cleanse-cell-rege
 
 **Concepts**: 
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## hED4nEXGOpM-after-the-eclipse-the-light-of-reason-in-late-critical-theor
+
+**Concepts**: WHO(40), AGE(39), EPA(7), NAD(4), AGEs(3), heme(2), iron(2), NIH(1)
 
 
 **Titled**: 
@@ -2126,6 +3291,16 @@ Kruse(1), Lindsey Duncan(1), Marino(1), Shade(1)
 ## hZsx5lQB38c-this-was-toscanini
 
 **Concepts**: AGE(30), WHO(26), RAGE(6), EPA(5), heme(3), iron(2), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## hn8d_kQwFN4-joseph-campbell-the-hero-s-journey-jonathan-young-interview
+
+**Concepts**: WHO(25), AGE(19), AGEs(8), EPA(4), RAGE(2), NIR(1), NAD(1)
 
 
 **Titled**: 
@@ -2163,9 +3338,29 @@ Kruse(1), Lindsey Duncan(1), Marino(1), Shade(1)
 
 **Citations**: 
 
+## iEZVWWk6qHg-2014-personality-lecture-03-heroic-shamanic-initiations-part
+
+**Concepts**: WHO(45), AGE(26), iron(10), AGEs(5), UV(4), electron(4), heme(1), quantum(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## iK4gG7TBgNM-gerald-pollack-water-rethinking-cell-biology-ricci-flow-nutr
 
 **Concepts**: WHO(41), infrared(15), AGE(11), ATP(9), EPA(9), fourth phase of water(6), electromagnetic(5), exclusion zone(3), iron(2), UV(1), red light(1), EMF(1), NAD(1), AGEs(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## iNvGmFMswuQ-holotropic-states-of-consciousness-radical-visions-of-psycho
+
+**Concepts**: WHO(50), AGE(25), EPA(6), AGEs(5), quantum(3), DHA(3), UV(2), heme(2), NAD(2), RAGE(2), Newton(2), NIH(1), Einstein(1)
 
 
 **Titled**: 
@@ -2179,6 +3374,16 @@ Kruse(1), Lindsey Duncan(1), Marino(1), Shade(1)
 
 
 **Titled**: Alexis Cowan(1), Jack Cruz(1)
+
+
+**Citations**: 
+
+## iWnA7nZO4EY-3-ways-in-and-out-of-the-hermeneutic-circle
+
+**Concepts**: AGE(31), WHO(24), AGEs(5), RAGE(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -2214,9 +3419,30 @@ Sherman(1), Kurt(1), Kur(1)
 
 **Citations**: 
 
+## ii6phXev37A-harold-bloom-lectures-on-shakespeare-s-major-tragedies
+
+**Concepts**: WHO(312), AGE(265), RAGE(86), iron(17), EPA(14), AGEs(14), NIH(9), heme(4), NAD(2), GSH(1), quantum(1), DHA(1)
+
+
+**Titled**: Bloom(8), Samuel
+Johnson(1), Samuel Johnson(1), Johnson(1)
+
+
+**Citations**: 
+
 ## iiIMMfu78Gs-30-forgotten-ancient-musical-instruments-and-their-powers-my
 
 **Concepts**: AGE(42), WHO(29), AGEs(10), EPA(8), RAGE(4), iron(3), NAD(3), electromagnetic(1), cortisol(1), copper(1), DHA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## jAAA11vEwiI-what-they-didn-t-tell-you-about-critical-theory-horkheimer-a
+
+**Concepts**: WHO(73), AGE(49), EPA(18), RAGE(17), AGEs(4), Russell(2), NIH(1)
 
 
 **Titled**: 
@@ -2254,6 +3480,16 @@ Sherman(1), Kurt(1), Kur(1)
 
 **Citations**: 
 
+## jjcTvJMCK3g-what-defines-a-guitar-a-study-and-performance-of-guitar-cons
+
+**Concepts**: AGE(8), WHO(8), EPA(3), RAGE(2), UV(1), AGEs(1), electron(1)
+
+
+**Titled**: Danielle Simon(1)
+
+
+**Citations**: 
+
 ## jtMu-KFyKxM-bitcoin-is-a-time-machine-with-dr-jack-kruse
 
 **Concepts**: WHO(28), AGE(14), Einstein(10), Newton(10), mitochondria(9), iron(7), quantum(7), POMC(6), mitochondrial(4), heme(4), electron(4), circadian(3), melanin(3), EPA(3), UV(2), hemoglobin(2), leptin(2), photoelectric effect(1), photoelectric(1), AGEs(1)
@@ -2274,6 +3510,16 @@ Kruse(1)
 
 
 **Citations**: 
+
+## kDp-yYl9vgY-hannah-arendt-s-the-human-condition-1958
+
+**Concepts**: WHO(22), AGE(18), RAGE(6), EPA(3), AGEs(3), heme(1), Einstein(1)
+
+
+**Titled**: John Keane(1)
+
+
+**Citations**: Born 1906(1), City 1975(1), Union 1956(1)
 
 ## kMc9Akl3-Dw-experiencing-maqam-an-introduction-to-arabic-music
 
@@ -2335,12 +3581,52 @@ Kruse(1)
 
 **Citations**: City 1955(1), Chambers 1955(1)
 
+## kxqB5D3djVc-the-genesis-of-jazz-an-exploration-into-the-early-history-of
+
+**Concepts**: WHO(38), EPA(7), AGE(7), iron(2), heme(1)
+
+
+**Titled**: Jay(1)
+
+
+**Citations**: Blues 1917(1), Orleans 1879(1), Perez 1892(1), Chicago 1916(1), Orleans 1895(1), Orleans 1873(1)
+
+## l1Qt3tznA78-adorno-hegel-and-negative-dialectics-professor-martin-saar-f
+
+**Concepts**: WHO(40), AGE(33), EPA(9), AGEs(4), UV(3), heme(2), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: France 1940(1)
+
+## l21vtMf-i2c-how-modernity-rewires-your-brain-dr-iain-mcgilchrist-3-13-26
+
+**Concepts**: WHO(44), AGE(15), AGEs(4), RAGE(2), heme(1), NIH(1)
+
+
+**Titled**: Milgillust(1), Ian(1)
+
+
+**Citations**: 
+
 ## l9Ubguvfpys-dr-jack-kruse-water-non-native-emfs-mitochondrial-basis-of-d
 
 **Concepts**: mitochondria(60), WHO(26), mitochondrial(23), iron(21), AGE(17), electromagnetic(14), EMF(13), photosynthesis(10), cytochrome(8), red light(7), blue light(4), proton(4), infrared(3), melanin(3), EPA(3), electron(3), deuterium(2), ATP(2), photoelectric(1), semiconductor(1)
 
 
 **Titled**: Cruz(3), Max(1), Anthony(1), Jack Cruz(1), Jack(1), Wallace(1)
+
+
+**Citations**: 
+
+## lHXisYGjvmM-alan-watts-mind-over-mind-self-improvement-grace-and-the-par
+
+**Concepts**: WHO(24), AGE(5), NIR(2), NAD(1), DHA(1), EPA(1), RAGE(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -2375,9 +3661,29 @@ Kruse(1)
 
 **Citations**: 
 
+## lkAXsR5WINc-13-jacques-lacan-in-theory
+
+**Concepts**: AGE(53), WHO(15), red light(4), AGEs(2), NAD(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## m3YVmZ-Xm3g-dr-gerald-h-pollack-the-water-electrons-interview-nion-healt
 
 **Concepts**: WHO(28), electron(26), AGE(15), proton(9), iron(5), EPA(3), exclusion zone(2), fourth phase of water(1), semiconductor(1), quantum(1), AGEs(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## mT7roDHocuc-5-the-idea-of-the-autonomous-artwork
+
+**Concepts**: AGE(24), WHO(17), AGEs(5), UV(1), iron(1), EPA(1)
 
 
 **Titled**: 
@@ -2404,6 +3710,26 @@ Kruse(1)
 
 
 **Citations**: Abel 2011(1)
+
+## nR4JAonAR4g-inside-brian-eno-s-studio-zane-lowe-interview
+
+**Concepts**: WHO(21), AGE(20), RAGE(6), iron(2), heme(1), EPA(1), AGEs(1), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## nVQKbQVc2_w-4-philosophers-and-kings-plato-s-republic-i-ii
+
+**Concepts**: WHO(43), AGE(17), heme(4), EPA(4), GSH(2), AGEs(1), RAGE(1)
+
+
+**Titled**: Steven Smith(4)
+
+
+**Citations**: 
 
 ## ncpbNXmJNzA-dr-jack-kruse-nourish-vermont-2017-lecture-part-7-of-10
 
@@ -2435,6 +3761,18 @@ Kruse(1)
 
 **Citations**: 
 
+## oXR9AiqRXVQ-ucla-professor-erain-kristal-delivers-the-118th-faculty-rese
+
+**Concepts**: WHO(58), AGE(33), EPA(8), iron(4), AGEs(4), RAGE(4), NIH(2), UV(1), heme(1), Einstein(1)
+
+
+**Titled**: Christal(2), Crystal(1), Scott(1), Cal(1), Christy(1), Ephraim(1), Herbert
+Morris(1), Luchia(1), Luis
+Andres(1), Murio(1), Muro(1)
+
+
+**Citations**: Barbara 1982(1), April 2005(1)
+
 ## oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center
 
 **Concepts**: WHO(30), mitochondria(18), melanin(18), deuterium(16), AGE(16), electron(13), iron(12), blue light(9), mitochondrial(6), UV(6), electromagnetic(6), leptin(6), red light(5), ATP(5), redox(5), proton(5), infrared(4), vitamin A(3), quantum(3), photosynthesis(2)
@@ -2464,6 +3802,16 @@ Kruse(1)
 Cruz(2), Jack Cruz(2), Robert
 Otto Becker(1), Beck
 Becker(1)
+
+
+**Citations**: 
+
+## p2J7wSuFRl8-1-course-introduction
+
+**Concepts**: AGE(16), WHO(15), AGEs(5), RAGE(5), EPA(4)
+
+
+**Titled**: Kagan(3), Shelly Kagan(2)
 
 
 **Citations**: 
@@ -2549,6 +3897,26 @@ Platner(1)
 
 **Citations**: 
 
+## qA4iw3V0o1c-j-rgen-habermas-lecture-myth-and-ritual
+
+**Concepts**: AGE(34), WHO(13), iron(5), AGEs(4), EPA(3), UV(1), heme(1)
+
+
+**Titled**: Habermas(3), John(1), Jurgen Habermas(1)
+
+
+**Citations**: Born 1929(1), Frankfurt 1959(1), Secularization 2007(1)
+
+## qBUvxAoaZls-were-john-lennon-paul-mccartney-gay-unpacking-mclennon
+
+**Concepts**: WHO(44), AGE(26), EPA(4), iron(3), RAGE(2), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: Lord 2024(1), Liverpool 1960(1), Gallery 1966(1), Playboy 1980(1)
+
 ## qHnE8yfuT_E-who-the-heck-is-gilbert-ling
 
 **Concepts**: WHO(13), ATP(10), AGE(6), electron(5), iron(3), RAGE(2), proton(2), NIH(2), exclusion zone(1), mitochondria(1), heme(1), EPA(1), AGEs(1)
@@ -2582,6 +3950,26 @@ Cruz(1), Robert Holique(1)
 
 **Citations**: States 1900(1)
 
+## qTEltTx7Y90-the-darkest-wisdom-all-of-dostoevsky-s-philosophy-explained-
+
+**Concepts**: WHO(99), AGE(36), EPA(13), RAGE(13), NIH(8), heme(7), iron(5), NAD(5), AGEs(5), UV(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## qUdcIVGeI9A-a-guide-to-brian-eno
+
+**Concepts**: electron(15), AGE(12), WHO(12), iron(7), EPA(5), heme(2), NIR(1), NAD(1), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: Crimson 1972(1), August 1960(1), January 2017(1)
+
 ## qa3FaUXZFSc-the-war-on-sunlight-is-real-and-it-s-not-an-accident-dr-jack
 
 **Concepts**: WHO(69), electromagnetic(15), melanin(12), AGE(11), EPA(10), EMF(9), blue light(4), iron(3), Rockefeller(3), Faraday(3), dopamine(1), mitochondria(1), mitochondrial(1), leptin(1), AGEs(1), electron(1), Einstein(1), Becker(1), Tesla(1)
@@ -2603,6 +3991,16 @@ Malone(1)
 
 **Citations**: 
 
+## rALeChtSYN4-human-nature-and-the-divided-brain-iain-mcgilchrist
+
+**Concepts**: WHO(55), AGE(19), AGEs(5), Einstein(4), EPA(3), RAGE(2), heme(1), iron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## rKDl37lqEBg-dr-jack-kruse-sunlight-is-the-key-to-health-digestive-issues
 
 **Concepts**: WHO(58), iron(35), AGE(30), mitochondria(17), blue light(16), UV(13), dopamine(11), NAD(9), DHA(7), biophoton(6), electromagnetic(6), circadian(5), quantum(4), photosynthesis(3), heme(3), vitamin D(3), quantum biology(3), mitochondrial(2), UVB(2), melanin(2)
@@ -2612,6 +4010,16 @@ Malone(1)
 
 
 **Citations**: Vermont 2018(2), Vermont 2016(1)
+
+## rOC4tHjZslw-harold-bloom-discusses-freud-s-major-concepts-mar-21-1983
+
+**Concepts**: WHO(48), AGE(47), EPA(7), AGEs(5), iron(4), NIR(2), heme(1), RAGE(1), Helmholtz(1)
+
+
+**Titled**: 
+
+
+**Citations**: Freud 1939(1), Rome 1914(1)
 
 ## rRM_FNooJHc-gagaku-the-court-music-of-japan-complete
 
@@ -2683,6 +4091,16 @@ Malone(1)
 
 **Citations**: States 1939(1), Israel 1969(1)
 
+## sKVZykutOD0-iain-mcgilchrist-active-inference-insights-023-hemispheric-l
+
+**Concepts**: WHO(40), AGE(35), iron(11), RAGE(6), AGEs(4), EPA(3), Russell(2), NAD(1), Einstein(1)
+
+
+**Titled**: Ian(1), Migel Christ(1)
+
+
+**Citations**: 
+
 ## sSbPuug1a78-the-last-prayer-of-the-templars-when-europe-cried-deus-vult-
 
 **Concepts**: iron(15), WHO(7)
@@ -2703,6 +4121,16 @@ Malone(1)
 
 **Citations**: 
 
+## sVKWlEq09tQ-wittgenstein-s-contribution-to-philosophy
+
+**Concepts**: AGE(57), WHO(34), Russell(12), heme(3), EPA(3), AGEs(2)
+
+
+**Titled**: Russell(1)
+
+
+**Citations**: Tractatus 1919(1)
+
 ## sf9VNlTiq5s-neurosurgeon-talks-about-genetics-and-longevity-dr-jack-krus
 
 **Concepts**: WHO(28), mitochondria(27), mitochondrial(16), AGE(15), quantum(10), circadian(9), photosynthesis(8), ATP(4), Einstein(4), biophoton(3), infrared(3), UV(3), iron(3), NAD(3), quantum biology(3), Becker(3), cytochrome(2), UVA(2), blue light(2), EMF(2)
@@ -2714,6 +4142,16 @@ Cruz(1), Fouchy(1), Jeff(1)
 
 **Citations**: 
 
+## sh5kUrqGWlI-war-and-peace-by-leo-tolstoy-in-depth-book-summary-analysis-
+
+**Concepts**: WHO(148), AGE(60), heme(11), EPA(9), AGEs(9), RAGE(7), UV(4), iron(4), quantum(4), Becker(1), Russell(1)
+
+
+**Titled**: 
+
+
+**Citations**: October 1805(2), August 1812(1), Punishment 1860(1)
+
 ## sjg8IUmbqSY-power-of-light-in-cancer-healing-sp-mini-ft-dr-jack-kruse
 
 **Concepts**: UV(6), mitochondria(5), mitochondrial(3), melatonin(2), red light(2), WHO(2), infrared(1), melanin(1), iron(1)
@@ -2724,9 +4162,39 @@ Cruz(1), Fouchy(1), Jeff(1)
 
 **Citations**: 
 
+## skRCLJxCpDI-how-to-read-and-why-harold-bloom-short-story-section
+
+**Concepts**: WHO(51), AGE(34), RAGE(11), iron(10), AGEs(5), NIH(4), EPA(3), NAD(1), Bohr(1)
+
+
+**Titled**: Wilcox(2)
+
+
+**Citations**: Weaver 1974(1)
+
 ## snFsXVJdT7I-sacred-choir-of-knights-gregorian-chant-medieval-music-epic-
 
 **Concepts**: AGE(44), RAGE(44)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## t06aTX9jM34-decoding-the-universe-quantum-full-documentary-nova-pbs
+
+**Concepts**: quantum(95), WHO(15), electron(9), Einstein(8), AGE(7), EPA(6), superconductor(2), NIH(2), infrared(1), electromagnetic(1), iron(1), RAGE(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: Hawking 1974(1), Since 1996(1), Since 2016(1)
+
+## tKqJs3MVR1k-awakening-to-the-meaning-crisis-robert-wright-john-vervaeke
+
+**Concepts**: WHO(22), AGE(14), EPA(5), iron(4), RAGE(4), AGEs(1)
 
 
 **Titled**: 
@@ -2815,6 +4283,16 @@ Cruz(1), Cruz Jack(1)
 
 **Citations**: 
 
+## vAsGIzqLeVM-how-to-write-the-hero-s-journey-writing-advice
+
+**Concepts**: AGE(48), WHO(10), AGEs(8), EPA(2), DHA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## vC4HNcqTQXk-roger-penrose-on-mind-consciousness-closer-to-truth-chats
 
 **Concepts**: quantum(35), WHO(15), AGE(6), Einstein(6), EPA(3), iron(2), electron(2), Planck(2), Newton(2), electromagnetic(1), Schrödinger(1), de Broglie(1), Penrose(1), Hameroff(1)
@@ -2838,6 +4316,26 @@ Cruz(1), Cruz Jack(1)
 ## vM1WN_1hIsE-lecture-7-mantra-q-a-karlheinz-stockhausen-british-lectures-
 
 **Concepts**: WHO(31), EPA(8), electron(7), heme(3), AGE(3), AGEs(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## vRtb3qfhJe0-hannah-arendt-s-the-human-condition-part-2
+
+**Concepts**: WHO(29), AGE(20), EPA(5), NAD(3), RAGE(2), heme(1), iron(1), DHA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## vSmzTlan80E-the-way-of-zen-by-alan-watts-full-audiobook-in-high-quality-
+
+**Concepts**: DHA(227), WHO(224), AGE(136), NIR(62), EPA(35), AGEs(30), heme(15), NIH(13), RAGE(12), iron(7), GSH(5), NAD(1), Newton(1)
 
 
 **Titled**: 
@@ -2878,6 +4376,16 @@ Cruz(1), Cruz Jack(1)
 ## wL3ZNuWgjxs-jack-kruse-whole-foods
 
 **Concepts**: WHO(9), AGE(6), seafood(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## whP4mfOV5HQ-alan-watts-zen-tales
+
+**Concepts**: WHO(36), AGE(11), DHA(10), EPA(3), iron(1), AGEs(1), NIH(1)
 
 
 **Titled**: 
@@ -2934,6 +4442,16 @@ Cruz(1), Cruz Jack(1)
 
 
 **Citations**: 
+
+## xTjQbAF1eoQ-20191021-habermas-at-90-a-discussion-of-his-contributions-to
+
+**Concepts**: WHO(19), AGE(18), EPA(3), AGEs(3), vitamin A(1), iron(1), NAD(1)
+
+
+**Titled**: 
+
+
+**Citations**: Berlin 1843(1), University 1960(1)
 
 ## xZgGli6gDHE-live-with-carnegie-hall-isaac-stern-centenary
 
@@ -2995,6 +4513,16 @@ Cruz(1), Cruz Jack(1)
 
 **Citations**: 
 
+## xryT4B4sOY0-harvard-engl-e-129-lecture-12-the-tempest
+
+**Concepts**: WHO(94), AGE(91), AGEs(4), NAD(3), EPA(3), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## xsy8p435DqM-conscious-agents-vs-cognitive-agents-with-donald-hoffman-and
 
 **Concepts**: AGE(107), WHO(48), quantum(18), Einstein(9), AGEs(7), proton(7), EPA(4), magnetic field(2), UV(1), iron(1), NAD(1), electron(1), Planck(1), Newton(1)
@@ -3005,6 +4533,16 @@ Cruz(1), Cruz Jack(1)
 
 **Citations**: 
 
+## y1kafU4oODc-wittgenstein-drury-the-philosopher-and-the-psychiatrist
+
+**Concepts**: WHO(25), AGE(9), EPA(6), heme(1), iron(1), NAD(1), quantum(1), Russell(1)
+
+
+**Titled**: Morrison(2), Sanders(1), Norman Moore(1), Bevan(1)
+
+
+**Citations**: Cambridge 1926(1), Dublin 1936(1)
+
 ## yALOChgRrHQ-these-people-must-pay-bitcoin-trump-covid-and-zionism-with-d
 
 **Concepts**: WHO(181), AGE(40), iron(17), blue light(16), EPA(14), Becker(12), electron(11), melanin(10), EMF(9), Rockefeller(9), red light(7), electromagnetic(7), AGEs(7), dopamine(6), infrared(6), UV(6), circadian(5), quantum(5), heme(4), leptin(4)
@@ -3014,6 +4552,16 @@ Cruz(1), Cruz Jack(1)
 
 
 **Citations**: States 1939(1), Israel 1969(1), Lans 1973(1), Started 2013(1)
+
+## yJgAQ3xWMoA-robert-sandall-and-mark-russell-interview-brian-eno-about-ge
+
+**Concepts**: WHO(14), AGE(11), AGEs(5), Russell(2), heme(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## yTrSFddva8Q-dr-jack-kruse-fix-the-money-fix-the-body-orange-pill-order-e
 
@@ -3026,6 +4574,36 @@ Cruz(1), Courtland(1), Jackekal(1), Corland(1)
 
 **Citations**: Back 1905(1)
 
+## yWIfI1k45Rk-tolstoy-dostoevsky-shklovsky-preaching-lessons-from-russian-
+
+**Concepts**: WHO(23), AGE(8), EPA(3), AGEs(2)
+
+
+**Titled**: 
+
+
+**Citations**: October 2025(2), October 1977(1)
+
+## yXZSeiAl4PI-2017-maps-of-meaning-09-patterns-of-symbolic-representation
+
+**Concepts**: WHO(93), AGE(78), RAGE(13), AGEs(5), iron(3), quantum(3), EPA(2), heme(1), NAD(1), proton(1), Wheeler(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## yXtO-h7BVKw-finding-joe-full-length-movie-joseph-campbell-the-hero-s-jou
+
+**Concepts**: AGE(30), WHO(28), RAGE(14), DHA(13), EPA(6), iron(4), AGEs(3), heme(2)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## yd1w-qilILY-why-you-need-more-sunlight-jack-kruse
 
 **Concepts**: WHO(44), mitochondria(20), electron(19), blue light(11), AGE(10), mitochondrial(9), circadian(8), iron(8), deuterium(7), UV(4), electromagnetic(4), melatonin(3), proton(3), photoelectric(2), photosynthesis(2), EMF(2), dopamine(1), photoelectric effect(1), melanin(1), schumann(1)
@@ -3035,6 +4613,16 @@ Cruz(1), Courtland(1), Jackekal(1), Corland(1)
 
 
 **Citations**: Prize 2017(1)
+
+## yhn8BRisDoM-heidegger-being-ontotheology-mary-jane-rubenstein
+
+**Concepts**: WHO(45), AGE(29), heme(2), quantum(2), EPA(2), AGEs(2), NAD(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## ylHYqtU5slQ-lecture-2-karlheinz-stockhausen-the-british-lectures-live-el
 
@@ -3056,6 +4644,16 @@ Cruz(1), Courtland(1), Jackekal(1), Corland(1)
 
 **Citations**: 
 
+## z4ED8AU9XxQ-how-the-beatles-changed-the-world-documentary-amplified
+
+**Concepts**: WHO(72), AGE(68), AGEs(4), EPA(3), NAD(2), RAGE(2), electron(2), Pauli(1)
+
+
+**Titled**: King(1)
+
+
+**Citations**: February 1968(2), Liverpool 1961(1), January 1962(1), November 1963(1), April 1964(1), June 1965(1), October 1965(1), August 1966(1), Press 1966(1), Beatles 1966(1), February 1967(1), June 1967(1), Chicago 1968(1), August 1968(1), March 1969(1), Eastman 1969(1)
+
 ## z8FVueTcz6E-buried-treasure-jesus-and-physicist-john-wheeler-agree-this-
 
 **Concepts**: WHO(21), Wheeler(14), DHA(6), AGE(4), AGEs(3), Einstein(2), quantum(1), Bohr(1), Feynman(1)
@@ -3076,6 +4674,16 @@ Wallace(1)
 
 
 **Citations**: University 1929(1), Proparta 2000(1), Kahal 1891(1), Synthesized 1994(1), Georgie 1941(1)
+
+## zGzjZQZRcgQ-hannah-arendt-and-the-human-condition-samantha-rose-hill-in-
+
+**Concepts**: AGE(23), WHO(13), EPA(3), heme(1), AGEs(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## zYjCjKCcRsQ-my-tweet-that-set-jack-kruse-off
 

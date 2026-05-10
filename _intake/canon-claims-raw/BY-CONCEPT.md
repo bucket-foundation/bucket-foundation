@@ -310,7 +310,7 @@
 - **5** [never/because] · `00:53:07.200` [Dr. Jack Kruse on How Light Controls Metabolism & Diabetes |](https://www.youtube.com/watch?v=tg9c6shuazI&t=3187)
   > those are broken. So diabetics can never photo repair themselves because of this process. What allows them to gain control, get rid of the blue light and get melanin back in their body. So what
 
-## red-light (70 candidates, top 50)
+## red-light (73 candidates, top 50)
 
 - **8** [always/never/because] · `01:11:21.900` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=4281)
   > why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when Blue's available but guess what your iPhone never does that's the whole
@@ -771,10 +771,16 @@
 - **5** [always/because] · `02:41:32.580` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9692)
   > it's definitely today there's an of course bulb&nbsp; going off for me like of course like light is we&nbsp;&nbsp; always say in circadian biology I didn't say it&nbsp; first of course like light is the most powerful&nbsp;&nbsp; zeitge Gaber time keeper because temperature will&n
 
-## oxygen (31 candidates, top 50)
+## oxygen (34 candidates, top 50)
 
 - **7** [always/must/because] · `00:54:37.120` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=3277)
   > There's no oxygen there. What else isn't there? There's no melanin, either. And why is that the case? Because it's always photo-oxidized all the time. So, that means it has to
+- **7** [always/only] · `00:00:20.854` [How The Earth Was Made: From Molten Rock to Green Planet | F](https://www.youtube.com/watch?v=WgjBaXpuSE4&t=20)
+  > of rock 25,000 miles around. It is a refuge. 1/3 land, 2/3 water, and with an atmosphere rich in oxygen, it is the only known home in the universe for living creatures. But this blue-green oasis has not always been so welcoming.
+- **7** [always/only] · `00:00:25.692` [How The Earth Was Made: From Molten Rock to Green Planet | F](https://www.youtube.com/watch?v=WgjBaXpuSE4&t=25)
+  > It is a refuge. 1/3 land, 2/3 water, and with an atmosphere rich in oxygen, it is the only known home in the universe for living creatures. But this blue-green oasis has not always been so welcoming. The planet bears the scars of a traumatic past,
+- **7** [always/only] · `00:00:30.280` [How The Earth Was Made: From Molten Rock to Green Planet | F](https://www.youtube.com/watch?v=WgjBaXpuSE4&t=30)
+  > 1/3 land, 2/3 water, and with an atmosphere rich in oxygen, it is the only known home in the universe for living creatures. But this blue-green oasis has not always been so welcoming. The planet bears the scars of a traumatic past, a past of extreme environments, and extreme cata
 - **6** [must/causes/because] · `02:36:22.319` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9382)
   > from plus two to plus three what do you need to&nbsp; know you don't need to know a lot of fancy signs&nbsp;&nbsp; oxygen delivers to mitochondria when it's plus&nbsp; three and the reason why is what we talked to&nbsp;&nbsp; Andrew before about oxygen is Paramount what does&nbsp
 - **6** [never/evidence] · `00:59:22.140` [Uncomfortable Truths with Dr Jack Kruse](https://www.youtube.com/watch?v=Zka4Lnire1k&t=3562)
@@ -901,7 +907,7 @@
 - **5** [always/causes] · `03:11:12.660` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=11472)
   > of like yes that more of that the stuff that&nbsp; creates bonding between people I mean you know&nbsp;&nbsp; dopamine is I can tell you I've always thought&nbsp; that Chi and dopamine are are sort of synonymous&nbsp;&nbsp; or another I think they are but I would tell you&nbsp; t
 
-## iron (18 candidates, top 50)
+## iron (23 candidates, top 50)
 
 - **5** [always/because] · `01:45:31.280` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6331)
   > use that. Or if you want to do one and the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c
@@ -931,6 +937,16 @@
   > occasionally uh donate blood important for men than women because men the ability to lose blood especially if you eat a lot of meat. Making sure your uh iron levels are never too high.
 - **5** [never/because] · `00:52:00.559` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=3120)
   > for men than women because men the ability to lose blood especially if you eat a lot of meat. Making sure your uh iron levels are never too high. &gt;&gt; If you would have asked me this question
+- **5** [never/because] · `00:18:21.200` [BORGES: A POET'S CREED  Lecture, 1968.](https://www.youtube.com/watch?v=MQv8ObsaG-U&t=1101)
+  > then i don't think we should remember that style stills meant an iron pen and that plane means flat because in that case i would never understand it
+- **5** [never/because] · `00:18:25.200` [BORGES: A POET'S CREED  Lecture, 1968.](https://www.youtube.com/watch?v=MQv8ObsaG-U&t=1105)
+  > we should remember that style stills meant an iron pen and that plane means flat because in that case i would never understand it now
+- **5** [never/because] · `00:18:27.679` [BORGES: A POET'S CREED  Lecture, 1968.](https://www.youtube.com/watch?v=MQv8ObsaG-U&t=1107)
+  > that style stills meant an iron pen and that plane means flat because in that case i would never understand it now i will go back to my boyhood days and
+- **5** [always/because] · `02:34:54.560` [Eastern and Western Zen | 08| Eastern Wisdom  | Alan Watts](https://www.youtube.com/watch?v=VLQMGHBnxVg&t=9294)
+  > But human birth is the thing that is always regarded as most fortunate because you can be tied to the wheel not only by chains of iron, that is to say, by
+- **5** [always/because] · `02:34:56.160` [Eastern and Western Zen | 08| Eastern Wisdom  | Alan Watts](https://www.youtube.com/watch?v=VLQMGHBnxVg&t=9296)
+  > always regarded as most fortunate because you can be tied to the wheel not only by chains of iron, that is to say, by acting wrongly, you can also be bound by
 - **5** [never/must] · `00:33:39.170` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2019)
   > thing happens what happens the blood vessels are raised to the surface so that they can absorb light what is hemoglobin absorb 250 to 600 nanometer light so red blood cells are ferryboats hmm then to work operationally they have to be sulfated what else do you know in your body t
 - **5** [never/causes] · `01:09:44.960` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4184)
