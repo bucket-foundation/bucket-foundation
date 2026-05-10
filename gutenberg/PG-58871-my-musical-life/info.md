@@ -8,7 +8,7 @@
 - **Download count (PG)**: 1923
 - **Subjects**: Conductors (Music) -- United States -- Biography, Damrosch, Walter, 1862-1950
 - **Bookshelves**: Category: American Literature, Category: Biographies, Category: Music
-- **Captured**: 2026-05-10T14:26:43
+- **Captured**: 2026-05-10T18:03:51
 
 ## Files
 

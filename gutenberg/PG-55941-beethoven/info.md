@@ -8,7 +8,7 @@
 - **Download count (PG)**: 1581
 - **Subjects**: Beethoven, Ludwig van, 1770-1827
 - **Bookshelves**: Category: Biographies, Category: Music, Nobel Prizes in Literature
-- **Captured**: 2026-05-10T14:26:28
+- **Captured**: 2026-05-10T18:03:39
 
 ## Files
 

@@ -8,7 +8,7 @@
 - **Download count (PG)**: 552
 - **Subjects**: Composers -- Biography, Music -- 19th century -- History and criticism
 - **Bookshelves**: Category: Art, Category: Music
-- **Captured**: 2026-05-10T14:26:39
+- **Captured**: 2026-05-10T18:03:55
 
 ## Files
 
