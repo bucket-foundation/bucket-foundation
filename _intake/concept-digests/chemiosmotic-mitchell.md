@@ -1,21 +1,13 @@
 # chemiosmotic-mitchell
 
-**Query**: `chemiosmotic OR Mitchell`  ·  **Hits**: 30
+**Query**: `chemiosmotic OR Mitchell`  ·  **Hits**: 35
 
 
-## archive (1)
-
-- **CIA Reading Room cia-rdp96-00787r000500380004-4: PSYCHIC PROCESS, ENERGY TRANSFER, AND THINGS THAT GO BUMP IN THE NIGHT**
-  - `archive/cia-readingroom-document-cia-rdp96-00787r000500380004-4/cia-rdp96-00787r000500380004-4_djvu.txt`
-  -  … This was expressed rather well 
-by our ex-astronaut, Edgar <<Mitchell>>, who has been for some time an 
-advocate of this field, and who … 
-
-## pubmed (12)
+## pubmed (14)
 
 - **Chemiosmotic coupling in oxidative and photosynthetic phosphorylation. 1966.**
   - `pubmed/PMID-22082452-chemiosmotic-coupling-in-oxidative-and-photosynthetic-phosph/info.md`
-  -  … 2026-05-09T09:41:11
+  -  … 2026-05-10T10:07:23
 
 ## Abstract
 
@@ -76,6 +68,9 @@ advocate of this field, and who …
 - **Journal**: Biochemical Society transactions  ·  **Year**: 1976
 - **Authors**: P <<Mitchell>>
 - **MeSH … 
+- **Contrasting approaches to a biological problem: paul boyer, peter mitchell and the mechanism of the ATP synthase, 1961-1985.**
+  - `pubmed/PMID-23104597-contrasting-approaches-to-a-biological-problem-paul-boyer-pe/info.md`
+  -  … During the 1960s and 1970s evidence began to accumulate which rendered Peter <<Mitchell>>'s <<chemiosmotic>> hypothesis, the novel part of which was the proton … 
 - **Strategy of research on the chemiosmotic mechanism of cytochrome oxidase.**
   - `pubmed/PMID-2834228-strategy-of-research-on-the-chemiosmotic-mechanism-of-cytoch/info.md`
   -  … <<chemiosmotic>> mechanism of cytochrome oxidase.
@@ -85,6 +80,9 @@ advocate of this field, and who …
 - **PMCID**:  
 - **Journal**: FEBS letters  ·  **Year**: 1988
 - **Authors**: P <<Mitchell>> … 
+- **Acidic lipids, H(+)-ATPases, and mechanism of oxidative phosphorylation. Physico-chemical ideas 30 years after P. Mitchell's Nobel Prize award.**
+  - `pubmed/PMID-19049812-acidic-lipids-h-atpases-and-mechanism-of-oxidative-phosphory/info.md`
+  -  … <<Mitchell>>, who was awarded the Nobel Prize in Chemistry 30 years ago, in 1978, formulated the <<chemiosmotic>> theory of oxidative phosphorylation. This review initially … 
 - **Foundations of vectorial metabolism and osmochemistry.**
   - `pubmed/PMID-1823594-foundations-of-vectorial-metabolism-and-osmochemistry/info.md`
   -  … P <<Mitchell>>
@@ -98,11 +96,13 @@ advocate of this field, and who …
   -  … Peter D <<Mitchell>>
 - **MeSH**: Biochemistry, Biological Transport, Biological Transport, Active, Catalysis, Chemistry, Diffusion, Electron Transport, Genetic Vectors, Ligands, Light
 - **URL**: https://pubmed.ncbi.nlm … 
-- **Acid-base titration across the membrane system of rat-liver mitochondria. Catalysis by uncouplers.**
-  - `pubmed/PMID-6048801-acid-base-titration-across-the-membrane-system-of-rat-liver/info.md`
-  -  … P <<Mitchell>>, J Moyle
-- **MeSH**: Animals, Dinitrophenols, Hydrogen-Ion Concentration, Hypoxia, In Vitro Techniques, Kinetics, Liver, Male, Membrane Potentials, Mitochondria
-- **URL**: https://pubmed.ncbi … 
+- **Regulation of oxidative phosphorylation, the mitochondrial membrane potential, and their role in human disease.**
+  - `pubmed/PMID-18843528-regulation-of-oxidative-phosphorylation-the-mitochondrial-me/info.md`
+  -  … 2026-05-10T10:07:26
+
+## Abstract
+
+Thirty years after Peter <<Mitchell>> was awarded the Nobel Prize for the <<chemiosmotic>> hypothesis, which links the mitochondrial … 
 
 ## youtube (1)
 
@@ -113,7 +113,7 @@ in 1978 to English scientist Peter
 <<Mitchell>> for his <<chemiosmotic>> hypothesis
 to award a Nobel Prize for an as yet … 
 
-## intake (16)
+## intake (12)
 
 - **chemiosmotic-mitchell**
   - `_intake/concept-digests/chemiosmotic-mitchell.md`
@@ -122,10 +122,9 @@ to award a Nobel Prize for an as yet …
 **Query**: `<<chemiosmotic>> OR <<Mitchell>>`  ·  **Hits**: 30
 
 
-## pubmed (12)
+## archive (1)
 
-- **<<Chemiosmotic>> coupling in oxidative and photosynthetic phosphorylation. 1966.**
-  - `pubmed/PMID-22082452-<<chemiosmotic>>-coupling-in … 
+- **CIA Reading Room cia-rdp96-00787r000500380004-4: PSYCHIC PROCESS, ENERGY TRANSFER, AND THINGS THAT … 
 - **Peter Mitchell**
   - `_intake/canon-profiles/mitchell-peter.md`
   - # Peter <<Mitchell>>
@@ -133,7 +132,7 @@ to award a Nobel Prize for an as yet …
 **Slug**: `<<mitchell>>-peter`  ·  **FTS query**: `<<Mitchell>> AND (<<chemiosmotic>> OR proton OR oxidative)`  ·  **Hits**: 25
 
 
-## pubmed (12)
+## pubmed (11)
 
 - **<<Chemiosmotic>> coupling in oxidative and photosynthetic … 
 - **Peter Mitchell — canon-target intake**
@@ -148,55 +147,46 @@ institutional archive + Nobel materials
 
 1. Identify lowest-friction source (PD > OA > author-site > publisher).
 2. Pull primary materials … 
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
+  -  … absorb red light.  <<Cytochrome>> C in <<mitochondria>> is … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … Pull primary materials … 
+- **Concept Digests**
+  - `_intake/concept-digests … 
+- **Björn Nordenström**
+  - `_intake/canon-profiles/nordenstrom-bjorn.md`
+  -  … Peter <<Mitchell>>**
+  - `_intake/canon-profiles/<<mitchell>>-peter.md`
+  -  … Nobel 1978 | <<<<Chemiosmotic>>>> theory papers, mitochondrial <<proton>> gradient | 05-biophysics | 4 |
+| `<<nordenstrom>>-bjorn … 
+- **Peter <<Mitchell>> — canon … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
   -  … 14)
 - [`mitochondrial-redox`](mitochondrial-redox.md) — 30 hits  (intake:30)
-- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 30 hits  (intake:16, pubmed:12, youtube:2)
-- [`photoelectric … 
-- **association-induction-ling**
-  - `_intake/concept-digests/association-induction-ling.md`
-  -  … Induction>> hypothesis.
-
-**QUANTUM NEURO-DEGENERATION**    This turns out … 
-- **<<chemiosmotic>>-<<mitchell>>**
-  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED … 
-- **photosynthesis-quantum**
-  - `_intake/concept-digests/photosynthesis-quantum.md`
-  -  … blog](https://jackkruse.com/<<quantum>>-<<biology>>-1-the … 
-- **<<chemiosmotic>>-<<mitchell>>**
-  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … <<QUANTUM>> NOISE AND FIDELITY OF LIFE**
-  - `_intake/kruse … 
+- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 30 hits  (archive:1, intake:16, pubmed:12, youtube … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … 1962), Association-Induction Hypothesis | 05-biophysics | 5 |
 | `<<mitchell>>-peter` | **Peter <<Mitchell>>** (1920–1992), Nobel 1978 | <<Chemiosmotic>> theory papers, mitochondrial proton gradient | 05-biophysics | 4 … 
+- **Meta-Canon — what the bridges actually mean**
+  - `_intake/connections/META-CANON.md`
+  -  … also Walter Russell — different person, separate canon line.] |
+| **<<Mitchell>>** | 93 | biophysics (<<chemiosmotic>> theory, Nobel 1978) ↔ chemistry (proton gradients) ↔ physics (membrane thermodynamics). |
+| **Penrose** | 91 | physics … 
 - **EMF 3: The Origin of Life**
   - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
   -  … floor.  It was the merger of the Schumann resonance with <<Mitchell>>’s <<chemiosmotic>> coupling and water’s quantum coherence that allowed life to reconstitute … 
 - **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
   - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
   -  … Peter <<Mitchell>> won a Nobel Prize in 1978 for something that can’t possibly work in our cells, based upon the energy required for … 
-- **Björn Nordenström**
-  - `_intake/canon-profiles/nordenstrom-bjorn.md`
-  -  … 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … 1978 | <<Chemiosmotic>> theory papers, mitochondrial proton gradient | 05-biophysics | 4 |
-| `<<nordenstrom>>-bjorn` | **Björn <<Nordenström … 
-- **Energy and Epigenetics 12:  Is Your Battery Charged?**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
-  -  … Na/K ATPase that was laid on top of Peter <<Mitchell>>’s flawed <<chemiosmotic>> model.  **The proposed ATPase energy calculations broke the second law … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
   -  … gilbert`](ling-gilbert.md) — Gilbert Ling — 25 hits
 - [`<<mitchell>>-peter`](<<mitchell>>-peter.md) — Peter <<Mitchell>> — 25 hits
 - [`nordenstrom-bjorn`](nordenstrom-bjorn.md) — Björn Nordenström … 
-- **EMF 7: Quantum Prometheus**
-  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
-  -  … It is also is why I have believed Peter <<Mitchell>> is dead wrong too now, and he should have never won a Nobel Prize … 
 - **Mitchell chemiosmosis / ETC / proton gradient — concept canon-target intake**
   - `_intake/concept-mitochondrial-chemiosmosis/README.md`
   - # <<Mitchell>> chemiosmosis / ETC / proton gradient — concept canon-target intake
@@ -205,9 +195,3 @@ institutional archive + Nobel materials
 - **Canon branch**: 05-biophysics
 - **Status**: queued (not yet researched)
 - **Initiated**: 2026 … 
-- **Quantum Biology #1: The Zero Entropy System**
-  - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
-  -  … <<Mitchell>> theories just could not account for these reactions that we know happened in life.  I really struggled with this until I realized how … 
-- **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
-  - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
-  -  … This lowers the voltage of the inner mitochondrial membrane and it should short out the <<Mitchell>>/Wallace’s version of a capacitor. I believe … 

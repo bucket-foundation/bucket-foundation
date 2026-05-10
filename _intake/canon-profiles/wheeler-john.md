@@ -1,10 +1,14 @@
 # John Archibald Wheeler
 
-**Slug**: `wheeler-john`  ·  **FTS query**: `Wheeler AND (delayed OR quantum OR information OR participatory)`  ·  **Hits**: 25
+**Slug**: `wheeler-john`  ·  **FTS query**: `Wheeler AND (delayed OR quantum OR information OR participatory)`  ·  **Hits**: 30
 
 
-## archive (3)
+## archive (2)
 
+- **(proto)Physics PhD Thesis: TOE - Quantum Cosmology**
+  - `archive/ThesisTOEdll/00- Quantum Cosmology : An Epistemological and Ontological Perspective on Quantum Cosmology and Levels of the Multiverse (rev0)_djvu.txt`
+  -  … In addition to the <<Wheeler>>—DeWitt equation, <<quantum>> cosmology also explores the 
+importance of boundary conditions for the universe. In classical cosmology, the initial … 
 - **Geons, black holes, and quantum foam : a life in physics**
   - `archive/geonsblackholesq00whee/info.md`
   - # Geons, black holes, and <<quantum>> foam : a life in physics
@@ -12,16 +16,14 @@
 - **Archive identifier**: `geonsblackholesq00whee`
 - **URL**: https://archive.org/details/geonsblackholesq00whee
 - **Creator**: <<Wheeler>>, John Archibald, 1911 … 
-- **The Oxford book of modern science writing**
-  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
-  -  … the eternal golden braid -- John Archibald <<Wheeler>> with Kenneth Ford, from Geons, black holes, and <<quantum>> foam -- David Deutsch, from The fabric of reality … 
-- **Notes on the Paranormal**
-  - `archive/ExtrasensoryPerceptionResearchFinding/Extrasensory_Perception_Research_Finding_djvu.txt`
-  -  … Although some of these mediums proved to be 
-fraudulent, others consistently were able to provide investigators with 
-remarkably detailed <<information>> about deceased persons, <<information>> … 
 
-## youtube (8)
+## arxiv (1)
+
+- **Exact Classical Correspondence in Quantum Cosmology**
+  - `arxiv/1405.7957-exact-classical-correspondence-in-quantum-cosmology/info.md`
+  -  … the solution of the <<Wheeler>>-DeWitt equation exactly corresponds to the classical evolution. The well-known problems in <<quantum>> cosmology disappear in the resulting … 
+
+## youtube (5)
 
 - **The Quantum Labyrinth - Richard Feynman & John Wheeler - Quantum Reality & Time**
   - `yt/KCcX03Q6Lkw-the-quantum-labyrinth-richard-feynman-john-wheeler-quantum-r/transcript.txt`
@@ -59,25 +61,6 @@ uh uh in the 19 late
 <<Quantum>>
 Computing and he wrote a uh a paper
 which … 
-- **#13 - Jack Kruse**
-  - `yt/VO4JwdXuXXs-13-jack-kruse/transcript.txt`
-  -  … <<wheeler>>
-did in the middle part of his career is
-about electrodynamic Fields then at the
-end <<wheeler>> thought it was all about
-<<information>> … 
-- **Joe Rogan Experience #1216 - Sir Roger Penrose**
-  - `yt/GEw0ePZUMHA-joe-rogan-experience-1216-sir-roger-penrose/transcript.txt`
-  -  … <<information>> be yeah yeah I
-mean if it comes to things like you know
-when people talk about the entanglements
-and things <<quantum>> states … 
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … <<information>>
-Theory I would tell you they're one and
-the same there are over there's overlap
-between them um John <<Wheeler>> says … 
 
 ## intake (14)
 
@@ -85,12 +68,16 @@ between them um John <<Wheeler>> says …
   - `_intake/canon-profiles/wheeler-john.md`
   - # John Archibald <<Wheeler>>
 
-**Slug**: `<<wheeler>>-john`  ·  **FTS query**: `<<Wheeler>> AND (<<delayed>> OR <<quantum>> OR <<information>> OR <<participatory>>)`  ·  **Hits**: 17
+**Slug**: `<<wheeler>>-john`  ·  **FTS query**: `<<Wheeler>> AND (<<delayed>> OR <<quantum>> OR <<information>> OR <<participatory>>)`  ·  **Hits**: 25
 
 
-## archive (2)
+## archive (3)
 
-- **Notes on the … 
+- **Geons, black holes … 
+- **Meta-Canon — what the bridges actually mean**
+  - `_intake/connections/META-CANON.md`
+  -  … Carries the Becker line forward. |
+| **<<Wheeler>>** | 45 | physics (GR) ↔ cosmology (<<delayed>>-choice) ↔ <<information>> ("it from bit") ↔ mind (<<participatory>> universe). The *meta-bridge author* — explicitly … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … omega-papers` | Chaitin — algorithmic <<information>> theory papers | Many on chaitin.com. |
@@ -113,57 +100,57 @@ between them um John <<Wheeler>> says …
 | `<<wheeler>>-<<delayed>>-choice-1978` | <<Wheeler>> … 
 - **Do Food Electrons Impart a <<Quantum>> Effect?**
   - `_intake/kruse-blog-corpus … 
-- **Niels Bohr**
-  - `_intake/canon-profiles/bohr-niels.md`
-  -  … The  second  step  of  the  history  of  chemistry  was  heralded  by 
-<<Bohr>> … 
-
-## youtube (6)
-
-- **The <<Quantum>> Labyrinth - Richard Feynman & John <<Wheeler>> - <<Quantum>> Reality & Time … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … marino-interviewed-by-dr-kamau-kokayi`
+- `KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-feynman-john-<<wheeler>>-<<quantum>>-r`
+- `KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick … 
 - **Michael Faraday**
   - `_intake/canon-profiles/faraday-michael.md`
   -  … michael` | <<Faraday>> | *<<Experimental>> Researches in <<Electricity>>* | 02-physics | 2 |
 | `<<wheeler>>-john-archibald` | <<Wheeler>> | "<<Information>>, Physics … 
-- **Michael Faraday — canon-target intake**
-  - `_intake/faraday-michael/README … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … tesla … 
+- **Richard Feynman**
+  - `_intake/canon-profiles/feynman-richard.md`
+  -  … <<wheeler>>-john.md`
+  -  … 9)
+
+- **The <<Quantum>> Labyrinth - Richard <<Feynman>> & John <<Wheeler>> - <<Quantum>> Reality & Time**
+  - `yt/KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-<<feynman>>-john-<<wheeler>>-<<quantum>> … 
+- **Per-Video References**
+  - `_intake/kruse-references-mined/PER-VIDEO.md`
+  -  … Becker(4), Andrew
+Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
+
+
+**Citations**: 
+
+## KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-feynman-john-<<wheeler>>-<<quantum>>-r … 
+- **Niels Bohr**
+  - `_intake/canon-profiles/bohr-niels.md`
+  -  … However, it turns out … 
+
+## youtube (6)
+
+- **The <<Quantum>> Labyrinth - Richard Feynman & John <<Wheeler>> - <<Quantum>> Reality & Time**
+  - `yt/KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-feynman-john … 
 - **Erwin Schrödinger**
   - `_intake/canon-profiles/schrodinger-erwin.md`
   -  … that … 
 - **The <<Quantum>> Labyrinth - Richard Feynman & John <<Wheeler>> - <<Quantum>> Reality & Time**
   - `yt/KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-feynman-john-<<wheeler>>-<<quantum>>-r/transcript.txt … 
+- **Canon Connections — bridges across branches**
+  - `_intake/connections/BRIDGES.md`
+  -  … 275` `<<inform>>=345` `biophy=468` `cosmol=208` `mind=339` `deep-h=70` `art=40` `sacred=88` |
+| **<<quantum>>** | 10 | mathematics, physics, chemistry, <<information>>, biophysics, cosmology … 
 - **Isaac Newton**
   - `_intake/canon-profiles/newton-isaac.md`
-  -  … SIR    ISAAC    <<NEWTON>> … 
+  -  … Nor does 
+the regular <<motion>> of … 
 
-## youtube (2)
+## youtube (1)
 
 - **Wittgenstein, <<Wheeler>> and Wallace: The Curious Relation of Philosophy, Mathematics and Physics**
-  - `yt/_QDZqFKmnBo-wittgenstein-<<wheeler>>-and-wallace-the … 
-- **Richard Feynman**
-  - `_intake/canon-profiles/feynman-richard.md`
-  -  … <<Quantum>> Sleep**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-<<quantum>>-sleep.md`
-  -  … Richard <<Feynman>> did some amazing foundational work on <<quantum>> vortices in … 
-- **walter-russell-cosmology**
-  - `_intake/concept-digests/walter-russell-cosmology.md`
-  -  … The Curious Relation of Philosophy, Mathematics and Physics**
-  - `yt/_QDZqFKmnBo-wittgenstein-<<wheeler>>-and-wallace-the-curious-relation-of-phi/transcript.txt`
-  -  … us
-along and … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … WHO(69), AGE(17), mitochondria(16), Einstein(12), iron(9), Becker(7), melanin(5), <<quantum>>(5), <<Wheeler>>(5), mitochondrial(4), Newton(4), UV(3 … 
-- **Brain Gut 1: Who Are We, Really?**
-  - `_intake/kruse-blog-corpus/articles/brain-gut-1-who-are-we-really.md`
-  -  … The <<Quantum>> Puzzle](https://jackkruse.com/energy-epigenetics-10-<<quantum>>-puzzle/)
-
-
-
-
-
-																		[
-						Gallery					](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain-tablethumb.png … 
-- **Cold Thermogenesis 10: Is Good The Enemy of Great?**
-  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-10-is-good-the-enemy-of-great.md`
-  -  … I thought her <<information>> as well as yours might help in opening his mind to alternative treatment. I want to “pay it forward” to … 
+  - `yt/_QDZqFKmnBo-wittgenstein-<<wheeler>> … 

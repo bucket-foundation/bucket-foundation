@@ -1,9 +1,9 @@
 # Robert O. Becker
 
-**Slug**: `becker-robert-o`  ·  **FTS query**: `Becker AND (bone OR bioelectric OR regeneration OR Marino OR Syracuse)`  ·  **Hits**: 25
+**Slug**: `becker-robert-o`  ·  **FTS query**: `Becker AND (bone OR bioelectric OR regeneration OR Marino OR Syracuse)`  ·  **Hits**: 30
 
 
-## youtube (10)
+## youtube (7)
 
 - **#39 - Dr. Andrew Marino**
   - `yt/18lVJi_ioFk-39-dr-andrew-marino/transcript.txt`
@@ -30,6 +30,12 @@ any place else
 Uh um uh and uh and and we started using
 electrical energy for growing <<bone>> uh
 and some … 
+- **Dr. Robert Becker and the DC Electric Current (JACK KRUSE, HUBERMAN, RUBIN PODCAST)**
+  - `yt/ouksSZxRtnc-dr-robert-becker-and-the-dc-electric-current-jack-kruse-hube/transcript.txt`
+  -  … into new healthy <<bone>> tissue so that's
+actually how the <<Regeneration>> of <<bone>> um
+works and occurs and Dr <<Becker>> is the
+one … 
 - **Cancer Beyond Metabolism: Bioelectricity, Mitochondria & Quantum Biology | Dr. Jack Kruse #149**
   - `yt/PH1MbzHXPsY-cancer-beyond-metabolism-bioelectricity-mitochondria-quantum/transcript.txt`
   -  … that <<Becker>> found one trillionth of an
@@ -43,36 +49,8 @@ so you …
 it completely <<regenerated>>. Which is why,
 remember <<Becker>> was an orthopedic
 surgeon. If you had somebody … 
-- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … my life
-that <<bone>> doesn't heal it actually
-<<regenerates>> and <<Becker>> was the one that
-proved that it <<regenerated>> explained
-exactly how it … 
-- **Dr. EnQi What is the Origin of BioElectricty? Dr. Sebi & Robert O Becker**
-  - `yt/s9vsbINyIWQ-dr-enqi-what-is-the-origin-of-bioelectricty-dr-sebi-robert-o/transcript.txt`
-  -  … conversation has everything to do with
-the <<bioelectricity>>
-thing right everything to do with with
-the <<bioelectricity>> and everything to do
-with our mantra … 
-- **Interview with Dr. Jack Kruse (04-08-2025)**
-  - `yt/wwNutyiyQ2I-interview-with-dr-jack-kruse-04-08-2025/transcript.txt`
-  -  … <<Becker>>, twice nominated for
-the Nobel Prize, published in the 1960s
-that when <<bone>> <<regenerates>>,
-we use
-red blood cells that dedifferentiate
-under the … 
-- **Dr. Jack Kruse: Silent Weapons for Silent Wars**
-  - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
-  -  … <<Becker>>'s work in in <<bone>>
-<<regeneration>>? Do a hard stop. If they
-can't answer those two questions, you're
-at the wrong … 
 
-## intake (15)
+## intake (18)
 
 - **Robert O. Becker**
   - `_intake/canon-profiles/becker-robert-o.md`
@@ -81,15 +59,15 @@ at the wrong …
 **Slug**: `<<becker>>-robert-o`  ·  **FTS query**: `<<Becker>> AND (<<bone>> OR <<bioelectric>> OR <<regeneration>> OR <<Marino>> OR <<Syracuse>>)`  ·  **Hits**: 25
 
 
-## youtube (12)
+## youtube (10)
 
 - **#39 - Dr … 
 - **bone-bioelectric-becker**
   - `_intake/concept-digests/bone-bioelectric-becker.md`
-  -  … intake/<<marino>>-andrew/README.md`
-  -  … <<<<Becker>>>> on the
-<<Syracuse>> VA <<<<bioelectricity>>>> research (1960s–1980s). Co-authored ~40 papers
-with <<<<Becker>>>> on <<<<bone>>>> <<<<regeneration>>>>, EMF … 
+  -  … profiles/<<becker>>-robert-o.md`
+  -  … <<<<Becker>>>>
+
+**Slug**: `<<<<becker>>>>-robert-o`  ·  **FTS query**: `<<<<Becker>>>> AND (<<<<bone>>>> OR <<<<bioelectric>>>> OR <<<<regeneration>>>> OR <<Marino>> OR <<Syracuse>>)`  ·  **Hits … 
 - **Andrew Marino — canon-target intake**
   - `_intake/marino-andrew/README.md`
   -  … <<Becker>> on the
@@ -97,62 +75,90 @@ with <<<<Becker>>>> on <<<<bone>>>> <<<<regeneration>>>>, EMF …
 with <<Becker>> on <<bone>> <<regeneration>>, EMF biology, electric currents in tissue … 
 - **Andrew Marino**
   - `_intake/canon-profiles/marino-andrew.md`
-  -  … <<Becker>>>>'s right-hand man
-took it further and … 
+  -  … 25
 
-## intake (11)
 
+## pubmed (4)
+
+- **Low-frequency <<electromagnetic>> fields alter the … 
 - **<<bone>>-<<bioelectric>>-<<becker>>**
   - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
-  -  … Andrew <<<<Marino>>>> PhD … 
+  -  … Andrew <<<<Marino>>>> PhD ON Dr … 
+- **emf-non-thermal**
+  - `_intake/concept-digests/emf-non-thermal.md`
+  -  … <<Becker>>**
+  - `_intake/canon-profiles/<<becker>>-robert-o.md`
+  -  … <<emf>>-non-thermal.md`
+  -  … resonance above the normal frequencies found on … 
+- **<<<<bone>>>>-<<<<bioelectric>>>>-<<<<becker>>>>**
+  - `_intake/concept … 
 - **Robert O. Becker — canon-target intake**
   - `_intake/becker-robert-o/README.md`
   -  … search "body electric <<becker>>"
 - PubMed: author <<Becker>> RO, affiliation <<Syracuse>> VA
 - Google Scholar: cluster of <<Becker>> <<bone>>-<<bioelectric>> papers
 - NIH PMC: open-access <<Becker>> … 
+- **Meta-Canon — what the bridges actually mean**
+  - `_intake/connections/META-CANON.md`
+  -  … The *most-spanning living scientist* in the corpus. |
+| **<<Marino>>** | 79 | biophysics (EMF + <<bioelectricity>>, <<Becker>> collaborator) ↔ physics ↔ medicine. Carries the <<Becker>> line forward. |
+| **Wheeler** | 45 … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … The Promise of Electromedicine* (1990) | Sequel/complement. |
 | `<<becker>>-papers-<<syracuse>>` | <<Becker>>'s primary research papers (~30 papers, ~1960-1985, mostly orthopedics + <<bioelectricity>> at <<Syracuse>> … 
-- **photoelectric-biology**
-  - `_intake/concept-digests/photoelectric-biology.md`
-  -  … does Einstein’s … 
-- **<<bone>>-<<bioelectric>>-<<becker>>**
-  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
-  -  … Source | Notes |
-|---|---|---|
-| `<<<<becker>>>>-<<body>>-electric-1985` | <<<<Becker>>>> & Selden — *The <<Body>> Electric … 
 - **Energy and Epigenetics 3: Autoimmunity, Cancer, Autism**
   - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-3-autoimmunity-cancer-autism.md`
   -  … <<Becker>>’s work on the DC electric current of <<regeneration>> on salamander’s and human <<bone>> got him nominated twice for a Noble Prize … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … circadian-scn.md) — 30 hits  (arxiv:3, intake:27)
+- [`<<bone>>-<<bioelectric>>-<<becker>>`](<<bone>>-<<bioelectric>>-<<becker>>.md) — 30 hits  (intake:17, youtube:13)
+- [`association-induction … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … <<Becker>> — 67
+- Jack — 25
+- Jack
+Cruz — 16
+- Jack Kruse — 9
+- Robert <<Becker>> — 9
+- Ashner — 9
+- Klein — 8
+- Who — 7
+- Alexis — 7
+- Andrew <<Marino>> — 6 … 
 - **quantum-biology**
   - `_intake/concept-digests/quantum-biology.md`
-  -  … The Zero Entropy System**
-  - `_intake/kruse-blog-corpus/articles/<<quantum>>-<<biology>>-1-the-zero-entropy-system.md`
-  -  … Optimal requires … 
+  -  … WHO(188), AGE(39), <<Becker>>(36), blue light(28), electron … 
 - **<<bone>>-<<bioelectric>>-<<becker>>**
-  - `_intake/concept … 
-- **emf-non-thermal**
-  - `_intake/concept-digests/emf-non-thermal.md`
-  -  … electromagnetic>> spectrum is astounding as we laid … 
+  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
+  -  … DARPA Mind Control, <<Quantum … 
+- **association-induction-ling**
+  - `_intake/concept-digests/association-induction-ling.md`
+  -  … 5000 times more ATP than a <<cell>> … 
 - **<<bone>>-<<bioelectric>>-<<becker>>**
   - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
   -  … The same … 
-- **<<EMF>> 5: What are the … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … circadian-scn`](circadian-scn.md) — 30 hits  (intake:30)
-- [`<<bone>>-<<bioelectric>>-<<becker>>`](<<bone>>-<<bioelectric>>-<<becker>>.md) — 30 hits  (intake:16, youtube:14)
-- [`association-induction … 
-- **Energy and Epigenetics 9: Quantum Sleep**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
-  -  … Tissue <<regeneration>> and <<bone>> <<regeneration>> is what made Dr. <<Becker>> famous in the next 20 years. This is how I learned about his work … 
+- **<<association>>-<<induction>>-<<ling>>**
+  - `_intake/concept … 
 - **Energy & Epigenetics 1: The Infant Brain is Unique**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-1-the-infant-brain-is-unique.md`
   -  … <<Becker>> RO, <<Marino>> AA. Nature. 1966 May 7;210(5036):583-8.
 
 - [Stimulation of partial limb <<regeneration>> in rats](http://www.nature.com/nature … 
+- **Energy and Epigenetics 9: Quantum Sleep**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
+  -  … Tissue <<regeneration>> and <<bone>> <<regeneration>> is what made Dr. <<Becker>> famous in the next 20 years. This is how I learned about his work … 
+- **Per-Video References**
+  - `_intake/kruse-references-mined/PER-VIDEO.md`
+  -  … <<Becker>>(10), Andrew <<Marino>>(1), Roberto <<Becker>>(1), Albert St
+Georgie(1), Leven(1), <<Marino>>(1)
+
+
+**Citations**: University 1939(1)
+
+## 1GuVfh_KX94-boosting-neurotransmitters … 
 - **TIME #21:  SEMICONDUCTION REGENERATES TIME FOR CELLS**
   - `_intake/kruse-blog-corpus/articles/time-21-semiconduction-regenerates-time-cells.md`
   -  … SEMICONDUCTION <<REGENERATES>> TIME FOR CELLS

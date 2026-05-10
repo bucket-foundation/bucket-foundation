@@ -1,19 +1,18 @@
 # blue-light-toxicity
 
-**Query**: `"blue light"`  ·  **Hits**: 30
+**Query**: `"blue light"`  ·  **Hits**: 35
 
 
 ## youtube (1)
 
-- **Dr. Jack Kruse, Andrew Huberman, Rick Rubin Podcast - FULL BREAKDOWN (Part 1)**
-  - `yt/KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick-rubin-podcast-full-breakd/transcript.txt`
-  -  … wearing <<blue light>> blockers which
-you're actually blocking <<blue light>>
-through your eyes but your Skin's
-getting exposed to <<Blue Light>>
-um … 
+- **Toxic Screens: How to Protect Eyes from Blue Light with Dr. Jack Kruse and Lucia Eyes CEO Dan Huber**
+  - `yt/9zJynVS_rYc-toxic-screens-how-to-protect-eyes-from-blue-light-with-dr-ja/transcript.txt`
+  -  … <<blue light>> uh by itself is present in
+the sun but it has
+six other colors with it and it turns
+out that <<blue>> … 
 
-## intake (29)
+## intake (34)
 
 - **blue-light-toxicity**
   - `_intake/concept-digests/blue-light-toxicity.md`
@@ -35,12 +34,6 @@ Source: https://jackkruse.com/qt-10-why-daytime-indoor-<<blue-light>>-is-toxic/
 ---
 
 ## QT #10: Why daytime … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … WHO(45), melanin(29), quantum(24), mitochondria(23), iron(23), AGE(23), Newton(20), Einstein(17), semiconductor(14), photosynthesis(13), <<blue light>>(10), red … 
-- **UBIQUITINATION 7:  PALEO's BITTER TRUTH**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-7-paleos-bitter-truth.md`
-  -  … <<Blue light>>, a form of non native EMF, is paleo’s real issue.  It is LCHF issue, as well.  **Chronic <<blue light>> exposure essentially … 
 - **QT #19: Diabetes is a blue light hazard disease**
   - `_intake/kruse-blog-corpus/articles/qt-19-diabetes-is-a-blue-light-hazard-disease.md`
   -  … Diabetes is a <<blue light>> hazard disease
@@ -81,9 +74,6 @@ Source: https://jackkruse.com/cpc-47-diabetes-and-<<blue-light>>-are-bedfellows/
 ---
 
 ## CPC #47: Diabetes and <<Blue Light>> … 
-- **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
-  - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
-  -  … Further evidence underpinning a link between <<blue light>> and UM comes from neonatal <<blue light>> therapy studies. <<Blue light>> therapy is an essential tool … 
 - **HYPOXIA #15:  BLUE LIGHT CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS**
   - `_intake/kruse-blog-corpus/articles/hypoxia-15-blue-light-causes-irreversible-hypoxia-in-all-cells.md`
   -  … https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/
@@ -94,6 +84,28 @@ Source: https://jackkruse.com/cpc-47-diabetes-and-<<blue-light>>-are-bedfellows/
 
 
 Several … 
+- **Per-Video References**
+  - `_intake/kruse-references-mined/PER-VIDEO.md`
+  -  … WHO(45), melanin(29), quantum(24), mitochondria(23), iron(23), AGE(23), Newton(20), Einstein(17), semiconductor(14), photosynthesis(13), <<blue light>>(10), red … 
+- **UBIQUITINATION 7:  PALEO's BITTER TRUTH**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-7-paleos-bitter-truth.md`
+  -  … <<Blue light>>, a form of non native EMF, is paleo’s real issue.  It is LCHF issue, as well.  **Chronic <<blue light>> exposure essentially … 
+- **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
+  - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
+  -  … Further evidence underpinning a link between <<blue light>> and UM comes from neonatal <<blue light>> therapy studies. <<Blue light>> therapy is an essential tool … 
+- **TIME # 3 : CAN A CHART TELL YOU SOMETHING ABOUT TIME?**
+  - `_intake/kruse-blog-corpus/articles/time-what-can-a-chart-tell-you.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
 - **TIME #1:  IS OUR RETINA OUR METRONOME?**
   - `_intake/kruse-blog-corpus/articles/time-1-is-our-retina-our-metronome.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
@@ -107,8 +119,24 @@ Several …
 
 
 						[](https://jackkruse.com … 
-- **TIME # 3 : CAN A CHART TELL YOU SOMETHING ABOUT TIME?**
-  - `_intake/kruse-blog-corpus/articles/time-what-can-a-chart-tell-you.md`
+- **How the Eye Controls Metabolic Rate**
+  - `_intake/kruse-blog-corpus/articles/how-the-eye-controls-metabolic-rate.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **VOICE & EXIT ATX AUSTIN 2015:  HOW CAN WE FLOURISH?**
+  - `_intake/kruse-blog-corpus/articles/voice-exit-atx-austin-2015-how-can-we-flourish.md`
+  -  … Can your time on this planet be destroyed by technology using <<blue light>> in some way? <<Blue light>> is how the gears of the … 
+- **January 2017: The Bazan Effect**
+  - `_intake/kruse-blog-corpus/articles/january-2017-the-bazan-effect.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
 
 
@@ -123,55 +151,6 @@ Several …
 - **UBIQUITINATION 20:  LINKING LIGHT TO PLANTS AND ANIMALS**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-20-linking-light-to-plants-and-animals.md`
   -  … <<Blue light>> fits that bill because it is highly powered; as light becomes more blue, especially at night, the situation worsens.  <<Blue light>> in … 
-- **VOICE & EXIT ATX AUSTIN 2015:  HOW CAN WE FLOURISH?**
-  - `_intake/kruse-blog-corpus/articles/voice-exit-atx-austin-2015-how-can-we-flourish.md`
-  -  … Can your time on this planet be destroyed by technology using <<blue light>> in some way? <<Blue light>> is how the gears of the … 
-- **TIME #2:  HOW IS TIME BUILT?**
-  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
-  -  … <<Blue light>> alters both types of fields.  When you consider that modern life uses <<blue light>> for lighting its screens, the problem should become … 
-- **UBIQUITINATION 21:  EPI-ONCO-GENESIS**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-21-epi-onco-genesis.md`
-  -  … In winter we have on average 13 % <<blue light>> in sun light. In summer, we have up to 26% <<blue light>> present. This varies … 
-- **UBIQUITINATION 10:  BIO-HACKING ROS AND RNS**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-10-bio-hacking-ros-and-rns.md`
-  -  … So why does life use <<blue light>> for this purpose, specifically? Simple, it is because <<blue light>> bends most under the force of gravity … 
-- **How the Eye Controls Metabolic Rate**
-  - `_intake/kruse-blog-corpus/articles/how-the-eye-controls-metabolic-rate.md`
-  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
-
-
-
-
-
-
-
-
-
-						[](https://jackkruse.com … 
-- **UBIQUITINATION 25:  UV LIGHT AND POOP PLANTS**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-25-uv-light-and-poop-plants.md`
-  -  … It turns out that the <<blue light>> emitter, NAD+ is adjacent to FMH, the <<blue light>> absorber, in cytochrome 1 and 2 of the … 
-- **UBIQUITIN Rx:  IMPLICATIONS FOR MANKIND**
-  - `_intake/kruse-blog-corpus/articles/ubiquitin-rx-implications-for-mankind.md`
-  -  … The same is now true with chronic <<blue light>> and nnEMF exposures on our surfaces.
-
-<<Blue light>> exposure with a high color temperature (fake … 
-- **January 2017: The Bazan Effect**
-  - `_intake/kruse-blog-corpus/articles/january-2017-the-bazan-effect.md`
-  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
-
-
-
-
-
-
-
-
-
-						[](https://jackkruse.com … 
-- **REALITY # 2:  CAN LIFE SKIRT THE UNCERTAINTY PRINCIPLE AND THE SECOND LAW OF THERMODYNAMICS?**
-  - `_intake/kruse-blog-corpus/articles/reality-2-can-life-skirt-uncertainty-principle-second-law-thermodynamics.md`
-  -  … Since <<blue light>> has more power than red light, it scatters most and this is why the sky is blue on Earth. <<Blue light>> … 
 - **Circular Thermodynamics By Light**
   - `_intake/kruse-blog-corpus/articles/circular-thermodynamics-by-light.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
@@ -198,8 +177,12 @@ Several …
 
 
 						[](https://jackkruse.com … 
-- **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
-  - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
+- **Claim candidates by concept**
+  - `_intake/canon-claims-raw/BY-CONCEPT.md`
+  -  … How to Protect Eyes from <<Blue Light>> with Dr. ](https://www.youtube.com/watch?v=9zJynVS_rYc&t=263)
+  > out that <<blue light>> has … 
+- **Aquaphotomics 101: BATTERY CREATION**
+  - `_intake/kruse-blog-corpus/articles/aquaphotomics-101-battery-creation-2.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
 
 
@@ -211,8 +194,8 @@ Several …
 
 
 						[](https://jackkruse.com … 
-- **TIME #4: HOW CAN MAN HELP OUR EYE CLOCK IN A TECH WORLD?**
-  - `_intake/kruse-blog-corpus/articles/how-man-helps-the-eye-clock.md`
+- **NGFB Test Page**
+  - `_intake/kruse-blog-corpus/articles/ngfb-test-page-3.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
 
 
@@ -237,6 +220,9 @@ Several …
 
 
 						[](https://jackkruse.com … 
+- **UBIQUITINATION 21:  EPI-ONCO-GENESIS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-21-epi-onco-genesis.md`
+  -  … In winter we have on average 13 % <<blue light>> in sun light. In summer, we have up to 26% <<blue light>> present. This varies … 
 - **LISTEN NOW : Podcast Interview with Extreme Health Radio**
   - `_intake/kruse-blog-corpus/articles/listen-now-podcast-interview-extreme-health-radio.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
@@ -252,6 +238,103 @@ Several …
 						[](https://jackkruse.com … 
 - **QT #22: Leptin Resistance is Melanopsin Dysfunction**
   - `_intake/kruse-blog-corpus/articles/qt-22-leptin-resistance-is-melanopsin-dysfunction.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **The Best Podcast I've Ever Done to Date**
+  - `_intake/kruse-blog-corpus/articles/the-best-podcast-ive-ever-done-to-date.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **QT #12: Krebs Bicycle 3: The Retina**
+  - `_intake/kruse-blog-corpus/articles/qt-12-krebs-bicycle-3-the-retina.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **HYPOXIA #10: HOW DOES C-19 LINK TO NAD+ DESTRUCTION?**
+  - `_intake/kruse-blog-corpus/articles/hypoxia-10-how-does-c-19-link-to-nad-destruction.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **TIME #2:  HOW IS TIME BUILT?**
+  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
+  -  … <<Blue light>> alters both types of fields.  When you consider that modern life uses <<blue light>> for lighting its screens, the problem should become … 
+- **HYPOXIA #11: HOW DOES HYPOXIA LINK TO INFERTILITY?**
+  - `_intake/kruse-blog-corpus/articles/hypoxia-11-how-does-hypoxia-link-to-infertility.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **Survivors Soup**
+  - `_intake/kruse-blog-corpus/articles/survivors-soup.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **UBIQUITINATION 10:  BIO-HACKING ROS AND RNS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-10-bio-hacking-ros-and-rns.md`
+  -  … So why does life use <<blue light>> for this purpose, specifically? Simple, it is because <<blue light>> bends most under the force of gravity … 
+- **March 2018 Webinar: Entanglement**
+  - `_intake/kruse-blog-corpus/articles/march-2018-webinar-entanglement.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **Grounding your computer**
+  - `_intake/kruse-blog-corpus/articles/grounding-your-computer.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
 
 

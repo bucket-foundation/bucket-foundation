@@ -1,20 +1,20 @@
 # biophoton-popp
 
-**Query**: `biophoton OR "ultraweak photon"`  ·  **Hits**: 30
+**Query**: `biophoton OR "ultraweak photon"`  ·  **Hits**: 35
 
 
 ## pubmed (10)
 
 - **Imaging of ultraweak photon emission for evaluating the oxidative stress of human skin.**
   - `pubmed/PMID-31349151-imaging-of-ultraweak-photon-emission-for-evaluating-the-oxid/info.md`
-  -  … 2026-05-09T09:42:17
+  -  … 2026-05-10T09:14:47
 
 ## Abstract
 
 <<Ultraweak photon>> emission (UPE) is generally observed in living organisms and often designated as <<biophoton>> emission. UPE is … 
 - **First Experimental Measurements of Biophotons from Astrocytes and Glioblastoma Cell Cultures.**
   - `pubmed/PMID-41594019-first-experimental-measurements-of-biophotons-from-astrocyte/info.md`
-  -  … 2026-05-09T09:42:13
+  -  … 2026-05-10T09:53:29
 
 ## Abstract
 
@@ -26,6 +26,9 @@
 ## Abstract
 
 For the first time systematic measurements of the "<<ultraweak" photon>> emission of the human body (<<biophotons>>) have been … 
+- **Evaluation of subclinical chronic sun damage in the skin via the detection of long-lasting ultraweak photon emission.**
+  - `pubmed/PMID-33998715-evaluation-of-subclinical-chronic-sun-damage-in-the-skin-via/info.md`
+  -  … ultraviolet (UV)-induced damage, we have focused on <<ultraweak photon>> emission (UPE), also called <<biophotons>>. Our previous study reported that the amount of long … 
 - **Biophoton emission. New evidence for coherence and DNA as source.**
   - `pubmed/PMID-6204761-biophoton-emission-new-evidence-for-coherence-and-dna-as-sou/info.md`
   -  … 2026-05-09T09:41:37
@@ -62,14 +65,6 @@ The phenomenon of <<ultraweak photon>> emission from living systems was further 
 - **PMID**: 27432962
 - **DOI**: 10.1073/pnas.1604855113
 - **PMCID**: PMC5563773 (full … 
-- **Biophoton emission of the human body.**
-  - `pubmed/PMID-9345786-biophoton-emission-of-the-human-body/info.md`
-  - # <<Biophoton>> emission of the human body.
-
-- **PMID**: 9345786
-- **DOI**: 10.1016/s1011-1344(97)00050-x
-- **PMCID**:  
-- **Journal**: Journal of photochemistry and photobiology. B … 
 
 ## arxiv (1)
 
@@ -81,7 +76,7 @@ The phenomenon of <<ultraweak photon>> emission from living systems was further 
 - **URL**: https://arxiv.org/abs/1407.4689
 - **Authors**: M. Alvermann, Y. N … 
 
-## intake (19)
+## intake (7)
 
 - **biophoton-popp**
   - `_intake/concept-digests/biophoton-popp.md`
@@ -90,14 +85,14 @@ The phenomenon of <<ultraweak photon>> emission from living systems was further 
 **Query**: `<<biophoton>> OR "<<ultraweak photon>>"`  ·  **Hits**: 30
 
 
-## pubmed (11)
+## pubmed (10)
 
 - **Imaging of <<ultraweak photon>> emission for evaluating the oxidative stress of human skin … 
 - **Fritz-Albert Popp**
   - `_intake/canon-profiles/popp-fritz-albert.md`
   -  … 2026-05-09T09:22:17 … 
 
-## intake (14)
+## intake (19)
 
 - **<<biophoton>>-popp**
   - `_intake/concept-digests/<<biophoton>>-popp.md`
@@ -126,30 +121,11 @@ Source: https://jackkruse.com/time-for-<<biophotons>>/
 
 
 **THE TAKE HOME … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … mitochondria(32), iron(30), WHO(27), melanin(14), AGE(14), mitochondrial(12), UV(12), hemoglobin(11), leptin(10), <<biophoton>>(7), ATP(7), Becker(7 … 
-- **mendeleev-periodic**
-  - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … 1871 English revision; full <<periodic>> <<table>> papers … 
-- **<<biophoton>>-popp**
-  - `_intake/concept-digests/<<biophoton>>-popp.md`
-  -  … <<biophoton>>>> … 
-- **<<mendeleev>>-periodic**
-  - `_intake/concept-digests/<<mendeleev>>-periodic.md … 
 - **iron-heme-redox**
   - `_intake/concept-digests/iron-heme-redox.md`
   -  … IS TIME TOLD BY <<BIOPHOTON>> EMISSION?**
   - `_intake/kruse-blog-corpus/articles/time-for-<<biophotons>>.md`
   -  … an exciton with ease but it cannot do it … 
-- **Herbert Fröhlich**
-  - `_intake/canon-profiles/frohlich-herbert.md`
-  -  … Nature 1970, doi:10.1038/2281093a0.
-
-- <<Frohlich>>,H.The biological effects of … 
-- **<<biophoton>>-popp**
-  - `_intake/concept-digests/<<biophoton>>-popp.md`
-  -  … of <<<<biophoton>>>> emission originating … 
 - **Dmitri Mendeleev**
   - `_intake/canon-profiles/mendeleev-dmitri.md`
   -  … 30
@@ -164,76 +140,9 @@ Source: https://jackkruse.com/time-for-<<biophotons>>/
 - **Archive identifier**: `principlesofchem00menduoft … 
 - **<<biophoton>>-popp**
   - `_intake/concept-digests/<<biophoton>>-popp.md`
-  -  … <<biophoton>> … 
-- **Walter Russell**
-  - `_intake/canon-profiles/russell-walter.md`
-  -  … 5, intake:17, youtube:4)
-- [`mendeleev … 
-- **<<biophoton>>-popp**
-  - `_intake/concept-digests/<<biophoton>>-popp.md`
-  -  … You get higher <<<<biophoton>>>> emission rates when a … 
-- **walter-<<russell … 
-- **AGEs-RAGE-glycation**
-  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
-  -  … The CIA DON’T Want You To Know … 
-- **methylene-blue**
-  - `_intake/concept-digests/methylene-blue.md`
-  -  … UVA** — 62
-- **heme** — 58
-- **<<biophoton>> … 
-- **<<AGEs>>-<<RAGE>>-<<glycation … 
-- **exclusion-zone-water**
-  - `_intake/concept-digests/exclusion-zone-water.md`
-  -  … 30
-
-
-## youtube (6)
-
-- **Dr Gerald Pollack _The Importance Of Water For Energy _Heart Health _Memory & Ageing … 
-- **<<biophoton>>-popp**
-  - `_intake/concept-digests/<<biophoton>>-popp.md … 
+  -  … 11 … 
 - **infrared-near-ir**
   - `_intake/concept-digests/infrared-near-ir.md`
   -  … IS TIME TOLD BY <<BIOPHOTON>> EMISSION?**
   - `_intake/kruse-blog-corpus/articles/time-for-<<biophotons>>.md`
   -  … very low levels of visible and near-visible {ultraviolet … 
-- **methylene-blue**
-  - `_intake/concept-digests/methylene-blue.md`
-  -  … 113
-- **RAGE** — 107
-- **cytochrome** — 98
-- **NAD** — 95
-- **melatonin** — 91 … 
-- **<<biophoton>>-popp**
-  - `_intake/concept-digests/<<biophoton>>-popp.md`
-  -  … Cruz … 
-- **iron-heme-redox**
-  - `_intake/concept-digests … 
-- **Fritz-Albert Popp — canon-target intake**
-  - `_intake/popp-fritz-albert/README.md`
-  -  … mentioned in Kruse × WiM podcasts (transcripts in `bucket-foundation/yt/`)
-
-## Key works to ingest
-
-<<Biophoton>> emission papers ~1970s-2000s
-
-## Source candidates (in priority order … 
-- **TENSEGRITY #14: COMMUNICATION BREAKDOWN IN THE GUT**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-8-communication-breakdown-gut.md`
-  -  … They are able to release large amounts of light frequencies in the form of <<biophotons>>.  The only part of biology that studies light is … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … 30)
-- [`quantum-biology`](quantum-biology.md) — 30 hits  (intake:30)
-- [`<<biophoton>>-popp`](<<biophoton>>-popp.md) — 30 hits  (intake:18, pubmed:11, youtube:1)
-- [`circadian … 
-- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … fritz-albert` | **Fritz-Albert Popp** (1938–2018) | <<Biophoton>> emission papers (~1970s–2000s) | 05-biophysics | inferred via "<<biophoton>>" 8 |
-| `mendeleev-dmitri` | **Dmitri Mendeleev** (1834–1907 … 
-- **Bucket Foundation — Research Mapping Queue**
-  - `_intake/RESEARCH-MAPPING-QUEUE.md`
-  -  … Cells & gels. |
-| `popp-<<biophoton>>-papers` | Fritz-Albert Popp — <<biophoton>> emission papers (~1970s-2000s) | Light-emission-from-cells corpus. |
-
-### Foundational physics (canon, branch 02-physics … 

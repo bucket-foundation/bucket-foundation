@@ -2,235 +2,289 @@
   {
     "slug": "deuterium-depleted-water",
     "q": "deuterium AND water",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 18,
-      "pubmed": 5,
-      "youtube": 7
+      "intake": 20,
+      "pubmed": 6,
+      "youtube": 7,
+      "openalex-citers": 2
     }
   },
   {
     "slug": "exclusion-zone-water",
     "q": "exclusion AND zone",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 19,
-      "youtube": 7,
-      "pubmed": 4
+      "intake": 12,
+      "openalex-fanout": 4,
+      "pubmed": 6,
+      "openalex": 1,
+      "youtube": 2,
+      "openalex-citers": 10
     }
   },
   {
     "slug": "fourth-phase-water",
     "q": "\"fourth phase\" OR \"4th phase\"",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
       "intake": 24,
-      "youtube": 6
+      "youtube": 6,
+      "pubmed": 3,
+      "openalex-fanout": 1,
+      "openalex": 1
     }
   },
   {
     "slug": "melanin-semiconductor",
     "q": "melanin AND (semiconductor OR conductor OR electron)",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 13,
-      "youtube": 14,
+      "intake": 17,
+      "youtube": 15,
       "pubmed": 3
     }
   },
   {
     "slug": "mitochondrial-redox",
     "q": "mitochondria AND (redox OR cytochrome OR proton)",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 30
+      "intake": 35
     }
   },
   {
     "slug": "chemiosmotic-mitchell",
     "q": "chemiosmotic OR Mitchell",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 16,
-      "pubmed": 12,
+      "intake": 12,
+      "pubmed": 14,
       "youtube": 1,
-      "archive": 1
+      "blog": 1,
+      "openalex-fanout": 1,
+      "openalex-citers": 6
     }
   },
   {
     "slug": "photoelectric-biology",
     "q": "photoelectric AND (biology OR cell OR body)",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 30
+      "intake": 35
     }
   },
   {
     "slug": "quantum-biology",
     "q": "quantum AND biology",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 30
+      "intake": 25,
+      "openalex-fanout": 5,
+      "openalex-citers": 4,
+      "arxiv": 1
     }
   },
   {
     "slug": "biophoton-popp",
     "q": "biophoton OR \"ultraweak photon\"",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 19,
+      "intake": 7,
+      "openalex-fanout": 7,
+      "openalex": 1,
       "pubmed": 10,
+      "openalex-citers": 9,
       "arxiv": 1
     }
   },
   {
     "slug": "circadian-scn",
     "q": "circadian OR SCN OR suprachiasmatic",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 27,
-      "arxiv": 3
+      "intake": 26,
+      "arxiv": 3,
+      "pubmed": 6
     }
   },
   {
     "slug": "bone-bioelectric-becker",
     "q": "Becker AND (bone OR regeneration OR bioelectric)",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 17,
-      "youtube": 13
+      "intake": 18,
+      "openalex": 2,
+      "youtube": 12,
+      "openalex-fanout": 3
     }
   },
   {
     "slug": "association-induction-ling",
     "q": "Ling AND (association OR induction OR cells AND gels)",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 13,
-      "youtube": 12,
-      "pubmed": 5
+      "intake": 12,
+      "openalex-fanout": 3,
+      "pubmed": 6,
+      "youtube": 10,
+      "openalex": 2,
+      "openalex-citers": 1,
+      "blog": 1
     }
   },
   {
     "slug": "emf-non-thermal",
     "q": "EMF OR electromagnetic",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 28,
-      "pubmed": 2
+      "intake": 26,
+      "pubmed": 7,
+      "openalex-fanout": 1,
+      "openalex-citers": 1
     }
   },
   {
     "slug": "methylene-blue",
     "q": "\"methylene blue\"",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 14,
+      "intake": 15,
       "pubmed": 11,
-      "youtube": 5
+      "openalex-citers": 1,
+      "youtube": 8
     }
   },
   {
     "slug": "infrared-near-ir",
     "q": "infrared OR \"near IR\" OR \"near-infrared\"",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 10,
-      "pubmed": 9,
-      "youtube": 11
+      "intake": 5,
+      "arxiv": 2,
+      "pubmed": 19,
+      "openalex-citers": 4,
+      "openalex-fanout": 4,
+      "youtube": 1
     }
   },
   {
     "slug": "uv-uva-uvb",
     "q": "UV OR UVA OR UVB OR ultraviolet",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
       "intake": 24,
-      "pubmed": 2,
+      "pubmed": 7,
       "youtube": 4
     }
   },
   {
     "slug": "blue-light-toxicity",
     "q": "\"blue light\"",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 29,
+      "intake": 34,
       "youtube": 1
     }
   },
   {
     "slug": "vitamin-d-sunlight",
     "q": "\"vitamin D\"",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 24,
-      "youtube": 6
+      "intake": 7,
+      "openalex-fanout": 2,
+      "pubmed": 2,
+      "openalex-citers": 24
     }
   },
   {
     "slug": "ez-water-pollack",
     "q": "Pollack AND water",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 29,
-      "pubmed": 1
+      "intake": 20,
+      "openalex": 1,
+      "openalex-fanout": 7,
+      "pubmed": 4,
+      "openalex-citers": 3
     }
   },
   {
     "slug": "schumann-cme",
     "q": "Schumann OR CME OR geomagnetic",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 27,
-      "youtube": 3
+      "intake": 25,
+      "openalex-citers": 5,
+      "openalex-fanout": 3,
+      "pubmed": 1,
+      "blog": 1
     }
   },
   {
     "slug": "AGEs-RAGE-glycation",
     "q": "(\"AGEs\" OR glycation OR RAGE)",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 30
+      "intake": 22,
+      "blog": 8,
+      "openalex-citers": 1,
+      "gutenberg": 3,
+      "openalex-fanout": 1
     }
   },
   {
     "slug": "iron-heme-redox",
     "q": "iron AND (heme OR redox)",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 29,
-      "youtube": 1
+      "intake": 28,
+      "openalex-citers": 1,
+      "youtube": 1,
+      "openalex-fanout": 2,
+      "blog": 3
     }
   },
   {
     "slug": "photosynthesis-quantum",
     "q": "photosynthesis AND quantum",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 28,
+      "intake": 31,
       "arxiv": 1,
-      "youtube": 1
+      "openalex-fanout": 1,
+      "openalex": 1,
+      "openalex-citers": 1
     }
   },
   {
     "slug": "walter-russell-cosmology",
     "q": "Russell AND (universal OR octave OR rhythm)",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 19,
-      "archive": 7,
-      "youtube": 4
+      "intake": 11,
+      "archive": 3,
+      "openalex": 3,
+      "blog": 10,
+      "openalex-citers": 1,
+      "wikisource": 1,
+      "gutenberg": 2,
+      "openalex-fanout": 2,
+      "youtube": 2
     }
   },
   {
     "slug": "mendeleev-periodic",
     "q": "Mendeleev OR periodic AND table",
-    "hits": 30,
+    "hits": 35,
     "by_source": {
-      "intake": 23,
-      "archive": 5,
-      "youtube": 2
+      "intake": 19,
+      "openalex-citers": 7,
+      "archive": 3,
+      "openalex-fanout": 3,
+      "blog": 2,
+      "gutenberg": 1
     }
   }
 ]

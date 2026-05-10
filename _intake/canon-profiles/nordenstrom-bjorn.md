@@ -1,6 +1,6 @@
 # Björn Nordenström
 
-**Slug**: `nordenstrom-bjorn`  ·  **FTS query**: `Nordenstrom OR Nordenström OR BCEC`  ·  **Hits**: 14
+**Slug**: `nordenstrom-bjorn`  ·  **FTS query**: `Nordenstrom OR Nordenström OR BCEC`  ·  **Hits**: 30
 
 
 ## archive (2)
@@ -54,13 +54,13 @@ structures are described as partly caused by …
 - **MeSH**: Adenocarcinoma, Aged, Blood Vessels, Carcinoma, Small Cell, Carcinoma, Squamous Cell, Electrophysiology, Female, Hamartoma, Humans, Liposarcoma
 - **URL**: https://pubmed.ncbi.nlm … 
 
-## intake (7)
+## intake (10)
 
 - **Björn Nordenström**
   - `_intake/canon-profiles/nordenstrom-bjorn.md`
   - # Björn <<Nordenström>>
 
-**Slug**: `<<nordenstrom>>-bjorn`  ·  **FTS query**: `<<Nordenstrom>> OR <<Nordenström>> OR <<BCEC>>`  ·  **Hits**: 10
+**Slug**: `<<nordenstrom>>-bjorn`  ·  **FTS query**: `<<Nordenstrom>> OR <<Nordenström>> OR <<BCEC>>`  ·  **Hits**: 14
 
 
 ## archive (2)
@@ -85,10 +85,20 @@ book copyrighted …
 | `<<nordenstrom>>-1983` | Björn <<Nordenström>> — *Biologically Closed Electric Circuits* (1983) | Cited heavily by Becker; Swedish radiologist's <<BCEC>> theory. |
 
 ### Jack Kruse — recommended … 
+- **Meta-Canon — what the bridges actually mean**
+  - `_intake/connections/META-CANON.md`
+  -  … Where the *biophysics ↔ mind* bridge is most loaded. |
+| **field** | 461 | physics (EM, gauge) · biophysics (Becker bioelectricity, <<Nordenström>> <<BCEC>>, Marino EMF) · math (vector fields, manifolds … 
+- **chemiosmotic-mitchell**
+  - `_intake/concept-digests/chemiosmotic-mitchell.md`
+  -  … peter`](<<mitchell>>-peter.md) — Peter <<Mitchell>> — 25 hits
+- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> … 
+- **EMF 7: Quantum Prometheus**
+  - `_intake/kruse-blog-corpus/articles … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
   -  … peter`](mitchell-peter.md) — Peter Mitchell — 25 hits
-- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> — 10 hits
+- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> — 14 hits
 - [`russell-walter`](russell-walter.md) — Walter Russell … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
@@ -102,6 +112,12 @@ book copyrighted …
   - `_intake/canon-profiles/mitchell-peter.md`
   -  … Nobel 1978 | <<Chemiosmotic>> theory papers, mitochondrial <<proton>> gradient | 05-biophysics | 4 |
 | `<<nordenstrom>>-bjorn … 
-- **Peter Mitchell — canon-target intake**
-  - `_intake/mitchell-peter/README.md`
-  -  … <<Mitchell … 
+- **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
+  - `_intake/kruse-blog … 
+- **Bucket Canon — Branch Coverage Audit (2026-05-09)**
+  - `_intake/BRANCH-COVERAGE-AUDIT.md`
+  -  … where we are
+
+| Branch | FTS hits | Status | Heavy / light |
+|---|---|---|---|
+| 05-biophysics  | 735 | ✅ rich | Becker, Pollack, Marino, Mitchell, Popp, <<Nordenström>>, Frohlich, Szent-Györgyi, Kruse 460 … 

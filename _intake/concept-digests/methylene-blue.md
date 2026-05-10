@@ -1,6 +1,6 @@
 # methylene-blue
 
-**Query**: `"methylene blue"`  ·  **Hits**: 30
+**Query**: `"methylene blue"`  ·  **Hits**: 35
 
 
 ## pubmed (11)
@@ -61,7 +61,7 @@
   - `pubmed/PMID-41578751-lipid-droplet-dynamics-in-hepatocytes-during-lipotoxic-stres/info.md`
   -  … Semi-thin sections were stained with <<methylene blue>>-azure II and analyzed with light microscopy. Ultrathin sections were double-stained with uranyl acetate and … 
 
-## youtube (5)
+## youtube (8)
 
 - **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
   - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
@@ -69,6 +69,13 @@
 blue>> for that can we just talk about
 what is <<methylene Blue>>'s role in this
 mitochondrial function … 
+- **DR. KRUSE: Your Body Was Designed for 500 Years Ago**
+  - `yt/pKEOaE3VTJA-dr-kruse-your-body-was-designed-for-500-years-ago/transcript.txt`
+  -  … I said,
+"Well, if she would have known me then,
+I would have told her about <<methylene
+blue>> because <<methylene blue>> is the
+precursor … 
 - **Interview with Dr. Jack Kruse (04-08-2025)**
   - `yt/wwNutyiyQ2I-interview-with-dr-jack-kruse-04-08-2025/transcript.txt`
   -  … So, deuterium depleted water
@@ -90,6 +97,12 @@ attention recently um I …
 in the clinic, we usually have to give
 them something called <<methylene blue>>.
 And <<methylene blue>> unbinds the oxygen … 
+- **Sunlight is King! w/ Dr. Jack Kruse**
+  - `yt/2-AKskkKZzA-sunlight-is-king-w-dr-jack-kruse/transcript.txt`
+  -  … They never
+use <<methylene blue>>. So I want you to
+understand what did <<methylene blue>> is it
+really used for? It can be an … 
 - **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
   - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
   -  … so I
@@ -97,8 +110,12 @@ just looked up the structure of
 <<methylene blue>> and the structure of
 <<methylene blue>> is the exact same
 structure except the it … 
+- **Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podcast) - PART 1**
+  - `yt/zs82rGFo6qg-jack-kruse-andrew-huberman-rick-rubin-tetragrammaton-podcast/transcript.txt`
+  -  … to do with why the <<methylene blue>> worked I&nbsp;&nbsp;
+told you at lunch the reason <<methylene blue>> works&nbsp; it's so … 
 
-## intake (14)
+## intake (15)
 
 - **methylene-blue**
   - `_intake/concept-digests/methylene-blue.md`
@@ -123,53 +140,85 @@ Source: https://jackkruse.com/biohacking-time-with-<<methylene-blue>>/
 
 
 **BLOG TAKE AWAY … 
-- **iron-heme-redox**
-  - `_intake/concept-digests/iron-heme-redox.md`
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
   -  … BIOHACKING "TIME" WITH <<METHYLENE BLUE>>**
   - `_intake/kruse-blog-corpus/articles/biohacking-time-with-<<methylene-blue>>.md`
-  -  … It is why all cytochromes use <<Iron>>- sulfur … 
+  -  … from the sun using electrons and <<protons>>. It … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … This lowers are <<redox>> power … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … 95
+- **melatonin** — 91
+- **<<methylene blue>>** — 81
+- **exclusion zone** — 77
+- **<<redox … 
 - **AGEs-RAGE-glycation**
   - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … exclusion zone(8), <<<<RAGE>>>>(7), EPA(5 … 
+- **<<methylene-blue>>**
+  - `_intake/concept-digests/<<methylene-blue>>.md`
+  -  … <<methylene blue>>>>(21), electromagnetic … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept … 
+- **biophoton-popp**
+  - `_intake/concept-digests/biophoton-popp.md`
   -  … The CIA DON’T Want You To Know … 
 - **<<methylene-blue>>**
   - `_intake/concept-digests/<<methylene-blue>>.md`
   -  … UVA** — 62
 - **heme** — 58
-- **biophoton … 
+- **<<biophoton>> … 
 - **<<AGEs>>-<<RAGE>>-<<glycation … 
-- **exclusion-zone-water**
-  - `_intake/concept-digests/exclusion-zone-water.md`
-  -  … md`
-  -  … It runs like that … 
-- **THE FOURTH … 
+- **melanin-semiconductor**
+  - `_intake/concept-digests/melanin-semiconductor.md`
+  -  … light … 
+- **<<photoelectric>>-<<biology>>**
+  - `_intake/concept-digests/<<photoelectric>>-<<biology … 
 - **<<methylene-blue>>**
   - `_intake/concept-digests/<<methylene-blue>>.md`
-  -  … <<methylene blue>>>>** — 81
-- **<<exclusion>> <<zone>>** — 77
-- **<<redox>>** — 73
-- **UVA … 
+  -  … It … 
+- **<<melanin>>-<<semiconductor>>**
+  - `_intake/concept-digests/<<melanin>>-<<semiconductor … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … emf-non-thermal.md) — 30 hits  (intake:28, pubmed:2)
+- [`<<methylene-blue>>`](<<methylene-blue>>.md) — 30 hits  (intake:14, pubmed:11, youtube:5)
+- [`infrared … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … AGE(79), WHO(63), electron(47), mitochondria(45), semiconductor(36), quantum(35), melanin(32), UV(31), iron(30), Becker(26), <<methylene blue>>(21), electromagnetic … 
-- **emf-non-thermal**
-  - `_intake/concept-digests/emf-non-thermal.md`
-  -  … Look at my [CO2 and <<EMF>> thread on my forum](http … 
+- **schumann-cme**
+  - `_intake/concept-digests/schumann-cme.md`
+  -  … 2), <<geomagnetic>>(2), UV(1), AGEs(1)
+
+
+**Titled … 
 - **<<methylene-blue>>**
   - `_intake/concept-digests/<<methylene-blue>>.md`
-  -  … iron(30), Becker(26), <<<<methylene>> … 
+  -  … AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE … 
 - **uv-uva-uvb**
   - `_intake/concept-digests/uv-uva-uvb.md`
-  -  … the equator because of how <<UV>> light traverses … 
+  -  … intake/concept-digests/<<uv>>-<<uva>>-<<uvb>>.md`
+  -  … PSORIASIS … 
 - **<<methylene-blue>>**
   - `_intake/concept-digests/<<methylene-blue>>.md`
-  -  … 05-01/terms … 
+  -  … WHO(63), <<electron … 
 - **<<uv>>-<<uva>>-<<uvb>>**
   - `_intake/concept … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … emf-non-thermal.md) — 30 hits  (intake:27, pubmed:3)
-- [`<<methylene-blue>>`](<<methylene-blue>>.md) — 30 hits  (intake:12, pubmed:11, youtube:7)
-- [`infrared … 
+- **Fritz-Albert Popp**
+  - `_intake/canon-profiles/popp-fritz-albert.md`
+  -  … biophoton>>-<<popp>>**
+  - `_intake/concept-digests/<<biophoton>>-<<popp>>.md … 
+- **<<methylene-blue>>**
+  - `_intake/concept-digests/<<methylene-blue>>.md`
+  -  … RAGE** — 107
+- **cytochrome** — 98
+- **NAD** — 95
+- **melatonin** — 91 … 
 - **Michael Faraday**
   - `_intake/canon-profiles/faraday-michael.md`
   -  … BIOHACKING "TIME" WITH <<METHYLENE BLUE>>**
@@ -180,25 +229,14 @@ Source: https://jackkruse.com/biohacking-time-with-<<methylene-blue>>/
   -  … BIOHACKING "TIME" WITH <<METHYLENE BLUE>>**
   - `_intake/kruse-blog-corpus/articles/biohacking-time-with-<<methylene-blue>>.md`
   -  … It is a chronic light stress response and … 
-- **biophoton-popp**
-  - `_intake/concept-digests/biophoton-popp.md`
-  -  … biophysics | inferred via "<<<<biophoton>>>>" 8 |
-| `<<mendeleev>>-dmitri` | **Dmitri … 
-- **<<methylene-blue>>**
-  - `_intake/concept-digests/<<methylene-blue>>.md`
-  -  … blue>>** — 81
-- **exclusion zone** — 77
-- **<<redox>>** — 73
-- **UVA … 
-- **mitochondrial-redox**
-  - `_intake/concept-digests/mitochondrial-redox.md`
-  -  … BIOHACKING "TIME" WITH <<METHYLENE BLUE>>**
-  - `_intake/kruse-blog-corpus/articles/biohacking-time-with-<<methylene-blue>>.md`
-  -  … from the sun using electrons and <<protons>>. It … 
-- **melanin-semiconductor**
-  - `_intake/concept-digests/melanin-semiconductor.md`
-  -  … Deuterium, 4th phase of WATER, & cellular <<redox>> | Regenerative … 
-- **<<methylene-blue>>**
-  - `_intake/concept-digests/<<methylene-blue>>.md`
-  -  … PER-VIDEO.md`
-  -  … AGE(79), WHO(63), <<electron … 
+- **exclusion-zone-water**
+  - `_intake/concept-digests/exclusion-zone-water.md`
+  -  … References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … 95
+- **melatonin** — 91
+- **<<methylene blue>>** — 81
+- **<<exclusion>> <<zone>>** — 77
+- **<<redox … 
+- **UBIQUITINATION 14:   ANTENNA FAILURE**
+  - `_intake/kruse … 

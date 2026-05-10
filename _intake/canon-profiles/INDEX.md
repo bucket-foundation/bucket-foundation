@@ -1,28 +1,28 @@
 # Canon Person Profiles
 
-- [`becker-robert-o`](becker-robert-o.md) — Robert O. Becker — 25 hits
-- [`pollack-gerald`](pollack-gerald.md) — Gerald Pollack — 25 hits
-- [`szent-gyorgyi-albert`](szent-gyorgyi-albert.md) — Albert Szent-Györgyi — 25 hits
-- [`peat-ray`](peat-ray.md) — Ray Peat — 13 hits
-- [`ling-gilbert`](ling-gilbert.md) — Gilbert Ling — 25 hits
-- [`mitchell-peter`](mitchell-peter.md) — Peter Mitchell — 25 hits
-- [`nordenstrom-bjorn`](nordenstrom-bjorn.md) — Björn Nordenström — 14 hits
-- [`russell-walter`](russell-walter.md) — Walter Russell — 25 hits
-- [`marino-andrew`](marino-andrew.md) — Andrew Marino — 25 hits
-- [`frohlich-herbert`](frohlich-herbert.md) — Herbert Fröhlich — 11 hits
-- [`popp-fritz-albert`](popp-fritz-albert.md) — Fritz-Albert Popp — 25 hits
-- [`mendeleev-dmitri`](mendeleev-dmitri.md) — Dmitri Mendeleev — 17 hits
-- [`einstein-albert`](einstein-albert.md) — Albert Einstein — 25 hits
-- [`maxwell-james-clerk`](maxwell-james-clerk.md) — James Clerk Maxwell — 25 hits
-- [`newton-isaac`](newton-isaac.md) — Isaac Newton — 25 hits
-- [`faraday-michael`](faraday-michael.md) — Michael Faraday — 25 hits
-- [`tesla-nikola`](tesla-nikola.md) — Nikola Tesla — 25 hits
-- [`warburg-otto`](warburg-otto.md) — Otto Warburg — 25 hits
-- [`wheeler-john`](wheeler-john.md) — John Archibald Wheeler — 25 hits
-- [`penrose-roger`](penrose-roger.md) — Roger Penrose — 25 hits
-- [`hameroff-stuart`](hameroff-stuart.md) — Stuart Hameroff — 22 hits
-- [`schrodinger-erwin`](schrodinger-erwin.md) — Erwin Schrödinger — 25 hits
-- [`bohr-niels`](bohr-niels.md) — Niels Bohr — 25 hits
-- [`feynman-richard`](feynman-richard.md) — Richard Feynman — 25 hits
-- [`shannon-claude`](shannon-claude.md) — Claude Shannon — 18 hits
-- [`turing-alan`](turing-alan.md) — Alan Turing — 25 hits
+- [`becker-robert-o`](becker-robert-o.md) — Robert O. Becker — 30 hits
+- [`pollack-gerald`](pollack-gerald.md) — Gerald Pollack — 30 hits
+- [`szent-gyorgyi-albert`](szent-gyorgyi-albert.md) — Albert Szent-Györgyi — 30 hits
+- [`peat-ray`](peat-ray.md) — Ray Peat — 30 hits
+- [`ling-gilbert`](ling-gilbert.md) — Gilbert Ling — 30 hits
+- [`mitchell-peter`](mitchell-peter.md) — Peter Mitchell — 30 hits
+- [`nordenstrom-bjorn`](nordenstrom-bjorn.md) — Björn Nordenström — 30 hits
+- [`russell-walter`](russell-walter.md) — Walter Russell — 30 hits
+- [`marino-andrew`](marino-andrew.md) — Andrew Marino — 30 hits
+- [`frohlich-herbert`](frohlich-herbert.md) — Herbert Fröhlich — 30 hits
+- [`popp-fritz-albert`](popp-fritz-albert.md) — Fritz-Albert Popp — 30 hits
+- [`mendeleev-dmitri`](mendeleev-dmitri.md) — Dmitri Mendeleev — 25 hits
+- [`einstein-albert`](einstein-albert.md) — Albert Einstein — 30 hits
+- [`maxwell-james-clerk`](maxwell-james-clerk.md) — James Clerk Maxwell — 30 hits
+- [`newton-isaac`](newton-isaac.md) — Isaac Newton — 30 hits
+- [`faraday-michael`](faraday-michael.md) — Michael Faraday — 30 hits
+- [`tesla-nikola`](tesla-nikola.md) — Nikola Tesla — 30 hits
+- [`warburg-otto`](warburg-otto.md) — Otto Warburg — 30 hits
+- [`wheeler-john`](wheeler-john.md) — John Archibald Wheeler — 30 hits
+- [`penrose-roger`](penrose-roger.md) — Roger Penrose — 30 hits
+- [`hameroff-stuart`](hameroff-stuart.md) — Stuart Hameroff — 30 hits
+- [`schrodinger-erwin`](schrodinger-erwin.md) — Erwin Schrödinger — 30 hits
+- [`bohr-niels`](bohr-niels.md) — Niels Bohr — 30 hits
+- [`feynman-richard`](feynman-richard.md) — Richard Feynman — 30 hits
+- [`shannon-claude`](shannon-claude.md) — Claude Shannon — 30 hits
+- [`turing-alan`](turing-alan.md) — Alan Turing — 30 hits

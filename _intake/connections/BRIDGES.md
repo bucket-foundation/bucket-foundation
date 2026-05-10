@@ -11,16 +11,16 @@
 
 | Branch | Anchored docs |
 |---|---:|
-| 04-information | 993 |
-| 02-physics | 955 |
-| 07-mind | 881 |
-| 05-biophysics | 858 |
-| 03-chemistry | 479 |
-| 06-cosmology | 408 |
-| 09-sacred-texts | 309 |
-| 01-mathematics | 280 |
-| 08-deep-history | 159 |
-| 09-art | 100 |
+| 04-information | 2116 |
+| 02-physics | 1389 |
+| 07-mind | 1354 |
+| 05-biophysics | 912 |
+| 03-chemistry | 709 |
+| 06-cosmology | 669 |
+| 01-mathematics | 569 |
+| 09-sacred-texts | 347 |
+| 08-deep-history | 206 |
+| 09-art | 133 |
 
 ## Bridge concepts — what fuses canon
 
@@ -28,31 +28,31 @@ Sorted by number of branches spanned. **A bridge that spans many branches is a c
 
 | Concept | Spans | Branches it touches | Total hits | Per-branch hits |
 |---|:-:|---|---:|---|
-| **time** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 1224 | `mathem=205` `physic=623` `chemis=385` `inform=426` `biophy=471` `cosmol=297` `mind=550` `deep-h=135` `art=73` `sacred=252` |
-| **light** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 1033 | `mathem=173` `physic=545` `chemis=334` `inform=358` `biophy=491` `cosmol=252` `mind=440` `deep-h=109` `art=62` `sacred=113` |
-| **information** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 1019 | `mathem=186` `physic=533` `chemis=347` `inform=433` `biophy=363` `cosmol=255` `mind=512` `deep-h=128` `art=69` `sacred=227` |
-| **energy** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 833 | `mathem=141` `physic=491` `chemis=262` `inform=353` `biophy=485` `cosmol=212` `mind=348` `deep-h=63` `art=47` `sacred=83` |
-| **water** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 829 | `mathem=135` `physic=457` `chemis=275` `inform=345` `biophy=468` `cosmol=208` `mind=339` `deep-h=70` `art=40` `sacred=88` |
-| **quantum** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 800 | `mathem=106` `physic=539` `chemis=188` `inform=339` `biophy=369` `cosmol=164` `mind=299` `deep-h=24` `art=15` `sacred=36` |
-| **creation** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 531 | `mathem=115` `physic=304` `chemis=191` `inform=202` `biophy=215` `cosmol=174` `mind=252` `deep-h=89` `art=53` `sacred=92` |
-| **field** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 461 | `mathem=85` `physic=307` `chemis=144` `inform=231` `biophy=297` `cosmol=124` `mind=202` `deep-h=22` `art=13` `sacred=27` |
-| **observer** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 441 | `mathem=136` `physic=365` `chemis=204` `inform=261` `biophy=266` `cosmol=178` `mind=284` `deep-h=73` `art=47` `sacred=74` |
-| **consciousness** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 398 | `mathem=99` `physic=242` `chemis=149` `inform=199` `biophy=117` `cosmol=122` `mind=398` `deep-h=71` `art=45` `sacred=66` |
-| **coherence** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 375 | `mathem=101` `physic=261` `chemis=161` `inform=166` `biophy=206` `cosmol=111` `mind=225` `deep-h=57` `art=27` `sacred=44` |
-| **emergence** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 366 | `mathem=128` `physic=275` `chemis=199` `inform=195` `biophy=181` `cosmol=156` `mind=263` `deep-h=80` `art=52` `sacred=77` |
-| **soul** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 336 | `mathem=78` `physic=156` `chemis=145` `inform=104` `biophy=46` `cosmol=126` `mind=209` `deep-h=98` `art=47` `sacred=192` |
-| **resonance** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 320 | `mathem=64` `physic=202` `chemis=127` `inform=159` `biophy=196` `cosmol=87` `mind=160` `deep-h=24` `art=24` `sacred=31` |
-| **memory** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 283 | `mathem=73` `physic=210` `chemis=126` `inform=185` `biophy=167` `cosmol=100` `mind=192` `deep-h=46` `art=29` `sacred=47` |
-| **infinity** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 223 | `mathem=98` `physic=181` `chemis=129` `inform=134` `biophy=73` `cosmol=131` `mind=175` `deep-h=72` `art=41` `sacred=68` |
-| **void** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 175 | `mathem=75` `physic=139` `chemis=101` `inform=115` `biophy=66` `cosmol=102` `mind=131` `deep-h=50` `art=32` `sacred=59` |
-| **proportion** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 145 | `mathem=63` `physic=134` `chemis=88` `inform=107` `biophy=80` `cosmol=88` `mind=116` `deep-h=50` `art=33` `sacred=42` |
-| **symmetry** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 125 | `mathem=55` `physic=104` `chemis=64` `inform=79` `biophy=54` `cosmol=57` `mind=82` `deep-h=28` `art=19` `sacred=21` |
-| **duality** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 46 | `mathem=20` `physic=36` `chemis=21` `inform=26` `biophy=20` `cosmol=19` `mind=30` `deep-h=9` `art=7` `sacred=7` |
-| **logos** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 44 | `mathem=13` `physic=30` `chemis=28` `inform=24` `biophy=12` `cosmol=18` `mind=32` `deep-h=15` `art=7` `sacred=12` |
-| **entropy** | 9 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, sacred-texts | 137 | `mathem=26` `physic=100` `chemis=53` `inform=98` `biophy=100` `cosmol=50` `mind=75` `deep-h=6` `art=4` `sacred=12` |
-| **mind-matter** | 9 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, sacred-texts | 40 | `mathem=15` `physic=28` `chemis=22` `inform=16` `biophy=11` `cosmol=17` `mind=33` `deep-h=9` `art=4` `sacred=8` |
-| **fractal** | 8 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, sacred-texts | 81 | `mathem=16` `physic=76` `chemis=41` `inform=53` `biophy=70` `cosmol=41` `mind=54` `art=1` `sacred=5` |
-| **catalyst** | 8 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, sacred-texts | 66 | `mathem=15` `physic=49` `chemis=33` `inform=37` `biophy=45` `cosmol=21` `mind=46` `deep-h=2` `art=3` `sacred=6` |
+| **time** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 1499 | `mathem=265` `physic=744` `chemis=441` `inform=541` `biophy=496` `cosmol=371` `mind=652` `deep-h=164` `art=87` `sacred=273` |
+| **quantum** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 1250 | `mathem=191` `physic=798` `chemis=223` `inform=431` `biophy=383` `cosmol=242` `mind=365` `deep-h=33` `art=22` `sacred=41` |
+| **information** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 1232 | `mathem=231` `physic=606` `chemis=403` `inform=582` `biophy=381` `cosmol=304` `mind=613` `deep-h=157` `art=79` `sacred=242` |
+| **light** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 1152 | `mathem=209` `physic=617` `chemis=367` `inform=417` `biophy=515` `cosmol=302` `mind=501` `deep-h=134` `art=71` `sacred=130` |
+| **energy** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 1049 | `mathem=195` `physic=578` `chemis=306` `inform=439` `biophy=507` `cosmol=283` `mind=419` `deep-h=87` `art=63` `sacred=97` |
+| **water** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 908 | `mathem=162` `physic=505` `chemis=305` `inform=393` `biophy=489` `cosmol=238` `mind=382` `deep-h=91` `art=49` `sacred=103` |
+| **field** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 624 | `mathem=146` `physic=396` `chemis=168` `inform=272` `biophy=308` `cosmol=169` `mind=248` `deep-h=31` `art=19` `sacred=33` |
+| **creation** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 588 | `mathem=143` `physic=342` `chemis=214` `inform=241` `biophy=217` `cosmol=212` `mind=295` `deep-h=120` `art=60` `sacred=109` |
+| **consciousness** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 514 | `mathem=129` `physic=284` `chemis=179` `inform=254` `biophy=126` `cosmol=150` `mind=514` `deep-h=95` `art=55` `sacred=80` |
+| **observer** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 514 | `mathem=169` `physic=422` `chemis=233` `inform=313` `biophy=274` `cosmol=220` `mind=337` `deep-h=99` `art=60` `sacred=91` |
+| **coherence** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 426 | `mathem=124` `physic=292` `chemis=178` `inform=196` `biophy=211` `cosmol=133` `mind=254` `deep-h=73` `art=34` `sacred=55` |
+| **emergence** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 423 | `mathem=154` `physic=306` `chemis=227` `inform=231` `biophy=185` `cosmol=182` `mind=304` `deep-h=93` `art=59` `sacred=89` |
+| **resonance** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 408 | `mathem=76` `physic=228` `chemis=143` `inform=188` `biophy=204` `cosmol=94` `mind=178` `deep-h=27` `art=27` `sacred=36` |
+| **soul** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 388 | `mathem=99` `physic=184` `chemis=169` `inform=135` `biophy=48` `cosmol=154` `mind=249` `deep-h=124` `art=54` `sacred=208` |
+| **memory** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 333 | `mathem=94` `physic=237` `chemis=147` `inform=222` `biophy=169` `cosmol=124` `mind=235` `deep-h=62` `art=39` `sacred=60` |
+| **infinity** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 277 | `mathem=127` `physic=215` `chemis=152` `inform=173` `biophy=75` `cosmol=164` `mind=211` `deep-h=97` `art=49` `sacred=84` |
+| **void** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 232 | `mathem=105` `physic=179` `chemis=122` `inform=155` `biophy=68` `cosmol=145` `mind=170` `deep-h=78` `art=41` `sacred=74` |
+| **symmetry** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 229 | `mathem=99` `physic=145` `chemis=85` `inform=110` `biophy=57` `cosmol=97` `mind=113` `deep-h=40` `art=26` `sacred=27` |
+| **entropy** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 223 | `mathem=56` `physic=136` `chemis=62` `inform=133` `biophy=103` `cosmol=95` `mind=97` `deep-h=15` `art=8` `sacred=13` |
+| **proportion** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 175 | `mathem=83` `physic=160` `chemis=103` `inform=133` `biophy=81` `cosmol=113` `mind=143` `deep-h=69` `art=42` `sacred=55` |
+| **duality** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 105 | `mathem=43` `physic=52` `chemis=32` `inform=40` `biophy=22` `cosmol=45` `mind=46` `deep-h=14` `art=9` `sacred=9` |
+| **mind-matter** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 50 | `mathem=19` `physic=33` `chemis=25` `inform=21` `biophy=13` `cosmol=20` `mind=42` `deep-h=12` `art=5` `sacred=8` |
+| **logos** | 10 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, deep-history, art, sacred-texts | 50 | `mathem=15` `physic=34` `chemis=31` `inform=29` `biophy=14` `cosmol=22` `mind=37` `deep-h=17` `art=7` `sacred=13` |
+| **fractal** | 8 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, sacred-texts | 96 | `mathem=25` `physic=81` `chemis=46` `inform=60` `biophy=71` `cosmol=45` `mind=58` `deep-h=1` `art=2` `sacred=5` |
+| **catalyst** | 8 | mathematics, physics, chemistry, information, biophysics, cosmology, mind, sacred-texts | 79 | `mathem=18` `physic=53` `chemis=39` `inform=42` `biophy=47` `cosmol=22` `mind=51` `deep-h=4` `art=3` `sacred=7` |
 
 ## Author cross-branch presence
 
@@ -60,32 +60,32 @@ Authors appearing in 3+ branches are *connectors*: they are read in or invoked b
 
 | Author | Total | Branches present (≥3 hits) | Per-branch |
 |---|---:|:-:|---|
-| **Pauling** | 390 | 10 | `mathem=117` `physic=242` `chemis=390` `inform=174` `biophy=150` `cosmol=149` `mind=255` `deep-h=87` `art=49` `sacred=88` |
-| **James** | 389 | 10 | `mathem=98` `physic=206` `chemis=181` `inform=151` `biophy=113` `cosmol=113` `mind=389` `deep-h=77` `art=48` `sacred=90` |
-| **Plato** | 253 | 10 | `mathem=101` `physic=184` `chemis=163` `inform=101` `biophy=40` `cosmol=132` `mind=206` `deep-h=107` `art=51` `sacred=76` |
-| **Einstein** | 252 | 10 | `mathem=68` `physic=252` `chemis=108` `inform=141` `biophy=173` `cosmol=101` `mind=142` `deep-h=12` `art=8` `sacred=24` |
-| **Becker** | 183 | 10 | `mathem=46` `physic=131` `chemis=92` `inform=94` `biophy=183` `cosmol=60` `mind=90` `deep-h=7` `art=7` `sacred=11` |
-| **Ling** | 166 | 10 | `mathem=29` `physic=93` `chemis=59` `inform=80` `biophy=144` `cosmol=42` `mind=70` `deep-h=9` `art=7` `sacred=17` |
-| **Aristotle** | 155 | 10 | `mathem=65` `physic=110` `chemis=111` `inform=59` `biophy=18` `cosmol=94` `mind=130` `deep-h=84` `art=35` `sacred=54` |
-| **Russell** | 125 | 10 | `mathem=59` `physic=90` `chemis=78` `inform=60` `biophy=50` `cosmol=54` `mind=98` `deep-h=29` `art=21` `sacred=18` |
-| **Newton** | 123 | 10 | `mathem=51` `physic=123` `chemis=72` `inform=79` `biophy=63` `cosmol=63` `mind=89` `deep-h=22` `art=17` `sacred=23` |
-| **Darwin** | 113 | 10 | `mathem=37` `physic=102` `chemis=67` `inform=70` `biophy=71` `cosmol=53` `mind=77` `deep-h=16` `art=13` `sacred=24` |
-| **Mitchell** | 93 | 10 | `mathem=22` `physic=62` `chemis=42` `inform=48` `biophy=69` `cosmol=28` `mind=48` `deep-h=11` `art=14` `sacred=16` |
-| **Penrose** | 91 | 10 | `mathem=16` `physic=61` `chemis=15` `inform=52` `biophy=17` `cosmol=33` `mind=91` `deep-h=6` `art=5` `sacred=7` |
-| **Maxwell** | 87 | 10 | `mathem=34` `physic=87` `chemis=52` `inform=63` `biophy=58` `cosmol=42` `mind=66` `deep-h=6` `art=6` `sacred=7` |
-| **Marino** | 79 | 10 | `mathem=16` `physic=43` `chemis=30` `inform=35` `biophy=79` `cosmol=22` `mind=32` `deep-h=4` `art=8` `sacred=8` |
-| **Augustine** | 70 | 10 | `mathem=30` `physic=47` `chemis=51` `inform=28` `biophy=12` `cosmol=41` `mind=59` `deep-h=70` `art=21` `sacred=36` |
-| **Hawking** | 67 | 10 | `mathem=26` `physic=51` `chemis=32` `inform=42` `biophy=21` `cosmol=67` `mind=45` `deep-h=20` `art=14` `sacred=20` |
-| **Bohr** | 46 | 10 | `mathem=19` `physic=46` `chemis=29` `inform=33` `biophy=30` `cosmol=23` `mind=29` `deep-h=4` `art=4` `sacred=5` |
-| **Wheeler** | 45 | 10 | `mathem=20` `physic=41` `chemis=28` `inform=29` `biophy=21` `cosmol=23` `mind=36` `deep-h=8` `art=5` `sacred=6` |
-| **Wittgenstein** | 41 | 10 | `mathem=41` `physic=33` `chemis=34` `inform=13` `biophy=10` `cosmol=15` `mind=41` `deep-h=19` `art=11` `sacred=6` |
-| **Whitehead** | 32 | 10 | `mathem=32` `physic=21` `chemis=13` `inform=13` `biophy=11` `cosmol=10` `mind=22` `deep-h=8` `art=9` `sacred=5` |
-| **Husserl** | 20 | 10 | `mathem=11` `physic=16` `chemis=18` `inform=6` `biophy=5` `cosmol=9` `mind=20` `deep-h=9` `art=6` `sacred=5` |
-| **Bergson** | 14 | 10 | `mathem=5` `physic=9` `chemis=10` `inform=7` `biophy=3` `cosmol=5` `mind=14` `deep-h=5` `art=4` `sacred=3` |
-| **Feynman** | 67 | 9 | `mathem=18` `physic=67` `chemis=27` `inform=38` `biophy=47` `cosmol=22` `mind=33` `deep-h=3` `art=1` `sacred=4` |
-| **Schrödinger** | 50 | 9 | `mathem=22` `physic=50` `chemis=26` `inform=40` `biophy=22` `cosmol=25` `mind=37` `deep-h=2` `art=3` `sacred=5` |
-| **Pollack** | 151 | 8 | `mathem=22` `physic=72` `chemis=40` `inform=58` `biophy=151` `cosmol=28` `mind=43` `deep-h=2` `art=1` `sacred=4` |
-| **Hameroff** | 73 | 8 | `mathem=10` `physic=42` `chemis=8` `inform=48` `biophy=12` `cosmol=15` `mind=73` `deep-h=2` `art=2` `sacred=3` |
-| **Szent** | 65 | 8 | `mathem=7` `physic=27` `chemis=19` `inform=19` `biophy=65` `cosmol=9` `mind=27` `deep-h=2` `art=3` `sacred=2` |
-| **Mendeleev** | 21 | 7 | `mathem=6` `physic=14` `chemis=21` `inform=5` `biophy=17` `cosmol=8` `mind=8` `deep-h=1` `art=1` `sacred=1` |
-| **Nordenstrom** | 29 | 6 | `mathem=2` `physic=7` `chemis=9` `inform=12` `biophy=29` `cosmol=3` `mind=9` `deep-h=1` `art=1` `sacred=1` |
+| **Pauling** | 584 | 10 | `mathem=163` `physic=290` `chemis=584` `inform=240` `biophy=163` `cosmol=183` `mind=349` `deep-h=108` `art=57` `sacred=109` |
+| **James** | 574 | 10 | `mathem=131` `physic=252` `chemis=236` `inform=219` `biophy=119` `cosmol=147` `mind=574` `deep-h=99` `art=58` `sacred=103` |
+| **Einstein** | 296 | 10 | `mathem=85` `physic=296` `chemis=119` `inform=154` `biophy=178` `cosmol=122` `mind=156` `deep-h=15` `art=9` `sacred=24` |
+| **Plato** | 296 | 10 | `mathem=120` `physic=213` `chemis=182` `inform=134` `biophy=45` `cosmol=161` `mind=241` `deep-h=132` `art=59` `sacred=91` |
+| **Becker** | 203 | 10 | `mathem=56` `physic=142` `chemis=105` `inform=105` `biophy=203` `cosmol=66` `mind=103` `deep-h=9` `art=8` `sacred=12` |
+| **Aristotle** | 192 | 10 | `mathem=81` `physic=134` `chemis=131` `inform=83` `biophy=20` `cosmol=116` `mind=159` `deep-h=104` `art=42` `sacred=67` |
+| **Ling** | 181 | 10 | `mathem=37` `physic=99` `chemis=63` `inform=87` `biophy=151` `cosmol=47` `mind=77` `deep-h=12` `art=9` `sacred=17` |
+| **Russell** | 159 | 10 | `mathem=71` `physic=100` `chemis=85` `inform=75` `biophy=56` `cosmol=63` `mind=118` `deep-h=37` `art=25` `sacred=22` |
+| **Darwin** | 152 | 10 | `mathem=48` `physic=116` `chemis=79` `inform=98` `biophy=74` `cosmol=66` `mind=98` `deep-h=24` `art=19` `sacred=30` |
+| **Newton** | 151 | 10 | `mathem=71` `physic=151` `chemis=88` `inform=98` `biophy=64` `cosmol=80` `mind=110` `deep-h=37` `art=22` `sacred=33` |
+| **Hawking** | 120 | 10 | `mathem=45` `physic=81` `chemis=42` `inform=62` `biophy=25` `cosmol=120` `mind=69` `deep-h=30` `art=21` `sacred=24` |
+| **Mitchell** | 116 | 10 | `mathem=27` `physic=67` `chemis=52` `inform=61` `biophy=74` `cosmol=32` `mind=62` `deep-h=16` `art=16` `sacred=17` |
+| **Maxwell** | 112 | 10 | `mathem=46` `physic=112` `chemis=63` `inform=76` `biophy=61` `cosmol=50` `mind=85` `deep-h=11` `art=10` `sacred=8` |
+| **Penrose** | 102 | 10 | `mathem=25` `physic=71` `chemis=20` `inform=60` `biophy=23` `cosmol=39` `mind=102` `deep-h=8` `art=6` `sacred=7` |
+| **Augustine** | 87 | 10 | `mathem=38` `physic=56` `chemis=60` `inform=37` `biophy=14` `cosmol=49` `mind=71` `deep-h=87` `art=25` `sacred=46` |
+| **Marino** | 86 | 10 | `mathem=22` `physic=48` `chemis=35` `inform=40` `biophy=86` `cosmol=26` `mind=40` `deep-h=6` `art=9` `sacred=9` |
+| **Hameroff** | 81 | 10 | `mathem=18` `physic=50` `chemis=13` `inform=55` `biophy=18` `cosmol=20` `mind=81` `deep-h=4` `art=3` `sacred=3` |
+| **Schrödinger** | 71 | 10 | `mathem=29` `physic=71` `chemis=29` `inform=54` `biophy=24` `cosmol=29` `mind=44` `deep-h=4` `art=4` `sacred=5` |
+| **Wittgenstein** | 64 | 10 | `mathem=64` `physic=41` `chemis=45` `inform=25` `biophy=16` `cosmol=20` `mind=64` `deep-h=24` `art=13` `sacred=7` |
+| **Wheeler** | 59 | 10 | `mathem=27` `physic=50` `chemis=32` `inform=38` `biophy=24` `cosmol=29` `mind=45` `deep-h=11` `art=7` `sacred=7` |
+| **Bohr** | 59 | 10 | `mathem=24` `physic=59` `chemis=33` `inform=38` `biophy=33` `cosmol=25` `mind=35` `deep-h=5` `art=4` `sacred=5` |
+| **Whitehead** | 44 | 10 | `mathem=44` `physic=29` `chemis=18` `inform=22` `biophy=14` `cosmol=17` `mind=30` `deep-h=12` `art=11` `sacred=6` |
+| **Husserl** | 36 | 10 | `mathem=17` `physic=20` `chemis=22` `inform=10` `biophy=10` `cosmol=13` `mind=36` `deep-h=11` `art=7` `sacred=5` |
+| **Bergson** | 24 | 10 | `mathem=10` `physic=15` `chemis=14` `inform=13` `biophy=5` `cosmol=11` `mind=24` `deep-h=11` `art=6` `sacred=5` |
+| **Pollack** | 157 | 9 | `mathem=26` `physic=75` `chemis=41` `inform=61` `biophy=157` `cosmol=30` `mind=47` `deep-h=4` `art=2` `sacred=4` |
+| **Feynman** | 100 | 9 | `mathem=28` `physic=100` `chemis=33` `inform=53` `biophy=50` `cosmol=30` `mind=44` `deep-h=4` `art=2` `sacred=4` |
+| **Szent** | 70 | 9 | `mathem=12` `physic=32` `chemis=24` `inform=23` `biophy=70` `cosmol=12` `mind=32` `deep-h=3` `art=3` `sacred=2` |
+| **Nordenstrom** | 31 | 8 | `mathem=4` `physic=9` `chemis=10` `inform=14` `biophy=31` `cosmol=5` `mind=11` `deep-h=3` `art=2` `sacred=1` |
+| **Mendeleev** | 22 | 7 | `mathem=7` `physic=15` `chemis=22` `inform=6` `biophy=18` `cosmol=9` `mind=9` `deep-h=2` `art=1` `sacred=1` |

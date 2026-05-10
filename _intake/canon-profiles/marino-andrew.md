@@ -1,6 +1,6 @@
 # Andrew Marino
 
-**Slug**: `marino-andrew`  ·  **FTS query**: `Marino AND (electromagnetic OR EMF OR Becker)`  ·  **Hits**: 25
+**Slug**: `marino-andrew`  ·  **FTS query**: `Marino AND (electromagnetic OR EMF OR Becker)`  ·  **Hits**: 30
 
 
 ## pubmed (4)
@@ -31,7 +31,7 @@ The characteristic biological effects of low-frequency <<electromagnetic>> field
 
 Studies of the effects of power-frequency <<electromagnetic>> fields (<<EMFs>>) on the immune and other body systems produced … 
 
-## youtube (7)
+## youtube (6)
 
 - **#39 - Dr. Andrew Marino**
   - `yt/18lVJi_ioFk-39-dr-andrew-marino/transcript.txt`
@@ -60,12 +60,6 @@ fields that could …
 researcher on looking at low-level
 <<electromagnetic>> fields the effect of on
 um human biology has done … 
-- **Dr. Jack Kruse: The CIA DON’T Want You To Know This | EP 502**
-  - `yt/BrwjP3zpm64-dr-jack-kruse-the-cia-don-t-want-you-to-know-this-ep-502/transcript.txt`
-  -  … specific books from
-<<Becker>> and <<Marino>> that you'd recommend
-yeah the electric body yeah um the one
-from <<Marino>> is going somewhere is … 
 - **Dr. Jack Kruse: Silent Weapons for Silent Wars**
   - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
   -  … Andrew <<Marino>>. Just so you know, Dr.
@@ -79,7 +73,7 @@ that I was really disappointed with in
 that podcast is <<Marino>> clearly didn't do
 any of <<Becker>>'s work. All … 
 
-## intake (14)
+## intake (16)
 
 - **Andrew Marino**
   - `_intake/canon-profiles/marino-andrew.md`
@@ -99,9 +93,27 @@ any of <<Becker>>'s work. All …
   - `_intake/canon-profiles/becker-robert-o.md`
   -  … Andrew <<Marino>> PhD ON Dr. Robert O <<Becker>> & <<Electromagnetism>> and Life (ENGLISH PODACAST )**
   - `yt/lfkqB1BONMI-dr-andrew-<<marino>>-phd-on-dr-robert-o-<<becker>> … 
+- **emf-non-thermal**
+  - `_intake/concept-digests/emf-non-thermal.md`
+  -  … Andrew <<Marino>>**
+  - `_intake/canon-profiles/<<marino>>-andrew.md`
+  - # Andrew <<Marino>>
+
+**Slug**: `<<marino>>-andrew`  ·  **FTS query**: `<<Marino>> AND (<<<<electromagnetic>>>> OR <<<<EMF>>>> OR <<Becker>>)`  ·  **Hits**: 25 … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … WHO(82), AGE(34), melanin(18), Rockefeller(11), <<EMF>>(7), mitochondria(5), iron(5), <<Becker>>(5), mitochondrial(4), collagen(4), photosynthesis(3), <<electromagnetic>>(3 … 
+  -  … andrew-<<marino>>
+
+**Concepts**: WHO(62), <<Becker>>(48), <<electromagnetic>>(23), AGE(13), iron(7), FDA(7), EPA(6), NIH(6), collagen(4), <<EMF>>(4), electron … 
+- **Andrew Marino — canon-target intake**
+  - `_intake/marino-andrew/README.md`
+  -  … Truth About a Life in Science* (memoir)
+- ~150 primary research papers (1960s–2020s)
+- *<<Electromagnetism>> & Life* with <<Becker>> (1982)
+
+## Source candidates
+
+- PubMed: `<<Marino>> AA Syracuse … 
 - **Energy and Epigenetics 3: Autoimmunity, Cancer, Autism**
   - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-3-autoimmunity-cancer-autism.md`
   -  … 13.
@@ -112,18 +124,17 @@ any of <<Becker>>'s work. All …
   -  … healthcare-exposed-dr-jack-kruse`
 - `lfkqB1BONMI-dr-andrew-<<marino>>-phd-on-dr-robert-o-<<becker>>-<<electromagnetism>>-`
 - `lhxca0ANvIk-bitcoin-and-humanity-s-decentralized-revolution-with … 
-- **Andrew Marino — canon-target intake**
-  - `_intake/marino-andrew/README.md`
-  -  … Truth About a Life in Science* (memoir)
-- ~150 primary research papers (1960s–2020s)
-- *<<Electromagnetism>> & Life* with <<Becker>> (1982)
-
-## Source candidates
-
-- PubMed: `<<Marino>> AA Syracuse … 
 - **EMF 8: Quantum Bone**
   - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
   -  … From the Earth’ magnetic signal to visible light in the <<EMF>> spectrum, the filling in of the <<electromagnetic>> spectrum is astounding as we laid … 
+- **Meta-Canon — what the bridges actually mean**
+  - `_intake/connections/META-CANON.md`
+  -  … The *most-spanning living scientist* in the corpus. |
+| **<<Marino>>** | 79 | biophysics (<<EMF>> + bioelectricity, <<Becker>> collaborator) ↔ physics ↔ medicine. Carries the <<Becker>> line forward. |
+| **Wheeler** | 45 … 
+- **Energy & Epigenetics 1: The Infant Brain is Unique**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-1-the-infant-brain-is-unique.md`
+  -  … <<Becker>>’s](http://en.wikipedia.org/wiki/Robert_O._<<Becker>>) lab that we briefly mentioned in [<<EMF>> 8](https://jackkruse.com/<<emf>>-8-quantum … 
 - **Energy and Epigenetics 4:  Light, Water, Magnetism**
   - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-4-light-water-magnetism.md`
   -  … be/
@@ -133,14 +144,15 @@ any of <<Becker>>'s work. All …
 - www.ncbi.nlm.nih.gov/pubmed/17807392
 
 - http://www.physiologicalchemistryandphysics … 
-- **Energy & Epigenetics 1: The Infant Brain is Unique**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-1-the-infant-brain-is-unique.md`
-  -  … <<Becker>>’s](http://en.wikipedia.org/wiki/Robert_O._<<Becker>>) lab that we briefly mentioned in [<<EMF>> 8](https://jackkruse.com/<<emf>>-8-quantum … 
 - **Energy and Epigenetics 6: Quantum Cell Theory, Life as a Collective Phenomena**
   - `_intake/kruse-blog-corpus/articles/ee-6-quantum-cell-theory-life-collective-phenomena.md`
   -  … DNA has already been shown to emit <<EMF>> signals. The signals it emits is different when it is hydrated.
 
 It is where <<electromagnetic>> field … 
+- **Herbert Fröhlich**
+  - `_intake/canon-profiles/frohlich-herbert.md`
+  -  … coherent>> <<electromagnetic>> field and <<Frohlich>>' s idea of <<coherent>> long-range interactions in … 
+- **Spatiotemporal trends of ambient radiofrequency <<electromagnetic>> fields (RF-<<EMF>>) during the … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
   - # Canon Person Profiles
@@ -150,8 +162,3 @@ It is where <<electromagnetic>> field …
 - **UBIQUITINATION 13:  MICROWAVING KRESSER**
   - `_intake/kruse-blog-corpus/articles/microwaving-kresser.md`
   -  … Andrew <<Marino>>, [a true expert on <<EMF>>](http://www.emfscientist.org/index.php/<<emf>>-scientist-appeal).  He holds a PhD in physics and owns … 
-- **The Redox Rx: How to Improve Your Redox Potential**
-  - `_intake/kruse-blog-corpus/articles/redox-rx.md`
-  -  … non-native <<electromagnetic>> force.
-
-**An environment with a "low redox potential" means electrons have a weak-charged environment.**  Non-native <<EMF>> is an example … 

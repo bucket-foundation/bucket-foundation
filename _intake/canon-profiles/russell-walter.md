@@ -1,9 +1,9 @@
 # Walter Russell
 
-**Slug**: `russell-walter`  ·  **FTS query**: `Russell AND (universal OR octave OR cosmology OR rhythm)`  ·  **Hits**: 25
+**Slug**: `russell-walter`  ·  **FTS query**: `Russell AND (universal OR octave OR cosmology OR rhythm)`  ·  **Hits**: 30
 
 
-## archive (5)
+## archive (2)
 
 - **The Universal One 1926 Walter Russell**
   - `archive/the-universal-one-1926-walter-russell/TheUniversalOne1926WalterRussell_djvu.txt`
@@ -18,18 +18,8 @@ Ten <<octaves>> constitute one cycle …
 
 - **Archive identifier**: `the-<<universal>>-one-1926-walter-<<russell>>`
 - **URL**: https://archive.org/details/the-<<universal>>-one-1926-walter … 
-- **The Oxford book of modern science writing**
-  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
-  -  … Tompkins -- Paul Davies, from The Goldilocks enigma -- <<Russell>> Stannard, from The time and space of Uncle Albert -- Brian Greene, from The elegant <<universe>> -- Stephen … 
-- **chestnut-multimedia**
-  - `archive/sharware/info.md`
-  -  … uk;ultegra;ultimately;understand;understanding;unemployment;union;unique;unit;united;units;<<universe>>;<<university>>;unless;update;updated;updates;upgrade;upload;upright;urban;url;usage;usb … 
-- **CIA Reading Room cia-rdp96-00787r000500380004-4: PSYCHIC PROCESS, ENERGY TRANSFER, AND THINGS THAT GO BUMP IN THE NIGHT**
-  - `archive/cia-readingroom-document-cia-rdp96-00787r000500380004-4/cia-rdp96-00787r000500380004-4_djvu.txt`
-  -  … That winter I happened to be on leave at Stanford, where more 
-interest is shown in this field than at most <<universities>>. Carol was … 
 
-## youtube (2)
+## youtube (1)
 
 - **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
   - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
@@ -37,16 +27,8 @@ interest is shown in this field than at most <<universities>>. Carol was …
 part of it in fact one <<octave>> of 73
 <<octaves>> that are present so if you think
 about light in … 
-- **Wittgenstein, Wheeler and Wallace: The Curious Relation of Philosophy, Mathematics and Physics**
-  - `yt/_QDZqFKmnBo-wittgenstein-wheeler-and-wallace-the-curious-relation-of-phi/transcript.txt`
-  -  … us
-along and our guide is going to be
-Bertrand
-<<Russell>> then <<Russell>> wrote an remarkable
-autobiography uh that uh
-covers his his whole … 
 
-## intake (18)
+## intake (14)
 
 - **Walter Russell**
   - `_intake/canon-profiles/russell-walter.md`
@@ -55,45 +37,44 @@ covers his his whole …
 **Slug**: `<<russell>>-walter`  ·  **FTS query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<cosmology>> OR <<rhythm>>)`  ·  **Hits**: 25
 
 
-## archive (4)
+## archive (5)
 
 - **The <<Universal>> One 1926 … 
 - **walter-russell-cosmology**
   - `_intake/concept-digests/walter-russell-cosmology.md`
   - # walter-<<russell>>-<<cosmology>>
 
-**Query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<rhythm>>)`  ·  **Hits**: 27
+**Query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<rhythm>>)`  ·  **Hits**: 30
 
 
-## archive (5)
+## archive (7)
 
 - **The <<Universal>> One 1926 Walter <<Russell>>**
   - `archive/the-<<universal>> … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … of the <<Universe>>" (1953). <<Russell>>'s spiral/<<octave>> periodic table — alternate axiom set, hot-disputed. | Held as **lens material** (alternate <<cosmology>>), not canon. archive … 
-- **mendeleev-periodic**
-  - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … <<russell>>-<<cosmology>>.md`
-  -  … <<rhythms>>>> of genetically tweaked mice … 
-- **<<mendeleev>>-<<periodic>>**
-  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
-  -  … And here they are ... 
-
-
-<<<<TABLE>>>> OF … 
-- **The <<<<Universal>> … 
 - **Dmitri Mendeleev**
   - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … intake:21, youtube:3)
+  -  … the mathematical principles … 
 - **walter-<<russell>>-<<cosmology>>**
   - `_intake/concept-digests/walter-<<russell>>-<<cosmology>>.md`
-  -  … Washington, studied the circadian <<<<rhythms>>>> of genetically tweaked mice … 
-- **<<mendeleev … 
-- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
-  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
-  -  … biophysics | mentioned via Becker |
-| `<<russell>>-walter` | **Walter <<Russell>>** (1871–1963) | *The <<Universal>> One* (1926), *A New Concept of the <<Universe>>* (1953), spiral periodic table … 
+  -  … 26
+
+
+## archive (5)
+
+- **The <<<<Universal>>>> One 1926 Walter <<<<Russell>>>>**
+  - `archive/the … 
+- **mendeleev-periodic**
+  - `_intake/concept-digests/mendeleev-periodic.md`
+  -  … <<russell>>-<<cosmology>>**
+  - `_intake/concept-digests/walter-<<russell>>-<<cosmology>>.md`
+  -  … Walter <<<<Russell>>>>**
+  - `archive/the-<<<<universal>>>> … 
+- **<<mendeleev>>-<<periodic>>**
+  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
+  -  … <<<<russell>>>>-<<cosmology>> … 
 - **Walter Russell — canon-target intake**
   - `_intake/russell-walter/README.md`
   - # Walter <<Russell>> — canon-target intake
@@ -103,67 +84,46 @@ covers his his whole …
 - **Status**: queued (not yet ingested)
 - **Initiated**: 2026-05-08
 - **Source signal … 
-- **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
-  - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
-  -  … <<Russell>> van Gelder, M.D., Ph.D., a professor of ophthalmology at the <<University>> of Washington, studied the circadian <<rhythms>> of genetically tweaked mice … 
+- **Meta-Canon — what the bridges actually mean**
+  - `_intake/connections/META-CANON.md`
+  -  … Carries the Becker line forward. |
+| **Wheeler** | 45 | physics (GR) ↔ <<cosmology>> (delayed-choice) ↔ information ("it from bit") ↔ mind (participatory <<universe>>). The *meta-bridge author* — explicitly … 
+- **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
+  - `_intake/kruse-references-mined/CURATED-TARGETS.md`
+  -  … biophysics | mentioned via Becker |
+| `<<russell>>-walter` | **Walter <<Russell>>** (1871–1963) | *The <<Universal>> One* (1926), *A New Concept of the <<Universe>>* (1953), spiral periodic table … 
+- **John Archibald Wheeler**
+  - `_intake/canon-profiles/wheeler-john.md`
+  -  … amazing foundational work on <<quantum>> vortices in … 
+- **walter-<<russell>>-<<cosmology>>**
+  - `_intake/concept-digests/walter-<<russell>>-<<cosmology>>.md`
+  -  … The Curious Relation of Philosophy, Mathematics and … 
+- **Bucket Canon — Branch Coverage Audit (2026-05-09)**
+  - `_intake/BRANCH-COVERAGE-AUDIT.md`
+  -  … vols 1-2), <<Russell>> 1926, Pasteur, Lavoisier-adjacent. **Missing**: Pauling textbook, IUPAC modern, Seaborg actinide papers |
+| 06-<<cosmology>>   | 416 | ⚠️ noisy | "<<universe>>" hits mostly from … 
 - **schumann-cme**
   - `_intake/concept-digests/schumann-cme.md`
-  -  … geomagnetic>>(2), UV(1), AGEs(1)
-
-
-**Titled … 
+  -  … that pulsed EMF above the <<Schumann>> resonance … 
 - **walter-<<russell>>-<<cosmology>>**
   - `_intake/concept-digests/walter-<<russell>>-<<cosmology>>.md`
   -  … The Origin of Life**
   - `_intake/kruse-blog … 
+- **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
+  - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
+  -  … <<Russell>> van Gelder, M.D., Ph.D., a professor of ophthalmology at the <<University>> of Washington, studied the circadian <<rhythms>> of genetically tweaked mice … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
   -  … 30 hits  (arxiv:1, intake:28, youtube:1)
-- [`walter-<<russell>>-<<cosmology>>`](walter-<<russell>>-<<cosmology>>.md) — 27 hits  (archive:5, intake:17, youtube:5)
+- [`walter-<<russell>>-<<cosmology>>`](walter-<<russell>>-<<cosmology>>.md) — 30 hits  (archive:7, intake:19, youtube:4)
 - [`mendeleev … 
-- **EMF 3: The Origin of Life**
-  - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
-  -  … Herbert König, who became Schumann’s successor at Munich <<University>>, later demonstrated a correlation between Schumann resonances and the alpha brain <<rhythms>>.  These waves … 
-- **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
-  - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
-  -  … and I think a fatal flaw in modern <<cosmology>> when they speak about the expanding <<Universe>> discovered by Hubble’s red shift in his … 
-- **Isaac Newton**
-  - `_intake/canon-profiles/newton-isaac.md`
-  -  … on  this  foundation  erected  the … 
-- **The <<Universal>> One 1926 Walter <<Russell>>**
-  - `archive/the-<<universal>>-one-1926-walter-<<russell>>/TheUniversalOne1926WalterRussell_djvu.txt`
-  -  … This results in … 
-- **EMF 1: Does Your Rolex Work?**
-  - `_intake/kruse-blog-corpus/articles/emf-1-does-your-rolex-work.md`
-  -  … The findings of a team of researchers from the Imperial College in London and the <<University>> of Washington’s Department of Environmental and Occupational … 
-- **Cold Thermogenesis 8**
-  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-8.md`
-  -  … Your pool is likely a sauna.
-
-
-
-
-
-
--
-
-
-
-![](https://secure.gravatar.com/avatar/259084e262726cc5b69a246f01805237476ec962dee3c82a636237290208fc70?s=54&d=mm&r=g)
-
-
-
-						**Jim <<Russell>>**
-						April 2, 2012 at … 
-- **Brain Gut 4: What was Homo's Solution?**
-  - `_intake/kruse-blog-corpus/articles/brain-gut-4-what-was-homos-solution.md`
-  -  … I need to live by circadian <<rhythms>> and practice CT, especially I must live through a cold, dark  winter and also embrace the sun … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … Newton(4), UV(3), vitamin A(3), electron(3), NIH(3), <<Russell>>(3), biophoton(2), semiconductor(2), blue light(2), autoimmune(2)
-
-
-**Titled**: Cruz … 
-- **Cold Thermogenesis 7:  ENVIRONMENT TRUMPS NUCLEAR GENOME**
-  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-7.md`
-  -  … in Cambridge UK about circadian <<rhythms>> on Tuesday (2012 Mar 20) by Prof <<Russell>> Foster of Oxford <<University>> entitled ‘Light, clocks and sleep: the … 
+- **Canon Connections — bridges across branches**
+  - `_intake/connections/BRIDGES.md`
+  -  … 955 |
+| 07-mind | 881 |
+| 05-biophysics | 858 |
+| 03-chemistry | 479 |
+| 06-<<cosmology>> | 408 |
+| 09-sacred-texts | 309 |
+| 01-mathematics | 280 |
+| 08-deep-history | 159 … 

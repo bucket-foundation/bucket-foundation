@@ -1,35 +1,26 @@
 # Niels Bohr
 
-**Slug**: `bohr-niels`  ·  **FTS query**: `Bohr AND (atom OR quantum OR complementarity)`  ·  **Hits**: 25
+**Slug**: `bohr-niels`  ·  **FTS query**: `Bohr AND (atom OR quantum OR complementarity)`  ·  **Hits**: 30
 
 
-## archive (4)
+## archive (2)
 
+- **(proto)Physics PhD Thesis: TOE - Quantum Cosmology**
+  - `archive/ThesisTOEdll/00- Quantum Cosmology : An Epistemological and Ontological Perspective on Quantum Cosmology and Levels of the Multiverse (rev0)_djvu.txt`
+  -  … 7.2 The Principle of <<Complementarity>>: Wave-Particle Duality at Cosmological 
+Scales? 
+
+
+<<Bohr>>'s <<complementarity>> principle ©’ is a fundamental concept in <<quantum>> mechanics 
+which … 
 - **['Introduction To Quantum Mechanics', 'With Applications To Chemistry.']**
   - `archive/introductiontoqu031712mbp/introductiontoqu031712mbp_djvu.txt`
   -  … <<Bohr>>'s 
 treatment of the hydrogen <<atom>> marked the beginning of the old 
 <<quantum>> theory of <<atomic>> structure, and wave mechanics had 
 its inception … 
-- **A Modern Handbook Of Physics**
-  - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook-of-Physics-Mir-1982_djvu.txt`
-  -  … It  follows  from  <<quantum>>-mechanical  calculations  that 
-when  two  hydrogen  <<atoms>>  approach  each  other  to  a  distance 
-commensurable  with  the  <<Bohr>>  radius  (39.1 … 
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt`
-  -  … <<atoms>>  and 
-bonds  in  their  way  through  the  maze  of  biological  reactions. 
 
-The  second  step  of  the  history  of  chemistry  was  heralded  by 
-<<Bohr>> … 
-- **Lectures on Gas Theory -  Ludwig Boltzmann, Stephen G. Brush**
-  - `archive/lectures-on-gas-theory-ludwig-boltzmann/Lectures on Gas Theory - Ludwig Boltzmann_djvu.txt`
-  -  … In particular, we know that one cannot expect 
-to develop an adequate theory of <<atomic>> phenomena without using <<quantum>> mechanics. 
-However, it turns out … 
-
-## youtube (6)
+## youtube (1)
 
 - **The Quantum Labyrinth - Richard Feynman & John Wheeler - Quantum Reality & Time**
   - `yt/KCcX03Q6Lkw-the-quantum-labyrinth-richard-feynman-john-wheeler-quantum-r/transcript.txt`
@@ -37,60 +28,58 @@ However, it turns out …
 <<Bohr>> was one of the fathers of <<quantum>>
 theory a Danish physicist and wheeler
 had worked with Niels <<Bohr>> over in … 
-- **Joe Rogan Experience #1216 - Sir Roger Penrose**
-  - `yt/GEw0ePZUMHA-joe-rogan-experience-1216-sir-roger-penrose/transcript.txt`
-  -  … even Niels <<Bohr>> who's one of the
-founders of these ideas and he tried to
-make a philosophy out of <<quantum>>
-mechanics and … 
-- **Buried Treasure: Jesus and physicist John Wheeler agree, this reality is a matter of Yes or No!**
-  - `yt/z8FVueTcz6E-buried-treasure-jesus-and-physicist-john-wheeler-agree-this-/transcript.txt`
-  -  … fits
-and I mean little teeny tiny bits called
-<<atoms>> that's true and <<Quantum>> particles
-but the bit he's talking about is … 
-- **Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podcast) - PART 1**
-  - `yt/zs82rGFo6qg-jack-kruse-andrew-huberman-rick-rubin-tetragrammaton-podcast/transcript.txt`
-  -  … gurwich because <<Bohr>> weighed in early on in the&nbsp;&nbsp;
-20th century this is when biochemistry was&nbsp; formative <<quantum>> mechanics was formative … 
-- **The Jack Kruse Series 001**
-  - `yt/T3Ob-DMtR1M-the-jack-kruse-series-001/transcript.txt`
-  -  … <<quantum>> evolution
-that occurred what do i mean by <<quantum>>
-i want to define the terms because
-epistemology here may be important
-<<quantum>> meaning … 
-- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
-  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
-  -  … using light to
-communicate because remember when
-<<quantum>> mechanics
-was innovated from Tesla to Niels <<Bohr>>
-no one ever thought because remember
-biochemistry wasn … 
 
-## intake (15)
+## intake (16)
 
 - **Niels Bohr**
   - `_intake/canon-profiles/bohr-niels.md`
   - # Niels <<Bohr>>
 
-**Slug**: `<<bohr>>-niels`  ·  **FTS query**: `<<Bohr>> AND (<<atom>> OR <<quantum>> OR <<complementarity>>)`  ·  **Hits**: 21
+**Slug**: `<<bohr>>-niels`  ·  **FTS query**: `<<Bohr>> AND (<<atom>> OR <<quantum>> OR <<complementarity>>)`  ·  **Hits**: 25
 
 
-## archive (1)
+## archive (4)
 
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/bioenergetics00szen_djvu.txt … 
+- **['Introduction To <<Quantum>> Mechanics', 'With Applications … 
+- **mendeleev-periodic**
+  - `_intake/concept-digests/mendeleev-periodic.md`
+  -  … One of the lesser-known <<periodic>> <<table>> <<quantum>> links between sulfur and molybdenum when coupled … 
+- **Niels <<Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … THE … 
+- **Erwin Schrödinger**
+  - `_intake/canon-profiles/schrodinger-erwin.md`
+  -  … <<bohr>>-niels`](<<bohr>>-niels.md) — Niels <<Bohr>> … 
+- **Energy and Epigenetics 10: The <<Quantum>> Puzzle**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-10-<<quantum>>-puzzle … 
+- **quantum-biology**
+  - `_intake/concept-digests/quantum-biology.md`
+  -  … Niels <<Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … Sulfated Vitamin D3**
+  - `_intake/kruse-blog-corpus/articles/<<<<quantum>>>>-<<biology>>-7-vitamin-d.md`
+  -  … <<<<atoms>>>> and … 
 - **Quantum Biology 7: Sulfated Vitamin D3**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
   -  … <<atoms>> and accurately predict how groups of them would behave together.  With his imagination as his canvas, he created the foundation of <<quantum>> mechanics … 
 - **TENSEGRITY #10: THE POWER MATRIX**
   - `_intake/kruse-blog-corpus/articles/tensegrity-10.md`
   -  … As <<atomic>> physics and chemistry began to explain the periodic table with the help of the <<Bohr>> model of the <<atom>> in the early … 
-- **TIME # 25: HOW DO MONOPOLES MAKE TIME FOR CELLS?**
-  - `_intake/kruse-blog-corpus/articles/monopoles-make-time.md`
-  -  … thesis, for which he later won the Nobel Prize.  The problem for physics back then, was <<Bohr>>’s version of <<quantum>> mechanics largely ignores … 
+- **Richard Feynman**
+  - `_intake/canon-profiles/feynman-richard.md`
+  -  … <<Quantum>> Labyrinth - Richard <<Feynman>> & John Wheeler - <<Quantum>> Reality & Time**
+  - `yt/KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-<<feynman>>-john-wheeler-<<quantum>>-r/transcript.txt … 
+- **Niels <<Bohr>> … 
+- **John Archibald Wheeler**
+  - `_intake/canon-profiles/wheeler-john.md`
+  -  … <<Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … The  second  step  of  the  history  of  chemistry  was  heralded  by 
+<<<<Bohr>>>> … 
+
+## youtube (6)
+
+- **The <<<<Quantum>>>> Labyrinth … 
 - **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
   - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
   -  … They can create other possible <<quantum>> possibilities for protons and electrons within a mitochondria by creating something called an **“exotic <<atom>>”**. *This <<atom>> would … 
@@ -110,6 +99,21 @@ The <<Bohr>> effect hinges around the electromagnetic allosteric interactions be
   -  … SUMMARY:**
 
 As <<atomic>> physics and chemistry began to explain the periodic table with the help of the <<Bohr>> model of the <<atom>> in the … 
+- **TIME # 25: HOW DO MONOPOLES MAKE TIME FOR CELLS?**
+  - `_intake/kruse-blog-corpus/articles/monopoles-make-time.md`
+  -  … thesis, for which he later won the Nobel Prize.  The problem for physics back then, was <<Bohr>>’s version of <<quantum>> mechanics largely ignores … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … Niels <<Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … light to
+communicate because remember when
+<<<<quantum>>>> mechanics
+was innovated from <<Tesla>> to Niels <<<<Bohr>>>>
+no … 
+- **ORGANIZATION STRUCTURAL FAILURE 2:  MAGNETIC MEMORY**
+  - `_intake/kruse-blog-corpus/articles/organization-structural-failure-2-magnetism.md`
+  -  … subatomic particle with a higher <<atomic>> mass, like a proton, you have to add more energy into the <<quantum>> cellular design to make things … 
 - **EMF 8: Quantum Bone**
   - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
   -  … https://jackkruse.com/emf-8-<<quantum>>-bone/
@@ -129,42 +133,6 @@ As <<atomic>> physics and chemistry began to explain the periodic table with the
 
 
 ### Readers … 
-- **ORGANIZATION STRUCTURAL FAILURE 2:  MAGNETIC MEMORY**
-  - `_intake/kruse-blog-corpus/articles/organization-structural-failure-2-magnetism.md`
-  -  … subatomic particle with a higher <<atomic>> mass, like a proton, you have to add more energy into the <<quantum>> cellular design to make things … 
-- **TIME #21:  SEMICONDUCTION REGENERATES TIME FOR CELLS**
-  - `_intake/kruse-blog-corpus/articles/time-21-semiconduction-regenerates-time-cells.md`
-  -  … <<quantum>> dot systems.  All <<atoms>> are effectively <<quantum>> dots.  Cells seem to like free radicals, phosphorus, sulfur, and the transition metals for their <<quantum>> … 
 - **ORGANIZATIONAL STRUCTURAL FAILURE 3:  DARWIN WAS WRONG**
   - `_intake/kruse-blog-corpus/articles/osf-3-darwin-was-wrong.md`
   -  … <<Quantum>> evolution of DHA affects the chemical evolution of <<atoms>> in lipids and proteins to create proteins that reduce entropy in cells.  Here you … 
-- **Richard Feynman**
-  - `_intake/canon-profiles/feynman-richard.md`
-  -  … <<Quantum>> Sleep**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-<<quantum>>-sleep.md`
-  -  … Richard <<Feynman>> did some amazing foundational work on <<quantum>> vortices in … 
-- **Quantum Biology 12: Do We Need DNA To Tell Time?**
-  - `_intake/kruse-blog-corpus/articles/quantum-biology-12-do-we-need-dna-to-tell-time.md`
-  -  … on the inner mitochondrial membrane where <<quantum>> tunneling acts.  People think that time is linear.  Neils <<Bohr>> wrote early in the 20th century that … 
-- **CPC #7: Obesity Qualia**
-  - `_intake/kruse-blog-corpus/articles/cpc-7-obesity-qualia.md`
-  -  … The truth is, obesity is a <<quantum>> disease that dramatically alters <<quantum>> signaling that occurs on the inner mitochondrial membrane. The change leads to … 
-- **EMF 7: Quantum Prometheus**
-  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
-  -  … https://jackkruse.com/emf-7-<<quantum>>-prometheus/
-
----
-
-](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain-tablethumb.png)
-
-
-
-
-
-
-
-## EMF 7: <<Quantum>> Prometheus
-
-
-
-### Readers … 
