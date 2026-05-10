@@ -1,0 +1,14 @@
+# A direct quantitative relationship between the functional properties of human and macaque V5.
+
+- **PMID**: 10862705
+- **DOI**: 10.1038/76673
+- **PMCID**:  
+- **Journal**: Nature neuroscience  ·  **Year**: 2000
+- **Authors**: G Rees, K Friston, C Koch
+- **MeSH**: Adult, Animals, Brain, Brain Mapping, Humans, Macaca, Magnetic Resonance Imaging, Motion Perception, Neurons, Photic Stimulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10862705/
+- **Captured**: 2026-05-10T10:59:20
+
+## Abstract
+
+The nature of the quantitative relationship between single-neuron recordings in monkeys and functional magnetic resonance imaging (fMRI) measurements in humans is crucial to understanding how experiments in these different species are related, yet it remains undetermined. We measured brain activity in humans attending to moving visual stimuli, using blood oxygenation level-dependent (BOLD) fMRI. Responses in V5 showed a strong and highly linear dependence on increasing strength of motion signal (coherence). These population responses in human V5 had a remarkably simple mathematical relationship to previously observed single-cell responses in macaque V5. We provided an explicit quantitative estimate for the interspecies comparison of single-neuron activity and BOLD population responses. Our data show previously unknown dissociations between the functional properties of human V5 and other human motion-sensitive areas, thus predicting similar dissociations for the properties of single neurons in homologous areas of macaque cortex.

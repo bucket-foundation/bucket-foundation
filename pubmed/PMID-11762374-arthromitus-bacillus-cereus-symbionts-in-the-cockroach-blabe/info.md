@@ -1,0 +1,14 @@
+# Arthromitus (Bacillus cereus) symbionts in the cockroach Blaberus giganteus: dietary influences on bacterial development and population density.
+
+- **PMID**: 11762374
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Symbiosis (Philadelphia, Pa.)  ·  **Year**: 1999
+- **Authors**: L Feinberg, J Jorgensen, A Haselton, A Pitt, R Rudner, L Margulis
+- **MeSH**: Animal Feed, Animals, Bacillus cereus, Behavior, Animal, Cellulose, Cockroaches, DNA, Bacterial, Darkness, Diet, Feces
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11762374/
+- **Captured**: 2026-05-10T11:00:08
+
+## Abstract
+
+The filamentous spore-forming bacterium Arthromitus, discovered in termites, millipedes, sow bugs and other soil-dwelling arthropods by Leidy (1850), is the intestinal stage of Bacillus cereus. We extend the range of Arthromitus habitats to include the hindgut of Blaberus giganteus, the large tropical American cockroach. The occurrence and morphology of the intestinal form of the bacillus were compared in individual cockroaches (n=24) placed on four different diet regimes: diurnally maintained insects fed (1) dog food, (2) soy protein only, (3)purified cellulose only, and (4) a dog food-fed group maintained in continuous darkness. Food quality exerted strong influence on population densities and developmental stages of the filamentous bacterium and on fecal pellet composition. The most dramatic rise in Arthromitus populations, defined as the spore-forming filament intestinal stage, occurred in adult cockroaches kept in the dark on a dog food diet. Limited intake of cellulose or protein alone reduced both the frequency of Arthromitus filaments and the rate of weight gain of the insects. Spores isolated from termites, sow bugs, cockroaches and moths, grown on various hard surfaces display a branching mobility and resistance to antibiotics characteristic to group I Bacilli whose members include B. cereus, B. circulans, B. alvei and B. macerans. DNA isolated from pure cultures of these bacilli taken from the guts of Blaberus giganteus (cockroach), Junonia coenia (moth), Porcellio scaber (sow bug) and Cryptotermes brevis (termite) and subjected to Southern hybridization with a 23S-5S B. subtilis ribosomal sequence probe verified that they are indistinguishable from laboratory strains of Bacillus cereus.

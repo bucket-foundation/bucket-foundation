@@ -1,0 +1,9 @@
+# HEBRAIC LITERATURE
+
+- **URL**: https://www.sacred-texts.com/jud/hl/index.htm
+- **Captured**: 2026-05-10T10:52:01
+- **Site**: www.sacred-texts.com
+
+---
+
+Hebraic Literature Index | Internet Sacred Text Archive Sacred Texts Judaism HEBRAIC LITERATURE TRANSLATIONS FROM THE TALMUD MIDRASHIM AND KABBALA. WITH SPECIAL INTRODUCTION BY MAURICE H. HARRIS [1901] Hebraic Literature is a very readable collection of Jewish literature, including extracts from the Talmud, Midrash and Kabbalah. The Talmud, the primary source for Jewish religious traditions and laws, could be considered the first hypertext. However, this has prevented its conversion to electronic form, due to its complexity and size. This large compilation of Talmudic extracts will serve to illustrate this rich tradition. The Talmud extracts are sorted by numerical references (with some intervening themes). I have added the chapter breakdown of the Talmud section, without any other alterations. This text is in the public domain ( jbh ). Title Page Illustrations Introduction Contents The Talmud II. III. IV. V. VI. VII. VIII. IX. X. XI. XII. XIII. XIV. XV. XVI. XVII. XVIII. XX. XXI. XXII. XXIV. XV. XVI. XVII. XVIII. XXIX. XXX. XXXI. XXXII. XXXIII. XXXIV. XXXVI. XXXVI. XL. XLI. XLV. XLVIII. XLIX. L. LII. LX. LXX. LXXI. Judges. witnesses. Criminals And Criminal Punishments. LXXII. LXXIV. LXXX. LXXXIII. LXXXV. XC. XCII. XCIX. C. CIII. CXX. CXXX. CL. CLXXX. CC. CCXX. CCXLVIII. Three Hundred. Witchcraft. Three Hundred (part 2). Four Hundred. Five Hundred. Six Hundred. Seven Hundred. Eight Hundred. Nine Hundred. One Thousand. Two Thousand. Three Thousand. Four Thousand. Five Thousand. Six Thousand. Seven Thousand. Eight Thousand. Twelve Thousand. Twenty Thousand. Thirty Thousand. Forty Thousand. Eighty Thousand. One Hundred Thousand. One Million. The Midrashim The Kabbala Rabbinical Ana Proverbial Sayings And Traditions Fasts And Festivals

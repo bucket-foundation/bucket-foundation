@@ -1,0 +1,14 @@
+# Mychonastes desiccatus Brown sp. nova (Chlorococcales, Chlorophyta)--an intertidal alga forming achlorophyllous desiccation-resistant cysts.
+
+- **PMID**: 11542139
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Algological studies  ·  **Year**: 1988
+- **Authors**: L Margulis, G Hinkle, H McKhann, B Moynihan
+- **MeSH**: Biopolymers, Carotenoids, Cell Wall, Chlorella, Chlorophyta, Chloroplasts, Desiccation, Geologic Sediments, Mexico, Microscopy, Electron
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11542139/
+- **Captured**: 2026-05-10T10:59:57
+
+## Abstract
+
+An intertidal Chlorella-like alga Mychonastes desiccatus Brown sp. nova, capable of forming achlorophyllous desiccation-resistant cysts, has been grown in unialgal culture. This small alga was first isolated from a dried sample of a well-studied microbial mat. The mat, located at North Pond, Laguna Figueroa, San Quintin, Baja California, Mexico, is a vertically-stratified microbial community which forms laminated sediments. Morphology, pigment composition and G+C content are within the range typical for the genus Chlorella s. 1. Unlike other chlorellae, however, upon desiccation M. desiccatus forms an achlorophyllous, lipid-filled cyst (thick-walled resting stage) in which no plastid is evident. Rewetting leads to chloroplast differentiation, excystment and recovery of the fully green alga. During desiccation, sporopollenin is deposited within a thickening cell wall. Encystment cannot be induced by growth in the dark. The formation of desiccation-induced cysts allows the alga to survive frequent and intermittent periods of dryness. These chlorellae tolerate wide ranges of acidity and temperature; they both grow and form cysts in media in which sodium ions are replaced with potassium. Although the cysts tolerate crystalline salts, the cell grow optimally in concentrations corresponding from three-quarters to full-strength seawater.

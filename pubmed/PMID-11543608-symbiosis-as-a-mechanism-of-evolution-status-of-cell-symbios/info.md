@@ -1,0 +1,14 @@
+# Symbiosis as a mechanism of evolution: status of cell symbiosis theory.
+
+- **PMID**: 11543608
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Symbiosis (Philadelphia, Pa.)  ·  **Year**: 1985
+- **Authors**: L Margulis, D Bermudes
+- **MeSH**: Biological Evolution, Eukaryotic Cells, Microtubules, Mitochondria, Nuclear Envelope, Organelles, Phylogeny, Plastids, Prokaryotic Cells, Symbiosis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11543608/
+- **Captured**: 2026-05-10T10:59:59
+
+## Abstract
+
+Several theories for the origin of eukaryotic (nucleated) cells from prokaryotic (bacterial) ancestors have been published: the progenote, the direct filiation and the serial endosymbiotic theory (SET). Compelling evidence for two aspects of the SET is now available suggesting that both mitochondria and plastids originated by symbioses with a third type of microbe, probably a Thermoplasma-like archaebacterium ancestral to the nucleocytoplasm. We conclude that not enough information is available to negate or substantiate another SET hypothesis: that the undulipodia (cilia, eukaryotic flagella) evolved from spirochetes. Recognizing the power of symbiosis to recombine in single individual semes from widely differing partners, we develop the idea that symbiosis has been important in the origin of species and higher taxa. The abrupt origin of novel life forms through the formation of stable symbioses is consistent with certain patterns of evolution (e.g punctuated equilibria) described by some paleontologists.

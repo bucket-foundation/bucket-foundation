@@ -1,0 +1,14 @@
+# 'Minimum average risk' as a new peak-detection algorithm applied to myofibrillar dynamics.
+
+- **PMID**: 12850294
+- **DOI**: 10.1016/s0169-2607(02)00114-1
+- **PMCID**:  
+- **Journal**: Computer methods and programs in biomedicine  ·  **Year**: 2003
+- **Authors**: S Yu Sokolov, A A Grinko, A V Tourovskaia, F B Reitz, O Yakovenko, G H Pollack, F A Blyakhman
+- **MeSH**: Algorithms, Animals, Bees, Biomechanical Phenomena, In Vitro Techniques, Models, Biological, Myofibrils, Risk, Sarcomeres, Signal Processing, Computer-Assisted
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12850294/
+- **Captured**: 2026-05-10T11:00:55
+
+## Abstract
+
+We present a new peak-detection algorithm based on the method of 'minimum average risk' proposed by Kolmogorov and developed for signal processing in various fields. In this method, translations of features within a signal scan are quantified by minimizing the integrated pointwise product of each scan relative to the first derivative of the immediately previous scan. We have adapted this method for use in a new algorithm to monitor dynamic changes of sarcomere length in single myofibrillar sarcomeres of striated muscles, but the algorithm can also be used more generally for peak localization. We find that this method results in sub-nanometer precision and higher signal-to-noise ratio than current methods. At an equal noise level, the RMS deviation of the minimum average risk algorithm was 1.3 times lower than that of the center of mass method with modeled data and 3-4 times lower with actual data.

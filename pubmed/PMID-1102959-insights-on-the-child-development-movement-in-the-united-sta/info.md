@@ -1,0 +1,14 @@
+# Insights on the child development movement in the United States.
+
+- **PMID**: 1102959
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Monographs of the Society for Research in Child Development  ·  **Year**: 1975
+- **Authors**: M J Senn
+- **MeSH**: Child, Child Development, Child Psychiatry, Child, Preschool, History, 19th Century, History, 20th Century, Humans, Infant, Pediatrics, Psychology, Child
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1102959/
+- **Captured**: 2026-05-10T10:59:28
+
+## Abstract
+
+The introduction explains that the purpose of the Monograph is not to present a systematic history of child development in this country, which has been done by others, but rather to enrich portions of the record with individual accounts and reactions to personal experiences. It then proceeds to a discussion of the value, and pitfalls, of oral history for those who probe the past. The body of the Monograph necessarily is confined to certain areas and to a limited number of people who were interviewed, since hundreds of pages of transcripts representing some 80 people have been amassed. With a view to the widest possible coverage of materials in the tapes, three major topics are developed: (1) the reactions of people who have worked in child development to some of the major figures and influences in the field during the careers, (2) the relationship of the study of child development to pediatrics and child psychiatry through the years as viewed by various scientists in a position to hold opinions worth hearing, (3) the relevance of the child development movement to better child care practices in the United States. In this last section, questions of whether it is desirable to gear research to matters of social relevance and whether it is possible-or advisable-given the present state of knowledge for scientists to provide answers in planning for children are considered from vastly differing viewpoints. Also the related problem of the protection of research from misrepresentation by those who want a headline or have biases to buttress is briefly touched on in this section. The conclusion presents various viewpoints as to the appropriateness of the word "movement" as a description of what has taken place in child development. In that connection the Society for Research in Child Development is discussed, as are also the difficulties, encountered by the field in general and by the institutes in particular, which impeded the whole effort.

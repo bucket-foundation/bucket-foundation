@@ -1,0 +1,14 @@
+# MRI analysis of an inherited speech and language disorder: structural brain abnormalities.
+
+- **PMID**: 11872605
+- **DOI**: 10.1093/brain/awf057
+- **PMCID**:  
+- **Journal**: Brain : a journal of neurology  ·  **Year**: 2002
+- **Authors**: K E Watkins, F Vargha-Khadem, J Ashburner, R E Passingham, A Connelly, K J Friston, R S J Frackowiak, M Mishkin, D G Gadian
+- **MeSH**: Adolescent, Adult, Apraxias, Caudate Nucleus, Cerebellum, Cerebral Cortex, Child, Female, Functional Laterality, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11872605/
+- **Captured**: 2026-05-10T11:00:13
+
+## Abstract
+
+Analyses of brain structure in genetic speech and language disorders provide an opportunity to identify neurobiological phenotypes and further elucidate the neural bases of language and its development. Here we report such investigations in a large family, known as the KE family, half the members of which are affected by a severe disorder of speech and language, which is transmitted as an autosomal-dominant monogenic trait. The structural brain abnormalities associated with this disorder were investigated using two morphometric methods of MRI analysis. A voxel-based morphometric method was used to compare the amounts of grey matter in the brains of three groups of subjects: the affected members of the KE family, the unaffected members and a group of age-matched controls. This method revealed a number of mainly motor- and speech-related brain regions in which the affected family members had significantly different amounts of grey matter compared with the unaffected and control groups, who did not differ from each other. Several of these regions were abnormal bilaterally, including the caudate nucleus, which was of particular interest because this structure was also found to show functional abnormality in a related PET study. We performed a more detailed volumetric analysis of this structure. The results confirmed that the volume of this nucleus was reduced bilaterally in the affected family members compared with both the unaffected members and the group of age-matched controls. This reduction in volume was most evident in the superior portion of the nucleus. The volume of the caudate nucleus was significantly correlated with the performance of affected family members on a test of oral praxis, a test of non-word repetition and the coding subtest of the Wechsler Intelligence Scale. These results thus provide further evidence of a relationship between the abnormal development of this nucleus and the impairments in oromotor control and articulation reported in the KE family.

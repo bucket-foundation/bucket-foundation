@@ -1,0 +1,9 @@
+# Tanach (Hebrew): Nehemiah (Nechemiyah)
+
+- **URL**: https://www.sacred-texts.com/bib/tan/neh.htm
+- **Captured**: 2026-05-10T10:58:13
+- **Site**: www.sacred-texts.com
+
+---
+
+Tanach: Nehemiah (Nechemiyah): Nehemiah (Nechemiyah) index | Internet Sacred Text Archive Sacred Texts Bible Index Ezra 1 Chronicles (1 Divrey Yamim) Tanach (Hebrew): Nehemiah (Nechemiyah) Polyglot KJV | Vul Nehemiah (Nechemiyah) Chapter 1 1 2 3 4 5 6 7 8 9 10 11 Nehemiah (Nechemiyah) Chapter 2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 Nehemiah (Nechemiyah) Chapter 3 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 Nehemiah (Nechemiyah) Chapter 4 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 Nehemiah (Nechemiyah) Chapter 5 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 Nehemiah (Nechemiyah) Chapter 6 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 Nehemiah (Nechemiyah) Chapter 7 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 Nehemiah (Nechemiyah) Chapter 8 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 Nehemiah (Nechemiyah) Chapter 9 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 Nehemiah (Nechemiyah) Chapter 10 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 Nehemiah (Nechemiyah) Chapter 11 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 Nehemiah (Nechemiyah) Chapter 12 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 Nehemiah (Nechemiyah) Chapter 13 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31

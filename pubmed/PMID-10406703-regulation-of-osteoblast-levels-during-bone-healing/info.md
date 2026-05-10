@@ -1,0 +1,14 @@
+# Regulation of osteoblast levels during bone healing.
+
+- **PMID**: 10406703
+- **DOI**: 10.1097/00005131-199906000-00006
+- **PMCID**:  
+- **Journal**: Journal of orthopaedic trauma  ·  **Year**: 1999
+- **Authors**: M L Olmedo, P S Landry, K K Sadasivan, J A Albright, W D Meek, R Routh, A A Marino
+- **MeSH**: Animals, Apoptosis, Bone and Bones, Disease Models, Animal, Fracture Healing, Fractures, Bone, Interleukin-1, Male, Osteoblasts, Random Allocation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10406703/
+- **Captured**: 2026-05-10T10:59:02
+
+## Abstract
+
+To confirm the occurrence of programmed cell death of osteoblasts during bone healing and to evaluate the role of interleukin-1beta (IL-1beta) in regulating osteoblast concentration. Electron microscopic study of the response of rats to a controlled bone injury, and a randomized controlled study of the effect of IL-1beta administered continuously for three days. A standardized defect (1.1 millimeter in diameter, 0.5 millimeter deep) was created unilaterally on the anteromedial surface of the tibia. In some animals, the injury site was recovered five days after operation and processed for ultrastructural evaluation of osteoblasts in the callus. In another group, IL-1beta was delivered to the bone defect using micro-osmotic pumps (0.5 nanograms/hour); control rats received vehicle only. The bones were recovered one to fourteen days after injury, and concentrations of proliferating cells, osteoblasts, and apoptotic bodies were determined. The amount of callus that formed in the defect was measured. Osteoblasts in the callus exhibited ultrastructural changes characteristic of cells undergoing apoptosis, including condensation of chromatin, membrane blebbing, formation of apoptotic bodies, and phagocytosis by nearby osteoblasts. Addition of IL-1beta significantly increased the number of osteoblasts at the injury site and significantly decreased the number of apoptotic bodies in relation to the number of osteoblasts. The amount of callus in the bone defect was not affected by IL-1beta treatment. The role of programmed cell death of osteoblasts as a normal concomitant of bone healing was confirmed. Evidence was found suggesting that IL-1beta mediated the appearance and disappearance of osteoblasts, possibly by affecting the rates of differentiation and apoptosis, respectively. Understanding these mechanisms conceivably could lead to the ability to control osteoblast levels at an injury site.

@@ -1,0 +1,9 @@
+# The Interior Castle
+
+- **URL**: https://www.sacred-texts.com/chr/tic/index.htm
+- **Captured**: 2026-05-10T10:52:43
+- **Site**: www.sacred-texts.com
+
+---
+
+The Interior Castle Index | Internet Sacred Text Archive Sacred Texts Christianity Buy this Book at Amazon.com The Interior Castle or The Mansions by St. Teresa of Avila [1921] Contents Start Reading Page Index Text [Zipped] El Castillo Interior (The Interior Castle) or Las Moradas (The Mansions) was written by St. Teresa of Avila in 1577. According to contemporary accounts, St. Teresa had a revelation from God of a crystal globe in the shape of a castle containing seven mansions. This is St. Teresa's interpretation of that vision, describing the journey of faith through seven stages, ending with union with God. Title Page and Front Matter Note Contents Introduction Preface The First Mansions Chapter I. Description of the Castle Chapter II. The Human Soul. The Second Mansions Chapter I. War. The Third Mansions Chapter I. Fear of God Chapter II. Aridity in Prayer The Fourth Mansions Chapter I. Sweetness in Prayer. Chapter II. Divine Consolations Chapter III. Prayer of Quiet The Fifth Mansions Chapter I. Prayer of Union Chapter II. Effects of Union Chapter III. Cause of Union Chapter IV. Spiritual Espousals The Sixth Mansions Chapter I. Preparation for Spiritual Marriage Chapter II. The Wound of Love Introductory Note to Chapter III by the Editor Chapter III. Locutions Chapter IV. Raptures Chapter V. The Flight of the Spirit Chapter VI. Spiritual Jubilation Chapter VII. The Humanity of Our Lord Chapter VIII. Intellectual Visions Chapter IX. Imaginary Visions Chapter X. Intellectual Visions Continued Chapter XI. The Dart of Love The Seventh Mansions Chapter I. God's Presence Chamber Chapter II. Spiritual Marriage Chapter III. Its Effects Chapter IV. Martha and Mary Epilogue Index

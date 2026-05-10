@@ -1,0 +1,14 @@
+# Extracellular currents alter gap junction intercellular communication in synovial fibroblasts.
+
+- **PMID**: 12669303
+- **DOI**: 10.1002/bem.10085
+- **PMCID**:  
+- **Journal**: Bioelectromagnetics  ·  **Year**: 2003
+- **Authors**: Andrew A Marino, Oleg V Kolomytkin, Clifton Frilot
+- **MeSH**: Animals, Calcium Channels, Cell Communication, Cell Line, Dose-Response Relationship, Radiation, Electric Conductivity, Electromagnetic Fields, Extracellular Space, Fibroblasts, Gap Junctions
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12669303/
+- **Captured**: 2026-05-10T11:00:46
+
+## Abstract
+
+We studied the effect of extremely low frequency (ELF) currents on gap junction intercellular communication (GJIC) mediated by connexin43 protein. Confluent monolayers of synovial fibroblasts (HIG-82) and neuroblastoma cells (5Y) were exposed in bath solution to 0-75 mA/m(2) (0-56 mV/m), 60 Hz. Single channel conductance, cell membrane current-voltage (I-V) curves, and Ca(2+) influx were measured using the nystatin single and double patch methods. The conductances of the closed and open states of the gap junction channel in HIG-82 cells were each significantly reduced (by 0.76 and 0.39 pA, respectively) in cells exposed to 20 mA/m(2). Current densities as low as 10 mA/m(2) significantly increased Ca(2+) influx in HIG-82 cells. No effects were seen in 5Y cells. The I-V curves of the plasma membranes of both types of cells were independent of 60 Hz electric fields and current densities, 0-75 mA/m(2), indicating that the effect of the 60 Hz fields on GJIC in HIG-82 cells was not mediated by a change in membrane potential. We conclude that ELF electric fields can alter GJIC in synovial cells via a mechanism that does not depend on changes in membrane potential, but may depend on Ca(2+) influx. The results open the possibility that GJIC mediated responses in synovial cells, such as for example, their secretory responses to proinflammatory cytokines, could be antagonized by the application of ELF electric fields.

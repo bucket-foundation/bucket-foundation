@@ -1,0 +1,9 @@
+# Two Orations of the Emperor Julian
+
+- **URL**: https://www.sacred-texts.com/cla/toj/index.htm
+- **Captured**: 2026-05-10T10:52:46
+- **Site**: www.sacred-texts.com
+
+---
+
+Two Orations of the Emperor Julian index | Internet Sacred Text Archive Sacred Texts Classics Two Orations of the Emperor Julian One to the Sovereign Sun and the other to the Mother of the Gods; translated by Thomas Taylor [1793] Contents Start Reading This translation of two works on pagan theology with a Platonic theme by the Roman Emperor Julian is extremely rare. It was originally published in 1793, and reprinted in 1932 in an edition of 500 copies, one of which we used as the basis for this etext. (The 1932 edition had no copyright notice). The short-lived Emperor Julian (331-363 CE) suceeded Constantius in 361 CE. He shocked the empire by renouncing Christianity, which earned him the title 'the Apostate' by Church historians. He issued an edict of religious freedom, rebuilt the Pagan temples, ended banishment of religious exiles, and eliminated special privileges for Christian officials. He founded the Neo-platonic school of philosophy. Julian spurned the decadant Byzantine palace; he dressed simply, studied philosophy, promulgated tax reform, and fostered study of the humanities and arts. However, his reign lasted only twenty months; he died in June of 363 in battle with the Persians, possibly at the hand of a Christian. This book is as notable for its author as for its translator. Thomas Taylor (1758-1835) was a prolific classicist and one of the first modern neo-Platonists. Although he was deprecated while alive, he had a huge influence on H.P. Blatavsky and other theosophists. Title Page Introduction To Apollo and the Sun The Emperor Julian's Oration to the Sovereign Sun The Emperor Julian's Oration to the Mother of the Gods To the Ancient Platonic Philosophers

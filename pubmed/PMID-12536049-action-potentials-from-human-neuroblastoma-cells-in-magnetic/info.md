@@ -1,0 +1,14 @@
+# Action potentials from human neuroblastoma cells in magnetic fields.
+
+- **PMID**: 12536049
+- **DOI**: 10.1016/s0304-3940(02)01329-0
+- **PMCID**:  
+- **Journal**: Neuroscience letters  ·  **Year**: 2003
+- **Authors**: Harold Sonnier, Oleg Kolomytkin, Andrew Marino
+- **MeSH**: Action Potentials, Electromagnetic Fields, Humans, Ion Transport, Neuroblastoma, Patch-Clamp Techniques, Potassium, Sodium, Tetraethylammonium, Tetrodotoxin
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12536049/
+- **Captured**: 2026-05-10T11:00:41
+
+## Abstract
+
+The patch-clamp method was used to measure transmembrane Na(+) and K(+) currents of the action potential in SH-SY5Y neuroblastoma cells exposed to static magnetic fields of 1, 5, and 75 G, 60 Hz fields of 1 and 5 G, and to combined static and low-frequency fields tuned for resonance of Na(+) and K(+). The maximum currents and their inactivation rates, and the activation rate of the Na(+) current were measured. Application of the magnetic fields did not result in detectable changes in any of the parameters of the action potential chosen for study. The occurrence of effects due to the fields could be excluded down to at least one part in 1000. The results suggest that magnetic fields of the type studied do not affect the cellular mechanisms responsible for generating the action potential.

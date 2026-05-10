@@ -1,0 +1,14 @@
+# Integrated monitoring can detect critical events and improve alarm accuracy.
+
+- **PMID**: 10114048
+- **DOI**: 10.1097/00004669-199107000-00001
+- **PMCID**:  
+- **Journal**: Journal of clinical engineering  ·  **Year**: 1991
+- **Authors**: M J Navabi, R C Watt, S T Hameroff, K C Mylrea
+- **MeSH**: Anesthesiology, Computer Systems, Evaluation Studies as Topic, Monitoring, Physiologic, Operating Room Information Systems, Software
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10114048/
+- **Captured**: 2026-05-10T10:58:56
+
+## Abstract
+
+A computer-based, integrated monitor system was designed and utilized to collect and interactively manage physiologic data (13 variables and 3 waveforms) from six routinely used operating room monitors. Various approaches were developed to reduce false alarms, classify waveforms, and recognize events. False alarms: false alarms in ECG heart rate detection were reduced from 37.3% to 2.6% (p=0.005) of total alarms using multi-variable analysis and rate-of-change limits. Waveform classification: using artificial neural networks (AN), CO2 waveforms were classified into (a) spontaneous, (b) mechanical, and (c) mechanical/with spontaneous breathing attempts. The system properly classified 47 of 71 spontaneous, 65 of 67 mechanical, and 37 of 44 mechanical breaths/with spontaneous breathing attempts. Another ANN was used for detection of elevated and depressed ST segments in the ECG signal. All ST segment elevations and depressions of 0.1 mV were correctly identified. Event recognition: an algorithm developed to identify endotracheal intubation correctly recognized 13 of 17 intubations. This resulted in a 42% reduction in low end-tidal-CO2 false alarms.

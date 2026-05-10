@@ -1,0 +1,14 @@
+# Cristispira from oyster styles: complex morphology of large symbiotic spirochetes.
+
+- **PMID**: 11538110
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Symbiosis (Philadelphia, Pa.)  ·  **Year**: 1991
+- **Authors**: L Margulis, L Nault, J M Sieburth
+- **MeSH**: Animals, Flagella, Microscopy, Electron, Organelles, Ostreidae, Spirochaetaceae, Symbiosis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11538110/
+- **Captured**: 2026-05-10T10:59:45
+
+## Abstract
+
+Crystalline styles (digestive organs) of bivalve mollusks provide the habitat for highly motile bacteria. Styles from freshly-collected oysters, Crassostrea virginica, were studied by electron microscopy; Cristispira spirochetes were abundant in these organs. Detailed study reveals these spirochetes to be among the most complex prokaryotic cells known. More than 600 periplasmic flagella and an adhering outer lipoprotein membrane (e.g., a 270 degrees sillon) form the ultrastructural basis for the "crista," first described by light microscopy. Unique rosette structures corresponding to the "chambers" or "ovoid inclusions" of light microscopy were detected at the periphery of all protoplasmic cylinders. Polar organelles and linearly aligned flagellar insertions are conspicuous. In size and complexity, Cristispira more resembles Pillotina, Diplocalyx, Clevelandina and Hollandina (large spirochetes symbiotic in termites) than it does Treponema. Cristispira pectinis (Gross, 1910), the type species; Spirillum ostrea (Noguchi, 1921); and another, less frequent bacterial symbiont are the predominant inhabitants of the dense style matrix. The ultrastructure of the spirillum and an electron micrograph of the third bacterium are shown.

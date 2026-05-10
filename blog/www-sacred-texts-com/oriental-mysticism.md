@@ -1,0 +1,9 @@
+# Oriental Mysticism
+
+- **URL**: https://www.sacred-texts.com/isl/omy/index.htm
+- **Captured**: 2026-05-10T10:52:03
+- **Site**: www.sacred-texts.com
+
+---
+
+Oriental Mysticism Index | Internet Sacred Text Archive Sacred Texts Islam Buy this Book at Amazon.com Buy this Book on Kindle Interior of a Mosque, by Jean-Leon Gerome [1870] (Public Domain Image) Oriental Mysticism by E.H. Palmer [1867] Contents Start Reading Page Index Text [Zipped] " The Universe is the mirror of God, and the heart of man is the mirror of the Universe. "-- p. 41 This is a concise study of the key concepts of Sufi philosophy, written by a western scholar in the mid-19th century. Palmer discusses the spiritual journey that Sufis take, the path to oneness with God. A very useful feature of this book is the glossary of poetic symbols used in Persian Sufi literature. Palmer also translated the Qur'an for the Sacred Books of the East in two volumes, also at this site here and here . Title Page Dedication Preface Contents Introduction Part I Chapter I. Of the Traveller, the Goal, the Stages, and the Road Chapter II. Of Law, Doctrine and Truth Chapter III. Concerning the Perfect Man, and the Perfectly Free Man Chapter IV. Concerning Fellowship and Renunciation Chapter V. Concerning Attraction and Devotion Chapter VI. Concerning Counsel Part II Chapter I. Chapter II. Concerning the Attributes of God Chapter III. Concerning the Works of God, Physically Considered Chapter IV. Concerning the Works of God, Metaphysically Considered Chapter V. Of the Four Universal Sources Part III Chapter I. The Saintly and Prophetic Offices Defined Part IV Chapter I. On the Influence of Early Prejudice Upon Belief Part V. The Study of Man Chapter I. Grounds For the Discussion Chapter II. Of the Origin and Animal Development of Man Chapter III. Of the Intellectual and Spiritual Development of Man. Chapter IV. Of the Upward Progress or Ascent of Man Chapter V. Conclusion Appendix Index

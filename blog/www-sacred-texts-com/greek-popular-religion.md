@@ -1,0 +1,9 @@
+# Greek Popular Religion
+
+- **URL**: https://www.sacred-texts.com/cla/gpr/index.htm
+- **Captured**: 2026-05-10T10:53:12
+- **Site**: www.sacred-texts.com
+
+---
+
+Greek Popular Religion Index | Internet Sacred Text Archive Sacred Texts Classics Lord Frederick Leighton, The Daphnephoria (1874-6), public domain image Greek Popular Religion by Martin P. Nilsson [1940] Contents Start Reading Page Index Text [Zipped] This is a short survey of Greek religious practice and beliefs from ground level. The texts of Homer, Hesiod, and the Greek dramatists and philosophers, who defined Greek beliefs, have long been known and understood. There is a conventional view of Greek mythology which is taught by rote to school children (at least until recently), which relies on a neat set of 'myths and legends.' It was not until the pioneering efforts of Jane Harrison and other scholars in the 19th century that a picture emerged of what actually constituted Greek religion, and how it evolved. This monograph covers what was known by the middle of the 20th century. It gives a fascinating look at the very earthy popular side of Greek religion, with its noisy (and often messy) festivals, initiations, secret societies, oracles, and a practical but very superstitious belief system. He also discusses how some of these beliefs and festivals, under the guise of Christianity, have persisted to this day. --John B. Hare, November 8th, 2005 Title Page Foreword Acknowledgements Contents Illustrations The Countryside Rural Customs and Festivals The Religion of Eleusis The House and the Family The Cities; the Panegyreis Legalism and Superstition; Hell Seers and Oracles Illustrations Illustrations 1-3 Illustrations 4-7 Illustrations 8-10 Illustrations 11-12 Illustrations 13-14 Illustrations 15-16 Illustrations 17-18 Illustrations 19-20 Illustrations 21-23 Illustrations 24-25 Illustrations 26-28 Illustrations 29-33 Illustrations 34-36 Illustrations 37-39 Index

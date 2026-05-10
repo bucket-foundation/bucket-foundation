@@ -1,0 +1,14 @@
+# Multisubject fMRI studies and conjunction analyses.
+
+- **PMID**: 10493897
+- **DOI**: 10.1006/nimg.1999.0484
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 1999
+- **Authors**: K J Friston, A P Holmes, C J Price, C Büchel, K J Worsley
+- **MeSH**: Attention, Brain, Brain Mapping, Fixation, Ocular, Humans, Magnetic Resonance Imaging, Models, Statistical, Motion Perception, Probability, Reproducibility of Results
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10493897/
+- **Captured**: 2026-05-10T10:59:04
+
+## Abstract
+
+In this paper we present an approach to making inferences about generic activations in groups of subjects using fMRI. In particular we suggest that activations common to all subjects reflect aspects of functional anatomy that may be "typical" of the population from which that group was sampled. These commonalities can be identified by a conjunction analysis of the activation effects in which the contrasts, testing for an activation, are specified separately for each subject. A conjunction is the joint refutation of multiple null hypotheses, in this instance, of no activation in any subject. The motivation behind this use of conjunctions is that fixed-effect analyses are generally more "sensitive" than equivalent random-effect analyses. This is because fixed-effect analyses can harness the large degrees of freedom and small scan-to-scan variability (relative to the variability in responses from subject to subject) when assessing the significance of an estimated response. The price one pays for the apparent sensitivity of fixed-effect analyses is that the ensuing inferences pertain to, and only to, the subjects studied. However, a conjunction analysis, using a fixed-effect model, allows one to infer: (i) that every subject studied activated and (ii) that at least a certain proportion of the population would have shown this effect. The second inference depends upon a meta-analytic formulation in terms of a confidence region for this proportion. This approach retains the sensitivity of fixed-effect analyses when the inference that only a substantial proportion of the population activates is sufficient.

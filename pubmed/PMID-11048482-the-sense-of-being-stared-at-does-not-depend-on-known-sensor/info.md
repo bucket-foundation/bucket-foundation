@@ -1,0 +1,14 @@
+# The "sense of being stared at" does not depend on known sensory clues.
+
+- **PMID**: 11048482
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Rivista di biologia  ·  **Year**: 2000
+- **Authors**: R Sheldrake
+- **MeSH**: Child, Female, Humans, Male, Parapsychology, Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11048482/
+- **Captured**: 2026-05-10T10:59:28
+
+## Abstract
+
+The "sense of being stared at" can be investigated by means of simple experiments in which subjects and lookers work in pairs, with the looker sitting behind the subject. In a random sequence of trials, the looker either looks at the back of the subject, or looks away and thinks of something else. More than 15,000 trials have already been conducted, involving more than 700 subjects, with an extremely significant excess of correct over incorrect guesses (Sheldrake [1999]). This effect was still apparent in experiments in which subjects were blindfolded and given no feedback, showing it did not depend on visual clues, nor on the subjects knowing if their guesses were right or wrong (Sheldrake [2000]). In this paper I describe experiments I conducted in schools in England in which the subjects were not only blindfolded and given no feedback, but looked at through closed windows. There was again a very significant excess of correct over incorrect guesses (p < 0.004). At my request, schoolteachers in Canada, Germany and the United States carried out similar experiments and found an even more significant positive effect than in my own experiments (p < 0.0002). The fact that positive results were still obtained when visual clues had been effectively eliminated by blindfolds, and auditory and olfactory clues by closed windows, implies that the sense of being stared at does not depend on the known senses. I conclude that peoples' ability to know when they are being looked at depends on an influence at present unknown to science.

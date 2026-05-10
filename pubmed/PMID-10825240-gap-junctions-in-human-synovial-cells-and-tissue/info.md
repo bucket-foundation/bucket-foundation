@@ -1,0 +1,14 @@
+# Gap junctions in human synovial cells and tissue.
+
+- **PMID**: 10825240
+- **DOI**: 10.1002/(SICI)1097-4652(200007)184:1<110::AID-JCP12>3.0.CO;2-8
+- **PMCID**:  
+- **Journal**: Journal of cellular physiology  ·  **Year**: 2000
+- **Authors**: O V Kolomytkin, A A Marino, K K Sadasivan, W D Meek, R E Wolf, V Hall, K J McCarthy, J A Albright
+- **MeSH**: Arthritis, Rheumatoid, Cells, Cultured, Connexin 43, Gap Junctions, Hip Injuries, Humans, Membrane Potentials, Microscopy, Electron, Osteoarthritis, Patch-Clamp Techniques
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10825240/
+- **Captured**: 2026-05-10T10:59:17
+
+## Abstract
+
+Our objective was to establish the existence of intercellular communication through gap junctions in synovial lining cells and in primary and passaged cultures of human synovial cells. Communication between cells was assessed using the nystatin perforated-patch method, fluorescent dye transfer, immunochemistry, transmission electron microscopy, and immunoblotting. Functional gap junctions were observed in primary and passaged cultures and were based on measurements of the transient current response to a step voltage. The average resistance between cells in small aggregates was 300 +/- 150 MOmega. Gap junctions were also observed between synovial lining cells in tissue explants; the size of the cell network in synovial tissue was estimated to be greater than 40 cells. Intercellular communication between cultured cells and between synovial lining cells was confirmed by dye injection. Punctate fluorescent regions were seen along intercellular contacts between cultured cells and in synovial membranes in cells and tissue immunostained for connexin43. The presence of the protein was verified in immunoblots. Regular 2-nm intermembrane gap separations characteristic of gap junctions were seen in transmission electron micrographs of synovial biopsies. The results showed that formation of gap-junction channels capable of mediating ionic and molecular communication was a regular feature of synovial cells, both in tissue and in cultured cells. The gap junctions contained connexin43 protein and perhaps other proteins. The physiological purpose of gap junctions in synovial cells is unknown, but it is reasonable to anticipate that intercellular communication serves some presently unrecognized function.

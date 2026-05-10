@@ -1,0 +1,14 @@
+# The stratified microbial community at Laguna Figueroa, Baja California, Mexico: a possible model for prephanerozoic laminated microbial communities preserved in cherts.
+
+- **PMID**: 11536585
+- **DOI**: 10.1007/BF00933720
+- **PMCID**:  
+- **Journal**: Origins of life  ·  **Year**: 1984
+- **Authors**: J F Stolz, L Margulis
+- **MeSH**: Bacteria, Biological Evolution, Cyanobacteria, Disasters, Environmental Microbiology, Eswatini, Fossils, Geologic Sediments, Mexico
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11536585/
+- **Captured**: 2026-05-10T10:59:42
+
+## Abstract
+
+The microbial mat community of the evaporite flat at North Pond, Laguna Figueroa (Baja California, Mexico) was actively involved in the production of laminated sediments prior to 1978. Heavy rains in 1979 and 1980 flooded the mat with 1 and 3 meters of meteoric water respectively. The flooding deposited up to 10 cm of silicoclastic sediment over the Microcoleus-dominated mat and resulted in the cessation of laminated sediment deposition. In 1982, the surface had been recolonized by species of cyanobacteria (Spirulina, Oscillatoria) and purple photosynthetic bacteria (Chromatium, Thiocapsa). The silicoclastic sediments and residual evaporites, which overlaid the laminated sediment, had been reworked into an anaerobic, sulfide-rich mud and contained well preserved sheaths of filamentous and coccoid bacteria. The Swaziland Sequence in the Barberton mountain land (which includes the Onverwacht and Fig Tree Group as well as the Swartkoppie zone between them) contains laminated sediments and carbon-rich chert. Structurally preserved microfossils have been found in the smooth black chert but not in the laminae. We concur with others who suggested that the laminated sediments from the Swaziland Sequence were deposited by an active stratified microbial community. However, we propose that these organisms which were preserved were originally buried in the associated sulfide-rich muds and were subsequently silicified.

@@ -1,0 +1,14 @@
+# Correlation between structural and functional changes in brain in an idiopathic headache syndrome.
+
+- **PMID**: 10395332
+- **DOI**: 10.1038/10561
+- **PMCID**:  
+- **Journal**: Nature medicine  ·  **Year**: 1999
+- **Authors**: A May, J Ashburner, C Büchel, D J McGonigle, K J Friston, R S Frackowiak, P J Goadsby
+- **MeSH**: Adult, Aged, Brain, Brain Mapping, Cluster Headache, Female, Headache, Humans, Image Processing, Computer-Assisted, Magnetic Resonance Imaging
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10395332/
+- **Captured**: 2026-05-10T10:59:01
+
+## Abstract
+
+Fundamental to the concept of idiopathic or primary headache, including migraine, tension-type headache and cluster headache, is the currently accepted view that these conditions are due to abnormal brain function with completely normal brain structure. Cluster headache is one such idiopathic headache with many similarities to migraine, including normal brain structure on magnetic resonance imaging and abnormal function in the hypothalamic grey matter by positron emission tomography. Given the consistency of the positron emission tomography findings with the clinical presentation, we sought to assess whether the brains of such patients were structurally normal. We used voxel-based morphometry, an objective and automated method of analyzing changes in brain structure, to study the structure of the brains of patients with cluster headache. We found a co-localization of structural changes and changes in local brain activity with positron emission tomography in the same area of the brain in the same patients. The results indicate that the current view of the neurobiology of cluster headache requires complete revision and that this periodic headache is associated with a hitherto unrecognized brain abnormality in the hypothalamic region. We believe that voxel-based morphometry has the potential to change in the most fundamental way our concept of primary headache disorders, requiring a radical reappraisal of the tenet of structural normality.
