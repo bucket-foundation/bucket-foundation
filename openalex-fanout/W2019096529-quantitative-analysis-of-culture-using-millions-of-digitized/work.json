@@ -1,0 +1,2119 @@
+{
+  "id": "https://openalex.org/W2019096529",
+  "doi": "https://doi.org/10.1126/science.1199644",
+  "title": "Quantitative Analysis of Culture Using Millions of Digitized Books",
+  "display_name": "Quantitative Analysis of Culture Using Millions of Digitized Books",
+  "publication_year": 2010,
+  "publication_date": "2010-12-17",
+  "ids": {
+    "openalex": "https://openalex.org/W2019096529",
+    "doi": "https://doi.org/10.1126/science.1199644",
+    "mag": "2019096529",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/21163965"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1126/science.1199644",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1126/science.1199644",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S3880285",
+      "display_name": "Science",
+      "issn_l": "0036-8075",
+      "issn": [
+        "0036-8075",
+        "1095-9203"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315823",
+      "host_organization_name": "American Association for the Advancement of Science",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315823"
+      ],
+      "host_organization_lineage_names": [
+        "American Association for the Advancement of Science"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Science",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "green",
+    "oa_url": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:8899722",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5051443033",
+        "display_name": "Jean-Baptiste Michel",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210098931",
+          "display_name": "Quantitative BioSciences",
+          "ror": "https://ror.org/010brsj79",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210098931"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210106258",
+          "display_name": "Harvard College Observatory",
+          "ror": "https://ror.org/01mcvy510",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I103187081",
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210106258",
+            "https://openalex.org/I4210124175"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210155419",
+          "display_name": "Center for Systems Biology",
+          "ror": "https://ror.org/05r3dyn47",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210087915",
+            "https://openalex.org/I4210155419",
+            "https://openalex.org/I48633490"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Jean-Baptiste Michel",
+      "raw_affiliation_strings": [
+        "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+        "Department of Psychology, Harvard University, Cambridge, MA 02138, USA",
+        "Department of Systems Biology, Harvard Medical School, Boston, MA 02115, USA",
+        "Institute for Quantitative Social Sciences, Harvard University, Cambridge, MA 02138, USA",
+        "Program for Evolutionary Dynamics, Harvard University, Cambridge, MA 02138, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210106258"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Psychology, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Systems Biology, Harvard Medical School, Boston, MA 02115, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210155419",
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute for Quantitative Social Sciences, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210098931",
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Program for Evolutionary Dynamics, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5101989369",
+        "display_name": "Yuan Shen",
+        "orcid": "https://orcid.org/0000-0002-2697-4239"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801851002",
+          "display_name": "Harvard University Press",
+          "ror": "https://ror.org/006v7bf86",
+          "country_code": "US",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I2801851002"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210106258",
+          "display_name": "Harvard College Observatory",
+          "ror": "https://ror.org/01mcvy510",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I103187081",
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210106258",
+            "https://openalex.org/I4210124175"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Yuan Kui Shen",
+      "raw_affiliation_strings": [
+        "Computer Science and Artificial Intelligence Laboratory, Massachusetts Institute of Technology (MIT), Cambridge, MA 02139, USA",
+        "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+        "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Computer Science and Artificial Intelligence Laboratory, Massachusetts Institute of Technology (MIT), Cambridge, MA 02139, USA",
+          "institution_ids": [
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210106258"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I2801851002"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5070192443",
+        "display_name": "Aviva Presser Aiden",
+        "orcid": "https://orcid.org/0000-0002-5445-0969"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2801851002",
+          "display_name": "Harvard University Press",
+          "ror": "https://ror.org/006v7bf86",
+          "country_code": "US",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I2801851002"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210106258",
+          "display_name": "Harvard College Observatory",
+          "ror": "https://ror.org/01mcvy510",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I103187081",
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210106258",
+            "https://openalex.org/I4210124175"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Aviva Presser Aiden",
+      "raw_affiliation_strings": [
+        "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+        "Harvard Medical School, Boston, MA, 02115, USA",
+        "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210106258"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Harvard Medical School, Boston, MA, 02115, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I2801851002"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5025455345",
+        "display_name": "Adrian Veres",
+        "orcid": "https://orcid.org/0000-0002-3849-3475"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801851002",
+          "display_name": "Harvard University Press",
+          "ror": "https://ror.org/006v7bf86",
+          "country_code": "US",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I2801851002"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210106258",
+          "display_name": "Harvard College Observatory",
+          "ror": "https://ror.org/01mcvy510",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I103187081",
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210106258",
+            "https://openalex.org/I4210124175"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Adrian Veres",
+      "raw_affiliation_strings": [
+        "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+        "Harvard College, Cambridge, MA 02138, USA",
+        "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210106258"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Harvard College, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210106258"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I2801851002"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5084231324",
+        "display_name": "Matthew K. Gray",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1291425158",
+          "display_name": "Google (United States)",
+          "ror": "https://ror.org/00njsd438",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1291425158",
+            "https://openalex.org/I4210128969"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Matthew K. Gray",
+      "raw_affiliation_strings": [
+        "Google, Mountain View, CA 94043, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Google, Mountain View, CA 94043, USA",
+          "institution_ids": [
+            "https://openalex.org/I1291425158"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": null,
+        "display_name": "The Google Books Team",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1313879401",
+          "display_name": "Houghton Mifflin Harcourt (United States)",
+          "ror": "https://ror.org/00rkkzx80",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1313879401"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "The Google Books Team",
+      "raw_affiliation_strings": [
+        "Houghton Mifflin Harcourt, Boston, MA 02116, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Houghton Mifflin Harcourt, Boston, MA 02116, USA",
+          "institution_ids": [
+            "https://openalex.org/I1313879401"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5045525601",
+        "display_name": "Joseph P. Pickett",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1313879401",
+          "display_name": "Houghton Mifflin Harcourt (United States)",
+          "ror": "https://ror.org/00rkkzx80",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1313879401"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210165239",
+          "display_name": "Encyclopædia Britannica (United States)",
+          "ror": "https://ror.org/05kn3ey67",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210165239"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Joseph P. Pickett",
+      "raw_affiliation_strings": [
+        "Houghton Mifflin Harcourt, Boston, MA 02116, USA",
+        "Encyclopaedia Britannica, Chicago, IL 60654, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Houghton Mifflin Harcourt, Boston, MA 02116, USA",
+          "institution_ids": [
+            "https://openalex.org/I1313879401"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Encyclopaedia Britannica, Chicago, IL 60654, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210165239"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5096452452",
+        "display_name": "Dale Hoiberg",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1291425158",
+          "display_name": "Google (United States)",
+          "ror": "https://ror.org/00njsd438",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1291425158",
+            "https://openalex.org/I4210128969"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210165239",
+          "display_name": "Encyclopædia Britannica (United States)",
+          "ror": "https://ror.org/05kn3ey67",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210165239"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Dale Hoiberg",
+      "raw_affiliation_strings": [
+        "Encyclopaedia Britannica, Chicago, IL 60654, USA",
+        "Google, Mountain View, CA 94043, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Encyclopaedia Britannica, Chicago, IL 60654, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210165239"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Google, Mountain View, CA 94043, USA",
+          "institution_ids": [
+            "https://openalex.org/I1291425158"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5049985781",
+        "display_name": "Dan Clancy",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1291425158",
+          "display_name": "Google (United States)",
+          "ror": "https://ror.org/00njsd438",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1291425158",
+            "https://openalex.org/I4210128969"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Dan Clancy",
+      "raw_affiliation_strings": [
+        "Google, Mountain View, CA 94043, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Google, Mountain View, CA 94043, USA",
+          "institution_ids": [
+            "https://openalex.org/I1291425158"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5080389385",
+        "display_name": "Peter Norvig",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1291425158",
+          "display_name": "Google (United States)",
+          "ror": "https://ror.org/00njsd438",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1291425158",
+            "https://openalex.org/I4210128969"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Peter Norvig",
+      "raw_affiliation_strings": [
+        "Google, Mountain View, CA 94043, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Google, Mountain View, CA 94043, USA",
+          "institution_ids": [
+            "https://openalex.org/I1291425158"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5021947377",
+        "display_name": "Jon Orwant",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1291425158",
+          "display_name": "Google (United States)",
+          "ror": "https://ror.org/00njsd438",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1291425158",
+            "https://openalex.org/I4210128969"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210155419",
+          "display_name": "Center for Systems Biology",
+          "ror": "https://ror.org/05r3dyn47",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210087915",
+            "https://openalex.org/I4210155419",
+            "https://openalex.org/I48633490"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jon Orwant",
+      "raw_affiliation_strings": [
+        "Google, Mountain View, CA 94043, USA",
+        "Department of Systems Biology, Harvard Medical School, Boston, MA 02115, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Google, Mountain View, CA 94043, USA",
+          "institution_ids": [
+            "https://openalex.org/I1291425158"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Systems Biology, Harvard Medical School, Boston, MA 02115, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210155419",
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5000597416",
+        "display_name": "Steven Pinker",
+        "orcid": "https://orcid.org/0000-0002-2319-4085"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210155419",
+          "display_name": "Center for Systems Biology",
+          "ror": "https://ror.org/05r3dyn47",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210087915",
+            "https://openalex.org/I4210155419",
+            "https://openalex.org/I48633490"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Steven Pinker",
+      "raw_affiliation_strings": [
+        "Department of Systems Biology, Harvard Medical School, Boston, MA 02115, USA",
+        "Program for Evolutionary Dynamics, Harvard University, Cambridge, MA 02138, USA",
+        "Department of Mathematics, Harvard University, Cambridge, MA 02138, USA",
+        "Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA 02138, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Systems Biology, Harvard Medical School, Boston, MA 02115, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210155419",
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Program for Evolutionary Dynamics, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Mathematics, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5081956768",
+        "display_name": "Martin A. Nowak",
+        "orcid": "https://orcid.org/0000-0001-5489-0908"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I107606265",
+          "display_name": "Broad Institute",
+          "ror": "https://ror.org/05a0ya142",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I107606265"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2801851002",
+          "display_name": "Harvard University Press",
+          "ror": "https://ror.org/006v7bf86",
+          "country_code": "US",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I2801851002"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210106258",
+          "display_name": "Harvard College Observatory",
+          "ror": "https://ror.org/01mcvy510",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I103187081",
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210106258",
+            "https://openalex.org/I4210124175"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Martin A. Nowak",
+      "raw_affiliation_strings": [
+        "Department of Mathematics, Harvard University, Cambridge, MA 02138, USA",
+        "Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA 02138, USA",
+        "Program for Evolutionary Dynamics, Harvard University, Cambridge, MA 02138, USA",
+        "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+        "Broad Institute of Harvard and MIT, Harvard University, Cambridge, MA 02138, USA",
+        "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Mathematics, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Organismic and Evolutionary Biology, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Program for Evolutionary Dynamics, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210106258"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Broad Institute of Harvard and MIT, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I107606265"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I2801851002"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5004683234",
+        "display_name": "Erez Lieberman Aiden",
+        "orcid": "https://orcid.org/0000-0003-0634-6486"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I107606265",
+          "display_name": "Broad Institute",
+          "ror": "https://ror.org/05a0ya142",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I107606265"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2801851002",
+          "display_name": "Harvard University Press",
+          "ror": "https://ror.org/006v7bf86",
+          "country_code": "US",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I2801851002"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210106258",
+          "display_name": "Harvard College Observatory",
+          "ror": "https://ror.org/01mcvy510",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I103187081",
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210106258",
+            "https://openalex.org/I4210124175"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Erez Lieberman Aiden",
+      "raw_affiliation_strings": [
+        "Broad Institute of Harvard and MIT, Harvard University, Cambridge, MA 02138, USA",
+        "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+        "Department of Mathematics, Harvard University, Cambridge, MA 02138, USA",
+        "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA",
+        "Program for Evolutionary Dynamics, Harvard University, Cambridge, MA 02138, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Broad Institute of Harvard and MIT, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I107606265"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cultural Observatory, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210106258"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Mathematics, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory-at-Large, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I2801851002"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Program for Evolutionary Dynamics, Harvard University, Cambridge, MA 02138, USA",
+          "institution_ids": [
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 14,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5051443033"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I136199984",
+    "https://openalex.org/I4210098931",
+    "https://openalex.org/I4210106258",
+    "https://openalex.org/I4210155419"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 1453.4831,
+  "has_fulltext": false,
+  "cited_by_count": 3092,
+  "citation_normalized_percentile": {
+    "value": 0.9999754,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "331",
+    "issue": "6014",
+    "first_page": "176",
+    "last_page": "182"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T12090",
+    "display_name": "Language and cultural evolution",
+    "score": 0.9952999949455261,
+    "subfield": {
+      "id": "https://openalex.org/subfields/3316",
+      "display_name": "Cultural Studies"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/33",
+      "display_name": "Social Sciences"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/2",
+      "display_name": "Social Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T12090",
+      "display_name": "Language and cultural evolution",
+      "score": 0.9952999949455261,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3316",
+        "display_name": "Cultural Studies"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13122",
+      "display_name": "Linguistics and Cultural Studies",
+      "score": 0.9451000094413757,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1203",
+        "display_name": "Language and Linguistics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/12",
+        "display_name": "Arts and Humanities"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12380",
+      "display_name": "Authorship Attribution and Profiling",
+      "score": 0.9229000210762024,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/quantitative-analysis",
+      "display_name": "Quantitative analysis (chemistry)",
+      "score": 0.44128549098968506
+    },
+    {
+      "id": "https://openalex.org/keywords/linguistics",
+      "display_name": "Linguistics",
+      "score": 0.41247284412384033
+    },
+    {
+      "id": "https://openalex.org/keywords/chemistry",
+      "display_name": "Chemistry",
+      "score": 0.18660277128219604
+    },
+    {
+      "id": "https://openalex.org/keywords/philosophy",
+      "display_name": "Philosophy",
+      "score": 0.13346141576766968
+    },
+    {
+      "id": "https://openalex.org/keywords/chromatography",
+      "display_name": "Chromatography",
+      "score": 0.07453158497810364
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C95986675",
+      "wikidata": "https://www.wikidata.org/wiki/Q185168",
+      "display_name": "Quantitative analysis (chemistry)",
+      "level": 2,
+      "score": 0.44128549098968506
+    },
+    {
+      "id": "https://openalex.org/C41895202",
+      "wikidata": "https://www.wikidata.org/wiki/Q8162",
+      "display_name": "Linguistics",
+      "level": 1,
+      "score": 0.41247284412384033
+    },
+    {
+      "id": "https://openalex.org/C185592680",
+      "wikidata": "https://www.wikidata.org/wiki/Q2329",
+      "display_name": "Chemistry",
+      "level": 0,
+      "score": 0.18660277128219604
+    },
+    {
+      "id": "https://openalex.org/C138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "level": 0,
+      "score": 0.13346141576766968
+    },
+    {
+      "id": "https://openalex.org/C43617362",
+      "wikidata": "https://www.wikidata.org/wiki/Q170050",
+      "display_name": "Chromatography",
+      "level": 1,
+      "score": 0.07453158497810364
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000465",
+      "descriptor_name": "Algorithms",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000465",
+      "descriptor_name": "Algorithms",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000465",
+      "descriptor_name": "Algorithms",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000465",
+      "descriptor_name": "Algorithms",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001877",
+      "descriptor_name": "Books",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001877",
+      "descriptor_name": "Books",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001877",
+      "descriptor_name": "Books",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001877",
+      "descriptor_name": "Books",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D003468",
+      "descriptor_name": "Cultural Evolution",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003468",
+      "descriptor_name": "Cultural Evolution",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003468",
+      "descriptor_name": "Cultural Evolution",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003468",
+      "descriptor_name": "Cultural Evolution",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003469",
+      "descriptor_name": "Culture",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D003469",
+      "descriptor_name": "Culture",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D003469",
+      "descriptor_name": "Culture",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D003469",
+      "descriptor_name": "Culture",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D003625",
+      "descriptor_name": "Data Collection",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003625",
+      "descriptor_name": "Data Collection",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003625",
+      "descriptor_name": "Data Collection",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003625",
+      "descriptor_name": "Data Collection",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004014",
+      "descriptor_name": "Dictionaries as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004014",
+      "descriptor_name": "Dictionaries as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004014",
+      "descriptor_name": "Dictionaries as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004014",
+      "descriptor_name": "Dictionaries as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004690",
+      "descriptor_name": "Encyclopedias as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004690",
+      "descriptor_name": "Encyclopedias as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004690",
+      "descriptor_name": "Encyclopedias as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004690",
+      "descriptor_name": "Encyclopedias as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005197",
+      "descriptor_name": "Famous Persons",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005197",
+      "descriptor_name": "Famous Persons",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005197",
+      "descriptor_name": "Famous Persons",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005197",
+      "descriptor_name": "Famous Persons",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006809",
+      "descriptor_name": "Humanities",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D006809",
+      "descriptor_name": "Humanities",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D006809",
+      "descriptor_name": "Humanities",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D006809",
+      "descriptor_name": "Humanities",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008037",
+      "descriptor_name": "Linguistics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008037",
+      "descriptor_name": "Linguistics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008037",
+      "descriptor_name": "Linguistics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008037",
+      "descriptor_name": "Linguistics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008091",
+      "descriptor_name": "Literature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008091",
+      "descriptor_name": "Literature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008091",
+      "descriptor_name": "Literature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008091",
+      "descriptor_name": "Literature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D012942",
+      "descriptor_name": "Social Sciences",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D012942",
+      "descriptor_name": "Social Sciences",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D012942",
+      "descriptor_name": "Social Sciences",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D012942",
+      "descriptor_name": "Social Sciences",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D013672",
+      "descriptor_name": "Technology",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013672",
+      "descriptor_name": "Technology",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013672",
+      "descriptor_name": "Technology",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013672",
+      "descriptor_name": "Technology",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014825",
+      "descriptor_name": "Vocabulary",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D014825",
+      "descriptor_name": "Vocabulary",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D014825",
+      "descriptor_name": "Vocabulary",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D014825",
+      "descriptor_name": "Vocabulary",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    }
+  ],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1126/science.1199644",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1126/science.1199644",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S3880285",
+        "display_name": "Science",
+        "issn_l": "0036-8075",
+        "issn": [
+          "0036-8075",
+          "1095-9203"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315823",
+        "host_organization_name": "American Association for the Advancement of Science",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315823"
+        ],
+        "host_organization_lineage_names": [
+          "American Association for the Advancement of Science"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Science",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:21163965",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/21163965",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Science (New York, N.Y.)",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:dash.harvard.edu:1/8899722",
+      "is_oa": true,
+      "landing_page_url": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:8899722",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401540",
+        "display_name": "Digital Access to Scholarship at Harvard (DASH) (Harvard University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I136199984",
+        "host_organization_name": "Harvard University",
+        "host_organization_lineage": [
+          "https://openalex.org/I136199984"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "Journal Article"
+    },
+    {
+      "id": "pmh:oai:europepmc.org:2290444",
+      "is_oa": false,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3279742",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400806",
+        "display_name": "Europe PMC (PubMed Central)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1303153112",
+        "host_organization_name": "European Bioinformatics Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/I1303153112"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "pmh:oai:dash.harvard.edu:1/8899722",
+    "is_oa": true,
+    "landing_page_url": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:8899722",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4306401540",
+      "display_name": "Digital Access to Scholarship at Harvard (DASH) (Harvard University)",
+      "issn_l": null,
+      "issn": null,
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/I136199984",
+      "host_organization_name": "Harvard University",
+      "host_organization_lineage": [
+        "https://openalex.org/I136199984"
+      ],
+      "host_organization_lineage_names": [],
+      "type": "repository"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "submittedVersion",
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": null,
+    "raw_type": "Journal Article"
+  },
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/4",
+      "score": 0.6499999761581421,
+      "display_name": "Quality Education"
+    }
+  ],
+  "awards": [
+    {
+      "id": "https://openalex.org/G1441225026",
+      "display_name": null,
+      "funder_award_id": "HD 18381",
+      "funder_id": "https://openalex.org/F4320332161",
+      "funder_display_name": "National Institutes of Health"
+    },
+    {
+      "id": "https://openalex.org/G8100428291",
+      "display_name": null,
+      "funder_award_id": "T32 HG002295",
+      "funder_id": "https://openalex.org/F4320337348",
+      "funder_display_name": "National Human Genome Research Institute"
+    }
+  ],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320306076",
+      "display_name": "National Science Foundation",
+      "ror": "https://ror.org/021nxhr62"
+    },
+    {
+      "id": "https://openalex.org/F4320310845",
+      "display_name": "National Space Biomedical Research Institute",
+      "ror": "https://ror.org/04731xt44"
+    },
+    {
+      "id": "https://openalex.org/F4320332161",
+      "display_name": "National Institutes of Health",
+      "ror": "https://ror.org/01cwqze88"
+    },
+    {
+      "id": "https://openalex.org/F4320337348",
+      "display_name": "National Human Genome Research Institute",
+      "ror": "https://ror.org/00baak391"
+    }
+  ],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 30,
+  "referenced_works": [
+    "https://openalex.org/W227636185",
+    "https://openalex.org/W329485892",
+    "https://openalex.org/W565353618",
+    "https://openalex.org/W600266715",
+    "https://openalex.org/W614403660",
+    "https://openalex.org/W1499400416",
+    "https://openalex.org/W1528493742",
+    "https://openalex.org/W1586454638",
+    "https://openalex.org/W1597333134",
+    "https://openalex.org/W2017761238",
+    "https://openalex.org/W2030007850",
+    "https://openalex.org/W2067090401",
+    "https://openalex.org/W2067854309",
+    "https://openalex.org/W2069566702",
+    "https://openalex.org/W2078906720",
+    "https://openalex.org/W2117239687",
+    "https://openalex.org/W2118049235",
+    "https://openalex.org/W2153225416",
+    "https://openalex.org/W2159718318",
+    "https://openalex.org/W2164863177",
+    "https://openalex.org/W2168909179",
+    "https://openalex.org/W2172033188",
+    "https://openalex.org/W2315902518",
+    "https://openalex.org/W2316904474",
+    "https://openalex.org/W3015011600",
+    "https://openalex.org/W3150156506",
+    "https://openalex.org/W4235053838",
+    "https://openalex.org/W4235497239",
+    "https://openalex.org/W4239813528",
+    "https://openalex.org/W4250082029"
+  ],
+  "related_works": [
+    "https://openalex.org/W2387086546",
+    "https://openalex.org/W405926467",
+    "https://openalex.org/W4402742086",
+    "https://openalex.org/W2358412686",
+    "https://openalex.org/W1965611333",
+    "https://openalex.org/W4404882811",
+    "https://openalex.org/W2032228042",
+    "https://openalex.org/W2954684135",
+    "https://openalex.org/W1505098369",
+    "https://openalex.org/W1999916109"
+  ],
+  "abstract_inverted_index": {
+    "We": [
+      0,
+      26,
+      50
+    ],
+    "constructed": [
+      1
+    ],
+    "a": [
+      2,
+      91
+    ],
+    "corpus": [
+      3,
+      18
+    ],
+    "of": [
+      4,
+      10,
+      16,
+      31,
+      66,
+      72,
+      76,
+      86,
+      94
+    ],
+    "digitized": [
+      5
+    ],
+    "texts": [
+      6
+    ],
+    "containing": [
+      7
+    ],
+    "about": [
+      8,
+      58
+    ],
+    "4%": [
+      9
+    ],
+    "all": [
+      11
+    ],
+    "books": [
+      12
+    ],
+    "ever": [
+      13
+    ],
+    "printed.": [
+      14
+    ],
+    "Analysis": [
+      15
+    ],
+    "this": [
+      17,
+      53
+    ],
+    "enables": [
+      19
+    ],
+    "us": [
+      20
+    ],
+    "to": [
+      21,
+      90
+    ],
+    "investigate": [
+      22
+    ],
+    "cultural": [
+      23,
+      37
+    ],
+    "trends": [
+      24
+    ],
+    "quantitatively.": [
+      25
+    ],
+    "survey": [
+      27
+    ],
+    "the": [
+      28,
+      43,
+      64,
+      70,
+      74,
+      84,
+      98,
+      102
+    ],
+    "vast": [
+      29
+    ],
+    "terrain": [
+      30
+    ],
+    "'culturomics,'": [
+      32
+    ],
+    "focusing": [
+      33
+    ],
+    "on": [
+      34
+    ],
+    "linguistic": [
+      35
+    ],
+    "and": [
+      36,
+      48,
+      79,
+      101
+    ],
+    "phenomena": [
+      38,
+      96
+    ],
+    "that": [
+      39
+    ],
+    "were": [
+      40
+    ],
+    "reflected": [
+      41
+    ],
+    "in": [
+      42
+    ],
+    "English": [
+      44
+    ],
+    "language": [
+      45
+    ],
+    "between": [
+      46
+    ],
+    "1800": [
+      47
+    ],
+    "2000.": [
+      49
+    ],
+    "show": [
+      51
+    ],
+    "how": [
+      52
+    ],
+    "approach": [
+      54
+    ],
+    "can": [
+      55
+    ],
+    "provide": [
+      56
+    ],
+    "insights": [
+      57
+    ],
+    "fields": [
+      59
+    ],
+    "as": [
+      60,
+      62
+    ],
+    "diverse": [
+      61
+    ],
+    "lexicography,": [
+      63
+    ],
+    "evolution": [
+      65
+    ],
+    "grammar,": [
+      67
+    ],
+    "collective": [
+      68
+    ],
+    "memory,": [
+      69
+    ],
+    "adoption": [
+      71
+    ],
+    "technology,": [
+      73
+    ],
+    "pursuit": [
+      75
+    ],
+    "fame,": [
+      77
+    ],
+    "censorship,": [
+      78
+    ],
+    "historical": [
+      80
+    ],
+    "epidemiology.": [
+      81
+    ],
+    "Culturomics": [
+      82
+    ],
+    "extends": [
+      83
+    ],
+    "boundaries": [
+      85
+    ],
+    "rigorous": [
+      87
+    ],
+    "quantitative": [
+      88
+    ],
+    "inquiry": [
+      89
+    ],
+    "wide": [
+      92
+    ],
+    "array": [
+      93
+    ],
+    "new": [
+      95
+    ],
+    "spanning": [
+      97
+    ],
+    "social": [
+      99
+    ],
+    "sciences": [
+      100
+    ],
+    "humanities.": [
+      103
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 81
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 117
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 153
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 185
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 199
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 245
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 293
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 209
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 257
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 231
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 236
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 214
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 248
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 167
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 170
+    }
+  ],
+  "updated_date": "2026-05-09T13:55:54.758798",
+  "created_date": "2025-10-10T00:00:00"
+}

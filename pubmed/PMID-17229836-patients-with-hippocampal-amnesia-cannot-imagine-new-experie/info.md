@@ -1,0 +1,14 @@
+# Patients with hippocampal amnesia cannot imagine new experiences.
+
+- **PMID**: 17229836
+- **DOI**: 10.1136/jnnp.2006.093096
+- **PMCID**: PMC2677717 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2007
+- **Authors**: Demis Hassabis, Dharshan Kumaran, Seralynne D Vann, Eleanor A Maguire
+- **MeSH**: Adult, Aged, Amnesia, Case-Control Studies, Hippocampus, Humans, Imagination, Learning, Male, Memory
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17229836/
+- **Captured**: 2026-05-10T13:59:57
+
+## Abstract
+
+Amnesic patients have a well established deficit in remembering their past experiences. Surprisingly, however, the question as to whether such patients can imagine new experiences has not been formally addressed to our knowledge. We tested whether a group of amnesic patients with primary damage to the hippocampus bilaterally could construct new imagined experiences in response to short verbal cues that outlined a range of simple commonplace scenarios. Our results revealed that patients were markedly impaired relative to matched control subjects at imagining new experiences. Moreover, we identified a possible source for this deficit. The patients' imagined experiences lacked spatial coherence, consisting instead of fragmented images in the absence of a holistic representation of the environmental setting. The hippocampus, therefore, may make a critical contribution to the creation of new experiences by providing the spatial context into which the disparate elements of an experience can be bound. Given how closely imagined experiences match episodic memories, the absence of this function mediated by the hippocampus, may also fundamentally affect the ability to vividly re-experience the past.

@@ -1,0 +1,14 @@
+# The association between tender points, psychological distress, and adverse childhood experiences: a community-based study.
+
+- **PMID**: 10403267
+- **DOI**: 10.1002/1529-0131(199907)42:7<1397::AID-ANR13>3.0.CO;2-7
+- **PMCID**:  
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 1999
+- **Authors**: J McBeth, G J Macfarlane, S Benjamin, S Morris, A J Silman
+- **MeSH**: Adolescent, Adult, Aged, Child Abuse, Fatigue, Female, Fibromyalgia, Humans, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10403267/
+- **Captured**: 2026-05-10T13:57:30
+
+## Abstract
+
+To examine the hypothesis that characteristics of somatization and illness behavior, and their childhood antecedents, are associated with the presence of multiple tender points. Two hundred eighty-nine subjects who had demonstrated psychological distress (General Health Questionnaire score > or =2) had a tender point examination and in-depth psychological evaluation. In addition, subjects were interviewed about a number of adverse childhood experiences. The 99 subjects with 5 or more tender points were compared with the remaining 190 subjects. A high tender point count (> or =5) was associated with low levels of self-care (odds ratio [OR] 2.4, 95% confidence interval [95% CI] 1.1-5.0), reports of a greater number of somatic symptoms (OR 2.2, 95% CI 1.0-4.9), high levels of fatigue (OR 3.3, 95% CI 1.7-6.3), and a pattern of illness behavior characterized by increased medical care usage (OR 4.2, 95% CI 2.1-8.4). Those with high tender point counts were substantially more likely to report adverse childhood experiences, including loss of parents (OR 2.1, 95% CI 1.1-3.9) and abuse (OR 6.9, 95% CI 2.0-24.6). These results were not explained by the presence of chronic pain. These data add further weight to the hypothesis that tender points, as part of the fibromyalgia syndrome, are strongly associated with specific components of psychological distress as well as characteristics of somatization and its antecedents. It is possible that these features contribute to the development of the syndrome of fibromyalgia.

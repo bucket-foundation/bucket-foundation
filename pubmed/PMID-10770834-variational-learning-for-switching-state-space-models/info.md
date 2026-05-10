@@ -1,0 +1,14 @@
+# Variational learning for switching state-space models.
+
+- **PMID**: 10770834
+- **DOI**: 10.1162/089976600300015619
+- **PMCID**:  
+- **Journal**: Neural computation  ·  **Year**: 2000
+- **Authors**: Z Ghahramani, G E Hinton
+- **MeSH**: Algorithms, Artificial Intelligence, Computer Simulation, Humans, Linear Models, Markov Chains, Models, Econometric, Models, Statistical, Neural Networks, Computer, Respiratory Mechanics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10770834/
+- **Captured**: 2026-05-10T13:57:42
+
+## Abstract
+
+We introduce a new statistical model for time series that iteratively segments data into regimes with approximately linear dynamics and learnsthe parameters of each of these linear regimes. This model combines and generalizes two of the most widely used stochastic time-series models -- hidden Markov models and linear dynamical systems -- and is closely related to models that are widely used in the control and econometrics literatures. It can also be derived by extending the mixture of experts neural network (Jacobs, Jordan, Nowlan, & Hinton, 1991) to its fully dynamical version, in which both expert and gating networks are recurrent. Inferring the posterior probabilities of the hidden states of this model is computationally intractable, and therefore the exact expectation maximization (EM) algorithm cannot be applied. However, we present a variational approximation that maximizes a lower bound on the log-likelihood and makes use of both the forward and backward recursions for hidden Markov models and the Kalman filter recursions for linear dynamical systems. We tested the algorithm on artificial data sets and a natural data set of respiration force from a patient with sleep apnea. The results suggest that variational approximations are a viable method for inference and learning in switching state-space models.

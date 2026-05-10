@@ -1,0 +1,14 @@
+# Predictors of early improvement in low back pain amongst consulters to general practice: the influence of pre-morbid and episode-related factors.
+
+- **PMID**: 10204723
+- **DOI**: 10.1016/s0304-3959(98)00209-7
+- **PMCID**:  
+- **Journal**: Pain  ·  **Year**: 1999
+- **Authors**: G J Macfarlane, E Thomas, P R Croft, A C Papageorgiou, M I Jayson, A J Silman
+- **MeSH**: Adolescent, Adult, Aged, Cohort Studies, Cross-Sectional Studies, Disease Progression, Employment, Family Practice, Female, Follow-Up Studies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10204723/
+- **Captured**: 2026-05-10T13:57:25
+
+## Abstract
+
+Low back pain symptoms are extremely common. affecting as many as 80% of the population at some time in their lives. However, the majority of the medical costs arise from the minority of patients whose symptoms become chronic. The authors propose a model in which chronicity is determined not only by factors related to the episode of low back pain, but also factors prior to the onset of symptoms (pre-morbid factors). No previous study has collected information on predictors of low back pain chronicity prior to the onset of symptoms. Participants in the South Manchester Low Back Pain Study, recruited by means of a cross-sectional population survey were followed prospectively over 18 months to identify those who consulted their general practitioner with a new episode of low back pain. At interview, 1-2 weeks post-consultation, it was determined whether or not subjects' symptoms had improved. In males, low levels of psychological distress, a higher than average reported level of physical activity, being in employment, and being satisfied with current work status were associated with a quick improvement in symptoms. In addition factors related to the episode, namely a short duration before consultation and symptoms with a sudden onset and confined to the lower back area, also strongly predicted a good early outcome. Using information on both pre-morbid and episode related factors, groups of male patients were identified whose probability of an early resolution of symptoms ranged between 0.25 and 1. Few factors, either pre-morbid or episode-related, were strongly associated with outcome amongst females. This large population-based study has shown, despite the known heterogeneity in the origin of low back pain and the pathologies associated with symptoms, an early improvement in symptoms amongst male attenders at general practice can be predicted on the basis of a small number of variables.

@@ -1,0 +1,14 @@
+# Development and validation of a questionnaire to assess disabling foot pain.
+
+- **PMID**: 10692609
+- **DOI**: 10.1016/s0304-3959(99)00263-8
+- **PMCID**:  
+- **Journal**: Pain  ·  **Year**: 2000
+- **Authors**: A P Garrow, A C Papageorgiou, A J Silman, E Thomas, M I Jayson, G J Macfarlane
+- **MeSH**: Adult, Aged, Disability Evaluation, Female, Foot Diseases, Humans, Locomotion, Male, Middle Aged, Pain
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10692609/
+- **Captured**: 2026-05-10T13:57:40
+
+## Abstract
+
+This study outlines the design and validation of a new self-administered instrument for assessing foot pain and disability. The 19-item questionnaire was tested on 45 rheumatology patients, 33 patients who had attended their general practitioner with a foot-related problem and 1000 responders to a population survey of foot disorders. Levels of reported disability were found to be greatest for rheumatology patients and least for community subjects. In addition, the instrument was able to detect differences in disability levels reported by community subjects who did and did not consult with a health care professional and those who did and did not have a history of past and current foot pain. A good level of agreement was found when items on the questionnaire were compared with similar items on the ambulation sub-scale of the Functional Limitation Profile questionnaire. A Cronbach's alpha value of 0.99 and item-total correlation values between 0.25 and 0.62 confirmed the internal consistency of the instrument. Finally the results of a principal components analysis identified three constructs that reflected disabilities that are associated with foot pain: functional limitation, pain intensity and personal appearance. The design of the foot disability questionnaire makes it a suitable instrument for assessing the impact of painful foot conditions in both community and clinical populations.

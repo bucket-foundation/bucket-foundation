@@ -1,0 +1,14 @@
+# Comparing classification methods for longitudinal fMRI studies.
+
+- **PMID**: 20804386
+- **DOI**: 10.1162/NECO_a_00024
+- **PMCID**:  
+- **Journal**: Neural computation  ·  **Year**: 2010
+- **Authors**: Tanya Schmah, Grigori Yourganov, Richard S Zemel, Geoffrey E Hinton, Steven L Small, Stephen C Strother
+- **MeSH**: Algorithms, Humans, Image Interpretation, Computer-Assisted, Magnetic Resonance Imaging, Pattern Recognition, Automated, Stroke
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20804386/
+- **Captured**: 2026-05-10T14:01:48
+
+## Abstract
+
+We compare 10 methods of classifying fMRI volumes by applying them to data from a longitudinal study of stroke recovery: adaptive Fisher's linear and quadratic discriminant; gaussian naive Bayes; support vector machines with linear, quadratic, and radial basis function (RBF) kernels; logistic regression; two novel methods based on pairs of restricted Boltzmann machines (RBM); and K-nearest neighbors. All methods were tested on three binary classification tasks, and their out-of-sample classification accuracies are compared. The relative performance of the methods varies considerably across subjects and classification tasks. The best overall performers were adaptive quadratic discriminant, support vector machines with RBF kernels, and generatively trained pairs of RBMs.

@@ -1,0 +1,14 @@
+# Epidemiology and genetics of rheumatoid arthritis.
+
+- **PMID**: 12110146
+- **DOI**: 10.1002/1529-0131(199905)42:5<910::AID-ANR9>3.3.CO;2-4
+- **PMCID**: PMC1753588 (full-text saved)
+- **Journal**: Arthritis research  ·  **Year**: 2002
+- **Authors**: Alan J Silman, Jacqueline E Pearson
+- **MeSH**: Arthritis, Rheumatoid, Environment, Genetic Predisposition to Disease, Humans, Prevalence
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12110146/
+- **Captured**: 2026-05-10T13:58:17
+
+## Abstract
+
+The prevalence of rheumatoid arthritis (RA) is relatively constant in many populations, at 0.5-1.0%. However, a high prevalence of RA has been reported in the Pima Indians (5.3%) and in the Chippewa Indians (6.8%). In contrast, low occurrences have been reported in populations from China and Japan. These data support a genetic role in disease risk. Studies have so far shown that the familial recurrence risk in RA is small compared with other autoimmune diseases. The main genetic risk factor of RA is the HLA DRB1 alleles, and this has consistently been shown in many populations throughout the world. The strongest susceptibility factor so far has been the HLA DRB1*0404 allele. Tumour necrosis factor alleles have also been linked with RA. However, it is estimated that these genes can explain only 50% of the genetic effect. A number of other non-MHC genes have thus been investigated and linked with RA (e.g. corticotrophin releasing hormone, oestrogen synthase, IFN-gamma and other cytokines). Environmental factors have also been studied in relation to RA. Female sex hormones may play a protective role in RA; for example, the use of the oral contraceptive pill and pregnancy are both associated with a decreased risk. However, the postpartum period has been highlighted as a risk period for the development of RA. Furthermore, breastfeeding after a first pregnancy poses the greatest risk. Exposure to infection may act as a trigger for RA, and a number of agents have been implicated (e.g. Epstein-Barr virus, parvovirus and some bacteria such as Proteus and Mycoplasma). However, the epidemiological data so far are inconclusive. There has recently been renewed interest in the link between cigarette smoking and RA, and the data presented so far are consistent with and suggestive of an increased risk.

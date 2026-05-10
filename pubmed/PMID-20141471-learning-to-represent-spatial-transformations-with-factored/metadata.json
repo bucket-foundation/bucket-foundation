@@ -1,0 +1,23 @@
+{
+  "pmid": "20141471",
+  "title": "Learning to represent spatial transformations with factored higher-order Boltzmann machines.",
+  "abstract": "To allow the hidden units of a restricted Boltzmann machine to model the transformation between two successive images, Memisevic and Hinton (2007) introduced three-way multiplicative interactions that use the intensity of a pixel in the first image as a multiplicative gain on a learned, symmetric weight between a pixel in the second image and a hidden unit. This creates cubically many parameters, which form a three-dimensional interaction tensor. We describe a low-rank approximation to this interaction tensor that uses a sum of factors, each of which is a three-way outer product. This approximation allows efficient learning of transformations between larger image patches. Since each factor can be viewed as an image filter, the model as a whole learns optimal filter pairs for efficiently representing transformations. We demonstrate the learning of optimal filter pairs from various synthetic and real image sequences. We also show how learning about image transformations allows the model to perform a simple visual analogy task, and we show how a completely unsupervised network trained on transformations perceives multiple motions of transparent dot patterns in the same way as humans.",
+  "authors": [
+    "Roland Memisevic",
+    "Geoffrey E Hinton"
+  ],
+  "journal": "Neural computation",
+  "year": "2010",
+  "doi": "10.1162/neco.2010.01-09-953",
+  "pmcid": "",
+  "mesh": [
+    "Algorithms",
+    "Artificial Intelligence",
+    "Image Processing, Computer-Assisted",
+    "Mathematical Concepts",
+    "Neural Networks, Computer",
+    "Pattern Recognition, Automated",
+    "Pattern Recognition, Visual",
+    "Space Perception"
+  ]
+}

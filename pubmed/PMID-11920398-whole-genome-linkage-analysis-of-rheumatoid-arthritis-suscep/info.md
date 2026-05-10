@@ -1,0 +1,14 @@
+# Whole-genome linkage analysis of rheumatoid arthritis susceptibility loci in 252 affected sibling pairs in the United Kingdom.
+
+- **PMID**: 11920398
+- **DOI**: 10.1002/art.10147
+- **PMCID**:  
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 2002
+- **Authors**: Kirsten MacKay, Stephen Eyre, Anne Myerscough, Anita Milicic, Anne Barton, Steven Laval, Jenny Barrett, Dorothea Lee, Sarah White, Sally John, Matthew A Brown, John Bell, Alan Silman, William Ollier, Paul Wordsworth, Jane Worthington
+- **MeSH**: Arthritis, Rheumatoid, Chromosome Mapping, Genetic Linkage, Genetic Predisposition to Disease, Genome, Humans, Major Histocompatibility Complex, Microsatellite Repeats, Nuclear Family, Observer Variation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11920398/
+- **Captured**: 2026-05-10T13:58:12
+
+## Abstract
+
+To undertake a systematic whole-genome screen to identify regions exhibiting genetic linkage to rheumatoid arthritis (RA). Two hundred fifty-two RA-affected sibling pairs from 182 UK families were genotyped using 365 highly informative microsatellite markers. Microsatellite genotyping was performed using fluorescent polymerase chain reaction primers and semiautomated DNA sequencing technology. Linkage analysis was undertaken using MAPMAKER/SIBS for single-point and multipoint analysis. Significant linkage (maximum logarithm of odds score 4.7 [P = 0.000003] at marker D6S276, 1 cM from HLA-DRB1) was identified around the major histocompatibility complex (MHC) region on chromosome 6. Suggestive linkage (P < 7.4 x 10(-4)) was identified on chromosome 6q by single- and multipoint analysis. Ten other sites of nominal linkage (P < 0.05) were identified on chromosomes 3p, 4q, 7p, 2 regions of 10q, 2 regions of 14q, 16p, 21q, and Xq by single-point analysis and on 3 sites (1q, 14q, and 14q) by multipoint analysis. Linkage to the MHC region was confirmed. Eleven non-HLA regions demonstrated evidence of suggestive or nominal linkage, but none reached the genome-wide threshold for significant linkage (P = 2.2 x 10(-5)). Results of previous genome screens have suggested that 6 of these regions may be involved in RA susceptibility.

@@ -1,0 +1,14 @@
+# Risk factors for neck pain: a longitudinal study in the general population.
+
+- **PMID**: 11514090
+- **DOI**: 10.1016/S0304-3959(01)00334-7
+- **PMCID**:  
+- **Journal**: Pain  ·  **Year**: 2001
+- **Authors**: Peter R Croft, Martyn Lewis, Ann C Papageorgiou, Elaine Thomas, Malcolm I V Jayson, Gary J Macfarlane, Alan J Silman
+- **MeSH**: Adolescent, Adult, Aged, Chi-Square Distribution, Confidence Intervals, Cross-Sectional Studies, Female, Humans, Longitudinal Studies, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11514090/
+- **Captured**: 2026-05-10T13:58:07
+
+## Abstract
+
+The objective of the study was to examine the 1-year cumulative incidence of episodic neck pain and to explore its associations with individual risk factors, including a history of previous neck injury. A baseline cross-sectional survey of an adult general population sample made up of all 7669 adults aged 18-75 years, registered with two family practices in South Manchester, United Kingdom, identified the study population of adults with no current neck pain. This study population was surveyed again 12 months later to identify all those who had experienced neck pain during the follow-up period. At follow-up, cumulative 1-year episode incidence of neck pain was estimated at 17.9% (95% confidence interval 16.0-19.7%). Incidence was independent of age, but was more common in women. A history of previous neck injury at baseline was a significant risk factor for subsequent neck pain in the follow-up year (risk ratio 1.7, 95% confidence interval 1.2-2.5), independent of gender and psychological status. Other independent baseline risk factors for subsequent neck pain included number of children, poor self-assessed health, poor psychological status and a past history of low back pain. We have carried out a prospective study in a general population sample and demonstrated that established risk factors for chronic pain predict future episodes of neck pain, and shown that in addition a history of neck injury is an independent and distinct risk factor. This finding may have major public health and medicolegal implications.

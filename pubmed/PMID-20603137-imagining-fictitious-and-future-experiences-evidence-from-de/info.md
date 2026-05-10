@@ -1,0 +1,14 @@
+# Imagining fictitious and future experiences: evidence from developmental amnesia.
+
+- **PMID**: 20603137
+- **DOI**: 10.1016/j.neuropsychologia.2010.06.037
+- **PMCID**: PMC27159 (full-text saved)
+- **Journal**: Neuropsychologia  ·  **Year**: 2010
+- **Authors**: Eleanor A Maguire, Faraneh Vargha-Khadem, Demis Hassabis
+- **MeSH**: Adult, Amnesia, Female, Functional Laterality, Hippocampus, Humans, Image Processing, Computer-Assisted, Imagination, Intelligence, Magnetic Resonance Imaging
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20603137/
+- **Captured**: 2026-05-10T14:01:41
+
+## Abstract
+
+Patients with bilateral hippocampal damage acquired in adulthood who are amnesic for past events have also been reported to be impaired at imagining fictitious and future experiences. One such patient, P01, however, was found to be unimpaired on these tasks despite dense amnesia and 50% volume loss in both hippocampi. P01 might be an atypical case, and in order to investigate this we identified another patient with a similar neuropsychological profile. Jon is a well-characterised patient with developmental amnesia and 50% volume loss in his hippocampi. Interestingly both Jon and P01 retain some recognition memory ability, and show activation of residual hippocampal tissue during fMRI. Jon's ability to construct fictitious and future scenarios was compared with the adult-acquired cases previously reported on this task and control participants. In contrast to the adult-acquired cases, but similar to P01, Jon was able to richly imagine both fictitious and future experiences in a comparable manner to control participants. Moreover, his constructions were spatially coherent. We speculate that the hippocampal activation during fMRI noted previously in P01 and Jon might indicate some residual hippocampal function which is sufficient to support their preserved ability to imagine fictitious and future scenarios.

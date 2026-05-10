@@ -1,0 +1,14 @@
+# Outcomes after switching from one anti-tumor necrosis factor alpha agent to a second anti-tumor necrosis factor alpha agent in patients with rheumatoid arthritis: results from a large UK national cohort study.
+
+- **PMID**: 17195186
+- **DOI**: 10.1002/art.22331
+- **PMCID**:  
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 2007
+- **Authors**: Kimme L Hyrich, Mark Lunt, Kath D Watson, Deborah P M Symmons, Alan J Silman
+- **MeSH**: Actuarial Analysis, Adalimumab, Antibodies, Monoclonal, Antibodies, Monoclonal, Humanized, Antirheumatic Agents, Arthritis, Rheumatoid, Cohort Studies, Etanercept, Female, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17195186/
+- **Captured**: 2026-05-10T13:59:55
+
+## Abstract
+
+Patients with rheumatoid arthritis (RA) who experience treatment failure with one anti-tumor necrosis factor (anti-TNF) agent, due to either inefficacy or toxicity, are frequently switched to a second anti-TNF agent, although the benefits of switching are unknown. The present study was undertaken to compare drug continuation rates between the first course and second course of anti-TNF therapy. The study involved a prospective cohort of RA patients from a UK national register of new anti-TNF treatment starts (n = 6,739; 876 starting adalimumab, 2,826 starting etanercept, and starting 3,037 infliximab). Over a mean 15 months of followup, 841 patients stopped taking the first drug due to inefficacy and 1,023 stopped the first drug due to toxicity, of whom 503 and 353, respectively, were switched to a second anti-TNF agent. Kaplan-Meier survival curves were plotted to determine continuation rates for each course, and Cox regression was used to compare each course for the risk of stopping and the reason for stopping (inefficacy or toxicity). Overall, 73% of patients who switched to a second anti-TNF agent remained on the new therapy by the end of followup. First drug discontinuation due to inefficacy was associated with an increased rate of second drug discontinuation due to inefficacy (hazard ratio [HR] 2.7, 95% confidence interval [95% CI] 2.1-3.4) but not toxicity (HR 1.1, 95% CI 0.9-1.5). Similarly, first drug discontinuation due to toxicity was associated with an increased rate of second drug discontinuation due to toxicity (HR 2.3, 95% CI 1.9-2.9) but not inefficacy (HR 1.2, 95% CI 0.8-1.6). RA patients who are switched to a second anti-TNF drug have high rates of continuation, although among those who must discontinue treatment, the reasons for stopping a second drug are related to the reasons for stopping the first drug. This large data set from the UK provides the first estimates of the magnitude of these effects in patients with long-standing severe RA.

@@ -1,0 +1,14 @@
+# Diffuse idiopathic pulmonary neuroendocrine cell hyperplasia and the associated lung neuroendocrine tumors: clinical experience with a rare entity.
+
+- **PMID**: 21751183
+- **DOI**: 10.1002/cncr.26200
+- **PMCID**:  
+- **Journal**: Cancer  ·  **Year**: 2012
+- **Authors**: Alexander Gorshtein, David J Gross, Dganit Barak, Yulia Strenov, Yael Refaeli, Ilan Shimon, Simona Grozinsky-Glasberg
+- **MeSH**: Adult, Aged, Carcinoid Tumor, Female, Humans, Hyperplasia, Lung Neoplasms, Middle Aged, Multiple Pulmonary Nodules, Neuroendocrine Cells
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21751183/
+- **Captured**: 2026-05-10T14:02:07
+
+## Abstract
+
+Normal adult lungs contain pulmonary neuroendocrine cells (PNECs). PNEC hyperplasia may be either reactive or idiopathic, and the idiopathic type is defined as diffuse idiopathic PNEC hyperplasia (DIPNECH). It is believed that DIPNECH is a neuroendocrine proliferative process associated with carcinoid tumors. The available data regarding this rare condition are very limited. The objective of the current study was to describe the clinical, radiologic, and pathologic characteristics of patients with DIPNECH and the effect of various therapeutic modalities on patient well being. The authors retrospectively studied 11 consecutive patients with DIPNECH who were followed at 2 referral centers in Israel between 2000 and 2010. All patients were women, and their median age was 62.8 years. Six patients presented with respiratory symptoms, such as prolonged dyspnea, wheezing, and cough. All patients had carcinoid tumor together with multiple, small pulmonary nodules observed on thoracic high-resolution computerized tomography images. The mean size of the dominant lesion was 19.4 ± 9.6 mm. Nine patients underwent thoracotomy and resection of the dominant lesion. The disease was stable in 5 of 11 patients; in 6 of 10 patients, it progressed, and the patients received treatment with somatostatin analogs, which induced disease stabilization in all patients. Metastatic disease was diagnosed in 3 of 11 patients (36%). All patients were alive at the end of follow-up (mean, 4.63 ± 2.04 years; ongoing). The association of lung neuroendocrine tumor with multiple nodules in women, together with complains of chronic cough and wheezing, should raise suspicion of DIPNECH. Whenever possible, these patients should undergo surgical excision of the dominant lesion, and somatostatin analogs may be considered for symptomatic or tumor control in patients with progressive disease.

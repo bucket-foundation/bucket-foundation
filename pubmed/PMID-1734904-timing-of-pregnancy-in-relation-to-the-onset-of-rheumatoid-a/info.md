@@ -1,0 +1,14 @@
+# Timing of pregnancy in relation to the onset of rheumatoid arthritis.
+
+- **PMID**: 1734904
+- **DOI**: 10.1002/art.1780350205
+- **PMCID**:  
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 1992
+- **Authors**: A Silman, A Kay, P Brennan
+- **MeSH**: Adult, Arthritis, Rheumatoid, Case-Control Studies, Confidence Intervals, Female, Humans, Incidence, Odds Ratio, Pregnancy, Puerperal Disorders
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1734904/
+- **Captured**: 2026-05-10T14:00:02
+
+## Abstract
+
+The interval between the onset of rheumatoid arthritis (RA) and the most recent pregnancy prior to RA onset in 88 women was determined. These data were compared with data obtained from a group of 144 age-matched normal women (controls) who had been assigned a "dummy date for RA onset" for the purposes of analysis. The frequency of disease onset during 3 time intervals within the period from conception to 1 year postpartum was compared with the frequency of disease onset outside this period. There was a reduction in the incidence of disease onset during pregnancy (adjusted odds ratio [OR] 0.30, 95% confidence interval [CI] 0.04-2.6) and a numerically greater increased risk of RA onset during the first 3 months postpartum (OR 5.6, 95% CI 1.8-17.6), which persisted for the subsequent 9 months (OR 2.6, 95% CI 0.8-7.9). A reduction in the incidence of disease onset was seen during all pregnancies; in contrast, the postpartum increase was greater in those with RA onset after the first pregnancy. The reduced incidence of RA onset during pregnancy, with the increased risk postpartum, mirrors the previously described suppression of disease activity during pregnancy and the subsequent flare postpartum in women with established RA. In addition, the increased postpartum risk after the first pregnancy might suggest that in susceptible women, either the hormonal changes or the exposure to the fetus's paternal HLA might represent a risk factor for disease causation.

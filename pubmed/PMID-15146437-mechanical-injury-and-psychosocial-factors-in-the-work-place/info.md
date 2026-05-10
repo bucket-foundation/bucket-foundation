@@ -1,0 +1,14 @@
+# Mechanical injury and psychosocial factors in the work place predict the onset of widespread body pain: a two-year prospective study among cohorts of newly employed workers.
+
+- **PMID**: 15146437
+- **DOI**: 10.1002/art.20258
+- **PMCID**:  
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 2004
+- **Authors**: Elaine F Harkness, Gary J Macfarlane, Elizabeth Nahit, Alan J Silman, John McBeth
+- **MeSH**: Adult, Cumulative Trauma Disorders, Female, Follow-Up Studies, Humans, Male, Multivariate Analysis, Occupational Diseases, Pain, Predictive Value of Tests
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15146437/
+- **Captured**: 2026-05-10T13:58:58
+
+## Abstract
+
+Mechanical injury has been postulated as a risk factor for widespread pain, although to date, the evidence is weak. The aim of this study was to determine whether repeated exposure to mechanical trauma in the work place predicts the onset of widespread pain and to determine the relative contribution of mechanical trauma compared with psychosocial factors. In this prospective cohort study of 1,081 newly employed subjects in 12 diverse occupational settings, we collected detailed information on mechanical exposure, posture, physical environment, and psychosocial risk factors in the work place. Study questionnaires were completed at baseline and at 12 and 24 months. Individuals free of widespread pain at baseline and 12 months were eligible for followup. Generalized estimating equations were used to determine which factors predicted the new onset of widespread pain. Of the 1,081 baseline respondents, 896 were free of widespread pain and were eligible for further study. Of these 896 subjects, 708 and 520 responded at 12 months and 24 months, respectively. The rates of new-onset widespread pain were 15% at 12 months and 12% at 24 months. Several work place mechanical and posture exposures predicted the new onset of widespread pain: lifting >15 lbs with 1 hand, lifting >24 lbs with 2 hands, pulling >56 lbs, prolonged squatting, and prolonged working with hands at or above shoulder level. Of the psychosocial exposures, those who reported low job satisfaction, low social support, and monotonous work had an increased risk of new-onset widespread pain. In multivariate analysis, monotonous work and low social support were found to be the strongest independent predictors of symptom onset. Our findings demonstrate that the prevalence of new-onset widespread pain was high, but among this young, newly employed work force, both physical and psychosocial factors played an important role.

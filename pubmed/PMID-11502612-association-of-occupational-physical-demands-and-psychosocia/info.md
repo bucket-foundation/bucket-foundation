@@ -1,0 +1,14 @@
+# Association of occupational physical demands and psychosocial working environment with disabling shoulder pain.
+
+- **PMID**: 11502612
+- **DOI**: 
+- **PMCID**: PMC1753827 (full-text saved)
+- **Journal**: Annals of the rheumatic diseases  ·  **Year**: 2001
+- **Authors**: D P Pope, A J Silman, N M Cherry, C Pritchard, G J Macfarlane
+- **MeSH**: Adolescent, Adult, Aged, Confidence Intervals, Cross-Sectional Studies, Cumulative Trauma Disorders, Female, Humans, Lifting, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11502612/
+- **Captured**: 2026-05-10T13:58:06
+
+## Abstract
+
+To estimate the individual and combined associations of physical and psychosocial working environment with disabling shoulder pain and to identify groups at "high risk" for shoulder pain. A cross sectional survey was conducted at five manual occupational settings in south Manchester, United Kingdom (n=775, 83%). Both the duration of occupational physical demands (working postures, manual handling activities, and repetitive arm movements) and psychosocial working environment (psychological demands and lack of opportunity to learn new skills) were found to be significantly associated with shoulder pain. Three occupational factors identified a high risk group for shoulder pain: duration of lifting with one hand (prevalence rate ratio (PRR) (highest third) 2.0, 95% confidence interval (CI) 1.4 to 2.8), duration of working above shoulder level (PRR (highest third) 2.2, 95% CI 1.5 to 3.3), and whether employees found their work stressful (PRR (highest third) 1.4, 95% CI 1.0 to 2.1). In addition, a measure of psychological distress (General Health Questionnaire (GHQ) score) was found to identify a group at high risk for shoulder pain (PRR (highest third) 1.9, 95% CI 1.3 to 2.9). In employees exposed to three or more of these factors, 79% (23/29) reported shoulder pain compared with only 16% (56/353) of those not exposed to any. This study has identified a variety of occupational physical demands and psychosocial factors associated with shoulder pain. It has also identified groups of employees at a "high risk" for shoulder pain by their exposure to both physical and psychosocial factors.

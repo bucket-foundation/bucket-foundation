@@ -1,0 +1,14 @@
+# Decoding individual episodic memory traces in the human hippocampus.
+
+- **PMID**: 20226665
+- **DOI**: 10.1016/j.cub.2010.01.053
+- **PMCID**: PMC1383651 (full-text saved)
+- **Journal**: Current biology : CB  ·  **Year**: 2010
+- **Authors**: Martin J Chadwick, Demis Hassabis, Nikolaus Weiskopf, Eleanor A Maguire
+- **MeSH**: Adolescent, Brain Mapping, Female, Hippocampus, Humans, Image Processing, Computer-Assisted, Magnetic Resonance Imaging, Male, Memory, Multivariate Analysis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20226665/
+- **Captured**: 2026-05-10T14:01:32
+
+## Abstract
+
+In recent years, multivariate pattern analyses have been performed on functional magnetic resonance imaging (fMRI) data, permitting prediction of mental states from local patterns of blood oxygen-level-dependent (BOLD) signal across voxels. We previously demonstrated that it is possible to predict the position of individuals in a virtual-reality environment from the pattern of activity across voxels in the hippocampus. Although this shows that spatial memories can be decoded, substantially more challenging, and arguably only possible to investigate in humans, is whether it is feasible to predict which complex everyday experience, or episodic memory, a person is recalling. Here we document for the first time that traces of individual rich episodic memories are detectable and distinguishable solely from the pattern of fMRI BOLD signals across voxels in the human hippocampus. In so doing, we uncovered a possible functional topography in the hippocampus, with preferential episodic processing by some hippocampal regions over others. Moreover, our results imply that the neuronal traces of episodic memories are stable (and thus predictable) even over many re-activations. Finally, our data provide further evidence for functional differentiation within the medial temporal lobe, in that we show the hippocampus contains significantly more episodic information than adjacent structures.

@@ -1,0 +1,14 @@
+# Short term influence of mechanical factors on regional musculoskeletal pain: a study of new workers from 12 occupational groups.
+
+- **PMID**: 11351052
+- **DOI**: 10.1136/oem.58.6.374
+- **PMCID**: PMC1740140 (full-text saved)
+- **Journal**: Occupational and environmental medicine  ·  **Year**: 2001
+- **Authors**: E S Nahit, G J Macfarlane, C M Pritchard, N M Cherry, A J Silman
+- **MeSH**: Adult, Cross-Sectional Studies, Female, Humans, Low Back Pain, Male, Musculoskeletal Diseases, Occupational Diseases, Pain, Risk Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11351052/
+- **Captured**: 2026-05-10T13:58:00
+
+## Abstract
+
+To determine the influence of short term exposure to mechanical factors on regional musculoskeletal pain. Full time newly employed workers were recruited from 12 occupational groups and information collected by questionnaire. Subjects indicated on a blank body manikin any low back, shoulder, wrist or forearm or both, or knee pain which had occurred during the past month and had lasted more than 1 day. Data were also collected with a previously validated questionnaire on working postures, manual handling activities, and repetitive movements of the upper limb. The relations between mechanical factors and each area of pain were calculated as odds ratios (ORs) with 95% confidence intervals (95% CIs). Adjustment was made for age and sex. 1081 subjects (median age 23; interquartile range 20--27) were recruited to the study (a participation rate of 91%). 261 (24%) reported low back pain, 221 (20%) shoulder pain, 93 (9%) wrist or forearm pain, and 222 (21%) knee pain. Several specific manual handling activities were found to be associated with low back, shoulder, and knee pain. Carrying weights of more than 50 lbs (23 kg) on one shoulder was the factor which was most strongly associated with low back pain (OR 2.4 (95% CI 1.5 to 3.8)), shoulder pain (OR 3.1 (95% CI 1.9 to 4.8)), and knee pain (OR 3.5 (95% CI 2.2 to 5.5)), whereas forearm pain was most strongly associated with repetitive movements of the wrists (OR 1.8 (95% CI 1.04 to 3.1)). By contrast very few postures were associated with regional pain, although bending forwards in an uncomfortable position for at least 15 minutes was associated with shoulder pain (OR 1.6 (95% CI 1.2 to 2.2)) and kneeling for at least 15 minutes was associated with knee pain (OR 1.8 (95% CI 1.2 to 2.6)). Exposure to mechanical factors was most strongly associated with pain at multiple sites rather than with pains in individual regions. Even among workers with only short term exposure to mechanical factors, musculoskeletal pain is increased.

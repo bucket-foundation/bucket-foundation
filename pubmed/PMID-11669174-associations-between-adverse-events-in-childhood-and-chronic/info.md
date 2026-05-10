@@ -1,0 +1,14 @@
+# Associations between adverse events in childhood and chronic widespread pain in adulthood: are they explained by differential recall?
+
+- **PMID**: 11669174
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: The Journal of rheumatology  ·  **Year**: 2001
+- **Authors**: J McBeth, S Morris, S Benjamin, A J Silman, G J Macfarlane
+- **MeSH**: Adult, Child, Child, Hospitalized, Chronic Disease, Cross-Sectional Studies, Family Health, Female, Humans, Life Change Events, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11669174/
+- **Captured**: 2026-05-10T13:58:10
+
+## Abstract
+
+Clinic based studies suggest that adverse events in childhood may predispose to chronic pain in adult life. These have been conducted on highly selected groups, and it is unknown whether these relationships hold in the general population and to what extent the increased rate of adverse childhood events in persons with pain is an artefact of differential reporting. We examined the hypothesis that chronic widespread pain was associated with reports of adverse experiences in childhood and whether any observed relationships could be explained by differential recall. A cross sectional population based screening survey was conducted. Subjects completed a questionnaire that included assessments of pain and psychological state. In total, 296 subjects who had demonstrated psychological distress were randomly selected and had a detailed interview, which included an assessment of 14 adverse childhood experiences. Medical records relating to childhood were also examined for those subjects. The prevalence of self-reported adverse childhood experiences was greatest in adult subjects with current chronic widespread pain. Exposure to illness in family members, parental loss, operations, and abuse were all associated with increased, but nonsignificant, odds of having chronic widespread pain versus those without such exposures. However the only statistically significant association was with childhood hospitalizations. From medical record information the associations of hospitalizations (OR 5.1, 95% CI 2.0-13.0) and operations (OR 3.0, 95% CI 1.2-7.2) with pain previously noted were partly explained by differential recall between subjects with and without pain: hospitalizations, OR 2.2, 95% CI 0.9-5.5; operations, OR 1.2, 95% CI 0.5-3.4. Although several reported adverse events in childhood were observed to be associated with chronic widespread pain in adulthood, only reports of hospitalizations were significantly associated. Validation of self-reported exposures suggests that there was differential recall of past events among those with and without pain, and this differential recall explained the association between hospitalizations and current chronic pain. Such differential recall may explain other observations of an association between reports of adverse childhood events and chronic pain in adulthood.

@@ -1,0 +1,14 @@
+# Development of the BD-QoL: a quality of life measure specific to Behçet's disease.
+
+- **PMID**: 15124253
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: The Journal of rheumatology  ·  **Year**: 2004
+- **Authors**: Gill Gilworth, M Anne Chamberlain, Bipin Bhakta, Dorian Haskard, Alan Silman, Alan Tennant
+- **MeSH**: Adult, Aged, Behcet Syndrome, Female, Humans, Male, Middle Aged, Quality of Life, Reproducibility of Results, Severity of Illness Index
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15124253/
+- **Captured**: 2026-05-10T13:58:55
+
+## Abstract
+
+Current outcome measures for patients with Behçet's disease (BD) are impairment-focused and do not necessarily take account of the wider impact of the condition on the individual's lifestyle. Our aim was to develop a disease-specific measure of quality of life (QoL) for BD. The content of the BD-QoL was derived from qualitative interviews with patients using a "needs-based" approach to identify items. A postal survey was used to test the scaling properties, reliability, internal consistency, and validity of the new questionnaire using Rasch analysis. A second postal survey was used to assess test-retest reliability and internal consistency and to provide further evidence of the validity of the questionnaire. Main themes emerging from the qualitative interviews included relationships, emotions, limitations in day to day activities, and self-image. From these themes 71 statements were chosen as potential items for the BD-QoL. After analysis, 30 items of the BD-QoL emerged free of item bias for age and sex. Fit to the Rasch model was excellent. In the second postal survey test-retest reliability of the 30 item BD-QoL was 0.84. The BD-QoL provides the clinician with a simple, reliable, and valid tool for assessing the influence of interventions for BD and for evaluating models of service delivery. It is well accepted by patients, and has excellent scaling and psychometric properties. The BD-QoL complements information obtained through BD-specific disease activity scales.

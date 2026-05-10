@@ -1,0 +1,14 @@
+# Age-related changes in general and sexual health in middle-aged and older men: results from the European Male Ageing Study (EMAS).
+
+- **PMID**: 19929914
+- **DOI**: 10.1111/j.1743-6109.2009.01601.x
+- **PMCID**:  
+- **Journal**: The journal of sexual medicine  ·  **Year**: 2010
+- **Authors**: Giovanni Corona, David M Lee, Gianni Forti, Daryl B O'Connor, Mario Maggi, Terence W O'Neill, Neil Pendleton, Gyorgy Bartfai, Steven Boonen, Felipe F Casanueva, Joseph D Finn, Aleksander Giwercman, Thang S Han, Ilpo T Huhtaniemi, Krzysztof Kula, Michael E J Lean, Margus Punab, Alan J Silman, Dirk Vanderschueren, Frederick C W Wu
+- **MeSH**: Adult, Age Factors, Aged, Cardiovascular Diseases, Comorbidity, Cross-Sectional Studies, Depressive Disorder, Erectile Dysfunction, Europe, Health Status
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19929914/
+- **Captured**: 2026-05-10T14:01:25
+
+## Abstract
+
+Limited information is available concerning the general and sexual health status of European men. To investigate the age-related changes in general and sexual health in middle-aged and older men from different countries of the European Union. This is a cross-sectional multicenter survey performed on a sample of 3,369 community-dwelling men aged 40-79 years old (mean 60 + or - 11 years). Subjects were randomly selected from eight European centers including centers from nontransitional (Florence [Italy], Leuven [Belgium], Malmö[Sweden], Manchester [United Kingdom], Santiago de Compostela [Spain]) and transitional countries (Lodz [Poland], Szeged [Hungary], Tartu [Estonia]). Different parameters were evaluated including the Beck's Depression Inventory for the quantification of depressive symptoms, the Short Form-36 Health Survey for the assessment of the quality of life (QoL), the International Prostate Symptom Score for the evaluation of lower urinary tract symptoms, and the European Male Ageing Study sexual function questionnaire for the study of sexual function. More than 50% of subjects reported the presence of one or more common morbidities. Overall, hypertension (29%), obesity (24%), and heart diseases (16%) were the most prevalent conditions. Around 30% of men reported erectile dysfunction (ED) and 6% reported severe orgasmic impairment, both of which were closely associated with age and concomitant morbidities. Only 38% of men reporting ED were concerned about it. Furthermore, concern about ED increased with age, peaking in the 50-59 years age band, but decreased thereafter. Men in transitional countries reported a higher prevalence of morbidities and impairment of sexual function as well as a lower QoL. Sexual health declined while concomitant morbidities increased in European men as a function of age. The burden of general and sexual health is higher in transitional countries, emphasizing the need to develop more effective strategies to promote healthy aging for men in these countries.

@@ -1,0 +1,14 @@
+# 2010 Rheumatoid arthritis classification criteria: an American College of Rheumatology/European League Against Rheumatism collaborative initiative.
+
+- **PMID**: 20872595
+- **DOI**: 10.1002/art.27584
+- **PMCID**:  
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 2010
+- **Authors**: Daniel Aletaha, Tuhina Neogi, Alan J Silman, Julia Funovits, David T Felson, Clifton O Bingham, Neal S Birnbaum, Gerd R Burmester, Vivian P Bykerk, Marc D Cohen, Bernard Combe, Karen H Costenbader, Maxime Dougados, Paul Emery, Gianfranco Ferraccioli, Johanna M W Hazes, Kathryn Hobbs, Tom W J Huizinga, Arthur Kavanaugh, Jonathan Kay, Tore K Kvien, Timothy Laing, Philip Mease, Henri A Ménard, Larry W Moreland, Raymond L Naden, Theodore Pincus, Josef S Smolen, Ewa Stanislawska-Biernat, Deborah Symmons, Paul P Tak, Katherine S Upchurch, Jirí Vencovský, Frederick Wolfe, Gillian Hawker
+- **MeSH**: Acute-Phase Reaction, Algorithms, Arthritis, Rheumatoid, Early Diagnosis, Europe, Humans, International Cooperation, North America, Severity of Illness Index, Societies, Medical
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20872595/
+- **Captured**: 2026-05-10T14:01:51
+
+## Abstract
+
+The 1987 American College of Rheumatology (ACR; formerly, the American Rheumatism Association) classification criteria for rheumatoid arthritis (RA) have been criticized for their lack of sensitivity in early disease. This work was undertaken to develop new classification criteria for RA. A joint working group from the ACR and the European League Against Rheumatism developed, in 3 phases, a new approach to classifying RA. The work focused on identifying, among patients newly presenting with undifferentiated inflammatory synovitis, factors that best discriminated between those who were and those who were not at high risk for persistent and/or erosive disease--this being the appropriate current paradigm underlying the disease construct "rheumatoid arthritis." In the new criteria set, classification as "definite RA" is based on the confirmed presence of synovitis in at least 1 joint, absence of an alternative diagnosis that better explains the synovitis, and achievement of a total score of 6 or greater (of a possible 10) from the individual scores in 4 domains: number and site of involved joints (score range 0-5), serologic abnormality (score range 0-3), elevated acute-phase response (score range 0-1), and symptom duration (2 levels; range 0-1). This new classification system redefines the current paradigm of RA by focusing on features at earlier stages of disease that are associated with persistent and/or erosive disease, rather than defining the disease by its late-stage features. This will refocus attention on the important need for earlier diagnosis and institution of effective disease-suppressing therapy to prevent or minimize the occurrence of the undesirable sequelae that currently comprise the paradigm underlying the disease construct "rheumatoid arthritis."

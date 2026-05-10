@@ -1,0 +1,14 @@
+# Increased estrogen rather than decreased androgen action is associated with longer androgen receptor CAG repeats.
+
+- **PMID**: 18840639
+- **DOI**: 10.1210/jc.2008-0848
+- **PMCID**:  
+- **Journal**: The Journal of clinical endocrinology and metabolism  ·  **Year**: 2009
+- **Authors**: Ilpo T Huhtaniemi, Stephen R Pye, Kate L Limer, Wendy Thomson, Terence W O'Neill, Hazel Platt, Debbie Payne, Sally L John, Min Jiang, Steven Boonen, Herman Borghs, Dirk Vanderschueren, Judith E Adams, Kate A Ward, György Bartfai, Felipe Casanueva, Joseph D Finn, Gianni Forti, Aleksander Giwercman, Thang S Han, Krzysztof Kula, Michael E J Lean, Neil Pendleton, Margus Punab, Alan J Silman, Frederick C W Wu
+- **MeSH**: Adult, Aged, Aging, Cohort Studies, Cross-Sectional Studies, Estradiol, Follicle Stimulating Hormone, Humans, Luteinizing Hormone, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18840639/
+- **Captured**: 2026-05-10T14:00:58
+
+## Abstract
+
+The individual variability in the waning androgenic-anabolic functions of aging men may be influenced by the CAG repeat polymorphism in exon 1 of the androgen receptor (AR), affecting androgen sensitivity. However, findings on its phenotypic effects are inconclusive. The aim was to investigate the relationships between health status, various reproductive hormones, and the AR CAG repeat length. We conducted a multinational prospective cohort observational study with cross-sectional baseline data. This was a population survey of community-dwelling men. Men (40-79 yr old; n = 3369) were randomly recruited from centers in eight European countries; CAG repeat analysis was performed in 2878 men. We measured the correlations of the CAG repeat length with selected endocrine, metabolic, and phenotypic parameters related to aging and sex hormone action. Only minor differences were found in CAG repeat lengths between the eight European countries. They showed significant positive association with total, free, and bioavailable levels of testosterone (T) and estradiol. FSH but not LH correlated inversely with CAG repeat length. Significant associations were found with bone ultrasound parameters at the calcaneus. Negative correlation was found with triglycerides, but not with other blood lipids or with anthropometry, blood pressure, hemoglobin, insulin sensitivity, or sexual and prostatic functions. The AR CAG repeat length correlates significantly with serum T and estradiol of aging men. Weaker transcriptional activity of the AR with longer CAG-encoded polyglutamine repeats appears to be totally or nearly totally compensated for by higher T levels. The residual phenotypic correlations may reflect differences in estrogen levels/actions after aromatization of the higher T levels.

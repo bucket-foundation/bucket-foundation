@@ -1,0 +1,14 @@
+# Neurophilosophy: the early years and new directions.
+
+- **PMID**: 18182125
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Functional neurology  ·  **Year**: 2007
+- **Authors**: Patricia Smith Churchland
+- **MeSH**: Brain, Consciousness, History, 15th Century, History, 16th Century, History, 17th Century, History, 18th Century, History, 19th Century, History, 20th Century, History, 21st Century, History, Ancient
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18182125/
+- **Captured**: 2026-05-10T14:00:38
+
+## Abstract
+
+Neurophilosophy embraces the hypothesis that what we call "the mind" is in fact a level of brain activity. A corollary of this hypothesis states that we can learn much about the reality of mental function by studying the brain at all levels of organization. Until fairly recently, many philosophers preferred to believe that important domains of mental function could never be addressed using the tools of empirical science. Nevertheless, co-evolutionary progress by psychology and the neurosciences on many topics, including consciousness, free will and the nature of knowledge, have meant that such convictions need to be updated. Some large-scale mind-brain problems have not yet been solved, and do require significant theoretical innovation. In particular the problem of how to understand the true nature of representations remains unsolved.

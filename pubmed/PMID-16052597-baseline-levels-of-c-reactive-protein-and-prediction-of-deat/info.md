@@ -1,0 +1,14 @@
+# Baseline levels of C-reactive protein and prediction of death from cardiovascular disease in patients with inflammatory polyarthritis: a ten-year followup study of a primary care-based inception cohort.
+
+- **PMID**: 16052597
+- **DOI**: 10.1002/art.21204
+- **PMCID**:  
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 2005
+- **Authors**: Nicola J Goodson, Deborah P M Symmons, David G I Scott, Diane Bunn, Mark Lunt, Alan J Silman
+- **MeSH**: Adult, Aged, Arthritis, C-Reactive Protein, Cardiovascular Diseases, Cohort Studies, Female, Follow-Up Studies, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16052597/
+- **Captured**: 2026-05-10T13:59:18
+
+## Abstract
+
+To test the hypothesis that the C-reactive protein (CRP) concentration at baseline is an independent predictor of death from cardiovascular disease (CVD) in newly diagnosed patients with inflammatory polyarthritis (IP). Patients with IP (n = 506) who were recruited from the Norfolk Arthritis Register between 1990 and 1992 were followed up to the end of 2001, and complete data on mortality were obtained. At baseline, subjects underwent a structured interview and joint examination and completed a Health Assessment Questionnaire (HAQ). Blood was obtained and analyzed for rheumatoid factor (RF) and CRP concentration. Cox regression was used to calculate hazards ratios (HRs) for risk of death from CVD. The median followup was 10.1 years (interquartile range 9.3-10.8). There were 104 deaths, 40 of which were the result of CVD. Elevated CRP levels (> or=5 mg/liter) predicted death from CVD in univariate analyses: HR 3.9 (95% confidence interval [95% CI] 1.2-13.4) for men, and HR 4.22 (95% CI 1.4-12.6) for women. After adjusting for age and sex, the CVD mortality association was strongest in the subgroup of patients who were RF positive at baseline (adjusted HR 7.4 [95% CI 1.7-32.2]). Multivariate analysis revealed that elevated CRP levels remained a significant independent predictor of death from CVD, even after adjusting for age, sex, smoking status, HAQ score, RF positivity, and swollen joint counts (HR 3.3 [95% CI 1.4-7.6]). The CRP concentration at baseline is an important predictor of subsequent death from CVD in patients with new-onset IP and is independent of other indicators of disease severity. This supports the theory that CRP may play a direct role in the pathogenesis of CVD.

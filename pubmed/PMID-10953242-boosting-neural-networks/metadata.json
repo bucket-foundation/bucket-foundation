@@ -1,0 +1,18 @@
+{
+  "pmid": "10953242",
+  "title": "Boosting neural networks.",
+  "abstract": "Boosting is a general method for improving the performance of learning algorithms. A recently proposed boosting algorithm, AdaBoost, has been applied with great success to several benchmark machine learning problems using mainly decision trees as base classifiers. In this article we investigate whether AdaBoost also works as well with neural networks, and we discuss the advantages and drawbacks of different versions of the AdaBoost algorithm. In particular, we compare training methods based on sampling the training set and weighting the cost function. The results suggest that random resampling of the training data is not the main explanation of the success of the improvements brought by AdaBoost. This is in contrast to bagging, which directly aims at reducing variance and for which random resampling is essential to obtain the reduction in generalization error. Our system achieves about 1.4% error on a data set of on-line handwritten digits from more than 200 writers. A boosted multilayer network achieved 1.5% error on the UCI letters and 8.1% error on the UCI satellite data set, which is significantly better than boosted decision trees.",
+  "authors": [
+    "H Schwenk",
+    "Y Bengio"
+  ],
+  "journal": "Neural computation",
+  "year": "2000",
+  "doi": "10.1162/089976600300015178",
+  "pmcid": "",
+  "mesh": [
+    "Algorithms",
+    "Handwriting",
+    "Neural Networks, Computer"
+  ]
+}

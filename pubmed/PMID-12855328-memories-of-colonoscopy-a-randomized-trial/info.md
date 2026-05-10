@@ -1,0 +1,14 @@
+# Memories of colonoscopy: a randomized trial.
+
+- **PMID**: 12855328
+- **DOI**: 10.1016/s0304-3959(03)00003-4
+- **PMCID**:  
+- **Journal**: Pain  ·  **Year**: 2003
+- **Authors**: Donald A Redelmeier, Joel Katz, Daniel Kahneman
+- **MeSH**: Adult, Aged, Aged, 80 and over, Colonoscopy, Confidence Intervals, Female, Follow-Up Studies, Humans, Logistic Models, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12855328/
+- **Captured**: 2026-05-10T13:58:30
+
+## Abstract
+
+Patients' memories of the past may influence their decisions about the future, yet memories are imperfect and susceptible to bias. We tested whether a memory failure observed in psychology experiments could be applied in a clinical setting to lessen patients' memories of the pain of an unpleasant medical procedure. We studied consecutive outpatients undergoing colonoscopy who were medically stable, mentally competent, and able to speak English (n=682). By random assignment, half the patients had a short interval added to the end of their procedure during which the tip of the colonoscope remained in the rectum. Pain during the procedure was measured with a ten point intensity scale. Memory following the procedure was measured using both a rating scale and a ranking task. Randomization resulted in two similar groups. As theorized, patients who underwent the extended procedure experienced the final moments as less painful (1.7 vs. 2.5 on a ten point intensity scale, P<0.001), rated the entire experience as less unpleasant (4.4 vs. 4.9 on a 10 cm visual analogue scale, P=0.006), and ranked the procedure as less aversive compared to seven other unpleasant experiences (4.1 vs. 4.6 with eight as the worst, P=0.002). Rates of returning for a repeat colonoscopy (median duration of follow-up 5.3 years) averaged 50.4% and were slightly higher (odds ratio=1.41, P=0.038) for those who underwent the longer procedure controlling for prior colonoscopy, procedure indications, and abnormal findings. Memory failures observed in experimental conditions can be found in clinical settings involving awake patients and may offer opportunities for improving patients' willingness to undergo future unpleasant medical procedures.

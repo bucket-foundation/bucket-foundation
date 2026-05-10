@@ -1,0 +1,14 @@
+# The 2010 American College of Rheumatology/European League Against Rheumatism classification criteria for rheumatoid arthritis: Phase 2 methodological report.
+
+- **PMID**: 20872596
+- **DOI**: 10.1002/art.27580
+- **PMCID**: PMC1755241 (full-text saved)
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 2010
+- **Authors**: Tuhina Neogi, Daniel Aletaha, Alan J Silman, Raymond L Naden, David T Felson, Rohit Aggarwal, Clifton O Bingham, Neal S Birnbaum, Gerd R Burmester, Vivian P Bykerk, Marc D Cohen, Bernard Combe, Karen H Costenbader, Maxime Dougados, Paul Emery, Gianfranco Ferraccioli, Johanna M W Hazes, Kathryn Hobbs, Tom W J Huizinga, Arthur Kavanaugh, Jonathan Kay, Dinesh Khanna, Tore K Kvien, Timothy Laing, Katherine Liao, Philip Mease, Henri A Ménard, Larry W Moreland, Raj Nair, Theodore Pincus, Sarah Ringold, Josef S Smolen, Ewa Stanislawska-Biernat, Deborah Symmons, Paul P Tak, Katherine S Upchurch, Jirí Vencovský, Frederick Wolfe, Gillian Hawker
+- **MeSH**: Acute-Phase Reaction, Arthritis, Rheumatoid, Clinical Chemistry Tests, Decision Making, Computer-Assisted, Decision Support Techniques, Europe, Evidence-Based Medicine, Female, Humans, International Cooperation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20872596/
+- **Captured**: 2026-05-10T14:01:52
+
+## Abstract
+
+The American College of Rheumatology and the European League Against Rheumatism have developed new classification criteria for rheumatoid arthritis (RA). The aim of Phase 2 of the development process was to achieve expert consensus on the clinical and laboratory variables that should contribute to the final criteria set. Twenty-four expert RA clinicians (12 from Europe and 12 from North America) participated in Phase 2. A consensus-based decision analysis approach was used to identify factors (and their relative weights) that influence the probability of "developing RA," complemented by data from the Phase 1 study. Patient case scenarios were used to identify and reach consensus on factors important in determining the probability of RA development. Decision analytic software was used to derive the relative weights for each of the factors and their categories, using choice-based conjoint analysis. The expert panel agreed that the new classification criteria should be applied to individuals with undifferentiated inflammatory arthritis in whom at least 1 joint is deemed by an expert assessor to be swollen, indicating definite synovitis. In this clinical setting, they identified 4 additional criteria as being important: number of joints involved and site of involvement, serologic abnormality, acute-phase response, and duration of symptoms in the involved joints. These criteria were consistent with those identified in the Phase 1 data-driven approach. The consensus-based, decision analysis approach used in Phase 2 complemented the Phase 1 efforts. The 4 criteria and their relative weights form the basis of the final criteria set.

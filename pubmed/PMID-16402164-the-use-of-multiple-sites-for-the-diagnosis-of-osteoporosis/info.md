@@ -1,0 +1,14 @@
+# The use of multiple sites for the diagnosis of osteoporosis.
+
+- **PMID**: 16402164
+- **DOI**: 10.1007/s00198-005-0014-9
+- **PMCID**:  
+- **Journal**: Osteoporosis international : a journal established as result of cooperation between the European Foundation for Osteoporosis and the National Osteoporosis Foundation of the USA  ·  **Year**: 2006
+- **Authors**: J A Kanis, O Johnell, A Oden, H Johansson, J A Eisman, S Fujiwara, H Kroger, R Honkanen, L J Melton, T O'Neill, J Reeve, A Silman, A Tenenhouse
+- **MeSH**: Absorptiometry, Photon, Aged, Bone Density, Female, Femur Neck, Fractures, Bone, Hip Fractures, Humans, Lumbar Vertebrae, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16402164/
+- **Captured**: 2026-05-10T13:59:30
+
+## Abstract
+
+It has been suggested that bone mineral density (BMD) measurements should be made at multiple sites, and that the lowest T-score should be taken for the purpose of diagnosing osteoporosis. The aim of this study was to examine the use of BMD measurements at the femoral neck and lumbar spine alone and in combination for fracture prediction. We studied 19,071 individuals (68% women) from six prospective population-based cohorts in whom BMD was measured at both sites and fracture outcomes documented over 73,499 patient years. BMD values were converted to Z-scores, and the gradient of risk for any osteoporotic fracture and for hip fracture was examined by using a Poisson model in each cohort and each gender separately. Results of the different studies were merged using weighted beta-coefficients. The gradients of risk for osteoporotic fracture and for hip fracture were similar in men and women. In men and women combined, the risk of any osteoporotic fracture increased by 1.51 [95% confidence interval (CI)=1.42-1.61] per standard deviation (SD) decrease in femoral-neck BMD. For measurements made at the lumbar spine, the gradient of risk was 1.47 (95% CI=1.38-1.56). Where the minimum of the two values was used, the gradient of risk was similar (1.55; 95% CI=1.45-1.64). Higher gradients of risk were observed for hip fracture outcomes: with BMD at the femoral neck, the gradient of risk was 2.45 (95% CI=2.10-2.87), with lumbar BMD was 1.57 (95% CI=1.36-1.82), and with the minimum value of either femoral neck and lumbar spine was 2.11 (95% CI=1.81-2.45). Thus, selecting the lowest value for BMD at either the femoral neck or lumbar spine did not increase the predictive ability of BMD tests. By contrast, the sensitivity increased so that more individuals were identified but at the expense of specificity. Thus, the same effect could be achieved by using a less stringent T-score for the diagnosis of osteoporosis. Since taking the minimum value of the two measurements does not improve predictive ability, its clinical utility for the diagnosis of osteoporosis is low.

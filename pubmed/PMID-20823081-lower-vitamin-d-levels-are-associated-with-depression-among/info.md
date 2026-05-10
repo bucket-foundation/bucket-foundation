@@ -1,0 +1,14 @@
+# Lower vitamin D levels are associated with depression among community-dwelling European men.
+
+- **PMID**: 20823081
+- **DOI**: 10.1177/0269881110379287
+- **PMCID**:  
+- **Journal**: Journal of psychopharmacology (Oxford, England)  ·  **Year**: 2011
+- **Authors**: David M Lee, Abdelouahid Tajar, Terence W O'Neill, Daryl B O'Connor, Gyorgy Bartfai, Steven Boonen, Roger Bouillon, Felipe F Casanueva, Joseph D Finn, Gianni Forti, Aleksander Giwercman, Thang S Han, Ilpo T Huhtaniemi, Krzysztof Kula, Michael Ej Lean, Margus Punab, Alan J Silman, Dirk Vanderschueren, Frederick Cw Wu, Neil Pendleton
+- **MeSH**: Adult, Aged, Cohort Studies, Creatinine, Depression, Europe, Humans, Linear Models, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20823081/
+- **Captured**: 2026-05-10T14:01:49
+
+## Abstract
+
+Low serum 25-hydroxyvitamin D (25(OH)D) and elevated parathyroid hormone (PTH) levels have been linked with depressive symptoms among adults in various clinical settings. Data in generally healthy, community-dwelling individuals remain inconclusive. We investigated whether depression was associated with 25(OH)D and/or PTH in a sample of middle-aged and older men (n = 3369; mean age 60 ± 11) participating in the European Male Ageing Study, and whether any associations were explained by lifestyle and health factors. The Beck Depression Inventory-II (BDI-II) was used to screen for depression, and serum 25(OH)D and PTH levels measured by radioimmunoassay. Univariate analysis revealed that 25(OH)D levels were lower (p < 0.001) and PTH higher (p = 0.004) in people with depression. In age- and centre-adjusted linear regressions a higher BDI-II score was significantly associated with lower levels of 25(OH)D (p = 0.004). After adjustment for lifestyle and health factors this relationship was attenuated but remained significant (p = 0.01). Using multivariable logistic regression the odds for depression increased approximately 70% across decreasing 25(OH)D quartiles (p (trend) = 0.04). There was no independent association between PTH and depression in any of the multivariable regressions. Our results reveal an inverse association between 25(OH)D levels and depression, largely independent of several lifestyle and health factors. Further studies are required to determine whether higher levels of vitamin D have an antidepressant effect in older adults.

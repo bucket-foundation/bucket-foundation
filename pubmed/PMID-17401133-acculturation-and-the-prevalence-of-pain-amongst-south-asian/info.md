@@ -1,0 +1,14 @@
+# Acculturation and the prevalence of pain amongst South Asian minority ethnic groups in the UK.
+
+- **PMID**: 17401133
+- **DOI**: 10.1093/rheumatology/kem037
+- **PMCID**:  
+- **Journal**: Rheumatology (Oxford, England)  ·  **Year**: 2007
+- **Authors**: B Palmer, G Macfarlane, C Afzal, A Esmail, A Silman, M Lunt
+- **MeSH**: Acculturation, Adult, Asian People, England, Female, Fibromyalgia, Humans, Male, Middle Aged, Pain
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17401133/
+- **Captured**: 2026-05-10T14:00:03
+
+## Abstract
+
+Musculoskeletal pain is reported more commonly by South Asians in the UK than by white Europeans. This may result from a variety of factors, including cultural differences, and thus we investigated the extent to which differences in the prevalence of pain within the South Asian population could be explained by differences in acculturation (the extent to which immigrants take on the culture of their host population). Nine hundred and thirty-three Europeans and 1914 South Asian (1165 Indian, 401 Pakistani and 348 Bangladeshi) subjects were recruited from the age-sex registers of 13 general practices in areas with high densities of South Asian populations (Bolton, Oldham, Ashton-under-Lyne and Birmingham). A 28-item acculturation scale was developed, based, on aspects including use of language, clothing style, and use of own-culture media. Principle component analysis generated a score (range 0-100), which was validated against constructs expected to relate to acculturation, such as years of full time education and time spent in the UK. The presence of widespread pain was assessed by the answer to the question 'Have you suffered from pain all over the body in the past month?' Widespread pain was more common in all three South Asian ethnic groups than in the white Europeans [odds ratio (OR) = 3.7, 95% confidence interval (CI) 2.9-4.9], with this increase ranging from 2.7 to 5.8 in the different South Asian subgroups. There was a similar increase in consultation rates for pain. Within the South Asians, pooling all three groups, there was a strong negative association between acculturation score and widespread pain, which remained after adjusting for age and sex: [OR (95% CI) per standard deviation decrease in acculturation score -1.2 (1.0-1.3)]. Adjusting for acculturation accounted for some, but not all, of the differences between the ethnic groups in the prevalence of widespread pain: OR 2.0 (95% CI 1.4-3.0). Widespread pain is more commonly reported in South Asians though there are interesting differences within the South Asian community. Lower acculturation has a strong influence on the reporting of pain, but cannot explain all of the difference between South Asian and European populations.

@@ -1,0 +1,14 @@
+# Long-acting somatostatin analogues are an effective treatment for type 1 gastric carcinoid tumours.
+
+- **PMID**: 18662970
+- **DOI**: 10.1530/EJE-08-0420
+- **PMCID**:  
+- **Journal**: European journal of endocrinology  ·  **Year**: 2008
+- **Authors**: Simona Grozinsky-Glasberg, Gregory Kaltsas, Chamutal Gur, Eyal Gal, Dimitrios Thomas, Susana Fichman, Krystallenia Alexandraki, Dganit Barak, Benjamin Glaser, Ilan Shimon, David J Gross
+- **MeSH**: Antineoplastic Agents, Hormonal, Carcinoid Tumor, Enterochromaffin Cells, Female, Follow-Up Studies, Humans, Male, Middle Aged, Octreotide, Prospective Studies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18662970/
+- **Captured**: 2026-05-10T14:00:55
+
+## Abstract
+
+Gastric carcinoid tumours type 1 (GCA1) originate from hyperplastic enterochromaffin-like (ECL) cells secondary to hypergastrinaemia. Treatment with somatostatin analogues (SSA) might impede ECL-cell hyperplasia by suppressing gastrin secretion and/or by a direct anti-proliferative effect on ECL cells. We conducted a multicentre prospective study to assess the effects of long-acting SSA on hypergastrinaemia and ECL-cell proliferation in patients with GCA1. We studied 15 patients with GCA1 treated with monthly long-acting release octreotide (LAR) (20-30 mg; n=14) or Lanreotide 90 mg (n=1) for at least 6 months. Patients had serum gastrin and chromogranin A measurements performed and biopsies taken from both tumours and surrounding mucosa before, and every 6-12 months following treatment. Sections were immunostained for neuroendocrine markers. The cell proliferation index Ki-67, intensity of staining before and after treatment and the degree of gastric wall invasion were also assessed. All patients tolerated treatment well (mean follow-up of 18 months). In 11 patients (73%), a complete disappearance of the tumours at 1 year of treatment was observed on endoscopy, while in three patients (20%), the tumours decreased significantly in number and size. Gastrin levels normalized in 25% of patients, and were reduced by more than 80% in the remaining 75%. Treatment with SSAs in GCA1 leads to a substantial tumour load reduction, with a concomitant decrease of serum gastrin levels. Our data indicate an important anti-proliferative effect of SSA on ECL cells, providing clinical benefit and obviating, at least temporarily, the need for invasive therapies for GCA1.

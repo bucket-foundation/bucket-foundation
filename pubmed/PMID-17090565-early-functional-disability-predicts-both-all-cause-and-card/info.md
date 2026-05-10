@@ -1,0 +1,14 @@
+# Early functional disability predicts both all-cause and cardiovascular mortality in people with inflammatory polyarthritis: results from the Norfolk Arthritis Register.
+
+- **PMID**: 17090565
+- **DOI**: 10.1136/ard.2006.056390
+- **PMCID**: PMC1753911 (full-text saved)
+- **Journal**: Annals of the rheumatic diseases  ·  **Year**: 2007
+- **Authors**: Tracey M Farragher, Mark Lunt, Diane K Bunn, Alan J Silman, Deborah P M Symmons
+- **MeSH**: Activities of Daily Living, Adult, Aged, Arthritis, Arthritis, Rheumatoid, Cardiovascular Diseases, Disability Evaluation, England, Epidemiologic Methods, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17090565/
+- **Captured**: 2026-05-10T13:59:51
+
+## Abstract
+
+To investigate the predictive value of early functional disability in patients with inflammatory polyarthritis (IP), for all-cause and cardiovascular disease (CVD) mortality. 1010 subjects with new-onset IP from the Norfolk Arthritis Register were studied. All were seen at baseline and at 1 year. Health Assessment Questionnaire (HAQ) scores were obtained at both time points. Vital status at 10 years from registration was established through central records. Mortality (all-cause and CVD) per 1000 person-years were calculated by HAQ stratum (HAQ scores<1, 1-2 and>or=2). The predictive value of HAQ (per unit increase) at the two time points, adjusted for age at onset of symptom, sex and other factors found to predict mortality, was assessed using Cox regression models. The analysis was repeated for those who satisfied the 1987 American College of Rheumatology criteria for rheumatoid arthritis (RA) by 5 years. By 10 years, 171 (16.9%) subjects had died. 89 deaths (52%) were attributed to CVD. Mortality was greatest in the highest HAQ group at both time points. Following adjustment for other predictors, HAQ score at year 1 remained a significant predictor of all-cause mortality (HR 1.46; 95% CI 1.15 to 1.85) and CVD mortality (HR 1.49; 95% CI 1.12 to 1.97). The predictive value of HAQ at year 1 was similar in the RA subgroup. Our data show that at 1 year of follow-up, HAQ score is an important independent predictor of subsequent all-cause and CVD mortalities in people with IP and RA. Baseline HAQ scores are of less value.

@@ -1,0 +1,14 @@
+# Before you make that big decision..
+
+- **PMID**: 21714386
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Harvard business review  ·  **Year**: 2011
+- **Authors**: Daniel Kahneman, Dan Lovallo, Olivier Sibony
+- **MeSH**: Administrative Personnel, Commerce, Decision Making, Humans, Prejudice
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21714386/
+- **Captured**: 2026-05-10T14:02:06
+
+## Abstract
+
+When an executive makes a big bet, he or she typically relies on the judgment of a team that has put together a proposal for a strategic course of action. After all, the team will have delved into the pros and cons much more deeply than the executive has time to do. The problem is, biases invariably creep into any team's reasoning-and often dangerously distort its thinking. A team that has fallen in love with its recommendation, for instance, may subconsciously dismiss evidence that contradicts its theories, give far too much weight to one piece of data, or make faulty comparisons to another business case. That's why, with important decisions, executives need to conduct a careful review not only of the content of recommendations but of the recommendation process. To that end, the authors-Kahneman, who won a Nobel Prize in economics for his work on cognitive biases; Lovallo of the University of Sydney; and Sibony of McKinsey-have put together a 12-question checklist intended to unearth and neutralize defects in teams' thinking. These questions help leaders examine whether a team has explored alternatives appropriately, gathered all the right information, and used well-grounded numbers to support its case. They also highlight considerations such as whether the team might be unduly influenced by self-interest, overconfidence, or attachment to past decisions. By using this practical tool, executives will build decision processes over time that reduce the effects of biases and upgrade the quality of decisions their organizations make. The payoffs can be significant: A recent McKinsey study of more than 1,000 business investments, for instance, showed that when companies worked to reduce the effects of bias, they raised their returns on investment by seven percentage points. Executives need to realize that the judgment of even highly experienced, superbly competent managers can be fallible. A disciplined decision-making process, not individual genius, is the key to good strategy.

@@ -1,0 +1,14 @@
+# The nature of regularity and irregularity: evidence from Hebrew nominal inflection.
+
+- **PMID**: 12528428
+- **DOI**: 10.1023/a:1021256819323
+- **PMCID**:  
+- **Journal**: Journal of psycholinguistic research  ·  **Year**: 2002
+- **Authors**: Iris Berent, Steven Pinker, Joseph Shimron
+- **MeSH**: Humans, Language, Linguistics, Phonetics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12528428/
+- **Captured**: 2026-05-10T13:58:25
+
+## Abstract
+
+Most evidence for the role of regular inflection as a default operation comes from languages that confound the morphological properties of regular and irregular forms with their phonological characteristics. For instance, regular plurals tend to faithfully preserve the base's phonology (e.g., rat-rats), whereas irregular nouns tend to alter it (e.g., mouse-mice). The distinction between regular and irregular inflection may thus be an epiphenomenon of phonological faithfulness. In Hebrew noun inflection, however, morphological regularity and phonological faithfulness can be distinguished: Nouns whose stems change in the plural may take either a regular or an irregular suffix, and nouns whose stems are preserved in the plural may take either a regular or an irregular suffix. We use this dissociation to examine two hallmarks of default inflection: its lack of dependence on analogies from similar regular nouns, and its application to nonroots such as names. We show that these hallmarks of regularity may be found whether or not the plural form preserves the stem faithfully: People apply the regular suffix to novel nouns that do not resemble existing nouns and to names that sound like irregular nouns, regardless of whether the stem is ordinarily preserved in the plural of that family of nouns. Moreover, when they pluralize names (e.g., the Barak-Barakim), they do not apply the stem changes that are found in their homophonous nouns (e.g., barak-brakim "lightning"), replicating an effect found in English and German. These findings show that the distinction between regular and irregular phenomena cannot be reduced to differences in the kinds of phonological changes associated with those phenomena in English. Instead, regularity and irregularity must be distinguished in terms of the kinds of mental computations that effect them: symbolic operations versus memorized idiosyncrasies. A corollary is that complex words are not generally dichotomizable as "regular" or "irregular"; different aspects of a word may be regular or irregular depending on whether they violate the rule for that aspect and hence must be stored in memory.

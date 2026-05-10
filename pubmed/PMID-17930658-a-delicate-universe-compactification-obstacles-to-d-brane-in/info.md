@@ -1,0 +1,14 @@
+# A delicate universe: compactification obstacles to D-brane inflation.
+
+- **PMID**: 17930658
+- **DOI**: 10.1103/PhysRevLett.99.141601
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2007
+- **Authors**: Daniel Baumann, Anatoly Dymarsky, Igor R Klebanov, Liam McAllister, Paul J Steinhardt
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17930658/
+- **Captured**: 2026-05-10T14:00:34
+
+## Abstract
+
+We investigate whether explicit models of warped D-brane inflation are possible in string compactifications. To this end, we study the potential for D3-brane motion in a warped conifold that includes holomorphically embedded D7-branes involved in moduli stabilization. The presence of the D7-branes significantly modifies the inflaton potential. We construct an example based on a very simple and symmetric embedding due to Kuperstein, z1= const, in which it is possible to fine-tune the potential so that slow-roll inflation can occur. The resulting model is rather delicate: inflation occurs in the vicinity of an inflection point, and the cosmological predictions are extremely sensitive to the precise shape of the potential.

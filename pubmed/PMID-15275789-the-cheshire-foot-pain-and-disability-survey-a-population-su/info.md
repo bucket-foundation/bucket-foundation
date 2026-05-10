@@ -1,0 +1,14 @@
+# The Cheshire Foot Pain and Disability Survey: a population survey assessing prevalence and associations.
+
+- **PMID**: 15275789
+- **DOI**: 10.1016/j.pain.2004.04.019
+- **PMCID**:  
+- **Journal**: Pain  ·  **Year**: 2004
+- **Authors**: Adam P Garrow, Alan J Silman, Gary J Macfarlane
+- **MeSH**: Adolescent, Adult, Age Factors, Aged, Aged, 80 and over, Chi-Square Distribution, Cross-Sectional Studies, Disability Evaluation, England, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15275789/
+- **Captured**: 2026-05-10T13:59:00
+
+## Abstract
+
+Previous foot studies have consistently reported high prevalence estimates in self-reported foot disorders. Few population studies, however, have attempted to assess the impact of foot problems in terms of pain and disability so that the burden associated with foot pain is unknown. A cross-sectional postal survey was conducted on a random community sample of 4780 individuals with 3417 (84%) responding. Subjects reporting foot pain in the past month, current pain and marking one item on the Manchester Foot Pain and Disability Index were classified as having disabling foot pain. Those with disabling foot pain and a random sample with no symptoms (matched for age and gender) received a follow-up interview and standardised foot examination. Self-reported nail problems, corns and callosities, swollen feet, foot deformities and recent foot injuries were found to be associated with disabling foot pain. Foot disability was also associated with pain in the shoulder, axial skeleton, hip/upper leg and knee along with other indicators of poor general health. Clinician diagnosed foot problems associated with disabling foot pain were swollen feet, knee and foot joint tenderness. Only 36% of persons with disabling foot pain received professional foot treatment in the 6 months preceding the survey. The results showed that 323/3417 (9.5%) reported symptoms of disabling foot pain and that this condition is likely to be multi-factorial in origin. Further work is necessary to understand more about the extent and type of unmet need and on how patients presenting with symptoms of disabling foot pain should best be managed.

@@ -1,0 +1,14 @@
+# Hyperglycemia-induced beta-cell apoptosis in pancreatic islets of Psammomys obesus during development of diabetes.
+
+- **PMID**: 10102689
+- **DOI**: 10.2337/diabetes.48.4.738
+- **PMCID**:  
+- **Journal**: Diabetes  ·  **Year**: 1999
+- **Authors**: M Y Donath, D J Gross, E Cerasi, N Kaiser
+- **MeSH**: Animals, Apoptosis, Cell Division, Cells, Cultured, DNA Fragmentation, Diabetes Mellitus, Type 2, Female, Gerbillinae, Glucose, Hyperglycemia
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10102689/
+- **Captured**: 2026-05-10T13:57:24
+
+## Abstract
+
+The gerbil Psammomys obesus develops nutrition-dependent diabetes associated with moderate obesity. The disease is characterized by initial hyperinsulinemia, progressing to hypoinsulinemia associated with depleted pancreatic insulin stores. The contribution of changes in beta-cell turnover to insulin deficiency was investigated in vivo during transition to overt diabetes. Normo glycemic diabetes-prone P. obesus animals who were given a high-calorie diet developed hyperglycemia within 4 days, which was found to be associated with a progressive decline in pancreatic insulin content. This was accompanied by a transient increase in beta-cell proliferative activity and by a prolonged increase in the rate of beta-cell death, culminating in disruption of islet architecture. The hypothesis that "glucotoxicity" was responsible for these in vivo changes was investigated in vitro in primary islet cultures. Exposure of islets from diabetes-prone P. obesus to high glucose levels resulted in a dose-dependent increase in beta-cell DNA fragmentation. In contrast, high glucose levels did not induce DNA fragmentation in rat islets, whereas islets from a diabetes-resistant P. obesus line exhibited a reduced and delayed response. Aminoguanidine did not prevent glucose-induced beta-cell DNA fragmentation in vitro, suggesting that formation of nitric oxide and/or advanced glycation end products plays no major role. Elevated glucose concentrations stimulated beta-cell proliferation in both rat and P. obesus islets. However, unlike the marked long-lasting effect in rat islets, only a transient and reduced proliferative response was observed in P. obesus islets; furthermore, beta-cell proliferation was inhibited after prolonged exposure to elevated glucose levels. These results suggest that hyperglycemia-induced beta-cell death coupled with reduced proliferative capacity may contribute to the insulin deficiency and deterioration of glucose homeostasis in P. obesus. Similar adverse effects of hyperglycemia could play a role in the evolution of type 2 diabetes in genetically susceptible individuals.

@@ -1,0 +1,14 @@
+# Justifying and generalizing contrastive divergence.
+
+- **PMID**: 19018704
+- **DOI**: 10.1162/neco.2008.11-07-647
+- **PMCID**:  
+- **Journal**: Neural computation  ·  **Year**: 2009
+- **Authors**: Yoshua Bengio, Olivier Delalleau
+- **MeSH**: Bias, Humans, Learning, Likelihood Functions, Models, Statistical
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19018704/
+- **Captured**: 2026-05-10T14:01:00
+
+## Abstract
+
+We study an expansion of the log likelihood in undirected graphical models such as the restricted Boltzmann machine (RBM), where each term in the expansion is associated with a sample in a Gibbs chain alternating between two random variables (the visible vector and the hidden vector in RBMs). We are particularly interested in estimators of the gradient of the log likelihood obtained through this expansion. We show that its residual term converges to zero, justifying the use of a truncation--running only a short Gibbs chain, which is the main idea behind the contrastive divergence (CD) estimator of the log-likelihood gradient. By truncating even more, we obtain a stochastic reconstruction error, related through a mean-field approximation to the reconstruction error often used to train autoassociators and stacked autoassociators. The derivation is not specific to the particular parametric forms used in RBMs and requires only convergence of the Gibbs chain. We present theoretical and empirical evidence linking the number of Gibbs steps k and the magnitude of the RBM parameters to the bias in the CD estimator. These experiments also suggest that the sign of the CD estimator is correct most of the time, even when the bias is large, so that CD-k is a good descent direction even for small k.

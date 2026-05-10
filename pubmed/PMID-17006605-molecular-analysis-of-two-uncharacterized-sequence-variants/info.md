@@ -1,0 +1,14 @@
+# Molecular analysis of two uncharacterized sequence variants of the VHL gene.
+
+- **PMID**: 17006605
+- **DOI**: 10.1007/s10038-006-0054-9
+- **PMCID**:  
+- **Journal**: Journal of human genetics  ·  **Year**: 2006
+- **Authors**: Maddalena Martella, Leonardo Salviati, Alberto Casarin, Eva Trevisson, Giuseppe Opocher, Roberta Polli, David Gross, Alessandra Murgia
+- **MeSH**: Adolescent, Adult, Alleles, Base Sequence, Child, Exons, Female, Genetic Variation, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17006605/
+- **Captured**: 2026-05-10T13:59:47
+
+## Abstract
+
+Mutations in the VHL gene cause von Hippel-Lindau disease, a cancer predisposing syndrome characterized by a variety of benign and malignant neoplasms. We report the molecular characterization of two sequence variants of the VHL gene: a synonymous substitution c.462 A>C in exon 2 and a duplication of 11 bp in the promoter region (c.-65_-55dup11). The first variant is a pathogenic mutation because, although it does not change the sense of the affected codon, it causes skipping of exon 2 in the affected allele by altering the splicing consensus site at the 3' end of exon 2. The 11 bp duplication represents a nonpathogenic variant. In fact, although it affects a critical region of the VHL promoter, it was found in healthy controls, and we show that carrier individuals express both VHL alleles at equimolar levels. Our data underline the importance of careful evaluation of the potential pathogenicity of sequence variants that may not belong to the obvious disease-causing mutation categories, or that affect relevant regulatory regions. mRNA analysis will be required to ultimately resolve this issue.

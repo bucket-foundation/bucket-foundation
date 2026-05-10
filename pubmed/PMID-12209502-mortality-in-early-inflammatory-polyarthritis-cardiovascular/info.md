@@ -1,0 +1,14 @@
+# Mortality in early inflammatory polyarthritis: cardiovascular mortality is increased in seropositive patients.
+
+- **PMID**: 12209502
+- **DOI**: 10.1002/art.10419
+- **PMCID**:  
+- **Journal**: Arthritis and rheumatism  ·  **Year**: 2002
+- **Authors**: Nicola J Goodson, Nicola J Wiles, Mark Lunt, Elizabeth M Barrett, Alan J Silman, Deborah P M Symmons
+- **MeSH**: Adult, Aged, Arthritis, Cardiovascular Diseases, Cause of Death, Cohort Studies, Female, Humans, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12209502/
+- **Captured**: 2026-05-10T13:58:20
+
+## Abstract
+
+To determine the degree and causes of any excess mortality observed during the early years of inflammatory polyarthritis (IP). Between 1990 and 1994, a total of 1,236 patients were registered with the Norfolk Arthritis Register, a primary care-based inception cohort. All patients were tracked on the National Health Service Central Register for notification of death. The vital status of each patient was determined as of December 31, 1999. Causes of death were coded according to the International Classification of Diseases, Ninth Revision. Expected death rates were calculated using annual death rates for the Norfolk population. Standardized mortality ratios (SMRs) were calculated for all IP patients and for the subgroups of patients who did and did not satisfy the American College of Rheumatology (ACR) 1987 criteria for rheumatoid arthritis (RA) at baseline, as well as for the subgroups who were and were not rheumatoid factor (RF) positive at baseline. By December 31, 1999, 160 patients (13%; 79 women and 81 men) had died. The median duration of followup in the entire cohort was 6.9 years. Mortality rates were not significantly increased in the entire group of patients with IP or in the subgroup who met the ACR 1987 criteria for RA at baseline. In contrast, RF-positive patients had an increased rate of death from all causes (SMR in men 1.51, in women 1.41). Cardiovascular disease was the most common cause of death. The majority of the excess mortality in the RF-positive patients could be attributed to cardiovascular causes (SMR in men 1.34, in women 2.02). Excess mortality in the early years of IP is confined to patients who are seropositive for RF. While excess cardiovascular mortality has been described in patients with established RA, this is the first report of premature death from heart disease in the early years of IP.

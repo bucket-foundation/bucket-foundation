@@ -1,0 +1,14 @@
+# A meta-analysis of prior corticosteroid use and fracture risk.
+
+- **PMID**: 15125788
+- **DOI**: 10.1359/JBMR.040134
+- **PMCID**:  
+- **Journal**: Journal of bone and mineral research : the official journal of the American Society for Bone and Mineral Research  ·  **Year**: 2004
+- **Authors**: John A Kanis, Helena Johansson, Anders Oden, Olof Johnell, Chris de Laet, L Joseph Melton III, Alan Tenenhouse, Jonathan Reeve, Alan J Silman, Huibert A P Pols, John A Eisman, Eugene V McCloskey, Dan Mellstrom
+- **MeSH**: Adrenal Cortex Hormones, Aged, Female, Fractures, Bone, Humans, Male, Middle Aged, Prospective Studies, Risk Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15125788/
+- **Captured**: 2026-05-10T13:58:55
+
+## Abstract
+
+The relationship between use of corticosteroids and fracture risk was estimated in a meta-analysis of data from seven cohort studies of approximately 42,000 men and women. Current and past use of corticosteroids was an important predictor of fracture risk that was independent of prior fracture and BMD. The aims of this study were to validate that corticosteroid use is a significant risk factor for fracture in an international setting and to explore the effects of age and sex on this risk. We studied 42,500 men and women from seven prospectively studied cohorts followed for 176,000 patient-years. The cohorts comprised the EPOS/EVOS study, CaMos, the Rotterdam Study, Dubbo Osteoporosis Epidemiology Study (DOES), and prospective cohorts at Sheffield, Rochester, and Gothenburg. The effect of ever use of corticosteroids, BMD, age, and sex on all fracture, osteoporotic fracture, and hip fracture risk alone was examined using Poisson regression in each cohort and for each sex. The results of the different studies were merged from the weighted beta coefficients. Previous corticosteroid use was associated with a significantly increased risk of any fracture, osteoporotic fracture, and hip fracture when adjusted for BMD. Relative risk of any fracture ranged from 1.98 at the age of 50 years to 1.66 at the age of 85 years. For osteoporotic fracture, the range of relative risk was 2.63-1.71, and for hip fracture 4.42-2.48. The estimate of relative risk was higher at younger ages, but not significantly so. No significant difference in risk was seen between men and women. The risk was marginally and not significantly upwardly adjusted when BMD was excluded from the model. The risk was independent of prior fracture. In the three cohorts that documented current corticosteroid use, BMD was significantly reduced at the femoral neck, but fracture risk was still only partly explained by BMD. We conclude that prior and current exposure to corticosteroids confers an increased risk of fracture that is of substantial importance beyond that explained by the measurement of BMD. Its identification on an international basis validates the use of this risk factor in case-finding strategies.

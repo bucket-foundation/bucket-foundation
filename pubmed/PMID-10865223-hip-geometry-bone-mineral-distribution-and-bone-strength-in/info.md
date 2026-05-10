@@ -1,0 +1,14 @@
+# Hip geometry, bone mineral distribution, and bone strength in European men and women: the EPOS study.
+
+- **PMID**: 10865223
+- **DOI**: 10.1016/s8756-3282(00)00300-8
+- **PMCID**:  
+- **Journal**: Bone  ·  **Year**: 2000
+- **Authors**: N Crabtree, M Lunt, G Holt, H Kröger, H Burger, S Grazio, K T Khaw, R S Lorenc, J Nijs, J Stepan, J A Falch, T Miazgowski, P Raptou, H A Pols, J Dequeker, S Havelka, K Hoszowski, I Jajic, S Czekalski, G Lyritis, A J Silman, J Reeve
+- **MeSH**: Age Factors, Aged, Bone Density, Bone and Bones, Europe, Female, Hip, Humans, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10865223/
+- **Captured**: 2026-05-10T13:57:48
+
+## Abstract
+
+Hip geometry and bone mineral density (BMD) have been shown previously to relate, independently of each other, to risk of hip fracture. We used Lunar DPX "beta" versions of hip strength analysis (HSA) and hip axis length (HAL) software to analyze scans from ten representative age-stratified population samples in the European Prospective Osteoporosis Study (EPOS). All 1617 subjects were >50 years of age, and 1033 were women. The data were modeled with gender and center as categorical variables. The bone mineral density of the upper half of the femoral neck declined at a faster rate with age than that in the lower half. Femoral neck cross-sectional moment of inertia (CSMI), a measure of resistance to bending, showed no significant age reduction in either gender. However, height and weight effects on CSMI were significantly more beneficial in men than in women (0.002 < p < 0.012) and the weight effect appeared to be mediated by bone mineral content (BMC). Compressive stress (Cstress), defined as the stress in the femoral neck at its weakest cross section arising from a standardized fall, was higher in women. Although Cstress increased with body weight when BMC was held constant, in practice it fell through the association and statistical interaction of rising body weight with rising BMC. HAL, as expected, was strongly positively associated with male gender and also height (p < 0.0001). Hip strength-related indices were markedly center-dependent. Significant differences (p < 0.0001) were noted between the centers for all the variables investigated that related to hip geometry. Adjustment for femoral neck bone mineral content (totBMC) showed these center differences to account for >50% of center variation in hip strength, which remained highly significant (p < 0.0001). We conclude that there are substantial geographical differences in femoral neck geometry as well as in BMD. These geometric variations may contribute to the large variations in hip fracture risk across Europe. The effects of aging on hip strength need to be explored in longitudinal studies.
