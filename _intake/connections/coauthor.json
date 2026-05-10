@@ -1,7 +1,9 @@
 {
   "authors": {
+    "A5001105113": "Anton Zeilinger",
     "A5003086136": "Charles Darwin",
     "A5006577293": "Gilbert N. Ling",
+    "A5008120092": "Heinz von Foerster",
     "A5011174214": "Nikola Tesla",
     "A5014616472": "Robert Becker",
     "A5014894861": "Roger Penrose",
@@ -9,21 +11,25 @@
     "A5018806471": "Linus Pauling",
     "A5022077412": "Stephen Wolfram",
     "A5028710914": "Évariste Galois",
+    "A5029209905": "Barbara McClintock",
     "A5031459087": "Ludwig Wittgenstein",
     "A5031733842": "Charles S. Peirce",
     "A5032314927": "David Hilbert",
     "A5032512426": "Edward Witten",
     "A5033047692": "Friedrich Wilhelm Joseph von Schelling",
     "A5033243912": "Lee Smolin",
+    "A5034255098": "Ilya Prigogine",
     "A5037387408": "Gerald H. Pollack",
     "A5037710835": "Richard P. Feynman",
     "A5046285851": "Bernardo Kastrup",
+    "A5046427077": "Alain Aspect",
     "A5047293181": "Edmund Husserl",
     "A5050105545": "Carlo Rovelli",
     "A5050817408": "Gregor Mendel",
     "A5051102175": "Stuart R. Hameroff",
     "A5053202146": "Arthur Schopenhauer",
     "A5055842162": "Henri Poincaré",
+    "A5056934961": "Stewart Brand",
     "A5057454601": "Jacques Monod",
     "A5057870718": "Kurt Gödel",
     "A5061769383": "Friedrich Nietzsche",
@@ -32,13 +38,16 @@
     "A5070371685": "Niels Henrik Abel",
     "A5071105677": "Brian Greene",
     "A5071811098": "Emmy Noether",
+    "A5071978801": "Karl H. Pribram",
     "A5077647332": "Bernhard Riemann",
     "A5078325825": "Federico Faggin",
     "A5078382819": "P. A. M. Dirac",
     "A5079416740": "Lisa Randall",
+    "A5079464744": "Stuart Kauffman",
     "A5081458871": "Otto Warbürg",
     "A5083743331": "Daniel C. Dennett",
     "A5084274787": "Anil K. Seth",
+    "A5084584732": "Rupert Sheldrake",
     "A5086852785": "Karl Friston",
     "A5087928554": "Henry Bergson",
     "A5090241847": "James Clerk Maxwell",
@@ -49,7 +58,11 @@
     "A5108602778": "Fritz-Albert Popp",
     "A5109058842": "W. Heisenberg",
     "A5109290662": "Alfred North Whitehead",
+    "A5109328597": "Walter Pitts",
     "A5109521432": "Albert Szent‐Györgyi",
+    "A5109864068": "Lynn Margulis",
+    "A5110020348": "J. E. Lovelock",
+    "A5110509669": "Warren S. McCulloch",
     "A5110875100": "Georg Wilhelm Friedrich Hegel",
     "A5111402631": "Carl Friedrich Gauß",
     "A5111539205": "Antoine Laurent Lavoisier",
@@ -61,13 +74,20 @@
     "A5112336159": "Søren Kierkegaard",
     "A5112945507": "Aquinas Thomas",
     "A5113439213": "Michael Faraday",
-    "A5113498523": "Carl Gustav Jung"
+    "A5113470548": "Mae‐Wan Ho",
+    "A5113498523": "Carl Gustav Jung",
+    "A5113791974": "Brian Goodwin"
   },
   "pairs": [
     {
-      "a": "Andrew A. Marino",
-      "b": "Robert Becker",
+      "a": "Robert Becker",
+      "b": "Andrew A. Marino",
       "n": 29
+    },
+    {
+      "a": "Walter Pitts",
+      "b": "Warren S. McCulloch",
+      "n": 23
     },
     {
       "a": "Roger Penrose",
@@ -80,9 +100,24 @@
       "n": 12
     },
     {
-      "a": "S. W. Hawking",
-      "b": "Roger Penrose",
+      "a": "J. E. Lovelock",
+      "b": "Lynn Margulis",
+      "n": 12
+    },
+    {
+      "a": "Roger Penrose",
+      "b": "S. W. Hawking",
       "n": 11
+    },
+    {
+      "a": "Stuart Kauffman",
+      "b": "Brian Goodwin",
+      "n": 7
+    },
+    {
+      "a": "Lee Smolin",
+      "b": "Stuart Kauffman",
+      "n": 6
     },
     {
       "a": "Karl Friston",
@@ -90,27 +125,32 @@
       "n": 6
     },
     {
-      "a": "Friedrich Wilhelm Joseph von Schelling",
-      "b": "Georg Wilhelm Friedrich Hegel",
+      "a": "Georg Wilhelm Friedrich Hegel",
+      "b": "Friedrich Wilhelm Joseph von Schelling",
       "n": 5
     },
     {
-      "a": "Charles Darwin",
-      "b": "Alfred Russel Wallace",
+      "a": "Alfred Russel Wallace",
+      "b": "Charles Darwin",
       "n": 4
     },
     {
-      "a": "Martín Heidegger",
-      "b": "Edmund Husserl",
+      "a": "Edmund Husserl",
+      "b": "Martín Heidegger",
       "n": 4
     },
     {
-      "a": "Martín Heidegger",
+      "a": "Fritz-Albert Popp",
+      "b": "Mae‐Wan Ho",
+      "n": 4
+    },
+    {
+      "a": "Edmund Husserl",
       "b": "Maurice Merleau-Ponty",
       "n": 3
     },
     {
-      "a": "Edmund Husserl",
+      "a": "Martín Heidegger",
       "b": "Maurice Merleau-Ponty",
       "n": 3
     },
@@ -135,28 +175,33 @@
       "n": 2
     },
     {
-      "a": "Linus Pauling",
+      "a": "Warren S. McCulloch",
       "b": "Albert Szent‐Györgyi",
       "n": 2
     },
     {
-      "a": "Antoine Laurent Lavoisier",
-      "b": "Michael Faraday",
+      "a": "Albert Szent‐Györgyi",
+      "b": "Linus Pauling",
       "n": 2
     },
     {
-      "a": "S. W. Hawking",
-      "b": "Lee Smolin",
-      "n": 1
+      "a": "Michael Faraday",
+      "b": "Antoine Laurent Lavoisier",
+      "n": 2
     },
     {
-      "a": "Roger Penrose",
-      "b": "Lisa Randall",
+      "a": "Charles S. Peirce",
+      "b": "Heinz von Foerster",
       "n": 1
     },
     {
       "a": "Roger Penrose",
       "b": "Carlo Rovelli",
+      "n": 1
+    },
+    {
+      "a": "Roger Penrose",
+      "b": "Lisa Randall",
       "n": 1
     },
     {
@@ -176,12 +221,32 @@
     },
     {
       "a": "Roger Penrose",
+      "b": "Stuart Kauffman",
+      "n": 1
+    },
+    {
+      "a": "Roger Penrose",
       "b": "Federico Faggin",
       "n": 1
     },
     {
-      "a": "Lisa Randall",
-      "b": "Carlo Rovelli",
+      "a": "S. W. Hawking",
+      "b": "Lee Smolin",
+      "n": 1
+    },
+    {
+      "a": "Stuart R. Hameroff",
+      "b": "Karl H. Pribram",
+      "n": 1
+    },
+    {
+      "a": "Stuart R. Hameroff",
+      "b": "Anton Zeilinger",
+      "n": 1
+    },
+    {
+      "a": "Carlo Rovelli",
+      "b": "Lisa Randall",
       "n": 1
     },
     {
@@ -197,6 +262,11 @@
     {
       "a": "Edward Witten",
       "b": "Lee Smolin",
+      "n": 1
+    },
+    {
+      "a": "Stephen Wolfram",
+      "b": "Stuart Kauffman",
       "n": 1
     },
     {
@@ -225,13 +295,23 @@
       "n": 1
     },
     {
-      "a": "Kurt Gödel",
-      "b": "Alfred North Whitehead",
+      "a": "Alfred North Whitehead",
+      "b": "Kurt Gödel",
       "n": 1
     },
     {
       "a": "Alfred North Whitehead",
       "b": "Ludwig Wittgenstein",
+      "n": 1
+    },
+    {
+      "a": "Brian Goodwin",
+      "b": "Mae‐Wan Ho",
+      "n": 1
+    },
+    {
+      "a": "Brian Goodwin",
+      "b": "Lynn Margulis",
       "n": 1
     },
     {
