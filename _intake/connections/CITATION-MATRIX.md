@@ -11,6 +11,8 @@
 
 | Citer | Cited | Count |
 |---|---|---:|
+| Daniel Kahneman | Amos Tversky | 224 |
+| Amos Tversky | Daniel Kahneman | 159 |
 | Anil K. Seth | Karl Friston | 137 |
 | Yoshua Bengio | Geoffrey E. Hinton | 133 |
 | Yoshua Bengio | Yann LeCun | 101 |
@@ -41,6 +43,7 @@
 | Brian Greene | Andrew Strominger | 27 |
 | Juan Maldacena | S. W. Hawking | 26 |
 | Nima Arkani–Hamed | Edward Witten | 26 |
+| Daniel Kahneman | Herbert A. Simon | 25 |
 | Nima Arkani–Hamed | Steven Weinberg | 23 |
 | Imre Lakatos | Paul K. Feyerabend | 23 |
 | Karl Friston | Geoffrey E. Hinton | 22 |
@@ -52,12 +55,9 @@
 | S. W. Hawking | Roger Penrose | 19 |
 | Andrew Strominger | Juan Maldacena | 18 |
 | Karen Barad | Donna Haraway | 18 |
+| Amos Tversky | Herbert A. Simon | 17 |
 | Demis Hassabis | Yoshua Bengio | 17 |
 | Geoffrey E. Hinton | Ilya Sutskever | 17 |
 | Nima Arkani–Hamed | Juan Maldacena | 17 |
 | Carlo Rovelli | S. W. Hawking | 16 |
 | Juan Maldacena | Cumrun Vafa | 16 |
-| Lisa Randall | Edward Witten | 16 |
-| Karen Barad | N. David Mermin | 15 |
-| Anil K. Seth | Geoffrey E. Hinton | 15 |
-| Nima Arkani–Hamed | Lisa Randall | 15 |

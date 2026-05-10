@@ -1,33 +1,33 @@
 {
-  "generated": "2026-05-10T13:39:14.640642",
+  "generated": "2026-05-10T13:56:25.845278",
   "branch_totals": {
-    "01-mathematics": 1043,
-    "02-physics": 2560,
-    "03-chemistry": 1552,
-    "04-information": 3799,
-    "05-biophysics": 1707,
-    "06-cosmology": 1335,
-    "07-mind": 2763,
-    "08-deep-history": 400,
-    "09-art": 213,
-    "09-sacred-texts": 781
+    "01-mathematics": 1054,
+    "02-physics": 2575,
+    "03-chemistry": 1576,
+    "04-information": 3840,
+    "05-biophysics": 1711,
+    "06-cosmology": 1342,
+    "07-mind": 2806,
+    "08-deep-history": 401,
+    "09-art": 216,
+    "09-sacred-texts": 785
   },
   "bridges": [
     {
       "name": "information",
       "expected": "04-information ↔ 02-physics ↔ 06-cosmology ↔ 07-mind",
-      "total": 2354,
+      "total": 2380,
       "per_branch": {
-        "01-mathematics": 445,
-        "02-physics": 1115,
-        "03-chemistry": 796,
-        "04-information": 1009,
-        "05-biophysics": 457,
-        "06-cosmology": 591,
-        "07-mind": 1184,
+        "01-mathematics": 448,
+        "02-physics": 1117,
+        "03-chemistry": 807,
+        "04-information": 1022,
+        "05-biophysics": 458,
+        "06-cosmology": 592,
+        "07-mind": 1197,
         "08-deep-history": 306,
-        "09-art": 116,
-        "09-sacred-texts": 419
+        "09-art": 117,
+        "09-sacred-texts": 421
       },
       "spans_branches": [
         "01-mathematics",
@@ -45,17 +45,17 @@
     {
       "name": "entropy",
       "expected": "02-physics ↔ 04-information ↔ 06-cosmology",
-      "total": 400,
+      "total": 401,
       "per_branch": {
-        "01-mathematics": 119,
-        "02-physics": 227,
-        "03-chemistry": 97,
+        "01-mathematics": 120,
+        "02-physics": 228,
+        "03-chemistry": 98,
         "04-information": 234,
         "05-biophysics": 115,
-        "06-cosmology": 172,
-        "07-mind": 169,
+        "06-cosmology": 173,
+        "07-mind": 170,
         "08-deep-history": 20,
-        "09-art": 12,
+        "09-art": 13,
         "09-sacred-texts": 21
       },
       "spans_branches": [
@@ -74,18 +74,18 @@
     {
       "name": "symmetry",
       "expected": "01-mathematics ↔ 02-physics ↔ 09-art",
-      "total": 444,
+      "total": 451,
       "per_branch": {
-        "01-mathematics": 181,
-        "02-physics": 256,
-        "03-chemistry": 160,
-        "04-information": 183,
-        "05-biophysics": 73,
-        "06-cosmology": 173,
-        "07-mind": 212,
+        "01-mathematics": 186,
+        "02-physics": 262,
+        "03-chemistry": 164,
+        "04-information": 184,
+        "05-biophysics": 75,
+        "06-cosmology": 177,
+        "07-mind": 219,
         "08-deep-history": 58,
-        "09-art": 35,
-        "09-sacred-texts": 45
+        "09-art": 38,
+        "09-sacred-texts": 46
       },
       "spans_branches": [
         "01-mathematics",
@@ -103,18 +103,18 @@
     {
       "name": "energy",
       "expected": "02-physics ↔ 03-chemistry ↔ 05-biophysics",
-      "total": 1730,
+      "total": 1739,
       "per_branch": {
-        "01-mathematics": 295,
-        "02-physics": 868,
-        "03-chemistry": 463,
-        "04-information": 680,
-        "05-biophysics": 596,
-        "06-cosmology": 489,
-        "07-mind": 705,
+        "01-mathematics": 301,
+        "02-physics": 875,
+        "03-chemistry": 467,
+        "04-information": 682,
+        "05-biophysics": 598,
+        "06-cosmology": 494,
+        "07-mind": 713,
         "08-deep-history": 138,
-        "09-art": 87,
-        "09-sacred-texts": 176
+        "09-art": 90,
+        "09-sacred-texts": 177
       },
       "spans_branches": [
         "01-mathematics",
@@ -132,18 +132,18 @@
     {
       "name": "light",
       "expected": "02-physics ↔ 05-biophysics ↔ 09-sacred-texts",
-      "total": 1911,
+      "total": 1924,
       "per_branch": {
-        "01-mathematics": 374,
-        "02-physics": 998,
-        "03-chemistry": 659,
-        "04-information": 650,
-        "05-biophysics": 604,
-        "06-cosmology": 542,
-        "07-mind": 949,
-        "08-deep-history": 240,
-        "09-art": 100,
-        "09-sacred-texts": 267
+        "01-mathematics": 381,
+        "02-physics": 1007,
+        "03-chemistry": 665,
+        "04-information": 656,
+        "05-biophysics": 606,
+        "06-cosmology": 547,
+        "07-mind": 961,
+        "08-deep-history": 241,
+        "09-art": 103,
+        "09-sacred-texts": 271
       },
       "spans_branches": [
         "01-mathematics",
@@ -161,18 +161,18 @@
     {
       "name": "water",
       "expected": "03-chemistry ↔ 05-biophysics ↔ 09-sacred-texts",
-      "total": 1504,
+      "total": 1507,
       "per_branch": {
         "01-mathematics": 249,
-        "02-physics": 739,
-        "03-chemistry": 488,
-        "04-information": 552,
+        "02-physics": 741,
+        "03-chemistry": 489,
+        "04-information": 554,
         "05-biophysics": 595,
-        "06-cosmology": 397,
-        "07-mind": 646,
+        "06-cosmology": 398,
+        "07-mind": 648,
         "08-deep-history": 152,
         "09-art": 60,
-        "09-sacred-texts": 200
+        "09-sacred-texts": 201
       },
       "spans_branches": [
         "01-mathematics",
@@ -190,18 +190,18 @@
     {
       "name": "time",
       "expected": "02-physics ↔ 06-cosmology ↔ 07-mind ↔ 09-sacred-texts",
-      "total": 3049,
+      "total": 3069,
       "per_branch": {
-        "01-mathematics": 504,
-        "02-physics": 1316,
-        "03-chemistry": 874,
-        "04-information": 964,
-        "05-biophysics": 659,
-        "06-cosmology": 712,
-        "07-mind": 1312,
-        "08-deep-history": 332,
-        "09-art": 134,
-        "09-sacred-texts": 490
+        "01-mathematics": 512,
+        "02-physics": 1325,
+        "03-chemistry": 883,
+        "04-information": 970,
+        "05-biophysics": 663,
+        "06-cosmology": 717,
+        "07-mind": 1326,
+        "08-deep-history": 333,
+        "09-art": 137,
+        "09-sacred-texts": 492
       },
       "spans_branches": [
         "01-mathematics",
@@ -219,18 +219,18 @@
     {
       "name": "consciousness",
       "expected": "07-mind ↔ 05-biophysics ↔ 06-cosmology",
-      "total": 1003,
+      "total": 1011,
       "per_branch": {
-        "01-mathematics": 236,
-        "02-physics": 524,
-        "03-chemistry": 353,
-        "04-information": 418,
+        "01-mathematics": 238,
+        "02-physics": 526,
+        "03-chemistry": 358,
+        "04-information": 422,
         "05-biophysics": 149,
         "06-cosmology": 300,
-        "07-mind": 1003,
-        "08-deep-history": 158,
+        "07-mind": 1011,
+        "08-deep-history": 159,
         "09-art": 81,
-        "09-sacred-texts": 164
+        "09-sacred-texts": 166
       },
       "spans_branches": [
         "01-mathematics",
@@ -248,18 +248,18 @@
     {
       "name": "field",
       "expected": "02-physics ↔ 05-biophysics",
-      "total": 969,
+      "total": 977,
       "per_branch": {
-        "01-mathematics": 251,
-        "02-physics": 589,
-        "03-chemistry": 245,
-        "04-information": 409,
-        "05-biophysics": 378,
-        "06-cosmology": 300,
-        "07-mind": 394,
+        "01-mathematics": 257,
+        "02-physics": 597,
+        "03-chemistry": 249,
+        "04-information": 411,
+        "05-biophysics": 380,
+        "06-cosmology": 305,
+        "07-mind": 402,
         "08-deep-history": 44,
-        "09-art": 26,
-        "09-sacred-texts": 60
+        "09-art": 29,
+        "09-sacred-texts": 61
       },
       "spans_branches": [
         "01-mathematics",
@@ -277,18 +277,18 @@
     {
       "name": "quantum",
       "expected": "02-physics ↔ 05-biophysics ↔ 07-mind ↔ 06-cosmology",
-      "total": 2152,
+      "total": 2162,
       "per_branch": {
-        "01-mathematics": 353,
-        "02-physics": 1251,
-        "03-chemistry": 344,
-        "04-information": 716,
-        "05-biophysics": 428,
-        "06-cosmology": 434,
-        "07-mind": 574,
+        "01-mathematics": 359,
+        "02-physics": 1259,
+        "03-chemistry": 348,
+        "04-information": 720,
+        "05-biophysics": 430,
+        "06-cosmology": 439,
+        "07-mind": 583,
         "08-deep-history": 57,
-        "09-art": 32,
-        "09-sacred-texts": 73
+        "09-art": 35,
+        "09-sacred-texts": 74
       },
       "spans_branches": [
         "01-mathematics",
@@ -306,18 +306,18 @@
     {
       "name": "coherence",
       "expected": "02-physics ↔ 05-biophysics ↔ 07-mind",
-      "total": 762,
+      "total": 766,
       "per_branch": {
-        "01-mathematics": 224,
-        "02-physics": 514,
-        "03-chemistry": 348,
+        "01-mathematics": 225,
+        "02-physics": 515,
+        "03-chemistry": 350,
         "04-information": 338,
         "05-biophysics": 241,
-        "06-cosmology": 260,
-        "07-mind": 510,
-        "08-deep-history": 130,
-        "09-art": 50,
-        "09-sacred-texts": 106
+        "06-cosmology": 261,
+        "07-mind": 514,
+        "08-deep-history": 131,
+        "09-art": 51,
+        "09-sacred-texts": 107
       },
       "spans_branches": [
         "01-mathematics",
@@ -335,17 +335,17 @@
     {
       "name": "observer",
       "expected": "02-physics ↔ 06-cosmology ↔ 07-mind",
-      "total": 1068,
+      "total": 1074,
       "per_branch": {
-        "01-mathematics": 331,
-        "02-physics": 762,
-        "03-chemistry": 445,
-        "04-information": 530,
-        "05-biophysics": 339,
-        "06-cosmology": 405,
-        "07-mind": 674,
+        "01-mathematics": 336,
+        "02-physics": 767,
+        "03-chemistry": 449,
+        "04-information": 531,
+        "05-biophysics": 341,
+        "06-cosmology": 408,
+        "07-mind": 680,
         "08-deep-history": 166,
-        "09-art": 85,
+        "09-art": 88,
         "09-sacred-texts": 179
       },
       "spans_branches": [
@@ -364,17 +364,17 @@
     {
       "name": "emergence",
       "expected": "01-mathematics ↔ 04-information ↔ 05-biophysics ↔ 07-mind",
-      "total": 919,
+      "total": 927,
       "per_branch": {
-        "01-mathematics": 301,
-        "02-physics": 630,
-        "03-chemistry": 472,
-        "04-information": 449,
-        "05-biophysics": 224,
-        "06-cosmology": 368,
-        "07-mind": 671,
+        "01-mathematics": 304,
+        "02-physics": 633,
+        "03-chemistry": 477,
+        "04-information": 453,
+        "05-biophysics": 226,
+        "06-cosmology": 370,
+        "07-mind": 678,
         "08-deep-history": 172,
-        "09-art": 87,
+        "09-art": 90,
         "09-sacred-texts": 182
       },
       "spans_branches": [
@@ -393,15 +393,15 @@
     {
       "name": "infinity",
       "expected": "01-mathematics ↔ 06-cosmology ↔ 07-mind ↔ 09-sacred-texts",
-      "total": 598,
+      "total": 603,
       "per_branch": {
-        "01-mathematics": 259,
-        "02-physics": 436,
-        "03-chemistry": 325,
-        "04-information": 294,
-        "05-biophysics": 97,
-        "06-cosmology": 324,
-        "07-mind": 453,
+        "01-mathematics": 263,
+        "02-physics": 440,
+        "03-chemistry": 327,
+        "04-information": 298,
+        "05-biophysics": 98,
+        "06-cosmology": 326,
+        "07-mind": 457,
         "08-deep-history": 164,
         "09-art": 59,
         "09-sacred-texts": 155
@@ -422,17 +422,17 @@
     {
       "name": "void",
       "expected": "06-cosmology ↔ 07-mind ↔ 09-sacred-texts",
-      "total": 401,
+      "total": 405,
       "per_branch": {
-        "01-mathematics": 149,
-        "02-physics": 289,
-        "03-chemistry": 187,
-        "04-information": 204,
-        "05-biophysics": 76,
-        "06-cosmology": 236,
-        "07-mind": 285,
+        "01-mathematics": 153,
+        "02-physics": 293,
+        "03-chemistry": 190,
+        "04-information": 205,
+        "05-biophysics": 78,
+        "06-cosmology": 239,
+        "07-mind": 289,
         "08-deep-history": 108,
-        "09-art": 47,
+        "09-art": 50,
         "09-sacred-texts": 116
       },
       "spans_branches": [
@@ -451,18 +451,18 @@
     {
       "name": "creation",
       "expected": "06-cosmology ↔ 09-sacred-texts",
-      "total": 941,
+      "total": 948,
       "per_branch": {
-        "01-mathematics": 223,
-        "02-physics": 530,
-        "03-chemistry": 378,
-        "04-information": 326,
-        "05-biophysics": 249,
-        "06-cosmology": 349,
-        "07-mind": 523,
-        "08-deep-history": 192,
+        "01-mathematics": 225,
+        "02-physics": 535,
+        "03-chemistry": 381,
+        "04-information": 329,
+        "05-biophysics": 250,
+        "06-cosmology": 353,
+        "07-mind": 530,
+        "08-deep-history": 193,
         "09-art": 79,
-        "09-sacred-texts": 195
+        "09-sacred-texts": 198
       },
       "spans_branches": [
         "01-mathematics",
@@ -480,18 +480,18 @@
     {
       "name": "mind-matter",
       "expected": "07-mind ↔ 02-physics ↔ 05-biophysics",
-      "total": 126,
+      "total": 130,
       "per_branch": {
-        "01-mathematics": 48,
+        "01-mathematics": 50,
         "02-physics": 92,
-        "03-chemistry": 81,
-        "04-information": 50,
+        "03-chemistry": 85,
+        "04-information": 52,
         "05-biophysics": 15,
         "06-cosmology": 59,
-        "07-mind": 114,
+        "07-mind": 118,
         "08-deep-history": 34,
         "09-art": 10,
-        "09-sacred-texts": 30
+        "09-sacred-texts": 31
       },
       "spans_branches": [
         "01-mathematics",
@@ -538,18 +538,18 @@
     {
       "name": "soul",
       "expected": "07-mind ↔ 09-sacred-texts",
-      "total": 756,
+      "total": 759,
       "per_branch": {
-        "01-mathematics": 166,
-        "02-physics": 362,
-        "03-chemistry": 332,
-        "04-information": 201,
+        "01-mathematics": 167,
+        "02-physics": 364,
+        "03-chemistry": 333,
+        "04-information": 203,
         "05-biophysics": 69,
-        "06-cosmology": 284,
-        "07-mind": 486,
+        "06-cosmology": 286,
+        "07-mind": 489,
         "08-deep-history": 239,
         "09-art": 70,
-        "09-sacred-texts": 346
+        "09-sacred-texts": 348
       },
       "spans_branches": [
         "01-mathematics",
@@ -567,17 +567,17 @@
     {
       "name": "memory",
       "expected": "04-information ↔ 05-biophysics ↔ 07-mind",
-      "total": 538,
+      "total": 545,
       "per_branch": {
-        "01-mathematics": 174,
-        "02-physics": 369,
-        "03-chemistry": 244,
-        "04-information": 339,
-        "05-biophysics": 183,
-        "06-cosmology": 213,
-        "07-mind": 394,
+        "01-mathematics": 175,
+        "02-physics": 371,
+        "03-chemistry": 250,
+        "04-information": 342,
+        "05-biophysics": 184,
+        "06-cosmology": 214,
+        "07-mind": 398,
         "08-deep-history": 91,
-        "09-art": 56,
+        "09-art": 57,
         "09-sacred-texts": 90
       },
       "spans_branches": [
@@ -625,17 +625,17 @@
     {
       "name": "resonance",
       "expected": "02-physics ↔ 05-biophysics ↔ 09-art",
-      "total": 739,
+      "total": 743,
       "per_branch": {
-        "01-mathematics": 122,
-        "02-physics": 342,
-        "03-chemistry": 215,
-        "04-information": 310,
-        "05-biophysics": 265,
-        "06-cosmology": 159,
-        "07-mind": 291,
+        "01-mathematics": 124,
+        "02-physics": 345,
+        "03-chemistry": 216,
+        "04-information": 313,
+        "05-biophysics": 266,
+        "06-cosmology": 161,
+        "07-mind": 294,
         "08-deep-history": 43,
-        "09-art": 35,
+        "09-art": 37,
         "09-sacred-texts": 64
       },
       "spans_branches": [
@@ -683,18 +683,18 @@
     {
       "name": "duality",
       "expected": "01-mathematics ↔ 02-physics ↔ 07-mind",
-      "total": 194,
+      "total": 197,
       "per_branch": {
-        "01-mathematics": 79,
-        "02-physics": 104,
-        "03-chemistry": 69,
+        "01-mathematics": 81,
+        "02-physics": 107,
+        "03-chemistry": 71,
         "04-information": 71,
-        "05-biophysics": 30,
-        "06-cosmology": 94,
-        "07-mind": 102,
+        "05-biophysics": 31,
+        "06-cosmology": 97,
+        "07-mind": 105,
         "08-deep-history": 22,
-        "09-art": 12,
-        "09-sacred-texts": 29
+        "09-art": 13,
+        "09-sacred-texts": 30
       },
       "spans_branches": [
         "01-mathematics",
@@ -712,15 +712,15 @@
     {
       "name": "fractal",
       "expected": "01-mathematics ↔ 05-biophysics ↔ 09-art",
-      "total": 123,
+      "total": 126,
       "per_branch": {
         "01-mathematics": 38,
         "02-physics": 99,
         "03-chemistry": 57,
-        "04-information": 79,
+        "04-information": 80,
         "05-biophysics": 72,
         "06-cosmology": 58,
-        "07-mind": 77,
+        "07-mind": 78,
         "08-deep-history": 3,
         "09-art": 4,
         "09-sacred-texts": 10
@@ -768,15 +768,15 @@
     },
     {
       "author": "Pollack",
-      "total": 319,
+      "total": 321,
       "per_branch": {
-        "01-mathematics": 31,
-        "02-physics": 99,
-        "03-chemistry": 52,
+        "01-mathematics": 32,
+        "02-physics": 100,
+        "03-chemistry": 54,
         "04-information": 80,
-        "05-biophysics": 319,
-        "06-cosmology": 41,
-        "07-mind": 68,
+        "05-biophysics": 321,
+        "06-cosmology": 42,
+        "07-mind": 69,
         "08-deep-history": 16,
         "09-art": 14,
         "09-sacred-texts": 17
@@ -824,18 +824,18 @@
     },
     {
       "author": "Mitchell",
-      "total": 224,
+      "total": 226,
       "per_branch": {
-        "01-mathematics": 59,
+        "01-mathematics": 60,
         "02-physics": 116,
-        "03-chemistry": 106,
-        "04-information": 105,
+        "03-chemistry": 108,
+        "04-information": 106,
         "05-biophysics": 89,
         "06-cosmology": 60,
-        "07-mind": 133,
+        "07-mind": 135,
         "08-deep-history": 30,
         "09-art": 23,
-        "09-sacred-texts": 19
+        "09-sacred-texts": 20
       },
       "spans": [
         "01-mathematics",
@@ -879,17 +879,17 @@
     },
     {
       "author": "Ling",
-      "total": 295,
+      "total": 297,
       "per_branch": {
-        "01-mathematics": 43,
-        "02-physics": 125,
-        "03-chemistry": 77,
-        "04-information": 101,
-        "05-biophysics": 231,
+        "01-mathematics": 44,
+        "02-physics": 126,
+        "03-chemistry": 79,
+        "04-information": 103,
+        "05-biophysics": 233,
         "06-cosmology": 60,
-        "07-mind": 110,
+        "07-mind": 111,
         "08-deep-history": 24,
-        "09-art": 23,
+        "09-art": 24,
         "09-sacred-texts": 40
       },
       "spans": [
@@ -933,18 +933,18 @@
     },
     {
       "author": "Penrose",
-      "total": 153,
+      "total": 157,
       "per_branch": {
-        "01-mathematics": 53,
-        "02-physics": 99,
-        "03-chemistry": 40,
-        "04-information": 91,
-        "05-biophysics": 26,
-        "06-cosmology": 60,
-        "07-mind": 153,
+        "01-mathematics": 55,
+        "02-physics": 102,
+        "03-chemistry": 42,
+        "04-information": 93,
+        "05-biophysics": 27,
+        "06-cosmology": 63,
+        "07-mind": 157,
         "08-deep-history": 9,
         "09-art": 7,
-        "09-sacred-texts": 9
+        "09-sacred-texts": 10
       },
       "spans": [
         "01-mathematics",
@@ -1017,18 +1017,18 @@
     },
     {
       "author": "Russell",
-      "total": 387,
+      "total": 393,
       "per_branch": {
-        "01-mathematics": 170,
-        "02-physics": 255,
-        "03-chemistry": 242,
+        "01-mathematics": 172,
+        "02-physics": 258,
+        "03-chemistry": 245,
         "04-information": 180,
         "05-biophysics": 80,
-        "06-cosmology": 153,
-        "07-mind": 309,
+        "06-cosmology": 155,
+        "07-mind": 314,
         "08-deep-history": 73,
-        "09-art": 39,
-        "09-sacred-texts": 45
+        "09-art": 40,
+        "09-sacred-texts": 46
       },
       "spans": [
         "01-mathematics",
@@ -1073,18 +1073,18 @@
     },
     {
       "author": "Wittgenstein",
-      "total": 137,
+      "total": 141,
       "per_branch": {
-        "01-mathematics": 137,
-        "02-physics": 101,
-        "03-chemistry": 100,
-        "04-information": 54,
+        "01-mathematics": 141,
+        "02-physics": 103,
+        "03-chemistry": 103,
+        "04-information": 57,
         "05-biophysics": 19,
         "06-cosmology": 56,
-        "07-mind": 137,
+        "07-mind": 141,
         "08-deep-history": 44,
         "09-art": 21,
-        "09-sacred-texts": 17
+        "09-sacred-texts": 18
       },
       "spans": [
         "01-mathematics",
@@ -1101,18 +1101,18 @@
     },
     {
       "author": "James",
-      "total": 1277,
+      "total": 1306,
       "per_branch": {
-        "01-mathematics": 262,
-        "02-physics": 545,
-        "03-chemistry": 559,
-        "04-information": 426,
-        "05-biophysics": 173,
-        "06-cosmology": 318,
-        "07-mind": 1277,
-        "08-deep-history": 196,
-        "09-art": 96,
-        "09-sacred-texts": 219
+        "01-mathematics": 269,
+        "02-physics": 552,
+        "03-chemistry": 572,
+        "04-information": 440,
+        "05-biophysics": 174,
+        "06-cosmology": 321,
+        "07-mind": 1306,
+        "08-deep-history": 197,
+        "09-art": 97,
+        "09-sacred-texts": 223
       },
       "spans": [
         "01-mathematics",
@@ -1157,15 +1157,15 @@
     },
     {
       "author": "Husserl",
-      "total": 79,
+      "total": 80,
       "per_branch": {
-        "01-mathematics": 41,
-        "02-physics": 54,
+        "01-mathematics": 42,
+        "02-physics": 55,
         "03-chemistry": 56,
-        "04-information": 27,
+        "04-information": 28,
         "05-biophysics": 17,
         "06-cosmology": 43,
-        "07-mind": 79,
+        "07-mind": 80,
         "08-deep-history": 28,
         "09-art": 13,
         "09-sacred-texts": 12
@@ -1185,17 +1185,17 @@
     },
     {
       "author": "Newton",
-      "total": 261,
+      "total": 265,
       "per_branch": {
-        "01-mathematics": 114,
-        "02-physics": 261,
-        "03-chemistry": 152,
-        "04-information": 155,
-        "05-biophysics": 70,
-        "06-cosmology": 141,
-        "07-mind": 199,
+        "01-mathematics": 117,
+        "02-physics": 265,
+        "03-chemistry": 153,
+        "04-information": 157,
+        "05-biophysics": 71,
+        "06-cosmology": 145,
+        "07-mind": 203,
         "08-deep-history": 58,
-        "09-art": 27,
+        "09-art": 28,
         "09-sacred-texts": 55
       },
       "spans": [
@@ -1213,17 +1213,17 @@
     },
     {
       "author": "Maxwell",
-      "total": 195,
+      "total": 198,
       "per_branch": {
-        "01-mathematics": 77,
-        "02-physics": 195,
-        "03-chemistry": 99,
-        "04-information": 120,
+        "01-mathematics": 79,
+        "02-physics": 198,
+        "03-chemistry": 100,
+        "04-information": 121,
         "05-biophysics": 66,
-        "06-cosmology": 85,
-        "07-mind": 144,
+        "06-cosmology": 86,
+        "07-mind": 146,
         "08-deep-history": 19,
-        "09-art": 10,
+        "09-art": 11,
         "09-sacred-texts": 14
       },
       "spans": [
@@ -1241,18 +1241,18 @@
     },
     {
       "author": "Einstein",
-      "total": 472,
+      "total": 478,
       "per_branch": {
-        "01-mathematics": 143,
-        "02-physics": 472,
-        "03-chemistry": 175,
-        "04-information": 231,
-        "05-biophysics": 203,
-        "06-cosmology": 207,
-        "07-mind": 248,
+        "01-mathematics": 148,
+        "02-physics": 478,
+        "03-chemistry": 177,
+        "04-information": 233,
+        "05-biophysics": 204,
+        "06-cosmology": 211,
+        "07-mind": 254,
         "08-deep-history": 21,
-        "09-art": 10,
-        "09-sacred-texts": 42
+        "09-art": 13,
+        "09-sacred-texts": 43
       },
       "spans": [
         "01-mathematics",
@@ -1269,15 +1269,15 @@
     },
     {
       "author": "Bohr",
-      "total": 83,
+      "total": 84,
       "per_branch": {
-        "01-mathematics": 36,
-        "02-physics": 83,
+        "01-mathematics": 37,
+        "02-physics": 84,
         "03-chemistry": 45,
         "04-information": 49,
         "05-biophysics": 36,
         "06-cosmology": 42,
-        "07-mind": 51,
+        "07-mind": 52,
         "08-deep-history": 7,
         "09-art": 4,
         "09-sacred-texts": 6
@@ -1297,15 +1297,15 @@
     },
     {
       "author": "Schrödinger",
-      "total": 102,
+      "total": 105,
       "per_branch": {
-        "01-mathematics": 43,
-        "02-physics": 102,
+        "01-mathematics": 45,
+        "02-physics": 105,
         "03-chemistry": 41,
-        "04-information": 69,
+        "04-information": 70,
         "05-biophysics": 27,
-        "06-cosmology": 44,
-        "07-mind": 61,
+        "06-cosmology": 45,
+        "07-mind": 63,
         "08-deep-history": 6,
         "09-art": 5,
         "09-sacred-texts": 8
@@ -1325,18 +1325,18 @@
     },
     {
       "author": "Feynman",
-      "total": 144,
+      "total": 146,
       "per_branch": {
-        "01-mathematics": 48,
-        "02-physics": 144,
+        "01-mathematics": 49,
+        "02-physics": 146,
         "03-chemistry": 46,
-        "04-information": 78,
+        "04-information": 79,
         "05-biophysics": 54,
-        "06-cosmology": 55,
-        "07-mind": 72,
+        "06-cosmology": 57,
+        "07-mind": 74,
         "08-deep-history": 6,
         "09-art": 3,
-        "09-sacred-texts": 7
+        "09-sacred-texts": 8
       },
       "spans": [
         "01-mathematics",
@@ -1353,17 +1353,17 @@
     },
     {
       "author": "Hawking",
-      "total": 215,
+      "total": 216,
       "per_branch": {
-        "01-mathematics": 79,
-        "02-physics": 123,
-        "03-chemistry": 68,
+        "01-mathematics": 80,
+        "02-physics": 124,
+        "03-chemistry": 69,
         "04-information": 91,
         "05-biophysics": 34,
-        "06-cosmology": 215,
-        "07-mind": 110,
+        "06-cosmology": 216,
+        "07-mind": 111,
         "08-deep-history": 41,
-        "09-art": 23,
+        "09-art": 24,
         "09-sacred-texts": 36
       },
       "spans": [
@@ -1406,18 +1406,18 @@
     },
     {
       "author": "Pauling",
-      "total": 1384,
+      "total": 1408,
       "per_branch": {
-        "01-mathematics": 329,
-        "02-physics": 617,
-        "03-chemistry": 1384,
-        "04-information": 461,
-        "05-biophysics": 225,
-        "06-cosmology": 368,
-        "07-mind": 809,
+        "01-mathematics": 336,
+        "02-physics": 623,
+        "03-chemistry": 1408,
+        "04-information": 471,
+        "05-biophysics": 229,
+        "06-cosmology": 370,
+        "07-mind": 827,
         "08-deep-history": 218,
-        "09-art": 94,
-        "09-sacred-texts": 193
+        "09-art": 96,
+        "09-sacred-texts": 195
       },
       "spans": [
         "01-mathematics",
@@ -1434,18 +1434,18 @@
     },
     {
       "author": "Darwin",
-      "total": 272,
+      "total": 277,
       "per_branch": {
-        "01-mathematics": 73,
-        "02-physics": 179,
-        "03-chemistry": 125,
-        "04-information": 159,
+        "01-mathematics": 75,
+        "02-physics": 180,
+        "03-chemistry": 128,
+        "04-information": 161,
         "05-biophysics": 84,
         "06-cosmology": 100,
-        "07-mind": 174,
-        "08-deep-history": 33,
+        "07-mind": 179,
+        "08-deep-history": 34,
         "09-art": 28,
-        "09-sacred-texts": 47
+        "09-sacred-texts": 49
       },
       "spans": [
         "01-mathematics",
@@ -1462,15 +1462,15 @@
     },
     {
       "author": "Aristotle",
-      "total": 430,
+      "total": 433,
       "per_branch": {
-        "01-mathematics": 168,
-        "02-physics": 300,
-        "03-chemistry": 286,
-        "04-information": 146,
+        "01-mathematics": 169,
+        "02-physics": 301,
+        "03-chemistry": 287,
+        "04-information": 147,
         "05-biophysics": 39,
         "06-cosmology": 225,
-        "07-mind": 361,
+        "07-mind": 364,
         "08-deep-history": 199,
         "09-art": 58,
         "09-sacred-texts": 136
@@ -1490,18 +1490,18 @@
     },
     {
       "author": "Plato",
-      "total": 769,
+      "total": 773,
       "per_branch": {
-        "01-mathematics": 282,
-        "02-physics": 568,
-        "03-chemistry": 491,
-        "04-information": 304,
+        "01-mathematics": 284,
+        "02-physics": 569,
+        "03-chemistry": 493,
+        "04-information": 306,
         "05-biophysics": 84,
         "06-cosmology": 374,
-        "07-mind": 656,
+        "07-mind": 660,
         "08-deep-history": 271,
         "09-art": 92,
-        "09-sacred-texts": 213
+        "09-sacred-texts": 214
       },
       "spans": [
         "01-mathematics",
@@ -1518,7 +1518,7 @@
     },
     {
       "author": "Augustine",
-      "total": 175,
+      "total": 176,
       "per_branch": {
         "01-mathematics": 68,
         "02-physics": 112,
@@ -1526,10 +1526,10 @@
         "04-information": 57,
         "05-biophysics": 20,
         "06-cosmology": 91,
-        "07-mind": 148,
-        "08-deep-history": 175,
+        "07-mind": 149,
+        "08-deep-history": 176,
         "09-art": 34,
-        "09-sacred-texts": 79
+        "09-sacred-texts": 80
       },
       "spans": [
         "01-mathematics",
