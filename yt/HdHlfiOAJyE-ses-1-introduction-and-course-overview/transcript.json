@@ -1,0 +1,7307 @@
+[
+  {
+    "start": "00:00:00.090",
+    "end": "00:00:02.430",
+    "text": "The following content is provided under a Creative"
+  },
+  {
+    "start": "00:00:02.430",
+    "end": "00:00:03.820",
+    "text": "Commons license."
+  },
+  {
+    "start": "00:00:03.820",
+    "end": "00:00:06.030",
+    "text": "Your support will help MIT OpenCourseWare"
+  },
+  {
+    "start": "00:00:06.030",
+    "end": "00:00:10.120",
+    "text": "continue to offer high quality educational resources for free."
+  },
+  {
+    "start": "00:00:10.120",
+    "end": "00:00:12.690",
+    "text": "To make a donation or to view additional materials"
+  },
+  {
+    "start": "00:00:12.690",
+    "end": "00:00:16.620",
+    "text": "from hundreds of MIT courses, visit MIT OpenCourseWare"
+  },
+  {
+    "start": "00:00:16.620",
+    "end": "00:00:17.820",
+    "text": "at ocw.mit.edu."
+  },
+  {
+    "start": "00:00:26.230",
+    "end": "00:00:29.060",
+    "text": "ANDREW W. LO: So on behalf of the Sloan School"
+  },
+  {
+    "start": "00:00:29.060",
+    "end": "00:00:34.840",
+    "text": "I want to welcome all of you to 15.401 Finance Theory."
+  },
+  {
+    "start": "00:00:34.840",
+    "end": "00:00:40.340",
+    "text": "This course is meant for first year MBA students."
+  },
+  {
+    "start": "00:00:40.340",
+    "end": "00:00:42.280",
+    "text": "And so that's the focus, and I'm going"
+  },
+  {
+    "start": "00:00:42.280",
+    "end": "00:00:46.050",
+    "text": "to assume that that's the background that all of you"
+  },
+  {
+    "start": "00:00:46.050",
+    "end": "00:00:46.990",
+    "text": "will have."
+  },
+  {
+    "start": "00:00:46.990",
+    "end": "00:00:49.640",
+    "text": "We may have a few other students in the class,"
+  },
+  {
+    "start": "00:00:49.640",
+    "end": "00:00:53.020",
+    "text": "but primarily it will be first year MBAs who"
+  },
+  {
+    "start": "00:00:53.020",
+    "end": "00:00:57.280",
+    "text": "are thinking about a career in finance,"
+  },
+  {
+    "start": "00:00:57.280",
+    "end": "00:00:58.780",
+    "text": "as well as those of you who aren't"
+  },
+  {
+    "start": "00:00:58.780",
+    "end": "00:01:02.140",
+    "text": "sure about a career in finance but are curious about it."
+  },
+  {
+    "start": "00:01:02.140",
+    "end": "00:01:05.170",
+    "text": "Hopefully over the next 13 weeks we'll"
+  },
+  {
+    "start": "00:01:05.170",
+    "end": "00:01:08.850",
+    "text": "be able to satisfy that curiosity."
+  },
+  {
+    "start": "00:01:08.850",
+    "end": "00:01:12.090",
+    "text": "I want to start by talking a little bit"
+  },
+  {
+    "start": "00:01:12.090",
+    "end": "00:01:17.940",
+    "text": "about what finance is, and how I got interested in it,"
+  },
+  {
+    "start": "00:01:17.940",
+    "end": "00:01:20.520",
+    "text": "because I think it's often helpful in order"
+  },
+  {
+    "start": "00:01:20.520",
+    "end": "00:01:23.250",
+    "text": "to motivate a subject to get a sense of how"
+  },
+  {
+    "start": "00:01:23.250",
+    "end": "00:01:28.830",
+    "text": "somebody else decided to choose this as a profession."
+  },
+  {
+    "start": "00:01:28.830",
+    "end": "00:01:31.080",
+    "text": "To do that I have to go back a little bit,"
+  },
+  {
+    "start": "00:01:31.080",
+    "end": "00:01:33.910",
+    "text": "and give you some background about"
+  },
+  {
+    "start": "00:01:33.910",
+    "end": "00:01:37.110",
+    "text": "my own educational experiences."
+  },
+  {
+    "start": "00:01:37.110",
+    "end": "00:01:42.270",
+    "text": "So let me start by mentioning that I've"
+  },
+  {
+    "start": "00:01:42.270",
+    "end": "00:01:45.330",
+    "text": "been at MIT for the past 20 years,"
+  },
+  {
+    "start": "00:01:45.330",
+    "end": "00:01:48.540",
+    "text": "and been in the finance group all that time."
+  },
+  {
+    "start": "00:01:48.540",
+    "end": "00:01:51.730",
+    "text": "Before that I taught at the Wharton School for four years."
+  },
+  {
+    "start": "00:01:51.730",
+    "end": "00:01:53.940",
+    "text": "And before that, I got my PhD in economics"
+  },
+  {
+    "start": "00:01:53.940",
+    "end": "00:01:58.230",
+    "text": "from Harvard University, and then graduated in 1980"
+  },
+  {
+    "start": "00:01:58.230",
+    "end": "00:02:02.100",
+    "text": "from Yale also majoring in economics."
+  },
+  {
+    "start": "00:02:02.100",
+    "end": "00:02:06.360",
+    "text": "And during that time I've learned an enormous amount"
+  },
+  {
+    "start": "00:02:06.360",
+    "end": "00:02:09.389",
+    "text": "both about finance and the real world,"
+  },
+  {
+    "start": "00:02:09.389",
+    "end": "00:02:11.970",
+    "text": "but one of the things that I keep coming back to"
+  },
+  {
+    "start": "00:02:11.970",
+    "end": "00:02:15.390",
+    "text": "is the fact that the finance field"
+  },
+  {
+    "start": "00:02:15.390",
+    "end": "00:02:20.460",
+    "text": "is almost unique in how it applies to practical management"
+  },
+  {
+    "start": "00:02:20.460",
+    "end": "00:02:21.880",
+    "text": "problems."
+  },
+  {
+    "start": "00:02:21.880",
+    "end": "00:02:25.260",
+    "text": "And what I want to try to do over the next 13 weeks"
+  },
+  {
+    "start": "00:02:25.260",
+    "end": "00:02:29.010",
+    "text": "is to convince you of the fact that finance"
+  },
+  {
+    "start": "00:02:29.010",
+    "end": "00:02:31.140",
+    "text": "is in fact, the most important subject"
+  },
+  {
+    "start": "00:02:31.140",
+    "end": "00:02:33.420",
+    "text": "that you'll ever encounter."
+  },
+  {
+    "start": "00:02:33.420",
+    "end": "00:02:37.470",
+    "text": "That in fact, finance is at the core of everything"
+  },
+  {
+    "start": "00:02:37.470",
+    "end": "00:02:41.370",
+    "text": "that you will ever do in business and in management."
+  },
+  {
+    "start": "00:02:41.370",
+    "end": "00:02:44.250",
+    "text": "Now that's a tall order I recognize,"
+  },
+  {
+    "start": "00:02:44.250",
+    "end": "00:02:45.780",
+    "text": "and I suspect that some of you are"
+  },
+  {
+    "start": "00:02:45.780",
+    "end": "00:02:49.050",
+    "text": "quite skeptical about the role that finance might play"
+  },
+  {
+    "start": "00:02:49.050",
+    "end": "00:02:50.590",
+    "text": "in your own career objectives."
+  },
+  {
+    "start": "00:02:50.590",
+    "end": "00:02:53.914",
+    "text": "And I know many of you have very different career objectives."
+  },
+  {
+    "start": "00:02:53.914",
+    "end": "00:02:55.830",
+    "text": "And I'm not even trying to convince all of you"
+  },
+  {
+    "start": "00:02:55.830",
+    "end": "00:02:58.260",
+    "text": "to go into a career in finance, but I"
+  },
+  {
+    "start": "00:02:58.260",
+    "end": "00:03:01.800",
+    "text": "am trying to convince all of you that finance is really"
+  },
+  {
+    "start": "00:03:01.800",
+    "end": "00:03:05.250",
+    "text": "the lifeblood and the basic lingua"
+  },
+  {
+    "start": "00:03:05.250",
+    "end": "00:03:07.890",
+    "text": "franca of all of business."
+  },
+  {
+    "start": "00:03:07.890",
+    "end": "00:03:09.870",
+    "text": "And that's one of the reasons why finance"
+  },
+  {
+    "start": "00:03:09.870",
+    "end": "00:03:11.940",
+    "text": "is such an important subject."
+  },
+  {
+    "start": "00:03:11.940",
+    "end": "00:03:14.800",
+    "text": "Now before I begin, let me ask you a question."
+  },
+  {
+    "start": "00:03:14.800",
+    "end": "00:03:20.350",
+    "text": "How many people have had no finance background whatsoever?"
+  },
+  {
+    "start": "00:03:20.350",
+    "end": "00:03:22.150",
+    "text": "Oh, that's great."
+  },
+  {
+    "start": "00:03:22.150",
+    "end": "00:03:25.554",
+    "text": "I look forward to a challenge."
+  },
+  {
+    "start": "00:03:25.554",
+    "end": "00:03:26.970",
+    "text": "But the other reason it's great is"
+  },
+  {
+    "start": "00:03:26.970",
+    "end": "00:03:30.390",
+    "text": "I have to tell you that it's a real privilege for me to be"
+  },
+  {
+    "start": "00:03:30.390",
+    "end": "00:03:34.080",
+    "text": "here in front of you to tell you about finance"
+  },
+  {
+    "start": "00:03:34.080",
+    "end": "00:03:35.190",
+    "text": "for the very first time."
+  },
+  {
+    "start": "00:03:35.190",
+    "end": "00:03:38.190",
+    "text": "And it reminds me a little bit of my younger"
+  },
+  {
+    "start": "00:03:38.190",
+    "end": "00:03:41.259",
+    "text": "son who is an extraordinarily fussy eater,"
+  },
+  {
+    "start": "00:03:41.259",
+    "end": "00:03:42.300",
+    "text": "he's eight years old now."
+  },
+  {
+    "start": "00:03:42.300",
+    "end": "00:03:45.210",
+    "text": "But ever since he was born he had some allergies,"
+  },
+  {
+    "start": "00:03:45.210",
+    "end": "00:03:47.410",
+    "text": "and he just refused to eat most of everything."
+  },
+  {
+    "start": "00:03:47.410",
+    "end": "00:03:51.210",
+    "text": "In fact, my wife often says that my younger son is a vegetarian"
+  },
+  {
+    "start": "00:03:51.210",
+    "end": "00:03:53.550",
+    "text": "except he doesn't eat vegetables."
+  },
+  {
+    "start": "00:03:53.550",
+    "end": "00:03:55.110",
+    "text": "So he's an incredibly fussy eater,"
+  },
+  {
+    "start": "00:03:55.110",
+    "end": "00:03:57.540",
+    "text": "and somehow when he was one year old"
+  },
+  {
+    "start": "00:03:57.540",
+    "end": "00:04:00.870",
+    "text": "he saw my older son eating an ice cream cone,"
+  },
+  {
+    "start": "00:04:00.870",
+    "end": "00:04:03.307",
+    "text": "and figured that that's something he ought to try."
+  },
+  {
+    "start": "00:04:03.307",
+    "end": "00:04:04.890",
+    "text": "How he figured that out, I don't know."
+  },
+  {
+    "start": "00:04:04.890",
+    "end": "00:04:08.520",
+    "text": "But he tasted it for the very first time,"
+  },
+  {
+    "start": "00:04:08.520",
+    "end": "00:04:12.840",
+    "text": "and you could see his face change in about four seconds"
+  },
+  {
+    "start": "00:04:12.840",
+    "end": "00:04:17.490",
+    "text": "from disgust to curiosity to absolute, you know,"
+  },
+  {
+    "start": "00:04:17.490",
+    "end": "00:04:20.760",
+    "text": "enthrallment with the taste and feel of ice cream."
+  },
+  {
+    "start": "00:04:20.760",
+    "end": "00:04:22.334",
+    "text": "He just loved it thereafter."
+  },
+  {
+    "start": "00:04:22.334",
+    "end": "00:04:24.000",
+    "text": "That's one of his major food groups now."
+  },
+  {
+    "start": "00:04:24.000",
+    "end": "00:04:25.560",
+    "text": "It's ice cream."
+  },
+  {
+    "start": "00:04:25.560",
+    "end": "00:04:29.040",
+    "text": "And so I feel privileged to be able to share that experience"
+  },
+  {
+    "start": "00:04:29.040",
+    "end": "00:04:31.999",
+    "text": "here in the sense that once you get a taste of finance,"
+  },
+  {
+    "start": "00:04:31.999",
+    "end": "00:04:33.540",
+    "text": "I think you're going to be incredibly"
+  },
+  {
+    "start": "00:04:33.540",
+    "end": "00:04:35.460",
+    "text": "excited and enthralled by the subject."
+  },
+  {
+    "start": "00:04:35.460",
+    "end": "00:04:37.140",
+    "text": "Because it's one of the few subjects,"
+  },
+  {
+    "start": "00:04:37.140",
+    "end": "00:04:39.900",
+    "text": "in fact, that's the only subject that I've encountered"
+  },
+  {
+    "start": "00:04:39.900",
+    "end": "00:04:43.860",
+    "text": "that is both rigorous, it's extraordinarily"
+  },
+  {
+    "start": "00:04:43.860",
+    "end": "00:04:47.850",
+    "text": "challenging from a research and intellectual perspective,"
+  },
+  {
+    "start": "00:04:47.850",
+    "end": "00:04:51.460",
+    "text": "and at the end of the day it's extremely practical."
+  },
+  {
+    "start": "00:04:51.460",
+    "end": "00:04:53.670",
+    "text": "In fact, I would say it's indispensable"
+  },
+  {
+    "start": "00:04:53.670",
+    "end": "00:04:55.131",
+    "text": "for financial management."
+  },
+  {
+    "start": "00:04:55.131",
+    "end": "00:04:57.630",
+    "text": "So I'm going to try to convince you of that over the next 13"
+  },
+  {
+    "start": "00:04:57.630",
+    "end": "00:05:01.770",
+    "text": "weeks, and I'm going to do that by going over material"
+  },
+  {
+    "start": "00:05:01.770",
+    "end": "00:05:04.515",
+    "text": "that you will find indispensable."
+  },
+  {
+    "start": "00:05:04.515",
+    "end": "00:05:06.390",
+    "text": "As many of you know, at the end of the course"
+  },
+  {
+    "start": "00:05:06.390",
+    "end": "00:05:09.300",
+    "text": "we have a ritual where we hand out teaching ratings."
+  },
+  {
+    "start": "00:05:09.300",
+    "end": "00:05:12.400",
+    "text": "And among the finance faculty, among all the faculty,"
+  },
+  {
+    "start": "00:05:12.400",
+    "end": "00:05:15.210",
+    "text": "we're very concerned about good teaching."
+  },
+  {
+    "start": "00:05:15.210",
+    "end": "00:05:17.670",
+    "text": "So these teaching ratings actually matter."
+  },
+  {
+    "start": "00:05:17.670",
+    "end": "00:05:21.390",
+    "text": "And I've always thought that having a teaching rating"
+  },
+  {
+    "start": "00:05:21.390",
+    "end": "00:05:23.550",
+    "text": "survey at the end of the semester,"
+  },
+  {
+    "start": "00:05:23.550",
+    "end": "00:05:25.320",
+    "text": "is somewhat misguided."
+  },
+  {
+    "start": "00:05:25.320",
+    "end": "00:05:28.020",
+    "text": "What I'd like to do, and what I've proposed"
+  },
+  {
+    "start": "00:05:28.020",
+    "end": "00:05:30.360",
+    "text": "hasn't been adopted yet, I propose"
+  },
+  {
+    "start": "00:05:30.360",
+    "end": "00:05:32.610",
+    "text": "to have teaching ratings submitted five"
+  },
+  {
+    "start": "00:05:32.610",
+    "end": "00:05:35.100",
+    "text": "years after a course is done."
+  },
+  {
+    "start": "00:05:35.100",
+    "end": "00:05:39.270",
+    "text": "Now this may be a problem for some people who aren't"
+  },
+  {
+    "start": "00:05:39.270",
+    "end": "00:05:40.920",
+    "text": "up to speed in the classroom."
+  },
+  {
+    "start": "00:05:40.920",
+    "end": "00:05:43.920",
+    "text": "But the reason I say this is, because it will only"
+  },
+  {
+    "start": "00:05:43.920",
+    "end": "00:05:47.790",
+    "text": "be after you get into your jobs, into your careers,"
+  },
+  {
+    "start": "00:05:47.790",
+    "end": "00:05:51.240",
+    "text": "before you realize how useful finance is."
+  },
+  {
+    "start": "00:05:51.240",
+    "end": "00:05:54.510",
+    "text": "And five years from now, I suspect all of you"
+  },
+  {
+    "start": "00:05:54.510",
+    "end": "00:05:55.950",
+    "text": "will come back and say, gee, this"
+  },
+  {
+    "start": "00:05:55.950",
+    "end": "00:05:58.325",
+    "text": "is one of the most important courses you have ever taken."
+  },
+  {
+    "start": "00:05:58.325",
+    "end": "00:06:01.290",
+    "text": "Not because of me, but because of the substance of what"
+  },
+  {
+    "start": "00:06:01.290",
+    "end": "00:06:03.240",
+    "text": "we're going to cover over the next 13 weeks."
+  },
+  {
+    "start": "00:06:03.240",
+    "end": "00:06:05.460",
+    "text": "It's because of you and all of the work"
+  },
+  {
+    "start": "00:06:05.460",
+    "end": "00:06:08.050",
+    "text": "that you will put into this course."
+  },
+  {
+    "start": "00:06:08.050",
+    "end": "00:06:10.470",
+    "text": "This will be the most challenging course"
+  },
+  {
+    "start": "00:06:10.470",
+    "end": "00:06:11.910",
+    "text": "you will ever love."
+  },
+  {
+    "start": "00:06:11.910",
+    "end": "00:06:14.400",
+    "text": "So I-- stealing from the military--"
+  },
+  {
+    "start": "00:06:14.400",
+    "end": "00:06:16.740",
+    "text": "I think that you'll really appreciate"
+  },
+  {
+    "start": "00:06:16.740",
+    "end": "00:06:20.070",
+    "text": "how the discipline of financial logic"
+  },
+  {
+    "start": "00:06:20.070",
+    "end": "00:06:22.980",
+    "text": "will help you to think smarter about all of your management"
+  },
+  {
+    "start": "00:06:22.980",
+    "end": "00:06:26.312",
+    "text": "decisions no matter what you decide to do with your careers."
+  },
+  {
+    "start": "00:06:26.312",
+    "end": "00:06:27.520",
+    "text": "Now that's a very tall order."
+  },
+  {
+    "start": "00:06:27.520",
+    "end": "00:06:29.080",
+    "text": "I've built up expectations."
+  },
+  {
+    "start": "00:06:29.080",
+    "end": "00:06:31.570",
+    "text": "So I'm going to have to deliver over the next 13 weeks,"
+  },
+  {
+    "start": "00:06:31.570",
+    "end": "00:06:34.070",
+    "text": "and we'll see whether or not we can do that."
+  },
+  {
+    "start": "00:06:34.070",
+    "end": "00:06:37.150",
+    "text": "But let me start now by talking about what"
+  },
+  {
+    "start": "00:06:37.150",
+    "end": "00:06:39.120",
+    "text": "we're going to cover today."
+  },
+  {
+    "start": "00:06:39.120",
+    "end": "00:06:41.940",
+    "text": "I want to start with a little bit of motivation,"
+  },
+  {
+    "start": "00:06:41.940",
+    "end": "00:06:44.430",
+    "text": "and then talk about the dramatis personae."
+  },
+  {
+    "start": "00:06:44.430",
+    "end": "00:06:46.890",
+    "text": "These are the cast of characters that we're"
+  },
+  {
+    "start": "00:06:46.890",
+    "end": "00:06:50.670",
+    "text": "going to be focusing on over the next 13 weeks."
+  },
+  {
+    "start": "00:06:50.670",
+    "end": "00:06:53.400",
+    "text": "And then I'm going to lay out the fundamental challenges"
+  },
+  {
+    "start": "00:06:53.400",
+    "end": "00:06:54.640",
+    "text": "of financial analysis."
+  },
+  {
+    "start": "00:06:54.640",
+    "end": "00:06:58.210",
+    "text": "It turns out there are only two."
+  },
+  {
+    "start": "00:06:58.210",
+    "end": "00:07:01.000",
+    "text": "There are only two challenges in financial analysis,"
+  },
+  {
+    "start": "00:07:01.000",
+    "end": "00:07:03.430",
+    "text": "and once you figure both of those out, you're done."
+  },
+  {
+    "start": "00:07:03.430",
+    "end": "00:07:05.440",
+    "text": "So if by chance you can figure that out"
+  },
+  {
+    "start": "00:07:05.440",
+    "end": "00:07:07.023",
+    "text": "before the end of the class, you don't"
+  },
+  {
+    "start": "00:07:07.023",
+    "end": "00:07:10.160",
+    "text": "need to come back for the rest of the lectures."
+  },
+  {
+    "start": "00:07:10.160",
+    "end": "00:07:13.010",
+    "text": "Then I'm going to turn to providing you"
+  },
+  {
+    "start": "00:07:13.010",
+    "end": "00:07:15.650",
+    "text": "with a framework for thinking about these financial"
+  },
+  {
+    "start": "00:07:15.650",
+    "end": "00:07:16.970",
+    "text": "challenges."
+  },
+  {
+    "start": "00:07:16.970",
+    "end": "00:07:19.910",
+    "text": "To me it's very important to have a framework to start with,"
+  },
+  {
+    "start": "00:07:19.910",
+    "end": "00:07:21.770",
+    "text": "because I like to organize my thoughts"
+  },
+  {
+    "start": "00:07:21.770",
+    "end": "00:07:23.999",
+    "text": "into things that I know and things that I don't know."
+  },
+  {
+    "start": "00:07:23.999",
+    "end": "00:07:26.540",
+    "text": "And of the things that I know, how did it relate to the stuff"
+  },
+  {
+    "start": "00:07:26.540",
+    "end": "00:07:28.790",
+    "text": "that I already knew, or thought I knew."
+  },
+  {
+    "start": "00:07:28.790",
+    "end": "00:07:31.700",
+    "text": "So I want to give you a sense of that kind of framework"
+  },
+  {
+    "start": "00:07:31.700",
+    "end": "00:07:34.340",
+    "text": "to think about financial analysis upfront."
+  },
+  {
+    "start": "00:07:34.340",
+    "end": "00:07:38.230",
+    "text": "You probably won't fully appreciate it at this point,"
+  },
+  {
+    "start": "00:07:38.230",
+    "end": "00:07:42.126",
+    "text": "but sometime over the next 13 weeks you will get it."
+  },
+  {
+    "start": "00:07:42.126",
+    "end": "00:07:43.500",
+    "text": "And so I want to give that to you"
+  },
+  {
+    "start": "00:07:43.500",
+    "end": "00:07:46.410",
+    "text": "so that you can start thinking about it subconsciously,"
+  },
+  {
+    "start": "00:07:46.410",
+    "end": "00:07:48.810",
+    "text": "unconsciously, and then eventually you"
+  },
+  {
+    "start": "00:07:48.810",
+    "end": "00:07:52.640",
+    "text": "will understand how all the pieces fit together."
+  },
+  {
+    "start": "00:07:52.640",
+    "end": "00:07:55.640",
+    "text": "I then want to talk about the importance"
+  },
+  {
+    "start": "00:07:55.640",
+    "end": "00:07:58.250",
+    "text": "of two aspects of financial analysis"
+  },
+  {
+    "start": "00:07:58.250",
+    "end": "00:08:01.400",
+    "text": "that make finance different from every other discipline you"
+  },
+  {
+    "start": "00:08:01.400",
+    "end": "00:08:04.940",
+    "text": "will ever encounter here at MIT and elsewhere."
+  },
+  {
+    "start": "00:08:04.940",
+    "end": "00:08:08.700",
+    "text": "And that is time and risk."
+  },
+  {
+    "start": "00:08:08.700",
+    "end": "00:08:10.500",
+    "text": "Without those two factors it turns out"
+  },
+  {
+    "start": "00:08:10.500",
+    "end": "00:08:13.990",
+    "text": "that finance is actually done."
+  },
+  {
+    "start": "00:08:13.990",
+    "end": "00:08:16.830",
+    "text": "In other words, there's no real research challenges,"
+  },
+  {
+    "start": "00:08:16.830",
+    "end": "00:08:21.810",
+    "text": "no open questions left once you eliminate time and risk."
+  },
+  {
+    "start": "00:08:21.810",
+    "end": "00:08:24.300",
+    "text": "Put in another way, the only reason"
+  },
+  {
+    "start": "00:08:24.300",
+    "end": "00:08:27.180",
+    "text": "that there exists a finance department, and finance"
+  },
+  {
+    "start": "00:08:27.180",
+    "end": "00:08:30.630",
+    "text": "faculty, and finance journals, and a finance industry,"
+  },
+  {
+    "start": "00:08:30.630",
+    "end": "00:08:34.710",
+    "text": "the only reason is because of time and risk."
+  },
+  {
+    "start": "00:08:34.710",
+    "end": "00:08:36.450",
+    "text": "So I'm going to come back to that."
+  },
+  {
+    "start": "00:08:36.450",
+    "end": "00:08:40.710",
+    "text": "Then I'm going to conclude by giving you the six"
+  },
+  {
+    "start": "00:08:40.710",
+    "end": "00:08:42.480",
+    "text": "basic principles of finance."
+  },
+  {
+    "start": "00:08:42.480",
+    "end": "00:08:44.760",
+    "text": "These are principles that you will encounter"
+  },
+  {
+    "start": "00:08:44.760",
+    "end": "00:08:47.730",
+    "text": "in all of your finance courses for the rest of your stay"
+  },
+  {
+    "start": "00:08:47.730",
+    "end": "00:08:49.480",
+    "text": "at MIT and elsewhere."
+  },
+  {
+    "start": "00:08:49.480",
+    "end": "00:08:51.510",
+    "text": "These are the ideas, the fundamental ideas,"
+  },
+  {
+    "start": "00:08:51.510",
+    "end": "00:08:53.010",
+    "text": "that have shaped financial markets"
+  },
+  {
+    "start": "00:08:53.010",
+    "end": "00:08:56.430",
+    "text": "and that are at the root cause of all of the financial market"
+  },
+  {
+    "start": "00:08:56.430",
+    "end": "00:08:59.370",
+    "text": "innovations, as well as all of the financial market crises"
+  },
+  {
+    "start": "00:08:59.370",
+    "end": "00:09:01.740",
+    "text": "that we've seen including what's been going on"
+  },
+  {
+    "start": "00:09:01.740",
+    "end": "00:09:04.290",
+    "text": "over the last several months in the subprime mortgage market."
+  },
+  {
+    "start": "00:09:04.290",
+    "end": "00:09:06.623",
+    "text": "In fact, we're going to talk about the subprime mortgage"
+  },
+  {
+    "start": "00:09:06.623",
+    "end": "00:09:09.360",
+    "text": "problems after we cover fixed income securities."
+  },
+  {
+    "start": "00:09:09.360",
+    "end": "00:09:11.550",
+    "text": "Right now I suspect most of you know"
+  },
+  {
+    "start": "00:09:11.550",
+    "end": "00:09:14.280",
+    "text": "that there's something going on, know that it's bad stuff,"
+  },
+  {
+    "start": "00:09:14.280",
+    "end": "00:09:16.260",
+    "text": "but you don't know why, how, where, when,"
+  },
+  {
+    "start": "00:09:16.260",
+    "end": "00:09:18.160",
+    "text": "and what to do about it."
+  },
+  {
+    "start": "00:09:18.160",
+    "end": "00:09:21.960",
+    "text": "Well, in about five lectures, you will."
+  },
+  {
+    "start": "00:09:21.960",
+    "end": "00:09:25.110",
+    "text": "It's not complicated, but it's different from anything"
+  },
+  {
+    "start": "00:09:25.110",
+    "end": "00:09:26.580",
+    "text": "that you've ever encountered."
+  },
+  {
+    "start": "00:09:26.580",
+    "end": "00:09:28.920",
+    "text": "And in fact, financial analysis, I suspect,"
+  },
+  {
+    "start": "00:09:28.920",
+    "end": "00:09:32.130",
+    "text": "is different from anything most of you have ever encountered."
+  },
+  {
+    "start": "00:09:32.130",
+    "end": "00:09:34.260",
+    "text": "I'm hoping that by the end of the course,"
+  },
+  {
+    "start": "00:09:34.260",
+    "end": "00:09:38.370",
+    "text": "it will change the way you think about everything."
+  },
+  {
+    "start": "00:09:38.370",
+    "end": "00:09:41.160",
+    "text": "And again, I recognize that that's a tall order,"
+  },
+  {
+    "start": "00:09:41.160",
+    "end": "00:09:42.570",
+    "text": "but you tell me 13 weeks from now"
+  },
+  {
+    "start": "00:09:42.570",
+    "end": "00:09:45.240",
+    "text": "whether or not I've delivered."
+  },
+  {
+    "start": "00:09:45.240",
+    "end": "00:09:47.400",
+    "text": "And then I'll conclude by talking about the course"
+  },
+  {
+    "start": "00:09:47.400",
+    "end": "00:09:49.110",
+    "text": "overview, and then finally I want"
+  },
+  {
+    "start": "00:09:49.110",
+    "end": "00:09:51.174",
+    "text": "to say a few words about how as a student"
+  },
+  {
+    "start": "00:09:51.174",
+    "end": "00:09:52.840",
+    "text": "you can get the most out of this course."
+  },
+  {
+    "start": "00:09:52.840",
+    "end": "00:09:56.130",
+    "text": "This is a part of the lecture that I've always"
+  },
+  {
+    "start": "00:09:56.130",
+    "end": "00:09:59.580",
+    "text": "felt is critical at the very start of a course"
+  },
+  {
+    "start": "00:09:59.580",
+    "end": "00:10:02.910",
+    "text": "like this, because there are a number of challenges"
+  },
+  {
+    "start": "00:10:02.910",
+    "end": "00:10:04.950",
+    "text": "that you will face over the next 13"
+  },
+  {
+    "start": "00:10:04.950",
+    "end": "00:10:07.239",
+    "text": "weeks regarding this material."
+  },
+  {
+    "start": "00:10:07.239",
+    "end": "00:10:08.780",
+    "text": "And I've always thought that it would"
+  },
+  {
+    "start": "00:10:08.780",
+    "end": "00:10:12.676",
+    "text": "be helpful for the instructor to let me know where"
+  },
+  {
+    "start": "00:10:12.676",
+    "end": "00:10:14.050",
+    "text": "those challenges might come from,"
+  },
+  {
+    "start": "00:10:14.050",
+    "end": "00:10:16.650",
+    "text": "and what I should do in advance to prepare"
+  },
+  {
+    "start": "00:10:16.650",
+    "end": "00:10:17.580",
+    "text": "for those challenges."
+  },
+  {
+    "start": "00:10:17.580",
+    "end": "00:10:20.950",
+    "text": "So I'm going to do that at the end of this hour and a half."
+  },
+  {
+    "start": "00:10:20.950",
+    "end": "00:10:23.740",
+    "text": "For next time I'd like you to read Brealey and Myers,"
+  },
+  {
+    "start": "00:10:23.740",
+    "end": "00:10:25.660",
+    "text": "chapters one and two."
+  },
+  {
+    "start": "00:10:25.660",
+    "end": "00:10:30.320",
+    "text": "We are going to be covering that today as well as next Monday."
+  },
+  {
+    "start": "00:10:30.320",
+    "end": "00:10:32.710",
+    "text": "So please keep up with your readings."
+  },
+  {
+    "start": "00:10:32.710",
+    "end": "00:10:34.440",
+    "text": "And at the end of this lecture, I"
+  },
+  {
+    "start": "00:10:34.440",
+    "end": "00:10:37.780",
+    "text": "will talk a bit about the course requirements"
+  },
+  {
+    "start": "00:10:37.780",
+    "end": "00:10:41.770",
+    "text": "and other aspects of the course mechanics."
+  },
+  {
+    "start": "00:10:41.770",
+    "end": "00:10:44.990",
+    "text": "Any questions?"
+  },
+  {
+    "start": "00:10:44.990",
+    "end": "00:10:47.300",
+    "text": "All right, let me start with some motivation"
+  },
+  {
+    "start": "00:10:47.300",
+    "end": "00:10:50.000",
+    "text": "about why you might want to study finance"
+  },
+  {
+    "start": "00:10:50.000",
+    "end": "00:10:52.610",
+    "text": "and why finance is so important."
+  },
+  {
+    "start": "00:10:52.610",
+    "end": "00:10:56.570",
+    "text": "And I've always found that with motivation it's really best"
+  },
+  {
+    "start": "00:10:56.570",
+    "end": "00:10:59.210",
+    "text": "to do it in a personal way."
+  },
+  {
+    "start": "00:10:59.210",
+    "end": "00:11:01.640",
+    "text": "That is, to try to find an individual or a group"
+  },
+  {
+    "start": "00:11:01.640",
+    "end": "00:11:05.810",
+    "text": "of individuals that personify a particular discipline"
+  },
+  {
+    "start": "00:11:05.810",
+    "end": "00:11:06.657",
+    "text": "or endeavor."
+  },
+  {
+    "start": "00:11:06.657",
+    "end": "00:11:08.240",
+    "text": "And so there are three people that I'd"
+  },
+  {
+    "start": "00:11:08.240",
+    "end": "00:11:09.920",
+    "text": "like to introduce you to."
+  },
+  {
+    "start": "00:11:09.920",
+    "end": "00:11:13.610",
+    "text": "I suspect you'll know at least two out of the three,"
+  },
+  {
+    "start": "00:11:13.610",
+    "end": "00:11:17.020",
+    "text": "but my guess is you won't know all of them."
+  },
+  {
+    "start": "00:11:17.020",
+    "end": "00:11:18.550",
+    "text": "The first person-- oh, before I do"
+  },
+  {
+    "start": "00:11:18.550",
+    "end": "00:11:21.250",
+    "text": "that, I want to introduce a very simple definition of what"
+  },
+  {
+    "start": "00:11:21.250",
+    "end": "00:11:22.510",
+    "text": "finance is."
+  },
+  {
+    "start": "00:11:22.510",
+    "end": "00:11:23.950",
+    "text": "So this is the very first equation"
+  },
+  {
+    "start": "00:11:23.950",
+    "end": "00:11:25.450",
+    "text": "that you'll ever see in this course,"
+  },
+  {
+    "start": "00:11:25.450",
+    "end": "00:11:27.370",
+    "text": "and there'll be many others of course."
+  },
+  {
+    "start": "00:11:27.370",
+    "end": "00:11:31.870",
+    "text": "But the first expression of exactly what is finance"
+  },
+  {
+    "start": "00:11:31.870",
+    "end": "00:11:37.750",
+    "text": "is this, finance is simply equal to mathematics plus money."
+  },
+  {
+    "start": "00:11:37.750",
+    "end": "00:11:40.480",
+    "text": "Now that suggests that mathematics as a discipline"
+  },
+  {
+    "start": "00:11:40.480",
+    "end": "00:11:42.190",
+    "text": "is equal to finance without the money,"
+  },
+  {
+    "start": "00:11:42.190",
+    "end": "00:11:46.090",
+    "text": "but really that's not my point."
+  },
+  {
+    "start": "00:11:46.090",
+    "end": "00:11:49.630",
+    "text": "Although it's true by the way, that's not my point."
+  },
+  {
+    "start": "00:11:49.630",
+    "end": "00:11:52.150",
+    "text": "My point is that finance is the study,"
+  },
+  {
+    "start": "00:11:52.150",
+    "end": "00:11:56.770",
+    "text": "the systematic and disciplined study of financial transactions"
+  },
+  {
+    "start": "00:11:56.770",
+    "end": "00:11:58.610",
+    "text": "of money."
+  },
+  {
+    "start": "00:11:58.610",
+    "end": "00:12:01.356",
+    "text": "Now when you see this you might think, well, gee,"
+  },
+  {
+    "start": "00:12:01.356",
+    "end": "00:12:03.230",
+    "text": "I don't really have a strong math background."
+  },
+  {
+    "start": "00:12:03.230",
+    "end": "00:12:05.750",
+    "text": "Maybe I'm in the wrong place or the wrong class."
+  },
+  {
+    "start": "00:12:05.750",
+    "end": "00:12:10.670",
+    "text": "And I want to explain to you that that's completely"
+  },
+  {
+    "start": "00:12:10.670",
+    "end": "00:12:14.090",
+    "text": "inaccurate, and inappropriate."
+  },
+  {
+    "start": "00:12:14.090",
+    "end": "00:12:16.610",
+    "text": "When I say mathematics, I'm actually"
+  },
+  {
+    "start": "00:12:16.610",
+    "end": "00:12:20.390",
+    "text": "talking about a very wide range of mathematics."
+  },
+  {
+    "start": "00:12:20.390",
+    "end": "00:12:23.240",
+    "text": "Everything from the extraordinarily"
+  },
+  {
+    "start": "00:12:23.240",
+    "end": "00:12:28.310",
+    "text": "complex and profound to the extremely pedestrian"
+  },
+  {
+    "start": "00:12:28.310",
+    "end": "00:12:29.720",
+    "text": "and obvious."
+  },
+  {
+    "start": "00:12:29.720",
+    "end": "00:12:34.340",
+    "text": "So literally the range from differential geometry"
+  },
+  {
+    "start": "00:12:34.340",
+    "end": "00:12:35.870",
+    "text": "and partial differential equations"
+  },
+  {
+    "start": "00:12:35.870",
+    "end": "00:12:40.430",
+    "text": "on one end of the spectrum to arithmetic and high school"
+  },
+  {
+    "start": "00:12:40.430",
+    "end": "00:12:43.410",
+    "text": "algebra at the other end of the spectrum."
+  },
+  {
+    "start": "00:12:43.410",
+    "end": "00:12:46.340",
+    "text": "Now since this is an introductory finance class,"
+  },
+  {
+    "start": "00:12:46.340",
+    "end": "00:12:48.570",
+    "text": "I assume that you know nothing."
+  },
+  {
+    "start": "00:12:48.570",
+    "end": "00:12:51.120",
+    "text": "What I mean by that is, I assume that there"
+  },
+  {
+    "start": "00:12:51.120",
+    "end": "00:12:54.330",
+    "text": "are no prerequisites that you have other than what it took"
+  },
+  {
+    "start": "00:12:54.330",
+    "end": "00:12:56.370",
+    "text": "for you to get into here, which is"
+  },
+  {
+    "start": "00:12:56.370",
+    "end": "00:12:58.090",
+    "text": "pretty substantial by the way."
+  },
+  {
+    "start": "00:12:58.090",
+    "end": "00:13:01.770",
+    "text": "Congratulations to all of you for getting in."
+  },
+  {
+    "start": "00:13:01.770",
+    "end": "00:13:04.590",
+    "text": "But we're not requiring that you have"
+  },
+  {
+    "start": "00:13:04.590",
+    "end": "00:13:09.540",
+    "text": "any background in quantitative analysis, computers,"
+  },
+  {
+    "start": "00:13:09.540",
+    "end": "00:13:11.220",
+    "text": "upper level mathematics."
+  },
+  {
+    "start": "00:13:11.220",
+    "end": "00:13:15.250",
+    "text": "So when I say finance is equal to mathematics plus money,"
+  },
+  {
+    "start": "00:13:15.250",
+    "end": "00:13:17.320",
+    "text": "there's a variety of kinds of mathematics"
+  },
+  {
+    "start": "00:13:17.320",
+    "end": "00:13:18.910",
+    "text": "that can be appropriate for creating"
+  },
+  {
+    "start": "00:13:18.910",
+    "end": "00:13:23.540",
+    "text": "an extraordinarily profitable career in this industry."
+  },
+  {
+    "start": "00:13:23.540",
+    "end": "00:13:27.100",
+    "text": "And now here are the three examples."
+  },
+  {
+    "start": "00:13:27.100",
+    "end": "00:13:30.478",
+    "text": "Anybody know who James Simons is?"
+  },
+  {
+    "start": "00:13:30.478",
+    "end": "00:13:32.434",
+    "text": "Who is he?"
+  },
+  {
+    "start": "00:13:32.434",
+    "end": "00:13:34.390",
+    "text": "AUDIENCE: Well, I know about Renaissance."
+  },
+  {
+    "start": "00:13:34.390",
+    "end": "00:13:36.640",
+    "text": "ANDREW W. LO: You know about Renaissance Technologies."
+  },
+  {
+    "start": "00:13:36.640",
+    "end": "00:13:39.010",
+    "text": "Do you know what James Simons did before he started"
+  },
+  {
+    "start": "00:13:39.010",
+    "end": "00:13:41.369",
+    "text": "Renaissance Technologies?"
+  },
+  {
+    "start": "00:13:41.369",
+    "end": "00:13:41.868",
+    "text": "Yeah."
+  },
+  {
+    "start": "00:13:41.868",
+    "end": "00:13:43.270",
+    "text": "AUDIENCE: He's a math professor."
+  },
+  {
+    "start": "00:13:43.270",
+    "end": "00:13:46.360",
+    "text": "ANDREW W. LO: He's a math professor, that's right."
+  },
+  {
+    "start": "00:13:46.360",
+    "end": "00:13:49.620",
+    "text": "James Simons is a math professor."
+  },
+  {
+    "start": "00:13:49.620",
+    "end": "00:13:51.100",
+    "text": "Well, was a math professor."
+  },
+  {
+    "start": "00:13:51.100",
+    "end": "00:13:54.520",
+    "text": "In fact, he was quite a well-known math professor."
+  },
+  {
+    "start": "00:13:54.520",
+    "end": "00:13:56.890",
+    "text": "When I first heard of him, it wasn't"
+  },
+  {
+    "start": "00:13:56.890",
+    "end": "00:13:58.510",
+    "text": "because of Renaissance Technologies,"
+  },
+  {
+    "start": "00:13:58.510",
+    "end": "00:14:00.850",
+    "text": "which is a hedge fund that he started"
+  },
+  {
+    "start": "00:14:00.850",
+    "end": "00:14:03.720",
+    "text": "about 15 or 20 years ago."
+  },
+  {
+    "start": "00:14:03.720",
+    "end": "00:14:08.370",
+    "text": "James Simons was a differential geometer who for many years"
+  },
+  {
+    "start": "00:14:08.370",
+    "end": "00:14:10.740",
+    "text": "was the chairman of the math department"
+  },
+  {
+    "start": "00:14:10.740",
+    "end": "00:14:14.240",
+    "text": "at Stony Brook in New York."
+  },
+  {
+    "start": "00:14:14.240",
+    "end": "00:14:20.000",
+    "text": "And he authored with S.S. Chern a particular field of study"
+  },
+  {
+    "start": "00:14:20.000",
+    "end": "00:14:24.020",
+    "text": "in differential geometry called Chern-Simons theory, which"
+  },
+  {
+    "start": "00:14:24.020",
+    "end": "00:14:26.240",
+    "text": "has subsequently proved to be extraordinarily"
+  },
+  {
+    "start": "00:14:26.240",
+    "end": "00:14:30.050",
+    "text": "useful in an area of physics known as string theory."
+  },
+  {
+    "start": "00:14:30.050",
+    "end": "00:14:32.450",
+    "text": "Extraordinarily abstract."
+  },
+  {
+    "start": "00:14:32.450",
+    "end": "00:14:38.520",
+    "text": "And Simon started a hedge fund about 20 years ago."
+  },
+  {
+    "start": "00:14:38.520",
+    "end": "00:14:43.460",
+    "text": "And this is probably the single most successful hedge fund"
+  },
+  {
+    "start": "00:14:43.460",
+    "end": "00:14:47.300",
+    "text": "in the history of the industry in terms of its performance"
+  },
+  {
+    "start": "00:14:47.300",
+    "end": "00:14:48.770",
+    "text": "record."
+  },
+  {
+    "start": "00:14:48.770",
+    "end": "00:14:52.610",
+    "text": "Over the course of 15 or 20 years,"
+  },
+  {
+    "start": "00:14:52.610",
+    "end": "00:14:55.340",
+    "text": "he's put together a track record that has literally"
+  },
+  {
+    "start": "00:14:55.340",
+    "end": "00:14:58.310",
+    "text": "beaten every other hedge fund manager's track"
+  },
+  {
+    "start": "00:14:58.310",
+    "end": "00:14:59.660",
+    "text": "record by a lot."
+  },
+  {
+    "start": "00:14:59.660",
+    "end": "00:15:01.120",
+    "text": "So it's not just a little bit."
+  },
+  {
+    "start": "00:15:01.120",
+    "end": "00:15:02.560",
+    "text": "He's just sort of way out there."
+  },
+  {
+    "start": "00:15:02.560",
+    "end": "00:15:06.530",
+    "text": "He's the Michael Phelps of quantitative investment"
+  },
+  {
+    "start": "00:15:06.530",
+    "end": "00:15:08.060",
+    "text": "strategies."
+  },
+  {
+    "start": "00:15:08.060",
+    "end": "00:15:10.910",
+    "text": "By the way, just to give you a sense of how successful"
+  },
+  {
+    "start": "00:15:10.910",
+    "end": "00:15:13.210",
+    "text": "he has been."
+  },
+  {
+    "start": "00:15:13.210",
+    "end": "00:15:16.750",
+    "text": "In 2006, two years ago, it was reported"
+  },
+  {
+    "start": "00:15:16.750",
+    "end": "00:15:19.330",
+    "text": "by Institutional Investor's Alpha Magazine--"
+  },
+  {
+    "start": "00:15:19.330",
+    "end": "00:15:21.830",
+    "text": "this is a trade publication for the hedge fund industry-- it"
+  },
+  {
+    "start": "00:15:21.830",
+    "end": "00:15:26.680",
+    "text": "was reported that James Simons was the single most highly"
+  },
+  {
+    "start": "00:15:26.680",
+    "end": "00:15:29.200",
+    "text": "paid hedge fund manager that year"
+  },
+  {
+    "start": "00:15:29.200",
+    "end": "00:15:35.055",
+    "text": "with a take-home pay of $1.7 billion."
+  },
+  {
+    "start": "00:15:35.055",
+    "end": "00:15:38.700",
+    "text": "Now, that's not wealth, that's income."
+  },
+  {
+    "start": "00:15:38.700",
+    "end": "00:15:39.595",
+    "text": "That was on his W-2."
+  },
+  {
+    "start": "00:15:42.630",
+    "end": "00:15:45.300",
+    "text": "That was one year's compensation."
+  },
+  {
+    "start": "00:15:45.300",
+    "end": "00:15:47.120",
+    "text": "And he did it--"
+  },
+  {
+    "start": "00:15:47.120",
+    "end": "00:15:50.570",
+    "text": "he did this by building a quantitative investment"
+  },
+  {
+    "start": "00:15:50.570",
+    "end": "00:15:54.680",
+    "text": "management company with 75 PhDs in mathematics, physics,"
+  },
+  {
+    "start": "00:15:54.680",
+    "end": "00:15:57.110",
+    "text": "computer science, and so on."
+  },
+  {
+    "start": "00:15:57.110",
+    "end": "00:16:00.620",
+    "text": "And nobody, nobody knows what he does or how he does it."
+  },
+  {
+    "start": "00:16:00.620",
+    "end": "00:16:03.590",
+    "text": "It's extraordinarily secret."
+  },
+  {
+    "start": "00:16:03.590",
+    "end": "00:16:07.500",
+    "text": "But there's no doubt that he's incredibly successful."
+  },
+  {
+    "start": "00:16:07.500",
+    "end": "00:16:09.740",
+    "text": "So that's one end of the spectrum."
+  },
+  {
+    "start": "00:16:09.740",
+    "end": "00:16:12.680",
+    "text": "That kind of mathematics can make money,"
+  },
+  {
+    "start": "00:16:12.680",
+    "end": "00:16:16.630",
+    "text": "and can be extraordinarily relevant financial analysis."
+  },
+  {
+    "start": "00:16:16.630",
+    "end": "00:16:22.200",
+    "text": "Now at the other end of the spectrum, we have this guy."
+  },
+  {
+    "start": "00:16:22.200",
+    "end": "00:16:25.240",
+    "text": "You may have heard of him, Warren Buffett."
+  },
+  {
+    "start": "00:16:25.240",
+    "end": "00:16:28.630",
+    "text": "He is currently the richest man on earth."
+  },
+  {
+    "start": "00:16:28.630",
+    "end": "00:16:33.040",
+    "text": "In 2008 Forbes ranked him number one in terms of wealth."
+  },
+  {
+    "start": "00:16:33.040",
+    "end": "00:16:38.794",
+    "text": "At the time, February of 2008, he was worth $62 billion."
+  },
+  {
+    "start": "00:16:38.794",
+    "end": "00:16:40.210",
+    "text": "In fact, in a private conversation"
+  },
+  {
+    "start": "00:16:40.210",
+    "end": "00:16:43.990",
+    "text": "I was told that when Simons found out he said, really?"
+  },
+  {
+    "start": "00:16:43.990",
+    "end": "00:16:44.920",
+    "text": "$62 billion?"
+  },
+  {
+    "start": "00:16:44.920",
+    "end": "00:16:45.990",
+    "text": "How did he get that?"
+  },
+  {
+    "start": "00:16:45.990",
+    "end": "00:16:47.350",
+    "text": "It's amazing."
+  },
+  {
+    "start": "00:16:47.350",
+    "end": "00:16:50.320",
+    "text": "That's an extraordinary amount of wealth for an individual"
+  },
+  {
+    "start": "00:16:50.320",
+    "end": "00:16:51.190",
+    "text": "to put together."
+  },
+  {
+    "start": "00:16:51.190",
+    "end": "00:16:54.610",
+    "text": "And what's extraordinary about it, is how he did it."
+  },
+  {
+    "start": "00:16:54.610",
+    "end": "00:16:57.850",
+    "text": "As many of you know Warren Buffett is an investor based"
+  },
+  {
+    "start": "00:16:57.850",
+    "end": "00:17:00.130",
+    "text": "in Omaha, Nebraska."
+  },
+  {
+    "start": "00:17:00.130",
+    "end": "00:17:06.099",
+    "text": "His office is probably smaller than many of the conference"
+  },
+  {
+    "start": "00:17:06.099",
+    "end": "00:17:07.869",
+    "text": "rooms here at Sloan."
+  },
+  {
+    "start": "00:17:07.869",
+    "end": "00:17:10.660",
+    "text": "The number of people he has working for him, I suspect,"
+  },
+  {
+    "start": "00:17:10.660",
+    "end": "00:17:12.160",
+    "text": "is fewer than many of you who have"
+  },
+  {
+    "start": "00:17:12.160",
+    "end": "00:17:14.880",
+    "text": "done your startups or plan to."
+  },
+  {
+    "start": "00:17:14.880",
+    "end": "00:17:17.310",
+    "text": "He's got an extraordinarily small staff."
+  },
+  {
+    "start": "00:17:17.310",
+    "end": "00:17:19.200",
+    "text": "Mainly it's Charlie Munger and him,"
+  },
+  {
+    "start": "00:17:19.200",
+    "end": "00:17:22.170",
+    "text": "and a couple of secretaries, and maybe"
+  },
+  {
+    "start": "00:17:22.170",
+    "end": "00:17:27.140",
+    "text": "a few accountants here and there, and lawyers of course."
+  },
+  {
+    "start": "00:17:27.140",
+    "end": "00:17:33.800",
+    "text": "But what he does is to read company prospectuses, income"
+  },
+  {
+    "start": "00:17:33.800",
+    "end": "00:17:35.930",
+    "text": "statements, balance sheets."
+  },
+  {
+    "start": "00:17:35.930",
+    "end": "00:17:39.920",
+    "text": "And with literally high school arithmetic"
+  },
+  {
+    "start": "00:17:39.920",
+    "end": "00:17:43.890",
+    "text": "he's built this incredible investment empire"
+  },
+  {
+    "start": "00:17:43.890",
+    "end": "00:17:46.200",
+    "text": "by looking at valuation."
+  },
+  {
+    "start": "00:17:46.200",
+    "end": "00:17:47.560",
+    "text": "Simple accounting."
+  },
+  {
+    "start": "00:17:47.560",
+    "end": "00:17:50.220",
+    "text": "Now I say simple accounting, but there's nothing simple"
+  },
+  {
+    "start": "00:17:50.220",
+    "end": "00:17:52.420",
+    "text": "about what he does."
+  },
+  {
+    "start": "00:17:52.420",
+    "end": "00:17:55.860",
+    "text": "And so clearly he has certain skills"
+  },
+  {
+    "start": "00:17:55.860",
+    "end": "00:17:58.380",
+    "text": "that also involve mathematics, but not"
+  },
+  {
+    "start": "00:17:58.380",
+    "end": "00:18:02.230",
+    "text": "the kind of mathematics that James Simons uses."
+  },
+  {
+    "start": "00:18:02.230",
+    "end": "00:18:04.330",
+    "text": "And finally, the third individual"
+  },
+  {
+    "start": "00:18:04.330",
+    "end": "00:18:08.830",
+    "text": "that I'd like to introduce you to is this fellow, Jack Welch."
+  },
+  {
+    "start": "00:18:08.830",
+    "end": "00:18:11.650",
+    "text": "Now again, many of you know him or know of him."
+  },
+  {
+    "start": "00:18:11.650",
+    "end": "00:18:14.900",
+    "text": "You know that he actually teaches a course here at Sloan."
+  },
+  {
+    "start": "00:18:14.900",
+    "end": "00:18:19.250",
+    "text": "But you may not know that his PhD was actually"
+  },
+  {
+    "start": "00:18:19.250",
+    "end": "00:18:21.400",
+    "text": "in engineering."
+  },
+  {
+    "start": "00:18:21.400",
+    "end": "00:18:25.090",
+    "text": "And he started out at General Electric in 1960."
+  },
+  {
+    "start": "00:18:25.090",
+    "end": "00:18:32.840",
+    "text": "Became CEO in 1981, and at that time the revenues"
+  },
+  {
+    "start": "00:18:32.840",
+    "end": "00:18:35.480",
+    "text": "of General Electric was about $26 billion a year."
+  },
+  {
+    "start": "00:18:35.480",
+    "end": "00:18:39.790",
+    "text": "So it was already a big and successful company."
+  },
+  {
+    "start": "00:18:39.790",
+    "end": "00:18:43.000",
+    "text": "And Jack Welch took it over in 1981."
+  },
+  {
+    "start": "00:18:43.000",
+    "end": "00:18:47.470",
+    "text": "At the time there were 400,000 employees for General Electric."
+  },
+  {
+    "start": "00:18:47.470",
+    "end": "00:18:50.950",
+    "text": "Five years later, there were 300,000 employees"
+  },
+  {
+    "start": "00:18:50.950",
+    "end": "00:18:52.180",
+    "text": "at General Electric."
+  },
+  {
+    "start": "00:18:52.180",
+    "end": "00:18:53.666",
+    "text": "He eliminated 100,000 jobs."
+  },
+  {
+    "start": "00:18:53.666",
+    "end": "00:18:56.290",
+    "text": "That's one of the reasons why he developed the nickname Neutron"
+  },
+  {
+    "start": "00:18:56.290",
+    "end": "00:18:59.260",
+    "text": "Jack, because like a neutron bomb,"
+  },
+  {
+    "start": "00:18:59.260",
+    "end": "00:19:03.290",
+    "text": "he eliminated a huge segment of the population."
+  },
+  {
+    "start": "00:19:03.290",
+    "end": "00:19:08.020",
+    "text": "But five years later with 300,000 employees,"
+  },
+  {
+    "start": "00:19:08.020",
+    "end": "00:19:10.720",
+    "text": "he increased the market value of General Electric"
+  },
+  {
+    "start": "00:19:10.720",
+    "end": "00:19:12.370",
+    "text": "by several fold."
+  },
+  {
+    "start": "00:19:12.370",
+    "end": "00:19:17.410",
+    "text": "And at the end of his tenure in 2001, 20 years later,"
+  },
+  {
+    "start": "00:19:17.410",
+    "end": "00:19:21.330",
+    "text": "General Electric's revenues was not $26 billion,"
+  },
+  {
+    "start": "00:19:21.330",
+    "end": "00:19:23.530",
+    "text": "it was $130 billion."
+  },
+  {
+    "start": "00:19:23.530",
+    "end": "00:19:26.770",
+    "text": "He increased it by a factor of 4 and 1/2"
+  },
+  {
+    "start": "00:19:26.770",
+    "end": "00:19:28.720",
+    "text": "over the course of 20 years."
+  },
+  {
+    "start": "00:19:28.720",
+    "end": "00:19:30.940",
+    "text": "It's an extraordinary accomplishment"
+  },
+  {
+    "start": "00:19:30.940",
+    "end": "00:19:32.960",
+    "text": "for an individual."
+  },
+  {
+    "start": "00:19:32.960",
+    "end": "00:19:35.170",
+    "text": "Now why do I put him up here?"
+  },
+  {
+    "start": "00:19:35.170",
+    "end": "00:19:37.270",
+    "text": "It's because one of the things that Welch"
+  },
+  {
+    "start": "00:19:37.270",
+    "end": "00:19:39.020",
+    "text": "did at General Electric, one of the things"
+  },
+  {
+    "start": "00:19:39.020",
+    "end": "00:19:42.080",
+    "text": "that he was extraordinarily good at, was making"
+  },
+  {
+    "start": "00:19:42.080",
+    "end": "00:19:44.830",
+    "text": "good decisions about investments, making"
+  },
+  {
+    "start": "00:19:44.830",
+    "end": "00:19:49.180",
+    "text": "good decisions about costs, being able to understand"
+  },
+  {
+    "start": "00:19:49.180",
+    "end": "00:19:52.960",
+    "text": "the language of finance despite the fact"
+  },
+  {
+    "start": "00:19:52.960",
+    "end": "00:19:56.810",
+    "text": "that he used none of his PhD skills in his job."
+  },
+  {
+    "start": "00:19:56.810",
+    "end": "00:20:00.110",
+    "text": "He was an engineer by training, not a manager."
+  },
+  {
+    "start": "00:20:00.110",
+    "end": "00:20:02.680",
+    "text": "He didn't go to management school,"
+  },
+  {
+    "start": "00:20:02.680",
+    "end": "00:20:05.410",
+    "text": "although he did a lot of executive education"
+  },
+  {
+    "start": "00:20:05.410",
+    "end": "00:20:09.120",
+    "text": "after his PhD."
+  },
+  {
+    "start": "00:20:09.120",
+    "end": "00:20:11.640",
+    "text": "The reason that I give you these three cast of characters"
+  },
+  {
+    "start": "00:20:11.640",
+    "end": "00:20:16.110",
+    "text": "is because they are so different in what they do."
+  },
+  {
+    "start": "00:20:16.110",
+    "end": "00:20:18.450",
+    "text": "They have such different backgrounds."
+  },
+  {
+    "start": "00:20:18.450",
+    "end": "00:20:21.270",
+    "text": "They're all extraordinarily successful,"
+  },
+  {
+    "start": "00:20:21.270",
+    "end": "00:20:23.690",
+    "text": "but there's one thing in common."
+  },
+  {
+    "start": "00:20:23.690",
+    "end": "00:20:28.410",
+    "text": "The thing in common is that they all understand innately,"
+  },
+  {
+    "start": "00:20:28.410",
+    "end": "00:20:32.250",
+    "text": "deeply, fundamentally, the language of finance."
+  },
+  {
+    "start": "00:20:32.250",
+    "end": "00:20:34.980",
+    "text": "And what we're going to cover over the next 13 weeks,"
+  },
+  {
+    "start": "00:20:34.980",
+    "end": "00:20:36.150",
+    "text": "are the very basics."
+  },
+  {
+    "start": "00:20:36.150",
+    "end": "00:20:37.680",
+    "text": "Things that they take for granted."
+  },
+  {
+    "start": "00:20:37.680",
+    "end": "00:20:43.030",
+    "text": "Things that they use on a daily basis to do their jobs."
+  },
+  {
+    "start": "00:20:43.030",
+    "end": "00:20:45.540",
+    "text": "So it's not to say that if you do well in this course"
+  },
+  {
+    "start": "00:20:45.540",
+    "end": "00:20:48.240",
+    "text": "you'll end up being one of these guys,"
+  },
+  {
+    "start": "00:20:48.240",
+    "end": "00:20:51.720",
+    "text": "but it's certainly a prerequisite I would say."
+  },
+  {
+    "start": "00:20:51.720",
+    "end": "00:20:54.450",
+    "text": "There's nobody that's been successful in business,"
+  },
+  {
+    "start": "00:20:54.450",
+    "end": "00:20:58.290",
+    "text": "truly successful, without having an understanding, at least"
+  },
+  {
+    "start": "00:20:58.290",
+    "end": "00:21:00.780",
+    "text": "an innate or instinctive understanding,"
+  },
+  {
+    "start": "00:21:00.780",
+    "end": "00:21:03.780",
+    "text": "of the concepts that we're going to cover over the next 13"
+  },
+  {
+    "start": "00:21:03.780",
+    "end": "00:21:04.950",
+    "text": "weeks."
+  },
+  {
+    "start": "00:21:04.950",
+    "end": "00:21:06.150",
+    "text": "So to me, that's exciting."
+  },
+  {
+    "start": "00:21:06.150",
+    "end": "00:21:10.200",
+    "text": "Now again, I'm not trying to motivate you by greed."
+  },
+  {
+    "start": "00:21:10.200",
+    "end": "00:21:12.450",
+    "text": "I'd rather motivate you by the intellectual challenge"
+  },
+  {
+    "start": "00:21:12.450",
+    "end": "00:21:15.090",
+    "text": "of finance, and there will be some extraordinarily"
+  },
+  {
+    "start": "00:21:15.090",
+    "end": "00:21:16.800",
+    "text": "challenging ideas."
+  },
+  {
+    "start": "00:21:16.800",
+    "end": "00:21:21.510",
+    "text": "Ideas that are not natural for any of you at this point,"
+  },
+  {
+    "start": "00:21:21.510",
+    "end": "00:21:24.780",
+    "text": "but which I hope will be very natural"
+  },
+  {
+    "start": "00:21:24.780",
+    "end": "00:21:27.960",
+    "text": "at the end of this 13 weeks."
+  },
+  {
+    "start": "00:21:27.960",
+    "end": "00:21:30.960",
+    "text": "So let me start with the cast of characters"
+  },
+  {
+    "start": "00:21:30.960",
+    "end": "00:21:35.270",
+    "text": "that we're going to be studying over the next 13 weeks."
+  },
+  {
+    "start": "00:21:35.270",
+    "end": "00:21:38.950",
+    "text": "There are going to be four components of the economy"
+  },
+  {
+    "start": "00:21:38.950",
+    "end": "00:21:40.200",
+    "text": "that we're going to focus on."
+  },
+  {
+    "start": "00:21:40.200",
+    "end": "00:21:41.950",
+    "text": "Now this is a flow diagram of the economy."
+  },
+  {
+    "start": "00:21:41.950",
+    "end": "00:21:44.560",
+    "text": "Since we're at MIT we have to have flow diagrams"
+  },
+  {
+    "start": "00:21:44.560",
+    "end": "00:21:46.030",
+    "text": "at some point, right?"
+  },
+  {
+    "start": "00:21:46.030",
+    "end": "00:21:49.900",
+    "text": "So here's my version of a flow diagram."
+  },
+  {
+    "start": "00:21:49.900",
+    "end": "00:21:51.850",
+    "text": "This is a flow model of the economy,"
+  },
+  {
+    "start": "00:21:51.850",
+    "end": "00:21:54.220",
+    "text": "and there are four components that"
+  },
+  {
+    "start": "00:21:54.220",
+    "end": "00:21:55.990",
+    "text": "comprise the financial system."
+  },
+  {
+    "start": "00:21:55.990",
+    "end": "00:21:59.560",
+    "text": "Households, financial intermediaries,"
+  },
+  {
+    "start": "00:21:59.560",
+    "end": "00:22:04.060",
+    "text": "non-financial corporations, and then capital markets."
+  },
+  {
+    "start": "00:22:04.060",
+    "end": "00:22:06.150",
+    "text": "Now obviously the economy is comprised"
+  },
+  {
+    "start": "00:22:06.150",
+    "end": "00:22:09.270",
+    "text": "of additional components like labor markets and product"
+  },
+  {
+    "start": "00:22:09.270",
+    "end": "00:22:10.595",
+    "text": "markets."
+  },
+  {
+    "start": "00:22:10.595",
+    "end": "00:22:11.970",
+    "text": "We're not going to focus on that."
+  },
+  {
+    "start": "00:22:11.970",
+    "end": "00:22:14.178",
+    "text": "Although there are certain financial aspects of those"
+  },
+  {
+    "start": "00:22:14.178",
+    "end": "00:22:15.370",
+    "text": "markets."
+  },
+  {
+    "start": "00:22:15.370",
+    "end": "00:22:17.790",
+    "text": "Given that we only have 13 weeks,"
+  },
+  {
+    "start": "00:22:17.790",
+    "end": "00:22:21.180",
+    "text": "our attention will be spent on those four components,"
+  },
+  {
+    "start": "00:22:21.180",
+    "end": "00:22:24.090",
+    "text": "and I'm going to cover each of those four components,"
+  },
+  {
+    "start": "00:22:24.090",
+    "end": "00:22:27.671",
+    "text": "both in parallel and to a certain degree sequentially,"
+  },
+  {
+    "start": "00:22:27.671",
+    "end": "00:22:28.170",
+    "text": "all right?"
+  },
+  {
+    "start": "00:22:28.170",
+    "end": "00:22:30.246",
+    "text": "So I want you to be familiar with these four,"
+  },
+  {
+    "start": "00:22:30.246",
+    "end": "00:22:31.620",
+    "text": "because we're going to be talking"
+  },
+  {
+    "start": "00:22:31.620",
+    "end": "00:22:35.490",
+    "text": "about them interchangeably at various points in time."
+  },
+  {
+    "start": "00:22:35.490",
+    "end": "00:22:39.000",
+    "text": "Financial analysis applies to all of these components"
+  },
+  {
+    "start": "00:22:39.000",
+    "end": "00:22:40.780",
+    "text": "in exactly the same way."
+  },
+  {
+    "start": "00:22:40.780",
+    "end": "00:22:43.320",
+    "text": "But once you apply them to the specific context,"
+  },
+  {
+    "start": "00:22:43.320",
+    "end": "00:22:46.350",
+    "text": "the terminology may change, the particular applications"
+  },
+  {
+    "start": "00:22:46.350",
+    "end": "00:22:47.430",
+    "text": "may look different."
+  },
+  {
+    "start": "00:22:47.430",
+    "end": "00:22:49.920",
+    "text": "What I'm going to try to teach you in this 13 weeks"
+  },
+  {
+    "start": "00:22:49.920",
+    "end": "00:22:52.170",
+    "text": "is the underpinning theories that"
+  },
+  {
+    "start": "00:22:52.170",
+    "end": "00:22:55.710",
+    "text": "unify all of the various different kinds of ideas."
+  },
+  {
+    "start": "00:22:55.710",
+    "end": "00:22:57.690",
+    "text": "So these are the four components that we're"
+  },
+  {
+    "start": "00:22:57.690",
+    "end": "00:23:01.510",
+    "text": "going to be looking at from now and then."
+  },
+  {
+    "start": "00:23:01.510",
+    "end": "00:23:03.510",
+    "text": "Now let me talk about the fundamental challenges"
+  },
+  {
+    "start": "00:23:03.510",
+    "end": "00:23:04.009",
+    "text": "of finance."
+  },
+  {
+    "start": "00:23:04.009",
+    "end": "00:23:06.970",
+    "text": "I told you that there are only two, right?"
+  },
+  {
+    "start": "00:23:06.970",
+    "end": "00:23:08.590",
+    "text": "And here they are."
+  },
+  {
+    "start": "00:23:08.590",
+    "end": "00:23:11.374",
+    "text": "There are two aspects of financial analysis"
+  },
+  {
+    "start": "00:23:11.374",
+    "end": "00:23:12.790",
+    "text": "that we're going to be focused on."
+  },
+  {
+    "start": "00:23:12.790",
+    "end": "00:23:17.500",
+    "text": "The first is the valuation of assets."
+  },
+  {
+    "start": "00:23:20.140",
+    "end": "00:23:26.170",
+    "text": "And the second is very simply the management of assets."
+  },
+  {
+    "start": "00:23:26.170",
+    "end": "00:23:27.040",
+    "text": "That's it."
+  },
+  {
+    "start": "00:23:27.040",
+    "end": "00:23:29.090",
+    "text": "That's all there is to it."
+  },
+  {
+    "start": "00:23:29.090",
+    "end": "00:23:33.017",
+    "text": "Valuing and managing."
+  },
+  {
+    "start": "00:23:33.017",
+    "end": "00:23:34.850",
+    "text": "And I can tell you exactly what the managing"
+  },
+  {
+    "start": "00:23:34.850",
+    "end": "00:23:37.100",
+    "text": "part is going to look like."
+  },
+  {
+    "start": "00:23:37.100",
+    "end": "00:23:40.910",
+    "text": "Managing is going to involve figuring out which of two"
+  },
+  {
+    "start": "00:23:40.910",
+    "end": "00:23:44.172",
+    "text": "possibilities is more valuable."
+  },
+  {
+    "start": "00:23:44.172",
+    "end": "00:23:45.130",
+    "text": "And then you know what?"
+  },
+  {
+    "start": "00:23:45.130",
+    "end": "00:23:47.350",
+    "text": "You take the more valuable option."
+  },
+  {
+    "start": "00:23:47.350",
+    "end": "00:23:48.430",
+    "text": "That's it."
+  },
+  {
+    "start": "00:23:48.430",
+    "end": "00:23:50.820",
+    "text": "That's all there is to it."
+  },
+  {
+    "start": "00:23:50.820",
+    "end": "00:23:55.670",
+    "text": "Figuring out the value, that's going to be challenging."
+  },
+  {
+    "start": "00:23:55.670",
+    "end": "00:23:59.210",
+    "text": "So we're going to take that first challenge"
+  },
+  {
+    "start": "00:23:59.210",
+    "end": "00:24:03.290",
+    "text": "to start with, and try to understand valuation."
+  },
+  {
+    "start": "00:24:03.290",
+    "end": "00:24:04.910",
+    "text": "I'm going to argue that all business"
+  },
+  {
+    "start": "00:24:04.910",
+    "end": "00:24:07.970",
+    "text": "decisions, any kind of business decision,"
+  },
+  {
+    "start": "00:24:07.970",
+    "end": "00:24:10.010",
+    "text": "involves those two challenges."
+  },
+  {
+    "start": "00:24:10.010",
+    "end": "00:24:14.750",
+    "text": "Valuing something, and then once you value it,"
+  },
+  {
+    "start": "00:24:14.750",
+    "end": "00:24:20.180",
+    "text": "make a decision on what you want to do with that value."
+  },
+  {
+    "start": "00:24:20.180",
+    "end": "00:24:21.740",
+    "text": "This is why I've argued that finance"
+  },
+  {
+    "start": "00:24:21.740",
+    "end": "00:24:24.281",
+    "text": "is the most important subject, because literally any business"
+  },
+  {
+    "start": "00:24:24.281",
+    "end": "00:24:26.270",
+    "text": "decision that you will ever engage in,"
+  },
+  {
+    "start": "00:24:26.270",
+    "end": "00:24:27.860",
+    "text": "constitutes those two components."
+  },
+  {
+    "start": "00:24:27.860",
+    "end": "00:24:31.710",
+    "text": "Valuation and management."
+  },
+  {
+    "start": "00:24:31.710",
+    "end": "00:24:36.570",
+    "text": "Now valuation is going to be a challenge by itself,"
+  },
+  {
+    "start": "00:24:36.570",
+    "end": "00:24:40.060",
+    "text": "because it's not at all clear what value we're talking about."
+  },
+  {
+    "start": "00:24:40.060",
+    "end": "00:24:43.980",
+    "text": "In other words, what is value?"
+  },
+  {
+    "start": "00:24:43.980",
+    "end": "00:24:46.090",
+    "text": "Is water valuable?"
+  },
+  {
+    "start": "00:24:46.090",
+    "end": "00:24:47.920",
+    "text": "Well, life can't be sustained without it."
+  },
+  {
+    "start": "00:24:47.920",
+    "end": "00:24:50.140",
+    "text": "At least carbon based forms of life."
+  },
+  {
+    "start": "00:24:50.140",
+    "end": "00:24:52.640",
+    "text": "So water is pretty valuable."
+  },
+  {
+    "start": "00:24:52.640",
+    "end": "00:24:54.650",
+    "text": "But water is not that expensive."
+  },
+  {
+    "start": "00:24:54.650",
+    "end": "00:24:58.140",
+    "text": "At least before Poland Springs came along."
+  },
+  {
+    "start": "00:24:58.140",
+    "end": "00:24:59.190",
+    "text": "Now what about diamonds?"
+  },
+  {
+    "start": "00:24:59.190",
+    "end": "00:25:03.000",
+    "text": "As far as I know, humans do not need diamonds to survive,"
+  },
+  {
+    "start": "00:25:03.000",
+    "end": "00:25:06.240",
+    "text": "and yet diamonds are extraordinarily expensive."
+  },
+  {
+    "start": "00:25:06.240",
+    "end": "00:25:10.060",
+    "text": "There are certain gems that are invaluable."
+  },
+  {
+    "start": "00:25:10.060",
+    "end": "00:25:11.510",
+    "text": "Now how can that be?"
+  },
+  {
+    "start": "00:25:11.510",
+    "end": "00:25:14.300",
+    "text": "Clearly we have to think more carefully"
+  },
+  {
+    "start": "00:25:14.300",
+    "end": "00:25:17.720",
+    "text": "about what we mean by value."
+  },
+  {
+    "start": "00:25:17.720",
+    "end": "00:25:20.840",
+    "text": "And of course, once value is established then"
+  },
+  {
+    "start": "00:25:20.840",
+    "end": "00:25:24.130",
+    "text": "management is relatively easy to do."
+  },
+  {
+    "start": "00:25:24.130",
+    "end": "00:25:28.690",
+    "text": "Objectives plus valuations obviously leads to decisions."
+  },
+  {
+    "start": "00:25:28.690",
+    "end": "00:25:31.310",
+    "text": "So once you tell me what you're trying to achieve,"
+  },
+  {
+    "start": "00:25:31.310",
+    "end": "00:25:33.340",
+    "text": "and then you value all the various different"
+  },
+  {
+    "start": "00:25:33.340",
+    "end": "00:25:36.640",
+    "text": "possibilities, then I can tell you what the right decision is."
+  },
+  {
+    "start": "00:25:36.640",
+    "end": "00:25:40.330",
+    "text": "Pick the decision that is the most valuable for achieving"
+  },
+  {
+    "start": "00:25:40.330",
+    "end": "00:25:43.470",
+    "text": "the objectives that you want."
+  },
+  {
+    "start": "00:25:43.470",
+    "end": "00:25:45.680",
+    "text": "Now that doesn't really help a lot"
+  },
+  {
+    "start": "00:25:45.680",
+    "end": "00:25:49.010",
+    "text": "if we can't apply this to specific contexts,"
+  },
+  {
+    "start": "00:25:49.010",
+    "end": "00:25:52.414",
+    "text": "and come up with specific value."
+  },
+  {
+    "start": "00:25:52.414",
+    "end": "00:25:54.080",
+    "text": "So I want to hammer this home, and to do"
+  },
+  {
+    "start": "00:25:54.080",
+    "end": "00:25:58.820",
+    "text": "that I want to talk about how it is that financial markets helps"
+  },
+  {
+    "start": "00:25:58.820",
+    "end": "00:26:03.260",
+    "text": "us establish value through the price discovery mechanism."
+  },
+  {
+    "start": "00:26:03.260",
+    "end": "00:26:06.760",
+    "text": "And to do that, I am going to do a simple demonstration."
+  },
+  {
+    "start": "00:26:06.760",
+    "end": "00:26:09.410",
+    "text": "Now when I was growing up I went to one"
+  },
+  {
+    "start": "00:26:09.410",
+    "end": "00:26:11.070",
+    "text": "of these specialized high schools"
+  },
+  {
+    "start": "00:26:11.070",
+    "end": "00:26:12.070",
+    "text": "that focused on science."
+  },
+  {
+    "start": "00:26:12.070",
+    "end": "00:26:14.570",
+    "text": "So we were always getting these various different kinds"
+  },
+  {
+    "start": "00:26:14.570",
+    "end": "00:26:19.287",
+    "text": "of neat demonstrations of the Tesla kind of coil."
+  },
+  {
+    "start": "00:26:19.287",
+    "end": "00:26:21.620",
+    "text": "I've always been very jealous of these science teachers,"
+  },
+  {
+    "start": "00:26:21.620",
+    "end": "00:26:23.750",
+    "text": "because they have these cool demonstrations that we"
+  },
+  {
+    "start": "00:26:23.750",
+    "end": "00:26:25.130",
+    "text": "in finance don't."
+  },
+  {
+    "start": "00:26:25.130",
+    "end": "00:26:28.140",
+    "text": "So I've developed a little demonstration of my own."
+  },
+  {
+    "start": "00:26:28.140",
+    "end": "00:26:30.770",
+    "text": "It's a simple one that has to do with the price discovery"
+  },
+  {
+    "start": "00:26:30.770",
+    "end": "00:26:32.840",
+    "text": "mechanism, and because I teach two sections,"
+  },
+  {
+    "start": "00:26:32.840",
+    "end": "00:26:34.010",
+    "text": "I'm going to have to make it a little bit more"
+  },
+  {
+    "start": "00:26:34.010",
+    "end": "00:26:35.240",
+    "text": "involved than normally."
+  },
+  {
+    "start": "00:26:35.240",
+    "end": "00:26:37.190",
+    "text": "So I need two volunteers."
+  },
+  {
+    "start": "00:26:37.190",
+    "end": "00:26:38.562",
+    "text": "The first volunteer-- thank you."
+  },
+  {
+    "start": "00:26:38.562",
+    "end": "00:26:40.520",
+    "text": "I'd like you to take these two pieces of paper,"
+  },
+  {
+    "start": "00:26:40.520",
+    "end": "00:26:42.050",
+    "text": "these are blank pieces of paper."
+  },
+  {
+    "start": "00:26:42.050",
+    "end": "00:26:45.432",
+    "text": "On one of them write heads, and the other write tails."
+  },
+  {
+    "start": "00:26:45.432",
+    "end": "00:26:47.390",
+    "text": "And then place them face down, and shuffle them"
+  },
+  {
+    "start": "00:26:47.390",
+    "end": "00:26:50.010",
+    "text": "so you don't know which is which."
+  },
+  {
+    "start": "00:26:50.010",
+    "end": "00:26:54.400",
+    "text": "And I need another volunteer who has a coin that they can flip,"
+  },
+  {
+    "start": "00:26:54.400",
+    "end": "00:26:55.340",
+    "text": "because-- thank you."
+  },
+  {
+    "start": "00:26:55.340",
+    "end": "00:26:57.557",
+    "text": "So as soon as he's done, I'm going"
+  },
+  {
+    "start": "00:26:57.557",
+    "end": "00:26:58.640",
+    "text": "to ask you to flip a coin."
+  },
+  {
+    "start": "00:26:58.640",
+    "end": "00:26:59.690",
+    "text": "Do you have a coin by the way?"
+  },
+  {
+    "start": "00:26:59.690",
+    "end": "00:27:00.314",
+    "text": "AUDIENCE: Yeah."
+  },
+  {
+    "start": "00:27:00.314",
+    "end": "00:27:01.920",
+    "text": "ANDREW W. LO: OK."
+  },
+  {
+    "start": "00:27:01.920",
+    "end": "00:27:04.510",
+    "text": "I have two items here."
+  },
+  {
+    "start": "00:27:04.510",
+    "end": "00:27:07.050",
+    "text": "One of which is going to be auctioned off in this section,"
+  },
+  {
+    "start": "00:27:07.050",
+    "end": "00:27:08.800",
+    "text": "and the other is going to be auctioned off"
+  },
+  {
+    "start": "00:27:08.800",
+    "end": "00:27:09.830",
+    "text": "in the later section."
+  },
+  {
+    "start": "00:27:09.830",
+    "end": "00:27:11.830",
+    "text": "And since I don't know what your preferences are"
+  },
+  {
+    "start": "00:27:11.830",
+    "end": "00:27:14.360",
+    "text": "for one or the other, I want to randomize this"
+  },
+  {
+    "start": "00:27:14.360",
+    "end": "00:27:18.580",
+    "text": "so that there's no chance that I favor one section or the other."
+  },
+  {
+    "start": "00:27:18.580",
+    "end": "00:27:19.780",
+    "text": "So are you done with that?"
+  },
+  {
+    "start": "00:27:19.780",
+    "end": "00:27:20.530",
+    "text": "You shuffled them."
+  },
+  {
+    "start": "00:27:20.530",
+    "end": "00:27:21.610",
+    "text": "You don't know which is which."
+  },
+  {
+    "start": "00:27:21.610",
+    "end": "00:27:23.818",
+    "text": "OK, I'd like you to take these two face down, and put"
+  },
+  {
+    "start": "00:27:23.818",
+    "end": "00:27:25.990",
+    "text": "one in front of one of these packages,"
+  },
+  {
+    "start": "00:27:25.990",
+    "end": "00:27:29.800",
+    "text": "and the other in front of the other face down as well."
+  },
+  {
+    "start": "00:27:29.800",
+    "end": "00:27:33.169",
+    "text": "While you do that, can you go ahead and flip your coin?"
+  },
+  {
+    "start": "00:27:33.169",
+    "end": "00:27:34.710",
+    "text": "And as soon as he puts that on there,"
+  },
+  {
+    "start": "00:27:34.710",
+    "end": "00:27:37.320",
+    "text": "I want you to tell me whether you flipped heads or tails."
+  },
+  {
+    "start": "00:27:37.320",
+    "end": "00:27:40.140",
+    "text": "And based upon that, the particular object"
+  },
+  {
+    "start": "00:27:40.140",
+    "end": "00:27:44.940",
+    "text": "that is chosen will be auctioned off in this particular section."
+  },
+  {
+    "start": "00:27:44.940",
+    "end": "00:27:45.540",
+    "text": "OK, go ahead."
+  },
+  {
+    "start": "00:27:45.540",
+    "end": "00:27:46.754",
+    "text": "What have you got?"
+  },
+  {
+    "start": "00:27:46.754",
+    "end": "00:27:47.420",
+    "text": "AUDIENCE: Tails."
+  },
+  {
+    "start": "00:27:47.420",
+    "end": "00:27:48.630",
+    "text": "ANDREW W. LO: Tails, OK."
+  },
+  {
+    "start": "00:27:48.630",
+    "end": "00:27:50.310",
+    "text": "So tails."
+  },
+  {
+    "start": "00:27:50.310",
+    "end": "00:27:53.850",
+    "text": "This is heads, and this is tails."
+  },
+  {
+    "start": "00:27:53.850",
+    "end": "00:27:56.647",
+    "text": "So here is the item that I'm going to auction off."
+  },
+  {
+    "start": "00:27:56.647",
+    "end": "00:27:58.480",
+    "text": "Before I do that, I'm going to ask somebody."
+  },
+  {
+    "start": "00:27:58.480",
+    "end": "00:28:01.760",
+    "text": "Anybody know what's in here?"
+  },
+  {
+    "start": "00:28:01.760",
+    "end": "00:28:03.290",
+    "text": "Nobody knows what's in that box?"
+  },
+  {
+    "start": "00:28:05.549",
+    "end": "00:28:07.090",
+    "text": "Well, what do you think its value is?"
+  },
+  {
+    "start": "00:28:09.750",
+    "end": "00:28:12.550",
+    "text": "Zero?"
+  },
+  {
+    "start": "00:28:12.550",
+    "end": "00:28:15.049",
+    "text": "Negative?"
+  },
+  {
+    "start": "00:28:15.049",
+    "end": "00:28:16.090",
+    "text": "Can't be negative, right?"
+  },
+  {
+    "start": "00:28:16.090",
+    "end": "00:28:17.630",
+    "text": "There's limited liabilities."
+  },
+  {
+    "start": "00:28:17.630",
+    "end": "00:28:20.500",
+    "text": "You can't owe me for something that's in there."
+  },
+  {
+    "start": "00:28:20.500",
+    "end": "00:28:21.250",
+    "text": "So good."
+  },
+  {
+    "start": "00:28:21.250",
+    "end": "00:28:22.750",
+    "text": "We've established some information."
+  },
+  {
+    "start": "00:28:22.750",
+    "end": "00:28:25.210",
+    "text": "There's a zero lower bound."
+  },
+  {
+    "start": "00:28:25.210",
+    "end": "00:28:28.634",
+    "text": "Well, I don't know what the value is."
+  },
+  {
+    "start": "00:28:28.634",
+    "end": "00:28:31.050",
+    "text": "So what we're going to do is we're going to figure it out."
+  },
+  {
+    "start": "00:28:31.050",
+    "end": "00:28:35.130",
+    "text": "Rather, you're going to figure it out."
+  },
+  {
+    "start": "00:28:35.130",
+    "end": "00:28:38.210",
+    "text": "I'm going to auction this off, and now this is for real."
+  },
+  {
+    "start": "00:28:38.210",
+    "end": "00:28:44.690",
+    "text": "So don't bid if you can't pay me, and by the way,"
+  },
+  {
+    "start": "00:28:44.690",
+    "end": "00:28:47.810",
+    "text": "I expect to be paid in cash."
+  },
+  {
+    "start": "00:28:47.810",
+    "end": "00:28:49.100",
+    "text": "All right?"
+  },
+  {
+    "start": "00:28:49.100",
+    "end": "00:28:50.280",
+    "text": "So I'm serious."
+  },
+  {
+    "start": "00:28:50.280",
+    "end": "00:28:51.650",
+    "text": "This is a serious game."
+  },
+  {
+    "start": "00:28:51.650",
+    "end": "00:28:53.150",
+    "text": "So if you don't want to participate,"
+  },
+  {
+    "start": "00:28:53.150",
+    "end": "00:28:55.280",
+    "text": "you're not prepared to pay me in cash at the end"
+  },
+  {
+    "start": "00:28:55.280",
+    "end": "00:28:57.320",
+    "text": "of this lecture, do not bid."
+  },
+  {
+    "start": "00:28:57.320",
+    "end": "00:28:58.970",
+    "text": "All right?"
+  },
+  {
+    "start": "00:28:58.970",
+    "end": "00:29:01.370",
+    "text": "OK, I'm going to open it up."
+  },
+  {
+    "start": "00:29:01.370",
+    "end": "00:29:04.204",
+    "text": "Anybody want to start bidding for this item?"
+  },
+  {
+    "start": "00:29:04.204",
+    "end": "00:29:04.970",
+    "text": "AUDIENCE: $1."
+  },
+  {
+    "start": "00:29:04.970",
+    "end": "00:29:06.310",
+    "text": "ANDREW W. LO: $1."
+  },
+  {
+    "start": "00:29:06.310",
+    "end": "00:29:07.230",
+    "text": "AUDIENCE: Three."
+  },
+  {
+    "start": "00:29:07.230",
+    "end": "00:29:08.766",
+    "text": "ANDREW W. LO: $3."
+  },
+  {
+    "start": "00:29:08.766",
+    "end": "00:29:09.662",
+    "text": "AUDIENCE: $4."
+  },
+  {
+    "start": "00:29:09.662",
+    "end": "00:29:10.427",
+    "text": "AUDIENCE: Four."
+  },
+  {
+    "start": "00:29:10.427",
+    "end": "00:29:11.010",
+    "text": "AUDIENCE: Six."
+  },
+  {
+    "start": "00:29:11.010",
+    "end": "00:29:12.185",
+    "text": "ANDREW W. LO: Six."
+  },
+  {
+    "start": "00:29:12.185",
+    "end": "00:29:12.810",
+    "text": "AUDIENCE: Five."
+  },
+  {
+    "start": "00:29:12.810",
+    "end": "00:29:15.650",
+    "text": "ANDREW W. LO: All right, $6 is the high bid."
+  },
+  {
+    "start": "00:29:15.650",
+    "end": "00:29:17.650",
+    "text": "Can't do that."
+  },
+  {
+    "start": "00:29:17.650",
+    "end": "00:29:20.250",
+    "text": "All right, $6 is the high bid."
+  },
+  {
+    "start": "00:29:20.250",
+    "end": "00:29:21.547",
+    "text": "AUDIENCE: Ten."
+  },
+  {
+    "start": "00:29:22.130",
+    "end": "00:29:22.879",
+    "text": "ANDREW W. LO: Ten."
+  },
+  {
+    "start": "00:29:22.879",
+    "end": "00:29:23.940",
+    "text": "OK, we got two tens here."
+  },
+  {
+    "start": "00:29:23.940",
+    "end": "00:29:24.731",
+    "text": "You were the first."
+  },
+  {
+    "start": "00:29:24.731",
+    "end": "00:29:25.650",
+    "text": "So that's your bid."
+  },
+  {
+    "start": "00:29:25.650",
+    "end": "00:29:27.834",
+    "text": "Your bid is the high bid. $10."
+  },
+  {
+    "start": "00:29:27.834",
+    "end": "00:29:28.640",
+    "text": "AUDIENCE: 20."
+  },
+  {
+    "start": "00:29:28.640",
+    "end": "00:29:29.390",
+    "text": "ANDREW W. LO: 20."
+  },
+  {
+    "start": "00:29:29.390",
+    "end": "00:29:30.490",
+    "text": "We have 20."
+  },
+  {
+    "start": "00:29:30.490",
+    "end": "00:29:31.034",
+    "text": "Wow!"
+  },
+  {
+    "start": "00:29:31.034",
+    "end": "00:29:31.950",
+    "text": "AUDIENCE: High roller."
+  },
+  {
+    "start": "00:29:31.950",
+    "end": "00:29:33.120",
+    "text": "ANDREW W. LO: $20."
+  },
+  {
+    "start": "00:29:33.120",
+    "end": "00:29:36.120",
+    "text": "You do see that this package is smaller than this one, right?"
+  },
+  {
+    "start": "00:29:36.120",
+    "end": "00:29:38.250",
+    "text": "It's a tiny little thing. $20."
+  },
+  {
+    "start": "00:29:38.250",
+    "end": "00:29:39.030",
+    "text": "AUDIENCE: 30."
+  },
+  {
+    "start": "00:29:39.030",
+    "end": "00:29:41.610",
+    "text": "ANDREW W. LO: $30."
+  },
+  {
+    "start": "00:29:43.680",
+    "end": "00:29:45.280",
+    "text": "High bid."
+  },
+  {
+    "start": "00:29:45.280",
+    "end": "00:29:46.986",
+    "text": "Any more than $30?"
+  },
+  {
+    "start": "00:29:46.986",
+    "end": "00:29:48.690",
+    "text": "AUDIENCE: Can I ask a question, please?"
+  },
+  {
+    "start": "00:29:48.690",
+    "end": "00:29:49.934",
+    "text": "ANDREW W. LO: Yes."
+  },
+  {
+    "start": "00:29:49.934",
+    "end": "00:29:51.260",
+    "text": "AUDIENCE: Where does the money-- who gets it?"
+  },
+  {
+    "start": "00:29:51.260",
+    "end": "00:29:52.510",
+    "text": "ANDREW W. LO: I get the money."
+  },
+  {
+    "start": "00:29:52.510",
+    "end": "00:29:53.820",
+    "text": "That's a great question."
+  },
+  {
+    "start": "00:29:55.020",
+    "end": "00:29:56.720",
+    "text": "This is going to go to the foundation"
+  },
+  {
+    "start": "00:29:56.720",
+    "end": "00:29:59.810",
+    "text": "to support Andrew Lo."
+  },
+  {
+    "start": "00:29:59.810",
+    "end": "00:30:00.680",
+    "text": "I'm the charity."
+  },
+  {
+    "start": "00:30:00.680",
+    "end": "00:30:02.930",
+    "text": "So this is not a charity auction."
+  },
+  {
+    "start": "00:30:02.930",
+    "end": "00:30:04.700",
+    "text": "This is going to go to me."
+  },
+  {
+    "start": "00:30:04.700",
+    "end": "00:30:06.860",
+    "text": "By the way, I paid for these items."
+  },
+  {
+    "start": "00:30:06.860",
+    "end": "00:30:10.054",
+    "text": "So that's why it's going to go to reimburse my teaching costs."
+  },
+  {
+    "start": "00:30:10.054",
+    "end": "00:30:11.970",
+    "text": "AUDIENCE: It's going to ice cream, [INAUDIBLE]"
+  },
+  {
+    "start": "00:30:11.970",
+    "end": "00:30:12.890",
+    "text": "ANDREW W. LO: Right."
+  },
+  {
+    "start": "00:30:12.890",
+    "end": "00:30:15.040",
+    "text": "OK, $30 high bid."
+  },
+  {
+    "start": "00:30:15.040",
+    "end": "00:30:18.790",
+    "text": "Any higher bid than that?"
+  },
+  {
+    "start": "00:30:18.790",
+    "end": "00:30:20.190",
+    "text": "$30?"
+  },
+  {
+    "start": "00:30:20.190",
+    "end": "00:30:20.910",
+    "text": "Nothing higher?"
+  },
+  {
+    "start": "00:30:20.910",
+    "end": "00:30:21.802",
+    "text": "AUDIENCE: 31."
+  },
+  {
+    "start": "00:30:21.802",
+    "end": "00:30:22.510",
+    "text": "ANDREW W. LO: 31."
+  },
+  {
+    "start": "00:30:25.940",
+    "end": "00:30:26.920",
+    "text": "AUDIENCE: 35."
+  },
+  {
+    "start": "00:30:26.920",
+    "end": "00:30:29.340",
+    "text": "ANDREW W. LO: 35."
+  },
+  {
+    "start": "00:30:29.340",
+    "end": "00:30:32.500",
+    "text": "OK, do I hear 40?"
+  },
+  {
+    "start": "00:30:32.500",
+    "end": "00:30:35.910",
+    "text": "Anybody want to do 40?"
+  },
+  {
+    "start": "00:30:35.910",
+    "end": "00:30:37.525",
+    "text": "$40?"
+  },
+  {
+    "start": "00:30:37.525",
+    "end": "00:30:38.650",
+    "text": "AUDIENCE: I'll give you 40."
+  },
+  {
+    "start": "00:30:38.650",
+    "end": "00:30:38.980",
+    "text": "ANDREW W. LO: $40."
+  },
+  {
+    "start": "00:30:38.980",
+    "end": "00:30:40.135",
+    "text": "All right, we've got $40."
+  },
+  {
+    "start": "00:30:43.480",
+    "end": "00:30:47.267",
+    "text": "Anybody willing to go 45?"
+  },
+  {
+    "start": "00:30:47.267",
+    "end": "00:30:47.766",
+    "text": "$45?"
+  },
+  {
+    "start": "00:30:51.060",
+    "end": "00:30:51.929",
+    "text": "All right."
+  },
+  {
+    "start": "00:30:51.929",
+    "end": "00:30:52.470",
+    "text": "AUDIENCE: 45."
+  },
+  {
+    "start": "00:30:52.470",
+    "end": "00:30:54.360",
+    "text": "ANDREW W. LO: $45."
+  },
+  {
+    "start": "00:30:54.360",
+    "end": "00:30:55.950",
+    "text": "Wow!"
+  },
+  {
+    "start": "00:30:55.950",
+    "end": "00:30:56.850",
+    "text": "OK."
+  },
+  {
+    "start": "00:30:56.850",
+    "end": "00:30:59.085",
+    "text": "Do we hear 50?"
+  },
+  {
+    "start": "00:30:59.085",
+    "end": "00:30:59.585",
+    "text": "$50?"
+  },
+  {
+    "start": "00:31:02.120",
+    "end": "00:31:03.720",
+    "text": "45 is the high bid."
+  },
+  {
+    "start": "00:31:03.720",
+    "end": "00:31:05.507",
+    "text": "Anybody for 50?"
+  },
+  {
+    "start": "00:31:05.507",
+    "end": "00:31:06.590",
+    "text": "AUDIENCE: Can I short too?"
+  },
+  {
+    "start": "00:31:06.590",
+    "end": "00:31:08.790",
+    "text": "ANDREW W. LO: No shorting, sorry."
+  },
+  {
+    "start": "00:31:08.790",
+    "end": "00:31:10.770",
+    "text": "I'm the only auctioneer here."
+  },
+  {
+    "start": "00:31:10.770",
+    "end": "00:31:13.290",
+    "text": "$45 is the high bid."
+  },
+  {
+    "start": "00:31:13.290",
+    "end": "00:31:14.220",
+    "text": "Anybody here 50?"
+  },
+  {
+    "start": "00:31:14.220",
+    "end": "00:31:15.930",
+    "text": "Going once."
+  },
+  {
+    "start": "00:31:15.930",
+    "end": "00:31:18.040",
+    "text": "Going twice."
+  },
+  {
+    "start": "00:31:18.040",
+    "end": "00:31:20.404",
+    "text": "All right, sold. $45."
+  },
+  {
+    "start": "00:31:20.404",
+    "end": "00:31:21.820",
+    "text": "Now you're going to pay me, right?"
+  },
+  {
+    "start": "00:31:21.820",
+    "end": "00:31:22.403",
+    "text": "AUDIENCE: Yep."
+  },
+  {
+    "start": "00:31:22.403",
+    "end": "00:31:24.130",
+    "text": "ANDREW W. LO: All right."
+  },
+  {
+    "start": "00:31:24.130",
+    "end": "00:31:28.080",
+    "text": "We established the value."
+  },
+  {
+    "start": "00:31:28.080",
+    "end": "00:31:31.110",
+    "text": "It's $45."
+  },
+  {
+    "start": "00:31:31.110",
+    "end": "00:31:33.900",
+    "text": "That's the market at work."
+  },
+  {
+    "start": "00:31:33.900",
+    "end": "00:31:35.820",
+    "text": "None of you knew what was in here."
+  },
+  {
+    "start": "00:31:35.820",
+    "end": "00:31:37.830",
+    "text": "It could be nothing actually."
+  },
+  {
+    "start": "00:31:40.680",
+    "end": "00:31:45.810",
+    "text": "But I suspect that you didn't think it was nothing,"
+  },
+  {
+    "start": "00:31:45.810",
+    "end": "00:31:47.760",
+    "text": "because you bid for it, right?"
+  },
+  {
+    "start": "00:31:47.760",
+    "end": "00:31:50.100",
+    "text": "Moreover, I didn't let you touch it."
+  },
+  {
+    "start": "00:31:50.100",
+    "end": "00:31:51.150",
+    "text": "I didn't let you feel it."
+  },
+  {
+    "start": "00:31:51.150",
+    "end": "00:31:52.080",
+    "text": "I didn't let you shake it."
+  },
+  {
+    "start": "00:31:52.080",
+    "end": "00:31:53.788",
+    "text": "There was no information whatsoever other"
+  },
+  {
+    "start": "00:31:53.788",
+    "end": "00:31:56.040",
+    "text": "this very pretty packaging."
+  },
+  {
+    "start": "00:31:56.040",
+    "end": "00:31:59.370",
+    "text": "And yet somehow magically you were"
+  },
+  {
+    "start": "00:31:59.370",
+    "end": "00:32:01.080",
+    "text": "able to come up with a value."
+  },
+  {
+    "start": "00:32:01.080",
+    "end": "00:32:04.550",
+    "text": "Now we could argue whether that value is good or bad."
+  },
+  {
+    "start": "00:32:04.550",
+    "end": "00:32:06.920",
+    "text": "But it's a number, and it's a number that"
+  },
+  {
+    "start": "00:32:06.920",
+    "end": "00:32:10.160",
+    "text": "can now be used for analysis."
+  },
+  {
+    "start": "00:32:10.160",
+    "end": "00:32:13.041",
+    "text": "Now again, I'm not commenting on how good or bad the number is."
+  },
+  {
+    "start": "00:32:13.041",
+    "end": "00:32:14.540",
+    "text": "In a minute we're going to find out,"
+  },
+  {
+    "start": "00:32:14.540",
+    "end": "00:32:15.831",
+    "text": "because I'm going to open this."
+  },
+  {
+    "start": "00:32:15.831",
+    "end": "00:32:19.790",
+    "text": "Or let this gentleman here open it, and see what he bought."
+  },
+  {
+    "start": "00:32:19.790",
+    "end": "00:32:24.860",
+    "text": "But before he does that, I want to comment that knowing nothing"
+  },
+  {
+    "start": "00:32:24.860",
+    "end": "00:32:29.220",
+    "text": "without any information whatsoever,"
+  },
+  {
+    "start": "00:32:29.220",
+    "end": "00:32:31.910",
+    "text": "we've established value."
+  },
+  {
+    "start": "00:32:31.910",
+    "end": "00:32:32.960",
+    "text": "That's remarkable."
+  },
+  {
+    "start": "00:32:32.960",
+    "end": "00:32:36.500",
+    "text": "Now it's not true, though, that there is no information."
+  },
+  {
+    "start": "00:32:36.500",
+    "end": "00:32:39.310",
+    "text": "In fact, there's a tremendous amount"
+  },
+  {
+    "start": "00:32:39.310",
+    "end": "00:32:41.260",
+    "text": "of information in this room."
+  },
+  {
+    "start": "00:32:41.260",
+    "end": "00:32:42.820",
+    "text": "Tremendous amount."
+  },
+  {
+    "start": "00:32:42.820",
+    "end": "00:32:45.160",
+    "text": "Because you know a number of things."
+  },
+  {
+    "start": "00:32:45.160",
+    "end": "00:32:47.320",
+    "text": "You know about the size of packages."
+  },
+  {
+    "start": "00:32:47.320",
+    "end": "00:32:49.600",
+    "text": "You know about the fact that I'm a professor,"
+  },
+  {
+    "start": "00:32:49.600",
+    "end": "00:32:52.960",
+    "text": "and if I really cheat you then I might get in trouble"
+  },
+  {
+    "start": "00:32:52.960",
+    "end": "00:32:54.190",
+    "text": "with the dean."
+  },
+  {
+    "start": "00:32:54.190",
+    "end": "00:32:58.450",
+    "text": "There are a number of constraints that are in place,"
+  },
+  {
+    "start": "00:32:58.450",
+    "end": "00:33:03.730",
+    "text": "and with this audience those constraints affected the value."
+  },
+  {
+    "start": "00:33:03.730",
+    "end": "00:33:07.300",
+    "text": "For the next five weeks that's what we're going to be doing,"
+  },
+  {
+    "start": "00:33:07.300",
+    "end": "00:33:09.820",
+    "text": "is talking about valuation and trying"
+  },
+  {
+    "start": "00:33:09.820",
+    "end": "00:33:15.190",
+    "text": "to understand how what just happened happened."
+  },
+  {
+    "start": "00:33:15.190",
+    "end": "00:33:17.380",
+    "text": "OK, would you like to open it up, and let us know"
+  },
+  {
+    "start": "00:33:17.380",
+    "end": "00:33:20.182",
+    "text": "what you've got for your $45?"
+  },
+  {
+    "start": "00:33:20.182",
+    "end": "00:33:21.640",
+    "text": "And you'll let me know whether this"
+  },
+  {
+    "start": "00:33:21.640",
+    "end": "00:33:25.450",
+    "text": "has been a good deal or a bad deal for you and for me."
+  },
+  {
+    "start": "00:33:30.624",
+    "end": "00:33:31.290",
+    "text": "Oh, just rip it."
+  },
+  {
+    "start": "00:33:34.499",
+    "end": "00:33:35.790",
+    "text": "My wife does this all the time."
+  },
+  {
+    "start": "00:33:35.790",
+    "end": "00:33:37.790",
+    "text": "It drives me crazy."
+  },
+  {
+    "start": "00:33:37.790",
+    "end": "00:33:39.280",
+    "text": "My sons are just--"
+  },
+  {
+    "start": "00:33:39.280",
+    "end": "00:33:42.949",
+    "text": "AUDIENCE: I'm enjoying my [INAUDIBLE] $45."
+  },
+  {
+    "start": "00:33:42.949",
+    "end": "00:33:43.990",
+    "text": "ANDREW W. LO: Fair point."
+  },
+  {
+    "start": "00:33:51.118",
+    "end": "00:33:52.606",
+    "text": "AUDIENCE: Oohhh!"
+  },
+  {
+    "start": "00:33:52.606",
+    "end": "00:33:56.078",
+    "text": "[APPLAUSE]"
+  },
+  {
+    "start": "00:33:58.951",
+    "end": "00:34:01.450",
+    "text": "ANDREW W. LO: Anybody know what the retail value of that is?"
+  },
+  {
+    "start": "00:34:01.450",
+    "end": "00:34:05.276",
+    "text": "It's an iPod Nano 4 gig version."
+  },
+  {
+    "start": "00:34:05.276",
+    "end": "00:34:06.730",
+    "text": "AUDIENCE: 125."
+  },
+  {
+    "start": "00:34:06.730",
+    "end": "00:34:10.159",
+    "text": "ANDREW W. LO: 149 to be precise."
+  },
+  {
+    "start": "00:34:10.159",
+    "end": "00:34:11.620",
+    "text": "So you had a good deal."
+  },
+  {
+    "start": "00:34:11.620",
+    "end": "00:34:12.620",
+    "text": "AUDIENCE: Yeah, yeah."
+  },
+  {
+    "start": "00:34:12.620",
+    "end": "00:34:13.120",
+    "text": "Thank you."
+  },
+  {
+    "start": "00:34:13.120",
+    "end": "00:34:14.679",
+    "text": "ANDREW W. LO: You're welcome."
+  },
+  {
+    "start": "00:34:14.679",
+    "end": "00:34:18.330",
+    "text": "Thank you, because what we did was"
+  },
+  {
+    "start": "00:34:18.330",
+    "end": "00:34:20.340",
+    "text": "to engage in a price discovery process"
+  },
+  {
+    "start": "00:34:20.340",
+    "end": "00:34:21.929",
+    "text": "with limited information."
+  },
+  {
+    "start": "00:34:21.929",
+    "end": "00:34:23.820",
+    "text": "With limited information."
+  },
+  {
+    "start": "00:34:23.820",
+    "end": "00:34:27.210",
+    "text": "I couldn't get the value out of that that I wanted to."
+  },
+  {
+    "start": "00:34:27.210",
+    "end": "00:34:31.639",
+    "text": "I would have loved to have gotten a bid of $149,"
+  },
+  {
+    "start": "00:34:31.639",
+    "end": "00:34:34.730",
+    "text": "but would any of you be willing to pay that for a box"
+  },
+  {
+    "start": "00:34:34.730",
+    "end": "00:34:37.310",
+    "text": "with no information at all?"
+  },
+  {
+    "start": "00:34:37.310",
+    "end": "00:34:38.510",
+    "text": "Probably not."
+  },
+  {
+    "start": "00:34:38.510",
+    "end": "00:34:41.389",
+    "text": "So the lack of transparency, the lack of information,"
+  },
+  {
+    "start": "00:34:41.389",
+    "end": "00:34:44.460",
+    "text": "actually reduced the value of that object."
+  },
+  {
+    "start": "00:34:44.460",
+    "end": "00:34:46.190",
+    "text": "But nevertheless, it did have a value."
+  },
+  {
+    "start": "00:34:46.190",
+    "end": "00:34:48.620",
+    "text": "Because some of you were willing to take a chance"
+  },
+  {
+    "start": "00:34:48.620",
+    "end": "00:34:52.860",
+    "text": "that there might be something interesting in that package."
+  },
+  {
+    "start": "00:34:52.860",
+    "end": "00:34:56.639",
+    "text": "That is what we're going to try to understand over the next 13"
+  },
+  {
+    "start": "00:34:56.639",
+    "end": "00:34:59.460",
+    "text": "weeks, and for the first five of those weeks"
+  },
+  {
+    "start": "00:34:59.460",
+    "end": "00:35:01.000",
+    "text": "we're going to try to take it apart."
+  },
+  {
+    "start": "00:35:01.000",
+    "end": "00:35:04.800",
+    "text": "We're going to try to understand how it is that the market comes"
+  },
+  {
+    "start": "00:35:04.800",
+    "end": "00:35:08.130",
+    "text": "up with the value."
+  },
+  {
+    "start": "00:35:08.130",
+    "end": "00:35:09.850",
+    "text": "And it's going to be a challenge."
+  },
+  {
+    "start": "00:35:09.850",
+    "end": "00:35:12.180",
+    "text": "This is hard to do, because just like"
+  },
+  {
+    "start": "00:35:12.180",
+    "end": "00:35:14.970",
+    "text": "if we decided to spend the rest of the lecture figuring out"
+  },
+  {
+    "start": "00:35:14.970",
+    "end": "00:35:17.820",
+    "text": "how you came up with a $45 bid, or why you"
+  },
+  {
+    "start": "00:35:17.820",
+    "end": "00:35:20.670",
+    "text": "weren't willing to go to 50."
+  },
+  {
+    "start": "00:35:20.670",
+    "end": "00:35:23.220",
+    "text": "It's going to be really hard for us to tease out"
+  },
+  {
+    "start": "00:35:23.220",
+    "end": "00:35:25.990",
+    "text": "all of the thinking that went into this kind of discussion."
+  },
+  {
+    "start": "00:35:25.990",
+    "end": "00:35:28.450",
+    "text": "So that's why we have work to do."
+  },
+  {
+    "start": "00:35:28.450",
+    "end": "00:35:30.900",
+    "text": "It will be exciting work, because at the end"
+  },
+  {
+    "start": "00:35:30.900",
+    "end": "00:35:35.850",
+    "text": "we are going to come up with specific quantitative analysis"
+  },
+  {
+    "start": "00:35:35.850",
+    "end": "00:35:39.720",
+    "text": "that will tell us how valuation is done."
+  },
+  {
+    "start": "00:35:39.720",
+    "end": "00:35:41.460",
+    "text": "So that's where we're going to focus on"
+  },
+  {
+    "start": "00:35:41.460",
+    "end": "00:35:45.630",
+    "text": "for the next few weeks."
+  },
+  {
+    "start": "00:35:45.630",
+    "end": "00:35:48.870",
+    "text": "Clearly once we figure out valuation,"
+  },
+  {
+    "start": "00:35:48.870",
+    "end": "00:35:50.730",
+    "text": "we can then focus on management."
+  },
+  {
+    "start": "00:35:50.730",
+    "end": "00:35:53.580",
+    "text": "And the first two-thirds of this class"
+  },
+  {
+    "start": "00:35:53.580",
+    "end": "00:35:55.920",
+    "text": "will be focused on valuation."
+  },
+  {
+    "start": "00:35:55.920",
+    "end": "00:36:00.150",
+    "text": "The last one third will be focused on taking those ideas,"
+  },
+  {
+    "start": "00:36:00.150",
+    "end": "00:36:04.920",
+    "text": "and applying them to management contexts like capital budgeting"
+  },
+  {
+    "start": "00:36:04.920",
+    "end": "00:36:07.870",
+    "text": "and risk management."
+  },
+  {
+    "start": "00:36:07.870",
+    "end": "00:36:10.270",
+    "text": "For valuation, the kind of questions"
+  },
+  {
+    "start": "00:36:10.270",
+    "end": "00:36:12.940",
+    "text": "that we're going to tackle are ones that implicitly we"
+  },
+  {
+    "start": "00:36:12.940",
+    "end": "00:36:14.860",
+    "text": "did in just a few minutes here."
+  },
+  {
+    "start": "00:36:14.860",
+    "end": "00:36:19.030",
+    "text": "It's going to be how are financial assets valued"
+  },
+  {
+    "start": "00:36:19.030",
+    "end": "00:36:22.520",
+    "text": "versus how should they be valued,"
+  },
+  {
+    "start": "00:36:22.520",
+    "end": "00:36:25.190",
+    "text": "and is that always the same?"
+  },
+  {
+    "start": "00:36:25.190",
+    "end": "00:36:27.140",
+    "text": "Is it the case that financial assets"
+  },
+  {
+    "start": "00:36:27.140",
+    "end": "00:36:29.600",
+    "text": "are valued the way they should be valued,"
+  },
+  {
+    "start": "00:36:29.600",
+    "end": "00:36:32.960",
+    "text": "and what do we even mean by whether or not it should"
+  },
+  {
+    "start": "00:36:32.960",
+    "end": "00:36:35.730",
+    "text": "be valued in a way or not."
+  },
+  {
+    "start": "00:36:35.730",
+    "end": "00:36:38.870",
+    "text": "And finally, we're going to ask the question for valuation,"
+  },
+  {
+    "start": "00:36:38.870",
+    "end": "00:36:41.660",
+    "text": "how well do financial markets really work?"
+  },
+  {
+    "start": "00:36:41.660",
+    "end": "00:36:44.186",
+    "text": "Can we always rely on them to work well?"
+  },
+  {
+    "start": "00:36:44.186",
+    "end": "00:36:45.560",
+    "text": "In this case, I don't know if you"
+  },
+  {
+    "start": "00:36:45.560",
+    "end": "00:36:48.980",
+    "text": "would call this particular auction"
+  },
+  {
+    "start": "00:36:48.980",
+    "end": "00:36:50.594",
+    "text": "one that worked out well."
+  },
+  {
+    "start": "00:36:50.594",
+    "end": "00:36:52.010",
+    "text": "Certainly worked out well for you,"
+  },
+  {
+    "start": "00:36:52.010",
+    "end": "00:36:54.630",
+    "text": "but it didn't work out well for me."
+  },
+  {
+    "start": "00:36:54.630",
+    "end": "00:36:58.250",
+    "text": "So in what sense did it work out well?"
+  },
+  {
+    "start": "00:36:58.250",
+    "end": "00:37:00.050",
+    "text": "Well, it worked out well in the sense"
+  },
+  {
+    "start": "00:37:00.050",
+    "end": "00:37:02.090",
+    "text": "that if I really wanted to get rid of that box,"
+  },
+  {
+    "start": "00:37:02.090",
+    "end": "00:37:06.396",
+    "text": "if I really wanted to unload it, I actually was able to do that."
+  },
+  {
+    "start": "00:37:06.396",
+    "end": "00:37:07.520",
+    "text": "And I got something for it."
+  },
+  {
+    "start": "00:37:07.520",
+    "end": "00:37:10.040",
+    "text": "Sight unseen, with no information whatsoever,"
+  },
+  {
+    "start": "00:37:10.040",
+    "end": "00:37:12.050",
+    "text": "I actually got $45."
+  },
+  {
+    "start": "00:37:12.050",
+    "end": "00:37:14.090",
+    "text": "Roughly a third of the value of the asset."
+  },
+  {
+    "start": "00:37:14.090",
+    "end": "00:37:16.490",
+    "text": "That's actually not too bad."
+  },
+  {
+    "start": "00:37:16.490",
+    "end": "00:37:20.460",
+    "text": "If you're trying to sell an asset sight unseen,"
+  },
+  {
+    "start": "00:37:20.460",
+    "end": "00:37:23.130",
+    "text": "and you need to do it immediately,"
+  },
+  {
+    "start": "00:37:23.130",
+    "end": "00:37:27.617",
+    "text": "a 66% discount is actually pretty fair."
+  },
+  {
+    "start": "00:37:27.617",
+    "end": "00:37:29.450",
+    "text": "Now we're going to see more examples of that"
+  },
+  {
+    "start": "00:37:29.450",
+    "end": "00:37:31.430",
+    "text": "over the next few weeks."
+  },
+  {
+    "start": "00:37:31.430",
+    "end": "00:37:35.180",
+    "text": "Once we determine value, then the question is management."
+  },
+  {
+    "start": "00:37:35.180",
+    "end": "00:37:36.890",
+    "text": "How much should I save or spend?"
+  },
+  {
+    "start": "00:37:36.890",
+    "end": "00:37:39.200",
+    "text": "That's a management question that all of you"
+  },
+  {
+    "start": "00:37:39.200",
+    "end": "00:37:42.110",
+    "text": "have to deal with at some point or another in your lives."
+  },
+  {
+    "start": "00:37:42.110",
+    "end": "00:37:42.890",
+    "text": "What should I buy?"
+  },
+  {
+    "start": "00:37:42.890",
+    "end": "00:37:44.180",
+    "text": "What should I sell?"
+  },
+  {
+    "start": "00:37:44.180",
+    "end": "00:37:46.220",
+    "text": "When should I buy and sell it, and how should I"
+  },
+  {
+    "start": "00:37:46.220",
+    "end": "00:37:47.840",
+    "text": "finance the transaction?"
+  },
+  {
+    "start": "00:37:47.840",
+    "end": "00:37:50.330",
+    "text": "Those are the problems of financial analysis"
+  },
+  {
+    "start": "00:37:50.330",
+    "end": "00:37:51.800",
+    "text": "plain and simple."
+  },
+  {
+    "start": "00:37:51.800",
+    "end": "00:37:55.190",
+    "text": "These are problems that apply to Jack Welch, to James Simons,"
+  },
+  {
+    "start": "00:37:55.190",
+    "end": "00:37:56.990",
+    "text": "to Warren Buffett, and to you."
+  },
+  {
+    "start": "00:37:56.990",
+    "end": "00:38:01.040",
+    "text": "And it applies to you not just from the corporate perspective,"
+  },
+  {
+    "start": "00:38:01.040",
+    "end": "00:38:02.780",
+    "text": "but from a personal perspective as well."
+  },
+  {
+    "start": "00:38:02.780",
+    "end": "00:38:05.780",
+    "text": "Every one of you have to think about these issues"
+  },
+  {
+    "start": "00:38:05.780",
+    "end": "00:38:07.650",
+    "text": "on a daily basis."
+  },
+  {
+    "start": "00:38:07.650",
+    "end": "00:38:11.510",
+    "text": "And so finance really is completely"
+  },
+  {
+    "start": "00:38:11.510",
+    "end": "00:38:14.450",
+    "text": "inclusive in the sense that it applies to virtually everything"
+  },
+  {
+    "start": "00:38:14.450",
+    "end": "00:38:18.600",
+    "text": "that you will ever encounter in life."
+  },
+  {
+    "start": "00:38:18.600",
+    "end": "00:38:20.350",
+    "text": "To do that I have to go over the framework"
+  },
+  {
+    "start": "00:38:20.350",
+    "end": "00:38:25.610",
+    "text": "of financial analysis, and the starting point is accounting."
+  },
+  {
+    "start": "00:38:25.610",
+    "end": "00:38:31.540",
+    "text": "Accounting is the language, the lexicon of finance"
+  },
+  {
+    "start": "00:38:31.540",
+    "end": "00:38:33.670",
+    "text": "in that it's the beginning of how"
+  },
+  {
+    "start": "00:38:33.670",
+    "end": "00:38:35.770",
+    "text": "to measure economic concepts."
+  },
+  {
+    "start": "00:38:35.770",
+    "end": "00:38:41.230",
+    "text": "Like profit and loss, revenues and costs, and so on."
+  },
+  {
+    "start": "00:38:41.230",
+    "end": "00:38:44.980",
+    "text": "So while many of you may not have accounting backgrounds,"
+  },
+  {
+    "start": "00:38:44.980",
+    "end": "00:38:48.380",
+    "text": "you will learn a fair bit of accounting in this course,"
+  },
+  {
+    "start": "00:38:48.380",
+    "end": "00:38:50.890",
+    "text": "just because you're going to have to in order to understand"
+  },
+  {
+    "start": "00:38:50.890",
+    "end": "00:38:53.410",
+    "text": "the material in the lectures."
+  },
+  {
+    "start": "00:38:53.410",
+    "end": "00:38:56.110",
+    "text": "So you'll need to get familiar with the basic terms"
+  },
+  {
+    "start": "00:38:56.110",
+    "end": "00:38:57.940",
+    "text": "of accounting, and in particular you're"
+  },
+  {
+    "start": "00:38:57.940",
+    "end": "00:39:01.870",
+    "text": "going to have to focus on two concepts that are probably"
+  },
+  {
+    "start": "00:39:01.870",
+    "end": "00:39:02.560",
+    "text": "alien to you."
+  },
+  {
+    "start": "00:39:02.560",
+    "end": "00:39:05.850",
+    "text": "The notion of a stock and a flow."
+  },
+  {
+    "start": "00:39:05.850",
+    "end": "00:39:09.420",
+    "text": "Now when I say stock, I don't mean common stock or equities,"
+  },
+  {
+    "start": "00:39:09.420",
+    "end": "00:39:11.670",
+    "text": "I have a different term in mind."
+  },
+  {
+    "start": "00:39:11.670",
+    "end": "00:39:16.290",
+    "text": "By stock in this context, I mean the stock of assets."
+  },
+  {
+    "start": "00:39:16.290",
+    "end": "00:39:19.290",
+    "text": "The level of assets."
+  },
+  {
+    "start": "00:39:19.290",
+    "end": "00:39:24.360",
+    "text": "And by flow I mean the rate of change of assets."
+  },
+  {
+    "start": "00:39:24.360",
+    "end": "00:39:26.380",
+    "text": "You know when I was in grad school,"
+  },
+  {
+    "start": "00:39:26.380",
+    "end": "00:39:28.740",
+    "text": "we started discussing this concept on the first day"
+  },
+  {
+    "start": "00:39:28.740",
+    "end": "00:39:30.745",
+    "text": "of macroeconomics, and then one of the students"
+  },
+  {
+    "start": "00:39:30.745",
+    "end": "00:39:32.870",
+    "text": "in the back of the room said, excuse me, Professor,"
+  },
+  {
+    "start": "00:39:32.870",
+    "end": "00:39:36.600",
+    "text": "but isn't that just the distinction between a variable"
+  },
+  {
+    "start": "00:39:36.600",
+    "end": "00:39:38.750",
+    "text": "and its first derivative?"
+  },
+  {
+    "start": "00:39:38.750",
+    "end": "00:39:42.400",
+    "text": "And the professor was a little bit taken aback and said,"
+  },
+  {
+    "start": "00:39:42.400",
+    "end": "00:39:43.400",
+    "text": "well, yes, that's right."
+  },
+  {
+    "start": "00:39:43.400",
+    "end": "00:39:45.180",
+    "text": "But let me give you another way of thinking about it that"
+  },
+  {
+    "start": "00:39:45.180",
+    "end": "00:39:46.400",
+    "text": "is somewhat more intuitive."
+  },
+  {
+    "start": "00:39:46.400",
+    "end": "00:39:48.440",
+    "text": "And that is, think about a bathtub,"
+  },
+  {
+    "start": "00:39:48.440",
+    "end": "00:39:50.840",
+    "text": "and think about the faucet turned on"
+  },
+  {
+    "start": "00:39:50.840",
+    "end": "00:39:53.200",
+    "text": "and the water flowing into it."
+  },
+  {
+    "start": "00:39:53.200",
+    "end": "00:39:56.770",
+    "text": "The stock is the level of the water."
+  },
+  {
+    "start": "00:39:56.770",
+    "end": "00:40:01.910",
+    "text": "The flow is how fast the water is coming into the tub."
+  },
+  {
+    "start": "00:40:01.910",
+    "end": "00:40:04.790",
+    "text": "And so after that explanation the student"
+  },
+  {
+    "start": "00:40:04.790",
+    "end": "00:40:07.160",
+    "text": "still seemed confused, and so the professor said,"
+  },
+  {
+    "start": "00:40:07.160",
+    "end": "00:40:09.364",
+    "text": "you know what, some people find bathtubs intuitive,"
+  },
+  {
+    "start": "00:40:09.364",
+    "end": "00:40:11.030",
+    "text": "other people find derivatives intuitive."
+  },
+  {
+    "start": "00:40:11.030",
+    "end": "00:40:14.580",
+    "text": "So to each his own."
+  },
+  {
+    "start": "00:40:14.580",
+    "end": "00:40:16.680",
+    "text": "These two concepts are extraordinarily"
+  },
+  {
+    "start": "00:40:16.680",
+    "end": "00:40:18.720",
+    "text": "critical to financial analysis."
+  },
+  {
+    "start": "00:40:18.720",
+    "end": "00:40:22.800",
+    "text": "And accounting counterparts are nothing more than the balance"
+  },
+  {
+    "start": "00:40:22.800",
+    "end": "00:40:25.910",
+    "text": "sheet and the income statement."
+  },
+  {
+    "start": "00:40:25.910",
+    "end": "00:40:29.750",
+    "text": "The balance sheet measures the stock of wealth of a company."
+  },
+  {
+    "start": "00:40:29.750",
+    "end": "00:40:34.280",
+    "text": "What your assets are, and what your claims on those assets"
+  },
+  {
+    "start": "00:40:34.280",
+    "end": "00:40:37.730",
+    "text": "or liabilities are."
+  },
+  {
+    "start": "00:40:37.730",
+    "end": "00:40:42.020",
+    "text": "On the other hand, the flow of wealth into a company"
+  },
+  {
+    "start": "00:40:42.020",
+    "end": "00:40:45.980",
+    "text": "or out of a company is measured by the income statement."
+  },
+  {
+    "start": "00:40:45.980",
+    "end": "00:40:47.810",
+    "text": "This tells you how much the company"
+  },
+  {
+    "start": "00:40:47.810",
+    "end": "00:40:55.630",
+    "text": "is making per unit time versus its losses."
+  },
+  {
+    "start": "00:40:55.630",
+    "end": "00:40:58.090",
+    "text": "So the framework for financial analysis"
+  },
+  {
+    "start": "00:40:58.090",
+    "end": "00:41:00.400",
+    "text": "that we're going to be coming back to time and again"
+  },
+  {
+    "start": "00:41:00.400",
+    "end": "00:41:02.620",
+    "text": "is this framework of a corporation."
+  },
+  {
+    "start": "00:41:02.620",
+    "end": "00:41:05.200",
+    "text": "A corporation has a certain set of assets."
+  },
+  {
+    "start": "00:41:05.200",
+    "end": "00:41:09.110",
+    "text": "It's got claims on those assets, which are called liabilities."
+  },
+  {
+    "start": "00:41:09.110",
+    "end": "00:41:12.160",
+    "text": "So this picture, this snapshot, measures"
+  },
+  {
+    "start": "00:41:12.160",
+    "end": "00:41:13.960",
+    "text": "the level of the bathtub."
+  },
+  {
+    "start": "00:41:13.960",
+    "end": "00:41:15.700",
+    "text": "But that's not enough to understand"
+  },
+  {
+    "start": "00:41:15.700",
+    "end": "00:41:18.190",
+    "text": "how a company is doing."
+  },
+  {
+    "start": "00:41:18.190",
+    "end": "00:41:21.130",
+    "text": "You also have to look at the income statement, which"
+  },
+  {
+    "start": "00:41:21.130",
+    "end": "00:41:25.480",
+    "text": "tells you the sources of funds, and the uses of funds"
+  },
+  {
+    "start": "00:41:25.480",
+    "end": "00:41:26.950",
+    "text": "over any time period."
+  },
+  {
+    "start": "00:41:26.950",
+    "end": "00:41:30.600",
+    "text": "Typically on a quarterly basis."
+  },
+  {
+    "start": "00:41:30.600",
+    "end": "00:41:33.680",
+    "text": "So we're going to come back to this concept as the framework"
+  },
+  {
+    "start": "00:41:33.680",
+    "end": "00:41:35.510",
+    "text": "for financial analysis."
+  },
+  {
+    "start": "00:41:35.510",
+    "end": "00:41:39.950",
+    "text": "And by the way, this is the sum total of the tools"
+  },
+  {
+    "start": "00:41:39.950",
+    "end": "00:41:44.800",
+    "text": "that Warren Buffett uses for analyzing his investments."
+  },
+  {
+    "start": "00:41:44.800",
+    "end": "00:41:46.010",
+    "text": "That's it."
+  },
+  {
+    "start": "00:41:46.010",
+    "end": "00:41:47.180",
+    "text": "Believe it or not."
+  },
+  {
+    "start": "00:41:47.180",
+    "end": "00:41:49.180",
+    "text": "Nothing fancier."
+  },
+  {
+    "start": "00:41:49.180",
+    "end": "00:41:51.640",
+    "text": "So it's an incredibly powerful set of ideas"
+  },
+  {
+    "start": "00:41:51.640",
+    "end": "00:41:57.370",
+    "text": "if you know how to read it."
+  },
+  {
+    "start": "00:41:57.370",
+    "end": "00:41:59.380",
+    "text": "That framework when you think about it"
+  },
+  {
+    "start": "00:41:59.380",
+    "end": "00:42:02.440",
+    "text": "from a corporate financial decision perspective,"
+  },
+  {
+    "start": "00:42:02.440",
+    "end": "00:42:08.330",
+    "text": "involves making decisions at five points in time."
+  },
+  {
+    "start": "00:42:08.330",
+    "end": "00:42:11.540",
+    "text": "Corporate financial decisions involve"
+  },
+  {
+    "start": "00:42:11.540",
+    "end": "00:42:16.470",
+    "text": "thinking about how to deal with cash raised from investors."
+  },
+  {
+    "start": "00:42:16.470",
+    "end": "00:42:20.680",
+    "text": "How to think about cash invested in real assets,"
+  },
+  {
+    "start": "00:42:20.680",
+    "end": "00:42:24.820",
+    "text": "and how to deal with cash generated by operations."
+  },
+  {
+    "start": "00:42:24.820",
+    "end": "00:42:28.450",
+    "text": "How much cash to reinvest, and how much cash you"
+  },
+  {
+    "start": "00:42:28.450",
+    "end": "00:42:31.070",
+    "text": "give back to your investors."
+  },
+  {
+    "start": "00:42:31.070",
+    "end": "00:42:33.610",
+    "text": "So from this you should get the idea"
+  },
+  {
+    "start": "00:42:33.610",
+    "end": "00:42:36.550",
+    "text": "that as a corporate financial officer"
+  },
+  {
+    "start": "00:42:36.550",
+    "end": "00:42:39.610",
+    "text": "you are focused on cash, the flow of cash."
+  },
+  {
+    "start": "00:42:39.610",
+    "end": "00:42:45.220",
+    "text": "In fact, cash you can think of as the lifeblood of a company."
+  },
+  {
+    "start": "00:42:45.220",
+    "end": "00:42:47.890",
+    "text": "If you follow the cash, you will eventually"
+  },
+  {
+    "start": "00:42:47.890",
+    "end": "00:42:51.400",
+    "text": "hit upon every important aspect of the modern corporation's"
+  },
+  {
+    "start": "00:42:51.400",
+    "end": "00:42:52.690",
+    "text": "operations."
+  },
+  {
+    "start": "00:42:52.690",
+    "end": "00:42:54.520",
+    "text": "And as a financial officer, you will"
+  },
+  {
+    "start": "00:42:54.520",
+    "end": "00:42:57.670",
+    "text": "be responsible for analyzing that flow."
+  },
+  {
+    "start": "00:42:57.670",
+    "end": "00:43:00.400",
+    "text": "And as a decision maker, as a leader of a corporation,"
+  },
+  {
+    "start": "00:43:00.400",
+    "end": "00:43:03.130",
+    "text": "you're going to have to make decisions about that cash flow."
+  },
+  {
+    "start": "00:43:03.130",
+    "end": "00:43:06.160",
+    "text": "Jack Welch uses the information to be"
+  },
+  {
+    "start": "00:43:06.160",
+    "end": "00:43:07.490",
+    "text": "able to make those decisions."
+  },
+  {
+    "start": "00:43:07.490",
+    "end": "00:43:10.840",
+    "text": "But he doesn't just get those decisions prepackaged for him,"
+  },
+  {
+    "start": "00:43:10.840",
+    "end": "00:43:13.210",
+    "text": "he has to understand what those numbers mean."
+  },
+  {
+    "start": "00:43:13.210",
+    "end": "00:43:15.780",
+    "text": "Just like Warren Buffett."
+  },
+  {
+    "start": "00:43:15.780",
+    "end": "00:43:20.470",
+    "text": "Now the corporate financial decisions involved,"
+  },
+  {
+    "start": "00:43:20.470",
+    "end": "00:43:24.670",
+    "text": "obviously, have a variety of different components"
+  },
+  {
+    "start": "00:43:24.670",
+    "end": "00:43:29.440",
+    "text": "from a perspective of career paths."
+  },
+  {
+    "start": "00:43:29.440",
+    "end": "00:43:33.160",
+    "text": "From the management perspective real investment decisions"
+  },
+  {
+    "start": "00:43:33.160",
+    "end": "00:43:35.290",
+    "text": "involve two and three."
+  },
+  {
+    "start": "00:43:35.290",
+    "end": "00:43:37.300",
+    "text": "So if you're thinking about investing"
+  },
+  {
+    "start": "00:43:37.300",
+    "end": "00:43:39.730",
+    "text": "in a new division or a new plant or getting"
+  },
+  {
+    "start": "00:43:39.730",
+    "end": "00:43:41.710",
+    "text": "involved in a new product area, you've"
+  },
+  {
+    "start": "00:43:41.710",
+    "end": "00:43:43.145",
+    "text": "got to focus on two and three."
+  },
+  {
+    "start": "00:43:43.145",
+    "end": "00:43:45.520",
+    "text": "On the other hand, if you're the chief financial officer,"
+  },
+  {
+    "start": "00:43:45.520",
+    "end": "00:43:47.853",
+    "text": "and you're thinking about how should the company finance"
+  },
+  {
+    "start": "00:43:47.853",
+    "end": "00:43:51.510",
+    "text": "its operations, you're going to be focused on one and four."
+  },
+  {
+    "start": "00:43:51.510",
+    "end": "00:43:53.230",
+    "text": "If you're the board of directors,"
+  },
+  {
+    "start": "00:43:53.230",
+    "end": "00:43:56.620",
+    "text": "and you're deciding how much to pay out to the shareholders,"
+  },
+  {
+    "start": "00:43:56.620",
+    "end": "00:43:58.470",
+    "text": "you're going to be thinking about five."
+  },
+  {
+    "start": "00:43:58.470",
+    "end": "00:43:59.890",
+    "text": "And if you're engaged in managing"
+  },
+  {
+    "start": "00:43:59.890",
+    "end": "00:44:01.390",
+    "text": "the risks of the corporation, you're"
+  },
+  {
+    "start": "00:44:01.390",
+    "end": "00:44:03.790",
+    "text": "going to be worried about one and five."
+  },
+  {
+    "start": "00:44:03.790",
+    "end": "00:44:07.330",
+    "text": "And ultimately your objective as a shareholder"
+  },
+  {
+    "start": "00:44:07.330",
+    "end": "00:44:10.760",
+    "text": "and as a manager of this corporation"
+  },
+  {
+    "start": "00:44:10.760",
+    "end": "00:44:13.070",
+    "text": "is to do well by the owners."
+  },
+  {
+    "start": "00:44:13.070",
+    "end": "00:44:16.340",
+    "text": "So your objective is to maximize shareholder wealth,"
+  },
+  {
+    "start": "00:44:16.340",
+    "end": "00:44:18.800",
+    "text": "and the framework that I've introduced"
+  },
+  {
+    "start": "00:44:18.800",
+    "end": "00:44:20.750",
+    "text": "is going to allow you to do that."
+  },
+  {
+    "start": "00:44:20.750",
+    "end": "00:44:23.480",
+    "text": "Now again, this may seem kind of theoretical to you,"
+  },
+  {
+    "start": "00:44:23.480",
+    "end": "00:44:24.380",
+    "text": "and I realize that."
+  },
+  {
+    "start": "00:44:24.380",
+    "end": "00:44:27.110",
+    "text": "So I'm going to ask you to make this more personal."
+  },
+  {
+    "start": "00:44:27.110",
+    "end": "00:44:30.020",
+    "text": "And to do that, I'm going to ask you to turn this"
+  },
+  {
+    "start": "00:44:30.020",
+    "end": "00:44:32.690",
+    "text": "into your own personal household financial decision"
+  },
+  {
+    "start": "00:44:32.690",
+    "end": "00:44:34.260",
+    "text": "making framework."
+  },
+  {
+    "start": "00:44:34.260",
+    "end": "00:44:36.140",
+    "text": "So I'd like you to take all of these ideas"
+  },
+  {
+    "start": "00:44:36.140",
+    "end": "00:44:38.960",
+    "text": "and literally apply them to yourself."
+  },
+  {
+    "start": "00:44:38.960",
+    "end": "00:44:42.680",
+    "text": "Think about the cash flows that are"
+  },
+  {
+    "start": "00:44:42.680",
+    "end": "00:44:45.050",
+    "text": "flowing through your own life."
+  },
+  {
+    "start": "00:44:45.050",
+    "end": "00:44:48.320",
+    "text": "There may not be that much right now since you're at school,"
+  },
+  {
+    "start": "00:44:48.320",
+    "end": "00:44:51.500",
+    "text": "but believe me, it will grow."
+  },
+  {
+    "start": "00:44:51.500",
+    "end": "00:44:55.400",
+    "text": "So the household, this is you, sits in"
+  },
+  {
+    "start": "00:44:55.400",
+    "end": "00:44:57.750",
+    "text": "between real economic activities."
+  },
+  {
+    "start": "00:44:57.750",
+    "end": "00:45:00.830",
+    "text": "In other words, your job, and financial assets"
+  },
+  {
+    "start": "00:45:00.830",
+    "end": "00:45:04.880",
+    "text": "and liabilities, which are all of the financial transactions"
+  },
+  {
+    "start": "00:45:04.880",
+    "end": "00:45:06.170",
+    "text": "that you deal with."
+  },
+  {
+    "start": "00:45:06.170",
+    "end": "00:45:11.410",
+    "text": "So this cash flow process that I outlined for corporations, it"
+  },
+  {
+    "start": "00:45:11.410",
+    "end": "00:45:13.360",
+    "text": "works for you too."
+  },
+  {
+    "start": "00:45:13.360",
+    "end": "00:45:17.350",
+    "text": "So there's cash raised from financial institutions, right?"
+  },
+  {
+    "start": "00:45:17.350",
+    "end": "00:45:22.600",
+    "text": "Like student loans or borrowing or home equity loans."
+  },
+  {
+    "start": "00:45:22.600",
+    "end": "00:45:25.100",
+    "text": "There's cash invested in real assets."
+  },
+  {
+    "start": "00:45:25.100",
+    "end": "00:45:27.790",
+    "text": "What's the biggest real asset that you are all"
+  },
+  {
+    "start": "00:45:27.790",
+    "end": "00:45:29.117",
+    "text": "investing in right now?"
+  },
+  {
+    "start": "00:45:29.117",
+    "end": "00:45:30.450",
+    "text": "AUDIENCE: Education [INAUDIBLE]."
+  },
+  {
+    "start": "00:45:30.450",
+    "end": "00:45:31.366",
+    "text": "ANDREW W. LO: Exactly."
+  },
+  {
+    "start": "00:45:31.366",
+    "end": "00:45:32.640",
+    "text": "Human capital, yourselves."
+  },
+  {
+    "start": "00:45:32.640",
+    "end": "00:45:35.250",
+    "text": "Your own education."
+  },
+  {
+    "start": "00:45:35.250",
+    "end": "00:45:37.082",
+    "text": "Cash generated by labor supply."
+  },
+  {
+    "start": "00:45:37.082",
+    "end": "00:45:38.540",
+    "text": "Well, obviously, when you get a job"
+  },
+  {
+    "start": "00:45:38.540",
+    "end": "00:45:40.920",
+    "text": "you're going to be generating cash."
+  },
+  {
+    "start": "00:45:40.920",
+    "end": "00:45:43.740",
+    "text": "Cash consumed and reinvested in real assets."
+  },
+  {
+    "start": "00:45:43.740",
+    "end": "00:45:47.820",
+    "text": "So consumed means beer or pretzels or whatever,"
+  },
+  {
+    "start": "00:45:47.820",
+    "end": "00:45:49.500",
+    "text": "and investing in real assets means"
+  },
+  {
+    "start": "00:45:49.500",
+    "end": "00:45:53.580",
+    "text": "you invested either in yourself or you invest it"
+  },
+  {
+    "start": "00:45:53.580",
+    "end": "00:45:56.190",
+    "text": "in a home or your children."
+  },
+  {
+    "start": "00:45:56.190",
+    "end": "00:45:57.584",
+    "text": "Those are real assets."
+  },
+  {
+    "start": "00:45:57.584",
+    "end": "00:45:59.250",
+    "text": "Sometimes they're also real liabilities,"
+  },
+  {
+    "start": "00:45:59.250",
+    "end": "00:46:00.960",
+    "text": "but that's a separate issue."
+  },
+  {
+    "start": "00:46:00.960",
+    "end": "00:46:05.327",
+    "text": "And finally cash invested in financial assets."
+  },
+  {
+    "start": "00:46:05.327",
+    "end": "00:46:07.410",
+    "text": "Most of you may not have a lot of financial assets"
+  },
+  {
+    "start": "00:46:07.410",
+    "end": "00:46:09.870",
+    "text": "at this point, but you actually have some."
+  },
+  {
+    "start": "00:46:09.870",
+    "end": "00:46:13.542",
+    "text": "I suspect 401(k) plans, retirement, Social Security."
+  },
+  {
+    "start": "00:46:13.542",
+    "end": "00:46:16.000",
+    "text": "Those are financial assets that whether you know it or not,"
+  },
+  {
+    "start": "00:46:16.000",
+    "end": "00:46:17.490",
+    "text": "you're invested in."
+  },
+  {
+    "start": "00:46:17.490",
+    "end": "00:46:20.730",
+    "text": "And so when you think about management,"
+  },
+  {
+    "start": "00:46:20.730",
+    "end": "00:46:22.740",
+    "text": "think about personal management."
+  },
+  {
+    "start": "00:46:22.740",
+    "end": "00:46:25.070",
+    "text": "How are you managing yourself?"
+  },
+  {
+    "start": "00:46:25.070",
+    "end": "00:46:26.820",
+    "text": "You've got to think about real investment."
+  },
+  {
+    "start": "00:46:26.820",
+    "end": "00:46:29.580",
+    "text": "Consumption and financing, savings and investment,"
+  },
+  {
+    "start": "00:46:29.580",
+    "end": "00:46:32.790",
+    "text": "risk management, and, obviously, what is"
+  },
+  {
+    "start": "00:46:32.790",
+    "end": "00:46:36.420",
+    "text": "your overall objective in life?"
+  },
+  {
+    "start": "00:46:36.420",
+    "end": "00:46:40.860",
+    "text": "And what you ought to be doing is with that objective in mind,"
+  },
+  {
+    "start": "00:46:40.860",
+    "end": "00:46:43.710",
+    "text": "managing your real and financial assets"
+  },
+  {
+    "start": "00:46:43.710",
+    "end": "00:46:49.680",
+    "text": "to maximize the likelihood of achieving those objectives."
+  },
+  {
+    "start": "00:46:49.680",
+    "end": "00:46:52.170",
+    "text": "So what I'm asking you to do is, I want you"
+  },
+  {
+    "start": "00:46:52.170",
+    "end": "00:46:54.660",
+    "text": "to take this course personally."
+  },
+  {
+    "start": "00:46:54.660",
+    "end": "00:46:56.130",
+    "text": "I want you to take the ideas."
+  },
+  {
+    "start": "00:46:56.130",
+    "end": "00:46:58.380",
+    "text": "Every single idea that I mention,"
+  },
+  {
+    "start": "00:46:58.380",
+    "end": "00:47:01.320",
+    "text": "and whether I tell you to or not for the next 13 weeks,"
+  },
+  {
+    "start": "00:47:01.320",
+    "end": "00:47:04.120",
+    "text": "I want you to take that idea and ask the question,"
+  },
+  {
+    "start": "00:47:04.120",
+    "end": "00:47:05.790",
+    "text": "how does that make my life better off?"
+  },
+  {
+    "start": "00:47:05.790",
+    "end": "00:47:11.070",
+    "text": "How can I use that in my own personal management activities"
+  },
+  {
+    "start": "00:47:11.070",
+    "end": "00:47:13.240",
+    "text": "to improve the kind of decisions that I'm making?"
+  },
+  {
+    "start": "00:47:13.240",
+    "end": "00:47:15.600",
+    "text": "Because if you could do that, if you"
+  },
+  {
+    "start": "00:47:15.600",
+    "end": "00:47:17.550",
+    "text": "learn how to do that instinctively,"
+  },
+  {
+    "start": "00:47:17.550",
+    "end": "00:47:19.470",
+    "text": "you will then take those ideas and apply them"
+  },
+  {
+    "start": "00:47:19.470",
+    "end": "00:47:21.661",
+    "text": "to management contexts in your career."
+  },
+  {
+    "start": "00:47:21.661",
+    "end": "00:47:23.160",
+    "text": "And it will make it much more likely"
+  },
+  {
+    "start": "00:47:23.160",
+    "end": "00:47:25.170",
+    "text": "that you'll get more out of this course"
+  },
+  {
+    "start": "00:47:25.170",
+    "end": "00:47:27.820",
+    "text": "than you otherwise might."
+  },
+  {
+    "start": "00:47:27.820",
+    "end": "00:47:29.920",
+    "text": "Now there are two other factors that I describe"
+  },
+  {
+    "start": "00:47:29.920",
+    "end": "00:47:33.520",
+    "text": "that make financial analysis challenging,"
+  },
+  {
+    "start": "00:47:33.520",
+    "end": "00:47:40.970",
+    "text": "and those two factors are time and risk."
+  },
+  {
+    "start": "00:47:40.970",
+    "end": "00:47:43.910",
+    "text": "I've argued before that without these two elements"
+  },
+  {
+    "start": "00:47:43.910",
+    "end": "00:47:45.440",
+    "text": "finance is complete."
+  },
+  {
+    "start": "00:47:45.440",
+    "end": "00:47:47.600",
+    "text": "There is no more research to be done."
+  },
+  {
+    "start": "00:47:47.600",
+    "end": "00:47:50.810",
+    "text": "There's no more analysis to be done, and all of you"
+  },
+  {
+    "start": "00:47:50.810",
+    "end": "00:47:55.520",
+    "text": "probably will already be able to intuit a lot of the decisions"
+  },
+  {
+    "start": "00:47:55.520",
+    "end": "00:47:58.130",
+    "text": "that you're going to be forced to make."
+  },
+  {
+    "start": "00:47:58.130",
+    "end": "00:48:02.210",
+    "text": "Because without time-- and by time I mean decisions"
+  },
+  {
+    "start": "00:48:02.210",
+    "end": "00:48:04.380",
+    "text": "at different points in time--"
+  },
+  {
+    "start": "00:48:04.380",
+    "end": "00:48:10.620",
+    "text": "without time and without risk financial decisions"
+  },
+  {
+    "start": "00:48:10.620",
+    "end": "00:48:14.250",
+    "text": "actually reduce to basic micro economic analysis."
+  },
+  {
+    "start": "00:48:14.250",
+    "end": "00:48:17.130",
+    "text": "If you've taken an undergraduate course in microeconomics"
+  },
+  {
+    "start": "00:48:17.130",
+    "end": "00:48:19.230",
+    "text": "supply equal demand, well, you've"
+  },
+  {
+    "start": "00:48:19.230",
+    "end": "00:48:22.110",
+    "text": "learned all there is to learn about finance without time"
+  },
+  {
+    "start": "00:48:22.110",
+    "end": "00:48:24.210",
+    "text": "and risk."
+  },
+  {
+    "start": "00:48:24.210",
+    "end": "00:48:27.510",
+    "text": "The only reason that finance is interesting,"
+  },
+  {
+    "start": "00:48:27.510",
+    "end": "00:48:31.460",
+    "text": "the only challenging aspects of what we do"
+  },
+  {
+    "start": "00:48:31.460",
+    "end": "00:48:35.230",
+    "text": "are because of time and risk."
+  },
+  {
+    "start": "00:48:35.230",
+    "end": "00:48:39.220",
+    "text": "The fact that cash flows now are not the same as cash"
+  },
+  {
+    "start": "00:48:39.220",
+    "end": "00:48:44.550",
+    "text": "flows later, and that time flows in only one direction."
+  },
+  {
+    "start": "00:48:44.550",
+    "end": "00:48:47.020",
+    "text": "In about four lectures, I'm going"
+  },
+  {
+    "start": "00:48:47.020",
+    "end": "00:48:49.390",
+    "text": "to give you an alternative proof of the theory"
+  },
+  {
+    "start": "00:48:49.390",
+    "end": "00:48:51.720",
+    "text": "of special relativity."
+  },
+  {
+    "start": "00:48:51.720",
+    "end": "00:48:54.050",
+    "text": "And this proof will have to do with the fact"
+  },
+  {
+    "start": "00:48:54.050",
+    "end": "00:48:57.020",
+    "text": "that interest rates are not negative."
+  },
+  {
+    "start": "00:48:57.020",
+    "end": "00:48:59.900",
+    "text": "It turns out that there's a very deep philosophical connection"
+  },
+  {
+    "start": "00:48:59.900",
+    "end": "00:49:03.022",
+    "text": "between finance and physics that we're going to get to."
+  },
+  {
+    "start": "00:49:03.022",
+    "end": "00:49:05.480",
+    "text": "But this is something that you don't need to be a physicist"
+  },
+  {
+    "start": "00:49:05.480",
+    "end": "00:49:06.270",
+    "text": "to understand."
+  },
+  {
+    "start": "00:49:06.270",
+    "end": "00:49:08.570",
+    "text": "In fact, I'd argue that Warren Buffett,"
+  },
+  {
+    "start": "00:49:08.570",
+    "end": "00:49:13.270",
+    "text": "although he may not be able to articulate these principles,"
+  },
+  {
+    "start": "00:49:13.270",
+    "end": "00:49:15.750",
+    "text": "these are principles that are somehow"
+  },
+  {
+    "start": "00:49:15.750",
+    "end": "00:49:18.090",
+    "text": "inbred in his worldview."
+  },
+  {
+    "start": "00:49:18.090",
+    "end": "00:49:22.410",
+    "text": "He knows that $1 today is not the same as $1 next year."
+  },
+  {
+    "start": "00:49:22.410",
+    "end": "00:49:24.870",
+    "text": "And he also knows that $1 today without risk"
+  },
+  {
+    "start": "00:49:24.870",
+    "end": "00:49:27.810",
+    "text": "is not the same as $1 today with a little bit of risk."
+  },
+  {
+    "start": "00:49:27.810",
+    "end": "00:49:31.440",
+    "text": "Even a tiny little bit of risk, he knows that."
+  },
+  {
+    "start": "00:49:31.440",
+    "end": "00:49:35.220",
+    "text": "And at the end of this course, you will too."
+  },
+  {
+    "start": "00:49:35.220",
+    "end": "00:49:38.640",
+    "text": "So risk we have to talk about in a much more serious way."
+  },
+  {
+    "start": "00:49:38.640",
+    "end": "00:49:41.670",
+    "text": "We're not going to get to that for probably six weeks,"
+  },
+  {
+    "start": "00:49:41.670",
+    "end": "00:49:46.170",
+    "text": "because that's going to take a whole different set of tools"
+  },
+  {
+    "start": "00:49:46.170",
+    "end": "00:49:47.460",
+    "text": "to understand."
+  },
+  {
+    "start": "00:49:47.460",
+    "end": "00:49:50.340",
+    "text": "So what I'd like to do for the first three or four weeks"
+  },
+  {
+    "start": "00:49:50.340",
+    "end": "00:49:55.080",
+    "text": "is to focus on time and just time,"
+  },
+  {
+    "start": "00:49:55.080",
+    "end": "00:49:57.630",
+    "text": "and then I'm going to bring in risk once we develop"
+  },
+  {
+    "start": "00:49:57.630",
+    "end": "00:50:02.000",
+    "text": "a little bit more machinery to understand how to capture risk."
+  },
+  {
+    "start": "00:50:02.000",
+    "end": "00:50:04.700",
+    "text": "And when we put these two together,"
+  },
+  {
+    "start": "00:50:04.700",
+    "end": "00:50:07.730",
+    "text": "we're going to get modern finance."
+  },
+  {
+    "start": "00:50:07.730",
+    "end": "00:50:13.220",
+    "text": "So that will happen some time in week six, seven, and eight."
+  },
+  {
+    "start": "00:50:13.220",
+    "end": "00:50:15.560",
+    "text": "Now finally, I want to talk about"
+  },
+  {
+    "start": "00:50:15.560",
+    "end": "00:50:17.480",
+    "text": "the fundamental principles of finance,"
+  },
+  {
+    "start": "00:50:17.480",
+    "end": "00:50:21.860",
+    "text": "and then I'm going to talk specifically about this course."
+  },
+  {
+    "start": "00:50:21.860",
+    "end": "00:50:27.440",
+    "text": "There are six fundamental ideas that finance has come up"
+  },
+  {
+    "start": "00:50:27.440",
+    "end": "00:50:32.660",
+    "text": "with that really will change the way you think about the world,"
+  },
+  {
+    "start": "00:50:32.660",
+    "end": "00:50:35.360",
+    "text": "and you won't appreciate it today."
+  },
+  {
+    "start": "00:50:35.360",
+    "end": "00:50:36.710",
+    "text": "I know that."
+  },
+  {
+    "start": "00:50:36.710",
+    "end": "00:50:40.430",
+    "text": "But I want to put it into your subconscious today,"
+  },
+  {
+    "start": "00:50:40.430",
+    "end": "00:50:44.000",
+    "text": "because sometime over the next 13 weeks,"
+  },
+  {
+    "start": "00:50:44.000",
+    "end": "00:50:49.220",
+    "text": "at least I hope over the next 13 weeks, your face will light up"
+  },
+  {
+    "start": "00:50:49.220",
+    "end": "00:50:50.972",
+    "text": "and you're going to get it one day."
+  },
+  {
+    "start": "00:50:50.972",
+    "end": "00:50:52.430",
+    "text": "You're going to get it in the sense"
+  },
+  {
+    "start": "00:50:52.430",
+    "end": "00:50:54.890",
+    "text": "that you will understand at that point in time"
+  },
+  {
+    "start": "00:50:54.890",
+    "end": "00:50:58.590",
+    "text": "how these six principles can be used"
+  },
+  {
+    "start": "00:50:58.590",
+    "end": "00:51:02.160",
+    "text": "to make any financial decision that you need to make"
+  },
+  {
+    "start": "00:51:02.160",
+    "end": "00:51:04.020",
+    "text": "for the rest of your careers."
+  },
+  {
+    "start": "00:51:04.020",
+    "end": "00:51:06.310",
+    "text": "The first principle is pretty obvious."
+  },
+  {
+    "start": "00:51:06.310",
+    "end": "00:51:09.030",
+    "text": "There is no such thing as a free lunch."
+  },
+  {
+    "start": "00:51:09.030",
+    "end": "00:51:11.790",
+    "text": "Actually all of these principles are"
+  },
+  {
+    "start": "00:51:11.790",
+    "end": "00:51:14.950",
+    "text": "approximations to a much more complex truth."
+  },
+  {
+    "start": "00:51:14.950",
+    "end": "00:51:17.370",
+    "text": "So if you really want to be strict about it,"
+  },
+  {
+    "start": "00:51:17.370",
+    "end": "00:51:20.430",
+    "text": "it should read, there may be free lunches on occasion,"
+  },
+  {
+    "start": "00:51:20.430",
+    "end": "00:51:24.470",
+    "text": "but there's no such thing as a free lunch program."
+  },
+  {
+    "start": "00:51:24.470",
+    "end": "00:51:28.149",
+    "text": "There isn't systematic free lunches."
+  },
+  {
+    "start": "00:51:28.149",
+    "end": "00:51:30.440",
+    "text": "You might be able to find one or two every now and then"
+  },
+  {
+    "start": "00:51:30.440",
+    "end": "00:51:33.280",
+    "text": "if you're lucky and if you work hard,"
+  },
+  {
+    "start": "00:51:33.280",
+    "end": "00:51:38.530",
+    "text": "but systematic transfers of wealth for no reason at all"
+  },
+  {
+    "start": "00:51:38.530",
+    "end": "00:51:41.270",
+    "text": "are unlikely."
+  },
+  {
+    "start": "00:51:41.270",
+    "end": "00:51:42.980",
+    "text": "Second principle."
+  },
+  {
+    "start": "00:51:42.980",
+    "end": "00:51:44.840",
+    "text": "Other things equal-- and this is a phrase"
+  },
+  {
+    "start": "00:51:44.840",
+    "end": "00:51:47.417",
+    "text": "that you'll hear economists utter all the time."
+  },
+  {
+    "start": "00:51:47.417",
+    "end": "00:51:49.250",
+    "text": "And of course, other things are never equal,"
+  },
+  {
+    "start": "00:51:49.250",
+    "end": "00:51:52.280",
+    "text": "but let's pretend that they are."
+  },
+  {
+    "start": "00:51:52.280",
+    "end": "00:51:58.520",
+    "text": "Other things equal, individuals satisfy three characteristics."
+  },
+  {
+    "start": "00:51:58.520",
+    "end": "00:52:01.490",
+    "text": "They prefer more money to less."
+  },
+  {
+    "start": "00:52:01.490",
+    "end": "00:52:05.250",
+    "text": "That's often called non-satiation."
+  },
+  {
+    "start": "00:52:05.250",
+    "end": "00:52:08.250",
+    "text": "They prefer money now to money later,"
+  },
+  {
+    "start": "00:52:08.250",
+    "end": "00:52:12.840",
+    "text": "and they prefer less risk to more risk"
+  },
+  {
+    "start": "00:52:12.840",
+    "end": "00:52:16.400",
+    "text": "when risk is defined properly."
+  },
+  {
+    "start": "00:52:16.400",
+    "end": "00:52:18.130",
+    "text": "Now I'd argue that these principles"
+  },
+  {
+    "start": "00:52:18.130",
+    "end": "00:52:21.070",
+    "text": "are in fact fairly universal."
+  },
+  {
+    "start": "00:52:21.070",
+    "end": "00:52:24.130",
+    "text": "Not that you can't find exceptions every now and then"
+  },
+  {
+    "start": "00:52:24.130",
+    "end": "00:52:29.590",
+    "text": "for every individual, but by and large over periods of time"
+  },
+  {
+    "start": "00:52:29.590",
+    "end": "00:52:33.820",
+    "text": "and over a large population this is generally true."
+  },
+  {
+    "start": "00:52:33.820",
+    "end": "00:52:35.590",
+    "text": "And if you don't believe me or if you"
+  },
+  {
+    "start": "00:52:35.590",
+    "end": "00:52:39.170",
+    "text": "know people that don't satisfy these principles,"
+  },
+  {
+    "start": "00:52:39.170",
+    "end": "00:52:41.420",
+    "text": "please introduce them to me after class."
+  },
+  {
+    "start": "00:52:41.420",
+    "end": "00:52:44.240",
+    "text": "I'd like to get to know them, and do some business with them."
+  },
+  {
+    "start": "00:52:48.270",
+    "end": "00:52:49.830",
+    "text": "Principle three."
+  },
+  {
+    "start": "00:52:49.830",
+    "end": "00:52:54.400",
+    "text": "All agents act to further their own self-interest."
+  },
+  {
+    "start": "00:52:54.400",
+    "end": "00:52:57.610",
+    "text": "Now again, this is not to say that there aren't"
+  },
+  {
+    "start": "00:52:57.610",
+    "end": "00:52:59.530",
+    "text": "Mother Teresas out there."
+  },
+  {
+    "start": "00:52:59.530",
+    "end": "00:53:02.350",
+    "text": "That there aren't people that care about the general welfare"
+  },
+  {
+    "start": "00:53:02.350",
+    "end": "00:53:04.120",
+    "text": "of the public."
+  },
+  {
+    "start": "00:53:04.120",
+    "end": "00:53:07.990",
+    "text": "But economists in their own unique and annoying way"
+  },
+  {
+    "start": "00:53:07.990",
+    "end": "00:53:12.250",
+    "text": "have been able to redefine preferences to even argue"
+  },
+  {
+    "start": "00:53:12.250",
+    "end": "00:53:16.630",
+    "text": "that Mother Teresa is incredibly selfish, because her utility"
+  },
+  {
+    "start": "00:53:16.630",
+    "end": "00:53:19.540",
+    "text": "function is the function-- the utility"
+  },
+  {
+    "start": "00:53:19.540",
+    "end": "00:53:21.200",
+    "text": "function of other people."
+  },
+  {
+    "start": "00:53:21.200",
+    "end": "00:53:23.290",
+    "text": "And so by doing all this good, Mother Teresa"
+  },
+  {
+    "start": "00:53:23.290",
+    "end": "00:53:26.260",
+    "text": "was only furthering her own self-interests."
+  },
+  {
+    "start": "00:53:26.260",
+    "end": "00:53:28.650",
+    "text": "Isn't she so selfish."
+  },
+  {
+    "start": "00:53:28.650",
+    "end": "00:53:33.610",
+    "text": "Now, so in a way when the economist defines preferences,"
+  },
+  {
+    "start": "00:53:33.610",
+    "end": "00:53:36.820",
+    "text": "they almost define it as a tautology."
+  },
+  {
+    "start": "00:53:36.820",
+    "end": "00:53:40.660",
+    "text": "But finance makes economics practical in the sense"
+  },
+  {
+    "start": "00:53:40.660",
+    "end": "00:53:44.830",
+    "text": "that I'll describe in a few weeks exactly"
+  },
+  {
+    "start": "00:53:44.830",
+    "end": "00:53:48.730",
+    "text": "what kinds of preferences are actually embodied in decision"
+  },
+  {
+    "start": "00:53:48.730",
+    "end": "00:53:52.730",
+    "text": "making, and why this principle is more often than not,"
+  },
+  {
+    "start": "00:53:52.730",
+    "end": "00:53:56.830",
+    "text": "a pretty good approximation to a much more complex reality."
+  },
+  {
+    "start": "00:53:56.830",
+    "end": "00:54:00.010",
+    "text": "Now the last three principles I'm not"
+  },
+  {
+    "start": "00:54:00.010",
+    "end": "00:54:03.820",
+    "text": "going to talk about in great detail, because those really"
+  },
+  {
+    "start": "00:54:03.820",
+    "end": "00:54:06.280",
+    "text": "embody a much larger set of issues"
+  },
+  {
+    "start": "00:54:06.280",
+    "end": "00:54:07.840",
+    "text": "about economics and finance."
+  },
+  {
+    "start": "00:54:07.840",
+    "end": "00:54:10.720",
+    "text": "We're going to talk about those three principles,"
+  },
+  {
+    "start": "00:54:10.720",
+    "end": "00:54:14.350",
+    "text": "but only in the last lecture oddly enough."
+  },
+  {
+    "start": "00:54:14.350",
+    "end": "00:54:15.700",
+    "text": "We're going to use them."
+  },
+  {
+    "start": "00:54:15.700",
+    "end": "00:54:17.650",
+    "text": "We're going to use these principles,"
+  },
+  {
+    "start": "00:54:17.650",
+    "end": "00:54:20.160",
+    "text": "but in the last lecture I'm going"
+  },
+  {
+    "start": "00:54:20.160",
+    "end": "00:54:24.090",
+    "text": "to question all of the framework that I've developed for you,"
+  },
+  {
+    "start": "00:54:24.090",
+    "end": "00:54:26.400",
+    "text": "and show you where the holes are."
+  },
+  {
+    "start": "00:54:26.400",
+    "end": "00:54:28.140",
+    "text": "For the first 13 weeks, I'm going"
+  },
+  {
+    "start": "00:54:28.140",
+    "end": "00:54:32.880",
+    "text": "to need you to willingly suspend your disbelief as we describe"
+  },
+  {
+    "start": "00:54:32.880",
+    "end": "00:54:39.390",
+    "text": "the relatively straightforward and standardized framework"
+  },
+  {
+    "start": "00:54:39.390",
+    "end": "00:54:41.770",
+    "text": "for thinking about financial problems."
+  },
+  {
+    "start": "00:54:41.770",
+    "end": "00:54:43.340",
+    "text": "And in the last lecture I'm going"
+  },
+  {
+    "start": "00:54:43.340",
+    "end": "00:54:46.530",
+    "text": "to describe to you where the approximations were made,"
+  },
+  {
+    "start": "00:54:46.530",
+    "end": "00:54:49.860",
+    "text": "and why you need to take advanced courses in finance"
+  },
+  {
+    "start": "00:54:49.860",
+    "end": "00:54:50.880",
+    "text": "to fill those gaps."
+  },
+  {
+    "start": "00:54:53.520",
+    "end": "00:54:57.540",
+    "text": "So with that said, let me now turn to course overview,"
+  },
+  {
+    "start": "00:54:57.540",
+    "end": "00:55:00.329",
+    "text": "and then I'll take questions about course mechanics."
+  },
+  {
+    "start": "00:55:00.329",
+    "end": "00:55:02.370",
+    "text": "There are going to be four sections of the course"
+  },
+  {
+    "start": "00:55:02.370",
+    "end": "00:55:04.310",
+    "text": "as outlined in the syllabus."
+  },
+  {
+    "start": "00:55:04.310",
+    "end": "00:55:07.230",
+    "text": "The four sections are the introductory material,"
+  },
+  {
+    "start": "00:55:07.230",
+    "end": "00:55:09.420",
+    "text": "which we've gone over today."
+  },
+  {
+    "start": "00:55:09.420",
+    "end": "00:55:14.190",
+    "text": "Section B, which we will cover for the next three or four"
+  },
+  {
+    "start": "00:55:14.190",
+    "end": "00:55:16.830",
+    "text": "lectures is valuation."
+  },
+  {
+    "start": "00:55:16.830",
+    "end": "00:55:19.530",
+    "text": "Discounting and the mathematics of net present value."
+  },
+  {
+    "start": "00:55:19.530",
+    "end": "00:55:22.410",
+    "text": "Pricing stocks, bonds, futures, forwards, and options,"
+  },
+  {
+    "start": "00:55:22.410",
+    "end": "00:55:25.530",
+    "text": "and the relative kinds of issues that"
+  },
+  {
+    "start": "00:55:25.530",
+    "end": "00:55:30.450",
+    "text": "come up across those different asset classes."
+  },
+  {
+    "start": "00:55:30.450",
+    "end": "00:55:34.390",
+    "text": "Section C will focus on risk, and introduce risk"
+  },
+  {
+    "start": "00:55:34.390",
+    "end": "00:55:40.480",
+    "text": "into the framework of section B. So once we complete Section C,"
+  },
+  {
+    "start": "00:55:40.480",
+    "end": "00:55:44.690",
+    "text": "we will then have focused on time and risk."
+  },
+  {
+    "start": "00:55:44.690",
+    "end": "00:55:47.110",
+    "text": "And finally section D will be how"
+  },
+  {
+    "start": "00:55:47.110",
+    "end": "00:55:51.720",
+    "text": "to apply those principles to problems in corporate finance."
+  },
+  {
+    "start": "00:55:51.720",
+    "end": "00:55:57.400",
+    "text": "What Jack Welch did from 1981 to 2001."
+  },
+  {
+    "start": "00:55:57.400",
+    "end": "00:55:59.470",
+    "text": "How do you take these ideas, and apply them"
+  },
+  {
+    "start": "00:55:59.470",
+    "end": "00:56:02.560",
+    "text": "to practical circumstances."
+  },
+  {
+    "start": "00:56:02.560",
+    "end": "00:56:04.990",
+    "text": "And then the last lecture will be"
+  },
+  {
+    "start": "00:56:04.990",
+    "end": "00:56:07.210",
+    "text": "a lecture-- this is not the same last lecture"
+  },
+  {
+    "start": "00:56:07.210",
+    "end": "00:56:08.470",
+    "text": "as other last lectures."
+  },
+  {
+    "start": "00:56:08.470",
+    "end": "00:56:10.742",
+    "text": "I'm not going to die, but so I don't mean"
+  },
+  {
+    "start": "00:56:10.742",
+    "end": "00:56:11.950",
+    "text": "to call it the final lecture."
+  },
+  {
+    "start": "00:56:11.950",
+    "end": "00:56:14.080",
+    "text": "That sounds a little ominous."
+  },
+  {
+    "start": "00:56:14.080",
+    "end": "00:56:16.330",
+    "text": "The idea behind this last lecture"
+  },
+  {
+    "start": "00:56:16.330",
+    "end": "00:56:18.280",
+    "text": "is to put it all together, and explain"
+  },
+  {
+    "start": "00:56:18.280",
+    "end": "00:56:21.130",
+    "text": "how these financial theories interact"
+  },
+  {
+    "start": "00:56:21.130",
+    "end": "00:56:24.610",
+    "text": "with imperfections in the marketplace, and what is--"
+  },
+  {
+    "start": "00:56:24.610",
+    "end": "00:56:27.070",
+    "text": "or is not good approximations."
+  },
+  {
+    "start": "00:56:29.720",
+    "end": "00:56:32.840",
+    "text": "Let me talk about course requirements now."
+  },
+  {
+    "start": "00:56:32.840",
+    "end": "00:56:35.900",
+    "text": "Obviously the lectures and the readings,"
+  },
+  {
+    "start": "00:56:35.900",
+    "end": "00:56:39.320",
+    "text": "and attendance and participation will be an important part"
+  },
+  {
+    "start": "00:56:39.320",
+    "end": "00:56:40.730",
+    "text": "of the course."
+  },
+  {
+    "start": "00:56:40.730",
+    "end": "00:56:44.850",
+    "text": "We are not going to cover the entire tome of Brealey, Myers"
+  },
+  {
+    "start": "00:56:44.850",
+    "end": "00:56:45.350",
+    "text": "and Allen."
+  },
+  {
+    "start": "00:56:45.350",
+    "end": "00:56:48.800",
+    "text": "This is a book, which if dropped off of a six-story building"
+  },
+  {
+    "start": "00:56:48.800",
+    "end": "00:56:51.020",
+    "text": "could actually kill somebody if it hit them."
+  },
+  {
+    "start": "00:56:51.020",
+    "end": "00:56:53.840",
+    "text": "So we can't possibly cover the entire textbook."
+  },
+  {
+    "start": "00:56:53.840",
+    "end": "00:56:58.040",
+    "text": "We'll cover selected chapters, but this is Finance 401,"
+  },
+  {
+    "start": "00:56:58.040",
+    "end": "00:56:59.950",
+    "text": "so it's an introductory course."
+  },
+  {
+    "start": "00:56:59.950",
+    "end": "00:57:02.450",
+    "text": "And so the readings that you are going to be responsible for"
+  },
+  {
+    "start": "00:57:02.450",
+    "end": "00:57:04.575",
+    "text": "are the ones that are outlined on the reading list,"
+  },
+  {
+    "start": "00:57:04.575",
+    "end": "00:57:07.280",
+    "text": "and that I've listed in every lecture."
+  },
+  {
+    "start": "00:57:07.280",
+    "end": "00:57:09.170",
+    "text": "So for example, chapters one and two,"
+  },
+  {
+    "start": "00:57:09.170",
+    "end": "00:57:11.550",
+    "text": "you are now responsible for."
+  },
+  {
+    "start": "00:57:11.550",
+    "end": "00:57:14.470",
+    "text": "And we will be grading class participation."
+  },
+  {
+    "start": "00:57:14.470",
+    "end": "00:57:17.430",
+    "text": "So I expect you to come to class prepared, and ready"
+  },
+  {
+    "start": "00:57:17.430",
+    "end": "00:57:19.560",
+    "text": "to discuss material, and possibly"
+  },
+  {
+    "start": "00:57:19.560",
+    "end": "00:57:22.170",
+    "text": "questions that we may have raised in the previous lecture."
+  },
+  {
+    "start": "00:57:22.170",
+    "end": "00:57:24.650",
+    "text": "And there will be one case study that you"
+  },
+  {
+    "start": "00:57:24.650",
+    "end": "00:57:27.300",
+    "text": "will be responsible for writing up and handing in,"
+  },
+  {
+    "start": "00:57:27.300",
+    "end": "00:57:29.430",
+    "text": "and that will be worth 10% of the grade."
+  },
+  {
+    "start": "00:57:29.430",
+    "end": "00:57:32.790",
+    "text": "And attendance and participation will be worth another 10%."
+  },
+  {
+    "start": "00:57:32.790",
+    "end": "00:57:35.550",
+    "text": "So that's 20% of your grade."
+  },
+  {
+    "start": "00:57:35.550",
+    "end": "00:57:39.300",
+    "text": "And then finally the midterm and final exam"
+  },
+  {
+    "start": "00:57:39.300",
+    "end": "00:57:43.009",
+    "text": "will be worth 25% and 55%."
+  },
+  {
+    "start": "00:57:43.009",
+    "end": "00:57:44.550",
+    "text": "Let me explain a little bit about how"
+  },
+  {
+    "start": "00:57:44.550",
+    "end": "00:57:46.380",
+    "text": "the midterm and final exam works, because it's"
+  },
+  {
+    "start": "00:57:46.380",
+    "end": "00:57:48.030",
+    "text": "a little different in this class than in some"
+  },
+  {
+    "start": "00:57:48.030",
+    "end": "00:57:48.904",
+    "text": "of the other classes."
+  },
+  {
+    "start": "00:57:48.904",
+    "end": "00:57:51.420",
+    "text": "And by the way, this grading scheme"
+  },
+  {
+    "start": "00:57:51.420",
+    "end": "00:57:53.430",
+    "text": "and the particular mechanisms are"
+  },
+  {
+    "start": "00:57:53.430",
+    "end": "00:57:55.680",
+    "text": "identical in these two sections that I teach,"
+  },
+  {
+    "start": "00:57:55.680",
+    "end": "00:57:58.050",
+    "text": "and in the sections that Professor Wang teaches."
+  },
+  {
+    "start": "00:57:58.050",
+    "end": "00:58:01.830",
+    "text": "So he and I have coordinated to have the same approach, so"
+  },
+  {
+    "start": "00:58:01.830",
+    "end": "00:58:06.560",
+    "text": "as not to advantage or disadvantage any one section."
+  },
+  {
+    "start": "00:58:06.560",
+    "end": "00:58:12.510",
+    "text": "In your readings packet will be a collection of problems"
+  },
+  {
+    "start": "00:58:12.510",
+    "end": "00:58:13.590",
+    "text": "that we've put together."
+  },
+  {
+    "start": "00:58:13.590",
+    "end": "00:58:15.120",
+    "text": "And actually I don't know if it's in there right now"
+  },
+  {
+    "start": "00:58:15.120",
+    "end": "00:58:17.070",
+    "text": "or if it's being photocopied, but we"
+  },
+  {
+    "start": "00:58:17.070",
+    "end": "00:58:22.800",
+    "text": "will prepare a list of problems that you can work on."
+  },
+  {
+    "start": "00:58:22.800",
+    "end": "00:58:24.880",
+    "text": "These are completely optional."
+  },
+  {
+    "start": "00:58:24.880",
+    "end": "00:58:27.780",
+    "text": "And there are far too many problems for you"
+  },
+  {
+    "start": "00:58:27.780",
+    "end": "00:58:32.654",
+    "text": "to be able to do even in one full semester."
+  },
+  {
+    "start": "00:58:32.654",
+    "end": "00:58:34.070",
+    "text": "The reason we give them to you is,"
+  },
+  {
+    "start": "00:58:34.070",
+    "end": "00:58:39.669",
+    "text": "because the only way to learn finance is to do finance."
+  },
+  {
+    "start": "00:58:39.669",
+    "end": "00:58:41.210",
+    "text": "If you come into the class and listen"
+  },
+  {
+    "start": "00:58:41.210",
+    "end": "00:58:44.240",
+    "text": "to my lectures you may be entertained"
+  },
+  {
+    "start": "00:58:44.240",
+    "end": "00:58:48.270",
+    "text": "for an hour and a half, you won't learn the material."
+  },
+  {
+    "start": "00:58:48.270",
+    "end": "00:58:51.110",
+    "text": "In fact, I've now changed the way I talk about the course,"
+  },
+  {
+    "start": "00:58:51.110",
+    "end": "00:58:56.060",
+    "text": "and I don't describe what I do as teaching anymore."
+  },
+  {
+    "start": "00:58:56.060",
+    "end": "00:59:00.260",
+    "text": "Because teaching implies that I can force feed knowledge"
+  },
+  {
+    "start": "00:59:00.260",
+    "end": "00:59:02.250",
+    "text": "into your brains."
+  },
+  {
+    "start": "00:59:02.250",
+    "end": "00:59:04.150",
+    "text": "It turns out it can't be done."
+  },
+  {
+    "start": "00:59:04.150",
+    "end": "00:59:08.170",
+    "text": "And my two sons have proven that to me time and again."
+  },
+  {
+    "start": "00:59:08.170",
+    "end": "00:59:10.380",
+    "text": "You have to want to learn the material,"
+  },
+  {
+    "start": "00:59:10.380",
+    "end": "00:59:14.850",
+    "text": "so you have to pull the knowledge from me into you."
+  },
+  {
+    "start": "00:59:14.850",
+    "end": "00:59:17.160",
+    "text": "In other words, you have to be an active participant."
+  },
+  {
+    "start": "00:59:17.160",
+    "end": "00:59:20.670",
+    "text": "My 12th grade math teacher used to say that mathematics"
+  },
+  {
+    "start": "00:59:20.670",
+    "end": "00:59:22.500",
+    "text": "is not a spectator sport."
+  },
+  {
+    "start": "00:59:22.500",
+    "end": "00:59:23.820",
+    "text": "That's the same for finance."
+  },
+  {
+    "start": "00:59:23.820",
+    "end": "00:59:25.740",
+    "text": "Finance is not a spectator sport."
+  },
+  {
+    "start": "00:59:25.740",
+    "end": "00:59:27.360",
+    "text": "You actually have to do it."
+  },
+  {
+    "start": "00:59:27.360",
+    "end": "00:59:31.080",
+    "text": "You have to confront yourself with problems time and again,"
+  },
+  {
+    "start": "00:59:31.080",
+    "end": "00:59:33.870",
+    "text": "and think about how to apply the principles in our lecture"
+  },
+  {
+    "start": "00:59:33.870",
+    "end": "00:59:36.120",
+    "text": "to those problems."
+  },
+  {
+    "start": "00:59:36.120",
+    "end": "00:59:39.770",
+    "text": "The purpose of a lecture is to give you the motivation,"
+  },
+  {
+    "start": "00:59:39.770",
+    "end": "00:59:43.500",
+    "text": "and take you through the most difficult aspects"
+  },
+  {
+    "start": "00:59:43.500",
+    "end": "00:59:47.220",
+    "text": "of the principles and the theories of financial analysis."
+  },
+  {
+    "start": "00:59:47.220",
+    "end": "00:59:50.850",
+    "text": "But it's your job to do the analysis."
+  },
+  {
+    "start": "00:59:50.850",
+    "end": "00:59:53.310",
+    "text": "And to that end we're going to give you some motivation."
+  },
+  {
+    "start": "00:59:53.310",
+    "end": "00:59:56.370",
+    "text": "And the motivation is that the midterm and the final exams"
+  },
+  {
+    "start": "00:59:56.370",
+    "end": "00:59:58.530",
+    "text": "are structured so that most of the weight"
+  },
+  {
+    "start": "00:59:58.530",
+    "end": "00:59:59.970",
+    "text": "is placed on the final."
+  },
+  {
+    "start": "00:59:59.970",
+    "end": "01:00:01.840",
+    "text": "The reason is the final is cumulative."
+  },
+  {
+    "start": "01:00:01.840",
+    "end": "01:00:04.830",
+    "text": "So it's going to cover twice the material as the midterm."
+  },
+  {
+    "start": "01:00:04.830",
+    "end": "01:00:08.160",
+    "text": "Therefore it should be worth roughly double."
+  },
+  {
+    "start": "01:00:08.160",
+    "end": "01:00:12.820",
+    "text": "But the other reason is that financial analysis"
+  },
+  {
+    "start": "01:00:12.820",
+    "end": "01:00:17.630",
+    "text": "is alien to the typical human cognitive process."
+  },
+  {
+    "start": "01:00:17.630",
+    "end": "01:00:21.040",
+    "text": "None of you are hard wired to engage in net present value"
+  },
+  {
+    "start": "01:00:21.040",
+    "end": "01:00:22.660",
+    "text": "calculations."
+  },
+  {
+    "start": "01:00:22.660",
+    "end": "01:00:25.450",
+    "text": "And so it's going to take some time before you get it,"
+  },
+  {
+    "start": "01:00:25.450",
+    "end": "01:00:27.380",
+    "text": "before it sinks in."
+  },
+  {
+    "start": "01:00:27.380",
+    "end": "01:00:29.210",
+    "text": "And I've taught this class many times"
+  },
+  {
+    "start": "01:00:29.210",
+    "end": "01:00:34.750",
+    "text": "before, and usually somewhere between week eight and week 13"
+  },
+  {
+    "start": "01:00:34.750",
+    "end": "01:00:37.310",
+    "text": "a light goes off in your head, and you get it."
+  },
+  {
+    "start": "01:00:37.310",
+    "end": "01:00:39.350",
+    "text": "And I see this by the bright smiles"
+  },
+  {
+    "start": "01:00:39.350",
+    "end": "01:00:41.070",
+    "text": "on your face around that time."
+  },
+  {
+    "start": "01:00:41.070",
+    "end": "01:00:41.750",
+    "text": "It could be because you're getting"
+  },
+  {
+    "start": "01:00:41.750",
+    "end": "01:00:42.680",
+    "text": "to the end of the semester, and you're"
+  },
+  {
+    "start": "01:00:42.680",
+    "end": "01:00:44.300",
+    "text": "glad to be done with the class."
+  },
+  {
+    "start": "01:00:44.300",
+    "end": "01:00:46.610",
+    "text": "But I like to think that it's because at some point"
+  },
+  {
+    "start": "01:00:46.610",
+    "end": "01:00:48.380",
+    "text": "you actually get it."
+  },
+  {
+    "start": "01:00:48.380",
+    "end": "01:00:50.510",
+    "text": "In a few rare cases it happens at week 14,"
+  },
+  {
+    "start": "01:00:50.510",
+    "end": "01:00:53.030",
+    "text": "which is not so good, but hopefully"
+  },
+  {
+    "start": "01:00:53.030",
+    "end": "01:00:55.550",
+    "text": "before the final exam."
+  },
+  {
+    "start": "01:00:55.550",
+    "end": "01:00:59.800",
+    "text": "Now in order to provide you with extra incentive to do problems,"
+  },
+  {
+    "start": "01:00:59.800",
+    "end": "01:01:03.160",
+    "text": "and given this is an MBA class, I realize that all of you"
+  },
+  {
+    "start": "01:01:03.160",
+    "end": "01:01:04.660",
+    "text": "have very busy schedules, and you"
+  },
+  {
+    "start": "01:01:04.660",
+    "end": "01:01:07.760",
+    "text": "can schedule your own activities better than we can."
+  },
+  {
+    "start": "01:01:07.760",
+    "end": "01:01:10.060",
+    "text": "So rather than have weekly problem sets that are due,"
+  },
+  {
+    "start": "01:01:10.060",
+    "end": "01:01:12.393",
+    "text": "and you have to hand them in, we have to hand them back."
+  },
+  {
+    "start": "01:01:12.393",
+    "end": "01:01:14.000",
+    "text": "It's a hassle for everybody."
+  },
+  {
+    "start": "01:01:14.000",
+    "end": "01:01:16.020",
+    "text": "There are no problem sets in this class."
+  },
+  {
+    "start": "01:01:16.020",
+    "end": "01:01:17.930",
+    "text": "None."
+  },
+  {
+    "start": "01:01:17.930",
+    "end": "01:01:20.820",
+    "text": "However, we're going to give you a package of problems"
+  },
+  {
+    "start": "01:01:20.820",
+    "end": "01:01:22.740",
+    "text": "and solutions upfront."
+  },
+  {
+    "start": "01:01:22.740",
+    "end": "01:01:25.310",
+    "text": "You'll get that within the next few days."
+  },
+  {
+    "start": "01:01:25.310",
+    "end": "01:01:31.820",
+    "text": "And I will promise you that the majority of exam questions"
+  },
+  {
+    "start": "01:01:31.820",
+    "end": "01:01:36.350",
+    "text": "will come verbatim from this package of problems."
+  },
+  {
+    "start": "01:01:36.350",
+    "end": "01:01:37.010",
+    "text": "Majority."
+  },
+  {
+    "start": "01:01:37.010",
+    "end": "01:01:39.830",
+    "text": "Meaning more than 50% of the points"
+  },
+  {
+    "start": "01:01:39.830",
+    "end": "01:01:42.020",
+    "text": "will come from the package."
+  },
+  {
+    "start": "01:01:42.020",
+    "end": "01:01:47.120",
+    "text": "So if all you did was to memorize this entire stack,"
+  },
+  {
+    "start": "01:01:47.120",
+    "end": "01:01:49.550",
+    "text": "you could ace the course."
+  },
+  {
+    "start": "01:01:49.550",
+    "end": "01:01:51.711",
+    "text": "But of course, that would mean you"
+  },
+  {
+    "start": "01:01:51.711",
+    "end": "01:01:53.210",
+    "text": "would spend enormous amounts of time"
+  },
+  {
+    "start": "01:01:53.210",
+    "end": "01:01:57.270",
+    "text": "in finance, which is not such a bad outcome either."
+  },
+  {
+    "start": "01:01:57.270",
+    "end": "01:01:59.940",
+    "text": "So we want to do this to eliminate"
+  },
+  {
+    "start": "01:01:59.940",
+    "end": "01:02:03.166",
+    "text": "a lot of the fear and anxiety with financial analysis."
+  },
+  {
+    "start": "01:02:03.166",
+    "end": "01:02:05.040",
+    "text": "It is challenging, but it's a lot of fun too."
+  },
+  {
+    "start": "01:02:05.040",
+    "end": "01:02:06.930",
+    "text": "We want you to have fun, because that's"
+  },
+  {
+    "start": "01:02:06.930",
+    "end": "01:02:09.600",
+    "text": "the only way you're going to learn this material well."
+  },
+  {
+    "start": "01:02:09.600",
+    "end": "01:02:13.170",
+    "text": "So it's up to you as to how much you want to do."
+  },
+  {
+    "start": "01:02:13.170",
+    "end": "01:02:16.359",
+    "text": "The recitations will cover selected problems."
+  },
+  {
+    "start": "01:02:16.359",
+    "end": "01:02:18.150",
+    "text": "So you're not going to be left on your own."
+  },
+  {
+    "start": "01:02:18.150",
+    "end": "01:02:21.589",
+    "text": "The recitations will go over problems and how to solve them."
+  },
+  {
+    "start": "01:02:21.589",
+    "end": "01:02:23.130",
+    "text": "I'll do a few in class, the ones that"
+  },
+  {
+    "start": "01:02:23.130",
+    "end": "01:02:25.410",
+    "text": "are particularly challenging, but then you'll"
+  },
+  {
+    "start": "01:02:25.410",
+    "end": "01:02:26.670",
+    "text": "need to do more on your own."
+  },
+  {
+    "start": "01:02:26.670",
+    "end": "01:02:30.300",
+    "text": "And if you do that, you will be prepared for the final exam"
+  },
+  {
+    "start": "01:02:30.300",
+    "end": "01:02:31.310",
+    "text": "better than most."
+  },
+  {
+    "start": "01:02:31.310",
+    "end": "01:02:35.820",
+    "text": "The other material will be readings and lecture material,"
+  },
+  {
+    "start": "01:02:35.820",
+    "end": "01:02:38.070",
+    "text": "and therefore there will be some customization,"
+  },
+  {
+    "start": "01:02:38.070",
+    "end": "01:02:40.310",
+    "text": "because my lecture style is different from Professor"
+  },
+  {
+    "start": "01:02:40.310",
+    "end": "01:02:41.250",
+    "text": "Wang's."
+  },
+  {
+    "start": "01:02:41.250",
+    "end": "01:02:43.770",
+    "text": "But the majority of the exam will be identical,"
+  },
+  {
+    "start": "01:02:43.770",
+    "end": "01:02:48.000",
+    "text": "and it will be drawn from these problem banks"
+  },
+  {
+    "start": "01:02:48.000",
+    "end": "01:02:51.780",
+    "text": "that you're going to get a copy of in advance."
+  },
+  {
+    "start": "01:02:51.780",
+    "end": "01:02:53.940",
+    "text": "Now frankly, I have to tell you that I don't really"
+  },
+  {
+    "start": "01:02:53.940",
+    "end": "01:02:56.970",
+    "text": "like to give grades at all, but I'm forced to do so."
+  },
+  {
+    "start": "01:02:56.970",
+    "end": "01:03:01.110",
+    "text": "And so that's why we set up this process for assigning grades."
+  },
+  {
+    "start": "01:03:01.110",
+    "end": "01:03:02.670",
+    "text": "In fact, a few years ago, I came up"
+  },
+  {
+    "start": "01:03:02.670",
+    "end": "01:03:06.072",
+    "text": "with what I thought was a brilliant way to assign grades,"
+  },
+  {
+    "start": "01:03:06.072",
+    "end": "01:03:08.280",
+    "text": "but I haven't been able to convince the dean's office"
+  },
+  {
+    "start": "01:03:08.280",
+    "end": "01:03:09.750",
+    "text": "to let me do that."
+  },
+  {
+    "start": "01:03:09.750",
+    "end": "01:03:11.040",
+    "text": "And you know what it is?"
+  },
+  {
+    "start": "01:03:11.040",
+    "end": "01:03:11.820",
+    "text": "It goes like this."
+  },
+  {
+    "start": "01:03:11.820",
+    "end": "01:03:13.620",
+    "text": "Let me show you."
+  },
+  {
+    "start": "01:03:13.620",
+    "end": "01:03:21.350",
+    "text": "I propose to give everybody in this class a B. That's it."
+  },
+  {
+    "start": "01:03:21.350",
+    "end": "01:03:25.400",
+    "text": "Everybody gets a B. Now before I do this,"
+  },
+  {
+    "start": "01:03:25.400",
+    "end": "01:03:27.950",
+    "text": "how many people would object to that?"
+  },
+  {
+    "start": "01:03:27.950",
+    "end": "01:03:29.640",
+    "text": "Raise your hand."
+  },
+  {
+    "start": "01:03:29.640",
+    "end": "01:03:32.810",
+    "text": "All right, those of you with your hands up, you get As."
+  },
+  {
+    "start": "01:03:32.810",
+    "end": "01:03:33.310",
+    "text": "Done."
+  },
+  {
+    "start": "01:03:36.790",
+    "end": "01:03:39.250",
+    "text": "You see how brilliant that is?"
+  },
+  {
+    "start": "01:03:39.250",
+    "end": "01:03:40.870",
+    "text": "I get a grade distribution."
+  },
+  {
+    "start": "01:03:40.870",
+    "end": "01:03:43.330",
+    "text": "No work."
+  },
+  {
+    "start": "01:03:43.330",
+    "end": "01:03:46.060",
+    "text": "The only problem is it only works once."
+  },
+  {
+    "start": "01:03:46.060",
+    "end": "01:03:47.910",
+    "text": "And when you're teaching two sections, so"
+  },
+  {
+    "start": "01:03:47.910",
+    "end": "01:03:50.960",
+    "text": "somehow the second section, it doesn't work as well."
+  },
+  {
+    "start": "01:03:50.960",
+    "end": "01:03:53.230",
+    "text": "So I'm sorry I have to give grades."
+  },
+  {
+    "start": "01:03:53.230",
+    "end": "01:03:54.160",
+    "text": "You're all adults."
+  },
+  {
+    "start": "01:03:54.160",
+    "end": "01:03:55.900",
+    "text": "I realize that."
+  },
+  {
+    "start": "01:03:55.900",
+    "end": "01:03:57.760",
+    "text": "But nevertheless, this is a necessary part"
+  },
+  {
+    "start": "01:03:57.760",
+    "end": "01:03:58.510",
+    "text": "of the curriculum."
+  },
+  {
+    "start": "01:03:58.510",
+    "end": "01:04:02.590",
+    "text": "So that's how we're going to be assigning grades."
+  },
+  {
+    "start": "01:04:02.590",
+    "end": "01:04:05.457",
+    "text": "In the last four minutes, and I think"
+  },
+  {
+    "start": "01:04:05.457",
+    "end": "01:04:07.790",
+    "text": "I'm going to try to keep on time for the entire semester"
+  },
+  {
+    "start": "01:04:07.790",
+    "end": "01:04:11.510",
+    "text": "so we end at five before the half hour,"
+  },
+  {
+    "start": "01:04:11.510",
+    "end": "01:04:13.420",
+    "text": "and we start five after the hour."
+  },
+  {
+    "start": "01:04:13.420",
+    "end": "01:04:16.330",
+    "text": "In the last four minutes, I want to tell you"
+  },
+  {
+    "start": "01:04:16.330",
+    "end": "01:04:19.270",
+    "text": "a little bit about how to get the most out of this course."
+  },
+  {
+    "start": "01:04:19.270",
+    "end": "01:04:22.330",
+    "text": "And we can take this up next time if you've got questions,"
+  },
+  {
+    "start": "01:04:22.330",
+    "end": "01:04:25.700",
+    "text": "but I want you to spend time thinking about this."
+  },
+  {
+    "start": "01:04:25.700",
+    "end": "01:04:28.960",
+    "text": "Most of this course will be devoted to theory."
+  },
+  {
+    "start": "01:04:28.960",
+    "end": "01:04:31.450",
+    "text": "But finance is not a theoretical subject"
+  },
+  {
+    "start": "01:04:31.450",
+    "end": "01:04:34.060",
+    "text": "unlike algebraic topology."
+  },
+  {
+    "start": "01:04:34.060",
+    "end": "01:04:35.980",
+    "text": "That's a theoretical subject."
+  },
+  {
+    "start": "01:04:35.980",
+    "end": "01:04:39.610",
+    "text": "I've never heard anybody become a practical or applied"
+  },
+  {
+    "start": "01:04:39.610",
+    "end": "01:04:41.530",
+    "text": "algebraic topologist."
+  },
+  {
+    "start": "01:04:41.530",
+    "end": "01:04:43.990",
+    "text": "Finance on the other hand, there's"
+  },
+  {
+    "start": "01:04:43.990",
+    "end": "01:04:46.540",
+    "text": "no finance without practice."
+  },
+  {
+    "start": "01:04:46.540",
+    "end": "01:04:49.870",
+    "text": "So while the course will be focused on the theory,"
+  },
+  {
+    "start": "01:04:49.870",
+    "end": "01:04:52.917",
+    "text": "I need you to think about the practical elements of it,"
+  },
+  {
+    "start": "01:04:52.917",
+    "end": "01:04:55.250",
+    "text": "and I'm going to help you in a couple of different ways."
+  },
+  {
+    "start": "01:04:55.250",
+    "end": "01:04:57.130",
+    "text": "One is by problems, but the other"
+  },
+  {
+    "start": "01:04:57.130",
+    "end": "01:05:00.670",
+    "text": "is to encourage you to sit in on a pro-seminar called"
+  },
+  {
+    "start": "01:05:00.670",
+    "end": "01:05:02.882",
+    "text": "the Practice of Finance."
+  },
+  {
+    "start": "01:05:02.882",
+    "end": "01:05:04.840",
+    "text": "This is a new pro-seminar that we're launching."
+  },
+  {
+    "start": "01:05:04.840",
+    "end": "01:05:07.160",
+    "text": "September 17 is the first meeting."
+  },
+  {
+    "start": "01:05:07.160",
+    "end": "01:05:09.687",
+    "text": "It doesn't carry any units, so you can come and go"
+  },
+  {
+    "start": "01:05:09.687",
+    "end": "01:05:10.270",
+    "text": "as you please."
+  },
+  {
+    "start": "01:05:10.270",
+    "end": "01:05:12.670",
+    "text": "But it'll give you a sense of the practical aspects"
+  },
+  {
+    "start": "01:05:12.670",
+    "end": "01:05:15.340",
+    "text": "of the industry, and in particular information"
+  },
+  {
+    "start": "01:05:15.340",
+    "end": "01:05:17.170",
+    "text": "about the career aspects of the industry"
+  },
+  {
+    "start": "01:05:17.170",
+    "end": "01:05:20.380",
+    "text": "like what are starting salaries for financial analysts."
+  },
+  {
+    "start": "01:05:20.380",
+    "end": "01:05:22.330",
+    "text": "Or how do I get a job in finance if I don't"
+  },
+  {
+    "start": "01:05:22.330",
+    "end": "01:05:23.646",
+    "text": "have any background in it."
+  },
+  {
+    "start": "01:05:23.646",
+    "end": "01:05:25.270",
+    "text": "It'll go through those kinds of issues."
+  },
+  {
+    "start": "01:05:25.270",
+    "end": "01:05:28.370",
+    "text": "So I'd encourage you to keep that in mind."
+  },
+  {
+    "start": "01:05:28.370",
+    "end": "01:05:31.870",
+    "text": "The second thing is with respect to the course,"
+  },
+  {
+    "start": "01:05:31.870",
+    "end": "01:05:34.840",
+    "text": "I will give you lecture notes ahead of time"
+  },
+  {
+    "start": "01:05:34.840",
+    "end": "01:05:36.670",
+    "text": "for all of the lectures."
+  },
+  {
+    "start": "01:05:36.670",
+    "end": "01:05:38.980",
+    "text": "I expect you to take a look at them in advance."
+  },
+  {
+    "start": "01:05:38.980",
+    "end": "01:05:39.790",
+    "text": "Just skim them."
+  },
+  {
+    "start": "01:05:39.790",
+    "end": "01:05:41.290",
+    "text": "You don't have to read them, and try"
+  },
+  {
+    "start": "01:05:41.290",
+    "end": "01:05:42.580",
+    "text": "to sort out what I'm saying."
+  },
+  {
+    "start": "01:05:42.580",
+    "end": "01:05:44.560",
+    "text": "But I want you to skim it at least."
+  },
+  {
+    "start": "01:05:44.560",
+    "end": "01:05:47.230",
+    "text": "And then in class I urge you to take lots of notes,"
+  },
+  {
+    "start": "01:05:47.230",
+    "end": "01:05:50.410",
+    "text": "because the lecture notes are not meant to be complete."
+  },
+  {
+    "start": "01:05:50.410",
+    "end": "01:05:54.070",
+    "text": "In fact, they are purposefully incomplete"
+  },
+  {
+    "start": "01:05:54.070",
+    "end": "01:05:55.890",
+    "text": "so that you have to use your hand"
+  },
+  {
+    "start": "01:05:55.890",
+    "end": "01:05:58.570",
+    "text": "and write down your impressions of the material"
+  },
+  {
+    "start": "01:05:58.570",
+    "end": "01:05:59.920",
+    "text": "as I'm speaking."
+  },
+  {
+    "start": "01:05:59.920",
+    "end": "01:06:02.470",
+    "text": "Because in that method, you will actually"
+  },
+  {
+    "start": "01:06:02.470",
+    "end": "01:06:07.450",
+    "text": "absorb more of the material, and it'll stay with you longer."
+  },
+  {
+    "start": "01:06:07.450",
+    "end": "01:06:09.670",
+    "text": "I would urge you to review the lectures afterwards."
+  },
+  {
+    "start": "01:06:09.670",
+    "end": "01:06:10.776",
+    "text": "Review what I said."
+  },
+  {
+    "start": "01:06:10.776",
+    "end": "01:06:12.400",
+    "text": "Because you may have heard what I said,"
+  },
+  {
+    "start": "01:06:12.400",
+    "end": "01:06:14.710",
+    "text": "but you may not have understood what I said,"
+  },
+  {
+    "start": "01:06:14.710",
+    "end": "01:06:17.020",
+    "text": "and you may not be able to apply what I said."
+  },
+  {
+    "start": "01:06:17.020",
+    "end": "01:06:21.350",
+    "text": "So you need to spend time afterwards soaking it in."
+  },
+  {
+    "start": "01:06:21.350",
+    "end": "01:06:22.940",
+    "text": "I urge you to work on the assignments"
+  },
+  {
+    "start": "01:06:22.940",
+    "end": "01:06:24.950",
+    "text": "in groups, but also alone."
+  },
+  {
+    "start": "01:06:24.950",
+    "end": "01:06:26.970",
+    "text": "Because when you do the midterm and final exams,"
+  },
+  {
+    "start": "01:06:26.970",
+    "end": "01:06:28.610",
+    "text": "you'll be doing them alone."
+  },
+  {
+    "start": "01:06:28.610",
+    "end": "01:06:29.780",
+    "text": "So do both."
+  },
+  {
+    "start": "01:06:29.780",
+    "end": "01:06:33.080",
+    "text": "Don't just assume that you can do the same in groups"
+  },
+  {
+    "start": "01:06:33.080",
+    "end": "01:06:35.240",
+    "text": "what you will do alone."
+  },
+  {
+    "start": "01:06:35.240",
+    "end": "01:06:38.732",
+    "text": "And finally, I would ask you to ask plenty of questions."
+  },
+  {
+    "start": "01:06:38.732",
+    "end": "01:06:40.440",
+    "text": "I'm going to manage the class discussion."
+  },
+  {
+    "start": "01:06:40.440",
+    "end": "01:06:43.670",
+    "text": "So that if we have time, I'd be happy to talk about issues that"
+  },
+  {
+    "start": "01:06:43.670",
+    "end": "01:06:46.550",
+    "text": "are current and on your mind."
+  },
+  {
+    "start": "01:06:46.550",
+    "end": "01:06:50.330",
+    "text": "Even whether or not you should refinance your auto loan."
+  },
+  {
+    "start": "01:06:50.330",
+    "end": "01:06:52.520",
+    "text": "We're happy to take those kind of questions assuming"
+  },
+  {
+    "start": "01:06:52.520",
+    "end": "01:06:55.220",
+    "text": "that it's apropos, and that we have the time"
+  },
+  {
+    "start": "01:06:55.220",
+    "end": "01:06:56.720",
+    "text": "to be able to cover that."
+  },
+  {
+    "start": "01:06:56.720",
+    "end": "01:06:57.950",
+    "text": "I want you to get engaged."
+  },
+  {
+    "start": "01:06:57.950",
+    "end": "01:06:59.780",
+    "text": "I want you to take this course personally,"
+  },
+  {
+    "start": "01:06:59.780",
+    "end": "01:07:01.446",
+    "text": "because that's the only way you're going"
+  },
+  {
+    "start": "01:07:01.446",
+    "end": "01:07:03.239",
+    "text": "to really learn the material."
+  },
+  {
+    "start": "01:07:03.239",
+    "end": "01:07:04.530",
+    "text": "All right, thank you very much."
+  },
+  {
+    "start": "01:07:04.530",
+    "end": "01:07:05.280",
+    "text": "We're out of time."
+  },
+  {
+    "start": "01:07:05.280",
+    "end": "01:07:07.580",
+    "text": "We'll see you next Monday."
+  }
+]

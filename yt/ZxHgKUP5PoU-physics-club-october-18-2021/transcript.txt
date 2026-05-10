@@ -1,0 +1,1598 @@
+if anybody's detecting any audio
+problems or uh if there seem to be any
+technical issues. Uh but if not, first
+of all, welcome to the Yale Physics
+Club. It's a pleasure to see you all uh
+on Zoom anyway and someday soon in
+person for sure.
+Let me start by introducing myself. For
+those of you who don't know me, my name
+is Jack Harris. I'm a professor in the
+physics department and I'll be the host
+for today's physics club talk. Um, I've
+chatted with our speaker and he has said
+that in the course of his talk if you
+have questions, let's just pretend we're
+in person and you can interrupt uh as
+you normally would. Uh, and it'll be my
+job as moderator to try and shepherd us
+to a timely conclusion. But at least uh
+if you have questions, just feel free to
+go ahead and ask them.
+Um, boy, it's a giant pleasure to be
+able to welcome Charles Brown back to
+the physics department for this visit.
+Um, Charles received his bachelor's
+degree with honors from the University
+of Minnesota and came to Yale to do his
+PhD in 2013. I was fortunate to become
+his PhD adviser and Charles worked in my
+group on an unusual and very open-ended
+research project whose goal was to
+magnetically levitate large drops of
+superfluid helium in vacuum and study
+their fluid mechanics, their optical
+cavity properties, their thermodynamics.
+uh by 2019 Charles had succeeded at that
+and defended his PhD thesis. At that
+point he went uh to the University of
+California at Berkeley where he joined
+Dan Stamper Karn's group. There he has
+been studying ultra cold atoms in
+optical lises with a focus on the
+topological properties and many body
+effects in exotic band structures and
+that's the work that he's going to be
+presenting to us today. So welcome
+Charles.
+I will mute myself and please take it
+away.
+Awesome. Uh thank you Jack for the
+introduction and uh thank you all for
+inviting me to come and speak in the
+business club today. Certainly very
+excited to be here and tell you about
+the work I've been doing. Uh let me
+share my screen
+PowerPoint.
+I must say it's very fun to be visiting
+under different circumstances.
+Very nice.
+There we go.
+Okay.
+Hide this.
+Okay. Uh so yes, thank you again for the
+invitation. Uh today I'm going to tell
+you about uh the recent work we've done
+in the optical lattice subgroup in the
+Stanford Kern lab at at Berkeley. uh
+where uh I've been looking at a probe of
+band structure singularities using a
+lattice trapped quantum gas. Okay. So uh
+before I move on I wanted to acknowledge
+the sources of funding. Um of course you
+know this funding is important for us to
+be able to actually do the work that we
+do. Uh but also importantly I wanted to
+acknowledge my experimental and
+theoretical colleagues. uh in particular
+uh these awesome uh grad students that I
+work with Shiain Chong and Malta sports
+and a grad student who recently
+converted to postto before uh taking a
+very nice industry job and of course my
+my PI my postto advisor Dan Ser uh but
+also um mention our theory collaborators
+uh a grad student a posttock who's soon
+taking a faculty job uh and Joel Moore
+right so together we've uh done this
+work together and produced something
+that I think is very interesting and and
+very important actually. And so I
+mentioned that I'm going to tell you
+about a probe of band structure
+similarities with this lattice trap on
+gas and as it turns out I like to think
+of this as a quantum simulator. And so
+I'm going to tell you about quantum
+simulation, what it is um and what I
+think we can do with it. Um, I would
+then uh tell you about our ingredients
+that make up our quantum simulator and
+some some recent experiments where we've
+used this quantum simulator to study
+some topological properties of what
+looks like graphing.
+There we go. Okay. So, let me start by
+saying what quantum simulation is. One
+way to think of it is the mimicking of
+quantum systems for the purpose of
+understanding their um their states,
+phases and dynamics. Um so I think in
+general it's fair to to use an
+expression like this of a Hamiltonian
+that tells you something about the
+energy of a system where that
+Hamiltonian has three parts. It has a
+kinetic energy, it has a potential
+energy and it has some sort of
+interaction. Um now sometimes this
+Hamiltonian can take a very simple form.
+Sometimes it could take a very
+complicated form where you would be
+interested in trying to use a simpler
+quantum system that can realize a
+Hamiltonian of choice um that sort of
+you know retains the the salient
+interesting properties of the the system
+that you want to study described by this
+Hamiltonian. Now, if you're going to do
+quantum simulation to study some, you
+know, maybe some toy model Hamiltonian
+or something more complicated where
+simulation is uh particularly useful,
+you might do so using digital simulation
+or analog simulation. At least I like to
+uh divide them in this way. Uh so I
+would say that digital simulation
+requires a quantum computer device
+something like um what Google or IBM has
+or Honeywell or IonQ you know a trapped
+ion system or a superconducting circuit
+system like the nice systems that are
+down the hill in the dean folkoff
+groups. Um, in this sort of simulation,
+you might initialize a state, you
+perform some quantum algorithm on that
+state, which really just means
+performing a a series of transformations
+on the cubits. Um, and then you perform
+some measurement to uh get your result.
+And that's in contrast to analog
+simulation. We're using this uh these
+different sort of physical systems to
+for example
+uh measure what is the ground state of a
+Hamiltonian. for example. And so an
+analog simulation system might look like
+cold atoms and lises, which is what I'm
+going to talk to you about today. But it
+could also look like a chain of trapped
+ions, or it could look like arrays of
+optical tweezers filled with Rberg
+atoms, which you can use through defined
+cubits, or it could look like an all
+photonic system.
+Now, um I also like to think about uh
+quantum simulators as uh being able to
+address two problem types. At least
+these two problem types are are quite
+distinct in my mind. Um you can
+categorize them as time dependent
+problems or ground state problems. Um so
+let's start with the time dependent
+problem. Um maybe you're interested in
+looking at problems related to
+equilibration in thermalization where
+for example in this experiment uh what's
+plotted is the density versus time where
+the experimenters um sort of shuffle all
+their atoms to one side of the lattice
+and watch how uh they diffuse and how
+the site density fluctuates with time.
+Or maybe you're interested in dynamical
+phase transitions which could be sort of
+fast quenches through a transition or
+slow evolution through a transition.
+Where in in this experiment um
+experimenters use a super fluid and uh
+evolve the superfluid through a phase
+transition and see how uh exitations in
+the form of quantized vortices appear as
+they sweep across this phase transition.
+Or you maybe want to look at kick
+systems, flow systems, where you
+introduce a um a a timed dependent
+energy term in the in the uh Hamiltonian
+that describes your system. And there's
+a there's a wide, you know, array of
+physics that you can address with with
+this sort of system. Um now I also want
+to talk about ground states. Um quantum
+simulation I think is particularly
+interesting for looking at ground states
+of Hamiltonians. Um maybe you want to
+look at quantum magnetism. Um for
+example here this is an image of um an
+anti-feromagnet from a quantum gas
+microscope where you can really resolve
+sight by sight um where you have
+sightby-sight resolution of atoms in
+your lattice. And so what you're seeing
+in this picture here the blue and the
+white are the alternating spin up and
+spin down of this magnet. Or maybe you
+want to look at quantum spin liquids.
+Another very interesting um uh system to
+look at state to look at uh where you
+can sort of think of it as a a general
+state that is a superposition of ordered
+spin states but that uh in its superp
+position sort of loses this long range
+order even down to to zero color. Um
+uh lastly but not least maybe you even
+want to look at aspects of superconivity
+um where you know for example the Hullet
+group is starting to look at how super
+connectivity might appear in these nice
+onedimensional systems. Okay. Now um I
+just told you about a lot of condensed
+matter things uh condensed matter
+physics that you might want to look at
+using a quantum simulator. But I also
+want to make the point that quantum
+simulation is not just for condensed
+matter. quantum simulation experiments
+may provide insight on problems in
+particle physics. Uh so here what I'm
+showing you is an image um of what it
+might look like to realize synthetic
+gauge fields using atoms in a lattice.
+So here um I have a lattice with atoms
+at them. That's what you're seeing in
+the square lice arrangement. Uh these
+circles are your atoms. Uh you can see
+in these square pett you have these
+little red vectors coming out. That's
+the effective magnetic field that you
+can uh create by producing some sort of
+uh phase change that atoms experience as
+they move around this lattice. So why is
+why would you want to make what looks
+like a synthetic magnetic field? Uh well
+that's because high energy physics tells
+us that gauge fields are ubiquitous in
+nature. For example, uh the gauge field
+associated with electromagnetism is the
+photon. With the strong force, it is the
+gluons. With the weak force, it's the W
+and Z particles. And so um you know
+these sort of cold atom quantum quantum
+simulators are interesting systems to
+imagine trying to produce artificial
+gauge fields which you might uh you
+might achieve by doing a couple
+different techniques uh where you can
+shake your lattice in a particular way
+or you can uh utilize the
+um the the state manifold say associated
+with the hyperfine structure to do laser
+assisted tunneling. helps you realize a
+synthetic gauge field. Um, now before I
+move on, I wanted to sort of emphasize
+that if you can make this process time
+dependent, then you have dynamical gauge
+fields. And that's particularly exciting
+because then you're really moving into a
+regime where maybe one day you could
+test some some interesting properties of
+of field theories that become relevant
+for high energy systems.
+Okay. Uh now while I think that's
+incredibly interesting uh I have in in
+recent years been focused on solid state
+systems. Uh and so why do I want to
+study uh solid state systems? Well
+because there are many exciting
+questions on um interesting physics such
+as exotic super connectivity and
+magnetism quantum hall effects or other
+topological matter. Um so in trying to
+sell you on this point I want to tell
+you that you know an ultra cold atom
+quantum simulator offers several
+advantages that is controllable defects.
+These are advantages relative to solid
+state systems. Uh that is controllable
+defects long lived quantum coherence the
+ability to prepare many identical copies
+and the the ability to study out of
+equilibrium physics which we do a
+particularly good job of in in my lab.
+Okay. Okay. And so the the main point I
+want to want you to take away from here
+is that um I believe we can provide
+great insight into the behavior of solid
+materials that have crystallin lattice
+structure. This uh image that I'm
+showing you here is a defraction image
+from our optical honeycomb lattice in
+the lab. So in a way that's sort of
+similar to how you know a
+crystalallographer might defract say
+X-rays from a solid crystal, we can
+defract atoms. uh usually Bose Einstein
+quantitates in my lab from an optical
+lattice and learn about the physics of
+the atoms in the lattice.
+Okay. So um as I move forward I want to
+tell you about the different parts of
+our quantum simulator how we realize one
+uh before I actually show you what it
+looks like and then start to talk about
+the physics that I've been exploring
+with it recently. And in order to do so
+first I need to tell you about a
+crystallin lattice. Um, a definition of
+a crystal lattice that I like is it's a
+periodic set of points that has some set
+of symmetries.
+For instance, the square lice, it has
+translation symmetry. What I mean by
+that, well, you can define a unit cell,
+say a box around this point, and I can
+translate it up or down or to the right
+or to the left, and I can completely
+span this lattice. You'll also notice
+that this lattice has a rotational
+symmetry. I can rotate this lattice by
+90 degrees and it produces the same
+lice. There's another lattice, the
+triangular lattice where again it has
+translation symmetry and it has its own
+set of rotational symmetries. Another
+lattice is the cog lattice that's near
+and dear to our hearts. Uh and it again
+has a translation symmetry but it also
+has a set of rotational symmetries. This
+is not all the lises but just a a nice
+selection that I think is is
+representative. Now even though these
+lises look different, what's common to
+all of them them is that they have an
+associated band structure which is the
+allowable energy levels of particles
+that are confined in that lattice. So
+what I'm showing you here is just a
+one-dimensional uh band structure
+associate the the band structure
+associated with a one-dimensional
+lattice. And I'm plotting it for you in
+two cases. uh one is when the
+confinement when I'm where I'm
+parameterizing it by this uh this uh
+quantity vlac the confinement to the
+lattice sites is zero so there's
+essentially no lattice for the particles
+whereas in this case it's non zero in
+the case where there is zero confinement
+to the lattice points you have the sort
+of relationship that you expect to exist
+between the energy of particles in the
+lattice and their momentum and that is
+just a quadratic relation like p ^2 over
+2m right so all you see is series of uh
+parabola. However, when you turn up the
+confinement actually produce lice, what
+you see is uh an appearance of bands
+where the uh energy of the particles can
+only be in this green band or in this
+blue band or in this uh reddish pink
+band but not in the white spaces in
+between. Right? So this this is sort of
+a an important point uh of of the
+behavior of of crystals that they have
+these band gaps. they can't have these
+band gaps associated with different
+properties.
+Okay. And so um a solid's band structure
+describes the allowable energy levels
+for electrons in a crystal lice and more
+specifically the band structure explains
+material properties. For example,
+electrical res resistivity and optical
+absorption. Okay. Now uh it's a useful
+tool to describe the states of particles
+in these lises using these block wave
+functions. And I I want to show this
+here because when I get to talking about
+the the the data, the experiments that
+we've done, I'm really going to be
+talking about uh locations in momentum
+space associated with this lattice where
+these wave functions start to behave
+sort of funny where they become
+illdefined. Okay, so these block wave
+functions sigh they take this form.
+there's some um some spatial function
+multiplied by a phase term e to the i q
+dot r where q is the quasi momentum.
+This is the inlattice momentum and this
+function u has this special property
+that it has these periodic boundary
+conditions where uh the function u of r
+evaluated at some location uh plus uh a
+lattice vector away. This lattice vector
+is big r. it the the function has to be
+equal to itself. Okay.
+Now it turns out that not only does the
+band structure uh not only is the band
+structure important for describing the
+material properties but so is the the
+geometry and topology of the state space
+where the wave functions live. And this
+becomes important when you want to talk
+about physics related to for example
+quantum hall effects or orbital
+magnetism or topological insulators
+where now you're not only thinking about
+block wave functions the size but you
+want to start thinking about the berry
+connection right this what I'm calling
+amn here which is essentially the
+expectation value of the the momentum
+operator in in quasi momentum space
+right but never nevertheless what you
+want to be thinking about as well is the
+berry connection. Okay.
+And so uh now I just sort of want to uh
+make a point about bzons versus firmians
+because eventually what we do is we
+produce a bzon sign condensate and we
+put it into a lattice. Okay. So the
+important point that I want to make here
+regarding the difference between bzzons
+and firmians is how they behave when you
+trap them in a harmonic potential.
+Right? So what I'm plotting for you here
+uh is the uh the energy levels for a
+quantum harmonic oscillator where the
+quantized energy labels I'm labeling by
+these ends n equals 0 through three. So
+these horizontal lines are your energy
+levels and what you find that's striking
+is that even at zero temperature
+absolute zero temperature bzons and
+firmians behave quite differently. What
+you see with bzons is that they're able
+to stack up in the lowest energy level.
+they're able to crowd on top of each
+other. Whereas firmians are not able to
+do that due to poly exclusion. So
+firmians instead of crowding all in the
+ground state of this harmonic oscillator
+they stack themselves up up to the firm
+up to the firm energy depending on how
+many particles you have. Okay. But the
+fact that Bzons do this uh this crowding
+behavior in the lowest energy state this
+allows us to make Bzon sign condensate.
+So in my lab we use the bzonic isotope
+rubidium 87 to make BECs bzon Einstein
+condensates
+and bzinstein condensates are incredibly
+interesting uh still uh so let me tell
+you a little bit about them the the de
+brily wavelength describes the wavelike
+behavior of matter generally I'm writing
+an expression for the de brley
+wavelength here and what I think is
+important to point out is that the
+debrley wavelength is inversely
+proportional to both mass and
+temperature, right? So the larger the
+mass, the greater the temperature, the
+the shorter the the broiler wavelength
+and sort of the shorter distance over
+which this matter uh will exhibit
+wavelike properties that you associate
+with being quantum mechanical. Okay. So
+uh if you have a low mass object uh and
+you get the temperature sufficiently low
+then you can uh move your system into
+this interesting regime where the volume
+associated with the de brily wavelength
+becomes larger than sort of volume per
+atom. So this is my system volume. This
+is the number of atoms. So when the de
+brily volume is bigger than the volume
+per uh per atom you sort of have this
+situation where the wave functions of
+your atoms start to overlap with each
+other right this push you pushes you
+into this quantum regime where now you
+have this new state of matter that has
+these interesting properties. Okay so um
+you know the shinger equation is very
+useful for talking about the evolution
+of quantum systems. The shorter equation
+has two parts kinetic energy and a
+potential energy. Here I'm writing down
+the time independent shorter equation
+acting on this wave function side. This
+gives you the energy. Okay. But to
+describe a bzon sign condensate you need
+to add one term that um that includes
+interactions and particularly um it's
+important to note that this term depends
+on the density. So this size squared
+tells you the density and so you see
+that the density of the atoms in the BEC
+it changes the evolution of this system
+right so this is the sort of uh wave
+function associated with these block
+waves that I'll be talking about later
+in the talk and I wanted to show an
+image from our lab here's a picture of a
+graidium 87 BC that's around 10 to 100
+nanopel temperature okay and I I totally
+skipped We're talking about this
+picture. But uh when you when you move
+into this regime where the royal volume
+is uh fulfills this equality, you push
+the the velocity distribution of your
+atoms from one where you don't see
+strong peaking at zero to one where you
+as you cool you do see strong peaking at
+zero velocity or zero momentum. This is
+showing you the onset of Bose Einstein
+condensation. Okay. So I've told you
+about one part of our quantum simulator.
+The atoms are bzin sign compensates. Let
+me tell you about optical lises.
+Um mathematically
+you can produce a standing wave by
+overlapping two counterpropagating waves
+here the red and the blue which together
+produce the black standing wave.
+Experimentally I can do the same thing
+with two lasers. My lasers are traveling
+waves. And so if I look at some region
+where they overlap in the middle, I look
+at the time average electric field
+intensity, I get this nice standing wave
+pattern with the separation, that's half
+of the wavelength. Now I have a
+onedimensional lattice and I can load
+atoms into this lattice. Okay. I can
+also use multiple pairs of intersecting
+beams to make either two-dimensional or
+threedimensional lises. And that's how I
+make an optical honeycomb lattice. I
+take three different lasers with uh
+electric field polarization that's in
+plane and I have them overlap with each
+other with a relative angle of 120
+degrees. If I look at the potential
+energy landscape in this intersection
+region that the atoms experience, what
+they see is a potential energy landscape
+that looks like this where I've marked
+the local potential energy minima uh
+using these green circles and what you
+see is a honeycomb lattice. Right? So
+this honeycomb lattice, it has these two
+unit vectors uh a23 and a12. And my unit
+cell looks like a box around these two
+points here for example. And so I can
+take this box and I can uh copy it by
+moving it by one of these lattice
+vectors and I can span my whole
+honeycomb lattice right and so uh this
+arrangement allows us to create an ultra
+cold analog of what's like graphine.
+So let me tell you about why graphine is
+interesting. But before I do that, let
+me reiterate that a crystal's band
+structure and the geometry and topology
+of the state space determines its
+properties. Here I have an image of
+graphine. It's this single layer
+hexagonal arrangement of carbon atoms.
+Um and it's produced a lot of
+interesting science and even you know
+even with the the the Nobel Prize being
+awarded for its initial discovery and
+characterization in 2010 um this system
+and stacks of graphine is still
+producing a lot of interesting science.
+Okay. The thing I wanted to point out
+about graphine that's relevant to my
+work in probes of band structure
+singularity uh is a special point that
+exists in momentum space associated with
+the electrons in the graphine. Right?
+That is the direct point. So let me
+point your attention to here. This is
+the band structure of graphine where at
+this point labeled K in quantum momentum
+I have a touching point here between two
+bands. uh this point is referred to as a
+direct point and it's special because uh
+confined to it is a quant uh is a berry
+flux and uh associate associated with a
+berry phase that your say particle would
+accumulate if you move the particle
+around this point in this momentum space
+and it's special because it's not a
+dynamical phase. It doesn't depend on
+how quickly you move your particle
+around it. So long as you complete a
+loop around this point, regardless of
+the radius of that loop, you will pick
+up a pi berry phase from the direct
+point. It turns out that that pi berry
+phase is associated with some very
+interesting physics that appears um in
+graphing. For example, climb tunneling
+where you get this sort of resonant
+tunneling, quantum tunneling of
+electrons across uh huge potential
+barriers that you wouldn't expect them
+to be able to tunnel through or even the
+half integer quantum hall effect where
+people have seen in in graphine um uh
+quantized conductance
+uh which is the size of which is set by
+plank's constant over the electron
+charge squared. But instead of these
+jumps being proportional to integer
+multiples of that ratio of fundamental
+contents, it's proportional proportional
+to half integer multiples. Right? or
+even uh you know sort of newer um
+interesting systems built from graphine
+twisted billayer graphine uh that I'm
+depicting here where you can stack two
+graphine sheets on top of each other you
+know turn them by some angle and what
+you see is this mo pattern the emergence
+of this uh different structure longer
+scale structure and people have seen a
+lot of interesting physics here even the
+emergence of super conductivity that
+happens at this interface depending on
+uh the the angle that you have these
+sheets relative to each other. Okay, so
+graphine is an incredibly interesting
+material still. We're still learning a
+lot from it. And I want to make the
+point that my artificial graphine also
+has direct points with interesting
+topological properties.
+Okay, so I've told you uh just about
+everything I want to and to tell you
+about how we we build our uh at least
+the conceptual parts of how we build our
+quantum simulator. We produce Bose
+Einstein condensates using rubidium. We
+produce optical lises um of various
+geometries. Here I'm talking about the
+hex the hexagon lattice and we uh load
+our bzon stencil into this lattice and
+do experiments to study various physics.
+Okay. So to do this in practice we sort
+of have two parts. You know all these
+collab systems have sort of two parts.
+One is what I would call a light
+preparation table. The other part is a
+science table. So, let me start with the
+light preparation table. I'm not going
+to say a ton about this because, you
+know, as you can see, this is a pretty
+densely uh populated optical table, but
+this table has some uh some laser. Uh
+this is sort of the main laser that goes
+to some spectroscopy setup where I can
+uh lock my laser to the the uh energy
+difference between two states in the
+ribidium that I can use to produce light
+that allows me to cool uh and trap the
+the ribidium atoms. I can take another
+laser here. This is what you know it's a
+jargony term. We call it a reprompt
+laser where I use the I use this light
+to, you know, put atoms that move out of
+the two levels, the two energy levels
+that I like to use to cool them. Uh, I
+put them back into that manifold so I
+can uh send resonant light, cycle them
+between these two energy levels and
+produce the the cooling and trapping
+forces that I need. Okay, this is
+essentially what this whole table is
+for, producing cooling and trapping
+light for a video. This other part is
+the science table. This is where the
+actual experiments happen. Uh right in
+this region here. So after uh quite a
+few steps where I start with a hot gas
+of rubidium around 120 Celsius that
+comes out of an oven. I send it down a
+long tube where I can apply slowing
+forces. I capture it in what's called a
+magneto optical trap and do some initial
+cooling down to um you know tens or so
+micro kelvin. I eventually move them
+over to this region here, the sort of um
+in the center of this region here where
+I do the last steps of uh evaporation
+processes and I produce a Bose Einstein
+condensate. Where's my mouse? There we
+go. Right in this region here. Now, I
+can also send uh my lattice beams in,
+which I do from this direction, from
+this direction, and from this direction,
+right over top my uh my BC. And that's
+how I load my atoms into the lattice.
+Now, to do the imaging that I'm going to
+show you later on, we do absorption
+imaging. So, we have this vertical
+optical table here. We send light down
+from the top uh right onto the BC and in
+the in the lattice. And essentially, we
+cast a shadow down onto a camera uh down
+here. Right? So, we're taking images of
+the shadows created by these atoms.
+Okay?
+So let me actually get into the the
+measurements that I want to talk about.
+Uh what I'm showing you here is a
+two-dimensional Berlin zone map. So this
+is a useful map that you uh use to see
+how the energy is related to the
+inlattice momentum of your particles.
+Right? It has these four regions that
+I'm showing you which I've colorcoded
+differently. uh this inner green
+hexagon, the blue star, the the pink
+hexagon, and this purple hexagon. Now,
+uh again, this is a map of the different
+brillan zones. This is the first brerin
+zone, the blue is the second, red is the
+third, purple is the fourth, and it's uh
+you can connect it to the actual band
+structure of our atoms in the lattice.
+And so I'm making the connection that
+this first brillain zone is somehow
+associated with this lowest energy band
+in this band structure that I've
+calculated for you. The second brilland
+zone has some connection to this second
+energy band and so on. And so uh in this
+talk in the rest of the talk I'm going
+to tell you about two points two
+interesting points. This point labeled K
+where I have a direct point that is a
+linear band touching point. That's what
+LBTP is. And uh very specially I'm going
+to tell you about this quadratic band
+touching point that occurs at this point
+labeled gamma. Okay. So before I move on
+and tell you about how uh I've been
+characterizing these uh band structure
+uh singularities that is these quadratic
+and linear band touching points. Let me
+tell you about some work that other cold
+atom systems have done on uh linear band
+touching points.
+Uh there's for example uh this work
+that's come out from the slider the
+Schneider block group and group uh where
+they measure that quantized berry phase
+that I mentioned to you that's
+associated with the direct point where
+they uh use interference techniques to
+have their atoms take a loop around
+these direct points say K or K prime and
+they're able to see that after
+undergoing a loop around the uh the
+direct point their system um uh it
+acquires a a phase jump of pi right so
+this is that special behavior associated
+with the direct point this is that that
+quantized berry flux that's associated
+with the direct point um another system
+where they're actually able to tune
+their system between looking like um
+just graphine that has two equally deep
+sites in unit cell to something like
+hexagonal boron nitride where the two
+sides of the unit cell are unequal. They
+also see a uh phase evolution a
+geometric phase evolution of pi
+associated with the direct point when
+they tune their system to look like
+graphine and when they make their system
+uh not look like graphine which means
+when they uh investigate this point K
+and there's no longer a linear band
+touching point which means there's no
+longer um a direct point they no longer
+see this phase uh accumulation of pi
+There are even other experiments where
+they can do full state tomography,
+right? They can reconstruct the quantum
+states in amplitude and phase across the
+brerin zone and even do things like mer
+measure the berry curvature confined at
+these k points. Right? So this is
+showing uh confined uh barrier curvature
+barrier flux at these direct points or
+in this experiment uh measuring how when
+you evolve your system through these
+points you again pick up these pi
+barrier phases. Okay. So basically what
+has happened for the most part to date
+is that cold atom experiments have used
+interferometric techniques that involve
+going around singularities and band
+structures like physically looping
+around them to study some properties of
+the band structure. But what I have been
+doing is something very different.
+Instead of taking loops around them I
+evolve my system through the
+singularity. Right? Okay. So how do I do
+that? uh well I can translate my lattice
+in a way that is equivalent to having a
+stationary lattice but evolving the
+clausy momentum of my atoms in that
+lattice so it's a it's a it's an issue
+of reference frames even if I move my
+lattice in the frame of the lattice it's
+as though the atoms are moving right so
+that's how I translate the in lattice
+momentum of my atoms and I can do this
+with a nice uh closed loop feedback
+system. So I can give my lattice a
+velocity that looks like this expression
+here. This f12 and this f23 these are
+experimentally controlled parameters.
+These are knobs that I can turn. I can
+make them time dependent. And these
+vectors a12 and a23 these are the
+lattice vectors that I use to span my
+honeycomb lattice. And so since I can
+make these coefficients f12 and f_sub_23
+uh essentially uh arbitrarily time
+dependent I can move my lattice in some
+arbitrary
+uh trajectory some arbitrary velocity in
+two dimensions.
+Now the quasi momentum of my atoms in
+the frame of the lice is related to the
+lattice velocity in this way. It's just
+a pro proportionality constant minus the
+single particle mass. Okay. So what this
+means is that I can give my atoms in the
+lattice frame an arbitrary uh momentum Q
+in two dimensions.
+Here is an example of me doing that in
+the the sort of result. Um now I can I
+can plug the block wave function into
+the Hamiltonian that describes the
+system and I can predict what defraction
+should look like where I load my atoms
+into the lattice. I show my lattice off.
+I can take images of that tell me about
+the the resulting momentum space
+structure of the state. That's what
+these images are. And when I use this
+theory to predict what this defraction
+image should look like when I don't uh
+give the atoms any velocity um any
+momentum then I see a defraction pattern
+that looks like this with this nice uh
+six-fold rotation symmetry. And when I
+do the experiment and I take an actual
+image of the lattice, I recover what I
+expect. Now I can do something different
+where I can give my atoms some quasible
+momentum that is uh it happens to be
+this. In this case, I picked it because
+it shows that we do have good control
+over our quas momentum. It's 1.33
+times the distance from gamma to K.
+That's what this QK is, right? So I can
+get my atoms momentum that goes uh right
+over to this point here. I can see what
+I expect this defraction image to look
+like from theory and I can go and
+measure it and I see nice agreement
+between this theory and this experiment.
+So I just wanted to make the point that
+we have good control over our our atoms
+quas momentum. Okay. And this is
+important because what I'm going to do
+is send atoms along trajectories in this
+momentum space.
+Hey Charles.
+Uh yeah. Um is the mass in that um
+momentum equation a ribidium mass? A
+ju just one not that number that are in
+the well.
+Yeah. So everything that I'm talking to
+you about right now is single particle.
+Great. Thanks.
+Okay. Uh so let me get into the uh first
+measurement.
+Um here I am uh again I'm not sending my
+atoms along trajectories that wrap
+around one of these singularities here a
+direct point. I'm sending the atoms
+directly through the direct point. How
+do I do that? Well, uh, let's look at
+this zoom in here in in a uh, my atoms
+start at gamma, which is in the center
+of my brillow zone map in the center of
+this green hexagon, and I evolve them
+over to the direct point labeled K, and
+I turn at some angle theta.
+Now uh when I turn at that angle theta,
+I take a special kind of image that
+allows me to measure the proportion of
+atoms that are in uh different energy
+levels, say the lowest energy uh band of
+the lattice or the second lowest etc.
+And I do this sort of experiment for uh
+various data that lie um I do this
+experiment for various data where the
+final point in this brillowan zone map
+where I take images of my atoms they lie
+on this circle. The circle has a radius
+of 04 times the distance in momentum
+space between gamma and the direct
+point. Okay. So I do this sort of
+experiment. I take these images that
+allow me to uh understand what is the
+proportion of different atoms in
+different bands and I uh I overlay the
+brerin zone on top of it. That's what's
+happening in C here.
+And I'm showing you what this looks like
+for various angles. The equals 0, pi /
+2, pi 3, pi over 2. So let's talk about
+this first image.
+Um I mentioned to you that this inner
+hexagon is associated with the first
+prolong. I can associate this with the
+first band. And so when I compare how
+many atoms I see here which is this is
+most of the atoms in this image to say
+how many are in the second brillin zone.
+These triangles here
+uh here and here. This is the second
+brillin zone. Sorry. Uh this is the
+third brillain zone. uh I know that most
+of my atoms for a trajectory that uh
+goes to the direct point and then comes
+back they remain in the lowest energy
+band. However, if I say uh evolve my
+atoms from gamma to the direct point and
+then I turn by 90 degrees. So that is
+going along this trajectory and then
+turning at 90 degrees. I see something
+very different. I see that um the
+proportion of atoms that remain in the
+first the first band right which is the
+atoms here is much more similar to the
+proportion that lands in the that ends
+up in the second band right and so again
+I can do this sort of measurement for
+various theta I can track how the
+proportion of atoms changed um and I can
+plot this and this is exactly what I'm
+doing here in D right so again uh in the
+green I'm plotting as a function of that
+turn angle, the proportion of atoms that
+remain in the ground band, the lowest
+energy band of the lattice, that's the
+green data. Uh versus the proportion of
+atoms that um move into the the second
+band. This is the second lowest energy
+band. That's the blue data. And what I
+see for these trajectories that make one
+um one loop on this circle, I see uh the
+atoms initially remaining entirely in
+the first band. Uh essentially all of
+the atoms leaving the first band going
+to the second band and then the sort of
+opposite happening again. Right? So I
+make sort of one rotation between these
+uh these bands as I go from 0 to 2 pi
+around this circle. Okay. So, uh well,
+why why is this? A nice way to think
+about this is using a twoband model
+where I can think of my system as a
+pseudo spin pseudo spin 1/2 in uh a
+pseudomagnetic field. Right? So, away
+from the direct point, my pseudomagnetic
+field appears to grow linearly. And in
+this gauge that I've shown, it points
+outwards. Okay. Now I can uh imagine
+that what I've really done in this sort
+of experiment is say move along this ray
+from gamma over to the direct point and
+turn at some angle. When I come along
+this trajectory over into the direct
+point I can think of that as spin down.
+When I move through through the direct
+point the effective or the the
+pseudomagnetic field goes to zero. And
+as soon as I move away from that zero,
+soon as I move away from the direct
+point, I now have a spin down in my
+initial basis that is in a magnetic
+field that has changed direction. And so
+all of a sudden I'm in a sort of superp
+position of spin up and spin down in the
+new bases dependent on the magnetic
+field that my system sees when I move
+away from the direct point.
+Okay. And so um it's important to note
+that these population dynamics seeing
+the atoms sort of switch between ground
+band and excited band this is not a
+dynamical effect. It's driven by the
+barrier connection. Uh in particular
+it's driven by the off diagonal elements
+of the barrier connection. Right? So in
+the typical cold atom experiments that I
+showed you what they are investigating
+is the diagonal elements of this berry
+connection that I can write as a matrix.
+that what has directly encoded into it
+the berry face. However, what drives
+these population dynamics is the off
+diagonal elements uh associated with uh
+a nonabelian state rotation. Okay. Now,
+uh it's important to think about how
+this is not an interferometric
+measurement.
+In fact, this is a measurement of
+quantum distance. Right? So, I've
+defined quantum distance here in this
+way. what I'm calling quantum distance
+is this uh quantity d^2 it's equal to
+one minus the inner product of the the
+the cell periodic parts of the block
+wave function. So I I wrote down the
+block wave function and I said that hey
+it's equal to this u multiplied by some
+e to the i q dot r uh the u that appears
+in the block wave function that's that's
+what this is right this is important
+because uh this directly reveals the
+this quantity called the quantum tensor
+g and so I can write down a metric
+tensor this gig in quasi momentum space
+that looks very similar to say what a
+relativist would write down and
+specifying distance and spaceime. So I'm
+just making this point because this
+allows us to think about the distances
+in this uh this Hilbert space where the
+wave functions live and how it's
+actually important for describing uh the
+properties of raw materials. Let me give
+a concrete example of this. It's been
+recently shown that in these systems
+that have flat energy bands that make uh
+touching points with other bands where
+the wave function is illdefined at that
+point uh you can have land levels where
+these landout levels which were
+previously very degenerate become split
+and the splitting is spaced by this
+quantum distance parameter. Right? So
+this is actually relevant for the
+behavior of physical systems.
+I'll make a quick point about this
+before I move on to the really really
+cool thing and that's the effective size
+of these direct similarities. So I can
+evolve my system say from gamma over to
+uh another gamma point and I can either
+move my atoms through the direct point
+or I can move them uh through this
+brillow zone through this momentum space
+uh at various distances from the direct
+point. Okay, what do I see when I
+measure the proportion of atoms in
+different bands? Well, it uh you know
+depending on if I go through the direct
+point or not, it depends on how fast I
+do so. So, uh for trajectories that go
+from gamma to this direct point to gamma
+say um say here or here, I essentially
+see no variation in the distribution of
+atoms between the ground and excited
+bands. However, if I say go from gamma
+to m to gamma where there's a gap, then
+I see that as I go along this evolution
+um increasingly slowly say from the um
+increasingly slowly so the the blue to
+the pink I see that more of my atoms
+remain in their initial band that is in
+the ground band as I do this evolution
+and this is what you would expect from
+like land physics. Okay. Now I can set a
+threshold say 0.5 this dotted line and I
+can see um for trajectories that don't
+touch the direct point how uh the like
+when the population of atoms reach this
+threshold as a function of time which is
+what I'm plotting here right and so what
+this suggests is that these direct
+points have an effective size that
+depends on how fast I'm evolving my
+system uh through this through this
+space. Why is that? Well, at some point
+I can evolve my system quickly with
+respect to a local band gap, right? And
+at that point, the bands look
+effectively degenerate, right? So, it's
+as though the singularity where the
+bands are degenerate has grown in size.
+Okay, this is the last sort of bit of
+science. I know I'm at 50 minutes. Uh,
+so I will wrap this up quickly. Uh, not
+this part, the next part, the conclusion
+rather quickly. Um this is a really
+special measurement. Why is this
+special? Uh well this is special because
+before now uh this sort of experiment
+couldn't be done using an ultra cold
+atom system. Why is that? Okay. Well,
+I'm now investigating a different kind
+of uh touching point. This is not a band
+touching point where the dispersion is
+linear that has associated with it a pi
+barrier phase. This quadratic band
+touching point has associated with it a
+two pi berry face which uh in an
+interferometric measurement you cannot
+distinguish from zero. Right? So as it
+turns out uh in the typical way of doing
+these measurements with cold atoms you
+wouldn't be able to distinguish a
+topologically
+non-trivial
+uh band touching point from a
+topologically trivial one. However, by
+doing quantum distance measurements like
+uh what I've done recently, you're able
+to see is this quadratic band touching
+point topologically interesting? Is
+there s some sort of winding number that
+u that characterizes this touching point
+like there is clearly for the direct
+point? Okay. So, how do we do this?
+Well, we're able to load our atoms uh
+directly into the third energy band.
+Okay. And I'm happy to talk about how we
+do that perhaps later if people want to
+ask about that. But we can load our
+atoms directly into the third energy
+band. What I showed in this band
+structure that I calculated is that the
+third energy band and the fourth energy
+band they have a quadratic band touching
+point. So I can uh load the atoms into
+this third band say in some region here
+and I can involve them over to the
+quadratic band touching point. That's
+what I'm showing in this Berlin zone
+map. Load them into the third band. I
+move over to the quadratic band touching
+point. And again I'm going to turn by
+some angle theta. that's going to make
+some full loop around the quadratic band
+touching point. Again, I can think about
+this as a pseudo spin in a
+pseudomagnetic field with one very
+important difference.
+As I make a loop around uh that goes
+through the the the quadratic band
+touching point the effective magnetic
+field or the pseudomagnetic field that
+my that described my system it wraps
+twice for one revolution around this
+point that's the special difference here
+and I can see that in my measurement if
+I go and measure the proportion of atoms
+say in the third band or fourth or the
+fourth band as a function of the angle
+that I uh exit the quadratic band
+touching point. Instead of one
+oscillation switching between the two
+bands, I see that there are two
+oscillations. That's what I'm tracing
+with my mouse. So I see that atoms
+initially in the third band. Uh they
+move into the into the fourth band back
+into the third band into the fourth band
+back into the third band over the same
+region 0 to 2 pi. uh for which I
+measured only one such rotation by going
+through the direct point. Okay. And so
+what we've measured here in both cases
+for the direct point and the quadratic
+band touching point is a winding number.
+There's a winding number of one. That's
+one rotation around the direct point or
+winding number of two here for the
+quadratic band touching point. Okay.
+And so I've gotten to my conclusion. I
+know I'm at 53 minutes. Sorry for going
+a little bit into the questions. uh but
+I want to conclude with this point that
+an ultra cold atom quantum simulator is
+a very powerful tool that allows for
+simulation of real materials or toy
+Hamiltonians that are still very
+interesting. Um crucially measurements
+of quantum distance allow the
+non-trivial topology of both the rack
+points and quadratic band touching
+points to be directly revealed.
+And in these measurements we've observed
+quantized winding numbers of one
+associated with the direct point and uh
+two using this new technique that you
+know which could not have been done
+before. Uh we see a winding number of
+two around the quadratic band touching
+point. Okay. Uh so there's there's lots
+of future work to be done here. You know
+uh in many ways we're a Kome lattis team
+that cares about flat bands. It turns
+out that I have a lot of laser power and
+so that third that third energy band
+that I showed you uh where we have a
+quadratic band touching point I can make
+that band very flat by cranking up my
+laser and so this gives us access to
+this question that we care about a lot
+and that is uh where do bzons condense
+in a flat band and this is something
+that we're interested in looking at um
+the sort of immediate next project that
+we're considering is what happens if you
+hold atoms at these singularities for
+various times.
+uh the an example of which is I'm
+showing right here. So in this
+experiment, what we've done is we've
+evolved the atoms to the quadratic band
+touching point between the third and
+fourth bands and we've held them there
+for a while. I can't say a whole lot
+about what's happening here, but
+certainly interesting. you can see that
+the atoms are aligning with the edges of
+the third brilliant cell. Okay. Um and
+so I just want to just sort of uh with
+this uh suggest that you know this was
+the start of some uh interesting
+topological investigation of uh these
+singularities. But you know we can also
+use this uh evolution through momentum
+space to study things like squeezing as
+it appears in these cold atom systems.
+associated with the band structure which
+I believe is related to what we're
+seeing here in this uh image of atoms
+that I took in the lab. Okay. And uh let
+me make one one more quick point very
+very quick. Uh I think this is very
+interesting. Two-time Nobel laurate
+Lionus Pauling on one particularly
+cranky morning once said there's no such
+thing as quasi crystals only quasi
+scientists.
+Um now uh despite that fact uh the
+people had discovered specifically Dan
+Checkman had discovered a five-fold
+rotation symmetric quasi crystal right
+this is a rotation symmetry that's not
+allowed for periodic latises and this uh
+result from this PRL from back in the
+80s shows exactly this from this
+aluminum maganesees alloy so what are
+quasi crystals they are periodic but uh
+they are aperiodic but ordered they have
+no translation symmetry one thing that's
+interesting interesting is that super
+connectivity back in 2018 was uh shown
+and it looks like that in these solid
+state five-fold rotation uh symmetric
+quasi crystals there's a maybe
+interesting form of super conductivity
+that would be interesting to study um
+but I find it particularly interesting
+to think about what happens
+um to say firmians in the system in
+terms of the the phase diagram that you
+might be able to explore you don't have
+well- definfined you don't have
+translation symmetry So you don't have a
+well- definfined firming surface. And so
+I think that uh such a five-fold
+rotation symmetric ultra cold atom quasi
+crystal would be generally interesting
+to study you know quantum physics of
+quasi crystals how wave pack is diffused
+in this quasi crystals this uh
+particularly a unique type of exitation
+called phasons that exist and generally
+topology in quasi crystals. Okay thanks
+for entertaining me going to the
+questions I am all done. Thank you very
+much.
+Okay. Uh so let's thank Charles. Uh
+and we uh definitely have time for
+questions. So um I why don't we just
+have people unmute uh and as long as we
+can keep it orderly ask their questions
+that way.
+Okay. Even though he planted this
+question, I'd like to know how he loads
+directly into the third zone.
+Yeah. So,
+I can do so by translating a lattice
+um that almost doesn't look like a
+lattice. So, there's this idea of recoil
+energy. This is important. And it's not
+really until the depth of my lattice
+exceeds the recoil energy that the atoms
+really sense a lattice. So what I can do
+is have a very shallow uh lattice like a
+very shallow potential energy minimum. I
+can translate it to some
+quasi momentum that is
+um
+that is associated with the third
+brillin zone such that when I finally
+ramp up my lattice and I open up gaps my
+atoms are adiabatically loaded into the
+third band. So let me let me try to do
+some stuff with my hands. Maybe that
+would be helpful. uh for free particles
+I have just a quadratic uh dispersion
+right so imagine just one dimensional uh
+onedimensional system with uh no lice
+the energy versus momentum of my
+particles just looks like a parabola
+right and so I can mark where the first
+brerin zone would be or the second
+brillin zone would be where the third
+brillin zone would be right imagine that
+I move the momentum of my particles over
+to the third brerin zone and then I ramp
+up this system and open up gaps at the
+brerland zone edges. Then uh the only
+state that I can connect to is the state
+uh in the third band that's associated
+to the fact that I move my atoms
+momentum all the way over to where the
+third brilland zone is.
+Great. Thanks. Other questions?
+Jack, can I ask a question?
+Yeah, of course. Anybody can ask a
+question.
+Hey, hey, Charles. Um, so nice talk. Um,
+so you were mentioning quantum
+simulation, but you didn't comment on on
+interactions. So, every single single
+part of physics. Can you actually say
+first why interactions are negligible in
+the physics that you studied? And what
+would be interesting if you're taking
+interactions into account?
+Yeah. Um
+so we do not have good control over the
+interactions in our system. Um you know
+it would be nice if we had we had this
+nice uh these nice sketchbach
+interactions right that are tunable with
+magnetic field where we can actually
+explore this. uh we go through we we
+definitely go through at least for these
+experiments we went through attempts to
+minimize interaction effects because we
+we didn't want to see that in this
+experiment and we did so by trying to
+use as shallow as shallow of lises as
+possible such that in the individual
+wells of the lattice uh you can sort of
+decrease what the density of bzons want
+to be um and by um
+uh just starting off in the beginning of
+the measurement with a BC that has a
+smaller atom number, right? That's about
+all we can do to decrease the
+interactions. Um, now how do I know that
+interactions don't play a big role? Uh,
+well, it's because I don't see any
+strong effect of gapping, for example,
+uh, at the direct point, right? So I
+would expect that if I had some
+significant interactions then I would
+open up a significant gap and I can
+evolve my atoms through the rack point
+more slowly and more slowly. Um and I I
+let's see I can evolve my atoms through
+the rack point at which case I would
+expect to see atoms go from the ground
+band to the excited band because of this
+um this offdagonal element of the bar
+connection I mentioned. But I go more
+slowly and more slowly and more slowly
+and I can never I never get to a
+situation where I don't see that that
+where I don't see the the state rotation
+the flipping from ground to excited B.
+If I had sufficiently strong
+interactions I would open up a gap and
+if there's a minimum gap then there's a
+there's a sufficiently slow speed at
+which I would be able to evolve my atoms
+and not see any atoms go to the second
+layer. And we've looked for it and we
+just can't see it. Uh truth be told, I
+think that there's probably some tiny
+gap that comes from uh uh vector stark
+shift, right? So there's a polarization
+change that happens across the uh the A
+and B sides of my unit cell. And for
+that reason, I I know that technically
+there has to be a small gap. It's just
+really really small. So small that we
+can't see it. And it's not important on
+any relevant time scales of this
+experiment.
+I'm gonna uh
+oh sorry can I just add one more thing
+uh so you're asking about why it would
+be interesting to study interactions uh
+so I think that's particularly
+interesting for the quadratic band
+touching point so there's a bunch of
+cool work that suggests that maybe
+interactions would cause a quadratic
+band touching point to break into
+multiple direct points for example so if
+you have some tunable interactions then
+maybe you can see these interesting
+topological transitions where a
+quadratic band touching point say splits
+into two direct points I would like to
+look at
+Um leet you're saying
+yeah uh yeah it turns into discussion so
+I'm not sure I'll just take you know
+maybe 90 seconds
+that's fine we started a few minutes
+late so I think it's okay to to stick
+around a few minutes past five
+yeah so yeah this question about
+interaction is actually very interesting
+but I would think you know that um let's
+start with just with with bos condensate
+without all these additional uh problems
+right so then basically you have a
+certain spread in momentum space and the
+stronger the interaction is the bigger
+the spread of the in the momentum space.
+You have shown this figure in the
+beginning of this uh yellow thing on the
+blue background, right? And the stronger
+the interaction, the wider the momentum
+spread of your of your both condensate
+state, I would say, right?
+So I think that uh you indeed don't want
+strong interactions between because you
+want a a nice momentum resolution. Y
+um now as to the opening of the gap
+because of interactions is less clear
+because this gap is just a single
+particle effect, right? It's an effect
+of a of an atom in the field of lasers.
+Um so it's not obvious to me that
+actually you'll open a gap by
+interactions.
+Yeah, I'm I'm totally not suggesting
+that is obvious, but we can uh we can
+sort of look at
+what looks like uh
+Okay, so I realize it's sort of strange
+to talk about band structure when you're
+talking about interactive systems, but
+we can just write out what the band
+structure looks like when you consider
+say the density of the BC and we do see
+what looks like uh depending on the how
+dense the BC is gaps open. So that's
+where that comes from. I totally don't
+think that it's obvious.
+But but what is the widths? I mean
+regardless BC or not BC. So what is the
+widths of the momentum
+uh um spread uh in in the in the state
+you prepared that you that pass through
+the direct point.
+Yeah. So
+compare to the to the to the brilliant
+zone size.
+Yeah. So it's about um so the this is
+not suggested by the images that I
+showed but the in units of H bar K the
+spread is something like um like one or
+two% of HK
+narrow. Yeah.
+Yeah. And they look bigger because you
+know artifacts of the imaging that we
+do. So that's why I look big on the
+brillinsome maps that I showed, but in
+actuality it's one to two% of H market.
+And and after you scatter, the size is
+the same. It's it's still 1% of of
+brillian zone or
+uh yeah, we don't we actually don't
+really see that change.
+I see. Okay.
+Yeah.
+Okay. So we're up on time, but I did see
+one hand from Yorum. Yurum, is your
+question sort of on the briefer side?
+Yeah, I can be very brief. So
+Okay. And then
+in quantum simulation
+usually the hop in the experiment you
+can measure something that the theorist
+cannot calculate if the system is very
+big in their interaction.
+So in your physics which is mostly
+single electron physics is there
+something challenging you can do that we
+theorists cannot calculate
+with the with the system that I
+described today.
+Yes. or or maybe with future systems.
+Well, I think with the I mean I think if
+I switched I I would suspect uh sort of
+generically that if I used uh firmians
+instead
+then you know the the degree to which
+properties can of this system can be
+predicted
+uh it becomes much much more difficult
+to do so I I would I would think that
+the best case for the use of a quantum
+simulator uh although I think it's
+important to do lots of stuff with bzons
+and lises like this we're going to talk
+about quantum simulation then I think
+you should look at firmians. I think
+that there's lots of stuff with firmians
+and lises uh where experimentalists can
+sort of help guide the sort of things
+that the community including theorists
+are are thinking about.
+Right.
+Anyway, say very nice talk. Thank you
+very much for that.
+So I think that's a good good place to
+close the physics club here. Thank you
+Charles for your talk. Just thank
+Charles one more time and thanks
+everyone for attending. I'll be closing
+out the meeting, but uh look forward to
+seeing you all in the near future.
+Thank you very much,
+Charles.
+Thank you. Byebye.
+See you tomorrow, Charles. Very nice
+talk.

@@ -1,0 +1,1650 @@
+science.
+Okay, maybe we should get started since
+there's no more seats available.
+Uh, so it's a pleasure to welcome our
+colleague Rob Schulov, Sterling
+Professor of Applied Physics and
+Physics. Uh Rob first came to Yale in
+the mid 1980s to a science Saturdays
+program that uh Bob Wheeler and
+Vererville for showing off uh liquid
+nitrogen and low temperature things and
+Rob got hooked. uh he got his
+undergraduate degree at Princeton where
+he did his junior paper with Bob Dicki
+and he got hooked on measuring quantum
+noise. uh he went to Caltech and worked
+with Jonas Muzenus uh building detectors
+for radio astronomy and then came to
+Yale as a posttock uh with Dan Prober in
+1995
+and uh invented the radio frequency
+single electron transistor the world's
+fastest counter of the smallest beans as
+the Yale press office called it uh and
+uh on the strength of that uh became an
+assistant professor in applied physics
+and uh has been here uh on the faculty
+since 1998.
+Uh so uh he's going to talk to us today
+about the 2025
+uh Nobel Prize in physics which was
+shared by our colleague Michelle Deere
+uh and uh and its relation to the
+quantum mechanics and quantum optics of
+electrical circuits.
+Great.
+&gt;&gt; Thanks Steve.
+Can you folks hear me? Okay. Okay, good.
+I don't hear it so much over here. Um,
+right. So, thanks Steve for the
+introduction. Thanks everyone for
+coming. Um, it's been a kind of an
+amazing year, right? uh in a lot of
+respects uh but especially to see uh
+this field that we've been working in
+and developing uh around the world but
+uh especially here at Yale sort of uh
+recognized with this well-deserved
+prize.
+Uh
+I see have to do like this. Um and
+there's the uh short form of the
+citation. Uh the prize was given to John
+Clark, Michelle Devray and John
+Martinez. Uh John Clark was an expert in
+superconducting devices and squids on
+the faculty at Berkeley. Uh Michelle was
+then a posttock in John's group and John
+Martinez was the grad student who worked
+on the experiments together. So one of
+each of the levels of folks there and it
+was given for work that's almost exactly
+uh 40 years ago. Um and so what I wanted
+to do today, I wanted to make this kind
+of fun um uh uh hopefully accessible for
+uh students of various uh ages. I see
+even some of the students who are taking
+the new course we've introduced which is
+a one uh uh semester mezzanine class
+that's uh for advanced undergraduates
+and beginning graduate students on this
+field of superconducting uh quantum
+circuits. Uh so hopefully uh that'll be
+all uh you know something that you guys
+find entertaining at least uh so you'll
+get the one semester version and then
+also the one hour version. So, um, also
+wanted to say thank you to this
+triumphvirate. Uh, so, uh, between, uh,
+you know, Steve, Michelle, and myself,
+we've had an incredible time and so much
+fun discussing physics and, uh,
+exploring, uh, this playground, um, over
+the past 20 years. And also, I've I've
+generously, uh, they've generously
+donated I've cribbed lots of, uh,
+slides, uh, from both of them. So um
+the sort of uh origin of our field kind
+of goes back to one of the most basic
+and sort of enduring questions about
+quantum theory
+which is how come
+we're not intuitively used to things
+like superposition and entanglement.
+Um why is it that the macroscopic world
+uh seems to be obeying different rules
+than the uh world of single atoms and
+single photons? And you know uh that
+goes back I'm not sure if you can see
+the uh picture here. This is a little
+chalk sketch of a cat in a box with a
+gun that's breaking a poison vial. It's
+uh you know Leot uh Tony Leot here uh
+discussing Schrodener's cat uh which was
+originally of course put forward as sort
+of a reason why the early proponents of
+quantum theory thought well this can't
+be the whole story because uh this is
+clearly ridiculous. We can't have
+macroscopic objects that are actually in
+a superp position or entangled with uh
+some single degree of freedom like an an
+atom or something like that. Um but uh
+what Leget did starting in the early 80s
+was uh he had a series of papers that
+were somewhat philosophical in nature uh
+in which he pointed out that there were
+macroscopic quantum phenomena like
+superc conductivity or super fluidity in
+liquid helium uh that
+uh have macroscopic manifest ations of
+the fact that they are quantum uh
+fluids. So in a superconductor you can
+have a current that flows in a loop
+forever. In uh super fluid helium you
+can have uh a uh a you know circulation
+of a fluid that goes around a pipe uh in
+principle forever in a frictionless way.
+But that those weren't quite macroscopic
+in the same way that Schrodener's cat
+was. uh and he started speculating that
+you know maybe these superfluid or
+superconducting systems would be a good
+way to test the kind of limits of
+quantum mechanics and how macroscopic an
+object
+uh or a system could one actually have
+that you would observe these explicitly
+kind of you know fundamental uh weird
+and spooky whatever you know adjective
+you want to
+uh uh manifestations of quantum
+mechanics be present and uh he didn't
+talk so much about this one but you know
+here's an example of a simple electrical
+circuit the familiar LC resonator
+uh which uh has uh a single degree of
+freedom it has two uh variables the the
+current and the voltage or the flux and
+the charge on the capacitor
+uh And uh the question is are those you
+know two variables actually in quantum
+mechanics non-commuting and they're
+going to have uh manifestations like 0
+point fluctuations and and all that
+other sort of stuff. Um and uh you know
+could we actually observe the kind of
+phenomena that uh are associated with
+single atoms and the like uh with this
+uh kind of system. Now, why would that
+be similar to an atom and why would it
+be different from an atom? So, uh
+Michelle has a slide that uh he's used
+for many years that's sort of comparing
+and contrasting you know real atoms with
+electrical circuits or we're going to
+call them artificial atoms in uh in this
+talk. uh in you know a real atom you
+have uh an electron and if you uh have
+an excited state uh maybe the electron
+has some motion uh this is again very
+handwavy uh but uh you know um there
+will be quantum phenomena associated
+with this atom. It's all very clear to
+us now. Uh if we excite uh this
+electromagnetic uh resonator um you will
+have something where uh charge is also
+sort of slloshing back and forth right
+you have uh charge accumulating on the
+pads of the capacitor and then current
+uh running back and forth uh through the
+inductor uh and it's all sort of you
+know held in place. There's a restoring
+force associated with the ion core uh
+and so on. But um it's a very different
+kind of system. It's a very different
+kind of phenomenology, right? Uh in uh
+the hydrogen atom, you know, we're used
+to thinking of this as being inherently
+quantum. It's composed of two elementary
+particles. It's a very simple and very
+small system in that regard.
+uh and uh you know we have things like
+the velocity and the force that we can
+understand and and and in some sense
+probe but those now become things that
+are ordinarily not something we think of
+as being quantum mechanical things like
+the current through the inductor or the
+voltage on the plates of this uh
+capacitor.
+Uh now uh if we say okay why make this
+out of superconductor one reason is we
+want to prevent dissipation because that
+will help preserve the quantum behavior
+for longer. Uh but um also we want to
+have something where we can make some
+observations and have it behave a bit
+like an uh atom. Oh and one other
+important difference of course is the
+scale. uh so you know typical hydrogen
+atom rate on the angstrom scale uh one
+of these LC circuits that we can make is
+uh on the scale physically of
+millimeters uh but and also you know we
+can do things like paste them down and
+attach wires to them and do stuff uh
+nasty stuff to them that you can't do
+with real uh hydrogen atoms
+um however there's a real problem if you
+try and just take a simple LC oscillator
+and use that as your atom or try to
+observe oberve explicitly quantum
+mechanical behavior in that and the
+reason for that is that an LC oscillator
+is a very linear system. Okay. Uh and uh
+that shows up for example in the energy
+spectrum you might have this parabolic
+uh potential but you have equally spaced
+energy levels all throughout. And if one
+takes this system and you push on it, if
+you try to control it or manipulate it
+using a classical field, uh this system
+will always be in the correspondence
+limit. So you will push it around. It
+has a uh position and a momentum or a
+current and a voltage. uh but the sort
+of center of mass of those uh uh uh
+variables in phase space is always going
+to follow exactly what a classical
+system would have done. The only real
+difference is that you know if you could
+get in and look at zero temperature
+there'd be some nonzero fluctuations.
+The the the position in phase space is a
+little bit fuzzy. There's a bit of a a
+fuzzy ball associated with the position
+and the momentum or or the charge in the
+phase. Um but that's very difficult to
+observe
+and so uh to make something that's more
+like an artificial atom and allowed uh
+our laureates to actually observe uh the
+first evidence of macroscopic quantum
+effects and energy quantization in
+circuits. You needed to add a very
+important ingredient namely the Joseph
+and junction.
+And a Josephson junction is nothing
+other than a sandwich of two
+superconductors with a thin insulator
+that allows tunneling of charges between
+uh the uh microscopic understanding of
+superc conductivity came to us with the
+theory of BCS Bardin Cooper and Shriefer
+in 57 and Josephen interestingly in his
+PhD thesis if you don't not aware of
+that uh proposed his effect uh and uh
+what uh Joseph's equation visions are is
+it says that well there's going to be a
+current that can flow between these two
+electrodes and it could be measured
+using voltmeters and forced using uh
+current sources and the like. Uh but
+that the current through this element
+will be a syosoidal function of uh the
+phase difference in the two condensates
+uh of the superconductors that are
+making up the two electrodes. And so
+this syosoidal current is
+it's like an inductor but it's a very
+nonlinear inductor. Um in addition uh
+the other one of Josephson's equation
+says that if there's an actual voltage
+imposed there will be uh uh fluctuations
+of the phase that uh happen at a
+characteristic frequency given by these
+fundamental constants E and E and H. Um
+but the sort of uh so-called resistively
+shunted junction model, the sort of
+behavior of a circuit like this uh is
+ordinarily also pretty classical
+uh if you're not striving to make uh
+this system uh be in a very uh special
+realm of parameter space. And moreover
+uh this sort of uh variable here fi is
+the phase difference between the uh
+order parameters in these two uh
+electrodes. But the uh behavior of that
+variable now except for the fact that it
+has this syosoidal behavior and there
+are e and h's in some of the
+relationships is almost fully classical.
+And uh for example, if you know you want
+to understand the dynamics of this uh
+kind of circuit, just a simple Josephen
+junction uh that is biased with a
+current um you can write down these
+so-called RSJ model uh here which is
+basically just uh a version of Newton's
+laws of motion. It's it's a it's a
+second order differential equation,
+right? that's just fully classical again
+except for the appearance of some
+interesting fundamental constants as uh
+as prefactors.
+Um and uh what this uh model says is
+that uh this syosoidal current phase
+relationship of the Josephson effect
+gives a kind of potential which is like
+uh a cosine it's uh uh got an
+oscillating or undulatory component. And
+then uh if we add the addition of a bias
+current we can kind of tip this
+potential giving us uh the sort of
+tilted washboard uh uh uh potential uh
+that's shown here. And um what one can
+do with this for example is you can
+apply a current and measure the voltage
+and um you can say well okay uh what am
+I going to observe if you uh apply a
+current that's less than the uh critical
+current you will just have uh no voltage
+that develops. But if you apply a uh
+current that is somewhat greater than
+the critical current, then this particle
+is not bound within one of the wells and
+it can run down this washboard. Uh this
+variable fi here again is the phase
+difference between the two. But the
+derivative of this is basically the
+voltage. So in that case we have a
+something approaching a constant
+velocity. So there's a constant voltage
+developed across the junction that you
+can measure and uh there are still these
+undulations. So there will be some
+oscilly component at a very high
+frequency of 484 gigahertz per millolt
+uh which is uh uh 2 over h. Uh so uh uh
+this uh was sort of understood and
+studied uh somewhat in the sort of uh
+60s and early 70s late 60s early 70s uh
+and this uh Joseph injunction turns out
+to be the kind of nonlinear thing you
+need to make an artificial atom or to
+make something which is going to display
+really explicitly quantum behavior.
+And the way this this works uh is you
+have to get into the right realm of
+parameters. So the first thing uh you
+need to do is have the frequency of
+small oscillations here be larger than
+the temperature. And if that's going to
+be typically a few gigahertz that
+corresponds to something like a quarter
+of a degree. So you need to cool this
+system to very low temperatures lower
+than the temperature of liquid helium at
+which the sort of RSJ model was
+initially explored and all that sort of
+stuff. You need something uh called a
+dilution refrigerator which can get your
+chip down to something like a few uh
+100ths of a degree above absolute zero
+or 20 millichel.
+And uh for those of you who've seen uh
+sort of popular press things about
+quantum computing and so on, you know,
+the meme, the visual meme for a quantum
+computer is this big round thing with a
+chandelier like set of uh goldplated uh
+copper uh temperatures that you anchor
+things to. Many many uh wires coming in.
+Uh this is the Berkeley refrigerator in
+which the Nobel Prize work was done. uh
+is about that big in diameter, not this
+big in diameter like a modern
+refrigerator. Uh and it had exactly one
+microwave input line and all the
+measurements were at DC. Whereas you
+know uh things you will go down to
+Beckton and see cutting edge academic
+experiments that now have you know of
+order 100 uh lines uh of microwaves both
+in and out. Okay? Because we're doing
+much more complicated things. Uh an also
+fun thing is the state-of-the-art of
+lithography. It was a nobium lead
+indium. So lead and nobbium are both and
+indium as well actually are all uh
+superconducting elements. Uh the
+lithography was done I think probably
+with ruby lith or something. Uh it's uh
+you know the the characteristic uh size
+scale is 10 microns which is kind of
+small but from the point of view of
+lithography in the modern era not small
+at all. Right? It's a typical Joseph and
+junction in uh modern cubits is uh
+something like uh 0.2 microns on a side.
+So a good bit smaller. Um the the other
+thing that you see here is kind of uh uh
+funny. This you know in a lot of the
+popular things about the Nobel Prize you
+know some uh actual image or cartooned
+image of this thing was shown. Most of
+what you're seeing here, these these
+interesting tubes are basically just uh
+specialized filters that were developed
+so as to remove all possible uh uh
+thermal noise or external microwave
+radiation from getting to the junction
+and making it go poof uh before you
+wanted it to. Uh and so these so-called
+copper powder lowass filters here were
+one of the innovations that were uh
+needed to uh to get to this to this
+point. Um and so uh what uh uh Clark
+Devet and Martinez were able to do is uh
+take a small Joseph and junction, put it
+in this dilution refrigerator apparatus,
+cool it down to a low temperature and
+examine the dynamics of this washboard
+potential uh in the quantum regime.
+uh and in particular you know if we have
+uh a washboard potential uh and a bias
+current that's applied which is maybe a
+little bit less than the critical
+current. So the particle is not going to
+run it's going to be trapped in one of
+these wells. Um if we take uh this uh
+quantum uh stuff seriously, right, there
+should be quantized energy levels in
+here associated with some uh energy
+level spacing that's uh uh corresponding
+to h bar times whatever the frequency of
+small oscillations are. And the
+important thing here is that this is now
+not a parabola.
+It doesn't give a linear system. It
+gives a system with some interesting
+nonlinearity. These energy levels are
+not equally spaced and uh moreover uh
+there are ways now to kind of uh measure
+uh various effects in this system. So,
+one of the things you can measure is the
+fact that uh if you've tilted this
+washboard and you sit around in weight
+and there's a finite temperature, you
+can be thermally excited up this uh uh
+set of energy levels and tunnel across
+developing a voltage which can be
+measured.
+And uh that can happen by thermal
+activation or if you're at very low
+temperatures, it can actually happen
+quantum mechanically. Even though this
+particle is sitting here and it's below
+the energy of the barrier, uh there's
+some finite probability that you can
+tunnel in quantum mechanics through or
+under a barrier and also get to the
+voltage state. And that should manifest
+itself as sort of an escape rate into
+this voltage state that is independent
+of temperature.
+And so the first sort of signature
+result of the prize from 1985
+uh was in the there were a pair of fsrev
+letters uh that were just a few weeks
+apart. Uh the first one shows uh this
+which is basically uh the escape
+temperature. It's basically uh a
+linearized version of the tunneling rate
+where you know um we would expect from
+thermal activation and arraneous law. So
+this sort of temperature versus
+temperature being linear is like
+erranous activation as a function of the
+temperature of the refrigerator. And
+then you lower the temperature down and
+it uh sort of looks like the temperature
+is too high with a particular value here
+which is h bar omega over k. Um now, uh
+it's worth noting that there were other
+folks working on the Josephson effect
+and looking at the limits on critical
+current in various kinds of small
+junctions, including a group uh led by
+Rich Webb at IBM research that were
+doing very similar experiments. They
+didn't quite have the control and they
+weren't quite able to observe things uh
+uh convincingly because you see this is
+a little bit like there's too much
+noise. So, how do I convince you that uh
+this isn't an experimental flaw that as
+I lowered the temperature of the
+kryostat, the refrigerator everything's
+attached to, maybe my payload wasn't
+quite getting cold? Well, one way is
+they had a different junction with
+different electrical parameters that was
+supposed to follow a straight line and
+it went down lower. But the real smoking
+gun of quantum behavior in uh this uh
+set of experiments comes in the second
+paper where they used that one microwave
+line and they were able to do uh a crude
+version of spectroscopy. So again what
+they looked at was the escape rate the
+sort of probability that the junction
+develops a voltage all of a sudden uh as
+a function of both bias current and uh
+different frequency microwaves that were
+applied. And in the presence of
+microwaves you would expect that you can
+uh resonantly promote the system to a
+higher level where it's closer to the
+top of the barrier and it can tunnel out
+more rapidly. And as you see here,
+there's a series of peaks, not very
+sharply defined, but they do kind of
+correspond to the energy levels within.
+And so uh this is the first uh
+observation of kind of energy
+quantization in a man-made uh artificial
+device with okay, it was only 10 microns
+on a side. It wasn't millimeters, but
+the the wires and everything attached to
+it are millimeric in scale, not uh you
+know sub nanometer.
+So there you go. That gets you a trip to
+Sweden. But more more excitingly, right,
+this is the first thing that sort of
+says, hey, we take these ingredients
+with Joseph and junctions. We can have a
+artificial kind of laboratory. We can
+have a system where we can uh engineer
+things. We can make electrical
+measurements. We can maybe even control
+things in an interesting way and have
+some of the uh inherently
+you know most quantum of effects be uh
+visible
+and also interestingly at this point
+there was about a dozen hiatus.
+So uh these experiments were sort of
+done. There were not a lot of immediate
+results that followed. Uh, a lot of the
+community that was studying quantum
+effects in the solid state was looking
+at the coherence of individual electrons
+as they move through solids or metals or
+semiconductors or looking at the uh
+charging effects. When you have a
+quantum dot or a very small uh piece of
+conductor, you are only able to add
+charges one at a time and you can't add
+them if it's energetically too uh uh
+costly. And so there was a lot of people
+looking at uh these sort of uh other
+effects not the uh Josephson effect in
+its kind of quantum guides but um what
+uh these uh you know experiments told us
+is now we had a sort of a toolbox for
+making interesting circuits. Um and uh
+that toolbox should have no resistors.
+Uh it's allowed to have capacitors which
+are lossless if they're superconducting.
+Joseph and junctions which are hopefully
+lossless if they're superc conducting
+and uh regular inductors linear
+inductors you can uh use as well. Um and
+you know this toolbox became a lot more
+interesting when uh we got to about 1998
+and Shore said maybe uh a quantum
+machine can factor numbers and maybe
+there's something different about uh you
+know being sorry Shore is 1995 I I beg
+your pardon uh but the sort of first
+results are following just a couple
+years uh after that people started
+saying well wait a minute maybe we can
+make something which is an electronic
+device that can actually function as a
+cubit, a quantum bit of information and
+maybe we can store and process
+information in uh these superconducting
+circuits in a way which is really
+quantum and then comes a big flurry of
+activity uh which I think I'll try and
+use the remainder of the time to kind of
+give you a a lightning tour through. you
+know the Nobel Prize again should
+appropriately be given for the seinal
+work that establishes a direction of
+research or a field but then of course
+uh the real payoff is when that leads to
+interesting places right and that's why
+it sometimes takes 30 or 40 years for
+one to know uh what's a Nobel
+Prizeworthy uh result so um one can do
+uh lots of interesting things with this
+uh toolkit I I won't have time to
+describe
+uh uh all of these by any stretch. Um
+this is from a paper that Michelle and I
+wrote a few years ago um uh which
+Michelle likes to call the Mandela
+table, the sort of periodic table of
+artificial atoms. Um, if you have just
+junctions, capacitors, and inductors,
+there's sort of a couple of different
+axes that you can uh define that tell
+you how to characterize one circuit and
+distinguish it from another. Um, it's
+not discreet, of course, like the
+periodic table for real elements because
+you're not adding uh uh protons one at a
+time. uh uh but um rather it's kind of a
+continuous diagram where you can
+engineer and uh tailor these uh things
+by how you make your fabricated circuit
+uh to give you kind of continuous range
+of these parameters. Um and why lots and
+lots of different kinds of cubits? Well,
+because in the beginning people were
+exploring a lot of different directions
+and um also uh looking at ways to avoid
+some of the mechanisms for decoherence
+like charge noise and flux noise which
+the experts in the audience know about
+but just there are problems that are
+technical and you want to get away from
+them. Okay. So uh the sort of simplest
+and first superconducting cubit after
+the MQTT results which are really a
+cubit in themselves of course just
+wasn't thought of and called that way is
+something known as the Cooper pair box.
+It's just a single Joseph injunction but
+not current biased rather it's charge
+bias. So there's just a capacitor and a
+uh static voltage applied and um there
+were early measurements by uh the team
+including Michelle who was then in uh
+Sllay uh measuring the charge on this
+device. This has two states that are
+basically plus and minus one extra
+electron on this little uh island here.
+And you can measure the quantum states
+of that using an electrometer like this
+RFTT that Steve mentioned. Um this was
+done with uh a low frequency
+electrometer just looking at the uh
+average properties in 1998 which is what
+I was thinking of Jack is sort of the
+first operation of a superconducting
+cubit uh by uh Nakamura uh and Sai uh
+and co-workers at uh in Japan at NT. Um
+what they were able to do was observe
+the first uh Robbie oscillations or
+maybe it's the Larmore procession.
+Where's Kurt? Um uh in uh this system
+you basically uh apply a sudden pulse in
+the voltage. Uh now you go to something
+where the Josephin energy is coupling
+together plus and minus uh one electron
+uh you know one additional pair is
+oscillating back and forth and so this
+is their plot as a function of sort of
+the voltage you apply and the time you
+apply that voltage for that shows
+oscillations between the two states. So
+this is now beginning not just to look
+at the spectrum or where there are
+energies that correspond to specific
+states but actually you know uh halfway
+along one of these is creating a superp
+position where you're in both uh this
+little island of the uh coup pair box is
+in both uh zero and one additional
+Cooper pair at the same time.
+Uh the first Yale cubits uh were uh
+experiments that we did in collaboration
+with uh Perelling and his uh team in
+Chalmer's. uh the first author was one
+uh Conrad Leonard uh currently then uh
+at the time was a postoc in my very new
+lab and uh we basically took this same
+experiment where there's the Cooper pair
+box here's that one island here's the
+electrometer that sits next to it and
+using this radio frequency single
+electron transistor we could make more
+precise measurements of uh the states
+here's us doing spectroscopy
+uh at the time the line width was about
+a gigahertz uh those of you who work in
+the labs today know like oh hey you know
+it's not a bad cubit the line width is
+20 kHz or something so that's progress
+for you over a couple of decades uh but
+one of the things that uh could also be
+done in this experiment is we could
+abruptly turn the microwaves off which
+are creating some population imbalance
+between the ground and the excited state
+and look at how fast the signal recovers
+and uh what uh Conrad and Leif and
+company observed was uh that this uh
+time constant here. Uh that's not the
+most beautiful T1 curve for also those
+of you who are out there practicing. Uh
+but that's what uh we were able to do in
+the very first experiments. Uh was like
+a microscond. So um you know if in this
+Nakamura experiment here he's doing uh
+operations that are changing the state
+in a few hundred picosconds or a
+fraction of a nancond in some sense this
+microscond is already long. It means you
+can create something that lives for a
+thousand times faster than you can
+manipulate it. If you want to build a
+quantum computer, you need to be able to
+manipulate things many many times.
+Uh there are other kinds of cubits that
+were also investigated. There's the kind
+of electromagnetic duel of the Cooper
+pair box or the RF squid. There's the
+three junction version of the squid.
+This was also studied. And
+interestingly, Tony Leget always seemed
+to think that uh the flux version of
+this was much more macroscopic than the
+charge version. Um this is a slide from
+Yasu. I guess I'm not sure what his
+point of making that of posing that
+question was, but um there were uh other
+innovations that followed uh rather
+rapidly. And I'm going to now speed up a
+little bit because I've been uh waxing
+eloquently a little bit too much. But uh
+um one of these was uh something a
+device called the quantrronium uh done
+uh by Michelle and his co-workers uh
+again uh at Sllay just about the time
+when he was moving here to uh to Yale to
+join the applied physics department. Um
+what uh this device did was uh it
+actually operated at this kind of point
+here uh which in terms of like sort of
+the energy landscape and those control
+parameters that one can have uh that
+change the energy level splitting it
+sort of operated at this uh special
+saddle point a kind of sweet spot where
+you're first order insensitive in terms
+of the frequency varying with uh noise
+in your control knobs. Um the uh uh uh
+atomic physicists call that a clock
+transition when you're insensitive to
+the variations in the laser power. Um
+and uh with that they performed the
+first uh T2 measurements or measurements
+really of the lifetime of a superp
+position uh doing a so-called uh Ramsey
+experiment. Uh and we're able to see
+that the uh coherence of the superp
+positions was preserved actually for a
+very long time of hundreds of nanconds
+up up to even approaching a microcond.
+Again,
+uh a another uh innovation in terms of
+the circuit uh uh landscape or zoo of
+cubits was uh the so-called phase cubit
+uh introduced by John Martinez and
+co-workers at uh uh then at at NIS
+Boulder. Uh John later moved to Santa
+Barbara and then again uh sometime later
+on uh to uh Google in Santa Barbara.
+this this phase cubit uh was basically
+just uh the macroscopic quantum
+tunneling experiment uh revisited. So
+it's a single large Joseph and junction
+that's current biased. You drive uh here
+and use the first two states as the
+quantum bit uh and then you can use a
+pulse of microwaves or a DC pulse to
+read things out. At the time this gave
+very good performance as a readout but
+uh very destructive and not uh actually
+that good at preserving coherence uh
+overall in the system. Uh it was rather
+sensitive to that current bias and stuff
+as well. Um uh
+also uh in the early 2000s, 2001 I guess
+uh uh Steve moved here uh to to Yale and
+we began uh this many many years uh uh
+thrilling and engaging uh collaboration
+and uh you know one of the things that
+uh we actually talked about in our first
+meeting in my office uh I think maybe I
+was just joined the faculty um was that
+you
+These systems also had uh nice analoges
+with uh systems in uh real atoms. In
+atomic physics or quantum optics,
+there's a very interesting uh sort of
+platform uh known as cavity quantum
+electronamics where you have individual
+atoms that couple to single modes of the
+electromagnetic field.
+um that can be done with real atoms in
+the optical and what uh you know we kind
+of uh proposed and then observed is that
+one can do uh very nice versions of
+these kinds of experiments uh using all
+microwave uh devices. So I I mentioned
+before that the harmonic oscillator
+wasn't that much fun uh when you only
+can push it with a classical field. Uh
+you have to introduce some nonlinearity.
+But if you have like a single cubit
+that's in here, you can do things like
+generate single photons on demand. You
+can make all sorts of non-classical
+states of light inside your your cavity.
+You can also do very useful things like
+suppress uh unwanted processes like the
+spontaneous emission of this artificial
+atom. Uh and so um you know uh that uh
+launched quite an interesting uh vein of
+research uh here for many many years.
+One of the big advantages was that uh
+and I think I won't go into the details.
+Um it was easily po possible in this uh
+microwave uh superconducting circuit
+version to get what's called strong
+coupling where you can go back and forth
+between the two components the
+artificial atom and the photon which is
+a microwave exitation stored in this
+transmission line uh many many times
+before the sort of characteristic decays
+uh of the information or the energy. Um
+and here's a version of the chip that
+realized that. Um, here's the uh team,
+the entire team that was working on
+Circuit QED uh back in 2004. Uh, you'll
+recognize some of us, any of you who
+were at the Gervenfest uh uh heard about
+how Steve sort of looks kind of the
+same, but some of the others of us
+don't. Um, but uh um uh this was a a
+great group. Here we are standing in the
+shielded room that we thought was
+necessary but turned out to be
+irrelevant for doing these experiments.
+And then we were uh you know uh had a
+great time um a couple of years ago. It
+was the 20th anniversary of this uh
+paper and the launching of this uh
+quantum optics with superconducting
+circuits uh where uh we had in Marsh
+Hall something like 300 and something
+attendees and thank you again Florian
+I'm sorry um but Florian helped arrange
+all of that and so it's really been
+amazing to see this this field grow in
+the scope in the science that's uh been
+able to be done um and all those sorts
+of things. So there were many highlights
+in uh circuit QED over the years. Uh
+again observing sort of avoided
+crossings between uh transitions of uh
+one of these superconducting cubits and
+uh a cavity or an oscillator uh mode
+being able to exchange back and forth
+and create single exitations.
+uh being able to observe something
+called the strong dispersive limit where
+uh for the atomic physicists the uh AC
+stark shift of one photon is actually a
+large enough frequency shift that you
+can resolve that in the spectrum of the
+cubit. So here's the spectrum of a cubit
+and a cavity that's got on average about
+four photons but you see sometimes it
+has one, sometimes it has five uh and
+the like. Um and there were also things
+like uh moving to a fully 3D uh even
+larger version of this system that uh
+boosted the coherences uh quite
+significantly. Um one of the things that
+enabled a lot of this work was uh the
+invention of uh an even simpler cubit.
+Uh it's basically uh the same as the
+Cooper pair box. It's just two
+electrodes coupled with one Joseph and
+junction. Uh you now are able to get rid
+of all the biases. uh lookma no wires.
+Um and uh now you have just the kind of
+cosine potential of the Josephson effect
+which is enough of course to already
+give you an anharmonic spectrum where
+the energy levels are not equally
+spaced. And so using the sort of zero
+and one uh exitations of these things uh
+sort of a difference in energy of a
+yaktojoule
+um uh or 10 the nine uh order uh 10 the
+nine times smaller than the energy used
+in a cos transistor you could store
+information quite well. There were lots
+of things that were sort of special
+about the transmon. uh it solved a lot
+of the existing problems of uh uh
+decoherence in the system still left you
+with enough anharmonicity enough uh of a
+resource that you could control things
+but also interestingly it was something
+that we could not have uh invented had
+we not already had the circuit QED
+paradigm and this dispersive style of
+measurement because this is a device
+which now has um no sensitivity to low
+frequency noise by virtue of being
+completely indistin distinguishable to
+the environment by any of its low
+frequency properties. And so uh that
+means you can't measure it with an
+electrometer or a voltmeter or something
+like that. You need to measure it
+optically with uh a microwave probe tone
+uh and the phase shift of that.
+Um, another uh thing that I want to call
+out here is uh amazing progress on other
+aspects of our measurement technology uh
+including the development of quantum
+limited parametric amplifiers that rely
+on the Josephson effect. Uh Michelle and
+Conrad when he moved on to Jilla and
+others uh uh helped develop a lot of the
+technology for these things. our own uh
+Mike Hatridge when he was a posttock
+with Michelle uh helped kind of us make
+that a standard ingredient in our
+experiments and uh made it so that we
+could apply it to uh something where we
+could do uh an observation of what's
+known as quantum jumps. So this is one
+cubit that's being monitored. Each of
+the sort of little wiggly points is us
+determining the state of the system and
+watching it jump back and forth. So this
+is not good if you're doing coherence or
+you're trying to store a superp position
+but it's something which uh uh was took
+many many years with real atoms or real
+photons to be able to observe these
+individual quantum jumps between states
+and um it's also kind of a prerequisite
+for being able to do things like uh
+error correction and the like. Um with
+this circuit QED platform uh we did
+invect in some of the first uh uh
+algorithms on uh uh quantum devices. We
+had this electronic processor and we did
+both of the algorithms you could do with
+that two cubit processor.
+uh you know uh but um nonetheless you
+know we could sort of show that um this
+uh platform was you know uh had the
+potential to operate as a rudimentary
+quantum computer and um I think it's
+true to say that most of the industrial
+efforts that you may read about out
+there are at least with solid state
+devices are pretty much brute force uh
+extrapolations and um uh expansions on
+uh this kind of paradigm Um and here you
+see some of them like the Google willow
+processor uh things in China, IBM uh and
+also in uh academic uh groups.
+Um
+I should leave some time for questions I
+guess. Uh so maybe I'll go uh very
+quickly uh through one last thing. Um
+which is kind of I guess a little bit of
+the perspective. Um so uh you know today
+we actually have the ability to make
+collections of uh hundreds or thousands
+of superconducting cubits on a single
+chip and control and measure all of
+them. Uh the uh ability to manipulate
+these things has gotten quite good to
+the point where we can do hundreds or
+thousands of operations.
+uh but uh we still don't have like a
+useful computation done by any of these
+machines. Uh nor do we have uh a fault
+tolerant or a really uh robust way of
+making these quantum computers. And um
+one of the metrics here for sort of how
+good uh or how interesting your quantum
+computer is is something called the
+quantum volume. It's basically how many
+of these cubits uh two raised to that
+power that you can really entangle. And
+I think the current record is still
+about like 10 or 11 for superconducting
+uh cubits for trapped ions. Uh I think
+it's maybe in the 20s. Um uh and you
+really want you know hundreds or
+thousands of cubits to do interesting
+computations. Um what's needed for that
+is a way to do error correction. And um
+I won't um have enough time to really uh
+go into this in much detail, but one of
+the other things that's we've had a lot
+of fun with in the last 10 years or so
+is a different direction for how to
+store the information uh that uh we
+think offers maybe a more efficient path
+to making robust and error correctable
+quantum computers that would really be
+useful uh for other kinds of
+applications. And the idea is to
+basically um flip the paradigm of
+circuit QED. Instead of having the uh
+cavities or the oscillators being uh the
+thing that you use to protect the cubit
+or measure the cubit or whatever you say
+no no the cubits the Jose and junction
+containing devices those are the input
+output and the control actuators and I'm
+going to actually store all the
+information in one of these linear
+cavities. uh and there are reasons to do
+that. Basically uh they are uh simpler
+systems that have a kind of natural
+hierarchy in their errors. Um and uh
+oops that's not what I wanted to do. Um
+and uh you know they will always I claim
+have better performance than a Joseph
+and junction containing device basically
+given what we know about materials
+imperfections and the way we have to
+make these kinds of circuits. Um and uh
+uh
+in 2016 uh in in Beckton we did uh an
+experiment using a four component
+Schrodener cat state of a cavity. So
+it's something which is a superposition
+of plus x and minus x as one of the
+states and a superposition of plus p and
+minus p as the other one of the iigen
+states that is storing the cubit. And it
+had the advantage that you could detect
+in real time without messing up the
+information you stored when photons were
+lost from the system. And uh that very
+simple system using just one cavity and
+one transmon uh was used to sort of
+perform an experiment that just barely
+started to improve the lifetime of
+things a little bit. But what you really
+want is something where the uh gain you
+have in sort of the performance of your
+system due to error correction is a big
+number. a more you know uh recent
+version of this bzonic error correction
+done by uh uh Vlad SAC in Michelle
+Devy's group here uh at Yale um got to a
+gain of 2.3. The record right now for
+multi- uh transmon devices is a error
+correction gain of about 2.4. So we have
+a long way to go if we want to make
+systems that are really robust and have
+uh uh large advantages. Um but it's now
+a really interesting time in this uh
+investigation of quantum error
+correction which is kind of a whole
+other talk we could give um in which
+theory and experiment now make really
+interesting and useful contact and so uh
+with uh one of our colleagues in applied
+physics fruity puri uh you know inspired
+by work she was doing with uh folks on
+neutral atoms another approach for doing
+quantum information processing
+uh she kind of taught us that detecting
+the errors was maybe a way to make full
+error correction a little bit easier and
+more efficient. And that led us to think
+about well hey maybe we can encode a
+cubit as uh a pair of cavities that are
+sharing one exitation one microwave
+photon between them and that could give
+us we proposed a really nice hierarchy
+of errors. uh this uh is only a few
+years old this concept. It's already now
+in uh uh you know commercial systems
+that are being developed uh uh by uh now
+D-Wave the parent that bought our
+startup Quantum Circuits Inc. Um and has
+demonstrated very high performance gates
+and operations. Um the point of which
+being that uh in some of the systems
+that they are now able to uh produce uh
+you are something like uh factors of uh
+uh you know several or even uh tens
+below the threshold at which this error
+correction really takes effect. And so
+the idea is that you might be able to
+get error correction gains with this
+kind of cubit that are even bigger than
+10, let's say, which is something that
+really when you now scale up your error
+corrected system would would sort of
+make some sense. So um it's been an
+amazing time. It's been a lot of fun.
+We've also uh trained a lot of folks uh
+in interesting ways. Um this was the
+group that we did the two cubit uh uh uh
+uh entanglement experiments. uh we're
+doing the two cubit dance of sort of
+showing a bell state or something with
+our uh spin up and our spin down. Um and
+uh you know uh I've given the sort of
+lightning version of many of the uh
+highlights of the field in this last
+couple of decades. Um all of this comes
+of course from having really talented
+people uh who are excited about doing
+science and seeing where it will lead uh
+that come and work with us. And that's
+been an incredible pleasure. Um so uh uh
+you know thanks to to all of you who
+have contributed to this field. um you
+know maybe just by way of summary
+it's a really nice story right I mean
+the field did start uh four decades ago
+uh uh with pretty much people trying to
+have a new way of uh attacking an old
+and uh you know fundamental question
+about the basic structure of quantum
+mechanics and we didn't exactly know
+anything about where it would go but um
+this has turned into superconducting
+circuits a really great kind of
+playground for performing uh
+experimental investigations of all kinds
+of phenomena. We can do things that you
+can't do with real atoms and real
+photons uh due to the control we have
+over these systems and maybe also an
+emerging technology. And I also want to
+make a point that um just because
+something is now uh 40 years old uh and
+seeing a translation into the real world
+maybe uh doesn't mean that uh the time
+for innovation is over you know as I
+sort of just briefly sketched like we've
+sort of been reimagining even the basic
+way we make the cubit in the last uh
+couple of years and so for all of you
+young people students coming up Um, you
+know, I hope you'll have as much fun as
+we've had, uh, and that you, uh, maybe
+consider, uh, adding your insights and
+your creativity to this field. Um, and
+we'll see where it all goes. So, thank
+you very much.
+Thanks, Rob. Questions?
+in the list of companies that has ever
+had Microsoft
+fundamentally different or
+&gt;&gt; ah um uh right I was listing companies
+who are doing super connecting uh
+devices as their main approach. So uh
+Microsoft has both a theory and an
+experimental effort. They are mostly
+focusing on something called myerana
+cubits which are uh uh supposed to be
+inherently robust uh and uh have never
+been observed. That's a fundamental
+particle we don't know if exists yet. Um
+and they're working on it. Um Intel for
+example is working on semiconducting
+quantum dots where you can make cubits
+and all sorts of stuff. Um so there are
+there are many other approaches out
+there but um uh it's kind of interesting
+to see you know nearly all of the big
+tech giants having at least a toe in the
+water on this uh on this field.
+&gt;&gt; Others questions
+a little bit about the collaborative
+process and how that's benefited you and
+and Gail.
+&gt;&gt; Yeah. Yeah. So I I do think that um our
+superpower over the years here at Yale
+has been uh that we are small but we
+take advantage of that small size by
+being extra collaborative, extra
+interactive. So um you know Michelle and
+I had our offices just down the hall
+from each other. Um uh for those of you
+who know the fourth floor of Beckton uh
+where most of these labs are, we also
+have this little al cove with a
+blackboard where people are always
+discussing physics and people are always
+walking up and saying you're wrong or oh
+that's a great idea. Um and um you know
+we even had uh the advantage of having
+like Steve have many of his postocs uh
+located there with us. So like
+colllocation and a critical mass of
+smart people uh is really really great.
+We're really looking forward to what
+kind of things can happen in the PSEB in
+the new building uh once all of the
+quantum efforts from across campus are
+going to be able to be centralized and
+uh you know sharing a coffee machine and
+many blackboards. Um, so, um, you know,
+I I think, uh, you never know where
+these things are going to go and you
+have to just kind of pull on strings in
+research. Um, you know, when you tell
+the history of something, it makes it
+seem like we knew exactly what the next
+step was and what the next step was and
+what the next step was. And that's not
+at all clear. Usually, you're very
+confused and you have an idea that maybe
+if I step over here, it'll be a little
+better. Um, and you know that's how
+science is done. So
+yeah, it's been great to have this this
+team.
+&gt;&gt; What skills or knowledge do you have to
+be?
+&gt;&gt; Ah. Ah, that's a great question. Um, so
+what skills or knowledge do you have to
+have to be productive? Um, so this is an
+interesting field, right? It's a little
+bit computer science, it's a little bit
+electrical engineering, it's a little
+bit physics. Um, and you know, all of
+those skills are useful and uh and
+valuable. Um, you know, I think the most
+important thing is willingness to learn,
+right? Because, um, you know, again,
+when you're doing research, uh, one of
+the fun things is you don't know what
+next piece of information you're going
+to need to acquire in order to get
+yourself unconfused. But um you know a
+preparation in the basics of uh physics
+is never going to hurt. Uh that's our
+core business after all. Um uh but um
+you know I think uh it's really
+interesting to see people from computer
+science, electrical engineering and
+other disciplines getting involved.
+Material science as well because making
+better widgets is an important thing. Uh
+radioastronomy which is kind of where I
+came from but uh yeah
+&gt;&gt; oh
+Yeah. Uh
+um I'm maybe Steve can speak to that.
+&gt;&gt; Sure. So the Yale College now has a
+certificate programificate
+in science engineering. Uh students take
+one of two core courses plus some
+additional
+other courses entirely
+to try to encourage
+Yeah.
+&gt;&gt; Can you talk a bit about the involvement
+of industry in all of this?
+How you navigated that at the beginning
+and how you navigate it now?
+&gt;&gt; Yeah. So, uh it's an interesting
+question. So um you know as a physicist
+I think when we started on all this we
+didn't really have an idea that it would
+turn into an industrial activity. You
+usually in physics like you think that's
+for you know your grandkids generation
+or something is when your physics is
+going to translate into uh real
+technologies but I don't know think
+about the transistor or other things
+like that. Um you know I think partly
+because of that
+mindset in physics um some of our
+colleagues have this kind of view that
+things are all or nothing that like
+you'll be doing an experiment in an
+academic lab and then like it'll work in
+some way so that you know like you break
+glass, pull a lever and you know
+industry comes in and swoops up and
+turns it into a product and that's not
+the way it goes, right? Um, you know,
+there was a period of time where some of
+our physics students were like, well,
+this is all going to be over now because
+this was like 15 plus years ago. Uh, now
+industry is getting involved and they'll
+just take it from here. And the thing I
+would say to them is like, well, when
+did academic research in semiconducting
+devices and materials cease as a
+discipline? uh you know we stopped in
+the academic labs like competing with
+Intel on how well they can make
+transistors or directly making better
+cos transistors but we were exploring
+all sorts of other uh kinds of things.
+So I think you know we're now in a stage
+where uh that's a little bit better
+understood and you know the having a
+vibrant academic and you know basic
+science component that goes with a
+commercialization component is kind of
+important because I guess one of the
+things I've learned by being a little
+bit involved in the uh industrial side
+is there's no time to indulge your
+curiosity or to try something that might
+not work. you have to basically be only
+working with components you think you
+understand very very well. You're
+reducing it even further to practice and
+trying to get a large team to build a
+complicated thing and there isn't time
+to try a wacky new idea. Um but you know
+at the same time you can't have like a
+staleness where there are no new ideas
+hitting the floor of uh industrial labs
+or you never get there right. Um, so,
+uh, I think it's it's been it's been an
+interesting thing to see. We'll, uh,
+we'll see where it goes, but I think
+there's now a decent balance between the
+two.
+&gt;&gt; In the historical part of the story, you
+described how there's a breakthrough
+experiment,
+and you said that then people kind of
+walked away from that as a as a new
+tool, as a new discipline, as something
+to explore.
+um why did that happen?
+&gt;&gt; Uh it's it's not clear. Um that sort of
+predates my arrival in the field. Um and
+no no no uh no but where I was going
+with that is I've asked people like
+Michelle or or Steve I guess uh who have
+been around longer. Um it
+&gt;&gt; uh HITC did happen in 1986. Um there was
+a lot of work on squids and
+superconducting devices for a variety of
+applications in uh you know geoysics and
+and other you know you know medicine and
+things like that. So there were lots of
+applications that were being studied but
+um these exotic quantum effects that
+happen at millichelvin temperatures the
+focus really was on um you know can I
+understand it from the single particle
+level up. So kind of looking at uh
+things like um weak localization as you
+know one electron splits up and
+interferes with itself as it scatters
+off the impurities in a in a solid or
+something. Um and and you know I'm not
+sure that uh the idea of quantum
+computers is exactly the whole reason
+that this came back as a as a big thing.
+But um uh you know I I think it was also
+realized that like there's a lot more
+interesting things you can do now with
+these devices. Maybe also technology
+advanced a little bit but add a little
+bit. Yeah. I was around a little bit
+before your time. Uh so you know it
+there was this feeling that macroscopic
+quantum X was fringy activity
+you know that was sort of like a little
+because Roger Ko was doing this at at
+IBM when I was there just after I left
+you know and it was kind of okay but you
+know what why is it why is it really
+going to matter and I don't think you
+know all those people that were thinking
+about these more fundamental things
+things were still looked at as kind of
+fringy and and kooky. We also had
+Charlie Bennett there doing it, you
+know, but it wasn't it wasn't anybody's
+you weren't going to make your, you
+know, career with it. And
+&gt;&gt; maybe yeah, one other thing was like uh
+Leot and his uh musings, he didn't
+propose a falsifiable theory of like
+quantum mechanics breaks down when this
+number exceeds 10.
+Um, and so like you could look you could
+look for, you know, a breakdown of
+quantum mechanics at the macroscopic
+scale, but like where's that going to
+happen? Um, and without a good guide for
+that, like how do you do a good
+experiment?
+&gt;&gt; Not a thing you found.
+&gt;&gt; So, so that's maybe one reason it was
+kind of crackbody
+&gt;&gt; kind of considered kind of kooky
+&gt;&gt; or trivial if all you're doing is making
+a weak version of, you know, an atom.
+because I think none of us understood
+nearly as well as these guys. Some did,
+but most didn't. That that you're really
+quantizing a circuit. We still thought
+it was sort of super conductivity, not
+the fact that you were quantizing. And
+now of course
+all the
+electrons, let's look at the whole
+Hamiltonian. Why are you phenomenal
+thing? Right. So there was that. Oh,
+there you go.
+&gt;&gt; Yeah, I I disagree with you actually.
+&gt;&gt; Yeah, there were experiments of I think
+actually it was the part of it is that
+technology just grew to the proper level
+because after this experiment there was
+this great experiment about the first
+Mart
+decay of a quantum state and then there
+was this thing with so-called
+quantization which
+with broad levels and you can take it
+with a grain of salt. Okay. So, so then
+you could try actually to look at the
+distillations at Jens
+across the street
+of
+heried to do it for years and it never
+worked and it never worked because
+basically the discretion was too high
+which is this RSJ model this RSJ model
+was killing him. Uh and only Later on
+developed proper technology and then the
+kamura picked it up.
+&gt;&gt; Yeah.
+&gt;&gt; And perfected it to to see very short
+time scales and I think these guys came
+and just said just cut off the wires and
+and use microwaves. So that that was
+basically I think the main thing that
+happened
+&gt;&gt; the war was very late like 98.
+&gt;&gt; Yeah. But at the beginning of the
+resurgence
+&gt;&gt; decade in there.
+&gt;&gt; Yeah. But that that took time to develop
+basically the uh pair books you know the
+column blockade also mentioned at the
+level of know rather than something else
+&gt;&gt; and then seeing the this actually with
+the electrometer that indeed you know
+connectivity matters in in little things
+about the just firebox it was just it's
+incremental I mean
+I don't I don't think it was not just
+&gt;&gt; but the single electron was very
+classical
+but that's not actually because if if
+it's duckucky bear boxer bear box it's
+not it's not a place
+&gt;&gt; all right any last questions from the
+students or shall we just get them some
+gloves and have them come up in the
+front here
+&gt;&gt; last question I suppose this is mildly
+related as far as the development of
+technology uh you know I suppose 50 60
+years ago maybe you had to make your own
+refrigerator uh now you can you know buy
+one but then maybe you had to make your
+own uh cryogenic components, but now you
+can buy them. And uh you know, we used
+to piggy back off of uh all the telecom
+industry and and buying our electronics
+and that's you know, part of why we
+might work at certain frequency ranges.
+And uh you know, now there's sort of a
+developing little industry of uh
+electronic devices uh specifically for
+quantum applications. Um and okay, maybe
+you know a good ways down the road
+there's companies selling whole quantum
+computers, right? Uh is there any clear
+additional intermediate step you see as
+far as like a company that you know like
+right now everyone has to make their own
+blank uh because it's uh you know
+there's not a big enough market but
+maybe five years from now there's a
+commercial blank uh that you buy
+or are we kind of
+&gt;&gt; start
+&gt;&gt; Yeah. I mean, uh,
+it's it's a good question. I I mean, uh,
+you used to indeed, you know, kind of
+have to build nearly every widget in the
+experiment yourself. You saw the photo
+of the of the Berkeley one with the
+filters and everything. You know, there
+were still some SMA C connectors that
+were commercial there. Um, uh, it's it's
+not clear to me, I guess. Um,
+you know,
+in a lot of uh science labs or physics
+labs they're pretty sophisticated pieces
+of you know technology in the form of
+oscilloscopes or the like and I don't
+know what all of the sort of you know on
+beyond versions of that there are that
+enable more work on this uh specific
+kind of quantum thing I mean certainly
+you know it's gotten harder as you make
+the systems larger and higher
+performance and more complicated But
+we're also getting better at the way you
+do all the parts and you can outsource
+more of it. So, um, yeah.
+&gt;&gt; Okay.
+I think
+the other I know.
+&gt;&gt; Next
+calendar. That's coming.
+All right.
+Is it
+There is
+brains.
+I mean, it's too bad.
+Well, I
+didn't
+ask I'll explain it is not a reflection.
+Okay.
+&gt;&gt; I never understand.
+Obviously,
+And then they get into the
+I'm also waiting
+Oh, good.
+&gt;&gt; He's one of us.
+No, no, no. I don't have a million.
+Investors have
+Then I asked Michelle
+very very very
+I think that was
+I didn't know if you wanted to
+circuit.
+&gt;&gt; I was gonna say I'm like that's
+the lead.
+Hey, it's a nice thing to do.
+And
+it's
+really extraordinary.
+&gt;&gt; I think
+it's better. It's better for
+&gt;&gt; but also
+the orange
+Somebody in physics or physics started a
+company.
+&gt;&gt; Yeah.
+&gt;&gt; Oh yeah.
+&gt;&gt; Anyway,
+&gt;&gt; yeah. But
+just looking for the existence of the
+three.
+&gt;&gt; I guess the other ingredient is that
+some energy levels were observed around
+as they should.
+&gt;&gt; Oh,
+so Leand is pretty much in the same
+field I was in.
+&gt;&gt; I was also
+small
+the same time frame
+at
+small
+do
+I think we don't disagree very
+trying on
+Do you have to violate
+&gt;&gt; right
+&gt;&gt; and so at that time it was dead
+systeming.
+Yeah. Yeah.
+So All
+right. Well,
+if you want to hear
+&gt;&gt; basically
+They still couldn't find anything's
+believed to be unbreakable because
+mathematics
+couldn't be done.
+&gt;&gt; Security issue
+No, this was
+&gt;&gt; it was a good mix
+to meet a lot of undergrads.
+&gt;&gt; I gave this lecture to
+&gt;&gt; Hi, my name is
+&gt;&gt; Oh, yeah. Hi.
+meet you in person.
+&gt;&gt; Yeah.
+&gt;&gt; What
+That was
+That's basically
+actually.
+So
+drive
+and he gets
+very well.
+In fact,
+I'm sure

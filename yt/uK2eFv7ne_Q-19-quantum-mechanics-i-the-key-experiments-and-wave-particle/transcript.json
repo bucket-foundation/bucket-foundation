@@ -1,0 +1,7772 @@
+[
+  {
+    "start": "00:00:03.720",
+    "end": "00:00:06.510",
+    "text": "Prof: So this is a very exciting day for me,"
+  },
+  {
+    "start": "00:00:06.510",
+    "end": "00:00:09.976",
+    "text": "because today, we're going to start quantum"
+  },
+  {
+    "start": "00:00:09.976",
+    "end": "00:00:15.010",
+    "text": "mechanics and that's all we'll do till the end of the term."
+  },
+  {
+    "start": "00:00:15.010",
+    "end": "00:00:19.780",
+    "text": "Now I've got bad news and good news."
+  },
+  {
+    "start": "00:00:19.780",
+    "end": "00:00:24.393",
+    "text": "The bad news is that it's a subject that's kind of hard to"
+  },
+  {
+    "start": "00:00:24.393",
+    "end": "00:00:27.955",
+    "text": "follow intuitively, and the good news is that"
+  },
+  {
+    "start": "00:00:27.955",
+    "end": "00:00:30.950",
+    "text": "nobody can follow it intuitively."
+  },
+  {
+    "start": "00:00:30.950",
+    "end": "00:00:33.474",
+    "text": "Richard Feynman, one of the big figures in"
+  },
+  {
+    "start": "00:00:33.474",
+    "end": "00:00:36.245",
+    "text": "physics, used to say, \"No one understands"
+  },
+  {
+    "start": "00:00:36.245",
+    "end": "00:00:37.970",
+    "text": "quantum mechanics.\""
+  },
+  {
+    "start": "00:00:37.970",
+    "end": "00:00:40.574",
+    "text": "So in some sense, the pressure is off for you"
+  },
+  {
+    "start": "00:00:40.574",
+    "end": "00:00:44.125",
+    "text": "guys, because I don't get it and you don't get it and Feynman"
+  },
+  {
+    "start": "00:00:44.125",
+    "end": "00:00:45.250",
+    "text": "doesn't get it."
+  },
+  {
+    "start": "00:00:45.250",
+    "end": "00:00:48.870",
+    "text": "The point is, here is my goal."
+  },
+  {
+    "start": "00:00:48.870",
+    "end": "00:00:52.703",
+    "text": "Right now, I'm the only one who doesn't understand quantum"
+  },
+  {
+    "start": "00:00:52.703",
+    "end": "00:00:53.510",
+    "text": "mechanics."
+  },
+  {
+    "start": "00:00:53.510",
+    "end": "00:00:56.730",
+    "text": "In about seven days, all of you will be unable to"
+  },
+  {
+    "start": "00:00:56.730",
+    "end": "00:00:58.810",
+    "text": "understand quantum mechanics."
+  },
+  {
+    "start": "00:00:58.810",
+    "end": "00:01:02.579",
+    "text": "Then you can go back and spread your ignorance everywhere else."
+  },
+  {
+    "start": "00:01:02.579",
+    "end": "00:01:06.560",
+    "text": "That's the only legacy a teacher can want."
+  },
+  {
+    "start": "00:01:06.560",
+    "end": "00:01:09.959",
+    "text": "All right, so that's the spirit in which we are doing this."
+  },
+  {
+    "start": "00:01:09.959",
+    "end": "00:01:13.400",
+    "text": "I want you to think about this as a real adventure."
+  },
+  {
+    "start": "00:01:13.400",
+    "end": "00:01:16.640",
+    "text": "Try to think beyond the exams and grades and everything."
+  },
+  {
+    "start": "00:01:16.640",
+    "end": "00:01:20.762",
+    "text": "It's one of the biggest discoveries in physics,"
+  },
+  {
+    "start": "00:01:20.762",
+    "end": "00:01:26.317",
+    "text": "in science, and it's marvelous how people even figured out this"
+  },
+  {
+    "start": "00:01:26.317",
+    "end": "00:01:28.379",
+    "text": "is what's going on."
+  },
+  {
+    "start": "00:01:28.379",
+    "end": "00:01:31.980",
+    "text": "So I want to tell you in some fashion, but not strictly"
+  },
+  {
+    "start": "00:01:31.980",
+    "end": "00:01:33.379",
+    "text": "historical fashion."
+  },
+  {
+    "start": "00:01:33.379",
+    "end": "00:01:36.870",
+    "text": "Purely historical fashion is pedagogically not the best way,"
+  },
+  {
+    "start": "00:01:36.870",
+    "end": "00:01:39.920",
+    "text": "because you go through all the wrong tracks and get confused,"
+  },
+  {
+    "start": "00:01:39.920",
+    "end": "00:01:42.610",
+    "text": "and there are a lot of battles going on."
+  },
+  {
+    "start": "00:01:42.610",
+    "end": "00:01:46.061",
+    "text": "When the dust settles down, a certain picture emerges and"
+  },
+  {
+    "start": "00:01:46.061",
+    "end": "00:01:48.650",
+    "text": "that's the picture I wanted to give you."
+  },
+  {
+    "start": "00:01:48.650",
+    "end": "00:01:52.372",
+    "text": "In a way, I will appeal to experiments that were perhaps"
+  },
+  {
+    "start": "00:01:52.372",
+    "end": "00:01:55.959",
+    "text": "not done in the sequence in which I describe them,"
+  },
+  {
+    "start": "00:01:55.959",
+    "end": "00:01:58.569",
+    "text": "but we know that if you did them, this is what the answer"
+  },
+  {
+    "start": "00:01:58.569",
+    "end": "00:02:00.498",
+    "text": "would be, and everyone agrees,"
+  },
+  {
+    "start": "00:02:00.498",
+    "end": "00:02:03.170",
+    "text": "and they are the simplest experiments."
+  },
+  {
+    "start": "00:02:03.170",
+    "end": "00:02:07.930",
+    "text": "All right, so today we're going to shoot down Newtonian"
+  },
+  {
+    "start": "00:02:07.930",
+    "end": "00:02:10.840",
+    "text": "mechanics and Maxwell's theory."
+  },
+  {
+    "start": "00:02:10.840",
+    "end": "00:02:12.060",
+    "text": "So we are like the press."
+  },
+  {
+    "start": "00:02:12.060",
+    "end": "00:02:14.990",
+    "text": "We build somebody up, only to destroy them."
+  },
+  {
+    "start": "00:02:14.990",
+    "end": "00:02:17.169",
+    "text": "Built up Newton; shot down."
+  },
+  {
+    "start": "00:02:17.169",
+    "end": "00:02:20.598",
+    "text": "Built up Maxwell; going to get shot down."
+  },
+  {
+    "start": "00:02:20.598",
+    "end": "00:02:24.795",
+    "text": "So again, I have tried to drill into all of you the notion that"
+  },
+  {
+    "start": "00:02:24.795",
+    "end": "00:02:28.316",
+    "text": "people get shot down because somebody else does a new"
+  },
+  {
+    "start": "00:02:28.316",
+    "end": "00:02:31.972",
+    "text": "experiment that probes an entirely new regime which had"
+  },
+  {
+    "start": "00:02:31.972",
+    "end": "00:02:33.800",
+    "text": "not been seen before."
+  },
+  {
+    "start": "00:02:33.800",
+    "end": "00:02:35.340",
+    "text": "So it's not that people were dumb;"
+  },
+  {
+    "start": "00:02:35.340",
+    "end": "00:02:38.615",
+    "text": "it's that given the information they had, they built the best"
+  },
+  {
+    "start": "00:02:38.615",
+    "end": "00:02:39.979",
+    "text": "theory that they could."
+  },
+  {
+    "start": "00:02:39.979",
+    "end": "00:02:42.270",
+    "text": "And if you give me more additional information,"
+  },
+  {
+    "start": "00:02:42.270",
+    "end": "00:02:45.057",
+    "text": "more refined measurements, something to the tenth decimal"
+  },
+  {
+    "start": "00:02:45.057",
+    "end": "00:02:47.150",
+    "text": "place, I may have to change what I do."
+  },
+  {
+    "start": "00:02:47.150",
+    "end": "00:02:48.568",
+    "text": "That's how it's going to be."
+  },
+  {
+    "start": "00:02:48.568",
+    "end": "00:02:50.348",
+    "text": "So there's always going to be--for example,"
+  },
+  {
+    "start": "00:02:50.348",
+    "end": "00:02:53.366",
+    "text": "in the big collider, people are expecting to see new"
+  },
+  {
+    "start": "00:02:53.366",
+    "end": "00:02:55.798",
+    "text": "stuff, hopefully stuff that hasn't"
+  },
+  {
+    "start": "00:02:55.798",
+    "end": "00:02:58.538",
+    "text": "been explained by any existing theory."
+  },
+  {
+    "start": "00:02:58.538",
+    "end": "00:03:00.399",
+    "text": "And we all want that, because we want some"
+  },
+  {
+    "start": "00:03:00.399",
+    "end": "00:03:02.438",
+    "text": "excitement, we want to find out new things."
+  },
+  {
+    "start": "00:03:02.438",
+    "end": "00:03:05.312",
+    "text": "The best way not to worry about your old theories is to not do"
+  },
+  {
+    "start": "00:03:05.312",
+    "end": "00:03:06.159",
+    "text": "any experiments."
+  },
+  {
+    "start": "00:03:06.159",
+    "end": "00:03:08.379",
+    "text": "Then you can go home."
+  },
+  {
+    "start": "00:03:08.379",
+    "end": "00:03:09.590",
+    "text": "But that's not how it goes."
+  },
+  {
+    "start": "00:03:09.590",
+    "end": "00:03:11.710",
+    "text": "You probe more and more stuff."
+  },
+  {
+    "start": "00:03:11.710",
+    "end": "00:03:15.573",
+    "text": "So here's what you do to find out what's wrong with"
+  },
+  {
+    "start": "00:03:15.573",
+    "end": "00:03:19.360",
+    "text": "electrodynamics, I mean, with Maxwell's theory."
+  },
+  {
+    "start": "00:03:19.360",
+    "end": "00:03:22.938",
+    "text": "It all starts with a double slit experiment."
+  },
+  {
+    "start": "00:03:22.938",
+    "end": "00:03:30.514",
+    "text": "You have this famous double slit and some waves are coming"
+  },
+  {
+    "start": "00:03:30.514",
+    "end": "00:03:32.110",
+    "text": "from here."
+  },
+  {
+    "start": "00:03:32.110",
+    "end": "00:03:35.970",
+    "text": "You have some wavelength l."
+  },
+  {
+    "start": "00:03:35.970",
+    "end": "00:03:43.974",
+    "text": "Then in the back, I'm going to put a photographic"
+  },
+  {
+    "start": "00:03:43.974",
+    "end": "00:03:45.310",
+    "text": "plate."
+  },
+  {
+    "start": "00:03:45.310",
+    "end": "00:03:47.535",
+    "text": "A photographic plate, as you know,"
+  },
+  {
+    "start": "00:03:47.535",
+    "end": "00:03:51.447",
+    "text": "is made of these tiny little pixels which change color when"
+  },
+  {
+    "start": "00:03:51.447",
+    "end": "00:03:54.818",
+    "text": "light hits them and then you see your picture."
+  },
+  {
+    "start": "00:03:54.818",
+    "end": "00:03:59.110",
+    "text": "And that's the way to detect light, a perfectly good way to"
+  },
+  {
+    "start": "00:03:59.110",
+    "end": "00:04:00.218",
+    "text": "detect light."
+  },
+  {
+    "start": "00:04:00.218",
+    "end": "00:04:03.587",
+    "text": "So first thing we do is, we block this hole or this"
+  },
+  {
+    "start": "00:04:03.587",
+    "end": "00:04:04.060",
+    "text": "slit."
+  },
+  {
+    "start": "00:04:04.060",
+    "end": "00:04:05.860",
+    "text": "This is slit 1 and slit 2."
+  },
+  {
+    "start": "00:04:05.860",
+    "end": "00:04:09.594",
+    "text": "We block this and we look at what happened to the"
+  },
+  {
+    "start": "00:04:09.594",
+    "end": "00:04:11.229",
+    "text": "photographic plate."
+  },
+  {
+    "start": "00:04:11.229",
+    "end": "00:04:17.660",
+    "text": "What you will find is that the region in front of it got pretty"
+  },
+  {
+    "start": "00:04:17.660",
+    "end": "00:04:20.500",
+    "text": "dark, or let's say had an image,"
+  },
+  {
+    "start": "00:04:20.500",
+    "end": "00:04:23.750",
+    "text": "whereas if you go too far from the slit,"
+  },
+  {
+    "start": "00:04:23.750",
+    "end": "00:04:25.769",
+    "text": "you don't see anything."
+  },
+  {
+    "start": "00:04:25.769",
+    "end": "00:04:32.629",
+    "text": "So that's called intensity, when one is open."
+  },
+  {
+    "start": "00:04:32.629",
+    "end": "00:04:39.589",
+    "text": "Then you close that guy and you get similar pattern."
+  },
+  {
+    "start": "00:04:39.589",
+    "end": "00:04:43.560",
+    "text": "Then you open both."
+  },
+  {
+    "start": "00:04:43.560",
+    "end": "00:04:47.721",
+    "text": "Then I told you, you may expect that,"
+  },
+  {
+    "start": "00:04:47.721",
+    "end": "00:04:54.774",
+    "text": "but what you get instead--let's see, I've got to pick my graph"
+  },
+  {
+    "start": "00:04:54.774",
+    "end": "00:05:00.439",
+    "text": "properly-- is something that looks like this."
+  },
+  {
+    "start": "00:05:00.439",
+    "end": "00:05:03.586",
+    "text": "Now that is the phenomenon of interference,"
+  },
+  {
+    "start": "00:05:03.586",
+    "end": "00:05:05.759",
+    "text": "which we studied last time."
+  },
+  {
+    "start": "00:05:05.759",
+    "end": "00:05:07.259",
+    "text": "So what's the part that's funny?"
+  },
+  {
+    "start": "00:05:07.259",
+    "end": "00:05:11.781",
+    "text": "What's the part that makes you wonder is if you go to some"
+  },
+  {
+    "start": "00:05:11.781",
+    "end": "00:05:15.670",
+    "text": "location like this, go to a location like this."
+  },
+  {
+    "start": "00:05:15.670",
+    "end": "00:05:20.389",
+    "text": "This used to be a bright location when one slit was open."
+  },
+  {
+    "start": "00:05:20.389",
+    "end": "00:05:23.081",
+    "text": "It was also a bright location, reasonably bright,"
+  },
+  {
+    "start": "00:05:23.081",
+    "end": "00:05:24.819",
+    "text": "when the other slit was open."
+  },
+  {
+    "start": "00:05:24.819",
+    "end": "00:05:28.839",
+    "text": "But when both are open, it becomes dark."
+  },
+  {
+    "start": "00:05:28.839",
+    "end": "00:05:31.374",
+    "text": "You can ask, \"How can it be that I open"
+  },
+  {
+    "start": "00:05:31.374",
+    "end": "00:05:33.259",
+    "text": "two windows, room gets darker?"
+  },
+  {
+    "start": "00:05:33.259",
+    "end": "00:05:35.728",
+    "text": "Why doesn't it happen there, and why does it happen"
+  },
+  {
+    "start": "00:05:35.728",
+    "end": "00:05:36.370",
+    "text": "here?\""
+  },
+  {
+    "start": "00:05:36.370",
+    "end": "00:05:39.834",
+    "text": "The answer is that you're sending light of definite"
+  },
+  {
+    "start": "00:05:39.834",
+    "end": "00:05:42.329",
+    "text": "wavelength and the wave function,"
+  },
+  {
+    "start": "00:05:42.329",
+    "end": "00:05:44.829",
+    "text": "Y, whatever measures the oscillation,"
+  },
+  {
+    "start": "00:05:44.829",
+    "end": "00:05:46.459",
+    "text": "maybe electric field, magnetic field,"
+  },
+  {
+    "start": "00:05:46.459",
+    "end": "00:05:48.920",
+    "text": "obeys the superposition principle."
+  },
+  {
+    "start": "00:05:48.920",
+    "end": "00:05:53.151",
+    "text": "And when two slits are open, what you're supposed to add is"
+  },
+  {
+    "start": "00:05:53.151",
+    "end": "00:05:56.069",
+    "text": "the electric field, not the intensity."
+  },
+  {
+    "start": "00:05:56.069",
+    "end": "00:06:01.105",
+    "text": "The intensity is proportional to the square of the electric"
+  },
+  {
+    "start": "00:06:01.105",
+    "end": "00:06:01.800",
+    "text": "field."
+  },
+  {
+    "start": "00:06:01.800",
+    "end": "00:06:03.769",
+    "text": "You don't add E^(2); you add E."
+  },
+  {
+    "start": "00:06:03.769",
+    "end": "00:06:05.920",
+    "text": "E is what obeys the wave equation."
+  },
+  {
+    "start": "00:06:05.920",
+    "end": "00:06:08.584",
+    "text": "E_1 is a solution, E_2"
+  },
+  {
+    "start": "00:06:08.584",
+    "end": "00:06:09.360",
+    "text": "is a solution."
+  },
+  {
+    "start": "00:06:09.360",
+    "end": "00:06:11.223",
+    "text": "E_1 E_2 is a"
+  },
+  {
+    "start": "00:06:11.223",
+    "end": "00:06:11.680",
+    "text": "solution."
+  },
+  {
+    "start": "00:06:11.680",
+    "end": "00:06:14.153",
+    "text": "No one tells you that if you add the two sources,"
+  },
+  {
+    "start": "00:06:14.153",
+    "end": "00:06:16.627",
+    "text": "I_1 I_2 is going to be"
+  },
+  {
+    "start": "00:06:16.627",
+    "end": "00:06:17.709",
+    "text": "the final answer."
+  },
+  {
+    "start": "00:06:17.709",
+    "end": "00:06:19.959",
+    "text": "The correct answer is to find E_1"
+  },
+  {
+    "start": "00:06:19.959",
+    "end": "00:06:21.980",
+    "text": "E_2 and then square that."
+  },
+  {
+    "start": "00:06:21.980",
+    "end": "00:06:22.863",
+    "text": "But when you do E_1"
+  },
+  {
+    "start": "00:06:22.863",
+    "end": "00:06:24.579",
+    "text": "E_2, since E_1 and"
+  },
+  {
+    "start": "00:06:24.579",
+    "end": "00:06:26.839",
+    "text": "E_2 are not necessarily positive definite,"
+  },
+  {
+    "start": "00:06:26.839",
+    "end": "00:06:29.187",
+    "text": "when you add them, sometimes they can add with the"
+  },
+  {
+    "start": "00:06:29.187",
+    "end": "00:06:31.043",
+    "text": "same sign, sometimes they can add with"
+  },
+  {
+    "start": "00:06:31.043",
+    "end": "00:06:33.324",
+    "text": "opposite signs, and sometimes in between,"
+  },
+  {
+    "start": "00:06:33.324",
+    "end": "00:06:34.829",
+    "text": "so you get this pattern."
+  },
+  {
+    "start": "00:06:34.829",
+    "end": "00:06:36.560",
+    "text": "So we're not surprised."
+  },
+  {
+    "start": "00:06:36.560",
+    "end": "00:06:39.192",
+    "text": "And I've told you many times why we don't see it when we open"
+  },
+  {
+    "start": "00:06:39.192",
+    "end": "00:06:40.690",
+    "text": "big windows, first of all,"
+  },
+  {
+    "start": "00:06:40.690",
+    "end": "00:06:43.971",
+    "text": "when you open a window, the slit sizes are all many,"
+  },
+  {
+    "start": "00:06:43.971",
+    "end": "00:06:47.649",
+    "text": "many million times bigger than the wavelength of light."
+  },
+  {
+    "start": "00:06:47.649",
+    "end": "00:06:50.040",
+    "text": "Plus the light is not just one color and so on."
+  },
+  {
+    "start": "00:06:50.040",
+    "end": "00:06:52.740",
+    "text": "So you don't pick up these oscillations."
+  },
+  {
+    "start": "00:06:52.740",
+    "end": "00:06:55.339",
+    "text": "These oscillations are very fine."
+  },
+  {
+    "start": "00:06:55.339",
+    "end": "00:06:57.940",
+    "text": "I draw them this way so you can see them."
+  },
+  {
+    "start": "00:06:57.940",
+    "end": "00:07:00.476",
+    "text": "In a real life thing, if this were really windows and"
+  },
+  {
+    "start": "00:07:00.476",
+    "end": "00:07:02.430",
+    "text": "this was the back wall of your house,"
+  },
+  {
+    "start": "00:07:02.430",
+    "end": "00:07:04.850",
+    "text": "the oscillations would be so tightly spaced,"
+  },
+  {
+    "start": "00:07:04.850",
+    "end": "00:07:07.656",
+    "text": "I'll just draw some of them, that the human eye cannot"
+  },
+  {
+    "start": "00:07:07.656",
+    "end": "00:07:09.139",
+    "text": "detect these oscillations."
+  },
+  {
+    "start": "00:07:09.139",
+    "end": "00:07:11.060",
+    "text": "It will only pick up the average value."
+  },
+  {
+    "start": "00:07:11.060",
+    "end": "00:07:15.326",
+    "text": "The average value will in fact look like I_1"
+  },
+  {
+    "start": "00:07:15.326",
+    "end": "00:07:16.850",
+    "text": "I_2."
+  },
+  {
+    "start": "00:07:16.850",
+    "end": "00:07:18.540",
+    "text": "So this is all very nice."
+  },
+  {
+    "start": "00:07:18.540",
+    "end": "00:07:21.740",
+    "text": "This is how Young discovered that light is a wave."
+  },
+  {
+    "start": "00:07:21.740",
+    "end": "00:07:24.290",
+    "text": "By doing the interference, I told you,"
+  },
+  {
+    "start": "00:07:24.290",
+    "end": "00:07:26.843",
+    "text": "he could even find a wavelength, because it's a"
+  },
+  {
+    "start": "00:07:26.843",
+    "end": "00:07:30.285",
+    "text": "simple matter of geometry to see where you've got to go for two"
+  },
+  {
+    "start": "00:07:30.285",
+    "end": "00:07:31.339",
+    "text": "guys to cancel."
+  },
+  {
+    "start": "00:07:31.339",
+    "end": "00:07:34.687",
+    "text": "And once you know that angle, you know where on that screen"
+  },
+  {
+    "start": "00:07:34.687",
+    "end": "00:07:36.879",
+    "text": "you will get a minimum or a maximum."
+  },
+  {
+    "start": "00:07:36.879",
+    "end": "00:07:37.819",
+    "text": "So you've got the wavelength."
+  },
+  {
+    "start": "00:07:37.819",
+    "end": "00:07:39.230",
+    "text": "He didn't know what was doing it."
+  },
+  {
+    "start": "00:07:39.230",
+    "end": "00:07:41.105",
+    "text": "He didn't know it was electromagnetic,"
+  },
+  {
+    "start": "00:07:41.105",
+    "end": "00:07:42.779",
+    "text": "but you can get the wavelength."
+  },
+  {
+    "start": "00:07:42.779",
+    "end": "00:07:47.170",
+    "text": "So interference is a hallmark of waves."
+  },
+  {
+    "start": "00:07:47.170",
+    "end": "00:07:49.009",
+    "text": "Any wave will do interference."
+  },
+  {
+    "start": "00:07:49.009",
+    "end": "00:07:51.050",
+    "text": "Water will do the same thing."
+  },
+  {
+    "start": "00:07:51.050",
+    "end": "00:07:55.870",
+    "text": "For example, this is your beach house."
+  },
+  {
+    "start": "00:07:55.870",
+    "end": "00:07:57.639",
+    "text": "You've got some ocean front property."
+  },
+  {
+    "start": "00:07:57.639",
+    "end": "00:08:01.730",
+    "text": "This is a little lagoon and you have a wall to keep the ocean"
+  },
+  {
+    "start": "00:08:01.730",
+    "end": "00:08:03.639",
+    "text": "waves out of your mansion."
+  },
+  {
+    "start": "00:08:03.639",
+    "end": "00:08:09.750",
+    "text": "And then suddenly one day, there is a break in the wall."
+  },
+  {
+    "start": "00:08:09.750",
+    "end": "00:08:12.855",
+    "text": "Break in the wall, the waves start coming in and"
+  },
+  {
+    "start": "00:08:12.855",
+    "end": "00:08:16.819",
+    "text": "you're having a little boat here, trying to get some rest."
+  },
+  {
+    "start": "00:08:16.819",
+    "end": "00:08:20.939",
+    "text": "The boat starts jumping up and down because of the waves."
+  },
+  {
+    "start": "00:08:20.939",
+    "end": "00:08:22.709",
+    "text": "So you have two options."
+  },
+  {
+    "start": "00:08:22.709",
+    "end": "00:08:25.651",
+    "text": "One options is to go and try to plug that thing,"
+  },
+  {
+    "start": "00:08:25.651",
+    "end": "00:08:28.466",
+    "text": "but let's say you've got no bricks, no mortar,"
+  },
+  {
+    "start": "00:08:28.466",
+    "end": "00:08:29.970",
+    "text": "no time, no nothing."
+  },
+  {
+    "start": "00:08:29.970",
+    "end": "00:08:31.329",
+    "text": "You've just got a sledgehammer."
+  },
+  {
+    "start": "00:08:31.329",
+    "end": "00:08:35.558",
+    "text": "What you can do, you can make another hole."
+  },
+  {
+    "start": "00:08:35.558",
+    "end": "00:08:38.452",
+    "text": "If these water waves are a definite wavelength,"
+  },
+  {
+    "start": "00:08:38.452",
+    "end": "00:08:41.344",
+    "text": "only in that case, you can make another hole so"
+  },
+  {
+    "start": "00:08:41.344",
+    "end": "00:08:43.860",
+    "text": "these two add up to 0 where you are."
+  },
+  {
+    "start": "00:08:43.860",
+    "end": "00:08:46.384",
+    "text": "Similarly, if you don't like the music your roommate's"
+  },
+  {
+    "start": "00:08:46.384",
+    "end": "00:08:48.277",
+    "text": "playing, if you can manufacture the same"
+  },
+  {
+    "start": "00:08:48.277",
+    "end": "00:08:51.761",
+    "text": "music with a phase shift of p, you can add them together,"
+  },
+  {
+    "start": "00:08:51.761",
+    "end": "00:08:52.639",
+    "text": "you get 0."
+  },
+  {
+    "start": "00:08:52.639",
+    "end": "00:08:55.996",
+    "text": "But you've got to figure out what the roommate's about to do"
+  },
+  {
+    "start": "00:08:55.996",
+    "end": "00:08:58.158",
+    "text": "and be synchronous with the person,"
+  },
+  {
+    "start": "00:08:58.158",
+    "end": "00:09:01.830",
+    "text": "but get a wavelength of p--I mean, a phase shift of p."
+  },
+  {
+    "start": "00:09:01.830",
+    "end": "00:09:03.278",
+    "text": "So you can cancel waves."
+  },
+  {
+    "start": "00:09:03.278",
+    "end": "00:09:06.740",
+    "text": "That's the idea behind all kinds of noise cancelation,"
+  },
+  {
+    "start": "00:09:06.740",
+    "end": "00:09:10.333",
+    "text": "but you've got to know the exact phase of the one signal"
+  },
+  {
+    "start": "00:09:10.333",
+    "end": "00:09:12.490",
+    "text": "that you're trying to cancel."
+  },
+  {
+    "start": "00:09:12.490",
+    "end": "00:09:15.898",
+    "text": "All right, so everything looks good for Maxwell,"
+  },
+  {
+    "start": "00:09:15.898",
+    "end": "00:09:19.379",
+    "text": "till you start doing the following experiment."
+  },
+  {
+    "start": "00:09:19.379",
+    "end": "00:09:23.822",
+    "text": "You make the source of light, whatever it is,"
+  },
+  {
+    "start": "00:09:23.822",
+    "end": "00:09:26.450",
+    "text": "dimmer and dimmer, okay?"
+  },
+  {
+    "start": "00:09:26.450",
+    "end": "00:09:29.500",
+    "text": "So you may not be able to turn down the brightness."
+  },
+  {
+    "start": "00:09:29.500",
+    "end": "00:09:31.472",
+    "text": "Maybe you can, maybe you cannot,"
+  },
+  {
+    "start": "00:09:31.472",
+    "end": "00:09:35.610",
+    "text": "but you can imagine moving the source further and further back."
+  },
+  {
+    "start": "00:09:35.610",
+    "end": "00:09:39.773",
+    "text": "You move it further and further back, you know the energy falls"
+  },
+  {
+    "start": "00:09:39.773",
+    "end": "00:09:42.929",
+    "text": "like 1/r^(2), so you can make it weak."
+  },
+  {
+    "start": "00:09:42.929",
+    "end": "00:09:44.559",
+    "text": "So here's what we try to do."
+  },
+  {
+    "start": "00:09:44.559",
+    "end": "00:09:48.548",
+    "text": "We put a new photographic film."
+  },
+  {
+    "start": "00:09:48.548",
+    "end": "00:09:54.673",
+    "text": "We take the light source way back, then we wait for something"
+  },
+  {
+    "start": "00:09:54.673",
+    "end": "00:09:55.899",
+    "text": "to happen."
+  },
+  {
+    "start": "00:09:55.899",
+    "end": "00:09:59.009",
+    "text": "We come the next morning, we find there's a very faint"
+  },
+  {
+    "start": "00:09:59.009",
+    "end": "00:10:02.413",
+    "text": "pattern that's taken place over night, because the film got"
+  },
+  {
+    "start": "00:10:02.413",
+    "end": "00:10:04.409",
+    "text": "exposed all through the night."
+  },
+  {
+    "start": "00:10:04.409",
+    "end": "00:10:07.000",
+    "text": "Now we can see a faint pattern."
+  },
+  {
+    "start": "00:10:07.000",
+    "end": "00:10:10.629",
+    "text": "Then you go and turn it down even more."
+  },
+  {
+    "start": "00:10:10.629",
+    "end": "00:10:14.340",
+    "text": "You come back the next day, you look at the film."
+  },
+  {
+    "start": "00:10:14.340",
+    "end": "00:10:18.251",
+    "text": "You find no pattern, just two or three spots which"
+  },
+  {
+    "start": "00:10:18.251",
+    "end": "00:10:19.850",
+    "text": "have been exposed."
+  },
+  {
+    "start": "00:10:19.850",
+    "end": "00:10:23.364",
+    "text": "If you look at the screen--so let me show you a view of the"
+  },
+  {
+    "start": "00:10:23.364",
+    "end": "00:10:23.908",
+    "text": "screen."
+  },
+  {
+    "start": "00:10:23.908",
+    "end": "00:10:27.071",
+    "text": "Normally you will have bright and dark and bright and dark"
+  },
+  {
+    "start": "00:10:27.071",
+    "end": "00:10:30.399",
+    "text": "patterns on the back wall if you turn on a powerful light."
+  },
+  {
+    "start": "00:10:30.399",
+    "end": "00:10:33.119",
+    "text": "But I'm telling you, if you have a really weak"
+  },
+  {
+    "start": "00:10:33.119",
+    "end": "00:10:36.684",
+    "text": "source, you just find that got exposed, that got exposed and"
+  },
+  {
+    "start": "00:10:36.684",
+    "end": "00:10:38.620",
+    "text": "that got exposed, that's it."
+  },
+  {
+    "start": "00:10:38.620",
+    "end": "00:10:44.240",
+    "text": "Only three points on the film are exposed, and that is very"
+  },
+  {
+    "start": "00:10:44.240",
+    "end": "00:10:45.210",
+    "text": "strange."
+  },
+  {
+    "start": "00:10:45.210",
+    "end": "00:10:49.568",
+    "text": "Because if light is a wave, no matter how weak it is,"
+  },
+  {
+    "start": "00:10:49.568",
+    "end": "00:10:52.418",
+    "text": "it should hit the entire screen."
+  },
+  {
+    "start": "00:10:52.418",
+    "end": "00:10:53.889",
+    "text": "It cannot hit certain parts of it."
+  },
+  {
+    "start": "00:10:53.889",
+    "end": "00:10:56.918",
+    "text": "Waves don't hit certain parts."
+  },
+  {
+    "start": "00:10:56.918",
+    "end": "00:10:58.580",
+    "text": "In fact, how can it hit just one?"
+  },
+  {
+    "start": "00:10:58.580",
+    "end": "00:11:00.835",
+    "text": "For example, if you make it weak enough,"
+  },
+  {
+    "start": "00:11:00.835",
+    "end": "00:11:03.553",
+    "text": "you can have a situation where in the whole day,"
+  },
+  {
+    "start": "00:11:03.553",
+    "end": "00:11:05.000",
+    "text": "you just get one hit."
+  },
+  {
+    "start": "00:11:05.000",
+    "end": "00:11:07.399",
+    "text": "So something is hitting that screen and it's not a wave,"
+  },
+  {
+    "start": "00:11:07.399",
+    "end": "00:11:11.008",
+    "text": "because a wave is spread out over its full transverse"
+  },
+  {
+    "start": "00:11:11.008",
+    "end": "00:11:14.816",
+    "text": "dimension, but this is hitting one point"
+  },
+  {
+    "start": "00:11:14.816",
+    "end": "00:11:16.320",
+    "text": "on the screen."
+  },
+  {
+    "start": "00:11:16.320",
+    "end": "00:11:20.166",
+    "text": "So you make further observations and you find out"
+  },
+  {
+    "start": "00:11:20.166",
+    "end": "00:11:25.134",
+    "text": "that what happens here is there is a certain amount of momentum"
+  },
+  {
+    "start": "00:11:25.134",
+    "end": "00:11:28.740",
+    "text": "and energy are delivered during that hit."
+  },
+  {
+    "start": "00:11:28.740",
+    "end": "00:11:32.235",
+    "text": "If you could measure the recoil of that film,"
+  },
+  {
+    "start": "00:11:32.235",
+    "end": "00:11:36.764",
+    "text": "you will find it gets hit and the momentum you get per hit"
+  },
+  {
+    "start": "00:11:36.764",
+    "end": "00:11:40.259",
+    "text": "looks like ℏ x k."
+  },
+  {
+    "start": "00:11:40.259",
+    "end": "00:11:42.120",
+    "text": "I'll tell you what it means."
+  },
+  {
+    "start": "00:11:42.120",
+    "end": "00:11:44.735",
+    "text": "This is 2p h/l,"
+  },
+  {
+    "start": "00:11:44.735",
+    "end": "00:11:48.033",
+    "text": "where l is your wavelength, h is the new"
+  },
+  {
+    "start": "00:11:48.033",
+    "end": "00:11:50.649",
+    "text": "constant called the Planck's constant."
+  },
+  {
+    "start": "00:11:50.649",
+    "end": "00:11:59.990",
+    "text": "And its value is 6.6 x 10^(-34 )joule seconds."
+  },
+  {
+    "start": "00:11:59.990",
+    "end": "00:12:03.259",
+    "text": "You also find, every time you get a hit here,"
+  },
+  {
+    "start": "00:12:03.259",
+    "end": "00:12:06.330",
+    "text": "there's a certain energy deposited here and the energy"
+  },
+  {
+    "start": "00:12:06.330",
+    "end": "00:12:09.748",
+    "text": "deposited here happens to be ℏw where"
+  },
+  {
+    "start": "00:12:09.748",
+    "end": "00:12:12.345",
+    "text": "w, as you know,"
+  },
+  {
+    "start": "00:12:12.345",
+    "end": "00:12:15.620",
+    "text": "is 2pf."
+  },
+  {
+    "start": "00:12:15.620",
+    "end": "00:12:18.408",
+    "text": "So here's what I'm telling you."
+  },
+  {
+    "start": "00:12:18.408",
+    "end": "00:12:23.807",
+    "text": "If you send light of a known frequency and known wavelength"
+  },
+  {
+    "start": "00:12:23.807",
+    "end": "00:12:28.618",
+    "text": "and you make it extremely dim, and you put a photographic"
+  },
+  {
+    "start": "00:12:28.618",
+    "end": "00:12:31.558",
+    "text": "plate and you wait till something happens,"
+  },
+  {
+    "start": "00:12:31.558",
+    "end": "00:12:35.279",
+    "text": "what happens is not a thin blur over the whole screen."
+  },
+  {
+    "start": "00:12:35.279",
+    "end": "00:12:38.259",
+    "text": "What happens is a hit at one location."
+  },
+  {
+    "start": "00:12:38.259",
+    "end": "00:12:41.429",
+    "text": "And what comes to that location seems to be a bundle of energy"
+  },
+  {
+    "start": "00:12:41.429",
+    "end": "00:12:42.470",
+    "text": "and momentum, i.e."
+  },
+  {
+    "start": "00:12:42.470",
+    "end": "00:12:44.418",
+    "text": "a particle, right?"
+  },
+  {
+    "start": "00:12:44.418",
+    "end": "00:12:47.186",
+    "text": "When something hits you in the face, it's got energy,"
+  },
+  {
+    "start": "00:12:47.186",
+    "end": "00:12:48.250",
+    "text": "it's got momentum."
+  },
+  {
+    "start": "00:12:48.250",
+    "end": "00:12:51.423",
+    "text": "So this film is getting hit at one point by a particle,"
+  },
+  {
+    "start": "00:12:51.423",
+    "end": "00:12:54.893",
+    "text": "and what we can say about the particle is the following - it"
+  },
+  {
+    "start": "00:12:54.893",
+    "end": "00:12:56.009",
+    "text": "has a momentum."
+  },
+  {
+    "start": "00:12:56.009",
+    "end": "00:12:59.668",
+    "text": "It has the same momentum every time."
+  },
+  {
+    "start": "00:12:59.668",
+    "end": "00:13:00.908",
+    "text": "You get this hit, you get that hit,"
+  },
+  {
+    "start": "00:13:00.908",
+    "end": "00:13:01.600",
+    "text": "you get that hit."
+  },
+  {
+    "start": "00:13:01.600",
+    "end": "00:13:05.485",
+    "text": "As long as you don't screw around with the wavelength of"
+  },
+  {
+    "start": "00:13:05.485",
+    "end": "00:13:08.734",
+    "text": "incoming light, the momentum and energy of each"
+  },
+  {
+    "start": "00:13:08.734",
+    "end": "00:13:10.428",
+    "text": "packet is identical."
+  },
+  {
+    "start": "00:13:10.428",
+    "end": "00:13:12.610",
+    "text": "It's more than saying light seems to be made of particles."
+  },
+  {
+    "start": "00:13:12.610",
+    "end": "00:13:15.576",
+    "text": "Made of particles, each one of them carries an"
+  },
+  {
+    "start": "00:13:15.576",
+    "end": "00:13:19.136",
+    "text": "energy and momentum that's absolutely correlated with a"
+  },
+  {
+    "start": "00:13:19.136",
+    "end": "00:13:21.048",
+    "text": "wavelength and frequency."
+  },
+  {
+    "start": "00:13:21.048",
+    "end": "00:13:30.561",
+    "text": "Now let me remind you that w = kc for light"
+  },
+  {
+    "start": "00:13:30.561",
+    "end": "00:13:31.918",
+    "text": "waves."
+  },
+  {
+    "start": "00:13:31.918",
+    "end": "00:13:33.740",
+    "text": "We've done this many, many times."
+  },
+  {
+    "start": "00:13:33.740",
+    "end": "00:13:36.476",
+    "text": "That means the energy, which is"
+  },
+  {
+    "start": "00:13:36.476",
+    "end": "00:13:40.580",
+    "text": "ℏw, and the momentum is"
+  },
+  {
+    "start": "00:13:40.580",
+    "end": "00:13:44.774",
+    "text": "ℏk, are related by the relation"
+  },
+  {
+    "start": "00:13:44.774",
+    "end": "00:13:46.600",
+    "text": "E = pc."
+  },
+  {
+    "start": "00:13:46.600",
+    "end": "00:13:50.687",
+    "text": "So these particles have a momentum which is related to"
+  },
+  {
+    "start": "00:13:50.687",
+    "end": "00:13:53.620",
+    "text": "energy by the formula E = pc."
+  },
+  {
+    "start": "00:13:53.620",
+    "end": "00:13:58.275",
+    "text": "When you go back to your relativity notes from the last"
+  },
+  {
+    "start": "00:13:58.275",
+    "end": "00:14:03.019",
+    "text": "semester, you'll find the following relation is true."
+  },
+  {
+    "start": "00:14:03.019",
+    "end": "00:14:06.724",
+    "text": "Any particle, E^(2) = c^(2)p^(2)"
+  },
+  {
+    "start": "00:14:06.724",
+    "end": "00:14:09.340",
+    "text": "m^(2)c^(4)."
+  },
+  {
+    "start": "00:14:09.340",
+    "end": "00:14:14.668",
+    "text": "That's the connection between energy and momentum."
+  },
+  {
+    "start": "00:14:14.668",
+    "end": "00:14:19.450",
+    "text": "Therefore this looks like a particle whose m is 0."
+  },
+  {
+    "start": "00:14:19.450",
+    "end": "00:14:23.419",
+    "text": "If m is 0, E = pc."
+  },
+  {
+    "start": "00:14:23.419",
+    "end": "00:14:26.048",
+    "text": "So these particles are massless."
+  },
+  {
+    "start": "00:14:26.048",
+    "end": "00:14:29.581",
+    "text": "They have no rest mass and you know, something with no rest"
+  },
+  {
+    "start": "00:14:29.581",
+    "end": "00:14:32.932",
+    "text": "mass, if it is to have a momentum, it must travel at the"
+  },
+  {
+    "start": "00:14:32.932",
+    "end": "00:14:34.090",
+    "text": "speed of light."
+  },
+  {
+    "start": "00:14:34.090",
+    "end": "00:14:38.355",
+    "text": "Because normally, the momentum of anything with"
+  },
+  {
+    "start": "00:14:38.355",
+    "end": "00:14:41.509",
+    "text": "mass is mv, in the old days,"
+  },
+  {
+    "start": "00:14:41.509",
+    "end": "00:14:44.850",
+    "text": "divided by this, after Einstein."
+  },
+  {
+    "start": "00:14:44.850",
+    "end": "00:14:48.428",
+    "text": "And if you don't want to have an m, and yet you want to"
+  },
+  {
+    "start": "00:14:48.428",
+    "end": "00:14:51.068",
+    "text": "have a p, the only way it can happen is"
+  },
+  {
+    "start": "00:14:51.068",
+    "end": "00:14:52.360",
+    "text": "that v = c."
+  },
+  {
+    "start": "00:14:52.360",
+    "end": "00:14:54.597",
+    "text": "Then you have 0/0, there is some chance,"
+  },
+  {
+    "start": "00:14:54.597",
+    "end": "00:14:57.408",
+    "text": "and nature seems to take advantage of that 0/0."
+  },
+  {
+    "start": "00:14:57.408",
+    "end": "00:14:59.529",
+    "text": "These are the massless particles."
+  },
+  {
+    "start": "00:14:59.529",
+    "end": "00:15:06.580",
+    "text": "So these photons are massless particles."
+  },
+  {
+    "start": "00:15:06.580",
+    "end": "00:15:08.490",
+    "text": "So what is the shock?"
+  },
+  {
+    "start": "00:15:08.490",
+    "end": "00:15:12.402",
+    "text": "The shock is that light, which you thought was a"
+  },
+  {
+    "start": "00:15:12.402",
+    "end": "00:15:16.313",
+    "text": "continuous wave, is actually made up of discrete"
+  },
+  {
+    "start": "00:15:16.313",
+    "end": "00:15:17.480",
+    "text": "particles."
+  },
+  {
+    "start": "00:15:17.480",
+    "end": "00:15:20.076",
+    "text": "In order to see them, your light source has to be"
+  },
+  {
+    "start": "00:15:20.076",
+    "end": "00:15:22.923",
+    "text": "extremely weak, because if you turn on a light"
+  },
+  {
+    "start": "00:15:22.923",
+    "end": "00:15:26.274",
+    "text": "source like this one, millions of these photons come"
+  },
+  {
+    "start": "00:15:26.274",
+    "end": "00:15:29.019",
+    "text": "and the pattern is formed instantaneously."
+  },
+  {
+    "start": "00:15:29.019",
+    "end": "00:15:31.558",
+    "text": "The minute you turn on the light, the film is exposed,"
+  },
+  {
+    "start": "00:15:31.558",
+    "end": "00:15:34.350",
+    "text": "you see these dark and light and dark and light fringes,"
+  },
+  {
+    "start": "00:15:34.350",
+    "end": "00:15:37.529",
+    "text": "you think it's happening due to waves that come instantaneously."
+  },
+  {
+    "start": "00:15:37.529",
+    "end": "00:15:41.708",
+    "text": "But if you look under the hood, every pattern is formed by tiny"
+  },
+  {
+    "start": "00:15:41.708",
+    "end": "00:15:45.620",
+    "text": "little dots which occur so fast that you don't see them."
+  },
+  {
+    "start": "00:15:45.620",
+    "end": "00:15:49.168",
+    "text": "That's where you've got to turn down the intensity to actually"
+  },
+  {
+    "start": "00:15:49.168",
+    "end": "00:15:49.808",
+    "text": "see them."
+  },
+  {
+    "start": "00:15:49.808",
+    "end": "00:15:56.090",
+    "text": "When you see that, you see the corpuscular nature"
+  },
+  {
+    "start": "00:15:56.090",
+    "end": "00:15:57.529",
+    "text": "of light."
+  },
+  {
+    "start": "00:15:57.529",
+    "end": "00:16:00.456",
+    "text": "But here is the problem - if somebody told you light is made"
+  },
+  {
+    "start": "00:16:00.456",
+    "end": "00:16:02.440",
+    "text": "of particles and it's not continuous,"
+  },
+  {
+    "start": "00:16:02.440",
+    "end": "00:16:05.548",
+    "text": "it's not so disturbing, because water,"
+  },
+  {
+    "start": "00:16:05.548",
+    "end": "00:16:08.807",
+    "text": "which you think is continuous, is actually made of water"
+  },
+  {
+    "start": "00:16:08.807",
+    "end": "00:16:09.519",
+    "text": "molecules."
+  },
+  {
+    "start": "00:16:09.519",
+    "end": "00:16:12.331",
+    "text": "Everything that you think of as continuous is made up of little"
+  },
+  {
+    "start": "00:16:12.331",
+    "end": "00:16:15.522",
+    "text": "molecules and in a bigger scale, much bigger than the atomic or"
+  },
+  {
+    "start": "00:16:15.522",
+    "end": "00:16:18.899",
+    "text": "molecular size, it looks like it's continuous."
+  },
+  {
+    "start": "00:16:18.899",
+    "end": "00:16:21.320",
+    "text": "That's not the bad news."
+  },
+  {
+    "start": "00:16:21.320",
+    "end": "00:16:28.120",
+    "text": "The bad news really has to do with the fact that if you have"
+  },
+  {
+    "start": "00:16:28.120",
+    "end": "00:16:34.490",
+    "text": "these particles called photons, if it really were a particle,"
+  },
+  {
+    "start": "00:16:34.490",
+    "end": "00:16:38.110",
+    "text": "namely a standard, garden variety particle,"
+  },
+  {
+    "start": "00:16:38.110",
+    "end": "00:16:39.879",
+    "text": "what should you find?"
+  },
+  {
+    "start": "00:16:39.879",
+    "end": "00:16:44.259",
+    "text": "If you emit a particle from here, and only one slit is open,"
+  },
+  {
+    "start": "00:16:44.259",
+    "end": "00:16:48.416",
+    "text": "it will take some path going through the slit and it will"
+  },
+  {
+    "start": "00:16:48.416",
+    "end": "00:16:49.529",
+    "text": "come there."
+  },
+  {
+    "start": "00:16:49.529",
+    "end": "00:16:54.094",
+    "text": "So let us say on a given day, 10 photons will come here,"
+  },
+  {
+    "start": "00:16:54.094",
+    "end": "00:16:59.240",
+    "text": "or let's say 4 photons will come here, with this one closed."
+  },
+  {
+    "start": "00:16:59.240",
+    "end": "00:17:02.548",
+    "text": "Then let's close this one and open this one."
+  },
+  {
+    "start": "00:17:02.548",
+    "end": "00:17:06.160",
+    "text": "In that, case, maybe 3 photons will come here."
+  },
+  {
+    "start": "00:17:06.160",
+    "end": "00:17:09.328",
+    "text": "Or let's say again, 4."
+  },
+  {
+    "start": "00:17:09.328",
+    "end": "00:17:18.170",
+    "text": "Now I'm claiming that when both are open, I get no photons."
+  },
+  {
+    "start": "00:17:18.170",
+    "end": "00:17:22.060",
+    "text": "How can it be that when you open a second hole,"
+  },
+  {
+    "start": "00:17:22.060",
+    "end": "00:17:25.358",
+    "text": "you get fewer particles coming there?"
+  },
+  {
+    "start": "00:17:25.358",
+    "end": "00:17:32.339",
+    "text": "Particles normally either take path number 1 or path number 2."
+  },
+  {
+    "start": "00:17:32.339",
+    "end": "00:17:34.980",
+    "text": "Either this slit or this slit."
+  },
+  {
+    "start": "00:17:34.980",
+    "end": "00:17:38.165",
+    "text": "To all the guys going this way, they don't care if this slit is"
+  },
+  {
+    "start": "00:17:38.165",
+    "end": "00:17:39.038",
+    "text": "open or closed."
+  },
+  {
+    "start": "00:17:39.038",
+    "end": "00:17:40.630",
+    "text": "They don't even know about the other slit."
+  },
+  {
+    "start": "00:17:40.630",
+    "end": "00:17:43.567",
+    "text": "They do their thing, and guys going through this"
+  },
+  {
+    "start": "00:17:43.567",
+    "end": "00:17:46.881",
+    "text": "slit should do their thing, therefore you should get a"
+  },
+  {
+    "start": "00:17:46.881",
+    "end": "00:17:49.568",
+    "text": "number equal to the sum, but you don't."
+  },
+  {
+    "start": "00:17:49.568",
+    "end": "00:17:51.384",
+    "text": "In other words, for particles,"
+  },
+  {
+    "start": "00:17:51.384",
+    "end": "00:17:53.388",
+    "text": "which have definite trajectories,"
+  },
+  {
+    "start": "00:17:53.388",
+    "end": "00:17:56.834",
+    "text": "opening a second slit should not affect the number going"
+  },
+  {
+    "start": "00:17:56.834",
+    "end": "00:17:58.650",
+    "text": "through the first slit."
+  },
+  {
+    "start": "00:17:58.650",
+    "end": "00:17:59.269",
+    "text": "Do you understand that?"
+  },
+  {
+    "start": "00:17:59.269",
+    "end": "00:18:01.068",
+    "text": "Particles are local."
+  },
+  {
+    "start": "00:18:01.068",
+    "end": "00:18:03.836",
+    "text": "They're moving along and they feel the local forces acting on"
+  },
+  {
+    "start": "00:18:03.836",
+    "end": "00:18:05.588",
+    "text": "them and they bend or twist or turn."
+  },
+  {
+    "start": "00:18:05.588",
+    "end": "00:18:07.830",
+    "text": "They don't really care what's happening far away,"
+  },
+  {
+    "start": "00:18:07.830",
+    "end": "00:18:09.980",
+    "text": "whether a second slit may be open or closed."
+  },
+  {
+    "start": "00:18:09.980",
+    "end": "00:18:13.686",
+    "text": "Therefore logically, the number coming here must be"
+  },
+  {
+    "start": "00:18:13.686",
+    "end": "00:18:18.358",
+    "text": "the sum of the number that would come with 1 open and 2 open."
+  },
+  {
+    "start": "00:18:18.358",
+    "end": "00:18:20.550",
+    "text": "How can you cancel a positive number of particles coming"
+  },
+  {
+    "start": "00:18:20.550",
+    "end": "00:18:22.902",
+    "text": "somewhere with more positive number of particles coming from"
+  },
+  {
+    "start": "00:18:22.902",
+    "end": "00:18:23.660",
+    "text": "somewhere else?"
+  },
+  {
+    "start": "00:18:23.660",
+    "end": "00:18:25.500",
+    "text": "How do you get a 0?"
+  },
+  {
+    "start": "00:18:25.500",
+    "end": "00:18:29.598",
+    "text": "That is where the wave comes in."
+  },
+  {
+    "start": "00:18:29.598",
+    "end": "00:18:32.463",
+    "text": "The wave has no trouble knowing how many slits are open,"
+  },
+  {
+    "start": "00:18:32.463",
+    "end": "00:18:34.339",
+    "text": "because the wave is not localized."
+  },
+  {
+    "start": "00:18:34.339",
+    "end": "00:18:36.048",
+    "text": "The wave comes like this."
+  },
+  {
+    "start": "00:18:36.048",
+    "end": "00:18:39.435",
+    "text": "It can hit both the slits and certainly cares about how many"
+  },
+  {
+    "start": "00:18:39.435",
+    "end": "00:18:40.470",
+    "text": "slits there are."
+  },
+  {
+    "start": "00:18:40.470",
+    "end": "00:18:43.500",
+    "text": "Because there's only one, that wave will go."
+  },
+  {
+    "start": "00:18:43.500",
+    "end": "00:18:45.628",
+    "text": "You'll have some amplitude here, which is kind of"
+  },
+  {
+    "start": "00:18:45.628",
+    "end": "00:18:46.250",
+    "text": "featureless."
+  },
+  {
+    "start": "00:18:46.250",
+    "end": "00:18:47.750",
+    "text": "If that's open, it will be featureless."
+  },
+  {
+    "start": "00:18:47.750",
+    "end": "00:18:53.348",
+    "text": "If both are open, there'll be interference."
+  },
+  {
+    "start": "00:18:53.348",
+    "end": "00:18:59.396",
+    "text": "So we need that wave to understand what the photon will"
+  },
+  {
+    "start": "00:18:59.396",
+    "end": "00:19:01.760",
+    "text": "do, because when you send millions"
+  },
+  {
+    "start": "00:19:01.760",
+    "end": "00:19:04.578",
+    "text": "of photons and if you get the pattern like this--"
+  },
+  {
+    "start": "00:19:04.578",
+    "end": "00:19:07.881",
+    "text": "let's say you sent lots and lots of photons and you got a"
+  },
+  {
+    "start": "00:19:07.881",
+    "end": "00:19:09.058",
+    "text": "pattern like this."
+  },
+  {
+    "start": "00:19:09.058",
+    "end": "00:19:14.039",
+    "text": "Now I'm going to send million 1 photon."
+  },
+  {
+    "start": "00:19:14.039",
+    "end": "00:19:17.690",
+    "text": "Where will it go?"
+  },
+  {
+    "start": "00:19:17.690",
+    "end": "00:19:20.088",
+    "text": "We do not know where it will go."
+  },
+  {
+    "start": "00:19:20.088",
+    "end": "00:19:24.480",
+    "text": "We only know that if you repeat the experiment a million times,"
+  },
+  {
+    "start": "00:19:24.480",
+    "end": "00:19:26.108",
+    "text": "you get this pattern."
+  },
+  {
+    "start": "00:19:26.108",
+    "end": "00:19:28.990",
+    "text": "But on the million 1th attempt, where it will go,"
+  },
+  {
+    "start": "00:19:28.990",
+    "end": "00:19:29.950",
+    "text": "we don't know."
+  },
+  {
+    "start": "00:19:29.950",
+    "end": "00:19:34.098",
+    "text": "We just know that the odds are high when the function is high,"
+  },
+  {
+    "start": "00:19:34.098",
+    "end": "00:19:36.876",
+    "text": "or the intensity, and the odds are low when the"
+  },
+  {
+    "start": "00:19:36.876",
+    "end": "00:19:40.618",
+    "text": "function is small and the odds are 0 when the function is 0."
+  },
+  {
+    "start": "00:19:40.618",
+    "end": "00:19:45.734",
+    "text": "So the role of the wave is to determine the probability that"
+  },
+  {
+    "start": "00:19:45.734",
+    "end": "00:19:50.328",
+    "text": "the photon will arrive at some point on the screen."
+  },
+  {
+    "start": "00:19:50.328",
+    "end": "00:19:54.854",
+    "text": "And the probability is computed by adding one wave function to"
+  },
+  {
+    "start": "00:19:54.854",
+    "end": "00:19:57.970",
+    "text": "another wave function and then squaring."
+  },
+  {
+    "start": "00:19:57.970",
+    "end": "00:19:58.950",
+    "text": "So you've got to be very clear."
+  },
+  {
+    "start": "00:19:58.950",
+    "end": "00:20:02.520",
+    "text": "If someone says to you, \"Is the photon a particle"
+  },
+  {
+    "start": "00:20:02.520",
+    "end": "00:20:03.328",
+    "text": "or a wave?"
+  },
+  {
+    "start": "00:20:03.328",
+    "end": "00:20:06.440",
+    "text": "Make up your mind, what is it?\""
+  },
+  {
+    "start": "00:20:06.440",
+    "end": "00:20:10.491",
+    "text": "Well, the answer is, it's not going to be a yes or"
+  },
+  {
+    "start": "00:20:10.491",
+    "end": "00:20:11.650",
+    "text": "no question."
+  },
+  {
+    "start": "00:20:11.650",
+    "end": "00:20:13.267",
+    "text": "People always ask you, \"Is matter made of"
+  },
+  {
+    "start": "00:20:13.267",
+    "end": "00:20:14.703",
+    "text": "particles or waves, electron particles or"
+  },
+  {
+    "start": "00:20:14.703",
+    "end": "00:20:15.278",
+    "text": "waves?\""
+  },
+  {
+    "start": "00:20:15.278",
+    "end": "00:20:18.448",
+    "text": "Well, sometimes the vocabulary we have is not big enough to"
+  },
+  {
+    "start": "00:20:18.448",
+    "end": "00:20:20.359",
+    "text": "describe what's really happening."
+  },
+  {
+    "start": "00:20:20.359",
+    "end": "00:20:22.299",
+    "text": "It is what it is."
+  },
+  {
+    "start": "00:20:22.299",
+    "end": "00:20:23.769",
+    "text": "It is the following."
+  },
+  {
+    "start": "00:20:23.769",
+    "end": "00:20:27.770",
+    "text": "It is a particle in the sense that the entire energy is"
+  },
+  {
+    "start": "00:20:27.770",
+    "end": "00:20:31.548",
+    "text": "carried in these localized places, unlike a wave."
+  },
+  {
+    "start": "00:20:31.548",
+    "end": "00:20:35.409",
+    "text": "When the wave hits the beach, the energy's over the entire"
+  },
+  {
+    "start": "00:20:35.409",
+    "end": "00:20:36.288",
+    "text": "wave front."
+  },
+  {
+    "start": "00:20:36.288",
+    "end": "00:20:39.210",
+    "text": "This wave here is not a physical wave."
+  },
+  {
+    "start": "00:20:39.210",
+    "end": "00:20:42.996",
+    "text": "It does not carry any energy and it's not even a property of"
+  },
+  {
+    "start": "00:20:42.996",
+    "end": "00:20:44.279",
+    "text": "a beam of photons."
+  },
+  {
+    "start": "00:20:44.279",
+    "end": "00:20:47.000",
+    "text": "It's a property of one photon."
+  },
+  {
+    "start": "00:20:47.000",
+    "end": "00:20:51.059",
+    "text": "Here's what I want you to understand - you send one photon"
+  },
+  {
+    "start": "00:20:51.059",
+    "end": "00:20:54.194",
+    "text": "at a time, many, many times, and you get this"
+  },
+  {
+    "start": "00:20:54.194",
+    "end": "00:20:55.048",
+    "text": "pattern."
+  },
+  {
+    "start": "00:20:55.048",
+    "end": "00:20:59.217",
+    "text": "Each time you throw the die and ask where will the photon land,"
+  },
+  {
+    "start": "00:20:59.217",
+    "end": "00:21:03.182",
+    "text": "this function is waiting to tell you the probability it will"
+  },
+  {
+    "start": "00:21:03.182",
+    "end": "00:21:04.460",
+    "text": "land somewhere."
+  },
+  {
+    "start": "00:21:04.460",
+    "end": "00:21:06.490",
+    "text": "So we have to play this game in two ways."
+  },
+  {
+    "start": "00:21:06.490",
+    "end": "00:21:09.805",
+    "text": "It is particles, but its future is determined by"
+  },
+  {
+    "start": "00:21:09.805",
+    "end": "00:21:10.440",
+    "text": "a wave."
+  },
+  {
+    "start": "00:21:10.440",
+    "end": "00:21:12.430",
+    "text": "The wave is purely mathematical."
+  },
+  {
+    "start": "00:21:12.430",
+    "end": "00:21:15.329",
+    "text": "You cannot put an instrument that measures the energy due to"
+  },
+  {
+    "start": "00:21:15.329",
+    "end": "00:21:15.920",
+    "text": "that wave."
+  },
+  {
+    "start": "00:21:15.920",
+    "end": "00:21:20.273",
+    "text": "It's a construct we use to determine what will happen in"
+  },
+  {
+    "start": "00:21:20.273",
+    "end": "00:21:21.700",
+    "text": "this experiment."
+  },
+  {
+    "start": "00:21:21.700",
+    "end": "00:21:24.843",
+    "text": "So we have no trouble predicting this experiment,"
+  },
+  {
+    "start": "00:21:24.843",
+    "end": "00:21:27.660",
+    "text": "but we only make statistical predictions."
+  },
+  {
+    "start": "00:21:27.660",
+    "end": "00:21:30.290",
+    "text": "So if someone tells you, \"I got light from some"
+  },
+  {
+    "start": "00:21:30.290",
+    "end": "00:21:33.325",
+    "text": "mercury vapor or something, it's got a certain wavelength,"
+  },
+  {
+    "start": "00:21:33.325",
+    "end": "00:21:34.858",
+    "text": "therefore a certain frequency."
+  },
+  {
+    "start": "00:21:34.858",
+    "end": "00:21:38.838",
+    "text": "I'm going to take two slits and I'm going to send the light from"
+  },
+  {
+    "start": "00:21:38.838",
+    "end": "00:21:41.430",
+    "text": "the left so weak that at a given time,"
+  },
+  {
+    "start": "00:21:41.430",
+    "end": "00:21:45.240",
+    "text": "only one photon leaves the source and hits the screen."
+  },
+  {
+    "start": "00:21:45.240",
+    "end": "00:21:47.098",
+    "text": "What will happen?\""
+  },
+  {
+    "start": "00:21:47.098",
+    "end": "00:21:49.538",
+    "text": "We will say we don't know what it will do."
+  },
+  {
+    "start": "00:21:49.538",
+    "end": "00:21:51.308",
+    "text": "We don't know where it will land."
+  },
+  {
+    "start": "00:21:51.308",
+    "end": "00:21:53.555",
+    "text": "But we tell you if you do it enough times,"
+  },
+  {
+    "start": "00:21:53.555",
+    "end": "00:21:56.240",
+    "text": "millions of times, soon a pattern will develop."
+  },
+  {
+    "start": "00:21:56.240",
+    "end": "00:21:58.865",
+    "text": "Namely, if you plot your histogram on where everybody"
+  },
+  {
+    "start": "00:21:58.865",
+    "end": "00:22:00.328",
+    "text": "landed, you'll get a graph."
+  },
+  {
+    "start": "00:22:00.328",
+    "end": "00:22:02.980",
+    "text": "It's the graph that I can predict."
+  },
+  {
+    "start": "00:22:02.980",
+    "end": "00:22:04.500",
+    "text": "And how do I predict that graph."
+  },
+  {
+    "start": "00:22:04.500",
+    "end": "00:22:09.070",
+    "text": "I say, \"What was the energy momentum of your"
+  },
+  {
+    "start": "00:22:09.070",
+    "end": "00:22:10.500",
+    "text": "photon?\""
+  },
+  {
+    "start": "00:22:10.500",
+    "end": "00:22:15.141",
+    "text": "If it was p, I will introduce a wave whose"
+  },
+  {
+    "start": "00:22:15.141",
+    "end": "00:22:19.298",
+    "text": "momentum is 2pℏ/p."
+  },
+  {
+    "start": "00:22:19.298",
+    "end": "00:22:20.969",
+    "text": "Oh, I'm sorry, I forgot to tell you guys one"
+  },
+  {
+    "start": "00:22:20.969",
+    "end": "00:22:21.279",
+    "text": "thing."
+  },
+  {
+    "start": "00:22:21.279",
+    "end": "00:22:21.980",
+    "text": "I apologize."
+  },
+  {
+    "start": "00:22:21.980",
+    "end": "00:22:25.180",
+    "text": "I've been writing ℏ and h."
+  },
+  {
+    "start": "00:22:25.180",
+    "end": "00:22:28.935",
+    "text": "I should have mentioned it long back, ℏ is"
+  },
+  {
+    "start": "00:22:28.935",
+    "end": "00:22:30.318",
+    "text": "h/2p."
+  },
+  {
+    "start": "00:22:30.318",
+    "end": "00:22:32.733",
+    "text": "Since the combination occurs so often, people write"
+  },
+  {
+    "start": "00:22:32.733",
+    "end": "00:22:33.700",
+    "text": "ℏ."
+  },
+  {
+    "start": "00:22:33.700",
+    "end": "00:22:37.338",
+    "text": "So you can write l = 2pℏ/p,"
+  },
+  {
+    "start": "00:22:37.338",
+    "end": "00:22:38.380",
+    "text": "or h/p."
+  },
+  {
+    "start": "00:22:38.380",
+    "end": "00:22:40.309",
+    "text": "It doesn't matter."
+  },
+  {
+    "start": "00:22:40.309",
+    "end": "00:22:41.640",
+    "text": "So I've stopped using h."
+  },
+  {
+    "start": "00:22:41.640",
+    "end": "00:22:44.750",
+    "text": "Most people now in the business use ℏ,"
+  },
+  {
+    "start": "00:22:44.750",
+    "end": "00:22:47.509",
+    "text": "because the energy is ℏw,"
+  },
+  {
+    "start": "00:22:47.509",
+    "end": "00:22:49.798",
+    "text": "the momentum is ℏk."
+  },
+  {
+    "start": "00:22:49.798",
+    "end": "00:22:51.857",
+    "text": "If you want, you can write this"
+  },
+  {
+    "start": "00:22:51.857",
+    "end": "00:22:55.700",
+    "text": "2phk and k is 2p/l."
+  },
+  {
+    "start": "00:22:55.700",
+    "end": "00:22:57.818",
+    "text": "Then you find p is h/l."
+  },
+  {
+    "start": "00:22:57.818",
+    "end": "00:23:00.559",
+    "text": "That's how some people used to write it in the old days,"
+  },
+  {
+    "start": "00:23:00.559",
+    "end": "00:23:03.798",
+    "text": "but now we write it in terms of ℏ and k."
+  },
+  {
+    "start": "00:23:03.798",
+    "end": "00:23:08.417",
+    "text": "Anyway, I can make these predictions, if I knew the"
+  },
+  {
+    "start": "00:23:08.417",
+    "end": "00:23:10.818",
+    "text": "momentum of the photons."
+  },
+  {
+    "start": "00:23:10.818",
+    "end": "00:23:12.728",
+    "text": "The photons were of a definite momentum, therefore there's a"
+  },
+  {
+    "start": "00:23:12.728",
+    "end": "00:23:13.440",
+    "text": "definite wavelength."
+  },
+  {
+    "start": "00:23:13.440",
+    "end": "00:23:19.000",
+    "text": "I can predict the interference pattern."
+  },
+  {
+    "start": "00:23:19.000",
+    "end": "00:23:22.339",
+    "text": "So where is the photon when it goes from start to finish?"
+  },
+  {
+    "start": "00:23:22.339",
+    "end": "00:23:23.108",
+    "text": "We don't know."
+  },
+  {
+    "start": "00:23:23.108",
+    "end": "00:23:25.220",
+    "text": "I'll come back to that question now."
+  },
+  {
+    "start": "00:23:25.220",
+    "end": "00:23:29.142",
+    "text": "But I want to mention to you a historical fact,"
+  },
+  {
+    "start": "00:23:29.142",
+    "end": "00:23:33.236",
+    "text": "which is, photons were not really found this way,"
+  },
+  {
+    "start": "00:23:33.236",
+    "end": "00:23:37.500",
+    "text": "by looking at the recoil of an emulsion plate."
+  },
+  {
+    "start": "00:23:37.500",
+    "end": "00:23:40.878",
+    "text": "Just for completeness, I'm going to make a five minute"
+  },
+  {
+    "start": "00:23:40.878",
+    "end": "00:23:43.940",
+    "text": "digression to tell you how photons were found."
+  },
+  {
+    "start": "00:23:43.940",
+    "end": "00:23:46.160",
+    "text": "So they were actually predicted by Einstein."
+  },
+  {
+    "start": "00:23:46.160",
+    "end": "00:23:48.886",
+    "text": "He got the Nobel Prize for predicting the photon,"
+  },
+  {
+    "start": "00:23:48.886",
+    "end": "00:23:52.067",
+    "text": "rather than for the Theory of Relativity, which was still"
+  },
+  {
+    "start": "00:23:52.067",
+    "end": "00:23:53.828",
+    "text": "controversial at that time."
+  },
+  {
+    "start": "00:23:53.828",
+    "end": "00:23:57.957",
+    "text": "So he predicted the photons, based on actually fairly"
+  },
+  {
+    "start": "00:23:57.957",
+    "end": "00:24:02.720",
+    "text": "complicated thermodynamic statistical mechanics arguments."
+  },
+  {
+    "start": "00:24:02.720",
+    "end": "00:24:06.854",
+    "text": "But one way to understand it is in terms of what's called the"
+  },
+  {
+    "start": "00:24:06.854",
+    "end": "00:24:08.440",
+    "text": "photoelectric effect."
+  },
+  {
+    "start": "00:24:08.440",
+    "end": "00:24:12.375",
+    "text": "If you take a metal and you say \"Where are the electrons in"
+  },
+  {
+    "start": "00:24:12.375",
+    "end": "00:24:13.500",
+    "text": "the metal?\""
+  },
+  {
+    "start": "00:24:13.500",
+    "end": "00:24:17.470",
+    "text": "As you know most electrons are orbiting the parent nucleus."
+  },
+  {
+    "start": "00:24:17.470",
+    "end": "00:24:20.710",
+    "text": "But in a metal, some electrons are communal."
+  },
+  {
+    "start": "00:24:20.710",
+    "end": "00:24:24.430",
+    "text": "Each atom donates one or two electrons to the whole metal."
+  },
+  {
+    "start": "00:24:24.430",
+    "end": "00:24:26.700",
+    "text": "They can run all over the metal."
+  },
+  {
+    "start": "00:24:26.700",
+    "end": "00:24:29.400",
+    "text": "They don't have to be near their parent nucleus."
+  },
+  {
+    "start": "00:24:29.400",
+    "end": "00:24:31.369",
+    "text": "They cannot leave the metal."
+  },
+  {
+    "start": "00:24:31.369",
+    "end": "00:24:33.450",
+    "text": "So in a way, they are like this."
+  },
+  {
+    "start": "00:24:33.450",
+    "end": "00:24:36.734",
+    "text": "There's a little tank whose depth is h,"
+  },
+  {
+    "start": "00:24:36.734",
+    "end": "00:24:40.460",
+    "text": "and let's say mgh I want to call W."
+  },
+  {
+    "start": "00:24:40.460",
+    "end": "00:24:44.069",
+    "text": "So these guys are somewhere in the bottom."
+  },
+  {
+    "start": "00:24:44.069",
+    "end": "00:24:48.568",
+    "text": "They can run around; they cannot get out."
+  },
+  {
+    "start": "00:24:48.568",
+    "end": "00:24:51.998",
+    "text": "So if you want to yank an electron out of the metal,"
+  },
+  {
+    "start": "00:24:51.998",
+    "end": "00:24:54.954",
+    "text": "you have to give an energy equal to W,"
+  },
+  {
+    "start": "00:24:54.954",
+    "end": "00:24:57.509",
+    "text": "which is called the work function."
+  },
+  {
+    "start": "00:24:57.509",
+    "end": "00:25:00.740",
+    "text": "So how are you going to get an electron to acquire some energy?"
+  },
+  {
+    "start": "00:25:00.740",
+    "end": "00:25:01.480",
+    "text": "We all know."
+  },
+  {
+    "start": "00:25:01.480",
+    "end": "00:25:03.608",
+    "text": "Electron is an electric charge."
+  },
+  {
+    "start": "00:25:03.608",
+    "end": "00:25:06.386",
+    "text": "I have to apply an electric field and I know electromagnetic"
+  },
+  {
+    "start": "00:25:06.386",
+    "end": "00:25:08.930",
+    "text": "waves are nothing but electric and magnetic fields,"
+  },
+  {
+    "start": "00:25:08.930",
+    "end": "00:25:11.960",
+    "text": "so I shine a light, a source of light,"
+  },
+  {
+    "start": "00:25:11.960",
+    "end": "00:25:13.528",
+    "text": "towards this."
+  },
+  {
+    "start": "00:25:13.528",
+    "end": "00:25:16.281",
+    "text": "The electric field comes and grabs the electron and shakes it"
+  },
+  {
+    "start": "00:25:16.281",
+    "end": "00:25:16.650",
+    "text": "loose."
+  },
+  {
+    "start": "00:25:16.650",
+    "end": "00:25:19.808",
+    "text": "Hopefully it will shake it loose from the metal,"
+  },
+  {
+    "start": "00:25:19.808",
+    "end": "00:25:22.230",
+    "text": "giving it enough energy to escape."
+  },
+  {
+    "start": "00:25:22.230",
+    "end": "00:25:26.650",
+    "text": "And once it escapes, it can take off."
+  },
+  {
+    "start": "00:25:26.650",
+    "end": "00:25:30.607",
+    "text": "So they took some light source and they aimed it at the metal,"
+  },
+  {
+    "start": "00:25:30.607",
+    "end": "00:25:32.619",
+    "text": "to see if electrons come out."
+  },
+  {
+    "start": "00:25:32.619",
+    "end": "00:25:35.038",
+    "text": "They didn't."
+  },
+  {
+    "start": "00:25:35.038",
+    "end": "00:25:41.490",
+    "text": "So what do you think you will do to get some action?"
+  },
+  {
+    "start": "00:25:41.490",
+    "end": "00:25:42.009",
+    "text": "Yes?"
+  },
+  {
+    "start": "00:25:42.009",
+    "end": "00:25:44.578",
+    "text": "Student: &gt;"
+  },
+  {
+    "start": "00:25:44.578",
+    "end": "00:25:46.269",
+    "text": "Prof: So you make it brighter."
+  },
+  {
+    "start": "00:25:46.269",
+    "end": "00:25:47.657",
+    "text": "You say, \"Okay, let me crank up--\""
+  },
+  {
+    "start": "00:25:47.657",
+    "end": "00:25:48.660",
+    "text": "that's what anybody would do."
+  },
+  {
+    "start": "00:25:48.660",
+    "end": "00:25:51.496",
+    "text": "They cranked up the intensity of light, make it brighter and"
+  },
+  {
+    "start": "00:25:51.496",
+    "end": "00:25:52.650",
+    "text": "brighter."
+  },
+  {
+    "start": "00:25:52.650",
+    "end": "00:25:55.808",
+    "text": "Nothing happened."
+  },
+  {
+    "start": "00:25:55.808",
+    "end": "00:25:59.669",
+    "text": "Then by accident they found out that instead of cranking up the"
+  },
+  {
+    "start": "00:25:59.669",
+    "end": "00:26:03.305",
+    "text": "brightness of the light, if you cranked up the frequency"
+  },
+  {
+    "start": "00:26:03.305",
+    "end": "00:26:06.576",
+    "text": "of light, slowly, suddenly beyond some"
+  },
+  {
+    "start": "00:26:06.576",
+    "end": "00:26:09.724",
+    "text": "frequency, you start getting electrons"
+  },
+  {
+    "start": "00:26:09.724",
+    "end": "00:26:11.240",
+    "text": "escaping the metal."
+  },
+  {
+    "start": "00:26:11.240",
+    "end": "00:26:16.818",
+    "text": "So here's the graph you get."
+  },
+  {
+    "start": "00:26:16.818",
+    "end": "00:26:19.884",
+    "text": "Let me just plot it if you like, ℏ times"
+  },
+  {
+    "start": "00:26:19.884",
+    "end": "00:26:20.720",
+    "text": "the w."
+  },
+  {
+    "start": "00:26:20.720",
+    "end": "00:26:22.880",
+    "text": "In those days, they didn't know too much about"
+  },
+  {
+    "start": "00:26:22.880",
+    "end": "00:26:23.839",
+    "text": "ℏ."
+  },
+  {
+    "start": "00:26:23.839",
+    "end": "00:26:24.799",
+    "text": "You can even plot w."
+  },
+  {
+    "start": "00:26:24.799",
+    "end": "00:26:26.118",
+    "text": "It doesn't matter."
+  },
+  {
+    "start": "00:26:26.118",
+    "end": "00:26:31.220",
+    "text": "And you plot here the kinetic energy of the emitted electron."
+  },
+  {
+    "start": "00:26:31.220",
+    "end": "00:26:35.287",
+    "text": "And what you find is that below some minimum value,"
+  },
+  {
+    "start": "00:26:35.287",
+    "end": "00:26:37.240",
+    "text": "no electrons come out."
+  },
+  {
+    "start": "00:26:37.240",
+    "end": "00:26:39.640",
+    "text": "There's nothing to plot."
+  },
+  {
+    "start": "00:26:39.640",
+    "end": "00:26:44.567",
+    "text": "And once you cross a magical w, and anything higher"
+  },
+  {
+    "start": "00:26:44.567",
+    "end": "00:26:48.976",
+    "text": "than that, you get a kinetic energy that's linear in"
+  },
+  {
+    "start": "00:26:48.976",
+    "end": "00:26:50.098",
+    "text": "w."
+  },
+  {
+    "start": "00:26:50.098",
+    "end": "00:26:59.270",
+    "text": "Now the kinetic energy is the energy you gave to the electron"
+  },
+  {
+    "start": "00:26:59.270",
+    "end": "00:27:01.868",
+    "text": "minus W."
+  },
+  {
+    "start": "00:27:01.868",
+    "end": "00:27:05.250",
+    "text": "Energy given to the electron - W, because you paid"
+  },
+  {
+    "start": "00:27:05.250",
+    "end": "00:27:08.750",
+    "text": "W to get it out of the well, and whatever is left is"
+  },
+  {
+    "start": "00:27:08.750",
+    "end": "00:27:10.140",
+    "text": "the kinetic energy."
+  },
+  {
+    "start": "00:27:10.140",
+    "end": "00:27:13.480",
+    "text": "So Einstein predicted photons from independent arguments,"
+  },
+  {
+    "start": "00:27:13.480",
+    "end": "00:27:16.051",
+    "text": "and according to him, light and frequency w is"
+  },
+  {
+    "start": "00:27:16.051",
+    "end": "00:27:19.295",
+    "text": "made up of particles, each of which contains energy"
+  },
+  {
+    "start": "00:27:19.295",
+    "end": "00:27:21.210",
+    "text": "ℏw."
+  },
+  {
+    "start": "00:27:21.210",
+    "end": "00:27:23.818",
+    "text": "So you can see what's happening."
+  },
+  {
+    "start": "00:27:23.818",
+    "end": "00:27:27.738",
+    "text": "If you've got low frequency light, you're sending millions"
+  },
+  {
+    "start": "00:27:27.738",
+    "end": "00:27:31.313",
+    "text": "of photons, each carries an energy ℏw"
+  },
+  {
+    "start": "00:27:31.313",
+    "end": "00:27:32.618",
+    "text": "somewhere here."
+  },
+  {
+    "start": "00:27:32.618",
+    "end": "00:27:35.563",
+    "text": "None of them has the energy to lift the electron out of the"
+  },
+  {
+    "start": "00:27:35.563",
+    "end": "00:27:35.970",
+    "text": "metal."
+  },
+  {
+    "start": "00:27:35.970",
+    "end": "00:27:40.596",
+    "text": "It's like sending a million little kids to lift something"
+  },
+  {
+    "start": "00:27:40.596",
+    "end": "00:27:42.578",
+    "text": "and they cannot do it."
+  },
+  {
+    "start": "00:27:42.578",
+    "end": "00:27:46.238",
+    "text": "They cannot do it, but if you send 10 tall,"
+  },
+  {
+    "start": "00:27:46.238",
+    "end": "00:27:49.808",
+    "text": "powerful people, they will lift it out."
+  },
+  {
+    "start": "00:27:49.808",
+    "end": "00:27:53.096",
+    "text": "So what's happening with light is that as you crank up the"
+  },
+  {
+    "start": "00:27:53.096",
+    "end": "00:27:55.227",
+    "text": "w, even if it's not very bright,"
+  },
+  {
+    "start": "00:27:55.227",
+    "end": "00:27:57.952",
+    "text": "the individual packets are carrying more and more energy"
+  },
+  {
+    "start": "00:27:57.952",
+    "end": "00:28:01.157",
+    "text": "and more and more momentum, and that's why they succeed in"
+  },
+  {
+    "start": "00:28:01.157",
+    "end": "00:28:02.660",
+    "text": "knocking the electron out."
+  },
+  {
+    "start": "00:28:02.660",
+    "end": "00:28:04.862",
+    "text": "And in fact, if you set the energy of each"
+  },
+  {
+    "start": "00:28:04.862",
+    "end": "00:28:06.836",
+    "text": "photon, it's ℏw,"
+  },
+  {
+    "start": "00:28:06.836",
+    "end": "00:28:09.664",
+    "text": "then the kinetic energy of the electron is the energy you gave"
+  },
+  {
+    "start": "00:28:09.664",
+    "end": "00:28:11.602",
+    "text": "with 1 photon, take away the W,"
+  },
+  {
+    "start": "00:28:11.602",
+    "end": "00:28:13.759",
+    "text": "that's the price you pay to leave the metal."
+  },
+  {
+    "start": "00:28:13.759",
+    "end": "00:28:16.240",
+    "text": "The rest of it is kinetic energy."
+  },
+  {
+    "start": "00:28:16.240",
+    "end": "00:28:19.319",
+    "text": "So when plotted as a function of w, K should"
+  },
+  {
+    "start": "00:28:19.319",
+    "end": "00:28:22.130",
+    "text": "look like a straight line with intercept W."
+  },
+  {
+    "start": "00:28:22.130",
+    "end": "00:28:23.920",
+    "text": "And that's what you find."
+  },
+  {
+    "start": "00:28:23.920",
+    "end": "00:28:27.700",
+    "text": "In fact, this is one way to measure the work function."
+  },
+  {
+    "start": "00:28:27.700",
+    "end": "00:28:30.800",
+    "text": "How much energy do we need to rip an electron out of a metal"
+  },
+  {
+    "start": "00:28:30.800",
+    "end": "00:28:32.009",
+    "text": "depends on the metal."
+  },
+  {
+    "start": "00:28:32.009",
+    "end": "00:28:34.490",
+    "text": "And you shine light and you crank up the frequency,"
+  },
+  {
+    "start": "00:28:34.490",
+    "end": "00:28:35.730",
+    "text": "till something happens."
+  },
+  {
+    "start": "00:28:35.730",
+    "end": "00:28:39.096",
+    "text": "And just to be sure, you go a little beyond that and"
+  },
+  {
+    "start": "00:28:39.096",
+    "end": "00:28:42.730",
+    "text": "you find that the kinetic energy grows linearly in w."
+  },
+  {
+    "start": "00:28:42.730",
+    "end": "00:28:46.165",
+    "text": "Anyway, this is how one confirmed the existence,"
+  },
+  {
+    "start": "00:28:46.165",
+    "end": "00:28:48.578",
+    "text": "indirect existence, of photons."
+  },
+  {
+    "start": "00:28:48.578",
+    "end": "00:28:52.376",
+    "text": "There's another experiment that also confirmed the existence of"
+  },
+  {
+    "start": "00:28:52.376",
+    "end": "00:28:52.990",
+    "text": "photons."
+  },
+  {
+    "start": "00:28:52.990",
+    "end": "00:28:53.838",
+    "text": "Look, that's the beauty."
+  },
+  {
+    "start": "00:28:53.838",
+    "end": "00:28:58.510",
+    "text": "Once you've got the right answer, everything is going to"
+  },
+  {
+    "start": "00:28:58.510",
+    "end": "00:29:00.038",
+    "text": "be on your side."
+  },
+  {
+    "start": "00:29:00.038",
+    "end": "00:29:02.316",
+    "text": "Before I forget, I should mention to you,"
+  },
+  {
+    "start": "00:29:02.316",
+    "end": "00:29:05.446",
+    "text": "you've probably heard that Einstein is very unhappy with"
+  },
+  {
+    "start": "00:29:05.446",
+    "end": "00:29:06.700",
+    "text": "quantum mechanics."
+  },
+  {
+    "start": "00:29:06.700",
+    "end": "00:29:09.417",
+    "text": "And yet if you look at the history, he made enormous"
+  },
+  {
+    "start": "00:29:09.417",
+    "end": "00:29:11.390",
+    "text": "contributions to quantum mechanics."
+  },
+  {
+    "start": "00:29:11.390",
+    "end": "00:29:14.992",
+    "text": "Even Planck didn't have the courage to stand behind the"
+  },
+  {
+    "start": "00:29:14.992",
+    "end": "00:29:18.130",
+    "text": "photons that were implied in his own formula."
+  },
+  {
+    "start": "00:29:18.130",
+    "end": "00:29:21.598",
+    "text": "Einstein took it to be very real and pursued it."
+  },
+  {
+    "start": "00:29:21.598",
+    "end": "00:29:23.432",
+    "text": "So when you say he doesn't like quantum mechanics,"
+  },
+  {
+    "start": "00:29:23.432",
+    "end": "00:29:25.230",
+    "text": "it's not that he couldn't do the problem sets."
+  },
+  {
+    "start": "00:29:25.230",
+    "end": "00:29:28.230",
+    "text": "It's that he had problems with the problems."
+  },
+  {
+    "start": "00:29:28.230",
+    "end": "00:29:31.457",
+    "text": "He did not like the probabilistic nature of quantum"
+  },
+  {
+    "start": "00:29:31.457",
+    "end": "00:29:35.460",
+    "text": "mechanics, but he had no trouble divining what was going on."
+  },
+  {
+    "start": "00:29:35.460",
+    "end": "00:29:36.519",
+    "text": "So it's quite different."
+  },
+  {
+    "start": "00:29:36.519",
+    "end": "00:29:39.002",
+    "text": "It's like saying, \"I don't like that"
+  },
+  {
+    "start": "00:29:39.002",
+    "end": "00:29:39.809",
+    "text": "joke.\""
+  },
+  {
+    "start": "00:29:39.809",
+    "end": "00:29:40.460",
+    "text": "There are two reasons."
+  },
+  {
+    "start": "00:29:40.460",
+    "end": "00:29:42.920",
+    "text": "Some guys don't get it and they don't like it."
+  },
+  {
+    "start": "00:29:42.920",
+    "end": "00:29:45.130",
+    "text": "Some guys get it and don't think it's funny."
+  },
+  {
+    "start": "00:29:45.130",
+    "end": "00:29:47.631",
+    "text": "So this was like Einstein certainly understood all the"
+  },
+  {
+    "start": "00:29:47.631",
+    "end": "00:29:49.328",
+    "text": "complexities of quantum mechanics."
+  },
+  {
+    "start": "00:29:49.328",
+    "end": "00:29:51.220",
+    "text": "He said he had spent more time on quantum,"
+  },
+  {
+    "start": "00:29:51.220",
+    "end": "00:29:55.116",
+    "text": "much more on either the special or the general theory of"
+  },
+  {
+    "start": "00:29:55.116",
+    "end": "00:29:57.412",
+    "text": "relativity, because he said that was a real"
+  },
+  {
+    "start": "00:29:57.412",
+    "end": "00:29:57.788",
+    "text": "problem."
+  },
+  {
+    "start": "00:29:57.788",
+    "end": "00:30:00.288",
+    "text": "That's a problem I couldn't track."
+  },
+  {
+    "start": "00:30:00.288",
+    "end": "00:30:03.942",
+    "text": "Now it turns out that even till the end, he didn't find an"
+  },
+  {
+    "start": "00:30:03.942",
+    "end": "00:30:06.380",
+    "text": "answer that was satisfactory to him."
+  },
+  {
+    "start": "00:30:06.380",
+    "end": "00:30:08.317",
+    "text": "The answer I'm giving you certainly works,"
+  },
+  {
+    "start": "00:30:08.317",
+    "end": "00:30:10.920",
+    "text": "makes all the predictions, never said anything wrong."
+  },
+  {
+    "start": "00:30:10.920",
+    "end": "00:30:15.087",
+    "text": "Until something better comes to replace it, we will keep using"
+  },
+  {
+    "start": "00:30:15.087",
+    "end": "00:30:15.430",
+    "text": "it."
+  },
+  {
+    "start": "00:30:15.430",
+    "end": "00:30:18.550",
+    "text": "Anyway, going back, the second experiment that"
+  },
+  {
+    "start": "00:30:18.550",
+    "end": "00:30:20.980",
+    "text": "confirmed the reality of photons."
+  },
+  {
+    "start": "00:30:20.980",
+    "end": "00:30:24.063",
+    "text": "See, if you say light is made of particles and each one has an"
+  },
+  {
+    "start": "00:30:24.063",
+    "end": "00:30:26.337",
+    "text": "energy and momentum, do you understand why the"
+  },
+  {
+    "start": "00:30:26.337",
+    "end": "00:30:28.359",
+    "text": "photoelectric effect is a good test."
+  },
+  {
+    "start": "00:30:28.359",
+    "end": "00:30:30.339",
+    "text": "It agrees with that picture."
+  },
+  {
+    "start": "00:30:30.339",
+    "end": "00:30:31.808",
+    "text": "Individual particles come."
+  },
+  {
+    "start": "00:30:31.808",
+    "end": "00:30:34.929",
+    "text": "Some have the energy to liberate the electron and some"
+  },
+  {
+    "start": "00:30:34.929",
+    "end": "00:30:35.400",
+    "text": "don't."
+  },
+  {
+    "start": "00:30:35.400",
+    "end": "00:30:37.509",
+    "text": "And if individually, they cannot do it,"
+  },
+  {
+    "start": "00:30:37.509",
+    "end": "00:30:39.618",
+    "text": "it doesn't matter how many you send."
+  },
+  {
+    "start": "00:30:39.618",
+    "end": "00:30:43.107",
+    "text": "Now you may have thought of one scenario in which all of these"
+  },
+  {
+    "start": "00:30:43.107",
+    "end": "00:30:46.025",
+    "text": "tiny little kids can get something lifted out of the"
+  },
+  {
+    "start": "00:30:46.025",
+    "end": "00:30:46.539",
+    "text": "well."
+  },
+  {
+    "start": "00:30:46.539",
+    "end": "00:30:51.750",
+    "text": "How will they do that?"
+  },
+  {
+    "start": "00:30:51.750",
+    "end": "00:30:55.246",
+    "text": "Maybe 10 kids together, like ants, can lift the thing"
+  },
+  {
+    "start": "00:30:55.246",
+    "end": "00:30:55.650",
+    "text": "out."
+  },
+  {
+    "start": "00:30:55.650",
+    "end": "00:30:59.334",
+    "text": "So if you had 10 photons which can collectively excite the"
+  },
+  {
+    "start": "00:30:59.334",
+    "end": "00:31:01.049",
+    "text": "electron, it can happen,"
+  },
+  {
+    "start": "00:31:01.049",
+    "end": "00:31:04.276",
+    "text": "but in those days, they didn't have a light whose"
+  },
+  {
+    "start": "00:31:04.276",
+    "end": "00:31:08.038",
+    "text": "intensity was enough to send enough of these photons."
+  },
+  {
+    "start": "00:31:08.038",
+    "end": "00:31:10.193",
+    "text": "But nowadays, it turns out that if you"
+  },
+  {
+    "start": "00:31:10.193",
+    "end": "00:31:13.105",
+    "text": "really, really crank up the intensity, you can make"
+  },
+  {
+    "start": "00:31:13.105",
+    "end": "00:31:15.960",
+    "text": "electrons come out, even below the frequency."
+  },
+  {
+    "start": "00:31:15.960",
+    "end": "00:31:19.122",
+    "text": "That's because more than one photon is involved in ejecting"
+  },
+  {
+    "start": "00:31:19.122",
+    "end": "00:31:19.940",
+    "text": "the electron."
+  },
+  {
+    "start": "00:31:19.940",
+    "end": "00:31:22.693",
+    "text": "So luckily, we didn't have that intensity then,"
+  },
+  {
+    "start": "00:31:22.693",
+    "end": "00:31:25.328",
+    "text": "so we go the picture of the photons right."
+  },
+  {
+    "start": "00:31:25.328",
+    "end": "00:31:29.807",
+    "text": "Anyway, Compton said the following thing - it turns out"
+  },
+  {
+    "start": "00:31:29.807",
+    "end": "00:31:34.366",
+    "text": "that if you have an electron here and you send a beam of"
+  },
+  {
+    "start": "00:31:34.366",
+    "end": "00:31:37.248",
+    "text": "light, it scatters off the electron"
+  },
+  {
+    "start": "00:31:37.248",
+    "end": "00:31:41.465",
+    "text": "and comes off in some direction at an angle q to the original"
+  },
+  {
+    "start": "00:31:41.465",
+    "end": "00:31:42.380",
+    "text": "direction."
+  },
+  {
+    "start": "00:31:42.380",
+    "end": "00:31:48.154",
+    "text": "The wavelength here changes by an amount Dl,"
+  },
+  {
+    "start": "00:31:48.154",
+    "end": "00:31:53.351",
+    "text": "and Dl happens to be 2pℏ"
+  },
+  {
+    "start": "00:31:53.351",
+    "end": "00:31:58.779",
+    "text": "/mc x 1 - cosine q."
+  },
+  {
+    "start": "00:31:58.779",
+    "end": "00:31:59.808",
+    "text": "Are you with me?"
+  },
+  {
+    "start": "00:31:59.808",
+    "end": "00:32:03.240",
+    "text": "You send light in at a known wavelength."
+  },
+  {
+    "start": "00:32:03.240",
+    "end": "00:32:06.076",
+    "text": "It scatters off the electron and comes at an angle q,"
+  },
+  {
+    "start": "00:32:06.076",
+    "end": "00:32:09.020",
+    "text": "no longer preserving its wavelength, having a different"
+  },
+  {
+    "start": "00:32:09.020",
+    "end": "00:32:09.838",
+    "text": "wavelength."
+  },
+  {
+    "start": "00:32:09.838",
+    "end": "00:32:13.199",
+    "text": "And the shift in the wavelength is connected to the angle of"
+  },
+  {
+    "start": "00:32:13.199",
+    "end": "00:32:13.940",
+    "text": "scattering."
+  },
+  {
+    "start": "00:32:13.940",
+    "end": "00:32:16.335",
+    "text": "For example, if q is 0, Dl is 0 in the"
+  },
+  {
+    "start": "00:32:16.335",
+    "end": "00:32:17.630",
+    "text": "forward direction."
+  },
+  {
+    "start": "00:32:17.630",
+    "end": "00:32:20.680",
+    "text": "If it bounces right back, that cos q is -1."
+  },
+  {
+    "start": "00:32:20.680",
+    "end": "00:32:23.980",
+    "text": "That number is 2 and you get a huge Dl."
+  },
+  {
+    "start": "00:32:23.980",
+    "end": "00:32:29.210",
+    "text": "And you can find the l of it by putting a diffraction grating."
+  },
+  {
+    "start": "00:32:29.210",
+    "end": "00:32:35.015",
+    "text": "Now, what one could show is that if you took this to be made"
+  },
+  {
+    "start": "00:32:35.015",
+    "end": "00:32:37.865",
+    "text": "of particles, and each particle has an"
+  },
+  {
+    "start": "00:32:37.865",
+    "end": "00:32:40.788",
+    "text": "energy, ℏw, and each particle has a"
+  },
+  {
+    "start": "00:32:40.788",
+    "end": "00:32:44.405",
+    "text": "momentum, ℏk, and that that collides with an"
+  },
+  {
+    "start": "00:32:44.405",
+    "end": "00:32:46.906",
+    "text": "electron, then you just balance energy"
+  },
+  {
+    "start": "00:32:46.906",
+    "end": "00:32:49.558",
+    "text": "conservation and momentum conservation."
+  },
+  {
+    "start": "00:32:49.558",
+    "end": "00:32:52.148",
+    "text": "In any collision, energy and momentum before ="
+  },
+  {
+    "start": "00:32:52.148",
+    "end": "00:32:53.759",
+    "text": "energy and momentum after."
+  },
+  {
+    "start": "00:32:53.759",
+    "end": "00:32:55.790",
+    "text": "You set them equal and you fiddle around,"
+  },
+  {
+    "start": "00:32:55.790",
+    "end": "00:32:58.279",
+    "text": "you can find the new momentum after scattering."
+  },
+  {
+    "start": "00:32:58.279",
+    "end": "00:33:00.547",
+    "text": "From the new momentum, you can extract the new"
+  },
+  {
+    "start": "00:33:00.547",
+    "end": "00:33:03.519",
+    "text": "wavelength and you will find this formula actually works."
+  },
+  {
+    "start": "00:33:03.519",
+    "end": "00:33:07.404",
+    "text": "So I did that in Physics 200, I think, so if you want,"
+  },
+  {
+    "start": "00:33:07.404",
+    "end": "00:33:11.509",
+    "text": "you can go look at that, or maybe it was done for you."
+  },
+  {
+    "start": "00:33:11.509",
+    "end": "00:33:12.000",
+    "text": "I don't know."
+  },
+  {
+    "start": "00:33:12.000",
+    "end": "00:33:15.538",
+    "text": "But Compton's scattering, the scattering due to Compton,"
+  },
+  {
+    "start": "00:33:15.538",
+    "end": "00:33:19.310",
+    "text": "can be completely understood if you think of the incoming beam"
+  },
+  {
+    "start": "00:33:19.310",
+    "end": "00:33:22.959",
+    "text": "of light as made up of particles with that momentum and that"
+  },
+  {
+    "start": "00:33:22.959",
+    "end": "00:33:23.640",
+    "text": "energy."
+  },
+  {
+    "start": "00:33:23.640",
+    "end": "00:33:26.307",
+    "text": "In other words, you're always going to go back"
+  },
+  {
+    "start": "00:33:26.307",
+    "end": "00:33:27.019",
+    "text": "and forth."
+  },
+  {
+    "start": "00:33:27.019",
+    "end": "00:33:30.578",
+    "text": "Light will be characterized by a wavelength and by a momentum."
+  },
+  {
+    "start": "00:33:30.578",
+    "end": "00:33:34.368",
+    "text": "It will be characterized by a frequency and by an energy."
+  },
+  {
+    "start": "00:33:34.368",
+    "end": "00:33:36.635",
+    "text": "When you think about the particles, you'll think of the"
+  },
+  {
+    "start": "00:33:36.635",
+    "end": "00:33:37.558",
+    "text": "energy and momentum."
+  },
+  {
+    "start": "00:33:37.558",
+    "end": "00:33:41.840",
+    "text": "When you think about the waves, you'll think of frequency and"
+  },
+  {
+    "start": "00:33:41.840",
+    "end": "00:33:42.838",
+    "text": "wave number."
+  },
+  {
+    "start": "00:33:42.838",
+    "end": "00:33:45.190",
+    "text": "So this is what really nailed it."
+  },
+  {
+    "start": "00:33:45.190",
+    "end": "00:33:51.000",
+    "text": "After this, you could not doubt the reality of the photons."
+  },
+  {
+    "start": "00:33:51.000",
+    "end": "00:33:55.829",
+    "text": "Okay, now I go back to my old story."
+  },
+  {
+    "start": "00:33:55.829",
+    "end": "00:33:57.420",
+    "text": "Let's remember what it is."
+  },
+  {
+    "start": "00:33:57.420",
+    "end": "00:34:00.891",
+    "text": "The shock is that light, which we were willing to"
+  },
+  {
+    "start": "00:34:00.891",
+    "end": "00:34:03.528",
+    "text": "believe was waves, because Young had done the"
+  },
+  {
+    "start": "00:34:03.528",
+    "end": "00:34:06.576",
+    "text": "interference experiment, is actually made up of"
+  },
+  {
+    "start": "00:34:06.576",
+    "end": "00:34:07.539",
+    "text": "particles."
+  },
+  {
+    "start": "00:34:07.539",
+    "end": "00:34:08.840",
+    "text": "That's the first thing."
+  },
+  {
+    "start": "00:34:08.840",
+    "end": "00:34:10.550",
+    "text": "So who needs the wave?"
+  },
+  {
+    "start": "00:34:10.550",
+    "end": "00:34:13.003",
+    "text": "If you send a single photon into a double slit,"
+  },
+  {
+    "start": "00:34:13.003",
+    "end": "00:34:14.710",
+    "text": "we don't know what it will do."
+  },
+  {
+    "start": "00:34:14.710",
+    "end": "00:34:17.050",
+    "text": "We can only give the odds."
+  },
+  {
+    "start": "00:34:17.050",
+    "end": "00:34:20.233",
+    "text": "To find the odds, we take the photon's wavelength"
+  },
+  {
+    "start": "00:34:20.233",
+    "end": "00:34:23.021",
+    "text": "and we form this wave, and then we form the"
+  },
+  {
+    "start": "00:34:23.021",
+    "end": "00:34:24.679",
+    "text": "interference pattern."
+  },
+  {
+    "start": "00:34:24.679",
+    "end": "00:34:28.393",
+    "text": "And we find out that whenever it is high, it is very likely to"
+  },
+  {
+    "start": "00:34:28.393",
+    "end": "00:34:28.820",
+    "text": "come."
+  },
+  {
+    "start": "00:34:28.820",
+    "end": "00:34:31.085",
+    "text": "Wherever it's low, it's very unlikely,"
+  },
+  {
+    "start": "00:34:31.085",
+    "end": "00:34:32.679",
+    "text": "but at 0, it won't come."
+  },
+  {
+    "start": "00:34:32.679",
+    "end": "00:34:35.181",
+    "text": "So to test this theory, it's not enough to send 1"
+  },
+  {
+    "start": "00:34:35.181",
+    "end": "00:34:35.650",
+    "text": "photon."
+  },
+  {
+    "start": "00:34:35.650",
+    "end": "00:34:39.260",
+    "text": "1 photon may come here; that doesn't show you anything."
+  },
+  {
+    "start": "00:34:39.260",
+    "end": "00:34:42.293",
+    "text": "You've got to send millions of photons, because if a prediction"
+  },
+  {
+    "start": "00:34:42.293",
+    "end": "00:34:44.494",
+    "text": "is probabilistic, to test it, you've got to do"
+  },
+  {
+    "start": "00:34:44.494",
+    "end": "00:34:45.230",
+    "text": "many times."
+  },
+  {
+    "start": "00:34:45.230",
+    "end": "00:34:47.768",
+    "text": "If I give you a coin, and I tell you it's a fair"
+  },
+  {
+    "start": "00:34:47.768",
+    "end": "00:34:50.739",
+    "text": "coin, I toss it a couple of times and I get 1 head and 1"
+  },
+  {
+    "start": "00:34:50.739",
+    "end": "00:34:52.630",
+    "text": "tail, it doesn't mean anything."
+  },
+  {
+    "start": "00:34:52.630",
+    "end": "00:34:55.219",
+    "text": "You want to toss it 500,000 times and see if roughly half"
+  },
+  {
+    "start": "00:34:55.219",
+    "end": "00:34:57.579",
+    "text": "the time it's heads and half the time it's tails."
+  },
+  {
+    "start": "00:34:57.579",
+    "end": "00:35:00.119",
+    "text": "That's when a probabilistic theory is verified."
+  },
+  {
+    "start": "00:35:00.119",
+    "end": "00:35:02.980",
+    "text": "It's not verified by individuals."
+  },
+  {
+    "start": "00:35:02.980",
+    "end": "00:35:06.436",
+    "text": "Insurance companies are always drawing pictures of when I'm"
+  },
+  {
+    "start": "00:35:06.436",
+    "end": "00:35:07.329",
+    "text": "going to die."
+  },
+  {
+    "start": "00:35:07.329",
+    "end": "00:35:12.090",
+    "text": "They've got some plot, and that's my average chance."
+  },
+  {
+    "start": "00:35:12.090",
+    "end": "00:35:15.123",
+    "text": "I don't know when I will be part of that statistic,"
+  },
+  {
+    "start": "00:35:15.123",
+    "end": "00:35:18.340",
+    "text": "because in fact--sorry, it usually looks like this."
+  },
+  {
+    "start": "00:35:18.340",
+    "end": "00:35:22.007",
+    "text": "Life expectancy of people looks like that, but doesn't mean"
+  },
+  {
+    "start": "00:35:22.007",
+    "end": "00:35:23.780",
+    "text": "everybody dies at one day."
+  },
+  {
+    "start": "00:35:23.780",
+    "end": "00:35:27.367",
+    "text": "People are dying left and right, so there's probability on"
+  },
+  {
+    "start": "00:35:27.367",
+    "end": "00:35:28.250",
+    "text": "either side."
+  },
+  {
+    "start": "00:35:28.250",
+    "end": "00:35:31.440",
+    "text": "So to verify this table that companies have got,"
+  },
+  {
+    "start": "00:35:31.440",
+    "end": "00:35:34.018",
+    "text": "you have to watch a huge population."
+  },
+  {
+    "start": "00:35:34.018",
+    "end": "00:35:36.760",
+    "text": "Then you can do the histogram and then you get the profile."
+  },
+  {
+    "start": "00:35:36.760",
+    "end": "00:35:40.474",
+    "text": "So whenever you do statistical theories, you've got to run it"
+  },
+  {
+    "start": "00:35:40.474",
+    "end": "00:35:41.280",
+    "text": "many times."
+  },
+  {
+    "start": "00:35:41.280",
+    "end": "00:35:43.349",
+    "text": "I'll tell you more about statistics and quantum"
+  },
+  {
+    "start": "00:35:43.349",
+    "end": "00:35:43.889",
+    "text": "mechanics."
+  },
+  {
+    "start": "00:35:43.889",
+    "end": "00:35:46.529",
+    "text": "It's different from statistics and classical mechanics and"
+  },
+  {
+    "start": "00:35:46.529",
+    "end": "00:35:47.780",
+    "text": "we'll come to that later."
+  },
+  {
+    "start": "00:35:47.780",
+    "end": "00:35:50.197",
+    "text": "But for now, you must understand the"
+  },
+  {
+    "start": "00:35:50.197",
+    "end": "00:35:52.340",
+    "text": "peculiar behavior of photons."
+  },
+  {
+    "start": "00:35:52.340",
+    "end": "00:35:55.126",
+    "text": "They are not particles entirely, they are not waves"
+  },
+  {
+    "start": "00:35:55.126",
+    "end": "00:35:55.739",
+    "text": "entirely."
+  },
+  {
+    "start": "00:35:55.739",
+    "end": "00:35:59.099",
+    "text": "They are particles in the sense they're localized energy and"
+  },
+  {
+    "start": "00:35:59.099",
+    "end": "00:36:02.460",
+    "text": "momentum, but they don't travel like Newtonian particles."
+  },
+  {
+    "start": "00:36:02.460",
+    "end": "00:36:04.755",
+    "text": "If they were Newtonian particles, you'll never"
+  },
+  {
+    "start": "00:36:04.755",
+    "end": "00:36:07.967",
+    "text": "understand why opening a second slit reduced the amount of light"
+  },
+  {
+    "start": "00:36:07.967",
+    "end": "00:36:09.039",
+    "text": "coming somewhere."
+  },
+  {
+    "start": "00:36:09.039",
+    "end": "00:36:10.900",
+    "text": "All right, so this is the story."
+  },
+  {
+    "start": "00:36:10.900",
+    "end": "00:36:15.159",
+    "text": "So now comes the French physicist,"
+  },
+  {
+    "start": "00:36:15.159",
+    "end": "00:36:19.592",
+    "text": "de Broglie, and he argued as follows - you'll find his"
+  },
+  {
+    "start": "00:36:19.592",
+    "end": "00:36:24.353",
+    "text": "argument quite persuasive, and this is what he did for his"
+  },
+  {
+    "start": "00:36:24.353",
+    "end": "00:36:24.730",
+    "text": "PhD."
+  },
+  {
+    "start": "00:36:24.730",
+    "end": "00:36:29.585",
+    "text": "He said, \"If light, which I thought was a"
+  },
+  {
+    "start": "00:36:29.585",
+    "end": "00:36:32.333",
+    "text": "particle-- I'm sorry, which I thought was"
+  },
+  {
+    "start": "00:36:32.333",
+    "end": "00:36:34.056",
+    "text": "a wave, is actually made up of"
+  },
+  {
+    "start": "00:36:34.056",
+    "end": "00:36:37.159",
+    "text": "particles, perhaps things which I always thought of as"
+  },
+  {
+    "start": "00:36:37.159",
+    "end": "00:36:39.282",
+    "text": "particles, like electrons,"
+  },
+  {
+    "start": "00:36:39.282",
+    "end": "00:36:42.760",
+    "text": "have a wave associated with them.\""
+  },
+  {
+    "start": "00:36:42.760",
+    "end": "00:36:45.309",
+    "text": "And he said, \"Let me postulate that"
+  },
+  {
+    "start": "00:36:45.309",
+    "end": "00:36:48.904",
+    "text": "electrons also have a wave associated with them and that"
+  },
+  {
+    "start": "00:36:48.904",
+    "end": "00:36:52.956",
+    "text": "the wavelength associated with an electron of momentum p"
+  },
+  {
+    "start": "00:36:52.956",
+    "end": "00:36:56.289",
+    "text": "will be 2pℏ /p;"
+  },
+  {
+    "start": "00:36:56.289",
+    "end": "00:37:01.159",
+    "text": "and that this wave will produce the same interference pattern"
+  },
+  {
+    "start": "00:37:01.159",
+    "end": "00:37:06.110",
+    "text": "when you do it with electrons, as you did with light.\""
+  },
+  {
+    "start": "00:37:06.110",
+    "end": "00:37:07.500",
+    "text": "So what does that mean?"
+  },
+  {
+    "start": "00:37:07.500",
+    "end": "00:37:11.239",
+    "text": "It means if you did a double slit experiment,"
+  },
+  {
+    "start": "00:37:11.239",
+    "end": "00:37:13.809",
+    "text": "and you sent electrons of momentum p,"
+  },
+  {
+    "start": "00:37:13.809",
+    "end": "00:37:16.070",
+    "text": "one at a time, and you sit here with an"
+  },
+  {
+    "start": "00:37:16.070",
+    "end": "00:37:20.085",
+    "text": "electron detector, or you have an array of"
+  },
+  {
+    "start": "00:37:20.085",
+    "end": "00:37:25.418",
+    "text": "electron detectors, he claims that the pattern will"
+  },
+  {
+    "start": "00:37:25.418",
+    "end": "00:37:29.373",
+    "text": "look like this, where this pattern is obtained"
+  },
+  {
+    "start": "00:37:29.373",
+    "end": "00:37:34.282",
+    "text": "by using a certain wavelength that corresponds to the momentum"
+  },
+  {
+    "start": "00:37:34.282",
+    "end": "00:37:37.260",
+    "text": "of the incoming beam of electrons."
+  },
+  {
+    "start": "00:37:37.260",
+    "end": "00:37:40.516",
+    "text": "Now there the shock is not that the electron hits one point on"
+  },
+  {
+    "start": "00:37:40.516",
+    "end": "00:37:41.210",
+    "text": "the screen."
+  },
+  {
+    "start": "00:37:41.210",
+    "end": "00:37:43.389",
+    "text": "It supposed to; it's a particle."
+  },
+  {
+    "start": "00:37:43.389",
+    "end": "00:37:46.268",
+    "text": "What is shocking is that when two slits are open,"
+  },
+  {
+    "start": "00:37:46.268",
+    "end": "00:37:49.869",
+    "text": "you don't get any electrons in the location where you used to"
+  },
+  {
+    "start": "00:37:49.869",
+    "end": "00:37:50.949",
+    "text": "get electrons."
+  },
+  {
+    "start": "00:37:50.949",
+    "end": "00:37:54.226",
+    "text": "That is the surprising thing, because if an electron is a"
+  },
+  {
+    "start": "00:37:54.226",
+    "end": "00:37:58.090",
+    "text": "Newtonian particle and you used to go like that through hole 1,"
+  },
+  {
+    "start": "00:37:58.090",
+    "end": "00:38:00.389",
+    "text": "and you used to go like that through hole 2,"
+  },
+  {
+    "start": "00:38:00.389",
+    "end": "00:38:02.150",
+    "text": "if you open the two holes and two slits,"
+  },
+  {
+    "start": "00:38:02.150",
+    "end": "00:38:06.289",
+    "text": "you've got to get the sum of the two numbers."
+  },
+  {
+    "start": "00:38:06.289",
+    "end": "00:38:10.170",
+    "text": "You cannot escape that, because in Newtonian mechanics,"
+  },
+  {
+    "start": "00:38:10.170",
+    "end": "00:38:14.409",
+    "text": "an electron either goes through slit 1 or through slit 2."
+  },
+  {
+    "start": "00:38:14.409",
+    "end": "00:38:16.320",
+    "text": "And therefore, the number coming here is"
+  },
+  {
+    "start": "00:38:16.320",
+    "end": "00:38:19.259",
+    "text": "simply the sum of the ones that went here, the ones that went"
+  },
+  {
+    "start": "00:38:19.259",
+    "end": "00:38:19.699",
+    "text": "here."
+  },
+  {
+    "start": "00:38:19.699",
+    "end": "00:38:22.219",
+    "text": "Now sometimes people think, \"Well,"
+  },
+  {
+    "start": "00:38:22.219",
+    "end": "00:38:24.768",
+    "text": "if you have a lot of electrons coming here,"
+  },
+  {
+    "start": "00:38:24.768",
+    "end": "00:38:28.443",
+    "text": "maybe these guys bumped into these guys and collided and"
+  },
+  {
+    "start": "00:38:28.443",
+    "end": "00:38:32.050",
+    "text": "therefore didn't hit the screen at that point.\""
+  },
+  {
+    "start": "00:38:32.050",
+    "end": "00:38:33.369",
+    "text": "That's a fake."
+  },
+  {
+    "start": "00:38:33.369",
+    "end": "00:38:35.409",
+    "text": "You know you don't have much of a chance with that explanation,"
+  },
+  {
+    "start": "00:38:35.409",
+    "end": "00:38:37.110",
+    "text": "because if there are random collisions,"
+  },
+  {
+    "start": "00:38:37.110",
+    "end": "00:38:39.010",
+    "text": "what are the odds they'll form this beautiful,"
+  },
+  {
+    "start": "00:38:39.010",
+    "end": "00:38:40.539",
+    "text": "repeatable pattern?"
+  },
+  {
+    "start": "00:38:40.539",
+    "end": "00:38:42.199",
+    "text": "Not very big."
+  },
+  {
+    "start": "00:38:42.199",
+    "end": "00:38:44.719",
+    "text": "Furthermore, you can silence that criticism"
+  },
+  {
+    "start": "00:38:44.719",
+    "end": "00:38:48.380",
+    "text": "by making the electron gun that emits electrons so feeble that"
+  },
+  {
+    "start": "00:38:48.380",
+    "end": "00:38:51.309",
+    "text": "at a given time, there's only one electron."
+  },
+  {
+    "start": "00:38:51.309",
+    "end": "00:38:53.340",
+    "text": "There's only one electron in the lab."
+  },
+  {
+    "start": "00:38:53.340",
+    "end": "00:38:55.710",
+    "text": "It left here, then it arrived there."
+  },
+  {
+    "start": "00:38:55.710",
+    "end": "00:38:57.809",
+    "text": "And it cannot collide with itself."
+  },
+  {
+    "start": "00:38:57.809",
+    "end": "00:39:02.599",
+    "text": "And yet it knows two slits are open."
+  },
+  {
+    "start": "00:39:02.599",
+    "end": "00:39:07.150",
+    "text": "A Newtonian particle cannot know that two slits are open."
+  },
+  {
+    "start": "00:39:07.150",
+    "end": "00:39:11.733",
+    "text": "So it has an associated wave, and if you do this calculation"
+  },
+  {
+    "start": "00:39:11.733",
+    "end": "00:39:16.315",
+    "text": "and you find the interference pattern, that's what electrons"
+  },
+  {
+    "start": "00:39:16.315",
+    "end": "00:39:16.860",
+    "text": "do."
+  },
+  {
+    "start": "00:39:16.860",
+    "end": "00:39:18.980",
+    "text": "Originally, it was not done with a double slit."
+  },
+  {
+    "start": "00:39:18.980",
+    "end": "00:39:20.210",
+    "text": "It was done with a crystal."
+  },
+  {
+    "start": "00:39:20.210",
+    "end": "00:39:23.858",
+    "text": "I have given you one homework problem where you can see how a"
+  },
+  {
+    "start": "00:39:23.858",
+    "end": "00:39:27.324",
+    "text": "crystal of atoms regularly arranged can also help you find"
+  },
+  {
+    "start": "00:39:27.324",
+    "end": "00:39:29.210",
+    "text": "the wavelength of anything."
+  },
+  {
+    "start": "00:39:29.210",
+    "end": "00:39:31.940",
+    "text": "And you shine a beam of electrons on a crystal,"
+  },
+  {
+    "start": "00:39:31.940",
+    "end": "00:39:35.280",
+    "text": "you find out that they come out in only one particular angle,"
+  },
+  {
+    "start": "00:39:35.280",
+    "end": "00:39:37.059",
+    "text": "and using the angle, you can find the wavelength,"
+  },
+  {
+    "start": "00:39:37.059",
+    "end": "00:39:39.559",
+    "text": "and the wavelength agrees with the momentum."
+  },
+  {
+    "start": "00:39:39.559",
+    "end": "00:39:40.800",
+    "text": "The momentum of the electron is known,"
+  },
+  {
+    "start": "00:39:40.800",
+    "end": "00:39:44.492",
+    "text": "because if you accelerate them between two plates with a"
+  },
+  {
+    "start": "00:39:44.492",
+    "end": "00:39:47.420",
+    "text": "certain voltage, V, and the electron"
+  },
+  {
+    "start": "00:39:47.420",
+    "end": "00:39:50.878",
+    "text": "drops down the voltage, it gains an energy eV,"
+  },
+  {
+    "start": "00:39:50.878",
+    "end": "00:39:53.070",
+    "text": "which is ½ mv^(2),"
+  },
+  {
+    "start": "00:39:53.070",
+    "end": "00:39:56.030",
+    "text": "which you can also write as p^(2)/2m."
+  },
+  {
+    "start": "00:39:56.030",
+    "end": "00:40:00.992",
+    "text": "So you can find the momentum of an electron before you send it"
+  },
+  {
+    "start": "00:40:00.992",
+    "end": "00:40:01.400",
+    "text": "in."
+  },
+  {
+    "start": "00:40:01.400",
+    "end": "00:40:07.730",
+    "text": "Okay, so this is the peculiarity of particles now."
+  },
+  {
+    "start": "00:40:07.730",
+    "end": "00:40:13.289",
+    "text": "Electron also behaves like a particle or a wave."
+  },
+  {
+    "start": "00:40:13.289",
+    "end": "00:40:19.389",
+    "text": "So now you can ask yourself the following question."
+  },
+  {
+    "start": "00:40:19.389",
+    "end": "00:40:22.360",
+    "text": "Why is it that microscopic bodies--first of all,"
+  },
+  {
+    "start": "00:40:22.360",
+    "end": "00:40:25.329",
+    "text": "I hope you understand how surprising this is."
+  },
+  {
+    "start": "00:40:25.329",
+    "end": "00:40:26.590",
+    "text": "Suppose it was not electrons."
+  },
+  {
+    "start": "00:40:26.590",
+    "end": "00:40:29.481",
+    "text": "Suppose this was not an electron gun,"
+  },
+  {
+    "start": "00:40:29.481",
+    "end": "00:40:31.570",
+    "text": "but a machine gun, okay?"
+  },
+  {
+    "start": "00:40:31.570",
+    "end": "00:40:34.179",
+    "text": "And these are some concrete barriers."
+  },
+  {
+    "start": "00:40:34.179",
+    "end": "00:40:38.480",
+    "text": "The barrier has a hole in it and that's you."
+  },
+  {
+    "start": "00:40:38.480",
+    "end": "00:40:42.378",
+    "text": "They've tied you to the back wall and they're firing bullets"
+  },
+  {
+    "start": "00:40:42.378",
+    "end": "00:40:44.438",
+    "text": "at you, and you're of course very"
+  },
+  {
+    "start": "00:40:44.438",
+    "end": "00:40:47.460",
+    "text": "anxious when a friend of yours comes along and says,"
+  },
+  {
+    "start": "00:40:47.460",
+    "end": "00:40:49.389",
+    "text": "\"I want to help you.\""
+  },
+  {
+    "start": "00:40:49.389",
+    "end": "00:40:54.699",
+    "text": "So let me do that."
+  },
+  {
+    "start": "00:40:54.699",
+    "end": "00:40:57.753",
+    "text": "So you know that that's not a friend, and if you do it with"
+  },
+  {
+    "start": "00:40:57.753",
+    "end": "00:40:59.070",
+    "text": "bullets, it won't help."
+  },
+  {
+    "start": "00:40:59.070",
+    "end": "00:41:00.320",
+    "text": "You cannot reduce the number of bullets."
+  },
+  {
+    "start": "00:41:00.320",
+    "end": "00:41:03.036",
+    "text": "And why is it with electrons--if instead of the big"
+  },
+  {
+    "start": "00:41:03.036",
+    "end": "00:41:05.134",
+    "text": "scenario, we scale the whole thing down"
+  },
+  {
+    "start": "00:41:05.134",
+    "end": "00:41:07.494",
+    "text": "to atomic dimensions, and you're talking about"
+  },
+  {
+    "start": "00:41:07.494",
+    "end": "00:41:10.280",
+    "text": "electrons and slits which are a few micrometers away,"
+  },
+  {
+    "start": "00:41:10.280",
+    "end": "00:41:13.590",
+    "text": "why is it that with electrons, you can do that?"
+  },
+  {
+    "start": "00:41:13.590",
+    "end": "00:41:16.250",
+    "text": "Why is it with bullets you don't do that?"
+  },
+  {
+    "start": "00:41:16.250",
+    "end": "00:41:21.940",
+    "text": "The answer has to do with this wavelength p."
+  },
+  {
+    "start": "00:41:21.940",
+    "end": "00:41:26.202",
+    "text": "If you put for p, m x v and you put"
+  },
+  {
+    "start": "00:41:26.202",
+    "end": "00:41:30.309",
+    "text": "for m the mass of a cannonball or a bullet,"
+  },
+  {
+    "start": "00:41:30.309",
+    "end": "00:41:35.168",
+    "text": "say 1 kilogram, you will find this wavelength"
+  },
+  {
+    "start": "00:41:35.168",
+    "end": "00:41:37.820",
+    "text": "is 10^(-27 )something."
+  },
+  {
+    "start": "00:41:37.820",
+    "end": "00:41:43.054",
+    "text": "That means these oscillations will have maybe 10^(20"
+  },
+  {
+    "start": "00:41:43.054",
+    "end": "00:41:49.010",
+    "text": ")oscillations per centimeter and you cannot detect that."
+  },
+  {
+    "start": "00:41:49.010",
+    "end": "00:41:51.474",
+    "text": "So oscillation, the human eye cannot detect"
+  },
+  {
+    "start": "00:41:51.474",
+    "end": "00:41:54.878",
+    "text": "that, and everything else looks like you're just adding the"
+  },
+  {
+    "start": "00:41:54.878",
+    "end": "00:41:57.579",
+    "text": "intensities, not adding the wave function."
+  },
+  {
+    "start": "00:41:57.579",
+    "end": "00:42:00.985",
+    "text": "It looks like the probabilities are additive,"
+  },
+  {
+    "start": "00:42:00.985",
+    "end": "00:42:04.469",
+    "text": "and you don't see the interference pattern."
+  },
+  {
+    "start": "00:42:04.469",
+    "end": "00:42:07.963",
+    "text": "Now there's another very interesting twist on this"
+  },
+  {
+    "start": "00:42:07.963",
+    "end": "00:42:10.389",
+    "text": "experiment, which is as follows."
+  },
+  {
+    "start": "00:42:10.389",
+    "end": "00:42:12.885",
+    "text": "You go back to that experiment, and you say,"
+  },
+  {
+    "start": "00:42:12.885",
+    "end": "00:42:16.425",
+    "text": "\"Look, I do not buy this notion that an electron does not"
+  },
+  {
+    "start": "00:42:16.425",
+    "end": "00:42:17.820",
+    "text": "go through one slit."
+  },
+  {
+    "start": "00:42:17.820",
+    "end": "00:42:18.750",
+    "text": "I mean, come on."
+  },
+  {
+    "start": "00:42:18.750",
+    "end": "00:42:22.000",
+    "text": "How can it not go through one particular slit?\""
+  },
+  {
+    "start": "00:42:22.000",
+    "end": "00:42:23.800",
+    "text": "So here's what I'm going to do."
+  },
+  {
+    "start": "00:42:23.800",
+    "end": "00:42:28.610",
+    "text": "I'm going to put a light bulb here."
+  },
+  {
+    "start": "00:42:28.610",
+    "end": "00:42:31.409",
+    "text": "I'm going to have the light bulb look at the slit,"
+  },
+  {
+    "start": "00:42:31.409",
+    "end": "00:42:35.315",
+    "text": "and when this guy goes past, I will see whether the guy went"
+  },
+  {
+    "start": "00:42:35.315",
+    "end": "00:42:38.030",
+    "text": "through this slit or through that slit."
+  },
+  {
+    "start": "00:42:38.030",
+    "end": "00:42:40.289",
+    "text": "Then there's no talk about going through both slits or not"
+  },
+  {
+    "start": "00:42:40.289",
+    "end": "00:42:42.710",
+    "text": "going through a definite slit or not having the trajectory."
+  },
+  {
+    "start": "00:42:42.710",
+    "end": "00:42:45.179",
+    "text": "All that's wrong, because I'm going to actually"
+  },
+  {
+    "start": "00:42:45.179",
+    "end": "00:42:48.509",
+    "text": "catch the electron in the act of going through one or the other"
+  },
+  {
+    "start": "00:42:48.509",
+    "end": "00:42:50.119",
+    "text": "by putting a light source."
+  },
+  {
+    "start": "00:42:50.119",
+    "end": "00:42:52.217",
+    "text": "So you put a light source, and whenever it hits an"
+  },
+  {
+    "start": "00:42:52.217",
+    "end": "00:42:54.869",
+    "text": "electron, you will see a flash and you will know whether it was"
+  },
+  {
+    "start": "00:42:54.869",
+    "end": "00:42:56.239",
+    "text": "near this hole or that hole."
+  },
+  {
+    "start": "00:42:56.239",
+    "end": "00:42:58.480",
+    "text": "You make a tally."
+  },
+  {
+    "start": "00:42:58.480",
+    "end": "00:43:01.434",
+    "text": "So you find that a certain number went through hole 1,"
+  },
+  {
+    "start": "00:43:01.434",
+    "end": "00:43:03.610",
+    "text": "a certain number went through hole 2."
+  },
+  {
+    "start": "00:43:03.610",
+    "end": "00:43:05.590",
+    "text": "You add them up, you get the number,"
+  },
+  {
+    "start": "00:43:05.590",
+    "end": "00:43:07.739",
+    "text": "you cannot avoid getting the number."
+  },
+  {
+    "start": "00:43:07.739",
+    "end": "00:43:12.768",
+    "text": "Let's imagine that of our 1,000 electrons, about 20 got by"
+  },
+  {
+    "start": "00:43:12.768",
+    "end": "00:43:15.150",
+    "text": "without your seeing them."
+  },
+  {
+    "start": "00:43:15.150",
+    "end": "00:43:15.860",
+    "text": "It can happen."
+  },
+  {
+    "start": "00:43:15.860",
+    "end": "00:43:17.489",
+    "text": "When you turn the light, you don't see it;"
+  },
+  {
+    "start": "00:43:17.489",
+    "end": "00:43:19.820",
+    "text": "it misses."
+  },
+  {
+    "start": "00:43:19.820",
+    "end": "00:43:24.400",
+    "text": "Then you will find a pattern that looks like this."
+  },
+  {
+    "start": "00:43:24.400",
+    "end": "00:43:29.902",
+    "text": "There'll be a 2 percent wiggle on top of this featureless"
+  },
+  {
+    "start": "00:43:29.902",
+    "end": "00:43:30.690",
+    "text": "curve."
+  },
+  {
+    "start": "00:43:30.690",
+    "end": "00:43:33.219",
+    "text": "In other words, the electrons that you caught"
+  },
+  {
+    "start": "00:43:33.219",
+    "end": "00:43:36.210",
+    "text": "and identified as going through slit 1 or slit 2,"
+  },
+  {
+    "start": "00:43:36.210",
+    "end": "00:43:39.829",
+    "text": "their numbers add up the way they do in Newtonian mechanics,"
+  },
+  {
+    "start": "00:43:39.829",
+    "end": "00:43:42.119",
+    "text": "but the electrons you did not catch,"
+  },
+  {
+    "start": "00:43:42.119",
+    "end": "00:43:45.045",
+    "text": "who slipped by, pretend as if they went through"
+  },
+  {
+    "start": "00:43:45.045",
+    "end": "00:43:48.525",
+    "text": "both the slits, or at least they showed the"
+  },
+  {
+    "start": "00:43:48.525",
+    "end": "00:43:50.429",
+    "text": "interference pattern."
+  },
+  {
+    "start": "00:43:50.429",
+    "end": "00:43:53.063",
+    "text": "That's a very novel thing, that whether you see the"
+  },
+  {
+    "start": "00:43:53.063",
+    "end": "00:43:55.329",
+    "text": "electron or not, makes such a difference."
+  },
+  {
+    "start": "00:43:55.329",
+    "end": "00:43:56.429",
+    "text": "That's all I did."
+  },
+  {
+    "start": "00:43:56.429",
+    "end": "00:43:58.760",
+    "text": "In one case, I caught the electron."
+  },
+  {
+    "start": "00:43:58.760",
+    "end": "00:44:00.119",
+    "text": "In the other case, I slipped by."
+  },
+  {
+    "start": "00:44:00.119",
+    "end": "00:44:04.755",
+    "text": "And whenever it's not observed, it seems to be able to somehow"
+  },
+  {
+    "start": "00:44:04.755",
+    "end": "00:44:06.579",
+    "text": "be aware of two slits."
+  },
+  {
+    "start": "00:44:06.579",
+    "end": "00:44:09.990",
+    "text": "And this was a big surprise, because normally when we study"
+  },
+  {
+    "start": "00:44:09.990",
+    "end": "00:44:13.751",
+    "text": "anything in Newtonian mechanics, you say here's a collision,"
+  },
+  {
+    "start": "00:44:13.751",
+    "end": "00:44:17.159",
+    "text": "ball 1 collides and goes there, you do all the calculations."
+  },
+  {
+    "start": "00:44:17.159",
+    "end": "00:44:19.510",
+    "text": "Meanwhile, we are watching it."
+  },
+  {
+    "start": "00:44:19.510",
+    "end": "00:44:20.920",
+    "text": "Maybe we are not watching it."
+  },
+  {
+    "start": "00:44:20.920",
+    "end": "00:44:21.800",
+    "text": "Who cares?"
+  },
+  {
+    "start": "00:44:21.800",
+    "end": "00:44:24.260",
+    "text": "The answer doesn't depend on whether we are watching or not?"
+  },
+  {
+    "start": "00:44:24.260",
+    "end": "00:44:25.800",
+    "text": "For example, if you have a football game,"
+  },
+  {
+    "start": "00:44:25.800",
+    "end": "00:44:28.030",
+    "text": "and somebody throws the pass, and you close your eyes,"
+  },
+  {
+    "start": "00:44:28.030",
+    "end": "00:44:30.253",
+    "text": "which sometimes my kids do, because they don't know what's"
+  },
+  {
+    "start": "00:44:30.253",
+    "end": "00:44:32.601",
+    "text": "happening, that doesn't change the outcome"
+  },
+  {
+    "start": "00:44:32.601",
+    "end": "00:44:33.730",
+    "text": "of the experiment."
+  },
+  {
+    "start": "00:44:33.730",
+    "end": "00:44:36.000",
+    "text": "It follows its own trajectory."
+  },
+  {
+    "start": "00:44:36.000",
+    "end": "00:44:38.940",
+    "text": "So what does seeing do to anything?"
+  },
+  {
+    "start": "00:44:38.940",
+    "end": "00:44:42.327",
+    "text": "And you can say maybe he didn't see it, but maybe people in the"
+  },
+  {
+    "start": "00:44:42.327",
+    "end": "00:44:44.460",
+    "text": "stadium were looking at the football."
+  },
+  {
+    "start": "00:44:44.460",
+    "end": "00:44:46.820",
+    "text": "So turn off all the lights."
+  },
+  {
+    "start": "00:44:46.820",
+    "end": "00:44:49.594",
+    "text": "Then does the football have a definite trajectory from start"
+  },
+  {
+    "start": "00:44:49.594",
+    "end": "00:44:50.159",
+    "text": "to finish?"
+  },
+  {
+    "start": "00:44:50.159",
+    "end": "00:44:54.719",
+    "text": "It does, because it's colliding with all these air molecules."
+  },
+  {
+    "start": "00:44:54.719",
+    "end": "00:44:56.731",
+    "text": "To remove all the air molecules, of course,"
+  },
+  {
+    "start": "00:44:56.731",
+    "end": "00:44:59.365",
+    "text": "first you remove all the spectators, then you remove all"
+  },
+  {
+    "start": "00:44:59.365",
+    "end": "00:45:00.420",
+    "text": "the air molecules."
+  },
+  {
+    "start": "00:45:00.420",
+    "end": "00:45:02.000",
+    "text": "Then does it have a definite trajectory?"
+  },
+  {
+    "start": "00:45:02.000",
+    "end": "00:45:03.429",
+    "text": "You might say, \"Of course it does."
+  },
+  {
+    "start": "00:45:03.429",
+    "end": "00:45:04.949",
+    "text": "What difference does it make?\""
+  },
+  {
+    "start": "00:45:04.949",
+    "end": "00:45:07.230",
+    "text": "But then you would be wrong."
+  },
+  {
+    "start": "00:45:07.230",
+    "end": "00:45:09.449",
+    "text": "You would be wrong to think it had a trajectory,"
+  },
+  {
+    "start": "00:45:09.449",
+    "end": "00:45:11.900",
+    "text": "because the minute you said it had a trajectory,"
+  },
+  {
+    "start": "00:45:11.900",
+    "end": "00:45:14.039",
+    "text": "you will never understand interference,"
+  },
+  {
+    "start": "00:45:14.039",
+    "end": "00:45:16.590",
+    "text": "which even a football can show."
+  },
+  {
+    "start": "00:45:16.590",
+    "end": "00:45:19.099",
+    "text": "But the condition is, for a football to show this"
+  },
+  {
+    "start": "00:45:19.099",
+    "end": "00:45:21.869",
+    "text": "kind of quantum effects, it should not be disturbed by"
+  },
+  {
+    "start": "00:45:21.869",
+    "end": "00:45:22.550",
+    "text": "anything."
+  },
+  {
+    "start": "00:45:22.550",
+    "end": "00:45:24.849",
+    "text": "It should not be seen."
+  },
+  {
+    "start": "00:45:24.849",
+    "end": "00:45:27.139",
+    "text": "Nothing can collide with it."
+  },
+  {
+    "start": "00:45:27.139",
+    "end": "00:45:30.155",
+    "text": "The minute you interact with a quantum system,"
+  },
+  {
+    "start": "00:45:30.155",
+    "end": "00:45:33.974",
+    "text": "it stops doing this wishy-washy business of \"Where am"
+  },
+  {
+    "start": "00:45:33.974",
+    "end": "00:45:34.780",
+    "text": "I?\""
+  },
+  {
+    "start": "00:45:34.780",
+    "end": "00:45:36.650",
+    "text": "Till you see it, it's not anywhere."
+  },
+  {
+    "start": "00:45:36.650",
+    "end": "00:45:38.849",
+    "text": "Once you see it, it's in a different location."
+  },
+  {
+    "start": "00:45:38.849",
+    "end": "00:45:41.079",
+    "text": "Till you see it, it's not taking any particular"
+  },
+  {
+    "start": "00:45:41.079",
+    "end": "00:45:41.420",
+    "text": "path."
+  },
+  {
+    "start": "00:45:41.420",
+    "end": "00:45:44.550",
+    "text": "To assume it took this or that path is simply wrong."
+  },
+  {
+    "start": "00:45:44.550",
+    "end": "00:45:47.840",
+    "text": "But the act of observation nails it."
+  },
+  {
+    "start": "00:45:47.840",
+    "end": "00:45:50.119",
+    "text": "So why is observation so important?"
+  },
+  {
+    "start": "00:45:50.119",
+    "end": "00:45:52.050",
+    "text": "You have to ask how we observe things."
+  },
+  {
+    "start": "00:45:52.050",
+    "end": "00:45:53.900",
+    "text": "We shine light."
+  },
+  {
+    "start": "00:45:53.900",
+    "end": "00:45:56.617",
+    "text": "You've already seen, the light is made of quanta,"
+  },
+  {
+    "start": "00:45:56.617",
+    "end": "00:45:59.675",
+    "text": "and each quantum carries a certain momentum and certain"
+  },
+  {
+    "start": "00:45:59.675",
+    "end": "00:46:00.300",
+    "text": "energy."
+  },
+  {
+    "start": "00:46:00.300",
+    "end": "00:46:05.000",
+    "text": "If I want to locate the electron with some waves,"
+  },
+  {
+    "start": "00:46:05.000",
+    "end": "00:46:07.641",
+    "text": "with some light, I want the momentum of the"
+  },
+  {
+    "start": "00:46:07.641",
+    "end": "00:46:10.193",
+    "text": "light to be weak, because I don't want to slam"
+  },
+  {
+    "start": "00:46:10.193",
+    "end": "00:46:12.409",
+    "text": "the electron too hard in the act of finding it."
+  },
+  {
+    "start": "00:46:12.409",
+    "end": "00:46:14.429",
+    "text": "So I want p to be very small."
+  },
+  {
+    "start": "00:46:14.429",
+    "end": "00:46:17.768",
+    "text": "If p is very small, l,"
+  },
+  {
+    "start": "00:46:17.768",
+    "end": "00:46:20.340",
+    "text": "which is 2pℏ /p becomes large,"
+  },
+  {
+    "start": "00:46:20.340",
+    "end": "00:46:23.780",
+    "text": "and once l's bigger than the spacing between the slits,"
+  },
+  {
+    "start": "00:46:23.780",
+    "end": "00:46:25.869",
+    "text": "the picture you get will be so fuzzy,"
+  },
+  {
+    "start": "00:46:25.869",
+    "end": "00:46:28.619",
+    "text": "you cannot tell which slit it went through."
+  },
+  {
+    "start": "00:46:28.619",
+    "end": "00:46:31.152",
+    "text": "In other words, to make a fine observation in"
+  },
+  {
+    "start": "00:46:31.152",
+    "end": "00:46:34.320",
+    "text": "optics, you need a wavelength smaller than the distances"
+  },
+  {
+    "start": "00:46:34.320",
+    "end": "00:46:35.989",
+    "text": "you're trying to resolve."
+  },
+  {
+    "start": "00:46:35.989",
+    "end": "00:46:38.710",
+    "text": "So you've got to use a wavelength smaller than these"
+  },
+  {
+    "start": "00:46:38.710",
+    "end": "00:46:39.349",
+    "text": "two slits."
+  },
+  {
+    "start": "00:46:39.349",
+    "end": "00:46:44.204",
+    "text": "So this p should be such that this l is comparable"
+  },
+  {
+    "start": "00:46:44.204",
+    "end": "00:46:46.670",
+    "text": "to this slit, or even smaller."
+  },
+  {
+    "start": "00:46:46.670",
+    "end": "00:46:50.650",
+    "text": "But then you will find the act of observing the electron"
+  },
+  {
+    "start": "00:46:50.650",
+    "end": "00:46:53.980",
+    "text": "imparts to it an unknown amount of momentum."
+  },
+  {
+    "start": "00:46:53.980",
+    "end": "00:46:58.476",
+    "text": "Once you change the momentum, you change the interference"
+  },
+  {
+    "start": "00:46:58.476",
+    "end": "00:46:59.280",
+    "text": "pattern."
+  },
+  {
+    "start": "00:46:59.280",
+    "end": "00:47:03.639",
+    "text": "So the act of observation, which is pretty innocuous for"
+  },
+  {
+    "start": "00:47:03.639",
+    "end": "00:47:06.942",
+    "text": "you and me-- right now, I'm getting slammed"
+  },
+  {
+    "start": "00:47:06.942",
+    "end": "00:47:11.300",
+    "text": "by millions of photons, but I'm taking it like a man."
+  },
+  {
+    "start": "00:47:11.300",
+    "end": "00:47:13.610",
+    "text": "But for the electron, it is not that simple."
+  },
+  {
+    "start": "00:47:13.610",
+    "end": "00:47:16.760",
+    "text": "One collision with a photon is like getting hit by a truck."
+  },
+  {
+    "start": "00:47:16.760",
+    "end": "00:47:19.827",
+    "text": "The momentum of the photon is enormous in the scale of the"
+  },
+  {
+    "start": "00:47:19.827",
+    "end": "00:47:20.420",
+    "text": "electron."
+  },
+  {
+    "start": "00:47:20.420",
+    "end": "00:47:22.550",
+    "text": "So it matters a lot to the electron."
+  },
+  {
+    "start": "00:47:22.550",
+    "end": "00:47:24.199",
+    "text": "For example, when I observe you,"
+  },
+  {
+    "start": "00:47:24.199",
+    "end": "00:47:26.860",
+    "text": "I see you because photons bounce back and forth."
+  },
+  {
+    "start": "00:47:26.860",
+    "end": "00:47:29.925",
+    "text": "Suppose it's a dark room and I was swinging one of those things"
+  },
+  {
+    "start": "00:47:29.925",
+    "end": "00:47:31.409",
+    "text": "you see in Gladiator."
+  },
+  {
+    "start": "00:47:31.409",
+    "end": "00:47:32.630",
+    "text": "What's that thing called?"
+  },
+  {
+    "start": "00:47:32.630",
+    "end": "00:47:33.909",
+    "text": "Trying to locate you."
+  },
+  {
+    "start": "00:47:33.909",
+    "end": "00:47:36.663",
+    "text": "So the act of location, you realize it will be"
+  },
+  {
+    "start": "00:47:36.663",
+    "end": "00:47:39.355",
+    "text": "memorable for you, because it's a destructive"
+  },
+  {
+    "start": "00:47:39.355",
+    "end": "00:47:40.090",
+    "text": "process."
+  },
+  {
+    "start": "00:47:40.090",
+    "end": "00:47:43.628",
+    "text": "But in Newtonian mechanics, we can imagine finding gentler"
+  },
+  {
+    "start": "00:47:43.628",
+    "end": "00:47:47.228",
+    "text": "ways to observe somebody and there's no limit to how gentle"
+  },
+  {
+    "start": "00:47:47.228",
+    "end": "00:47:47.849",
+    "text": "it is."
+  },
+  {
+    "start": "00:47:47.849",
+    "end": "00:47:51.092",
+    "text": "You just say make the light dimmer and dimmer and dimmer"
+  },
+  {
+    "start": "00:47:51.092",
+    "end": "00:47:52.920",
+    "text": "till the person doesn't care."
+  },
+  {
+    "start": "00:47:52.920",
+    "end": "00:47:56.489",
+    "text": "But in quantum theory, it's not how dim the light is."
+  },
+  {
+    "start": "00:47:56.489",
+    "end": "00:47:59.197",
+    "text": "If the light is too dim, there are too few photons and"
+  },
+  {
+    "start": "00:47:59.197",
+    "end": "00:48:00.730",
+    "text": "nobody catches the electron."
+  },
+  {
+    "start": "00:48:00.730",
+    "end": "00:48:03.480",
+    "text": "In order to see the electron, you've got to send enough"
+  },
+  {
+    "start": "00:48:03.480",
+    "end": "00:48:03.989",
+    "text": "photons."
+  },
+  {
+    "start": "00:48:03.989",
+    "end": "00:48:07.161",
+    "text": "But the point is, each one carries a punch which"
+  },
+  {
+    "start": "00:48:07.161",
+    "end": "00:48:08.039",
+    "text": "is minimum."
+  },
+  {
+    "start": "00:48:08.039",
+    "end": "00:48:10.965",
+    "text": "It cannot be smaller than this number, because if the"
+  },
+  {
+    "start": "00:48:10.965",
+    "end": "00:48:14.342",
+    "text": "wavelength is bigger than this, you cannot tell which hole it"
+  },
+  {
+    "start": "00:48:14.342",
+    "end": "00:48:15.300",
+    "text": "went through."
+  },
+  {
+    "start": "00:48:15.300",
+    "end": "00:48:18.996",
+    "text": "That's why in quantum theory, the act of observation is very"
+  },
+  {
+    "start": "00:48:18.996",
+    "end": "00:48:21.690",
+    "text": "important, and it can change the outcome."
+  },
+  {
+    "start": "00:48:21.690",
+    "end": "00:48:28.309",
+    "text": "Okay, so what can we figure out from this."
+  },
+  {
+    "start": "00:48:28.309",
+    "end": "00:48:32.474",
+    "text": "Well, it looks like the act of observing somehow affects the"
+  },
+  {
+    "start": "00:48:32.474",
+    "end": "00:48:34.380",
+    "text": "momentum of the electron."
+  },
+  {
+    "start": "00:48:34.380",
+    "end": "00:48:37.380",
+    "text": "So people often say that's why, when you try to measure the"
+  },
+  {
+    "start": "00:48:37.380",
+    "end": "00:48:40.068",
+    "text": "position of the electron, you do something bad to the"
+  },
+  {
+    "start": "00:48:40.068",
+    "end": "00:48:41.570",
+    "text": "momentum of the electron."
+  },
+  {
+    "start": "00:48:41.570",
+    "end": "00:48:44.255",
+    "text": "We change it, because you need a large"
+  },
+  {
+    "start": "00:48:44.255",
+    "end": "00:48:46.940",
+    "text": "momentum to see it very accurately."
+  },
+  {
+    "start": "00:48:46.940",
+    "end": "00:48:51.279",
+    "text": "But that statement is partly correct but partly incomplete"
+  },
+  {
+    "start": "00:48:51.279",
+    "end": "00:48:53.639",
+    "text": "and I'll tell you what it is."
+  },
+  {
+    "start": "00:48:53.639",
+    "end": "00:48:56.715",
+    "text": "The trouble is not that you use a high momentum photon to see an"
+  },
+  {
+    "start": "00:48:56.715",
+    "end": "00:48:57.739",
+    "text": "electron precisely."
+  },
+  {
+    "start": "00:48:57.739",
+    "end": "00:49:00.059",
+    "text": "That's not a problem."
+  },
+  {
+    "start": "00:49:00.059",
+    "end": "00:49:02.664",
+    "text": "The problem is that when it bounces off the electron and"
+  },
+  {
+    "start": "00:49:02.664",
+    "end": "00:49:04.893",
+    "text": "comes back to you, it would have changed,"
+  },
+  {
+    "start": "00:49:04.893",
+    "end": "00:49:07.809",
+    "text": "the momentum by an amount that you cannot predict,"
+  },
+  {
+    "start": "00:49:07.809",
+    "end": "00:49:10.239",
+    "text": "and I'll tell you why that is the case."
+  },
+  {
+    "start": "00:49:10.239",
+    "end": "00:49:14.516",
+    "text": "So I told you long back that if you have a hole and light comes"
+  },
+  {
+    "start": "00:49:14.516",
+    "end": "00:49:18.032",
+    "text": "in through it, it doesn't go straight,"
+  },
+  {
+    "start": "00:49:18.032",
+    "end": "00:49:21.637",
+    "text": "it fans out, that the profile of light looks"
+  },
+  {
+    "start": "00:49:21.637",
+    "end": "00:49:22.409",
+    "text": "like this."
+  },
+  {
+    "start": "00:49:22.409",
+    "end": "00:49:28.679",
+    "text": "It spreads out and the angle by which it spreads out obeys the"
+  },
+  {
+    "start": "00:49:28.679",
+    "end": "00:49:32.380",
+    "text": "condition dsinq = l."
+  },
+  {
+    "start": "00:49:32.380",
+    "end": "00:49:35.360",
+    "text": "Remember that part from wave theory of light."
+  },
+  {
+    "start": "00:49:35.360",
+    "end": "00:49:39.114",
+    "text": "Now here is the person trying to catch an electron,"
+  },
+  {
+    "start": "00:49:39.114",
+    "end": "00:49:41.969",
+    "text": "which is somewhere around this line."
+  },
+  {
+    "start": "00:49:41.969",
+    "end": "00:49:47.280",
+    "text": "And he or she brings a microscope that looks like this."
+  },
+  {
+    "start": "00:49:47.280",
+    "end": "00:49:51.617",
+    "text": "Here's the opening of the microscope, and you send some"
+  },
+  {
+    "start": "00:49:51.617",
+    "end": "00:49:52.260",
+    "text": "light."
+  },
+  {
+    "start": "00:49:52.260",
+    "end": "00:49:58.559",
+    "text": "This opening of the microscope has some extent d."
+  },
+  {
+    "start": "00:49:58.559",
+    "end": "00:50:05.610",
+    "text": "Let's say it's got a sharp opening here of width d."
+  },
+  {
+    "start": "00:50:05.610",
+    "end": "00:50:08.612",
+    "text": "The light comes, hits an electron,"
+  },
+  {
+    "start": "00:50:08.612",
+    "end": "00:50:12.344",
+    "text": "if it is there, and goes right back to the"
+  },
+  {
+    "start": "00:50:12.344",
+    "end": "00:50:13.710",
+    "text": "microscope."
+  },
+  {
+    "start": "00:50:13.710",
+    "end": "00:50:16.519",
+    "text": "If I see a flicker of reflected light, I know the electron had"
+  },
+  {
+    "start": "00:50:16.519",
+    "end": "00:50:18.456",
+    "text": "to be somewhere here, because if it's here,"
+  },
+  {
+    "start": "00:50:18.456",
+    "end": "00:50:20.530",
+    "text": "it's not going to collide with the light."
+  },
+  {
+    "start": "00:50:20.530",
+    "end": "00:50:23.666",
+    "text": "So you agree, this is a way to locate the"
+  },
+  {
+    "start": "00:50:23.666",
+    "end": "00:50:28.061",
+    "text": "electron's position with an uncertainty, which is roughly"
+  },
+  {
+    "start": "00:50:28.061",
+    "end": "00:50:29.630",
+    "text": "d, right?"
+  },
+  {
+    "start": "00:50:29.630",
+    "end": "00:50:33.141",
+    "text": "The electron had to be in front of the opening of the microscope"
+  },
+  {
+    "start": "00:50:33.141",
+    "end": "00:50:35.150",
+    "text": "for me to actually see that flash."
+  },
+  {
+    "start": "00:50:35.150",
+    "end": "00:50:37.943",
+    "text": "So I make an electron microscope with a very tiny"
+  },
+  {
+    "start": "00:50:37.943",
+    "end": "00:50:39.688",
+    "text": "hole, and I'm scanning back and"
+  },
+  {
+    "start": "00:50:39.688",
+    "end": "00:50:42.809",
+    "text": "forth, hoping one day I will hit an electron and one day I hit"
+  },
+  {
+    "start": "00:50:42.809",
+    "end": "00:50:45.659",
+    "text": "the electron, it sends the light right back."
+  },
+  {
+    "start": "00:50:45.659",
+    "end": "00:50:47.510",
+    "text": "This has momentum p."
+  },
+  {
+    "start": "00:50:47.510",
+    "end": "00:50:49.853",
+    "text": "It also sends back with momentum p,"
+  },
+  {
+    "start": "00:50:49.853",
+    "end": "00:50:51.340",
+    "text": "but there's one problem."
+  },
+  {
+    "start": "00:50:51.340",
+    "end": "00:50:58.980",
+    "text": "You know that light entering an aperture will spread out."
+  },
+  {
+    "start": "00:50:58.980",
+    "end": "00:50:59.789",
+    "text": "It won't go straight through."
+  },
+  {
+    "start": "00:50:59.789",
+    "end": "00:51:00.909",
+    "text": "This is this process."
+  },
+  {
+    "start": "00:51:00.909",
+    "end": "00:51:04.179",
+    "text": "So if you think of this light entering your microscope,"
+  },
+  {
+    "start": "00:51:04.179",
+    "end": "00:51:05.210",
+    "text": "it spreads out."
+  },
+  {
+    "start": "00:51:05.210",
+    "end": "00:51:09.329",
+    "text": "If it spreads out, it means the photon that"
+  },
+  {
+    "start": "00:51:09.329",
+    "end": "00:51:14.920",
+    "text": "bounced back can have a momentum anywhere in this cone."
+  },
+  {
+    "start": "00:51:14.920",
+    "end": "00:51:17.050",
+    "text": "And we don't know where it is."
+  },
+  {
+    "start": "00:51:17.050",
+    "end": "00:51:19.429",
+    "text": "All we know is it re-entered the microscope,"
+  },
+  {
+    "start": "00:51:19.429",
+    "end": "00:51:21.673",
+    "text": "entered this cone, but anywhere in this cone is"
+  },
+  {
+    "start": "00:51:21.673",
+    "end": "00:51:23.961",
+    "text": "possible, because there's a sizeable"
+  },
+  {
+    "start": "00:51:23.961",
+    "end": "00:51:27.565",
+    "text": "chance the light will come anywhere into this diffracted"
+  },
+  {
+    "start": "00:51:27.565",
+    "end": "00:51:28.219",
+    "text": "region."
+  },
+  {
+    "start": "00:51:28.219",
+    "end": "00:51:31.778",
+    "text": "That means the final photon's momentum magnitude may be"
+  },
+  {
+    "start": "00:51:31.778",
+    "end": "00:51:35.206",
+    "text": "p_0, but its direction is indefinite"
+  },
+  {
+    "start": "00:51:35.206",
+    "end": "00:51:36.460",
+    "text": "by an amount q."
+  },
+  {
+    "start": "00:51:36.460",
+    "end": "00:51:40.539",
+    "text": "Therefore the photon's momentum has a horizontal part,"
+  },
+  {
+    "start": "00:51:40.539",
+    "end": "00:51:44.460",
+    "text": "p_0sine q, which is an uncertainty in the"
+  },
+  {
+    "start": "00:51:44.460",
+    "end": "00:51:47.969",
+    "text": "momentum of the photon in the x direction."
+  },
+  {
+    "start": "00:51:47.969",
+    "end": "00:51:52.329",
+    "text": "This is my x direction."
+  },
+  {
+    "start": "00:51:52.329",
+    "end": "00:51:55.807",
+    "text": "So now you can see that Dpx ="
+  },
+  {
+    "start": "00:51:55.807",
+    "end": "00:51:58.210",
+    "text": "p_0sine q."
+  },
+  {
+    "start": "00:51:58.210",
+    "end": "00:52:03.719",
+    "text": "Sine q is l over the width of the slit."
+  },
+  {
+    "start": "00:52:03.719",
+    "end": "00:52:07.018",
+    "text": "And l was 2pℏ"
+  },
+  {
+    "start": "00:52:07.018",
+    "end": "00:52:11.480",
+    "text": "/p_0 over d."
+  },
+  {
+    "start": "00:52:11.480",
+    "end": "00:52:16.715",
+    "text": "You can see that these p_0's cancel,"
+  },
+  {
+    "start": "00:52:16.715",
+    "end": "00:52:20.237",
+    "text": "then you get d x Dpx ="
+  },
+  {
+    "start": "00:52:20.237",
+    "end": "00:52:23.360",
+    "text": "2pℏ."
+  },
+  {
+    "start": "00:52:23.360",
+    "end": "00:52:26.773",
+    "text": "By the way, another good news is I'm going to give you very"
+  },
+  {
+    "start": "00:52:26.773",
+    "end": "00:52:29.010",
+    "text": "detailed notes on quantum mechanics."
+  },
+  {
+    "start": "00:52:29.010",
+    "end": "00:52:31.599",
+    "text": "I'm not following the textbook, and I know you have to choose"
+  },
+  {
+    "start": "00:52:31.599",
+    "end": "00:52:33.929",
+    "text": "between listening to me and writing down everything."
+  },
+  {
+    "start": "00:52:33.929",
+    "end": "00:52:36.621",
+    "text": "So everything I'm saying here, you will find in those notes,"
+  },
+  {
+    "start": "00:52:36.621",
+    "end": "00:52:38.719",
+    "text": "so don't worry if you didn't get everything."
+  },
+  {
+    "start": "00:52:38.719",
+    "end": "00:52:41.039",
+    "text": "You will have a second chance to look at it."
+  },
+  {
+    "start": "00:52:41.039",
+    "end": "00:52:43.862",
+    "text": "But what you find here is that d x Dpx is"
+  },
+  {
+    "start": "00:52:43.862",
+    "end": "00:52:46.797",
+    "text": "2pℏ, but d is the uncertainty"
+  },
+  {
+    "start": "00:52:46.797",
+    "end": "00:52:49.704",
+    "text": "in the location of the electron, so you get Dx,"
+  },
+  {
+    "start": "00:52:49.704",
+    "end": "00:52:52.179",
+    "text": "Dpx, I'm not going to say =,"
+  },
+  {
+    "start": "00:52:52.179",
+    "end": "00:52:56.590",
+    "text": "roughly of order, ℏ."
+  },
+  {
+    "start": "00:52:56.590",
+    "end": "00:52:59.018",
+    "text": "Forget the 2p's and everything."
+  },
+  {
+    "start": "00:52:59.018",
+    "end": "00:53:03.806",
+    "text": "This is a very tiny number, 10^(-34), so we don't care if"
+  },
+  {
+    "start": "00:53:03.806",
+    "end": "00:53:05.260",
+    "text": "there are 2p's."
+  },
+  {
+    "start": "00:53:05.260",
+    "end": "00:53:10.733",
+    "text": "But what this tells you is that in the act of locating the"
+  },
+  {
+    "start": "00:53:10.733",
+    "end": "00:53:14.190",
+    "text": "electron--so let's understand why."
+  },
+  {
+    "start": "00:53:14.190",
+    "end": "00:53:16.951",
+    "text": "It's a constant going back and forth between waves and"
+  },
+  {
+    "start": "00:53:16.951",
+    "end": "00:53:17.889",
+    "text": "particles, okay?"
+  },
+  {
+    "start": "00:53:17.889",
+    "end": "00:53:20.360",
+    "text": "That's why this happens."
+  },
+  {
+    "start": "00:53:20.360",
+    "end": "00:53:23.972",
+    "text": "I want to see an electron and I want to know exactly where I saw"
+  },
+  {
+    "start": "00:53:23.972",
+    "end": "00:53:24.260",
+    "text": "it."
+  },
+  {
+    "start": "00:53:24.260",
+    "end": "00:53:26.764",
+    "text": "So I take a microscope with a very small opening,"
+  },
+  {
+    "start": "00:53:26.764",
+    "end": "00:53:29.632",
+    "text": "so that if I see that guy, I know it has to be somewhere"
+  },
+  {
+    "start": "00:53:29.632",
+    "end": "00:53:30.989",
+    "text": "in front of that hole."
+  },
+  {
+    "start": "00:53:30.989",
+    "end": "00:53:34.719",
+    "text": "But the photon that came down and bounced off it,"
+  },
+  {
+    "start": "00:53:34.719",
+    "end": "00:53:38.157",
+    "text": "if you now use wave theory, the wave will spread out when"
+  },
+  {
+    "start": "00:53:38.157",
+    "end": "00:53:40.860",
+    "text": "it re-enters the cone by minimal angle q,"
+  },
+  {
+    "start": "00:53:40.860",
+    "end": "00:53:43.469",
+    "text": "given by dsine q = l."
+  },
+  {
+    "start": "00:53:43.469",
+    "end": "00:53:47.137",
+    "text": "That means the photon will also come at a range of angles,"
+  },
+  {
+    "start": "00:53:47.137",
+    "end": "00:53:50.032",
+    "text": "spread out, but if it comes at a tilted angle,"
+  },
+  {
+    "start": "00:53:50.032",
+    "end": "00:53:52.670",
+    "text": "it certainly has horizontal momentum."
+  },
+  {
+    "start": "00:53:52.670",
+    "end": "00:53:55.545",
+    "text": "That extra horizontal momentum should be imparted to the"
+  },
+  {
+    "start": "00:53:55.545",
+    "end": "00:53:58.579",
+    "text": "particle, because initially, the momentum of this thing was"
+  },
+  {
+    "start": "00:53:58.579",
+    "end": "00:53:59.730",
+    "text": "strictly vertical."
+  },
+  {
+    "start": "00:53:59.730",
+    "end": "00:54:03.228",
+    "text": "So the photon has given a certain horizontal momentum to"
+  },
+  {
+    "start": "00:54:03.228",
+    "end": "00:54:06.789",
+    "text": "the electron and you don't know how much it has given."
+  },
+  {
+    "start": "00:54:06.789",
+    "end": "00:54:10.320",
+    "text": "And smaller your opening, so the better you try to locate"
+  },
+  {
+    "start": "00:54:10.320",
+    "end": "00:54:13.086",
+    "text": "the electron, bigger will be the spreading"
+  },
+  {
+    "start": "00:54:13.086",
+    "end": "00:54:16.539",
+    "text": "out, and bigger will be the uncertainty in the reflected"
+  },
+  {
+    "start": "00:54:16.539",
+    "end": "00:54:20.809",
+    "text": "photon and therefore uncertainty in the electron after collision."
+  },
+  {
+    "start": "00:54:20.809",
+    "end": "00:54:23.518",
+    "text": "So before the collision, you could have had an electron"
+  },
+  {
+    "start": "00:54:23.518",
+    "end": "00:54:25.976",
+    "text": "with perfectly well known momentum in the x"
+  },
+  {
+    "start": "00:54:25.976",
+    "end": "00:54:26.679",
+    "text": "direction."
+  },
+  {
+    "start": "00:54:26.679",
+    "end": "00:54:29.090",
+    "text": "But after you saw it, you don't know its x"
+  },
+  {
+    "start": "00:54:29.090",
+    "end": "00:54:31.503",
+    "text": "momentum very well, because the photon's x"
+  },
+  {
+    "start": "00:54:31.503",
+    "end": "00:54:32.809",
+    "text": "momentum is not known."
+  },
+  {
+    "start": "00:54:32.809",
+    "end": "00:54:35.277",
+    "text": "I want you to appreciate, it's not the fact that the"
+  },
+  {
+    "start": "00:54:35.277",
+    "end": "00:54:37.940",
+    "text": "photon came in its large momentum that's the problem;"
+  },
+  {
+    "start": "00:54:37.940",
+    "end": "00:54:41.197",
+    "text": "it is that it went back into the microscope with a slight"
+  },
+  {
+    "start": "00:54:41.197",
+    "end": "00:54:44.398",
+    "text": "uncertainty in its angle, that comes from diffraction of"
+  },
+  {
+    "start": "00:54:44.398",
+    "end": "00:54:44.980",
+    "text": "light."
+  },
+  {
+    "start": "00:54:44.980",
+    "end": "00:54:47.056",
+    "text": "It's the uncertainty of the angle that turns into"
+  },
+  {
+    "start": "00:54:47.056",
+    "end": "00:54:49.480",
+    "text": "uncertainty in the x component of the momentum."
+  },
+  {
+    "start": "00:54:49.480",
+    "end": "00:54:51.630",
+    "text": "So basically, collision of light with"
+  },
+  {
+    "start": "00:54:51.630",
+    "end": "00:54:55.038",
+    "text": "electrons leaves the electron with an extra momentum whose"
+  },
+  {
+    "start": "00:54:55.038",
+    "end": "00:54:58.784",
+    "text": "value we don't know precisely, because the act of seeing the"
+  },
+  {
+    "start": "00:54:58.784",
+    "end": "00:55:01.867",
+    "text": "photon with the microscope necessarily means it accepts"
+  },
+  {
+    "start": "00:55:01.867",
+    "end": "00:55:03.809",
+    "text": "photons with a range of angles."
+  },
+  {
+    "start": "00:55:03.809",
+    "end": "00:55:11.210",
+    "text": "Okay, so now I want to tell you a little more about the"
+  },
+  {
+    "start": "00:55:11.210",
+    "end": "00:55:17.239",
+    "text": "uncertainty principle in another language."
+  },
+  {
+    "start": "00:55:17.239",
+    "end": "00:55:23.219",
+    "text": "The language is this - here is a slit."
+  },
+  {
+    "start": "00:55:23.219",
+    "end": "00:55:26.289",
+    "text": "Okay, here's one way to state the uncertainty principle."
+  },
+  {
+    "start": "00:55:26.289",
+    "end": "00:55:30.646",
+    "text": "I challenge you to produce for me an electron whose location is"
+  },
+  {
+    "start": "00:55:30.646",
+    "end": "00:55:34.159",
+    "text": "known to arbitrary accuracy and whose momentum,"
+  },
+  {
+    "start": "00:55:34.159",
+    "end": "00:55:36.130",
+    "text": "in the same dimension, same direction,"
+  },
+  {
+    "start": "00:55:36.130",
+    "end": "00:55:38.690",
+    "text": "is also known to arbitrary accuracy."
+  },
+  {
+    "start": "00:55:38.690",
+    "end": "00:55:40.420",
+    "text": "I dare you to make it."
+  },
+  {
+    "start": "00:55:40.420",
+    "end": "00:55:45.018",
+    "text": "In Newtonian mechanics, that's not a big deal."
+  },
+  {
+    "start": "00:55:45.018",
+    "end": "00:55:48.480",
+    "text": "So let's say this is the y direction,"
+  },
+  {
+    "start": "00:55:48.480",
+    "end": "00:55:52.710",
+    "text": "and you say, \"I'll give you an electron"
+  },
+  {
+    "start": "00:55:52.710",
+    "end": "00:55:56.349",
+    "text": "with precisely known y coordinate,"
+  },
+  {
+    "start": "00:55:56.349",
+    "end": "00:55:59.518",
+    "text": "and no uncertainty in y momentum by the following trick."
+  },
+  {
+    "start": "00:55:59.518",
+    "end": "00:56:03.699",
+    "text": "I'll send a beam of electrons going in this direction,"
+  },
+  {
+    "start": "00:56:03.699",
+    "end": "00:56:05.795",
+    "text": "in the x direction, with some momentum"
+  },
+  {
+    "start": "00:56:05.795",
+    "end": "00:56:08.369",
+    "text": "p_0 and I put a hole in the middle."
+  },
+  {
+    "start": "00:56:08.369",
+    "end": "00:56:13.030",
+    "text": "The only guys escaping have to come out like this."
+  },
+  {
+    "start": "00:56:13.030",
+    "end": "00:56:16.929",
+    "text": "So right outside, what do I have?"
+  },
+  {
+    "start": "00:56:16.929",
+    "end": "00:56:20.869",
+    "text": "I have an electron whose vertical momentum is exactly 0,"
+  },
+  {
+    "start": "00:56:20.869",
+    "end": "00:56:23.804",
+    "text": "because the beam had no vertical momentum,"
+  },
+  {
+    "start": "00:56:23.804",
+    "end": "00:56:27.530",
+    "text": "whose vertical position = the width of the slit."
+  },
+  {
+    "start": "00:56:27.530",
+    "end": "00:56:30.219",
+    "text": "It's uncertain by the width of the slit, and I can make the"
+  },
+  {
+    "start": "00:56:30.219",
+    "end": "00:56:31.518",
+    "text": "width as narrow as I like."
+  },
+  {
+    "start": "00:56:31.518",
+    "end": "00:56:33.809",
+    "text": "I can make my filter finer and finer and finer,"
+  },
+  {
+    "start": "00:56:33.809",
+    "end": "00:56:36.378",
+    "text": "till I'm able to give the electrons a perfectly well"
+  },
+  {
+    "start": "00:56:36.378",
+    "end": "00:56:39.199",
+    "text": "defined position and perfectly well defined momentum,"
+  },
+  {
+    "start": "00:56:39.199",
+    "end": "00:56:41.289",
+    "text": "namely 0."
+  },
+  {
+    "start": "00:56:41.289",
+    "end": "00:56:43.389",
+    "text": "That's true in Newtonian mechanics,"
+  },
+  {
+    "start": "00:56:43.389",
+    "end": "00:56:45.440",
+    "text": "but it's not true in the quantum theory,"
+  },
+  {
+    "start": "00:56:45.440",
+    "end": "00:56:48.282",
+    "text": "because as you know, this incoming beam of electrons"
+  },
+  {
+    "start": "00:56:48.282",
+    "end": "00:56:51.889",
+    "text": "is associated with a wave, the wave is going to fan out"
+  },
+  {
+    "start": "00:56:51.889",
+    "end": "00:56:53.239",
+    "text": "when it comes out."
+  },
+  {
+    "start": "00:56:53.239",
+    "end": "00:56:56.409",
+    "text": "And we sort of know how much it's going to fan out."
+  },
+  {
+    "start": "00:56:56.409",
+    "end": "00:56:59.760",
+    "text": "That's why I did that diffraction for you."
+  },
+  {
+    "start": "00:56:59.760",
+    "end": "00:57:05.447",
+    "text": "It fans out by an angle q, so that dsine"
+  },
+  {
+    "start": "00:57:05.447",
+    "end": "00:57:07.929",
+    "text": "q = l."
+  },
+  {
+    "start": "00:57:07.929",
+    "end": "00:57:12.918",
+    "text": "That means light can come anywhere in this cone to your"
+  },
+  {
+    "start": "00:57:12.918",
+    "end": "00:57:13.750",
+    "text": "screen."
+  },
+  {
+    "start": "00:57:13.750",
+    "end": "00:57:17.204",
+    "text": "That means the electrons leaving could have had a"
+  },
+  {
+    "start": "00:57:17.204",
+    "end": "00:57:19.940",
+    "text": "momentum in any of these directions."
+  },
+  {
+    "start": "00:57:19.940",
+    "end": "00:57:22.630",
+    "text": "So the initial photon at a momentum p_0,"
+  },
+  {
+    "start": "00:57:22.630",
+    "end": "00:57:25.230",
+    "text": "the final one has a momentum of magnitude p_0,"
+  },
+  {
+    "start": "00:57:25.230",
+    "end": "00:57:28.099",
+    "text": "but whose direction is uncertain."
+  },
+  {
+    "start": "00:57:28.099",
+    "end": "00:57:32.577",
+    "text": "The uncertainty in the y momentum, simply"
+  },
+  {
+    "start": "00:57:32.577",
+    "end": "00:57:36.199",
+    "text": "p_0sine q."
+  },
+  {
+    "start": "00:57:36.199",
+    "end": "00:57:37.219",
+    "text": "You understand?"
+  },
+  {
+    "start": "00:57:37.219",
+    "end": "00:57:39.190",
+    "text": "Take a vector p_0."
+  },
+  {
+    "start": "00:57:39.190",
+    "end": "00:57:41.606",
+    "text": "If that angle is q, this is"
+  },
+  {
+    "start": "00:57:41.606",
+    "end": "00:57:44.230",
+    "text": "p_0sine q."
+  },
+  {
+    "start": "00:57:44.230",
+    "end": "00:57:45.059",
+    "text": "And we don't know."
+  },
+  {
+    "start": "00:57:45.059",
+    "end": "00:57:47.246",
+    "text": "Look, it's not that we know exactly where it's going to"
+  },
+  {
+    "start": "00:57:47.246",
+    "end": "00:57:47.530",
+    "text": "land."
+  },
+  {
+    "start": "00:57:47.530",
+    "end": "00:57:50.498",
+    "text": "It can land anywhere inside this bell shaped curve,"
+  },
+  {
+    "start": "00:57:50.498",
+    "end": "00:57:53.170",
+    "text": "so it can have any momentum in this region."
+  },
+  {
+    "start": "00:57:53.170",
+    "end": "00:57:55.978",
+    "text": "So the electrons you produce, even though the position was"
+  },
+  {
+    "start": "00:57:55.978",
+    "end": "00:57:57.900",
+    "text": "well known to the width of the slit,"
+  },
+  {
+    "start": "00:57:57.900",
+    "end": "00:58:01.224",
+    "text": "right after leaving the slit, are capable of coming all over"
+  },
+  {
+    "start": "00:58:01.224",
+    "end": "00:58:01.619",
+    "text": "here."
+  },
+  {
+    "start": "00:58:01.619",
+    "end": "00:58:04.938",
+    "text": "That means they have momenta which can point in any of these"
+  },
+  {
+    "start": "00:58:04.938",
+    "end": "00:58:06.119",
+    "text": "allowed directions."
+  },
+  {
+    "start": "00:58:06.119",
+    "end": "00:58:09.000",
+    "text": "So let's find the uncertainty in y momentum as this."
+  },
+  {
+    "start": "00:58:09.000",
+    "end": "00:58:12.476",
+    "text": "The uncertainty in y position is just the width of"
+  },
+  {
+    "start": "00:58:12.476",
+    "end": "00:58:13.159",
+    "text": "the slit."
+  },
+  {
+    "start": "00:58:13.159",
+    "end": "00:58:16.599",
+    "text": "So take the product now of D py."
+  },
+  {
+    "start": "00:58:16.599",
+    "end": "00:58:18.650",
+    "text": "Let me call it Dy."
+  },
+  {
+    "start": "00:58:18.650",
+    "end": "00:58:24.338",
+    "text": "That happens then to be p_0sine q times"
+  },
+  {
+    "start": "00:58:24.338",
+    "end": "00:58:29.405",
+    "text": "d but dsine q is l and l is"
+  },
+  {
+    "start": "00:58:29.405",
+    "end": "00:58:33.440",
+    "text": "2pℏ/p _0."
+  },
+  {
+    "start": "00:58:33.440",
+    "end": "00:58:34.849",
+    "text": "Cancel the p_0,"
+  },
+  {
+    "start": "00:58:34.849",
+    "end": "00:58:35.849",
+    "text": "you get some number."
+  },
+  {
+    "start": "00:58:35.849",
+    "end": "00:58:38.630",
+    "text": "Forget the 2p's that look like ℏ."
+  },
+  {
+    "start": "00:58:38.630",
+    "end": "00:58:47.880",
+    "text": "So this is the uncertainty principle."
+  },
+  {
+    "start": "00:58:47.880",
+    "end": "00:58:51.416",
+    "text": "So the origin of the uncertainty principle is that"
+  },
+  {
+    "start": "00:58:51.416",
+    "end": "00:58:55.170",
+    "text": "the fate of the electrons is determined by a wave."
+  },
+  {
+    "start": "00:58:55.170",
+    "end": "00:58:58.829",
+    "text": "And when you try to localize the wave in one direction,"
+  },
+  {
+    "start": "00:58:58.829",
+    "end": "00:58:59.780",
+    "text": "it fans out."
+  },
+  {
+    "start": "00:58:59.780",
+    "end": "00:59:03.231",
+    "text": "And when it fans out, the probability of finding the"
+  },
+  {
+    "start": "00:59:03.231",
+    "end": "00:59:06.550",
+    "text": "electron is not 0 in the non-forward direction."
+  },
+  {
+    "start": "00:59:06.550",
+    "end": "00:59:09.391",
+    "text": "It's got a good chance of being in the range of non-forward"
+  },
+  {
+    "start": "00:59:09.391",
+    "end": "00:59:10.030",
+    "text": "directions."
+  },
+  {
+    "start": "00:59:10.030",
+    "end": "00:59:13.670",
+    "text": "That means momentum has a good chance of lying all the way from"
+  },
+  {
+    "start": "00:59:13.670",
+    "end": "00:59:14.610",
+    "text": "there to here."
+  },
+  {
+    "start": "00:59:14.610",
+    "end": "00:59:18.320",
+    "text": "That means the y momentum has an uncertainty."
+  },
+  {
+    "start": "00:59:18.320",
+    "end": "00:59:23.809",
+    "text": "And more you make the purchase smaller to nail its position,"
+  },
+  {
+    "start": "00:59:23.809",
+    "end": "00:59:28.739",
+    "text": "broader this will be, keeping the product constant."
+  },
+  {
+    "start": "00:59:28.739",
+    "end": "00:59:31.090",
+    "text": "So it's not hard mathematically to understand."
+  },
+  {
+    "start": "00:59:31.090",
+    "end": "00:59:35.353",
+    "text": "What is hard to understand is the notion that somehow you need"
+  },
+  {
+    "start": "00:59:35.353",
+    "end": "00:59:38.079",
+    "text": "this wave, but it was forced upon us."
+  },
+  {
+    "start": "00:59:38.079",
+    "end": "00:59:40.590",
+    "text": "The wave is forced upon us, because there's no way to"
+  },
+  {
+    "start": "00:59:40.590",
+    "end": "00:59:42.909",
+    "text": "understand interference, except through waves."
+  },
+  {
+    "start": "00:59:42.909",
+    "end": "00:59:44.934",
+    "text": "So when people saw the interference pattern of the"
+  },
+  {
+    "start": "00:59:44.934",
+    "end": "00:59:46.920",
+    "text": "electrons, they said there's got to be a wave."
+  },
+  {
+    "start": "00:59:46.920",
+    "end": "00:59:49.268",
+    "text": "They said, \"What is the role of that wave?\""
+  },
+  {
+    "start": "00:59:49.268",
+    "end": "00:59:51.829",
+    "text": "That's what I want you to understand."
+  },
+  {
+    "start": "00:59:51.829",
+    "end": "00:59:56.695",
+    "text": "With every electron now--so let's summarize what we have"
+  },
+  {
+    "start": "00:59:56.695",
+    "end": "00:59:57.579",
+    "text": "learned."
+  },
+  {
+    "start": "00:59:57.579",
+    "end": "01:00:00.085",
+    "text": "When I say electron, I mean any other particle you"
+  },
+  {
+    "start": "01:00:00.085",
+    "end": "01:00:02.130",
+    "text": "like, photon, neutron, doesn't matter."
+  },
+  {
+    "start": "01:00:02.130",
+    "end": "01:00:03.239",
+    "text": "They all do this."
+  },
+  {
+    "start": "01:00:03.239",
+    "end": "01:00:06.780",
+    "text": "Quantum mechanics applies to everything."
+  },
+  {
+    "start": "01:00:06.780",
+    "end": "01:00:11.581",
+    "text": "Therefore, with every electron, I'm going to associate a"
+  },
+  {
+    "start": "01:00:11.581",
+    "end": "01:00:14.853",
+    "text": "function, Y(x)--or"
+  },
+  {
+    "start": "01:00:14.853",
+    "end": "01:00:21.514",
+    "text": "Y(x,y,z), so that if you find its"
+  },
+  {
+    "start": "01:00:21.514",
+    "end": "01:00:24.811",
+    "text": "absolute value, that gives--or absolute value"
+  },
+  {
+    "start": "01:00:24.811",
+    "end": "01:00:29.534",
+    "text": "squared, that gives the odds of finding"
+  },
+  {
+    "start": "01:00:29.534",
+    "end": "01:00:33.880",
+    "text": "it at the point x, y, z."
+  },
+  {
+    "start": "01:00:33.880",
+    "end": "01:00:39.650",
+    "text": "Let me say it's proportional."
+  },
+  {
+    "start": "01:00:39.650",
+    "end": "01:00:40.809",
+    "text": "This function is stuck."
+  },
+  {
+    "start": "01:00:40.809",
+    "end": "01:00:42.510",
+    "text": "We are stuck with this function."
+  },
+  {
+    "start": "01:00:42.510",
+    "end": "01:00:44.679",
+    "text": "And what else do we know about the function?"
+  },
+  {
+    "start": "01:00:44.679",
+    "end": "01:00:51.532",
+    "text": "We know that if the electron has momentum p,"
+  },
+  {
+    "start": "01:00:51.532",
+    "end": "01:00:58.385",
+    "text": "then the function Y has wavelength l,"
+  },
+  {
+    "start": "01:00:58.385",
+    "end": "01:01:05.239",
+    "text": "which is 2pℏ /p."
+  },
+  {
+    "start": "01:01:05.239",
+    "end": "01:01:08.199",
+    "text": "This is all we know from experiment."
+  },
+  {
+    "start": "01:01:08.199",
+    "end": "01:01:12.980",
+    "text": "So experiment has forced us to write this function Y."
+  },
+  {
+    "start": "01:01:12.980",
+    "end": "01:01:14.889",
+    "text": "And the theory will make predictions."
+  },
+  {
+    "start": "01:01:14.889",
+    "end": "01:01:19.987",
+    "text": "Later on we'll find out how to calculate the Y in every"
+  },
+  {
+    "start": "01:01:19.987",
+    "end": "01:01:20.989",
+    "text": "situation."
+  },
+  {
+    "start": "01:01:20.989",
+    "end": "01:01:23.275",
+    "text": "But the question is, what is the kinematics of"
+  },
+  {
+    "start": "01:01:23.275",
+    "end": "01:01:25.918",
+    "text": "quantum mechanics compared to kinematics of classical"
+  },
+  {
+    "start": "01:01:25.918",
+    "end": "01:01:26.630",
+    "text": "mechanics?"
+  },
+  {
+    "start": "01:01:26.630",
+    "end": "01:01:29.398",
+    "text": "In classical mechanics, a particle has a definite"
+  },
+  {
+    "start": "01:01:29.398",
+    "end": "01:01:31.650",
+    "text": "position, it has a definite momentum."
+  },
+  {
+    "start": "01:01:31.650",
+    "end": "01:01:36.960",
+    "text": "That describes the state of the particle now."
+  },
+  {
+    "start": "01:01:36.960",
+    "end": "01:01:39.405",
+    "text": "Then you want to predict the future, so you want to know the"
+  },
+  {
+    "start": "01:01:39.405",
+    "end": "01:01:41.190",
+    "text": "coordinate and momentum of a future time."
+  },
+  {
+    "start": "01:01:41.190",
+    "end": "01:01:43.420",
+    "text": "How are you going to find that?"
+  },
+  {
+    "start": "01:01:43.420",
+    "end": "01:01:47.929",
+    "text": "Anybody know?"
+  },
+  {
+    "start": "01:01:47.929",
+    "end": "01:01:54.449",
+    "text": "How do you find the future of x and p?"
+  },
+  {
+    "start": "01:01:54.449",
+    "end": "01:01:56.856",
+    "text": "In Newtonian mechanics; I'm not talking about quantum"
+  },
+  {
+    "start": "01:01:56.856",
+    "end": "01:01:57.340",
+    "text": "mechanics."
+  },
+  {
+    "start": "01:01:57.340",
+    "end": "01:02:01.539",
+    "text": "Student: &gt;"
+  },
+  {
+    "start": "01:02:01.539",
+    "end": "01:02:04.320",
+    "text": "Prof: Which one?"
+  },
+  {
+    "start": "01:02:04.320",
+    "end": "01:02:05.710",
+    "text": "Just use Newton's laws."
+  },
+  {
+    "start": "01:02:05.710",
+    "end": "01:02:07.030",
+    "text": "That's what Newton's law does for you."
+  },
+  {
+    "start": "01:02:07.030",
+    "end": "01:02:09.766",
+    "text": "It tells you what the acceleration is in a given"
+  },
+  {
+    "start": "01:02:09.766",
+    "end": "01:02:10.349",
+    "text": "context."
+  },
+  {
+    "start": "01:02:10.349",
+    "end": "01:02:12.900",
+    "text": "Then you find the acceleration to find the new velocity."
+  },
+  {
+    "start": "01:02:12.900",
+    "end": "01:02:16.032",
+    "text": "Find the old velocity to find the new position a little later"
+  },
+  {
+    "start": "01:02:16.032",
+    "end": "01:02:18.590",
+    "text": "and keep on doing it, or you solve an equation."
+  },
+  {
+    "start": "01:02:18.590",
+    "end": "01:02:20.516",
+    "text": "So the cycle of Newtonian mechanics is give me the"
+  },
+  {
+    "start": "01:02:20.516",
+    "end": "01:02:22.983",
+    "text": "x and p, and I know what they mean,"
+  },
+  {
+    "start": "01:02:22.983",
+    "end": "01:02:26.280",
+    "text": "and I'll tell you x and p later if you tell me"
+  },
+  {
+    "start": "01:02:26.280",
+    "end": "01:02:27.739",
+    "text": "the forces acting on it."
+  },
+  {
+    "start": "01:02:27.739",
+    "end": "01:02:30.922",
+    "text": "Or if you want to write the force as a gradient of a"
+  },
+  {
+    "start": "01:02:30.922",
+    "end": "01:02:34.230",
+    "text": "potential, you will have to be given the potential."
+  },
+  {
+    "start": "01:02:34.230",
+    "end": "01:02:36.954",
+    "text": "In quantum mechanics, you are given a function"
+  },
+  {
+    "start": "01:02:36.954",
+    "end": "01:02:37.619",
+    "text": "Y."
+  },
+  {
+    "start": "01:02:37.619",
+    "end": "01:02:41.829",
+    "text": "Suppose the particle lives in only one dimension,"
+  },
+  {
+    "start": "01:02:41.829",
+    "end": "01:02:44.840",
+    "text": "then for one particle, not for a swarm of particles,"
+  },
+  {
+    "start": "01:02:44.840",
+    "end": "01:02:48.688",
+    "text": "for one particle, for every particle there can be"
+  },
+  {
+    "start": "01:02:48.688",
+    "end": "01:02:53.179",
+    "text": "a function Y associated with it at any instant."
+  },
+  {
+    "start": "01:02:53.179",
+    "end": "01:02:55.349",
+    "text": "That tells you the full story."
+  },
+  {
+    "start": "01:02:55.349",
+    "end": "01:02:59.929",
+    "text": "Remember, we've gone from two numbers, x and p,"
+  },
+  {
+    "start": "01:02:59.929",
+    "end": "01:03:01.610",
+    "text": "to a whole function."
+  },
+  {
+    "start": "01:03:01.610",
+    "end": "01:03:03.929",
+    "text": "What does the function do?"
+  },
+  {
+    "start": "01:03:03.929",
+    "end": "01:03:07.800",
+    "text": "If you squared the function at this point--"
+  },
+  {
+    "start": "01:03:07.800",
+    "end": "01:03:10.449",
+    "text": "square will look roughly the same thing--"
+  },
+  {
+    "start": "01:03:10.449",
+    "end": "01:03:14.380",
+    "text": "that height is proportional to the odds of finding it here,"
+  },
+  {
+    "start": "01:03:14.380",
+    "end": "01:03:17.039",
+    "text": "and that means it's a very high chance of being found here,"
+  },
+  {
+    "start": "01:03:17.039",
+    "end": "01:03:22.300",
+    "text": "maybe no chance of being found here and so on."
+  },
+  {
+    "start": "01:03:22.300",
+    "end": "01:03:24.539",
+    "text": "That's called the wave function."
+  },
+  {
+    "start": "01:03:24.539",
+    "end": "01:03:28.400",
+    "text": "The name for this guy is the wave function."
+  },
+  {
+    "start": "01:03:28.400",
+    "end": "01:03:32.670",
+    "text": "So far we know only one wave function."
+  },
+  {
+    "start": "01:03:32.670",
+    "end": "01:03:36.088",
+    "text": "In a double slit experiment, if you send electrons of"
+  },
+  {
+    "start": "01:03:36.088",
+    "end": "01:03:39.173",
+    "text": "momentum p, that wave function seems to"
+  },
+  {
+    "start": "01:03:39.173",
+    "end": "01:03:42.646",
+    "text": "have a wavelength l connected to p by this"
+  },
+  {
+    "start": "01:03:42.646",
+    "end": "01:03:43.719",
+    "text": "formula, this."
+  },
+  {
+    "start": "01:03:43.719",
+    "end": "01:03:52.018",
+    "text": "This is all we know."
+  },
+  {
+    "start": "01:03:52.018",
+    "end": "01:03:59.074",
+    "text": "So let's ask the following question - take a particle of"
+  },
+  {
+    "start": "01:03:59.074",
+    "end": "01:04:01.639",
+    "text": "momentum p."
+  },
+  {
+    "start": "01:04:01.639",
+    "end": "01:04:04.938",
+    "text": "What do you think the corresponding wave function is"
+  },
+  {
+    "start": "01:04:04.938",
+    "end": "01:04:07.010",
+    "text": "in the double slit experiment?"
+  },
+  {
+    "start": "01:04:07.010",
+    "end": "01:04:18.650",
+    "text": "Can you cook up the function in the double slit experiment at"
+  },
+  {
+    "start": "01:04:18.650",
+    "end": "01:04:21.949",
+    "text": "any given time?"
+  },
+  {
+    "start": "01:04:21.949",
+    "end": "01:04:26.382",
+    "text": "So I want to write a function that can describe the electron"
+  },
+  {
+    "start": "01:04:26.382",
+    "end": "01:04:30.967",
+    "text": "in that double slit experiment, and I'll tell you the momentum"
+  },
+  {
+    "start": "01:04:30.967",
+    "end": "01:04:32.170",
+    "text": "is p."
+  },
+  {
+    "start": "01:04:32.170",
+    "end": "01:04:34.719",
+    "text": "So what can you tell from wave theory?"
+  },
+  {
+    "start": "01:04:34.719",
+    "end": "01:04:37.514",
+    "text": "Let's say the wave is traveling, this is the x"
+  },
+  {
+    "start": "01:04:37.514",
+    "end": "01:04:38.159",
+    "text": "direction."
+  },
+  {
+    "start": "01:04:38.159",
+    "end": "01:04:42.701",
+    "text": "What can you say about Y(x) at some given"
+  },
+  {
+    "start": "01:04:42.701",
+    "end": "01:04:43.289",
+    "text": "time?"
+  },
+  {
+    "start": "01:04:43.289",
+    "end": "01:04:48.510",
+    "text": "It's got some amplitude and it's oscillating,"
+  },
+  {
+    "start": "01:04:48.510",
+    "end": "01:04:53.730",
+    "text": "so it's cosine 2px/l."
+  },
+  {
+    "start": "01:04:53.730",
+    "end": "01:04:54.949",
+    "text": "Forget the time dependence."
+  },
+  {
+    "start": "01:04:54.949",
+    "end": "01:04:57.920",
+    "text": "At one instant of time, it's going to look like this."
+  },
+  {
+    "start": "01:04:57.920",
+    "end": "01:05:01.900",
+    "text": "This is the wavelength l for anything."
+  },
+  {
+    "start": "01:05:01.900",
+    "end": "01:05:05.391",
+    "text": "But now I know that l is connected to momentum as follows"
+  },
+  {
+    "start": "01:05:05.391",
+    "end": "01:05:08.164",
+    "text": "- l is 2pℏ /p,"
+  },
+  {
+    "start": "01:05:08.164",
+    "end": "01:05:09.550",
+    "text": "so let's put that in."
+  },
+  {
+    "start": "01:05:09.550",
+    "end": "01:05:19.945",
+    "text": "So 2p/l = Acosine p"
+  },
+  {
+    "start": "01:05:19.945",
+    "end": "01:05:24.449",
+    "text": "over ℏx."
+  },
+  {
+    "start": "01:05:24.449",
+    "end": "01:05:27.210",
+    "text": "This has the right wavelength for the given momentum."
+  },
+  {
+    "start": "01:05:27.210",
+    "end": "01:05:29.672",
+    "text": "In other words, if you send electrons of"
+  },
+  {
+    "start": "01:05:29.672",
+    "end": "01:05:32.690",
+    "text": "momentum p, and you put that p into this"
+  },
+  {
+    "start": "01:05:32.690",
+    "end": "01:05:35.409",
+    "text": "function exactly where it's supposed to go,"
+  },
+  {
+    "start": "01:05:35.409",
+    "end": "01:05:37.610",
+    "text": "it determines a wavelength in just the right way,"
+  },
+  {
+    "start": "01:05:37.610",
+    "end": "01:05:42.329",
+    "text": "that if you did interference, you'll get a pattern you"
+  },
+  {
+    "start": "01:05:42.329",
+    "end": "01:05:43.219",
+    "text": "observe."
+  },
+  {
+    "start": "01:05:43.219",
+    "end": "01:05:47.369",
+    "text": "But this is not the right answer."
+  },
+  {
+    "start": "01:05:47.369",
+    "end": "01:05:52.315",
+    "text": "This is not the right answer, because if you took the square"
+  },
+  {
+    "start": "01:05:52.315",
+    "end": "01:05:54.159",
+    "text": "of the Y, it's real."
+  },
+  {
+    "start": "01:05:54.159",
+    "end": "01:05:56.829",
+    "text": "I don't care whether it's absolute square or square,"
+  },
+  {
+    "start": "01:05:56.829",
+    "end": "01:05:59.021",
+    "text": "you get cosine squared px over"
+  },
+  {
+    "start": "01:05:59.021",
+    "end": "01:06:05.699",
+    "text": "ℏ, and if you plot that function,"
+  },
+  {
+    "start": "01:06:05.699",
+    "end": "01:06:12.139",
+    "text": "it's going to look like this, the incoming wave."
+  },
+  {
+    "start": "01:06:12.139",
+    "end": "01:06:15.706",
+    "text": "I'm talking not about interference but the incoming"
+  },
+  {
+    "start": "01:06:15.706",
+    "end": "01:06:17.920",
+    "text": "wave, if I write it this way."
+  },
+  {
+    "start": "01:06:17.920",
+    "end": "01:06:19.650",
+    "text": "But incoming wave, if it looks like this,"
+  },
+  {
+    "start": "01:06:19.650",
+    "end": "01:06:22.909",
+    "text": "I have a problem, because the uncertainty"
+  },
+  {
+    "start": "01:06:22.909",
+    "end": "01:06:27.307",
+    "text": "principle says Dx Dpx is of"
+  },
+  {
+    "start": "01:06:27.307",
+    "end": "01:06:29.590",
+    "text": "order ℏ."
+  },
+  {
+    "start": "01:06:29.590",
+    "end": "01:06:32.391",
+    "text": "It cannot be smaller, so the correct statement is,"
+  },
+  {
+    "start": "01:06:32.391",
+    "end": "01:06:34.849",
+    "text": "it's bigger than ℏ over some"
+  },
+  {
+    "start": "01:06:34.849",
+    "end": "01:06:35.480",
+    "text": "number."
+  },
+  {
+    "start": "01:06:35.480",
+    "end": "01:06:37.929",
+    "text": "Take this function here."
+  },
+  {
+    "start": "01:06:37.929",
+    "end": "01:06:42.630",
+    "text": "Its momentum is exactly know, do you agree?"
+  },
+  {
+    "start": "01:06:42.630",
+    "end": "01:06:46.422",
+    "text": "The uncertainty principle says if you know the position well,"
+  },
+  {
+    "start": "01:06:46.422",
+    "end": "01:06:48.889",
+    "text": "you don't know the momentum too well."
+  },
+  {
+    "start": "01:06:48.889",
+    "end": "01:06:51.851",
+    "text": "If you know the momentum exactly, so Dpx is 0,"
+  },
+  {
+    "start": "01:06:51.851",
+    "end": "01:06:55.269",
+    "text": "Dx is infinity, that means you don't know where"
+  },
+  {
+    "start": "01:06:55.269",
+    "end": "01:06:55.840",
+    "text": "it is."
+  },
+  {
+    "start": "01:06:55.840",
+    "end": "01:06:59.666",
+    "text": "A particle of perfectly known momentum has perfectly unknown"
+  },
+  {
+    "start": "01:06:59.666",
+    "end": "01:07:00.380",
+    "text": "position."
+  },
+  {
+    "start": "01:07:00.380",
+    "end": "01:07:04.659",
+    "text": "That means the probability of finding it everywhere should be"
+  },
+  {
+    "start": "01:07:04.659",
+    "end": "01:07:05.159",
+    "text": "flat."
+  },
+  {
+    "start": "01:07:05.159",
+    "end": "01:07:07.070",
+    "text": "This is not flat."
+  },
+  {
+    "start": "01:07:07.070",
+    "end": "01:07:10.280",
+    "text": "It says I'm likely to be here, not likely to be here,"
+  },
+  {
+    "start": "01:07:10.280",
+    "end": "01:07:13.489",
+    "text": "likely to be there, so this function is ruled out."
+  },
+  {
+    "start": "01:07:13.489",
+    "end": "01:07:15.873",
+    "text": "Because I want for Y^(2),"
+  },
+  {
+    "start": "01:07:15.873",
+    "end": "01:07:19.873",
+    "text": "for a situation where it has a well defined momentum,"
+  },
+  {
+    "start": "01:07:19.873",
+    "end": "01:07:22.949",
+    "text": "I want the answer to look like this."
+  },
+  {
+    "start": "01:07:22.949",
+    "end": "01:07:25.521",
+    "text": "The odds of finding it should be independent of where you are,"
+  },
+  {
+    "start": "01:07:25.521",
+    "end": "01:07:27.039",
+    "text": "because we don't know where it is."
+  },
+  {
+    "start": "01:07:27.039",
+    "end": "01:07:30.710",
+    "text": "Every place is equally likely."
+  },
+  {
+    "start": "01:07:30.710",
+    "end": "01:07:37.050",
+    "text": "And yet this function has no wavelength."
+  },
+  {
+    "start": "01:07:37.050",
+    "end": "01:07:41.998",
+    "text": "So how do I sneak in a wavelength, but not affect this"
+  },
+  {
+    "start": "01:07:41.998",
+    "end": "01:07:44.518",
+    "text": "flatness of Y^(2)?"
+  },
+  {
+    "start": "01:07:44.518",
+    "end": "01:07:46.956",
+    "text": "Is there a way to write a function that will have a"
+  },
+  {
+    "start": "01:07:46.956",
+    "end": "01:07:49.878",
+    "text": "magnitude which is constant but has a wavelength hidden in it"
+  },
+  {
+    "start": "01:07:49.878",
+    "end": "01:07:53.829",
+    "text": "somewhere, so that it can take part in"
+  },
+  {
+    "start": "01:07:53.829",
+    "end": "01:07:55.500",
+    "text": "interference?"
+  },
+  {
+    "start": "01:07:55.500",
+    "end": "01:07:56.869",
+    "text": "Pardon me?"
+  },
+  {
+    "start": "01:07:56.869",
+    "end": "01:07:59.099",
+    "text": "Any guess?"
+  },
+  {
+    "start": "01:07:59.099",
+    "end": "01:07:59.800",
+    "text": "Yes?"
+  },
+  {
+    "start": "01:07:59.800",
+    "end": "01:08:00.519",
+    "text": "Student: &gt;"
+  },
+  {
+    "start": "01:08:00.519",
+    "end": "01:08:01.539",
+    "text": "Prof: A complex function."
+  },
+  {
+    "start": "01:08:01.539",
+    "end": "01:08:04.289",
+    "text": "So I'm going to tell you what the answer is."
+  },
+  {
+    "start": "01:08:04.289",
+    "end": "01:08:07.170",
+    "text": "We are driven to that answer."
+  },
+  {
+    "start": "01:08:07.170",
+    "end": "01:08:09.619",
+    "text": "Here's a function I can write down,"
+  },
+  {
+    "start": "01:08:09.619",
+    "end": "01:08:14.201",
+    "text": "which has all the good properties I want -"
+  },
+  {
+    "start": "01:08:14.201",
+    "end": "01:08:20.795",
+    "text": "Y(x) looks like some number Ae^(ipx/"
+  },
+  {
+    "start": "01:08:20.795",
+    "end": "01:08:23.029",
+    "text": "ℏ)."
+  },
+  {
+    "start": "01:08:23.029",
+    "end": "01:08:27.788",
+    "text": "This is just cosine(px i) sine(px/ℏ)."
+  },
+  {
+    "start": "01:08:27.788",
+    "end": "01:08:32.453",
+    "text": "It's got a wavelength, but the absolute value of"
+  },
+  {
+    "start": "01:08:32.453",
+    "end": "01:08:37.613",
+    "text": "Y is just A^(2), because the absolute value of"
+  },
+  {
+    "start": "01:08:37.613",
+    "end": "01:08:39.399",
+    "text": "this guy is 1."
+  },
+  {
+    "start": "01:08:39.399",
+    "end": "01:08:42.060",
+    "text": "Ae to the thing looks like this."
+  },
+  {
+    "start": "01:08:42.060",
+    "end": "01:08:48.193",
+    "text": "This is the number A, this is px/ℏ is the"
+  },
+  {
+    "start": "01:08:48.193",
+    "end": "01:08:49.069",
+    "text": "angle."
+  },
+  {
+    "start": "01:08:49.069",
+    "end": "01:08:55.707",
+    "text": "That complex number Y at a given point x has got a"
+  },
+  {
+    "start": "01:08:55.707",
+    "end": "01:08:59.078",
+    "text": "magnitude which is just A^(2)."
+  },
+  {
+    "start": "01:08:59.078",
+    "end": "01:09:02.125",
+    "text": "So we are driven to the conclusion that the correct way"
+  },
+  {
+    "start": "01:09:02.125",
+    "end": "01:09:04.720",
+    "text": "to describe an electron with wave function,"
+  },
+  {
+    "start": "01:09:04.720",
+    "end": "01:09:09.537",
+    "text": "with a momentum p, is some number in front times"
+  },
+  {
+    "start": "01:09:09.537",
+    "end": "01:09:13.186",
+    "text": "e^(ipx/ℏ), because it's got a wavelength"
+  },
+  {
+    "start": "01:09:13.186",
+    "end": "01:09:16.317",
+    "text": "associated with it, and it also has an absolute"
+  },
+  {
+    "start": "01:09:16.317",
+    "end": "01:09:17.729",
+    "text": "value that is flat."
+  },
+  {
+    "start": "01:09:17.729",
+    "end": "01:09:19.340",
+    "text": "Do you understand why it had to be flat?"
+  },
+  {
+    "start": "01:09:19.340",
+    "end": "01:09:21.951",
+    "text": "The uncertainty principle says if you know its momentum"
+  },
+  {
+    "start": "01:09:21.951",
+    "end": "01:09:23.719",
+    "text": "precisely, and you seem to know it,"
+  },
+  {
+    "start": "01:09:23.719",
+    "end": "01:09:25.760",
+    "text": "because you put a definite p here,"
+  },
+  {
+    "start": "01:09:25.760",
+    "end": "01:09:28.948",
+    "text": "you cannot know where it is."
+  },
+  {
+    "start": "01:09:28.948",
+    "end": "01:09:32.728",
+    "text": "That means the probability for finding it cannot be dependent"
+  },
+  {
+    "start": "01:09:32.728",
+    "end": "01:09:33.609",
+    "text": "on position."
+  },
+  {
+    "start": "01:09:33.609",
+    "end": "01:09:36.761",
+    "text": "Any trigonometric function you take with some wavelength will"
+  },
+  {
+    "start": "01:09:36.761",
+    "end": "01:09:39.336",
+    "text": "necessarily oscillate, preferring some points over"
+  },
+  {
+    "start": "01:09:39.336",
+    "end": "01:09:40.229",
+    "text": "other points."
+  },
+  {
+    "start": "01:09:40.229",
+    "end": "01:09:43.443",
+    "text": "The exponential function, it will oscillate and yet its"
+  },
+  {
+    "start": "01:09:43.443",
+    "end": "01:09:45.050",
+    "text": "magnitude is independent."
+  },
+  {
+    "start": "01:09:45.050",
+    "end": "01:09:47.550",
+    "text": "That's a remarkable function."
+  },
+  {
+    "start": "01:09:47.550",
+    "end": "01:09:49.920",
+    "text": "It's fair to say that if you did not know complex"
+  },
+  {
+    "start": "01:09:49.920",
+    "end": "01:09:51.944",
+    "text": "exponentials, you wouldn't have got beyond"
+  },
+  {
+    "start": "01:09:51.944",
+    "end": "01:09:54.658",
+    "text": "this point in the development of quantum mechanics."
+  },
+  {
+    "start": "01:09:54.658",
+    "end": "01:09:59.226",
+    "text": "The wave function of an electron of definite momentum is"
+  },
+  {
+    "start": "01:09:59.226",
+    "end": "01:10:01.220",
+    "text": "a complex exponential."
+  },
+  {
+    "start": "01:10:01.220",
+    "end": "01:10:05.020",
+    "text": "This is the sense in which complex functions enter quantum"
+  },
+  {
+    "start": "01:10:05.020",
+    "end": "01:10:07.220",
+    "text": "mechanics in an inevitable way."
+  },
+  {
+    "start": "01:10:07.220",
+    "end": "01:10:10.038",
+    "text": "It's not that the function is really cosine px/ℏ and"
+  },
+  {
+    "start": "01:10:10.038",
+    "end": "01:10:12.529",
+    "text": "I'm trying to write it as a real part of something."
+  },
+  {
+    "start": "01:10:12.529",
+    "end": "01:10:15.520",
+    "text": "You need this complex beast."
+  },
+  {
+    "start": "01:10:15.520",
+    "end": "01:10:17.630",
+    "text": "So the wave functions of quantum mechanics."
+  },
+  {
+    "start": "01:10:17.630",
+    "end": "01:10:20.259",
+    "text": "There are electrons which could be doing many things,"
+  },
+  {
+    "start": "01:10:20.259",
+    "end": "01:10:22.029",
+    "text": "each one has a function Y."
+  },
+  {
+    "start": "01:10:22.029",
+    "end": "01:10:24.869",
+    "text": "Electron of definite momentum we know is a reality."
+  },
+  {
+    "start": "01:10:24.869",
+    "end": "01:10:26.279",
+    "text": "It happens all the time."
+  },
+  {
+    "start": "01:10:26.279",
+    "end": "01:10:29.962",
+    "text": "In CERN they're producing protons of a definite momentum,"
+  },
+  {
+    "start": "01:10:29.962",
+    "end": "01:10:32.199",
+    "text": "4 point whatever, 3 point p tev."
+  },
+  {
+    "start": "01:10:32.199",
+    "end": "01:10:33.380",
+    "text": "So you know the momentum."
+  },
+  {
+    "start": "01:10:33.380",
+    "end": "01:10:36.100",
+    "text": "You can ask what function describes it in quantum theory;"
+  },
+  {
+    "start": "01:10:36.100",
+    "end": "01:10:39.420",
+    "text": "this is the answer."
+  },
+  {
+    "start": "01:10:39.420",
+    "end": "01:10:40.470",
+    "text": "This is not derived."
+  },
+  {
+    "start": "01:10:40.470",
+    "end": "01:10:42.399",
+    "text": "In a way, this is a postulate."
+  },
+  {
+    "start": "01:10:42.399",
+    "end": "01:10:44.189",
+    "text": "I'm only trying to motivate it."
+  },
+  {
+    "start": "01:10:44.189",
+    "end": "01:10:46.850",
+    "text": "You cannot derive any of quantum mechanics,"
+  },
+  {
+    "start": "01:10:46.850",
+    "end": "01:10:50.323",
+    "text": "except looking at experiments and trying to see if there is"
+  },
+  {
+    "start": "01:10:50.323",
+    "end": "01:10:53.439",
+    "text": "some theoretical structure that will fit the data."
+  },
+  {
+    "start": "01:10:53.439",
+    "end": "01:10:55.762",
+    "text": "So I'm going to conclude with what we have found today,"
+  },
+  {
+    "start": "01:10:55.762",
+    "end": "01:10:57.270",
+    "text": "and it's probably a little weird."
+  },
+  {
+    "start": "01:10:57.270",
+    "end": "01:11:01.172",
+    "text": "I try to pay attention to that and I will repeat it every time,"
+  },
+  {
+    "start": "01:11:01.172",
+    "end": "01:11:03.439",
+    "text": "maybe adding a little extra stuff."
+  },
+  {
+    "start": "01:11:03.439",
+    "end": "01:11:06.180",
+    "text": "So what have you found so far?"
+  },
+  {
+    "start": "01:11:06.180",
+    "end": "01:11:11.099",
+    "text": "It looks like electrons and photons are all particles and"
+  },
+  {
+    "start": "01:11:11.099",
+    "end": "01:11:13.194",
+    "text": "waves, except it's more natural to"
+  },
+  {
+    "start": "01:11:13.194",
+    "end": "01:11:15.850",
+    "text": "think of light in terms of waves with the wavelength and"
+  },
+  {
+    "start": "01:11:15.850",
+    "end": "01:11:16.479",
+    "text": "frequency."
+  },
+  {
+    "start": "01:11:16.479",
+    "end": "01:11:19.851",
+    "text": "What's surprising is that it's made up of particles whose"
+  },
+  {
+    "start": "01:11:19.851",
+    "end": "01:11:21.960",
+    "text": "energy is ℏw,"
+  },
+  {
+    "start": "01:11:21.960",
+    "end": "01:11:24.670",
+    "text": "and whose momentum is ℏk."
+  },
+  {
+    "start": "01:11:24.670",
+    "end": "01:11:28.186",
+    "text": "Conversely, particles like electrons, which have a definite"
+  },
+  {
+    "start": "01:11:28.186",
+    "end": "01:11:31.279",
+    "text": "momentum, have a wavelength associated with them."
+  },
+  {
+    "start": "01:11:31.279",
+    "end": "01:11:33.270",
+    "text": "And when does the wavelength come into play?"
+  },
+  {
+    "start": "01:11:33.270",
+    "end": "01:11:36.064",
+    "text": "Whenever you do an experiment in which that wavelength is"
+  },
+  {
+    "start": "01:11:36.064",
+    "end": "01:11:38.158",
+    "text": "comparable to the geometric dimensions,"
+  },
+  {
+    "start": "01:11:38.158",
+    "end": "01:11:41.729",
+    "text": "like a double slit experiment at a single slit diffraction,"
+  },
+  {
+    "start": "01:11:41.729",
+    "end": "01:11:45.920",
+    "text": "it's the wave that decides where the electron will go."
+  },
+  {
+    "start": "01:11:45.920",
+    "end": "01:11:49.546",
+    "text": "The height squared of the wave function is proportional to the"
+  },
+  {
+    "start": "01:11:49.546",
+    "end": "01:11:52.460",
+    "text": "probability the electron will end up somewhere."
+  },
+  {
+    "start": "01:11:52.460",
+    "end": "01:11:55.673",
+    "text": "And also, in a double slit experiment, it is no longer"
+  },
+  {
+    "start": "01:11:55.673",
+    "end": "01:11:59.069",
+    "text": "possible to think that the electron went through one slit"
+  },
+  {
+    "start": "01:11:59.069",
+    "end": "01:11:59.979",
+    "text": "or another."
+  },
+  {
+    "start": "01:11:59.979",
+    "end": "01:12:02.796",
+    "text": "You make that assumption, you cannot avoid the fact that"
+  },
+  {
+    "start": "01:12:02.796",
+    "end": "01:12:05.819",
+    "text": "when both slits are open, the numbers should be additive."
+  },
+  {
+    "start": "01:12:05.819",
+    "end": "01:12:08.877",
+    "text": "The fact they are not means an electron knows how many slits"
+  },
+  {
+    "start": "01:12:08.877",
+    "end": "01:12:12.091",
+    "text": "are open, and only a wave knows how many slits are open because"
+  },
+  {
+    "start": "01:12:12.091",
+    "end": "01:12:13.439",
+    "text": "it's going everywhere."
+  },
+  {
+    "start": "01:12:13.439",
+    "end": "01:12:16.479",
+    "text": "A particle can only look at one slit at a time."
+  },
+  {
+    "start": "01:12:16.479",
+    "end": "01:12:19.594",
+    "text": "In fact, it doesn't know anything, how many slits there"
+  },
+  {
+    "start": "01:12:19.594",
+    "end": "01:12:19.939",
+    "text": "are."
+  },
+  {
+    "start": "01:12:19.939",
+    "end": "01:12:22.898",
+    "text": "It usually bangs itself into the wall most of the time,"
+  },
+  {
+    "start": "01:12:22.898",
+    "end": "01:12:25.252",
+    "text": "but sometimes when it goes through the hole,"
+  },
+  {
+    "start": "01:12:25.252",
+    "end": "01:12:26.130",
+    "text": "it comes up."
+  },
+  {
+    "start": "01:12:26.130",
+    "end": "01:12:30.015",
+    "text": "And so what do you think one should do to complete the"
+  },
+  {
+    "start": "01:12:30.015",
+    "end": "01:12:30.750",
+    "text": "picture?"
+  },
+  {
+    "start": "01:12:30.750",
+    "end": "01:12:32.939",
+    "text": "What do we need to know?"
+  },
+  {
+    "start": "01:12:32.939",
+    "end": "01:12:35.328",
+    "text": "We need to know many things."
+  },
+  {
+    "start": "01:12:35.328",
+    "end": "01:12:39.091",
+    "text": "Y(x)^(2) is the probability that if you look for"
+  },
+  {
+    "start": "01:12:39.091",
+    "end": "01:12:41.390",
+    "text": "it, you will find it somewhere."
+  },
+  {
+    "start": "01:12:41.390",
+    "end": "01:12:44.042",
+    "text": "Instead of saying the particle is at this x in Newtonian"
+  },
+  {
+    "start": "01:12:44.042",
+    "end": "01:12:46.118",
+    "text": "mechanics, we're saying it can be at any"
+  },
+  {
+    "start": "01:12:46.118",
+    "end": "01:12:48.947",
+    "text": "x where Y doesn't vanish and the odds are"
+  },
+  {
+    "start": "01:12:48.947",
+    "end": "01:12:51.880",
+    "text": "proportional to the square of Y at that point."
+  },
+  {
+    "start": "01:12:51.880",
+    "end": "01:12:54.720",
+    "text": "Then you can say, what does the wave function"
+  },
+  {
+    "start": "01:12:54.720",
+    "end": "01:12:57.819",
+    "text": "look like for a particle of definite momentum?"
+  },
+  {
+    "start": "01:12:57.819",
+    "end": "01:13:00.581",
+    "text": "Either you postulate it or try to follow the arguments I gave,"
+  },
+  {
+    "start": "01:13:00.581",
+    "end": "01:13:02.029",
+    "text": "but this simply is the answer."
+  },
+  {
+    "start": "01:13:02.029",
+    "end": "01:13:04.930",
+    "text": "This is the state of definite momentum."
+  },
+  {
+    "start": "01:13:04.930",
+    "end": "01:13:07.844",
+    "text": "And the uncertainty principle tells you this is an agreement"
+  },
+  {
+    "start": "01:13:07.844",
+    "end": "01:13:10.759",
+    "text": "to the uncertainty principle that any attempt to localize an"
+  },
+  {
+    "start": "01:13:10.759",
+    "end": "01:13:13.722",
+    "text": "electron in space by an amount Dx leads to a spread in"
+  },
+  {
+    "start": "01:13:13.722",
+    "end": "01:13:15.649",
+    "text": "momentum in an amount Dpx."
+  },
+  {
+    "start": "01:13:15.649",
+    "end": "01:13:17.140",
+    "text": "That's because it's given by a wave."
+  },
+  {
+    "start": "01:13:17.140",
+    "end": "01:13:19.707",
+    "text": "If you're trying to squeeze the wave this way,"
+  },
+  {
+    "start": "01:13:19.707",
+    "end": "01:13:21.819",
+    "text": "it blows up in the other direction."
+  },
+  {
+    "start": "01:13:21.819",
+    "end": "01:13:24.199",
+    "text": "And the odds for finding in other directions are non 0,"
+  },
+  {
+    "start": "01:13:24.199",
+    "end": "01:13:26.757",
+    "text": "that means the momentum can point in many directions coming"
+  },
+  {
+    "start": "01:13:26.757",
+    "end": "01:13:27.640",
+    "text": "out of the slit."
+  },
+  {
+    "start": "01:13:27.640",
+    "end": "01:13:29.368",
+    "text": "That's the origin of the uncertainty principle."
+  },
+  {
+    "start": "01:13:29.368",
+    "end": "01:13:33.680",
+    "text": "So I'm going to post whatever I told you today online."
+  },
+  {
+    "start": "01:13:33.680",
+    "end": "01:13:35.676",
+    "text": "You should definitely read it and it's something you should"
+  },
+  {
+    "start": "01:13:35.676",
+    "end": "01:13:37.479",
+    "text": "talk about, not only with your analyst,"
+  },
+  {
+    "start": "01:13:37.479",
+    "end": "01:13:39.340",
+    "text": "because this can really disturb you,"
+  },
+  {
+    "start": "01:13:39.340",
+    "end": "01:13:41.420",
+    "text": "talk about it with your friends, your neighbors,"
+  },
+  {
+    "start": "01:13:41.420",
+    "end": "01:13:43.859",
+    "text": "talk about it with senior students."
+  },
+  {
+    "start": "01:13:43.859",
+    "end": "01:13:46.967",
+    "text": "The best thing in quantum is discussing it with people and"
+  },
+  {
+    "start": "01:13:46.967",
+    "end": "01:13:48.550",
+    "text": "getting over the weirdness."
+  }
+]

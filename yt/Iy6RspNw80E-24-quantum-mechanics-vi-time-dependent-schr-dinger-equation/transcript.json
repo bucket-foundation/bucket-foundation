@@ -1,0 +1,7617 @@
+[
+  {
+    "start": "00:00:02.310",
+    "end": "00:00:07.314",
+    "text": "Prof: All right, today's topic is the theory of"
+  },
+  {
+    "start": "00:00:07.314",
+    "end": "00:00:09.770",
+    "text": "nearly everything, okay?"
+  },
+  {
+    "start": "00:00:09.770",
+    "end": "00:00:11.430",
+    "text": "You wanted to know the theory of everything?"
+  },
+  {
+    "start": "00:00:11.430",
+    "end": "00:00:15.940",
+    "text": "You're almost there, because I'm finally ready to"
+  },
+  {
+    "start": "00:00:15.940",
+    "end": "00:00:21.202",
+    "text": "reveal to you the laws of quantum dynamics that tells you"
+  },
+  {
+    "start": "00:00:21.202",
+    "end": "00:00:24.210",
+    "text": "how things change with time."
+  },
+  {
+    "start": "00:00:24.210",
+    "end": "00:00:27.700",
+    "text": "So that's the analog of F = ma."
+  },
+  {
+    "start": "00:00:27.700",
+    "end": "00:00:29.940",
+    "text": "That's called the Schrˆdinger equation,"
+  },
+  {
+    "start": "00:00:29.940",
+    "end": "00:00:34.110",
+    "text": "and just about anything you see in this room,"
+  },
+  {
+    "start": "00:00:34.110",
+    "end": "00:00:37.735",
+    "text": "or on this planet, anything you can see or use is"
+  },
+  {
+    "start": "00:00:37.735",
+    "end": "00:00:41.964",
+    "text": "really described by this equation I'm going to write down"
+  },
+  {
+    "start": "00:00:41.964",
+    "end": "00:00:42.720",
+    "text": "today."
+  },
+  {
+    "start": "00:00:42.720",
+    "end": "00:00:47.338",
+    "text": "It contains Newton's laws as part of it, because if you can"
+  },
+  {
+    "start": "00:00:47.338",
+    "end": "00:00:51.400",
+    "text": "do the quantum theory, you can always find hidden in"
+  },
+  {
+    "start": "00:00:51.400",
+    "end": "00:00:53.630",
+    "text": "it the classical theory."
+  },
+  {
+    "start": "00:00:53.630",
+    "end": "00:00:57.054",
+    "text": "That's like saying if I can do Einstein's relativistic"
+  },
+  {
+    "start": "00:00:57.054",
+    "end": "00:01:00.414",
+    "text": "kinematics at low velocities, I will regain Newtonian"
+  },
+  {
+    "start": "00:01:00.414",
+    "end": "00:01:01.320",
+    "text": "mechanics."
+  },
+  {
+    "start": "00:01:01.320",
+    "end": "00:01:05.120",
+    "text": "So everything is contained in this one."
+  },
+  {
+    "start": "00:01:05.120",
+    "end": "00:01:09.613",
+    "text": "There are some things left, of course, that we won't do,"
+  },
+  {
+    "start": "00:01:09.613",
+    "end": "00:01:11.819",
+    "text": "but this goes a long way."
+  },
+  {
+    "start": "00:01:11.819",
+    "end": "00:01:14.754",
+    "text": "So I'll talk about it probably next time near the end,"
+  },
+  {
+    "start": "00:01:14.754",
+    "end": "00:01:16.860",
+    "text": "depending on how much time there is."
+  },
+  {
+    "start": "00:01:16.860",
+    "end": "00:01:21.534",
+    "text": "But without further ado, I will now tell you what the"
+  },
+  {
+    "start": "00:01:21.534",
+    "end": "00:01:25.310",
+    "text": "laws of motion are in quantum mechanics."
+  },
+  {
+    "start": "00:01:25.310",
+    "end": "00:01:32.030",
+    "text": "So let's go back one more time to remember what we have done."
+  },
+  {
+    "start": "00:01:32.030",
+    "end": "00:01:36.882",
+    "text": "The analogous statement is, in classical mechanics for a"
+  },
+  {
+    "start": "00:01:36.882",
+    "end": "00:01:40.060",
+    "text": "particle moving in one dimension,"
+  },
+  {
+    "start": "00:01:40.060",
+    "end": "00:01:45.068",
+    "text": "all I need to know about it right now is the position and"
+  },
+  {
+    "start": "00:01:45.068",
+    "end": "00:01:46.410",
+    "text": "the momentum."
+  },
+  {
+    "start": "00:01:46.410",
+    "end": "00:01:47.180",
+    "text": "That's it."
+  },
+  {
+    "start": "00:01:47.180",
+    "end": "00:01:49.459",
+    "text": "That's the maximal information."
+  },
+  {
+    "start": "00:01:49.459",
+    "end": "00:01:51.670",
+    "text": "You can say, \"What about other things?"
+  },
+  {
+    "start": "00:01:51.670",
+    "end": "00:01:52.920",
+    "text": "What about angular momentum?"
+  },
+  {
+    "start": "00:01:52.920",
+    "end": "00:01:54.120",
+    "text": "What about kinetic energy?"
+  },
+  {
+    "start": "00:01:54.120",
+    "end": "00:01:55.470",
+    "text": "What about potential energy?"
+  },
+  {
+    "start": "00:01:55.470",
+    "end": "00:01:57.069",
+    "text": "What about total energy?\""
+  },
+  {
+    "start": "00:01:57.069",
+    "end": "00:01:59.970",
+    "text": "They're all functions of x and p."
+  },
+  {
+    "start": "00:01:59.970",
+    "end": "00:02:02.131",
+    "text": "For example, in 3 dimensions, x will"
+  },
+  {
+    "start": "00:02:02.131",
+    "end": "00:02:05.063",
+    "text": "be replaced by r, p will be replaced by some"
+  },
+  {
+    "start": "00:02:05.063",
+    "end": "00:02:06.867",
+    "text": "vector p, and there's a"
+  },
+  {
+    "start": "00:02:06.867",
+    "end": "00:02:08.750",
+    "text": "variable called angular momentum,"
+  },
+  {
+    "start": "00:02:08.750",
+    "end": "00:02:11.222",
+    "text": "but you know that once you know r"
+  },
+  {
+    "start": "00:02:11.222",
+    "end": "00:02:14.300",
+    "text": "and p by taking the cross product."
+  },
+  {
+    "start": "00:02:14.300",
+    "end": "00:02:15.490",
+    "text": "That's it."
+  },
+  {
+    "start": "00:02:15.490",
+    "end": "00:02:19.002",
+    "text": "And you can say, \"What happens when I"
+  },
+  {
+    "start": "00:02:19.002",
+    "end": "00:02:23.460",
+    "text": "measure any variable for a classical particle in this"
+  },
+  {
+    "start": "00:02:23.460",
+    "end": "00:02:25.860",
+    "text": "state, x,p?\""
+  },
+  {
+    "start": "00:02:25.860",
+    "end": "00:02:29.325",
+    "text": "Well, if you know the location, it's guaranteed to be x"
+  },
+  {
+    "start": "00:02:29.325",
+    "end": "00:02:31.575",
+    "text": "100 percent, momentum is p,"
+  },
+  {
+    "start": "00:02:31.575",
+    "end": "00:02:32.550",
+    "text": "100 percent."
+  },
+  {
+    "start": "00:02:32.550",
+    "end": "00:02:34.555",
+    "text": "Any other function of x and p,"
+  },
+  {
+    "start": "00:02:34.555",
+    "end": "00:02:37.026",
+    "text": "like r X p, is guaranteed to have"
+  },
+  {
+    "start": "00:02:37.026",
+    "end": "00:02:38.240",
+    "text": "that particular value."
+  },
+  {
+    "start": "00:02:38.240",
+    "end": "00:02:40.258",
+    "text": "So everything is completely known."
+  },
+  {
+    "start": "00:02:40.258",
+    "end": "00:02:42.590",
+    "text": "That's the situation at one time."
+  },
+  {
+    "start": "00:02:42.590",
+    "end": "00:02:46.193",
+    "text": "Then you want to say, \"What can you say about"
+  },
+  {
+    "start": "00:02:46.193",
+    "end": "00:02:47.150",
+    "text": "the future?"
+  },
+  {
+    "start": "00:02:47.150",
+    "end": "00:02:49.240",
+    "text": "What's the rate of change of these things?\""
+  },
+  {
+    "start": "00:02:49.240",
+    "end": "00:02:54.352",
+    "text": "And the answer to that is, d^(2)x/dt^(2) times"
+  },
+  {
+    "start": "00:02:54.352",
+    "end": "00:02:58.816",
+    "text": "m is the force, and in most problems you can"
+  },
+  {
+    "start": "00:02:58.816",
+    "end": "00:03:02.468",
+    "text": "write the force as a derivative of some potential."
+  },
+  {
+    "start": "00:03:02.468",
+    "end": "00:03:05.942",
+    "text": "So if you knew the potential, 1/2kx^(2) or whatever it"
+  },
+  {
+    "start": "00:03:05.942",
+    "end": "00:03:06.974",
+    "text": "is, or mgx,"
+  },
+  {
+    "start": "00:03:06.974",
+    "end": "00:03:09.568",
+    "text": "you can take the derivative on the right hand side,"
+  },
+  {
+    "start": "00:03:09.568",
+    "end": "00:03:13.561",
+    "text": "and the left hand side tells you the rate of change of"
+  },
+  {
+    "start": "00:03:13.561",
+    "end": "00:03:14.389",
+    "text": "x."
+  },
+  {
+    "start": "00:03:14.389",
+    "end": "00:03:19.492",
+    "text": "I want you to note one thing - we know an equation that tells"
+  },
+  {
+    "start": "00:03:19.492",
+    "end": "00:03:22.810",
+    "text": "you something about the acceleration."
+  },
+  {
+    "start": "00:03:22.810",
+    "end": "00:03:28.038",
+    "text": "Once the forces are known, there's a unique acceleration."
+  },
+  {
+    "start": "00:03:28.038",
+    "end": "00:03:31.914",
+    "text": "So you are free to give the particle any position you like,"
+  },
+  {
+    "start": "00:03:31.914",
+    "end": "00:03:34.120",
+    "text": "and any velocity, dx/dt."
+  },
+  {
+    "start": "00:03:34.120",
+    "end": "00:03:35.759",
+    "text": "That's essentially the momentum."
+  },
+  {
+    "start": "00:03:35.759",
+    "end": "00:03:38.060",
+    "text": "You can pick them at random."
+  },
+  {
+    "start": "00:03:38.060",
+    "end": "00:03:40.580",
+    "text": "But you cannot pick the acceleration at random,"
+  },
+  {
+    "start": "00:03:40.580",
+    "end": "00:03:43.430",
+    "text": "because the acceleration is not for you to decide."
+  },
+  {
+    "start": "00:03:43.430",
+    "end": "00:03:47.953",
+    "text": "The acceleration is determined by Newton's laws to equal the"
+  },
+  {
+    "start": "00:03:47.953",
+    "end": "00:03:51.020",
+    "text": "essentially the force divided by mass."
+  },
+  {
+    "start": "00:03:51.020",
+    "end": "00:03:53.885",
+    "text": "That comes from the fact mathematically that this is a"
+  },
+  {
+    "start": "00:03:53.885",
+    "end": "00:03:56.967",
+    "text": "second order equation in time, namely involving the second"
+  },
+  {
+    "start": "00:03:56.967",
+    "end": "00:03:57.780",
+    "text": "derivative."
+  },
+  {
+    "start": "00:03:57.780",
+    "end": "00:04:01.128",
+    "text": "And that, from a mathematical point of view,"
+  },
+  {
+    "start": "00:04:01.128",
+    "end": "00:04:04.055",
+    "text": "if the second derivative is determined by external"
+  },
+  {
+    "start": "00:04:04.055",
+    "end": "00:04:06.990",
+    "text": "considerations, initial conditions are given by"
+  },
+  {
+    "start": "00:04:06.990",
+    "end": "00:04:09.568",
+    "text": "initial x and the first derivative."
+  },
+  {
+    "start": "00:04:09.568",
+    "end": "00:04:12.860",
+    "text": "All higher derivatives are slaved to the applied force."
+  },
+  {
+    "start": "00:04:12.860",
+    "end": "00:04:16.120",
+    "text": "You don't assign them as you wish."
+  },
+  {
+    "start": "00:04:16.120",
+    "end": "00:04:19.540",
+    "text": "You find out what they are from the equations of motion."
+  },
+  {
+    "start": "00:04:19.540",
+    "end": "00:04:23.800",
+    "text": "That's really all of classical mechanics."
+  },
+  {
+    "start": "00:04:23.800",
+    "end": "00:04:26.896",
+    "text": "Now you want to do quantum mechanics, and we have seen many"
+  },
+  {
+    "start": "00:04:26.896",
+    "end": "00:04:29.675",
+    "text": "times the story in quantum mechanics is a little more"
+  },
+  {
+    "start": "00:04:29.675",
+    "end": "00:04:30.528",
+    "text": "complicated."
+  },
+  {
+    "start": "00:04:30.528",
+    "end": "00:04:34.279",
+    "text": "You ask a simple question and you get a very long answer."
+  },
+  {
+    "start": "00:04:34.279",
+    "end": "00:04:36.617",
+    "text": "The simple question is, how do you describe the"
+  },
+  {
+    "start": "00:04:36.617",
+    "end": "00:04:39.110",
+    "text": "particle in quantum mechanics in one dimension?"
+  },
+  {
+    "start": "00:04:39.110",
+    "end": "00:04:41.355",
+    "text": "And you say, \"I want to assign to it a"
+  },
+  {
+    "start": "00:04:41.355",
+    "end": "00:04:43.279",
+    "text": "function Y(x).\""
+  },
+  {
+    "start": "00:04:43.279",
+    "end": "00:04:48.634",
+    "text": "Y(x) is any reasonable function which can be"
+  },
+  {
+    "start": "00:04:48.634",
+    "end": "00:04:52.769",
+    "text": "squared and integrated over the real line."
+  },
+  {
+    "start": "00:04:52.769",
+    "end": "00:04:55.500",
+    "text": "Anything you write down is a possible state."
+  },
+  {
+    "start": "00:04:55.500",
+    "end": "00:04:58.403",
+    "text": "That's like saying, any x and any p"
+  },
+  {
+    "start": "00:04:58.403",
+    "end": "00:04:59.250",
+    "text": "are allowed."
+  },
+  {
+    "start": "00:04:59.250",
+    "end": "00:05:01.629",
+    "text": "Likewise, Y(x) is nothing special."
+  },
+  {
+    "start": "00:05:01.629",
+    "end": "00:05:04.872",
+    "text": "It can be whatever you like as long as you can square it and"
+  },
+  {
+    "start": "00:05:04.872",
+    "end": "00:05:07.949",
+    "text": "integrate it to get a finite answer over all of space."
+  },
+  {
+    "start": "00:05:07.949",
+    "end": "00:05:10.009",
+    "text": "That's the only condition."
+  },
+  {
+    "start": "00:05:10.009",
+    "end": "00:05:13.252",
+    "text": "And if your all of space goes to infinity, then Y"
+  },
+  {
+    "start": "00:05:13.252",
+    "end": "00:05:15.139",
+    "text": "should vanish a and- infinity."
+  },
+  {
+    "start": "00:05:15.139",
+    "end": "00:05:16.920",
+    "text": "That's the only requirement."
+  },
+  {
+    "start": "00:05:16.920",
+    "end": "00:05:19.360",
+    "text": "Then you say, \"That tells me everything."
+  },
+  {
+    "start": "00:05:19.360",
+    "end": "00:05:23.028",
+    "text": "Why don't you tell me what the particle is doing?\""
+  },
+  {
+    "start": "00:05:23.028",
+    "end": "00:05:24.966",
+    "text": "And you can say, \"What do you want to"
+  },
+  {
+    "start": "00:05:24.966",
+    "end": "00:05:25.579",
+    "text": "know?\""
+  },
+  {
+    "start": "00:05:25.579",
+    "end": "00:05:27.829",
+    "text": "Well, I want to know where it is."
+  },
+  {
+    "start": "00:05:27.829",
+    "end": "00:05:29.730",
+    "text": "That's when you don't get a straight answer."
+  },
+  {
+    "start": "00:05:29.730",
+    "end": "00:05:31.387",
+    "text": "You are told, \"Well, it can be here,"
+  },
+  {
+    "start": "00:05:31.387",
+    "end": "00:05:33.170",
+    "text": "it can be there, it can be anywhere else."
+  },
+  {
+    "start": "00:05:33.170",
+    "end": "00:05:37.785",
+    "text": "And the probability density that it's at point x is"
+  },
+  {
+    "start": "00:05:37.785",
+    "end": "00:05:42.319",
+    "text": "proportional to the absolute square of Y.\""
+  },
+  {
+    "start": "00:05:42.319",
+    "end": "00:05:44.446",
+    "text": "That means you take the Y and you square it,"
+  },
+  {
+    "start": "00:05:44.446",
+    "end": "00:05:46.190",
+    "text": "so it will have nothing negative in it."
+  },
+  {
+    "start": "00:05:46.190",
+    "end": "00:05:49.687",
+    "text": "Everything will be real and positive, and Y itself"
+  },
+  {
+    "start": "00:05:49.687",
+    "end": "00:05:50.750",
+    "text": "may be complex."
+  },
+  {
+    "start": "00:05:50.750",
+    "end": "00:05:53.675",
+    "text": "But this Y^(2), I told you over and over,"
+  },
+  {
+    "start": "00:05:53.675",
+    "end": "00:05:55.980",
+    "text": "is defined to be Y*Y."
+  },
+  {
+    "start": "00:05:55.980",
+    "end": "00:05:59.649",
+    "text": "That's real and positive."
+  },
+  {
+    "start": "00:05:59.649",
+    "end": "00:06:01.451",
+    "text": "Then you can say, \"What if I measure"
+  },
+  {
+    "start": "00:06:01.451",
+    "end": "00:06:03.300",
+    "text": "momentum, what answer will I get?\""
+  },
+  {
+    "start": "00:06:03.300",
+    "end": "00:06:05.740",
+    "text": "That's even longer."
+  },
+  {
+    "start": "00:06:05.740",
+    "end": "00:06:07.771",
+    "text": "First you are supposed to expand--I'm not going to do the"
+  },
+  {
+    "start": "00:06:07.771",
+    "end": "00:06:11.348",
+    "text": "whole thing too many times-- you're supposed to write this"
+  },
+  {
+    "start": "00:06:11.348",
+    "end": "00:06:15.812",
+    "text": "Y as some coefficient times these very special"
+  },
+  {
+    "start": "00:06:15.812",
+    "end": "00:06:16.930",
+    "text": "functions."
+  },
+  {
+    "start": "00:06:16.930",
+    "end": "00:06:20.355",
+    "text": "In a world of size L, you have to write the given"
+  },
+  {
+    "start": "00:06:20.355",
+    "end": "00:06:24.935",
+    "text": "Y in this fashion, and the coefficients are"
+  },
+  {
+    "start": "00:06:24.935",
+    "end": "00:06:31.790",
+    "text": "determined by the integral of the complex conjugate of this"
+  },
+  {
+    "start": "00:06:31.790",
+    "end": "00:06:38.410",
+    "text": "function times the function you gave me, Y(x)."
+  },
+  {
+    "start": "00:06:38.410",
+    "end": "00:06:40.850",
+    "text": "Now I gave some extra notes, I think."
+  },
+  {
+    "start": "00:06:40.850",
+    "end": "00:06:42.610",
+    "text": "Did people get that?"
+  },
+  {
+    "start": "00:06:42.610",
+    "end": "00:06:44.819",
+    "text": "Called the \"Quantum Cookbook?\""
+  },
+  {
+    "start": "00:06:44.819",
+    "end": "00:06:46.300",
+    "text": "That's just the recipe, you know."
+  },
+  {
+    "start": "00:06:46.300",
+    "end": "00:06:51.029",
+    "text": "Quantum mechanics is a big fat recipe and that's all we can do."
+  },
+  {
+    "start": "00:06:51.029",
+    "end": "00:06:53.459",
+    "text": "I tell you, you do this, you get these answers."
+  },
+  {
+    "start": "00:06:53.459",
+    "end": "00:06:57.120",
+    "text": "That's my whole goal, to simply give you the recipe."
+  },
+  {
+    "start": "00:06:57.120",
+    "end": "00:07:00.697",
+    "text": "So the recipe says--what's interesting about quantum"
+  },
+  {
+    "start": "00:07:00.697",
+    "end": "00:07:03.807",
+    "text": "mechanics, what makes it hard to teach,"
+  },
+  {
+    "start": "00:07:03.807",
+    "end": "00:07:08.677",
+    "text": "is that there are some physical principles which are summarized"
+  },
+  {
+    "start": "00:07:08.677",
+    "end": "00:07:12.019",
+    "text": "by these rules, which are like axioms."
+  },
+  {
+    "start": "00:07:12.019",
+    "end": "00:07:15.346",
+    "text": "Then there are some purely mathematical results which are"
+  },
+  {
+    "start": "00:07:15.346",
+    "end": "00:07:16.120",
+    "text": "not axioms."
+  },
+  {
+    "start": "00:07:16.120",
+    "end": "00:07:19.149",
+    "text": "They are consequences of pure mathematics."
+  },
+  {
+    "start": "00:07:19.149",
+    "end": "00:07:22.077",
+    "text": "You have to keep in mind, what is a purely mathematical"
+  },
+  {
+    "start": "00:07:22.077",
+    "end": "00:07:23.956",
+    "text": "result, therefore is deduced from the"
+  },
+  {
+    "start": "00:07:23.956",
+    "end": "00:07:26.478",
+    "text": "laws of mathematics, and what is a physical result,"
+  },
+  {
+    "start": "00:07:26.478",
+    "end": "00:07:28.089",
+    "text": "that's deduced from experiment."
+  },
+  {
+    "start": "00:07:28.089",
+    "end": "00:07:31.951",
+    "text": "The fact that Y describes everything is a"
+  },
+  {
+    "start": "00:07:31.951",
+    "end": "00:07:33.430",
+    "text": "physical result."
+  },
+  {
+    "start": "00:07:33.430",
+    "end": "00:07:39.122",
+    "text": "Now it tells you to write Y as the sum of these"
+  },
+  {
+    "start": "00:07:39.122",
+    "end": "00:07:42.771",
+    "text": "functions, and then the probability to"
+  },
+  {
+    "start": "00:07:42.771",
+    "end": "00:07:47.690",
+    "text": "obtain any momentum p is A_p^(2),"
+  },
+  {
+    "start": "00:07:47.690",
+    "end": "00:07:49.639",
+    "text": "where A_p is defined by this."
+  },
+  {
+    "start": "00:07:49.639",
+    "end": "00:07:52.961",
+    "text": "The mathematics comes in in the following way - first question"
+  },
+  {
+    "start": "00:07:52.961",
+    "end": "00:07:56.173",
+    "text": "is, who told you that I can write every function Y in"
+  },
+  {
+    "start": "00:07:56.173",
+    "end": "00:07:57.100",
+    "text": "this fashion?"
+  },
+  {
+    "start": "00:07:57.100",
+    "end": "00:07:58.529",
+    "text": "That's called the Fourier's theorem,"
+  },
+  {
+    "start": "00:07:58.529",
+    "end": "00:08:01.850",
+    "text": "that guarantees you that in a circle of size L,"
+  },
+  {
+    "start": "00:08:01.850",
+    "end": "00:08:04.495",
+    "text": "every periodic function, meaning that returns to its"
+  },
+  {
+    "start": "00:08:04.495",
+    "end": "00:08:06.932",
+    "text": "starting value, may be expanded in terms of"
+  },
+  {
+    "start": "00:08:06.932",
+    "end": "00:08:07.879",
+    "text": "these functions."
+  },
+  {
+    "start": "00:08:07.879",
+    "end": "00:08:09.930",
+    "text": "That's the mathematical result."
+  },
+  {
+    "start": "00:08:09.930",
+    "end": "00:08:13.497",
+    "text": "The same mathematical result also tells you how to find the"
+  },
+  {
+    "start": "00:08:13.497",
+    "end": "00:08:14.420",
+    "text": "coefficients."
+  },
+  {
+    "start": "00:08:14.420",
+    "end": "00:08:19.170",
+    "text": "The postulates of quantum mechanics tell you two things."
+  },
+  {
+    "start": "00:08:19.170",
+    "end": "00:08:23.704",
+    "text": "A_p^(2) is the probability that you will get"
+  },
+  {
+    "start": "00:08:23.704",
+    "end": "00:08:27.028",
+    "text": "the value p when you measure momentum,"
+  },
+  {
+    "start": "00:08:27.028",
+    "end": "00:08:27.709",
+    "text": "okay?"
+  },
+  {
+    "start": "00:08:27.709",
+    "end": "00:08:30.639",
+    "text": "That's a postulate, because you could have written"
+  },
+  {
+    "start": "00:08:30.639",
+    "end": "00:08:33.690",
+    "text": "this function 200 years before quantum mechanics."
+  },
+  {
+    "start": "00:08:33.690",
+    "end": "00:08:37.522",
+    "text": "It will still be true, but this function did not have"
+  },
+  {
+    "start": "00:08:37.522",
+    "end": "00:08:41.649",
+    "text": "a meaning at that time as states of definite momentum."
+  },
+  {
+    "start": "00:08:41.649",
+    "end": "00:08:43.889",
+    "text": "How do I know it's a state of definite momentum?"
+  },
+  {
+    "start": "00:08:43.889",
+    "end": "00:08:47.129",
+    "text": "If every term vanished except one term,"
+  },
+  {
+    "start": "00:08:47.129",
+    "end": "00:08:50.255",
+    "text": "that's all you have, then one coefficient will be"
+  },
+  {
+    "start": "00:08:50.255",
+    "end": "00:08:53.010",
+    "text": "A something = 1, everything is 0,"
+  },
+  {
+    "start": "00:08:53.010",
+    "end": "00:08:56.856",
+    "text": "that means the probability for getting momentum has a non 0"
+  },
+  {
+    "start": "00:08:56.856",
+    "end": "00:08:58.980",
+    "text": "value only for that momentum."
+  },
+  {
+    "start": "00:08:58.980",
+    "end": "00:09:04.720",
+    "text": "All other momenta are missing in that situation."
+  },
+  {
+    "start": "00:09:04.720",
+    "end": "00:09:07.785",
+    "text": "Another postulate of quantum mechanics is that once you"
+  },
+  {
+    "start": "00:09:07.785",
+    "end": "00:09:10.740",
+    "text": "measure momentum and you get one of these values,"
+  },
+  {
+    "start": "00:09:10.740",
+    "end": "00:09:15.178",
+    "text": "the state will go from being a sum over many such functions,"
+  },
+  {
+    "start": "00:09:15.178",
+    "end": "00:09:20.208",
+    "text": "and collapse to the one term and the sum that corresponds to"
+  },
+  {
+    "start": "00:09:20.208",
+    "end": "00:09:22.000",
+    "text": "the answer you got."
+  },
+  {
+    "start": "00:09:22.000",
+    "end": "00:09:25.109",
+    "text": "Then here is another mathematical result - p is not"
+  },
+  {
+    "start": "00:09:25.109",
+    "end": "00:09:27.970",
+    "text": "every arbitrary real number you can imagine."
+  },
+  {
+    "start": "00:09:27.970",
+    "end": "00:09:30.730",
+    "text": "We make the requirement, if you go around on a circle,"
+  },
+  {
+    "start": "00:09:30.730",
+    "end": "00:09:33.509",
+    "text": "the function should come back to the starting value,"
+  },
+  {
+    "start": "00:09:33.509",
+    "end": "00:09:35.801",
+    "text": "therefore p is restricted to be"
+  },
+  {
+    "start": "00:09:35.801",
+    "end": "00:09:38.649",
+    "text": "2p‚Ñè /L times some"
+  },
+  {
+    "start": "00:09:38.649",
+    "end": "00:09:39.950",
+    "text": "integer n."
+  },
+  {
+    "start": "00:09:39.950",
+    "end": "00:09:42.405",
+    "text": "That's a mathematical requirement, because if you"
+  },
+  {
+    "start": "00:09:42.405",
+    "end": "00:09:45.169",
+    "text": "think Y ^(2) is the probability, Y should"
+  },
+  {
+    "start": "00:09:45.169",
+    "end": "00:09:46.860",
+    "text": "come back to where you start."
+  },
+  {
+    "start": "00:09:46.860",
+    "end": "00:09:49.346",
+    "text": "It cannot get two different values of Y when you go"
+  },
+  {
+    "start": "00:09:49.346",
+    "end": "00:09:50.220",
+    "text": "around the circle."
+  },
+  {
+    "start": "00:09:50.220",
+    "end": "00:09:55.519",
+    "text": "That quantizes momentum to these values."
+  },
+  {
+    "start": "00:09:55.519",
+    "end": "00:10:00.173",
+    "text": "The last thing I did was to say, if you measure energy,"
+  },
+  {
+    "start": "00:10:00.173",
+    "end": "00:10:02.500",
+    "text": "what answer will you get?"
+  },
+  {
+    "start": "00:10:02.500",
+    "end": "00:10:05.288",
+    "text": "That's even longer."
+  },
+  {
+    "start": "00:10:05.288",
+    "end": "00:10:09.000",
+    "text": "There you're supposed to solve the following equations,"
+  },
+  {
+    "start": "00:10:09.000",
+    "end": "00:10:13.977",
+    "text": "(((h^(2)/2m)d^(2) Y_E"
+  },
+  {
+    "start": "00:10:13.977",
+    "end": "00:10:20.498",
+    "text": "/dx^(2)) V(x)) Y_E(x) ="
+  },
+  {
+    "start": "00:10:20.498",
+    "end": "00:10:24.408",
+    "text": "EY_E(x)."
+  },
+  {
+    "start": "00:10:24.408",
+    "end": "00:10:26.471",
+    "text": "In other words, for energy the answer's more"
+  },
+  {
+    "start": "00:10:26.471",
+    "end": "00:10:29.110",
+    "text": "complicated, because before, I can tell you anything."
+  },
+  {
+    "start": "00:10:29.110",
+    "end": "00:10:32.038",
+    "text": "I want you to solve this equation."
+  },
+  {
+    "start": "00:10:32.038",
+    "end": "00:10:35.557",
+    "text": "This equation says, if in classical mechanics the"
+  },
+  {
+    "start": "00:10:35.557",
+    "end": "00:10:40.101",
+    "text": "particle was in some potential V(x) and the particle had"
+  },
+  {
+    "start": "00:10:40.101",
+    "end": "00:10:43.131",
+    "text": "some mass m, you have to solve this"
+  },
+  {
+    "start": "00:10:43.131",
+    "end": "00:10:46.139",
+    "text": "equation, then it's a purely mathematical problem,"
+  },
+  {
+    "start": "00:10:46.139",
+    "end": "00:10:49.268",
+    "text": "and you try to find all solutions that behave well at"
+  },
+  {
+    "start": "00:10:49.268",
+    "end": "00:10:51.356",
+    "text": "infinity, that don't blow up at infinity,"
+  },
+  {
+    "start": "00:10:51.356",
+    "end": "00:10:52.460",
+    "text": "that vanish at infinity."
+  },
+  {
+    "start": "00:10:52.460",
+    "end": "00:10:56.879",
+    "text": "That quantizes E to certain special values."
+  },
+  {
+    "start": "00:10:56.879",
+    "end": "00:11:00.653",
+    "text": "And there are corresponding functions, Y_E"
+  },
+  {
+    "start": "00:11:00.653",
+    "end": "00:11:02.278",
+    "text": "for each allowed value."
+  },
+  {
+    "start": "00:11:02.278",
+    "end": "00:11:05.378",
+    "text": "Then you are done, because then you make a similar"
+  },
+  {
+    "start": "00:11:05.378",
+    "end": "00:11:08.919",
+    "text": "expansion, you write the unknown Y and namely some"
+  },
+  {
+    "start": "00:11:08.919",
+    "end": "00:11:11.639",
+    "text": "arbitrary Y that's given to you."
+  },
+  {
+    "start": "00:11:11.639",
+    "end": "00:11:13.369",
+    "text": "You write it as a Œ£A_E"
+  },
+  {
+    "start": "00:11:13.369",
+    "end": "00:11:15.809",
+    "text": "Y _E(x),"
+  },
+  {
+    "start": "00:11:15.809",
+    "end": "00:11:18.759",
+    "text": "where A_E is found by a similar rule."
+  },
+  {
+    "start": "00:11:18.759",
+    "end": "00:11:21.892",
+    "text": "Just replace p by E and replace this"
+  },
+  {
+    "start": "00:11:21.892",
+    "end": "00:11:23.808",
+    "text": "function by these functions."
+  },
+  {
+    "start": "00:11:23.808",
+    "end": "00:11:27.139",
+    "text": "Then if you square A_E you will"
+  },
+  {
+    "start": "00:11:27.139",
+    "end": "00:11:30.399",
+    "text": "get the probability you will get the energy."
+  },
+  {
+    "start": "00:11:30.399",
+    "end": "00:11:33.918",
+    "text": "So what makes the energy problem more complicated is that"
+  },
+  {
+    "start": "00:11:33.918",
+    "end": "00:11:37.690",
+    "text": "whereas for momentum we know once and for all these functions"
+  },
+  {
+    "start": "00:11:37.690",
+    "end": "00:11:41.398",
+    "text": "describe a state of definite momentum where you can get only"
+  },
+  {
+    "start": "00:11:41.398",
+    "end": "00:11:44.178",
+    "text": "one answer, states of definite energy"
+  },
+  {
+    "start": "00:11:44.178",
+    "end": "00:11:47.610",
+    "text": "depend on what potential is acting on the particle."
+  },
+  {
+    "start": "00:11:47.610",
+    "end": "00:11:49.899",
+    "text": "If it's a free particle, V is 0."
+  },
+  {
+    "start": "00:11:49.899",
+    "end": "00:11:53.861",
+    "text": "If it's a particle that in Newtonian mechanics is a"
+  },
+  {
+    "start": "00:11:53.861",
+    "end": "00:11:57.033",
+    "text": "harmonic oscillator, V(x) would be"
+  },
+  {
+    "start": "00:11:57.033",
+    "end": "00:11:59.490",
+    "text": "ÔøΩkx^(2) and so on."
+  },
+  {
+    "start": "00:11:59.490",
+    "end": "00:12:02.967",
+    "text": "So you should know the classical potential and you've"
+  },
+  {
+    "start": "00:12:02.967",
+    "end": "00:12:06.647",
+    "text": "got it in for every possible potential you have to solve"
+  },
+  {
+    "start": "00:12:06.647",
+    "end": "00:12:07.250",
+    "text": "this."
+  },
+  {
+    "start": "00:12:07.250",
+    "end": "00:12:10.373",
+    "text": "But that's what most people in physics departments are doing"
+  },
+  {
+    "start": "00:12:10.373",
+    "end": "00:12:11.379",
+    "text": "most of the time."
+  },
+  {
+    "start": "00:12:11.379",
+    "end": "00:12:16.493",
+    "text": "They're solving this equation to find states of definite"
+  },
+  {
+    "start": "00:12:16.493",
+    "end": "00:12:17.330",
+    "text": "energy."
+  },
+  {
+    "start": "00:12:17.330",
+    "end": "00:12:20.937",
+    "text": "So today, I'm going to tell you why states of definite energy"
+  },
+  {
+    "start": "00:12:20.937",
+    "end": "00:12:22.080",
+    "text": "are so important."
+  },
+  {
+    "start": "00:12:22.080",
+    "end": "00:12:23.350",
+    "text": "What's the big deal?"
+  },
+  {
+    "start": "00:12:23.350",
+    "end": "00:12:26.110",
+    "text": "Why is state of momentum not so important?"
+  },
+  {
+    "start": "00:12:26.110",
+    "end": "00:12:28.548",
+    "text": "Why is the state of definite position not so interesting?"
+  },
+  {
+    "start": "00:12:28.548",
+    "end": "00:12:31.350",
+    "text": "What is privileged about the states of definite momentum?"
+  },
+  {
+    "start": "00:12:31.350",
+    "end": "00:12:35.629",
+    "text": "And now you will see the role of energy."
+  },
+  {
+    "start": "00:12:35.629",
+    "end": "00:12:41.181",
+    "text": "So I'm going to write down for you the equation that's analog"
+  },
+  {
+    "start": "00:12:41.181",
+    "end": "00:12:42.940",
+    "text": "of F = ma."
+  },
+  {
+    "start": "00:12:42.940",
+    "end": "00:12:44.759",
+    "text": "So what are we trying to do?"
+  },
+  {
+    "start": "00:12:44.759",
+    "end": "00:12:51.590",
+    "text": "Y(x) is like x and p."
+  },
+  {
+    "start": "00:12:51.590",
+    "end": "00:12:53.798",
+    "text": "You don't have a time label here."
+  },
+  {
+    "start": "00:12:53.798",
+    "end": "00:12:57.316",
+    "text": "These are like saying at some time a particle has a position"
+  },
+  {
+    "start": "00:12:57.316",
+    "end": "00:12:58.330",
+    "text": "and a momentum."
+  },
+  {
+    "start": "00:12:58.330",
+    "end": "00:13:00.807",
+    "text": "In quantum theory or some time, it has a wave function"
+  },
+  {
+    "start": "00:13:00.807",
+    "end": "00:13:01.788",
+    "text": "Y(x)."
+  },
+  {
+    "start": "00:13:01.788",
+    "end": "00:13:04.123",
+    "text": "But the real question in classical mechanics is,"
+  },
+  {
+    "start": "00:13:04.123",
+    "end": "00:13:06.903",
+    "text": "how does x vary with time and how does p vary with"
+  },
+  {
+    "start": "00:13:06.903",
+    "end": "00:13:07.350",
+    "text": "time."
+  },
+  {
+    "start": "00:13:07.350",
+    "end": "00:13:10.960",
+    "text": "The answer is, according to F = ma."
+  },
+  {
+    "start": "00:13:10.960",
+    "end": "00:13:13.339",
+    "text": "And here the question is, how does Y vary with"
+  },
+  {
+    "start": "00:13:13.339",
+    "end": "00:13:13.658",
+    "text": "time?"
+  },
+  {
+    "start": "00:13:13.658",
+    "end": "00:13:17.648",
+    "text": "First thing you've got to do is to realize that Y itself"
+  },
+  {
+    "start": "00:13:17.648",
+    "end": "00:13:19.899",
+    "text": "can be a function of time, right?"
+  },
+  {
+    "start": "00:13:19.899",
+    "end": "00:13:22.984",
+    "text": "That's the only time you've got to ask, \"What does it do"
+  },
+  {
+    "start": "00:13:22.984",
+    "end": "00:13:23.908",
+    "text": "with time?\""
+  },
+  {
+    "start": "00:13:23.908",
+    "end": "00:13:27.149",
+    "text": "So at t = 0 it may look like this."
+  },
+  {
+    "start": "00:13:27.149",
+    "end": "00:13:29.149",
+    "text": "A little later, it may look like that."
+  },
+  {
+    "start": "00:13:29.149",
+    "end": "00:13:34.009",
+    "text": "So it's flopping and moving, just like say a string."
+  },
+  {
+    "start": "00:13:34.009",
+    "end": "00:13:36.745",
+    "text": "It's changing with time and you want to know how it changes with"
+  },
+  {
+    "start": "00:13:36.745",
+    "end": "00:13:37.048",
+    "text": "time."
+  },
+  {
+    "start": "00:13:37.048",
+    "end": "00:13:39.980",
+    "text": "So this is the great Schrˆdinger equation."
+  },
+  {
+    "start": "00:13:39.980",
+    "end": "00:13:44.292",
+    "text": "It says i‚Ñèd Y(x,t)/dt (it's"
+  },
+  {
+    "start": "00:13:44.292",
+    "end": "00:13:46.998",
+    "text": "partial, because this depends on"
+  },
+  {
+    "start": "00:13:46.998",
+    "end": "00:13:52.008",
+    "text": "x and t so this is the t derivative) = the"
+  },
+  {
+    "start": "00:13:52.008",
+    "end": "00:13:57.860",
+    "text": "following, [-‚Ñè^(2) /2m"
+  },
+  {
+    "start": "00:13:57.860",
+    "end": "00:14:06.200",
+    "text": "d^(2)Y/dx^(2) V(x) Y(x,t)]."
+  },
+  {
+    "start": "00:14:06.200",
+    "end": "00:14:09.960",
+    "text": "That's the equation."
+  },
+  {
+    "start": "00:14:09.960",
+    "end": "00:14:14.610",
+    "text": "x comma t."
+  },
+  {
+    "start": "00:14:14.610",
+    "end": "00:14:17.730",
+    "text": "So write this down, because if you know this"
+  },
+  {
+    "start": "00:14:17.730",
+    "end": "00:14:21.504",
+    "text": "equation, you'll be surprised how many things you can"
+  },
+  {
+    "start": "00:14:21.504",
+    "end": "00:14:22.519",
+    "text": "calculate."
+  },
+  {
+    "start": "00:14:22.519",
+    "end": "00:14:25.363",
+    "text": "From this follows the spectrum of the atoms,"
+  },
+  {
+    "start": "00:14:25.363",
+    "end": "00:14:28.735",
+    "text": "from this follows what makes a material a conductor,"
+  },
+  {
+    "start": "00:14:28.735",
+    "end": "00:14:31.250",
+    "text": "a semiconductor, a superconductor."
+  },
+  {
+    "start": "00:14:31.250",
+    "end": "00:14:36.842",
+    "text": "Everything follows from this famous Schrˆdinger"
+  },
+  {
+    "start": "00:14:36.842",
+    "end": "00:14:38.048",
+    "text": "equation."
+  },
+  {
+    "start": "00:14:38.048",
+    "end": "00:14:41.039",
+    "text": "This is an equation in which you must notice that we're"
+  },
+  {
+    "start": "00:14:41.039",
+    "end": "00:14:43.918",
+    "text": "dealing for the first time with functions of time."
+  },
+  {
+    "start": "00:14:43.918",
+    "end": "00:14:45.980",
+    "text": "Somebody asked me long back, \"Where is time?\""
+  },
+  {
+    "start": "00:14:45.980",
+    "end": "00:14:49.009",
+    "text": "Well, here is how Y varies with time."
+  },
+  {
+    "start": "00:14:49.009",
+    "end": "00:14:53.227",
+    "text": "So suppose someone says, \"Here is initial"
+  },
+  {
+    "start": "00:14:53.227",
+    "end": "00:14:55.759",
+    "text": "Y(x) and 0."
+  },
+  {
+    "start": "00:14:55.759",
+    "end": "00:14:59.153",
+    "text": "Tell me what is Y a little later,"
+  },
+  {
+    "start": "00:14:59.153",
+    "end": "00:15:01.590",
+    "text": "1 millisecond later.\""
+  },
+  {
+    "start": "00:15:01.590",
+    "end": "00:15:04.479",
+    "text": "Well, it's the rate of change of Y with time multiplied"
+  },
+  {
+    "start": "00:15:04.479",
+    "end": "00:15:05.379",
+    "text": "by 1 millisecond."
+  },
+  {
+    "start": "00:15:05.379",
+    "end": "00:15:08.164",
+    "text": "The rate of change of Y at the initial time is obtained"
+  },
+  {
+    "start": "00:15:08.164",
+    "end": "00:15:10.676",
+    "text": "by taking that derivative of Y and adding to it V"
+  },
+  {
+    "start": "00:15:10.676",
+    "end": "00:15:12.440",
+    "text": "times Y, you get something."
+  },
+  {
+    "start": "00:15:12.440",
+    "end": "00:15:14.899",
+    "text": "That's how much Y changes."
+  },
+  {
+    "start": "00:15:14.899",
+    "end": "00:15:17.320",
+    "text": "Multiply by Dt, that's the change in Y."
+  },
+  {
+    "start": "00:15:17.320",
+    "end": "00:15:20.360",
+    "text": "That'll give you Y at a later time."
+  },
+  {
+    "start": "00:15:20.360",
+    "end": "00:15:22.840",
+    "text": "This is the first order equation in time."
+  },
+  {
+    "start": "00:15:22.840",
+    "end": "00:15:26.620",
+    "text": "What that means mathematically is, the initial Y"
+  },
+  {
+    "start": "00:15:26.620",
+    "end": "00:15:29.070",
+    "text": "determines the future completely."
+  },
+  {
+    "start": "00:15:29.070",
+    "end": "00:15:33.024",
+    "text": "This is different from position where you need x and"
+  },
+  {
+    "start": "00:15:33.024",
+    "end": "00:15:35.480",
+    "text": "dx/dt are the initial time."
+  },
+  {
+    "start": "00:15:35.480",
+    "end": "00:15:39.460",
+    "text": "The equation will only tell you what d^(2)x/dt^(2)^( )is."
+  },
+  {
+    "start": "00:15:39.460",
+    "end": "00:15:41.827",
+    "text": "But in quantum mechanics, dY /dt"
+  },
+  {
+    "start": "00:15:41.827",
+    "end": "00:15:43.970",
+    "text": "itself is determined, so you don't get to choose"
+  },
+  {
+    "start": "00:15:43.970",
+    "end": "00:15:44.379",
+    "text": "that."
+  },
+  {
+    "start": "00:15:44.379",
+    "end": "00:15:46.678",
+    "text": "You just get to choose the initial Y."
+  },
+  {
+    "start": "00:15:46.678",
+    "end": "00:15:50.913",
+    "text": "That means an initial wave function completely determines"
+  },
+  {
+    "start": "00:15:50.913",
+    "end": "00:15:53.940",
+    "text": "the future according to this equation."
+  },
+  {
+    "start": "00:15:53.940",
+    "end": "00:15:55.080",
+    "text": "So don't worry about this equation."
+  },
+  {
+    "start": "00:15:55.080",
+    "end": "00:15:59.054",
+    "text": "I don't expect you all to see it and immediately know what to"
+  },
+  {
+    "start": "00:15:59.054",
+    "end": "00:16:02.700",
+    "text": "do, but I want you to know that there is an equation."
+  },
+  {
+    "start": "00:16:02.700",
+    "end": "00:16:03.750",
+    "text": "That is known now."
+  },
+  {
+    "start": "00:16:03.750",
+    "end": "00:16:06.575",
+    "text": "That's the analog of F = ma. If you solve this"
+  },
+  {
+    "start": "00:16:06.575",
+    "end": "00:16:09.833",
+    "text": "equation, you can predict the future to the extent allowed by"
+  },
+  {
+    "start": "00:16:09.833",
+    "end": "00:16:11.028",
+    "text": "quantum mechanics."
+  },
+  {
+    "start": "00:16:11.028",
+    "end": "00:16:13.462",
+    "text": "Given the present, and the present means"
+  },
+  {
+    "start": "00:16:13.462",
+    "end": "00:16:15.960",
+    "text": "Y(x,0) is given,"
+  },
+  {
+    "start": "00:16:15.960",
+    "end": "00:16:17.340",
+    "text": "then you go to the math department and say,"
+  },
+  {
+    "start": "00:16:17.340",
+    "end": "00:16:18.994",
+    "text": "\"This is my Y(x,0)."
+  },
+  {
+    "start": "00:16:18.994",
+    "end": "00:16:21.174",
+    "text": "Please tell me by some trick what is Y(x) and"
+  },
+  {
+    "start": "00:16:21.174",
+    "end": "00:16:21.889",
+    "text": "t.\""
+  },
+  {
+    "start": "00:16:21.889",
+    "end": "00:16:26.072",
+    "text": "It turns out there is a trick by which you can predict"
+  },
+  {
+    "start": "00:16:26.072",
+    "end": "00:16:30.649",
+    "text": "Y(x) and t. Note also that this number"
+  },
+  {
+    "start": "00:16:30.649",
+    "end": "00:16:35.070",
+    "text": "i is present in the very equations of motion."
+  },
+  {
+    "start": "00:16:35.070",
+    "end": "00:16:37.956",
+    "text": "So this is not like the i we used in electrical"
+  },
+  {
+    "start": "00:16:37.956",
+    "end": "00:16:40.788",
+    "text": "circuits where we really meant sines and cosines,"
+  },
+  {
+    "start": "00:16:40.788",
+    "end": "00:16:42.446",
+    "text": "but we took e^(t)^(q)or"
+  },
+  {
+    "start": "00:16:42.446",
+    "end": "00:16:44.240",
+    "text": "e^(i)^(w) ^(t),"
+  },
+  {
+    "start": "00:16:44.240",
+    "end": "00:16:47.272",
+    "text": "always hoping in the end to take the real part of the answer"
+  },
+  {
+    "start": "00:16:47.272",
+    "end": "00:16:50.047",
+    "text": "because the functions of classical mechanics are always"
+  },
+  {
+    "start": "00:16:50.047",
+    "end": "00:16:50.509",
+    "text": "real."
+  },
+  {
+    "start": "00:16:50.509",
+    "end": "00:16:53.143",
+    "text": "But in quantum theory, Y is intrinsically"
+  },
+  {
+    "start": "00:16:53.143",
+    "end": "00:16:56.562",
+    "text": "complex and it cannot get more complex than that by putting an"
+  },
+  {
+    "start": "00:16:56.562",
+    "end": "00:16:58.860",
+    "text": "i in the equations of motion,"
+  },
+  {
+    "start": "00:16:58.860",
+    "end": "00:17:00.250",
+    "text": "but that's just the way it is."
+  },
+  {
+    "start": "00:17:00.250",
+    "end": "00:17:05.519",
+    "text": "You need the i to write the equations."
+  },
+  {
+    "start": "00:17:05.519",
+    "end": "00:17:10.423",
+    "text": "Therefore our goal then is to learn different ways in which we"
+  },
+  {
+    "start": "00:17:10.423",
+    "end": "00:17:11.788",
+    "text": "can solve this."
+  },
+  {
+    "start": "00:17:11.788",
+    "end": "00:17:13.951",
+    "text": "Now remember, everybody noticed,"
+  },
+  {
+    "start": "00:17:13.951",
+    "end": "00:17:17.650",
+    "text": "this looks kind of familiar here, this combination."
+  },
+  {
+    "start": "00:17:17.650",
+    "end": "00:17:19.009",
+    "text": "It's up there somewhere."
+  },
+  {
+    "start": "00:17:19.009",
+    "end": "00:17:20.490",
+    "text": "It looks a lot like this."
+  },
+  {
+    "start": "00:17:20.490",
+    "end": "00:17:22.160",
+    "text": "You see that?"
+  },
+  {
+    "start": "00:17:22.160",
+    "end": "00:17:24.269",
+    "text": "But it's not quite that."
+  },
+  {
+    "start": "00:17:24.269",
+    "end": "00:17:26.990",
+    "text": "That is working on a function only of x;"
+  },
+  {
+    "start": "00:17:26.990",
+    "end": "00:17:31.028",
+    "text": "this is working on a function of x and t."
+  },
+  {
+    "start": "00:17:31.028",
+    "end": "00:17:33.334",
+    "text": "And there are partial derivatives here and there are"
+  },
+  {
+    "start": "00:17:33.334",
+    "end": "00:17:34.509",
+    "text": "total derivatives there."
+  },
+  {
+    "start": "00:17:34.509",
+    "end": "00:17:36.019",
+    "text": "They are very privileged functions."
+  },
+  {
+    "start": "00:17:36.019",
+    "end": "00:17:38.200",
+    "text": "They describe states of definite energy."
+  },
+  {
+    "start": "00:17:38.200",
+    "end": "00:17:41.567",
+    "text": "This is an arbitrary function, just evolving with time,"
+  },
+  {
+    "start": "00:17:41.567",
+    "end": "00:17:43.750",
+    "text": "so you should not mix the two up."
+  },
+  {
+    "start": "00:17:43.750",
+    "end": "00:17:48.680",
+    "text": "This Y is a generic Y changing with time."
+  },
+  {
+    "start": "00:17:48.680",
+    "end": "00:17:52.000",
+    "text": "So let's ask, how can I calculate the future,"
+  },
+  {
+    "start": "00:17:52.000",
+    "end": "00:17:53.509",
+    "text": "given the present?"
+  },
+  {
+    "start": "00:17:53.509",
+    "end": "00:17:55.980",
+    "text": "How do I solve this equation?"
+  },
+  {
+    "start": "00:17:55.980",
+    "end": "00:17:58.140",
+    "text": "So here is what you do."
+  },
+  {
+    "start": "00:17:58.140",
+    "end": "00:18:00.328",
+    "text": "I'm going to do it at two levels."
+  },
+  {
+    "start": "00:18:00.328",
+    "end": "00:18:03.930",
+    "text": "One is to tell you a little bit about how you get there,"
+  },
+  {
+    "start": "00:18:03.930",
+    "end": "00:18:05.490",
+    "text": "and for those of you who say, \"Look,"
+  },
+  {
+    "start": "00:18:05.490",
+    "end": "00:18:07.458",
+    "text": "spare me the details, I just want to know the"
+  },
+  {
+    "start": "00:18:07.458",
+    "end": "00:18:09.292",
+    "text": "answer,\" I will draw a box around the"
+  },
+  {
+    "start": "00:18:09.292",
+    "end": "00:18:11.451",
+    "text": "answer, and you are free to start from"
+  },
+  {
+    "start": "00:18:11.451",
+    "end": "00:18:11.828",
+    "text": "there."
+  },
+  {
+    "start": "00:18:11.828",
+    "end": "00:18:15.772",
+    "text": "But I want to give everyone a chance to look under the hood"
+  },
+  {
+    "start": "00:18:15.772",
+    "end": "00:18:17.608",
+    "text": "and see what's happening."
+  },
+  {
+    "start": "00:18:17.608",
+    "end": "00:18:21.759",
+    "text": "So given an equation like this, which is pretty old stuff in"
+  },
+  {
+    "start": "00:18:21.759",
+    "end": "00:18:24.923",
+    "text": "mathematical physics from after Newton's time,"
+  },
+  {
+    "start": "00:18:24.923",
+    "end": "00:18:28.088",
+    "text": "people always ask the following question."
+  },
+  {
+    "start": "00:18:28.088",
+    "end": "00:18:30.874",
+    "text": "They say, \"Look, I don't know if I can solve it"
+  },
+  {
+    "start": "00:18:30.874",
+    "end": "00:18:33.440",
+    "text": "for every imaginable initial condition.\""
+  },
+  {
+    "start": "00:18:33.440",
+    "end": "00:18:35.065",
+    "text": "It's like saying, even the case of the"
+  },
+  {
+    "start": "00:18:35.065",
+    "end": "00:18:36.773",
+    "text": "oscillator, you may not be able to solve"
+  },
+  {
+    "start": "00:18:36.773",
+    "end": "00:18:40.308",
+    "text": "every initial condition, you say, \"Let me find a"
+  },
+  {
+    "start": "00:18:40.308",
+    "end": "00:18:44.808",
+    "text": "special case where Y(x, t),"
+  },
+  {
+    "start": "00:18:44.808",
+    "end": "00:18:47.529",
+    "text": "which depends on x and on t,"
+  },
+  {
+    "start": "00:18:47.529",
+    "end": "00:18:54.642",
+    "text": "has the following simple form - it's a function of t alone times"
+  },
+  {
+    "start": "00:18:54.642",
+    "end": "00:18:58.819",
+    "text": "a function of x alone.\""
+  },
+  {
+    "start": "00:18:58.819",
+    "end": "00:18:59.630",
+    "text": "Okay?"
+  },
+  {
+    "start": "00:18:59.630",
+    "end": "00:19:04.030",
+    "text": "I want you to know that no one tells you that every solution to"
+  },
+  {
+    "start": "00:19:04.030",
+    "end": "00:19:06.088",
+    "text": "the equation has this form."
+  },
+  {
+    "start": "00:19:06.088",
+    "end": "00:19:08.779",
+    "text": "You guys have a question about this?"
+  },
+  {
+    "start": "00:19:08.779",
+    "end": "00:19:10.410",
+    "text": "Over there."
+  },
+  {
+    "start": "00:19:10.410",
+    "end": "00:19:12.019",
+    "text": "Okay, good."
+  },
+  {
+    "start": "00:19:12.019",
+    "end": "00:19:15.259",
+    "text": "All right, so this is an assumption."
+  },
+  {
+    "start": "00:19:15.259",
+    "end": "00:19:19.105",
+    "text": "You want to see if maybe there are answers like this to the"
+  },
+  {
+    "start": "00:19:19.105",
+    "end": "00:19:19.769",
+    "text": "problem."
+  },
+  {
+    "start": "00:19:19.769",
+    "end": "00:19:22.953",
+    "text": "The only way to do that is to take their assumed form,"
+  },
+  {
+    "start": "00:19:22.953",
+    "end": "00:19:26.438",
+    "text": "put it into the equation and see if you can find a solution"
+  },
+  {
+    "start": "00:19:26.438",
+    "end": "00:19:27.460",
+    "text": "of this form."
+  },
+  {
+    "start": "00:19:27.460",
+    "end": "00:19:28.940",
+    "text": "Not every solution looks like this."
+  },
+  {
+    "start": "00:19:28.940",
+    "end": "00:19:33.575",
+    "text": "For example, you could write"
+  },
+  {
+    "start": "00:19:33.575",
+    "end": "00:19:37.009",
+    "text": "e^((x-t)2)."
+  },
+  {
+    "start": "00:19:37.009",
+    "end": "00:19:39.288",
+    "text": "That's the function of x and t."
+  },
+  {
+    "start": "00:19:39.288",
+    "end": "00:19:42.058",
+    "text": "But it's not a function of x times the function of"
+  },
+  {
+    "start": "00:19:42.058",
+    "end": "00:19:42.950",
+    "text": "t, you see that?"
+  },
+  {
+    "start": "00:19:42.950",
+    "end": "00:19:45.588",
+    "text": "x and t are mixed up together."
+  },
+  {
+    "start": "00:19:45.588",
+    "end": "00:19:48.454",
+    "text": "You cannot rip it out at the two parts, so it's not the most"
+  },
+  {
+    "start": "00:19:48.454",
+    "end": "00:19:51.259",
+    "text": "general thing that can happen; it's a particular one."
+  },
+  {
+    "start": "00:19:51.259",
+    "end": "00:19:54.608",
+    "text": "Right now, you are eager to get any solution."
+  },
+  {
+    "start": "00:19:54.608",
+    "end": "00:19:56.259",
+    "text": "You want to say, \"Can I do anything?"
+  },
+  {
+    "start": "00:19:56.259",
+    "end": "00:19:59.299",
+    "text": "Can I calculate even in the simplest case what the future"
+  },
+  {
+    "start": "00:19:59.299",
+    "end": "00:20:00.930",
+    "text": "is, given the present?\""
+  },
+  {
+    "start": "00:20:00.930",
+    "end": "00:20:04.200",
+    "text": "You're asking, \"Can this happen?\""
+  },
+  {
+    "start": "00:20:04.200",
+    "end": "00:20:09.819",
+    "text": "So I'm going to show you now that the equation does admit"
+  },
+  {
+    "start": "00:20:09.819",
+    "end": "00:20:12.328",
+    "text": "solutions of this type."
+  },
+  {
+    "start": "00:20:12.328",
+    "end": "00:20:16.650",
+    "text": "So are you guys with me now on what I'm trying to do?"
+  },
+  {
+    "start": "00:20:16.650",
+    "end": "00:20:22.390",
+    "text": "I'm trying to see if this equation admits solutions of"
+  },
+  {
+    "start": "00:20:22.390",
+    "end": "00:20:23.690",
+    "text": "this form."
+  },
+  {
+    "start": "00:20:23.690",
+    "end": "00:20:27.410",
+    "text": "So let's take that and put it here."
+  },
+  {
+    "start": "00:20:27.410",
+    "end": "00:20:31.769",
+    "text": "Now here's where you've got to do the math, okay?"
+  },
+  {
+    "start": "00:20:31.769",
+    "end": "00:20:33.917",
+    "text": "Take this Y and put it here and start taking"
+  },
+  {
+    "start": "00:20:33.917",
+    "end": "00:20:34.519",
+    "text": "derivatives."
+  },
+  {
+    "start": "00:20:34.519",
+    "end": "00:20:37.088",
+    "text": "Let's do the left hand side first."
+  },
+  {
+    "start": "00:20:37.088",
+    "end": "00:20:40.440",
+    "text": "Left hand side, I have i‚Ñè."
+  },
+  {
+    "start": "00:20:40.440",
+    "end": "00:20:44.920",
+    "text": "Then I bring the d by dt to act on this product."
+  },
+  {
+    "start": "00:20:44.920",
+    "end": "00:20:50.099",
+    "text": "d by dt partial means only time has to be differentiated;"
+  },
+  {
+    "start": "00:20:50.099",
+    "end": "00:20:51.980",
+    "text": "x is to be held constant."
+  },
+  {
+    "start": "00:20:51.980",
+    "end": "00:20:53.038",
+    "text": "That's the partial derivative."
+  },
+  {
+    "start": "00:20:53.038",
+    "end": "00:20:54.680",
+    "text": "That's the meaning of the partial derivative."
+  },
+  {
+    "start": "00:20:54.680",
+    "end": "00:20:57.501",
+    "text": "It's like an ordinary derivative where the only"
+  },
+  {
+    "start": "00:20:57.501",
+    "end": "00:21:00.568",
+    "text": "variable you'd ever differentiate is the one in the"
+  },
+  {
+    "start": "00:21:00.568",
+    "end": "00:21:01.490",
+    "text": "derivative."
+  },
+  {
+    "start": "00:21:01.490",
+    "end": "00:21:04.278",
+    "text": "So the entire Y(x) doesn't do"
+  },
+  {
+    "start": "00:21:04.278",
+    "end": "00:21:05.009",
+    "text": "anything."
+  },
+  {
+    "start": "00:21:05.009",
+    "end": "00:21:06.348",
+    "text": "It's like a constant."
+  },
+  {
+    "start": "00:21:06.348",
+    "end": "00:21:08.298",
+    "text": "So you just put that Y(x) there."
+  },
+  {
+    "start": "00:21:08.298",
+    "end": "00:21:10.640",
+    "text": "Then the derivative, d by dt,"
+  },
+  {
+    "start": "00:21:10.640",
+    "end": "00:21:14.720",
+    "text": "comes here, and I claim it becomes the ordinary derivative."
+  },
+  {
+    "start": "00:21:14.720",
+    "end": "00:21:18.730",
+    "text": "That's the left hand side."
+  },
+  {
+    "start": "00:21:18.730",
+    "end": "00:21:22.519",
+    "text": "You understand that, why that is true?"
+  },
+  {
+    "start": "00:21:22.519",
+    "end": "00:21:24.816",
+    "text": "Because on a function only of time there's no difference"
+  },
+  {
+    "start": "00:21:24.816",
+    "end": "00:21:27.029",
+    "text": "between partial derivative and ordinary derivative."
+  },
+  {
+    "start": "00:21:27.029",
+    "end": "00:21:28.848",
+    "text": "It's got only one variable."
+  },
+  {
+    "start": "00:21:28.848",
+    "end": "00:21:31.609",
+    "text": "The other potential variable this d by dt,"
+  },
+  {
+    "start": "00:21:31.609",
+    "end": "00:21:34.910",
+    "text": "doesn't care about so it's just standing there."
+  },
+  {
+    "start": "00:21:34.910",
+    "end": "00:21:36.990",
+    "text": "That's the left hand side."
+  },
+  {
+    "start": "00:21:36.990",
+    "end": "00:21:41.634",
+    "text": "Now look at the right hand side, all of this stuff,"
+  },
+  {
+    "start": "00:21:41.634",
+    "end": "00:21:47.022",
+    "text": "and imagine putting for this function Y this product"
+  },
+  {
+    "start": "00:21:47.022",
+    "end": "00:21:47.858",
+    "text": "form."
+  },
+  {
+    "start": "00:21:47.858",
+    "end": "00:21:50.491",
+    "text": "Is it clear to you, in the right hand side the"
+  },
+  {
+    "start": "00:21:50.491",
+    "end": "00:21:52.538",
+    "text": "situation's exactly the opposite?"
+  },
+  {
+    "start": "00:21:52.538",
+    "end": "00:21:54.762",
+    "text": "You've got all these d by dx's partials,"
+  },
+  {
+    "start": "00:21:54.762",
+    "end": "00:21:57.470",
+    "text": "they're only interested in this function because it's got"
+  },
+  {
+    "start": "00:21:57.470",
+    "end": "00:21:58.630",
+    "text": "x dependence."
+  },
+  {
+    "start": "00:21:58.630",
+    "end": "00:22:01.990",
+    "text": "F(t) doesn't do anything."
+  },
+  {
+    "start": "00:22:01.990",
+    "end": "00:22:05.692",
+    "text": "All the derivatives, they go right through F,"
+  },
+  {
+    "start": "00:22:05.692",
+    "end": "00:22:08.380",
+    "text": "so you can write it as F(t)."
+  },
+  {
+    "start": "00:22:08.380",
+    "end": "00:22:12.944",
+    "text": "Now you have to take the derivative with respect to"
+  },
+  {
+    "start": "00:22:12.944",
+    "end": "00:22:13.950",
+    "text": "Y."
+  },
+  {
+    "start": "00:22:13.950",
+    "end": "00:22:17.933",
+    "text": "That looks like d^(2)Y"
+  },
+  {
+    "start": "00:22:17.933",
+    "end": "00:22:24.490",
+    "text": "/dx^(2) V(x)Y(x)."
+  },
+  {
+    "start": "00:22:24.490",
+    "end": "00:22:27.273",
+    "text": "If you follow this, you're almost there,"
+  },
+  {
+    "start": "00:22:27.273",
+    "end": "00:22:30.130",
+    "text": "but take your time to understand this."
+  },
+  {
+    "start": "00:22:30.130",
+    "end": "00:22:32.778",
+    "text": "The reason you write it as a product of two functions is the"
+  },
+  {
+    "start": "00:22:32.778",
+    "end": "00:22:35.067",
+    "text": "left hand side is only interested in differentiating"
+  },
+  {
+    "start": "00:22:35.067",
+    "end": "00:22:37.593",
+    "text": "the function F, where it becomes the total"
+  },
+  {
+    "start": "00:22:37.593",
+    "end": "00:22:38.200",
+    "text": "derivative."
+  },
+  {
+    "start": "00:22:38.200",
+    "end": "00:22:40.775",
+    "text": "The right hand side is only taking derivatives with respect"
+  },
+  {
+    "start": "00:22:40.775",
+    "end": "00:22:43.039",
+    "text": "to x so it acts on this part of the function,"
+  },
+  {
+    "start": "00:22:43.039",
+    "end": "00:22:44.240",
+    "text": "it depends on x."
+  },
+  {
+    "start": "00:22:44.240",
+    "end": "00:22:48.518",
+    "text": "And all partial derivatives become total derivatives because"
+  },
+  {
+    "start": "00:22:48.518",
+    "end": "00:22:52.578",
+    "text": "if you've got only one variable, there's no need to write"
+  },
+  {
+    "start": "00:22:52.578",
+    "end": "00:22:54.318",
+    "text": "partial derivatives."
+  },
+  {
+    "start": "00:22:54.318",
+    "end": "00:22:59.507",
+    "text": "This combination I'm going to write to save some time as"
+  },
+  {
+    "start": "00:22:59.507",
+    "end": "00:23:01.298",
+    "text": "HY."
+  },
+  {
+    "start": "00:23:01.298",
+    "end": "00:23:05.118",
+    "text": "Let's just say between you and me it's a shorthand."
+  },
+  {
+    "start": "00:23:05.118",
+    "end": "00:23:11.088",
+    "text": "HY is a shorthand for this entire mess here."
+  },
+  {
+    "start": "00:23:11.088",
+    "end": "00:23:12.913",
+    "text": "Don't ask me why it looks like H times Y,"
+  },
+  {
+    "start": "00:23:12.913",
+    "end": "00:23:13.859",
+    "text": "where are the derivatives?"
+  },
+  {
+    "start": "00:23:13.859",
+    "end": "00:23:16.640",
+    "text": "It is a shorthand, okay."
+  },
+  {
+    "start": "00:23:16.640",
+    "end": "00:23:20.895",
+    "text": "I don't feel like writing the combination over and over,"
+  },
+  {
+    "start": "00:23:20.895",
+    "end": "00:23:23.450",
+    "text": "I can call it HY."
+  },
+  {
+    "start": "00:23:23.450",
+    "end": "00:23:26.088",
+    "text": "So what equation do I have now?"
+  },
+  {
+    "start": "00:23:26.088",
+    "end": "00:23:31.041",
+    "text": "I have i‚Ñè Y(x)dF/dt ="
+  },
+  {
+    "start": "00:23:31.041",
+    "end": "00:23:36.317",
+    "text": "F(t)HY, where all I want you to notice,"
+  },
+  {
+    "start": "00:23:36.317",
+    "end": "00:23:41.269",
+    "text": "HY depends only on x."
+  },
+  {
+    "start": "00:23:41.269",
+    "end": "00:23:42.619",
+    "text": "It has no dependence on time."
+  },
+  {
+    "start": "00:23:42.619",
+    "end": "00:23:43.950",
+    "text": "Do you see that?"
+  },
+  {
+    "start": "00:23:43.950",
+    "end": "00:23:52.970",
+    "text": "There's nothing here that depends on time."
+  },
+  {
+    "start": "00:23:52.970",
+    "end": "00:23:55.140",
+    "text": "Okay, now this is a trick which if you learned,"
+  },
+  {
+    "start": "00:23:55.140",
+    "end": "00:23:57.489",
+    "text": "you'll be quite pleased, because you'll find that as you"
+  },
+  {
+    "start": "00:23:57.489",
+    "end": "00:23:59.970",
+    "text": "do more and more stuff, at least in physics or"
+  },
+  {
+    "start": "00:23:59.970",
+    "end": "00:24:04.160",
+    "text": "economics or statistics, the trick is a very old trick."
+  },
+  {
+    "start": "00:24:04.160",
+    "end": "00:24:06.885",
+    "text": "The problem is quantum mechanics, but the mathematics"
+  },
+  {
+    "start": "00:24:06.885",
+    "end": "00:24:07.619",
+    "text": "is very old."
+  },
+  {
+    "start": "00:24:07.619",
+    "end": "00:24:09.400",
+    "text": "So what do you do next?"
+  },
+  {
+    "start": "00:24:09.400",
+    "end": "00:24:13.140",
+    "text": "You divide both sides by YF."
+  },
+  {
+    "start": "00:24:13.140",
+    "end": "00:24:25.009",
+    "text": "So I say divide by F(t)Y(x)."
+  },
+  {
+    "start": "00:24:25.009",
+    "end": "00:24:26.900",
+    "text": "What do you think will happen if I divide by F(t),"
+  },
+  {
+    "start": "00:24:26.900",
+    "end": "00:24:27.608",
+    "text": "Y(x)?"
+  },
+  {
+    "start": "00:24:27.608",
+    "end": "00:24:29.924",
+    "text": "On the left hand side, I say divide by"
+  },
+  {
+    "start": "00:24:29.924",
+    "end": "00:24:32.680",
+    "text": "YF and the right hand side,"
+  },
+  {
+    "start": "00:24:32.680",
+    "end": "00:24:35.141",
+    "text": "I say divide by YF,"
+  },
+  {
+    "start": "00:24:35.141",
+    "end": "00:24:38.680",
+    "text": "can you see that the Y cancels here,"
+  },
+  {
+    "start": "00:24:38.680",
+    "end": "00:24:40.338",
+    "text": "and you have a 1/F."
+  },
+  {
+    "start": "00:24:40.338",
+    "end": "00:24:43.670",
+    "text": "F cancels here and you have a 1/Y."
+  },
+  {
+    "start": "00:24:43.670",
+    "end": "00:24:48.454",
+    "text": "The equation then says i‚Ñè(1/"
+  },
+  {
+    "start": "00:24:48.454",
+    "end": "00:24:53.240",
+    "text": "F(t))dF/dt = 1/Y(x)H"
+  },
+  {
+    "start": "00:24:53.240",
+    "end": "00:24:59.584",
+    "text": "Y. I've written this very slowly because"
+  },
+  {
+    "start": "00:24:59.584",
+    "end": "00:25:02.846",
+    "text": "I don't know, you'll find this in many"
+  },
+  {
+    "start": "00:25:02.846",
+    "end": "00:25:05.146",
+    "text": "advanced books, but you may not find it in our"
+  },
+  {
+    "start": "00:25:05.146",
+    "end": "00:25:05.670",
+    "text": "textbook."
+  },
+  {
+    "start": "00:25:05.670",
+    "end": "00:25:08.308",
+    "text": "So if you don't follow something, you should tell me."
+  },
+  {
+    "start": "00:25:08.308",
+    "end": "00:25:12.650",
+    "text": "There's plenty of time to do this, so I'm in no rush at all."
+  },
+  {
+    "start": "00:25:12.650",
+    "end": "00:25:15.680",
+    "text": "These are purely mathematical manipulations."
+  },
+  {
+    "start": "00:25:15.680",
+    "end": "00:25:20.230",
+    "text": "We have not done anything involving physics."
+  },
+  {
+    "start": "00:25:20.230",
+    "end": "00:25:23.859",
+    "text": "You all follow this?"
+  },
+  {
+    "start": "00:25:23.859",
+    "end": "00:25:25.079",
+    "text": "Yes?"
+  },
+  {
+    "start": "00:25:25.079",
+    "end": "00:25:26.250",
+    "text": "Okay."
+  },
+  {
+    "start": "00:25:26.250",
+    "end": "00:25:27.650",
+    "text": "Now you have to ask yourself the following."
+  },
+  {
+    "start": "00:25:27.650",
+    "end": "00:25:29.240",
+    "text": "I love this argument."
+  },
+  {
+    "start": "00:25:29.240",
+    "end": "00:25:31.896",
+    "text": "Even if you don't follow this, I'm just going to get it off my"
+  },
+  {
+    "start": "00:25:31.896",
+    "end": "00:25:33.449",
+    "text": "chest, it is so clever,"
+  },
+  {
+    "start": "00:25:33.449",
+    "end": "00:25:37.867",
+    "text": "and here is the clever part - this is supposedly a function of"
+  },
+  {
+    "start": "00:25:37.867",
+    "end": "00:25:39.750",
+    "text": "time, you agree?"
+  },
+  {
+    "start": "00:25:39.750",
+    "end": "00:25:42.869",
+    "text": "All for a function of time."
+  },
+  {
+    "start": "00:25:42.869",
+    "end": "00:25:45.700",
+    "text": "This is a function of x."
+  },
+  {
+    "start": "00:25:45.700",
+    "end": "00:25:47.868",
+    "text": "This guy doesn't know what time it is;"
+  },
+  {
+    "start": "00:25:47.868",
+    "end": "00:25:49.430",
+    "text": "this guy doesn't know what x is."
+  },
+  {
+    "start": "00:25:49.430",
+    "end": "00:25:52.819",
+    "text": "And yet they're supposed to be equal."
+  },
+  {
+    "start": "00:25:52.819",
+    "end": "00:25:56.450",
+    "text": "What can they be equal to?"
+  },
+  {
+    "start": "00:25:56.450",
+    "end": "00:25:59.171",
+    "text": "They cannot be equal to a function of time,"
+  },
+  {
+    "start": "00:25:59.171",
+    "end": "00:26:01.893",
+    "text": "because then, as you vary time--suppose you"
+  },
+  {
+    "start": "00:26:01.893",
+    "end": "00:26:04.680",
+    "text": "think it's a function of time, suppose."
+  },
+  {
+    "start": "00:26:04.680",
+    "end": "00:26:06.058",
+    "text": "It's not so."
+  },
+  {
+    "start": "00:26:06.058",
+    "end": "00:26:08.680",
+    "text": "Then as time varies, this part is okay."
+  },
+  {
+    "start": "00:26:08.680",
+    "end": "00:26:11.936",
+    "text": "It can vary with time to match that, but this cannot vary with"
+  },
+  {
+    "start": "00:26:11.936",
+    "end": "00:26:14.339",
+    "text": "time at all, because there is no time here."
+  },
+  {
+    "start": "00:26:14.339",
+    "end": "00:26:16.920",
+    "text": "So this cannot depend on time."
+  },
+  {
+    "start": "00:26:16.920",
+    "end": "00:26:19.202",
+    "text": "And it cannot depend on x, because if it was a"
+  },
+  {
+    "start": "00:26:19.202",
+    "end": "00:26:21.180",
+    "text": "function of x that it was equal to,"
+  },
+  {
+    "start": "00:26:21.180",
+    "end": "00:26:23.056",
+    "text": "as you vary x, this can change with x"
+  },
+  {
+    "start": "00:26:23.056",
+    "end": "00:26:23.920",
+    "text": "to keep up with that."
+  },
+  {
+    "start": "00:26:23.920",
+    "end": "00:26:25.859",
+    "text": "This has no x dependence."
+  },
+  {
+    "start": "00:26:25.859",
+    "end": "00:26:27.509",
+    "text": "It cannot vary with x."
+  },
+  {
+    "start": "00:26:27.509",
+    "end": "00:26:31.781",
+    "text": "So this thing that they are both equal to is not a function"
+  },
+  {
+    "start": "00:26:31.781",
+    "end": "00:26:34.950",
+    "text": "of time and it's not a function of space."
+  },
+  {
+    "start": "00:26:34.950",
+    "end": "00:26:36.650",
+    "text": "It's a constant."
+  },
+  {
+    "start": "00:26:36.650",
+    "end": "00:26:38.220",
+    "text": "That's all it can be."
+  },
+  {
+    "start": "00:26:38.220",
+    "end": "00:26:43.497",
+    "text": "So the constant is going to very cleverly be given the"
+  },
+  {
+    "start": "00:26:43.497",
+    "end": "00:26:45.288",
+    "text": "symbol E."
+  },
+  {
+    "start": "00:26:45.288",
+    "end": "00:26:47.578",
+    "text": "We're going to call the constant E."
+  },
+  {
+    "start": "00:26:47.578",
+    "end": "00:26:50.583",
+    "text": "It turns out E is connected to the energy of the"
+  },
+  {
+    "start": "00:26:50.583",
+    "end": "00:26:51.140",
+    "text": "problem."
+  },
+  {
+    "start": "00:26:51.140",
+    "end": "00:26:55.066",
+    "text": "So now I have two equations, this = E and that ="
+  },
+  {
+    "start": "00:26:55.066",
+    "end": "00:26:58.118",
+    "text": "E and I'm going to write it down."
+  },
+  {
+    "start": "00:26:58.118",
+    "end": "00:27:06.134",
+    "text": "So one of them says i ‚Ñè (1/F) dF/dt ="
+  },
+  {
+    "start": "00:27:06.134",
+    "end": "00:27:07.470",
+    "text": "E."
+  },
+  {
+    "start": "00:27:07.470",
+    "end": "00:27:09.769",
+    "text": "So let me bring the F here."
+  },
+  {
+    "start": "00:27:09.769",
+    "end": "00:27:14.079",
+    "text": "Other one says H Y = E"
+  },
+  {
+    "start": "00:27:14.079",
+    "end": "00:27:20.773",
+    "text": "Y. These two equations, if you solve them,"
+  },
+  {
+    "start": "00:27:20.773",
+    "end": "00:27:26.558",
+    "text": "will give you the solution you are looking for."
+  },
+  {
+    "start": "00:27:26.558",
+    "end": "00:27:28.810",
+    "text": "In other words, going back here,"
+  },
+  {
+    "start": "00:27:28.810",
+    "end": "00:27:31.253",
+    "text": "yes, this equation does admit"
+  },
+  {
+    "start": "00:27:31.253",
+    "end": "00:27:34.423",
+    "text": "solutions of this form, of the product form,"
+  },
+  {
+    "start": "00:27:34.423",
+    "end": "00:27:37.711",
+    "text": "provided the function F you put in the product that"
+  },
+  {
+    "start": "00:27:37.711",
+    "end": "00:27:40.019",
+    "text": "depends on time obeys this equation,"
+  },
+  {
+    "start": "00:27:40.019",
+    "end": "00:27:43.343",
+    "text": "and the function Y that depends only on x obeys"
+  },
+  {
+    "start": "00:27:43.343",
+    "end": "00:27:44.230",
+    "text": "this equation."
+  },
+  {
+    "start": "00:27:44.230",
+    "end": "00:27:46.646",
+    "text": "Remember, HY is the shorthand for this long"
+  },
+  {
+    "start": "00:27:46.646",
+    "end": "00:27:47.640",
+    "text": "bunch of derivatives."
+  },
+  {
+    "start": "00:27:47.640",
+    "end": "00:27:51.681",
+    "text": "We'll come to that in a moment, but let's solve this equation"
+  },
+  {
+    "start": "00:27:51.681",
+    "end": "00:27:52.220",
+    "text": "first."
+  },
+  {
+    "start": "00:27:52.220",
+    "end": "00:27:54.099",
+    "text": "Now can you guys do this in your head?"
+  },
+  {
+    "start": "00:27:54.099",
+    "end": "00:28:03.308",
+    "text": "i‚ÑèdF/dt = EF."
+  },
+  {
+    "start": "00:28:03.308",
+    "end": "00:28:06.537",
+    "text": "So it's saying F is a function of time whose time"
+  },
+  {
+    "start": "00:28:06.537",
+    "end": "00:28:08.650",
+    "text": "derivative is the function itself."
+  },
+  {
+    "start": "00:28:08.650",
+    "end": "00:28:12.059",
+    "text": "Everybody knows what such a function is."
+  },
+  {
+    "start": "00:28:12.059",
+    "end": "00:28:14.509",
+    "text": "It's an exponential."
+  },
+  {
+    "start": "00:28:14.509",
+    "end": "00:28:16.784",
+    "text": "And the answer is, I'm going to write it down and"
+  },
+  {
+    "start": "00:28:16.784",
+    "end": "00:28:20.428",
+    "text": "you can check, F(t) is F(0)"
+  },
+  {
+    "start": "00:28:20.428",
+    "end": "00:28:26.750",
+    "text": "e^(‚àíiEt/√¢¬Ñ¬è). If you want now,"
+  },
+  {
+    "start": "00:28:26.750",
+    "end": "00:28:29.240",
+    "text": "take the derivative and check."
+  },
+  {
+    "start": "00:28:29.240",
+    "end": "00:28:31.650",
+    "text": "F(0) is some constant."
+  },
+  {
+    "start": "00:28:31.650",
+    "end": "00:28:34.844",
+    "text": "I call it F(0) because if t = 0,"
+  },
+  {
+    "start": "00:28:34.844",
+    "end": "00:28:38.180",
+    "text": "this goes away and F(t) = F(0)."
+  },
+  {
+    "start": "00:28:38.180",
+    "end": "00:28:39.920",
+    "text": "But take the time derivative and see."
+  },
+  {
+    "start": "00:28:39.920",
+    "end": "00:28:41.650",
+    "text": "When you take a time derivative of this,"
+  },
+  {
+    "start": "00:28:41.650",
+    "end": "00:28:45.108",
+    "text": "you get the same thing times ‚àíiE/√¢¬Ñ¬è,"
+  },
+  {
+    "start": "00:28:45.108",
+    "end": "00:28:47.529",
+    "text": "and when you multiply by i‚Ñè,"
+  },
+  {
+    "start": "00:28:47.529",
+    "end": "00:28:50.359",
+    "text": "everything cancels except EF."
+  },
+  {
+    "start": "00:28:50.359",
+    "end": "00:28:52.700",
+    "text": "So this is a very easy solution."
+  },
+  {
+    "start": "00:28:52.700",
+    "end": "00:28:54.950",
+    "text": "So let's stop and understand."
+  },
+  {
+    "start": "00:28:54.950",
+    "end": "00:28:58.505",
+    "text": "It says that if you are looking for solutions that are products"
+  },
+  {
+    "start": "00:28:58.505",
+    "end": "00:29:00.568",
+    "text": "of F(t) times f(x),"
+  },
+  {
+    "start": "00:29:00.568",
+    "end": "00:29:05.400",
+    "text": "F(t) necessarily is this exponential function,"
+  },
+  {
+    "start": "00:29:05.400",
+    "end": "00:29:08.700",
+    "text": "which is the only function you can have."
+  },
+  {
+    "start": "00:29:08.700",
+    "end": "00:29:11.170",
+    "text": "But now once you pick that E, you can pick E"
+  },
+  {
+    "start": "00:29:11.170",
+    "end": "00:29:13.423",
+    "text": "to be whatever you like, but then you must also solve"
+  },
+  {
+    "start": "00:29:13.423",
+    "end": "00:29:14.940",
+    "text": "this equation at the same time."
+  },
+  {
+    "start": "00:29:14.940",
+    "end": "00:29:16.808",
+    "text": "But what is this equation."
+  },
+  {
+    "start": "00:29:16.808",
+    "end": "00:29:21.006",
+    "text": "This says -‚Ñè^(2)/2md^(2)"
+  },
+  {
+    "start": "00:29:21.006",
+    "end": "00:29:25.801",
+    "text": "Y/dx^(2) VY ="
+  },
+  {
+    "start": "00:29:25.801",
+    "end": "00:29:30.462",
+    "text": "EY, and you guys know who that is,"
+  },
+  {
+    "start": "00:29:30.462",
+    "end": "00:29:31.019",
+    "text": "right?"
+  },
+  {
+    "start": "00:29:31.019",
+    "end": "00:29:32.890",
+    "text": "What is it?"
+  },
+  {
+    "start": "00:29:32.890",
+    "end": "00:29:39.295",
+    "text": "What can you say about the function that satisfies that"
+  },
+  {
+    "start": "00:29:39.295",
+    "end": "00:29:40.599",
+    "text": "equation?"
+  },
+  {
+    "start": "00:29:40.599",
+    "end": "00:29:43.029",
+    "text": "Have you seen it before?"
+  },
+  {
+    "start": "00:29:43.029",
+    "end": "00:29:44.150",
+    "text": "Yes?"
+  },
+  {
+    "start": "00:29:44.150",
+    "end": "00:29:45.118",
+    "text": "What is it?"
+  },
+  {
+    "start": "00:29:45.118",
+    "end": "00:29:46.690",
+    "text": "Student: Schrˆdinger equation."
+  },
+  {
+    "start": "00:29:46.690",
+    "end": "00:29:48.538",
+    "text": "Prof: It's the state of definite energy."
+  },
+  {
+    "start": "00:29:48.538",
+    "end": "00:29:51.948",
+    "text": "Remember, we said functions of definite energy obey that"
+  },
+  {
+    "start": "00:29:51.948",
+    "end": "00:29:52.630",
+    "text": "equation."
+  },
+  {
+    "start": "00:29:52.630",
+    "end": "00:30:02.420",
+    "text": "So that Y is really just Y_E."
+  },
+  {
+    "start": "00:30:02.420",
+    "end": "00:30:04.460",
+    "text": "So now I'll put these two pieces together,"
+  },
+  {
+    "start": "00:30:04.460",
+    "end": "00:30:09.088",
+    "text": "and this is where those of you who drifted off can come back,"
+  },
+  {
+    "start": "00:30:09.088",
+    "end": "00:30:12.557",
+    "text": "because what I'm telling you is that the Schrˆdinger"
+  },
+  {
+    "start": "00:30:12.557",
+    "end": "00:30:15.778",
+    "text": "equation in fact admits a certain solution which is a"
+  },
+  {
+    "start": "00:30:15.778",
+    "end": "00:30:19.368",
+    "text": "product of a function of time and a function of space."
+  },
+  {
+    "start": "00:30:19.368",
+    "end": "00:30:22.430",
+    "text": "And what we found by fiddling around with it is that F(t)"
+  },
+  {
+    "start": "00:30:22.430",
+    "end": "00:30:24.348",
+    "text": "and Y are very special,"
+  },
+  {
+    "start": "00:30:24.348",
+    "end": "00:30:28.380",
+    "text": "and F(t) must look like e^(‚àíiEt/"
+  },
+  {
+    "start": "00:30:28.380",
+    "end": "00:30:32.450",
+    "text": "‚Ñè), and Y is just our"
+  },
+  {
+    "start": "00:30:32.450",
+    "end": "00:30:37.025",
+    "text": "friend, Y _E(x), which"
+  },
+  {
+    "start": "00:30:37.025",
+    "end": "00:30:42.210",
+    "text": "are functions associated with a definite energy."
+  },
+  {
+    "start": "00:30:42.210",
+    "end": "00:30:43.108",
+    "text": "Yes?"
+  },
+  {
+    "start": "00:30:43.108",
+    "end": "00:30:46.077",
+    "text": "Student:  Is it possible that there are other solutions,"
+  },
+  {
+    "start": "00:30:46.077",
+    "end": "00:30:48.901",
+    "text": "x/Y(x, t) that don't satisfy the"
+  },
+  {
+    "start": "00:30:48.901",
+    "end": "00:30:49.618",
+    "text": "conditions?"
+  },
+  {
+    "start": "00:30:49.618",
+    "end": "00:30:51.953",
+    "text": "Prof: Okay, the question is,"
+  },
+  {
+    "start": "00:30:51.953",
+    "end": "00:30:55.936",
+    "text": "are there other solutions for which this factorized form is"
+  },
+  {
+    "start": "00:30:55.936",
+    "end": "00:30:56.828",
+    "text": "not true?"
+  },
+  {
+    "start": "00:30:56.828",
+    "end": "00:31:00.705",
+    "text": "Yes, and I will put you out of your suspense very soon by"
+  },
+  {
+    "start": "00:31:00.705",
+    "end": "00:31:02.160",
+    "text": "talking about that."
+  },
+  {
+    "start": "00:31:02.160",
+    "end": "00:31:06.230",
+    "text": "But I want everyone to understand that you can at least"
+  },
+  {
+    "start": "00:31:06.230",
+    "end": "00:31:09.849",
+    "text": "solve one case of Schrˆdinger's equation."
+  },
+  {
+    "start": "00:31:09.849",
+    "end": "00:31:10.710",
+    "text": "So what does this mean?"
+  },
+  {
+    "start": "00:31:10.710",
+    "end": "00:31:13.210",
+    "text": "I want you guys to think about it."
+  },
+  {
+    "start": "00:31:13.210",
+    "end": "00:31:18.140",
+    "text": "This says if you start Y in some arbitrary configuration,"
+  },
+  {
+    "start": "00:31:18.140",
+    "end": "00:31:21.009",
+    "text": "that's my initial state, let it evolve with time,"
+  },
+  {
+    "start": "00:31:21.009",
+    "end": "00:31:25.567",
+    "text": "it obeys this rather crazy, complicated Schrˆdinger"
+  },
+  {
+    "start": "00:31:25.567",
+    "end": "00:31:26.480",
+    "text": "equation."
+  },
+  {
+    "start": "00:31:26.480",
+    "end": "00:31:31.282",
+    "text": "But if I start it at t = 0, in a state which is a state"
+  },
+  {
+    "start": "00:31:31.282",
+    "end": "00:31:34.905",
+    "text": "of definite energy, namely a state obeying that"
+  },
+  {
+    "start": "00:31:34.905",
+    "end": "00:31:35.930",
+    "text": "equation."
+  },
+  {
+    "start": "00:31:35.930",
+    "end": "00:31:38.548",
+    "text": "Then its future is very simple."
+  },
+  {
+    "start": "00:31:38.548",
+    "end": "00:31:43.362",
+    "text": "All you do is attach this phase factor, e^(‚àíiEt/"
+  },
+  {
+    "start": "00:31:43.362",
+    "end": "00:31:44.910",
+    "text": "‚Ñè)."
+  },
+  {
+    "start": "00:31:44.910",
+    "end": "00:31:47.622",
+    "text": "Therefore it's not a generic solution, because you may not in"
+  },
+  {
+    "start": "00:31:47.622",
+    "end": "00:31:50.558",
+    "text": "general start with a state which is a state of definite energy."
+  },
+  {
+    "start": "00:31:50.558",
+    "end": "00:31:53.130",
+    "text": "You'll start with some random Y(x) and it's made"
+  },
+  {
+    "start": "00:31:53.130",
+    "end": "00:31:55.114",
+    "text": "up of many, many Y_E's"
+  },
+  {
+    "start": "00:31:55.114",
+    "end": "00:31:57.490",
+    "text": "that come in the expansion of that Y,"
+  },
+  {
+    "start": "00:31:57.490",
+    "end": "00:31:59.160",
+    "text": "so it's not going to always work."
+  },
+  {
+    "start": "00:31:59.160",
+    "end": "00:32:02.510",
+    "text": "But if you picked it so that there's only one such term in"
+  },
+  {
+    "start": "00:32:02.510",
+    "end": "00:32:05.273",
+    "text": "the sum over E, namely one such function,"
+  },
+  {
+    "start": "00:32:05.273",
+    "end": "00:32:07.450",
+    "text": "then the future is given by this."
+  },
+  {
+    "start": "00:32:07.450",
+    "end": "00:32:10.119",
+    "text": "For example, if you have a particle in a"
+  },
+  {
+    "start": "00:32:10.119",
+    "end": "00:32:12.861",
+    "text": "box, you remember the wave function"
+  },
+  {
+    "start": "00:32:12.861",
+    "end": "00:32:17.535",
+    "text": "Y_n looks like square root of 2/Lsine(n"
+  },
+  {
+    "start": "00:32:17.535",
+    "end": "00:32:21.605",
+    "text": "px/L). An arbitrary Y doesn't look"
+  },
+  {
+    "start": "00:32:21.605",
+    "end": "00:32:23.338",
+    "text": "like any of these."
+  },
+  {
+    "start": "00:32:23.338",
+    "end": "00:32:27.281",
+    "text": "These guys, remember, are nice functions that do many"
+  },
+  {
+    "start": "00:32:27.281",
+    "end": "00:32:28.420",
+    "text": "oscillations."
+  },
+  {
+    "start": "00:32:28.420",
+    "end": "00:32:32.858",
+    "text": "But if you chose it initially to be exactly the sine function,"
+  },
+  {
+    "start": "00:32:32.858",
+    "end": "00:32:35.077",
+    "text": "for example, Y_1,"
+  },
+  {
+    "start": "00:32:35.077",
+    "end": "00:32:39.810",
+    "text": "then I claim as time evolves, the future state is just this"
+  },
+  {
+    "start": "00:32:39.810",
+    "end": "00:32:44.529",
+    "text": "initial sine function times this simple exponential."
+  },
+  {
+    "start": "00:32:44.529",
+    "end": "00:32:52.930",
+    "text": "This behavior is very special and it called normal modes."
+  },
+  {
+    "start": "00:32:52.930",
+    "end": "00:32:56.058",
+    "text": "It's a very common idea in mathematical physics."
+  },
+  {
+    "start": "00:32:56.058",
+    "end": "00:32:59.434",
+    "text": "It's the following - it's very familiar even before you did"
+  },
+  {
+    "start": "00:32:59.434",
+    "end": "00:33:00.598",
+    "text": "quantum mechanics."
+  },
+  {
+    "start": "00:33:00.598",
+    "end": "00:33:06.202",
+    "text": "Take a string tied at both ends and you pluck the string and you"
+  },
+  {
+    "start": "00:33:06.202",
+    "end": "00:33:07.358",
+    "text": "release it."
+  },
+  {
+    "start": "00:33:07.358",
+    "end": "00:33:10.329",
+    "text": "Most probably if you pluck it at one point,"
+  },
+  {
+    "start": "00:33:10.329",
+    "end": "00:33:14.150",
+    "text": "you'll probably pull it in the middle and let it go."
+  },
+  {
+    "start": "00:33:14.150",
+    "end": "00:33:17.348",
+    "text": "That's the initial Y(x,t),"
+  },
+  {
+    "start": "00:33:17.348",
+    "end": "00:33:19.400",
+    "text": "this time for a string."
+  },
+  {
+    "start": "00:33:19.400",
+    "end": "00:33:21.240",
+    "text": "Pull it in the middle, let it go."
+  },
+  {
+    "start": "00:33:21.240",
+    "end": "00:33:24.556",
+    "text": "There's an equation that determines the evolutions of"
+  },
+  {
+    "start": "00:33:24.556",
+    "end": "00:33:25.450",
+    "text": "that string."
+  },
+  {
+    "start": "00:33:25.450",
+    "end": "00:33:27.368",
+    "text": "I remind you what that equation is."
+  },
+  {
+    "start": "00:33:27.368",
+    "end": "00:33:31.901",
+    "text": "It's d^(2)Y /dx^(2)=(1/veloc"
+  },
+  {
+    "start": "00:33:31.901",
+    "end": "00:33:36.328",
+    "text": "ity^(2))d^(2)Y /dt^(2)."
+  },
+  {
+    "start": "00:33:36.328",
+    "end": "00:33:38.710",
+    "text": "That's the wave equation for a string."
+  },
+  {
+    "start": "00:33:38.710",
+    "end": "00:33:41.276",
+    "text": "It's somewhat different from this problem,"
+  },
+  {
+    "start": "00:33:41.276",
+    "end": "00:33:44.155",
+    "text": "because it's a second derivative in time that's"
+  },
+  {
+    "start": "00:33:44.155",
+    "end": "00:33:44.970",
+    "text": "involved."
+  },
+  {
+    "start": "00:33:44.970",
+    "end": "00:33:48.163",
+    "text": "Nonetheless, here is an amazing property of"
+  },
+  {
+    "start": "00:33:48.163",
+    "end": "00:33:51.509",
+    "text": "this equation, derived by similar methods."
+  },
+  {
+    "start": "00:33:51.509",
+    "end": "00:33:53.846",
+    "text": "If you pull a string like this and let it go,"
+  },
+  {
+    "start": "00:33:53.846",
+    "end": "00:33:55.920",
+    "text": "it will go crazy when you release it."
+  },
+  {
+    "start": "00:33:55.920",
+    "end": "00:33:57.068",
+    "text": "I don't even know what it will do."
+  },
+  {
+    "start": "00:33:57.068",
+    "end": "00:34:00.435",
+    "text": "It will do all kinds of things, stuff will go back and forth,"
+  },
+  {
+    "start": "00:34:00.435",
+    "end": "00:34:01.390",
+    "text": "back and forth."
+  },
+  {
+    "start": "00:34:01.390",
+    "end": "00:34:06.412",
+    "text": "But if you can deform the string at t = 0 to look"
+  },
+  {
+    "start": "00:34:06.412",
+    "end": "00:34:10.875",
+    "text": "exactly like this, sine(px/L)"
+  },
+  {
+    "start": "00:34:10.875",
+    "end": "00:34:14.469",
+    "text": "times a number A, that's not easy to do."
+  },
+  {
+    "start": "00:34:14.469",
+    "end": "00:34:17.282",
+    "text": "Do you understand that to produce the initial profile,"
+  },
+  {
+    "start": "00:34:17.282",
+    "end": "00:34:19.989",
+    "text": "one hand is not enough, two hands are not enough?"
+  },
+  {
+    "start": "00:34:19.989",
+    "end": "00:34:22.893",
+    "text": "You've got to get infinite number of your friends,"
+  },
+  {
+    "start": "00:34:22.893",
+    "end": "00:34:24.789",
+    "text": "who are infinitesimally small."
+  },
+  {
+    "start": "00:34:24.789",
+    "end": "00:34:28.360",
+    "text": "You line them up along the string until each one--tell the"
+  },
+  {
+    "start": "00:34:28.360",
+    "end": "00:34:31.179",
+    "text": "person here to pull it exactly this height."
+  },
+  {
+    "start": "00:34:31.179",
+    "end": "00:34:33.199",
+    "text": "Person here has to pull it exactly that height."
+  },
+  {
+    "start": "00:34:33.199",
+    "end": "00:34:35.530",
+    "text": "You all lift your hands up, then I follow you."
+  },
+  {
+    "start": "00:34:35.530",
+    "end": "00:34:37.239",
+    "text": "You follow this perfect sine."
+  },
+  {
+    "start": "00:34:37.239",
+    "end": "00:34:40.639",
+    "text": "Then you let go."
+  },
+  {
+    "start": "00:34:40.639",
+    "end": "00:34:46.590",
+    "text": "What do you think will happen then?"
+  },
+  {
+    "start": "00:34:46.590",
+    "end": "00:34:50.759",
+    "text": "What do you think will be the subsequent evolution of the"
+  },
+  {
+    "start": "00:34:50.759",
+    "end": "00:34:51.429",
+    "text": "string?"
+  },
+  {
+    "start": "00:34:51.429",
+    "end": "00:34:52.030",
+    "text": "Do you have any guess?"
+  },
+  {
+    "start": "00:34:52.030",
+    "end": "00:34:52.510",
+    "text": "Yes?"
+  },
+  {
+    "start": "00:34:52.510",
+    "end": "00:34:54.559",
+    "text": "Student: &gt;"
+  },
+  {
+    "start": "00:34:54.559",
+    "end": "00:35:01.222",
+    "text": "Prof: It will go up and down, and the future of that"
+  },
+  {
+    "start": "00:35:01.222",
+    "end": "00:35:07.309",
+    "text": "string will look like cosine(pxvt/L)."
+  },
+  {
+    "start": "00:35:07.309",
+    "end": "00:35:08.150",
+    "text": "Look at it."
+  },
+  {
+    "start": "00:35:08.150",
+    "end": "00:35:10.355",
+    "text": "This is a time dependence, that t = 0,"
+  },
+  {
+    "start": "00:35:10.355",
+    "end": "00:35:12.210",
+    "text": "this goes away, this initial state."
+  },
+  {
+    "start": "00:35:12.210",
+    "end": "00:35:14.789",
+    "text": "But look what happens at a later time."
+  },
+  {
+    "start": "00:35:14.789",
+    "end": "00:35:20.050",
+    "text": "Every point x rises and falls with the same period."
+  },
+  {
+    "start": "00:35:20.050",
+    "end": "00:35:22.579",
+    "text": "It goes up and down all together."
+  },
+  {
+    "start": "00:35:22.579",
+    "end": "00:35:25.139",
+    "text": "That means a little later it will look like that,"
+  },
+  {
+    "start": "00:35:26.360",
+    "end": "00:35:28.300",
+    "text": "then it will look like this, then it will look like this,"
+  },
+  {
+    "start": "00:35:28.300",
+    "end": "00:35:30.309",
+    "text": "then it will look like that, then it will go back and forth."
+  },
+  {
+    "start": "00:35:30.309",
+    "end": "00:35:32.900",
+    "text": "But at every instant, this guy, this guy,"
+  },
+  {
+    "start": "00:35:32.900",
+    "end": "00:35:36.268",
+    "text": "this guy are all rescaled by the same amount from the"
+  },
+  {
+    "start": "00:35:36.268",
+    "end": "00:35:37.500",
+    "text": "starting value."
+  },
+  {
+    "start": "00:35:37.500",
+    "end": "00:35:39.929",
+    "text": "That's called a normal mode."
+  },
+  {
+    "start": "00:35:39.929",
+    "end": "00:35:42.262",
+    "text": "Now your question was, are there other solutions to"
+  },
+  {
+    "start": "00:35:42.262",
+    "end": "00:35:42.869",
+    "text": "the string?"
+  },
+  {
+    "start": "00:35:42.869",
+    "end": "00:35:43.969",
+    "text": "Of course."
+  },
+  {
+    "start": "00:35:43.969",
+    "end": "00:35:46.280",
+    "text": "Typically, if you don't think about it and pluck the string,"
+  },
+  {
+    "start": "00:35:46.280",
+    "end": "00:35:49.570",
+    "text": "your initial state will be a sum of these normal modes,"
+  },
+  {
+    "start": "00:35:49.570",
+    "end": "00:35:51.989",
+    "text": "and that will evolve in a complicated way."
+  },
+  {
+    "start": "00:35:51.989",
+    "end": "00:35:54.650",
+    "text": "But if you engineered it to begin exactly this way,"
+  },
+  {
+    "start": "00:35:54.650",
+    "end": "00:35:58.583",
+    "text": "or in any one of those other functions where you put an extra"
+  },
+  {
+    "start": "00:35:58.583",
+    "end": "00:36:01.043",
+    "text": "n here, they all have the remarkable"
+  },
+  {
+    "start": "00:36:01.043",
+    "end": "00:36:03.750",
+    "text": "property that they rise and fall in step."
+  },
+  {
+    "start": "00:36:03.750",
+    "end": "00:36:07.650",
+    "text": "What we have found here is in the quantum problem,"
+  },
+  {
+    "start": "00:36:07.650",
+    "end": "00:36:11.289",
+    "text": "if you start the system in that particular configuration,"
+  },
+  {
+    "start": "00:36:11.289",
+    "end": "00:36:15.315",
+    "text": "then its future has got a single time dependence common to"
+  },
+  {
+    "start": "00:36:15.315",
+    "end": "00:36:15.670",
+    "text": "it."
+  },
+  {
+    "start": "00:36:15.670",
+    "end": "00:36:20.760",
+    "text": "That's the meaning of the factorized solution."
+  },
+  {
+    "start": "00:36:20.760",
+    "end": "00:36:22.860",
+    "text": "So we know one simple example."
+  },
+  {
+    "start": "00:36:22.860",
+    "end": "00:36:24.889",
+    "text": "Take a particle in a box."
+  },
+  {
+    "start": "00:36:24.889",
+    "end": "00:36:28.525",
+    "text": "If it's in the lowest energy state or ground state the wave"
+  },
+  {
+    "start": "00:36:28.525",
+    "end": "00:36:30.219",
+    "text": "function looks like that."
+  },
+  {
+    "start": "00:36:30.219",
+    "end": "00:36:35.052",
+    "text": "Then the future of that will be Y_1/x"
+  },
+  {
+    "start": "00:36:35.052",
+    "end": "00:36:38.677",
+    "text": "and t will be the Y_1x"
+  },
+  {
+    "start": "00:36:38.677",
+    "end": "00:36:41.820",
+    "text": "times e^(-iE1t/‚Ñè),"
+  },
+  {
+    "start": "00:36:41.820",
+    "end": "00:36:45.460",
+    "text": "where E_1 = ‚Ñè^(2)"
+  },
+  {
+    "start": "00:36:45.460",
+    "end": "00:36:48.940",
+    "text": "p^(2) 1^(2)/2mL^(2)."
+  },
+  {
+    "start": "00:36:48.940",
+    "end": "00:36:53.159",
+    "text": "That's the energy associated with that function."
+  },
+  {
+    "start": "00:36:53.159",
+    "end": "00:36:57.739",
+    "text": "That's how it will oscillate."
+  },
+  {
+    "start": "00:36:57.739",
+    "end": "00:37:01.481",
+    "text": "Now you guys follow what I said now, with an analogy with the"
+  },
+  {
+    "start": "00:37:01.481",
+    "end": "00:37:03.539",
+    "text": "string and the quantum problem?"
+  },
+  {
+    "start": "00:37:03.539",
+    "end": "00:37:05.190",
+    "text": "They're slightly different equations."
+  },
+  {
+    "start": "00:37:05.190",
+    "end": "00:37:06.860",
+    "text": "One is second order, one is first order."
+  },
+  {
+    "start": "00:37:06.860",
+    "end": "00:37:09.940",
+    "text": "One has cosines in it, one has exponentials in it."
+  },
+  {
+    "start": "00:37:09.940",
+    "end": "00:37:13.722",
+    "text": "But the common property is, this is also a function of time"
+  },
+  {
+    "start": "00:37:13.722",
+    "end": "00:37:15.679",
+    "text": "times the function of space."
+  },
+  {
+    "start": "00:37:15.679",
+    "end": "00:37:26.260",
+    "text": "Here, this is a function of time and a function of space."
+  },
+  {
+    "start": "00:37:26.260",
+    "end": "00:37:30.612",
+    "text": "Okay, so I'm going to spend some time analyzing this"
+  },
+  {
+    "start": "00:37:30.612",
+    "end": "00:37:32.489",
+    "text": "particular function."
+  },
+  {
+    "start": "00:37:32.489",
+    "end": "00:37:37.945",
+    "text": "Y(x) and t = e^(‚àíiEt/√¢¬Ñ¬è)^("
+  },
+  {
+    "start": "00:37:37.945",
+    "end": "00:37:41.130",
+    "text": ")Y _E(x)."
+  },
+  {
+    "start": "00:37:41.130",
+    "end": "00:37:45.525",
+    "text": "And I'm going to do an abuse in rotation and give the subscript"
+  },
+  {
+    "start": "00:37:45.525",
+    "end": "00:37:47.510",
+    "text": "E to this guy also."
+  },
+  {
+    "start": "00:37:47.510",
+    "end": "00:37:50.094",
+    "text": "What I mean to tell you by that is, this Y,"
+  },
+  {
+    "start": "00:37:50.094",
+    "end": "00:37:52.731",
+    "text": "which solves Schrˆdinger equation--by the way,"
+  },
+  {
+    "start": "00:37:52.731",
+    "end": "00:37:54.420",
+    "text": "I invite you to go check it."
+  },
+  {
+    "start": "00:37:54.420",
+    "end": "00:37:56.583",
+    "text": "Take the Y, put it into Schrˆdinger"
+  },
+  {
+    "start": "00:37:56.583",
+    "end": "00:37:58.369",
+    "text": "equation and you will find it works."
+  },
+  {
+    "start": "00:37:58.369",
+    "end": "00:38:01.599",
+    "text": "In the notes I've given you, I merely tell you that this is"
+  },
+  {
+    "start": "00:38:01.599",
+    "end": "00:38:04.050",
+    "text": "a solution to Schrˆdinger's equation."
+  },
+  {
+    "start": "00:38:04.050",
+    "end": "00:38:06.329",
+    "text": "I don't go through this argument of assuming it's a"
+  },
+  {
+    "start": "00:38:06.329",
+    "end": "00:38:07.469",
+    "text": "product form and so on."
+  },
+  {
+    "start": "00:38:07.469",
+    "end": "00:38:08.268",
+    "text": "That's optional."
+  },
+  {
+    "start": "00:38:08.268",
+    "end": "00:38:10.280",
+    "text": "I don't care if you remember that or not,"
+  },
+  {
+    "start": "00:38:10.280",
+    "end": "00:38:12.030",
+    "text": "but this solves Schrˆdinger equation,"
+  },
+  {
+    "start": "00:38:12.030",
+    "end": "00:38:16.458",
+    "text": "and I call it Y_E because the"
+  },
+  {
+    "start": "00:38:16.458",
+    "end": "00:38:22.362",
+    "text": "function of the right hand side are identified with states of"
+  },
+  {
+    "start": "00:38:22.362",
+    "end": "00:38:24.329",
+    "text": "definite energy."
+  },
+  {
+    "start": "00:38:24.329",
+    "end": "00:38:31.313",
+    "text": "Okay, what will happen if you measure various quantities in"
+  },
+  {
+    "start": "00:38:31.313",
+    "end": "00:38:32.880",
+    "text": "this state?"
+  },
+  {
+    "start": "00:38:32.880",
+    "end": "00:38:34.684",
+    "text": "For example, what's the position going to"
+  },
+  {
+    "start": "00:38:34.684",
+    "end": "00:38:34.909",
+    "text": "be?"
+  },
+  {
+    "start": "00:38:34.909",
+    "end": "00:38:37.400",
+    "text": "What's the probability for definite position?"
+  },
+  {
+    "start": "00:38:37.400",
+    "end": "00:38:39.510",
+    "text": "What's the probability for definite momentum?"
+  },
+  {
+    "start": "00:38:39.510",
+    "end": "00:38:41.849",
+    "text": "What's the probability for definite anything?"
+  },
+  {
+    "start": "00:38:41.849",
+    "end": "00:38:43.320",
+    "text": "How will they vary with time?"
+  },
+  {
+    "start": "00:38:43.320",
+    "end": "00:38:47.030",
+    "text": "I will show you, nothing depends on time."
+  },
+  {
+    "start": "00:38:47.030",
+    "end": "00:38:49.704",
+    "text": "You can say, \"How can nothing depend on"
+  },
+  {
+    "start": "00:38:49.704",
+    "end": "00:38:50.139",
+    "text": "time?"
+  },
+  {
+    "start": "00:38:50.139",
+    "end": "00:38:52.900",
+    "text": "I see time in the function here.\""
+  },
+  {
+    "start": "00:38:52.900",
+    "end": "00:38:55.099",
+    "text": "But it will go away."
+  },
+  {
+    "start": "00:38:55.099",
+    "end": "00:38:59.780",
+    "text": "Let us ask, what is the probability that the particle is"
+  },
+  {
+    "start": "00:38:59.780",
+    "end": "00:39:03.949",
+    "text": "at x at time t for a solution like this?"
+  },
+  {
+    "start": "00:39:03.949",
+    "end": "00:39:08.030",
+    "text": "You know, the answer is Y *(x,t)"
+  },
+  {
+    "start": "00:39:08.030",
+    "end": "00:39:13.603",
+    "text": "Y(x,t), and what do you get when you do"
+  },
+  {
+    "start": "00:39:13.603",
+    "end": "00:39:14.500",
+    "text": "that?"
+  },
+  {
+    "start": "00:39:14.500",
+    "end": "00:39:18.048",
+    "text": "You will get Y_E *(x"
+  },
+  {
+    "start": "00:39:18.048",
+    "end": "00:39:21.519",
+    "text": ")Y _E(x). Then you"
+  },
+  {
+    "start": "00:39:21.519",
+    "end": "00:39:25.610",
+    "text": "will get the absolute value of this guy squared,"
+  },
+  {
+    "start": "00:39:25.610",
+    "end": "00:39:27.849",
+    "text": "e^(iEt)^( )times e^(-iEt),"
+  },
+  {
+    "start": "00:39:27.849",
+    "end": "00:39:34.710",
+    "text": "and that's just 1."
+  },
+  {
+    "start": "00:39:34.710",
+    "end": "00:39:38.541",
+    "text": "I hope all of you know that this e^(i)^( )absolute"
+  },
+  {
+    "start": "00:39:38.541",
+    "end": "00:39:39.980",
+    "text": "value squared is 1."
+  },
+  {
+    "start": "00:39:39.980",
+    "end": "00:39:42.349",
+    "text": "So it does not depend on time."
+  },
+  {
+    "start": "00:39:42.349",
+    "end": "00:39:45.867",
+    "text": "Even though Y depends on time, Y *Y has no"
+  },
+  {
+    "start": "00:39:45.867",
+    "end": "00:39:46.889",
+    "text": "time dependence."
+  },
+  {
+    "start": "00:39:46.889",
+    "end": "00:39:50.512",
+    "text": "That means the probability for finding that particle will not"
+  },
+  {
+    "start": "00:39:50.512",
+    "end": "00:39:51.659",
+    "text": "change with time."
+  },
+  {
+    "start": "00:39:51.659",
+    "end": "00:39:57.050",
+    "text": "That means if you start the particle in the ground state,"
+  },
+  {
+    "start": "00:39:57.050",
+    "end": "00:40:00.641",
+    "text": "Y, and let's say Y^(2) in fact looks"
+  },
+  {
+    "start": "00:40:00.641",
+    "end": "00:40:04.925",
+    "text": "pretty much the same, it's a real function,"
+  },
+  {
+    "start": "00:40:04.925",
+    "end": "00:40:10.219",
+    "text": "this probability does not change with time."
+  },
+  {
+    "start": "00:40:10.219",
+    "end": "00:40:13.545",
+    "text": "That means you can make a measurement any time you want"
+  },
+  {
+    "start": "00:40:13.545",
+    "end": "00:40:16.195",
+    "text": "for position, and the odds don't change with"
+  },
+  {
+    "start": "00:40:16.195",
+    "end": "00:40:16.750",
+    "text": "time."
+  },
+  {
+    "start": "00:40:16.750",
+    "end": "00:40:17.949",
+    "text": "It's very interesting."
+  },
+  {
+    "start": "00:40:17.949",
+    "end": "00:40:20.289",
+    "text": "It depends on time and it doesn't depend on time."
+  },
+  {
+    "start": "00:40:20.289",
+    "end": "00:40:22.980",
+    "text": "It's a lot like e^(ipx/‚Ñè)."
+  },
+  {
+    "start": "00:40:22.980",
+    "end": "00:40:26.130",
+    "text": "It seems to depend on x but the density does not depend"
+  },
+  {
+    "start": "00:40:26.130",
+    "end": "00:40:28.610",
+    "text": "on x because the exponential goes away."
+  },
+  {
+    "start": "00:40:28.610",
+    "end": "00:40:30.469",
+    "text": "Similarly, it does depend on time."
+  },
+  {
+    "start": "00:40:30.469",
+    "end": "00:40:32.985",
+    "text": "Without the time dependence, it won't satisfy"
+  },
+  {
+    "start": "00:40:32.985",
+    "end": "00:40:36.018",
+    "text": "Schrˆdinger equation, but the minute you take the"
+  },
+  {
+    "start": "00:40:36.018",
+    "end": "00:40:38.018",
+    "text": "absolute value, this goes away."
+  },
+  {
+    "start": "00:40:38.018",
+    "end": "00:40:41.443",
+    "text": "That means for this particle, I can draw a little graph that"
+  },
+  {
+    "start": "00:40:41.443",
+    "end": "00:40:43.938",
+    "text": "looks like this, and that is the probability"
+  },
+  {
+    "start": "00:40:43.938",
+    "end": "00:40:46.260",
+    "text": "cloud you find in all the textbooks."
+  },
+  {
+    "start": "00:40:46.260",
+    "end": "00:40:47.510",
+    "text": "Have you seen the probability cloud?"
+  },
+  {
+    "start": "00:40:47.510",
+    "end": "00:40:51.150",
+    "text": "They've got a little atom that's a little fuzzy stuff all"
+  },
+  {
+    "start": "00:40:51.150",
+    "end": "00:40:51.929",
+    "text": "around it."
+  },
+  {
+    "start": "00:40:51.929",
+    "end": "00:40:54.588",
+    "text": "They are the states of the hydrogen atom or some other"
+  },
+  {
+    "start": "00:40:54.588",
+    "end": "00:40:54.940",
+    "text": "atom."
+  },
+  {
+    "start": "00:40:54.940",
+    "end": "00:40:56.909",
+    "text": "How do you think you get that?"
+  },
+  {
+    "start": "00:40:56.909",
+    "end": "00:40:59.887",
+    "text": "You solve a similar equation, except it will be in 3"
+  },
+  {
+    "start": "00:40:59.887",
+    "end": "00:41:02.050",
+    "text": "dimensions instead of 1 dimension,"
+  },
+  {
+    "start": "00:41:02.050",
+    "end": "00:41:08.532",
+    "text": "and for V(x), you write -Ze^(2)/r, if you want"
+  },
+  {
+    "start": "00:41:08.532",
+    "end": "00:41:12.380",
+    "text": "r as x^(2) y^(2) z^(2)."
+  },
+  {
+    "start": "00:41:12.380",
+    "end": "00:41:15.599",
+    "text": "Ze is the nuclear charge, and -e is the electron"
+  },
+  {
+    "start": "00:41:15.599",
+    "end": "00:41:16.099",
+    "text": "charge."
+  },
+  {
+    "start": "00:41:16.099",
+    "end": "00:41:20.918",
+    "text": "You put that in and you solve the equation and you will find a"
+  },
+  {
+    "start": "00:41:20.918",
+    "end": "00:41:24.789",
+    "text": "whole bunch of solutions that behave like this."
+  },
+  {
+    "start": "00:41:24.789",
+    "end": "00:41:27.061",
+    "text": "They are called stationary states, because in that"
+  },
+  {
+    "start": "00:41:27.061",
+    "end": "00:41:29.710",
+    "text": "stationary state-- see, if a hydrogen atom starts"
+  },
+  {
+    "start": "00:41:29.710",
+    "end": "00:41:32.275",
+    "text": "out in this state, which is a state of definite"
+  },
+  {
+    "start": "00:41:32.275",
+    "end": "00:41:33.704",
+    "text": "energy, as time goes by,"
+  },
+  {
+    "start": "00:41:33.704",
+    "end": "00:41:35.840",
+    "text": "nothing happens to it essentially."
+  },
+  {
+    "start": "00:41:35.840",
+    "end": "00:41:38.538",
+    "text": "Something trivial happens; it picks up the phase factor,"
+  },
+  {
+    "start": "00:41:38.538",
+    "end": "00:41:41.976",
+    "text": "but the probability for finding the electron never changes with"
+  },
+  {
+    "start": "00:41:41.976",
+    "end": "00:41:42.420",
+    "text": "time."
+  },
+  {
+    "start": "00:41:42.420",
+    "end": "00:41:45.161",
+    "text": "So if you like, you can draw a little cloud"
+  },
+  {
+    "start": "00:41:45.161",
+    "end": "00:41:46.987",
+    "text": "whose thickness, if you like,"
+  },
+  {
+    "start": "00:41:46.987",
+    "end": "00:41:50.969",
+    "text": "measures the probability for finding it at that location."
+  },
+  {
+    "start": "00:41:50.969",
+    "end": "00:41:52.070",
+    "text": "So that will have all kinds of shape."
+  },
+  {
+    "start": "00:41:52.070",
+    "end": "00:41:54.654",
+    "text": "It looks like dumbbells, pointing to the north pole,"
+  },
+  {
+    "start": "00:41:54.654",
+    "end": "00:41:57.340",
+    "text": "south pole, maybe uniformly spherical distribution."
+  },
+  {
+    "start": "00:41:57.340",
+    "end": "00:42:01.932",
+    "text": "They're all the probability of finding the electron in that"
+  },
+  {
+    "start": "00:42:01.932",
+    "end": "00:42:05.179",
+    "text": "state, and it doesn't change with time."
+  },
+  {
+    "start": "00:42:05.179",
+    "end": "00:42:08.056",
+    "text": "So a hydrogen atom, when you leave it alone,"
+  },
+  {
+    "start": "00:42:08.056",
+    "end": "00:42:10.800",
+    "text": "will be in one of these allowed states."
+  },
+  {
+    "start": "00:42:10.800",
+    "end": "00:42:12.039",
+    "text": "You don't need the hydrogen atom;"
+  },
+  {
+    "start": "00:42:12.039",
+    "end": "00:42:14.889",
+    "text": "this particle in a box is a good enough quantum system."
+  },
+  {
+    "start": "00:42:14.889",
+    "end": "00:42:16.659",
+    "text": "If you start it like that, it will stay like that;"
+  },
+  {
+    "start": "00:42:16.659",
+    "end": "00:42:19.474",
+    "text": "if you start it like that, it will stay like that,"
+  },
+  {
+    "start": "00:42:19.474",
+    "end": "00:42:20.969",
+    "text": "times that phase factor."
+  },
+  {
+    "start": "00:42:20.969",
+    "end": "00:42:25.356",
+    "text": "So stationary states are important, because that's where"
+  },
+  {
+    "start": "00:42:25.356",
+    "end": "00:42:27.510",
+    "text": "things have settled down."
+  },
+  {
+    "start": "00:42:27.510",
+    "end": "00:42:31.231",
+    "text": "Okay, now you should also realize that that's not a"
+  },
+  {
+    "start": "00:42:31.231",
+    "end": "00:42:32.719",
+    "text": "typical situation."
+  },
+  {
+    "start": "00:42:32.719",
+    "end": "00:42:37.025",
+    "text": "Suppose you have in 1 dimension, there's a particle on"
+  },
+  {
+    "start": "00:42:37.025",
+    "end": "00:42:41.168",
+    "text": "a hill, and at t = 0, it's given by some wave"
+  },
+  {
+    "start": "00:42:41.168",
+    "end": "00:42:43.929",
+    "text": "function that looks like this."
+  },
+  {
+    "start": "00:42:43.929",
+    "end": "00:42:47.032",
+    "text": "So it's got some average position, and if you expand it"
+  },
+  {
+    "start": "00:42:47.032",
+    "end": "00:42:50.425",
+    "text": "in terms of exponentials of p, it's got some range of"
+  },
+  {
+    "start": "00:42:50.425",
+    "end": "00:42:51.460",
+    "text": "momenta in it."
+  },
+  {
+    "start": "00:42:51.460",
+    "end": "00:42:54.559",
+    "text": "What will happen to this as a function of time?"
+  },
+  {
+    "start": "00:42:54.559",
+    "end": "00:42:56.940",
+    "text": "Can you make a guess?"
+  },
+  {
+    "start": "00:42:56.940",
+    "end": "00:43:01.070",
+    "text": "Let's say it's right now got an average momentum to the left."
+  },
+  {
+    "start": "00:43:01.070",
+    "end": "00:43:04.730",
+    "text": "What do you think will happen to it?"
+  },
+  {
+    "start": "00:43:04.730",
+    "end": "00:43:05.369",
+    "text": "Pardon me?"
+  },
+  {
+    "start": "00:43:05.369",
+    "end": "00:43:06.280",
+    "text": "Student:  It will move to the left."
+  },
+  {
+    "start": "00:43:06.280",
+    "end": "00:43:07.139",
+    "text": "Prof: It will move to the left."
+  },
+  {
+    "start": "00:43:07.139",
+    "end": "00:43:10.588",
+    "text": "Except for the fuzziness, you can apply your classical"
+  },
+  {
+    "start": "00:43:10.588",
+    "end": "00:43:11.369",
+    "text": "intuition."
+  },
+  {
+    "start": "00:43:11.369",
+    "end": "00:43:13.369",
+    "text": "It's got some position, maybe not precise."
+  },
+  {
+    "start": "00:43:13.369",
+    "end": "00:43:15.369",
+    "text": "It's got some momentum, maybe not precise,"
+  },
+  {
+    "start": "00:43:15.369",
+    "end": "00:43:17.565",
+    "text": "but when you leave something on top of a hill,"
+  },
+  {
+    "start": "00:43:17.565",
+    "end": "00:43:19.420",
+    "text": "it's going to slide down the hill."
+  },
+  {
+    "start": "00:43:19.420",
+    "end": "00:43:21.898",
+    "text": "The average x is going to go this way,"
+  },
+  {
+    "start": "00:43:21.898",
+    "end": "00:43:24.210",
+    "text": "and the average momentum will increase."
+  },
+  {
+    "start": "00:43:24.210",
+    "end": "00:43:27.282",
+    "text": "So that's a situation where the average of the physical"
+  },
+  {
+    "start": "00:43:27.282",
+    "end": "00:43:28.989",
+    "text": "quantities change with time."
+  },
+  {
+    "start": "00:43:28.989",
+    "end": "00:43:31.862",
+    "text": "That's because this state is not a function"
+  },
+  {
+    "start": "00:43:31.862",
+    "end": "00:43:34.119",
+    "text": "Y_E(x)."
+  },
+  {
+    "start": "00:43:34.119",
+    "end": "00:43:35.380",
+    "text": "It's some random function you picked."
+  },
+  {
+    "start": "00:43:35.380",
+    "end": "00:43:38.713",
+    "text": "Random functions you picked in some potential will in fact"
+  },
+  {
+    "start": "00:43:38.713",
+    "end": "00:43:42.280",
+    "text": "evolve with time in such a way that measurable quantities will"
+  },
+  {
+    "start": "00:43:42.280",
+    "end": "00:43:43.510",
+    "text": "change with time."
+  },
+  {
+    "start": "00:43:43.510",
+    "end": "00:43:45.836",
+    "text": "The odds for x or the odds for p,"
+  },
+  {
+    "start": "00:43:45.836",
+    "end": "00:43:48.213",
+    "text": "odds for everything else, will change with time,"
+  },
+  {
+    "start": "00:43:48.213",
+    "end": "00:43:48.670",
+    "text": "okay?"
+  },
+  {
+    "start": "00:43:48.670",
+    "end": "00:43:50.880",
+    "text": "So stationary states are very privileged,"
+  },
+  {
+    "start": "00:43:50.880",
+    "end": "00:43:52.860",
+    "text": "because if you start them that way,"
+  },
+  {
+    "start": "00:43:52.860",
+    "end": "00:43:55.021",
+    "text": "they stay that way, and that's why when you look at"
+  },
+  {
+    "start": "00:43:55.021",
+    "end": "00:43:58.050",
+    "text": "atoms, they typically stay that way."
+  },
+  {
+    "start": "00:43:58.050",
+    "end": "00:44:00.998",
+    "text": "But once in a while, an atom will jump from one"
+  },
+  {
+    "start": "00:44:00.998",
+    "end": "00:44:05.036",
+    "text": "stationary state to another one, and you can say that looks like"
+  },
+  {
+    "start": "00:44:05.036",
+    "end": "00:44:06.320",
+    "text": "a contradiction."
+  },
+  {
+    "start": "00:44:06.320",
+    "end": "00:44:08.244",
+    "text": "If it's stationary, what's it doing jumping from"
+  },
+  {
+    "start": "00:44:08.244",
+    "end": "00:44:08.900",
+    "text": "here to there?"
+  },
+  {
+    "start": "00:44:08.900",
+    "end": "00:44:14.340",
+    "text": "You know the answer to that?"
+  },
+  {
+    "start": "00:44:14.340",
+    "end": "00:44:15.760",
+    "text": "Why does an atom ever change then?"
+  },
+  {
+    "start": "00:44:15.760",
+    "end": "00:44:18.929",
+    "text": "If it's in a state of definite E, it should be that way"
+  },
+  {
+    "start": "00:44:18.929",
+    "end": "00:44:19.449",
+    "text": "forever."
+  },
+  {
+    "start": "00:44:19.449",
+    "end": "00:44:22.369",
+    "text": "Why do they go up and down?"
+  },
+  {
+    "start": "00:44:22.369",
+    "end": "00:44:23.340",
+    "text": "Want to guess?"
+  },
+  {
+    "start": "00:44:23.340",
+    "end": "00:44:26.670",
+    "text": "Student: &gt;"
+  },
+  {
+    "start": "00:44:26.670",
+    "end": "00:44:27.179",
+    "text": "Prof: That's correct."
+  },
+  {
+    "start": "00:44:27.179",
+    "end": "00:44:28.860",
+    "text": "So she said by absorbing photons."
+  },
+  {
+    "start": "00:44:28.860",
+    "end": "00:44:33.023",
+    "text": "And what I really mean by that is, this problem V(x)"
+  },
+  {
+    "start": "00:44:33.023",
+    "end": "00:44:37.260",
+    "text": "involves only the coulomb force between the electron and the"
+  },
+  {
+    "start": "00:44:37.260",
+    "end": "00:44:38.050",
+    "text": "proton."
+  },
+  {
+    "start": "00:44:38.050",
+    "end": "00:44:40.654",
+    "text": "If that's all you have, an electron in the field of a"
+  },
+  {
+    "start": "00:44:40.654",
+    "end": "00:44:42.657",
+    "text": "proton, it will pick one of these levels,"
+  },
+  {
+    "start": "00:44:42.657",
+    "end": "00:44:44.159",
+    "text": "it can stay there forever."
+  },
+  {
+    "start": "00:44:44.159",
+    "end": "00:44:46.487",
+    "text": "When you shine light, you're applying an"
+  },
+  {
+    "start": "00:44:46.487",
+    "end": "00:44:47.920",
+    "text": "electromagnetic field."
+  },
+  {
+    "start": "00:44:47.920",
+    "end": "00:44:51.358",
+    "text": "The electric field and magnetic field apply extra forces in the"
+  },
+  {
+    "start": "00:44:51.358",
+    "end": "00:44:54.518",
+    "text": "charge and V(x) should change to something else."
+  },
+  {
+    "start": "00:44:54.518",
+    "end": "00:44:57.106",
+    "text": "So that this function is no longer a state of definite"
+  },
+  {
+    "start": "00:44:57.106",
+    "end": "00:44:59.695",
+    "text": "energy for the new problem, because you've changed the"
+  },
+  {
+    "start": "00:44:59.695",
+    "end": "00:45:00.769",
+    "text": "rules of the game."
+  },
+  {
+    "start": "00:45:00.769",
+    "end": "00:45:03.710",
+    "text": "You modified the potential."
+  },
+  {
+    "start": "00:45:03.710",
+    "end": "00:45:06.916",
+    "text": "Then of course it will move around and it will change from"
+  },
+  {
+    "start": "00:45:06.916",
+    "end": "00:45:08.210",
+    "text": "one state to another."
+  },
+  {
+    "start": "00:45:08.210",
+    "end": "00:45:11.780",
+    "text": "But an isolated atom will remain that way forever."
+  },
+  {
+    "start": "00:45:11.780",
+    "end": "00:45:15.329",
+    "text": "But it turns out even that's not exactly correct."
+  },
+  {
+    "start": "00:45:15.329",
+    "end": "00:45:19.492",
+    "text": "You can take an isolated atom, in the first excited state of"
+  },
+  {
+    "start": "00:45:19.492",
+    "end": "00:45:23.585",
+    "text": "hydrogen, you come back a short time later, you'll find the"
+  },
+  {
+    "start": "00:45:23.585",
+    "end": "00:45:25.349",
+    "text": "fellow has come down."
+  },
+  {
+    "start": "00:45:25.349",
+    "end": "00:45:27.112",
+    "text": "And you say, \"Look, I didn't turn on"
+  },
+  {
+    "start": "00:45:27.112",
+    "end": "00:45:28.039",
+    "text": "any electric field."
+  },
+  {
+    "start": "00:45:28.039",
+    "end": "00:45:30.210",
+    "text": "E = 0, B = 0."
+  },
+  {
+    "start": "00:45:30.210",
+    "end": "00:45:32.809",
+    "text": "What made the atom come down?\""
+  },
+  {
+    "start": "00:45:32.809",
+    "end": "00:45:37.090",
+    "text": "Do you know what the answer to that is?"
+  },
+  {
+    "start": "00:45:37.090",
+    "end": "00:45:37.800",
+    "text": "Any rumors?"
+  },
+  {
+    "start": "00:45:37.800",
+    "end": "00:45:38.510",
+    "text": "Yes?"
+  },
+  {
+    "start": "00:45:38.510",
+    "end": "00:45:40.280",
+    "text": "Student:  Photon emission?"
+  },
+  {
+    "start": "00:45:40.280",
+    "end": "00:45:42.289",
+    "text": "Prof: Its photon is emitted,"
+  },
+  {
+    "start": "00:45:42.289",
+    "end": "00:45:45.318",
+    "text": "but you need an extra thing, extra electrical magnetic field"
+  },
+  {
+    "start": "00:45:45.318",
+    "end": "00:45:47.679",
+    "text": "to act on it before it will emit the photon."
+  },
+  {
+    "start": "00:45:47.679",
+    "end": "00:45:48.489",
+    "text": "But where is the field?"
+  },
+  {
+    "start": "00:45:48.489",
+    "end": "00:45:49.969",
+    "text": "I've turned everything off."
+  },
+  {
+    "start": "00:45:49.969",
+    "end": "00:45:53.800",
+    "text": "E and B are both 0."
+  },
+  {
+    "start": "00:45:53.800",
+    "end": "00:45:59.237",
+    "text": "So it turns out that the state E = B = 0 is like"
+  },
+  {
+    "start": "00:45:59.237",
+    "end": "00:46:03.871",
+    "text": "a state say in a harmonic oscillator potential x ="
+  },
+  {
+    "start": "00:46:03.871",
+    "end": "00:46:06.304",
+    "text": "p = 0, sitting at the bottom of the"
+  },
+  {
+    "start": "00:46:06.304",
+    "end": "00:46:06.539",
+    "text": "well."
+  },
+  {
+    "start": "00:46:06.539",
+    "end": "00:46:08.768",
+    "text": "We know that's not allowed in quantum mechanics."
+  },
+  {
+    "start": "00:46:08.768",
+    "end": "00:46:11.960",
+    "text": "You cannot have definite x and definite p."
+  },
+  {
+    "start": "00:46:11.960",
+    "end": "00:46:16.681",
+    "text": "It turns out in quantum theory, E and B are like"
+  },
+  {
+    "start": "00:46:16.681",
+    "end": "00:46:18.539",
+    "text": "x and p."
+  },
+  {
+    "start": "00:46:18.539",
+    "end": "00:46:21.036",
+    "text": "That means the state of definite E is not a state"
+  },
+  {
+    "start": "00:46:21.036",
+    "end": "00:46:22.079",
+    "text": "of definite B."
+  },
+  {
+    "start": "00:46:22.079",
+    "end": "00:46:24.222",
+    "text": "A state of definite B is not a state of definite"
+  },
+  {
+    "start": "00:46:24.222",
+    "end": "00:46:24.659",
+    "text": "E."
+  },
+  {
+    "start": "00:46:24.659",
+    "end": "00:46:26.882",
+    "text": "It looks that way in the macroscopic world,"
+  },
+  {
+    "start": "00:46:26.882",
+    "end": "00:46:29.900",
+    "text": "because the fluctuations in E and B are very"
+  },
+  {
+    "start": "00:46:29.900",
+    "end": "00:46:30.429",
+    "text": "small."
+  },
+  {
+    "start": "00:46:30.429",
+    "end": "00:46:33.469",
+    "text": "Therefore, just like in the lowest energy state,"
+  },
+  {
+    "start": "00:46:33.469",
+    "end": "00:46:36.873",
+    "text": "an oscillator has got some probability to be jiggling back"
+  },
+  {
+    "start": "00:46:36.873",
+    "end": "00:46:39.559",
+    "text": "and forth in x and also in p."
+  },
+  {
+    "start": "00:46:39.559",
+    "end": "00:46:42.500",
+    "text": "The vacuum, which we think has no E and no B,"
+  },
+  {
+    "start": "00:46:42.500",
+    "end": "00:46:45.135",
+    "text": "has small fluctuations, because E and B"
+  },
+  {
+    "start": "00:46:45.135",
+    "end": "00:46:48.280",
+    "text": "both vanishing is like x and p both vanishing."
+  },
+  {
+    "start": "00:46:48.280",
+    "end": "00:46:49.199",
+    "text": "Not allowed."
+  },
+  {
+    "start": "00:46:49.199",
+    "end": "00:46:51.780",
+    "text": "So you've got to have a little spread in both E and both"
+  },
+  {
+    "start": "00:46:51.780",
+    "end": "00:46:52.239",
+    "text": "B."
+  },
+  {
+    "start": "00:46:52.239",
+    "end": "00:46:54.860",
+    "text": "They're called quantum fluctuations of the vacuum."
+  },
+  {
+    "start": "00:46:54.860",
+    "end": "00:46:57.480",
+    "text": "So that's a theory of nothing."
+  },
+  {
+    "start": "00:46:57.480",
+    "end": "00:47:00.161",
+    "text": "The vacuum you think is the most uninteresting thing,"
+  },
+  {
+    "start": "00:47:00.161",
+    "end": "00:47:02.327",
+    "text": "and yet it is not completely uninteresting,"
+  },
+  {
+    "start": "00:47:02.327",
+    "end": "00:47:04.389",
+    "text": "because it's got these fluctuations."
+  },
+  {
+    "start": "00:47:04.389",
+    "end": "00:47:08.047",
+    "text": "It's those fluctuations that tickle the atom and make it come"
+  },
+  {
+    "start": "00:47:08.047",
+    "end": "00:47:10.610",
+    "text": "from an excited state to a ground state."
+  },
+  {
+    "start": "00:47:10.610",
+    "end": "00:47:14.742",
+    "text": "Okay, so unless you tamper with the atom in some fashion,"
+  },
+  {
+    "start": "00:47:14.742",
+    "end": "00:47:17.619",
+    "text": "it will remain in a stationary state."
+  },
+  {
+    "start": "00:47:17.619",
+    "end": "00:47:19.730",
+    "text": "Those states are states of definite energy."
+  },
+  {
+    "start": "00:47:19.730",
+    "end": "00:47:22.385",
+    "text": "They are found by solving the Schrˆdinger equation"
+  },
+  {
+    "start": "00:47:22.385",
+    "end": "00:47:23.420",
+    "text": "without time in it."
+  },
+  {
+    "start": "00:47:23.420",
+    "end": "00:47:25.527",
+    "text": "H Y = E Y is called the time"
+  },
+  {
+    "start": "00:47:25.527",
+    "end": "00:47:27.099",
+    "text": "independent Schrˆdinger equation,"
+  },
+  {
+    "start": "00:47:27.099",
+    "end": "00:47:30.530",
+    "text": "and that's what most of us do most of the time."
+  },
+  {
+    "start": "00:47:30.530",
+    "end": "00:47:32.829",
+    "text": "The problem can be more complicated."
+  },
+  {
+    "start": "00:47:32.829",
+    "end": "00:47:35.090",
+    "text": "It can involve two particles, can involve ten particles."
+  },
+  {
+    "start": "00:47:35.090",
+    "end": "00:47:38.190",
+    "text": "It may not involve this force, may involve another force,"
+  },
+  {
+    "start": "00:47:38.190",
+    "end": "00:47:41.630",
+    "text": "but everybody is spending most of his time or her time solving"
+  },
+  {
+    "start": "00:47:41.630",
+    "end": "00:47:45.409",
+    "text": "the Schrˆdinger equation to find states of definite energy,"
+  },
+  {
+    "start": "00:47:45.409",
+    "end": "00:47:47.780",
+    "text": "because that's where things will end up."
+  },
+  {
+    "start": "00:47:47.780",
+    "end": "00:47:52.407",
+    "text": "All right, I've only shown you that the probability to find"
+  },
+  {
+    "start": "00:47:52.407",
+    "end": "00:47:56.159",
+    "text": "different positions doesn't change with time."
+  },
+  {
+    "start": "00:47:56.159",
+    "end": "00:47:58.947",
+    "text": "I will show you the probability to find different anything"
+  },
+  {
+    "start": "00:47:58.947",
+    "end": "00:48:00.268",
+    "text": "doesn't change with time."
+  },
+  {
+    "start": "00:48:00.268",
+    "end": "00:48:03.163",
+    "text": "Nothing will change with time, not just x probability,"
+  },
+  {
+    "start": "00:48:03.163",
+    "end": "00:48:04.610",
+    "text": "so I'll do one more example."
+  },
+  {
+    "start": "00:48:04.610",
+    "end": "00:48:09.224",
+    "text": "Let's ask, what's the probability to find a momentum"
+  },
+  {
+    "start": "00:48:09.224",
+    "end": "00:48:10.219",
+    "text": "p?"
+  },
+  {
+    "start": "00:48:10.219",
+    "end": "00:48:12.190",
+    "text": "What are we supposed to do?"
+  },
+  {
+    "start": "00:48:12.190",
+    "end": "00:48:16.480",
+    "text": "We're supposed to take e^(ipx)^(/"
+  },
+  {
+    "start": "00:48:16.480",
+    "end": "00:48:22.860",
+    "text": "‚Ñè )times the function at some time t"
+  },
+  {
+    "start": "00:48:22.860",
+    "end": "00:48:25.610",
+    "text": "and do that integral."
+  },
+  {
+    "start": "00:48:25.610",
+    "end": "00:48:28.603",
+    "text": "I'm sorry, you should take that and do that integral,"
+  },
+  {
+    "start": "00:48:28.603",
+    "end": "00:48:31.309",
+    "text": "and then you take the absolute value of that."
+  },
+  {
+    "start": "00:48:31.309",
+    "end": "00:48:33.409",
+    "text": "And that's done at every time."
+  },
+  {
+    "start": "00:48:33.409",
+    "end": "00:48:37.664",
+    "text": "You take the absolute value and that's the probability to get"
+  },
+  {
+    "start": "00:48:37.664",
+    "end": "00:48:39.579",
+    "text": "momentum p, right?"
+  },
+  {
+    "start": "00:48:39.579",
+    "end": "00:48:41.510",
+    "text": "The recipe was, if you want the probability,"
+  },
+  {
+    "start": "00:48:41.510",
+    "end": "00:48:43.755",
+    "text": "take the given function, multiply to the conjugate of"
+  },
+  {
+    "start": "00:48:43.755",
+    "end": "00:48:45.960",
+    "text": "Y_p and do the integral,"
+  },
+  {
+    "start": "00:48:45.960",
+    "end": "00:48:51.590",
+    "text": "dL and dx."
+  },
+  {
+    "start": "00:48:51.590",
+    "end": "00:48:54.382",
+    "text": "Y(x,t) in general has got complicated time"
+  },
+  {
+    "start": "00:48:54.382",
+    "end": "00:48:56.159",
+    "text": "dependence, but not our Y."
+  },
+  {
+    "start": "00:48:56.159",
+    "end": "00:48:57.480",
+    "text": "Remember our Y?"
+  },
+  {
+    "start": "00:48:57.480",
+    "end": "00:49:03.992",
+    "text": "Our Y looks like Y(x) times e^("
+  },
+  {
+    "start": "00:49:03.992",
+    "end": "00:49:07.489",
+    "text": "‚àíiEt/√¢¬Ñ¬è)."
+  },
+  {
+    "start": "00:49:07.489",
+    "end": "00:49:10.918",
+    "text": "But when you take the absolute value, this has nothing to do"
+  },
+  {
+    "start": "00:49:10.918",
+    "end": "00:49:11.849",
+    "text": "with x."
+  },
+  {
+    "start": "00:49:11.849",
+    "end": "00:49:14.626",
+    "text": "You can pull it outside the integral--or let me put it"
+  },
+  {
+    "start": "00:49:14.626",
+    "end": "00:49:15.360",
+    "text": "another way."
+  },
+  {
+    "start": "00:49:15.360",
+    "end": "00:49:17.739",
+    "text": "Let's do the integral and see what you get."
+  },
+  {
+    "start": "00:49:17.739",
+    "end": "00:49:21.172",
+    "text": "You will find A_p looks like"
+  },
+  {
+    "start": "00:49:21.172",
+    "end": "00:49:23.748",
+    "text": "A_p (0)e^(‚àíiEt/"
+  },
+  {
+    "start": "00:49:23.748",
+    "end": "00:49:25.309",
+    "text": "‚Ñè)."
+  },
+  {
+    "start": "00:49:25.309",
+    "end": "00:49:26.768",
+    "text": "Do you see that?"
+  },
+  {
+    "start": "00:49:26.768",
+    "end": "00:49:30.045",
+    "text": "If the only thing that happens to Y is that you get an"
+  },
+  {
+    "start": "00:49:30.045",
+    "end": "00:49:33.208",
+    "text": "extra factor at later times, only thing that happens to the"
+  },
+  {
+    "start": "00:49:33.208",
+    "end": "00:49:36.389",
+    "text": "A_p is it gets the extra factor at later times."
+  },
+  {
+    "start": "00:49:36.389",
+    "end": "00:49:42.101",
+    "text": "But the probability to find momentum p is the"
+  },
+  {
+    "start": "00:49:42.101",
+    "end": "00:49:48.260",
+    "text": "absolute value square of that, and in the absolute value"
+  },
+  {
+    "start": "00:49:48.260",
+    "end": "00:49:51.619",
+    "text": "process, this guy is gone."
+  },
+  {
+    "start": "00:49:51.619",
+    "end": "00:49:54.159",
+    "text": "You follow that?"
+  },
+  {
+    "start": "00:49:54.159",
+    "end": "00:49:57.570",
+    "text": "Since the wave function changes by a simple phase factor,"
+  },
+  {
+    "start": "00:49:57.570",
+    "end": "00:50:01.342",
+    "text": "the coefficient to have a definite momentum also changes"
+  },
+  {
+    "start": "00:50:01.342",
+    "end": "00:50:05.320",
+    "text": "by the same phase factor.This is called a phase factor,"
+  },
+  {
+    "start": "00:50:05.320",
+    "end": "00:50:08.103",
+    "text": "exponential of modulus 1, but when you take the absolute"
+  },
+  {
+    "start": "00:50:08.103",
+    "end": "00:50:12.429",
+    "text": "value, the guy doesn't do anything."
+  },
+  {
+    "start": "00:50:12.429",
+    "end": "00:50:14.500",
+    "text": "Now you can replace p by some other variable."
+  },
+  {
+    "start": "00:50:14.500",
+    "end": "00:50:15.190",
+    "text": "It doesn't matter."
+  },
+  {
+    "start": "00:50:15.190",
+    "end": "00:50:17.518",
+    "text": "The story is always the same."
+  },
+  {
+    "start": "00:50:17.518",
+    "end": "00:50:22.460",
+    "text": "So a state of definite energy seems to evolve in time,"
+  },
+  {
+    "start": "00:50:22.460",
+    "end": "00:50:24.429",
+    "text": "because e^(ipx)^(/ ‚Ñè),"
+  },
+  {
+    "start": "00:50:24.429",
+    "end": "00:50:26.920",
+    "text": "but none of the probabilities change with time."
+  },
+  {
+    "start": "00:50:26.920",
+    "end": "00:50:28.389",
+    "text": "It's absolutely stationary."
+  },
+  {
+    "start": "00:50:28.389",
+    "end": "00:50:30.539",
+    "text": "Just put anything you measure."
+  },
+  {
+    "start": "00:50:30.539",
+    "end": "00:50:33.440",
+    "text": "That's why those states are very important."
+  },
+  {
+    "start": "00:50:33.440",
+    "end": "00:50:40.922",
+    "text": "Okay, now I want to caution you that not every solution looks"
+  },
+  {
+    "start": "00:50:40.922",
+    "end": "00:50:42.420",
+    "text": "like this."
+  },
+  {
+    "start": "00:50:42.420",
+    "end": "00:50:43.280",
+    "text": "That's the question you raised."
+  },
+  {
+    "start": "00:50:43.280",
+    "end": "00:50:45.489",
+    "text": "I'm going to answer that question now."
+  },
+  {
+    "start": "00:50:45.489",
+    "end": "00:50:48.561",
+    "text": "Let's imagine that I find two solutions to the"
+  },
+  {
+    "start": "00:50:48.561",
+    "end": "00:50:51.360",
+    "text": "Schrˆdinger equation of this form."
+  },
+  {
+    "start": "00:50:51.360",
+    "end": "00:50:54.335",
+    "text": "Solution Y_1 looks like"
+  },
+  {
+    "start": "00:50:54.335",
+    "end": "00:50:59.773",
+    "text": "Y_1(x,t), looks like e^(ipx)^(/"
+  },
+  {
+    "start": "00:50:59.773",
+    "end": "00:51:04.264",
+    "text": "‚Ñè )Y_1,"
+  },
+  {
+    "start": "00:51:04.264",
+    "end": "00:51:07.489",
+    "text": "Y_E1(x)."
+  },
+  {
+    "start": "00:51:07.489",
+    "end": "00:51:10.630",
+    "text": "That's one solution for energy E_1."
+  },
+  {
+    "start": "00:51:10.630",
+    "end": "00:51:16.172",
+    "text": "Then there's another solution, Y_2 (x)"
+  },
+  {
+    "start": "00:51:16.172",
+    "end": "00:51:21.170",
+    "text": "looks like e^(ipx) ^(/‚Ñè) Y"
+  },
+  {
+    "start": "00:51:21.170",
+    "end": "00:51:23.079",
+    "text": "_E2(x)."
+  },
+  {
+    "start": "00:51:23.079",
+    "end": "00:51:25.657",
+    "text": "This function has all the properties I mentioned,"
+  },
+  {
+    "start": "00:51:25.657",
+    "end": "00:51:27.429",
+    "text": "namely nothing depends on time."
+  },
+  {
+    "start": "00:51:27.429",
+    "end": "00:51:29.840",
+    "text": "That has the same property."
+  },
+  {
+    "start": "00:51:29.840",
+    "end": "00:51:33.327",
+    "text": "But because the Schrˆdinger equation is a"
+  },
+  {
+    "start": "00:51:33.327",
+    "end": "00:51:36.369",
+    "text": "linear equation, it's also true that this"
+  },
+  {
+    "start": "00:51:36.369",
+    "end": "00:51:38.853",
+    "text": "Y, which is Y_1"
+  },
+  {
+    "start": "00:51:38.853",
+    "end": "00:51:43.440",
+    "text": "Y_2, add this one to this one,"
+  },
+  {
+    "start": "00:51:43.440",
+    "end": "00:51:45.800",
+    "text": "is also a solution."
+  },
+  {
+    "start": "00:51:45.800",
+    "end": "00:51:47.869",
+    "text": "I think I have done it many, many times."
+  },
+  {
+    "start": "00:51:47.869",
+    "end": "00:51:50.128",
+    "text": "If you take a linear equation, Y_1 obeys the"
+  },
+  {
+    "start": "00:51:50.128",
+    "end": "00:51:52.324",
+    "text": "Schrˆdinger equation, Y_2 obeys the"
+  },
+  {
+    "start": "00:51:52.324",
+    "end": "00:51:53.320",
+    "text": "Schrˆdinger equation."
+  },
+  {
+    "start": "00:51:53.320",
+    "end": "00:51:55.666",
+    "text": "Add the left hand side to the left hand side and right hand"
+  },
+  {
+    "start": "00:51:55.666",
+    "end": "00:51:57.722",
+    "text": "side to the right hand side, you will find that if"
+  },
+  {
+    "start": "00:51:57.722",
+    "end": "00:52:00.090",
+    "text": "Y_1 obeys it and Y_2 does,"
+  },
+  {
+    "start": "00:52:00.090",
+    "end": "00:52:02.284",
+    "text": "Y_1 Y_2 also obeys"
+  },
+  {
+    "start": "00:52:02.284",
+    "end": "00:52:02.500",
+    "text": "it."
+  },
+  {
+    "start": "00:52:02.500",
+    "end": "00:52:04.690",
+    "text": "Not only that, it can be even more general."
+  },
+  {
+    "start": "00:52:04.690",
+    "end": "00:52:07.889",
+    "text": "You can multiply this by any number,"
+  },
+  {
+    "start": "00:52:07.889",
+    "end": "00:52:10.860",
+    "text": "Y_1(x,t), any constant,"
+  },
+  {
+    "start": "00:52:10.860",
+    "end": "00:52:12.351",
+    "text": "A_2 Y_2"
+  },
+  {
+    "start": "00:52:12.351",
+    "end": "00:52:13.628",
+    "text": "(x,t), but A_1 and"
+  },
+  {
+    "start": "00:52:13.628",
+    "end": "00:52:14.670",
+    "text": "A_2 don't depend on time."
+  },
+  {
+    "start": "00:52:14.670",
+    "end": "00:52:16.519",
+    "text": "Also, obeys Schrˆdinger equation."
+  },
+  {
+    "start": "00:52:16.519",
+    "end": "00:52:17.969",
+    "text": "Can you see that?"
+  },
+  {
+    "start": "00:52:17.969",
+    "end": "00:52:21.179",
+    "text": "That's superposition of solutions."
+  },
+  {
+    "start": "00:52:21.179",
+    "end": "00:52:22.960",
+    "text": "It's a property of linear equations."
+  },
+  {
+    "start": "00:52:22.960",
+    "end": "00:52:26.347",
+    "text": "Nowhere does Y^(2) appear in the Schrˆdinger"
+  },
+  {
+    "start": "00:52:26.347",
+    "end": "00:52:29.059",
+    "text": "equation, therefore you can add solutions."
+  },
+  {
+    "start": "00:52:29.059",
+    "end": "00:52:32.719",
+    "text": "But take a solution of this form."
+  },
+  {
+    "start": "00:52:32.719",
+    "end": "00:52:34.766",
+    "text": "Even though Y_1 is a"
+  },
+  {
+    "start": "00:52:34.766",
+    "end": "00:52:37.210",
+    "text": "product of some F and a Y,"
+  },
+  {
+    "start": "00:52:37.210",
+    "end": "00:52:38.690",
+    "text": "and Y_2 is a product of some"
+  },
+  {
+    "start": "00:52:38.690",
+    "end": "00:52:40.340",
+    "text": "F_2 and Y_2,"
+  },
+  {
+    "start": "00:52:40.340",
+    "end": "00:52:45.360",
+    "text": "the sum is not a product of some F and some Y."
+  },
+  {
+    "start": "00:52:45.360",
+    "end": "00:52:47.800",
+    "text": "You cannot write it as a product, you understand?"
+  },
+  {
+    "start": "00:52:47.800",
+    "end": "00:52:49.536",
+    "text": "That's a product, and that's a product,"
+  },
+  {
+    "start": "00:52:49.536",
+    "end": "00:52:52.280",
+    "text": "but their sum is not a product, because you cannot pull out a"
+  },
+  {
+    "start": "00:52:52.280",
+    "end": "00:52:54.518",
+    "text": "common function of time from the two of them."
+  },
+  {
+    "start": "00:52:54.518",
+    "end": "00:52:57.659",
+    "text": "They have different time dependence."
+  },
+  {
+    "start": "00:52:57.659",
+    "end": "00:53:01.420",
+    "text": "But that is also a solution."
+  },
+  {
+    "start": "00:53:01.420",
+    "end": "00:53:06.327",
+    "text": "In fact, now you can ask yourself, what is the most"
+  },
+  {
+    "start": "00:53:06.327",
+    "end": "00:53:10.940",
+    "text": "general solution I can build in this problem?"
+  },
+  {
+    "start": "00:53:10.940",
+    "end": "00:53:14.967",
+    "text": "Well, I think you can imagine that I can now write"
+  },
+  {
+    "start": "00:53:14.967",
+    "end": "00:53:20.063",
+    "text": "Y(x) and t as A_EY"
+  },
+  {
+    "start": "00:53:20.063",
+    "end": "00:53:23.867",
+    "text": "_E(x,t), sum over all the allowed"
+  },
+  {
+    "start": "00:53:23.867",
+    "end": "00:53:24.480",
+    "text": "Es."
+  },
+  {
+    "start": "00:53:24.480",
+    "end": "00:53:28.309",
+    "text": "That also satisfies Schrˆdinger equation."
+  },
+  {
+    "start": "00:53:28.309",
+    "end": "00:53:29.219",
+    "text": "Do you agree?"
+  },
+  {
+    "start": "00:53:29.219",
+    "end": "00:53:31.829",
+    "text": "Every term in it satisfies Schrˆdinger equation."
+  },
+  {
+    "start": "00:53:31.829",
+    "end": "00:53:34.010",
+    "text": "You add them all up, multiply by any constant"
+  },
+  {
+    "start": "00:53:34.010",
+    "end": "00:53:35.992",
+    "text": "A_E, that also satisfies"
+  },
+  {
+    "start": "00:53:35.992",
+    "end": "00:53:37.480",
+    "text": "Schrˆdinger equation."
+  },
+  {
+    "start": "00:53:37.480",
+    "end": "00:53:41.159",
+    "text": "So now I'm suddenly manufacturing more complicated"
+  },
+  {
+    "start": "00:53:41.159",
+    "end": "00:53:42.059",
+    "text": "solutions."
+  },
+  {
+    "start": "00:53:42.059",
+    "end": "00:53:45.210",
+    "text": "The original modest goal was to find a product form,"
+  },
+  {
+    "start": "00:53:45.210",
+    "end": "00:53:47.827",
+    "text": "but once you got the product form, you find if you add them"
+  },
+  {
+    "start": "00:53:47.827",
+    "end": "00:53:49.625",
+    "text": "together, you get a solution that's no"
+  },
+  {
+    "start": "00:53:49.625",
+    "end": "00:53:52.179",
+    "text": "longer a product of x and a product of t,"
+  },
+  {
+    "start": "00:53:52.179",
+    "end": "00:53:53.730",
+    "text": "function of x and a function of t,"
+  },
+  {
+    "start": "00:53:53.730",
+    "end": "00:53:55.679",
+    "text": "because this guy has one time dependence;"
+  },
+  {
+    "start": "00:53:55.679",
+    "end": "00:53:58.230",
+    "text": "another term is a different time dependence."
+  },
+  {
+    "start": "00:53:58.230",
+    "end": "00:54:00.280",
+    "text": "You cannot pull them all out."
+  },
+  {
+    "start": "00:54:00.280",
+    "end": "00:54:03.137",
+    "text": "So we are now manufacturing solutions that don't look like"
+  },
+  {
+    "start": "00:54:03.137",
+    "end": "00:54:03.989",
+    "text": "their products."
+  },
+  {
+    "start": "00:54:03.989",
+    "end": "00:54:07.239",
+    "text": "This is the amazing thing about solving the linear equation."
+  },
+  {
+    "start": "00:54:07.239",
+    "end": "00:54:10.476",
+    "text": "You seem to have very modest goals when you start with a"
+  },
+  {
+    "start": "00:54:10.476",
+    "end": "00:54:12.125",
+    "text": "product form, but in the end,"
+  },
+  {
+    "start": "00:54:12.125",
+    "end": "00:54:16.070",
+    "text": "you find that you can make up a linear combination of products."
+  },
+  {
+    "start": "00:54:16.070",
+    "end": "00:54:21.434",
+    "text": "Then the only question is, will it cover every possible"
+  },
+  {
+    "start": "00:54:21.434",
+    "end": "00:54:23.820",
+    "text": "situation you give me?"
+  },
+  {
+    "start": "00:54:23.820",
+    "end": "00:54:26.195",
+    "text": "In other words, suppose you come to me with an"
+  },
+  {
+    "start": "00:54:26.195",
+    "end": "00:54:27.570",
+    "text": "arbitrary initial state."
+  },
+  {
+    "start": "00:54:27.570",
+    "end": "00:54:29.322",
+    "text": "I don't know anything about it, and you say,"
+  },
+  {
+    "start": "00:54:29.322",
+    "end": "00:54:30.670",
+    "text": "\"What is its future?\""
+  },
+  {
+    "start": "00:54:30.670",
+    "end": "00:54:32.268",
+    "text": "Can I handle that problem?"
+  },
+  {
+    "start": "00:54:32.268",
+    "end": "00:54:35.090",
+    "text": "And the answer is, I can, and I'll tell you why"
+  },
+  {
+    "start": "00:54:35.090",
+    "end": "00:54:36.010",
+    "text": "that is true."
+  },
+  {
+    "start": "00:54:36.010",
+    "end": "00:54:41.719",
+    "text": "Y(x) and t looks like A_E."
+  },
+  {
+    "start": "00:54:41.719",
+    "end": "00:54:45.945",
+    "text": "I'm going to write this more explicitly as"
+  },
+  {
+    "start": "00:54:45.945",
+    "end": "00:54:52.130",
+    "text": "Y_E(x)e^(- ipx/‚Ñè)."
+  },
+  {
+    "start": "00:54:52.130",
+    "end": "00:54:56.739",
+    "text": "Look at this function now at t = 0."
+  },
+  {
+    "start": "00:54:56.739",
+    "end": "00:55:01.807",
+    "text": "At t = 0, I get Y(x) and 0"
+  },
+  {
+    "start": "00:55:01.807",
+    "end": "00:55:08.420",
+    "text": "to be Œ£A_E Y_E(x)."
+  },
+  {
+    "start": "00:55:08.420",
+    "end": "00:55:12.661",
+    "text": "In other words, I can only handle those"
+  },
+  {
+    "start": "00:55:12.661",
+    "end": "00:55:17.909",
+    "text": "problems whose initial state looks like this."
+  },
+  {
+    "start": "00:55:17.909",
+    "end": "00:55:23.581",
+    "text": "But my question is, should I feel limited in any"
+  },
+  {
+    "start": "00:55:23.581",
+    "end": "00:55:26.599",
+    "text": "way by the restriction?"
+  },
+  {
+    "start": "00:55:26.599",
+    "end": "00:55:27.760",
+    "text": "Do you follow what I'm saying?"
+  },
+  {
+    "start": "00:55:27.760",
+    "end": "00:55:30.090",
+    "text": "Maybe I'll say it one more time."
+  },
+  {
+    "start": "00:55:30.090",
+    "end": "00:55:34.023",
+    "text": "This is the most general solution I'm able to manufacture"
+  },
+  {
+    "start": "00:55:34.023",
+    "end": "00:55:37.335",
+    "text": "that looks like this, A_E"
+  },
+  {
+    "start": "00:55:37.335",
+    "end": "00:55:42.130",
+    "text": "Y_E(x)e^(- ipx/‚Ñè)."
+  },
+  {
+    "start": "00:55:42.130",
+    "end": "00:55:44.858",
+    "text": "It's a sum over solution to the product form with variable,"
+  },
+  {
+    "start": "00:55:44.858",
+    "end": "00:55:46.739",
+    "text": "each one with a different coefficient."
+  },
+  {
+    "start": "00:55:46.739",
+    "end": "00:55:49.820",
+    "text": "That's also a solution to Schrˆdinger equation."
+  },
+  {
+    "start": "00:55:49.820",
+    "end": "00:55:53.077",
+    "text": "If I take that solution and say, \"What does it do at"
+  },
+  {
+    "start": "00:55:53.077",
+    "end": "00:55:54.300",
+    "text": "t = 0?\""
+  },
+  {
+    "start": "00:55:54.300",
+    "end": "00:55:56.610",
+    "text": "I find it does the following."
+  },
+  {
+    "start": "00:55:56.610",
+    "end": "00:56:04.059",
+    "text": "At t = 0, it looks like this."
+  },
+  {
+    "start": "00:56:04.059",
+    "end": "00:56:09.590",
+    "text": "So only for initial functions of this form I have the future."
+  },
+  {
+    "start": "00:56:09.590",
+    "end": "00:56:14.329",
+    "text": "But the only is not a big only, because every function you can"
+  },
+  {
+    "start": "00:56:14.329",
+    "end": "00:56:19.070",
+    "text": "give me at t = 0 can always be written in this form."
+  },
+  {
+    "start": "00:56:19.070",
+    "end": "00:56:22.202",
+    "text": "It's a mathematical result that says that just like sines and"
+  },
+  {
+    "start": "00:56:22.202",
+    "end": "00:56:25.490",
+    "text": "cosines and certain exponentials are a complete set of functions"
+  },
+  {
+    "start": "00:56:25.490",
+    "end": "00:56:27.110",
+    "text": "for expanding any function."
+  },
+  {
+    "start": "00:56:27.110",
+    "end": "00:56:30.289",
+    "text": "The mathematical theory tells you that the solutions of H"
+  },
+  {
+    "start": "00:56:30.289",
+    "end": "00:56:33.487",
+    "text": "Y = E Y, if you assemble all of them,"
+  },
+  {
+    "start": "00:56:33.487",
+    "end": "00:56:36.980",
+    "text": "can be used to build up an arbitrary initial function."
+  },
+  {
+    "start": "00:56:36.980",
+    "end": "00:56:42.503",
+    "text": "That means any initial function you give me, I can write this"
+  },
+  {
+    "start": "00:56:42.503",
+    "end": "00:56:47.659",
+    "text": "way, and the future of that initial state is this guy."
+  },
+  {
+    "start": "00:56:47.659",
+    "end": "00:56:48.329",
+    "text": "Yes?"
+  },
+  {
+    "start": "00:56:48.329",
+    "end": "00:56:52.980",
+    "text": "Student: &gt;"
+  },
+  {
+    "start": "00:56:52.980",
+    "end": "00:56:53.650",
+    "text": "Prof: Yes."
+  },
+  {
+    "start": "00:56:53.650",
+    "end": "00:56:56.579",
+    "text": "Lots of mathematical restrictions,"
+  },
+  {
+    "start": "00:56:56.579",
+    "end": "00:56:58.000",
+    "text": "single valued."
+  },
+  {
+    "start": "00:56:58.000",
+    "end": "00:57:01.800",
+    "text": "Physicists usually don't worry about those restrictions till of"
+  },
+  {
+    "start": "00:57:01.800",
+    "end": "00:57:03.579",
+    "text": "course they get in trouble."
+  },
+  {
+    "start": "00:57:03.579",
+    "end": "00:57:07.230",
+    "text": "Then we go crawling back to the math guys to help us out."
+  },
+  {
+    "start": "00:57:07.230",
+    "end": "00:57:10.512",
+    "text": "So just about anything you can write down, by the way physics"
+  },
+  {
+    "start": "00:57:10.512",
+    "end": "00:57:13.630",
+    "text": "works, things tend to be continuous and differentiable."
+  },
+  {
+    "start": "00:57:13.630",
+    "end": "00:57:15.639",
+    "text": "That's the way natural things are."
+  },
+  {
+    "start": "00:57:15.639",
+    "end": "00:57:19.280",
+    "text": "So for any function we can think of it is true."
+  },
+  {
+    "start": "00:57:19.280",
+    "end": "00:57:21.766",
+    "text": "You go the mathematicians, they will give you a function"
+  },
+  {
+    "start": "00:57:21.766",
+    "end": "00:57:24.025",
+    "text": "that is nowhere continuous, nowhere differentiable,"
+  },
+  {
+    "start": "00:57:24.025",
+    "end": "00:57:25.789",
+    "text": "nowhere defined, nowhere something."
+  },
+  {
+    "start": "00:57:25.789",
+    "end": "00:57:28.579",
+    "text": "That's what makes them really happy."
+  },
+  {
+    "start": "00:57:28.579",
+    "end": "00:57:31.929",
+    "text": "But they are all functions the way they've defined it,"
+  },
+  {
+    "start": "00:57:31.929",
+    "end": "00:57:33.489",
+    "text": "but they don't happen in real life,"
+  },
+  {
+    "start": "00:57:33.489",
+    "end": "00:57:36.144",
+    "text": "because whatever happens here influences what happens on"
+  },
+  {
+    "start": "00:57:36.144",
+    "end": "00:57:38.733",
+    "text": "either side of it, so things don't change in a"
+  },
+  {
+    "start": "00:57:38.733",
+    "end": "00:57:39.840",
+    "text": "discontinuous way."
+  },
+  {
+    "start": "00:57:39.840",
+    "end": "00:57:41.300",
+    "text": "Unless you apply an infinite force,"
+  },
+  {
+    "start": "00:57:41.300",
+    "end": "00:57:43.059",
+    "text": "an infinite potential, infinite something,"
+  },
+  {
+    "start": "00:57:43.059",
+    "end": "00:57:45.610",
+    "text": "everything has got what's called C infinity,"
+  },
+  {
+    "start": "00:57:45.610",
+    "end": "00:57:47.989",
+    "text": "can differentiate any number of times."
+  },
+  {
+    "start": "00:57:47.989",
+    "end": "00:57:49.449",
+    "text": "So we don't worry about the restriction."
+  },
+  {
+    "start": "00:57:49.449",
+    "end": "00:57:54.094",
+    "text": "So in the world of physicists' functions, you can write any"
+  },
+  {
+    "start": "00:57:54.094",
+    "end": "00:57:57.860",
+    "text": "initial function in terms of these functions."
+  },
+  {
+    "start": "00:57:57.860",
+    "end": "00:58:01.242",
+    "text": "So let me tell you then the process for solving the"
+  },
+  {
+    "start": "00:58:01.242",
+    "end": "00:58:04.559",
+    "text": "Schrˆdinger equation under any conditions."
+  },
+  {
+    "start": "00:58:04.559",
+    "end": "00:58:05.530",
+    "text": "Are you with me?"
+  },
+  {
+    "start": "00:58:05.530",
+    "end": "00:58:08.269",
+    "text": "You come and give me Y(x, 0),"
+  },
+  {
+    "start": "00:58:08.269",
+    "end": "00:58:10.880",
+    "text": "and you say, \"As a function of time,"
+  },
+  {
+    "start": "00:58:10.880",
+    "end": "00:58:13.360",
+    "text": "where is it going to end up?\""
+  },
+  {
+    "start": "00:58:13.360",
+    "end": "00:58:14.219",
+    "text": "That's your question."
+  },
+  {
+    "start": "00:58:14.219",
+    "end": "00:58:15.610",
+    "text": "That's all you can ask."
+  },
+  {
+    "start": "00:58:15.610",
+    "end": "00:58:17.500",
+    "text": "Initial state, final state."
+  },
+  {
+    "start": "00:58:17.500",
+    "end": "00:58:23.119",
+    "text": "This is given, this is needed."
+  },
+  {
+    "start": "00:58:23.119",
+    "end": "00:58:26.079",
+    "text": "So I'll give you a 3 step solution."
+  },
+  {
+    "start": "00:58:26.079",
+    "end": "00:58:36.168",
+    "text": "Step 1, find A_E= Y_E"
+  },
+  {
+    "start": "00:58:36.168",
+    "end": "00:58:45.070",
+    "text": "*(x) Y(x,0)."
+  },
+  {
+    "start": "00:58:45.070",
+    "end": "00:58:54.164",
+    "text": "Step 2, Y(x) and t = this A_E"
+  },
+  {
+    "start": "00:58:54.164",
+    "end": "00:59:00.530",
+    "text": "that you got times e^(-ipx/"
+  },
+  {
+    "start": "00:59:00.530",
+    "end": "00:59:08.260",
+    "text": "‚Ñè)Y _E(x)."
+  },
+  {
+    "start": "00:59:08.260",
+    "end": "00:59:11.648",
+    "text": "So what I'm telling you is, the fate of a function Y"
+  },
+  {
+    "start": "00:59:11.648",
+    "end": "00:59:15.268",
+    "text": "with the wiggles and jiggles is very complicated to explain."
+  },
+  {
+    "start": "00:59:15.268",
+    "end": "00:59:17.704",
+    "text": "Some wiggle goes into some other wiggle that goes into some"
+  },
+  {
+    "start": "00:59:17.704",
+    "end": "00:59:19.300",
+    "text": "other wiggle as a function of time,"
+  },
+  {
+    "start": "00:59:19.300",
+    "end": "00:59:22.760",
+    "text": "but there is a basic simplicity underlying that evolution."
+  },
+  {
+    "start": "00:59:22.760",
+    "end": "00:59:24.630",
+    "text": "The simplicity is the following."
+  },
+  {
+    "start": "00:59:24.630",
+    "end": "00:59:29.268",
+    "text": "If at t = 0 you expand your Y as such a sum,"
+  },
+  {
+    "start": "00:59:29.268",
+    "end": "00:59:31.800",
+    "text": "where the coefficients are given by the standard rule,"
+  },
+  {
+    "start": "00:59:31.800",
+    "end": "00:59:35.719",
+    "text": "then as time goes away from t = 0,"
+  },
+  {
+    "start": "00:59:35.719",
+    "end": "00:59:39.545",
+    "text": "all you need to do is to multiply each coefficient by the"
+  },
+  {
+    "start": "00:59:39.545",
+    "end": "00:59:43.030",
+    "text": "particular term involving that particular energy."
+  },
+  {
+    "start": "00:59:43.030",
+    "end": "00:59:49.199",
+    "text": "And that gives you the Y at later times."
+  },
+  {
+    "start": "00:59:49.199",
+    "end": "00:59:54.327",
+    "text": "A state of definite energy in this jargon will be the one in"
+  },
+  {
+    "start": "00:59:54.327",
+    "end": "00:59:58.498",
+    "text": "which every term is absent except 1, maybe E ="
+  },
+  {
+    "start": "00:59:58.498",
+    "end": "01:00:00.409",
+    "text": "E_1."
+  },
+  {
+    "start": "01:00:00.409",
+    "end": "01:00:02.869",
+    "text": "That is the kind we study."
+  },
+  {
+    "start": "01:00:02.869",
+    "end": "01:00:06.284",
+    "text": "That state has got only 1 term in the sum and its time"
+  },
+  {
+    "start": "01:00:06.284",
+    "end": "01:00:10.021",
+    "text": "evolution is simply given by this and all probabilities are"
+  },
+  {
+    "start": "01:00:10.021",
+    "end": "01:00:10.860",
+    "text": "constant."
+  },
+  {
+    "start": "01:00:10.860",
+    "end": "01:00:14.083",
+    "text": "But if you mix them up with different coefficients,"
+  },
+  {
+    "start": "01:00:14.083",
+    "end": "01:00:16.920",
+    "text": "you can then handle any initial condition."
+  },
+  {
+    "start": "01:00:16.920",
+    "end": "01:00:21.786",
+    "text": "So we have now solved really for the future of any quantum"
+  },
+  {
+    "start": "01:00:21.786",
+    "end": "01:00:23.579",
+    "text": "mechanical problem."
+  },
+  {
+    "start": "01:00:23.579",
+    "end": "01:00:28.969",
+    "text": "So I'm going to give you from now to the end of class concrete"
+  },
+  {
+    "start": "01:00:28.969",
+    "end": "01:00:30.650",
+    "text": "examples of this."
+  },
+  {
+    "start": "01:00:30.650",
+    "end": "01:00:35.139",
+    "text": "But I don't mind again answering your questions,"
+  },
+  {
+    "start": "01:00:35.139",
+    "end": "01:00:40.869",
+    "text": "because it's very hard for me to put myself in your place."
+  },
+  {
+    "start": "01:00:40.869",
+    "end": "01:00:44.621",
+    "text": "So I'm trying to remember when I did not know quantum"
+  },
+  {
+    "start": "01:00:44.621",
+    "end": "01:00:48.228",
+    "text": "mechanics, sitting in some sandbox and some kid was"
+  },
+  {
+    "start": "01:00:48.228",
+    "end": "01:00:50.320",
+    "text": "throwing sand in my face."
+  },
+  {
+    "start": "01:00:50.320",
+    "end": "01:00:51.300",
+    "text": "So I don't know."
+  },
+  {
+    "start": "01:00:51.300",
+    "end": "01:00:55.159",
+    "text": "I've lost my innocence and I don't know how it looks to you."
+  },
+  {
+    "start": "01:00:55.159",
+    "end": "01:00:56.110",
+    "text": "Yes."
+  },
+  {
+    "start": "01:00:56.110",
+    "end": "01:00:58.079",
+    "text": "Student:  For each of these problems,"
+  },
+  {
+    "start": "01:00:58.079",
+    "end": "01:01:00.873",
+    "text": "you have to solve that equation you gave us before to find the"
+  },
+  {
+    "start": "01:01:00.873",
+    "end": "01:01:02.340",
+    "text": "form of the Y_E,"
+  },
+  {
+    "start": "01:01:02.340",
+    "end": "01:01:02.889",
+    "text": "right?"
+  },
+  {
+    "start": "01:01:02.889",
+    "end": "01:01:05.429",
+    "text": "Prof: Right."
+  },
+  {
+    "start": "01:01:05.429",
+    "end": "01:01:10.219",
+    "text": "So let's do the following problem."
+  },
+  {
+    "start": "01:01:10.219",
+    "end": "01:01:16.909",
+    "text": "Let us take a world in which everything is inside the box of"
+  },
+  {
+    "start": "01:01:16.909",
+    "end": "01:01:18.949",
+    "text": "length L."
+  },
+  {
+    "start": "01:01:18.949",
+    "end": "01:01:24.130",
+    "text": "And someone has manufactured for you a certain state."
+  },
+  {
+    "start": "01:01:24.130",
+    "end": "01:01:26.530",
+    "text": "Let me come to that case in a minute."
+  },
+  {
+    "start": "01:01:26.530",
+    "end": "01:01:29.858",
+    "text": "Let me take a simple case then I'll build up the situation you"
+  },
+  {
+    "start": "01:01:29.858",
+    "end": "01:01:30.239",
+    "text": "want."
+  },
+  {
+    "start": "01:01:30.239",
+    "end": "01:01:35.735",
+    "text": "Let's first take a simple case where at t = 0"
+  },
+  {
+    "start": "01:01:35.735",
+    "end": "01:01:40.047",
+    "text": "Y(x,0) = the square root of"
+  },
+  {
+    "start": "01:01:40.047",
+    "end": "01:01:45.219",
+    "text": "2/Lsine(n px/L)."
+  },
+  {
+    "start": "01:01:45.219",
+    "end": "01:01:51.250",
+    "text": "That is just a function with n oscillations."
+  },
+  {
+    "start": "01:01:51.250",
+    "end": "01:01:54.059",
+    "text": "You agree, that's a state of definite energy."
+  },
+  {
+    "start": "01:01:54.059",
+    "end": "01:01:59.068",
+    "text": "The energy of that state, E_n,"
+  },
+  {
+    "start": "01:01:59.068",
+    "end": "01:02:03.641",
+    "text": "is ‚Ñè^(2) p^(2)n^(2)/"
+  },
+  {
+    "start": "01:02:03.641",
+    "end": "01:02:05.710",
+    "text": "2mL^(2)."
+  },
+  {
+    "start": "01:02:05.710",
+    "end": "01:02:08.239",
+    "text": "We did that last time."
+  },
+  {
+    "start": "01:02:08.239",
+    "end": "01:02:09.699",
+    "text": "And the reason, why were we so interested in"
+  },
+  {
+    "start": "01:02:09.699",
+    "end": "01:02:10.309",
+    "text": "these functions?"
+  },
+  {
+    "start": "01:02:10.309",
+    "end": "01:02:12.429",
+    "text": "Now I can tell you why."
+  },
+  {
+    "start": "01:02:12.429",
+    "end": "01:02:15.460",
+    "text": "If this is my initial state, let me take a particular"
+  },
+  {
+    "start": "01:02:15.460",
+    "end": "01:02:17.760",
+    "text": "n, then the state at any future"
+  },
+  {
+    "start": "01:02:17.760",
+    "end": "01:02:21.476",
+    "text": "time, Y(x,t), is very simple here,"
+  },
+  {
+    "start": "01:02:21.476",
+    "end": "01:02:24.972",
+    "text": "the square root of 2/Lsine(n"
+  },
+  {
+    "start": "01:02:24.972",
+    "end": "01:02:29.496",
+    "text": "px/L), times e^(-ipx/"
+  },
+  {
+    "start": "01:02:29.496",
+    "end": "01:02:33.994",
+    "text": "‚Ñè), where energy is"
+  },
+  {
+    "start": "01:02:33.994",
+    "end": "01:02:39.063",
+    "text": "n^(2)p ^(2)"
+  },
+  {
+    "start": "01:02:39.063",
+    "end": "01:02:45.769",
+    "text": "‚Ñè^(2) /2mL^(2)."
+  },
+  {
+    "start": "01:02:45.769",
+    "end": "01:02:46.559",
+    "text": "That's it."
+  },
+  {
+    "start": "01:02:46.559",
+    "end": "01:02:50.739",
+    "text": "That is the function of time."
+  },
+  {
+    "start": "01:02:50.739",
+    "end": "01:02:53.637",
+    "text": "All I've done to that initial state is multiply by"
+  },
+  {
+    "start": "01:02:53.637",
+    "end": "01:02:56.418",
+    "text": "e^(-iEt), but E is not some random"
+  },
+  {
+    "start": "01:02:56.418",
+    "end": "01:02:57.070",
+    "text": "number."
+  },
+  {
+    "start": "01:02:57.070",
+    "end": "01:03:00.539",
+    "text": "E is labeled by n and E_nis whatever you"
+  },
+  {
+    "start": "01:03:00.539",
+    "end": "01:03:01.199",
+    "text": "have here."
+  },
+  {
+    "start": "01:03:01.199",
+    "end": "01:03:05.010",
+    "text": "That's the time dependence of that state."
+  },
+  {
+    "start": "01:03:05.010",
+    "end": "01:03:09.896",
+    "text": "It's very clear that if you took the absolute value of this"
+  },
+  {
+    "start": "01:03:09.896",
+    "end": "01:03:14.699",
+    "text": "Y, this guy has absolute value = 1 at all times."
+  },
+  {
+    "start": "01:03:14.699",
+    "end": "01:03:16.929",
+    "text": "It's like saying cos t depends on time,"
+  },
+  {
+    "start": "01:03:16.929",
+    "end": "01:03:20.789",
+    "text": "sine t depends on time, but cos^(2) sine^(2),"
+  },
+  {
+    "start": "01:03:20.789",
+    "end": "01:03:23.025",
+    "text": "cos^(2 )t sine^(2) t seems to depend on"
+  },
+  {
+    "start": "01:03:23.025",
+    "end": "01:03:25.280",
+    "text": "time, but it doesn't."
+  },
+  {
+    "start": "01:03:25.280",
+    "end": "01:03:28.228",
+    "text": "So this seems to depend on time and it does, but when you take"
+  },
+  {
+    "start": "01:03:28.228",
+    "end": "01:03:29.920",
+    "text": "the absolute value, it goes away."
+  },
+  {
+    "start": "01:03:29.920",
+    "end": "01:03:31.489",
+    "text": "That's the simplest problem."
+  },
+  {
+    "start": "01:03:31.489",
+    "end": "01:03:34.875",
+    "text": "I gave you an initial state, the future is very simple,"
+  },
+  {
+    "start": "01:03:34.875",
+    "end": "01:03:36.130",
+    "text": "attach the factor."
+  },
+  {
+    "start": "01:03:36.130",
+    "end": "01:03:39.250",
+    "text": "Now let's give you a slightly more complicated state."
+  },
+  {
+    "start": "01:03:39.250",
+    "end": "01:03:44.811",
+    "text": "The more complicated state will be--I'm going to hide that for"
+  },
+  {
+    "start": "01:03:44.811",
+    "end": "01:03:45.360",
+    "text": "now."
+  },
+  {
+    "start": "01:03:45.360",
+    "end": "01:03:53.154",
+    "text": "Let us take a Y(x,0) that looks"
+  },
+  {
+    "start": "01:03:53.154",
+    "end": "01:04:01.302",
+    "text": "like 3 times square root of 2/Lsine(2"
+  },
+  {
+    "start": "01:04:01.302",
+    "end": "01:04:08.920",
+    "text": "px/L) 4 times sine..."
+  },
+  {
+    "start": "01:04:08.920",
+    "end": "01:04:14.889",
+    "text": "This is my initial state."
+  },
+  {
+    "start": "01:04:14.889",
+    "end": "01:04:16.300",
+    "text": "What does it look like?"
+  },
+  {
+    "start": "01:04:16.300",
+    "end": "01:04:19.420",
+    "text": "It's a sum of 2 energy states."
+  },
+  {
+    "start": "01:04:19.420",
+    "end": "01:04:22.690",
+    "text": "This guy is what I would call Y_2 in my"
+  },
+  {
+    "start": "01:04:22.690",
+    "end": "01:04:24.889",
+    "text": "notation, the second highest state."
+  },
+  {
+    "start": "01:04:24.889",
+    "end": "01:04:27.670",
+    "text": "This guy is Y_3."
+  },
+  {
+    "start": "01:04:27.670",
+    "end": "01:04:34.411",
+    "text": "Everybody is properly normalized, and these are the"
+  },
+  {
+    "start": "01:04:34.411",
+    "end": "01:04:36.030",
+    "text": "As."
+  },
+  {
+    "start": "01:04:36.030",
+    "end": "01:04:40.103",
+    "text": "So this state, if you measure its energy,"
+  },
+  {
+    "start": "01:04:40.103",
+    "end": "01:04:42.139",
+    "text": "what will you get?"
+  },
+  {
+    "start": "01:04:42.139",
+    "end": "01:04:48.030",
+    "text": "Anybody tell me what answers I can get if I measure energy now?"
+  },
+  {
+    "start": "01:04:48.030",
+    "end": "01:04:52.260",
+    "text": "You want to guess what are the possible energies I could get?"
+  },
+  {
+    "start": "01:04:52.260",
+    "end": "01:04:54.199",
+    "text": "Yes."
+  },
+  {
+    "start": "01:04:54.199",
+    "end": "01:04:57.400",
+    "text": "Any of you, either of you."
+  },
+  {
+    "start": "01:04:57.400",
+    "end": "01:04:59.650",
+    "text": "Can you tell?"
+  },
+  {
+    "start": "01:04:59.650",
+    "end": "01:05:05.059",
+    "text": "No?"
+  },
+  {
+    "start": "01:05:05.059",
+    "end": "01:05:05.800",
+    "text": "Yes?"
+  },
+  {
+    "start": "01:05:05.800",
+    "end": "01:05:10.614",
+    "text": "Student:  You can get h^(2)p^(2) times"
+  },
+  {
+    "start": "01:05:10.614",
+    "end": "01:05:13.190",
+    "text": "4/2mL^(2), or times 9."
+  },
+  {
+    "start": "01:05:13.190",
+    "end": "01:05:16.697",
+    "text": "Prof: So her answer was, you can get in my convention"
+  },
+  {
+    "start": "01:05:16.697",
+    "end": "01:05:20.260",
+    "text": "E_2or E_3,"
+  },
+  {
+    "start": "01:05:20.260",
+    "end": "01:05:22.789",
+    "text": "just put n = to 2 0r 3 That's all you have,"
+  },
+  {
+    "start": "01:05:22.789",
+    "end": "01:05:26.047",
+    "text": "your function written as a sum over Y_E is"
+  },
+  {
+    "start": "01:05:26.047",
+    "end": "01:05:26.889",
+    "text": "only 2 terms."
+  },
+  {
+    "start": "01:05:26.889",
+    "end": "01:05:29.449",
+    "text": "That means they are the only 2 energies you can get."
+  },
+  {
+    "start": "01:05:29.449",
+    "end": "01:05:31.590",
+    "text": "So it's not a state of definite energy."
+  },
+  {
+    "start": "01:05:31.590",
+    "end": "01:05:34.190",
+    "text": "You can get either this answer or this answer."
+  },
+  {
+    "start": "01:05:34.190",
+    "end": "01:05:36.197",
+    "text": "But now you can sort of see, it's more likely to get this"
+  },
+  {
+    "start": "01:05:36.197",
+    "end": "01:05:38.019",
+    "text": "guy, because it has a 4 in front of"
+  },
+  {
+    "start": "01:05:38.019",
+    "end": "01:05:40.010",
+    "text": "it, and less likely to get this guy,"
+  },
+  {
+    "start": "01:05:40.010",
+    "end": "01:05:44.039",
+    "text": "and impossible to get anything else."
+  },
+  {
+    "start": "01:05:44.039",
+    "end": "01:05:52.309",
+    "text": "So the probability for getting n = 2 is proportional to"
+  },
+  {
+    "start": "01:05:52.309",
+    "end": "01:05:56.952",
+    "text": "3^(2), and the probability for getting"
+  },
+  {
+    "start": "01:05:56.952",
+    "end": "01:06:01.260",
+    "text": "n = 3 is proportional to 4^(2)."
+  },
+  {
+    "start": "01:06:01.260",
+    "end": "01:06:04.000",
+    "text": "If you want the absolute probabilities,"
+  },
+  {
+    "start": "01:06:04.000",
+    "end": "01:06:07.909",
+    "text": "then you can write it as 3^(2) divided by 3^(2) 4^(2),"
+  },
+  {
+    "start": "01:06:07.909",
+    "end": "01:06:15.255",
+    "text": "which is 4^(2), or you can write it as 3^(2)"
+  },
+  {
+    "start": "01:06:15.255",
+    "end": "01:06:18.159",
+    "text": "4^(2) is 5^(2)."
+  },
+  {
+    "start": "01:06:18.159",
+    "end": "01:06:21.349",
+    "text": "See, if you square these probabilities,"
+  },
+  {
+    "start": "01:06:21.349",
+    "end": "01:06:23.449",
+    "text": "you get 25,3^(2) 4^(2)."
+  },
+  {
+    "start": "01:06:23.449",
+    "end": "01:06:26.614",
+    "text": "If you want to get 1, I think you can see without too"
+  },
+  {
+    "start": "01:06:26.614",
+    "end": "01:06:29.766",
+    "text": "much trouble, if you rescale the whole thing"
+  },
+  {
+    "start": "01:06:29.766",
+    "end": "01:06:33.146",
+    "text": "by 1 fifth, now you'll find the total"
+  },
+  {
+    "start": "01:06:33.146",
+    "end": "01:06:35.780",
+    "text": "probabilities add up to 1."
+  },
+  {
+    "start": "01:06:35.780",
+    "end": "01:06:38.840",
+    "text": "That's the way to normalize the function, that's the easy way."
+  },
+  {
+    "start": "01:06:38.840",
+    "end": "01:06:41.646",
+    "text": "The hard way is to square all of this and integrate it and"
+  },
+  {
+    "start": "01:06:41.646",
+    "end": "01:06:44.059",
+    "text": "then set it = to 1 and see what you have to do."
+  },
+  {
+    "start": "01:06:44.059",
+    "end": "01:06:46.280",
+    "text": "In the end, all you will have to do is divide by 5."
+  },
+  {
+    "start": "01:06:46.280",
+    "end": "01:06:48.329",
+    "text": "I'm just giving you a shortcut."
+  },
+  {
+    "start": "01:06:48.329",
+    "end": "01:06:51.422",
+    "text": "When you expand the Y in terms of normalized functions,"
+  },
+  {
+    "start": "01:06:51.422",
+    "end": "01:06:53.960",
+    "text": "then the coefficient squared should add up to 1."
+  },
+  {
+    "start": "01:06:53.960",
+    "end": "01:06:56.063",
+    "text": "If they don't, you just divide them by"
+  },
+  {
+    "start": "01:06:56.063",
+    "end": "01:06:57.199",
+    "text": "whatever it takes."
+  },
+  {
+    "start": "01:06:57.199",
+    "end": "01:07:01.342",
+    "text": "So this has got a chance 3 is to 5 of being this or that"
+  },
+  {
+    "start": "01:07:01.342",
+    "end": "01:07:02.018",
+    "text": "energy."
+  },
+  {
+    "start": "01:07:02.018",
+    "end": "01:07:05.436",
+    "text": "But as a function of time, you will find here things vary"
+  },
+  {
+    "start": "01:07:05.436",
+    "end": "01:07:06.170",
+    "text": "with time."
+  },
+  {
+    "start": "01:07:06.170",
+    "end": "01:07:07.610",
+    "text": "This is not going to be time independent."
+  },
+  {
+    "start": "01:07:07.610",
+    "end": "01:07:09.550",
+    "text": "I want to show you that."
+  },
+  {
+    "start": "01:07:09.550",
+    "end": "01:07:16.322",
+    "text": "So Y(x,t) now is going to be (3/5‚àö(2/L"
+  },
+  {
+    "start": "01:07:16.322",
+    "end": "01:07:21.289",
+    "text": "))sine(2 px/L) times"
+  },
+  {
+    "start": "01:07:21.289",
+    "end": "01:07:24.449",
+    "text": "e^(‚àíi(E2))."
+  },
+  {
+    "start": "01:07:24.449",
+    "end": "01:07:26.382",
+    "text": "I don't want to write the full formula for E_n"
+  },
+  {
+    "start": "01:07:26.382",
+    "end": "01:07:27.039",
+    "text": "every time."
+  },
+  {
+    "start": "01:07:27.039",
+    "end": "01:07:30.309",
+    "text": "I'm just going to call it E_2,"
+  },
+  {
+    "start": "01:07:30.309",
+    "end": "01:07:42.677",
+    "text": "(4/5‚àö(2/L))sine (3px/L) times"
+  },
+  {
+    "start": "01:07:42.677",
+    "end": "01:07:50.099",
+    "text": "e^(‚àíi(E3)t/√¢¬Ñ¬è."
+  },
+  {
+    "start": "01:07:50.099",
+    "end": "01:07:55.661",
+    "text": ")Now you notice that if I found the probability to be at"
+  },
+  {
+    "start": "01:07:55.661",
+    "end": "01:07:59.340",
+    "text": "sum x, p(x,t), I have to take the"
+  },
+  {
+    "start": "01:07:59.340",
+    "end": "01:08:02.639",
+    "text": "absolute square of all of this."
+  },
+  {
+    "start": "01:08:02.639",
+    "end": "01:08:06.309",
+    "text": "And all I want you to notice is that the absolute square of all"
+  },
+  {
+    "start": "01:08:06.309",
+    "end": "01:08:09.268",
+    "text": "of this, you cannot drop these exponentials now."
+  },
+  {
+    "start": "01:08:09.268",
+    "end": "01:08:11.489",
+    "text": "If you've got two of them, you cannot drop them,"
+  },
+  {
+    "start": "01:08:11.489",
+    "end": "01:08:13.570",
+    "text": "because when you take Y_1"
+  },
+  {
+    "start": "01:08:13.570",
+    "end": "01:08:15.650",
+    "text": "Y_2 absolute squared,"
+  },
+  {
+    "start": "01:08:15.650",
+    "end": "01:08:17.538",
+    "text": "Y_1 Y_2,"
+  },
+  {
+    "start": "01:08:17.538",
+    "end": "01:08:20.086",
+    "text": "you multiply it by Y_1 conjugate"
+  },
+  {
+    "start": "01:08:20.086",
+    "end": "01:08:23.479",
+    "text": "Y_2 conjugate, let's do that."
+  },
+  {
+    "start": "01:08:23.479",
+    "end": "01:08:29.060",
+    "text": "So you want to multiply the whole thing by its conjugate."
+  },
+  {
+    "start": "01:08:29.060",
+    "end": "01:08:33.750",
+    "text": "So first you take the absolute square of this."
+  },
+  {
+    "start": "01:08:33.750",
+    "end": "01:08:39.426",
+    "text": "You will get (9/25)(2/L)sin^(2)(2"
+  },
+  {
+    "start": "01:08:39.426",
+    "end": "01:08:42.630",
+    "text": "px/L)."
+  },
+  {
+    "start": "01:08:42.630",
+    "end": "01:08:45.380",
+    "text": "And the absolute value of this is just 1."
+  },
+  {
+    "start": "01:08:45.380",
+    "end": "01:08:46.130",
+    "text": "You see that?"
+  },
+  {
+    "start": "01:08:46.130",
+    "end": "01:08:49.288",
+    "text": "That is Y_1* Y_1."
+  },
+  {
+    "start": "01:08:49.288",
+    "end": "01:08:50.831",
+    "text": "Then you must take Y_2*"
+  },
+  {
+    "start": "01:08:50.831",
+    "end": "01:08:51.739",
+    "text": "Y_2."
+  },
+  {
+    "start": "01:08:51.739",
+    "end": "01:09:00.073",
+    "text": "That will be 16/25‚àö(2/L)-- I'm sorry, no square"
+  },
+  {
+    "start": "01:09:00.073",
+    "end": "01:09:04.800",
+    "text": "root--2/Lsin^(2)(3px/L) times 1,"
+  },
+  {
+    "start": "01:09:04.800",
+    "end": "01:09:08.460",
+    "text": "because the absolute value of this guy with itself is 1."
+  },
+  {
+    "start": "01:09:08.460",
+    "end": "01:09:11.090",
+    "text": "But that's not the end."
+  },
+  {
+    "start": "01:09:11.090",
+    "end": "01:09:15.033",
+    "text": "You've got 2 more terms which look like Y_1"
+  },
+  {
+    "start": "01:09:15.033",
+    "end": "01:09:18.546",
+    "text": "^(*)Y_2 Y_2*"
+  },
+  {
+    "start": "01:09:18.546",
+    "end": "01:09:20.340",
+    "text": "Y_1."
+  },
+  {
+    "start": "01:09:20.340",
+    "end": "01:09:23.307",
+    "text": "I'm not going to work out all the details, but let me just"
+  },
+  {
+    "start": "01:09:23.307",
+    "end": "01:09:25.340",
+    "text": "show you that time dependence exists."
+  },
+  {
+    "start": "01:09:25.340",
+    "end": "01:09:26.751",
+    "text": "So if you take Y_1^(*)"
+  },
+  {
+    "start": "01:09:26.751",
+    "end": "01:09:32.645",
+    "text": "Y_2, you will get (3/5‚àö(2/L"
+  },
+  {
+    "start": "01:09:32.645",
+    "end": "01:09:40.912",
+    "text": "))sine(2 px/L) times e^("
+  },
+  {
+    "start": "01:09:40.912",
+    "end": "01:09:47.560",
+    "text": "iE2t/‚Ñè)^( )times-- sorry."
+  },
+  {
+    "start": "01:09:47.560",
+    "end": "01:09:53.768",
+    "text": "3/5 times (4/5‚àö(2/L))sine"
+  },
+  {
+    "start": "01:09:53.768",
+    "end": "01:10:02.662",
+    "text": "(3px/L) times e^((i(E2)‚àíi(E3)t)"
+  },
+  {
+    "start": "01:10:02.662",
+    "end": "01:10:08.198",
+    "text": "/‚Ñè) 1 more term."
+  },
+  {
+    "start": "01:10:08.198",
+    "end": "01:10:10.380",
+    "text": "I don't care about any of these things."
+  },
+  {
+    "start": "01:10:10.380",
+    "end": "01:10:14.282",
+    "text": "I'm asking you to see, do things depend on time or"
+  },
+  {
+    "start": "01:10:14.282",
+    "end": "01:10:14.760",
+    "text": "not?"
+  },
+  {
+    "start": "01:10:14.760",
+    "end": "01:10:17.387",
+    "text": "This has no time dependence because the absolute value of"
+  },
+  {
+    "start": "01:10:17.387",
+    "end": "01:10:18.140",
+    "text": "that vanished."
+  },
+  {
+    "start": "01:10:18.140",
+    "end": "01:10:20.315",
+    "text": "This has no time dependence, the absolute value of this"
+  },
+  {
+    "start": "01:10:20.315",
+    "end": "01:10:20.760",
+    "text": "vanished."
+  },
+  {
+    "start": "01:10:20.760",
+    "end": "01:10:23.506",
+    "text": "But the cross terms, when you multiply the conjugate"
+  },
+  {
+    "start": "01:10:23.506",
+    "end": "01:10:25.822",
+    "text": "of this by this, or the conjugate of this by"
+  },
+  {
+    "start": "01:10:25.822",
+    "end": "01:10:27.329",
+    "text": "that, they don't cancel."
+  },
+  {
+    "start": "01:10:27.329",
+    "end": "01:10:29.069",
+    "text": "That's all I want you to know."
+  },
+  {
+    "start": "01:10:29.069",
+    "end": "01:10:31.729",
+    "text": "So I'll get a term like this this complex conjugate."
+  },
+  {
+    "start": "01:10:31.729",
+    "end": "01:10:33.578",
+    "text": "I don't want to write that in detail."
+  },
+  {
+    "start": "01:10:33.578",
+    "end": "01:10:36.329",
+    "text": "If you combine this function with the conjugate,"
+  },
+  {
+    "start": "01:10:36.329",
+    "end": "01:10:39.550",
+    "text": "you'll find this the conjugate will give me a cosine."
+  },
+  {
+    "start": "01:10:39.550",
+    "end": "01:10:54.340",
+    "text": "So I should probably write it on another part of the board."
+  },
+  {
+    "start": "01:10:54.340",
+    "end": "01:10:57.304",
+    "text": "So maybe I don't even want to write it because it's in the"
+  },
+  {
+    "start": "01:10:57.304",
+    "end": "01:10:57.720",
+    "text": "notes."
+  },
+  {
+    "start": "01:10:57.720",
+    "end": "01:11:00.828",
+    "text": "I want you to notice the following - look at the first"
+  },
+  {
+    "start": "01:11:00.828",
+    "end": "01:11:03.000",
+    "text": "term, no time dependence, second term,"
+  },
+  {
+    "start": "01:11:03.000",
+    "end": "01:11:04.350",
+    "text": "no time dependence."
+  },
+  {
+    "start": "01:11:04.350",
+    "end": "01:11:08.242",
+    "text": "The cross term has an e to the something and I claim the other"
+  },
+  {
+    "start": "01:11:08.242",
+    "end": "01:11:11.050",
+    "text": "cross term will have e to the - something."
+  },
+  {
+    "start": "01:11:11.050",
+    "end": "01:11:13.532",
+    "text": "e to the i something or e to the -i something is"
+  },
+  {
+    "start": "01:11:13.532",
+    "end": "01:11:14.590",
+    "text": "the cosine of something."
+  },
+  {
+    "start": "01:11:14.590",
+    "end": "01:11:16.140",
+    "text": "That's all I want you to know."
+  },
+  {
+    "start": "01:11:16.140",
+    "end": "01:11:21.070",
+    "text": "So there is somewhere in the time dependence P(x,t)"
+  },
+  {
+    "start": "01:11:21.070",
+    "end": "01:11:25.569",
+    "text": "that's got a lot of stuff which is t independent,"
+  },
+  {
+    "start": "01:11:25.569",
+    "end": "01:11:28.238",
+    "text": "something that looks like a whole bunch of numbers,"
+  },
+  {
+    "start": "01:11:28.238",
+    "end": "01:11:34.800",
+    "text": "times cosine(E_2 - E_3)t /‚Ñè."
+  },
+  {
+    "start": "01:11:34.800",
+    "end": "01:11:38.050",
+    "text": "That's all I want you to notice."
+  },
+  {
+    "start": "01:11:38.050",
+    "end": "01:11:41.130",
+    "text": "That means the probability density will be oscillating."
+  },
+  {
+    "start": "01:11:41.130",
+    "end": "01:11:45.277",
+    "text": "The particle will not be fixed; it will be bouncing back and"
+  },
+  {
+    "start": "01:11:45.277",
+    "end": "01:11:46.979",
+    "text": "forth between the walls."
+  },
+  {
+    "start": "01:11:46.979",
+    "end": "01:11:50.628",
+    "text": "And the rate at which it bounces is given by the"
+  },
+  {
+    "start": "01:11:50.628",
+    "end": "01:11:55.287",
+    "text": "difference in energy between the two states you formed in the"
+  },
+  {
+    "start": "01:11:55.287",
+    "end": "01:11:56.529",
+    "text": "combination."
+  },
+  {
+    "start": "01:11:56.529",
+    "end": "01:11:59.229",
+    "text": "So this is how a particle in general--"
+  },
+  {
+    "start": "01:11:59.229",
+    "end": "01:12:01.130",
+    "text": "if you want, not the most general one,"
+  },
+  {
+    "start": "01:12:01.130",
+    "end": "01:12:04.805",
+    "text": "but it's a reasonably general case where you added some"
+  },
+  {
+    "start": "01:12:04.805",
+    "end": "01:12:06.670",
+    "text": "mixture of that-- let me see."
+  },
+  {
+    "start": "01:12:06.670",
+    "end": "01:12:08.260",
+    "text": "You added 2 to 3."
+  },
+  {
+    "start": "01:12:08.260",
+    "end": "01:12:13.500",
+    "text": "You added that state that state."
+  },
+  {
+    "start": "01:12:13.500",
+    "end": "01:12:19.027",
+    "text": "You added 4 times fifth of that times 3 fifths of that as the"
+  },
+  {
+    "start": "01:12:19.027",
+    "end": "01:12:20.869",
+    "text": "initial condition."
+  },
+  {
+    "start": "01:12:20.869",
+    "end": "01:12:21.300",
+    "text": "Okay?"
+  },
+  {
+    "start": "01:12:21.300",
+    "end": "01:12:24.235",
+    "text": "4 fifths of this one guy with 2 wiggles and 3 fifths with 3"
+  },
+  {
+    "start": "01:12:24.235",
+    "end": "01:12:26.109",
+    "text": "wiggles and you let it go in time,"
+  },
+  {
+    "start": "01:12:26.109",
+    "end": "01:12:29.420",
+    "text": "you will find then if you add these time dependences,"
+  },
+  {
+    "start": "01:12:29.420",
+    "end": "01:12:31.149",
+    "text": "there'll be a part that varies with time."
+  },
+  {
+    "start": "01:12:31.149",
+    "end": "01:12:33.260",
+    "text": "So the density will not be constant now."
+  },
+  {
+    "start": "01:12:33.260",
+    "end": "01:12:37.539",
+    "text": "It will be sloshing back and forth in the box."
+  },
+  {
+    "start": "01:12:37.539",
+    "end": "01:12:39.328",
+    "text": "That's a more typical situation."
+  },
+  {
+    "start": "01:12:39.328",
+    "end": "01:12:41.305",
+    "text": "So not every state, initial state,"
+  },
+  {
+    "start": "01:12:41.305",
+    "end": "01:12:44.060",
+    "text": "is a function of a state of definite energy."
+  },
+  {
+    "start": "01:12:44.060",
+    "end": "01:12:45.069",
+    "text": "It's an admixture."
+  },
+  {
+    "start": "01:12:45.069",
+    "end": "01:12:48.203",
+    "text": "I've taken the simplest case where the admixture has only 2"
+  },
+  {
+    "start": "01:12:48.203",
+    "end": "01:12:48.960",
+    "text": "parts in it."
+  },
+  {
+    "start": "01:12:48.960",
+    "end": "01:12:51.407",
+    "text": "You can imagine taking a function made of 3 parts and 4"
+  },
+  {
+    "start": "01:12:51.407",
+    "end": "01:12:53.944",
+    "text": "parts and 10 parts and when you square them and all that,"
+  },
+  {
+    "start": "01:12:53.944",
+    "end": "01:12:55.350",
+    "text": "you'll get 100 cross terms."
+  },
+  {
+    "start": "01:12:55.350",
+    "end": "01:12:58.760",
+    "text": "They'll all be oscillating at different rates."
+  },
+  {
+    "start": "01:12:58.760",
+    "end": "01:13:04.399",
+    "text": "But the frequencies will always be given by the difference in"
+  },
+  {
+    "start": "01:13:04.399",
+    "end": "01:13:09.570",
+    "text": "frequencies, differences in energies that went into your"
+  },
+  {
+    "start": "01:13:09.570",
+    "end": "01:13:10.698",
+    "text": "mixture."
+  },
+  {
+    "start": "01:13:10.698",
+    "end": "01:13:12.550",
+    "text": "The last problem which I'm not going to do now,"
+  },
+  {
+    "start": "01:13:12.550",
+    "end": "01:13:14.679",
+    "text": "I'll do next time, but I'll tell you what it is I"
+  },
+  {
+    "start": "01:13:14.679",
+    "end": "01:13:16.319",
+    "text": "want to do, which is really this"
+  },
+  {
+    "start": "01:13:16.319",
+    "end": "01:13:19.698",
+    "text": "mathematically more involved, but the idea is the same."
+  },
+  {
+    "start": "01:13:19.698",
+    "end": "01:13:22.380",
+    "text": "Here I gave you the initial state on a plate."
+  },
+  {
+    "start": "01:13:22.380",
+    "end": "01:13:24.631",
+    "text": "I just said, here it is, 3 fifths times 1"
+  },
+  {
+    "start": "01:13:24.631",
+    "end": "01:13:27.953",
+    "text": "function of definite energy, 4 fifths times another function"
+  },
+  {
+    "start": "01:13:27.953",
+    "end": "01:13:29.250",
+    "text": "of definite energy."
+  },
+  {
+    "start": "01:13:29.250",
+    "end": "01:13:32.166",
+    "text": "The problem you really want to be able to solve right now is"
+  },
+  {
+    "start": "01:13:32.166",
+    "end": "01:13:34.784",
+    "text": "when somebody gives you an arbitrary initial state and"
+  },
+  {
+    "start": "01:13:34.784",
+    "end": "01:13:37.060",
+    "text": "says, \"What happens to it?\""
+  },
+  {
+    "start": "01:13:37.060",
+    "end": "01:13:42.322",
+    "text": "So I'm going to consider next time a function that looks"
+  },
+  {
+    "start": "01:13:42.322",
+    "end": "01:13:47.488",
+    "text": "something like this - x times 1 - x is my"
+  },
+  {
+    "start": "01:13:47.488",
+    "end": "01:13:49.689",
+    "text": "function at time 0."
+  },
+  {
+    "start": "01:13:49.689",
+    "end": "01:13:52.619",
+    "text": "That's a nice function, because it vanishes at 0,"
+  },
+  {
+    "start": "01:13:52.619",
+    "end": "01:13:53.779",
+    "text": "it vanishes at 1."
+  },
+  {
+    "start": "01:13:53.779",
+    "end": "01:13:56.600",
+    "text": "It's a box of length L = 1."
+  },
+  {
+    "start": "01:13:56.600",
+    "end": "01:14:00.800",
+    "text": "It's an allowed initial state."
+  },
+  {
+    "start": "01:14:00.800",
+    "end": "01:14:02.800",
+    "text": "Then I can ask, what does this do."
+  },
+  {
+    "start": "01:14:02.800",
+    "end": "01:14:06.180",
+    "text": "So you should think about how do I predict its future,"
+  },
+  {
+    "start": "01:14:06.180",
+    "end": "01:14:07.328",
+    "text": "what's involved?"
+  },
+  {
+    "start": "01:14:07.328",
+    "end": "01:14:09.670",
+    "text": "So you will see that in the notes."
+  },
+  {
+    "start": "01:14:09.670",
+    "end": "01:14:13.144",
+    "text": "So what I'm going to do next time is to finish this problem"
+  },
+  {
+    "start": "01:14:13.144",
+    "end": "01:14:15.779",
+    "text": "and give you the final set of postulates,"
+  },
+  {
+    "start": "01:14:15.779",
+    "end": "01:14:18.800",
+    "text": "so that you can see what the rules of quantum mechanics are."
+  }
+]

@@ -1,0 +1,6712 @@
+[
+  {
+    "start": "00:00:01.490",
+    "end": "00:00:04.504",
+    "text": "Professor Ramamurti Shankar: Okay,"
+  },
+  {
+    "start": "00:00:04.504",
+    "end": "00:00:08.800",
+    "text": "so this is a new topic called Physics or Dynamics of Rigid"
+  },
+  {
+    "start": "00:00:08.800",
+    "end": "00:00:11.648",
+    "text": "Bodies. So, a rigid body is something"
+  },
+  {
+    "start": "00:00:11.648",
+    "end": "00:00:15.060",
+    "text": "that will not bend, will not change its shape when"
+  },
+  {
+    "start": "00:00:15.060",
+    "end": "00:00:19.232",
+    "text": "you apply forces to it, and one example could be a"
+  },
+  {
+    "start": "00:00:19.232",
+    "end": "00:00:22.140",
+    "text": "dime, a coin, or a meter stick."
+  },
+  {
+    "start": "00:00:22.140",
+    "end": "00:00:24.200",
+    "text": "Of course, nobody is absolutely rigid."
+  },
+  {
+    "start": "00:00:24.200",
+    "end": "00:00:27.894",
+    "text": "You can always bend anything, but we'll take the"
+  },
+  {
+    "start": "00:00:27.894",
+    "end": "00:00:32.452",
+    "text": "approximation that we have in our hands, a completely rigid"
+  },
+  {
+    "start": "00:00:32.452",
+    "end": "00:00:34.568",
+    "text": "body. A technical definition of a"
+  },
+  {
+    "start": "00:00:34.568",
+    "end": "00:00:37.230",
+    "text": "rigid body is that if you pick a couple of points,"
+  },
+  {
+    "start": "00:00:37.230",
+    "end": "00:00:41.322",
+    "text": "the distance between them does not change during the motion of"
+  },
+  {
+    "start": "00:00:41.322",
+    "end": "00:00:44.352",
+    "text": "the body. So, the dynamics of rigid"
+  },
+  {
+    "start": "00:00:44.352",
+    "end": "00:00:49.120",
+    "text": "bodies, in three dimensions, is fairly complicated,"
+  },
+  {
+    "start": "00:00:49.120",
+    "end": "00:00:52.264",
+    "text": "because what I want you to imagine now is not a point mass"
+  },
+  {
+    "start": "00:00:52.264",
+    "end": "00:00:55.240",
+    "text": "but some object with some shape, like this guy."
+  },
+  {
+    "start": "00:00:55.240",
+    "end": "00:00:57.240",
+    "text": "You take this; you throw it up in the air;"
+  },
+  {
+    "start": "00:00:57.240",
+    "end": "00:01:00.820",
+    "text": "you can see it does something fairly complicated."
+  },
+  {
+    "start": "00:01:00.820",
+    "end": "00:01:07.351",
+    "text": "In fact, we can characterize what it does using two"
+  },
+  {
+    "start": "00:01:07.351",
+    "end": "00:01:11.169",
+    "text": "expressions. I think you can guess what they"
+  },
+  {
+    "start": "00:01:11.169",
+    "end": "00:01:13.149",
+    "text": "are. One is, if this had been a"
+  },
+  {
+    "start": "00:01:13.149",
+    "end": "00:01:17.042",
+    "text": "point mass, then the point mass will just go back and forth or"
+  },
+  {
+    "start": "00:01:17.042",
+    "end": "00:01:19.397",
+    "text": "up and down. It will do what's called"
+  },
+  {
+    "start": "00:01:19.397",
+    "end": "00:01:21.787",
+    "text": "\"translations.\" It'll go from a place to"
+  },
+  {
+    "start": "00:01:21.787",
+    "end": "00:01:24.155",
+    "text": "another place, maybe on a straight line,"
+  },
+  {
+    "start": "00:01:24.155",
+    "end": "00:01:26.582",
+    "text": "maybe on a curve. But as it goes,"
+  },
+  {
+    "start": "00:01:26.582",
+    "end": "00:01:30.060",
+    "text": "the point mass has no further information;"
+  },
+  {
+    "start": "00:01:30.060",
+    "end": "00:01:32.700",
+    "text": "you've got to tell me where it is, and how fast it's moving."
+  },
+  {
+    "start": "00:01:32.700",
+    "end": "00:01:35.820",
+    "text": "That's the whole story. But if you have a body like"
+  },
+  {
+    "start": "00:01:35.820",
+    "end": "00:01:40.464",
+    "text": "this, it's not enough to tell me where it is, because if I throw"
+  },
+  {
+    "start": "00:01:40.464",
+    "end": "00:01:44.740",
+    "text": "this up in the air you can imagine that as it travels along"
+  },
+  {
+    "start": "00:01:44.740",
+    "end": "00:01:49.680",
+    "text": "some parabolic path one instant the eraser may look like this,"
+  },
+  {
+    "start": "00:01:49.680",
+    "end": "00:01:52.220",
+    "text": "the next instant and the eraser may look like this;"
+  },
+  {
+    "start": "00:01:52.220",
+    "end": "00:01:58.269",
+    "text": "so, we say that it is translating and rotating."
+  },
+  {
+    "start": "00:01:58.269",
+    "end": "00:02:03.013",
+    "text": "It's a non-obvious theorem that anything the body does from one"
+  },
+  {
+    "start": "00:02:03.013",
+    "end": "00:02:07.834",
+    "text": "instant to the next instant can be achieved by first translating"
+  },
+  {
+    "start": "00:02:07.834",
+    "end": "00:02:10.544",
+    "text": "it, then doing a slight rotation to"
+  },
+  {
+    "start": "00:02:10.544",
+    "end": "00:02:13.349",
+    "text": "bring it to the configuration you want."
+  },
+  {
+    "start": "00:02:13.349",
+    "end": "00:02:16.580",
+    "text": "In other words, you can go from here to here by"
+  },
+  {
+    "start": "00:02:16.580",
+    "end": "00:02:19.389",
+    "text": "a translation, followed by a rotation."
+  },
+  {
+    "start": "00:02:19.389",
+    "end": "00:02:23.091",
+    "text": "Now, a translation is what we've been studying all the"
+  },
+  {
+    "start": "00:02:23.091",
+    "end": "00:02:26.862",
+    "text": "time, because for point particles there is no notion of"
+  },
+  {
+    "start": "00:02:26.862",
+    "end": "00:02:28.971",
+    "text": "rotation. They take a point mass and"
+  },
+  {
+    "start": "00:02:28.971",
+    "end": "00:02:30.439",
+    "text": "rotate it. You don't even know it's"
+  },
+  {
+    "start": "00:02:30.439",
+    "end": "00:02:32.621",
+    "text": "rotating. It has no internal variables,"
+  },
+  {
+    "start": "00:02:32.621",
+    "end": "00:02:35.569",
+    "text": "so that was the problem we've been focusing on,"
+  },
+  {
+    "start": "00:02:35.569",
+    "end": "00:02:39.453",
+    "text": "but now we're going to enlarge our study to objects which have"
+  },
+  {
+    "start": "00:02:39.453",
+    "end": "00:02:42.748",
+    "text": "a size and which have a shape, therefore, which have an"
+  },
+  {
+    "start": "00:02:42.748",
+    "end": "00:02:45.049",
+    "text": "orientation. It's not enough to say the"
+  },
+  {
+    "start": "00:02:45.049",
+    "end": "00:02:47.845",
+    "text": "football is here. The football could be here but"
+  },
+  {
+    "start": "00:02:47.845",
+    "end": "00:02:51.030",
+    "text": "its long pointy end could be up to down or side to side."
+  },
+  {
+    "start": "00:02:51.030",
+    "end": "00:02:55.829",
+    "text": "So, what we want to do is to break the problem into two"
+  },
+  {
+    "start": "00:02:55.829",
+    "end": "00:02:59.102",
+    "text": "parts. We want to focus on a body"
+  },
+  {
+    "start": "00:02:59.102",
+    "end": "00:03:03.439",
+    "text": "which is only rotating but not translating."
+  },
+  {
+    "start": "00:03:03.439",
+    "end": "00:03:07.541",
+    "text": "Once we've sharpened our skills, we will then put back"
+  },
+  {
+    "start": "00:03:07.541",
+    "end": "00:03:10.560",
+    "text": "the ability of the body to translate."
+  },
+  {
+    "start": "00:03:10.560",
+    "end": "00:03:13.761",
+    "text": "So, we're going to focus initially on a body that cannot"
+  },
+  {
+    "start": "00:03:13.761",
+    "end": "00:03:16.086",
+    "text": "translate. So, what that means is,"
+  },
+  {
+    "start": "00:03:16.086",
+    "end": "00:03:19.479",
+    "text": "you take the body and you grab one point in it;"
+  },
+  {
+    "start": "00:03:19.479",
+    "end": "00:03:23.300",
+    "text": "then, you can ask, \"What can it do if I grab one"
+  },
+  {
+    "start": "00:03:23.300",
+    "end": "00:03:26.477",
+    "text": "point in it?\" Well, any motion it does will"
+  },
+  {
+    "start": "00:03:26.477",
+    "end": "00:03:29.110",
+    "text": "be such that that point is not moving."
+  },
+  {
+    "start": "00:03:29.110",
+    "end": "00:03:32.576",
+    "text": "Now, in three dimensions, if you take a football and a"
+  },
+  {
+    "start": "00:03:32.576",
+    "end": "00:03:36.370",
+    "text": "certain point is held fixed, it can gyrate in many ways."
+  },
+  {
+    "start": "00:03:36.370",
+    "end": "00:03:38.930",
+    "text": "But at any instant you can show what it'll be doing."
+  },
+  {
+    "start": "00:03:38.930",
+    "end": "00:03:42.108",
+    "text": "It's to be doing a rotation around an axis,"
+  },
+  {
+    "start": "00:03:42.108",
+    "end": "00:03:46.120",
+    "text": "passing through the point where you're grabbing it,"
+  },
+  {
+    "start": "00:03:46.120",
+    "end": "00:03:49.059",
+    "text": "because if it rotates to an axis, points on the axis don't"
+  },
+  {
+    "start": "00:03:49.059",
+    "end": "00:03:52.205",
+    "text": "move, and the point where you're grabbing it better lie on the"
+  },
+  {
+    "start": "00:03:52.205",
+    "end": "00:03:54.708",
+    "text": "axis. Now, that's also pretty"
+  },
+  {
+    "start": "00:03:54.708",
+    "end": "00:03:57.884",
+    "text": "complicated. You can see why I gave you a"
+  },
+  {
+    "start": "00:03:57.884",
+    "end": "00:04:01.449",
+    "text": "little precautionary thing. It's hard to visualize these"
+  },
+  {
+    "start": "00:04:01.449",
+    "end": "00:04:03.524",
+    "text": "things. So again, I want to take the"
+  },
+  {
+    "start": "00:04:03.524",
+    "end": "00:04:06.667",
+    "text": "simplest possible problem; then, make it more and more"
+  },
+  {
+    "start": "00:04:06.667",
+    "end": "00:04:08.503",
+    "text": "complex. Well, you might say the"
+  },
+  {
+    "start": "00:04:08.503",
+    "end": "00:04:11.928",
+    "text": "simplest thing you've been doing all semester long is to take"
+  },
+  {
+    "start": "00:04:11.928",
+    "end": "00:04:15.735",
+    "text": "things in one dimension. But that turns out to be too"
+  },
+  {
+    "start": "00:04:15.735",
+    "end": "00:04:18.116",
+    "text": "low. If you're in one dimension and"
+  },
+  {
+    "start": "00:04:18.116",
+    "end": "00:04:22.267",
+    "text": "you've got a rigid body--By the way, a rigid body means not only"
+  },
+  {
+    "start": "00:04:22.267",
+    "end": "00:04:25.046",
+    "text": "extended but actually rigid. For example,"
+  },
+  {
+    "start": "00:04:25.046",
+    "end": "00:04:28.480",
+    "text": "if you take a cat or a snake, a snake you can grab at one"
+  },
+  {
+    "start": "00:04:28.480",
+    "end": "00:04:31.854",
+    "text": "point but the snake is not simply doing rotations around"
+  },
+  {
+    "start": "00:04:31.854",
+    "end": "00:04:34.187",
+    "text": "the one point, right, trying to bite you,"
+  },
+  {
+    "start": "00:04:34.187",
+    "end": "00:04:37.509",
+    "text": "trying to move around; a snake is not a rigid body."
+  },
+  {
+    "start": "00:04:37.509",
+    "end": "00:04:40.149",
+    "text": "A dead snake could be a rigid body."
+  },
+  {
+    "start": "00:04:40.149",
+    "end": "00:04:42.910",
+    "text": "A living snake -- definitely not a rigid body."
+  },
+  {
+    "start": "00:04:42.910",
+    "end": "00:04:45.992",
+    "text": "Now, you've got to remember that I've given you a break by"
+  },
+  {
+    "start": "00:04:45.992",
+    "end": "00:04:49.161",
+    "text": "studying rigid bodies, but real bodies can actually"
+  },
+  {
+    "start": "00:04:49.161",
+    "end": "00:04:53.170",
+    "text": "not only wobble and twist and turn, they can also vibrate and"
+  },
+  {
+    "start": "00:04:53.170",
+    "end": "00:04:57.166",
+    "text": "they can move their arms around. That's much more difficult,"
+  },
+  {
+    "start": "00:04:57.166",
+    "end": "00:04:59.988",
+    "text": "so we won't go there, and we'll try to take the"
+  },
+  {
+    "start": "00:04:59.988",
+    "end": "00:05:02.982",
+    "text": "simplest rigid body. But I said, if I take a rigid"
+  },
+  {
+    "start": "00:05:02.982",
+    "end": "00:05:05.875",
+    "text": "body in one dimension, it cannot rotate at all because"
+  },
+  {
+    "start": "00:05:05.875",
+    "end": "00:05:08.440",
+    "text": "there's not room in one dimension to rotate."
+  },
+  {
+    "start": "00:05:08.440",
+    "end": "00:05:13.006",
+    "text": "It can only go back and forth. So, to show you there is some"
+  },
+  {
+    "start": "00:05:13.006",
+    "end": "00:05:15.808",
+    "text": "new possibility, I have to go at least to two"
+  },
+  {
+    "start": "00:05:15.808",
+    "end": "00:05:18.579",
+    "text": "dimensions. Here's one example where one"
+  },
+  {
+    "start": "00:05:18.579",
+    "end": "00:05:21.821",
+    "text": "dimension's not enough. So, I'm going to imagine rigid"
+  },
+  {
+    "start": "00:05:21.821",
+    "end": "00:05:24.920",
+    "text": "bodies, which are living in the plane of the blackboard."
+  },
+  {
+    "start": "00:05:24.920",
+    "end": "00:05:30.514",
+    "text": "Now, one way to do that is to take a piece of metal,"
+  },
+  {
+    "start": "00:05:30.514",
+    "end": "00:05:35.779",
+    "text": "just cut out a shape, and that's a rigid body."
+  },
+  {
+    "start": "00:05:35.779",
+    "end": "00:05:38.924",
+    "text": "And of course this has a slight thickness, because anything you"
+  },
+  {
+    "start": "00:05:38.924",
+    "end": "00:05:40.750",
+    "text": "make of matter has some thickness,"
+  },
+  {
+    "start": "00:05:40.750",
+    "end": "00:05:43.339",
+    "text": "at least one atom thick, but imagine that thickness is"
+  },
+  {
+    "start": "00:05:43.339",
+    "end": "00:05:45.440",
+    "text": "negligible so it's like a piece of metal,"
+  },
+  {
+    "start": "00:05:45.440",
+    "end": "00:05:47.569",
+    "text": "a piece of foil or something, but it's rigid,"
+  },
+  {
+    "start": "00:05:47.569",
+    "end": "00:05:49.990",
+    "text": "and this is the rigid body we're going to study."
+  },
+  {
+    "start": "00:05:49.990",
+    "end": "00:05:53.260",
+    "text": "This rigid body can move in the plane of the blackboard and"
+  },
+  {
+    "start": "00:05:53.260",
+    "end": "00:05:56.080",
+    "text": "rotate, but we're going to grab it at one point."
+  },
+  {
+    "start": "00:05:56.080",
+    "end": "00:06:01.037",
+    "text": "So, let's pick some point here. If I grab it at that point and"
+  },
+  {
+    "start": "00:06:01.037",
+    "end": "00:06:04.339",
+    "text": "I ask you, \"What can this fellow do?\""
+  },
+  {
+    "start": "00:06:04.339",
+    "end": "00:06:07.160",
+    "text": "So, imagine skewering it through the blackboard,"
+  },
+  {
+    "start": "00:06:07.160",
+    "end": "00:06:09.560",
+    "text": "you say, \"Okay, do whatever you want.\""
+  },
+  {
+    "start": "00:06:09.560",
+    "end": "00:06:15.562",
+    "text": "You realize that all it can do is to rotate around an axis,"
+  },
+  {
+    "start": "00:06:15.562",
+    "end": "00:06:20.807",
+    "text": "penetrating that point. So, let's say at t = 0,"
+  },
+  {
+    "start": "00:06:20.807",
+    "end": "00:06:25.592",
+    "text": "the body looked like this, a little later it's going to"
+  },
+  {
+    "start": "00:06:25.592",
+    "end": "00:06:29.298",
+    "text": "look rotated. I have to tell you what it is"
+  },
+  {
+    "start": "00:06:29.298",
+    "end": "00:06:32.663",
+    "text": "doing at a given instant. I have to tell you how it's"
+  },
+  {
+    "start": "00:06:32.663",
+    "end": "00:06:35.157",
+    "text": "oriented. So, what we do for that is,"
+  },
+  {
+    "start": "00:06:35.157",
+    "end": "00:06:38.800",
+    "text": "we draw through the point of rotation some line."
+  },
+  {
+    "start": "00:06:38.800",
+    "end": "00:06:42.192",
+    "text": "You can pick any line you like. Pick a line like that and we"
+  },
+  {
+    "start": "00:06:42.192",
+    "end": "00:06:45.706",
+    "text": "say what angle that line makes with a standard chosen"
+  },
+  {
+    "start": "00:06:45.706",
+    "end": "00:06:48.410",
+    "text": "direction, usually the x axis."
+  },
+  {
+    "start": "00:06:48.410",
+    "end": "00:06:52.621",
+    "text": "So, if I give you θ, I think you'll have to think"
+  },
+  {
+    "start": "00:06:52.621",
+    "end": "00:06:57.660",
+    "text": "about it and you have to agree I have told you where the body is."
+  },
+  {
+    "start": "00:06:57.660",
+    "end": "00:07:01.729",
+    "text": "You can reconstruct everything, right, because that point is"
+  },
+  {
+    "start": "00:07:01.729",
+    "end": "00:07:03.340",
+    "text": "nailed; it cannot move."
+  },
+  {
+    "start": "00:07:03.340",
+    "end": "00:07:05.455",
+    "text": "You take the body; you turn it by an angle"
+  },
+  {
+    "start": "00:07:05.455",
+    "end": "00:07:06.725",
+    "text": "θ. In other words,"
+  },
+  {
+    "start": "00:07:06.725",
+    "end": "00:07:09.279",
+    "text": "here is a question. Suppose you're not in this room;"
+  },
+  {
+    "start": "00:07:09.279",
+    "end": "00:07:13.150",
+    "text": "you're in another room and I want to tell you what the rigid"
+  },
+  {
+    "start": "00:07:13.150",
+    "end": "00:07:15.751",
+    "text": "body is doing. What information do I have to"
+  },
+  {
+    "start": "00:07:15.751",
+    "end": "00:07:18.319",
+    "text": "communicate to you, without seeing the picture?"
+  },
+  {
+    "start": "00:07:18.319",
+    "end": "00:07:21.717",
+    "text": "I claim, if I tell you how the line was drawn in the body,"
+  },
+  {
+    "start": "00:07:21.717",
+    "end": "00:07:24.399",
+    "text": "which is something you do once and for all,"
+  },
+  {
+    "start": "00:07:24.399",
+    "end": "00:07:26.389",
+    "text": "a ruled line, then I say the ruled line makes"
+  },
+  {
+    "start": "00:07:26.389",
+    "end": "00:07:28.379",
+    "text": "an angle θ with the x axis."
+  },
+  {
+    "start": "00:07:28.379",
+    "end": "00:07:31.189",
+    "text": "I believe you can imagine in another room what this body is"
+  },
+  {
+    "start": "00:07:31.189",
+    "end": "00:07:34.096",
+    "text": "doing, and that's the meaning of saying, \"I've given complete"
+  },
+  {
+    "start": "00:07:34.096",
+    "end": "00:07:36.227",
+    "text": "information.\" Of course, that's not the"
+  },
+  {
+    "start": "00:07:36.227",
+    "end": "00:07:39.419",
+    "text": "complete dynamical information, because it also depends on how"
+  },
+  {
+    "start": "00:07:39.419",
+    "end": "00:07:43.053",
+    "text": "fast it's rotating. But to simply say the analog of"
+  },
+  {
+    "start": "00:07:43.053",
+    "end": "00:07:46.818",
+    "text": "where the body is in one dimension is this angle"
+  },
+  {
+    "start": "00:07:46.818",
+    "end": "00:07:50.162",
+    "text": "θ. So, what we are going to set"
+  },
+  {
+    "start": "00:07:50.162",
+    "end": "00:07:53.533",
+    "text": "up, you'll find, is an analogy between one"
+  },
+  {
+    "start": "00:07:53.533",
+    "end": "00:07:58.220",
+    "text": "dimensional translation and two dimensional rotations."
+  },
+  {
+    "start": "00:07:58.220",
+    "end": "00:08:00.680",
+    "text": "You'll find the analogy is very helpful."
+  },
+  {
+    "start": "00:08:00.680",
+    "end": "00:08:04.615",
+    "text": "So, I'm going to use a piece of the blackboard where I'll keep"
+  },
+  {
+    "start": "00:08:04.615",
+    "end": "00:08:08.162",
+    "text": "drawing that analogy. I do this because the number of"
+  },
+  {
+    "start": "00:08:08.162",
+    "end": "00:08:12.022",
+    "text": "things you have to remember will be reduced if you map this"
+  },
+  {
+    "start": "00:08:12.022",
+    "end": "00:08:15.881",
+    "text": "problem mathematically to the problem of translation in one"
+  },
+  {
+    "start": "00:08:15.881",
+    "end": "00:08:17.822",
+    "text": "dimension. In other words,"
+  },
+  {
+    "start": "00:08:17.822",
+    "end": "00:08:20.273",
+    "text": "in one dimension, when a body is moving,"
+  },
+  {
+    "start": "00:08:20.273",
+    "end": "00:08:22.850",
+    "text": "x tells you where it is, right?"
+  },
+  {
+    "start": "00:08:22.850",
+    "end": "00:08:25.002",
+    "text": "I give you a number, 3, or π,"
+  },
+  {
+    "start": "00:08:25.002",
+    "end": "00:08:26.740",
+    "text": "or -14; you know where it is."
+  },
+  {
+    "start": "00:08:26.740",
+    "end": "00:08:30.222",
+    "text": "For this rigid body, living in the plane of the"
+  },
+  {
+    "start": "00:08:30.222",
+    "end": "00:08:34.612",
+    "text": "blackboard, this angle θ tells you what the body is"
+  },
+  {
+    "start": "00:08:34.612",
+    "end": "00:08:37.049",
+    "text": "doing. So, even though the body is in"
+  },
+  {
+    "start": "00:08:37.049",
+    "end": "00:08:39.176",
+    "text": "two dimensions, you need this one angle"
+  },
+  {
+    "start": "00:08:39.176",
+    "end": "00:08:41.920",
+    "text": "θ to tell you what its orientation is."
+  },
+  {
+    "start": "00:08:41.920",
+    "end": "00:08:44.250",
+    "text": "You don't need two numbers; a single number tells you what"
+  },
+  {
+    "start": "00:08:44.250",
+    "end": "00:08:46.862",
+    "text": "the rigid body is doing. So a little later,"
+  },
+  {
+    "start": "00:08:46.862",
+    "end": "00:08:50.519",
+    "text": "it could be rotated by an angle Δθ."
+  },
+  {
+    "start": "00:08:50.519",
+    "end": "00:08:55.432",
+    "text": "That's the analog of saying it moved from x to x"
+  },
+  {
+    "start": "00:08:55.432",
+    "end": "00:08:58.415",
+    "text": "+ Δx. The first thing you've got to"
+  },
+  {
+    "start": "00:08:58.415",
+    "end": "00:09:01.169",
+    "text": "do is, how do you want to measure θ?"
+  },
+  {
+    "start": "00:09:01.169",
+    "end": "00:09:02.830",
+    "text": "For x we know, we have agreed."
+  },
+  {
+    "start": "00:09:02.830",
+    "end": "00:09:05.424",
+    "text": "We're going to measure in meters θ,"
+  },
+  {
+    "start": "00:09:05.424",
+    "end": "00:09:08.822",
+    "text": "the standard preference for people at elementary status,"
+  },
+  {
+    "start": "00:09:08.822",
+    "end": "00:09:12.524",
+    "text": "is to measure it in degrees. You measure it in degrees and"
+  },
+  {
+    "start": "00:09:12.524",
+    "end": "00:09:16.211",
+    "text": "when the body completes one full revolution, you like to say it"
+  },
+  {
+    "start": "00:09:16.211",
+    "end": "00:09:18.649",
+    "text": "has turned by an angle of 360 degrees."
+  },
+  {
+    "start": "00:09:18.649",
+    "end": "00:09:23.482",
+    "text": "Now, that is not the preferred way to measure angles in more"
+  },
+  {
+    "start": "00:09:23.482",
+    "end": "00:09:26.503",
+    "text": "advanced dynamics. We're going to use something"
+  },
+  {
+    "start": "00:09:26.503",
+    "end": "00:09:28.720",
+    "text": "else. You can imagine what it is."
+  },
+  {
+    "start": "00:09:28.720",
+    "end": "00:09:31.350",
+    "text": "You know what I'm driving at. aAnybody know where I'm going?"
+  },
+  {
+    "start": "00:09:31.350",
+    "end": "00:09:32.370",
+    "text": "Students: Radians. Professor Ramamurti"
+  },
+  {
+    "start": "00:09:32.370",
+    "end": "00:09:33.887",
+    "text": "Shankar: Radians. I'm going towards radians,"
+  },
+  {
+    "start": "00:09:33.887",
+    "end": "00:09:36.001",
+    "text": "and you can ask yourself, why would anybody think of a"
+  },
+  {
+    "start": "00:09:36.001",
+    "end": "00:09:39.279",
+    "text": "radian? What's wrong with 360 degrees?"
+  },
+  {
+    "start": "00:09:39.279",
+    "end": "00:09:42.190",
+    "text": "I mean, all the textbooks--I mean, all the novels say,"
+  },
+  {
+    "start": "00:09:42.190",
+    "end": "00:09:45.430",
+    "text": "\"When I was going down the wrong path, then I did a 180.\""
+  },
+  {
+    "start": "00:09:45.430",
+    "end": "00:09:47.570",
+    "text": "Right? So, everyone knows."
+  },
+  {
+    "start": "00:09:47.570",
+    "end": "00:09:51.204",
+    "text": "In fact, I saw a book by a violinist who said,"
+  },
+  {
+    "start": "00:09:51.204",
+    "end": "00:09:55.889",
+    "text": "\"I was going down all the wrong things and I did a 360.\""
+  },
+  {
+    "start": "00:09:55.889",
+    "end": "00:10:01.232",
+    "text": "So, you realize that 360 is not really a way to reform your"
+  },
+  {
+    "start": "00:10:01.232",
+    "end": "00:10:05.929",
+    "text": "life, but among the physicists it struck a chord."
+  },
+  {
+    "start": "00:10:05.929",
+    "end": "00:10:10.830",
+    "text": "In physics, a 360 is really not a trivial thing to do."
+  },
+  {
+    "start": "00:10:10.830",
+    "end": "00:10:13.236",
+    "text": "It turns out, the particles in the world are"
+  },
+  {
+    "start": "00:10:13.236",
+    "end": "00:10:15.922",
+    "text": "divided into bosons and fermions, and half of the"
+  },
+  {
+    "start": "00:10:15.922",
+    "end": "00:10:19.000",
+    "text": "particles are bosons and roughly half are fermions."
+  },
+  {
+    "start": "00:10:19.000",
+    "end": "00:10:22.198",
+    "text": "An electron is a fermion; the light quantum is a boson,"
+  },
+  {
+    "start": "00:10:22.198",
+    "end": "00:10:24.347",
+    "text": "the photon. For all the guys who are"
+  },
+  {
+    "start": "00:10:24.347",
+    "end": "00:10:27.011",
+    "text": "photons, or bosons, if you turn them by 360,"
+  },
+  {
+    "start": "00:10:27.011",
+    "end": "00:10:29.490",
+    "text": "they come back to what they're doing."
+  },
+  {
+    "start": "00:10:29.490",
+    "end": "00:10:31.314",
+    "text": "An electron, it turns out,"
+  },
+  {
+    "start": "00:10:31.314",
+    "end": "00:10:35.108",
+    "text": "when you turn it by 360, all the numbers are going to"
+  },
+  {
+    "start": "00:10:35.108",
+    "end": "00:10:39.041",
+    "text": "minus those numbers, and only when you turn by 720,"
+  },
+  {
+    "start": "00:10:39.041",
+    "end": "00:10:42.750",
+    "text": "you'll come back to technically what you're doing."
+  },
+  {
+    "start": "00:10:42.750",
+    "end": "00:10:47.490",
+    "text": "So, it's quite possible this person had in mind the behavior;"
+  },
+  {
+    "start": "00:10:47.490",
+    "end": "00:10:49.784",
+    "text": "maybe she was a fermion, but that's what it said,"
+  },
+  {
+    "start": "00:10:49.784",
+    "end": "00:10:52.064",
+    "text": "\"I did a 360.\" I've gone through a 360 many"
+  },
+  {
+    "start": "00:10:52.064",
+    "end": "00:10:55.202",
+    "text": "times, so if you use it you better back it up with the kind"
+  },
+  {
+    "start": "00:10:55.202",
+    "end": "00:10:58.503",
+    "text": "of information I gave otherwise you're just off by a factor of"
+  },
+  {
+    "start": "00:10:58.503",
+    "end": "00:11:01.159",
+    "text": "two. Anyway, 360 is very nice."
+  },
+  {
+    "start": "00:11:01.159",
+    "end": "00:11:03.659",
+    "text": "I think the Babylonians liked 360 for a lot of reasons."
+  },
+  {
+    "start": "00:11:03.659",
+    "end": "00:11:05.570",
+    "text": "It's divisible by a whole bunch of numbers."
+  },
+  {
+    "start": "00:11:05.570",
+    "end": "00:11:07.960",
+    "text": "It's easy to partition into smaller and smaller pieces."
+  },
+  {
+    "start": "00:11:07.960",
+    "end": "00:11:11.790",
+    "text": "I believe, in some engineering circles, a circle is 400 and"
+  },
+  {
+    "start": "00:11:11.790",
+    "end": "00:11:14.960",
+    "text": "something else, some other engineering degree."
+  },
+  {
+    "start": "00:11:14.960",
+    "end": "00:11:17.490",
+    "text": "So, you can decide what a circle is, but we like radian."
+  },
+  {
+    "start": "00:11:17.490",
+    "end": "00:11:20.769",
+    "text": "So, let's ask, \"Why do we like a radian?\""
+  },
+  {
+    "start": "00:11:20.769",
+    "end": "00:11:24.592",
+    "text": "For that purpose, I want you to take a point"
+  },
+  {
+    "start": "00:11:24.592",
+    "end": "00:11:28.769",
+    "text": "here, at a distance r from the center,"
+  },
+  {
+    "start": "00:11:28.769",
+    "end": "00:11:32.817",
+    "text": "and let it move to a new location with an angle"
+  },
+  {
+    "start": "00:11:32.817",
+    "end": "00:11:36.350",
+    "text": "Δθ. You agree that if the rigid"
+  },
+  {
+    "start": "00:11:36.350",
+    "end": "00:11:40.269",
+    "text": "body is rotating, this guy will be traversing a"
+  },
+  {
+    "start": "00:11:40.269",
+    "end": "00:11:44.132",
+    "text": "circle of radius r. Because it's a rigid body,"
+  },
+  {
+    "start": "00:11:44.132",
+    "end": "00:11:46.649",
+    "text": "it cannot change the distance from this point."
+  },
+  {
+    "start": "00:11:46.649",
+    "end": "00:11:50.704",
+    "text": "So, we're going around in a circle, and I'm asking you how"
+  },
+  {
+    "start": "00:11:50.704",
+    "end": "00:11:54.654",
+    "text": "big is that segment, that arc length ΔS that"
+  },
+  {
+    "start": "00:11:54.654",
+    "end": "00:11:58.116",
+    "text": "it has traveled, when it's rotated by an angle"
+  },
+  {
+    "start": "00:11:58.116",
+    "end": "00:12:01.632",
+    "text": "Δθ. So, one way to calculate that"
+  },
+  {
+    "start": "00:12:01.632",
+    "end": "00:12:05.380",
+    "text": "is to say look, if I did a full circle I'd have"
+  },
+  {
+    "start": "00:12:05.380",
+    "end": "00:12:09.192",
+    "text": "done 2πR. r is the distance of"
+  },
+  {
+    "start": "00:12:09.192",
+    "end": "00:12:12.909",
+    "text": "this point in the rigid body from the center."
+  },
+  {
+    "start": "00:12:12.909",
+    "end": "00:12:16.868",
+    "text": "I haven't gone a distance 2πr but I've gone"
+  },
+  {
+    "start": "00:12:16.868",
+    "end": "00:12:21.380",
+    "text": "Δθ, so the fraction of the circle I've covered is"
+  },
+  {
+    "start": "00:12:21.380",
+    "end": "00:12:25.101",
+    "text": "Δθ over 360 if θ is measured in"
+  },
+  {
+    "start": "00:12:25.101",
+    "end": "00:12:27.856",
+    "text": "degrees; so, let me indicate that in"
+  },
+  {
+    "start": "00:12:27.856",
+    "end": "00:12:34.585",
+    "text": "this fashion. So, we can write π"
+  },
+  {
+    "start": "00:12:34.585",
+    "end": "00:12:42.720",
+    "text": "over180 Δθ times r."
+  },
+  {
+    "start": "00:12:46.679",
+    "end": "00:12:50.763",
+    "text": "If you measured θ in degrees, this is what you have"
+  },
+  {
+    "start": "00:12:50.763",
+    "end": "00:12:54.775",
+    "text": "to do to convert an angular traverse to an actual distance"
+  },
+  {
+    "start": "00:12:54.775",
+    "end": "00:12:58.925",
+    "text": "along the tangent to the circle. The linear distance you travel"
+  },
+  {
+    "start": "00:12:58.925",
+    "end": "00:13:01.456",
+    "text": "is connected with the angle by which you rotate,"
+  },
+  {
+    "start": "00:13:01.456",
+    "end": "00:13:04.471",
+    "text": "by the distance r from the center, and this number"
+  },
+  {
+    "start": "00:13:04.471",
+    "end": "00:13:06.064",
+    "text": "here. So, people say,"
+  },
+  {
+    "start": "00:13:06.064",
+    "end": "00:13:10.280",
+    "text": "\"Look, why don't we make life easy by calling θ times"
+  },
+  {
+    "start": "00:13:10.280",
+    "end": "00:13:17.580",
+    "text": "π /180 as a new angle.\" And let's call it Δθ"
+  },
+  {
+    "start": "00:13:17.580",
+    "end": "00:13:22.622",
+    "text": "times r. So, Δθ, without any little"
+  },
+  {
+    "start": "00:13:22.622",
+    "end": "00:13:26.870",
+    "text": "zero on top of it, stands for radians from now on,"
+  },
+  {
+    "start": "00:13:26.870",
+    "end": "00:13:29.709",
+    "text": "and it's related to θ, so if you ignore the"
+  },
+  {
+    "start": "00:13:29.709",
+    "end": "00:13:32.890",
+    "text": "Δ's, θ itself is θ in degrees,"
+  },
+  {
+    "start": "00:13:32.890",
+    "end": "00:13:35.410",
+    "text": "π/180."
+  },
+  {
+    "start": "00:13:41.149",
+    "end": "00:13:44.484",
+    "text": "Then, the advantage is the distance you travel -- linear"
+  },
+  {
+    "start": "00:13:44.484",
+    "end": "00:13:48.243",
+    "text": "distance you travel -- bears a simple relation to the angle you"
+  },
+  {
+    "start": "00:13:48.243",
+    "end": "00:13:51.599",
+    "text": "travel, by the arm length r from"
+  },
+  {
+    "start": "00:13:51.599",
+    "end": "00:13:54.379",
+    "text": "the center. So, you don't have to carry"
+  },
+  {
+    "start": "00:13:54.379",
+    "end": "00:13:57.924",
+    "text": "this 180 and π and everything, you can write the"
+  },
+  {
+    "start": "00:13:57.924",
+    "end": "00:14:00.161",
+    "text": "simple result. But now, when you do this,"
+  },
+  {
+    "start": "00:14:00.161",
+    "end": "00:14:02.488",
+    "text": "you are measuring it in radians, so you've got to have"
+  },
+  {
+    "start": "00:14:02.488",
+    "end": "00:14:05.436",
+    "text": "an idea how big is a radian. Well, a full circle,"
+  },
+  {
+    "start": "00:14:05.436",
+    "end": "00:14:09.255",
+    "text": "if you go a full circle; the distance you travel should"
+  },
+  {
+    "start": "00:14:09.255",
+    "end": "00:14:13.110",
+    "text": "be 2πr so a full circle will Δθ = 2π."
+  },
+  {
+    "start": "00:14:13.110",
+    "end": "00:14:15.160",
+    "text": "So, a circle is worth 2π radians;"
+  },
+  {
+    "start": "00:14:15.160",
+    "end": "00:14:19.784",
+    "text": "2π is like 6. So, one radian is roughly 1/6"
+  },
+  {
+    "start": "00:14:19.784",
+    "end": "00:14:24.097",
+    "text": "of 360, which is 60 degrees. The real answer is close to"
+  },
+  {
+    "start": "00:14:24.097",
+    "end": "00:14:27.191",
+    "text": "58-something degrees. It looks like an odd thing to"
+  },
+  {
+    "start": "00:14:27.191",
+    "end": "00:14:29.004",
+    "text": "pick. It's odd only if you start with"
+  },
+  {
+    "start": "00:14:29.004",
+    "end": "00:14:31.617",
+    "text": "360 degrees. But if you met people from an"
+  },
+  {
+    "start": "00:14:31.617",
+    "end": "00:14:34.277",
+    "text": "alien culture, you just got to go to the"
+  },
+  {
+    "start": "00:14:34.277",
+    "end": "00:14:38.369",
+    "text": "supermarket to run into these people, those people may not be"
+  },
+  {
+    "start": "00:14:38.369",
+    "end": "00:14:41.916",
+    "text": "using 360 at all; 360 is a human artifact,"
+  },
+  {
+    "start": "00:14:41.916",
+    "end": "00:14:46.519",
+    "text": "nothing special about 360 that's independent of our own"
+  },
+  {
+    "start": "00:14:46.519",
+    "end": "00:14:49.466",
+    "text": "culture or biases. It may be connected to how many"
+  },
+  {
+    "start": "00:14:49.466",
+    "end": "00:14:51.533",
+    "text": "fingers we have. It may be connected to how long"
+  },
+  {
+    "start": "00:14:51.533",
+    "end": "00:14:53.641",
+    "text": "a year is, and so on. But there's nothing natural"
+  },
+  {
+    "start": "00:14:53.641",
+    "end": "00:14:55.905",
+    "text": "about the number 360. 2π on the other hand,"
+  },
+  {
+    "start": "00:14:55.905",
+    "end": "00:14:58.799",
+    "text": "I believe, would be discovered in any advanced civilization."
+  },
+  {
+    "start": "00:14:58.799",
+    "end": "00:15:00.894",
+    "text": "If you haven't figured out π, you're not an"
+  },
+  {
+    "start": "00:15:00.894",
+    "end": "00:15:03.259",
+    "text": "advanced civilization. If you haven't figured out 2,"
+  },
+  {
+    "start": "00:15:03.259",
+    "end": "00:15:05.171",
+    "text": "you're way behind. So, you know 2,"
+  },
+  {
+    "start": "00:15:05.171",
+    "end": "00:15:08.781",
+    "text": "and you know π, and that's what other cultures"
+  },
+  {
+    "start": "00:15:08.781",
+    "end": "00:15:12.050",
+    "text": "and other planets and galaxies will be using."
+  },
+  {
+    "start": "00:15:12.050",
+    "end": "00:15:14.656",
+    "text": "That's the unit we like to use. You'll find,"
+  },
+  {
+    "start": "00:15:14.656",
+    "end": "00:15:17.093",
+    "text": "over and over, people using units which are"
+  },
+  {
+    "start": "00:15:17.093",
+    "end": "00:15:18.706",
+    "text": "natural to us. But later on,"
+  },
+  {
+    "start": "00:15:18.706",
+    "end": "00:15:21.405",
+    "text": "if you want to communicate with people in another planet,"
+  },
+  {
+    "start": "00:15:21.405",
+    "end": "00:15:23.429",
+    "text": "you will have to use different lengths."
+  },
+  {
+    "start": "00:15:23.429",
+    "end": "00:15:25.842",
+    "text": "For example, the height of a human or the"
+  },
+  {
+    "start": "00:15:25.842",
+    "end": "00:15:29.220",
+    "text": "length of Napoleon's arm, they're not very good units,"
+  },
+  {
+    "start": "00:15:29.220",
+    "end": "00:15:31.276",
+    "text": "because if you don't have a Napoleon in your background you"
+  },
+  {
+    "start": "00:15:31.276",
+    "end": "00:15:32.659",
+    "text": "don't know what you're talking about."
+  },
+  {
+    "start": "00:15:32.659",
+    "end": "00:15:36.364",
+    "text": "But if you measure distances in how big it is in terms of a"
+  },
+  {
+    "start": "00:15:36.364",
+    "end": "00:15:38.982",
+    "text": "hydrogen atom, hydrogen atoms all over the"
+  },
+  {
+    "start": "00:15:38.982",
+    "end": "00:15:42.240",
+    "text": "universe, that's a natural length scale to use."
+  },
+  {
+    "start": "00:15:42.240",
+    "end": "00:15:44.500",
+    "text": "This was a very popular issue in the old days."
+  },
+  {
+    "start": "00:15:44.500",
+    "end": "00:15:47.049",
+    "text": "When they sent off a rocket or they buried something"
+  },
+  {
+    "start": "00:15:47.049",
+    "end": "00:15:50.049",
+    "text": "underground for aliens to find out, you want to show how tall"
+  },
+  {
+    "start": "00:15:50.049",
+    "end": "00:15:51.964",
+    "text": "we are; no use giving the answer in"
+  },
+  {
+    "start": "00:15:51.964",
+    "end": "00:15:55.033",
+    "text": "meters or feet or anything. But if you can somehow relate"
+  },
+  {
+    "start": "00:15:55.033",
+    "end": "00:15:57.429",
+    "text": "your size, and the size of a hydrogen atom,"
+  },
+  {
+    "start": "00:15:57.429",
+    "end": "00:16:00.166",
+    "text": "then that number will make sense to people in all"
+  },
+  {
+    "start": "00:16:00.166",
+    "end": "00:16:02.336",
+    "text": "civilizations, because hydrogen atoms"
+  },
+  {
+    "start": "00:16:02.336",
+    "end": "00:16:05.053",
+    "text": "conveniently are manufactured and scattered all over the"
+  },
+  {
+    "start": "00:16:05.053",
+    "end": "00:16:07.029",
+    "text": "universe and they have the same size."
+  },
+  {
+    "start": "00:16:07.029",
+    "end": "00:16:09.403",
+    "text": "Okay anyway, that's a long thing about"
+  },
+  {
+    "start": "00:16:09.403",
+    "end": "00:16:12.289",
+    "text": "radians, that's why we like to use radians."
+  },
+  {
+    "start": "00:16:12.289",
+    "end": "00:16:16.559",
+    "text": "You have to know a few popular angles in radian measure."
+  },
+  {
+    "start": "00:16:16.559",
+    "end": "00:16:19.440",
+    "text": "I'll be using only radians most of the time."
+  },
+  {
+    "start": "00:16:19.440",
+    "end": "00:16:21.549",
+    "text": "You've got to know a circle is 2π;"
+  },
+  {
+    "start": "00:16:21.549",
+    "end": "00:16:25.017",
+    "text": "π is a half a circle, and π/2 is a quarter of"
+  },
+  {
+    "start": "00:16:25.017",
+    "end": "00:16:28.600",
+    "text": "a circle and when you are by 90 degrees that is π/2;"
+  },
+  {
+    "start": "00:16:28.600",
+    "end": "00:16:29.990",
+    "text": "that's something you should know."
+  },
+  {
+    "start": "00:16:29.990",
+    "end": "00:16:34.409",
+    "text": "Once you write it this way--Let's get another result"
+  },
+  {
+    "start": "00:16:34.409",
+    "end": "00:16:38.073",
+    "text": "that's very useful. Take the distance it travels"
+  },
+  {
+    "start": "00:16:38.073",
+    "end": "00:16:41.760",
+    "text": "along the tangents by the time over which it does that."
+  },
+  {
+    "start": "00:16:46.070",
+    "end": "00:16:50.850",
+    "text": "This is the actual tangential speed, or the magnitude of the"
+  },
+  {
+    "start": "00:16:50.850",
+    "end": "00:16:54.010",
+    "text": "velocity in the tangential direction."
+  },
+  {
+    "start": "00:16:54.010",
+    "end": "00:16:56.945",
+    "text": "I think you all agree with that; that's what you and I would"
+  },
+  {
+    "start": "00:16:56.945",
+    "end": "00:16:58.923",
+    "text": "mean by speed. If at an instant,"
+  },
+  {
+    "start": "00:16:58.923",
+    "end": "00:17:02.320",
+    "text": "this piece of the sample just broke and flew off,"
+  },
+  {
+    "start": "00:17:02.320",
+    "end": "00:17:04.940",
+    "text": "it'll keep flying with that speed."
+  },
+  {
+    "start": "00:17:04.940",
+    "end": "00:17:09.236",
+    "text": "This thing, we have a symbol for it, ω,"
+  },
+  {
+    "start": "00:17:09.236",
+    "end": "00:17:13.346",
+    "text": "and ω is called the angular velocity,"
+  },
+  {
+    "start": "00:17:13.346",
+    "end": "00:17:17.270",
+    "text": "and is measured in radians per second."
+  },
+  {
+    "start": "00:17:21.869",
+    "end": "00:17:26.150",
+    "text": "So, you can calculate angular velocity for various things."
+  },
+  {
+    "start": "00:17:26.150",
+    "end": "00:17:28.602",
+    "text": "For example, what's the angular velocity of"
+  },
+  {
+    "start": "00:17:28.602",
+    "end": "00:17:30.880",
+    "text": "the Moon as it goes around the Earth?"
+  },
+  {
+    "start": "00:17:30.880",
+    "end": "00:17:36.106",
+    "text": "Well, the angular velocity will be one revolution every 28 days,"
+  },
+  {
+    "start": "00:17:36.106",
+    "end": "00:17:38.056",
+    "text": "right? One revolution is 2π"
+  },
+  {
+    "start": "00:17:38.056",
+    "end": "00:17:42.692",
+    "text": "radians. At 28 days you do 28 times 24"
+  },
+  {
+    "start": "00:17:42.692",
+    "end": "00:17:45.954",
+    "text": "times 3600; it's that many radians per"
+  },
+  {
+    "start": "00:17:45.954",
+    "end": "00:17:48.249",
+    "text": "second. Or there's a chainsaw blade,"
+  },
+  {
+    "start": "00:17:48.249",
+    "end": "00:17:52.037",
+    "text": "and the chainsaw is spinning at some number of rpm -- maybe"
+  },
+  {
+    "start": "00:17:52.037",
+    "end": "00:17:55.304",
+    "text": "3,000 rpm -- you can take revolutions per minute to"
+  },
+  {
+    "start": "00:17:55.304",
+    "end": "00:17:58.505",
+    "text": "revolutions per second, but you've got to remember"
+  },
+  {
+    "start": "00:17:58.505",
+    "end": "00:18:01.509",
+    "text": "every revolution is 2π radians."
+  },
+  {
+    "start": "00:18:01.509",
+    "end": "00:18:05.752",
+    "text": "So, the angular velocity of a blade that's spinning with"
+  },
+  {
+    "start": "00:18:05.752",
+    "end": "00:18:08.530",
+    "text": "frequency f is 2πf."
+  },
+  {
+    "start": "00:18:08.530",
+    "end": "00:18:12.069",
+    "text": "You understand that? f is the number of"
+  },
+  {
+    "start": "00:18:12.069",
+    "end": "00:18:15.647",
+    "text": "complete revolutions it does. Therefore, if you pick a point"
+  },
+  {
+    "start": "00:18:15.647",
+    "end": "00:18:18.910",
+    "text": "on it, it does a traverse of 2πf radians."
+  },
+  {
+    "start": "00:18:18.910",
+    "end": "00:18:24.220",
+    "text": "So, the dictionary has got a second member here,"
+  },
+  {
+    "start": "00:18:24.220",
+    "end": "00:18:29.529",
+    "text": "which is the velocity, which is dx/dt,"
+  },
+  {
+    "start": "00:18:29.529",
+    "end": "00:18:33.871",
+    "text": "is now replaced by angular velocity, which is"
+  },
+  {
+    "start": "00:18:33.871",
+    "end": "00:18:39.920",
+    "text": "dθ/dt. This is an analogy, by the way."
+  },
+  {
+    "start": "00:18:39.920",
+    "end": "00:18:42.805",
+    "text": "This is to help you say ω is like what velocity"
+  },
+  {
+    "start": "00:18:42.805",
+    "end": "00:18:45.905",
+    "text": "used to be in the old days when things were moving back and"
+  },
+  {
+    "start": "00:18:45.905",
+    "end": "00:18:47.645",
+    "text": "forth. But now they're going round and"
+  },
+  {
+    "start": "00:18:47.645",
+    "end": "00:18:49.630",
+    "text": "round, but even here there's a notion of velocity,"
+  },
+  {
+    "start": "00:18:49.630",
+    "end": "00:18:52.595",
+    "text": "but it's not in meters per second, it's measured in radians"
+  },
+  {
+    "start": "00:18:52.595",
+    "end": "00:18:54.648",
+    "text": "per second. Now, here is something you guys"
+  },
+  {
+    "start": "00:18:54.648",
+    "end": "00:18:56.529",
+    "text": "have got to keep very clear in your head."
+  },
+  {
+    "start": "00:18:56.529",
+    "end": "00:18:59.009",
+    "text": "I can only mention it to you but I cannot do it for you."
+  },
+  {
+    "start": "00:18:59.009",
+    "end": "00:19:03.216",
+    "text": "This ω is an analogous thing to ordinary velocity but"
+  },
+  {
+    "start": "00:19:03.216",
+    "end": "00:19:05.740",
+    "text": "it's also an actual velocity here,"
+  },
+  {
+    "start": "00:19:05.740",
+    "end": "00:19:08.640",
+    "text": "the good old velocity, that's the tangential velocity"
+  },
+  {
+    "start": "00:19:08.640",
+    "end": "00:19:11.539",
+    "text": "of points which are part of a rotating rigid body."
+  },
+  {
+    "start": "00:19:11.539",
+    "end": "00:19:14.333",
+    "text": "That is not part of my dictionary but it's a very"
+  },
+  {
+    "start": "00:19:14.333",
+    "end": "00:19:17.880",
+    "text": "useful result to know. The tangential velocity is the"
+  },
+  {
+    "start": "00:19:17.880",
+    "end": "00:19:21.966",
+    "text": "angular velocity times the distance of that point from the"
+  },
+  {
+    "start": "00:19:21.966",
+    "end": "00:19:26.055",
+    "text": "center of the rotation. So the rigid body as a whole"
+  },
+  {
+    "start": "00:19:26.055",
+    "end": "00:19:29.780",
+    "text": "has a single angular velocity. That's what it means to be"
+  },
+  {
+    "start": "00:19:29.780",
+    "end": "00:19:31.369",
+    "text": "rigid. The whole thing is rotating."
+  },
+  {
+    "start": "00:19:31.369",
+    "end": "00:19:34.563",
+    "text": "You cannot say the angular velocity is so and so here and"
+  },
+  {
+    "start": "00:19:34.563",
+    "end": "00:19:36.905",
+    "text": "so and so there; it's the property of the entire"
+  },
+  {
+    "start": "00:19:36.905",
+    "end": "00:19:38.435",
+    "text": "body. With a linear velocity,"
+  },
+  {
+    "start": "00:19:38.435",
+    "end": "00:19:41.938",
+    "text": "it's not the same everywhere; points near here in the same"
+  },
+  {
+    "start": "00:19:41.938",
+    "end": "00:19:44.828",
+    "text": "time go that far, and points near here in the"
+  },
+  {
+    "start": "00:19:44.828",
+    "end": "00:19:48.443",
+    "text": "same time go that far. Therefore, the linear velocity"
+  },
+  {
+    "start": "00:19:48.443",
+    "end": "00:19:51.939",
+    "text": "increases from the center. The angular velocity is"
+  },
+  {
+    "start": "00:19:51.939",
+    "end": "00:19:55.603",
+    "text": "constant, and a rigid body cannot have two angular"
+  },
+  {
+    "start": "00:19:55.603",
+    "end": "00:19:58.153",
+    "text": "velocities. It can have only one angular"
+  },
+  {
+    "start": "00:19:58.153",
+    "end": "00:20:00.655",
+    "text": "velocity. Okay, then, what we do is we"
+  },
+  {
+    "start": "00:20:00.655",
+    "end": "00:20:04.796",
+    "text": "say okay, let's take a problem where the angular velocity is"
+  },
+  {
+    "start": "00:20:04.796",
+    "end": "00:20:08.124",
+    "text": "itself changing. Fine, that's the analog of"
+  },
+  {
+    "start": "00:20:08.124",
+    "end": "00:20:12.955",
+    "text": "saying there is a rate of change of velocity, and here we have a"
+  },
+  {
+    "start": "00:20:12.955",
+    "end": "00:20:16.999",
+    "text": "quantity called α, which is the rate of change of"
+  },
+  {
+    "start": "00:20:16.999",
+    "end": "00:20:19.911",
+    "text": "angular velocity, or the second rate of change of"
+  },
+  {
+    "start": "00:20:19.911",
+    "end": "00:20:22.930",
+    "text": "the angle, and that's denoted by α."
+  },
+  {
+    "start": "00:20:26.680",
+    "end": "00:20:29.928",
+    "text": "So, if you took one of these rotating circular saws,"
+  },
+  {
+    "start": "00:20:29.928",
+    "end": "00:20:32.539",
+    "text": "and it was spinning at a certain speed,"
+  },
+  {
+    "start": "00:20:32.539",
+    "end": "00:20:35.404",
+    "text": "and due to friction, let us say, it was slowing"
+  },
+  {
+    "start": "00:20:35.404",
+    "end": "00:20:38.829",
+    "text": "down, or when you turn on the motor it's speeding up,"
+  },
+  {
+    "start": "00:20:38.829",
+    "end": "00:20:42.163",
+    "text": "suppose you just turned down the saw motor and it's speeding"
+  },
+  {
+    "start": "00:20:42.163",
+    "end": "00:20:45.755",
+    "text": "up in its rotation, you've got to be very clear"
+  },
+  {
+    "start": "00:20:45.755",
+    "end": "00:20:50.387",
+    "text": "that the acceleration of parts--This is the saw blade"
+  },
+  {
+    "start": "00:20:50.387",
+    "end": "00:20:54.621",
+    "text": "okay? I'm trying to draw for you one"
+  },
+  {
+    "start": "00:20:54.621",
+    "end": "00:20:59.200",
+    "text": "of these saw blades and it's spinning."
+  },
+  {
+    "start": "00:20:59.200",
+    "end": "00:21:01.269",
+    "text": "If you pick a point, say on the circumference;"
+  },
+  {
+    "start": "00:21:01.269",
+    "end": "00:21:04.792",
+    "text": "you remember long back we learned, even if it's going at a"
+  },
+  {
+    "start": "00:21:04.792",
+    "end": "00:21:07.450",
+    "text": "constant speed, a constant angular speed,"
+  },
+  {
+    "start": "00:21:07.450",
+    "end": "00:21:10.530",
+    "text": "it has a tangential velocity, which is ω times"
+  },
+  {
+    "start": "00:21:10.530",
+    "end": "00:21:12.025",
+    "text": "r. And because of that,"
+  },
+  {
+    "start": "00:21:12.025",
+    "end": "00:21:13.951",
+    "text": "it'll have an acceleration towards the center,"
+  },
+  {
+    "start": "00:21:13.951",
+    "end": "00:21:19.903",
+    "text": "centripetal acceleration, which is v^(2)/r and you"
+  },
+  {
+    "start": "00:21:19.903",
+    "end": "00:21:26.631",
+    "text": "can write it as ω^(2)r. That's one acceleration it has"
+  },
+  {
+    "start": "00:21:26.631",
+    "end": "00:21:29.059",
+    "text": "even if it's spinning at a steady rate."
+  },
+  {
+    "start": "00:21:29.059",
+    "end": "00:21:32.796",
+    "text": "But I'm saying it can also have a tangential acceleration,"
+  },
+  {
+    "start": "00:21:32.796",
+    "end": "00:21:36.467",
+    "text": "if on top of everything else, the angular speed itself is"
+  },
+  {
+    "start": "00:21:36.467",
+    "end": "00:21:39.423",
+    "text": "changing. Well, let's take our time"
+  },
+  {
+    "start": "00:21:39.423",
+    "end": "00:21:42.799",
+    "text": "digesting that. This is not too hard but I want"
+  },
+  {
+    "start": "00:21:42.799",
+    "end": "00:21:46.138",
+    "text": "you guys to understand. If it's spinning at a steady"
+  },
+  {
+    "start": "00:21:46.138",
+    "end": "00:21:49.674",
+    "text": "ω, we have learned anything going in a circle has"
+  },
+  {
+    "start": "00:21:49.674",
+    "end": "00:21:53.400",
+    "text": "an old-fashioned linear acceleration towards the center,"
+  },
+  {
+    "start": "00:21:53.400",
+    "end": "00:21:56.152",
+    "text": "which is v^(2)/r. But we have realized v in the"
+  },
+  {
+    "start": "00:21:56.152",
+    "end": "00:21:58.696",
+    "text": "tangential direction is ωr, so if you put that"
+  },
+  {
+    "start": "00:21:58.696",
+    "end": "00:22:01.577",
+    "text": "in -- if you want you can call it v tangential -- that"
+  },
+  {
+    "start": "00:22:01.577",
+    "end": "00:22:04.930",
+    "text": "gives me ω^(2)r, that's just the v^(2)/r."
+  },
+  {
+    "start": "00:22:04.930",
+    "end": "00:22:08.173",
+    "text": "But if you put the brakes on this by speeding it up or"
+  },
+  {
+    "start": "00:22:08.173",
+    "end": "00:22:11.477",
+    "text": "slowing down it'll have in addition, an acceleration in"
+  },
+  {
+    "start": "00:22:11.477",
+    "end": "00:22:14.281",
+    "text": "this direction. So, the acceleration of a point"
+  },
+  {
+    "start": "00:22:14.281",
+    "end": "00:22:17.140",
+    "text": "on the edge or anywhere else can have two components."
+  },
+  {
+    "start": "00:22:17.140",
+    "end": "00:22:21.747",
+    "text": "The tangential one will be there only if you speed up or"
+  },
+  {
+    "start": "00:22:21.747",
+    "end": "00:22:25.598",
+    "text": "slow down the rotating disk, but the radial one will always"
+  },
+  {
+    "start": "00:22:25.598",
+    "end": "00:22:27.160",
+    "text": "be there as long as it's rotating."
+  },
+  {
+    "start": "00:22:27.160",
+    "end": "00:22:32.663",
+    "text": "Okay, once you've got this dictionary, you can have a whole"
+  },
+  {
+    "start": "00:22:32.663",
+    "end": "00:22:36.656",
+    "text": "bunch of analogous quantities. For example,"
+  },
+  {
+    "start": "00:22:36.656",
+    "end": "00:22:41.601",
+    "text": "if you focus on problems where the body has a constant angle of"
+  },
+  {
+    "start": "00:22:41.601",
+    "end": "00:22:45.109",
+    "text": "acceleration α, what can you say?"
+  },
+  {
+    "start": "00:22:45.109",
+    "end": "00:22:50.010",
+    "text": "Well, you can already say that θ would be the"
+  },
+  {
+    "start": "00:22:50.010",
+    "end": "00:22:55.099",
+    "text": "θ_0 + ω_0 + ½ αt^(2)."
+  },
+  {
+    "start": "00:22:55.099",
+    "end": "00:22:59.730",
+    "text": "This is because θ is behaving just like x."
+  },
+  {
+    "start": "00:22:59.730",
+    "end": "00:23:02.613",
+    "text": "If x had a constant acceleration a,"
+  },
+  {
+    "start": "00:23:02.613",
+    "end": "00:23:05.976",
+    "text": "we all knew x was equal to the starting x +"
+  },
+  {
+    "start": "00:23:05.976",
+    "end": "00:23:09.220",
+    "text": "initial velocity times time plus ½ at^(2)."
+  },
+  {
+    "start": "00:23:09.220",
+    "end": "00:23:12.980",
+    "text": "Similarly, the angle by which it rotates will be the initial"
+  },
+  {
+    "start": "00:23:12.980",
+    "end": "00:23:15.279",
+    "text": "angle. The initial angular velocity"
+  },
+  {
+    "start": "00:23:15.279",
+    "end": "00:23:18.730",
+    "text": "times t plus something involving t^(2)."
+  },
+  {
+    "start": "00:23:18.730",
+    "end": "00:23:22.547",
+    "text": "This is only if α is a constant, just like I hope you"
+  },
+  {
+    "start": "00:23:22.547",
+    "end": "00:23:26.110",
+    "text": "guys know this is true only if a is a constant."
+  },
+  {
+    "start": "00:23:31.099",
+    "end": "00:23:36.929",
+    "text": "All right, now I'm going to pursue the analogy and ask what"
+  },
+  {
+    "start": "00:23:36.929",
+    "end": "00:23:42.960",
+    "text": "is the kinetic energy of a rigid body, when it's rotating?"
+  },
+  {
+    "start": "00:23:42.960",
+    "end": "00:23:44.946",
+    "text": "Yes? Student: Could you"
+  },
+  {
+    "start": "00:23:44.946",
+    "end": "00:23:47.168",
+    "text": "please explain [inaudible] Professor Ramamurti"
+  },
+  {
+    "start": "00:23:47.168",
+    "end": "00:23:49.353",
+    "text": "Shankar: Here? Student: No,"
+  },
+  {
+    "start": "00:23:49.353",
+    "end": "00:23:51.460",
+    "text": "the acceleration with α."
+  },
+  {
+    "start": "00:23:51.460",
+    "end": "00:23:54.690",
+    "text": "Professor Ramamurti Shankar: Here?"
+  },
+  {
+    "start": "00:23:54.690",
+    "end": "00:23:56.130",
+    "text": "Student: Right next to the saw blade."
+  },
+  {
+    "start": "00:23:56.130",
+    "end": "00:23:56.910",
+    "text": "Professor Ramamurti Shankar: Oh here?"
+  },
+  {
+    "start": "00:23:56.910",
+    "end": "00:23:59.299",
+    "text": "Student: Up. Professor Ramamurti"
+  },
+  {
+    "start": "00:23:59.299",
+    "end": "00:24:01.009",
+    "text": "Shankar: This one? Student: Yeah."
+  },
+  {
+    "start": "00:24:01.009",
+    "end": "00:24:03.063",
+    "text": "Professor Ramamurti Shankar: Okay,"
+  },
+  {
+    "start": "00:24:03.063",
+    "end": "00:24:05.220",
+    "text": "I'm saying, if you have a rotating disk,"
+  },
+  {
+    "start": "00:24:05.220",
+    "end": "00:24:08.621",
+    "text": "take any point on the rotating disk, even if the disk is going"
+  },
+  {
+    "start": "00:24:08.621",
+    "end": "00:24:11.893",
+    "text": "at constant angular velocity, it has a tangential velocity,"
+  },
+  {
+    "start": "00:24:11.893",
+    "end": "00:24:14.980",
+    "text": "and the direction of the velocity is constantly changing."
+  },
+  {
+    "start": "00:24:14.980",
+    "end": "00:24:17.456",
+    "text": "This is the oldest thing we learned, so it has an"
+  },
+  {
+    "start": "00:24:17.456",
+    "end": "00:24:20.726",
+    "text": "acceleration towards the center. But it's not an angular"
+  },
+  {
+    "start": "00:24:20.726",
+    "end": "00:24:23.257",
+    "text": "acceleration; it just a standard acceleration"
+  },
+  {
+    "start": "00:24:23.257",
+    "end": "00:24:25.850",
+    "text": "towards the center of anything going in a circle."
+  },
+  {
+    "start": "00:24:25.850",
+    "end": "00:24:28.788",
+    "text": "That's always going to be there. But on top of it,"
+  },
+  {
+    "start": "00:24:28.788",
+    "end": "00:24:32.049",
+    "text": "if you speed up or slow down this rotation rate of the disk,"
+  },
+  {
+    "start": "00:24:32.049",
+    "end": "00:24:34.887",
+    "text": "you'll also have a tangential acceleration,"
+  },
+  {
+    "start": "00:24:34.887",
+    "end": "00:24:37.320",
+    "text": "which is α times r."
+  },
+  {
+    "start": "00:24:41.210",
+    "end": "00:24:45.796",
+    "text": "Not clear yet, or? That's the acceleration lay"
+  },
+  {
+    "start": "00:24:45.796",
+    "end": "00:24:48.180",
+    "text": "people would know. If you're on a rotating"
+  },
+  {
+    "start": "00:24:48.180",
+    "end": "00:24:50.858",
+    "text": "platform and somebody sped up the rotation rate,"
+  },
+  {
+    "start": "00:24:50.858",
+    "end": "00:24:53.079",
+    "text": "you will notice you're going faster."
+  },
+  {
+    "start": "00:24:53.079",
+    "end": "00:24:55.250",
+    "text": "That's the acceleration in the tangential direction."
+  },
+  {
+    "start": "00:24:55.250",
+    "end": "00:24:57.875",
+    "text": "The acceleration towards the center is a more sophisticated"
+  },
+  {
+    "start": "00:24:57.875",
+    "end": "00:25:00.093",
+    "text": "one we have learned, and it's due to the fact that"
+  },
+  {
+    "start": "00:25:00.093",
+    "end": "00:25:01.950",
+    "text": "velocity's a vector and not a scalar."
+  },
+  {
+    "start": "00:25:01.950",
+    "end": "00:25:04.020",
+    "text": "So, if the direction is changing there is an"
+  },
+  {
+    "start": "00:25:04.020",
+    "end": "00:25:06.862",
+    "text": "acceleration we associate with that, and it's as real as any"
+  },
+  {
+    "start": "00:25:06.862",
+    "end": "00:25:09.836",
+    "text": "other acceleration; it needs a force to make it"
+  },
+  {
+    "start": "00:25:09.836",
+    "end": "00:25:12.079",
+    "text": "happen. Maybe the better way to ask you"
+  },
+  {
+    "start": "00:25:12.079",
+    "end": "00:25:17.172",
+    "text": "is this. Suppose this little speck here"
+  },
+  {
+    "start": "00:25:17.172",
+    "end": "00:25:21.358",
+    "text": "is you, okay? You happen to be stuck on a"
+  },
+  {
+    "start": "00:25:21.358",
+    "end": "00:25:25.358",
+    "text": "rotating chainsaw blade, and you're clinging to it for"
+  },
+  {
+    "start": "00:25:25.358",
+    "end": "00:25:28.295",
+    "text": "dear life. What force do you have to apply"
+  },
+  {
+    "start": "00:25:28.295",
+    "end": "00:25:30.440",
+    "text": "to stay onto that rotating blade?"
+  },
+  {
+    "start": "00:25:30.440",
+    "end": "00:25:34.462",
+    "text": "This may not happen to you and me but if you're in organized"
+  },
+  {
+    "start": "00:25:34.462",
+    "end": "00:25:37.529",
+    "text": "crime this is not a very unusual situation."
+  },
+  {
+    "start": "00:25:37.529",
+    "end": "00:25:40.688",
+    "text": "You can find yourself intermingled with all kinds of"
+  },
+  {
+    "start": "00:25:40.688",
+    "end": "00:25:44.279",
+    "text": "machinery, and you want to know what do I do to stay on."
+  },
+  {
+    "start": "00:25:44.279",
+    "end": "00:25:46.200",
+    "text": "Well, Newton tells you the answer."
+  },
+  {
+    "start": "00:25:46.200",
+    "end": "00:25:48.493",
+    "text": "Newton says, if you want to be on this"
+  },
+  {
+    "start": "00:25:48.493",
+    "end": "00:25:51.779",
+    "text": "rotating chainsaw blade, your acceleration towards the"
+  },
+  {
+    "start": "00:25:51.779",
+    "end": "00:25:55.029",
+    "text": "center has to be paid for, and if the blade is picking up"
+  },
+  {
+    "start": "00:25:55.029",
+    "end": "00:25:56.790",
+    "text": "speed, that's got to be paid for too."
+  },
+  {
+    "start": "00:25:56.790",
+    "end": "00:26:00.205",
+    "text": "That's the net acceleration; that, times your mass will be"
+  },
+  {
+    "start": "00:26:00.205",
+    "end": "00:26:02.559",
+    "text": "the force that has to be applied to you."
+  },
+  {
+    "start": "00:26:02.559",
+    "end": "00:26:07.499",
+    "text": "So, you will cling onto it with that force, and that force will"
+  },
+  {
+    "start": "00:26:07.499",
+    "end": "00:26:12.039",
+    "text": "be applied in turn by the third law by the disk on you."
+  },
+  {
+    "start": "00:26:12.039",
+    "end": "00:26:15.200",
+    "text": "For example, suppose it's a top view of a"
+  },
+  {
+    "start": "00:26:15.200",
+    "end": "00:26:18.397",
+    "text": "rotating platform. You're just standing there and"
+  },
+  {
+    "start": "00:26:18.397",
+    "end": "00:26:20.741",
+    "text": "the platform is rotating. You can ask,"
+  },
+  {
+    "start": "00:26:20.741",
+    "end": "00:26:25.369",
+    "text": "\"What frictional force do I need to stay on the platform?\""
+  },
+  {
+    "start": "00:26:25.369",
+    "end": "00:26:27.609",
+    "text": "Well, you need the force to provide you with ma,"
+  },
+  {
+    "start": "00:26:27.609",
+    "end": "00:26:29.890",
+    "text": "and I'm telling you that your a has two parts."
+  },
+  {
+    "start": "00:26:29.890",
+    "end": "00:26:32.679",
+    "text": "Even if the merry-go-round is spinning at a steady rate,"
+  },
+  {
+    "start": "00:26:32.679",
+    "end": "00:26:35.114",
+    "text": "you will need to have a frictional force directed"
+  },
+  {
+    "start": "00:26:35.114",
+    "end": "00:26:37.599",
+    "text": "towards the center to bend you into a circle."
+  },
+  {
+    "start": "00:26:37.599",
+    "end": "00:26:39.895",
+    "text": "Now, if on top of it, the merry-go-round starts"
+  },
+  {
+    "start": "00:26:39.895",
+    "end": "00:26:42.289",
+    "text": "increasing its speed, or decreasing its speed."
+  },
+  {
+    "start": "00:26:42.289",
+    "end": "00:26:46.266",
+    "text": "We'll also need a tangential component of force to provide"
+  },
+  {
+    "start": "00:26:46.266",
+    "end": "00:26:51.372",
+    "text": "the tangential acceleration. Okay, now this is kinematics of"
+  },
+  {
+    "start": "00:26:51.372",
+    "end": "00:26:55.357",
+    "text": "rotation at constant angular acceleration,"
+  },
+  {
+    "start": "00:26:55.357",
+    "end": "00:27:00.119",
+    "text": "which is identical to this one mathematically,"
+  },
+  {
+    "start": "00:27:00.119",
+    "end": "00:27:02.351",
+    "text": "because mathematically, if you know"
+  },
+  {
+    "start": "00:27:02.351",
+    "end": "00:27:04.779",
+    "text": "d^(2)θ/dt^(2) is α,"
+  },
+  {
+    "start": "00:27:04.779",
+    "end": "00:27:08.369",
+    "text": "the answer is just like d^(2)x/dt^(2) = a."
+  },
+  {
+    "start": "00:27:08.369",
+    "end": "00:27:11.089",
+    "text": "You change the symbols, you get the same answer."
+  },
+  {
+    "start": "00:27:11.089",
+    "end": "00:27:13.410",
+    "text": "So, you can imagine a variety of problems I don't feel like"
+  },
+  {
+    "start": "00:27:13.410",
+    "end": "00:27:15.032",
+    "text": "doing. I think you guys can easily do"
+  },
+  {
+    "start": "00:27:15.032",
+    "end": "00:27:16.559",
+    "text": "with that. I'd rather focus on more"
+  },
+  {
+    "start": "00:27:16.559",
+    "end": "00:27:18.286",
+    "text": "difficult ones. For example,"
+  },
+  {
+    "start": "00:27:18.286",
+    "end": "00:27:21.622",
+    "text": "a chainsaw blade, spinning at 3,600 rpm,"
+  },
+  {
+    "start": "00:27:21.622",
+    "end": "00:27:25.130",
+    "text": "is decelerated at some rate α."
+  },
+  {
+    "start": "00:27:25.130",
+    "end": "00:27:27.039",
+    "text": "How long does it take to come to rest?"
+  },
+  {
+    "start": "00:27:27.039",
+    "end": "00:27:31.174",
+    "text": "Well, for that you will write the second formula,"
+  },
+  {
+    "start": "00:27:31.174",
+    "end": "00:27:34.190",
+    "text": "ω = ω_0 + αt."
+  },
+  {
+    "start": "00:27:34.190",
+    "end": "00:27:37.450",
+    "text": "That's the analog of v = v_0 + at."
+  },
+  {
+    "start": "00:27:37.450",
+    "end": "00:27:39.863",
+    "text": "And you start with some ω_0,"
+  },
+  {
+    "start": "00:27:39.863",
+    "end": "00:27:42.428",
+    "text": "you put on the brakes; α it's a negative"
+  },
+  {
+    "start": "00:27:42.428",
+    "end": "00:27:45.240",
+    "text": "number, you see at what time this ω goes to 0;"
+  },
+  {
+    "start": "00:27:45.240",
+    "end": "00:27:49.785",
+    "text": "that's when it'll stop. Another result which I will use"
+  },
+  {
+    "start": "00:27:49.785",
+    "end": "00:27:53.775",
+    "text": "today in fact is the following: ω^(2) ="
+  },
+  {
+    "start": "00:27:53.775",
+    "end": "00:27:57.005",
+    "text": "ω_0^(2) +2α(θ -"
+  },
+  {
+    "start": "00:27:57.005",
+    "end": "00:28:02.041",
+    "text": "θ_0). That is the analog of v^(2)"
+  },
+  {
+    "start": "00:28:02.041",
+    "end": "00:28:07.009",
+    "text": "= v_0^(2) + 2a(x - x_0)."
+  },
+  {
+    "start": "00:28:07.009",
+    "end": "00:28:10.351",
+    "text": "This says that if the body has an acceleration α,"
+  },
+  {
+    "start": "00:28:10.351",
+    "end": "00:28:12.440",
+    "text": "then it's going to pick up speed,"
+  },
+  {
+    "start": "00:28:12.440",
+    "end": "00:28:16.698",
+    "text": "of course, and the final speed squared is related to the"
+  },
+  {
+    "start": "00:28:16.698",
+    "end": "00:28:21.421",
+    "text": "initial angular velocity squared plus 2 times the acceleration"
+  },
+  {
+    "start": "00:28:21.421",
+    "end": "00:28:24.780",
+    "text": "times the angle rotated. So, this is the analogy,"
+  },
+  {
+    "start": "00:28:24.780",
+    "end": "00:28:27.259",
+    "text": "so we don't have to reinvent all of these things."
+  },
+  {
+    "start": "00:28:27.259",
+    "end": "00:28:29.558",
+    "text": "They just come from the fact that things which are"
+  },
+  {
+    "start": "00:28:29.558",
+    "end": "00:28:32.420",
+    "text": "mathematically the same have the same mathematical results."
+  },
+  {
+    "start": "00:28:32.420",
+    "end": "00:28:35.069",
+    "text": "They obey the same equation; they have the same results."
+  },
+  {
+    "start": "00:28:35.069",
+    "end": "00:28:40.240",
+    "text": "All right, now let's find the kinetic energy of a rigid body."
+  },
+  {
+    "start": "00:28:40.240",
+    "end": "00:28:42.316",
+    "text": "It's got mass, and if it's spinning,"
+  },
+  {
+    "start": "00:28:42.316",
+    "end": "00:28:45.282",
+    "text": "all the little atoms making up the body are moving,"
+  },
+  {
+    "start": "00:28:45.282",
+    "end": "00:28:48.069",
+    "text": "and they've got their own ½ mv^(2)."
+  },
+  {
+    "start": "00:28:48.069",
+    "end": "00:28:50.345",
+    "text": "And we want to ask, \"What is the total ½"
+  },
+  {
+    "start": "00:28:50.345",
+    "end": "00:28:53.019",
+    "text": "mv^(2) summed over all the particles?\""
+  },
+  {
+    "start": "00:28:53.019",
+    "end": "00:28:56.240",
+    "text": "For that purpose, it's convenient to take the"
+  },
+  {
+    "start": "00:28:56.240",
+    "end": "00:29:00.661",
+    "text": "following simpler rigid body. We take a rigid body by taking"
+  },
+  {
+    "start": "00:29:00.661",
+    "end": "00:29:05.250",
+    "text": "a mass m_1 at a distance r_1,"
+  },
+  {
+    "start": "00:29:05.250",
+    "end": "00:29:09.742",
+    "text": "connected to some central hub with a massless rod,"
+  },
+  {
+    "start": "00:29:09.742",
+    "end": "00:29:14.609",
+    "text": "and you take another mass, and you take a third mass."
+  },
+  {
+    "start": "00:29:14.609",
+    "end": "00:29:16.760",
+    "text": "This is m_2, at a distance"
+  },
+  {
+    "start": "00:29:16.760",
+    "end": "00:29:19.320",
+    "text": "r_2, there's m_3,"
+  },
+  {
+    "start": "00:29:19.320",
+    "end": "00:29:21.060",
+    "text": "at a distance r_3,"
+  },
+  {
+    "start": "00:29:21.060",
+    "end": "00:29:23.551",
+    "text": "and so on. You can make a rigid body by"
+  },
+  {
+    "start": "00:29:23.551",
+    "end": "00:29:25.700",
+    "text": "modeling it in this simple fashion."
+  },
+  {
+    "start": "00:29:25.700",
+    "end": "00:29:28.717",
+    "text": "If you are a little more abstract, you can take a"
+  },
+  {
+    "start": "00:29:28.717",
+    "end": "00:29:31.609",
+    "text": "continuous rigid body and do the same thing;"
+  },
+  {
+    "start": "00:29:31.609",
+    "end": "00:29:33.299",
+    "text": "but let's start with the simple thing."
+  },
+  {
+    "start": "00:29:33.299",
+    "end": "00:29:35.560",
+    "text": "Here's a rigid body, three rigid rods with masses"
+  },
+  {
+    "start": "00:29:35.560",
+    "end": "00:29:37.680",
+    "text": "m_1, m_2,"
+  },
+  {
+    "start": "00:29:37.680",
+    "end": "00:29:40.791",
+    "text": "m_3, and it's nailed here and there"
+  },
+  {
+    "start": "00:29:40.791",
+    "end": "00:29:43.109",
+    "text": "is a skewer going through the board,"
+  },
+  {
+    "start": "00:29:43.109",
+    "end": "00:29:46.109",
+    "text": "and the things can only rotate around that."
+  },
+  {
+    "start": "00:29:46.109",
+    "end": "00:29:51.289",
+    "text": "By the way, I should tell you the convention for ω."
+  },
+  {
+    "start": "00:29:51.289",
+    "end": "00:29:54.162",
+    "text": "In one dimensional motion, velocity is positive,"
+  },
+  {
+    "start": "00:29:54.162",
+    "end": "00:29:57.585",
+    "text": "you're moving to the right, and negative you're moving to"
+  },
+  {
+    "start": "00:29:57.585",
+    "end": "00:29:59.595",
+    "text": "the left. With angular velocity,"
+  },
+  {
+    "start": "00:29:59.595",
+    "end": "00:30:02.856",
+    "text": "we've got to have a convention on what's positive and what's"
+  },
+  {
+    "start": "00:30:02.856",
+    "end": "00:30:04.923",
+    "text": "negative. This thing which is spinning"
+  },
+  {
+    "start": "00:30:04.923",
+    "end": "00:30:07.230",
+    "text": "can only spin clockwise or counter-clockwise."
+  },
+  {
+    "start": "00:30:07.230",
+    "end": "00:30:11.846",
+    "text": "It turns out to be that ω is positive for"
+  },
+  {
+    "start": "00:30:11.846",
+    "end": "00:30:16.572",
+    "text": "counter-clockwise. That just happens to be the"
+  },
+  {
+    "start": "00:30:16.572",
+    "end": "00:30:20.315",
+    "text": "convention people use. In fact, you notice the way I"
+  },
+  {
+    "start": "00:30:20.315",
+    "end": "00:30:22.978",
+    "text": "drew the rigid body when I did Δθ, I had rotating"
+  },
+  {
+    "start": "00:30:22.978",
+    "end": "00:30:25.858",
+    "text": "counter-clockwise. That's the preferred direction"
+  },
+  {
+    "start": "00:30:25.858",
+    "end": "00:30:29.023",
+    "text": "for measuring the angle θ from the x"
+  },
+  {
+    "start": "00:30:29.023",
+    "end": "00:30:32.864",
+    "text": "axis. Okay now, let's take this rigid"
+  },
+  {
+    "start": "00:30:32.864",
+    "end": "00:30:35.756",
+    "text": "body. It is rotating with a common"
+  },
+  {
+    "start": "00:30:35.756",
+    "end": "00:30:38.195",
+    "text": "angular velocity. I hope you all understand"
+  },
+  {
+    "start": "00:30:38.195",
+    "end": "00:30:39.589",
+    "text": "that's the meaning of being rigid."
+  },
+  {
+    "start": "00:30:39.589",
+    "end": "00:30:42.369",
+    "text": "So, everybody's got the same angular velocity ω."
+  },
+  {
+    "start": "00:30:42.369",
+    "end": "00:30:45.539",
+    "text": "So, what's the kinetic energy of this object?"
+  },
+  {
+    "start": "00:30:45.539",
+    "end": "00:30:50.640",
+    "text": "Well, it's the kinetic energy of each mass summed over all the"
+  },
+  {
+    "start": "00:30:50.640",
+    "end": "00:30:53.399",
+    "text": "masses i, m_iv"
+  },
+  {
+    "start": "00:30:53.399",
+    "end": "00:30:57.663",
+    "text": "_i^(2). Now, what's the velocity of"
+  },
+  {
+    "start": "00:30:57.663",
+    "end": "00:31:00.277",
+    "text": "each object? If you take this body,"
+  },
+  {
+    "start": "00:31:00.277",
+    "end": "00:31:03.698",
+    "text": "m_1, its velocity is necessarily"
+  },
+  {
+    "start": "00:31:03.698",
+    "end": "00:31:07.332",
+    "text": "perpendicular to the line joining it to the point of"
+  },
+  {
+    "start": "00:31:07.332",
+    "end": "00:31:10.549",
+    "text": "rotation. This one is moving this way;"
+  },
+  {
+    "start": "00:31:10.549",
+    "end": "00:31:13.665",
+    "text": "it cannot move in the line joining it, because if it is"
+  },
+  {
+    "start": "00:31:13.665",
+    "end": "00:31:15.914",
+    "text": "it's not a rigid body. For a rigid body,"
+  },
+  {
+    "start": "00:31:15.914",
+    "end": "00:31:18.666",
+    "text": "all distances are maintained. So, you don't come near the"
+  },
+  {
+    "start": "00:31:18.666",
+    "end": "00:31:20.710",
+    "text": "center and you don't go far from the center."
+  },
+  {
+    "start": "00:31:20.710",
+    "end": "00:31:22.579",
+    "text": "So, all you can do is rotate around the center."
+  },
+  {
+    "start": "00:31:22.579",
+    "end": "00:31:26.162",
+    "text": "So, the velocity of this guy, v_1 ="
+  },
+  {
+    "start": "00:31:26.162",
+    "end": "00:31:29.632",
+    "text": "ωr_1. The velocity of this guy,"
+  },
+  {
+    "start": "00:31:29.632",
+    "end": "00:31:31.927",
+    "text": "v_2, is the same"
+  },
+  {
+    "start": "00:31:31.927",
+    "end": "00:31:34.580",
+    "text": "ωr_2, and so on."
+  },
+  {
+    "start": "00:31:34.580",
+    "end": "00:31:37.150",
+    "text": "So, you can then add it all up. And what do you get?"
+  },
+  {
+    "start": "00:31:37.150",
+    "end": "00:31:42.677",
+    "text": "You get ½ sum over i m_ir"
+  },
+  {
+    "start": "00:31:42.677",
+    "end": "00:31:48.381",
+    "text": "_i^(2)ω^(2). And you have to do the"
+  },
+  {
+    "start": "00:31:48.381",
+    "end": "00:31:52.176",
+    "text": "summation over all the bodies. In my example,"
+  },
+  {
+    "start": "00:31:52.176",
+    "end": "00:31:55.213",
+    "text": "the summation goes from 1 to 3. You may have 1 to infinity,"
+  },
+  {
+    "start": "00:31:55.213",
+    "end": "00:31:57.240",
+    "text": "and 1 to a million; it doesn't matter."
+  },
+  {
+    "start": "00:31:57.240",
+    "end": "00:32:01.470",
+    "text": "That's the kinetic energy. You guys follow this?"
+  },
+  {
+    "start": "00:32:01.470",
+    "end": "00:32:03.220",
+    "text": "This is not a new kinetic energy;"
+  },
+  {
+    "start": "00:32:03.220",
+    "end": "00:32:05.404",
+    "text": "this is what we know to be kinetic energy,"
+  },
+  {
+    "start": "00:32:05.404",
+    "end": "00:32:08.600",
+    "text": "just ½ mv^(2) for every piece that makes up the rigid"
+  },
+  {
+    "start": "00:32:08.600",
+    "end": "00:32:09.932",
+    "text": "body. For convenience,"
+  },
+  {
+    "start": "00:32:09.932",
+    "end": "00:32:13.077",
+    "text": "I've taken the rigid body to be made up of a discreet set of"
+  },
+  {
+    "start": "00:32:13.077",
+    "end": "00:32:14.753",
+    "text": "masses. But now, if you notice,"
+  },
+  {
+    "start": "00:32:14.753",
+    "end": "00:32:17.041",
+    "text": "as you go from 1 to 3, m_1 and"
+  },
+  {
+    "start": "00:32:17.041",
+    "end": "00:32:19.726",
+    "text": "m_2 and m_3 are three"
+  },
+  {
+    "start": "00:32:19.726",
+    "end": "00:32:22.268",
+    "text": "different numbers. We don't know what the masses"
+  },
+  {
+    "start": "00:32:22.268",
+    "end": "00:32:23.174",
+    "text": "are. r_1 and"
+  },
+  {
+    "start": "00:32:23.174",
+    "end": "00:32:24.668",
+    "text": "r_2 and r_3 are three"
+  },
+  {
+    "start": "00:32:24.668",
+    "end": "00:32:26.069",
+    "text": "different numbers. We don't know;"
+  },
+  {
+    "start": "00:32:26.069",
+    "end": "00:32:27.725",
+    "text": "each one could be at a different distance from the"
+  },
+  {
+    "start": "00:32:27.725",
+    "end": "00:32:29.276",
+    "text": "origin. But the ω doesn't have"
+  },
+  {
+    "start": "00:32:29.276",
+    "end": "00:32:31.238",
+    "text": "a subscript i; there's nothing called"
+  },
+  {
+    "start": "00:32:31.238",
+    "end": "00:32:33.670",
+    "text": "ω for this one and ω for that one."
+  },
+  {
+    "start": "00:32:33.670",
+    "end": "00:32:35.349",
+    "text": "There's only one ω for everything."
+  },
+  {
+    "start": "00:32:35.349",
+    "end": "00:32:38.380",
+    "text": "So, you can pull it out of the sum and write it this way."
+  },
+  {
+    "start": "00:32:41.990",
+    "end": "00:32:51.078",
+    "text": "Then, the answer we write as identical to ½ Iω^(2),"
+  },
+  {
+    "start": "00:32:51.078",
+    "end": "00:32:56.470",
+    "text": "and we give this I a name;"
+  },
+  {
+    "start": "00:32:56.470",
+    "end": "00:32:58.670",
+    "text": "I is called the moment of inertia."
+  },
+  {
+    "start": "00:33:04.170",
+    "end": "00:33:08.931",
+    "text": "So, continuing with the analogy, this board is going to"
+  },
+  {
+    "start": "00:33:08.931",
+    "end": "00:33:13.252",
+    "text": "be used for analogy, we used to have K = ½"
+  },
+  {
+    "start": "00:33:13.252",
+    "end": "00:33:19.221",
+    "text": "mv^(2). Yet, we can have K = ½"
+  },
+  {
+    "start": "00:33:19.221",
+    "end": "00:33:28.130",
+    "text": "Iω^(2) and I is called the moment of inertia."
+  },
+  {
+    "start": "00:33:28.130",
+    "end": "00:33:31.272",
+    "text": "So, the moment of inertia is determined not only by the"
+  },
+  {
+    "start": "00:33:31.272",
+    "end": "00:33:34.589",
+    "text": "masses that make up the body but how far they are from the"
+  },
+  {
+    "start": "00:33:34.589",
+    "end": "00:33:36.739",
+    "text": "center. If all the masses just fell on"
+  },
+  {
+    "start": "00:33:36.739",
+    "end": "00:33:39.105",
+    "text": "top of the center, the body would have no moment"
+  },
+  {
+    "start": "00:33:39.105",
+    "end": "00:33:40.960",
+    "text": "of inertia. It'll weigh the same;"
+  },
+  {
+    "start": "00:33:40.960",
+    "end": "00:33:42.839",
+    "text": "the moment of inertia would vanish."
+  },
+  {
+    "start": "00:33:42.839",
+    "end": "00:33:45.720",
+    "text": "And likewise, if the mass is spread out the"
+  },
+  {
+    "start": "00:33:45.720",
+    "end": "00:33:48.338",
+    "text": "moment of inertia is more. For example,"
+  },
+  {
+    "start": "00:33:48.338",
+    "end": "00:33:51.655",
+    "text": "if I'm standing around here, and you come along and decide"
+  },
+  {
+    "start": "00:33:51.655",
+    "end": "00:33:53.852",
+    "text": "to spin me, I'm standing like this,"
+  },
+  {
+    "start": "00:33:53.852",
+    "end": "00:33:56.257",
+    "text": "you try to spin me, I stick my hands out,"
+  },
+  {
+    "start": "00:33:56.257",
+    "end": "00:33:59.443",
+    "text": "my moment of inertia has changed because the sum of my"
+  },
+  {
+    "start": "00:33:59.443",
+    "end": "00:34:02.809",
+    "text": "mass now is further away from the axis of rotation."
+  },
+  {
+    "start": "00:34:02.809",
+    "end": "00:34:06.759",
+    "text": "So, the moment of inertia depends on the arrangement of"
+  },
+  {
+    "start": "00:34:06.759",
+    "end": "00:34:08.949",
+    "text": "the masses. We're taking a rigid body;"
+  },
+  {
+    "start": "00:34:08.949",
+    "end": "00:34:11.659",
+    "text": "it's not like ice dancers who do this."
+  },
+  {
+    "start": "00:34:11.659",
+    "end": "00:34:12.929",
+    "text": "We're talking about a rigid body;"
+  },
+  {
+    "start": "00:34:12.929",
+    "end": "00:34:17.789",
+    "text": "therefore, the moment of inertia is constant."
+  },
+  {
+    "start": "00:34:17.789",
+    "end": "00:34:22.949",
+    "text": "But it requires a calculation to find the moment of inertia."
+  },
+  {
+    "start": "00:34:22.949",
+    "end": "00:34:24.800",
+    "text": "And here's another important thing."
+  },
+  {
+    "start": "00:34:24.800",
+    "end": "00:34:28.546",
+    "text": "If I decide to rotate the body about a new location,"
+  },
+  {
+    "start": "00:34:28.546",
+    "end": "00:34:32.072",
+    "text": "say around this point, the moment of inertia will"
+  },
+  {
+    "start": "00:34:32.072",
+    "end": "00:34:34.135",
+    "text": "change, because all the distances"
+  },
+  {
+    "start": "00:34:34.135",
+    "end": "00:34:36.689",
+    "text": "r will change. The moment of inertia--If"
+  },
+  {
+    "start": "00:34:36.689",
+    "end": "00:34:38.660",
+    "text": "someone says, \"Here are the masses,"
+  },
+  {
+    "start": "00:34:38.660",
+    "end": "00:34:41.322",
+    "text": "here's where they are, please find me the moment of"
+  },
+  {
+    "start": "00:34:41.322",
+    "end": "00:34:43.139",
+    "text": "inertia,\" you will say, \"I cannot do it.\""
+  },
+  {
+    "start": "00:34:43.139",
+    "end": "00:34:45.932",
+    "text": "You will say, \"I cannot do it until you tell"
+  },
+  {
+    "start": "00:34:45.932",
+    "end": "00:34:49.570",
+    "text": "me the point around which you plan to rotate the body."
+  },
+  {
+    "start": "00:34:49.570",
+    "end": "00:34:53.170",
+    "text": "Unless that is given I cannot tell you what the moment of"
+  },
+  {
+    "start": "00:34:53.170",
+    "end": "00:34:55.954",
+    "text": "inertia is.\" Therefore, the moment of"
+  },
+  {
+    "start": "00:34:55.954",
+    "end": "00:35:00.193",
+    "text": "inertia is with respect to a point, and there's nothing"
+  },
+  {
+    "start": "00:35:00.193",
+    "end": "00:35:04.040",
+    "text": "called the mass with the respect to the point."
+  },
+  {
+    "start": "00:35:04.040",
+    "end": "00:35:06.810",
+    "text": "The mass is just the mass. The moment of inertia depends"
+  },
+  {
+    "start": "00:35:06.810",
+    "end": "00:35:09.610",
+    "text": "on the point around which you're computing the moment of inertia;"
+  },
+  {
+    "start": "00:35:09.610",
+    "end": "00:35:12.627",
+    "text": "it's a variable. It's also worth knowing that if"
+  },
+  {
+    "start": "00:35:12.627",
+    "end": "00:35:15.989",
+    "text": "the body's being rotated about mass m_3,"
+  },
+  {
+    "start": "00:35:15.989",
+    "end": "00:35:17.830",
+    "text": "then m_3 doesn't contribute to the moment"
+  },
+  {
+    "start": "00:35:17.830",
+    "end": "00:35:18.929",
+    "text": "of inertia; it's out."
+  },
+  {
+    "start": "00:35:18.929",
+    "end": "00:35:21.840",
+    "text": "Anything sitting on the axis doesn't contribute."
+  },
+  {
+    "start": "00:35:21.840",
+    "end": "00:35:24.738",
+    "text": "Things which are further away contribute more in proportion to"
+  },
+  {
+    "start": "00:35:24.738",
+    "end": "00:35:27.732",
+    "text": "their mass, in proportion to the square of the distance from the"
+  },
+  {
+    "start": "00:35:27.732",
+    "end": "00:35:32.219",
+    "text": "axis. So, this is my dictionary here."
+  },
+  {
+    "start": "00:35:32.219",
+    "end": "00:35:34.699",
+    "text": "So, who is playing the role of mass?"
+  },
+  {
+    "start": "00:35:34.699",
+    "end": "00:35:37.889",
+    "text": "The mass is played by moment of inertia."
+  },
+  {
+    "start": "00:35:37.889",
+    "end": "00:35:40.741",
+    "text": "It's got units of kilogram, meters squared,"
+  },
+  {
+    "start": "00:35:40.741",
+    "end": "00:35:43.389",
+    "text": "and no one has given a name for that."
+  },
+  {
+    "start": "00:35:43.389",
+    "end": "00:35:46.791",
+    "text": "For example, Newton times meter is called a"
+  },
+  {
+    "start": "00:35:46.791",
+    "end": "00:35:48.125",
+    "text": "joule. You can ask,"
+  },
+  {
+    "start": "00:35:48.125",
+    "end": "00:35:50.469",
+    "text": "well this is kilogram times meter squared,"
+  },
+  {
+    "start": "00:35:50.469",
+    "end": "00:35:52.469",
+    "text": "maybe it's named after somebody."
+  },
+  {
+    "start": "00:35:52.469",
+    "end": "00:35:54.824",
+    "text": "So far, it's not been named after anybody,"
+  },
+  {
+    "start": "00:35:54.824",
+    "end": "00:35:57.180",
+    "text": "it is just called Newton meter squared."
+  },
+  {
+    "start": "00:36:00.199",
+    "end": "00:36:05.156",
+    "text": "So, this is going to be the analog of mass in our world of"
+  },
+  {
+    "start": "00:36:05.156",
+    "end": "00:36:06.500",
+    "text": "rotations. You remember,"
+  },
+  {
+    "start": "00:36:06.500",
+    "end": "00:36:07.724",
+    "text": "in the world of rotation [correction: should have said"
+  },
+  {
+    "start": "00:36:07.724",
+    "end": "00:36:09.688",
+    "text": "\"translation\"], we define something called"
+  },
+  {
+    "start": "00:36:09.688",
+    "end": "00:36:12.070",
+    "text": "momentum, which is mass times velocity."
+  },
+  {
+    "start": "00:36:12.070",
+    "end": "00:36:15.188",
+    "text": "Here, we are going to call something called angular"
+  },
+  {
+    "start": "00:36:15.188",
+    "end": "00:36:18.369",
+    "text": "momentum is going to be I times ω."
+  },
+  {
+    "start": "00:36:18.369",
+    "end": "00:36:20.930",
+    "text": "This L is called the angular momentum."
+  },
+  {
+    "start": "00:36:32.139",
+    "end": "00:36:35.534",
+    "text": "One extremely important point that you guys should notice is"
+  },
+  {
+    "start": "00:36:35.534",
+    "end": "00:36:39.062",
+    "text": "that all the concepts I'm using, like mass and energy,"
+  },
+  {
+    "start": "00:36:39.062",
+    "end": "00:36:43.480",
+    "text": "they are the same old concepts that we learned earlier on."
+  },
+  {
+    "start": "00:36:43.480",
+    "end": "00:36:47.022",
+    "text": "The fact that it's a rotating body doesn't change anything,"
+  },
+  {
+    "start": "00:36:47.022",
+    "end": "00:36:48.716",
+    "text": "okay? Kinetic energy still means the"
+  },
+  {
+    "start": "00:36:48.716",
+    "end": "00:36:49.809",
+    "text": "same; this K,"
+  },
+  {
+    "start": "00:36:49.809",
+    "end": "00:36:53.409",
+    "text": "though it looks so different, is in fact the ½ mv^(2)"
+  },
+  {
+    "start": "00:36:53.409",
+    "end": "00:36:56.590",
+    "text": "of every part of the body, summed over the bodies."
+  },
+  {
+    "start": "00:36:56.590",
+    "end": "00:36:59.659",
+    "text": "All right, so this L is called angular momentum."
+  },
+  {
+    "start": "00:36:59.659",
+    "end": "00:37:02.635",
+    "text": "It'll take a while to get used to this, but right now it's the"
+  },
+  {
+    "start": "00:37:02.635",
+    "end": "00:37:05.610",
+    "text": "product of the moment of inertia and the angle of velocity."
+  },
+  {
+    "start": "00:37:05.610",
+    "end": "00:37:09.980",
+    "text": "So, now we are looking for the most important equation in"
+  },
+  {
+    "start": "00:37:09.980",
+    "end": "00:37:12.790",
+    "text": "mechanics, which is F = ma."
+  },
+  {
+    "start": "00:37:16.980",
+    "end": "00:37:19.949",
+    "text": "That's going to be equal to some mystery object."
+  },
+  {
+    "start": "00:37:19.949",
+    "end": "00:37:22.750",
+    "text": "Now, you should be able to guess what goes on the"
+  },
+  {
+    "start": "00:37:22.750",
+    "end": "00:37:24.150",
+    "text": "right-hand side, okay?"
+  },
+  {
+    "start": "00:37:24.150",
+    "end": "00:37:27.514",
+    "text": "You should know by now, by analogy, it can be written"
+  },
+  {
+    "start": "00:37:27.514",
+    "end": "00:37:29.519",
+    "text": "as dL/dt, if you like,"
+  },
+  {
+    "start": "00:37:29.519",
+    "end": "00:37:32.126",
+    "text": "the rate of change of momentum, or it can be written as"
+  },
+  {
+    "start": "00:37:32.126",
+    "end": "00:37:34.460",
+    "text": "I times α; it doesn't matter."
+  },
+  {
+    "start": "00:37:34.460",
+    "end": "00:37:37.497",
+    "text": "I hope you understand that if you take rate of change of"
+  },
+  {
+    "start": "00:37:37.497",
+    "end": "00:37:39.429",
+    "text": "momentum, you will get ma,"
+  },
+  {
+    "start": "00:37:39.429",
+    "end": "00:37:41.518",
+    "text": "because when you take the derivative, m is not"
+  },
+  {
+    "start": "00:37:41.518",
+    "end": "00:37:42.873",
+    "text": "changing. Likewise here,"
+  },
+  {
+    "start": "00:37:42.873",
+    "end": "00:37:46.133",
+    "text": "if you take dL/dt, I is not changing,"
+  },
+  {
+    "start": "00:37:46.133",
+    "end": "00:37:49.981",
+    "text": "ω is changing to give you the dω/dt which is"
+  },
+  {
+    "start": "00:37:49.981",
+    "end": "00:37:52.171",
+    "text": "α. I is not changing"
+  },
+  {
+    "start": "00:37:52.171",
+    "end": "00:37:55.301",
+    "text": "because as the body rotates of course particles in the body are"
+  },
+  {
+    "start": "00:37:55.301",
+    "end": "00:37:57.597",
+    "text": "moving around, but their distance from the"
+  },
+  {
+    "start": "00:37:57.597",
+    "end": "00:37:59.460",
+    "text": "point of rotation is not changing."
+  },
+  {
+    "start": "00:37:59.460",
+    "end": "00:38:02.643",
+    "text": "Even though the bodies are moving to new locations,"
+  },
+  {
+    "start": "00:38:02.643",
+    "end": "00:38:06.590",
+    "text": "the r^(2) is the same, because they're just rotating."
+  },
+  {
+    "start": "00:38:06.590",
+    "end": "00:38:09.021",
+    "text": "That's why in the time derivative you don't have to"
+  },
+  {
+    "start": "00:38:09.021",
+    "end": "00:38:11.550",
+    "text": "take the time derivative of the moment of inertia."
+  },
+  {
+    "start": "00:38:11.550",
+    "end": "00:38:16.327",
+    "text": "But we don't know who's going to play the role on the"
+  },
+  {
+    "start": "00:38:16.327",
+    "end": "00:38:18.440",
+    "text": "left-hand side, okay?"
+  },
+  {
+    "start": "00:38:18.440",
+    "end": "00:38:21.207",
+    "text": "So, we're going to find that. We're going to find out the"
+  },
+  {
+    "start": "00:38:21.207",
+    "end": "00:38:24.644",
+    "text": "analog of that. So, I'm going to tell you there"
+  },
+  {
+    "start": "00:38:24.644",
+    "end": "00:38:29.560",
+    "text": "are many ways to find this out. It's a lot more subtle than"
+  },
+  {
+    "start": "00:38:29.560",
+    "end": "00:38:34.000",
+    "text": "generally appreciated, on what the correct law is."
+  },
+  {
+    "start": "00:38:34.000",
+    "end": "00:38:37.043",
+    "text": "You can hear the law stated quite often, but some of the"
+  },
+  {
+    "start": "00:38:37.043",
+    "end": "00:38:38.980",
+    "text": "reasoning behind it is incorrect."
+  },
+  {
+    "start": "00:38:38.980",
+    "end": "00:38:43.630",
+    "text": "So, let me tell you one way to get to the law."
+  },
+  {
+    "start": "00:38:43.630",
+    "end": "00:38:45.769",
+    "text": "I hope you know what I'm looking at."
+  },
+  {
+    "start": "00:38:45.769",
+    "end": "00:38:49.693",
+    "text": "I'm trying to find out what is the entity that is possible for"
+  },
+  {
+    "start": "00:38:49.693",
+    "end": "00:38:52.329",
+    "text": "the rate of change of angular momentum,"
+  },
+  {
+    "start": "00:38:52.329",
+    "end": "00:38:56.039",
+    "text": "or what's the analog of the left-hand side for ma."
+  },
+  {
+    "start": "00:38:56.039",
+    "end": "00:38:58.070",
+    "text": "I know the right-hand side is Iα."
+  },
+  {
+    "start": "00:38:58.070",
+    "end": "00:39:00.460",
+    "text": "By analogy, who's on the left-hand side?"
+  },
+  {
+    "start": "00:39:00.460",
+    "end": "00:39:02.534",
+    "text": "First of all, it's pretty clear that if you"
+  },
+  {
+    "start": "00:39:02.534",
+    "end": "00:39:04.856",
+    "text": "want the angular momentum of the body to change,"
+  },
+  {
+    "start": "00:39:04.856",
+    "end": "00:39:07.545",
+    "text": "ω has to change. You can see if something's"
+  },
+  {
+    "start": "00:39:07.545",
+    "end": "00:39:10.458",
+    "text": "spinning around at some fixed ω, you want to change"
+  },
+  {
+    "start": "00:39:10.458",
+    "end": "00:39:12.969",
+    "text": "it, you've got to push or pull or do something."
+  },
+  {
+    "start": "00:39:12.969",
+    "end": "00:39:14.775",
+    "text": "So obviously, you're going to apply a force,"
+  },
+  {
+    "start": "00:39:14.775",
+    "end": "00:39:17.420",
+    "text": "but the thing that comes on the left-hand side is not simply the"
+  },
+  {
+    "start": "00:39:17.420",
+    "end": "00:39:19.562",
+    "text": "force but something else and we'll find out what the"
+  },
+  {
+    "start": "00:39:19.562",
+    "end": "00:39:21.735",
+    "text": "something is. And that's done by the"
+  },
+  {
+    "start": "00:39:21.735",
+    "end": "00:39:24.797",
+    "text": "following device. I'm going to use the good old"
+  },
+  {
+    "start": "00:39:24.797",
+    "end": "00:39:28.940",
+    "text": "Work Energy Theorem that says: when the force acts on a body,"
+  },
+  {
+    "start": "00:39:28.940",
+    "end": "00:39:33.948",
+    "text": "the work that it does, which is the force times the"
+  },
+  {
+    "start": "00:39:33.948",
+    "end": "00:39:38.856",
+    "text": "distance it travels, is equal to the change in the"
+  },
+  {
+    "start": "00:39:38.856",
+    "end": "00:39:40.760",
+    "text": "kinetic energy."
+  },
+  {
+    "start": "00:39:46.190",
+    "end": "00:39:48.755",
+    "text": "That is the standard Work Energy Theorem that we"
+  },
+  {
+    "start": "00:39:48.755",
+    "end": "00:39:51.682",
+    "text": "established. So, if you took a rigid body"
+  },
+  {
+    "start": "00:39:51.682",
+    "end": "00:39:55.079",
+    "text": "like this, and let's apply to the rigid body,"
+  },
+  {
+    "start": "00:39:55.079",
+    "end": "00:39:59.095",
+    "text": "I'm just going to take a simpler case of a rigid body"
+  },
+  {
+    "start": "00:39:59.095",
+    "end": "00:40:01.733",
+    "text": "with these two masses, m_2 and"
+  },
+  {
+    "start": "00:40:01.733",
+    "end": "00:40:03.179",
+    "text": "m_1; it doesn't matter."
+  },
+  {
+    "start": "00:40:03.179",
+    "end": "00:40:07.126",
+    "text": "I apply a force now, F, a perpendicular to"
+  },
+  {
+    "start": "00:40:07.126",
+    "end": "00:40:11.401",
+    "text": "that body, at the distance r from the point of"
+  },
+  {
+    "start": "00:40:11.401",
+    "end": "00:40:12.470",
+    "text": "rotation."
+  },
+  {
+    "start": "00:40:18.369",
+    "end": "00:40:21.670",
+    "text": "And let it that turn the body during that time;"
+  },
+  {
+    "start": "00:40:21.670",
+    "end": "00:40:26.440",
+    "text": "let's say the body moves by an amount Δθ."
+  },
+  {
+    "start": "00:40:26.440",
+    "end": "00:40:28.583",
+    "text": "Maybe I should draw you a better picture for this because"
+  },
+  {
+    "start": "00:40:28.583",
+    "end": "00:40:29.770",
+    "text": "this is very, very important."
+  },
+  {
+    "start": "00:40:33.760",
+    "end": "00:40:37.483",
+    "text": "So, here is the body; I just took the simplest one,"
+  },
+  {
+    "start": "00:40:37.483",
+    "end": "00:40:39.464",
+    "text": "with two masses, m_1,"
+  },
+  {
+    "start": "00:40:39.464",
+    "end": "00:40:42.448",
+    "text": "m_2. I'm just going to push it here"
+  },
+  {
+    "start": "00:40:42.448",
+    "end": "00:40:45.562",
+    "text": "and I decide to push it in this direction, and it's at a"
+  },
+  {
+    "start": "00:40:45.562",
+    "end": "00:40:48.280",
+    "text": "distance r from the point of rotation."
+  },
+  {
+    "start": "00:40:51.590",
+    "end": "00:40:57.151",
+    "text": "And let it turn by a small angle and come to this position,"
+  },
+  {
+    "start": "00:40:57.151",
+    "end": "00:41:00.220",
+    "text": "and this angle is Δθ."
+  },
+  {
+    "start": "00:41:03.389",
+    "end": "00:41:04.780",
+    "text": "What is the work done by this force?"
+  },
+  {
+    "start": "00:41:09.269",
+    "end": "00:41:11.929",
+    "text": "I'm going to write it down but I want you to think about it."
+  },
+  {
+    "start": "00:41:11.929",
+    "end": "00:41:14.323",
+    "text": "The work done by the force is the force multiplied by the"
+  },
+  {
+    "start": "00:41:14.323",
+    "end": "00:41:15.820",
+    "text": "distance over which it has moved."
+  },
+  {
+    "start": "00:41:15.820",
+    "end": "00:41:18.045",
+    "text": "And basically, I'm asking you what is that"
+  },
+  {
+    "start": "00:41:18.045",
+    "end": "00:41:20.922",
+    "text": "distance it has moved, and if you remember anything at"
+  },
+  {
+    "start": "00:41:20.922",
+    "end": "00:41:24.069",
+    "text": "all from what I did earlier, it's approximately this arc"
+  },
+  {
+    "start": "00:41:24.069",
+    "end": "00:41:27.150",
+    "text": "length, which we have seen, is r times Δθ."
+  },
+  {
+    "start": "00:41:37.349",
+    "end": "00:41:39.291",
+    "text": "In other words, if you apply a force F"
+  },
+  {
+    "start": "00:41:39.291",
+    "end": "00:41:41.719",
+    "text": "and you rotate the body by Δθ, the distance you"
+  },
+  {
+    "start": "00:41:41.719",
+    "end": "00:41:46.802",
+    "text": "actually move is rΔθ; so, this is force times"
+  },
+  {
+    "start": "00:41:46.802",
+    "end": "00:41:49.894",
+    "text": "distance. Now, that's got to be equal to"
+  },
+  {
+    "start": "00:41:49.894",
+    "end": "00:41:52.683",
+    "text": "the change in kinetic energy. It's got to be equal to the"
+  },
+  {
+    "start": "00:41:52.683",
+    "end": "00:41:55.710",
+    "text": "change in kinetic energy. Kinetic energy,"
+  },
+  {
+    "start": "00:41:55.710",
+    "end": "00:42:00.079",
+    "text": "I remind you, is ½ Iω^(2)."
+  },
+  {
+    "start": "00:42:00.079",
+    "end": "00:42:05.668",
+    "text": "Therefore, the change in kinetic energy is going to be ½"
+  },
+  {
+    "start": "00:42:05.668",
+    "end": "00:42:09.659",
+    "text": "I(ω^(2) - ω_0^(2))."
+  },
+  {
+    "start": "00:42:09.659",
+    "end": "00:42:13.200",
+    "text": "By the way, these are two very neighboring instants of time."
+  },
+  {
+    "start": "00:42:17.440",
+    "end": "00:42:20.781",
+    "text": "If in the neighboring instants of time, during that brief"
+  },
+  {
+    "start": "00:42:20.781",
+    "end": "00:42:24.480",
+    "text": "period we may take the body to have a constant acceleration;"
+  },
+  {
+    "start": "00:42:24.480",
+    "end": "00:42:27.159",
+    "text": "therefore, α is constant."
+  },
+  {
+    "start": "00:42:27.159",
+    "end": "00:42:31.199",
+    "text": "So, this formula you can also calculate when α is"
+  },
+  {
+    "start": "00:42:31.199",
+    "end": "00:42:33.303",
+    "text": "constant, period. In a real body,"
+  },
+  {
+    "start": "00:42:33.303",
+    "end": "00:42:35.748",
+    "text": "when it's rotating, α need not be constant,"
+  },
+  {
+    "start": "00:42:35.748",
+    "end": "00:42:37.460",
+    "text": "but for a small enough interval,"
+  },
+  {
+    "start": "00:42:37.460",
+    "end": "00:42:40.701",
+    "text": "as small as you wish, we may apply the formula that"
+  },
+  {
+    "start": "00:42:40.701",
+    "end": "00:42:43.099",
+    "text": "works when α is a constant."
+  },
+  {
+    "start": "00:42:43.099",
+    "end": "00:42:47.068",
+    "text": "In that case, you will write it as ½ times"
+  },
+  {
+    "start": "00:42:47.068",
+    "end": "00:42:50.660",
+    "text": "2α times the rotation angle."
+  },
+  {
+    "start": "00:42:50.660",
+    "end": "00:42:54.380",
+    "text": "Right? Look at this formula here."
+  },
+  {
+    "start": "00:42:54.380",
+    "end": "00:42:57.963",
+    "text": "I'm referring to this result, ω final squared"
+  },
+  {
+    "start": "00:42:57.963",
+    "end": "00:43:02.304",
+    "text": "-ω initial squared is 2 times α times the change"
+  },
+  {
+    "start": "00:43:02.304",
+    "end": "00:43:05.754",
+    "text": "in angle. So, I want you to then equate"
+  },
+  {
+    "start": "00:43:05.754",
+    "end": "00:43:10.070",
+    "text": "this work done to this change in kinetic energy."
+  },
+  {
+    "start": "00:43:10.070",
+    "end": "00:43:15.296",
+    "text": "I want you to equate this guy to this guy, and we get our"
+  },
+  {
+    "start": "00:43:15.296",
+    "end": "00:43:21.270",
+    "text": "great result that F times r = I times α."
+  },
+  {
+    "start": "00:43:21.270",
+    "end": "00:43:26.440",
+    "text": "Iα is ma; that's what I'm looking for."
+  },
+  {
+    "start": "00:43:26.440",
+    "end": "00:43:29.045",
+    "text": "So, this fellow here, Fr, is the analog of"
+  },
+  {
+    "start": "00:43:29.045",
+    "end": "00:43:31.000",
+    "text": "force, and it's called the torque."
+  },
+  {
+    "start": "00:43:38.579",
+    "end": "00:43:42.891",
+    "text": "It's very important to notice that the torque due to this"
+  },
+  {
+    "start": "00:43:42.891",
+    "end": "00:43:47.356",
+    "text": "force is the value of the force times the distance from the"
+  },
+  {
+    "start": "00:43:47.356",
+    "end": "00:43:50.610",
+    "text": "point of rotation, and it's only the external"
+  },
+  {
+    "start": "00:43:50.610",
+    "end": "00:43:54.202",
+    "text": "force that I'm talking about. There are also internal forces"
+  },
+  {
+    "start": "00:43:54.202",
+    "end": "00:43:56.611",
+    "text": "in a rod. Every part of the rod is being"
+  },
+  {
+    "start": "00:43:56.611",
+    "end": "00:44:00.294",
+    "text": "dragged along by another part of the rod, but that analysis in"
+  },
+  {
+    "start": "00:44:00.294",
+    "end": "00:44:03.373",
+    "text": "terms of forces can be done but it's very tricky and"
+  },
+  {
+    "start": "00:44:03.373",
+    "end": "00:44:06.458",
+    "text": "complicated. It's much easier to look at the"
+  },
+  {
+    "start": "00:44:06.458",
+    "end": "00:44:10.510",
+    "text": "energy where the energy changes only due to external forces."
+  },
+  {
+    "start": "00:44:10.510",
+    "end": "00:44:12.820",
+    "text": "If you only look at forces you've got to be careful."
+  },
+  {
+    "start": "00:44:12.820",
+    "end": "00:44:16.036",
+    "text": "This pivot point is also applying a force on the rod,"
+  },
+  {
+    "start": "00:44:16.036",
+    "end": "00:44:18.820",
+    "text": "but it's not moving and not doing any work."
+  },
+  {
+    "start": "00:44:18.820",
+    "end": "00:44:21.516",
+    "text": "So, the only external force is the one I'm applying and is"
+  },
+  {
+    "start": "00:44:21.516",
+    "end": "00:44:23.929",
+    "text": "responsible for the change in the kinetic energy."
+  },
+  {
+    "start": "00:44:23.929",
+    "end": "00:44:26.219",
+    "text": "There are other forces inside the rod."
+  },
+  {
+    "start": "00:44:26.219",
+    "end": "00:44:28.573",
+    "text": "In other words, this mass is going to pick up"
+  },
+  {
+    "start": "00:44:28.573",
+    "end": "00:44:30.980",
+    "text": "speed, not because I'm directly pushing it."
+  },
+  {
+    "start": "00:44:30.980",
+    "end": "00:44:34.499",
+    "text": "I'm probably pushing this part of the rod and that's pushing"
+  },
+  {
+    "start": "00:44:34.499",
+    "end": "00:44:37.719",
+    "text": "the part next to it, and it finally pushes this one."
+  },
+  {
+    "start": "00:44:37.719",
+    "end": "00:44:41.170",
+    "text": "So, I'm not directly applying the force law to this mass."
+  },
+  {
+    "start": "00:44:41.170",
+    "end": "00:44:43.287",
+    "text": "I'm saying, whatever is happening internally,"
+  },
+  {
+    "start": "00:44:43.287",
+    "end": "00:44:45.272",
+    "text": "I don't care; the external force times"
+  },
+  {
+    "start": "00:44:45.272",
+    "end": "00:44:48.270",
+    "text": "distance is a change in the kinetic energy of an object."
+  },
+  {
+    "start": "00:44:48.270",
+    "end": "00:44:52.120",
+    "text": "Yes? Student: But how are you"
+  },
+  {
+    "start": "00:44:52.120",
+    "end": "00:44:57.371",
+    "text": "saying the angular [inaudible] Professor Ramamurti"
+  },
+  {
+    "start": "00:44:57.371",
+    "end": "00:45:01.256",
+    "text": "Shankar: No, I said this quantity,"
+  },
+  {
+    "start": "00:45:01.256",
+    "end": "00:45:06.780",
+    "text": "the change in kinetic energy, is the final kinetic energy,"
+  },
+  {
+    "start": "00:45:06.780",
+    "end": "00:45:09.599",
+    "text": "½ times ω^(2) minus the initial kinetic energy;"
+  },
+  {
+    "start": "00:45:09.599",
+    "end": "00:45:12.997",
+    "text": "but final/initial referred to when the rod was there and the"
+  },
+  {
+    "start": "00:45:12.997",
+    "end": "00:45:15.070",
+    "text": "rod had rotated by a small amount."
+  },
+  {
+    "start": "00:45:15.070",
+    "end": "00:45:16.506",
+    "text": "Student: Right. Professor Ramamurti"
+  },
+  {
+    "start": "00:45:16.506",
+    "end": "00:45:17.546",
+    "text": "Shankar: Okay. Student: So,"
+  },
+  {
+    "start": "00:45:17.546",
+    "end": "00:45:19.021",
+    "text": "do you say it's 2α of the [inaudible]"
+  },
+  {
+    "start": "00:45:19.021",
+    "end": "00:45:20.530",
+    "text": "Professor Ramamurti Shankar: Right."
+  },
+  {
+    "start": "00:45:20.530",
+    "end": "00:45:23.356",
+    "text": "Student: You said there needs to be something about"
+  },
+  {
+    "start": "00:45:23.356",
+    "end": "00:45:25.439",
+    "text": "velocity [inaudible] Professor Ramamurti"
+  },
+  {
+    "start": "00:45:25.439",
+    "end": "00:45:27.984",
+    "text": "Shankar: Here. No, I used this equation,"
+  },
+  {
+    "start": "00:45:27.984",
+    "end": "00:45:30.892",
+    "text": "the change, the ω^(2) at the end, minus the"
+  },
+  {
+    "start": "00:45:30.892",
+    "end": "00:45:34.791",
+    "text": "ω^(2) at the beginning, is 2 times the acceleration and"
+  },
+  {
+    "start": "00:45:34.791",
+    "end": "00:45:38.634",
+    "text": "the angle of acceleration times θ - θnot is the"
+  },
+  {
+    "start": "00:45:38.634",
+    "end": "00:45:40.990",
+    "text": "change in θ over that time,"
+  },
+  {
+    "start": "00:45:40.990",
+    "end": "00:45:45.012",
+    "text": "right. In other words,"
+  },
+  {
+    "start": "00:45:45.012",
+    "end": "00:45:49.089",
+    "text": "that formula can be used for even finite periods of time"
+  },
+  {
+    "start": "00:45:49.089",
+    "end": "00:45:53.177",
+    "text": "provided α is constant. We are applying it for a tiny"
+  },
+  {
+    "start": "00:45:53.177",
+    "end": "00:45:55.610",
+    "text": "period of time, small enough for us to believe"
+  },
+  {
+    "start": "00:45:55.610",
+    "end": "00:45:58.799",
+    "text": "that the acceleration during that tiny period is some number"
+  },
+  {
+    "start": "00:45:58.799",
+    "end": "00:46:00.686",
+    "text": "α. So, this ω^(2) -"
+  },
+  {
+    "start": "00:46:00.686",
+    "end": "00:46:04.024",
+    "text": "ω_0^(2) is that really if you want the change in"
+  },
+  {
+    "start": "00:46:04.024",
+    "end": "00:46:06.553",
+    "text": "ω^(2), and that's proportional to"
+  },
+  {
+    "start": "00:46:06.553",
+    "end": "00:46:08.850",
+    "text": "α times the change in angle."
+  },
+  {
+    "start": "00:46:08.850",
+    "end": "00:46:12.396",
+    "text": "So, α is not a constant; α can vary from instant"
+  },
+  {
+    "start": "00:46:12.396",
+    "end": "00:46:14.036",
+    "text": "to instant. But at that one instant,"
+  },
+  {
+    "start": "00:46:14.036",
+    "end": "00:46:16.473",
+    "text": "depending on the forces, there'll be some α,"
+  },
+  {
+    "start": "00:46:16.473",
+    "end": "00:46:19.340",
+    "text": "and this thing called torque is I times α."
+  },
+  {
+    "start": "00:46:19.340",
+    "end": "00:46:22.874",
+    "text": "Now, I think it's very clear that if I had several forces"
+  },
+  {
+    "start": "00:46:22.874",
+    "end": "00:46:25.839",
+    "text": "acting on the body, then the torque will be"
+  },
+  {
+    "start": "00:46:25.839",
+    "end": "00:46:28.263",
+    "text": "F_ir _i,"
+  },
+  {
+    "start": "00:46:28.263",
+    "end": "00:46:31.900",
+    "text": "and there's just one final caveat to this thing,"
+  },
+  {
+    "start": "00:46:31.900",
+    "end": "00:46:34.317",
+    "text": "one final qualification, which is that,"
+  },
+  {
+    "start": "00:46:34.317",
+    "end": "00:46:36.798",
+    "text": "in practice, the forces that are used to"
+  },
+  {
+    "start": "00:46:36.798",
+    "end": "00:46:39.980",
+    "text": "rotate a body may not always be perpendicular."
+  },
+  {
+    "start": "00:46:43.420",
+    "end": "00:46:45.480",
+    "text": "You can apply a force in some other direction,"
+  },
+  {
+    "start": "00:46:45.480",
+    "end": "00:46:46.030",
+    "text": "like that."
+  },
+  {
+    "start": "00:46:50.150",
+    "end": "00:46:54.966",
+    "text": "Now, you've got to realize that torque is the ability to change"
+  },
+  {
+    "start": "00:46:54.966",
+    "end": "00:46:59.183",
+    "text": "the rotational state of a body, and what we are realizing is"
+  },
+  {
+    "start": "00:46:59.183",
+    "end": "00:47:02.725",
+    "text": "that it depends on the force you apply and depends on how far"
+  },
+  {
+    "start": "00:47:02.725",
+    "end": "00:47:05.559",
+    "text": "away the force is from the point of rotation."
+  },
+  {
+    "start": "00:47:05.559",
+    "end": "00:47:09.337",
+    "text": "So, if you have a door, you're trying to open a door,"
+  },
+  {
+    "start": "00:47:09.337",
+    "end": "00:47:12.024",
+    "text": "here is the door, here are the hinges,"
+  },
+  {
+    "start": "00:47:12.024",
+    "end": "00:47:16.019",
+    "text": "and you want to open this door by applying a force."
+  },
+  {
+    "start": "00:47:16.019",
+    "end": "00:47:19.093",
+    "text": "The question is, \"Where do you put the"
+  },
+  {
+    "start": "00:47:19.093",
+    "end": "00:47:20.880",
+    "text": "doorknob?\" Okay?"
+  },
+  {
+    "start": "00:47:20.880",
+    "end": "00:47:24.842",
+    "text": "You suddenly invented the door, you thought about hinges,"
+  },
+  {
+    "start": "00:47:24.842",
+    "end": "00:47:29.230",
+    "text": "but you haven't quite figured out where to put the doorknob."
+  },
+  {
+    "start": "00:47:29.230",
+    "end": "00:47:32.360",
+    "text": "You're going to ask yourself, \"Well, I've complete freedom,"
+  },
+  {
+    "start": "00:47:32.360",
+    "end": "00:47:35.382",
+    "text": "maybe it'll look nice if I put it there right next to the"
+  },
+  {
+    "start": "00:47:35.382",
+    "end": "00:47:38.196",
+    "text": "hinges,\" then you realize that there are"
+  },
+  {
+    "start": "00:47:38.196",
+    "end": "00:47:40.852",
+    "text": "parts of the universe, like Moron Land,"
+  },
+  {
+    "start": "00:47:40.852",
+    "end": "00:47:42.780",
+    "text": "where if you go, all the hinges,"
+  },
+  {
+    "start": "00:47:42.780",
+    "end": "00:47:44.579",
+    "text": "all the doorknobs are here and they're saying,"
+  },
+  {
+    "start": "00:47:44.579",
+    "end": "00:47:46.340",
+    "text": "\"You know, we're applying a lot of force,"
+  },
+  {
+    "start": "00:47:46.340",
+    "end": "00:47:48.610",
+    "text": "we're not getting anywhere. What's wrong?\""
+  },
+  {
+    "start": "00:47:48.610",
+    "end": "00:47:51.513",
+    "text": "Well, what we're realizing is that whereas force was"
+  },
+  {
+    "start": "00:47:51.513",
+    "end": "00:47:54.587",
+    "text": "everything in linear motion, force is not everything in"
+  },
+  {
+    "start": "00:47:54.587",
+    "end": "00:47:58.023",
+    "text": "rotational motion. If you want to get your money's"
+  },
+  {
+    "start": "00:47:58.023",
+    "end": "00:48:02.179",
+    "text": "worth, you've got to take the doorknob as far as you can and"
+  },
+  {
+    "start": "00:48:02.179",
+    "end": "00:48:05.889",
+    "text": "put it near the end. Okay, then, you figure that out."
+  },
+  {
+    "start": "00:48:05.889",
+    "end": "00:48:08.422",
+    "text": "Then you come along and you say, \"Okay, I've put the"
+  },
+  {
+    "start": "00:48:08.422",
+    "end": "00:48:11.152",
+    "text": "doorknob at the right place, open the door,\" then you're"
+  },
+  {
+    "start": "00:48:11.152",
+    "end": "00:48:12.989",
+    "text": "applying enormous force this way."
+  },
+  {
+    "start": "00:48:12.989",
+    "end": "00:48:15.461",
+    "text": "And again frustrated, again you're getting no"
+  },
+  {
+    "start": "00:48:15.461",
+    "end": "00:48:18.157",
+    "text": "results, you say, \"I'm going as far as I can from"
+  },
+  {
+    "start": "00:48:18.157",
+    "end": "00:48:20.757",
+    "text": "the hinge,\" and it dawns on you that if you"
+  },
+  {
+    "start": "00:48:20.757",
+    "end": "00:48:23.988",
+    "text": "really want to get something going, you should really take"
+  },
+  {
+    "start": "00:48:23.988",
+    "end": "00:48:27.332",
+    "text": "the line of separation between where it's rotating and where"
+  },
+  {
+    "start": "00:48:27.332",
+    "end": "00:48:31.333",
+    "text": "you're applying the force, and apply a force perpendicular"
+  },
+  {
+    "start": "00:48:31.333",
+    "end": "00:48:33.561",
+    "text": "to it. Any part parallel to it is not"
+  },
+  {
+    "start": "00:48:33.561",
+    "end": "00:48:36.086",
+    "text": "doing anything, unless you kind of rip it off"
+  },
+  {
+    "start": "00:48:36.086",
+    "end": "00:48:38.199",
+    "text": "the hinges. You don't want to do that."
+  },
+  {
+    "start": "00:48:38.199",
+    "end": "00:48:41.970",
+    "text": "So, here this force has got a useless part,"
+  },
+  {
+    "start": "00:48:41.970",
+    "end": "00:48:46.099",
+    "text": "and got a useful part, and the useless part,"
+  },
+  {
+    "start": "00:48:46.099",
+    "end": "00:48:48.121",
+    "text": "which is trying to pull the rod off the hinges,"
+  },
+  {
+    "start": "00:48:48.121",
+    "end": "00:48:50.449",
+    "text": "is going to be balanced by a force from the hinges,"
+  },
+  {
+    "start": "00:48:50.449",
+    "end": "00:48:53.159",
+    "text": "because the rod is a rigid rod, it's not going to move."
+  },
+  {
+    "start": "00:48:53.159",
+    "end": "00:48:55.599",
+    "text": "But the one perpendicular to the rod can, in fact,"
+  },
+  {
+    "start": "00:48:55.599",
+    "end": "00:48:57.889",
+    "text": "turn the rod without affecting the rigidity."
+  },
+  {
+    "start": "00:48:57.889",
+    "end": "00:49:00.581",
+    "text": "So, we need an extra factor here, which is sin"
+  },
+  {
+    "start": "00:49:00.581",
+    "end": "00:49:03.330",
+    "text": "θ_i, where θ_i is"
+  },
+  {
+    "start": "00:49:03.330",
+    "end": "00:49:05.803",
+    "text": "defined as follows. If you're at a point"
+  },
+  {
+    "start": "00:49:05.803",
+    "end": "00:49:08.820",
+    "text": "r_i, and you apply a force F"
+  },
+  {
+    "start": "00:49:08.820",
+    "end": "00:49:11.382",
+    "text": "that way, θ is the angle between"
+  },
+  {
+    "start": "00:49:11.382",
+    "end": "00:49:14.840",
+    "text": "the line joining the point of application of the force,"
+  },
+  {
+    "start": "00:49:14.840",
+    "end": "00:49:19.711",
+    "text": "and the direction of the force. You are here and you're"
+  },
+  {
+    "start": "00:49:19.711",
+    "end": "00:49:23.541",
+    "text": "separated by this vector and as the angle between that"
+  },
+  {
+    "start": "00:49:23.541",
+    "end": "00:49:27.751",
+    "text": "separation vector and the force, that angle θ can vary"
+  },
+  {
+    "start": "00:49:27.751",
+    "end": "00:49:29.608",
+    "text": "from force to force. But this force"
+  },
+  {
+    "start": "00:49:29.608",
+    "end": "00:49:31.388",
+    "text": "F_i, the angle could be"
+  },
+  {
+    "start": "00:49:31.388",
+    "end": "00:49:34.684",
+    "text": "θ_i. That's the final formula for"
+  },
+  {
+    "start": "00:49:34.684",
+    "end": "00:49:38.093",
+    "text": "the torque, okay? So, we have built up all the"
+  },
+  {
+    "start": "00:49:38.093",
+    "end": "00:49:40.840",
+    "text": "pieces, and this is the final answer."
+  },
+  {
+    "start": "00:49:40.840",
+    "end": "00:49:44.563",
+    "text": "This is the definition of torque, and with this torque we"
+  },
+  {
+    "start": "00:49:44.563",
+    "end": "00:49:48.219",
+    "text": "can now complete the dictionary and say what we want."
+  },
+  {
+    "start": "00:49:48.219",
+    "end": "00:49:52.242",
+    "text": "On the left-hand side is the torque, where the torque is"
+  },
+  {
+    "start": "00:49:52.242",
+    "end": "00:49:55.095",
+    "text": "defined as F_ir_i"
+  },
+  {
+    "start": "00:49:55.095",
+    "end": "00:49:58.847",
+    "text": "sin θ_i. F sin θ is just a"
+  },
+  {
+    "start": "00:49:58.847",
+    "end": "00:50:02.616",
+    "text": "component of the force perpendicular to the separation"
+  },
+  {
+    "start": "00:50:02.616",
+    "end": "00:50:04.541",
+    "text": "r. That's what F sin θ"
+  },
+  {
+    "start": "00:50:04.541",
+    "end": "00:50:06.280",
+    "text": "does. I hope you can see that."
+  },
+  {
+    "start": "00:50:06.280",
+    "end": "00:50:09.343",
+    "text": "If you've got a force acting this way, F cos θ is"
+  },
+  {
+    "start": "00:50:09.343",
+    "end": "00:50:12.351",
+    "text": "this part, which is no good, and F sin θ is that"
+  },
+  {
+    "start": "00:50:12.351",
+    "end": "00:50:14.429",
+    "text": "part, which is good for rotations."
+  },
+  {
+    "start": "00:50:14.429",
+    "end": "00:50:18.821",
+    "text": "Also, if you want, in terms of work done,"
+  },
+  {
+    "start": "00:50:18.821",
+    "end": "00:50:24.199",
+    "text": "you want the force times the distance traveled."
+  },
+  {
+    "start": "00:50:24.199",
+    "end": "00:50:26.300",
+    "text": "The distance traveled is only in this direction."
+  },
+  {
+    "start": "00:50:26.300",
+    "end": "00:50:28.360",
+    "text": "There is no distance traveled in this direction."
+  },
+  {
+    "start": "00:50:28.360",
+    "end": "00:50:31.812",
+    "text": "So, the distance traveled is F dot product with the"
+  },
+  {
+    "start": "00:50:31.812",
+    "end": "00:50:35.312",
+    "text": "direction in which you move, and that applies only to the"
+  },
+  {
+    "start": "00:50:35.312",
+    "end": "00:50:38.498",
+    "text": "force perpendicular to the separation, not to the part"
+  },
+  {
+    "start": "00:50:38.498",
+    "end": "00:50:42.254",
+    "text": "that's parallel. Anyway, I hope we understand"
+  },
+  {
+    "start": "00:50:42.254",
+    "end": "00:50:48.042",
+    "text": "intuitively why this is the guy that's responsible for rotating"
+  },
+  {
+    "start": "00:50:48.042",
+    "end": "00:50:50.619",
+    "text": "objects. You want to rotate something"
+  },
+  {
+    "start": "00:50:50.619",
+    "end": "00:50:53.221",
+    "text": "around some axis, you've got a certain amount of"
+  },
+  {
+    "start": "00:50:53.221",
+    "end": "00:50:55.336",
+    "text": "force, you're best off applying the"
+  },
+  {
+    "start": "00:50:55.336",
+    "end": "00:50:58.340",
+    "text": "force as far as you can from the point of rotation."
+  },
+  {
+    "start": "00:50:58.340",
+    "end": "00:51:00.787",
+    "text": "In other words, suppose we want the rear end of"
+  },
+  {
+    "start": "00:51:00.787",
+    "end": "00:51:02.862",
+    "text": "this table here, keeping this end fixed,"
+  },
+  {
+    "start": "00:51:02.862",
+    "end": "00:51:05.150",
+    "text": "but I want to turn it so it's this way."
+  },
+  {
+    "start": "00:51:05.150",
+    "end": "00:51:06.960",
+    "text": "Then I'm saying, I think we all know,"
+  },
+  {
+    "start": "00:51:06.960",
+    "end": "00:51:10.324",
+    "text": "we want to start pushing here. Also, we don't want to apply a"
+  },
+  {
+    "start": "00:51:10.324",
+    "end": "00:51:13.306",
+    "text": "force this way or that way, we want to apply a force"
+  },
+  {
+    "start": "00:51:13.306",
+    "end": "00:51:15.365",
+    "text": "perpendicular. If, for some reason,"
+  },
+  {
+    "start": "00:51:15.365",
+    "end": "00:51:18.510",
+    "text": "we are tied to a rope and can only pull in that direction,"
+  },
+  {
+    "start": "00:51:18.510",
+    "end": "00:51:21.925",
+    "text": "then the component of the force this way is to be discounted,"
+  },
+  {
+    "start": "00:51:21.925",
+    "end": "00:51:25.341",
+    "text": "no use, this is the part that does the turning and that's the"
+  },
+  {
+    "start": "00:51:25.341",
+    "end": "00:51:29.129",
+    "text": "part that also does the work. Any force perpendicular to the"
+  },
+  {
+    "start": "00:51:29.129",
+    "end": "00:51:31.420",
+    "text": "motion is not going to do any work."
+  },
+  {
+    "start": "00:51:31.420",
+    "end": "00:51:36.986",
+    "text": "Any force perpendicular to the displacement is not going to do"
+  },
+  {
+    "start": "00:51:36.986",
+    "end": "00:51:39.483",
+    "text": "any work. This rigid body can only be"
+  },
+  {
+    "start": "00:51:39.483",
+    "end": "00:51:42.192",
+    "text": "later in that position, so the displacement is the"
+  },
+  {
+    "start": "00:51:42.192",
+    "end": "00:51:44.615",
+    "text": "tangential direction, and only the force in the"
+  },
+  {
+    "start": "00:51:44.615",
+    "end": "00:51:46.630",
+    "text": "tangential direction contributes to the work."
+  },
+  {
+    "start": "00:51:46.630",
+    "end": "00:51:49.469",
+    "text": "And in my work energy argument that's what comes here."
+  },
+  {
+    "start": "00:51:49.469",
+    "end": "00:51:52.112",
+    "text": "This is the reason why you come up with this definition of"
+  },
+  {
+    "start": "00:51:52.112",
+    "end": "00:51:56.959",
+    "text": "torque. Okay, so we've got most of the"
+  },
+  {
+    "start": "00:51:56.959",
+    "end": "00:52:01.300",
+    "text": "pieces for this. I will write one more thing by"
+  },
+  {
+    "start": "00:52:01.300",
+    "end": "00:52:04.047",
+    "text": "analogy. The work done by a force that"
+  },
+  {
+    "start": "00:52:04.047",
+    "end": "00:52:07.760",
+    "text": "displaces a body by an amount dx is this."
+  },
+  {
+    "start": "00:52:07.760",
+    "end": "00:52:11.938",
+    "text": "The work done by a torque will be τ times -- I think"
+  },
+  {
+    "start": "00:52:11.938",
+    "end": "00:52:16.186",
+    "text": "you can guess what I want to put there -- times dθ or"
+  },
+  {
+    "start": "00:52:16.186",
+    "end": "00:52:19.946",
+    "text": "Δθ. When a torque rotates a body by"
+  },
+  {
+    "start": "00:52:19.946",
+    "end": "00:52:24.351",
+    "text": "an angle Δθ, then the work done is τ"
+  },
+  {
+    "start": "00:52:24.351",
+    "end": "00:52:29.027",
+    "text": "times Δθ. You can see that even here you"
+  },
+  {
+    "start": "00:52:29.027",
+    "end": "00:52:34.340",
+    "text": "can write the work done as F times r times"
+  },
+  {
+    "start": "00:52:34.340",
+    "end": "00:52:37.404",
+    "text": "Δθ; but that is the torque,"
+  },
+  {
+    "start": "00:52:37.404",
+    "end": "00:52:41.489",
+    "text": "that's the Δθ. So, it's very useful to know."
+  },
+  {
+    "start": "00:52:41.489",
+    "end": "00:52:44.587",
+    "text": "So, if you guys are going to reason by analogy,"
+  },
+  {
+    "start": "00:52:44.587",
+    "end": "00:52:47.281",
+    "text": "I would ask you to know the counterparts,"
+  },
+  {
+    "start": "00:52:47.281",
+    "end": "00:52:49.840",
+    "text": "only then you can do the problems."
+  },
+  {
+    "start": "00:52:49.840",
+    "end": "00:52:54.232",
+    "text": "So, let's get used to this formula here,"
+  },
+  {
+    "start": "00:52:54.232",
+    "end": "00:52:58.190",
+    "text": "ΔW = τΔθ. I'll show you one example."
+  },
+  {
+    "start": "00:52:58.190",
+    "end": "00:53:02.909",
+    "text": "Suppose I have a rod hanging from the ceiling."
+  },
+  {
+    "start": "00:53:02.909",
+    "end": "00:53:06.958",
+    "text": "Well, let's say it's massless and there is a mass m at"
+  },
+  {
+    "start": "00:53:06.958",
+    "end": "00:53:10.130",
+    "text": "the bottom and it's got some length L;"
+  },
+  {
+    "start": "00:53:10.130",
+    "end": "00:53:14.567",
+    "text": "it's a pendulum. So, I'm going to take this"
+  },
+  {
+    "start": "00:53:14.567",
+    "end": "00:53:18.170",
+    "text": "pendulum and I'm going to bring it to this position,"
+  },
+  {
+    "start": "00:53:18.170",
+    "end": "00:53:20.714",
+    "text": "by an angle θ_0,"
+  },
+  {
+    "start": "00:53:20.714",
+    "end": "00:53:24.647",
+    "text": "which unfortunately θ_0 stands for"
+  },
+  {
+    "start": "00:53:24.647",
+    "end": "00:53:28.422",
+    "text": "the final angle. I want to know how much work I"
+  },
+  {
+    "start": "00:53:28.422",
+    "end": "00:53:30.687",
+    "text": "do; that's what we're going to"
+  },
+  {
+    "start": "00:53:30.687",
+    "end": "00:53:33.648",
+    "text": "calculate. So, we take some intermediate"
+  },
+  {
+    "start": "00:53:33.648",
+    "end": "00:53:38.278",
+    "text": "position when we are here. What is the force acting on"
+  },
+  {
+    "start": "00:53:38.278",
+    "end": "00:53:40.910",
+    "text": "this guy? This rod is massless;"
+  },
+  {
+    "start": "00:53:40.910",
+    "end": "00:53:42.440",
+    "text": "the force on this is mg."
+  },
+  {
+    "start": "00:53:46.210",
+    "end": "00:53:50.604",
+    "text": "If that angle is θ, you can see that angle is the"
+  },
+  {
+    "start": "00:53:50.604",
+    "end": "00:53:54.057",
+    "text": "same θ, so mg cos θ acts this"
+  },
+  {
+    "start": "00:53:54.057",
+    "end": "00:53:57.510",
+    "text": "way, and mg sin θ acts that way."
+  },
+  {
+    "start": "00:54:02.559",
+    "end": "00:54:06.116",
+    "text": "To hold the pendulum from falling when the angle is"
+  },
+  {
+    "start": "00:54:06.116",
+    "end": "00:54:09.815",
+    "text": "θ, I have to apply a tangential force in this"
+  },
+  {
+    "start": "00:54:09.815",
+    "end": "00:54:12.590",
+    "text": "direction of size mg sin θ."
+  },
+  {
+    "start": "00:54:12.590",
+    "end": "00:54:16.596",
+    "text": "I hope you guys can see that. The mg cos θ is going"
+  },
+  {
+    "start": "00:54:16.596",
+    "end": "00:54:20.389",
+    "text": "to be provided by the rod. Because the rod is a rigid"
+  },
+  {
+    "start": "00:54:20.389",
+    "end": "00:54:23.590",
+    "text": "body, it won't let the mass move in this direction."
+  },
+  {
+    "start": "00:54:23.590",
+    "end": "00:54:26.792",
+    "text": "It'll provide whatever force it takes to keep the mass moving"
+  },
+  {
+    "start": "00:54:26.792",
+    "end": "00:54:28.806",
+    "text": "radially. In the tangential direction,"
+  },
+  {
+    "start": "00:54:28.806",
+    "end": "00:54:32.015",
+    "text": "to keep it from sliding back to where it began I have to apply a"
+  },
+  {
+    "start": "00:54:32.015",
+    "end": "00:54:36.720",
+    "text": "force mg sin θ. So, the torque that I apply is"
+  },
+  {
+    "start": "00:54:36.720",
+    "end": "00:54:42.532",
+    "text": "mg sin θ times L. So, I did all that by taking"
+  },
+  {
+    "start": "00:54:42.532",
+    "end": "00:54:47.090",
+    "text": "the force, finding the component of the force perpendicular to"
+  },
+  {
+    "start": "00:54:47.090",
+    "end": "00:54:51.199",
+    "text": "the thing, and balancing it with a countering force."
+  },
+  {
+    "start": "00:54:51.199",
+    "end": "00:54:54.695",
+    "text": "You can equally say the torque that I have to apply is really"
+  },
+  {
+    "start": "00:54:54.695",
+    "end": "00:54:58.165",
+    "text": "mg, which is the force, R, which happens to be"
+  },
+  {
+    "start": "00:54:58.165",
+    "end": "00:55:00.547",
+    "text": "L here, and sine of the angle between"
+  },
+  {
+    "start": "00:55:00.547",
+    "end": "00:55:02.434",
+    "text": "them. No matter how we write it,"
+  },
+  {
+    "start": "00:55:02.434",
+    "end": "00:55:05.358",
+    "text": "that's the torque. Let's find the work done by"
+  },
+  {
+    "start": "00:55:05.358",
+    "end": "00:55:09.441",
+    "text": "that torque when I rotate it from the starting angle to some"
+  },
+  {
+    "start": "00:55:09.441",
+    "end": "00:55:12.926",
+    "text": "final angle. That'll be mgL sin θ"
+  },
+  {
+    "start": "00:55:12.926",
+    "end": "00:55:18.840",
+    "text": "dθ from 0 to some final angle θ_0."
+  },
+  {
+    "start": "00:55:18.840",
+    "end": "00:55:22.655",
+    "text": "I'm just saying, the work done is τΔθ summed"
+  },
+  {
+    "start": "00:55:22.655",
+    "end": "00:55:26.030",
+    "text": "over all the angles; that means integrate."
+  },
+  {
+    "start": "00:55:26.030",
+    "end": "00:55:30.056",
+    "text": "So, you've got to go back to your calculus thing and you've"
+  },
+  {
+    "start": "00:55:30.056",
+    "end": "00:55:33.806",
+    "text": "got to remember that the integral of sin θ is - cos"
+  },
+  {
+    "start": "00:55:33.806",
+    "end": "00:55:35.979",
+    "text": "θ, and you want to start from"
+  },
+  {
+    "start": "00:55:35.979",
+    "end": "00:55:38.744",
+    "text": "θ = 0 to θ equal to some final angle"
+  },
+  {
+    "start": "00:55:38.744",
+    "end": "00:55:42.345",
+    "text": "θ_0. And if you crank it out,"
+  },
+  {
+    "start": "00:55:42.345",
+    "end": "00:55:47.489",
+    "text": "you will find it's mgL times 1 - cos θ."
+  },
+  {
+    "start": "00:55:47.489",
+    "end": "00:55:49.640",
+    "text": "So, that's the work done to take a pendulum which is"
+  },
+  {
+    "start": "00:55:49.640",
+    "end": "00:55:51.833",
+    "text": "horizontal, which is vertical and turn it to an angle"
+  },
+  {
+    "start": "00:55:51.833",
+    "end": "00:55:52.930",
+    "text": "θ_0."
+  },
+  {
+    "start": "00:55:58.860",
+    "end": "00:56:01.718",
+    "text": "I'm going to do a cross-check on this to tell you that it"
+  },
+  {
+    "start": "00:56:01.718",
+    "end": "00:56:03.710",
+    "text": "works out from another point of view."
+  },
+  {
+    "start": "00:56:03.710",
+    "end": "00:56:08.079",
+    "text": "This mass was down here, now it's climbed up there."
+  },
+  {
+    "start": "00:56:08.079",
+    "end": "00:56:09.891",
+    "text": "So, you can ask, \"What happened to the work I"
+  },
+  {
+    "start": "00:56:09.891",
+    "end": "00:56:12.241",
+    "text": "did?\" Going back to the Work Energy"
+  },
+  {
+    "start": "00:56:12.241",
+    "end": "00:56:14.800",
+    "text": "Theorem, let's take this mass here."
+  },
+  {
+    "start": "00:56:14.800",
+    "end": "00:56:18.039",
+    "text": "Forces were acting on it. One was the rod,"
+  },
+  {
+    "start": "00:56:18.039",
+    "end": "00:56:20.959",
+    "text": "but the force of the rod was always perpendicular to the"
+  },
+  {
+    "start": "00:56:20.959",
+    "end": "00:56:23.880",
+    "text": "motion of this bob here, so it couldn't do any work."
+  },
+  {
+    "start": "00:56:23.880",
+    "end": "00:56:27.409",
+    "text": "The only work was done by me. What happened to the work I did?"
+  },
+  {
+    "start": "00:56:27.409",
+    "end": "00:56:31.507",
+    "text": "The work I did has to be changing the total energy of the"
+  },
+  {
+    "start": "00:56:31.507",
+    "end": "00:56:34.579",
+    "text": "body, but the bob was not moving before,"
+  },
+  {
+    "start": "00:56:34.579",
+    "end": "00:56:37.255",
+    "text": "and it's not moving after, because I give just the right"
+  },
+  {
+    "start": "00:56:37.255",
+    "end": "00:56:40.099",
+    "text": "force to cancel gravity; I didn't give it any speed."
+  },
+  {
+    "start": "00:56:40.099",
+    "end": "00:56:42.951",
+    "text": "So, it must be that the potential energy of this bob"
+  },
+  {
+    "start": "00:56:42.951",
+    "end": "00:56:45.579",
+    "text": "when it's here should explain the work I did."
+  },
+  {
+    "start": "00:56:45.579",
+    "end": "00:56:58.121",
+    "text": "That's exactly what it is, because let me rewrite this as"
+  },
+  {
+    "start": "00:56:58.121",
+    "end": "00:57:07.079",
+    "text": "[mg] - mgL + mgL cos θ."
+  },
+  {
+    "start": "00:57:07.079",
+    "end": "00:57:16.360",
+    "text": "But maybe we can see that it is mg + mgL."
+  },
+  {
+    "start": "00:57:16.360",
+    "end": "00:57:19.546",
+    "text": "This one, well, I think it's best to write it"
+  },
+  {
+    "start": "00:57:19.546",
+    "end": "00:57:23.168",
+    "text": "as L - L cos θ, and you guys can see what's"
+  },
+  {
+    "start": "00:57:23.168",
+    "end": "00:57:26.066",
+    "text": "going on. L is this distance here,"
+  },
+  {
+    "start": "00:57:26.066",
+    "end": "00:57:29.158",
+    "text": "L cos θ is that distance, and L - L cos"
+  },
+  {
+    "start": "00:57:29.158",
+    "end": "00:57:32.440",
+    "text": "θ is the increase in the height of this bob."
+  },
+  {
+    "start": "00:57:32.440",
+    "end": "00:57:36.334",
+    "text": "This height here is in fact L - L cos θ,"
+  },
+  {
+    "start": "00:57:36.334",
+    "end": "00:57:40.394",
+    "text": "because if that is L and that is θ,"
+  },
+  {
+    "start": "00:57:40.394",
+    "end": "00:57:44.039",
+    "text": "this is L cos θ till that point."
+  },
+  {
+    "start": "00:57:44.039",
+    "end": "00:57:47.036",
+    "text": "So, this is just mg times h,"
+  },
+  {
+    "start": "00:57:47.036",
+    "end": "00:57:49.739",
+    "text": "and that's where your work went in."
+  },
+  {
+    "start": "00:57:49.739",
+    "end": "00:57:52.719",
+    "text": "So, what's the point of this exercise?"
+  },
+  {
+    "start": "00:57:52.719",
+    "end": "00:57:55.757",
+    "text": "This exercise is to get you used to the notion of"
+  },
+  {
+    "start": "00:57:55.757",
+    "end": "00:57:58.921",
+    "text": "calculating work done, not as force times distance,"
+  },
+  {
+    "start": "00:57:58.921",
+    "end": "00:58:02.454",
+    "text": "but as torque times angle. And here's the problem where"
+  },
+  {
+    "start": "00:58:02.454",
+    "end": "00:58:05.139",
+    "text": "the torque itself is changing with the angle."
+  },
+  {
+    "start": "00:58:05.139",
+    "end": "00:58:07.197",
+    "text": "The torque is itself a function of θ,"
+  },
+  {
+    "start": "00:58:07.197",
+    "end": "00:58:10.190",
+    "text": "so you have to do an integral and that's how you get the work."
+  },
+  {
+    "start": "00:58:14.949",
+    "end": "00:58:19.634",
+    "text": "Okay, so now, we've got all the machinery we"
+  },
+  {
+    "start": "00:58:19.634",
+    "end": "00:58:25.517",
+    "text": "need, got all the machinery we need to do kinematics or"
+  },
+  {
+    "start": "00:58:25.517",
+    "end": "00:58:30.420",
+    "text": "dynamics of rigid bodies in this analogy."
+  },
+  {
+    "start": "00:58:30.420",
+    "end": "00:58:33.670",
+    "text": "So, let me summarize what it is. You've got a rigid body;"
+  },
+  {
+    "start": "00:58:33.670",
+    "end": "00:58:37.820",
+    "text": "it's got a moment of inertia; it's got an angular velocity."
+  },
+  {
+    "start": "00:58:37.820",
+    "end": "00:58:40.909",
+    "text": "The product of the two is called the angular momentum,"
+  },
+  {
+    "start": "00:58:40.909",
+    "end": "00:58:44.289",
+    "text": "L, and to change it you've got to apply a torque."
+  },
+  {
+    "start": "00:58:44.289",
+    "end": "00:58:47.028",
+    "text": "To find the torque, find all the external forces"
+  },
+  {
+    "start": "00:58:47.028",
+    "end": "00:58:49.649",
+    "text": "acting on the body, multiply each force by the"
+  },
+  {
+    "start": "00:58:49.649",
+    "end": "00:58:51.980",
+    "text": "distance from the point of rotation,"
+  },
+  {
+    "start": "00:58:51.980",
+    "end": "00:58:55.531",
+    "text": "but the component of each force perpendicular to the line of"
+  },
+  {
+    "start": "00:58:55.531",
+    "end": "00:58:58.300",
+    "text": "separation times the distance of separation,"
+  },
+  {
+    "start": "00:58:58.300",
+    "end": "00:59:01.429",
+    "text": "that's the Fr sin θ, and add it up."
+  },
+  {
+    "start": "00:59:01.429",
+    "end": "00:59:06.449",
+    "text": "Again, when you do the torques, you've got to give it a sign."
+  },
+  {
+    "start": "00:59:06.449",
+    "end": "00:59:09.855",
+    "text": "If a torque tends to rotate a body counter-clockwise,"
+  },
+  {
+    "start": "00:59:09.855",
+    "end": "00:59:13.226",
+    "text": "we will take it as positive, and if the torque tends to"
+  },
+  {
+    "start": "00:59:13.226",
+    "end": "00:59:16.039",
+    "text": "rotate a body clockwise, we'll take it as negative."
+  },
+  {
+    "start": "00:59:16.039",
+    "end": "00:59:18.876",
+    "text": "So, it's possible that in a given body, there could be"
+  },
+  {
+    "start": "00:59:18.876",
+    "end": "00:59:21.659",
+    "text": "torques trying to move it in different directions."
+  },
+  {
+    "start": "00:59:21.659",
+    "end": "00:59:25.096",
+    "text": "So, for example, in the simplest rigid body made"
+  },
+  {
+    "start": "00:59:25.096",
+    "end": "00:59:28.898",
+    "text": "up of, say, two masses, you could be pushing this way"
+  },
+  {
+    "start": "00:59:28.898",
+    "end": "00:59:33.361",
+    "text": "and I could be pushing that way. We're all trying to rotate them"
+  },
+  {
+    "start": "00:59:33.361",
+    "end": "00:59:36.486",
+    "text": "in opposite directions. The torque you apply would be"
+  },
+  {
+    "start": "00:59:36.486",
+    "end": "00:59:39.777",
+    "text": "your force times that distance; this is called positive because"
+  },
+  {
+    "start": "00:59:39.777",
+    "end": "00:59:42.604",
+    "text": "you're going counter-clockwise. The torque that I'm applying"
+  },
+  {
+    "start": "00:59:42.604",
+    "end": "00:59:44.765",
+    "text": "would be my force times the smaller distance,"
+  },
+  {
+    "start": "00:59:44.765",
+    "end": "00:59:47.760",
+    "text": "and that'll be considered negative because it's clockwise."
+  },
+  {
+    "start": "00:59:47.760",
+    "end": "00:59:50.170",
+    "text": "And you'll add them up; you'll get a net torque."
+  },
+  {
+    "start": "00:59:50.170",
+    "end": "00:59:54.015",
+    "text": "That net torque will cause an acceleration of this"
+  },
+  {
+    "start": "00:59:54.015",
+    "end": "00:59:58.159",
+    "text": "dumbbell-like object. What acceleration will it cause?"
+  },
+  {
+    "start": "00:59:58.159",
+    "end": "01:00:03.580",
+    "text": "It'll be my force times my distance, sin θ happens to be"
+  },
+  {
+    "start": "01:00:03.580",
+    "end": "01:00:07.268",
+    "text": "1, minus your force, times the distance over which"
+  },
+  {
+    "start": "01:00:07.268",
+    "end": "01:00:09.739",
+    "text": "you're doing it, times the moment of inertia."
+  },
+  {
+    "start": "01:00:09.739",
+    "end": "01:00:12.937",
+    "text": "The moment of inertia for the simple problem is"
+  },
+  {
+    "start": "01:00:12.937",
+    "end": "01:00:15.369",
+    "text": "m_1r _1^(2) +"
+  },
+  {
+    "start": "01:00:15.369",
+    "end": "01:00:18.150",
+    "text": "m_2r&lt;s ub&gt;2^(2),"
+  },
+  {
+    "start": "01:00:18.150",
+    "end": "01:00:20.250",
+    "text": "if this is m_1 and this is"
+  },
+  {
+    "start": "01:00:20.250",
+    "end": "01:00:21.849",
+    "text": "r_1, and this is"
+  },
+  {
+    "start": "01:00:21.849",
+    "end": "01:00:23.849",
+    "text": "m_2 and that distance is"
+  },
+  {
+    "start": "01:00:23.849",
+    "end": "01:00:27.172",
+    "text": "r_2. So, this is the simplest"
+  },
+  {
+    "start": "01:00:27.172",
+    "end": "01:00:30.869",
+    "text": "problem you could do in rigid body dynamics."
+  },
+  {
+    "start": "01:00:30.869",
+    "end": "01:00:33.047",
+    "text": "Take a couple of forces, work out the torques,"
+  },
+  {
+    "start": "01:00:33.047",
+    "end": "01:00:35.467",
+    "text": "divide it by moment of inertia and get the angle of"
+  },
+  {
+    "start": "01:00:35.467",
+    "end": "01:00:38.344",
+    "text": "acceleration. If the torque is a constant,"
+  },
+  {
+    "start": "01:00:38.344",
+    "end": "01:00:41.828",
+    "text": "it's hard to maintain that. What do I have to do to keep"
+  },
+  {
+    "start": "01:00:41.828",
+    "end": "01:00:44.424",
+    "text": "the torque constant? I've got to start running"
+  },
+  {
+    "start": "01:00:44.424",
+    "end": "01:00:47.962",
+    "text": "around with this as it rotates, and you could imagine doing"
+  },
+  {
+    "start": "01:00:47.962",
+    "end": "01:00:49.680",
+    "text": "that; then, the torque will be"
+  },
+  {
+    "start": "01:00:49.680",
+    "end": "01:00:52.706",
+    "text": "constant, αa will be constant, α constant is"
+  },
+  {
+    "start": "01:00:52.706",
+    "end": "01:00:55.468",
+    "text": "like a constant, and you can do the whole bunch"
+  },
+  {
+    "start": "01:00:55.468",
+    "end": "01:00:59.052",
+    "text": "of problems you guys did before. Okay, now there is one"
+  },
+  {
+    "start": "01:00:59.052",
+    "end": "01:01:04.905",
+    "text": "technical obstacle you've got to overcome if you want to do rigid"
+  },
+  {
+    "start": "01:01:04.905",
+    "end": "01:01:07.769",
+    "text": "body dynamics, and that is to know how to"
+  },
+  {
+    "start": "01:01:07.769",
+    "end": "01:01:10.590",
+    "text": "compute the moment of inertia for all kinds of objects."
+  },
+  {
+    "start": "01:01:10.590",
+    "end": "01:01:13.764",
+    "text": "If I give you 37 masses, each with a distance r"
+  },
+  {
+    "start": "01:01:13.764",
+    "end": "01:01:16.820",
+    "text": "from the point of rotation, it's a trivial thing."
+  },
+  {
+    "start": "01:01:16.820",
+    "end": "01:01:19.070",
+    "text": "Do mr^(2) for each one and add it."
+  },
+  {
+    "start": "01:01:19.070",
+    "end": "01:01:21.926",
+    "text": "But here is the kind of objects you may be given,"
+  },
+  {
+    "start": "01:01:21.926",
+    "end": "01:01:25.079",
+    "text": "not a discreet set of masses but a continuous blob."
+  },
+  {
+    "start": "01:01:25.079",
+    "end": "01:01:27.873",
+    "text": "Just like in the case of center of mass, when you had a bunch of"
+  },
+  {
+    "start": "01:01:27.873",
+    "end": "01:01:29.958",
+    "text": "masses, you took m_1x_1 +"
+  },
+  {
+    "start": "01:01:29.958",
+    "end": "01:01:32.530",
+    "text": "m_2x_2 + m_3x_3"
+  },
+  {
+    "start": "01:01:32.530",
+    "end": "01:01:34.647",
+    "text": "and so on. But if you had a rod which is"
+  },
+  {
+    "start": "01:01:34.647",
+    "end": "01:01:36.590",
+    "text": "continuous, you have to do an integral."
+  },
+  {
+    "start": "01:01:36.590",
+    "end": "01:01:39.820",
+    "text": "So you will have to do an integral here also."
+  },
+  {
+    "start": "01:01:39.820",
+    "end": "01:01:43.354",
+    "text": "So, let's take certain rigid bodies and try to find the"
+  },
+  {
+    "start": "01:01:43.354",
+    "end": "01:01:46.366",
+    "text": "moment of inertia, which are rigid bodies which"
+  },
+  {
+    "start": "01:01:46.366",
+    "end": "01:01:50.110",
+    "text": "are continuous. So, here is a ring of radius"
+  },
+  {
+    "start": "01:01:50.110",
+    "end": "01:01:53.746",
+    "text": "r and mass M. It's not a disk,"
+  },
+  {
+    "start": "01:01:53.746",
+    "end": "01:01:58.632",
+    "text": "in spite of what it looks like. It is a ring and I want to find"
+  },
+  {
+    "start": "01:01:58.632",
+    "end": "01:02:02.820",
+    "text": "its moment of inertia. So, you have to think about"
+  },
+  {
+    "start": "01:02:02.820",
+    "end": "01:02:06.222",
+    "text": "what you will do. So, you think for a second,"
+  },
+  {
+    "start": "01:02:06.222",
+    "end": "01:02:10.310",
+    "text": "and I'll tell you the way I will do that is to partition it"
+  },
+  {
+    "start": "01:02:10.310",
+    "end": "01:02:13.704",
+    "text": "into tiny pieces, each of which is small enough"
+  },
+  {
+    "start": "01:02:13.704",
+    "end": "01:02:17.518",
+    "text": "for me to consider a point. This tiny piece has a mass"
+  },
+  {
+    "start": "01:02:17.518",
+    "end": "01:02:21.169",
+    "text": "Δm_i, and i goes from 1,2,"
+  },
+  {
+    "start": "01:02:21.169",
+    "end": "01:02:24.381",
+    "text": "3,4 to whatever, 10 million, till I go around"
+  },
+  {
+    "start": "01:02:24.381",
+    "end": "01:02:27.149",
+    "text": "the circle. The moment of inertia would"
+  },
+  {
+    "start": "01:02:27.149",
+    "end": "01:02:30.941",
+    "text": "be--I use Δm_i to tell you it's a tiny mass for"
+  },
+  {
+    "start": "01:02:30.941",
+    "end": "01:02:34.619",
+    "text": "this section. But what is the r^(2)?"
+  },
+  {
+    "start": "01:02:34.619",
+    "end": "01:02:37.679",
+    "text": "If I'm planning to rotate it around that point,"
+  },
+  {
+    "start": "01:02:37.679",
+    "end": "01:02:40.139",
+    "text": "I plan to rotate around that point;"
+  },
+  {
+    "start": "01:02:40.139",
+    "end": "01:02:43.150",
+    "text": "it is the same r^(2) for everybody."
+  },
+  {
+    "start": "01:02:43.150",
+    "end": "01:02:46.766",
+    "text": "So, you can pull it out of the summation and you just get"
+  },
+  {
+    "start": "01:02:46.766",
+    "end": "01:02:52.389",
+    "text": "Mr^(2). So, this is a very easy problem."
+  },
+  {
+    "start": "01:02:52.389",
+    "end": "01:02:55.331",
+    "text": "This is as easy as this problem, but you clearly had"
+  },
+  {
+    "start": "01:02:55.331",
+    "end": "01:02:58.791",
+    "text": "only one mass and all of it was at distance r from the"
+  },
+  {
+    "start": "01:02:58.791",
+    "end": "01:03:01.050",
+    "text": "point of rotation, it's Mr^(2)."
+  },
+  {
+    "start": "01:03:01.050",
+    "end": "01:03:03.661",
+    "text": "Here, you got the mass spread out, but luckily spread it out"
+  },
+  {
+    "start": "01:03:03.661",
+    "end": "01:03:06.494",
+    "text": "in such a way that every part of it is the same distance r"
+  },
+  {
+    "start": "01:03:06.494",
+    "end": "01:03:08.957",
+    "text": "from the center, so it's very easy to do the"
+  },
+  {
+    "start": "01:03:08.957",
+    "end": "01:03:10.815",
+    "text": "summation. Pull out the r^(2),"
+  },
+  {
+    "start": "01:03:10.815",
+    "end": "01:03:12.920",
+    "text": "do the sum over mass and get the total mass."
+  },
+  {
+    "start": "01:03:12.920",
+    "end": "01:03:18.110",
+    "text": "Then we're going to do--Any questions about this?"
+  },
+  {
+    "start": "01:03:18.110",
+    "end": "01:03:20.530",
+    "text": "Everything is going to be built on understanding this."
+  },
+  {
+    "start": "01:03:20.530",
+    "end": "01:03:23.722",
+    "text": "So, for the ring, this is the moment of inertia,"
+  },
+  {
+    "start": "01:03:23.722",
+    "end": "01:03:27.121",
+    "text": "which is Mr^(2). But now, I want to do the"
+  },
+  {
+    "start": "01:03:27.121",
+    "end": "01:03:30.837",
+    "text": "following. I want to take a disk now,"
+  },
+  {
+    "start": "01:03:30.837",
+    "end": "01:03:33.120",
+    "text": "of radius r;"
+  },
+  {
+    "start": "01:03:38.090",
+    "end": "01:03:41.481",
+    "text": "I've got to do the sum of Mr^(2) for every mass in"
+  },
+  {
+    "start": "01:03:41.481",
+    "end": "01:03:43.938",
+    "text": "the problem. So, here is where you have to"
+  },
+  {
+    "start": "01:03:43.938",
+    "end": "01:03:46.228",
+    "text": "organize your thinking. I plan to do the moment of"
+  },
+  {
+    "start": "01:03:46.228",
+    "end": "01:03:47.900",
+    "text": "inertia through the center. First of all,"
+  },
+  {
+    "start": "01:03:47.900",
+    "end": "01:03:50.805",
+    "text": "if I didn't tell you the moment of inertia through where you"
+  },
+  {
+    "start": "01:03:50.805",
+    "end": "01:03:53.211",
+    "text": "cannot even start; I tell you I want it through"
+  },
+  {
+    "start": "01:03:53.211",
+    "end": "01:03:55.842",
+    "text": "the center. To want it through the center"
+  },
+  {
+    "start": "01:03:55.842",
+    "end": "01:03:59.785",
+    "text": "we have the ability then to think of this as made up of a"
+  },
+  {
+    "start": "01:03:59.785",
+    "end": "01:04:05.727",
+    "text": "whole bunch of concentric rings, each one at radius r and"
+  },
+  {
+    "start": "01:04:05.727",
+    "end": "01:04:10.867",
+    "text": "of thickness dr. If you can find the moment of"
+  },
+  {
+    "start": "01:04:10.867",
+    "end": "01:04:15.340",
+    "text": "inertia of this tiny shaded region, I sum over all the"
+  },
+  {
+    "start": "01:04:15.340",
+    "end": "01:04:18.548",
+    "text": "little washers, the annuli that I have,"
+  },
+  {
+    "start": "01:04:18.548",
+    "end": "01:04:22.322",
+    "text": "to fill up the whole disk. So, what's the moment of"
+  },
+  {
+    "start": "01:04:22.322",
+    "end": "01:04:27.780",
+    "text": "inertia of this annulus? Well, I already told you."
+  },
+  {
+    "start": "01:04:27.780",
+    "end": "01:04:30.367",
+    "text": "If the annulus has a mass M, then it's"
+  },
+  {
+    "start": "01:04:30.367",
+    "end": "01:04:33.719",
+    "text": "Mr^(2) is the moment of inertia of that annulus."
+  },
+  {
+    "start": "01:04:33.719",
+    "end": "01:04:36.345",
+    "text": "So, the question is, \"What is the mass of the shaded"
+  },
+  {
+    "start": "01:04:36.345",
+    "end": "01:04:40.200",
+    "text": "region?\" Clearly, the r^(2) we"
+  },
+  {
+    "start": "01:04:40.200",
+    "end": "01:04:45.449",
+    "text": "use is the r at which it is sitting."
+  },
+  {
+    "start": "01:04:45.449",
+    "end": "01:04:47.480",
+    "text": "But what's the mass I should use?"
+  },
+  {
+    "start": "01:04:47.480",
+    "end": "01:04:51.377",
+    "text": "Well, for the mass I should use, I argue that if the total"
+  },
+  {
+    "start": "01:04:51.377",
+    "end": "01:04:54.386",
+    "text": "mass is that [M] that times [should have said"
+  },
+  {
+    "start": "01:04:54.386",
+    "end": "01:04:56.915",
+    "text": "\"over\"] πR^(2) is the mass per"
+  },
+  {
+    "start": "01:04:56.915",
+    "end": "01:05:00.270",
+    "text": "unit area. Then, I need the area of this"
+  },
+  {
+    "start": "01:05:00.270",
+    "end": "01:05:03.790",
+    "text": "shaded region. That's the tricky part."
+  },
+  {
+    "start": "01:05:03.790",
+    "end": "01:05:05.120",
+    "text": "Have you got that? Yes?"
+  },
+  {
+    "start": "01:05:05.120",
+    "end": "01:05:07.459",
+    "text": "Student: 2πrdr. Professor Ramamurti"
+  },
+  {
+    "start": "01:05:07.459",
+    "end": "01:05:09.677",
+    "text": "Shankar: Right, so let's ask why it's"
+  },
+  {
+    "start": "01:05:09.677",
+    "end": "01:05:12.107",
+    "text": "2πrdr. If you take this annulus,"
+  },
+  {
+    "start": "01:05:12.107",
+    "end": "01:05:15.199",
+    "text": "and you take a pair of scissors and you cut it out,"
+  },
+  {
+    "start": "01:05:15.199",
+    "end": "01:05:19.590",
+    "text": "and you open it out, it's going to look like a long"
+  },
+  {
+    "start": "01:05:19.590",
+    "end": "01:05:23.630",
+    "text": "rectangle whose thickness will be dr;"
+  },
+  {
+    "start": "01:05:23.630",
+    "end": "01:05:31.065",
+    "text": "its length will be 2πr. So, 2πrdr is the--that"
+  },
+  {
+    "start": "01:05:31.065",
+    "end": "01:05:38.519",
+    "text": "says contribution, here is the dr."
+  },
+  {
+    "start": "01:05:38.519",
+    "end": "01:05:40.530",
+    "text": "Now, you've got to add it up over everything."
+  },
+  {
+    "start": "01:05:40.530",
+    "end": "01:05:43.610",
+    "text": "Adding it up is what we do by doing the integral."
+  },
+  {
+    "start": "01:05:43.610",
+    "end": "01:05:46.309",
+    "text": "Now, I don't want to do this integral;"
+  },
+  {
+    "start": "01:05:46.309",
+    "end": "01:05:49.039",
+    "text": "you guys can at least guess what's going to happen."
+  },
+  {
+    "start": "01:05:49.039",
+    "end": "01:05:50.740",
+    "text": "There's going to be no π in the answer;"
+  },
+  {
+    "start": "01:05:50.740",
+    "end": "01:05:53.742",
+    "text": "π is gone. You've got rr^(2) is"
+  },
+  {
+    "start": "01:05:53.742",
+    "end": "01:05:56.949",
+    "text": "r^(3), r^(4)/4 and that'll,"
+  },
+  {
+    "start": "01:05:56.949",
+    "end": "01:06:03.369",
+    "text": "if you combine it with that, you get this MR^(2)/2."
+  },
+  {
+    "start": "01:06:03.369",
+    "end": "01:06:08.730",
+    "text": "So, the moment of inertia of a disk is MR^(2)/2."
+  },
+  {
+    "start": "01:06:08.730",
+    "end": "01:06:12.874",
+    "text": "That's because if I came and told you moment of--suppose I"
+  },
+  {
+    "start": "01:06:12.874",
+    "end": "01:06:16.219",
+    "text": "made a calculation with a mistake somewhere,"
+  },
+  {
+    "start": "01:06:16.219",
+    "end": "01:06:21.280",
+    "text": "and I said it's MR^(2), will you know I'm wrong?"
+  },
+  {
+    "start": "01:06:21.280",
+    "end": "01:06:23.690",
+    "text": "And why will you argue that it cannot be the right answer?"
+  },
+  {
+    "start": "01:06:27.050",
+    "end": "01:06:30.036",
+    "text": "Yes? Student: Well,"
+  },
+  {
+    "start": "01:06:30.036",
+    "end": "01:06:32.329",
+    "text": "it's like the ring but the radii are smaller."
+  },
+  {
+    "start": "01:06:32.329",
+    "end": "01:06:34.130",
+    "text": "Professor Ramamurti Shankar: Right."
+  },
+  {
+    "start": "01:06:34.130",
+    "end": "01:06:36.372",
+    "text": "In other words, his answer, the correct answer"
+  },
+  {
+    "start": "01:06:36.372",
+    "end": "01:06:39.214",
+    "text": "is if it is MR^(2) it means the entire mass is at a"
+  },
+  {
+    "start": "01:06:39.214",
+    "end": "01:06:42.070",
+    "text": "distance R^(2). But we know some of the mass is"
+  },
+  {
+    "start": "01:06:42.070",
+    "end": "01:06:45.172",
+    "text": "a lot closer to the center. In fact, some of it is right at"
+  },
+  {
+    "start": "01:06:45.172",
+    "end": "01:06:48.174",
+    "text": "the center, so you cannot get the same R^(2) as a"
+  },
+  {
+    "start": "01:06:48.174",
+    "end": "01:06:50.140",
+    "text": "contribution from all the pieces."
+  },
+  {
+    "start": "01:06:50.140",
+    "end": "01:06:52.424",
+    "text": "Some will be at 0 distance; some will be at the full"
+  },
+  {
+    "start": "01:06:52.424",
+    "end": "01:06:54.277",
+    "text": "distance. So, whenever you do the moment"
+  },
+  {
+    "start": "01:06:54.277",
+    "end": "01:06:56.424",
+    "text": "of inertia for a disk, it's got to look like"
+  },
+  {
+    "start": "01:06:56.424",
+    "end": "01:06:59.620",
+    "text": "MR^(2) times a number which is definitely less than 1."
+  },
+  {
+    "start": "01:06:59.620",
+    "end": "01:07:02.492",
+    "text": "It turns out it's half; if we got a third or a fourth"
+  },
+  {
+    "start": "01:07:02.492",
+    "end": "01:07:04.619",
+    "text": "you wouldn't know it's obviously wrong."
+  },
+  {
+    "start": "01:07:04.619",
+    "end": "01:07:07.035",
+    "text": "But if I got 1 in front, or worse, if I got 2 times"
+  },
+  {
+    "start": "01:07:07.035",
+    "end": "01:07:08.920",
+    "text": "MR^(2), then you know I've made a"
+  },
+  {
+    "start": "01:07:08.920",
+    "end": "01:07:13.349",
+    "text": "mistake. Okay, now, the last of the"
+  },
+  {
+    "start": "01:07:13.349",
+    "end": "01:07:22.529",
+    "text": "objects I want to look at today, is a rod, I want to take--This"
+  },
+  {
+    "start": "01:07:22.529",
+    "end": "01:07:31.265",
+    "text": "is actually the example that's done quite often as the first"
+  },
+  {
+    "start": "01:07:31.265",
+    "end": "01:07:43.960",
+    "text": "example but I will do it now. So, here is a rod, okay?"
+  },
+  {
+    "start": "01:07:43.960",
+    "end": "01:07:47.308",
+    "text": "It has length L, mass M,"
+  },
+  {
+    "start": "01:07:47.308",
+    "end": "01:07:51.110",
+    "text": "and I say, what's the moment of inertia?"
+  },
+  {
+    "start": "01:07:51.110",
+    "end": "01:07:55.988",
+    "text": "Do you know what you could do? What's the first question you"
+  },
+  {
+    "start": "01:07:55.988",
+    "end": "01:07:59.159",
+    "text": "will ask when I say, \"What's the moment of inertia?"
+  },
+  {
+    "start": "01:07:59.159",
+    "end": "01:08:00.559",
+    "text": "Student: Around what point?"
+  },
+  {
+    "start": "01:08:00.559",
+    "end": "01:08:01.454",
+    "text": "Professor Ramamurti Shankar: Around what point,"
+  },
+  {
+    "start": "01:08:01.454",
+    "end": "01:08:02.780",
+    "text": "right? Till I tell you that,"
+  },
+  {
+    "start": "01:08:02.780",
+    "end": "01:08:04.666",
+    "text": "you cannot begin. So, I will say,"
+  },
+  {
+    "start": "01:08:04.666",
+    "end": "01:08:07.670",
+    "text": "\"Let's find the moment of inertia around this end.\""
+  },
+  {
+    "start": "01:08:07.670",
+    "end": "01:08:10.707",
+    "text": "So, what you should imagine in that case is--You stick a nail"
+  },
+  {
+    "start": "01:08:10.707",
+    "end": "01:08:13.845",
+    "text": "through here and the guy rotates like that on a big circle with"
+  },
+  {
+    "start": "01:08:13.845",
+    "end": "01:08:16.462",
+    "text": "that as the center. If you stuck the nail through"
+  },
+  {
+    "start": "01:08:16.462",
+    "end": "01:08:18.316",
+    "text": "this midpoint, it's a different story,"
+  },
+  {
+    "start": "01:08:18.316",
+    "end": "01:08:22.912",
+    "text": "and the answer is different. So here, what I do is I take a"
+  },
+  {
+    "start": "01:08:22.912",
+    "end": "01:08:28.056",
+    "text": "distance x. I take a sliver of thickness"
+  },
+  {
+    "start": "01:08:28.056",
+    "end": "01:08:30.970",
+    "text": "dx. That sliver is small enough for"
+  },
+  {
+    "start": "01:08:30.970",
+    "end": "01:08:32.939",
+    "text": "me to consider there's a point mass."
+  },
+  {
+    "start": "01:08:32.939",
+    "end": "01:08:36.718",
+    "text": "Therefore, the moment of inertia of that tiny portion"
+  },
+  {
+    "start": "01:08:36.718",
+    "end": "01:08:41.224",
+    "text": "will look like the square of the distance times the mass of the"
+  },
+  {
+    "start": "01:08:41.224",
+    "end": "01:08:44.699",
+    "text": "tiny portion. The mass of the tiny portion"
+  },
+  {
+    "start": "01:08:44.699",
+    "end": "01:08:46.060",
+    "text": "looks like this."
+  },
+  {
+    "start": "01:08:58.690",
+    "end": "01:09:00.876",
+    "text": "Let me see; that's the mass per unit"
+  },
+  {
+    "start": "01:09:00.876",
+    "end": "01:09:03.890",
+    "text": "length, that's the length, that's the mass of the object."
+  },
+  {
+    "start": "01:09:03.890",
+    "end": "01:09:07.350",
+    "text": "Then I have to do the integral from 0 to L."
+  },
+  {
+    "start": "01:09:07.350",
+    "end": "01:09:12.930",
+    "text": "Well, x^(2) will give me x^(3)/3."
+  },
+  {
+    "start": "01:09:12.930",
+    "end": "01:09:16.662",
+    "text": "That'll give me ML^(2)/3,"
+  },
+  {
+    "start": "01:09:16.662",
+    "end": "01:09:22.199",
+    "text": "and that's the moment of inertia of the rod."
+  },
+  {
+    "start": "01:09:22.199",
+    "end": "01:09:24.062",
+    "text": "Again, it looks like ML^(2),"
+  },
+  {
+    "start": "01:09:24.062",
+    "end": "01:09:27.460",
+    "text": "it's got to have a number in front of it that's less than 1,"
+  },
+  {
+    "start": "01:09:27.460",
+    "end": "01:09:30.779",
+    "text": "because if you're measuring from here the furthest you can"
+  },
+  {
+    "start": "01:09:30.779",
+    "end": "01:09:33.405",
+    "text": "be is L; a lot of the guys had a lot"
+  },
+  {
+    "start": "01:09:33.405",
+    "end": "01:09:35.254",
+    "text": "closer. So, the weighted average of the"
+  },
+  {
+    "start": "01:09:35.254",
+    "end": "01:09:37.500",
+    "text": "square of the distance cannot be all L^(2);"
+  },
+  {
+    "start": "01:09:37.500",
+    "end": "01:09:39.649",
+    "text": "it's got to be something less than L^(2)."
+  },
+  {
+    "start": "01:09:39.649",
+    "end": "01:09:42.836",
+    "text": "The fact that it's 1/3 is of course what you do all the work"
+  },
+  {
+    "start": "01:09:42.836",
+    "end": "01:09:44.325",
+    "text": "for. Student: You need an"
+  },
+  {
+    "start": "01:09:44.325",
+    "end": "01:09:45.355",
+    "text": "L too. Professor Ramamurti"
+  },
+  {
+    "start": "01:09:45.355",
+    "end": "01:09:46.649",
+    "text": "Shankar: Pardon me? Student: An L too."
+  },
+  {
+    "start": "01:09:46.649",
+    "end": "01:09:49.205",
+    "text": "Professor Ramamurti Shankar: You forgot the"
+  },
+  {
+    "start": "01:09:49.205",
+    "end": "01:09:51.310",
+    "text": "L here? Student: Yeah."
+  },
+  {
+    "start": "01:09:51.310",
+    "end": "01:09:53.554",
+    "text": "Professor Ramamurti Shankar: Also,"
+  },
+  {
+    "start": "01:09:53.554",
+    "end": "01:09:56.866",
+    "text": "the dimension for the moment of inertia should be in the end"
+  },
+  {
+    "start": "01:09:56.866",
+    "end": "01:10:03.090",
+    "text": "mass times length squared. Yes?"
+  },
+  {
+    "start": "01:10:03.090",
+    "end": "01:10:05.670",
+    "text": "You're not happy with that? Student: No, I'm not."
+  },
+  {
+    "start": "01:10:05.670",
+    "end": "01:10:06.370",
+    "text": "Professor Ramamurti Shankar: You agree,"
+  },
+  {
+    "start": "01:10:06.370",
+    "end": "01:10:08.260",
+    "text": "okay. Look, sometimes I do get these"
+  },
+  {
+    "start": "01:10:08.260",
+    "end": "01:10:10.634",
+    "text": "things wrong, so you should always try to"
+  },
+  {
+    "start": "01:10:10.634",
+    "end": "01:10:15.218",
+    "text": "keep an eye on this. The last thing I want to do is"
+  },
+  {
+    "start": "01:10:15.218",
+    "end": "01:10:20.476",
+    "text": "to find the--Well, when I say last thing I want to"
+  },
+  {
+    "start": "01:10:20.476",
+    "end": "01:10:22.476",
+    "text": "do, I don't mean I'm reluctant to"
+  },
+  {
+    "start": "01:10:22.476",
+    "end": "01:10:24.909",
+    "text": "do it, I'm just saying I'm near the end of the day."
+  },
+  {
+    "start": "01:10:24.909",
+    "end": "01:10:28.826",
+    "text": "The final thing that I will now calculate is the moment of"
+  },
+  {
+    "start": "01:10:28.826",
+    "end": "01:10:33.022",
+    "text": "inertia around the center. Let's see what's going to"
+  },
+  {
+    "start": "01:10:33.022",
+    "end": "01:10:35.806",
+    "text": "happen. It's the same integral,"
+  },
+  {
+    "start": "01:10:35.806",
+    "end": "01:10:38.041",
+    "text": "x^(2), dx/L,"
+  },
+  {
+    "start": "01:10:38.041",
+    "end": "01:10:43.136",
+    "text": "M/L, but the range of integration for x will"
+  },
+  {
+    "start": "01:10:43.136",
+    "end": "01:10:47.160",
+    "text": "now go from -L/2 to + L/2."
+  },
+  {
+    "start": "01:10:55.699",
+    "end": "01:11:01.252",
+    "text": "Then, I simplify my life by writing it as 2M/L times"
+  },
+  {
+    "start": "01:11:01.252",
+    "end": "01:11:04.890",
+    "text": "x^(2)dx from 0 to L/2."
+  },
+  {
+    "start": "01:11:04.890",
+    "end": "01:11:07.310",
+    "text": "This is something I encourage you to do all the time."
+  },
+  {
+    "start": "01:11:07.310",
+    "end": "01:11:09.991",
+    "text": "If an integral is an even function of x,"
+  },
+  {
+    "start": "01:11:09.991",
+    "end": "01:11:13.079",
+    "text": "namely, -x contributes as much as +x,"
+  },
+  {
+    "start": "01:11:13.079",
+    "end": "01:11:16.510",
+    "text": "then you can take half the reason of integration and double"
+  },
+  {
+    "start": "01:11:16.510",
+    "end": "01:11:19.099",
+    "text": "the answer. You can do it only if it's an"
+  },
+  {
+    "start": "01:11:19.099",
+    "end": "01:11:21.609",
+    "text": "even function, so if x and--yes?"
+  },
+  {
+    "start": "01:11:21.609",
+    "end": "01:11:24.335",
+    "text": "Student: How come it's still over L if you put"
+  },
+  {
+    "start": "01:11:24.335",
+    "end": "01:11:26.613",
+    "text": "x in with the other one? Professor Ramamurti"
+  },
+  {
+    "start": "01:11:26.613",
+    "end": "01:11:28.121",
+    "text": "Shankar: Oh, I'm sorry, you're absolutely"
+  },
+  {
+    "start": "01:11:28.121",
+    "end": "01:11:31.023",
+    "text": "right. The way to do that would be"
+  },
+  {
+    "start": "01:11:31.023",
+    "end": "01:11:33.190",
+    "text": "here. See, you keep trying,"
+  },
+  {
+    "start": "01:11:33.190",
+    "end": "01:11:36.710",
+    "text": "you will catch me. That's right, that's correct."
+  },
+  {
+    "start": "01:11:36.710",
+    "end": "01:11:40.195",
+    "text": "Okay, so let's do this now, 2M/L,"
+  },
+  {
+    "start": "01:11:40.195",
+    "end": "01:11:45.380",
+    "text": "okay, now I'm really anxious, because this L^(3),"
+  },
+  {
+    "start": "01:11:45.380",
+    "end": "01:11:49.352",
+    "text": "it's the X^(3)/3, but the thing that's being"
+  },
+  {
+    "start": "01:11:49.352",
+    "end": "01:11:52.973",
+    "text": "cubed is L/2, and that's giving me"
+  },
+  {
+    "start": "01:11:52.973",
+    "end": "01:11:54.660",
+    "text": "ML^(2)/12."
+  },
+  {
+    "start": "01:12:02.010",
+    "end": "01:12:04.470",
+    "text": "So, the moment of inertia is not a fixed number."
+  },
+  {
+    "start": "01:12:04.470",
+    "end": "01:12:07.273",
+    "text": "It got a lot smaller when I took it around the center of"
+  },
+  {
+    "start": "01:12:07.273",
+    "end": "01:12:09.079",
+    "text": "mass. When I took it around the left"
+  },
+  {
+    "start": "01:12:09.079",
+    "end": "01:12:11.771",
+    "text": "edge, I got ML^(2)/3; I went to the midpoint,"
+  },
+  {
+    "start": "01:12:11.771",
+    "end": "01:12:14.615",
+    "text": "I got ML^(2)/12. I think it's pretty clear that"
+  },
+  {
+    "start": "01:12:14.615",
+    "end": "01:12:16.659",
+    "text": "I'm going from here I reduce the answer."
+  },
+  {
+    "start": "01:12:16.659",
+    "end": "01:12:20.020",
+    "text": "So, when I keep going, it will get even smaller."
+  },
+  {
+    "start": "01:12:20.020",
+    "end": "01:12:23.230",
+    "text": "That's where your common sense will tell you that if you got"
+  },
+  {
+    "start": "01:12:23.230",
+    "end": "01:12:26.331",
+    "text": "some answer from there you're going to get the same answer"
+  },
+  {
+    "start": "01:12:26.331",
+    "end": "01:12:29.595",
+    "text": "from here and you hit the best possible moment of inertia you"
+  },
+  {
+    "start": "01:12:29.595",
+    "end": "01:12:31.511",
+    "text": "can. You should be able to argue"
+  },
+  {
+    "start": "01:12:31.511",
+    "end": "01:12:34.558",
+    "text": "intuitively, and if you do the calculation, it'll come out to"
+  },
+  {
+    "start": "01:12:34.558",
+    "end": "01:12:37.813",
+    "text": "be the same. Now, the thing to check if you"
+  },
+  {
+    "start": "01:12:37.813",
+    "end": "01:12:42.884",
+    "text": "do this, the moment of inertia around one end is the moment of"
+  },
+  {
+    "start": "01:12:42.884",
+    "end": "01:12:48.369",
+    "text": "inertia around the center less the mass times (L/2)^(2)."
+  },
+  {
+    "start": "01:12:48.369",
+    "end": "01:12:51.069",
+    "text": "This is something you can actually verify."
+  },
+  {
+    "start": "01:12:51.069",
+    "end": "01:12:55.586",
+    "text": "Just take the numbers I gave you and you'll find that this"
+  },
+  {
+    "start": "01:12:55.586",
+    "end": "01:13:00.024",
+    "text": "answer plus M times (L/2)^(2) will be equal"
+  },
+  {
+    "start": "01:13:00.024",
+    "end": "01:13:03.386",
+    "text": "to that answer. And this happens to be a very"
+  },
+  {
+    "start": "01:13:03.386",
+    "end": "01:13:06.140",
+    "text": "general theorem I'll talk about next time."
+  },
+  {
+    "start": "01:13:06.140",
+    "end": "01:13:09.697",
+    "text": "If you know the moment of inertia through the center of"
+  },
+  {
+    "start": "01:13:09.697",
+    "end": "01:13:11.409",
+    "text": "mass, you're done, okay?"
+  },
+  {
+    "start": "01:13:11.409",
+    "end": "01:13:14.443",
+    "text": "If I want the moment of inertia through any other point,"
+  },
+  {
+    "start": "01:13:14.443",
+    "end": "01:13:17.642",
+    "text": "I take the moment of inertia through the center of mass and"
+  },
+  {
+    "start": "01:13:17.642",
+    "end": "01:13:20.897",
+    "text": "add to it the total mass of the object and the square of the"
+  },
+  {
+    "start": "01:13:20.897",
+    "end": "01:13:23.600",
+    "text": "distance by which you made me move my axis,"
+  },
+  {
+    "start": "01:13:23.600",
+    "end": "01:13:25.970",
+    "text": "which here happens to be L/2."
+  },
+  {
+    "start": "01:13:25.970",
+    "end": "01:13:28.869",
+    "text": "I will of course prove this; I don't want to give you"
+  },
+  {
+    "start": "01:13:28.869",
+    "end": "01:13:30.708",
+    "text": "anything without proof. We can actually,"
+  },
+  {
+    "start": "01:13:30.708",
+    "end": "01:13:33.595",
+    "text": "in our class actually, satisfy ourselves that this is"
+  },
+  {
+    "start": "01:13:33.595",
+    "end": "01:13:36.208",
+    "text": "true. Not only is it true for a rod,"
+  },
+  {
+    "start": "01:13:36.208",
+    "end": "01:13:39.551",
+    "text": "it's even true for a disk. It's true for any object in two"
+  },
+  {
+    "start": "01:13:39.551",
+    "end": "01:13:42.201",
+    "text": "dimensions, that if you've got the moment of inertia of this"
+  },
+  {
+    "start": "01:13:42.201",
+    "end": "01:13:44.273",
+    "text": "creature, through the center of mass,"
+  },
+  {
+    "start": "01:13:44.273",
+    "end": "01:13:47.397",
+    "text": "and you want it through that point, just take the answer"
+  },
+  {
+    "start": "01:13:47.397",
+    "end": "01:13:50.749",
+    "text": "through the center of mass and add to it Md^(2) where"
+  },
+  {
+    "start": "01:13:50.749",
+    "end": "01:13:55.000",
+    "text": "d is that distance. That'll be proven next time."
+  }
+]
