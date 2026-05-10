@@ -13,25 +13,33 @@
 |---|---|---:|
 | Daniel Kahneman | Amos Tversky | 224 |
 | Amos Tversky | Daniel Kahneman | 159 |
-| Anil K. Seth | Karl Friston | 137 |
+| Anil K. Seth | Karl Friston | 139 |
 | Yoshua Bengio | Geoffrey E. Hinton | 133 |
+| Marco Iacoboni | Vittorio Gallese | 127 |
 | Yoshua Bengio | Yann LeCun | 101 |
 | Carlo Rovelli | Lee Smolin | 87 |
 | Stuart R. Hameroff | Roger Penrose | 86 |
 | Brian Greene | Edward Witten | 82 |
 | Lee Smolin | Carlo Rovelli | 77 |
 | Cumrun Vafa | Edward Witten | 75 |
+| Anil K. Seth | Giulio Tononi | 68 |
 | Juan Maldacena | Edward Witten | 55 |
+| Giulio Tononi | Olaf Sporns | 52 |
 | Ilya Sutskever | Geoffrey E. Hinton | 46 |
 | Juan Maldacena | Andrew Strominger | 45 |
+| Olaf Sporns | Karl Friston | 44 |
+| Sabine Hossenfelder | Lee Smolin | 42 |
 | Yann LeCun | Yoshua Bengio | 39 |
 | Roger Penrose | Stuart R. Hameroff | 38 |
 | Stuart R. Hameroff | H. Fröhlich | 38 |
+| Olaf Sporns | Giulio Tononi | 37 |
 | Geoffrey E. Hinton | Yoshua Bengio | 37 |
 | Andrew Strominger | Edward Witten | 36 |
 | Brian Greene | Cumrun Vafa | 36 |
 | Allen Newell | Herbert A. Simon | 36 |
+| Frank J. Tipler | S. W. Hawking | 35 |
 | Andrew Strominger | S. W. Hawking | 35 |
+| Vittorio Gallese | Marco Iacoboni | 35 |
 | Cumrun Vafa | Andrew Strominger | 34 |
 | Ilya Sutskever | Yoshua Bengio | 33 |
 | Alan H. Guth | S. W. Hawking | 33 |
@@ -39,25 +47,17 @@
 | Yann LeCun | Geoffrey E. Hinton | 31 |
 | Demis Hassabis | Ilya Sutskever | 30 |
 | Lisa Randall | Nima Arkani–Hamed | 29 |
+| Anil K. Seth | Olaf Sporns | 28 |
 | Geoffrey E. Hinton | Yann LeCun | 28 |
 | Brian Greene | Andrew Strominger | 27 |
+| Joseph E. LeDoux | Eric R. Kandel | 26 |
 | Juan Maldacena | S. W. Hawking | 26 |
+| Alan H. Guth | Paul J. Steinhardt | 26 |
 | Nima Arkani–Hamed | Edward Witten | 26 |
 | Daniel Kahneman | Herbert A. Simon | 25 |
 | Nima Arkani–Hamed | Steven Weinberg | 23 |
 | Imre Lakatos | Paul K. Feyerabend | 23 |
+| Paul J. Steinhardt | Alan H. Guth | 22 |
 | Karl Friston | Geoffrey E. Hinton | 22 |
 | Alan H. Guth | Steven Weinberg | 22 |
 | Anton Zeilinger | N. David Mermin | 21 |
-| Lisa Randall | Juan Maldacena | 20 |
-| Lynn Margulis | J. E. Lovelock | 20 |
-| Andrew A. Marino | Robert Becker | 20 |
-| S. W. Hawking | Roger Penrose | 19 |
-| Andrew Strominger | Juan Maldacena | 18 |
-| Karen Barad | Donna Haraway | 18 |
-| Amos Tversky | Herbert A. Simon | 17 |
-| Demis Hassabis | Yoshua Bengio | 17 |
-| Geoffrey E. Hinton | Ilya Sutskever | 17 |
-| Nima Arkani–Hamed | Juan Maldacena | 17 |
-| Carlo Rovelli | S. W. Hawking | 16 |
-| Juan Maldacena | Cumrun Vafa | 16 |
