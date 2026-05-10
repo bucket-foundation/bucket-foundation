@@ -7,7 +7,7 @@
 - **Works (total)**: 526
 - **Cited by (total)**: 41629
 - **Works pulled**: 200
-- **Captured**: 2026-05-10T09:33:59
+- **Captured**: 2026-05-10T13:45:33
 
 ## Top works (by citation count)
 
