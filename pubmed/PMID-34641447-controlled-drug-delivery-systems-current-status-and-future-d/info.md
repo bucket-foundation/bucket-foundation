@@ -1,0 +1,14 @@
+# Controlled Drug Delivery Systems: Current Status and Future Directions.
+
+- **PMID**: 34641447
+- **DOI**: 10.1080/17425247.2019.1660318
+- **PMCID**: PMC7320157 (full-text saved)
+- **Journal**: Molecules (Basel, Switzerland)  ·  **Year**: 2021
+- **Authors**: Shivakalyani Adepu, Seeram Ramakrishna
+- **MeSH**: Animals, Biocompatible Materials, Drug Carriers, Drug Delivery Systems, Humans, Nanoparticles, Pharmaceutical Preparations
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34641447/
+- **Captured**: 2026-05-10T13:32:28
+
+## Abstract
+
+The drug delivery system enables the release of the active pharmaceutical ingredient to achieve a desired therapeutic response. Conventional drug delivery systems (tablets, capsules, syrups, ointments, etc.) suffer from poor bioavailability and fluctuations in plasma drug level and are unable to achieve sustained release. Without an efficient delivery mechanism, the whole therapeutic process can be rendered useless. Moreover, the drug has to be delivered at a specified controlled rate and at the target site as precisely as possible to achieve maximum efficacy and safety. Controlled drug delivery systems are developed to combat the problems associated with conventional drug delivery. There has been a tremendous evolution in controlled drug delivery systems from the past two decades ranging from macro scale and nano scale to intelligent targeted delivery. The initial part of this review provides a basic understanding of drug delivery systems with an emphasis on the pharmacokinetics of the drug. It also discusses the conventional drug delivery systems and their limitations. Further, controlled drug delivery systems are discussed in detail with the design considerations, classifications and drawings. In addition, nano-drug delivery, targeted and smart drug delivery using stimuli-responsive and intelligent biomaterials is discussed with recent key findings. The paper concludes with the challenges faced and future directions in controlled drug delivery.

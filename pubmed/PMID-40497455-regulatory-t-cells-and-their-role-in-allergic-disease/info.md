@@ -1,0 +1,14 @@
+# Regulatory T cells and their role in allergic disease.
+
+- **PMID**: 40497455
+- **DOI**: 10.1111/all.16326
+- **PMCID**: PMC10324189 (full-text saved)
+- **Journal**: Allergy  ·  **Year**: 2025
+- **Authors**: Melanie L Conrad, Gabriela Barrientos, Xuejun Cai, Saikat Mukherjee, Mrinmoy Das, Emmanuel Stephen-Victor, Hani Harb
+- **MeSH**: Humans, T-Lymphocytes, Regulatory, Hypersensitivity, Animals, Disease Susceptibility, T-Lymphocyte Subsets, Immune Tolerance
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40497455/
+- **Captured**: 2026-05-10T13:35:10
+
+## Abstract
+
+The incidence of allergic diseases has been rising over the past decades, and this troubling trend coincides with environmental changes such as shifts in diet and increased antibiotic use, both of which can impact our immune system. Allergic reactions occur when the immune system overreacts to normally harmless substances, and it is known that regulatory T cells (Tregs) play a major role in immune system suppression and the generation of tolerance. However, new research suggests that Tregs can malfunction in environments that promote allergies. This review delves into Treg function, and how environmental factors can influence their ability to maintain immune homeostasis. Specifically, we explore the origins of Treg cells, as well as the mechanisms used for suppression of inflammation and tissue healing, with a concentration on food allergies, atopic dermatitis and asthma. Understanding Treg function in the context of a changing environment is crucial for developing new strategies to prevent and treat allergies.

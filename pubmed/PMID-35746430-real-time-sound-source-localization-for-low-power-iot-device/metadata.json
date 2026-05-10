@@ -1,0 +1,22 @@
+{
+  "pmid": "35746430",
+  "title": "Real-Time Sound Source Localization for Low-Power IoT Devices Based on Multi-Stream CNN.",
+  "abstract": "Voice-activated artificial intelligence (AI) technology has advanced rapidly and is being adopted in various devices such as smart speakers and display products, which enable users to multitask without touching the devices. However, most devices equipped with cameras and displays lack mobility; therefore, users cannot avoid touching them for face-to-face interactions, which contradicts the voice-activated AI philosophy. In this paper, we propose a deep neural network-based real-time sound source localization (SSL) model for low-power internet of things (IoT) devices based on microphone arrays and present a prototype implemented on actual IoT devices. The proposed SSL model delivers multi-channel acoustic data to parallel convolutional neural network layers in the form of multiple streams to capture the unique delay patterns for the low-, mid-, and high-frequency ranges, and estimates the fine and coarse location of voices. The model adapted in this study achieved an accuracy of 91.41% on fine location estimation and a direction of arrival error of 7.43° on noisy data. It achieved a processing time of 7.811 ms per 40 ms samples on the Raspberry Pi 4B. The proposed model can be applied to a camera-based humanoid robot that mimics the manner in which humans react to trigger voices in crowded environments.",
+  "authors": [
+    "Jungbeom Ko",
+    "Hyunchul Kim",
+    "Jungsuk Kim"
+  ],
+  "journal": "Sensors (Basel, Switzerland)",
+  "year": "2022",
+  "doi": "10.1109/ASAP49362.2020.00039",
+  "pmcid": "PMC6210564",
+  "mesh": [
+    "Algorithms",
+    "Artificial Intelligence",
+    "Humans",
+    "Internet of Things",
+    "Neural Networks, Computer",
+    "Sound Localization"
+  ]
+}

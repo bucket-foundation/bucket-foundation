@@ -1,0 +1,14 @@
+# Review Article: Gastrointestinal Bleeding Risk with Direct Oral Anticoagulants.
+
+- **PMID**: 34143317
+- **DOI**: 10.1111/jth.14219
+- **PMCID**: 7097770 (full-text saved)
+- **Journal**: Cardiovascular drugs and therapy  ·  **Year**: 2022
+- **Authors**: Robert Benamouzig, Maxime Guenoun, David Deutsch, Laurent Fauchier
+- **MeSH**: Administration, Oral, Anticoagulants, Dabigatran, Gastrointestinal Hemorrhage, Humans, Rivaroxaban, Vitamin K
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34143317/
+- **Captured**: 2026-05-10T13:32:11
+
+## Abstract
+
+Although direct oral anticoagulants (DOACs) are associated with an overall favourable safety profile, the risk of gastrointestinal bleeding with DOACs compared with vitamin K antagonists (VKAs) remains controversial. Accordingly, we aimed to provide a focused overview of the risk of gastrointestinal bleeding associated with dabigatran, rivaroxaban, apixaban and edoxaban and its management. We reviewed published studies reporting on DOACs with gastrointestinal bleeding as an outcome, including randomised controlled trials (RCTs), retrospective database studies and large-scale prospective cohort studies. Cumulative evidence confirms no notable difference in major gastrointestinal bleeding risk between DOACs and VKAs. Moreover, gastrointestinal bleeding in DOAC-treated patients seems less severe and requires less intensive management. The main cause of upper gastrointestinal bleeding in DOAC-treated patients appears to be gastroduodenal ulcers, whereas lower gastrointestinal bleedings are mainly due to diverticula followed by angiodysplasia and haemorrhoids. The lack of head-to-head RCTs with DOACs precludes drawing conclusions on the DOAC with the lowest gastrointestinal bleeding risk. Prescribing physicians should be aware of risk factors for DOAC-related gastrointestinal bleeding (e.g. age > 65, heavy alcohol use, uncontrolled hypertension, hepatic or renal dysfunction, active cancer, anaemia) and adopt preventive measures accordingly. Management of DOAC-associated major gastrointestinal bleeding involves temporary discontinuation of the DOAC, investigation of the bleeding source and treatment of bleeding with fluid resuscitation combined with transfusion and endoscopic haemostasis. DOACs as a class do not increase the risk of major gastrointestinal bleeding compared to VKAs, which supports their continued use for different anticoagulant indications.

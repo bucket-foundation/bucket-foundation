@@ -1,0 +1,14 @@
+# Four additional members of the ras gene superfamily isolated by an oligonucleotide strategy: molecular cloning of YPT-related cDNAs from a rat brain library.
+
+- **PMID**: 3317403
+- **DOI**: 10.1073/pnas.84.23.8210
+- **PMCID**: PMC299511 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1987
+- **Authors**: N Touchot, P Chardin, A Tavitian
+- **MeSH**: Amino Acid Sequence, Animals, Base Sequence, Brain, Cloning, Molecular, Genes, ras, Molecular Sequence Data, Multigene Family, Nucleic Acid Hybridization, Oligodeoxyribonucleotides
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3317403/
+- **Captured**: 2026-05-10T13:31:43
+
+## Abstract
+
+Several oligonucleotide mixtures corresponding to a 6-amino acid sequence that is strictly conserved in all the ras and ras-related proteins (from various organisms) were tested for their ability to hybridize to 11 cloned members of the ras gene superfamily. Among these mixtures, a combination of two sets of partially complementary oligomers were able to hybridize to all the tested sequences. To identify members of the ras superfamily, we screened a rat brain cDNA library with these probes and isolated four genes, denoted rab1, -2, -3, and -4, encoding proteins homologous to the yeast YPT protein. Amino acid homology scores with YPT range from 75% for rab1 to 37% for rab4, whereas the homologies with p21 ras and other ras-related proteins are approximately equal to 30%, and homologous residues were clustered in the regions involved in GTP/GDP binding. Another striking similarity shared by the rab and the other ras-related proteins is the conservation of at least one cysteine residue near the carboxyl-terminal end involved in the membrane binding of the ras proteins. rab1 is a mammalian homolog of the yeast YPT gene, and the four rab genes constitute an additional branch of the ras gene superfamily that to our knowledge has not been described in higher eukaryotes.

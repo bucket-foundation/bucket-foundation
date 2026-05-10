@@ -1,0 +1,14 @@
+# Obesity modulates NK cell activity via LDL and DUSP1 signaling for populations with adverse social determinants.
+
+- **PMID**: 39718832
+- **DOI**: 10.1186/s12967-020-02207-0
+- **PMCID**: PMC6966880 (full-text saved)
+- **Journal**: JCI insight  ·  **Year**: 2024
+- **Authors**: Yvonne Baumer, Komudi Singh, Abhinav Saurabh, Andrew S Baez, Cristhian A Gutierrez-Huerta, Long Chen, Muna Igboko, Briana S Turner, Josette A Yeboah, Robert N Reger, Lola R Ortiz-Whittingham, Sahil Joshi, Marcus R Andrews, Elizabeth M Aquino Peterson, Christopher Ke Bleck, Laurel G Mendelsohn, Valerie M Mitchell, Billy S Collins, Neelam R Redekar, Skyler A Kuhn, Christian A Combs, Mehdi Pirooznia, Pradeep K Dagur, David Sj Allan, Daniella M Schwartz, Richard W Childs, Tiffany M Powell-Wiley
+- **MeSH**: Humans, Killer Cells, Natural, Female, Obesity, Dual Specificity Phosphatase 1, Black or African American, Signal Transduction, Middle Aged, Adult, Social Determinants of Health
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/39718832/
+- **Captured**: 2026-05-10T13:34:58
+
+## Abstract
+
+African American (AA) women are disproportionately affected by obesity and hyperlipidemia, particularly in the setting of adverse social determinants of health (aSDoH) that contribute to health disparities. Obesity, hyperlipidemia, and aSDoH appear to impair NK cells. As potential common underlying mechanisms are largely unknown, we sought to investigate common signaling pathways involved in NK cell dysfunction related to obesity and hyperlipidemia in AA women from underresourced neighborhoods. We determined in freshly isolated NK cells that obesity and measures of aSDoH were associated with a shift in NK cell subsets away from CD56dim/CD16+ cytotoxic NK cells. Using ex vivo data, we identified LDL as a marker related to NK cell function in an AA population from underresourced neighborhoods. Additionally, NK cells from AA women with obesity and LDL-treated NK cells displayed a loss in NK cell function. Comparative unbiased RNA-sequencing analysis revealed DUSP1 as a common factor. Subsequently, chemical inhibition of Dusp1 and Dusp1 overexpression in NK cells highlighted its significance in NK cell function and lysosome biogenesis in a mTOR/TFEB-related fashion. Our data demonstrate a pathway by which obesity and hyperlipidemia in the setting of aSDoH may relate to NK cell dysfunction, making DUSP1 an important target for further investigation of health disparities.

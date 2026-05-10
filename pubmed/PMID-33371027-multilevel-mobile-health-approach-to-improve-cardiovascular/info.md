@@ -1,0 +1,14 @@
+# Multilevel mobile health approach to improve cardiovascular health in resource-limited communities with Step It Up: a randomised controlled trial protocol targeting physical activity.
+
+- **PMID**: 33371027
+- **DOI**: 10.2105/AJPH.2018.304646
+- **PMCID**: PMC6356125 (full-text saved)
+- **Journal**: BMJ open  ·  **Year**: 2020
+- **Authors**: Kosuke Tamura, Nithya P Vijayakumar, James F Troendle, Kaveri Curlin, Sam J Neally, Valerie M Mitchell, Billy S Collins, Yvonne Baumer, Cristhian A Gutierrez-Huerta, Rafique Islam, Briana S Turner, Marcus R Andrews, Joniqua N Ceasar, Sophie E Claudel, Kathryn G Tippey, Shayne Giuliano, Regina McCoy, Jessica Zahurak, Sharon Lambert, Philip J Moore, Mary Douglas-Brown, Gwenyth R Wallen, Tonya Dodge, Tiffany M Powell-Wiley
+- **MeSH**: Adult, Aged, Exercise, Female, Humans, Middle Aged, Mobile Applications, Pregnancy, Prospective Studies, Telemedicine
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33371027/
+- **Captured**: 2026-05-10T13:31:55
+
+## Abstract
+
+Although physical activity (PA) reduces cardiovascular disease (CVD) risk, physical inactivity remains a pressing public health concern, especially among African American (AA) women in the USA. PA interventions focused on AA women living in resource-limited communities with scarce PA infrastructure are needed. Mobile health (mHealth) technology can increase access to PA interventions. We describe the development of a clinical protocol for a multilevel, community-based, mHealth PA intervention for AA women. An mHealth intervention targeting AA women living in resource-limited Washington, DC communities was developed based on the socioecological framework for PA. Over 6 months, we will use a Sequential Multi-Assignment, Randomized Trial approach to compare the effects on PA of location-based remote messaging (named 'tailored-to-place') to standard remote messaging in an mHealth intervention. Participants will be randomised to a remote messaging intervention for 3 months, at which point the intervention strategy will adapt based on individuals' PA levels. Those who do not meet the PA goal will be rerandomised to more intensive treatment. Participants will be followed for another 3 months to determine the contribution of each mHealth intervention to PA level. This protocol will use novel statistical approaches to account for the adaptive strategy. Finally, effects of PA changes on CVD risk biomarkers will be characterised. This protocol has been developed in partnership with a Washington, DC-area community advisory board to ensure feasibility and acceptability to community members. The National Institutes of Health Intramural IRB approved this research and the National Heart, Lung, and Blood Institute provided funding. Once published, results of this work will be disseminated to community members through presentations at community advisory board meetings and our quarterly newsletter. NCT03288207.

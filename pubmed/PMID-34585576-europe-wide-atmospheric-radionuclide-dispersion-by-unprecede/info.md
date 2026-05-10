@@ -1,0 +1,14 @@
+# Europe-Wide Atmospheric Radionuclide Dispersion by Unprecedented Wildfires in the Chernobyl Exclusion Zone, April 2020.
+
+- **PMID**: 34585576
+- **DOI**: 10.1021/acs.est.1c03314
+- **PMCID**:  
+- **Journal**: Environmental science & technology  ·  **Year**: 2021
+- **Authors**: Olivier Masson, Oleksandr Romanenko, Olivier Saunier, Serhii Kirieiev, Valentin Protsak, Gennady Laptev, Oleg Voitsekhovych, Vanessa Durand, Frédéric Coppin, Georg Steinhauser, Anne de Vismes Ott, Philippe Renaud, Damien Didier, Béatrice Boulet, Maxime Morin, Miroslav Hýža, Johan Camps, Olga Belyaeva, Axel Dalheimer, Konstantinos Eleftheriadis, Catalina Gascó-Leonarte, Alexandra Ioannidou, Krzysztof Isajenko, Tero Karhunen, Johan Kastlander, Christian Katzlberger, Renata Kierepko, Gert-Jan Knetsch, Júlia Kövendiné Kónyi, Jerzy Wojciech Mietelski, Michael Mirsch, Bredo Møller, Jelena Krneta Nikolić, Pavel Peter Povinec, Rosella Rusconi, Vladimir Samsonov, Ivan Sýkora, Elena Simion, Philipp Steinmann, Stylianos Stoulos, José Antonio Suarez-Navarro, Herbert Wershofen, Daniel Zapata-García, Benjamin Zorko
+- **MeSH**: Air Pollutants, Radioactive, Cesium Radioisotopes, Chernobyl Nuclear Accident, Europe, Fires, Ukraine, Wildfires
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34585576/
+- **Captured**: 2026-05-10T13:32:25
+
+## Abstract
+
+From early April 2020, wildfires raged in the highly contaminated areas around the Chernobyl nuclear power plant (CNPP), Ukraine. For about 4 weeks, the fires spread around and into the Chernobyl exclusion zone (CEZ) and came within a few kilometers of both the CNPP and radioactive waste storage facilities. Wildfires occurred on several occasions throughout the month of April. They were extinguished, but weather conditions and the spread of fires by airborne embers and smoldering fires led to new fires starting at different locations of the CEZ. The forest fires were only completely under control at the beginning of May, thanks to the tireless and incessant work of the firefighters and a period of sustained precipitation. In total, 0.7-1.2 TBq 

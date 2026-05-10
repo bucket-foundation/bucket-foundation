@@ -1,0 +1,14 @@
+# Neighborhood socioeconomic deprivation and individual-level socioeconomic status are associated with dopamine-mediated changes to monocyte subset CCR2 expression via a cAMP-dependent pathway.
+
+- **PMID**: 37251548
+- **DOI**: 10.4018/978-1-7998-7706-6.ch087
+- **PMCID**: PMC10266066 (full-text saved)
+- **Journal**: Brain, behavior, & immunity - health  ·  **Year**: 2023
+- **Authors**: Yvonne Baumer, Mario A Pita, Briana S Turner, Andrew S Baez, Lola R Ortiz-Whittingham, Cristhian A Gutierrez-Huerta, Sam J Neally, Nicole Farmer, Valerie M Mitchell, Billy S Collins, Tiffany M Powell-Wiley
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37251548/
+- **Captured**: 2026-05-10T13:33:54
+
+## Abstract
+
+Social determinants of health (SDoH) include socioeconomic, environmental, and psychological factors that impact health. Neighborhood socioeconomic deprivation (NSD) and low individual-level socioeconomic status (SES) are SDoH that associate with incident heart failure, stroke, and cardiovascular mortality, but the underlying biological mechanisms are not well understood. Previous research has demonstrated an association between NSD, in particular, and key components of the neural-hematopoietic-axis including amygdala activity as a marker of chronic stress, bone marrow activity, and arterial inflammation. Our study further characterizes the role of NSD and SES as potential sources of chronic stress related to downstream immunological factors in this stress-associated biologic pathway. We investigated how NSD, SES, and catecholamine levels (as proxy for sympathetic nervous system activation) may influence monocytes which are known to play a significant role in atherogenesis. First, in an 

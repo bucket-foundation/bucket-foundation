@@ -1,0 +1,14 @@
+# Management of Hyperglycemia in Type 2 Diabetes, 2022. A Consensus Report by the American Diabetes Association (ADA) and the European Association for the Study of Diabetes (EASD).
+
+- **PMID**: 36148880
+- **DOI**: 10.2337/dci22-0034
+- **PMCID**: PMC8012321 (full-text saved)
+- **Journal**: Diabetes care  ·  **Year**: 2022
+- **Authors**: Melanie J Davies, Vanita R Aroda, Billy S Collins, Robert A Gabbay, Jennifer Green, Nisa M Maruthur, Sylvia E Rosas, Stefano Del Prato, Chantal Mathieu, Geltrude Mingrone, Peter Rossing, Tsvetalina Tankova, Apostolos Tsapas, John B Buse
+- **MeSH**: Adult, Humans, United States, Diabetes Mellitus, Type 2, Hypoglycemic Agents, Hyperglycemia, Europe, Glucagon-Like Peptide-1 Receptor
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36148880/
+- **Captured**: 2026-05-10T13:32:48
+
+## Abstract
+
+The American Diabetes Association and the European Association for the Study of Diabetes convened a panel to update the previous consensus statements on the management of hyperglycemia in type 2 diabetes in adults, published since 2006 and last updated in 2019. The target audience is the full spectrum of the professional health care team providing diabetes care in the U.S. and Europe. A systematic examination of publications since 2018 informed new recommendations. These include additional focus on social determinants of health, the health care system, and physical activity behaviors, including sleep. There is a greater emphasis on weight management as part of the holistic approach to diabetes management. The results of cardiovascular and kidney outcomes trials involving sodium-glucose cotransporter 2 inhibitors and glucagon-like peptide 1 receptor agonists, including assessment of subgroups, inform broader recommendations for cardiorenal protection in people with diabetes at high risk of cardiorenal disease. After a summary listing of consensus recommendations, practical tips for implementation are provided.

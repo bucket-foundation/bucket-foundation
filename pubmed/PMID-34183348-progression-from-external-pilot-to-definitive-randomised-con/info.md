@@ -1,0 +1,14 @@
+# Progression from external pilot to definitive randomised controlled trial: a methodological review of progression criteria reporting.
+
+- **PMID**: 34183348
+- **DOI**: 10.1136/bmjopen-2016-015276
+- **PMCID**: PMC5372123 (full-text saved)
+- **Journal**: BMJ open  ·  **Year**: 2021
+- **Authors**: Katie Mellor, Saskia Eddy, Nicholas Peckham, Christine M Bond, Michael J Campbell, Gillian A Lancaster, Lehana Thabane, Sandra M Eldridge, Susan J Dutton, Sally Hopewell
+- **MeSH**: Feasibility Studies, Humans, Publications, Research Report
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34183348/
+- **Captured**: 2026-05-10T13:32:17
+
+## Abstract
+
+Prespecified progression criteria can inform the decision to progress from an external randomised pilot trial to a definitive randomised controlled trial. We assessed the characteristics of progression criteria reported in external randomised pilot trial protocols and results publications, including whether progression criteria were specified a priori and mentioned in prepublication peer reviewer reports. Methodological review. We searched four journals through PubMed:  We included 160 publications (123 protocols and 37 completed trials). Recruitment and retention were the most frequent indicators contributing to progression criteria. Progression criteria were mostly reported as distinct thresholds (eg, achieving a specific target; 133/160, 83%). Less than a third of the planned and completed pilot trials that included qualitative research reported how these findings would contribute towards progression criteria (34/108, 31%). The publications seldom stated who established the progression criteria (12/160, 7.5%) or provided rationale or justification for progression criteria (44/160, 28%). Most completed pilot trials reported the intention to proceed to a definitive trial (30/37, 81%), but less than half strictly met all of their progression criteria (17/37, 46%). Prepublication peer reviewer reports were available for 153/160 publications (96%). Peer reviewer reports for 86/153 (56%) publications mentioned progression criteria, with peer reviewers of 35 publications commenting that progression criteria appeared not to be specified. Many external randomised pilot trial publications did not adequately report or propose prespecified progression criteria to inform whether to proceed to a future definitive randomised controlled trial.

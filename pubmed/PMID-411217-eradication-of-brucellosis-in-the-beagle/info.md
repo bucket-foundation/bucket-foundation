@@ -1,0 +1,14 @@
+# [Eradication of brucellosis in the beagle].
+
+- **PMID**: 411217
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Veterinarni medicina  ·  **Year**: 1977
+- **Authors**: I Sýkora, J Holda, Z Sebek, J Komárek
+- **MeSH**: Animals, Antibody Formation, Antigens, Bacterial, Breeding, Brucella, Brucellosis, Czechoslovakia, Dog Diseases, Dogs, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/411217/
+- **Captured**: 2026-05-10T13:35:12
+
+## Abstract
+
+An infectious disease caused by the Brucella canis germ was determined in Czechoslovakia in 1973 in laboratory breeding stock of the beagle dog. The clinical symptoms were slinking between the 50th and 57th day of pregnancy and six-week serosanguinolent discharge or greenish gray mucoid discharge after the abortion and extensive hemorrhages and edemata under the skin of the aborted fetuses. The disease was proved serologically and also by isolating the B. canis germ. Histological symptoms found in bitches--were only non-specific inflammatory changes in nodes and some organs, in dogs--inflammation of the prostate, epididymides and testicles. Measures taken to eradicate this disease involved isolation and culling of the serologically positive dogs, creating a new, repeatedly negative breeding stock and strict hygienic and work procedures. The incidence of positive serological findings decreased from 43.0% in 1974 to 8.0% in the first half of 1976. As a positive titre of antigens we consider titres starting from 1:20 though the presence of the B canis germ was found in titres even higher than 1 :160, but we must expect the possibility of the initial stages of the disease.

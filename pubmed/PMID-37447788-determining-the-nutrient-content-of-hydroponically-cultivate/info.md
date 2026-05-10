@@ -1,0 +1,14 @@
+# Determining the Nutrient Content of Hydroponically-Cultivated Microgreens with Immersible Silicon Photonic Sensors: A Preliminary Feasibility Study.
+
+- **PMID**: 37447788
+- **DOI**: 10.3390/agronomy11020346
+- **PMCID**: PMC4992113 (full-text saved)
+- **Journal**: Sensors (Basel, Switzerland)  ·  **Year**: 2023
+- **Authors**: Aristi Christofi, Georgia Margariti, Alexandros Salapatas, George Papageorgiou, Panagiotis Zervas, Pythagoras Karampiperis, Antonis Koukourikos, Petros A Tarantilis, Eleftheria H Kaparakou, Konstantinos Misiakos, Eleni Makarona
+- **MeSH**: Silicon, Feasibility Studies, Antioxidants, Brassica, Nutrients
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37447788/
+- **Captured**: 2026-05-10T13:34:02
+
+## Abstract
+
+Microgreens have gained attention for their exceptional culinary characteristics and high nutritional value. The present study focused on a novel approach for investigating the easy extraction of plant samples and the utilization of immersible silicon photonic sensors to determine, on the spot, the nutrient content of microgreens and their optimum time of harvest. For the first time, it was examined how these novel sensors can capture time-shifting spectra caused by the molecules' dynamic adhesion onto the sensor surface. The experiment involved four types of microgreens (three types of basil and broccoli) grown in a do-it-yourself hydroponic installation. The sensors successfully distinguished between different plant types, showcasing their discriminative capabilities. To determine the optimum harvest time, this study compared the sensor data with results obtained through standard analytical methods. Specifically, the total phenolic content and antioxidant activity of two basil varieties were juxtaposed with the sensor data, and this study concluded that the ideal harvest time for basil microgreens was 14 days after planting. This finding highlights the potential of the immersible silicon photonic sensors for potentially replacing time-consuming analytical techniques. By concentrating on obtaining plant extracts, capturing time-shifting spectra, and assessing sensor reusability, this research paves the way for future advancements in urban farming.

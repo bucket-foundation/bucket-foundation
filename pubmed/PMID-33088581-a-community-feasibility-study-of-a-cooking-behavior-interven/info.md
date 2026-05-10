@@ -1,0 +1,14 @@
+# A community feasibility study of a cooking behavior intervention in African-American adults at risk for cardiovascular disease: DC COOKS (DC Community Organizing for Optimal culinary Knowledge Study) with Heart.
+
+- **PMID**: 33088581
+- **DOI**: 10.2105/AJPH.2018.304843
+- **PMCID**: PMC6356121 (full-text saved)
+- **Journal**: Pilot and feasibility studies  ·  **Year**: 2020
+- **Authors**: Nicole Farmer, Tiffany M Powell-Wiley, Kimberly R Middleton, Brenda Roberson, Sharon Flynn, Alyssa T Brooks, Narjis Kazmi, Valerie Mitchell, Billy Collins, Rachel Hingst, Lucy Swan, Shanna Yang, Seema Kakar, Timothy Harlan, Gwenyth R Wallen
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33088581/
+- **Captured**: 2026-05-10T13:31:41
+
+## Abstract
+
+Cooking interventions have increased in popularity in recent years. Evaluation by meta-analyses and systematic reviews show consistent changes in dietary quality reports and cooking confidence, but not of cardiovascular (CVD) biomarkers. Interventions evaluating or reporting behavioral mechanisms as an explanatory factor for these outcomes has been sparse. Moreover, evaluations of cooking interventions among communities with health disparities or food access limitations have received little attention in the literature. This study will occur over two phases. Phase 1 will assess acceptability among the target population of African-American adults living within an urban food desert. Phase 2 will consist of a 6-week cooking intervention delivered at a community kitchen setting. Pre and post intervention visits for clinical examinations and biomarker collection will be conducted, as well as dietary and cooking skill assessments. Primary outcomes include cooking behavior and feasibility measures. Secondary outcomes are related to dietary quality, psychosocial factors, CVD biomarkers, and food environment measures. This study seeks to demonstrate feasibility of a community-based cooking intervention and to provide necessary information to plan future interventions that identify cooking behavior as an outcome of participation in cooking interventions among African-American adults, especially in relation to dietary and biomarker outcomes. This study was registered at ClinicalTrials.gov (NCT04305431) on March 12, 2020.

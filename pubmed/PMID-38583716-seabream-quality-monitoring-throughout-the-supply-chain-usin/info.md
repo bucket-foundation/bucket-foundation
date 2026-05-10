@@ -1,0 +1,14 @@
+# Seabream Quality Monitoring Throughout the Supply Chain Using a Portable Multispectral Imaging Device.
+
+- **PMID**: 38583716
+- **DOI**: 10.1016/j.jfp.2024.100274
+- **PMCID**:  
+- **Journal**: Journal of food protection  ·  **Year**: 2024
+- **Authors**: Anastasia Lytou, Lemonia-Christina Fengou, Antonis Koukourikos, Pythagoras Karampiperis, Panagiotis Zervas, Aske Schultz Carstensen, Alessia Del Genio, Jens Michael Carstensen, Nette Schultz, Nikos Chorianopoulos, George-John Nychas
+- **MeSH**: Animals, Sea Bream, Seafood, Food Microbiology, Food Contamination, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38583716/
+- **Captured**: 2026-05-10T13:34:53
+
+## Abstract
+
+Monitoring food quality throughout the supply chain in a rapid and cost-effective way allows on-time decision-making, reducing food waste, and increasing sustainability. A portable multispectral imaging sensor was used for the rapid prediction of microbiological quality of fish fillets. Seabream fillets, packaged either in aerobic or vacuum conditions, were collected from both aquaculture and retail stores, while images were also acquired both from the skin and the flesh side of the fish fillets. In parallel to image acquisition, the microbial quality was also estimated for each fish fillet. The data were used for the training of predictive artificial neural network (ANN) models for the estimation of total aerobic counts (TACs). Models were built separately for fish parts (i.e., skin, flesh) and packaging conditions and were validated using two approaches (i.e., validation with data partitioning and external validation using samples from retail stores). The performance of the ANN models for the validation set with data partitioning was similar for the data collected from the flesh (RMSE = 0.402-0.547) and the skin side (RMSE = 0.500-0.533) of the fish fillets. Similar performance also was obtained from validation of the models of the different packaging conditions (i.e., aerobic, vacuum). The prediction capability of the models combining both air and vacuum packaged samples (RMSE = 0.531) was slightly lower compared to the models trained and validated per packaging condition, individually (RMSE = 0.510, 0.516 in air and vacuum, respectively). The models tested with unknown samples (i.e., fish fillets from retail stores-external validation) showed poorer performance (RMSE = 1.061-1.414) compared to the models validated with data partitioning (RMSE = 0.402-0.547). Multispectral imaging sensor appeared to be efficient for the rapid assessment of the microbiological quality of fish fillets for all the different cases evaluated. Hence, these outcomes could be beneficial not only for the industry and food operators but also for the authorities and consumers.

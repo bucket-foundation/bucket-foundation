@@ -1,0 +1,14 @@
+# LDL associates with pro-inflammatory monocyte subset differentiation and increases in chemokine receptor profile expression in African Americans.
+
+- **PMID**: 35436557
+- **DOI**: 10.1016/j.ijcard.2022.04.038
+- **PMCID**: PMC6747309 (full-text saved)
+- **Journal**: International journal of cardiology  ·  **Year**: 2022
+- **Authors**: Cristhian A Gutierrez-Huerta, Briana S Turner, Sophie E Claudel, Nicole Farmer, Rafique Islam, Valerie M Mitchell, Billy S Collins, Yvonne Baumer, Alan T Remaley, Tiffany M Powell-Wiley
+- **MeSH**: Black or African American, Cardiovascular Diseases, Carrier Proteins, Chemokines, Humans, Leukocytes, Mononuclear, Monocytes, Receptors, Chemokine
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35436557/
+- **Captured**: 2026-05-10T13:32:42
+
+## Abstract
+
+In the United States, African Americans (AAs) have greater risk for Class III obesity and cardiovascular disease (CVD). Previous reports suggest that AAs have a different immune cell profile when compared to Caucasians. The immune cell profile of AAs was characterized by flow cytometry using two experimental setups: ex vivo (N = 40) and in vitro (N = 10). For ex vivo experiments, PBMC were treated with participant serum to understand how lipid contents may contribute to monocyte phenotypic differences. For in vitro experiments, monocytes were low-density lipoprotein (LDL)- or vehicle-treated for four hours and subsequently analyzed by flow cytometry and RT-qPCR. When PBMCs were treated with participant sera, subsequent multivariable regression analysis revealed that serum triglycerides and LDL levels were associated with monocyte subset differences. In vitro LDL treatment of monocytes induced a phenotypic switch in monocytes away from classical monocytes accompanied by subset-specific chemokine receptor CCR2 and CCR5 expression changes. These observed changes are partially translation-dependent as determined by co-incubation with cycloheximide. LDL treatment of monocytes induces a change in monocyte subsets and increases CCR2/CCR5 expression in a subset-specific manner. Understanding the molecular mechanisms could prove to have CVD-related therapeutic benefits, especially in high-risk populations with hyperlipidemia and increased risk for CVD.

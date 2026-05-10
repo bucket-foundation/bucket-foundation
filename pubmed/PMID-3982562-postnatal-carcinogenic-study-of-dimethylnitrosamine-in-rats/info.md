@@ -1,0 +1,14 @@
+# Postnatal carcinogenic study of dimethylnitrosamine in rats.
+
+- **PMID**: 3982562
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Neoplasma  ·  **Year**: 1985
+- **Authors**: I Sýkora, P Tretiník, V Vortel
+- **MeSH**: Animals, Animals, Newborn, Dimethylnitrosamine, Female, Kidney Neoplasms, Liver Neoplasms, Experimental, Male, Neoplasms, Experimental, Rats, Rats, Inbred Strains
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3982562/
+- **Captured**: 2026-05-10T13:34:59
+
+## Abstract
+
+Wist: Han/Pce SPF strain rats were administered dimethylnitrosamine (DMNA) in 0.04% concentration since the first day after birth. Total dose of 0.2 mg per infant rat was administered on 1st to 5th day of life, 0.4 mg/infant rat on 1st to 10th day and 0.5 mg on 1st to 20th day of life. Maximum survival time was one year. Both higher DMNA doses were already toxic the effect manifesting itself by increased mortality of the infant rats (liver hemorrhages, bleeding into the intestinal lumen) and reduced weight increment. Hepatic and renal tumors were detected in the rats beginning with their 19th week of life. In the liver they were hepatocellular carcinomas, to a lesser extent also cholangiomas and cavernomas. Further, increased incidence of preneoplastic nodular hyperplasia and benign hepatomas was demonstrated. In the kidney it was always the case of mixed mesenchymal tumor. Comparison of the results of postnatal study with a long-term carcinogenic DMNA study is discussed and possible reasons of different localization and characteristics of tumors dependent on DMNA administered were demonstrated.

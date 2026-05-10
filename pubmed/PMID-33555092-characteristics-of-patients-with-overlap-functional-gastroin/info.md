@@ -1,0 +1,14 @@
+# Characteristics of patients with overlap functional gastrointestinal disorders.
+
+- **PMID**: 33555092
+- **DOI**: 10.1111/jgh.15438
+- **PMCID**:  
+- **Journal**: Journal of gastroenterology and hepatology  ·  **Year**: 2021
+- **Authors**: Michel Bouchoucha, David Deutsch, Panha Uong, Florence Mary, Jean-Marc Sabate, Robert Benamouzig
+- **MeSH**: Adult, Algorithms, Cross-Sectional Studies, Decision Trees, Female, Gastrointestinal Diseases, Humans, Male, Middle Aged, Prevalence
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33555092/
+- **Captured**: 2026-05-10T13:32:05
+
+## Abstract
+
+Functional gastrointestinal disorders (FGIDs) are frequently overlapped. The present study was designed to (i) search the clinical differences between patients with single FGID and overlap FGIDs and (ii) define the most common FGIDs associations to identify homogenous subgroups of patients. A total of 3555 outpatients with FGID filled out the Rome III adult diagnostic questionnaire, Bristol stool form, and four 10-point Likert scales to report the severity of constipation, diarrhea, bloating, and abdominal pain. An unsupervised algorithm was used to estimate the number of groups directly from the data. A classification tree separated patients into different subgroups, according to FGIDs. Multinomial logistic regression was used to characterize the groups of patients with overlap disorders. Patients reported 3.3 ± 1.9 FGIDs (range 1-10, median = 3); 736 reported only one FGID, while 2819 reported more than one FGID (3.8 ± 1.7). Patients with single FGID had higher body mass index (P < 0.001), never report irritable bowel syndrome (IBS), and rarely report fecal incontinence and anorectal pain (< 1% for each disorder). The non-supervised clustering of the 2819 patients with overlap FGIDs divided this population into 23 groups, including five groups associated with only one disorder (IBS-diarrhea, dysphagia, functional constipation, levator ani syndrome, and IBS-unspecified). Ten groups were related to two overlap disorders and eight groups to three or more disorders. Three disorders were not explicitly associated with a given group: IBS-mixed, proctalgia fugax, and nonspecific anorectal pain. Patients with FGID mostly report overlap disorders in a limited number of associations, each significantly associated with a few disorders.

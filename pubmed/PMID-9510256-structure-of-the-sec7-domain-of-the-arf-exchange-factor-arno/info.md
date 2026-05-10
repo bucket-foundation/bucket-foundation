@@ -1,0 +1,14 @@
+# Structure of the Sec7 domain of the Arf exchange factor ARNO.
+
+- **PMID**: 9510256
+- **DOI**: 10.1038/32210
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 1998
+- **Authors**: J Cherfils, J Ménétrey, M Mathieu, G Le Bras, S Robineau, S Béraud-Dufour, B Antonny, P Chardin
+- **MeSH**: ADP-Ribosylation Factor 1, ADP-Ribosylation Factors, Amino Acid Sequence, Animals, Binding Sites, Crystallography, X-Ray, Escherichia coli, GTP-Binding Proteins, GTPase-Activating Proteins, Guanine Nucleotide Exchange Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9510256/
+- **Captured**: 2026-05-10T13:36:26
+
+## Abstract
+
+Small G proteins switch from a resting, GDP-bound state to an active, GTP-bound state. As spontaneous GDP release is slow, guanine-nucleotide-exchange factors (GEFs) are required to promote fast activation of small G proteins through replacement of GDP with GTP in vivo. Families of GEFs with no sequence similarity to other GEF families have now been assigned to most families of small G proteins. In the case of the small G protein Arf1, the exchange of bound GDP for GTP promotes the coating of secretory vesicles in Golgi traffic. An exchange factor for human Arf1, ARNO, and two closely related proteins, named cytohesin 1 and GPS1, have been identified. These three proteins are modular proteins with an amino-terminal coiled-coil, a central Sec7-like domain and a carboxy-terminal pleckstrin homology domain. The Sec7 domain contains the exchange-factor activity. It was first found in Sec7, a yeast protein involved in secretion, and is present in several other proteins, including the yeast exchange factors for Arf, Geal and Gea2. Here we report the crystal structure of the Sec7 domain of human ARNO at 2 A resolution and the identification of the site of interaction of ARNO with Arf.

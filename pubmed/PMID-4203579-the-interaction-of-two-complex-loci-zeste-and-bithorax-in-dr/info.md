@@ -1,0 +1,14 @@
+# The interaction of two complex loci, zeste and bithorax in Drosophila melanogaster.
+
+- **PMID**: 4203579
+- **DOI**: 10.1093/genetics/75.2.299
+- **PMCID**: PMC1213011 (full-text saved)
+- **Journal**: Genetics  ·  **Year**: 1973
+- **Authors**: T C Kaufman, S E Tasaka, D T Suzuki
+- **MeSH**: Alleles, Animals, Crosses, Genetic, Drosophila melanogaster, Eye, Female, Genetic Complementation Test, Larva, Male, Microscopy, Electron, Scanning
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/4203579/
+- **Captured**: 2026-05-10T13:35:18
+
+## Abstract
+
+It has been found that certain alleles of the zeste locus (z(a) 1-1.0) have no phenotype of their own, but interact with certain alleles at the bithorax locus (bx 3-58.8). This interaction takes the form of an enhancement of the homeotic bx phenotype to a more extreme form-i.e., the metathorax is transformed into mesothorax in varying degrees depending on the bx allele used. This enhancement is somewhat reminiscent of the transvection effect described by Lewis (1954). The characterization of the interaction thus far has shown that the enhancement only effects bx alleles which arise spontaneously, whereas the origin of the z(a) allele is unimportant. The gene claret nondisjunctional was used for the production of gynandromorphs which showed that the enhancing ability of z(a), like the eye pigment change caused by z, is autonomous. The enhancement of one specific allele (bx(34e)), which is temperature-sensitive, has allowed a delineation of the temperature-sensitive period of the bithorax locus to a period extending from the middle of the second larval instar to the middle of the third larval instar. These results, as well as those of other enhancer and suppressor systems in Drosophila, have revealed the possibility of the involvement of heterocyclic compounds in the control of cell determination and fate in Drosophila melanogaster.

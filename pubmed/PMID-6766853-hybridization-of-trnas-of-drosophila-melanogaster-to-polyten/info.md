@@ -1,0 +1,14 @@
+# Hybridization of tRNAs of Drosophila melanogaster to polytene chromosomes.
+
+- **PMID**: 6766853
+- **DOI**: 10.1007/BF00292227
+- **PMCID**:  
+- **Journal**: Chromosoma  ·  **Year**: 1980
+- **Authors**: S Hayashi, I C Gillam, A D Delaney, R Dunn, G M Tener, T A Grigliatti, D T Suzuki
+- **MeSH**: Animals, Autoradiography, Chromosomes, DNA, Drosophila melanogaster, Nucleic Acid Hybridization, RNA, Transfer
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/6766853/
+- **Captured**: 2026-05-10T13:35:55
+
+## Abstract
+
+Highly purified tRNAs from Drosophila melanogaster were iodinated with 125I and hybridized to squashes of polytene chromosomes of Drosophila silivary glands followed by autoradiography to localize binding sites. Most tRNAs hybridize strongly to more than one site and weakly to one or more additional sites. The major sites for various tRNAs are the following: tRNA2Arg, 42A, 84F1,2; tRNA2Asp, 29DE; tRNA3Gly, 22BC, 35BC, 57BC, tRNA2Lys, 42A, 42E; tRNA5Lys, 84AB, 87B; tRNA2Met, 48B5-7, 72F1-2, 83F-84A; tRNA3Met, 46A1-2, 61D1-2, 70F1-2; tRNA4Ser, 12DE, 23E; tRNA7Ser, 12DE, 23E; tRNA3aVal, 64D; tRNA3bVal, 84d3-4, 92b1-9; tRNA4Val, 56D3-7, 70BC.

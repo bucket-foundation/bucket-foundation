@@ -1,0 +1,14 @@
+# Use of a community advisory board to build equitable algorithms for participation in clinical trials: a protocol paper for HoPeNET.
+
+- **PMID**: 35185011
+- **DOI**: 10.1093/her/cyr087
+- **PMCID**: PMC3396879 (full-text saved)
+- **Journal**: BMJ health & care informatics  ·  **Year**: 2022
+- **Authors**: Nicole Farmer, Foster Osei Baah, Faustine Williams, Erika Ortiz-Chapparo, Valerie M Mitchell, Latifa Jackson, Billy Collins, Lennox Graham, Gwenyth R Wallen, Tiffany M Powell-Wiley, Allan Johnson
+- **MeSH**: Algorithms, Clinical Trials as Topic, Cross-Sectional Studies, Humans, Patient Selection
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35185011/
+- **Captured**: 2026-05-10T13:32:39
+
+## Abstract
+
+Participation from racial and ethnic minorities in clinical trials has been burdened by issues surrounding mistrust and access to healthcare. There is emerging use of machine learning (ML) in clinical trial recruitment and evaluation. However, for individuals from groups who are recipients of societal biases, utilisation of ML can lead to the creation and use of biased algorithms. To minimise bias, the design of equitable ML tools that advance health equity could be guided by community engagement processes. The Howard University Partnership with the National Institutes of Health for Equitable Clinical Trial Participation for Racial/Ethnic Communities Underrepresented in Research (HoPeNET) seeks to create an ML-based infrastructure from community advisory board (CAB) experiences to enhance participation of African-Americans/Blacks in clinical trials. This triphased cross-sectional study (24 months, n=56) will create a CAB of community members and research investigators. The three phases of the study include: (1) identification of perceived barriers/facilitators to clinical trial engagement through qualitative/quantitative methods and systems-based model building participation; (2) operation of CAB meetings and (3) development of a predictive ML tool and outcome evaluation. Identified predictors from the participant-derived systems-based map will be used for the ML tool development. We anticipate minimum risk for participants. Institutional review board approval and informed consent has been obtained and patient confidentiality ensured.
