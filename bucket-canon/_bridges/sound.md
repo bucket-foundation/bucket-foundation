@@ -2,7 +2,7 @@
 
 - **Slug**: `sound`
 - **Tier**: primary axis
-- **FTS mass**: TBD (newly added bridge — re-run `agf-canon-connections` after music corpus FTS-indexed)
+- **FTS mass**: 938 (primary axis confirmed — sister to light at 1,033)
 - **Spans**: 8+ branches
 - **Generated**: 2026-05-10
 

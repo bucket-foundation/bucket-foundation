@@ -16,6 +16,7 @@
 | Anil K. Seth | Karl Friston | 139 |
 | Yoshua Bengio | Geoffrey E. Hinton | 133 |
 | Marco Iacoboni | Vittorio Gallese | 127 |
+| Jamshed J. Bharucha | Carol L. Krumhansl | 106 |
 | Yoshua Bengio | Yann LeCun | 101 |
 | Carlo Rovelli | Lee Smolin | 87 |
 | Stuart R. Hameroff | Roger Penrose | 86 |
@@ -25,14 +26,20 @@
 | Anil K. Seth | Giulio Tononi | 68 |
 | Juan Maldacena | Edward Witten | 55 |
 | Giulio Tononi | Olaf Sporns | 52 |
+| Henkjan Honing | Laurel J. Trainor | 47 |
+| Fred Lerdahl | Carol L. Krumhansl | 46 |
 | Ilya Sutskever | Geoffrey E. Hinton | 46 |
+| Carol L. Krumhansl | Jamshed J. Bharucha | 46 |
 | Juan Maldacena | Andrew Strominger | 45 |
 | Olaf Sporns | Karl Friston | 44 |
+| Ray Jackendoff | Steven Pinker | 42 |
 | Sabine Hossenfelder | Lee Smolin | 42 |
 | Yann LeCun | Yoshua Bengio | 39 |
+| Carol L. Krumhansl | Fred Lerdahl | 38 |
 | Roger Penrose | Stuart R. Hameroff | 38 |
 | Stuart R. Hameroff | H. Fröhlich | 38 |
 | Olaf Sporns | Giulio Tononi | 37 |
+| Fred Lerdahl | Ray Jackendoff | 37 |
 | Geoffrey E. Hinton | Yoshua Bengio | 37 |
 | Andrew Strominger | Edward Witten | 36 |
 | Brian Greene | Cumrun Vafa | 36 |
@@ -49,15 +56,8 @@
 | Lisa Randall | Nima Arkani–Hamed | 29 |
 | Anil K. Seth | Olaf Sporns | 28 |
 | Geoffrey E. Hinton | Yann LeCun | 28 |
+| Steven Pinker | Ray Jackendoff | 27 |
 | Brian Greene | Andrew Strominger | 27 |
 | Joseph E. LeDoux | Eric R. Kandel | 26 |
 | Juan Maldacena | S. W. Hawking | 26 |
 | Alan H. Guth | Paul J. Steinhardt | 26 |
-| Nima Arkani–Hamed | Edward Witten | 26 |
-| Daniel Kahneman | Herbert A. Simon | 25 |
-| Nima Arkani–Hamed | Steven Weinberg | 23 |
-| Imre Lakatos | Paul K. Feyerabend | 23 |
-| Paul J. Steinhardt | Alan H. Guth | 22 |
-| Karl Friston | Geoffrey E. Hinton | 22 |
-| Alan H. Guth | Steven Weinberg | 22 |
-| Anton Zeilinger | N. David Mermin | 21 |
