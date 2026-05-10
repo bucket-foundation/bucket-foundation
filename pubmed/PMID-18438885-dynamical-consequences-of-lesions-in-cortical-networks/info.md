@@ -1,0 +1,14 @@
+# Dynamical consequences of lesions in cortical networks.
+
+- **PMID**: 18438885
+- **DOI**: 10.1002/hbm.20579
+- **PMCID**: PMC1692718 (full-text saved)
+- **Journal**: Human brain mapping  ·  **Year**: 2008
+- **Authors**: Christopher J Honey, Olaf Sporns
+- **MeSH**: Animals, Cerebral Cortex, Macaca, Models, Neurological, Nerve Net, Neural Pathways
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18438885/
+- **Captured**: 2026-05-10T15:59:14
+
+## Abstract
+
+To understand the effects of a cortical lesion it is necessary to consider not only the loss of local neural function, but also the lesion-induced changes in the larger network of endogenous oscillatory interactions in the brain. To investigate how network embedding influences a region's functional role, and the consequences of its being damaged, we implement two models of oscillatory cortical interactions, both of which inherit their coupling architecture from the available anatomical connection data for macaque cerebral cortex. In the first model, node dynamics are governed by Kuramoto phase oscillator equations, and we investigate the sequence in which areas entrain one another in the transition to global synchrony. In the second model, node dynamics are governed by a more realistic neural mass model, and we assess long-run inter-regional interactions using a measure of directed information flow. Highly connected parietal and frontal areas are found to synchronize most rapidly, more so than equally highly connected visual and somatosensory areas, and this difference can be explained in terms of the network's clustered architecture. For both models, lesion effects extend beyond the immediate neighbors of the lesioned site, and the amplitude and dispersal of nonlocal effects are again influenced by cluster patterns in the network. Although the consequences of in vivo lesions will always depend on circuitry local to the damaged site, we conclude that lesions of parietal regions (especially areas 5 and 7a) and frontal regions (especially areas 46 and FEF) have the greatest potential to disrupt the integrative aspects of neocortical function.

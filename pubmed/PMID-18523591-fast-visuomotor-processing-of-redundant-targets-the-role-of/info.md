@@ -1,0 +1,14 @@
+# Fast visuomotor processing of redundant targets: the role of the right temporo-parietal junction.
+
+- **PMID**: 18523591
+- **DOI**: 10.1371/journal.pone.0002348
+- **PMCID**: PMC2390848 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2008
+- **Authors**: Eric Mooshagian, Jonas Kaplan, Eran Zaidel, Marco Iacoboni
+- **MeSH**: Humans, Magnetic Resonance Imaging, Motor Activity, Parietal Lobe, Reaction Time, Temporal Lobe, Vision, Ocular
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18523591/
+- **Captured**: 2026-05-10T15:59:26
+
+## Abstract
+
+Parallel processing of multiple sensory stimuli is critical for efficient, successful interaction with the environment. An experimental approach to studying parallel processing in sensorimotor integration is to examine reaction times to multiple copies of the same stimulus. Reaction times to bilateral copies of light flashes are faster than to single, unilateral light flashes. These faster responses may be due to 'statistical facilitation' between independent processing streams engaged by the two copies of the light flash. On some trials, however, reaction times are faster than predicted by statistical facilitation. This indicates that a neural 'coactivation' of the two processing streams must have occurred. Here we use fMRI to investigate the neural locus of this coactivation. Subjects responded manually to the detection of unilateral light flashes presented to the left or right visual hemifield, and to the detection of bilateral light flashes. We compared the bilateral trials where subjects' reaction times exceeded the limit predicted by statistical facilitation to bilateral trials that did not exceed the limit. Activity in the right temporo-parietal junction was higher in those bilateral trials that showed coactivation than in those that did not. These results suggest the neural coactivation observed in visuomotor integration occurs at a cognitive rather than sensory or motor stage of processing.

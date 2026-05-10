@@ -1,0 +1,14 @@
+# Rethinking the fear circuit: the central nucleus of the amygdala is required for the acquisition, consolidation, and expression of Pavlovian fear conditioning.
+
+- **PMID**: 17135400
+- **DOI**: 10.1523/JNEUROSCI.4316-06.2006
+- **PMCID**: PMC6772812 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2006
+- **Authors**: Ann E Wilensky, Glenn E Schafe, Morten P Kristensen, Joseph E LeDoux
+- **MeSH**: Amygdala, Animals, Conditioning, Classical, Fear, Male, Nerve Net, Rats, Rats, Sprague-Dawley, Thinking
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17135400/
+- **Captured**: 2026-05-10T15:57:54
+
+## Abstract
+
+In the standard model of pavlovian fear learning, sensory input from neutral and aversive stimuli converge in the lateral nucleus of the amygdala (LA), in which alterations in synaptic transmission encode the association. During fear expression, the LA is thought to engage the central nucleus of the amygdala (CE), which serves as the principal output nucleus for the expression of conditioned fear responses. In the present study, we reexamined the roles of LA and CE. Specifically, we asked whether CE, like LA, might also be involved in fear learning and memory consolidation. Using functional inactivation methods, we first show that CE is involved not only in the expression but also the acquisition of fear conditioning. Next, we show that inhibition of protein synthesis in CE after training impairs fear memory consolidation. These findings indicate that CE is not only involved in fear expression but, like LA, is also involved in the learning and consolidation of pavlovian fear conditioning.

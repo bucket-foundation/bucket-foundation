@@ -1,0 +1,14 @@
+# Motion signals bias localization judgments: a unified explanation for the flash-lag, flash-drag, flash-jump, and Frohlich illusions.
+
+- **PMID**: 17461687
+- **DOI**: 10.1167/7.4.3
+- **PMCID**: PMC3849397 (full-text saved)
+- **Journal**: Journal of vision  ·  **Year**: 2007
+- **Authors**: David M Eagleman, Terrence J Sejnowski
+- **MeSH**: Humans, Motion Perception, Observer Variation, Optical Illusions, Photic Stimulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17461687/
+- **Captured**: 2026-05-10T15:58:13
+
+## Abstract
+
+In the flash-lag illusion, a moving object aligned with a flash is perceived to be offset in the direction of motion following the flash. In the "flash-drag" illusion, a flash is mislocalized in the direction of nearby motion. In the "flash-jump" illusion, a transient change in the appearance of a moving object (e.g., color) is mislocalized in the direction of subsequent motion. Finally, in the Frohlich illusion, the starting position of a suddenly appearing moving object is mislocalized in the direction of the subsequent motion. We demonstrate, in a series of experiments, a unified explanation for all these illusions: Perceptual localization is influenced by motion signals collected over approximately 80 ms after a query is triggered. These demonstrations rule out "latency difference" and asynchronous feature binding models, in which objects appear in their real positions but misaligned in time. Instead, the illusions explored here are best understood as biases in localization caused by motion signals. We suggest that motion biasing exists because it allows the visual system to account for neural processing delays by retrospectively "pushing" an object closer to its true physical location, and we propose directions for exploring the neural mechanisms underlying the dynamic updating of location by the activity of motion-sensitive neurons.

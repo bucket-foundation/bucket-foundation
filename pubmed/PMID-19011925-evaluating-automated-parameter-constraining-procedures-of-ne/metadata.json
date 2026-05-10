@@ -1,0 +1,28 @@
+{
+  "pmid": "19011925",
+  "title": "Evaluating automated parameter constraining procedures of neuron models by experimental and surrogate data.",
+  "abstract": "Neuron models, in particular conductance-based compartmental models, often have numerous parameters that cannot be directly determined experimentally and must be constrained by an optimization procedure. A common practice in evaluating the utility of such procedures is using a previously developed model to generate surrogate data (e.g., traces of spikes following step current pulses) and then challenging the algorithm to recover the original parameters (e.g., the value of maximal ion channel conductances) that were used to generate the data. In this fashion, the success or failure of the model fitting procedure to find the original parameters can be easily determined. Here we show that some model fitting procedures that provide an excellent fit in the case of such model-to-model comparisons provide ill-balanced results when applied to experimental data. The main reason is that surrogate and experimental data test different aspects of the algorithm's function. When considering model-generated surrogate data, the algorithm is required to locate a perfect solution that is known to exist. In contrast, when considering experimental target data, there is no guarantee that a perfect solution is part of the search space. In this case, the optimization procedure must rank all imperfect approximations and ultimately select the best approximation. This aspect is not tested at all when considering surrogate data since at least one perfect solution is known to exist (the original parameters) making all approximations unnecessary. Furthermore, we demonstrate that distance functions based on extracting a set of features from the target data (such as time-to-first-spike, spike width, spike frequency, etc.)--rather than using the original data (e.g., the whole spike trace) as the target for fitting-are capable of finding imperfect solutions that are good approximations of the experimental data.",
+  "authors": [
+    "Shaul Druckmann",
+    "Thomas K Berger",
+    "Sean Hill",
+    "Felix Schürmann",
+    "Henry Markram",
+    "Idan Segev"
+  ],
+  "journal": "Biological cybernetics",
+  "year": "2008",
+  "doi": "10.1007/s00422-008-0269-2",
+  "pmcid": "",
+  "mesh": [
+    "Algorithms",
+    "Animals",
+    "Models, Neurological",
+    "Neocortex",
+    "Neurons",
+    "Organ Culture Techniques",
+    "Patch-Clamp Techniques",
+    "Rats",
+    "Rats, Wistar"
+  ]
+}

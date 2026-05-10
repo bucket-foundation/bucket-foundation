@@ -1,0 +1,14 @@
+# Development of infant mismatch responses to auditory pattern changes between 2 and 4 months old.
+
+- **PMID**: 19200074
+- **DOI**: 10.1111/j.1460-9568.2009.06625.x
+- **PMCID**:  
+- **Journal**: The European journal of neuroscience  ·  **Year**: 2009
+- **Authors**: Chao He, Lisa Hotson, Laurel J Trainor
+- **MeSH**: Acoustic Stimulation, Adolescent, Adult, Analysis of Variance, Brain, Electroencephalography, Female, Humans, Infant, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19200074/
+- **Captured**: 2026-05-10T16:00:14
+
+## Abstract
+
+In order to process speech and music, the auditory cortex must learn to process patterns of sounds. Our previous studies showed that with a stream consisting of a repeating (standard) sound, younger infants show an increase in the amplitude of a positive slow wave in response to occasional changes (deviants) in pitch or duration, whereas older infants show a faster negative response that resembles mismatch negativity (MMN) in adults (Trainor et al., 2001, 2003; He et al., 2007). MMN reflects an automatic change-detection process that does not require attention, conscious awareness or behavioural response for its elicitation (Picton et al., 2000; Näätänen et al., 2007). It is an important tool for understanding auditory perception because MMN reflects a change-detection mechanism, and not simply that repetition of a stimulus results in a refractory state of sensory neural circuits while occasional changes to a new sound activate new non-refractory neural circuits (Näätänen et al., 2005). For example, MMN is elicited by a change in the pattern of a repeating note sequence, even when no new notes are introduced that could activate new sensory circuits (Alain et al., 1994, 1999;Schröger et al., 1996). In the present study, we show that in response to a change in the pattern of two repeating tones, MMN in 4-month-olds remains robust whereas the 2-month-old response does not. This indicates that the MMN response to a change in pattern at 4 months reflects the activation of a change-detection mechanism similarly as in adults.

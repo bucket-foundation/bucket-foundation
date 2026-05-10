@@ -1,0 +1,14 @@
+# Automatic encoding of polyphonic melodies in musicians and nonmusicians.
+
+- **PMID**: 16269098
+- **DOI**: 10.1162/089892905774597263
+- **PMCID**:  
+- **Journal**: Journal of cognitive neuroscience  ·  **Year**: 2005
+- **Authors**: Takako Fujioka, Laurel J Trainor, Bernhard Ross, Ryusuke Kakigi, Christo Pantev
+- **MeSH**: Acoustic Stimulation, Adult, Analysis of Variance, Auditory Cortex, Choice Behavior, Contingent Negative Variation, Evoked Potentials, Auditory, Female, Functional Laterality, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16269098/
+- **Captured**: 2026-05-10T15:56:57
+
+## Abstract
+
+In music, multiple musical objects often overlap in time. Western polyphonic music contains multiple simultaneous melodic lines (referred to as "voices") of equal importance. Previous electrophysiological studies have shown that pitch changes in a single melody are automatically encoded in memory traces, as indexed by mismatch negativity (MMN) and its magnetic counterpart (MMNm), and that this encoding process is enhanced by musical experience. In the present study, we examined whether two simultaneous melodies in polyphonic music are represented as separate entities in the auditory memory trace. Musicians and untrained controls were tested in both magnetoencephalogram and behavioral sessions. Polyphonic stimuli were created by combining two melodies (A and B), each consisting of the same five notes but in a different order. Melody A was in the high voice and Melody B in the low voice in one condition, and this was reversed in the other condition. On 50% of trials, a deviant final (5th) note was played either in the high or in the low voice, and it either went outside the key of the melody or remained within the key. These four deviations occurred with equal probability of 12.5% each. Clear MMNm was obtained for most changes in both groups, despite the 50% deviance level, with a larger amplitude in musicians than in controls. The response pattern was consistent across groups, with larger MMNm for deviants in the high voice than in the low voice, and larger MMNm for in-key than out-of-key changes, despite better behavioral performance for out-of-key changes. The results suggest that melodic information in each voice in polyphonic music is encoded in the sensory memory trace, that the higher voice is more salient than the lower, and that tonality may be processed primarily at cognitive stages subsequent to MMN generation.

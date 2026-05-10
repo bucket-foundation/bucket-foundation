@@ -1,0 +1,14 @@
+# Do you see what I mean? Corticospinal excitability during observation of culture-specific gestures.
+
+- **PMID**: 17637842
+- **DOI**: 10.1371/journal.pone.0000626
+- **PMCID**: PMC6673981 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2007
+- **Authors**: Istvan Molnar-Szakacs, Allan D Wu, Francisco J Robles, Marco Iacoboni
+- **MeSH**: Americas, Cross-Cultural Comparison, Culture, Europe, Evoked Potentials, Motor, Gestures, Hand, Humans, Interpersonal Relations, Kinesics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17637842/
+- **Captured**: 2026-05-10T15:58:26
+
+## Abstract
+
+People all over the world use their hands to communicate expressively. Autonomous gestures, also known as emblems, are highly social in nature, and convey conventionalized meaning without accompanying speech. To study the neural bases of cross-cultural social communication, we used single pulse transcranial magnetic stimulation (TMS) to measure corticospinal excitability (CSE) during observation of culture-specific emblems. Foreign Nicaraguan and familiar American emblems as well as meaningless control gestures were performed by both a Euro-American and a Nicaraguan actor. Euro-American participants demonstrated higher CSE during observation of the American compared to the Nicaraguan actor. This motor resonance phenomenon may reflect ethnic and cultural ingroup familiarity effects. However, participants also demonstrated a nearly significant (p = 0.053) actor by emblem interaction whereby both Nicaraguan and American emblems performed by the American actor elicited similar CSE, whereas Nicaraguan emblems performed by the Nicaraguan actor yielded higher CSE than American emblems. The latter result cannot be interpreted simply as an effect of ethnic ingroup familiarity. Thus, a likely explanation of these findings is that motor resonance is modulated by interacting biological and cultural factors.

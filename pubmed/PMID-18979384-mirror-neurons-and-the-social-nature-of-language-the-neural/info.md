@@ -1,0 +1,14 @@
+# Mirror neurons and the social nature of language: the neural exploitation hypothesis.
+
+- **PMID**: 18979384
+- **DOI**: 10.1080/17470910701563608
+- **PMCID**:  
+- **Journal**: Social neuroscience  ·  **Year**: 2008
+- **Authors**: Vittorio Gallese
+- **MeSH**: Animals, Communication, Humans, Models, Biological, Motor Neurons, Social Behavior
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18979384/
+- **Captured**: 2026-05-10T15:59:58
+
+## Abstract
+
+This paper discusses the relevance of the discovery of mirror neurons in monkeys and of the mirror neuron system in humans to a neuroscientific account of primates' social cognition and its evolution. It is proposed that mirror neurons and the functional mechanism they underpin, embodied simulation, can ground within a unitary neurophysiological explanatory framework important aspects of human social cognition. In particular, the main focus is on language, here conceived according to a neurophenomenological perspective, grounding meaning on the social experience of action. A neurophysiological hypothesis--the "neural exploitation hypothesis"--is introduced to explain how key aspects of human social cognition are underpinned by brain mechanisms originally evolved for sensorimotor integration. It is proposed that these mechanisms were later on adapted as new neurofunctional architecture for thought and language, while retaining their original functions as well. By neural exploitation, social cognition and language can be linked to the experiential domain of action.

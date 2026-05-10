@@ -1,0 +1,14 @@
+# The evolution of social cognition: goal familiarity shapes monkeys' action understanding.
+
+- **PMID**: 18221878
+- **DOI**: 10.1016/j.cub.2007.12.021
+- **PMCID**:  
+- **Journal**: Current biology : CB  ·  **Year**: 2008
+- **Authors**: Magali J Rochat, Elisabetta Serra, Luciano Fadiga, Vittorio Gallese
+- **MeSH**: Animals, Behavior, Animal, Biological Evolution, Cognition, Humans, Macaca, Social Behavior
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18221878/
+- **Captured**: 2026-05-10T15:58:58
+
+## Abstract
+
+What is the evolutionary origin of the human ability to understand and predict the behavior of others? Recent studies suggest that human infants' early capacity for understanding others' goal-directed actions relies on nonmentalistic strategies [1-8]. However, there is no consensus about the nature of the mechanisms underpinning these strategies and their evolutionary history. Comparative studies can shed light on these controversial issues. We carried out three preferential looking-time experiments on macaques, modeled on previous work on human infants [1-5], to test whether macaques are sensitive to the functional efficacy of familiar goal-related hand motor acts performed by an experimenter in a given context and to examine to which extent this sensitivity also is present when observing non-goal-related or unusual goal-related motor acts. We demonstrate that macaque monkeys, similar to human infants, do indeed detect action efficacy by gazing longer at less efficient actions. However, they do so only when the observed behavior is directed to a perceptible and familiar goal. Our results show that the direct detection of the functional fitness of action, in relation to goals that have become familiar through previous experience, is the phylogenetic precursor of intentional understanding.

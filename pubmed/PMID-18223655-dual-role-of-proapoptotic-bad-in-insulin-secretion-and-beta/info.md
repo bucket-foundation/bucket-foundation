@@ -1,0 +1,14 @@
+# Dual role of proapoptotic BAD in insulin secretion and beta cell survival.
+
+- **PMID**: 18223655
+- **DOI**: 10.1038/nm1717
+- **PMCID**: PMC19394 (full-text saved)
+- **Journal**: Nature medicine  ·  **Year**: 2008
+- **Authors**: Nika N Danial, Loren D Walensky, Chen-Yu Zhang, Cheol Soo Choi, Jill K Fisher, Anthony J A Molina, Sandeep Robert Datta, Kenneth L Pitter, Gregory H Bird, Jakob D Wikstrom, Jude T Deeney, Kirsten Robertson, Joel Morash, Ameya Kulkarni, Susanne Neschen, Sheene Kim, Michael E Greenberg, Barbara E Corkey, Orian S Shirihai, Gerald I Shulman, Bradford B Lowell, Stanley J Korsmeyer
+- **MeSH**: Amino Acid Sequence, Animals, Blood Glucose, Calcium, Cell Count, Cell Survival, Diet, Glucokinase, Glucose, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18223655/
+- **Captured**: 2026-05-10T15:58:59
+
+## Abstract
+
+The proapoptotic BCL-2 family member BAD resides in a glucokinase-containing complex that regulates glucose-driven mitochondrial respiration. Here, we present genetic evidence of a physiologic role for BAD in glucose-stimulated insulin secretion by beta cells. This novel function of BAD is specifically dependent upon the phosphorylation of its BH3 sequence, previously defined as an essential death domain. We highlight the pharmacologic relevance of phosphorylated BAD BH3 by using cell-permeable, hydrocarbon-stapled BAD BH3 helices that target glucokinase, restore glucose-driven mitochondrial respiration and correct the insulin secretory response in Bad-deficient islets. Our studies uncover an alternative target and function for the BAD BH3 domain and emphasize the therapeutic potential of phosphorylated BAD BH3 mimetics in selectively restoring beta cell function. Furthermore, we show that BAD regulates the physiologic adaptation of beta cell mass during high-fat feeding. Our findings provide genetic proof of the bifunctional activities of BAD in both beta cell survival and insulin secretion.

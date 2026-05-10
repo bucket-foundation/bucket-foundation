@@ -1,0 +1,14 @@
+# Envenomation by the asp caterpillar (Megalopyge opercularis).
+
+- **PMID**: 18344102
+- **DOI**: 10.1080/15563650701227729
+- **PMCID**:  
+- **Journal**: Clinical toxicology (Philadelphia, Pa.)  ·  **Year**: 2008
+- **Authors**: David M Eagleman
+- **MeSH**: Animals, Geography, Humans, Insect Bites and Stings, Larva, Moths, Population, Seasons, United States
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18344102/
+- **Captured**: 2026-05-10T15:59:09
+
+## Abstract
+
+The Asp Caterpillar, Megalopyge opercularis, is endemic to the southern United States and causes hundreds of human envenomations annually. Envenomation from the spines of the caterpillar causes severe pain, burning, swelling, nausea, abdominal distress, and headache. Despite the high prevalence of envenomations, little is known about the caterpillars, their geographical distribution, and the symptoms they engender. We collected and analyzed 188 case reports of asp caterpillar envenomations over a three-year period. The geographical distribution of the caterpillars is confined to the southeast United States, largely in Texas, Louisiana, and Florida. Symptoms of envenomation vary, but typically include burning pain, swelling, nausea, and itching. The peak months of envenomation are July through November, with few cases reported at other times of year. This study sheds light on the caterpillars' distribution and the range of symptoms caused in order to aid in diagnosing puss moth caterpillar envenomation.

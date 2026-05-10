@@ -1,0 +1,14 @@
+# Localization of glucocorticoid receptors at postsynaptic membranes in the lateral amygdala.
+
+- **PMID**: 16181741
+- **DOI**: 10.1016/j.neuroscience.2005.06.050
+- **PMCID**:  
+- **Journal**: Neuroscience  ·  **Year**: 2005
+- **Authors**: L R Johnson, C Farb, J H Morrison, B S McEwen, J E LeDoux
+- **MeSH**: Amygdala, Animals, Immunologic Techniques, Male, Microscopy, Electron, Rats, Rats, Sprague-Dawley, Receptors, Glucocorticoid, Synaptic Membranes, Tissue Distribution
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16181741/
+- **Captured**: 2026-05-10T15:56:52
+
+## Abstract
+
+Glucocorticoids, released in high concentrations from the adrenal cortex during stressful experiences, bind to glucocorticoid receptors in nuclear and peri-nuclear sites in neuronal somata. Their classically known mode of action is to induce gene promoter receptors to alter gene transcription. Nuclear glucocorticoid receptors are particularly dense in brain regions crucial for memory, including memory of stressful experiences, such as the hippocampus and amygdala. While it has been proposed that glucocorticoids may also act via membrane bound receptors, the existence of the latter remains controversial. Using electron microscopy, we found glucocorticoid receptors localized to non-genomic sites in rat lateral amygdala, glia processes, presynaptic terminals, neuronal dendrites, and dendritic spines including spine organelles and postsynaptic membrane densities. The lateral nucleus of the amygdala is a region specifically implicated in the formation of memories for stressful experiences. These newly observed glucocorticoid receptor immunoreactive sites were in addition to glucocorticoid receptor immunoreactive signals observed using electron and confocal microscopy in lateral amygdala principal neuron and GABA neuron soma and nuclei, cellular domains traditionally associated with glucocorticoid immunoreactivity. In lateral amygdala, glucocorticoid receptors are thus also localized to non-nuclear-membrane translocation sites, particularly dendritic spines, where they show an affinity for postsynaptic membrane densities, and may have a specialized role in modulating synaptic transmission plasticity related to fear and emotional memory.

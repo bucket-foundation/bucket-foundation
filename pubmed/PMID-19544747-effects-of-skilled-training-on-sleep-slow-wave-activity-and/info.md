@@ -1,0 +1,14 @@
+# Effects of skilled training on sleep slow wave activity and cortical gene expression in the rat.
+
+- **PMID**: 19544747
+- **DOI**: 10.1093/sleep/32.6.719
+- **PMCID**: PMC6758761 (full-text saved)
+- **Journal**: Sleep  ·  **Year**: 2009
+- **Authors**: Erin C Hanlon, Ugo Faraguna, Vladyslav V Vyazovskiy, Giulio Tononi, Chiara Cirelli
+- **MeSH**: Animals, Brain Mapping, Conditioning, Operant, Cytoskeletal Proteins, Dominance, Cerebral, Electroencephalography, Electromyography, Frontal Lobe, Gene Expression, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19544747/
+- **Captured**: 2026-05-10T16:00:42
+
+## Abstract
+
+The best characterized marker of sleep homeostasis is the amount of slow wave activity (SWA, 0.5-4 Hz) during NREM sleep. SWA increases as a function of previous waking time and declines during sleep, but the underlying mechanisms remain unclear. We have suggested that SWA homeostasis is linked to synaptic potentiation associated with learning during wakefulness. Indeed, studies in rodents and humans found that SWA increases after manipulations that presumably enhance synaptic strength, but the evidence remains indirect. Here we trained rats in skilled reaching, a task known to elicit long-term potentiation in the trained motor cortex, and immediately after learning measured SWA and cortical protein levels of c-fos and Arc, 2 activity-dependent genes involved in motor learning. Intracortical local field potential recordings and training on reaching task. Basic sleep research laboratory. Long Evans adult male rats. N/A. SWA increased post-training in the trained cortex (the frontal cortex contralateral to the limb used to learn the task), with smaller or no increase in other cortical areas. This increase was reversible within 1 hour, specific to NREM sleep, and positively correlated with changes in performance during the prior training session, suggesting that it reflects plasticity and not just motor activity. Fos and Arc levels were higher in the trained relative to untrained motor cortex immediately after training, but this asymmetry was no longer present after 1 hour of sleep. Learning to reach specifically affects gene expression in the trained motor cortex and, in the same area, increases sleep need as measured by a local change in SWA.

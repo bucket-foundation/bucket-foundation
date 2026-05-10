@@ -1,0 +1,14 @@
+# Exploratory behavior, cortical BDNF expression, and sleep homeostasis.
+
+- **PMID**: 17326538
+- **DOI**: 10.1093/sleep/30.2.129
+- **PMCID**:  
+- **Journal**: Sleep  ·  **Year**: 2007
+- **Authors**: Reto Huber, Giulio Tononi, Chiara Cirelli
+- **MeSH**: Animals, Brain-Derived Neurotrophic Factor, Cerebral Cortex, DNA Primers, DNA, Complementary, Electroencephalography, Electromyography, Exploratory Behavior, Homeostasis, Light
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17326538/
+- **Captured**: 2026-05-10T15:58:03
+
+## Abstract
+
+Slow-wave activity (SWA; 0.5-4.0 Hz) during non-rapid eye movement (NREM) sleep is a reliable indicator of sleep need, as it increases with the duration of prior wakefulness and decreases during sleep. However, which biologic process occurring during wakefulness is responsible for the increase of sleep SWA remains unknown. The aim of the study was to determine whether neuronal plasticity underlies the link between waking activities and the SWA response. We manipulated, in rats, the amount of exploratory activity while maintaining the total duration of waking constant. We then measured the extent to which exploration increases cortical expression of plasticity-related genes (BDNF, Arc, Homer, NGFI-A), and the SWA response once the animals were allowed to sleep. Basic neurophysiology and molecular laboratory. Male Wistar Kyoto rats (250-300 g; 2-3 month old). None. We found that, within the same animal, the amount of exploratory behavior during wakefulness could predict the extent to which BDNF was induced, as well as the extent of the homeostatic SWA response during subsequent sleep. This study suggests a direct link between the synaptic plasticity triggered by waking activities and the homeostatic sleep response and identifies BDNF as a major mediator of this link at the molecular level.

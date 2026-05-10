@@ -1,0 +1,22 @@
+{
+  "pmid": "18379867",
+  "title": "Fully implicit parallel simulation of single neurons.",
+  "abstract": "When a multi-compartment neuron is divided into subtrees such that no subtree has more than two connection points to other subtrees, the subtrees can be on different processors and the entire system remains amenable to direct Gaussian elimination with only a modest increase in complexity. Accuracy is the same as with standard Gaussian elimination on a single processor. It is often feasible to divide a 3-D reconstructed neuron model onto a dozen or so processors and experience almost linear speedup. We have also used the method for purposes of load balance in network simulations when some cells are so large that their individual computation time is much longer than the average processor computation time or when there are many more processors than cells. The method is available in the standard distribution of the NEURON simulation program.",
+  "authors": [
+    "Michael L Hines",
+    "Henry Markram",
+    "Felix Schürmann"
+  ],
+  "journal": "Journal of computational neuroscience",
+  "year": "2008",
+  "doi": "10.1007/s10827-008-0087-5",
+  "pmcid": "PMC2655137",
+  "mesh": [
+    "Animals",
+    "Computer Simulation",
+    "Models, Neurological",
+    "Nerve Net",
+    "Neural Networks, Computer",
+    "Neurons"
+  ]
+}

@@ -1,0 +1,14 @@
+# Judgment of actions in experts: a high-resolution EEG study in elite athletes.
+
+- **PMID**: 19111623
+- **DOI**: 10.1016/j.neuroimage.2008.11.035
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2009
+- **Authors**: Claudio Babiloni, Claudio Del Percio, Paolo M Rossini, Nicola Marzano, Marco Iacoboni, Francesco Infarinato, Roberta Lizio, Marina Piazza, Mirella Pirritano, Giovanna Berlutti, Giuseppe Cibelli, Fabrizio Eusebi
+- **MeSH**: Adolescent, Adult, Brain, Decision Making, Electroencephalography, Evoked Potentials, Expert Testimony, Female, Gymnastics, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19111623/
+- **Captured**: 2026-05-10T16:00:05
+
+## Abstract
+
+The present study tested the two following hypotheses: (i) compared to non-athletes, elite athletes are characterized by a reduced cortical activation during the judgment of sporting observed actions; (ii) in elite athletes, a good judgment of observed sporting actions is related to a low cortical activation. To address these issues, electroencephalographic (EEG) data were recorded in 15 elite rhythmic gymnasts and 13 non-gymnasts. They observed a series of 120 rhythmic gymnastic videos. At the end of each video, the subjects had to judge the artistic/athletic level of the exercise by a scale from 0 to 10. The mismatch between their judgment and that of the coach indexed the degree of action judgment. The EEG cortical sources were estimated by sLORETA. With reference to a pre-stimulus period, the power decrease of alpha (8-12 Hz) rhythms during the videos indexed the cortical activation (event related desynchronization, ERD). Regarding the hypothesis (i), low- and high-frequency alpha ERD was lower in amplitude in the elite rhythmic gymnasts compared to the non-gymnasts in occipital and temporal areas (ventral pathway) and in dorsal pathway. Regarding the hypothesis (ii), in the elite rhythmic gymnasts high-frequency alpha ERD was higher in amplitude with the videos characterized by a high judgment error than those characterized by a low judgment error; this was true in inferior posterior parietal and ventral premotor areas ("mirror" pathway). These results globally suggest that the judgment of observed sporting actions is related to low amplitude of alpha ERD, as a possible index of spatially selective cortical activation ("neural efficiency").

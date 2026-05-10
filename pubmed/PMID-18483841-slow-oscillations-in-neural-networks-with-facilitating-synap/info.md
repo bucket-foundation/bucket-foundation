@@ -1,0 +1,14 @@
+# Slow oscillations in neural networks with facilitating synapses.
+
+- **PMID**: 18483841
+- **DOI**: 10.1007/s10827-008-0080-z
+- **PMCID**:  
+- **Journal**: Journal of computational neuroscience  ·  **Year**: 2008
+- **Authors**: Ofer Melamed, Omri Barak, Gilad Silberberg, Henry Markram, Misha Tsodyks
+- **MeSH**: Action Potentials, Biological Clocks, Computer Simulation, Models, Neurological, Neocortex, Nerve Net, Neural Inhibition, Neurons, Nonlinear Dynamics, Synapses
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18483841/
+- **Captured**: 2026-05-10T15:59:21
+
+## Abstract
+
+The synchronous oscillatory activity characterizing many neurons in a network is often considered to be a mechanism for representing, binding, conveying, and organizing information. A number of models have been proposed to explain high-frequency oscillations, but the mechanisms that underlie slow oscillations are still unclear. Here, we show by means of analytical solutions and simulations that facilitating excitatory (E(f)) synapses onto interneurons in a neural network play a fundamental role, not only in shaping the frequency of slow oscillations, but also in determining the form of the up and down states observed in electrophysiological measurements. Short time constants and strong E(f) synapse-connectivity were found to induce rapid alternations between up and down states, whereas long time constants and weak E(f) synapse connectivity prolonged the time between up states and increased the up state duration. These results suggest a novel role for facilitating excitatory synapses onto interneurons in controlling the form and frequency of slow oscillations in neuronal circuits.

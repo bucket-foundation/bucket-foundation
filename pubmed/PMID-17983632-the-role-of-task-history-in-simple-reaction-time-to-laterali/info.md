@@ -1,0 +1,14 @@
+# The role of task history in simple reaction time to lateralized light flashes.
+
+- **PMID**: 17983632
+- **DOI**: 10.1016/j.neuropsychologia.2007.09.008
+- **PMCID**: PMC6576604 (full-text saved)
+- **Journal**: Neuropsychologia  ·  **Year**: 2008
+- **Authors**: Eric Mooshagian, Marco Iacoboni, Eran Zaidel
+- **MeSH**: Arm, Attention, Corpus Callosum, Female, Functional Laterality, Humans, Male, Movement, Photic Stimulation, Practice, Psychological
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17983632/
+- **Captured**: 2026-05-10T15:58:43
+
+## Abstract
+
+In lateralized simple reaction time (SRT) tasks with unimanual responses, reaction times (RTs) are faster with ipsilateral (uncrossed) than with contralateral (crossed) response hand-target hemifield combinations. The difference between crossed and uncrossed responses (CUD) is typically interpreted to reflect callosal transfer time. Indeed, split brain patients have much longer CUDs than control subjects. However, while many studies have supported the hypothesis that the CUD reflects callosal transmission time, a few studies have suggested that the CUD may be affected by non-anatomical factors. We investigated the nature of these inconsistent results in two experiments. In the first, we asked half of our subjects to cross their arms while performing the task. The CUD was not affected by arms crossing, supporting the anatomical model of the CUD. In the second experiment, however, all subjects were asked to cross their arms in half of the trials. In this experiment, arms crossing significantly affected the CUD, thus showing that spatial attention modulates the CUD. These latter results cannot be readily explained by a simple callosal relay interpretation of the CUD. Rather, the CUD seems to reflect a mix of anatomical and non-anatomical factors produced by task history. Thus, the seemingly inconsistent results of previous studies can be reconciled by taking into account differences in task history across studies.

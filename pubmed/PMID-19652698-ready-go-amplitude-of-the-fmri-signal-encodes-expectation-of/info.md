@@ -1,0 +1,14 @@
+# Ready...go: Amplitude of the FMRI signal encodes expectation of cue arrival time.
+
+- **PMID**: 19652698
+- **DOI**: 10.1371/journal.pbio.1000167
+- **PMCID**: PMC1859959 (full-text saved)
+- **Journal**: PLoS biology  ·  **Year**: 2009
+- **Authors**: Xu Cui, Chess Stetson, P Read Montague, David M Eagleman
+- **MeSH**: Brain, Cues, Humans, Magnetic Resonance Imaging, Models, Psychological, Motor Activity, Probability, Reaction Time, Time Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19652698/
+- **Captured**: 2026-05-10T16:00:44
+
+## Abstract
+
+What happens when the brain awaits a signal of uncertain arrival time, as when a sprinter waits for the starting pistol? And what happens just after the starting pistol fires? Using functional magnetic resonance imaging (fMRI), we have discovered a novel correlate of temporal expectations in several brain regions, most prominently in the supplementary motor area (SMA). Contrary to expectations, we found little fMRI activity during the waiting period; however, a large signal appears after the "go" signal, the amplitude of which reflects learned expectations about the distribution of possible waiting times. Specifically, the amplitude of the fMRI signal appears to encode a cumulative conditional probability, also known as the cumulative hazard function. The fMRI signal loses its dependence on waiting time in a "countdown" condition in which the arrival time of the go cue is known in advance, suggesting that the signal encodes temporal probabilities rather than simply elapsed time. The dependence of the signal on temporal expectation is present in "no-go" conditions, demonstrating that the effect is not a consequence of motor output. Finally, the encoding is not dependent on modality, operating in the same manner with auditory or visual signals. This finding extends our understanding of the relationship between temporal expectancy and measurable neural signals.

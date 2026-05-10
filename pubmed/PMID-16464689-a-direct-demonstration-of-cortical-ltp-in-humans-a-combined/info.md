@@ -1,0 +1,14 @@
+# A direct demonstration of cortical LTP in humans: a combined TMS/EEG study.
+
+- **PMID**: 16464689
+- **DOI**: 10.1016/j.brainresbull.2005.11.003
+- **PMCID**:  
+- **Journal**: Brain research bulletin  ·  **Year**: 2006
+- **Authors**: S K Esser, R Huber, M Massimini, M J Peterson, F Ferrarelli, G Tononi
+- **MeSH**: Electroencephalography, Evoked Potentials, Motor, Humans, Long-Term Potentiation, Male, Motor Cortex, Transcranial Magnetic Stimulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16464689/
+- **Captured**: 2026-05-10T15:57:13
+
+## Abstract
+
+Repetitive transcranial magnetic stimulation (rTMS) is increasingly being used to promote cortical reorganization, under the assumption that it can induce long-term potentiation (LTP) of neural responses. This assumption is supported by several lines of indirect evidence. For example, rTMS of motor cortex can induce a potentiation of muscle motor evoked potentials that outlasts the stimulation by several minutes. In animal models, a direct demonstration of LTP is typically obtained by high-frequency electrical stimulation coupled with local field recordings of population responses. In this study, we exploited a new approach based on combined rTMS/high-density electroencephalography (hd-EEG) to obtain direct, noninvasive evidence for LTP in humans. Cortical responses to single TMS pulses were measured with hd-EEG before and after applying rTMS to motor cortex (5Hz, 1500 pulses). The results demonstrate that, after rTMS, EEG responses at latencies of 15-55ms were significantly potentiated. A topographic analysis revealed that this potentiation was significant at EEG electrodes located bilaterally over premotor cortex. Thus, these findings provide a direct demonstration in humans of LTP induced by rTMS.

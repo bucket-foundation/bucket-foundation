@@ -1,0 +1,14 @@
+# Slow waves, synaptic plasticity and information processing: insights from transcranial magnetic stimulation and high-density EEG experiments.
+
+- **PMID**: 19473231
+- **DOI**: 10.1111/j.1460-9568.2009.06720.x
+- **PMCID**: PMC1464551 (full-text saved)
+- **Journal**: The European journal of neuroscience  ·  **Year**: 2009
+- **Authors**: M Massimini, G Tononi, R Huber
+- **MeSH**: Animals, Cerebral Cortex, Consciousness, Electroencephalography, Humans, Long-Term Potentiation, Neural Pathways, Neuronal Plasticity, Periodicity, Sleep
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19473231/
+- **Captured**: 2026-05-10T16:00:29
+
+## Abstract
+
+Sleep slow waves are the main phenomenon underlying NREM sleep. They are homeostatically regulated, they are thought to be linked to learning and plasticity processes and, at the same time, they are associated with marked changes in cortical information processing. Using transcranial magnetic stimulation (TMS) and high-density (hd) EEG we can measure slow waves, induce and measure plastic changes in the cerebral cortex and directly assess corticocortical information transmission. In this manuscript we review the results of recent experiments in which TMS with hd-EEG is used to demonstrate (i) a causal link between cortical plastic changes and sleep slow waves and (ii) a causal link between slow waves and the decreased ability of thalamocortical circuits to integrate information and to generate conscious experience during NREM sleep. The data presented here suggest a unifying mechanism linking slow waves, plasticity and cortical information integration; moreover, they suggest that TMS can be used as a nonpharmacological means to controllably induce slow waves in the human cerebral cortex.

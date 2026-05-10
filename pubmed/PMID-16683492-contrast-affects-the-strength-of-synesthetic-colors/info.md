@@ -1,0 +1,14 @@
+# Contrast affects the strength of synesthetic colors.
+
+- **PMID**: 16683492
+- **DOI**: 10.1016/s0010-9452(08)70343-5
+- **PMCID**:  
+- **Journal**: Cortex; a journal devoted to the study of the nervous system and behavior  ·  **Year**: 2006
+- **Authors**: Edward M Hubbard, Sanjay Manohar, Vilayanur S Ramachandran
+- **MeSH**: Adult, Association, Attention, Automatism, Color Perception, Contrast Sensitivity, Field Dependence-Independence, Humans, Male, Orientation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16683492/
+- **Captured**: 2026-05-10T15:57:26
+
+## Abstract
+
+Grapheme-color synesthesia is an automatic, involuntary experience of seeing colors when viewing numbers, letters or words on a printed page. Previous research has demonstrated that synesthesia is a genuine perceptual phenomenon, but crucially, all of these experiments have used high-contrast letters and numbers. Our synesthete, JC, anecdotally reported that the strength of his synesthetic colors varied depending on whether the graphemes were presented in high or low contrast. To test this, we asked JC to rate the strength of his experiences to letters of different contrasts on three different dates. JC's ratings of the strength of his synesthetic colors consistently declined monotonically with contrast, suggesting that his synesthetic colors were reduced or absent at low contrasts. To more precisely quantify the impact of this, we then tested JC on modified versions of our embedded figures task (Ramachandran and Hubbard, 2001a) and crowding task (Ramachandran and Hubbard, 2001b) by presenting displays with varying contrast between the graphemes and the background. Behavioral data in the contrast variant of our embedded figures task showed that JC performed significantly better than controls at high contrast, replicating our previous findings. However, at low contrast this advantage was eliminated, consistent with his reports of weaker or absent colors. A similar, but weaker pattern of results was found in the modified version of our crowding task. These results suggest that JC's synesthetic colors may be elicited at contrast dependent stages of visual processing. We propose that regions of the fusiform gyrus specialized for letter and number grapheme recognition that have been shown to respond in a contrast dependent manner mediate JC's synesthetic colors. However, whether this is true for all grapheme-color synesthetes or is only true of the group we refer to as lower synesthetes, remains to be seen.

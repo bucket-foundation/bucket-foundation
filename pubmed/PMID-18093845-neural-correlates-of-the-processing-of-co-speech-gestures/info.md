@@ -1,0 +1,14 @@
+# Neural correlates of the processing of co-speech gestures.
+
+- **PMID**: 18093845
+- **DOI**: 10.1016/j.neuroimage.2007.10.055
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2008
+- **Authors**: Henning Holle, Thomas C Gunter, Shirley-Ann Rüschemeyer, Andreas Hennenlotter, Marco Iacoboni
+- **MeSH**: Adult, Communication, Decision Making, Female, Frontal Lobe, Gestures, Hand, Humans, Image Processing, Computer-Assisted, Language
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18093845/
+- **Captured**: 2026-05-10T15:58:48
+
+## Abstract
+
+In communicative situations, speech is often accompanied by gestures. For example, speakers tend to illustrate certain contents of speech by means of iconic gestures which are hand movements that bear a formal relationship to the contents of speech. The meaning of an iconic gesture is determined both by its form as well as the speech context in which it is performed. Thus, gesture and speech interact in comprehension. Using fMRI, the present study investigated what brain areas are involved in this interaction process. Participants watched videos in which sentences containing an ambiguous word (e.g. She touched the mouse) were accompanied by either a meaningless grooming movement, a gesture supporting the more frequent dominant meaning (e.g. animal) or a gesture supporting the less frequent subordinate meaning (e.g. computer device). We hypothesized that brain areas involved in the interaction of gesture and speech would show greater activation to gesture-supported sentences as compared to sentences accompanied by a meaningless grooming movement. The main results are that when contrasted with grooming, both types of gestures (dominant and subordinate) activated an array of brain regions consisting of the left posterior superior temporal sulcus (STS), the inferior parietal lobule bilaterally and the ventral precentral sulcus bilaterally. Given the crucial role of the STS in audiovisual integration processes, this activation might reflect the interaction between the meaning of gesture and the ambiguous sentence. The activations in inferior frontal and inferior parietal regions may reflect a mechanism of determining the goal of co-speech hand movements through an observation-execution matching process.

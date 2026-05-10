@@ -1,0 +1,14 @@
+# Sleep homeostasis and cortical synchronization: III. A high-density EEG study of sleep slow waves in humans.
+
+- **PMID**: 18246974
+- **DOI**: 10.1093/sleep/30.12.1643
+- **PMCID**: PMC6871862 (full-text saved)
+- **Journal**: Sleep  ·  **Year**: 2007
+- **Authors**: Brady A Riedner, Vladyslav V Vyazovskiy, Reto Huber, Marcello Massimini, Steve Esser, Michael Murphy, Giulio Tononi
+- **MeSH**: Adult, Brain Mapping, Cerebral Cortex, Circadian Rhythm, Computer Simulation, Cortical Synchronization, Electroencephalography, Evoked Potentials, Fourier Analysis, Homeostasis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18246974/
+- **Captured**: 2026-05-10T15:59:05
+
+## Abstract
+
+The mechanisms responsible for the homeostatic decrease of slow-wave activity (SWA, defined in this study as electroencephalogram [EEG] power between 0.5 and 4.0 Hz) during sleep are unknown. In agreement with a recent hypothesis, in the first of 3 companion papers, large-scale computer simulations of the sleeping thalamocortical system showed that a decrease in cortical synaptic strength is sufficient to account for the decline in SWA. In the model, the reduction in SWA was accompanied by decreased incidence of high-amplitude slow waves, decreased wave slopes, and increased number of waves with multiple peaks. In a second companion paper in the rat, local field potential recordings during early and late sleep confirmed the predictions of the model. Here, we investigated the model's predictions in humans by using all-night high-density (hd)-EEG recordings to explore slow-wave parameters over the entire cortical mantle. 256-channel EEG recordings in humans over the course of an entire night's sleep. Sound-attenuated sleep research room Seven healthy male subjects N/A. During late sleep (non-rapid eye movement [NREM] episodes 3 and 4, toward morning), when compared with early sleep (NREM sleep episodes 1 and 2, at the beginning of the night), the analysis revealed (1) reduced SWA, (2) fewer large-amplitude slow waves, (3) decreased wave slopes, (4) more frequent multipeak waves. The decrease in slope between early and late sleep was present even when waves were directly matched by wave amplitude and slow-wave power in the background EEG. Finally, hd-EEG showed that multipeak waves have multiple cortical origins. In the human EEG, the decline of SWA during sleep is accompanied by changes in slow-wave parameters that were predicted by a computer model simulating a homeostatic reduction of cortical synaptic strength.

@@ -1,0 +1,14 @@
+# Repetitive transcranial magnetic stimulation dissociates working memory manipulation from retention functions in the prefrontal, but not posterior parietal, cortex.
+
+- **PMID**: 17014375
+- **DOI**: 10.1162/jocn.2006.18.10.1712
+- **PMCID**:  
+- **Journal**: Journal of cognitive neuroscience  ·  **Year**: 2006
+- **Authors**: Bradley R Postle, Fabio Ferrarelli, Massihullah Hamidi, Eva Feredoes, Marcello Massimini, Michael Peterson, Andrew Alexander, Giulio Tononi
+- **MeSH**: Adult, Cognition, Data Interpretation, Statistical, Female, Humans, Magnetic Resonance Imaging, Male, Memory, Short-Term, Parietal Lobe, Photic Stimulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17014375/
+- **Captured**: 2026-05-10T15:57:46
+
+## Abstract
+
+Understanding the contributions of the prefrontal cortex (PFC) to working memory is central to understanding the neural bases of high-level cognition. One question that remains controversial is whether the same areas of the dorsolateral PFC (dlPFC) that participate in the manipulation of information in working memory also contribute to its short-term retention (STR). We evaluated this question by first identifying, with functional magnetic resonance imaging (fMRI), brain areas involved in manipulation. Next, these areas were targeted with repetitive transcranial magnetic stimulation (rTMS) while subjects performed tasks requiring only the STR or the STR plus manipulation of information in working memory. fMRI indicated that manipulation-related activity was independent of retention-related activity in both the PFC and superior parietal lobule (SPL). rTMS, however, yielded a different pattern of results. Although rTMS of the dlPFC selectively disrupted manipulation, rTMS of the SPL disrupted manipulation and STR to the same extent. rTMS of the postcentral gyrus (a control region) had no effect on performance. The implications of these results are twofold. In the PFC, they are consistent with the view that this region contributes more importantly to the control of information in working memory than to its STR. In the SPL, they illustrate the importance of supplementing the fundamentally correlational data from neuroimaging with a disruptive method, which affords stronger inference about structure-function relations.

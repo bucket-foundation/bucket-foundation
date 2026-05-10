@@ -1,0 +1,14 @@
+# Is there a "neural efficiency" in athletes? A high-resolution EEG study.
+
+- **PMID**: 18602484
+- **DOI**: 10.1016/j.neuroimage.2008.05.061
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2008
+- **Authors**: Claudio Del Percio, Paolo M Rossini, Nicola Marzano, Marco Iacoboni, Francesco Infarinato, Pierluigi Aschieri, Andrea Lino, Antonio Fiore, Giancarlo Toran, Claudio Babiloni, Fabrizio Eusebi
+- **MeSH**: Adult, Brain, Electroencephalography, Female, Humans, Male, Motor Skills, Reproducibility of Results, Sensitivity and Specificity, Task Performance and Analysis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18602484/
+- **Captured**: 2026-05-10T15:59:32
+
+## Abstract
+
+"Neural efficiency" hypothesis posits that cortical activity is spatially focused in experts. Here we tested the hypothesis that compared to non-athletes, elite athletes are characterized by a reduced cortical activation during visuo-motor tasks related to the field of expertise, as a function of movement side. EEG data (56 channels; EB-Neuro) were continuously recorded in the following right-handed subjects: 11 non-athletes, 11 elite fencing athletes, and 11 elite karate athletes. During the EEG recordings, they observed pictures with fencing and karate attacks, and had to quickly click a right (left) keyboard button for the attacks at right (left) monitor side. The EEG data were averaged with respect to the movement onset, and were spatially enhanced by surface Laplacian estimation. The potentials related to the preparation (readiness potential) and initiation (motor potential) of the movements were measured. For the right movement, the potentials overlying supplementary motor and contralateral sensorimotor areas were higher in amplitude in the non-athletes than in the elite karate and fencing athletes. Furthermore, the amplitude of the motor potential over ipsilateral sensorimotor area was higher in the elite karate than fencing athletes, and its distribution over bilateral sensorimotor areas was less asymmetrical in the karate than in the other two groups. For the left movement, these potentials showed no difference between the groups. The present results suggest that "neural efficiency" hypothesis does not fully account for the organization of motor systems in elite athletes. "Neural efficiency" would depend on several factors including side of the movement, hemisphere, and kind of athletes.

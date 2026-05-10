@@ -1,0 +1,14 @@
+# What is remembered? Role of attention on the encoding and retrieval of hippocampal representations.
+
+- **PMID**: 19525568
+- **DOI**: 10.1113/jphysiol.2009.172445
+- **PMCID**: PMC16315 (full-text saved)
+- **Journal**: The Journal of physiology  ·  **Year**: 2009
+- **Authors**: Isabel A Muzzio, Clifford Kentros, Eric Kandel
+- **MeSH**: Animals, Attention, Hippocampus, Humans, Memory, Mental Recall, Space Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19525568/
+- **Captured**: 2026-05-10T16:00:40
+
+## Abstract
+
+The hippocampus is critically involved in storing explicit memory such as memory for space. A defining feature of explicit memory storage is that it requires attention both for encoding and retrieval. Whereas, a great deal is now known about the mechanisms of storage, the mechanisms whereby attention modulates the encoding and retrieval of space and other hippocampus-dependent memory representations are not known. In this review we discuss recent studies, including our own, which show on the cellular level that attention is critical for the stabilization of spatial and reward-associated odour representations. Our findings support the view that in the hippocampus attention selects the reference frame for task-relevant information. This mechanism is in part mediated by dopamine acting through D1/D5 receptors and involves an increase in neuronal synchronization in the gamma band frequency. We propose that synchronous activity leads to enhancements in synaptic strength that mediate the stabilization of hippocampal representations.

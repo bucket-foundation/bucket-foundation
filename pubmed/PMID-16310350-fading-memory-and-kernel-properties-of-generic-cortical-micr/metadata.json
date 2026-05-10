@@ -1,0 +1,29 @@
+{
+  "pmid": "16310350",
+  "title": "Fading memory and kernel properties of generic cortical microcircuit models.",
+  "abstract": "It is quite difficult to construct circuits of spiking neurons that can carry out complex computational tasks. On the other hand even randomly connected circuits of spiking neurons can in principle be used for complex computational tasks such as time-warp invariant speech recognition. This is possible because such circuits have an inherent tendency to integrate incoming information in such a way that simple linear readouts can be trained to transform the current circuit activity into the target output for a very large number of computational tasks. Consequently we propose to analyze circuits of spiking neurons in terms of their roles as analog fading memory and non-linear kernels, rather than as implementations of specific computational operations and algorithms. This article is a sequel to [W. Maass, T. Natschläger, H. Markram, Real-time computing without stable states: a new framework for neural computation based on perturbations, Neural Comput. 14 (11) (2002) 2531-2560, Online available as #130 from: ], and contains new results about the performance of generic neural microcircuit models for the recognition of speech that is subject to linear and non-linear time-warps, as well as for computations on time-varying firing rates. These computations rely, apart from general properties of generic neural microcircuit models, just on capabilities of simple linear readouts trained by linear regression. This article also provides detailed data on the fading memory property of generic neural microcircuit models, and a quick review of other new results on the computational power of such circuits of spiking neurons.",
+  "authors": [
+    "Wolfgang Maass",
+    "Thomas Natschläger",
+    "Henry Markram"
+  ],
+  "journal": "Journal of physiology, Paris",
+  "year": "2004",
+  "doi": "10.1016/j.jphysparis.2005.09.020",
+  "pmcid": "",
+  "mesh": [
+    "Action Potentials",
+    "Animals",
+    "Cerebral Cortex",
+    "Computer Simulation",
+    "Humans",
+    "Linear Models",
+    "Models, Neurological",
+    "Neural Networks, Computer",
+    "Neurons",
+    "Nonlinear Dynamics",
+    "Software",
+    "Speech",
+    "Time Factors"
+  ]
+}
