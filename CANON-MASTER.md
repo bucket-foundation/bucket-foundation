@@ -1,6 +1,6 @@
 # Bucket Canon — Master Overview
 
-*Updated 2026-05-10 · FTS=15,829 docs*
+*Updated 2026-05-10 · FTS=19,045 docs · 18,876 source docs*
 
 This is the single document that answers: *what is currently in canon?*
 Read this first. Everything else hangs off it.
