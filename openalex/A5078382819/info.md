@@ -5,9 +5,9 @@
 - **ORCID**: None
 - **Affiliation**: 
 - **Works (total)**: 234
-- **Cited by (total)**: 45705
+- **Cited by (total)**: 45709
 - **Works pulled**: 200
-- **Captured**: 2026-05-10T16:11:06
+- **Captured**: 2026-05-10T18:25:40
 
 ## Top works (by citation count)
 
