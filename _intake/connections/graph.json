@@ -11,6 +11,11 @@
       "group": "author"
     },
     {
+      "id": "A5002826981",
+      "name": "N. M. Bogoliubov",
+      "group": "author"
+    },
+    {
       "id": "A5003086136",
       "name": "Charles Darwin",
       "group": "author"
@@ -141,6 +146,11 @@
       "group": "author"
     },
     {
+      "id": "A5020769134",
+      "name": "Scott Aaronson",
+      "group": "author"
+    },
+    {
       "id": "A5021444039",
       "name": "Maharshi Ramana",
       "group": "author"
@@ -186,6 +196,11 @@
       "group": "author"
     },
     {
+      "id": "A5027638930",
+      "name": "Carl Friedrich von Weizs\u00e4cker",
+      "group": "author"
+    },
+    {
       "id": "A5028432219",
       "name": "David Anaximander Ruskin",
       "group": "author"
@@ -211,6 +226,11 @@
       "group": "author"
     },
     {
+      "id": "A5031662769",
+      "name": "V. Fock",
+      "group": "author"
+    },
+    {
       "id": "A5031733842",
       "name": "Charles S. Peirce",
       "group": "author"
@@ -223,6 +243,11 @@
     {
       "id": "A5032512426",
       "name": "Edward Witten",
+      "group": "author"
+    },
+    {
+      "id": "A5032828430",
+      "name": "Isabelle Stengers",
       "group": "author"
     },
     {
@@ -331,8 +356,18 @@
       "group": "author"
     },
     {
+      "id": "A5050850280",
+      "name": "David Deutsch",
+      "group": "author"
+    },
+    {
       "id": "A5051102175",
       "name": "Stuart R. Hameroff",
+      "group": "author"
+    },
+    {
+      "id": "A5051383394",
+      "name": "N. David Mermin",
       "group": "author"
     },
     {
@@ -351,8 +386,23 @@
       "group": "author"
     },
     {
+      "id": "A5053825951",
+      "name": "E. Majorana",
+      "group": "author"
+    },
+    {
       "id": "A5054295149",
       "name": "Ramanuja Vedantham",
+      "group": "author"
+    },
+    {
+      "id": "A5054380367",
+      "name": "Donna Haraway",
+      "group": "author"
+    },
+    {
+      "id": "A5054780327",
+      "name": "Bruno Latour",
       "group": "author"
     },
     {
@@ -458,6 +508,11 @@
     {
       "id": "A5066991343",
       "name": "Stanley B. Prusiner",
+      "group": "author"
+    },
+    {
+      "id": "A5068019156",
+      "name": "Karen Barad",
       "group": "author"
     },
     {
@@ -573,6 +628,11 @@
     {
       "id": "A5080489883",
       "name": "Albert Camus",
+      "group": "author"
+    },
+    {
+      "id": "A5080873748",
+      "name": "James Hillman",
       "group": "author"
     },
     {
@@ -776,6 +836,11 @@
       "group": "author"
     },
     {
+      "id": "A5110168523",
+      "name": "S. Chandrasekhar",
+      "group": "author"
+    },
+    {
       "id": "A5110484165",
       "name": "Alvin Plantinga",
       "group": "author"
@@ -958,8 +1023,13 @@
   ],
   "edges": [
     {
-      "source": "A5111730857",
-      "target": "A5014616472",
+      "source": "A5032828430",
+      "target": "A5034255098",
+      "weight": 31
+    },
+    {
+      "source": "A5014616472",
+      "target": "A5111730857",
       "weight": 29
     },
     {
@@ -978,8 +1048,8 @@
       "weight": 12
     },
     {
-      "source": "A5109864068",
-      "target": "A5110020348",
+      "source": "A5110020348",
+      "target": "A5109864068",
       "weight": 12
     },
     {
@@ -1018,8 +1088,13 @@
       "weight": 6
     },
     {
-      "source": "A5086852785",
-      "target": "A5084274787",
+      "source": "A5050105545",
+      "target": "A5053825951",
+      "weight": 6
+    },
+    {
+      "source": "A5084274787",
+      "target": "A5086852785",
       "weight": 6
     },
     {
@@ -1093,6 +1168,11 @@
       "weight": 3
     },
     {
+      "source": "A5054780327",
+      "target": "A5032828430",
+      "weight": 3
+    },
+    {
       "source": "A5101074400",
       "target": "A5112054779",
       "weight": 3
@@ -1118,8 +1198,18 @@
       "weight": 3
     },
     {
-      "source": "A5105707535",
+      "source": "A5027638930",
+      "target": "A5109058842",
+      "weight": 3
+    },
+    {
+      "source": "A5050850280",
       "target": "A5001105113",
+      "weight": 2
+    },
+    {
+      "source": "A5001105113",
+      "target": "A5105707535",
       "weight": 2
     },
     {
@@ -1143,6 +1233,11 @@
       "weight": 2
     },
     {
+      "source": "A5023188928",
+      "target": "A5009543857",
+      "weight": 2
+    },
+    {
       "source": "A5112805211",
       "target": "A5079129069",
       "weight": 2
@@ -1153,8 +1248,8 @@
       "weight": 2
     },
     {
-      "source": "A5023188928",
-      "target": "A5009543857",
+      "source": "A5074092725",
+      "target": "A5054380367",
       "weight": 2
     },
     {
@@ -1163,18 +1258,13 @@
       "weight": 2
     },
     {
+      "source": "A5054380367",
+      "target": "A5054780327",
+      "weight": 2
+    },
+    {
       "source": "A5079129069",
       "target": "A5113463563",
-      "weight": 2
-    },
-    {
-      "source": "A5036616656",
-      "target": "A5065518359",
-      "weight": 2
-    },
-    {
-      "source": "A5036616656",
-      "target": "A5113511537",
       "weight": 2
     },
     {
@@ -1193,8 +1283,18 @@
       "weight": 2
     },
     {
-      "source": "A5018806471",
-      "target": "A5109521432",
+      "source": "A5036616656",
+      "target": "A5065518359",
+      "weight": 2
+    },
+    {
+      "source": "A5036616656",
+      "target": "A5113511537",
+      "weight": 2
+    },
+    {
+      "source": "A5065518359",
+      "target": "A5113511537",
       "weight": 2
     },
     {
@@ -1203,8 +1303,8 @@
       "weight": 2
     },
     {
-      "source": "A5065518359",
-      "target": "A5113511537",
+      "source": "A5018806471",
+      "target": "A5109521432",
       "weight": 2
     },
     {
@@ -1268,7 +1368,7 @@
       "weight": 2
     },
     {
-      "source": "A5105707535",
+      "source": "A5050850280",
       "target": "A5064341086",
       "weight": 1
     },
@@ -1285,6 +1385,11 @@
     {
       "source": "A5001105113",
       "target": "A5051102175",
+      "weight": 1
+    },
+    {
+      "source": "A5105707535",
+      "target": "A5064341086",
       "weight": 1
     },
     {
@@ -1309,11 +1414,6 @@
     },
     {
       "source": "A5072331162",
-      "target": "A5112140704",
-      "weight": 1
-    },
-    {
-      "source": "A5072331162",
       "target": "A5112755778",
       "weight": 1
     },
@@ -1324,27 +1424,22 @@
     },
     {
       "source": "A5072331162",
+      "target": "A5112140704",
+      "weight": 1
+    },
+    {
+      "source": "A5072331162",
       "target": "A5103702214",
       "weight": 1
     },
     {
-      "source": "A5004079943",
-      "target": "A5023188928",
+      "source": "A5023188928",
+      "target": "A5004079943",
       "weight": 1
     },
     {
-      "source": "A5004079943",
-      "target": "A5079129069",
-      "weight": 1
-    },
-    {
-      "source": "A5112805211",
-      "target": "A5023188928",
-      "weight": 1
-    },
-    {
-      "source": "A5112805211",
-      "target": "A5071663279",
+      "source": "A5023188928",
+      "target": "A5112805211",
       "weight": 1
     },
     {
@@ -1363,13 +1458,23 @@
       "weight": 1
     },
     {
-      "source": "A5074092725",
+      "source": "A5004079943",
+      "target": "A5054380367",
+      "weight": 1
+    },
+    {
+      "source": "A5004079943",
       "target": "A5079129069",
       "weight": 1
     },
     {
+      "source": "A5112805211",
+      "target": "A5071663279",
+      "weight": 1
+    },
+    {
       "source": "A5074092725",
-      "target": "A5111405639",
+      "target": "A5079129069",
       "weight": 1
     },
     {
@@ -1383,38 +1488,23 @@
       "weight": 1
     },
     {
+      "source": "A5074092725",
+      "target": "A5111405639",
+      "weight": 1
+    },
+    {
+      "source": "A5054380367",
+      "target": "A5079129069",
+      "weight": 1
+    },
+    {
       "source": "A5079129069",
       "target": "A5082389628",
       "weight": 1
     },
     {
-      "source": "A5036616656",
-      "target": "A5005989677",
-      "weight": 1
-    },
-    {
-      "source": "A5036616656",
-      "target": "A5018806471",
-      "weight": 1
-    },
-    {
-      "source": "A5036616656",
-      "target": "A5007385030",
-      "weight": 1
-    },
-    {
-      "source": "A5036616656",
-      "target": "A5109884453",
-      "weight": 1
-    },
-    {
-      "source": "A5036616656",
-      "target": "A5031504392",
-      "weight": 1
-    },
-    {
-      "source": "A5036616656",
-      "target": "A5010243610",
+      "source": "A5005989677",
+      "target": "A5036616656",
       "weight": 1
     },
     {
@@ -1440,6 +1530,36 @@
     {
       "source": "A5005989677",
       "target": "A5112518355",
+      "weight": 1
+    },
+    {
+      "source": "A5036616656",
+      "target": "A5054780327",
+      "weight": 1
+    },
+    {
+      "source": "A5036616656",
+      "target": "A5109884453",
+      "weight": 1
+    },
+    {
+      "source": "A5036616656",
+      "target": "A5018806471",
+      "weight": 1
+    },
+    {
+      "source": "A5036616656",
+      "target": "A5031504392",
+      "weight": 1
+    },
+    {
+      "source": "A5036616656",
+      "target": "A5007385030",
+      "weight": 1
+    },
+    {
+      "source": "A5036616656",
+      "target": "A5010243610",
       "weight": 1
     },
     {
@@ -1454,12 +1574,12 @@
     },
     {
       "source": "A5053230035",
-      "target": "A5033760928",
+      "target": "A5111405639",
       "weight": 1
     },
     {
       "source": "A5053230035",
-      "target": "A5111405639",
+      "target": "A5033760928",
       "weight": 1
     },
     {
@@ -1473,68 +1593,78 @@
       "weight": 1
     },
     {
-      "source": "A5018806471",
+      "source": "A5054780327",
+      "target": "A5065518359",
+      "weight": 1
+    },
+    {
+      "source": "A5054780327",
+      "target": "A5109884453",
+      "weight": 1
+    },
+    {
+      "source": "A5054780327",
+      "target": "A5018806471",
+      "weight": 1
+    },
+    {
+      "source": "A5054780327",
+      "target": "A5031504392",
+      "weight": 1
+    },
+    {
+      "source": "A5054780327",
       "target": "A5007385030",
       "weight": 1
     },
     {
-      "source": "A5018806471",
-      "target": "A5109884453",
-      "weight": 1
-    },
-    {
-      "source": "A5018806471",
-      "target": "A5065518359",
-      "weight": 1
-    },
-    {
-      "source": "A5018806471",
-      "target": "A5031504392",
-      "weight": 1
-    },
-    {
-      "source": "A5018806471",
+      "source": "A5054780327",
       "target": "A5113511537",
       "weight": 1
     },
     {
-      "source": "A5018806471",
-      "target": "A5112518355",
+      "source": "A5054780327",
+      "target": "A5082389628",
       "weight": 1
     },
     {
-      "source": "A5007385030",
+      "source": "A5065518359",
       "target": "A5109884453",
       "weight": 1
     },
     {
-      "source": "A5007385030",
-      "target": "A5065518359",
+      "source": "A5065518359",
+      "target": "A5018806471",
       "weight": 1
     },
     {
-      "source": "A5007385030",
+      "source": "A5065518359",
       "target": "A5031504392",
       "weight": 1
     },
     {
-      "source": "A5007385030",
-      "target": "A5113511537",
+      "source": "A5065518359",
+      "target": "A5007385030",
       "weight": 1
     },
     {
-      "source": "A5007385030",
-      "target": "A5109876781",
+      "source": "A5065518359",
+      "target": "A5082389628",
       "weight": 1
     },
     {
       "source": "A5109884453",
-      "target": "A5065518359",
+      "target": "A5018806471",
       "weight": 1
     },
     {
       "source": "A5109884453",
       "target": "A5031504392",
+      "weight": 1
+    },
+    {
+      "source": "A5109884453",
+      "target": "A5007385030",
       "weight": 1
     },
     {
@@ -1553,13 +1683,28 @@
       "weight": 1
     },
     {
-      "source": "A5065518359",
+      "source": "A5018806471",
       "target": "A5031504392",
       "weight": 1
     },
     {
-      "source": "A5065518359",
-      "target": "A5082389628",
+      "source": "A5018806471",
+      "target": "A5007385030",
+      "weight": 1
+    },
+    {
+      "source": "A5018806471",
+      "target": "A5113511537",
+      "weight": 1
+    },
+    {
+      "source": "A5018806471",
+      "target": "A5112518355",
+      "weight": 1
+    },
+    {
+      "source": "A5031504392",
+      "target": "A5007385030",
       "weight": 1
     },
     {
@@ -1598,6 +1743,16 @@
       "weight": 1
     },
     {
+      "source": "A5007385030",
+      "target": "A5113511537",
+      "weight": 1
+    },
+    {
+      "source": "A5007385030",
+      "target": "A5109876781",
+      "weight": 1
+    },
+    {
       "source": "A5109876781",
       "target": "A5071663279",
       "weight": 1
@@ -1608,8 +1763,8 @@
       "weight": 1
     },
     {
-      "source": "A5008120092",
-      "target": "A5031733842",
+      "source": "A5031733842",
+      "target": "A5008120092",
       "weight": 1
     },
     {
@@ -1683,13 +1838,13 @@
       "weight": 1
     },
     {
-      "source": "A5068438813",
-      "target": "A5013351653",
+      "source": "A5013351653",
+      "target": "A5068438813",
       "weight": 1
     },
     {
-      "source": "A5014360177",
-      "target": "A5083743331",
+      "source": "A5083743331",
+      "target": "A5014360177",
       "weight": 1
     },
     {
@@ -1699,12 +1854,17 @@
     },
     {
       "source": "A5014894861",
-      "target": "A5032512426",
+      "target": "A5051383394",
       "weight": 1
     },
     {
       "source": "A5014894861",
       "target": "A5033243912",
+      "weight": 1
+    },
+    {
+      "source": "A5014894861",
+      "target": "A5032512426",
       "weight": 1
     },
     {
@@ -1719,12 +1879,17 @@
     },
     {
       "source": "A5014894861",
+      "target": "A5022077412",
+      "weight": 1
+    },
+    {
+      "source": "A5014894861",
       "target": "A5079464744",
       "weight": 1
     },
     {
       "source": "A5014894861",
-      "target": "A5022077412",
+      "target": "A5020769134",
       "weight": 1
     },
     {
@@ -1748,8 +1913,13 @@
       "weight": 1
     },
     {
-      "source": "A5032512426",
-      "target": "A5033243912",
+      "source": "A5033243912",
+      "target": "A5032512426",
+      "weight": 1
+    },
+    {
+      "source": "A5033243912",
+      "target": "A5079416740",
       "weight": 1
     },
     {
@@ -1763,18 +1933,23 @@
       "weight": 1
     },
     {
-      "source": "A5033243912",
-      "target": "A5079416740",
-      "weight": 1
-    },
-    {
       "source": "A5079416740",
       "target": "A5050105545",
       "weight": 1
     },
     {
+      "source": "A5022077412",
+      "target": "A5079464744",
+      "weight": 1
+    },
+    {
+      "source": "A5022077412",
+      "target": "A5020769134",
+      "weight": 1
+    },
+    {
       "source": "A5079464744",
-      "target": "A5022077412",
+      "target": "A5020769134",
       "weight": 1
     },
     {
@@ -1788,13 +1963,33 @@
       "weight": 1
     },
     {
-      "source": "A5113463563",
-      "target": "A5025473979",
+      "source": "A5025473979",
+      "target": "A5113463563",
       "weight": 1
     },
     {
       "source": "A5113463563",
       "target": "A5111405639",
+      "weight": 1
+    },
+    {
+      "source": "A5080901815",
+      "target": "A5027638930",
+      "weight": 1
+    },
+    {
+      "source": "A5080901815",
+      "target": "A5080489883",
+      "weight": 1
+    },
+    {
+      "source": "A5080901815",
+      "target": "A5112518355",
+      "weight": 1
+    },
+    {
+      "source": "A5109058842",
+      "target": "A5078382819",
       "weight": 1
     },
     {
@@ -1808,23 +2003,18 @@
       "weight": 1
     },
     {
-      "source": "A5112518355",
-      "target": "A5080901815",
-      "weight": 1
-    },
-    {
-      "source": "A5080489883",
-      "target": "A5080901815",
-      "weight": 1
-    },
-    {
-      "source": "A5078382819",
-      "target": "A5109058842",
-      "weight": 1
-    },
-    {
       "source": "A5113498523",
       "target": "A5069567141",
+      "weight": 1
+    },
+    {
+      "source": "A5110168523",
+      "target": "A5055842162",
+      "weight": 1
+    },
+    {
+      "source": "A5055842162",
+      "target": "A5111765960",
       "weight": 1
     },
     {
@@ -1843,13 +2033,8 @@
       "weight": 1
     },
     {
-      "source": "A5111765960",
-      "target": "A5055842162",
-      "weight": 1
-    },
-    {
-      "source": "A5076382518",
-      "target": "A5058558682",
+      "source": "A5058558682",
+      "target": "A5076382518",
       "weight": 1
     },
     {
@@ -1858,17 +2043,17 @@
       "weight": 1
     },
     {
-      "source": "A5112237696",
-      "target": "A5110509669",
-      "weight": 1
-    },
-    {
-      "source": "A5112237696",
-      "target": "A5066565862",
+      "source": "A5110509669",
+      "target": "A5112237696",
       "weight": 1
     },
     {
       "source": "A5110509669",
+      "target": "A5066565862",
+      "weight": 1
+    },
+    {
+      "source": "A5112237696",
       "target": "A5066565862",
       "weight": 1
     },
@@ -1890,6 +2075,11 @@
     {
       "source": "A5113791974",
       "target": "A5109864068",
+      "weight": 1
+    },
+    {
+      "source": "A5085661611",
+      "target": "A5080873748",
       "weight": 1
     }
   ]

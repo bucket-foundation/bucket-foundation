@@ -1,6 +1,6 @@
 # Canon-author co-citation / collaboration matrix
 
-*Generated 2026-05-10 from 191 OpenAlex author publication graphs.*
+*Generated 2026-05-10 from 204 OpenAlex author publication graphs.*
 
 
 *A nonzero cell means: the row author has at least one work where the
@@ -12,11 +12,12 @@ For citation overlap (X cites Y), see the openalex-fanout/ data.*
 
 | Author A | Author B | Shared works |
 |---|---|---:|
-| Andrew A. Marino | Robert Becker | 29 |
+| Isabelle Stengers | Ilya Prigogine | 31 |
+| Robert Becker | Andrew A. Marino | 29 |
 | Warren S. McCulloch | Walter Pitts | 23 |
 | Roger Penrose | Stuart R. Hameroff | 15 |
 | Lee Smolin | Carlo Rovelli | 12 |
-| Lynn Margulis | J. E. Lovelock | 12 |
+| J. E. Lovelock | Lynn Margulis | 12 |
 | bell hooks | Cornel West | 11 |
 | Roger Penrose | S. W. Hawking | 11 |
 | Simone de Beauvoir | Jean Paul Sartre | 8 |
@@ -24,7 +25,8 @@ For citation overlap (X cites Y), see the openalex-fanout/ data.*
 | Juan Maldacena | Andrew Strominger | 7 |
 | Stuart Kauffman | Brian Goodwin | 7 |
 | Lee Smolin | Stuart Kauffman | 6 |
-| Karl Friston | Anil K. Seth | 6 |
+| Carlo Rovelli | E. Majorana | 6 |
+| Anil K. Seth | Karl Friston | 6 |
 | Murray Gell‐Mann | Richard P. Feynman | 5 |
 | Charles Darwin | Alfred Russel Wallace | 5 |
 | Hannah Arendt | Karl Jaspers | 5 |
@@ -39,112 +41,120 @@ For citation overlap (X cites Y), see the openalex-fanout/ data.*
 | Juan Maldacena | Edward Witten | 3 |
 | bell hooks | Judith Butler | 3 |
 | Hannah Arendt | Martín Heidegger | 3 |
+| Bruno Latour | Isabelle Stengers | 3 |
 | Martín Heidegger | Maurice Merleau-Ponty | 3 |
 | Maurice Merleau-Ponty | Edmund Husserl | 3 |
 | Maurice Merleau-Ponty | Albert Camus | 3 |
 | Sigmund Freud | Carl Gustav Jung | 3 |
 | Lisa Randall | Nima Arkani–Hamed | 3 |
-| Alan H. Guth | Anton Zeilinger | 2 |
+| Carl Friedrich von Weizsäcker | W. Heisenberg | 3 |
+| David Deutsch | Anton Zeilinger | 2 |
+| Anton Zeilinger | Alan H. Guth | 2 |
 | Alan H. Guth | Lisa Randall | 2 |
 | Juan Maldacena | Subir Sachdev | 2 |
 | Charles Darwin | Konrad Lorenz | 2 |
 | Alfred Russel Wallace | Edward J. Carpenter | 2 |
+| Gilles Deleuze | Jacques Lacan | 2 |
 | Cornel West | Richard Rorty | 2 |
 | Cornel West | Judith Butler | 2 |
-| Gilles Deleuze | Jacques Lacan | 2 |
+| Judith Butler | Donna Haraway | 2 |
 | Judith Butler | Simone de Beauvoir | 2 |
+| Donna Haraway | Bruno Latour | 2 |
 | Richard Rorty | Hilary Putnam | 2 |
-| Ian Hacking | Paul K. Feyerabend | 2 |
-| Ian Hacking | Imre Lakatos | 2 |
 | Michel Foucault | Hannah Arendt | 2 |
-| Michel Foucault | Jacques Lacan | 2 |
-| Michel Foucault | Jürgen Habermas | 2 |
-| Linus Pauling | Albert Szent‐Györgyi | 2 |
-| Francis Crick | Frederick Sanger | 2 |
-| Paul K. Feyerabend | Imre Lakatos | 2 |
 
 ## Per-author top-N co-authors
 
-- **Roger Penrose** → Stuart R. Hameroff(15), S. W. Hawking(11), Edward Witten(1), Lee Smolin(1), Lisa Randall(1)
+- **Roger Penrose** → Stuart R. Hameroff(15), S. W. Hawking(11), N. David Mermin(1), Lee Smolin(1), Edward Witten(1)
+- **Isabelle Stengers** → Ilya Prigogine(31), Bruno Latour(3)
+- **Ilya Prigogine** → Isabelle Stengers(31)
 - **Robert Becker** → Andrew A. Marino(29)
 - **Andrew A. Marino** → Robert Becker(29)
 - **Warren S. McCulloch** → Walter Pitts(23), Albert Szent‐Györgyi(2), John von Neumann(1), Alan Turing(1)
 - **Martín Heidegger** → Edmund Husserl(4), Karl Jaspers(4), Maurice Merleau-Ponty(3), Hannah Arendt(3), Sigmund Freud(2)
 - **Walter Pitts** → Warren S. McCulloch(23)
-- **Lee Smolin** → Carlo Rovelli(12), Stuart Kauffman(6), Edward Witten(1), Lisa Randall(1), Roger Penrose(1)
-- **Edward Witten** → Cumrun Vafa(8), Andrew Strominger(4), Juan Maldacena(3), Carlo Rovelli(2), Lee Smolin(1)
+- **Lee Smolin** → Carlo Rovelli(12), Stuart Kauffman(6), Roger Penrose(1), Edward Witten(1), Lisa Randall(1)
+- **Carlo Rovelli** → Lee Smolin(12), E. Majorana(6), Edward Witten(2), Roger Penrose(1), Lisa Randall(1)
+- **Edward Witten** → Cumrun Vafa(8), Andrew Strominger(4), Juan Maldacena(3), Carlo Rovelli(2), Roger Penrose(1)
+- **Juan Maldacena** → Andrew Strominger(7), Edward Witten(3), Subir Sachdev(2), David Deutsch(1), Anton Zeilinger(1)
 - **S. W. Hawking** → Roger Penrose(11), Andrew Strominger(4), Lee Smolin(1), Juan Maldacena(1), Carl Sagan(1)
+- **bell hooks** → Cornel West(11), Judith Butler(3), Gilles Deleuze(1), Donna Haraway(1), Richard Rorty(1)
 - **Michel Foucault** → Gilles Deleuze(4), Hannah Arendt(2), Jacques Lacan(2), Jürgen Habermas(2), Ian Hacking(1)
 - **Andrew Strominger** → Juan Maldacena(7), Edward Witten(4), S. W. Hawking(4), Cumrun Vafa(2)
 - **Stuart R. Hameroff** → Roger Penrose(15), Karl H. Pribram(1), Anton Zeilinger(1)
-- **Juan Maldacena** → Andrew Strominger(7), Edward Witten(3), Subir Sachdev(2), Anton Zeilinger(1), S. W. Hawking(1)
 - **Cornel West** → bell hooks(11), Richard Rorty(2), Judith Butler(2), Gilles Deleuze(1), Stephen Jay Gould(1)
-- **bell hooks** → Cornel West(11), Judith Butler(3), Gilles Deleuze(1), Richard Rorty(1)
 - **Simone de Beauvoir** → Jean Paul Sartre(8), Judith Butler(2), Jacques Lacan(1), Sigmund Freud(1), Albert Camus(1)
-- **Carlo Rovelli** → Lee Smolin(12), Edward Witten(2), Lisa Randall(1), Roger Penrose(1)
-- **Sigmund Freud** → Carl Gustav Jung(3), Jacques Lacan(2), Martín Heidegger(2), Maurice Merleau-Ponty(2), Gilles Deleuze(1)
+- **Stuart Kauffman** → Brian Goodwin(7), Lee Smolin(6), Stephen Wolfram(1), Roger Penrose(1), Scott Aaronson(1)
+- **Sigmund Freud** → Carl Gustav Jung(3), Jacques Lacan(2), Martín Heidegger(2), Maurice Merleau-Ponty(2), Michel Foucault(1)
+- **W. V. Quine** → Charles S. Peirce(2), Bruno Latour(1), Paul K. Feyerabend(1), Francis Crick(1), Linus Pauling(1)
 - **Hannah Arendt** → Karl Jaspers(5), Martín Heidegger(3), Michel Foucault(2), Carl Gustav Jung(1), Hermann Hesse(1)
-- **Stuart Kauffman** → Brian Goodwin(7), Lee Smolin(6), Roger Penrose(1), Stephen Wolfram(1)
-- **Maurice Merleau-Ponty** → Martín Heidegger(3), Edmund Husserl(3), Albert Camus(3), Sigmund Freud(2), Jacques Lacan(1)
-- **W. V. Quine** → Charles S. Peirce(2), Linus Pauling(1), Theodosius Dobzhansky(1), Ian Hacking(1), Francis Crick(1)
+- **Maurice Merleau-Ponty** → Martín Heidegger(3), Edmund Husserl(3), Albert Camus(3), Sigmund Freud(2), Michel Foucault(1)
 - **Cumrun Vafa** → Edward Witten(8), Andrew Strominger(2), Brian Greene(2), Juan Maldacena(1), Nima Arkani–Hamed(1)
+- **Bruno Latour** → Isabelle Stengers(3), Donna Haraway(2), Paul K. Feyerabend(1), Francis Crick(1), Linus Pauling(1)
+- **Judith Butler** → bell hooks(3), Donna Haraway(2), Simone de Beauvoir(2), Cornel West(2), Richard Rorty(1)
 - **Lynn Margulis** → J. E. Lovelock(12), Brian Goodwin(1)
+- **Karl Jaspers** → Hannah Arendt(5), Martín Heidegger(4), Carl Friedrich von Weizsäcker(1), Albert Camus(1), Jean Paul Sartre(1)
 - **J. E. Lovelock** → Lynn Margulis(12)
 - **Gilles Deleuze** → Michel Foucault(4), Jacques Lacan(2), bell hooks(1), Cornel West(1), Martín Heidegger(1)
-- **Judith Butler** → bell hooks(3), Simone de Beauvoir(2), Cornel West(2), Richard Rorty(1), Jürgen Habermas(1)
-- **Karl Jaspers** → Hannah Arendt(5), Martín Heidegger(4), Albert Camus(1), Jean Paul Sartre(1)
+- **Ian Hacking** → Paul K. Feyerabend(2), Imre Lakatos(2), Michel Foucault(1), Bruno Latour(1), Francis Crick(1)
+- **Francis Crick** → Frederick Sanger(2), Bruno Latour(1), Paul K. Feyerabend(1), Linus Pauling(1), W. V. Quine(1)
 - **Jean Paul Sartre** → Simone de Beauvoir(8), Karl Jaspers(1), Michel Foucault(1), Linus Pauling(1)
-- **Ian Hacking** → Paul K. Feyerabend(2), Imre Lakatos(2), Michel Foucault(1), Linus Pauling(1), Theodosius Dobzhansky(1)
-- **Francis Crick** → Frederick Sanger(2), Linus Pauling(1), Theodosius Dobzhansky(1), Ian Hacking(1), Paul K. Feyerabend(1)
-- **Jacques Lacan** → Gilles Deleuze(2), Michel Foucault(2), Sigmund Freud(2), Martín Heidegger(1), Maurice Merleau-Ponty(1)
-- **Linus Pauling** → Albert Szent‐Györgyi(2), Theodosius Dobzhansky(1), Ian Hacking(1), Francis Crick(1), Paul K. Feyerabend(1)
-- **Paul K. Feyerabend** → Ian Hacking(2), Imre Lakatos(2), Linus Pauling(1), Theodosius Dobzhansky(1), Francis Crick(1)
-- **Lisa Randall** → Nima Arkani–Hamed(3), Alan H. Guth(2), Edward Witten(1), Lee Smolin(1), Roger Penrose(1)
+- **Linus Pauling** → Albert Szent‐Györgyi(2), Bruno Latour(1), Paul K. Feyerabend(1), Francis Crick(1), W. V. Quine(1)
+- **Paul K. Feyerabend** → Imre Lakatos(2), Ian Hacking(2), Bruno Latour(1), Francis Crick(1), Linus Pauling(1)
+- **Jacques Lacan** → Michel Foucault(2), Gilles Deleuze(2), Sigmund Freud(2), Martín Heidegger(1), Maurice Merleau-Ponty(1)
+- **Lisa Randall** → Nima Arkani–Hamed(3), Alan H. Guth(2), Roger Penrose(1), Lee Smolin(1), Edward Witten(1)
 - **Hilary Putnam** → Charles S. Peirce(5), Richard Rorty(2), Martha C. Nussbaum(1), Jürgen Habermas(1)
+- **Imre Lakatos** → Paul K. Feyerabend(2), Ian Hacking(2), Bruno Latour(1), Francis Crick(1), Linus Pauling(1)
 - **Brian Goodwin** → Stuart Kauffman(7), Mae‐Wan Ho(1), Lynn Margulis(1)
+- **Theodosius Dobzhansky** → Bruno Latour(1), Paul K. Feyerabend(1), Francis Crick(1), Linus Pauling(1), W. V. Quine(1)
 - **Charles S. Peirce** → Hilary Putnam(5), W. V. Quine(2), Heinz von Foerster(1)
 - **Richard P. Feynman** → Murray Gell‐Mann(5), Steven Weinberg(2), P. A. M. Dirac(1)
+- **Richard Rorty** → Hilary Putnam(2), Cornel West(2), bell hooks(1), Judith Butler(1), Donna Haraway(1)
 - **Alfred Russel Wallace** → Charles Darwin(5), Edward J. Carpenter(2), Konrad Lorenz(1)
-- **Imre Lakatos** → Ian Hacking(2), Paul K. Feyerabend(2), Linus Pauling(1), Theodosius Dobzhansky(1), Francis Crick(1)
+- **Anton Zeilinger** → David Deutsch(2), Alan H. Guth(2), Murray Gell‐Mann(1), Juan Maldacena(1), Stuart R. Hameroff(1)
 - **Charles Darwin** → Alfred Russel Wallace(5), Konrad Lorenz(2)
-- **Theodosius Dobzhansky** → Linus Pauling(1), Ian Hacking(1), Francis Crick(1), Paul K. Feyerabend(1), W. V. Quine(1)
 - **Murray Gell‐Mann** → Richard P. Feynman(5), Anton Zeilinger(1), Stephen Jay Gould(1)
 - **Edmund Husserl** → Martín Heidegger(4), Maurice Merleau-Ponty(3)
-- **Richard Rorty** → Hilary Putnam(2), Cornel West(2), bell hooks(1), Judith Butler(1), A. J. Ayer(1)
-- **Jürgen Habermas** → Michel Foucault(2), Martín Heidegger(1), Simone de Beauvoir(1), Hannah Arendt(1), Judith Butler(1)
-- **Carl Gustav Jung** → Sigmund Freud(3), Hannah Arendt(1), Hermann Hesse(1), Martín Heidegger(1), Maurice Merleau-Ponty(1)
-- **Konrad Lorenz** → Charles Darwin(2), Sigmund Freud(1), Theodor W. Adorno(1), Edward O. Wilson(1), Alfred Russel Wallace(1)
-- **Albert Camus** → Maurice Merleau-Ponty(3), Simone de Beauvoir(1), Martín Heidegger(1), Karl Jaspers(1)
+- **Jürgen Habermas** → Michel Foucault(2), Martín Heidegger(1), Judith Butler(1), Hannah Arendt(1), Simone de Beauvoir(1)
+- **Carl Gustav Jung** → Sigmund Freud(3), Hannah Arendt(1), Hermann Hesse(1), Maurice Merleau-Ponty(1), Martín Heidegger(1)
+- **E. Majorana** → Carlo Rovelli(6)
+- **Donna Haraway** → Judith Butler(2), Bruno Latour(2), bell hooks(1), Richard Rorty(1)
+- **Konrad Lorenz** → Charles Darwin(2), Theodor W. Adorno(1), Edward O. Wilson(1), Sigmund Freud(1), Alfred Russel Wallace(1)
+- **Albert Camus** → Maurice Merleau-Ponty(3), Simone de Beauvoir(1), Karl Jaspers(1), Martín Heidegger(1)
 - **Anil K. Seth** → Karl Friston(6)
 - **Karl Friston** → Anil K. Seth(6)
 - **Georg Wilhelm Friedrich Hegel** → Friedrich Wilhelm Joseph von Schelling(5), Martín Heidegger(1)
-- **Anton Zeilinger** → Alan H. Guth(2), Murray Gell‐Mann(1), Juan Maldacena(1), Stuart R. Hameroff(1)
 - **Friedrich Wilhelm Joseph von Schelling** → Georg Wilhelm Friedrich Hegel(5)
 - **Alan H. Guth** → Anton Zeilinger(2), Lisa Randall(2), Juan Maldacena(1)
 - **Nima Arkani–Hamed** → Lisa Randall(3), Juan Maldacena(1), Cumrun Vafa(1)
 - **Mae‐Wan Ho** → Fritz-Albert Popp(4), Brian Goodwin(1)
-- **Stephen Jay Gould** → Murray Gell‐Mann(1), Ernst Mayr(1), Carl Sagan(1), Cornel West(1)
+- **Carl Friedrich von Weizsäcker** → W. Heisenberg(3), Karl Jaspers(1)
+- **Stephen Jay Gould** → Murray Gell‐Mann(1), Carl Sagan(1), Ernst Mayr(1), Cornel West(1)
+- **A. J. Ayer** → W. V. Quine(1), Paul K. Feyerabend(1), Richard Rorty(1), Bruno Latour(1)
 - **Fritz-Albert Popp** → Mae‐Wan Ho(4)
+- **W. Heisenberg** → Carl Friedrich von Weizsäcker(3), P. A. M. Dirac(1)
 - **Albert Szent‐Györgyi** → Warren S. McCulloch(2), Linus Pauling(2)
-- **Edward O. Wilson** → Konrad Lorenz(1), Sigmund Freud(1), Theodor W. Adorno(1), David T Suzuki(1)
+- **Edward O. Wilson** → Theodor W. Adorno(1), Konrad Lorenz(1), Sigmund Freud(1), David T Suzuki(1)
 - **P. F. Strawson** → Gilbert Ryle(2), W. V. Quine(1), Ludwig Wittgenstein(1)
 - **Gilbert Ryle** → P. F. Strawson(2), Daniel C. Dennett(1)
+- **Scott Aaronson** → Stephen Wolfram(1), Roger Penrose(1), Stuart Kauffman(1)
+- **Stephen Wolfram** → Roger Penrose(1), Stuart Kauffman(1), Scott Aaronson(1)
 - **Rosalind Franklin** → Erwin Chargaff(2), Francis Crick(1)
 - **Ludwig Wittgenstein** → W. V. Quine(1), Alfred North Whitehead(1), P. F. Strawson(1)
 - **Steven Weinberg** → Richard P. Feynman(2), Edward Witten(1)
-- **Alan Turing** → John von Neumann(1), Warren S. McCulloch(1), W. V. Quine(1)
+- **David Deutsch** → Anton Zeilinger(2), Juan Maldacena(1)
+- **Alan Turing** → Warren S. McCulloch(1), John von Neumann(1), W. V. Quine(1)
 - **Carl Sagan** → S. W. Hawking(1), Stephen Jay Gould(1), Ernst Mayr(1)
-- **A. J. Ayer** → W. V. Quine(1), Paul K. Feyerabend(1), Richard Rorty(1)
 - **Alfred North Whitehead** → Kurt Gödel(1), Ludwig Wittgenstein(1), W. V. Quine(1)
 - **Ernst Mayr** → Theodosius Dobzhansky(1), Stephen Jay Gould(1), Carl Sagan(1)
-- **Theodor W. Adorno** → Konrad Lorenz(1), Sigmund Freud(1), Edward O. Wilson(1)
+- **Theodor W. Adorno** → Edward O. Wilson(1), Konrad Lorenz(1), Sigmund Freud(1)
 - **Frederick Sanger** → Francis Crick(2), Jacques Monod(1)
 - **Erwin Chargaff** → Rosalind Franklin(2)
-- **Stephen Wolfram** → Stuart Kauffman(1), Roger Penrose(1)
 - **Subir Sachdev** → Juan Maldacena(2)
-- **Jacques Monod** → Francis Crick(1), Frederick Sanger(1)
+- **Henri Poincaré** → S. Chandrasekhar(1), Hermann Weyl(1)
+- **Jacques Monod** → Frederick Sanger(1), Francis Crick(1)
 - **Kurt Gödel** → Alfred North Whitehead(1), Hermann Weyl(1)
-- **Hermann Hesse** → Hannah Arendt(1), Carl Gustav Jung(1)
+- **Hermann Hesse** → Carl Gustav Jung(1), Hannah Arendt(1)
 - **Brian Greene** → Cumrun Vafa(2)
 - **P. A. M. Dirac** → Richard P. Feynman(1), W. Heisenberg(1)
 - **Antoine Laurent Lavoisier** → Michael Faraday(2)
@@ -159,16 +169,18 @@ For citation overlap (X cites Y), see the openalex-fanout/ data.*
 - **Kurt Friedrichs** → George E. Moore(1)
 - **Martha C. Nussbaum** → Hilary Putnam(1)
 - **Saul A. Kripke** → W. V. Quine(1)
-- **Henri Poincaré** → Hermann Weyl(1)
+- **N. David Mermin** → Roger Penrose(1)
 - **Augustus De Morgan** → George Boole(1)
 - **Joseph Louis Lagrange** → Carl Friedrich Gauß(1)
 - **George E. Moore** → Kurt Friedrichs(1)
 - **Karl H. Pribram** → Stuart R. Hameroff(1)
 - **George Boole** → Augustus De Morgan(1)
 - **Federico Faggin** → Roger Penrose(1)
+- **James Hillman** → Parménides(1)
 - **Marcel Proust** → James Joyce(1)
 - **Daniel C. Dennett** → Gilbert Ryle(1)
-- **W. Heisenberg** → P. A. M. Dirac(1)
+- **Parménides** → James Hillman(1)
+- **S. Chandrasekhar** → Henri Poincaré(1)
 - **Carl Friedrich Gauß** → Joseph Louis Lagrange(1)
 - **David T Suzuki** → Edward O. Wilson(1)
 - **Søren Kierkegaard** → Sigmund Freud(1)

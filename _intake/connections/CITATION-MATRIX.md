@@ -33,15 +33,18 @@
 | Nima Arkani–Hamed | Steven Weinberg | 23 |
 | Imre Lakatos | Paul K. Feyerabend | 23 |
 | Alan H. Guth | Steven Weinberg | 22 |
+| Anton Zeilinger | N. David Mermin | 21 |
 | Lisa Randall | Juan Maldacena | 20 |
 | Lynn Margulis | J. E. Lovelock | 20 |
 | Andrew A. Marino | Robert Becker | 20 |
 | S. W. Hawking | Roger Penrose | 19 |
 | Andrew Strominger | Juan Maldacena | 18 |
+| Karen Barad | Donna Haraway | 18 |
 | Nima Arkani–Hamed | Juan Maldacena | 17 |
 | Carlo Rovelli | S. W. Hawking | 16 |
 | Juan Maldacena | Cumrun Vafa | 16 |
 | Lisa Randall | Edward Witten | 16 |
+| Karen Barad | N. David Mermin | 15 |
 | Nima Arkani–Hamed | Lisa Randall | 15 |
 | Lee Smolin | Edward Witten | 14 |
 | Cumrun Vafa | Brian Greene | 14 |
@@ -54,10 +57,7 @@
 | Heinz von Foerster | Warren S. McCulloch | 11 |
 | Edward Witten | S. W. Hawking | 11 |
 | Steven Weinberg | Murray Gell‐Mann | 11 |
+| Karen Barad | Judith Butler | 11 |
 | Lisa Randall | S. W. Hawking | 11 |
 | Edward Witten | Cumrun Vafa | 10 |
-| Steven Weinberg | Edward Witten | 10 |
-| Bernardo Kastrup | David J. Chalmers | 10 |
-| Brian Greene | Nima Arkani–Hamed | 10 |
-| David J. Chalmers | Hilary Putnam | 10 |
-| W. Heisenberg | P. A. M. Dirac | 10 |
+| Isabelle Stengers | Bruno Latour | 10 |
