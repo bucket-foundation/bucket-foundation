@@ -1,0 +1,14 @@
+# Supplemental ascorbate in the supportive treatment of cancer: Prolongation of survival times in terminal human cancer.
+
+- **PMID**: 1068480
+- **DOI**: 10.1073/pnas.73.10.3685
+- **PMCID**: PMC431183 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1976
+- **Authors**: E Cameron, L Pauling
+- **MeSH**: Adult, Aged, Ascorbic Acid, Breast Neoplasms, Bronchial Neoplasms, Colonic Neoplasms, Female, Humans, Kidney Neoplasms, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1068480/
+- **Captured**: 2026-05-10T10:52:15
+
+## Abstract
+
+Ascorbic acid metabolism is associated with a number of mechanisms known to be involved in host resistance to malignant disease. Cancer patients are significantly depleted of ascorbic acid, and in our opinion this demonstrable biochemical characteristic indicates a substantially increased requirement and utilization of this substance to potentiate these various host resistance factors. The results of a clinical trial are presented in which 100 terminal cancer patients were given supplemental ascorbate as part of their routine management. Their progress is compared to that of 1000 similar patients treated identically, but who received no supplemental ascorbate. The mean survival time is more than 4.2 times as great for the ascorbate subjects (more than 210 days) as for the controls (50 days). Analysis of the survival-time curves indicates that deaths occur for about 90% of the ascorbate-treated patients at one-third the rate for the controls and that the other 10% have a much greater survival time, averaging more than 20 times that for the controls. The results clearly indicate that this simple and safe form of medication is of definite value in the treatment of patients with advanced cancer.

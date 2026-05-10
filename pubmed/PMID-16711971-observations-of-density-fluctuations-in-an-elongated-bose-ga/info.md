@@ -1,0 +1,14 @@
+# Observations of density fluctuations in an elongated Bose gas: ideal gas and quasicondensate regimes.
+
+- **PMID**: 16711971
+- **DOI**: 10.1103/PhysRevLett.96.130403
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2006
+- **Authors**: J Esteve, J-B Trebbia, T Schumm, A Aspect, C I Westbrook, I Bouchoule
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16711971/
+- **Captured**: 2026-05-10T10:54:14
+
+## Abstract
+
+We report in situ measurements of density fluctuations in a quasi-one-dimensional 87Rb Bose gas at thermal equilibrium in an elongated harmonic trap. We observe an excess of fluctuations compared to the shot-noise level expected for uncorrelated atoms. At low atomic density, the measured excess is in good agreement with the expected "bunching" for an ideal Bose gas. At high density, the measured fluctuations are strongly reduced compared to the ideal gas case. We attribute this reduction to repulsive interatomic interactions. The data are compared with a calculation for an interacting Bose gas in the quasicondensate regime.

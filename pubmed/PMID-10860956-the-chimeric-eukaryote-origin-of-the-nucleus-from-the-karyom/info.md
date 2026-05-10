@@ -1,0 +1,14 @@
+# The chimeric eukaryote: origin of the nucleus from the karyomastigont in amitochondriate protists.
+
+- **PMID**: 10860956
+- **DOI**: 10.1073/pnas.97.13.6954
+- **PMCID**: PMC41862 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2000
+- **Authors**: L Margulis, M F Dolan, R Guerrero
+- **MeSH**: Animals, Biological Evolution, Cell Nucleus, Eukaryotic Cells, Hybrid Cells, Mitochondria, Models, Biological
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10860956/
+- **Captured**: 2026-05-10T10:52:21
+
+## Abstract
+
+We present a testable model for the origin of the nucleus, the membrane-bounded organelle that defines eukaryotes. A chimeric cell evolved via symbiogenesis by syntrophic merger between an archaebacterium and a eubacterium. The archaebacterium, a thermoacidophil resembling extant Thermoplasma, generated hydrogen sulfide to protect the eubacterium, a heterotrophic swimmer comparable to Spirochaeta or Hollandina that oxidized sulfide to sulfur. Selection pressure for speed swimming and oxygen avoidance led to an ancient analogue of the extant cosmopolitan bacterial consortium "Thiodendron latens." By eubacterial-archaebacterial genetic integration, the chimera, an amitochondriate heterotroph, evolved. This "earliest branching protist" that formed by permanent DNA recombination generated the nucleus as a component of the karyomastigont, an intracellular complex that assured genetic continuity of the former symbionts. The karyomastigont organellar system, common in extant amitochondriate protists as well as in presumed mitochondriate ancestors, minimally consists of a single nucleus, a single kinetosome and their protein connector. As predecessor of standard mitosis, the karyomastigont preceded free (unattached) nuclei. The nucleus evolved in karyomastigont ancestors by detachment at least five times (archamoebae, calonymphids, chlorophyte green algae, ciliates, foraminifera). This specific model of syntrophic chimeric fusion can be proved by sequence comparison of functional domains of motility proteins isolated from candidate taxa.

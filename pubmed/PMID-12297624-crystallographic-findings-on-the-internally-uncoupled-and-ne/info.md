@@ -1,0 +1,14 @@
+# Crystallographic findings on the internally uncoupled and near-rigor states of myosin: further insights into the mechanics of the motor.
+
+- **PMID**: 12297624
+- **DOI**: 10.1073/pnas.202476799
+- **PMCID**: PMC26632 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2002
+- **Authors**: D M Himmel, S Gourinath, L Reshetnikova, Y Shen, A G Szent-Györgyi, C Cohen
+- **MeSH**: Adenosine Diphosphate, Adenosine Triphosphate, Animals, Crystallography, X-Ray, Electrons, Models, Molecular, Mollusca, Myosins, Protein Binding, Protein Conformation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12297624/
+- **Captured**: 2026-05-10T10:52:42
+
+## Abstract
+
+Here we report a 2.3-A crystal structure of scallop myosin S1 complexed with ADP.BeF(x), as well as three additional structures (at 2.8-3.8 A resolution) for this S1 complexed with ATP analogs, some of which are cross-linked by para-phenyl dimaleimide, a short intramolecular cross-linker. In all cases, the complexes are characterized by an unwound SH1 helix first seen in an unusual 2.5-A scallop myosin-MgADP structure and described as corresponding to a previously unrecognized actin-detached internally uncoupled state. The unwinding of the SH1 helix effectively uncouples the converter/lever arm module from the motor and allows cross-linking by para-phenyl dimaleimide, which has been shown to occur only in weak actin-binding states of the molecule. Mutations near the metastable SH1 helix that disable the motor can be accounted for by viewing this structural element as a clutch controlling the transmission of torque to the lever arm. We have also determined a 3.2-A nucleotide-free structure of scallop myosin S1, which suggests that in the near-rigor state there are two conformations in the switch I loop, depending on whether nucleotide is present. Analysis of the subdomain motions in the weak actin-binding states revealed by x-ray crystallography, together with recent electron microscopic results, clarify the mechanical roles of the parts of the motor in the course of the contractile cycle and suggest how strong binding to actin triggers both the power stroke and product release.

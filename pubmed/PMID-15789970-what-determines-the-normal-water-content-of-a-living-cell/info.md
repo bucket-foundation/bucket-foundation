@@ -1,0 +1,14 @@
+# What determines the normal water content of a living cell?
+
+- **PMID**: 15789970
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Physiological chemistry and physics and medical NMR  ·  **Year**: 2004
+- **Authors**: Gilbert Ling
+- **MeSH**: Animals, Anura, Body Water, Cell Membrane, Cell Membrane Permeability, Cell Polarity, Cell Survival, Centrifugation, Densitometry, Electrophoresis, Polyacrylamide Gel
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15789970/
+- **Captured**: 2026-05-10T10:53:46
+
+## Abstract
+
+Most living cells contain a large amount of water. To improve our understanding of this fundamental phenomenon of cell physiology, five theories are critically examined in the light of three sets of relevant experimental findings. These findings are: (1) the diversity and specificity of the percentage water content to tissue type; (2) the limitation imposed by the Law of the Conservation of Energy on postulating membrane pumps and (3) the non-extractability of cell water from the open ends of muscle cells whose membrane covering has been surgically removed. Two of the five theories examined are called respectively the accidental theory (Theory I) and the direct water pump-leak theory (Theory III); both are introduced for the first time here as working hypotheses. Three others theories examined were published; they comprise the Donnan membrane equilibrium theory (Theory II), the indirect pump-leak (Theory IV) and the polarized-oriented multilayer (PM) theory of cell water (Theory V.) The PM (Theory V) alone is in harmony with, and supported by all three sets of the experimental findings. The remaining theories are shown to be non-applicable to cell water by at least two of the findings

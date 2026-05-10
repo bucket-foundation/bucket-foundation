@@ -1,0 +1,14 @@
+{
+  "pmid": "16852970",
+  "title": "Energy ranking of molecular crystals using density functional theory calculations and an empirical van der waals correction.",
+  "abstract": "By combination of high level density functional theory (DFT) calculations with an empirical van der Waals correction, a hybrid method has been designed and parametrized that provides unprecedented accuracy for the structure optimization and the energy ranking of molecular crystals. All DFT calculations are carried out using the VASP program. The van der Waals correction is expressed as the sum over atom-atom pair potentials with each pair potential for two atoms A and B being the product of an asymptotic C(6,A,B)/r(6) term and a damping function d(A,B)(r). Empirical parameters are provided for the elements H, C, N, O, F, Cl, and S. Following Wu and Yang, the C(6) coefficients have been determined by least-squares fitting to molecular C(6) coefficients derived by Meath and co-workers from dipole oscillator strength distributions. The damping functions d(A,B)(r) guarantee the crossover from the asymptotic C(6,A,B)/r(6) behavior at large interatomic distances to a constant interaction energy at short distances. The careful parametrization of the damping functions is of crucial importance to obtain the correct balance between the DFT part of the lattice energy and the contribution from the empirical van der Waals correction. The damping functions have been adjusted to yield the best possible agreement between the unit cells of a set of experimental low temperature crystal structures and their counterparts obtained by lattice energy optimization using the hybrid method. On average, the experimental and the calculated unit cell lengths deviate by 1%. To assess the performance of the hybrid method with respect to the lattice energy ranking of molecular crystals, various crystal packings of ethane, ethylene, acetylene, methanol, acetic acid, and urea have been generated with Accelrys' Polymorph Predictor in a first step and optimized with the hybrid method in a second step. In five out of six cases, the experimentally observed low-temperature crystal structure corresponds to the most stable calculated structure.",
+  "authors": [
+    "Marcus A Neumann",
+    "Marc-Antoine Perrin"
+  ],
+  "journal": "The journal of physical chemistry. B",
+  "year": "2005",
+  "doi": "10.1021/jp050121r",
+  "pmcid": "",
+  "mesh": []
+}

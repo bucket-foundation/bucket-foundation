@@ -1,0 +1,14 @@
+# Occupational allergy to bumblebees: allergens of Bombus terrestris.
+
+- **PMID**: 11692115
+- **DOI**: 10.1067/mai.2001.119029
+- **PMCID**:  
+- **Journal**: The Journal of allergy and clinical immunology  ·  **Year**: 2001
+- **Authors**: D R Hoffman, S E El-Choufani, M M Smith, H de Groot
+- **MeSH**: Allergens, Amino Acid Sequence, Animals, Bee Venoms, Bees, Binding, Competitive, Cross Reactions, Endopeptidases, Epitopes, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11692115/
+- **Captured**: 2026-05-10T10:52:33
+
+## Abstract
+
+With the increase in commercial vegetable production in greenhouses, occupational sensitization to bumblebee venom is becoming more common. Studies using sera from subjects thus sensitized allow evaluation of the allergenic specificity of bumblebee sensitization. The purposes of this study were to determine the degree of species group specificity of bumblebee venom allergens in sera of allergic patients and to investigate the structural basis of this specificity. Allergens were purified from bumblebee venom, studied serologically by direct binding and inhibition techniques, and characterized by enzyme analysis and amino acid sequencing. Three-dimensional models of the phospholipases were constructed and analyzed. Bombus terrestris venom contains phospholipase A(2), venom protease, hyaluronidase, and acid phosphatase allergens. The protease and phospholipase A(2) allergens contain IgE-reactive epitopes that are different from those seen in Bombus pennsylvanicus, a North American species. Bumblebee phospholipase A(2) is only 53% identical to honeybee phospholipase A(2). The results of 3-dimensional modeling are consistent with the immunologic observations. Patients with primary bumblebee sensitization should be diagnosed and treated with venom from the appropriate species group of bumblebees. Bumblebee venom phospholipase A(2) and protease are antigenically distinct from honeybee venom proteins. There are significant species group-specific epitopes on bumblebee venom proteins.

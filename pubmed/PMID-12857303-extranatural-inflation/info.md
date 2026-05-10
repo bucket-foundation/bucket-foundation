@@ -1,0 +1,14 @@
+# Extranatural inflation.
+
+- **PMID**: 12857303
+- **DOI**: 10.1103/PhysRevLett.90.221302
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2003
+- **Authors**: Nima Arkani-Hamed, Hsin-Chia Cheng, Paolo Creminelli, Lisa Randall
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12857303/
+- **Captured**: 2026-05-10T10:52:51
+
+## Abstract
+
+We present a new model of inflation in which the inflaton is the extra component of a gauge field in a 5D theory compactified on a circle. The chief merit of this model is that the potential comes only from nonlocal effects so that its flatness is not spoiled by higher-dimensional operators or quantum gravity corrections. The model predicts a red spectrum (n approximately 0.96) and a significant production of gravitational waves (r approximately 0.11). We also comment on the relevance of this idea to quintessence.

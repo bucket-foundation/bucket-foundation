@@ -1,0 +1,14 @@
+# Dissociable roles of ventral and dorsal striatum in instrumental conditioning.
+
+- **PMID**: 15087550
+- **DOI**: 10.1126/science.1094285
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 2004
+- **Authors**: John O'Doherty, Peter Dayan, Johannes Schultz, Ralf Deichmann, Karl Friston, Raymond J Dolan
+- **MeSH**: Adult, Basal Ganglia, Caudate Nucleus, Conditioning, Classical, Conditioning, Operant, Female, Humans, Learning, Magnetic Resonance Imaging, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15087550/
+- **Captured**: 2026-05-10T10:53:29
+
+## Abstract
+
+Instrumental conditioning studies how animals and humans choose actions appropriate to the affective structure of an environment. According to recent reinforcement learning models, two distinct components are involved: a "critic," which learns to predict future reward, and an "actor," which maintains information about the rewarding outcomes of actions to enable better ones to be chosen more frequently. We scanned human participants with functional magnetic resonance imaging while they engaged in instrumental conditioning. Our results suggest partly dissociable contributions of the ventral and dorsal striatum, with the former corresponding to the critic and the latter corresponding to the actor.
