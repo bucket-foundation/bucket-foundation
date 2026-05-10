@@ -5,7 +5,7 @@
 - **Timestamp**: `00:54:37.120` (~3277s)
 - **Score**: 7  ·  **Pattern signals**: always, must, because
 - **Cross-concepts**: oxygen
-- **Captured**: 2026-05-09
+- **Captured**: 2026-05-10
 
 ## Excerpt
 

@@ -5,7 +5,7 @@
 - **Timestamp**: `00:59:22.140` (~3562s)
 - **Score**: 6  ·  **Pattern signals**: never, evidence
 - **Cross-concepts**: oxygen
-- **Captured**: 2026-05-09
+- **Captured**: 2026-05-10
 
 ## Excerpt
 

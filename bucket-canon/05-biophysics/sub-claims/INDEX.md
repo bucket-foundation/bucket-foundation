@@ -1,6 +1,6 @@
 # Curated Canon Claims (Kruse podcast corpus)
 
-*Generated 2026-05-09 from 128 candidate claims across 126 transcripts.*
+*Generated 2026-05-10 from 140 candidate claims across 126 transcripts.*
 
 
 Method: regex-based assertion-pattern detection ("the rule is", "always",
@@ -24,7 +24,7 @@ video + 90s timestamp window + 60% text overlap; top exemplar per cluster.
 - [`011-own-light-inside-when-the-sun-couldn-t-create-it-and-melanin`](melanin/011-own-light-inside-when-the-sun-couldn-t-create-it-and-melanin.md) — score=6 `01:29:40.440` — own light inside when the sun couldn't create it and melanin was the key to the story why because melanin is the darkest
 - [`012-water-is-always-adjacent-to-where-melanin-is-and-water-does-`](melanin/012-water-is-always-adjacent-to-where-melanin-is-and-water-does-.md) — score=6 `03:46:26.220` — water is always adjacent to where melanin is and water does have a limit to what it can do and what happens is those mel
 
-## mitochondria (12)
+## mitochondria (15)
 
 - [`001-why-red-light-has-such-tremendous-benefits-for-mitochondria-`](mitochondria/001-why-red-light-has-such-tremendous-benefits-for-mitochondria-.md) — score=8 `01:11:21.900` — why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when Blue's availa
 - [`002-because-guess-what-the-guy-that-controlled-the-budget-anthon`](mitochondria/002-because-guess-what-the-guy-that-controlled-the-budget-anthon.md) — score=8 `00:23:33.280` — because guess what? The guy that controlled the budget, Anthony Fouchy, made sure we always focused in on RNA and DNA, n
@@ -38,6 +38,9 @@ video + 90s timestamp window + 60% text overlap; top exemplar per cluster.
 - [`010-understand-because-i-do-think-it-s-important-that-your-breat`](mitochondria/010-understand-because-i-do-think-it-s-important-that-your-breat.md) — score=6 `00:07:55.200` — understand because I do think it's important that your breathing techniques should marry up to the environment that you'
 - [`011-like-light-water-magnetism-and-mitochondrial-medicine-that-d`](mitochondria/011-like-light-water-magnetism-and-mitochondrial-medicine-that-d.md) — score=6 `00:00:38.960` — like light water magnetism and mitochondrial medicine that doctors and researchers never code for like for example every
 - [`012-world-why-because-it-turns-out-the-way-electromagnetic-radia`](mitochondria/012-world-why-because-it-turns-out-the-way-electromagnetic-radia.md) — score=6 `00:20:23.520` — world. Why? Because it turns out the way electromagnetic radiation works with your mitochondria it it means the environm
+- [`013-go-away-why-because-here-s-the-good-thing-your-country-has-g`](mitochondria/013-go-away-why-because-here-s-the-good-thing-your-country-has-g.md) — score=6 `01:00:41.680` — go away. Why? Because here's the good thing. Your country has great sun. &gt;&gt; And that's the single biggest thing. Y
+- [`014-of-france-living-outside-never-got-in-a-car-she-s-always-out`](mitochondria/014-of-france-living-outside-never-got-in-a-car-she-s-always-out.md) — score=6 `00:45:19.280` — of france living outside never got in a car she's always out nature always plugged into the decentralized network that m
+- [`015-strength-is-the-key-to-longevity-no-i-think-your-heteroplasm`](mitochondria/015-strength-is-the-key-to-longevity-no-i-think-your-heteroplasm.md) — score=6 `03:24:17.880` — strength is the key to longevity no I think your heteroplasmic rate in your mitochondria here and here is the single mos
 
 ## oxygen (4)
 
@@ -55,6 +58,21 @@ video + 90s timestamp window + 60% text overlap; top exemplar per cluster.
 - [`005-way-these-are-i-m-grateful-for-the-fact-that-i-ve-always-bee`](blue-light/005-way-these-are-i-m-grateful-for-the-fact-that-i-ve-always-bee.md) — score=6 `01:09:58.480` — way these are. I'm grateful for the fact that I've always been a sun advocate and I'd never wear glasses hardly. And I r
 - [`006-sunlight-always-has-red-in-it-when-blue-s-available-but-gues`](blue-light/006-sunlight-always-has-red-in-it-when-blue-s-available-but-gues.md) — score=6 `01:11:26.159` — sunlight always has red in it when Blue's available but guess what your iPhone never does that's the whole [ __ ] point 
 
+## vitamin-d (3)
+
+- [`001-sense-because-that-lowers-your-vitamin-d-level-and-that-s-th`](vitamin-d/001-sense-because-that-lowers-your-vitamin-d-level-and-that-s-th.md) — score=8 `00:29:18.159` — sense because that lowers your vitamin d level and that's the one thing that's been shown to be very beneficial for kovi
+- [`002-and-you-start-going-through-the-ophthalmologist-literature-a`](vitamin-d/002-and-you-start-going-through-the-ophthalmologist-literature-a.md) — score=8 `00:55:21.910` — and you start going through the ophthalmologist literature and the dermatologist literature ... One of the things that I
+- [`003-like-people-don-t-realize-when-you-take-vitamin-d-pills-what`](vitamin-d/003-like-people-don-t-realize-when-you-take-vitamin-d-pills-what.md) — score=6 `01:31:48.120` — like people don't realize when you take vitamin D pills what you're effectively doing because that's a fat lipid to get 
+
+## red-light (6)
+
+- [`001-to-send-sets-red-light-is-always-present-uva-light-uvb-light`](red-light/001-to-send-sets-red-light-is-always-present-uva-light-uvb-light.md) — score=8 `01:15:11.400` — to send sets red light is always present UVA light UVB light especially where you guys are it changes die early and sees
+- [`002-utilizing-anybody-s-red-light-panel-that-s-led-based-you-wil`](red-light/002-utilizing-anybody-s-red-light-panel-that-s-led-based-you-wil.md) — score=7 `01:28:25.600` — utilizing anybody's red light panel that's LED based, you will never change the dialectric constant of their fluid. Is t
+- [`003-pbm-which-is-you-know-600-to-1100-nanometer-light-actually-d`](red-light/003-pbm-which-is-you-know-600-to-1100-nanometer-light-actually-d.md) — score=7 `02:20:10.260` — PBM which is you know 600 to 1100 nanometer light actually does something that big Pharma has a pill for it is red light
+- [`004-long-enough-what-do-i-tell-you-is-the-single-most-important-`](red-light/004-long-enough-what-do-i-tell-you-is-the-single-most-important-.md) — score=6 `00:45:54.800` — long enough, what do I tell you is the single most important thing to do for your health? Sunrise. Why is that? Because 
+- [`005-get-him-to-do-a-study-on-red-light-and-autism-because-that-s`](red-light/005-get-him-to-do-a-study-on-red-light-and-autism-because-that-s.md) — score=6 `01:33:15.719` — get him to do a study on red light and autism because that's how the pathway needs to start and I said I'll make a deal 
+- [`006-there-s-a-very-specific-action-spectra-250-to-600-nanom-ligh`](red-light/006-there-s-a-very-specific-action-spectra-250-to-600-nanom-ligh.md) — score=6 `01:24:26.400` — there's a very specific action Spectra 250 to 600 nanom light that's red light red light is the antidote to Blue so gues
+
 ## circadian (5)
 
 - [`001-that-because-it-controls-circadian-biology-what-have-i-been-`](circadian/001-that-because-it-controls-circadian-biology-what-have-i-been-.md) — score=9 `00:44:07.680` — that because it controls circadian biology what have I been consistent about like when you read the letin prescription t
@@ -63,19 +81,17 @@ video + 90s timestamp window + 60% text overlap; top exemplar per cluster.
 - [`004-always-say-in-circadian-biology-i-didn-t-say-it-first-of-cou`](circadian/004-always-say-in-circadian-biology-i-didn-t-say-it-first-of-cou.md) — score=7 `02:41:37.319` — always say in circadian biology I didn't say it first of course like light is the most powerful zeitge Gaber time keeper
 - [`005-six-things-are-important-turns-out-one-of-the-things-that-ar`](circadian/005-six-things-are-important-turns-out-one-of-the-things-that-ar.md) — score=6 `00:16:32.340` — six things are important turns out one of the things that are in there is alpha msh alpha msh is the reason you have a t
 
-## red-light (5)
-
-- [`001-to-send-sets-red-light-is-always-present-uva-light-uvb-light`](red-light/001-to-send-sets-red-light-is-always-present-uva-light-uvb-light.md) — score=8 `01:15:11.400` — to send sets red light is always present UVA light UVB light especially where you guys are it changes die early and sees
-- [`002-utilizing-anybody-s-red-light-panel-that-s-led-based-you-wil`](red-light/002-utilizing-anybody-s-red-light-panel-that-s-led-based-you-wil.md) — score=7 `01:28:25.600` — utilizing anybody's red light panel that's LED based, you will never change the dialectric constant of their fluid. Is t
-- [`003-pbm-which-is-you-know-600-to-1100-nanometer-light-actually-d`](red-light/003-pbm-which-is-you-know-600-to-1100-nanometer-light-actually-d.md) — score=7 `02:20:10.260` — PBM which is you know 600 to 1100 nanometer light actually does something that big Pharma has a pill for it is red light
-- [`004-long-enough-what-do-i-tell-you-is-the-single-most-important-`](red-light/004-long-enough-what-do-i-tell-you-is-the-single-most-important-.md) — score=6 `00:45:54.800` — long enough, what do I tell you is the single most important thing to do for your health? Sunrise. Why is that? Because 
-- [`005-there-s-a-very-specific-action-spectra-250-to-600-nanom-ligh`](red-light/005-there-s-a-very-specific-action-spectra-250-to-600-nanom-ligh.md) — score=6 `01:24:26.400` — there's a very specific action Spectra 250 to 600 nanom light that's red light red light is the antidote to Blue so gues
-
 ## EMF (3)
 
 - [`001-science-is-maybe-we-need-to-go-back-and-re-look-at-this-with`](EMF/001-science-is-maybe-we-need-to-go-back-and-re-look-at-this-with.md) — score=8 `00:50:56.160` — science is maybe we need to go back and re-look at this with A New Perspective now that never happened but that study wa
 - [`002-don-t-feel-an-effect-from-it-i-was-always-wondering-well-if-`](EMF/002-don-t-feel-an-effect-from-it-i-was-always-wondering-well-if-.md) — score=7 `01:24:56.040` — don't feel an effect from it I was always wondering well if grounding is so important why is this not producing any effe
 - [`003-that-you-have-other-uh-needs-and-requirements-in-you-that-ea`](EMF/003-that-you-have-other-uh-needs-and-requirements-in-you-that-ea.md) — score=7 `01:50:04.860` — that you have other uh needs and requirements in you that eating a a vegan diet or a vegetarian diet it's not wise now i
+
+## photosynthesis (3)
+
+- [`001-um-i-found-that-person-you-know-what-my-crazy-question-was-b`](photosynthesis/001-um-i-found-that-person-you-know-what-my-crazy-question-was-b.md) — score=7 `01:30:19.740` — um I found that person you know what my crazy question was before I did this biohack on myself I said how long I I if th
+- [`002-photosynthesis-was-interrupted-but-the-one-thing-that-we-do-`](photosynthesis/002-photosynthesis-was-interrupted-but-the-one-thing-that-we-do-.md) — score=6 `00:16:13.380` — photosynthesis was interrupted but the one thing that we do know for sure it was interrupted enough that not one of thos
+- [`003-is-interesting-the-path-that-i-think-people-should-go-to-rea`](photosynthesis/003-is-interesting-the-path-that-i-think-people-should-go-to-rea.md) — score=6 `00:20:38.240` — is interesting the path that I think people should go to really fundamentally understand this is what I told you earlier
 
 ## leptin (2)
 
@@ -87,11 +103,6 @@ video + 90s timestamp window + 60% text overlap; top exemplar per cluster.
 - [`001-he-was-eating-the-french-fries-when-the-accident-occurred-th`](quantum/001-he-was-eating-the-french-fries-when-the-accident-occurred-th.md) — score=8 `03:18:13.200` — he was eating the french fries when the accident occurred this is a lady who never ate potatoes now Andrew the reason I'
 - [`002-then-you-begin-to-realize-there-is-no-correct-answer-and-the`](quantum/002-then-you-begin-to-realize-there-is-no-correct-answer-and-the.md) — score=6 `00:29:30.760` — then you begin to realize there is no correct answer and there is no real truth why because the truth is subject to new 
 
-## photosynthesis (2)
-
-- [`001-um-i-found-that-person-you-know-what-my-crazy-question-was-b`](photosynthesis/001-um-i-found-that-person-you-know-what-my-crazy-question-was-b.md) — score=7 `01:30:19.740` — um I found that person you know what my crazy question was before I did this biohack on myself I said how long I I if th
-- [`002-photosynthesis-was-interrupted-but-the-one-thing-that-we-do-`](photosynthesis/002-photosynthesis-was-interrupted-but-the-one-thing-that-we-do-.md) — score=6 `00:16:13.380` — photosynthesis was interrupted but the one thing that we do know for sure it was interrupted enough that not one of thos
-
 ## pollack (1)
 
 - [`001-is-why-you-know-i-fundamentally-have-a-problem-with-anybody-`](pollack/001-is-why-you-know-i-fundamentally-have-a-problem-with-anybody-.md) — score=7 `01:00:13.720` — is why you know I fundamentally have a problem with anybody who's like Casey means Cali means uberman even Jerry poock y
@@ -99,10 +110,6 @@ video + 90s timestamp window + 60% text overlap; top exemplar per cluster.
 ## photoelectric (1)
 
 - [`001-looked-at-what-helm-holds-did-i-looked-about-what-herz-did-i`](photoelectric/001-looked-at-what-helm-holds-did-i-looked-about-what-herz-did-i.md) — score=7 `01:46:51.639` — looked at what Helm holds did I looked about what Herz did I looked at the thermodynamic gens and he goes I figured out 
-
-## vitamin-d (1)
-
-- [`001-like-people-don-t-realize-when-you-take-vitamin-d-pills-what`](vitamin-d/001-like-people-don-t-realize-when-you-take-vitamin-d-pills-what.md) — score=6 `01:31:48.120` — like people don't realize when you take vitamin D pills what you're effectively doing because that's a fat lipid to get 
 
 ## dopamine (1)
 

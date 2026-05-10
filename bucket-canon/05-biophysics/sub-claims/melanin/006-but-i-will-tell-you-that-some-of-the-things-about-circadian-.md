@@ -5,7 +5,7 @@
 - **Timestamp**: `00:53:13.920` (~3193s)
 - **Score**: 6  ·  **Pattern signals**: must, causes, fundamental
 - **Cross-concepts**: mitochondria, circadian
-- **Captured**: 2026-05-09
+- **Captured**: 2026-05-10
 
 ## Excerpt
 

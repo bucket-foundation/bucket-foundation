@@ -5,7 +5,7 @@
 - **Timestamp**: `02:36:22.319` (~9382s)
 - **Score**: 6  ·  **Pattern signals**: must, causes, because
 - **Cross-concepts**: red-light, oxygen
-- **Captured**: 2026-05-09
+- **Captured**: 2026-05-10
 
 ## Excerpt
 

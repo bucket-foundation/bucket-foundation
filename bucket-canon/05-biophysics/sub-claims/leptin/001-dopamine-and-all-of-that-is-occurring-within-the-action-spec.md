@@ -5,7 +5,7 @@
 - **Timestamp**: `00:02:43.620` (~163s)
 - **Score**: 6  ·  **Pattern signals**: because, only
 - **Cross-concepts**: dopamine
-- **Captured**: 2026-05-09
+- **Captured**: 2026-05-10
 
 ## Excerpt
 

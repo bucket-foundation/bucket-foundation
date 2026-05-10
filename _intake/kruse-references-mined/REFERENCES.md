@@ -1,195 +1,310 @@
 # Kruse References Mined
 
-*From 65 transcript(s):*
+*From 140 transcript(s):*
 - `-VFTXZrbyNA-58-dr-jack-kruse-high-latitude-living-cold-exposure-sunlight`
 - `0MmyVoqjkwQ-dr-jack-kruse-magnetism-and-health`
+- `18lVJi_ioFk-39-dr-andrew-marino`
+- `1GuVfh_KX94-boosting-neurotransmitters`
+- `1_eCsTz1sRw-revolution-in-farming-god-s-laws-for-land-animals-and-health`
 - `2-AKskkKZzA-sunlight-is-king-w-dr-jack-kruse`
 - `2M-Oap97_Tc-robert-o-becker-electromedicine-hieronimus-september-16-1990`
 - `2njvFN-W4zc-red-light-blue-light-brain-damage-dr-jack-kruse-explains-wtf`
+- `3ILmWtMX_ys-epstein-samurai-take-down-bitcoin-no-one-s-connecting-the-do`
 - `3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-4th-phase-of-water-with-g`
 - `47FzeZNCYL0-gerald-pollack-ez-water-what-is-it-why-do-i-need-it-how-do-i`
 - `4RlbKZrkgEg-cracking-the-health-code-w-dr-jack-kruse`
 - `52BwgibSVWU-medisun-podcast-19-dr-jack-kruse-epstein-cabal-circus-maximu`
 - `5W6x7EsE8C4-the-most-epic-jack-kruse-interview-ever-ep-75-76-the-life-st`
+- `5p2H9aTJTfg-11-the-fourth-phase-of-water-why-the-water-in-your-body-is-c`
 - `67sLlXeMg2I-regenerative-energy-the-light-inside-you-jack-kruse-221`
+- `6ClqKnD10p4-sunlight-is-the-source-of-life-dr-jack-kruse-ep-04`
+- `7IjfRQSRLt8-dr-jack-kruse-reveals-insights-banned-ted-talk-2012`
 - `7LHwUIv5zOo-disconnecting-one-side-of-dr-becker-s-regenerative-circuit`
+- `7SYSPlQa5eY-why-mitochondria-water-light-magnetism-mitohacking-with-dr-j`
+- `8JFmG2yTf4E-nicotine-and-adhd`
+- `8V6D0GZbrAs-dr-jack-kruse-counting-calories-doesn-t-work`
 - `8qqyCA9vz_s-the-fourth-phase-of-water-beyond-the-three-you-already-know-`
+- `9r8qxEOjJsA-light-contains-all-the-energy-and-information-that-s-present`
+- `9zJynVS_rYc-toxic-screens-how-to-protect-eyes-from-blue-light-with-dr-ja`
+- `A0onGcn17fQ-it-took-a-brain-surgeon-to-uncover-terrifying-threat-to-bitc`
+- `BO4mhs0qlLg-can-creatine-help-your-brain`
 - `BrwjP3zpm64-dr-jack-kruse-the-cia-don-t-want-you-to-know-this-ep-502`
 - `CVwpAzpOVuU-sunshine-is-reduction-electron-theft-vs-electron-donor-oxida`
 - `CVz-5qK4zBE-nature-s-hidden-healing-powers-w-dr-jack-kruse`
 - `CZBLhELkF3U-the-body-electric-robert-o-becker`
 - `CgKCJY182r4-medisun-podcast-13-dr-jack-kruse-the-modern-medical-system-i`
+- `CpJoAUltmgs-dr-jack-kruse-on-neonatal-jaundice-healthtopic-usa-healthpod`
 - `DHbfLM1VMIk-revisiting-robert-becker-s-the-body-electric-with-margaret-d`
+- `Dj5CqT9QvR0-how-nicotine-affects-focus-adhd-dr-john-kruse-dr-andrew-hube`
+- `EMrMf_jkaWo-a-discussion-on-general-relativity-by-students-of-john-wheel`
 - `EWthpbsfMJI-dr-gerald-pollack-the-importance-of-water-for-energy-heart-h`
+- `GEw0ePZUMHA-joe-rogan-experience-1216-sir-roger-penrose`
+- `Ghl9gaast-I-dr-jack-kruse-epi-paleo-keto-lchf-hcg-2-0-ha2cg-leptin-reset`
+- `HPgVgjyZ7mM-andrew-a-marino-interviewed-dr-alexis-cowan`
+- `HrXoKhkKFDU-011-dr-jack-kruse-part-1-the-inner-turning-point-inside-the-`
+- `I537lQoiu5c-neuro-surgeon-by-day-mito-hacker-by-night-dr-jack-kruse`
+- `I7r97vidvm4-the-unknown-truth-about-the-water-dr-gerald-h-pollack-univer`
 - `Iq3tDpoFVL0-unraveling-the-medical-matrix-w-dr-jack-kruse`
+- `JRicmld6AkU-andrw-a-marino-interviewed-by-dr-kamau-kokayi`
+- `KCcX03Q6Lkw-the-quantum-labyrinth-richard-feynman-john-wheeler-quantum-r`
 - `KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick-rubin-podcast-full-breakd`
+- `L3W-yuOyE2M-cell-permeability-based-on-the-ai-hypothesis-gilbert-ling`
 - `Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease`
+- `LwOUoNJGDtU-dr-jack-kruse-real-cause-of-skin-cancer`
 - `MIWmqyacaOo-it-took-a-brain-surgeon-to-uncover-insane-bitcoin-connection`
+- `MNizS5xLg50-these-3-habits-will-prevent-most-diseases-dr-jack-kruse`
 - `MSJk1RDH7Aw-uc-327-water-light-and-magnetism-for-health-with-dr-jack-kru`
+- `MvrKwzXTtfw-ifs-podcast-1-decoding-the-science-of-ultimate-human-health-`
 - `NG98vFRYYSc-men-of-law-podcast-19-with-dr-jack-kruse`
 - `NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018`
+- `NtQ-kdLlQiU-improve-focus-with-behavioral-tools-medication-for-adhd-dr-j`
+- `ODPdr_vaJ3w-the-great-gilbert-ling-cell-physiologist-biochemist-and-scie`
 - `OJaR2XgTmPI-dr-jack-kruse-decentralizing-medicine-and-shaping-future-hea`
+- `O_w-G80FqcU-dr-jack-kruse-nourish-vermont-2017-lecture-part-1-of-10`
 - `Oii1TNH4FeM-interview-with-robert-o-becker-md`
 - `Omug2kdB8VM-dr-jack-kruse-on-the-biological-implications-of-time-cancer-`
+- `OoDi856wLPM-sir-roger-penrose-stuart-hameroff-collapsing-a-theory-of-qua`
+- `PH1MbzHXPsY-cancer-beyond-metabolism-bioelectricity-mitochondria-quantum`
+- `PfEOtlJapfg-weight-loss-mitochondria-health-vitamin-d-with-dr-jack-kruse`
+- `Q6zAWQo9ioU-quantum-health-and-crypto-with-dr-jack-kruse`
 - `QEzULMNHygM-a-firebreathing-conversation-with-dr-jack-kruse-on-technolog`
+- `SIs7wcGR0zY-dr-jack-kruse-ketosis-fails-with-circadian-mismatches-quantu`
 - `SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl`
+- `T-CfRMJhV5g-the-mystery-of-the-observer-effect-john-wheeler`
+- `T3Ob-DMtR1M-the-jack-kruse-series-001`
+- `T6yIGLi6heA-dr-jack-kruse-1-failure-in-centralized-medicine`
+- `TUT6nhFMHtM-ep-14-craig-leblanc-w-dr-jack-kruse-the-daily-bitcoin-podcas`
+- `TcbuqQd57rY-decentralized-medicine-jack-kruse-assembly-2023`
+- `Uvm0dho_KRM-dr-jack-kruse-nourish-vermont-2017-q-a-part-10-of-10`
 - `VO4JwdXuXXs-13-jack-kruse`
 - `W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re`
 - `YCN-kgAH2hM-dr-kruse-patient-interview`
 - `YrwbDsTx0Uw-water-the-matrix-and-engine-of-life-pioneer-in-water-researc`
 - `Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse`
+- `_Inspd0gKEs-dr-jack-kruse-de-centralized-medicine-meets-de-centralized-m`
+- `_QDZqFKmnBo-wittgenstein-wheeler-and-wallace-the-curious-relation-of-phi`
+- `_fDgW9M1NKo-isaac-p-witz-ph-d-award-speech-2023-szent-gy-rgyi-prize`
 - `amM835C0i94-godfather-of-quantum-biology-upbringing-andrew-huberman-ligh`
+- `cCU6JShp5-k-dr-jack-kruse-emf-podcast-debrief-5g-explained-and-q-a-live`
 - `cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i`
 - `dOJt-wFNe3E-the-fourth-phase-of-water-gerald-pollack-phd-79`
 - `drdn_hDGALk-57-dr-jack-kruse`
 - `f3CLZVZfTH8-we-made-a-huge-mistake-ignoring-the-sun-dr-jack-kruse`
+- `fVIbcg3La_E-on-the-back-of-a-tiger-episode-one-gilbert-ling`
 - `fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars`
+- `gXjj2EoElFg-brain-surgeon-vs-pharma-lobbyist-what-s-really-making-you-si`
+- `hOMTiBqhbQc-lars-edvinsson-s-opening-lecture-of-the-albert-szent-gy-rgyi`
 - `iK4gG7TBgNM-gerald-pollack-water-rethinking-cell-biology-ricci-flow-nutr`
+- `iRlFvArtcfU-dr-jack-kruse-keynote-speech-bitcoin-prague-2025-time-is-you`
+- `iaEx7zhXIUI-dr-jack-kruse-podacast-2025`
+- `jtMu-KFyKxM-bitcoin-is-a-time-machine-with-dr-jack-kruse`
 - `kZZSLQFZnQM-dr-jack-kruse-on-biohacking-your-water-emfs-blue-light-dha-c`
 - `lQfAB_J390E-the-medical-tyranny-healthcare-exposed-dr-jack-kruse`
 - `lfkqB1BONMI-dr-andrew-marino-phd-on-dr-robert-o-becker-electromagnetism-`
 - `lhxca0ANvIk-bitcoin-and-humanity-s-decentralized-revolution-with-dr-jack`
+- `m3YVmZ-Xm3g-dr-gerald-h-pollack-the-water-electrons-interview-nion-healt`
 - `mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-`
 - `mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit`
+- `ncpbNXmJNzA-dr-jack-kruse-nourish-vermont-2017-lecture-part-7-of-10`
+- `nok4GhijvAA-is-consciousness-related-to-quantum-physics-with-roger-penro`
 - `oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center`
+- `oml8eX9aJhY-semester-opening-lecture-at-the-albert-szent-gy-rgyi-medical`
+- `ouksSZxRtnc-dr-robert-becker-and-the-dc-electric-current-jack-kruse-hube`
+- `pE_q4A9uFkc-paleo-summit-2012-dr-jack-kruse-mitochondria`
+- `pKEOaE3VTJA-dr-kruse-your-body-was-designed-for-500-years-ago`
+- `pVlKjevjO90-a-conversation-with-dr-jack-kruse`
+- `pa9Fni5IHkk-013-dr-jack-kruse-part-2-why-bitcoiners-fear-his-vision-all-`
+- `qHnE8yfuT_E-who-the-heck-is-gilbert-ling`
 - `qPY6FBkjqwA-functional-medicine-mistakes-emf-sunlight-and-your-mitochond`
 - `qa3FaUXZFSc-the-war-on-sunlight-is-real-and-it-s-not-an-accident-dr-jack`
+- `rTOXgqMAMeo-08-mitochondria-low-carb-advocates-metabolic-stress-gilbert-`
 - `s9vsbINyIWQ-dr-enqi-what-is-the-origin-of-bioelectricty-dr-sebi-robert-o`
 - `sIpXCMINceE-dr-jack-kruse-s-mindblowing-answer-to-who-is-satoshi-nakamot`
 - `sf9VNlTiq5s-neurosurgeon-talks-about-genetics-and-longevity-dr-jack-krus`
+- `tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue`
 - `tha7IPtUTAU-dr-jack-kruse-on-what-big-pharma-big-food-don-t-want-you-to-`
+- `uEwYlfekOIY-homeopathy-new-evidence-fourth-phase-of-water-a-central-role`
+- `unUTOBIXvdc-banned-neurosurgeon-decentralize-your-health-b4-it-s-too-lat`
 - `usB5IKPK04E-dr-jack-kruse-unfiltered-the-full-1-hour-interview-they-don-`
+- `uzJYPj7mfyA-203-dr-jack-kruse-bitcoin-and-biology`
+- `vC4HNcqTQXk-roger-penrose-on-mind-consciousness-closer-to-truth-chats`
+- `vnC2lRmGHSU-banned-neurosurgeon-decentralize-your-health-b4-it-s-too-lat`
+- `wJDjUmSYZNo-the-slave-that-broke-free-dr-jack-kruse`
 - `wL3ZNuWgjxs-jack-kruse-whole-foods`
 - `wwNutyiyQ2I-interview-with-dr-jack-kruse-04-08-2025`
+- `xGbgDf4HCHU-sir-roger-penrose-dr-stuart-hameroff-consciousness-and-the-p`
+- `xT8Qtt8LCV0-253-the-fourth-phase-of-water-gerald-h-pollack-being-human`
 - `yALOChgRrHQ-these-people-must-pay-bitcoin-trump-covid-and-zionism-with-d`
 - `yTrSFddva8Q-dr-jack-kruse-fix-the-money-fix-the-body-orange-pill-order-e`
+- `z8FVueTcz6E-buried-treasure-jesus-and-physicist-john-wheeler-agree-this-`
 - `zYjCjKCcRsQ-my-tweet-that-set-jack-kruse-off`
 - `zik08V9waJk-dr-jack-kruse-reclaim-your-health-wealth-freedom-in-the-face`
 - `zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-`
+- `zs82rGFo6qg-jack-kruse-andrew-huberman-rick-rubin-tetragrammaton-podcast`
 
 **Heuristic regex extraction.** Hand-curate before treating as canon.
 
 
 ## Concepts (term frequency across all transcripts)
 
-- **WHO** — 2918
-- **AGE** — 1130
-- **mitochondria** — 839
-- **melanin** — 685
-- **iron** — 623
-- **electron** — 584
-- **UV** — 477
-- **Becker** — 432
-- **quantum** — 354
-- **infrared** — 329
-- **blue light** — 311
-- **EPA** — 294
-- **electromagnetic** — 275
-- **mitochondrial** — 266
-- **leptin** — 255
-- **circadian** — 206
-- **ATP** — 193
-- **EMF** — 192
-- **semiconductor** — 189
-- **photosynthesis** — 187
-- **red light** — 186
-- **deuterium** — 171
-- **dopamine** — 171
-- **proton** — 168
-- **Einstein** — 155
-- **DHA** — 144
-- **magnetic field** — 139
-- **vitamin D** — 129
-- **hemoglobin** — 125
-- **AGEs** — 114
-- **Rockefeller** — 113
-- **RAGE** — 107
-- **cytochrome** — 98
-- **NAD** — 95
-- **melatonin** — 91
-- **methylene blue** — 81
-- **exclusion zone** — 77
-- **redox** — 73
-- **UVA** — 62
-- **heme** — 58
-- **biophoton** — 55
-- **vitamin A** — 54
-- **FDA** — 50
-- **NIH** — 49
-- **Newton** — 48
-- **photoelectric** — 48
-- **seafood** — 42
-- **quantum biology** — 41
-- **collagen** — 40
-- **Tesla** — 38
-- **photoelectric effect** — 36
-- **copper** — 35
-- **cortisol** — 33
-- **fourth phase of water** — 33
-- **Maxwell** — 28
-- **autoimmune** — 26
-- **EZ water** — 24
-- **Faraday** — 23
-- **UVB** — 18
-- **CDC** — 17
+- **WHO** — 4927
+- **AGE** — 2031
+- **mitochondria** — 1337
+- **iron** — 985
+- **electron** — 939
+- **quantum** — 880
+- **melanin** — 866
+- **UV** — 711
+- **Becker** — 615
+- **EPA** — 499
+- **blue light** — 492
+- **infrared** — 472
+- **leptin** — 444
+- **mitochondrial** — 429
+- **electromagnetic** — 423
+- **circadian** — 323
+- **Einstein** — 311
+- **EMF** — 305
+- **red light** — 294
+- **dopamine** — 291
+- **ATP** — 283
+- **photosynthesis** — 272
+- **semiconductor** — 271
+- **proton** — 269
+- **deuterium** — 239
+- **DHA** — 234
+- **vitamin D** — 217
+- **NAD** — 214
+- **AGEs** — 213
+- **Rockefeller** — 193
+- **melatonin** — 184
+- **RAGE** — 184
+- **magnetic field** — 176
+- **cytochrome** — 157
+- **Wheeler** — 156
+- **hemoglobin** — 142
+- **exclusion zone** — 130
+- **methylene blue** — 109
+- **heme** — 105
+- **UVA** — 103
+- **redox** — 91
+- **Newton** — 90
+- **FDA** — 88
+- **vitamin A** — 83
+- **NIH** — 81
+- **cortisol** — 79
+- **photoelectric** — 73
+- **seafood** — 72
+- **collagen** — 66
+- **quantum biology** — 64
+- **copper** — 61
+- **biophoton** — 58
+- **photoelectric effect** — 54
+- **Tesla** — 53
+- **Faraday** — 46
+- **ketosis** — 46
+- **autoimmune** — 43
+- **fourth phase of water** — 43
+- **Maxwell** — 35
+- **NADH** — 32
 
 ## Titled people (Dr./Professor/Prof.)
 
-- Cruz — 83
-- Jack Cruz — 56
-- Becker — 36
-- Jack — 14
+- Cruz — 120
+- Jack Cruz — 83
+- Becker — 67
+- Jack — 25
 - Jack
-Cruz — 11
+Cruz — 16
+- Jack Kruse — 9
+- Robert Becker — 9
+- Ashner — 9
+- Klein — 8
 - Who — 7
 - Alexis — 7
+- Andrew Marino — 6
+- Marino — 6
 - Allison — 6
+- Gerald Pollock — 6
 - Jack Cruz Dr — 6
-- Klein — 6
-- Robert Becker — 5
-- Gerald Pollock — 4
-- Andrew Marino — 4
-- Inky — 4
+- Robert — 5
 - Jack
-Kruse — 3
-- Jack Kruse — 3
+Kruse — 4
+- John Cruz — 4
+- Alexis Cowan — 4
+- Pollock — 4
+- Deutsch — 4
+- Inky — 4
 - David Klein — 3
 - Robert
 Becker — 3
-- Robert — 3
-- Pollock — 3
 - Ted — 3
 - Malone — 3
+- Jack Crews — 3
 - Mary Stewart — 3
+- Roberto Becker — 2
+- Albert St
+Georgie — 2
+- Leven — 2
 - Hazen — 2
+- Craig Wright — 2
 - Courtland — 2
 - Jack Kruse Facebook — 2
-- Alexis Cowan — 2
 - Gerald — 2
 - Thomas — 2
 - Pollack — 2
+- Kruse — 2
+- Andrew
+Marino — 2
 - Wallace — 2
+- Chris — 2
+- Anthony — 2
+- Levan — 2
+- Asner — 2
+- Bernice Eddie — 2
 - Eddie — 2
-- Jack Crews — 2
+- Mary Sherman — 2
+- Isaac — 2
+- Wick — 2
+- Wix — 2
 - Andrew — 2
-- Deutsch — 2
 - Dean — 2
 - Fouchy — 2
-- Marino — 2
+- Oz — 2
+- Ling — 2
 - Bronson — 2
 
 ## Citations (Name year, Name et al)
 
 - Vermont 2018 — 5
+- September 1939 — 4
+- University 1939 — 3
+- December 1941 — 3
+- University 1994 — 2
 - Tarter 1990 — 2
 - Vermont 2016 — 2
 - Fouchy 2006 — 2
 - States 1939 — 2
 - Israel 1969 — 2
+- Bohr 1929 — 2
+- Rothchilds 1969 — 1
+- Lansky 1969 — 1
 - Eddie 1957 — 1
+- Rockefeller 1911 — 1
+- Fair 1893 — 1
+- Paris 1924 — 1
+- Nashville 2011 — 1
+- City 2011 — 1
+- Rockefellers 1969 — 1
+- Agenda 2030 — 1
+- November 2025 — 1
 - Papers 1803 — 1
 - States 1963 — 1
+- December 2017 — 1
+- Gerald 2008 — 1
+- December 2020 — 1
 - Prize 2016 — 1
+- January 1939 — 1
 - Scandinavia 2016 — 1
 - Trump 2023 — 1
 - October 2020 — 1
@@ -207,215 +322,235 @@ Becker — 3
 - Affair 1965 — 1
 - China 1971 — 1
 - Hoff 2005 — 1
+- Salvador 2020 — 1
+- States 1801 — 1
 - Turing 1951 — 1
 - States 2024 — 1
 - Vermont 2019 — 1
 - Minutes 1977 — 1
+- Georgia 1890 — 1
+- Paris 1890 — 1
+- Victor 1890 — 1
+- California 1870 — 1
+- Hawaii 1920 — 1
+- City 1890 — 1
+- Europe 1900 — 1
+- Forum 1996 — 1
+- Society 2002 — 1
 - Ultra 1973 — 1
+- January 2021 — 1
+- April 2021 — 1
+- Forum 2025 — 1
+- Katrina 2005 — 1
+- Egypt 1967 — 1
 - Falls 1977 — 1
 - Ferrari 2015 — 1
-- University 1939 — 1
 - Radical 1941 — 1
 - Abel 2011 — 1
-- University 1994 — 1
 - Woods 1997 — 1
+- Bitcoin 2013 — 1
+- Prize 1901 — 1
+- Constitution 2023 — 1
+- Prize 1963 — 1
 - States 1900 — 1
 - Bitcoin 2024 — 1
+- Prize 1992 — 1
 - Awakening 2007 — 1
-- Epiphany 2005 — 1
-- Lans 1973 — 1
-- Started 2013 — 1
-- Back 1905 — 1
-- Wuhan 2017 — 1
-- Chicago 1944 — 1
-- Wallace 1977 — 1
-- Becker 1977 — 1
-- Species 1859 — 1
-- Prize 1977 — 1
 
 ## "By author" patterns
 
+- Robin Sharma — 4
+- The Victors — 4
+- Philip Handler — 3
+- Philip
+Handler — 3
+- Dr Albert St
+Georgie — 2
 - Dave Asprey — 2
-- The Victors — 2
+- Theodor Herzl — 2
+- John
+Wheeler — 2
+- The Observer — 2
+- Bitcoin Well — 2
 - Roland Van Wick — 1
 - Balor University — 1
+- Meer Lansky — 1
+- Jeffrey Epstein — 1
 - Flat
 Earth — 1
 - Kyle Shanahan — 1
 - John Hands — 1
 - Michael Leaven — 1
 - Robert Obecker — 1
+- Mother Nature — 1
+- The
+Offspring — 1
 - Lord
 Kelvin — 1
+- Michael Saylor — 1
+- Stanley Gottlieb — 1
+- Thomas Jefferson — 1
 - General Gro — 1
 - Henry Reed — 1
-- Robin
-Sharma — 1
-- El Salvador — 1
-- Roland
-Van Wick — 1
-- Meyer Lansky — 1
-- David Rockfell — 1
-- Rockefeller Medicine — 1
-- Jim
-Garrison — 1
-- Guess Who — 1
-- Dr Cruz — 1
-- Viva Rays — 1
-- David Sinclair — 1
-- Michael Crawford — 1
-- Dr Albert St Georgie — 1
-- Philip Handler — 1
-- Philip
-Handler — 1
-- The
-Victors — 1
-- Silicon
-Valley — 1
-- St Georgie — 1
-- Acme Plastics — 1
-- Thomas Jefferson Thomas Jefferson — 1
-- Robin Sharma — 1
-- Philip Buck Holtz — 1
-- Siran Sirhan — 1
-- Andrew Marino — 1
-- Jimmy
-Burns — 1
-- Alan Turing — 1
-- General Gro General Gro — 1
-- Design Judith — 1
+- Jim Peebles — 1
+- Albert
+Einstein — 1
+- Lou Whitten — 1
+- Joseph Henry — 1
+- Baron Roland — 1
+- Hermann Bondi — 1
+- Paul Dirac — 1
+- The Profit — 1
+- President Johnson — 1
+- Robert Oppenheimer — 1
+- Ernest Mach — 1
+- Carl Sagan — 1
+- Gilbert
+Ling — 1
 
 ## Quoted titles
 
 
 ## High-frequency capitalized names (filtered)
 
-- El Salvador — 138
-- Uncle Jack — 117
-- Jack Cruz — 82
+- El Salvador — 260
+- Uncle Jack — 142
+- Nobel Prize — 132
 - United
-States — 78
-- Nobel Prize — 76
-- Gilbert Ling — 67
-- Rick Rubin — 54
+States — 132
+- Jack Cruz — 124
 - El
-Salvador — 53
-- Bobby Kennedy — 46
-- World War — 45
-- Elon Musk — 37
-- Steve Jobs — 36
-- Albert St — 33
-- Doug Wallace — 30
-- General Gro — 29
-- Nick Lane — 24
-- Danny Jones — 22
-- Silicon Valley — 22
-- Myer Lansky — 22
-- Federal Reserve — 20
-- South America — 19
+Salvador — 95
+- Gilbert Ling — 93
+- World War — 90
+- Rick Rubin — 77
+- Bobby Kennedy — 71
+- Steve Jobs — 51
+- Elon Musk — 50
+- Albert St — 40
+- Doug Wallace — 37
+- Silicon Valley — 37
+- Danny Jones — 34
+- General Gro — 33
 - Nobel
-Prize — 19
-- Bill Gates — 18
-- Lee Harvey — 18
-- Michael Jackson — 17
-- Thomas Jefferson — 17
-- Joe Rogan — 16
-- St Georgie — 16
-- East African — 15
-- Costa Rica — 15
-- Palm Sea — 15
-- Roland Van — 14
+Prize — 32
+- Thomas Jefferson — 32
+- St Georgie — 31
+- Nick Lane — 30
+- Federal Reserve — 30
+- John Wheeler — 27
+- South America — 26
+- King George — 25
+- Costa Rica — 25
+- Bill Gates — 25
+- Myer Lansky — 25
+- Joe Rogan — 24
+- Lee Harvey — 22
+- Jack Dorsey — 21
+- Jack Jack — 21
+- Jack Kruse — 20
+- North Carolina — 20
 - Jack
-Cruz — 14
-- Murder Inc — 14
-- Charity Hospital — 14
+Cruz — 20
 - Uncle
-Jack — 13
-- Optimal Health — 13
-- Jack Kruse — 13
-- Manhattan Project — 13
-- Warren Commission — 13
-- David Ferry — 13
-- Southern Ocean — 12
-- Nicole Shanahan — 12
-- Jesus Christ — 12
-- Supreme Court — 12
-- Blue Light — 12
-- Ted Talk — 12
-- Las Vegas — 11
-- Ray Pete — 11
-- Meer Lansky — 11
-- Peter Teal — 11
-- Bernice Eddie — 11
-- Health Care — 11
-- General Groves — 11
+Jack — 19
+- Benjamin Rush — 19
+- Manhattan Project — 19
+- David Ferry — 19
+- Nicole Shanahan — 18
+- Michael Jackson — 18
+- Supreme Court — 18
 - Bobby
-Kennedy — 11
+Kennedy — 18
+- Charity Hospital — 18
+- East African — 17
+- Mother Nature — 17
+- Satoshi Nakamoto — 17
+- Black Swan — 17
+- Froot Loops — 17
+- Eddie Chang — 17
+- Roland Van — 16
+- Sergey Brin — 16
+- Meer Lansky — 16
+- Jesus Christ — 16
+- Murder Inc — 16
+- Paul Allen — 16
+- Palm Sea — 16
+- Optimal Health — 15
+- Roy Conn — 15
+- David Bailey — 15
+- Pacific Ocean — 15
+- Bernice Eddie — 15
+- General Groves — 15
+- Civil War — 15
+- Health Care — 15
+- Central Park — 15
+- Albert Einstein — 14
+- Peter Teal — 14
+- Ted Talk — 14
+- Blue Light — 14
+- Warren Commission — 14
+- Jack
+Jack — 14
+- Las Vegas — 13
+- Patriot Act — 13
+- Stanford University — 13
+- Niels Bohr — 13
+- General Grow — 13
+- Southern Ocean — 12
+- Southern California — 12
+- Fritz Pop — 12
+- Dunning Krueger — 12
+- Michael Sailor — 12
+- Jeffrey Epstein — 12
+- Tucker Carlson — 12
+- Standard Oil — 12
+- Queen Victoria — 12
+- Usain Bolt — 12
+- Bitcoin Beach — 12
+- Operation Paperclip — 12
+- Peter Mitchell — 12
+- San Diego — 11
+- Middle East — 11
+- Ray Pete — 11
+- Meyer Lansky — 11
+- Magnetic Moment — 11
 - Jimmy Burns — 11
-- King George — 10
-- Mother Nature — 10
-- San Diego — 10
-- Pacific Ocean — 10
-- Black Swan — 10
-- Patriot Act — 10
-- Magnetic Moment — 10
-- General Grow — 10
-- Henry Wallace — 10
-- Rick
-Rubin — 9
-- Southern California — 9
-- Fritz Pop — 9
-- Dunning Krueger — 9
-- Benjamin Rush — 9
-- Stanford University — 9
-- Rabbit Hole — 9
-- Peter Addy — 9
-- Satoshi Nakamoto — 9
-- Jack Ruby — 9
-- Peter Mitchell — 9
-- Usain Bolt — 9
-- North Carolina — 9
-- Albert Einstein — 8
-- Peter Adia — 8
-- Puerto Rico — 8
-- Andrew Marino — 8
-- Whole Foods — 8
-- Froot Loops — 8
-- Manhattan
-Project — 8
-- Washington University — 8
-- Queen Victoria — 8
-- Central Park — 8
-- Operation Paperclip — 8
-- Civil War — 8
-- Paul Allen — 8
-- David Sinclair — 8
-- Sergey Brin — 7
-- Elizabeth Warren — 7
-- Super Bowl — 7
-- Roberto Becker — 7
-- Medical School — 7
-- Eddie Chang — 7
-- George Washington — 7
-- Lee
-Harvey — 7
+- Donald Trump — 10
+- Michael Levan — 10
+- Dan Rather — 10
+- Jack
+Dorsey — 10
 
 ## URLs / domains
 
-- patreon.com — 6
+- cruz.com — 11
+- patreon.com — 11
 - dynamics.com — 6
 - bitcoin.com — 5
-- cruz.com — 4
+- jackcruise.com — 4
 - beyondwwellelnessradio.com — 4
+- manscape.com — 4
+- marin.com — 3
+- destin.com — 3
+- gilbertling.org — 3
+- jackcruz.com — 3
 - wildrx.com — 3
+- jackkruse.com — 2
 - www.patreon.com — 2
-- gilbertling.org — 2
 - wellnesscouch.com — 2
-- jackcruz.com — 2
+- 8sleep.com — 2
+- element.com — 2
+- maa.com — 2
 - IVscience.org — 2
+- unchained.com/frontier — 2
 - farm.com — 2
 - fatburningman.com — 2
+- www.jackcruise.com — 2
+- permapasturesfarm.com — 1
 - drbrandcrawford.com — 1
+- simonix.com — 1
+- Cruz.com — 1
 - science.org — 1
 - com.org — 1
 - tech.com — 1
@@ -423,27 +558,29 @@ Harvey — 7
 - computer.com — 1
 - ris.gov — 1
 - dus.com — 1
-- jackkruse.com — 1
 - quantlet.com — 1
+- functionalself.com — 1
+- quit.com — 1
+- findinggeniuspodcast.com — 1
+- Khou.com — 1
+- mining.com — 1
+- Patreon.com — 1
+- mentor.io — 1
 - press.com — 1
-- jackcruise.com — 1
+- jackrus.com — 1
+- P-A-T-R-E-O-N.com — 1
 - jackcruz.com/formums — 1
 - thewwellnesscouch.com — 1
 - facebook.com/thewwellnesscouch — 1
+- strong.com — 1
+- book.com — 1
+- lab.com — 1
+- briankeating.com/list — 1
 - drjackcruz.com — 1
+- jackroofs.com — 1
 - vivar.com — 1
 - Watercom.org — 1
 - not.org — 1
 - waterconump.org — 1
 - polloclab.org — 1
 - lauraissmanwellness.com — 1
-- endia.com — 1
-- marin.com — 1
-- blockpodcast.com — 1
-- jaccrews.com — 1
-- destin.com — 1
-- beyondwellelnessradio.com — 1
-- www.jackpruz.com — 1
-- neo.com — 1
-- inc.com — 1
-- nih.gov — 1

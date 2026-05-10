@@ -5,7 +5,7 @@
 - **Timestamp**: `01:00:13.720` (~3613s)
 - **Score**: 7  ·  **Pattern signals**: always, because, fundamental
 - **Cross-concepts**: —
-- **Captured**: 2026-05-09
+- **Captured**: 2026-05-10
 
 ## Excerpt
 

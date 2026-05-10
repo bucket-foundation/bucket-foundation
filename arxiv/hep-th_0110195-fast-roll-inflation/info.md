@@ -1,0 +1,14 @@
+# Fast-Roll Inflation
+
+- **arXiv ID**: `hep-th/0110195`
+- **URL**: https://arxiv.org/abs/hep-th/0110195
+- **Authors**: Andrei Linde
+- **Published**: 2001-10-21T18:55:20Z
+- **Updated**: 2001-10-26T02:29:54Z
+- **Primary category**: hep-th
+- **All categories**: hep-th, astro-ph, gr-qc, hep-ph, physics.space-ph
+- **Captured**: 2026-05-10T10:00:48
+
+## Abstract
+
+We show that in the simplest theories of spontaneous symmetry breaking one can have a stage of a fast-roll inflation. In this regime the standard slow-roll condition |m^2| << H^2 is violated. Nevertheless, this stage can be rather long if |m| is sufficiently small. Fast-roll inflation can be useful for generating proper initial conditions for the subsequent stage of slow-roll inflation in the very early universe. It may also be responsible for the present stage of accelerated expansion of the universe. We also make two observations of a more general nature. First of all, the universe after a long stage of inflation (either slow-roll or fast-roll) cannot reach anti-de Sitter regime even if the cosmological constant is negative. Secondly, the theories with the potentials with a "stable" minimum at V(φ)<0 in the cosmological background exhibit the same instability as the theories with potentials unbounded from below. This instability leads to the development of singularity with the properties practically independent of V(φ). However, the development of the instability in some cases may be so slow that the theories with the potentials unbounded from below can describe the present stage of cosmic acceleration even if this acceleration occurs due to the fast-roll inflation.

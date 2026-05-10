@@ -5,7 +5,7 @@
 - **Timestamp**: `00:07:55.200` (~475s)
 - **Score**: 6  ·  **Pattern signals**: must, causes, because
 - **Cross-concepts**: blue-light
-- **Captured**: 2026-05-09
+- **Captured**: 2026-05-10
 
 ## Excerpt
 

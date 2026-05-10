@@ -5,7 +5,7 @@
 - **Timestamp**: `01:15:55.600` (~4555s)
 - **Score**: 6  ·  **Pattern signals**: must, causes, because
 - **Cross-concepts**: EMF
-- **Captured**: 2026-05-09
+- **Captured**: 2026-05-10
 
 ## Excerpt
 
