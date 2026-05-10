@@ -9,7 +9,7 @@
 - **License**: http://creativecommons.org/licenses/publicdomain/
 - **Mediatype**: audio
 - **Subjects**: librivox; audiobook; literature; classics; philosophy; ancient greece; cosmology; cosmogony; Atlantis; creation myth
-- **Captured**: 2026-05-10T14:45:26
+- **Captured**: 2026-05-10T14:54:31
 
 ## Description
 
