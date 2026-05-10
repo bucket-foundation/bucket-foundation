@@ -7,7 +7,7 @@
 - **Updated**: 2000-05-04T15:14:10Z
 - **Primary category**: quant-ph
 - **All categories**: quant-ph
-- **Captured**: 2026-05-10T11:42:51
+- **Captured**: 2026-05-10T19:26:21
 
 ## Abstract
 

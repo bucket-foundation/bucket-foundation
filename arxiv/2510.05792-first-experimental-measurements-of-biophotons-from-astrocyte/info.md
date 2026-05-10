@@ -1,0 +1,14 @@
+# First experimental measurements of biophotons from Astrocytes and Glioblastoma cell cultures
+
+- **arXiv ID**: `2510.05792`
+- **URL**: https://arxiv.org/abs/2510.05792
+- **Authors**: L. De Paolis, E. Pace, C. Mazzanti, M. Morelli, F. Di Lorenzo, L. Tonello, C. Curceanu, A. Clozza, M. Grandi, I. Davoli, A. Gemignani, P. Grigolini, M. Benfatto
+- **Published**: 2025-10-07T11:10:42Z
+- **Updated**: 2025-10-07T11:10:42Z
+- **Primary category**: physics.bio-ph
+- **All categories**: physics.bio-ph, quant-ph
+- **Captured**: 2026-05-10T19:25:30
+
+## Abstract
+
+Biophotons are non-thermal and non-bioluminescent ultraweak photon emissions, first hypothesised by Gurwitsch in 1924 as a regulatory mechanism in cell division, and then experimentally observed in living organisms. Today, two main hypotheses explain their origin: stochastic decay of excited molecules and coherent electromagnetic fields produced in biochemical processes. Recent interest focuses on the role of biophotons in cellular communication and disease monitoring. This study presents the first campaign of biophoton emission measurements from cultured astrocytes and glioblastoma cells, conducted at Fondazione Pisana per la Scienza (FPS) using two ultra-sensitive setups developed by the collaboration at the National Laboratories of Frascati (LNF-INFN) and at the University of Rome II - Tor Vergata. The statistical analyses of the data collected revealed a clear separation between cellular signals and dark noise, confirming the high sensitivity of the apparatuses. The Diffusion Entropy Analysis (DEA) was applied to the data to uncover dynamic patterns, revealing anomalous diffusion and long-range memory effects potentially related to intercellular signalling and cellular communication. These findings support the hypothesis that biophoton emissions encode rich information beyond intensity, reflecting metabolic and pathological states. The differences that emerged from the application of Diffusion Entropy Analysis to the biophotonic signals of Astrocytes and Glioblastoma are highlighted and discussed in the paper. This work lays the foundation for future studies on neuronal cultures and proposes biophoton dynamics as a promising tool for non-invasive diagnostics and cellular communication research.
