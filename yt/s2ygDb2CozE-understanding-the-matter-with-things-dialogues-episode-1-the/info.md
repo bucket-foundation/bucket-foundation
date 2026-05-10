@@ -1,23 +1,21 @@
-# Understanding The Matter with Things Dialogues Episode 20: Chapter 20 The coincidentia oppositorum
+# Understanding The Matter with Things Dialogues: Episode 1: The Introduction
 
-- **Video ID**: `KAZ2a-vawMk`
-- **URL**: https://www.youtube.com/watch?v=KAZ2a-vawMk
+- **Video ID**: `s2ygDb2CozE`
+- **URL**: https://www.youtube.com/watch?v=s2ygDb2CozE
 - **Channel**: Dr Iain McGilchrist — https://www.youtube.com/channel/UCW0LCKUFTTtgitH33Mx6u-A
-- **Uploaded**: 20221229
-- **Duration**: 1:23:08 (4988s)
-- **Views**: 16657  ·  **Likes**: 330
-- **Captured**: 2026-05-10T18:52:24
+- **Uploaded**: 20220406
+- **Duration**: 1:01:42 (3702s)
+- **Views**: 98433  ·  **Likes**: 2413
+- **Captured**: 2026-05-10T18:53:20
 
 ## Description
 
-This series of dialogues between Iain McGilchrist and Alex Gomez-Marin explores Iain's latest book The Matter with Things. In Episode 20 Iain and Alex discuss Chapter 20, The coincidentia oppositorum
+This is a series of dialogues between Iain McGilchrist and Alex Gomez-Marin exploring The Matter with Things chapter by chapter. 
 
 To purchase The Matter with Things 
 Hardback internationally https://Amazon.com and https://BookDepository.com  
 Hardback UK only https://ChannelMcGilchrist.com ,  https://Amazon.co.uk and other booksellers nationwide
 Kindle on https://www.amazon.co.uk and https://www.amazon.com
-
-To explore Dr Iain McGilchrist's work in greater depth and breadth, join Channel McGilchrist here https://channelmcgilchrist.com/join/ 
 
 You can read Dr. Gomez-Marin's work at https://behavior-of-organisms.org/ and follow him on twitter as @behaviOrganisms
 
@@ -25,7 +23,27 @@ Dr Àlex Gómez-Marín is a Spanish physicist turned neuroscientist. He holds a 
 
 ## Chapters
 
-*(no chapters)*
+- `0s` — Intro
+- `237s` — Assumptions
+- `490s` — Attention
+- `700s` — Going Beyond the Facts
+- `870s` — Book Structure
+- `930s` — Epistemology
+- `994s` — Metaphysics
+- `1145s` — apprehend
+- `1180s` — comprehend
+- `1403s` — a good idea
+- `1438s` — Phenomenology
+- `1471s` — The Old Vision
+- `1521s` — A Fine Line
+- `1681s` — Philosophical Questions
+- `1796s` — Human Meaning
+- `2109s` — Neologism
+- `2146s` — hallucination
+- `2351s` — zen garden
+- `2716s` — Pragmatic approach
+- `2919s` — Left hemisphere denial
+- `3149s` — How empirical science works
 
 ## Files
 
