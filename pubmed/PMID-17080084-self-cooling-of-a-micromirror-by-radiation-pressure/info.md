@@ -1,0 +1,14 @@
+# Self-cooling of a micromirror by radiation pressure.
+
+- **PMID**: 17080084
+- **DOI**: 10.1038/nature05273
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 2006
+- **Authors**: S Gigan, H R Böhm, M Paternostro, F Blaser, G Langer, J B Hertzberg, K C Schwab, D Bäuerle, M Aspelmeyer, A Zeilinger
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17080084/
+- **Captured**: 2026-05-10T11:08:12
+
+## Abstract
+
+Cooling of mechanical resonators is currently a popular topic in many fields of physics including ultra-high precision measurements, detection of gravitational waves and the study of the transition between classical and quantum behaviour of a mechanical system. Here we report the observation of self-cooling of a micromirror by radiation pressure inside a high-finesse optical cavity. In essence, changes in intensity in a detuned cavity, as caused by the thermal vibration of the mirror, provide the mechanism for entropy flow from the mirror's oscillatory motion to the low-entropy cavity field. The crucial coupling between radiation and mechanical motion was made possible by producing free-standing micromirrors of low mass (m approximately 400 ng), high reflectance (more than 99.6%) and high mechanical quality (Q approximately 10,000). We observe cooling of the mechanical oscillator by a factor of more than 30; that is, from room temperature to below 10 K. In addition to purely photothermal effects we identify radiation pressure as a relevant mechanism responsible for the cooling. In contrast with earlier experiments, our technique does not need any active feedback. We expect that improvements of our method will permit cooling ratios beyond 1,000 and will thus possibly enable cooling all the way down to the quantum mechanical ground state of the micromirror.

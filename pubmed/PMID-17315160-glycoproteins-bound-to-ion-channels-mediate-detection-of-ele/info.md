@@ -1,0 +1,14 @@
+# Glycoproteins bound to ion channels mediate detection of electric fields: a proposed mechanism and supporting evidence.
+
+- **PMID**: 17315160
+- **DOI**: 10.1002/bem.20310
+- **PMCID**:  
+- **Journal**: Bioelectromagnetics  ·  **Year**: 2007
+- **Authors**: Oleg V Kolomytkin, Sharon Dunn, Francis X Hart, Clifton Frilot, Dmitry Kolomytkin, Andrew A Marino
+- **MeSH**: Animals, Catfishes, Electromagnetic Fields, Electrophysiology, Glycoproteins, Ion Channels, Sensory Receptor Cells
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17315160/
+- **Captured**: 2026-05-10T11:08:33
+
+## Abstract
+
+The mechanism by which animals detect weak electric and magnetic fields has not yet been elucidated. We propose that transduction of an electric field (E) occurs at the apical membrane of a specialized cell as a consequence of an interaction between the field and glycoproteins bound to the gates of ion channels. According to the model, a glycoprotein mass (M) could control the gates of ion channels, where M > 1.4 x 10(-18)/E, resulting in a signal of sufficient strength to overcome thermal noise. Using the electroreceptor organ of Kryptopterus as a mathematical and experimental model, we showed that at the frequency of maximum sensitivity (10 Hz), fields as low as 2 microV/m could be detected, and that the observation could be explained if a glycoprotein mass of 0.7 x 10(-12) kg (a sphere 11 microm in diameter) were bound to channel gates. Antibodies against apical membrane structures in Kryptopterus blocked field transduction, which was consistent with the proposal that it occurred at the membrane surface. Although the target of the field was hypothesized to be an ion channel, the proposed mechanism can easily be extended to include other kinds of membrane proteins.

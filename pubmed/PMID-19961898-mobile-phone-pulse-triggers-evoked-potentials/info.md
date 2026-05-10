@@ -1,0 +1,14 @@
+# Mobile-phone pulse triggers evoked potentials.
+
+- **PMID**: 19961898
+- **DOI**: 10.1016/j.neulet.2009.11.068
+- **PMCID**:  
+- **Journal**: Neuroscience letters  ·  **Year**: 2010
+- **Authors**: Simona Carrubba, Clifton Frilot, Andrew L Chesson, Andrew A Marino
+- **MeSH**: Adolescent, Adult, Brain, Cell Phone, Electromagnetic Fields, Evoked Potentials, Female, Humans, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19961898/
+- **Captured**: 2026-05-10T11:11:41
+
+## Abstract
+
+If mobile-phone electromagnetic fields (EMFs) are hazardous, as suggested in the literature, processes or mechanisms must exist that allow the body to detect the fields. We hypothesized that the low-frequency pulses produced by mobile phones (217 Hz) were detected by sensory transduction, as evidenced by the ability of the pulses to trigger evoked potentials (EPs). Electroencephalograms (EEGs) were recorded from six standard locations in 20 volunteers and analyzed to detect brain potentials triggered by a pulse of the type produced by mobile phones. Evoked potentials having the expected latency were found in 90% of the volunteers, as assessed using a nonlinear method of EEG analysis. Evoked potentials were not detected when the EEG was analyzed using time averaging. The possibility of systematic error was excluded by sham-exposure analyses. The results implied that mobile-phones trigger EP at the rate of 217 Hz during ordinary phone use. Chronic production of the changes in brain activity might be pertinent to the reports of health hazards among mobile-phone users.

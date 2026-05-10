@@ -1,0 +1,14 @@
+# The last eukaryotic common ancestor (LECA): acquisition of cytoskeletal motility from aerotolerant spirochetes in the Proterozoic Eon.
+
+- **PMID**: 16938841
+- **DOI**: 10.1073/pnas.0604985103
+- **PMCID**: PMC1482561 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2006
+- **Authors**: Lynn Margulis, Michael Chapman, Ricardo Guerrero, John Hall
+- **MeSH**: Cell Movement, Cell Nucleus, Cytoskeleton, Eukaryotic Cells, History, Ancient, Microtubules, Mitochondria, Models, Biological, Phylogeny, Spirochaetales
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16938841/
+- **Captured**: 2026-05-10T11:08:04
+
+## Abstract
+
+We develop a symbiogenetic concept of the origin of eukaryotic intracellular motility systems from anaerobic but aerotolerant spirochetes in sulfide-rich environments. The last eukaryotic common ancestors (LECAs) have extant archaeprotist descendants: motile nucleated cells with Embden-Meyerhof glycolysis and substrate-level phosphorylation that lack the alpha-proteobacterial symbiont that became the mitochondrion. Swimming and regulated O(2)-tolerance via sulfide oxidation already had been acquired by sulfidogenic wall-less archaebacteria (thermoplasmas) after aerotolerant cytoplasmic-tubule-containing spirochetes (eubacteria) attached to them. Increasing stability of sulfide-oxidizing/sulfur-reducing consortia analogous to extant sulfur syntrophies (Thiodendron) led to fusion. The eubacteria-archaebacteria symbiosis became permanent as the nucleus evolved by prokaryotic recombination with membrane hypertrophy, analogous to Gemmata obscuriglobus and other delta-proteobacteria with membrane-bounded nucleoids. Histone-coated DNA, protein-synthetic RNAs, amino-acylating, and other enzymes were contributed by the sulfidogen whereas most intracellular motility derives from the spirochete. From this redox syntrophy in anoxic and microoxic Proterozoic habitats LECA evolved. The nucleus originated by recombination of eu- and archaebacterial DNA that remained attached to eubacterial motility structures and became the microtubular cytoskeleton, including the mitotic apparatus. Direct LECA descendants include free-living archaeprotists in anoxic environments: archamoebae, metamonads, parabasalids, and some mammalian symbionts with mitosomes. LECA later acquired the fully aerobic Krebs cycle-oxidative phosphorylation-mitochondrial metabolism by integration of the protomitochondrion, a third alpha-proteobacterial symbiont from which the ancestors to most protoctists, all fungi, plants, and animals evolved. Secondarily anaerobic eukaryotes descended from LECA after integration of this oxygen-respiring eubacterium. Explanatory power and experimental predictions for molecular biology of the LECA concept are stated.

@@ -1,0 +1,14 @@
+# The free-energy principle: a rough guide to the brain?
+
+- **PMID**: 19559644
+- **DOI**: 10.1016/j.tics.2009.04.005
+- **PMCID**:  
+- **Journal**: Trends in cognitive sciences  ·  **Year**: 2009
+- **Authors**: Karl Friston
+- **MeSH**: Brain, Entropy, Environment, Humans, Learning, Models, Neurological, Neural Pathways, Quantum Theory, Recognition, Psychology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19559644/
+- **Captured**: 2026-05-10T11:11:14
+
+## Abstract
+
+This article reviews a free-energy formulation that advances Helmholtz's agenda to find principles of brain function based on conservation laws and neuronal energy. It rests on advances in statistical physics, theoretical biology and machine learning to explain a remarkable range of facts about brain structure and function. We could have just scratched the surface of what this formulation offers; for example, it is becoming clear that the Bayesian brain is just one facet of the free-energy principle and that perception is an inevitable consequence of active exchange with the environment. Furthermore, one can see easily how constructs like memory, attention, value, reinforcement and salience might disclose their simple relationships within this framework.

@@ -1,0 +1,14 @@
+# Studying genetic regulatory networks at the molecular level: delayed reaction stochastic models.
+
+- **PMID**: 17350653
+- **DOI**: 10.1016/j.jtbi.2007.01.021
+- **PMCID**:  
+- **Journal**: Journal of theoretical biology  ·  **Year**: 2007
+- **Authors**: Rui Zhu, Andre S Ribeiro, Dennis Salahub, Stuart A Kauffman
+- **MeSH**: Algorithms, Animals, DNA-Directed RNA Polymerases, Escherichia coli, Gene Expression Regulation, Gene Silencing, Genes, Regulator, Models, Genetic, Molecular Biology, Phenotype
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17350653/
+- **Captured**: 2026-05-10T11:08:35
+
+## Abstract
+
+Current advances in molecular biology enable us to access the rapidly increasing body of genetic information. It is still challenging to model gene systems at the molecular level. Here, we propose two types of reaction kinetic models for constructing genetic networks. Time delays involved in transcription and translation are explicitly considered to explore the effects of delays, which may be significant in genetic networks featured with feedback loops. One type of model is based on delayed effective reactions, each reaction modeling a biochemical process like transcription without involving intermediate reactions. The other is based on delayed virtual reactions, each reaction being converted from a mathematical function to model a biochemical function like gene inhibition. The latter stochastic models are derived from the corresponding mean-field models. The former ones are composed of single gene expression modules. We thus design a model of gene expression. This model is verified by our simulations using a delayed stochastic simulation algorithm, which accurately reproduces the stochastic kinetics in a recent experimental study. Various simplified versions of the model are given and evaluated. We then use the two methods to study the genetic toggle switch and the repressilator. We define the "on" and "off" states of genes and extract a binary code from the stochastic time series. The binary code can be described by the corresponding Boolean network models in certain conditions. We discuss these conditions, suggesting a method to connect Boolean models, mean-field models, and stochastic chemical models.

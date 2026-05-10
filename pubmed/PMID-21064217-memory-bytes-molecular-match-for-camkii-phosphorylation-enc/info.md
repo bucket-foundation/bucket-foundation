@@ -1,0 +1,14 @@
+# "Memory bytes" - molecular match for CaMKII phosphorylation encoding of microtubule lattices.
+
+- **PMID**: 21064217
+- **DOI**: 10.1142/s0219635210002482
+- **PMCID**:  
+- **Journal**: Journal of integrative neuroscience  ·  **Year**: 2010
+- **Authors**: Stuart R Hameroff, Travis J A Craddock, J A Tuszynski
+- **MeSH**: Animals, Calcium-Calmodulin-Dependent Protein Kinase Type 2, Calorimetry, Memory, Microtubules, Models, Molecular, Phosphorylation, Protein Structure, Quaternary
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21064217/
+- **Captured**: 2026-05-10T11:12:33
+
+## Abstract
+
+Learning, memory and long-term potentiation (LTP) are supported by factors including post-synaptic calcium ion flux activating and transforming the hexagonal calcium-calmodulin kinase II (CaMKII) holoenzyme. Upon calcium-induced activation, up to six kinase domains extend upward, and up to six kinase domains extend downward from the CaMKII association domain, the fully activated holoenzyme resembling a robotic insect 20 nanometers in length. Each extended kinase domain can be phosphorylated, and able to phosphorylate other proteins, thus potentially further encoding synaptic information at intraneuronal molecular sites for memory storage, processing and distribution. Candidate sites for phosphorylation-encoded molecular memory include microtubules, cylindrical lattice polymers of the protein tubulin. Using molecular modeling, we find spatial dimensions and geometry of the six extended CaMKII kinase domains can precisely match those of microtubule hexagonal lattice neighborhoods (both A- and B-lattices), and show two feasible phosphorylation mechanisms. In one, phosphorylation sites (e.g., valine 208) on a CaMKII extended kinase domain interact with serine 444 on a C-terminal "tail" of tubulin. In the second, the CaMKII kinase domain unfurls, enabling phosphorylation sites to contact threonine and serine sites on the tubulin surface. We suggest sets of six CaMKII kinase domains phosphorylate hexagonal microtubule lattice neighborhoods collectively, e.g., conveying synaptic information as ordered arrays of six "bits", and thus a "byte", with (minimally) 2⁶ (64) possible bit states per CaMKII-microtubule interaction. We model two levels of interaction between CaMKII and microtubules, suggesting a testable framework for molecular memory encoding.

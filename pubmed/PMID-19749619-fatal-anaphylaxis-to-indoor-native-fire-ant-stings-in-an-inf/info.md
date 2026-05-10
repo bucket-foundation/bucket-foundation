@@ -1,0 +1,14 @@
+# Fatal anaphylaxis to indoor native fire ant stings in an infant.
+
+- **PMID**: 19749619
+- **DOI**: 10.1097/PAF.0b013e3181651b53
+- **PMCID**:  
+- **Journal**: The American journal of forensic medicine and pathology  ·  **Year**: 2008
+- **Authors**: Daniel R More, R E Kohlmeier, Donald R Hoffman
+- **MeSH**: Anaphylaxis, Animals, Ant Venoms, Antibodies, Ants, Child Day Care Centers, Edema, Erythema, Fatal Outcome, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19749619/
+- **Captured**: 2026-05-10T11:11:27
+
+## Abstract
+
+The red (Solenopsis invicta) and black (Solenopsis richteri) imported fire ants (IFA) are a common cause of venom allergy in the southeastern United States. Hypersensitivity to stings of native fire ants is less common, although anaphylaxis has been reported to various native Solenopsis species. There have been numerous reports of indoor stings caused by IFA, including in nursing homes and private residences. The following is a report of fatal anaphylaxis to a native fire ant sting in an infant that occurred indoors at a daycare facility. A 3-month-old female was left unattended on a bed. The caregiver had heard the child crying, but attributed this to colic. A short time later, the caregiver found the child apneic and covered with ants. Emergency medical services were summoned, and resuscitation attempts were unsuccessful. Postmortem examination revealed approximately 40 erythematous lesions without pustules. Examination of the respiratory system was notable for congested parenchyma and mild laryngeal edema. Laboratory studies revealed an elevated tryptase of 23.9 ng/mL and radioallergosorbent test (RAST) of 1.4% specific IgE antibody binding to Solenopsis richteri venom. RAST for specific IgE antibody binding to Solenopsis invicta venom was negative. Ants recovered from the scene were identified by an entomologist as Solenopsis xyloni, a native fire ant endemic to the southwestern United States. Native fire ants have features that distinguish them from IFA. Some native species do not build mounds, and stings may not result in pustules characteristic of IFA. There is significant cross-reactivity among the venoms of Solenopsis species, although some species' specificity exists for the Sol 2 allergen. Testing and treatment with IFA whole-body extract is likely to be to be effective for native fire ant allergy. A mixture of S. invicta and S. richteri extracts should be considered when native fire ant species are presumed to cause the primary sensitization to reduce the chance that species-specific reactivity is missed.

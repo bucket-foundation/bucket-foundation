@@ -1,0 +1,14 @@
+# A MATLAB toolbox for Granger causal connectivity analysis.
+
+- **PMID**: 19961876
+- **DOI**: 10.1016/j.jneumeth.2009.11.020
+- **PMCID**:  
+- **Journal**: Journal of neuroscience methods  ·  **Year**: 2010
+- **Authors**: Anil K Seth
+- **MeSH**: Access to Information, Action Potentials, Algorithms, Artifacts, Computer Simulation, Electroencephalography, Evoked Potentials, Humans, Internet, Magnetic Resonance Imaging
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19961876/
+- **Captured**: 2026-05-10T11:11:40
+
+## Abstract
+
+Assessing directed functional connectivity from time series data is a key challenge in neuroscience. One approach to this problem leverages a combination of Granger causality analysis and network theory. This article describes a freely available MATLAB toolbox--'Granger causal connectivity analysis' (GCCA)--which provides a core set of methods for performing this analysis on a variety of neuroscience data types including neuroelectric, neuromagnetic, functional MRI, and other neural signals. The toolbox includes core functions for Granger causality analysis of multivariate steady-state and event-related data, functions to preprocess data, assess statistical significance and validate results, and to compute and display network-level indices of causal connectivity including 'causal density' and 'causal flow'. The toolbox is deliberately small, enabling its easy assimilation into the repertoire of researchers. It is however readily extensible given proficiency with the MATLAB language.

@@ -1,0 +1,14 @@
+# Magnetosensory function in rats: localization using positron emission tomography.
+
+- **PMID**: 19177512
+- **DOI**: 10.1002/syn.20619
+- **PMCID**:  
+- **Journal**: Synapse (New York, N.Y.)  ·  **Year**: 2009
+- **Authors**: Clifton Frilot, Simona Carrubba, Andrew A Marino
+- **MeSH**: Animals, Brain, Brain Mapping, Electric Stimulation, Electroencephalography, Electromagnetic Fields, Evoked Potentials, Female, Fluorodeoxyglucose F18, Positron-Emission Tomography
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19177512/
+- **Captured**: 2026-05-10T11:10:44
+
+## Abstract
+
+The aim of this study was to show that low-strength electromagnetic fields (EMFs) produced evoked potentials in rats and to localize the activated region in the brain. In response to a 2.5-G, 60-Hz stimulus, onset- and offset-evoked potentials were detected (P < 0.05 in each of the 10 animals studied); the evoked potentials had the same magnitude, latency, and nonlinear relationship to the field seen in previous studies on rabbits and human subjects. The neuroanatomical region of activation associated with the electrophysiological effect was identified by positron emission tomography using fluorodeoxyglucose. Paired emission scans (the same animal with and without field treatment) from 10 additional rats were differenced and averaged to produce a t-statistic image using the pooled variance; the t value of each voxel was compared with a calculated critical t value to identify the activated voxels (P < 0.05). A brain volume of 13 mm(3) (15 voxels) located in the posterior, central cerebellum was found to have been activated by exposure to the field. Taken together, the results indicated that magnetosensory evoked potentials in the rats were associated with increased glucose utilization in the cerebellum, thereby supporting earlier evidence that EMF transduction occurred in the brain.

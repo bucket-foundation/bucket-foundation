@@ -1,0 +1,14 @@
+# Use of carbon fibers in the reconstruction of knee ligaments.
+
+- **PMID**: 1914301
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Clinical orthopaedics and related research  ·  **Year**: 1991
+- **Authors**: P Demmer, M Fowler, A A Marino
+- **MeSH**: Acute Disease, Adult, Anterior Cruciate Ligament, Carbon, Chronic Disease, Follow-Up Studies, Humans, Joint Dislocations, Knee Injuries, Knee Joint
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1914301/
+- **Captured**: 2026-05-10T11:10:42
+
+## Abstract
+
+Carbon fibers were used to reconstruct the anterior cruciate ligament and other knee ligaments in a consecutive series of 26 (mostly acute) patients who had suffered serious occupation-related injuries. After an average follow-up time of 52.4 months (one patient lost, one patient refused follow-up examination), the anterior drawer at 30 degrees was less than 5 mm (side-to-side difference) in 14 patients, 5-10 mm in six patients, and greater than 10 mm in four patients. Of 24 evaluatable patients, 22 returned to work, including 20 patients who work underground. Chronic pain, recurrent effusion, infection, and tender nodes did not occur in the series. Arthroscopic examination of five patients revealed minimal intraarticular debris.

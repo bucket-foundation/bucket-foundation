@@ -1,0 +1,14 @@
+# A two-fluid approach to town traffic.
+
+- **PMID**: 17738075
+- **DOI**: 10.1126/science.204.4389.148
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 1979
+- **Authors**: R Herman, I Prigogine
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17738075/
+- **Captured**: 2026-05-10T11:08:47
+
+## Abstract
+
+A two-fluid model of town traffic has been developed by extending ideas formulated in an earlier kinetic theory of multilane traffic. The-two fluids are taken to consist of moving cars and cars stopped as a result of traffic conditions. The average speed of the moving vehicles is assumed to be proportional to the fraction of the vehicles that are moving raised to a power that reflects the "goodness" of the traffic. It is then found that the trip time per unit distance is essentially linearly related to the stop time per unit distance, in general accord with data obtained in many cities. Relations are developed on this basis for flow, among other variables, versus average speed. These relations contain a new parameter that is identified with the quality of the traffic network system.

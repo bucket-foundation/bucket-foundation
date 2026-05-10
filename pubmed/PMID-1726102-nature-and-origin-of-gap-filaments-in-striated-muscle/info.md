@@ -1,0 +1,14 @@
+# Nature and origin of gap filaments in striated muscle.
+
+- **PMID**: 1726102
+- **DOI**: 10.1242/jcs.100.4.809
+- **PMCID**:  
+- **Journal**: Journal of cell science  ·  **Year**: 1991
+- **Authors**: K Trombitás, P H Baatsen, M S Kellermayer, G H Pollack
+- **MeSH**: Animals, Antibodies, Monoclonal, Anura, Connectin, Epitopes, Microscopy, Immunoelectron, Muscle Proteins, Protein Kinases, Sarcomeres, Stress, Mechanical
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1726102/
+- **Captured**: 2026-05-10T11:08:31
+
+## Abstract
+
+Immunoelectron microscopy was used to study the nature and origin of 'gap' filaments in frog semitendinosus muscle. Gap filaments are fine longitudinal filaments observable only in sarcomeres stretched beyond thick/thin filament overlap: they occupy the gap between the tips of thick and thin filaments. To test whether the gap filaments are part of the titin-filament system, we employed monoclonal antibodies to titin (T-11, Sigma) and observed the location of the epitope at a series of sarcomere lengths. At resting sarcomere length, the epitope was positioned in the I-band approximately 50 nm beyond the apparent ends of the thick filament. The location did not change perceptibly with increasing sarcomere length up to 3.6 microns. Above 3.6 microns, the span between the epitope and the end of the A-band abruptly increased, and above 4 microns, the antibodies could be seen to decorate the gap filaments. Between 5 and 6 microns, the epitope remained approximately in the middle of the gap. Even with this high degree of stretch, the label remained more or less aligned across the myofibril. The abrupt increase of span beyond 3.6 microns implies that the A-band domain of titin is pulled free of its anchor points along the thick filament, and moves toward the gap. Although this domain is functionally inextensible at physiological sarcomere length, the epitope movement in extremely stretched muscle shows that it is intrinsically elastic. Thus, the evidence confirms that gap filaments are clearly part of the titin-filament system. They are derived not only from the I-band domain of titin, but also from its A-band domain.

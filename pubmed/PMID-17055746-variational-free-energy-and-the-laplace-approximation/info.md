@@ -1,0 +1,14 @@
+# Variational free energy and the Laplace approximation.
+
+- **PMID**: 17055746
+- **DOI**: 10.1016/j.neuroimage.2006.08.035
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2007
+- **Authors**: Karl Friston, Jérémie Mattout, Nelson Trujillo-Barreto, John Ashburner, Will Penny
+- **MeSH**: Bayes Theorem, Models, Statistical, Physics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17055746/
+- **Captured**: 2026-05-10T11:08:11
+
+## Abstract
+
+This note derives the variational free energy under the Laplace approximation, with a focus on accounting for additional model complexity induced by increasing the number of model parameters. This is relevant when using the free energy as an approximation to the log-evidence in Bayesian model averaging and selection. By setting restricted maximum likelihood (ReML) in the larger context of variational learning and expectation maximisation (EM), we show how the ReML objective function can be adjusted to provide an approximation to the log-evidence for a particular model. This means ReML can be used for model selection, specifically to select or compare models with different covariance components. This is useful in the context of hierarchical models because it enables a principled selection of priors that, under simple hyperpriors, can be used for automatic model selection and relevance determination (ARD). Deriving the ReML objective function, from basic variational principles, discloses the simple relationships among Variational Bayes, EM and ReML. Furthermore, we show that EM is formally identical to a full variational treatment when the precisions are linear in the hyperparameters. Finally, we also consider, briefly, dynamic models and how these inform the regularisation of free energy ascent schemes, like EM and ReML.

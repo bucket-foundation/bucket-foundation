@@ -1,0 +1,14 @@
+# Low paramagnetic-ion content in cancer cells: its significance in cancer detection by magnetic resonance imaging.
+
+- **PMID**: 2084708
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Physiological chemistry and physics and medical NMR  ·  **Year**: 1990
+- **Authors**: G N Ling, T Kolebic, R Damadian
+- **MeSH**: Animals, Copper, Iron, Magnetic Resonance Imaging, Manganese, Mice, Mice, Inbred DBA, Mice, Inbred ICR, Neoplasms, Experimental, Organ Specificity
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2084708/
+- **Captured**: 2026-05-10T11:12:25
+
+## Abstract
+
+In previous publications, one of us demonstrated that variation in paramagnetic-ion contents is a major contributing factor to the different NMR relaxation times, T1 and T2, of water protons among normal mouse tissues; and between normal tissues and cancer cells. The nature of the paramagnetic ions involved was not determined. In the present communication, we report results of analysis of the contents of three biologically prominent paramagnetic ions (manganese, iron and copper) in 9 normal mouse tissues (brain, heart, small intestine, kidney, liver, lung, voluntary muscle, spleen and stomach); one strain of rat cancer cells (As-30, rat hepatoma); and 6 strains of mouse cancer cells (Ehrlich mammary adenocarcinoma, LSA lymphoma, Krebs carcinoma of the inguinal region; sarcoma 180; Klein TA3 mammary adenocarcinoma; P815 mast cell leukemia). Our data indicate that manganese and iron are by far the two most important paramagnetic ions contributing to the diversity of NMR relaxation times. The average manganese content of all the normal mouse tissues studied (29.6 +/- 4.99 mu mole/kg) is 24 times higher than the average manganese contents of all the cancer cells studied (1.22 +/- 0.27 mu moles/kg) and there is essentially no overlap between the two groups of data. The average iron content of the normal mouse tissues (281.6 +/- 51.2 mumoles/kg) is 4 times the average in cancer cells (66.7 +/- 7.74 mumoles/kg) but there is some overlap here. The observed differences in both the manganese and iron contents are statistically highly significant, with P's below 0.0001. The copper contents of the cancer cells is lower than the average of normal mouse tissues but only by some 20%. The difference is statistically insignificant at the 0.05 level but significant at the 0.2 level.

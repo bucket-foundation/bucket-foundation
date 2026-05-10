@@ -1,0 +1,14 @@
+# Event-related f MRI.
+
+- **PMID**: 20408223
+- **DOI**: 10.1002/(SICI)1097-0193(1997)5:4<243::AID-HBM7>3.0.CO;2-3
+- **PMCID**:  
+- **Journal**: Human brain mapping  ·  **Year**: 1997
+- **Authors**: O Josephs, R Turner, K Friston
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20408223/
+- **Captured**: 2026-05-10T11:12:08
+
+## Abstract
+
+We present a method for detecting event-related responses in functional magnetic resonance imaging (fMRI). The occurrence of time-locked activations is formulated in terms of the general linear model, i.e., multiple linear regression. This permits the use of established statistical techniques that correct for multiple comparisons in the context of spatially smooth and serially correlated data. Responses are modelled using event-related temporal basis functions. Inferences are then made about all components of the model, using the F-ratio at all voxels in the image, to produce a statistical parametric map (SPM{F}). This method allows for the experimental design to relate the timing of events to the acquisition of data to give a temporal resolution (with respect to the event-related response) far better than the scanning repeat time.

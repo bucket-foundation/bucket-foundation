@@ -1,0 +1,14 @@
+# The electric field is a sufficient physical determinant of the human magnetic sense.
+
+- **PMID**: 19557602
+- **DOI**: 10.1080/09553000902954538
+- **PMCID**:  
+- **Journal**: International journal of radiation biology  ·  **Year**: 2009
+- **Authors**: Simona Carrubba, Clifton Frilot, Francis X Hart, Andrew L Chesson, Andrew A Marino
+- **MeSH**: Adult, Aged, Electroencephalography, Electromagnetic Fields, Evoked Potentials, Female, Humans, Magnetics, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19557602/
+- **Captured**: 2026-05-10T11:11:13
+
+## Abstract
+
+The onset and offset of weak low-frequency magnetic fields triggered evoked potentials in human subjects that could be detected using nonlinear analysis, but not by means of time averaging. Because the magnetic fields and their induced electric fields were both present in the brain, their respective role in producing the effect on brain activity could not be ascertained. We inquired whether a biophysical coupling mechanism involving only the electric field could explain the occurrence of the brain potentials. An external electric field capable of producing a brain electric field comparable to that induced by the magnetic stimuli was identified by finite-element analysis. The electroencephalogram from 23 subjects was measured from six scalp derivations in the presence and absence of the external electric field, and the presence of evoked potentials was assessed using nonlinear and linear analyses. Evoked potentials were observed in all but one subject (p < 0.05 in each subject); the potentials had the same latency, duration, and distribution of magnitudes as seen in the earlier studies, and were detectable only by means of nonlinear analysis. Using a realistic physical model of an ion channel, we showed that transduction of an electric field could be explained by assuming that the field exerted a force on glycocalyx molecules attached to a channel gate. The evoked potentials described here, as well as those observed previously in response to magnetic stimuli, were probably triggered by the induced electric field.

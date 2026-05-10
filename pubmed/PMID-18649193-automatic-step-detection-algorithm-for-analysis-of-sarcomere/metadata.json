@@ -1,0 +1,27 @@
+{
+  "pmid": "18649193",
+  "title": "Automatic step-detection algorithm for analysis of sarcomere dynamics.",
+  "abstract": "Motile systems exhibit a stepwise nature, seen most prominently in muscle contraction. A novel algorithm has been developed that detects steps automatically in sarcomere-length change data and computes their size. The method is based on a nonlinear filter and a step detection protocol that detects local slope values in comparison to a threshold. The algorithm was first evaluated using artificial data with various degrees of Gaussian noise. Steps were faithfully detected even with significant noise. With actual data, the algorithm detected 2.7 nm steps and integer multiples thereof. The results confirm a quantal 2.7 nm step-size reported earlier. As stepwise phenomena become increasingly evident, automatic step-detection algorithms become increasingly useful since the limiting factor is almost always noise. The algorithm presented here offers a versatile and accurate tool that should be useful not only within muscle contraction and motility fields, but in fields which quantal phenomena play a role.",
+  "authors": [
+    "Chenyang Wang",
+    "Ekaterina Nagornyak",
+    "Ronnie Das",
+    "Gerald H Pollack"
+  ],
+  "journal": "Computer methods in biomechanics and biomedical engineering",
+  "year": "2008",
+  "doi": "10.1080/10255840802213256",
+  "pmcid": "",
+  "mesh": [
+    "Algorithms",
+    "Animals",
+    "Cells, Cultured",
+    "Computer Simulation",
+    "Image Interpretation, Computer-Assisted",
+    "Models, Biological",
+    "Movement",
+    "Myofibrils",
+    "Rabbits",
+    "Sarcomeres"
+  ]
+}

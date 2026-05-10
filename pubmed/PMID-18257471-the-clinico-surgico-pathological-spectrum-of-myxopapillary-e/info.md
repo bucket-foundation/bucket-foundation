@@ -1,0 +1,14 @@
+# The clinico-surgico-pathological spectrum of myxopapillary ependymomas--report of four unusal cases and review of the literature.
+
+- **PMID**: 18257471
+- **DOI**: 10.5414/npp27021
+- **PMCID**:  
+- **Journal**: Clinical neuropathology  ·  **Year**: 2008
+- **Authors**: J Schittenhelm, R Becker, D Capper, R Meyermann, J R Iglesias-Rozas, J Kaminsky, M Mittelbronn
+- **MeSH**: Adult, Aged, Ependymoma, Female, Humans, Immunohistochemistry, Lumbosacral Region, Magnetic Resonance Imaging, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18257471/
+- **Captured**: 2026-05-10T11:09:51
+
+## Abstract
+
+According to the WHO grading system, myxopapillary ependymomas are assigned to WHO Grade I. However, the clinico-pathological spectrum might be very heterogenous. Herein, we report 4 cases exhibiting lumbar tumor masses, 1 causing muscular atrophy over a 30-year period, 3 displaying clinical history of persisting lumbar pain for only several weeks. All tumors were crooked with dura and spinal roots resulting in incomplete resection in three cases. On histological examination, two tumors were almost acellular and showed polycyclic hyaline and fibrotic extracellular matrix leading to differential diagnoses of chordoma, meningioma, fibrolipoma and ependymoma. Finally, together with the immunohistochemical investigations, electron microscopy led to the diagnosis of myxopapillary ependymoma, WHO Grade I, with massive degenerative changes. The other 2 cases presented with the typical neuropathology of myxopapillary ependymomas but showed local recurrence within 1 and 13 years throughout the whole neuraxis, and in 1 case additional metastases of the 3rd ventricle. Although the morphological feature of these myxopapillary ependymomas was benign, the presented cases showed that the biological behavior of myxopapillary tumors might differ greatly and that these tumors present a serious operative and diagnostic challenge. Myxopapillary ependymomas occur most often in the lumbosacral region. Due to the anatomic complexity of the cauda equina, a complete resection can be technically challenging in this region. However, a gross total resection at the primary surgery is the most predictive factor for the outcome.

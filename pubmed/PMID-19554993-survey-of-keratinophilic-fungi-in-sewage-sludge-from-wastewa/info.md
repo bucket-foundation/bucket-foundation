@@ -1,0 +1,14 @@
+# Survey of keratinophilic fungi in sewage sludge from wastewater treatment plants of Mazandaran, Islamic Republic of Iran.
+
+- **PMID**: 19554993
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Eastern Mediterranean health journal = La revue de sante de la Mediterranee orientale = al-Majallah al-sihhiyah li-sharq al-mutawassit  ·  **Year**: 2009
+- **Authors**: M T Hedayati, M Mirzakhani
+- **MeSH**: Agriculture, Alternaria, Chrysosporium, Cladosporium, Environmental Health, Geotrichum, Humans, Iran, Keratins, Microsporum
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19554993/
+- **Captured**: 2026-05-10T11:11:13
+
+## Abstract
+
+To isolate keratinophilic fungi in sewage sludge from wastewater treatment plants in Sari city, Mazandaran province, Islamic Republic of Iran, samples were taken from 7 plants with different sewage treatment technologies. From 35 sludge samples cultured on Sabouraud's agar with cycloheximide and chloramphenicol, 326 fungal colonies belonging to 7 species were isolated. Geotrichum (59.5%), Cladosporium (13.8%), Alternaria (11.3%) and Penicillium (10.7%) species were the most prevalent. No growth of keratinophilic fungi was observed on this medium. However, using the hair-baiting technique, Microsporum gypseum, Chrysosporium spp. and Geotrichum spp. were isolated.

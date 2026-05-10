@@ -1,0 +1,14 @@
+# Coevolution to the edge of chaos: coupled fitness landscapes, poised states, and coevolutionary avalanches.
+
+- **PMID**: 2062105
+- **DOI**: 10.1016/s0022-5193(05)80094-3
+- **PMCID**:  
+- **Journal**: Journal of theoretical biology  ·  **Year**: 1991
+- **Authors**: S A Kauffman, S Johnsen
+- **MeSH**: Biological Evolution, Ecology, Models, Statistical, Population Dynamics, Selection, Genetic
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2062105/
+- **Captured**: 2026-05-10T11:12:13
+
+## Abstract
+
+We introduce a broadened framework to study aspects of coevolution based on the NK class of statistical models of rugged fitness landscapes. In these models the fitness contribution of each of N genes in a genotype depends epistatically on K other genes. Increasing epistatic interactions increases the rugged multipeaked character of the fitness landscape. Coevolution is thought of, at the lowest level, as a coupling of landscapes such that adaptive moves by one player deform the landscapes of its immediate partners. In these models we are able to tune the ruggedness of landscapes, how richly intercoupled any two landscapes are, and how many other players interact with each player. All these properties profoundly alter the character of the coevolutionary dynamics. In particular, these parameters govern how readily coevolving ecosystems achieve Nash equilibria, how stable to perturbations such equilibria are, and the sustained mean fitness of coevolving partners. In turn, this raises the possibility that an evolutionary metadynamics due to natural selection may sculpt landscapes and their couplings to achieve coevolutionary systems able to coadapt well. The results suggest that sustained fitness is optimized when landscape ruggedness relative to couplings between landscapes is tuned such that Nash equilibria just tenuously form across the ecosystem. In this poised state, coevolutionary avalanches appear to propagate on all length scales in a power law distribution. Such avalanches may be related to the distribution of small and large extinction events in the record.
