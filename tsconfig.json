@@ -22,5 +22,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "gtm", "scripts/test-research-route.ts"]
+  "exclude": ["node_modules", "gtm", "scripts/test-research-route.ts", "grants-gateway", "_intake", "yt", "archive", "pubmed", "arxiv", "blog", "gutenberg", "wikisource", "openalex", "openalex-fanout", "ads", "philpapers", "bucket-canon", "local", "feed402", "tools", "private", "data", "manifesto-source", "kruse-pitch", "checkpoints", "deploy", "feed", "research-landscape", "grants-targets", "canon-figures", "brand", "docs", "figma-export", "nonprofit-application", "build"]
 }

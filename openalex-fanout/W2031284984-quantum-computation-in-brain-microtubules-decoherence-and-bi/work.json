@@ -1,0 +1,1836 @@
+{
+  "id": "https://openalex.org/W2031284984",
+  "doi": "https://doi.org/10.1103/physreve.65.061901",
+  "title": "Quantum computation in brain microtubules: Decoherence and biological feasibility",
+  "display_name": "Quantum computation in brain microtubules: Decoherence and biological feasibility",
+  "publication_year": 2002,
+  "publication_date": "2002-06-10",
+  "ids": {
+    "openalex": "https://openalex.org/W2031284984",
+    "doi": "https://doi.org/10.1103/physreve.65.061901",
+    "mag": "2031284984",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/12188753"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1103/physreve.65.061901",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1103/physreve.65.061901",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4210224030",
+      "display_name": "Physical review. E, Statistical physics, plasmas, fluids, and related interdisciplinary topics",
+      "issn_l": "1063-651X",
+      "issn": [
+        "1063-651X",
+        "1095-3787",
+        "1538-4519"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320261",
+      "host_organization_name": "American Physical Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320261"
+      ],
+      "host_organization_lineage_names": [
+        "American Physical Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Physical Review E",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5086766946",
+        "display_name": "Scott Hagan",
+        "orcid": "https://orcid.org/0000-0003-2379-8089"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I174167972",
+          "display_name": "British Columbia Institute of Technology",
+          "ror": "https://ror.org/01p65pg69",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I174167972"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "S. Hagan",
+      "raw_affiliation_strings": [
+        "Department of Mathematics, British Columbia Institute of Technology, Burnaby, British Columbia, Canada V5G 3H2"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Mathematics, British Columbia Institute of Technology, Burnaby, British Columbia, Canada V5G 3H2",
+          "institution_ids": [
+            "https://openalex.org/I174167972"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5051102175",
+        "display_name": "Stuart R. Hameroff",
+        "orcid": "https://orcid.org/0000-0003-1988-5526"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I138006243",
+          "display_name": "University of Arizona",
+          "ror": "https://ror.org/03m2x1q45",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I138006243"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. R. Hameroff",
+      "raw_affiliation_strings": [
+        "Departments of Anesthesiology and Psychology and Center for Consciousness Studies, University of Arizona, Tucson, Arizona 85724"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Departments of Anesthesiology and Psychology and Center for Consciousness Studies, University of Arizona, Tucson, Arizona 85724",
+          "institution_ids": [
+            "https://openalex.org/I138006243"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5082024795",
+        "display_name": "Jack A. Tuszyński",
+        "orcid": "https://orcid.org/0000-0001-9976-0429"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I154425047",
+          "display_name": "University of Alberta",
+          "ror": "https://ror.org/0160cpw27",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I154425047"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. A. Tuszyński",
+      "raw_affiliation_strings": [
+        "Department of Physics, University of Alberta, Edmonton, Alberta, Canada T6G 2J1",
+        "Department of Physics, University of Alberta, Edmonton, Alberta, Canada, T6G − 2J1"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Physics, University of Alberta, Edmonton, Alberta, Canada T6G 2J1",
+          "institution_ids": [
+            "https://openalex.org/I154425047"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Physics, University of Alberta, Edmonton, Alberta, Canada, T6G − 2J1",
+          "institution_ids": [
+            "https://openalex.org/I154425047"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 3,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5086766946"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I174167972"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 6.9144,
+  "has_fulltext": false,
+  "cited_by_count": 380,
+  "citation_normalized_percentile": {
+    "value": 0.9754165,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 97,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "65",
+    "issue": "6",
+    "first_page": "061901",
+    "last_page": "061901"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T13044",
+    "display_name": "Biofield Effects and Biophysics",
+    "score": 0.9986000061035156,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2737",
+      "display_name": "Physiology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/27",
+      "display_name": "Medicine"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/4",
+      "display_name": "Health Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T13044",
+      "display_name": "Biofield Effects and Biophysics",
+      "score": 0.9986000061035156,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2737",
+        "display_name": "Physiology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10622",
+      "display_name": "Quantum Mechanics and Applications",
+      "score": 0.9975000023841858,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3107",
+        "display_name": "Atomic and Molecular Physics, and Optics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12236",
+      "display_name": "Photoreceptor and optogenetics research",
+      "score": 0.9947999715805054,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2804",
+        "display_name": "Cellular and Molecular Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/quantum-decoherence",
+      "display_name": "Quantum decoherence",
+      "score": 0.9557092189788818
+    },
+    {
+      "id": "https://openalex.org/keywords/superposition-principle",
+      "display_name": "Superposition principle",
+      "score": 0.6580227017402649
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.6057833433151245
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum",
+      "display_name": "Quantum",
+      "score": 0.6039272546768188
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.5125629901885986
+    },
+    {
+      "id": "https://openalex.org/keywords/coherence",
+      "display_name": "Coherence (philosophical gambling strategy)",
+      "score": 0.48557135462760925
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-superposition",
+      "display_name": "Quantum superposition",
+      "score": 0.46190956234931946
+    },
+    {
+      "id": "https://openalex.org/keywords/statistical-physics",
+      "display_name": "Statistical physics",
+      "score": 0.4111485183238983
+    },
+    {
+      "id": "https://openalex.org/keywords/theoretical-physics",
+      "display_name": "Theoretical physics",
+      "score": 0.3848498463630676
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C122527463",
+      "wikidata": "https://www.wikidata.org/wiki/Q578430",
+      "display_name": "Quantum decoherence",
+      "level": 3,
+      "score": 0.9557092189788818
+    },
+    {
+      "id": "https://openalex.org/C27753989",
+      "wikidata": "https://www.wikidata.org/wiki/Q284885",
+      "display_name": "Superposition principle",
+      "level": 2,
+      "score": 0.6580227017402649
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.6057833433151245
+    },
+    {
+      "id": "https://openalex.org/C84114770",
+      "wikidata": "https://www.wikidata.org/wiki/Q46344",
+      "display_name": "Quantum",
+      "level": 2,
+      "score": 0.6039272546768188
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.5125629901885986
+    },
+    {
+      "id": "https://openalex.org/C2781181686",
+      "wikidata": "https://www.wikidata.org/wiki/Q4226068",
+      "display_name": "Coherence (philosophical gambling strategy)",
+      "level": 2,
+      "score": 0.48557135462760925
+    },
+    {
+      "id": "https://openalex.org/C55615164",
+      "wikidata": "https://www.wikidata.org/wiki/Q830791",
+      "display_name": "Quantum superposition",
+      "level": 3,
+      "score": 0.46190956234931946
+    },
+    {
+      "id": "https://openalex.org/C121864883",
+      "wikidata": "https://www.wikidata.org/wiki/Q677916",
+      "display_name": "Statistical physics",
+      "level": 1,
+      "score": 0.4111485183238983
+    },
+    {
+      "id": "https://openalex.org/C33332235",
+      "wikidata": "https://www.wikidata.org/wiki/Q18362",
+      "display_name": "Theoretical physics",
+      "level": 1,
+      "score": 0.3848498463630676
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001703",
+      "descriptor_name": "Biophysics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001703",
+      "descriptor_name": "Biophysics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001703",
+      "descriptor_name": "Biophysics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003071",
+      "descriptor_name": "Cognition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003071",
+      "descriptor_name": "Cognition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003071",
+      "descriptor_name": "Cognition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004594",
+      "descriptor_name": "Electrophysiology",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004594",
+      "descriptor_name": "Electrophysiology",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004594",
+      "descriptor_name": "Electrophysiology",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008870",
+      "descriptor_name": "Microtubules",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008870",
+      "descriptor_name": "Microtubules",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008870",
+      "descriptor_name": "Microtubules",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008870",
+      "descriptor_name": "Microtubules",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008870",
+      "descriptor_name": "Microtubules",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008870",
+      "descriptor_name": "Microtubules",
+      "qualifier_ui": "Q000648",
+      "qualifier_name": "ultrastructure",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011789",
+      "descriptor_name": "Quantum Theory",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011789",
+      "descriptor_name": "Quantum Theory",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011789",
+      "descriptor_name": "Quantum Theory",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013696",
+      "descriptor_name": "Temperature",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014404",
+      "descriptor_name": "Tubulin",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014404",
+      "descriptor_name": "Tubulin",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014404",
+      "descriptor_name": "Tubulin",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014404",
+      "descriptor_name": "Tubulin",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014404",
+      "descriptor_name": "Tubulin",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D014404",
+      "descriptor_name": "Tubulin",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D055592",
+      "descriptor_name": "Biophysical Phenomena",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D055592",
+      "descriptor_name": "Biophysical Phenomena",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D055592",
+      "descriptor_name": "Biophysical Phenomena",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 3,
+  "locations": [
+    {
+      "id": "doi:10.1103/physreve.65.061901",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1103/physreve.65.061901",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4210224030",
+        "display_name": "Physical review. E, Statistical physics, plasmas, fluids, and related interdisciplinary topics",
+        "issn_l": "1063-651X",
+        "issn": [
+          "1063-651X",
+          "1095-3787",
+          "1538-4519"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320261",
+        "host_organization_name": "American Physical Society",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320261"
+        ],
+        "host_organization_lineage_names": [
+          "American Physical Society"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physical Review E",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:12188753",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/12188753",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physical review. E, Statistical, nonlinear, and soft matter physics",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:cds.cern.ch:436703",
+      "is_oa": false,
+      "landing_page_url": "http://cds.cern.ch/record/436703",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402194",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I67311998",
+        "host_organization_name": "European Organization for Nuclear Research",
+        "host_organization_lineage": [
+          "https://openalex.org/I67311998"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": ""
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/15",
+      "score": 0.44999998807907104,
+      "display_name": "Life in Land"
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 65,
+  "referenced_works": [
+    "https://openalex.org/W53531135",
+    "https://openalex.org/W359403045",
+    "https://openalex.org/W1520965145",
+    "https://openalex.org/W1566370426",
+    "https://openalex.org/W1590951841",
+    "https://openalex.org/W1614550138",
+    "https://openalex.org/W1970611771",
+    "https://openalex.org/W1972339605",
+    "https://openalex.org/W1982905980",
+    "https://openalex.org/W1983211862",
+    "https://openalex.org/W1984741430",
+    "https://openalex.org/W1990741165",
+    "https://openalex.org/W1994345832",
+    "https://openalex.org/W1994527940",
+    "https://openalex.org/W1998351896",
+    "https://openalex.org/W1998620162",
+    "https://openalex.org/W1999505884",
+    "https://openalex.org/W2000449025",
+    "https://openalex.org/W2005207416",
+    "https://openalex.org/W2011809155",
+    "https://openalex.org/W2012411493",
+    "https://openalex.org/W2012418765",
+    "https://openalex.org/W2017135737",
+    "https://openalex.org/W2023348882",
+    "https://openalex.org/W2026371395",
+    "https://openalex.org/W2028401432",
+    "https://openalex.org/W2032342925",
+    "https://openalex.org/W2039650569",
+    "https://openalex.org/W2044172255",
+    "https://openalex.org/W2045989078",
+    "https://openalex.org/W2048087827",
+    "https://openalex.org/W2048423056",
+    "https://openalex.org/W2049447096",
+    "https://openalex.org/W2066760994",
+    "https://openalex.org/W2070646413",
+    "https://openalex.org/W2075371723",
+    "https://openalex.org/W2077525338",
+    "https://openalex.org/W2078963112",
+    "https://openalex.org/W2086150930",
+    "https://openalex.org/W2087162806",
+    "https://openalex.org/W2091289978",
+    "https://openalex.org/W2092797887",
+    "https://openalex.org/W2098649821",
+    "https://openalex.org/W2100343024",
+    "https://openalex.org/W2105630800",
+    "https://openalex.org/W2111916392",
+    "https://openalex.org/W2128084896",
+    "https://openalex.org/W2129466078",
+    "https://openalex.org/W2131872505",
+    "https://openalex.org/W2135273380",
+    "https://openalex.org/W2136975961",
+    "https://openalex.org/W2146640900",
+    "https://openalex.org/W2148112824",
+    "https://openalex.org/W2157276712",
+    "https://openalex.org/W2163031440",
+    "https://openalex.org/W2180958084",
+    "https://openalex.org/W2251410821",
+    "https://openalex.org/W2469906615",
+    "https://openalex.org/W2535550959",
+    "https://openalex.org/W2611639936",
+    "https://openalex.org/W2751379301",
+    "https://openalex.org/W3039083618",
+    "https://openalex.org/W3099850735",
+    "https://openalex.org/W4241400578",
+    "https://openalex.org/W4302861565"
+  ],
+  "related_works": [
+    "https://openalex.org/W1993492470",
+    "https://openalex.org/W2009573185",
+    "https://openalex.org/W1987947246",
+    "https://openalex.org/W4281660567",
+    "https://openalex.org/W2142700933",
+    "https://openalex.org/W148129899",
+    "https://openalex.org/W2074489340",
+    "https://openalex.org/W4382400215",
+    "https://openalex.org/W3123967994",
+    "https://openalex.org/W953450157"
+  ],
+  "abstract_inverted_index": {
+    "The": [
+      0,
+      58
+    ],
+    "Penrose-Hameroff": [
+      1
+    ],
+    "orchestrated": [
+      2
+    ],
+    "objective": [
+      3
+    ],
+    "reduction": [
+      4
+    ],
+    "(orch.": [
+      5
+    ],
+    "OR)": [
+      6
+    ],
+    "model": [
+      7,
+      59,
+      120,
+      156,
+      167
+    ],
+    "assigns": [
+      8
+    ],
+    "a": [
+      9,
+      50,
+      71,
+      105,
+      127,
+      141,
+      250,
+      276,
+      372
+    ],
+    "cognitive": [
+      10
+    ],
+    "role": [
+      11
+    ],
+    "to": [
+      12,
+      42,
+      90,
+      102,
+      179,
+      202,
+      205,
+      221,
+      238,
+      350
+    ],
+    "quantum": [
+      13,
+      51,
+      81,
+      230,
+      341,
+      362,
+      376
+    ],
+    "computations": [
+      14
+    ],
+    "in": [
+      15,
+      104,
+      121,
+      143,
+      244,
+      298,
+      328,
+      343,
+      374
+    ],
+    "microtubules": [
+      16,
+      36,
+      78,
+      248,
+      272,
+      344
+    ],
+    "within": [
+      17
+    ],
+    "the": [
+      18,
+      21,
+      32,
+      65,
+      98,
+      122,
+      131,
+      136,
+      146,
+      155,
+      164,
+      176,
+      189,
+      192,
+      196,
+      206,
+      226,
+      239,
+      245,
+      261,
+      294,
+      304,
+      314,
+      317,
+      354
+    ],
+    "neurons": [
+      19
+    ],
+    "of": [
+      20,
+      67,
+      135,
+      191,
+      229,
+      247,
+      254,
+      279,
+      296,
+      300,
+      310,
+      337,
+      357
+    ],
+    "brain.": [
+      22
+    ],
+    "Despite": [
+      23
+    ],
+    "an": [
+      24,
+      118,
+      288,
+      308
+    ],
+    "apparently": [
+      25
+    ],
+    "\"warm,": [
+      26
+    ],
+    "wet,": [
+      27
+    ],
+    "and": [
+      28,
+      70,
+      108,
+      163,
+      194,
+      225,
+      286,
+      322,
+      352
+    ],
+    "noisy\"": [
+      29
+    ],
+    "intracellular": [
+      30
+    ],
+    "milieu,": [
+      31
+    ],
+    "proposal": [
+      33
+    ],
+    "suggests": [
+      34
+    ],
+    "that": [
+      35,
+      77,
+      110,
+      129,
+      216,
+      253,
+      264,
+      291
+    ],
+    "avoid": [
+      37,
+      266
+    ],
+    "environmental": [
+      38,
+      68,
+      320
+    ],
+    "decoherence": [
+      39,
+      99,
+      177,
+      183,
+      214,
+      255,
+      258,
+      267,
+      332,
+      370
+    ],
+    "long": [
+      40
+    ],
+    "enough": [
+      41
+    ],
+    "reach": [
+      43
+    ],
+    "threshold": [
+      44
+    ],
+    "for": [
+      45,
+      83,
+      152
+    ],
+    "\"self-collapse\"": [
+      46
+    ],
+    "(objective": [
+      47
+    ],
+    "reduction)": [
+      48
+    ],
+    "by": [
+      49,
+      56,
+      74,
+      200,
+      275,
+      287,
+      307,
+      334
+    ],
+    "gravity": [
+      52,
+      377
+    ],
+    "mechanism": [
+      53
+    ],
+    "put": [
+      54
+    ],
+    "forth": [
+      55
+    ],
+    "Penrose.": [
+      57
+    ],
+    "has": [
+      60
+    ],
+    "been": [
+      61
+    ],
+    "criticized": [
+      62
+    ],
+    "as": [
+      63
+    ],
+    "regards": [
+      64
+    ],
+    "issue": [
+      66
+    ],
+    "decoherence,": [
+      69
+    ],
+    "recent": [
+      72
+    ],
+    "report": [
+      73
+    ],
+    "Tegmark": [
+      75,
+      159,
+      201
+    ],
+    "finds": [
+      76
+    ],
+    "can": [
+      79,
+      256,
+      282
+    ],
+    "maintain": [
+      80
+    ],
+    "coherence": [
+      82
+    ],
+    "only": [
+      84
+    ],
+    "10(-13)": [
+      85
+    ],
+    "s,": [
+      86
+    ],
+    "far": [
+      87
+    ],
+    "too": [
+      88
+    ],
+    "short": [
+      89
+    ],
+    "be": [
+      91,
+      203,
+      346
+    ],
+    "neurophysiologically": [
+      92
+    ],
+    "relevant.": [
+      93
+    ],
+    "Here,": [
+      94
+    ],
+    "we": [
+      95
+    ],
+    "critically": [
+      96
+    ],
+    "examine": [
+      97
+    ],
+    "mechanisms": [
+      100
+    ],
+    "likely": [
+      101
+    ],
+    "dominate": [
+      103
+    ],
+    "biological": [
+      106
+    ],
+    "setting": [
+      107
+    ],
+    "find": [
+      109
+    ],
+    "(1)": [
+      111
+    ],
+    "Tegmark's": [
+      112,
+      211,
+      329
+    ],
+    "commentary": [
+      113
+    ],
+    "is": [
+      114,
+      325,
+      364
+    ],
+    "not": [
+      115
+    ],
+    "aimed": [
+      116
+    ],
+    "at": [
+      117,
+      126,
+      249,
+      268
+    ],
+    "existing": [
+      119
+    ],
+    "literature": [
+      123
+    ],
+    "but": [
+      124
+    ],
+    "rather": [
+      125
+    ],
+    "hybrid": [
+      128
+    ],
+    "replaces": [
+      130
+    ],
+    "superposed": [
+      132,
+      323
+    ],
+    "protein": [
+      133
+    ],
+    "conformations": [
+      134
+    ],
+    "orch.": [
+      137,
+      165,
+      207
+    ],
+    "OR": [
+      138,
+      166,
+      208
+    ],
+    "theory": [
+      139
+    ],
+    "with": [
+      140,
+      218,
+      380
+    ],
+    "soliton": [
+      142
+    ],
+    "superposition": [
+      144
+    ],
+    "along": [
+      145
+    ],
+    "microtubule;": [
+      147
+    ],
+    "(2)": [
+      148
+    ],
+    "recalculation": [
+      149
+    ],
+    "after": [
+      150
+    ],
+    "correcting": [
+      151
+    ],
+    "differences": [
+      153
+    ],
+    "between": [
+      154,
+      319
+    ],
+    "on": [
+      157,
+      185,
+      316,
+      360
+    ],
+    "which": [
+      158,
+      281,
+      375
+    ],
+    "bases": [
+      160
+    ],
+    "his": [
+      161
+    ],
+    "calculations": [
+      162
+    ],
+    "(superposition": [
+      168
+    ],
+    "separation,": [
+      169
+    ],
+    "charge": [
+      170
+    ],
+    "vs": [
+      171
+    ],
+    "dipole,": [
+      172
+    ],
+    "dielectric": [
+      173
+    ],
+    "constant)": [
+      174
+    ],
+    "lengthens": [
+      175
+    ],
+    "time": [
+      178
+    ],
+    "10(-5)-10(-4)": [
+      180
+    ],
+    "s;": [
+      181
+    ],
+    "(3)": [
+      182
+    ],
+    "times": [
+      184,
+      215,
+      333
+    ],
+    "this": [
+      186
+    ],
+    "order": [
+      187,
+      309
+    ],
+    "invalidate": [
+      188
+    ],
+    "assumptions": [
+      190
+    ],
+    "derivation": [
+      193
+    ],
+    "determine": [
+      195
+    ],
+    "approximation": [
+      197
+    ],
+    "regime": [
+      198,
+      373
+    ],
+    "considered": [
+      199
+    ],
+    "inappropriate": [
+      204
+    ],
+    "superposition;": [
+      209
+    ],
+    "(4)": [
+      210
+    ],
+    "formulation": [
+      212
+    ],
+    "yields": [
+      213
+    ],
+    "increase": [
+      217
+    ],
+    "temperature": [
+      219
+    ],
+    "contrary": [
+      220
+    ],
+    "well-established": [
+      222
+    ],
+    "physical": [
+      223
+    ],
+    "intuitions": [
+      224
+    ],
+    "observed": [
+      227
+    ],
+    "behavior": [
+      228
+    ],
+    "coherent": [
+      231
+    ],
+    "states;": [
+      232
+    ],
+    "(5)": [
+      233
+    ],
+    "incoherent": [
+      234
+    ],
+    "metabolic": [
+      235
+    ],
+    "energy": [
+      236
+    ],
+    "supplied": [
+      237
+    ],
+    "collective": [
+      240
+    ],
+    "dynamics": [
+      241
+    ],
+    "ordering": [
+      242,
+      295
+    ],
+    "water": [
+      243,
+      297
+    ],
+    "vicinity": [
+      246
+    ],
+    "rate": [
+      251
+    ],
+    "exceeding": [
+      252
+    ],
+    "counter": [
+      257
+    ],
+    "effects": [
+      259
+    ],
+    "(in": [
+      260
+    ],
+    "same": [
+      262
+    ],
+    "way": [
+      263
+    ],
+    "lasers": [
+      265
+    ],
+    "room": [
+      269
+    ],
+    "temperature);": [
+      270
+    ],
+    "(6)": [
+      271
+    ],
+    "are": [
+      273
+    ],
+    "surrounded": [
+      274
+    ],
+    "Debye": [
+      277
+    ],
+    "layer": [
+      278
+    ],
+    "counterions,": [
+      280
+    ],
+    "screen": [
+      283
+    ],
+    "thermal": [
+      284
+    ],
+    "fluctuations,": [
+      285
+    ],
+    "actin": [
+      289
+    ],
+    "gel": [
+      290
+    ],
+    "might": [
+      292
+    ],
+    "enhance": [
+      293
+    ],
+    "bundles": [
+      299
+    ],
+    "microtubules,": [
+      301
+    ],
+    "further": [
+      302
+    ],
+    "increasing": [
+      303
+    ],
+    "decoherence-free": [
+      305
+    ],
+    "zone": [
+      306
+    ],
+    "magnitude": [
+      311
+    ],
+    "and,": [
+      312
+    ],
+    "if": [
+      313
+    ],
+    "dependence": [
+      315
+    ],
+    "distance": [
+      318
+    ],
+    "ion": [
+      321
+    ],
+    "state": [
+      324
+    ],
+    "accurately": [
+      326
+    ],
+    "reflected": [
+      327
+    ],
+    "calculation,": [
+      330
+    ],
+    "extending": [
+      331
+    ],
+    "three": [
+      335
+    ],
+    "orders": [
+      336
+    ],
+    "magnitude;": [
+      338
+    ],
+    "(7)": [
+      339
+    ],
+    "topological": [
+      340
+    ],
+    "computation": [
+      342
+    ],
+    "may": [
+      345
+    ],
+    "error": [
+      347
+    ],
+    "correcting,": [
+      348
+    ],
+    "resistant": [
+      349
+    ],
+    "decoherence;": [
+      351
+    ],
+    "(8)": [
+      353
+    ],
+    "decohering": [
+      355
+    ],
+    "effect": [
+      356
+    ],
+    "radiative": [
+      358
+    ],
+    "scatterers": [
+      359
+    ],
+    "microtubule": [
+      361,
+      369
+    ],
+    "states": [
+      363
+    ],
+    "negligible.": [
+      365
+    ],
+    "These": [
+      366
+    ],
+    "considerations": [
+      367
+    ],
+    "bring": [
+      368
+    ],
+    "into": [
+      371
+    ],
+    "could": [
+      378
+    ],
+    "interact": [
+      379
+    ],
+    "neurophysiology.": [
+      381
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 11
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 9
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 18
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 19
+    }
+  ],
+  "updated_date": "2026-05-06T08:25:59.206177",
+  "created_date": "2025-10-10T00:00:00"
+}

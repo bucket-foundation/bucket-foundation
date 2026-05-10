@@ -119,7 +119,7 @@ export default function Page() {
       >
         <p>
           Candidate claims are extracted heuristically — assertion-pattern signals
-          ("the rule is", "always", "causes", "must", "only", "I proved")
+          (&ldquo;the rule is&rdquo;, &ldquo;always&rdquo;, &ldquo;causes&rdquo;, &ldquo;must&rdquo;, &ldquo;only&rdquo;, &ldquo;I proved&rdquo;)
           intersected with canon-tier concept terms. Each must be human-verified
           and cross-cited to a primary source before promotion to canon.
         </p>
