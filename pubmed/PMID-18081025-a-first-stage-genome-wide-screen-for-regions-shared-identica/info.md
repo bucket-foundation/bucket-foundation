@@ -1,0 +1,14 @@
+# A first stage genome-wide screen for regions shared identical-by-descent in Hutterite families with multiple sclerosis.
+
+- **PMID**: 18081025
+- **DOI**: 10.1002/ajmg.b.30620
+- **PMCID**:  
+- **Journal**: American journal of medical genetics. Part B, Neuropsychiatric genetics : the official publication of the International Society of Psychiatric Genetics  ·  **Year**: 2008
+- **Authors**: David Alexandre Dyment, M Zameel Cader, Anita Datta, S John Broxholme, Stacey S Cherny, Cristen J Willer, Sreeram Ramagopalan, Blanca M Herrera, Sarah Orton, Michael Chao, A Dessa Sadovnick, Mary Hader, Walter Hader, George C Ebers
+- **MeSH**: Canada, DNA Mutational Analysis, Family Health, Founder Effect, Genes, MHC Class II, Genome, Human, Genomics, Genotype, HLA-DR Antigens, HLA-DRB1 Chains
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18081025/
+- **Captured**: 2026-05-10T18:11:41
+
+## Abstract
+
+The complexity of multiple sclerosis (MS) genetics has made the search for novel genes using traditional sharing methods problematic. In order to minimize the genetic heterogeneity present in the MS population we have screened the Canadian MS population for individuals belonging to the Hutterite Brethren. Seven Hutterites with clinically definite MS were ascertained and are related to a common founder by eight generations. Six of the 7 affected individuals and 21 of their unaffected family members (total = 27) were genotyped for 807 markers. Haplotypes were then inspected for sharing among the six MS patients. There were three haplotypes shared among all six MS patients. The haplotypes were located at 2q34-35, 4q31-32, and 17p13. An additional 15 haplotypes were shared among five of the six Hutterites MS patients. The HLA Class II region was one of the highlighted regions; however, the shared MHC haplotype bore the DRB1*04 allele and not the MS-associated DRB1*15 allele providing further evidence of the complexity of the MHC. Additional genotyping to refine the haplotypes followed by screening for potential variants may lead to the identification of a novel MS susceptibility gene(s) in this unique population.

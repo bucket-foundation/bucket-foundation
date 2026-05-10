@@ -1,0 +1,9 @@
+# TERTIUM ORGANUM
+
+- **URL**: https://www.sacred-texts.com/eso/to/index.htm
+- **Captured**: 2026-05-10T18:08:15
+- **Site**: www.sacred-texts.com
+
+---
+
+Tertium Organum Index | Internet Sacred Text Archive Sacred Texts Esoteric Buy this Book at Amazon.com TERTIUM ORGANUM THE THIRD CANON OF THOUGHT A KEY TO THE ENIGMAS OF THE WORLD by P.D. Ouspensky [1922] Contents Start Reading Page Index Text [Zipped] This is P.D. Ouspensky's Tertium Organum , which he believed was the third major philosophical synthesis, the previous being those of Aristotle and Bacon. Originally issued in Russian in 1912, this is the second, revised edition. It was translated into English and published in 1922. This is the only major work by Ouspensky which is in the public domain in the US by current copyright laws. Ouspensky (1878-1947) was a mystic who traveled widely in Europe and the East looking for esoteric knowledge. He later studied with G.I. Gurdjieff. In this book, he uses the concept of the fourth dimension as an extended metaphor for the esoteric nature of reality. Einstein and other physicists had at that time validated the study of higher dimensions, and Ouspensky was fixated on this idea. One can only wonder at what he would think of string theory, parallel universes, and the holographic universe hypothesis (the latter of which he prefigures in this book). Also available by Ouspensky at this site is a shorter text, The Symbolism of the Tarot . Title Page Contents Author's Preface to the Second Edition Introduction to the English Translation Chapter I Chapter II Chapter III Chapter IV Chapter V Chapter VI Chapter VII Chapter VIII Chapter IX Chapter X Chapter XI Chapter XII Chapter XIII Chapter XIV Chapter XV Chapter XVI Chapter XVII Chapter XVIII Chapter XIX Chapter XX Chapter XXI Chapter XXII Chapter XXIII Conclusion Table of the Four Forms of the Manifestation of Consciousness
