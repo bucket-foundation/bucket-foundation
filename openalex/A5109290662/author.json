@@ -1,0 +1,942 @@
+{
+  "id": "https://openalex.org/A5109290662",
+  "orcid": null,
+  "display_name": "Alfred North Whitehead",
+  "raw_author_names": [
+    "A. N. WHITEHEAD",
+    "A. N. Whitehead",
+    "A. Whitehead",
+    "A.N. Whitehead",
+    "Alfred N. Whitehead",
+    "Alfred North Whitehead",
+    "Alfred Whitehead",
+    "Friedrich Geisser",
+    "Whitehead, Alfred North",
+    "Whitehead, Alfred North 1861-1947",
+    "Whitehead, Alfred North,    1861-1947."
+  ],
+  "full_name": "Whitehead, Alfred North 1861-1947",
+  "works_count": 286,
+  "cited_by_count": 11249,
+  "summary_stats": {
+    "2yr_mean_citedness": 9.0,
+    "h_index": 37,
+    "i10_index": 56
+  },
+  "ids": {
+    "openalex": "https://openalex.org/A5109290662",
+    "orcid": null
+  },
+  "affiliations": [
+    {
+      "institution": {
+        "id": "https://openalex.org/I172675005",
+        "ror": "https://ror.org/02e7b5302",
+        "display_name": "Nanyang Technological University",
+        "country_code": "SG",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I172675005"
+        ]
+      },
+      "years": [
+        2014,
+        2013,
+        2009
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I20089843",
+        "ror": "https://ror.org/00hx57361",
+        "display_name": "Princeton University",
+        "country_code": "US",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I20089843"
+        ]
+      },
+      "years": [
+        2010
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I204442077",
+        "ror": "https://ror.org/019dhar59",
+        "display_name": "Trinity College",
+        "country_code": "CA",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I204442077"
+        ]
+      },
+      "years": [
+        1986
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I2799567181",
+        "ror": "https://ror.org/03vn1ts68",
+        "display_name": "Princeton Plasma Physics Laboratory",
+        "country_code": "US",
+        "type": "facility",
+        "lineage": [
+          "https://openalex.org/I1330989302",
+          "https://openalex.org/I20089843",
+          "https://openalex.org/I2799567181",
+          "https://openalex.org/I39565521"
+        ]
+      },
+      "years": [
+        2010
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I4210094658",
+        "ror": "https://ror.org/00p574j49",
+        "display_name": "Institut za filozofiju",
+        "country_code": "HR",
+        "type": "facility",
+        "lineage": [
+          "https://openalex.org/I4210094658"
+        ]
+      },
+      "years": [
+        2023
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I4210107138",
+        "ror": "https://ror.org/01q4rp502",
+        "display_name": "All-Russian Scientific Research Institute of Hydrocarbon Raw Materials",
+        "country_code": "RU",
+        "type": "facility",
+        "lineage": [
+          "https://openalex.org/I4210107138"
+        ]
+      },
+      "years": [
+        2024
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I47508984",
+        "ror": "https://ror.org/041kmwe10",
+        "display_name": "Imperial College London",
+        "country_code": "GB",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I47508984"
+        ]
+      },
+      "years": [
+        2015,
+        1918
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I904058945",
+        "ror": "https://ror.org/01hzsk060",
+        "display_name": "Gojo (France)",
+        "country_code": "FR",
+        "type": "company",
+        "lineage": [
+          "https://openalex.org/I904058945"
+        ]
+      },
+      "years": [
+        2023
+      ]
+    }
+  ],
+  "last_known_institutions": null,
+  "topics": [
+    {
+      "id": "https://openalex.org/T12170",
+      "display_name": "History and Theory of Mathematics",
+      "count": 39,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2614",
+        "display_name": "Theoretical Computer Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12504",
+      "display_name": "Mathematics and Applications",
+      "count": 38,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2608",
+        "display_name": "Geometry and Topology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11727",
+      "display_name": "Advanced Algebra and Logic",
+      "count": 14,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1703",
+        "display_name": "Computational Theory and Mathematics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13267",
+      "display_name": "Advanced Theoretical and Applied Studies in Material Sciences and Geometry",
+      "count": 13,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2204",
+        "display_name": "Biomedical Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11960",
+      "display_name": "Relativity and Gravitational Theory",
+      "count": 12,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3103",
+        "display_name": "Astronomy and Astrophysics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "topic_share": [
+    {
+      "id": "https://openalex.org/T13933",
+      "display_name": "Whitehead's Philosophy and Applications",
+      "value": 0.0005354,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2308",
+        "display_name": "Management, Monitoring, Policy and Law"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13806",
+      "display_name": "Mathematical and Computational Methods",
+      "value": 0.00032,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2611",
+        "display_name": "Modeling and Simulation"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13908",
+      "display_name": "Scientific and Historical Analyses",
+      "value": 0.0001803,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1211",
+        "display_name": "Philosophy"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/12",
+        "display_name": "Arts and Humanities"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13811",
+      "display_name": "Earth Systems and Cosmic Evolution",
+      "value": 0.0001768,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1902",
+        "display_name": "Atmospheric Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14500",
+      "display_name": "Advanced Mathematical Theories",
+      "value": 0.0001683,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2610",
+        "display_name": "Mathematical Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "x_concepts": [
+    {
+      "id": "33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "score": 0.9015339016914368
+    },
+    {
+      "id": "138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "score": 0.7394795417785645
+    },
+    {
+      "id": "111472728",
+      "wikidata": "https://www.wikidata.org/wiki/Q9471",
+      "display_name": "Epistemology",
+      "score": 0.7113402485847473
+    },
+    {
+      "id": "95457728",
+      "wikidata": "https://www.wikidata.org/wiki/Q309",
+      "display_name": "History",
+      "score": 0.5593107342720032
+    },
+    {
+      "id": "41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "score": 0.5260484218597412
+    }
+  ],
+  "counts_by_year": [
+    {
+      "year": 1897,
+      "works_count": 1,
+      "oa_works_count": 1,
+      "cited_by_count": 6
+    },
+    {
+      "year": 1898,
+      "works_count": 29,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1899,
+      "works_count": 1,
+      "oa_works_count": 1,
+      "cited_by_count": 5
+    },
+    {
+      "year": 1901,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 30
+    },
+    {
+      "year": 1902,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 60
+    },
+    {
+      "year": 1903,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 9
+    },
+    {
+      "year": 1904,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1906,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 19
+    },
+    {
+      "year": 1907,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 8
+    },
+    {
+      "year": 1910,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 209
+    },
+    {
+      "year": 1912,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 73
+    },
+    {
+      "year": 1913,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 48
+    },
+    {
+      "year": 1916,
+      "works_count": 4,
+      "oa_works_count": 2,
+      "cited_by_count": 12
+    },
+    {
+      "year": 1917,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 25
+    },
+    {
+      "year": 1918,
+      "works_count": 1,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1919,
+      "works_count": 1,
+      "oa_works_count": 1,
+      "cited_by_count": 15
+    },
+    {
+      "year": 1920,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 231
+    },
+    {
+      "year": 1922,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 84
+    },
+    {
+      "year": 1923,
+      "works_count": 3,
+      "oa_works_count": 1,
+      "cited_by_count": 18
+    },
+    {
+      "year": 1925,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 18
+    },
+    {
+      "year": 1926,
+      "works_count": 3,
+      "oa_works_count": 1,
+      "cited_by_count": 1156
+    },
+    {
+      "year": 1927,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 18
+    },
+    {
+      "year": 1928,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 374
+    },
+    {
+      "year": 1929,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 263
+    },
+    {
+      "year": 1931,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 3
+    },
+    {
+      "year": 1932,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 11
+    },
+    {
+      "year": 1933,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 724
+    },
+    {
+      "year": 1934,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1935,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1936,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1937,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 4
+    },
+    {
+      "year": 1939,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 263
+    },
+    {
+      "year": 1940,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1941,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1944,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1945,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1947,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 133
+    },
+    {
+      "year": 1948,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 168
+    },
+    {
+      "year": 1949,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 37
+    },
+    {
+      "year": 1950,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1953,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1954,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 151
+    },
+    {
+      "year": 1955,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 193
+    },
+    {
+      "year": 1956,
+      "works_count": 1,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1958,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 16
+    },
+    {
+      "year": 1959,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 135
+    },
+    {
+      "year": 1962,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 101
+    },
+    {
+      "year": 1965,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1966,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 100
+    },
+    {
+      "year": 1968,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 514
+    },
+    {
+      "year": 1970,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 37
+    },
+    {
+      "year": 1971,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 9
+    },
+    {
+      "year": 1974,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 25
+    },
+    {
+      "year": 1975,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 2
+    },
+    {
+      "year": 1976,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 5
+    },
+    {
+      "year": 1977,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 2
+    },
+    {
+      "year": 1978,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 3547
+    },
+    {
+      "year": 1980,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1981,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1982,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1983,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1984,
+      "works_count": 5,
+      "oa_works_count": 0,
+      "cited_by_count": 117
+    },
+    {
+      "year": 1985,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 5
+    },
+    {
+      "year": 1986,
+      "works_count": 3,
+      "oa_works_count": 1,
+      "cited_by_count": 5
+    },
+    {
+      "year": 1987,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1990,
+      "works_count": 6,
+      "oa_works_count": 0,
+      "cited_by_count": 16
+    },
+    {
+      "year": 1991,
+      "works_count": 1,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1992,
+      "works_count": 19,
+      "oa_works_count": 0,
+      "cited_by_count": 29
+    },
+    {
+      "year": 1994,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 2
+    },
+    {
+      "year": 1995,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1996,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1997,
+      "works_count": 15,
+      "oa_works_count": 0,
+      "cited_by_count": 123
+    },
+    {
+      "year": 1998,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 7
+    },
+    {
+      "year": 2000,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2002,
+      "works_count": 2,
+      "oa_works_count": 2,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2003,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2004,
+      "works_count": 4,
+      "oa_works_count": 1,
+      "cited_by_count": 101
+    },
+    {
+      "year": 2005,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2006,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2007,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2009,
+      "works_count": 38,
+      "oa_works_count": 1,
+      "cited_by_count": 253
+    },
+    {
+      "year": 2010,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2011,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2012,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 18
+    },
+    {
+      "year": 2013,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2014,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2015,
+      "works_count": 12,
+      "oa_works_count": 0,
+      "cited_by_count": 686
+    },
+    {
+      "year": 2017,
+      "works_count": 3,
+      "oa_works_count": 1,
+      "cited_by_count": 956
+    },
+    {
+      "year": 2019,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2020,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2023,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2024,
+      "works_count": 1,
+      "oa_works_count": 1,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2025,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 23
+    }
+  ],
+  "display_name_alternatives": [
+    "A. N. WHITEHEAD",
+    "A. N. Whitehead",
+    "A. Whitehead",
+    "A.N. Whitehead",
+    "Alfred N. Whitehead",
+    "Alfred North Whitehead",
+    "Alfred Whitehead",
+    "Friedrich Geisser",
+    "Whitehead, Alfred North",
+    "Whitehead, Alfred North 1861-1947",
+    "Whitehead, Alfred North,    1861-1947."
+  ],
+  "block_key": "a whitehead",
+  "works_api_url": "https://api.openalex.org/works?filter=author.id:A5109290662",
+  "updated_date": "2026-05-08T12:23:59",
+  "created_date": "2016-06-24T00:00:00"
+}
