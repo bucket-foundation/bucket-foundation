@@ -1,0 +1,14 @@
+# Regional mapping of prion proteins in brain.
+
+- **PMID**: 1354357
+- **DOI**: 10.1073/pnas.89.16.7620
+- **PMCID**: PMC49762 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1992
+- **Authors**: A Taraboulos, K Jendroska, D Serban, S L Yang, S J DeArmond, S B Prusiner
+- **MeSH**: Animals, Creutzfeldt-Jakob Syndrome, Cricetinae, Female, Humans, Immunohistochemistry, Mesocricetus, Mice, Mice, Transgenic, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1354357/
+- **Captured**: 2026-05-10T11:17:13
+
+## Abstract
+
+Scrapie is characterized by the accumulation of a protease-resistant isoform of the prion protein PrPSc. Limited proteolysis and chaotropes were used to map the distribution of PrPSc in cryostat sections of scrapie-infected brain blotted onto nitrocellulose membranes, designated histoblots. Proteolysis was omitted in order to map the cellular isoform of the prion protein (PrPC) in uninfected brains. Compared with immunohistochemistry, histoblots increased the sensitivity for PrPSc detection and showed different patterns of PrPSc accumulation. In Syrian hamsters with Sc237 scrapie, the most intense PrPSc signals occurred in sites with relatively little PrPC, suggesting that aberrant localization of prion protein may be an important feature in the pathogenesis of prion diseases. Immunostaining of PrPSc in white-matter tracts suggested that prions spread along neuroanatomical pathways. PrPSc immunostaining in histoblots was quantitated by densitometry, permitting assessment of the extent of PrPSc accumulation within specific structures. Histoblots were also useful in localizing PrPCJD and beta/A4-amyloid peptide in the brains of patients with Creutzfeldt-Jakob disease and Alzheimer disease, respectively.

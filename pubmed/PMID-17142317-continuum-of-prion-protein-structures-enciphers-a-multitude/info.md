@@ -1,0 +1,14 @@
+# Continuum of prion protein structures enciphers a multitude of prion isolate-specified phenotypes.
+
+- **PMID**: 17142317
+- **DOI**: 10.1073/pnas.0608970103
+- **PMCID**: PMC24470 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2006
+- **Authors**: Giuseppe Legname, Hoang-Oanh B Nguyen, David Peretz, Fred E Cohen, Stephen J DeArmond, Stanley B Prusiner
+- **MeSH**: Animals, Mice, Phenotype, Prion Diseases, Prions, Protein Conformation, Survival Rate
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17142317/
+- **Captured**: 2026-05-10T11:19:37
+
+## Abstract
+
+On passaging synthetic prions, two isolates emerged with incubation times differing by nearly 100 days. Using conformational-stability assays, we determined the guanidine hydrochloride (Gdn.HCl) concentration required to denature 50% of disease-causing prion protein (PrP(Sc)) molecules, denoted as the [Gdn.HCl](1/2) value. For the two prion isolates enciphering shorter and longer incubation times, [Gdn.HCl](1/2) values of 2.9 and 3.7 M, respectively, were found. Intrigued by this result, we measured the conformational stabilities of 30 prion isolates from synthetic and naturally occurring sources that had been passaged in mice. When the incubation times were plotted as a function of the [Gdn.HCl](1/2) values, a linear relationship was found with a correlation coefficient of 0.93. These findings demonstrate that (i) less stable prions replicate more rapidly than do stable prions, and (ii) a continuum of PrP(Sc) structural states enciphers a multitude of incubation-time phenotypes. Our data argue that cellular machinery must exist for propagating a large number of different PrP(Sc) conformers, each of which enciphers a distinct biological phenotype as reflected by a specific incubation time. The biophysical explanation for the unprecedented plasticity of PrP(Sc) remains to be determined.

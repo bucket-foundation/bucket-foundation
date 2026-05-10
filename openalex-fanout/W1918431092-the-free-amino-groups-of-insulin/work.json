@@ -1,0 +1,932 @@
+{
+  "id": "https://openalex.org/W1918431092",
+  "doi": "https://doi.org/10.1042/bj0390507",
+  "title": "The free amino groups of insulin",
+  "display_name": "The free amino groups of insulin",
+  "publication_year": 1945,
+  "publication_date": "1945-01-01",
+  "ids": {
+    "openalex": "https://openalex.org/W1918431092",
+    "doi": "https://doi.org/10.1042/bj0390507",
+    "mag": "1918431092",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/16747948"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1042/bj0390507",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1042/bj0390507",
+    "pdf_url": "https://portlandpress.com/biochemj/article-pdf/39/5/507/797246/bj0390507.pdf",
+    "source": {
+      "id": "https://openalex.org/S4210234214",
+      "display_name": "Biochemical Journal",
+      "issn_l": "0306-3283",
+      "issn": [
+        "0306-3283"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/P4310311608",
+      "host_organization_name": "Portland Press",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310311608",
+        "https://openalex.org/P4310311715"
+      ],
+      "host_organization_lineage_names": [
+        "Portland Press",
+        "Biochemical Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Biochemical Journal",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "bronze",
+    "oa_url": "https://portlandpress.com/biochemj/article-pdf/39/5/507/797246/bj0390507.pdf",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5114007683",
+        "display_name": "Frederick Sanger",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2799533583",
+          "display_name": "Biochemical Society",
+          "ror": "https://ror.org/0312hfy93",
+          "country_code": "GB",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I2799533583"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "F. Sanger",
+      "raw_affiliation_strings": [
+        "Biochemical Laboratory, Cambridge"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Biochemical Laboratory, Cambridge",
+          "institution_ids": [
+            "https://openalex.org/I2799533583"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5114007683"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I2799533583"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 24.0666,
+  "has_fulltext": true,
+  "cited_by_count": 1825,
+  "citation_normalized_percentile": {
+    "value": 0.99831224,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 94,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "39",
+    "issue": "5",
+    "first_page": "507",
+    "last_page": "515"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T12267",
+    "display_name": "Diet and metabolism studies",
+    "score": 0.8996999859809875,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2737",
+      "display_name": "Physiology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/27",
+      "display_name": "Medicine"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/4",
+      "display_name": "Health Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T12267",
+      "display_name": "Diet and metabolism studies",
+      "score": 0.8996999859809875,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2737",
+        "display_name": "Physiology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11027",
+      "display_name": "Metabolism and Genetic Disorders",
+      "score": 0.894599974155426,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1308",
+        "display_name": "Clinical Biochemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13984",
+      "display_name": "Nutrition, Genetics, and Disease",
+      "score": 0.8852999806404114,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1311",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/icon",
+      "display_name": "Icon",
+      "score": 0.8150866031646729
+    },
+    {
+      "id": "https://openalex.org/keywords/citation",
+      "display_name": "Citation",
+      "score": 0.6482008695602417
+    },
+    {
+      "id": "https://openalex.org/keywords/download",
+      "display_name": "Download",
+      "score": 0.6127815842628479
+    },
+    {
+      "id": "https://openalex.org/keywords/information-retrieval",
+      "display_name": "Information retrieval",
+      "score": 0.6037532091140747
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.5249005556106567
+    },
+    {
+      "id": "https://openalex.org/keywords/world-wide-web",
+      "display_name": "World Wide Web",
+      "score": 0.4563404619693756
+    },
+    {
+      "id": "https://openalex.org/keywords/library-science",
+      "display_name": "Library science",
+      "score": 0.3967159688472748
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2778447006",
+      "wikidata": "https://www.wikidata.org/wiki/Q1156474",
+      "display_name": "Icon",
+      "level": 2,
+      "score": 0.8150866031646729
+    },
+    {
+      "id": "https://openalex.org/C2778805511",
+      "wikidata": "https://www.wikidata.org/wiki/Q1713",
+      "display_name": "Citation",
+      "level": 2,
+      "score": 0.6482008695602417
+    },
+    {
+      "id": "https://openalex.org/C2780154274",
+      "wikidata": "https://www.wikidata.org/wiki/Q7126717",
+      "display_name": "Download",
+      "level": 2,
+      "score": 0.6127815842628479
+    },
+    {
+      "id": "https://openalex.org/C23123220",
+      "wikidata": "https://www.wikidata.org/wiki/Q816826",
+      "display_name": "Information retrieval",
+      "level": 1,
+      "score": 0.6037532091140747
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.5249005556106567
+    },
+    {
+      "id": "https://openalex.org/C136764020",
+      "wikidata": "https://www.wikidata.org/wiki/Q466",
+      "display_name": "World Wide Web",
+      "level": 1,
+      "score": 0.4563404619693756
+    },
+    {
+      "id": "https://openalex.org/C161191863",
+      "wikidata": "https://www.wikidata.org/wiki/Q199655",
+      "display_name": "Library science",
+      "level": 1,
+      "score": 0.3967159688472748
+    },
+    {
+      "id": "https://openalex.org/C199360897",
+      "wikidata": "https://www.wikidata.org/wiki/Q9143",
+      "display_name": "Programming language",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D007328",
+      "descriptor_name": "Insulin",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007328",
+      "descriptor_name": "Insulin",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007328",
+      "descriptor_name": "Insulin",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 3,
+  "locations": [
+    {
+      "id": "doi:10.1042/bj0390507",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1042/bj0390507",
+      "pdf_url": "https://portlandpress.com/biochemj/article-pdf/39/5/507/797246/bj0390507.pdf",
+      "source": {
+        "id": "https://openalex.org/S4210234214",
+        "display_name": "Biochemical Journal",
+        "issn_l": "0306-3283",
+        "issn": [
+          "0306-3283"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/P4310311608",
+        "host_organization_name": "Portland Press",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310311608",
+          "https://openalex.org/P4310311715"
+        ],
+        "host_organization_lineage_names": [
+          "Portland Press",
+          "Biochemical Society"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Biochemical Journal",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:16747948",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/16747948",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "The Biochemical journal",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:pubmedcentral.nih.gov:1258275",
+      "is_oa": true,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/1258275",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S2764455111",
+        "display_name": "PubMed Central",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Biochem J",
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1042/bj0390507",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1042/bj0390507",
+    "pdf_url": "https://portlandpress.com/biochemj/article-pdf/39/5/507/797246/bj0390507.pdf",
+    "source": {
+      "id": "https://openalex.org/S4210234214",
+      "display_name": "Biochemical Journal",
+      "issn_l": "0306-3283",
+      "issn": [
+        "0306-3283"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/P4310311608",
+      "host_organization_name": "Portland Press",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310311608",
+        "https://openalex.org/P4310311715"
+      ],
+      "host_organization_lineage_names": [
+        "Portland Press",
+        "Biochemical Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Biochemical Journal",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": true,
+    "pdf": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W1918431092.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W1918431092.grobid-xml"
+  },
+  "referenced_works_count": 5,
+  "referenced_works": [
+    "https://openalex.org/W235422303",
+    "https://openalex.org/W2333625927",
+    "https://openalex.org/W2407934908",
+    "https://openalex.org/W2413157644",
+    "https://openalex.org/W2419588988"
+  ],
+  "related_works": [
+    "https://openalex.org/W4324030357",
+    "https://openalex.org/W2260973294",
+    "https://openalex.org/W4353032318",
+    "https://openalex.org/W1600895010",
+    "https://openalex.org/W4353032308",
+    "https://openalex.org/W4324030505",
+    "https://openalex.org/W2180133917",
+    "https://openalex.org/W30345531",
+    "https://openalex.org/W3040873092",
+    "https://openalex.org/W1898420009"
+  ],
+  "abstract_inverted_index": {
+    "Research": [
+      0
+    ],
+    "Article|": [
+      1
+    ],
+    "January": [
+      2,
+      76
+    ],
+    "01": [
+      3
+    ],
+    "1945": [
+      4,
+      129
+    ],
+    "The": [
+      5,
+      67
+    ],
+    "free": [
+      6,
+      68
+    ],
+    "amino": [
+      7,
+      69
+    ],
+    "groups": [
+      8,
+      70
+    ],
+    "of": [
+      9,
+      71
+    ],
+    "insulin": [
+      10
+    ],
+    "F.": [
+      11,
+      13,
+      65
+    ],
+    "Sanger": [
+      12,
+      14
+    ],
+    "1Biochemical": [
+      15
+    ],
+    "Laboratory,": [
+      16
+    ],
+    "Cambridge": [
+      17
+    ],
+    "Search": [
+      18,
+      99,
+      106,
+      117,
+      119
+    ],
+    "for": [
+      19
+    ],
+    "other": [
+      20
+    ],
+    "works": [
+      21
+    ],
+    "by": [
+      22
+    ],
+    "this": [
+      23,
+      148
+    ],
+    "author": [
+      24
+    ],
+    "on:": [
+      25
+    ],
+    "This": [
+      26,
+      120
+    ],
+    "Site": [
+      27
+    ],
+    "PubMed": [
+      28
+    ],
+    "Google": [
+      29
+    ],
+    "Scholar": [
+      30
+    ],
+    "Biochem": [
+      31,
+      73
+    ],
+    "J": [
+      32,
+      74
+    ],
+    "(1945)": [
+      33
+    ],
+    "39": [
+      34,
+      78
+    ],
+    "(5):": [
+      35,
+      79
+    ],
+    "507–515.": [
+      36,
+      80
+    ],
+    "https://doi.org/10.1042/bj0390507": [
+      37,
+      82
+    ],
+    "Views": [
+      38,
+      40
+    ],
+    "Icon": [
+      39,
+      53,
+      60
+    ],
+    "Article": [
+      41,
+      134
+    ],
+    "contents": [
+      42
+    ],
+    "Figures": [
+      43
+    ],
+    "&": [
+      44
+    ],
+    "tables": [
+      45
+    ],
+    "Video": [
+      46
+    ],
+    "Audio": [
+      47
+    ],
+    "Supplementary": [
+      48
+    ],
+    "Data": [
+      49
+    ],
+    "Peer": [
+      50
+    ],
+    "Review": [
+      51
+    ],
+    "Share": [
+      52,
+      54
+    ],
+    "Facebook": [
+      55
+    ],
+    "Twitter": [
+      56
+    ],
+    "LinkedIn": [
+      57
+    ],
+    "MailTo": [
+      58
+    ],
+    "Cite": [
+      59,
+      61
+    ],
+    "Get": [
+      62
+    ],
+    "Permissions": [
+      63
+    ],
+    "Citation": [
+      64
+    ],
+    "Sanger;": [
+      66
+    ],
+    "insulin.": [
+      72
+    ],
+    "1": [
+      75
+    ],
+    "1945;": [
+      77
+    ],
+    "doi:": [
+      81
+    ],
+    "Download": [
+      83
+    ],
+    "citation": [
+      84
+    ],
+    "file:": [
+      85
+    ],
+    "Ris": [
+      86
+    ],
+    "(Zotero)": [
+      87
+    ],
+    "Reference": [
+      88
+    ],
+    "Manager": [
+      89
+    ],
+    "EasyBib": [
+      90
+    ],
+    "Bookends": [
+      91
+    ],
+    "Mendeley": [
+      92
+    ],
+    "Papers": [
+      93
+    ],
+    "EndNote": [
+      94
+    ],
+    "RefWorks": [
+      95
+    ],
+    "BibTex": [
+      96
+    ],
+    "toolbar": [
+      97,
+      102
+    ],
+    "search": [
+      98,
+      103,
+      104,
+      112
+    ],
+    "Dropdown": [
+      100
+    ],
+    "Menu": [
+      101
+    ],
+    "input": [
+      105,
+      107
+    ],
+    "auto": [
+      108
+    ],
+    "suggest": [
+      109
+    ],
+    "filter": [
+      110
+    ],
+    "your": [
+      111
+    ],
+    "All": [
+      113
+    ],
+    "ContentAll": [
+      114
+    ],
+    "JournalsBiochemical": [
+      115
+    ],
+    "Journal": [
+      116
+    ],
+    "Advanced": [
+      118
+    ],
+    "content": [
+      121
+    ],
+    "is": [
+      122
+    ],
+    "only": [
+      123
+    ],
+    "available": [
+      124
+    ],
+    "as": [
+      125
+    ],
+    "a": [
+      126
+    ],
+    "PDF.": [
+      127
+    ],
+    "©": [
+      128
+    ],
+    "CAMBRIDGE": [
+      130
+    ],
+    "UNIVERSITY": [
+      131
+    ],
+    "PRESS,": [
+      132
+    ],
+    "ENGLAND1945": [
+      133
+    ],
+    "PDF": [
+      135
+    ],
+    "first": [
+      136
+    ],
+    "page": [
+      137
+    ],
+    "preview": [
+      138
+    ],
+    "Close": [
+      139
+    ],
+    "Modal": [
+      140
+    ],
+    "You": [
+      141
+    ],
+    "do": [
+      142
+    ],
+    "not": [
+      143
+    ],
+    "currently": [
+      144
+    ],
+    "have": [
+      145
+    ],
+    "access": [
+      146
+    ],
+    "to": [
+      147
+    ],
+    "content.": [
+      149
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 33
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 11
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 12
+    }
+  ],
+  "updated_date": "2026-05-01T08:36:08.643496",
+  "created_date": "2025-10-10T00:00:00"
+}

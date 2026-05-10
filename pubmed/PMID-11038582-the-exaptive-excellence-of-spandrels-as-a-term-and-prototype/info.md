@@ -1,0 +1,14 @@
+# The exaptive excellence of spandrels as a term and prototype.
+
+- **PMID**: 11038582
+- **DOI**: 10.1073/pnas.94.20.10750
+- **PMCID**: PMC23474 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1997
+- **Authors**: S J Gould
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11038582/
+- **Captured**: 2026-05-10T11:15:25
+
+## Abstract
+
+In 1979, Lewontin and I borrowed the architectural term "spandrel" (using the pendentives of San Marco in Venice as an example) to designate the class of forms and spaces that arise as necessary byproducts of another decision in design, and not as adaptations for direct utility in themselves. This proposal has generated a large literature featuring two critiques: (i) the terminological claim that the spandrels of San Marco are not true spandrels at all and (ii) the conceptual claim that they are adaptations and not byproducts. The features of the San Marco pendentives that we explicitly defined as spandrel-properties-their necessary number (four) and shape (roughly triangular)-are inevitable architectural byproducts, whatever the structural attributes of the pendentives themselves. The term spandrel may be extended from its particular architectural use for two-dimensional byproducts to the generality of "spaces left over," a definition that properly includes the San Marco pendentives. Evolutionary biology needs such an explicit term for features arising as byproducts, rather than adaptations, whatever their subsequent exaptive utility. The concept of biological spandrels-including the examples here given of masculinized genitalia in female hyenas, exaptive use of an umbilicus as a brooding chamber by snails, the shoulder hump of the giant Irish deer, and several key features of human mentality-anchors the critique of overreliance upon adaptive scenarios in evolutionary explanation. Causes of historical origin must always be separated from current utilities; their conflation has seriously hampered the evolutionary analysis of form in the history of life.

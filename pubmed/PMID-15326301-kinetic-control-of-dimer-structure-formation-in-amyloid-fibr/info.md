@@ -1,0 +1,14 @@
+# Kinetic control of dimer structure formation in amyloid fibrillogenesis.
+
+- **PMID**: 15326301
+- **DOI**: 10.1073/pnas.0402634101
+- **PMCID**: PMC40042 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2004
+- **Authors**: Wonmuk Hwang, Shuguang Zhang, Roger D Kamm, Martin Karplus
+- **MeSH**: Amyloid beta-Peptides, Computer Simulation, Dimerization, Hydrogen Bonding, Hydrophobic and Hydrophilic Interactions, Kinetics, Peptides, Time Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15326301/
+- **Captured**: 2026-05-10T11:18:28
+
+## Abstract
+
+Amyloid fibril formation involves nonfibrillar oligomeric intermediates, which are important as possible cytotoxic species in neurodegenerative diseases. However, their transient nature and polydispersity have made it difficult to identify their formation mechanism or structure. We have investigated the dimerization process, the first step in aggregate formation, by multiple molecular dynamics simulations of five beta-sheet-forming peptides. Contrary to the regular beta-sheet structure of the amyloid fibril, the dimers exhibit all possible combinations of beta-sheets, with an overall preference for antiparallel arrangements. Through statistical analysis of 1,000 dimerization trajectories, each 1 ns in length, we have demonstrated that the observed distribution of dimer configurations is kinetically determined; hydrophobic interactions orient the peptides so as to minimize the solvent accessible surface area, and the dimer structures become trapped in energetically unfavorable conformations. Once the hydrophobic contacts are present, the backbone hydrogen bonds form rapidly by a zipper-like mechanism. The initial nonequilibrium structures formed are stable during the 1-ns simulation time for all five peptides at room temperature. In contrast, at higher temperatures, where rapid equilibration among different configurations occurs, the distribution follows the global energies. The relaxation time of dimers at room temperature was estimated to be longer than the time for diffusional encounters with other oligomers at typical concentrations. These results suggest that kinetic trapping could play a role in the structural evolution of early aggregates in amyloid fibrillogenesis.

@@ -1,0 +1,14 @@
+# Prion protein of 106 residues creates an artifical transmission barrier for prion replication in transgenic mice.
+
+- **PMID**: 10102274
+- **DOI**: 10.1016/s0092-8674(00)80596-6
+- **PMCID**:  
+- **Journal**: Cell  ·  **Year**: 1999
+- **Authors**: S Supattapone, P Bosque, T Muramoto, H Wille, C Aagaard, D Peretz, H O Nguyen, C Heinrich, M Torchia, J Safar, F E Cohen, S J DeArmond, S B Prusiner, M Scott
+- **MeSH**: Amino Acid Sequence, Animals, Brain, Mice, Mice, Transgenic, PrPSc Proteins, Protein Conformation, Sequence Deletion
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10102274/
+- **Captured**: 2026-05-10T11:14:45
+
+## Abstract
+
+A redacted prion protein (PrP) of 106 amino acids with two large deletions was expressed in transgenic (Tg) mice deficient for wild-type (wt) PrP (Prnp0/0) and supported prion propagation. RML prions containing full-length PrP(Sc)produced disease in Tg(PrP106)Prnp0/0 mice after approximately 300 days, while transmission of RML106 prions containing PrP(Sc)106 created disease in Tg(PrP106) Prnp0/0 mice after only approximately 66 days on repeated passage. This artificial transmission barrier for the passage of RML prions was diminished by the coexpression of wt MoPrPc in Tg(PrP106)Prnp+/0 mice that developed scrapie in approximately 165 days, suggesting that wt MoPrP acts in trans to accelerate replication of RML106 prions. Purified PrP(Sc)106 was protease resistant, formed filaments, and was insoluble in nondenaturing detergents. The unique features of RML106 prions offer insights into the mechanism of prion replication, and the small size of PrP(Sc)106 should facilitate structural analysis.

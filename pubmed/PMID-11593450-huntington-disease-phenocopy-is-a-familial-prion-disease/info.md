@@ -1,0 +1,14 @@
+# Huntington disease phenocopy is a familial prion disease.
+
+- **PMID**: 11593450
+- **DOI**: 10.1086/324414
+- **PMCID**: PMC1377554 (full-text saved)
+- **Journal**: American journal of human genetics  ·  **Year**: 2001
+- **Authors**: R C Moore, F Xiang, J Monaghan, D Han, Z Zhang, L Edström, M Anvret, S B Prusiner
+- **MeSH**: Amino Acid Sequence, Chromosome Mapping, Chromosomes, Human, Pair 20, DNA Mutational Analysis, Genetic Testing, Humans, Huntington Disease, Lod Score, Molecular Sequence Data, Mutagenesis, Insertional
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11593450/
+- **Captured**: 2026-05-10T11:15:55
+
+## Abstract
+
+Huntington disease (HD) is a common autosomal dominant neurodegenerative disease with early adult-onset motor abnormalities and dementia. Many studies of HD show that huntingtin (CAG)n repeat-expansion length is a sensitive and specific marker for HD. However, there are a significant number of examples of HD in the absence of a huntingtin (CAG)n expansion, suggesting that mutations in other genes can provoke HD-like disorders. The identification of genes responsible for these "phenocopies" may greatly improve the reliability of genetic screens for HD and may provide further insight into neurodegenerative disease. We have examined an HD phenocopy pedigree with linkage to chromosome 20p12 for mutations in the prion protein (PrP) gene (PRNP). This reveals that affected individuals are heterozygous for a 192-nucleotide (nt) insertion within the PrP coding region, which encodes an expanded PrP with eight extra octapeptide repeats. This reveals that this HD phenocopy is, in fact, a familial prion disease and that PrP repeat-expansion mutations can provoke an HD "genocopy." PrP repeat expansions are well characterized and provoke early-onset, slowly progressive atypical prion diseases with an autosomal dominant pattern of inheritance and a remarkable range of clinical features, many of which overlap with those of HD. This observation raises the possibility that an unknown number of HD phenocopies are, in fact, familial prion diseases and argues that clinicians should consider screening for PrP mutations in individuals with HD-like diseases in which the characteristic HD (CAG)n repeat expansions are absent.

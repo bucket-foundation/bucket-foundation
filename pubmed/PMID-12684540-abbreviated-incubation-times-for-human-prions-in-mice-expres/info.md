@@ -1,0 +1,14 @@
+# Abbreviated incubation times for human prions in mice expressing a chimeric mouse-human prion protein transgene.
+
+- **PMID**: 12684540
+- **DOI**: 10.1073/pnas.2627989100
+- **PMCID**: PMC145426 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2003
+- **Authors**: Carsten Korth, Kiyotoshi Kaneko, Darlene Groth, Norbert Heye, Glenn Telling, James Mastrianni, Piero Parchi, Pierluigi Gambetti, Robert Will, James Ironside, Cornelia Heinrich, Patrick Tremblay, Stephen J DeArmond, Stanley B Prusiner
+- **MeSH**: Amino Acid Substitution, Animals, Brain, Creutzfeldt-Jakob Syndrome, Disease Models, Animal, Humans, Mice, Mice, Transgenic, Mutagenesis, Site-Directed, PrPSc Proteins
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12684540/
+- **Captured**: 2026-05-10T11:16:27
+
+## Abstract
+
+Transgenic (Tg) mouse lines that express chimeric mouse-human prion protein (PrP), designated MHu2M, are susceptible to prions from patients with sporadic Creutzfeldt-Jakob disease (sCJD). With the aim of decreasing the incubation time to fewer than 200 days, we constructed transgenes in which one or more of the nine human residues in MHu2M were changed to mouse. The construct with murine residues at positions 165 and 167 was expressed in Tg(MHu2M,M165V,E167Q) mice and resulted in shortening the incubation time to approximately 110 days for prions from sCJD patients. The construct with a murine residue at position 96 resulted in lengthening the incubation time to more than 280 days for sCJD prions. When murine residues 96, 165, and 167 were expressed, the abbreviated incubation times for sCJD prions were abolished. Variant CJD prions showed prolonged incubation times between 300 and 700 days in Tg(MHu2M) mice on first passage and incubation times of approximately 350 days in Tg(MHu2M,M165V,E167Q) mice. On second and third passages of variant CJD prions in Tg(MHu2M) mice, multiple strains of prions were detected based on incubation times and the sizes of the protease-resistant, deglycosylated PrP(Sc) fragments. Our discovery of a previously undescribed chimeric transgene with abbreviated incubation times for sCJD prions should facilitate studies on the prion species barrier and human prion diversity.

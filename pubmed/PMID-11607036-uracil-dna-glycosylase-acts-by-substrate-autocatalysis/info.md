@@ -1,0 +1,14 @@
+# Uracil-DNA glycosylase acts by substrate autocatalysis.
+
+- **PMID**: 11607036
+- **DOI**: 10.1038/35099587
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 2001
+- **Authors**: A R Dinner, G M Blackburn, M Karplus
+- **MeSH**: Catalysis, DNA, DNA Glycosylases, Humans, Models, Molecular, N-Glycosyl Hydrolases, Quantum Theory, Substrate Specificity, Uracil-DNA Glycosidase
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11607036/
+- **Captured**: 2026-05-10T11:15:56
+
+## Abstract
+
+In humans, uracil appears in DNA at the rate of several hundred bases per cell each day as a result of misincorporation of deoxyuridine (dU) or deamination of cytosine. Four enzymes that catalyse the hydrolysis of the glycosylic bond of dU in DNA to yield an apyridiminic site as the first step in base excision repair have been identified in the human genome. The most efficient and well characterized of these uracil-DNA glycosylases is UDG (also known as UNG and present in almost all known organisms), which excises U from single- or double-stranded DNA and is associated with DNA replication forks. We used a hybrid quantum-mechanical/molecular-mechanical (QM/MM) approach to determine the mechanism of catalysis by UDG. In contrast to the concerted associative mechanism proposed initially, we show here that the reaction proceeds in a stepwise dissociative manner. Cleavage of the glycosylic bond yields an intermediate comprising an oxocarbenium cation and a uracilate anion. Subsequent attack by a water molecule and transfer of a proton to D145 result in the products. Surprisingly, the primary contribution to lowering the activation energy comes from the substrate, rather than from the enzyme. This 'autocatalysis' derives from the burial and positioning of four phosphate groups that stabilize the rate-determining transition state. The importance of these phosphates explains the residual activity observed for mutants that lack key residues. A corresponding catalytic mechanism could apply to the DNA glycosylases TDG and SMUG1, which belong to the same structural superfamily as UDG.

@@ -1,0 +1,14 @@
+# A research proposal on the origin of life.
+
+- **PMID**: 14601926
+- **DOI**: 10.1023/a:1025760311436
+- **PMCID**:  
+- **Journal**: Origins of life and evolution of the biosphere : the journal of the International Society for the Study of the Origin of Life  ·  **Year**: 2003
+- **Authors**: Christian de Duve
+- **MeSH**: Amino Acids, DNA, Evolution, Chemical, Evolution, Molecular, Genetic Code, Life, Models, Theoretical, Origin of Life, Proteins, RNA
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14601926/
+- **Captured**: 2026-05-10T11:18:09
+
+## Abstract
+
+This paper describes some experiments the author would have liked to carry out if he had started earlier in the origin-of-life field. The proposal is preceded by a hypothetical outline of the main events in the origin of life. According to this outline, the emergence of life amounts to the transition between two kinds of chemistry: 1) cosmic chemistry, which is beginning to be understood and most likely provided the building blocks with which life was first constructed; and 2) biochemistry, the well-known set of enzyme-catalyzed metabolic reactions that support all living organisms today and must have supported the universal common ancestor, or LUCA, from which all known forms of life are derived. The pathway leading from one to the other of those two chemistries may be divided into three stages, defined as the pre-RNA, RNA, and protein-DNA stages. A brief summary of the events that may have occurred in these three stages and of the possible underlying mechanisms is given. It is emphasized that these events were chemical in nature and, especially, that they must have prefigured present-day biochemical processes. Protometabolism and metabolism, it is argued, must have been congruent. With congruence as the underlying working hypothesis, three problems open to experimental investigation are considered: 1) the involvement of peptides and other multimers as catalysts of early biogenic chemistry; 2) the participation of thioesters in primitive energy transactions; and 3) the influence of amino acids on the molecular selection of RNA molecules.

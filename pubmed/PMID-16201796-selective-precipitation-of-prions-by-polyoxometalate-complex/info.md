@@ -1,0 +1,14 @@
+# Selective precipitation of prions by polyoxometalate complexes.
+
+- **PMID**: 16201796
+- **DOI**: 10.1021/ja055219y
+- **PMCID**:  
+- **Journal**: Journal of the American Chemical Society  ·  **Year**: 2005
+- **Authors**: In Su Lee, Jeffrey R Long, Stanley B Prusiner, Jiri G Safar
+- **MeSH**: Crystallography, X-Ray, Humans, Metals, Heavy, Models, Molecular, Prions, Silicon, Tungsten Compounds, Zinc
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16201796/
+- **Captured**: 2026-05-10T11:18:54
+
+## Abstract
+
+The efficacy of a variety of polyoxometalate anions in selectively precipitating the infectious isoform of the prion protein (PrPSc) over the normal, cellular protein (PrPC) was tested as a means of improving the sensitivity of a conformation-dependent immunoassay (CDI). Experiments utilizing neutralized aqueous solutions containing MgCl2.6H2O and Na2H[PW12O40] (1) indicated that use of the former is detrimental to selectivity, while use of the latter gives optimal selectivity at a concentration of 2.48% w/v, much higher than the 0.31% w/v employed in the current CDI protocol. Similar experiments using Na4[SiW12O40] (2), K5[BW12O40] (3), and Na6[H2W12O40] (4) were performed to probe the role of charge density in polyoxometalate anions possessing the Keggin structure. These, coupled with assignment of solution structures via NMR and infrared spectroscopy, revealed the following trend in optimal concentrations: [HBW11O39]8- < [SiW11O39]8- < [PW11O39]7- = [H2W12O40]6-. Interestingly, use of the salts K10[Zn4(H2O)2(PW9O34)2] (5), Na16[Zn4(H2O)2(P2W15O56)2] (6), and Na27[NaAs4W40O140] (7), containing larger polyoxometalate anions, was found to suppress PrPSc precipitation in a concentration-dependent manner. Taken together, the results suggest a precipitation mechanism wherein Keggin-type anions link multiple PrPSc moieties by binding a somewhat hindered cleft featuring one or more positively charged residues.

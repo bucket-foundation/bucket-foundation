@@ -1,0 +1,14 @@
+# Copper coordination in the full-length, recombinant prion protein.
+
+- **PMID**: 12779334
+- **DOI**: 10.1021/bi027138+
+- **PMCID**: PMC37470 (full-text saved)
+- **Journal**: Biochemistry  ·  **Year**: 2003
+- **Authors**: Colin S Burns, Eliah Aronoff-Spencer, Giuseppe Legname, Stanley B Prusiner, William E Antholine, Gary J Gerfen, Jack Peisach, Glenn L Millhauser
+- **MeSH**: Animals, Binding Sites, Copper, Cricetinae, Electron Spin Resonance Spectroscopy, Glycine, Histidine, Hydrogen-Ion Concentration, Models, Molecular, Prions
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12779334/
+- **Captured**: 2026-05-10T11:16:29
+
+## Abstract
+
+The prion protein (PrP) binds divalent copper at physiologically relevant conditions and is believed to participate in copper regulation or act as a copper-dependent enzyme. Ongoing studies aim at determining the molecular features of the copper binding sites. The emerging consensus is that most copper binds in the octarepeat domain, which is composed of four or more copies of the fundamental sequence PHGGGWGQ. Previous work from our laboratory using PrP-derived peptides, in conjunction with EPR and X-ray crystallography, demonstrated that the HGGGW segment constitutes the fundamental binding unit in the octarepeat domain [Burns et al. (2002) Biochemistry 41, 3991-4001; Aronoff-Spencer et al. (2000) Biochemistry 39, 13760-13771]. Copper coordination arises from the His imidazole and sequential deprotonated glycine amides. In this present work, recombinant, full-length Syrian hamster PrP is investigated using EPR methodologies. Four copper ions are taken up in the octarepeat domain, which supports previous findings. However, quantification studies reveal a fifth binding site in the flexible region between the octarepeats and the PrP globular C-terminal domain. A series of PrP peptide constructs show that this site involves His96 in the PrP(92-96) segment GGGTH. Further examination by X-band EPR, S-band EPR, and electron spin-echo envelope spectroscopy, demonstrates coordination by the His96 imidazole and the glycine preceding the threonine. The copper affinity for this type of binding site is highly pH dependent, and EPR studies here show that recombinant PrP loses its affinity for copper below pH 6.0. These studies seem to provide a complete profile of the copper binding sites in PrP and support the hypothesis that PrP function is related to its ability to bind copper in a pH-dependent fashion.

@@ -1,0 +1,14 @@
+# A normal mode analysis of structural plasticity in the biomolecular motor F(1)-ATPase.
+
+- **PMID**: 15201057
+- **DOI**: 10.1016/j.jmb.2004.04.044
+- **PMCID**:  
+- **Journal**: Journal of molecular biology  ·  **Year**: 2004
+- **Authors**: Qiang Cui, Guohui Li, Jianpeng Ma, Martin Karplus
+- **MeSH**: Models, Molecular, Protein Conformation, Proton-Translocating ATPases, X-Ray Diffraction
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15201057/
+- **Captured**: 2026-05-10T11:18:26
+
+## Abstract
+
+Normal modes have been used to explore the inherent flexibility of the alpha, beta and gamma subunits of F(1)-ATPase in isolation and as part of the alpha(3)beta(3)gamma complex. It was found that the structural plasticity of the gamma and beta subunits, in particular, correlates with their functions. The N and C-terminal helices forming the coiled-coil domain of the gamma subunit are highly flexible in the isolated subunit, but more rigid in the alpha(3)beta(3)gamma complex due to interactions with other subunits. The globular domain of the gamma subunit is structurally relatively rigid when isolated and in the alpha(3)beta(3)gamma complex; this is important for its functional role in coupling the F(0) and F(1) complex of ATP synthase and in inducing the conformational changes of the beta subunits in synthesis. Most important, the character of the lowest-frequency modes of the beta(E) subunit is highly correlated with the large beta(E) --> beta(TP) transition. This holds for the C-terminal domain and the nucleotide-binding domain, which undergo significant conformational transitions in the functional cycle of F(1)-ATPase. This is most evident in the ligand-free beta(E) subunit; the flexibility in the nucleotide-binding domain is reduced somewhat in the beta(TP) subunit in the presence of Mg(2+).ATP. The low-frequency modes of the alpha(3)beta(3)gamma complex show that the motions of the globular domain of the gamma subunit and of the C-terminal and nucleotide binding domains of the beta(E) subunits are coupled, in accord with their function. Overall, the normal mode analysis reveals that F(1)-ATPase, like other macromolecular assemblies, has the intrinsic structural flexibility required for its function encoded in its sequence and three-dimensional structure. This inherent plasticity is an essential aspect of assuring a small free energy cost for the large-scale conformational transition that occurs in molecular motors.

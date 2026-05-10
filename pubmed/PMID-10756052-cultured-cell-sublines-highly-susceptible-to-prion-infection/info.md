@@ -1,0 +1,14 @@
+# Cultured cell sublines highly susceptible to prion infection.
+
+- **PMID**: 10756052
+- **DOI**: 10.1128/jvi.74.9.4377-4386.2000
+- **PMCID**: PMC42335 (full-text saved)
+- **Journal**: Journal of virology  ·  **Year**: 2000
+- **Authors**: P J Bosque, S B Prusiner
+- **MeSH**: Animals, Biological Assay, Cell Line, Culture Media, Immunoblotting, Kinetics, PrPSc Proteins, Prions
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10756052/
+- **Captured**: 2026-05-10T11:15:04
+
+## Abstract
+
+Cultured cell lines infected with prions produce an abnormal isoform of the prion protein (PrP(Sc)). In order to derive cell lines producing sufficient quantities of PrP(Sc) for most studies, it has been necessary to subclone infected cultures and select the subclones producing the largest amounts of PrP(Sc). Since postinfection cloning can introduce differences between infected and uninfected cell lines, we sought an approach to generate prion-infected cell lines that would avoid clonal artifacts. Using an improved cell blot technique, which permits sensitive and rapid comparison of PrP(Sc) levels in multiple independent cell cultures, we discovered marked heterogeneity with regard to prion susceptibility in tumor cell sublines. We exploited this heterogeneity to derive sublines which are highly susceptible to prion infection and used these cells to generate prion-infected lines without further subcloning. These infected sublines can be compared to the cognate uninfected cultures without interference from cloning artifacts. We also used susceptible cell lines and our modified cell blot procedure to develop a sensitive and reproducible quantitative cell culture bioassay for prions. We found that the sublines were at least 100-fold more susceptible to strain RML prions than to strain ME7 prions. Comparisons between scrapie-susceptible and -resistant cell lines may reveal factors that modulate prion propagation.

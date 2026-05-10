@@ -1,0 +1,14 @@
+# Local structural plasticity of the prion protein. Analysis of NMR relaxation dynamics.
+
+- **PMID**: 11258885
+- **DOI**: 10.1021/bi002898a
+- **PMCID**:  
+- **Journal**: Biochemistry  ·  **Year**: 2001
+- **Authors**: J H Viles, D Donne, G Kroon, S B Prusiner, F E Cohen, H J Dyson, P E Wright
+- **MeSH**: Animals, Anisotropy, Cricetinae, Diffusion, Mesocricetus, Models, Chemical, Models, Molecular, Nuclear Magnetic Resonance, Biomolecular, Peptide Fragments, PrPC Proteins
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11258885/
+- **Captured**: 2026-05-10T11:15:35
+
+## Abstract
+
+A template-assisted conformational change of the cellular prion protein (PrP(C)) from a predominantly helical structure to an amyloid-type structure with a higher proportion of beta-sheet is thought to be the causative factor in prion diseases. Since flexibility of the polypeptide is likely to contribute to the ability of PrP(C) to undergo the conformational change that leads to the infective state, we have undertaken a comprehensive examination of the dynamics of two recombinant Syrian hamster PrP fragments, PrP(29-231) and PrP(90-231), using (15)N NMR relaxation measurements. The molecular motions of these PrP fragments have been studied in solution using (15)N longitudinal (T(1)) and transverse relaxation (T(2)) measurements as well as [(1)H]-(15)N nuclear Overhauser effects (NOE). These data have been analyzed using both reduced spectral density mapping and the Lipari-Szabo model free formalism. The relaxation properties of the common regions of PrP(29-231) and PrP(90-231) are very similar; both have a relatively inflexible globular domain (residues 128-227) with a highly flexible and largely unstructured N-terminal domain. Residues 29-89 of PrP(29-231), which include the copper-binding octarepeat sequences, are also highly flexible. Analysis of the spectral densities at each residue indicates that even within the structured core of PrP(C), a markedly diverse range of motions is observed, consistent with the inherent plasticity of the protein. The central portions of helices B and C form a relatively rigid core, which is stabilized by the presence of an interhelix disulfide bond. Of the remainder of the globular domain, the parts that are not in direct contact with the rigid region, including helix A, are more flexible. Most significantly, slow conformational fluctuations on a millisecond to microsecond time scale are observed for the small beta-sheet. These results are consistent with the hypothesis that the infectious, scrapie form of the protein PrP(Sc) could contain a helical core consisting of helices B and C, similar in structure to the cellular form PrP(C). Our results indicate that residues 90-140, which are required for prion infectivity, are relatively flexible in PrP(C), consistent with a lowered thermodynamic barrier to a template-assisted conformational change to the infectious beta-sheet-rich scrapie isoform.

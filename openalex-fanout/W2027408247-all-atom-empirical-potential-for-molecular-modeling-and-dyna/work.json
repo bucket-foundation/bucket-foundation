@@ -1,0 +1,2766 @@
+{
+  "id": "https://openalex.org/W2027408247",
+  "doi": "https://doi.org/10.1021/jp973084f",
+  "title": "All-Atom Empirical Potential for Molecular Modeling and Dynamics Studies of Proteins",
+  "display_name": "All-Atom Empirical Potential for Molecular Modeling and Dynamics Studies of Proteins",
+  "publication_year": 1998,
+  "publication_date": "1998-04-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2027408247",
+    "doi": "https://doi.org/10.1021/jp973084f",
+    "mag": "2027408247",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/24889800"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1021/jp973084f",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1021/jp973084f",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S185621672",
+      "display_name": "The Journal of Physical Chemistry B",
+      "issn_l": "1520-5207",
+      "issn": [
+        "1520-5207",
+        "1520-6106"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320006",
+      "host_organization_name": "American Chemical Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320006"
+      ],
+      "host_organization_lineage_names": [
+        "American Chemical Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "The Journal of Physical Chemistry B",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5056944006",
+        "display_name": "Alexander D. MacKerell",
+        "orcid": "https://orcid.org/0000-0001-8287-6804"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "A. D. MacKerell",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5049991027",
+        "display_name": "Donald Bashford",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Bashford",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5021658881",
+        "display_name": "M. Bellott",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Bellott",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5053977807",
+        "display_name": "Roland L. Dunbrack",
+        "orcid": "https://orcid.org/0000-0001-7674-6667"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. L. Dunbrack",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5056080018",
+        "display_name": "Jeffrey D. Evanseck",
+        "orcid": "https://orcid.org/0000-0003-2616-7354"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. D. Evanseck",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5065517582",
+        "display_name": "Martin J. Field",
+        "orcid": "https://orcid.org/0000-0001-8674-7997"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. J. Field",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5028955075",
+        "display_name": "Stefan Fischer",
+        "orcid": "https://orcid.org/0000-0001-8811-7518"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Fischer",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5100647288",
+        "display_name": "Jun Gao",
+        "orcid": "https://orcid.org/0000-0002-6692-1828"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Gao",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5087731954",
+        "display_name": "Hong Guo",
+        "orcid": "https://orcid.org/0000-0002-5997-5086"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "H. Guo",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5046839381",
+        "display_name": "Sookhee Ha",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Ha",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5066868698",
+        "display_name": "Diane Joseph‐McCarthy",
+        "orcid": "https://orcid.org/0000-0001-9685-6177"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Joseph-McCarthy",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5001684908",
+        "display_name": "L. Kuchnir",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. Kuchnir",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5069970299",
+        "display_name": "Krzysztof Kuczera",
+        "orcid": "https://orcid.org/0000-0003-2358-1349"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "K. Kuczera",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5022740649",
+        "display_name": "Frankie Tat Kwong Lau",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "F. T. K. Lau",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5033766917",
+        "display_name": "Carla Mattos",
+        "orcid": "https://orcid.org/0000-0002-4112-0696"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. Mattos",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5082825332",
+        "display_name": "Stephen W. Michnick",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Michnick",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5061516207",
+        "display_name": "Thuy T. M. Ngo",
+        "orcid": "https://orcid.org/0000-0002-0751-8983"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "T. Ngo",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5071941463",
+        "display_name": "Dzung T. Nguyen",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. T. Nguyen",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5081271227",
+        "display_name": "Blaise Prod'hom",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "B. Prodhom",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5048057186",
+        "display_name": "W. E. Reiher",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "W. E. Reiher",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5102778212",
+        "display_name": "Benoı̂t Roux",
+        "orcid": "https://orcid.org/0000-0002-5254-2712"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "B. Roux",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5059851083",
+        "display_name": "Michael Schlenkrich",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Schlenkrich",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5018366869",
+        "display_name": "Jeremy C. Smith",
+        "orcid": "https://orcid.org/0000-0002-2978-3227"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. C. Smith",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5005345147",
+        "display_name": "Roland H. Stote",
+        "orcid": "https://orcid.org/0000-0003-2230-7145"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. Stote",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5058069370",
+        "display_name": "John E. Straub",
+        "orcid": "https://orcid.org/0000-0002-2355-3316"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Straub",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5070111509",
+        "display_name": "Masakatsu Watanabe",
+        "orcid": "https://orcid.org/0000-0002-5744-197X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Watanabe",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5029511655",
+        "display_name": "Joanna Wiórkiewicz-Kuczera",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Wiórkiewicz-Kuczera",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5090099780",
+        "display_name": "Tyler Yin",
+        "orcid": "https://orcid.org/0000-0001-7715-8402"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Yin",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5076499540",
+        "display_name": "Martin Karplus",
+        "orcid": "https://orcid.org/0000-0002-5485-6117"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I126744593",
+          "display_name": "University of Maryland, Baltimore",
+          "ror": "https://ror.org/04rq5mt64",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I126744593"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210128300",
+          "display_name": "Institut de Chimie",
+          "ror": "https://ror.org/02cte4b68",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Karplus",
+      "raw_affiliation_strings": [
+        "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemistry & Chemical Biology, Harvard University, Cambridge, Massachusetts 02138, Department of Pharmaceutical Sciences, University of Maryland, School of Pharmacy, Baltimore, Maryland 21201, and Laboratoire de Chimie Biophysique, ISIS, Institut Le Bel, Université Louis Pasteur, 67000 Strasbourg, France",
+          "institution_ids": [
+            "https://openalex.org/I126744593",
+            "https://openalex.org/I4210128300"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 29,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5056944006"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I126744593",
+    "https://openalex.org/I4210128300"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 43.5287,
+  "has_fulltext": false,
+  "cited_by_count": 14466,
+  "citation_normalized_percentile": {
+    "value": 0.9995096,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "102",
+    "issue": "18",
+    "first_page": "3586",
+    "last_page": "3616"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10044",
+    "display_name": "Protein Structure and Dynamics",
+    "score": 0.9998000264167786,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1312",
+      "display_name": "Molecular Biology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10044",
+      "display_name": "Protein Structure and Dynamics",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10798",
+      "display_name": "Crystallography and molecular interactions",
+      "score": 0.9994999766349792,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1606",
+        "display_name": "Physical and Theoretical Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/16",
+        "display_name": "Chemistry"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11162",
+      "display_name": "Enzyme Structure and Function",
+      "score": 0.9994000196456909,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/chemistry",
+      "display_name": "Chemistry",
+      "score": 0.7649322748184204
+    },
+    {
+      "id": "https://openalex.org/keywords/solvation",
+      "display_name": "Solvation",
+      "score": 0.7108606100082397
+    },
+    {
+      "id": "https://openalex.org/keywords/ab-initio",
+      "display_name": "Ab initio",
+      "score": 0.6323333978652954
+    },
+    {
+      "id": "https://openalex.org/keywords/molecular-dynamics",
+      "display_name": "Molecular dynamics",
+      "score": 0.6303985118865967
+    },
+    {
+      "id": "https://openalex.org/keywords/dipeptide",
+      "display_name": "Dipeptide",
+      "score": 0.5572136044502258
+    },
+    {
+      "id": "https://openalex.org/keywords/computational-chemistry",
+      "display_name": "Computational chemistry",
+      "score": 0.45006102323532104
+    },
+    {
+      "id": "https://openalex.org/keywords/potential-energy",
+      "display_name": "Potential energy",
+      "score": 0.41365155577659607
+    },
+    {
+      "id": "https://openalex.org/keywords/protein-crystallization",
+      "display_name": "Protein crystallization",
+      "score": 0.41021212935447693
+    },
+    {
+      "id": "https://openalex.org/keywords/crystallography",
+      "display_name": "Crystallography",
+      "score": 0.40805700421333313
+    },
+    {
+      "id": "https://openalex.org/keywords/thermodynamics",
+      "display_name": "Thermodynamics",
+      "score": 0.40057945251464844
+    },
+    {
+      "id": "https://openalex.org/keywords/chemical-physics",
+      "display_name": "Chemical physics",
+      "score": 0.3891282081604004
+    },
+    {
+      "id": "https://openalex.org/keywords/solvent",
+      "display_name": "Solvent",
+      "score": 0.24805805087089539
+    },
+    {
+      "id": "https://openalex.org/keywords/peptide",
+      "display_name": "Peptide",
+      "score": 0.22201696038246155
+    },
+    {
+      "id": "https://openalex.org/keywords/organic-chemistry",
+      "display_name": "Organic chemistry",
+      "score": 0.11996287107467651
+    },
+    {
+      "id": "https://openalex.org/keywords/atomic-physics",
+      "display_name": "Atomic physics",
+      "score": 0.10829883813858032
+    },
+    {
+      "id": "https://openalex.org/keywords/crystallization",
+      "display_name": "Crystallization",
+      "score": 0.08099344372749329
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C185592680",
+      "wikidata": "https://www.wikidata.org/wiki/Q2329",
+      "display_name": "Chemistry",
+      "level": 0,
+      "score": 0.7649322748184204
+    },
+    {
+      "id": "https://openalex.org/C148093993",
+      "wikidata": "https://www.wikidata.org/wiki/Q739398",
+      "display_name": "Solvation",
+      "level": 3,
+      "score": 0.7108606100082397
+    },
+    {
+      "id": "https://openalex.org/C2781442258",
+      "wikidata": "https://www.wikidata.org/wiki/Q46310",
+      "display_name": "Ab initio",
+      "level": 2,
+      "score": 0.6323333978652954
+    },
+    {
+      "id": "https://openalex.org/C59593255",
+      "wikidata": "https://www.wikidata.org/wiki/Q901663",
+      "display_name": "Molecular dynamics",
+      "level": 2,
+      "score": 0.6303985118865967
+    },
+    {
+      "id": "https://openalex.org/C2779138802",
+      "wikidata": "https://www.wikidata.org/wiki/Q418602",
+      "display_name": "Dipeptide",
+      "level": 3,
+      "score": 0.5572136044502258
+    },
+    {
+      "id": "https://openalex.org/C147597530",
+      "wikidata": "https://www.wikidata.org/wiki/Q369472",
+      "display_name": "Computational chemistry",
+      "level": 1,
+      "score": 0.45006102323532104
+    },
+    {
+      "id": "https://openalex.org/C84551667",
+      "wikidata": "https://www.wikidata.org/wiki/Q155640",
+      "display_name": "Potential energy",
+      "level": 2,
+      "score": 0.41365155577659607
+    },
+    {
+      "id": "https://openalex.org/C153064111",
+      "wikidata": "https://www.wikidata.org/wiki/Q1281033",
+      "display_name": "Protein crystallization",
+      "level": 3,
+      "score": 0.41021212935447693
+    },
+    {
+      "id": "https://openalex.org/C8010536",
+      "wikidata": "https://www.wikidata.org/wiki/Q160398",
+      "display_name": "Crystallography",
+      "level": 1,
+      "score": 0.40805700421333313
+    },
+    {
+      "id": "https://openalex.org/C97355855",
+      "wikidata": "https://www.wikidata.org/wiki/Q11473",
+      "display_name": "Thermodynamics",
+      "level": 1,
+      "score": 0.40057945251464844
+    },
+    {
+      "id": "https://openalex.org/C159467904",
+      "wikidata": "https://www.wikidata.org/wiki/Q2001702",
+      "display_name": "Chemical physics",
+      "level": 1,
+      "score": 0.3891282081604004
+    },
+    {
+      "id": "https://openalex.org/C2780471494",
+      "wikidata": "https://www.wikidata.org/wiki/Q146505",
+      "display_name": "Solvent",
+      "level": 2,
+      "score": 0.24805805087089539
+    },
+    {
+      "id": "https://openalex.org/C2779281246",
+      "wikidata": "https://www.wikidata.org/wiki/Q172847",
+      "display_name": "Peptide",
+      "level": 2,
+      "score": 0.22201696038246155
+    },
+    {
+      "id": "https://openalex.org/C178790620",
+      "wikidata": "https://www.wikidata.org/wiki/Q11351",
+      "display_name": "Organic chemistry",
+      "level": 1,
+      "score": 0.11996287107467651
+    },
+    {
+      "id": "https://openalex.org/C184779094",
+      "wikidata": "https://www.wikidata.org/wiki/Q26383",
+      "display_name": "Atomic physics",
+      "level": 1,
+      "score": 0.10829883813858032
+    },
+    {
+      "id": "https://openalex.org/C203036418",
+      "wikidata": "https://www.wikidata.org/wiki/Q284256",
+      "display_name": "Crystallization",
+      "level": 2,
+      "score": 0.08099344372749329
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1021/jp973084f",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1021/jp973084f",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S185621672",
+        "display_name": "The Journal of Physical Chemistry B",
+        "issn_l": "1520-5207",
+        "issn": [
+          "1520-5207",
+          "1520-6106"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320006",
+        "host_organization_name": "American Chemical Society",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320006"
+        ],
+        "host_organization_lineage_names": [
+          "American Chemical Society"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "The Journal of Physical Chemistry B",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:24889800",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/24889800",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "The journal of physical chemistry. B",
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [
+    {
+      "display_name": "Affordable and clean energy",
+      "score": 0.8600000143051147,
+      "id": "https://metadata.un.org/sdg/7"
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 108,
+  "referenced_works": [
+    "https://openalex.org/W29514145",
+    "https://openalex.org/W600590637",
+    "https://openalex.org/W1483519460",
+    "https://openalex.org/W1493470111",
+    "https://openalex.org/W1559459407",
+    "https://openalex.org/W1596522506",
+    "https://openalex.org/W1787604457",
+    "https://openalex.org/W1935237622",
+    "https://openalex.org/W1965771694",
+    "https://openalex.org/W1966175566",
+    "https://openalex.org/W1970747580",
+    "https://openalex.org/W1971251199",
+    "https://openalex.org/W1972858720",
+    "https://openalex.org/W1973724750",
+    "https://openalex.org/W1975093638",
+    "https://openalex.org/W1976251900",
+    "https://openalex.org/W1976499671",
+    "https://openalex.org/W1977428203",
+    "https://openalex.org/W1979046104",
+    "https://openalex.org/W1982705873",
+    "https://openalex.org/W1984683255",
+    "https://openalex.org/W1985103373",
+    "https://openalex.org/W1987372093",
+    "https://openalex.org/W1994876831",
+    "https://openalex.org/W1995506214",
+    "https://openalex.org/W1995679281",
+    "https://openalex.org/W1998107795",
+    "https://openalex.org/W2000253518",
+    "https://openalex.org/W2001997776",
+    "https://openalex.org/W2002797170",
+    "https://openalex.org/W2003298940",
+    "https://openalex.org/W2003329164",
+    "https://openalex.org/W2004607866",
+    "https://openalex.org/W2005586076",
+    "https://openalex.org/W2007618885",
+    "https://openalex.org/W2009069785",
+    "https://openalex.org/W2011414783",
+    "https://openalex.org/W2017322911",
+    "https://openalex.org/W2019723230",
+    "https://openalex.org/W2023585673",
+    "https://openalex.org/W2024106850",
+    "https://openalex.org/W2024534366",
+    "https://openalex.org/W2025786614",
+    "https://openalex.org/W2026146337",
+    "https://openalex.org/W2028702957",
+    "https://openalex.org/W2031504050",
+    "https://openalex.org/W2033858144",
+    "https://openalex.org/W2034336667",
+    "https://openalex.org/W2035266068",
+    "https://openalex.org/W2038178130",
+    "https://openalex.org/W2039519959",
+    "https://openalex.org/W2039616336",
+    "https://openalex.org/W2040690173",
+    "https://openalex.org/W2041189078",
+    "https://openalex.org/W2041902442",
+    "https://openalex.org/W2042253131",
+    "https://openalex.org/W2042587542",
+    "https://openalex.org/W2044857280",
+    "https://openalex.org/W2046249568",
+    "https://openalex.org/W2048740371",
+    "https://openalex.org/W2049020122",
+    "https://openalex.org/W2049078248",
+    "https://openalex.org/W2049475242",
+    "https://openalex.org/W2051381895",
+    "https://openalex.org/W2052378293",
+    "https://openalex.org/W2053982802",
+    "https://openalex.org/W2063187261",
+    "https://openalex.org/W2063236862",
+    "https://openalex.org/W2065615446",
+    "https://openalex.org/W2065655440",
+    "https://openalex.org/W2067041906",
+    "https://openalex.org/W2074502021",
+    "https://openalex.org/W2075320676",
+    "https://openalex.org/W2075698044",
+    "https://openalex.org/W2076539319",
+    "https://openalex.org/W2078667512",
+    "https://openalex.org/W2079199763",
+    "https://openalex.org/W2079622765",
+    "https://openalex.org/W2079642897",
+    "https://openalex.org/W2081002926",
+    "https://openalex.org/W2081254445",
+    "https://openalex.org/W2082912027",
+    "https://openalex.org/W2083178210",
+    "https://openalex.org/W2083232514",
+    "https://openalex.org/W2085822586",
+    "https://openalex.org/W2086055395",
+    "https://openalex.org/W2092777043",
+    "https://openalex.org/W2102376488",
+    "https://openalex.org/W2106140689",
+    "https://openalex.org/W2118212514",
+    "https://openalex.org/W2122199548",
+    "https://openalex.org/W2125712194",
+    "https://openalex.org/W2140319432",
+    "https://openalex.org/W2146623360",
+    "https://openalex.org/W2155524113",
+    "https://openalex.org/W2157304697",
+    "https://openalex.org/W2159135005",
+    "https://openalex.org/W2162166182",
+    "https://openalex.org/W2168606024",
+    "https://openalex.org/W2319906671",
+    "https://openalex.org/W2622203046",
+    "https://openalex.org/W3004669148",
+    "https://openalex.org/W4238924361",
+    "https://openalex.org/W4243710116",
+    "https://openalex.org/W4251649836",
+    "https://openalex.org/W4255637754",
+    "https://openalex.org/W4290802914",
+    "https://openalex.org/W4299790875"
+  ],
+  "related_works": [
+    "https://openalex.org/W2115762850",
+    "https://openalex.org/W4389047981",
+    "https://openalex.org/W3198691471",
+    "https://openalex.org/W2158346265",
+    "https://openalex.org/W2017873513",
+    "https://openalex.org/W1991730748",
+    "https://openalex.org/W1984244596",
+    "https://openalex.org/W1589839658",
+    "https://openalex.org/W2044156645",
+    "https://openalex.org/W2053913117"
+  ],
+  "abstract_inverted_index": {
+    "New": [
+      0
+    ],
+    "protein": [
+      1,
+      147,
+      192
+    ],
+    "parameters": [
+      2,
+      53,
+      73,
+      148,
+      292
+    ],
+    "are": [
+      3,
+      221,
+      271
+    ],
+    "reported": [
+      4
+    ],
+    "for": [
+      5,
+      80,
+      230,
+      248,
+      254,
+      265,
+      293,
+      302
+    ],
+    "the": [
+      6,
+      12,
+      30,
+      38,
+      43,
+      51,
+      83,
+      90,
+      112,
+      115,
+      143,
+      162,
+      181,
+      184,
+      202,
+      269,
+      287
+    ],
+    "all-atom": [
+      7,
+      291
+    ],
+    "empirical": [
+      8
+    ],
+    "energy": [
+      9,
+      62,
+      188
+    ],
+    "function": [
+      10
+    ],
+    "in": [
+      11,
+      142,
+      172,
+      175,
+      200,
+      234,
+      237,
+      284
+    ],
+    "CHARMM": [
+      13,
+      290
+    ],
+    "program.": [
+      14
+    ],
+    "The": [
+      15,
+      69,
+      86,
+      145,
+      207,
+      281
+    ],
+    "parameter": [
+      16
+    ],
+    "evaluation": [
+      17
+    ],
+    "was": [
+      18,
+      196
+    ],
+    "based": [
+      19
+    ],
+    "on": [
+      20
+    ],
+    "a": [
+      21,
+      27,
+      299,
+      306
+    ],
+    "self-consistent": [
+      22
+    ],
+    "approach": [
+      23
+    ],
+    "designed": [
+      24
+    ],
+    "to": [
+      25,
+      78,
+      154,
+      224,
+      273
+    ],
+    "achieve": [
+      26
+    ],
+    "balance": [
+      28
+    ],
+    "between": [
+      29,
+      105,
+      183,
+      241
+    ],
+    "internal": [
+      31,
+      52
+    ],
+    "(bonding)": [
+      32
+    ],
+    "and": [
+      33,
+      41,
+      46,
+      60,
+      82,
+      101,
+      107,
+      114,
+      125,
+      131,
+      135,
+      138,
+      161,
+      169,
+      174,
+      190,
+      198,
+      216,
+      232,
+      236,
+      245,
+      250,
+      257,
+      262,
+      296
+    ],
+    "interaction": [
+      34,
+      87,
+      99
+    ],
+    "(nonbonding)": [
+      35
+    ],
+    "terms": [
+      36
+    ],
+    "of": [
+      37,
+      50,
+      103,
+      128,
+      180,
+      212,
+      305,
+      309,
+      311
+    ],
+    "force": [
+      39
+    ],
+    "field": [
+      40
+    ],
+    "among": [
+      42
+    ],
+    "solvent-solvent,": [
+      44
+    ],
+    "solvent-solute,": [
+      45
+    ],
+    "solute-solute": [
+      47
+    ],
+    "interactions.": [
+      48
+    ],
+    "Optimization": [
+      49
+    ],
+    "used": [
+      54,
+      141,
+      199
+    ],
+    "experimental": [
+      55,
+      123,
+      246,
+      278
+    ],
+    "gas-phase": [
+      56
+    ],
+    "geometries,": [
+      57
+    ],
+    "vibrational": [
+      58
+    ],
+    "spectra,": [
+      59
+    ],
+    "torsional": [
+      61,
+      205
+    ],
+    "surfaces": [
+      63
+    ],
+    "supplemented": [
+      64
+    ],
+    "with": [
+      65,
+      76,
+      277,
+      286
+    ],
+    "ab": [
+      66,
+      97,
+      213
+    ],
+    "initio": [
+      67,
+      98,
+      214
+    ],
+    "results.": [
+      68
+    ],
+    "peptide": [
+      70,
+      159,
+      203
+    ],
+    "backbone": [
+      71,
+      113,
+      228
+    ],
+    "bonding": [
+      72
+    ],
+    "were": [
+      74,
+      93,
+      140,
+      149,
+      252
+    ],
+    "optimized": [
+      75
+    ],
+    "respect": [
+      77
+    ],
+    "data": [
+      79,
+      218,
+      247
+    ],
+    "N-methylacetamide": [
+      81
+    ],
+    "alanine": [
+      84,
+      185
+    ],
+    "dipeptide.": [
+      85
+    ],
+    "parameters,": [
+      88,
+      283
+    ],
+    "particularly": [
+      89
+    ],
+    "atomic": [
+      91
+    ],
+    "charges,": [
+      92
+    ],
+    "determined": [
+      94
+    ],
+    "by": [
+      95,
+      151,
+      219
+    ],
+    "fitting": [
+      96
+    ],
+    "energies": [
+      100,
+      127
+    ],
+    "geometries": [
+      102
+    ],
+    "complexes": [
+      104
+    ],
+    "water": [
+      106
+    ],
+    "model": [
+      108
+    ],
+    "compounds": [
+      109
+    ],
+    "that": [
+      110,
+      210,
+      268
+    ],
+    "represented": [
+      111
+    ],
+    "various": [
+      116
+    ],
+    "side": [
+      117
+    ],
+    "chains.": [
+      118
+    ],
+    "In": [
+      119
+    ],
+    "addition,": [
+      120
+    ],
+    "dipole": [
+      121
+    ],
+    "moments,": [
+      122
+    ],
+    "heats": [
+      124
+    ],
+    "free": [
+      126
+    ],
+    "vaporization,": [
+      129
+    ],
+    "solvation": [
+      130
+    ],
+    "sublimation,": [
+      132
+    ],
+    "molecular": [
+      133,
+      242
+    ],
+    "volumes,": [
+      134
+    ],
+    "crystal": [
+      136,
+      279
+    ],
+    "pressures": [
+      137
+    ],
+    "structures": [
+      139
+    ],
+    "optimization.": [
+      144
+    ],
+    "resulting": [
+      146
+    ],
+    "tested": [
+      150
+    ],
+    "applying": [
+      152
+    ],
+    "them": [
+      153
+    ],
+    "noncyclic": [
+      155
+    ],
+    "tripeptide": [
+      156
+    ],
+    "crystals,": [
+      157,
+      160
+    ],
+    "cyclic": [
+      158
+    ],
+    "proteins": [
+      163,
+      233,
+      251
+    ],
+    "crambin,": [
+      164
+    ],
+    "bovine": [
+      165
+    ],
+    "pancreatic": [
+      166
+    ],
+    "trypsin": [
+      167
+    ],
+    "inhibitor,": [
+      168
+    ],
+    "carbonmonoxy": [
+      170
+    ],
+    "myoglobin": [
+      171
+    ],
+    "vacuo": [
+      173
+    ],
+    "crystals.": [
+      176,
+      238
+    ],
+    "A": [
+      177
+    ],
+    "detailed": [
+      178
+    ],
+    "analysis": [
+      179
+    ],
+    "relationship": [
+      182
+    ],
+    "dipeptide": [
+      186
+    ],
+    "potential": [
+      187
+    ],
+    "surface": [
+      189
+    ],
+    "calculated": [
+      191
+    ],
+    "φ,": [
+      193
+    ],
+    "χ": [
+      194
+    ],
+    "angles": [
+      195
+    ],
+    "made": [
+      197
+    ],
+    "optimizing": [
+      201
+    ],
+    "group": [
+      204
+    ],
+    "parameters.": [
+      206
+    ],
+    "results": [
+      208
+    ],
+    "demonstrate": [
+      209,
+      267
+    ],
+    "use": [
+      211
+    ],
+    "structural": [
+      215,
+      256
+    ],
+    "energetic": [
+      217
+    ],
+    "themselves": [
+      220
+    ],
+    "not": [
+      222
+    ],
+    "sufficient": [
+      223
+    ],
+    "obtain": [
+      225,
+      274
+    ],
+    "an": [
+      226
+    ],
+    "adequate": [
+      227
+    ],
+    "representation": [
+      229
+    ],
+    "peptides": [
+      231
+    ],
+    "solution": [
+      235
+    ],
+    "Extensive": [
+      239
+    ],
+    "comparisons": [
+      240,
+      276
+    ],
+    "dynamics": [
+      243,
+      263
+    ],
+    "simulations": [
+      244,
+      264,
+      304
+    ],
+    "polypeptides": [
+      249
+    ],
+    "performed": [
+      253
+    ],
+    "both": [
+      255
+    ],
+    "dynamic": [
+      258
+    ],
+    "properties.": [
+      259
+    ],
+    "Energy": [
+      260
+    ],
+    "minimization": [
+      261
+    ],
+    "crystals": [
+      266
+    ],
+    "latter": [
+      270
+    ],
+    "needed": [
+      272
+    ],
+    "meaningful": [
+      275
+    ],
+    "structures.": [
+      280
+    ],
+    "presented": [
+      282
+    ],
+    "combination": [
+      285
+    ],
+    "previously": [
+      288
+    ],
+    "published": [
+      289
+    ],
+    "nucleic": [
+      294
+    ],
+    "acids": [
+      295
+    ],
+    "lipids,": [
+      297
+    ],
+    "provide": [
+      298
+    ],
+    "consistent": [
+      300
+    ],
+    "set": [
+      301
+    ],
+    "condensed-phase": [
+      303
+    ],
+    "wide": [
+      307
+    ],
+    "variety": [
+      308
+    ],
+    "molecules": [
+      310
+    ],
+    "biological": [
+      312
+    ],
+    "interest.": [
+      313
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 130
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 526
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 542
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 566
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 580
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 702
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 663
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 624
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 741
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 744
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 746
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 743
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 769
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 788
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 699
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2025-10-10T00:00:00"
+}

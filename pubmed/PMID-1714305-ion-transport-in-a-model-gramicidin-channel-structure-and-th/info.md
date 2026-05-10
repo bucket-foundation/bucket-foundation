@@ -1,0 +1,14 @@
+# Ion transport in a model gramicidin channel. Structure and thermodynamics.
+
+- **PMID**: 1714305
+- **DOI**: 10.1016/S0006-3495(91)82311-6
+- **PMCID**: PMC1281331 (full-text saved)
+- **Journal**: Biophysical journal  ·  **Year**: 1991
+- **Authors**: B Roux, M Karplus
+- **MeSH**: Amino Acid Sequence, Computer Simulation, Gramicidin, Hydrogen Bonding, Ion Channels, Mathematics, Models, Biological, Models, Molecular, Molecular Sequence Data, Protein Conformation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1714305/
+- **Captured**: 2026-05-10T11:19:39
+
+## Abstract
+
+The potential of mean force for Na+ and K+ ions as a function of position in the interior of a periodic poly(L,D)-alanine model for the gramicidin beta-helix is calculated with a detailed atomic model and realistic interactions. The calculated free energy barriers are 4.5 kcal/mol for Na+ and 1.0 kcal/mol for K+. A decomposition of the free energy demonstrates that the water molecules make a significant contribution to the free energy of activation. There is an increase in entropy at the transition state associated with greater fluctuations. Analysis reveals that the free energy profile of ions in the periodic channel is controlled not by the large interaction energy involving the ion but rather by the weaker water-water, water-peptide and peptide-peptide hydrogen bond interactions. The interior of the channel retains much of the solvation properties of a liquid in its interactions with the cations. Of particular importance is the flexibility of the helix, which permits it to respond to the presence of an ion in a fluidlike manner. The distortion of the helix is local (limited to a few carbonyls) because the structure is too flexible to transmit a perturbation to large distances. The plasticity of the structure (i.e., the property to deform without generating a large energy stress) appears to be an essential factor in the transport of ions, suggesting that a rigid helix model would be inappropriate.
