@@ -5,8 +5,8 @@
 - **Channel**: Luke Lamy — https://www.youtube.com/channel/UCDorcPvFu0FVriQC9kN87Ag
 - **Uploaded**: 20230914
 - **Duration**: 1:17:57 (4677s)
-- **Views**: 38254  ·  **Likes**: 1376
-- **Captured**: 2026-05-10T10:20:21
+- **Views**: 38260  ·  **Likes**: 1377
+- **Captured**: 2026-05-10T11:56:19
 
 ## Description
 
