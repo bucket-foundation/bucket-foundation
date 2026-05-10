@@ -1,0 +1,14 @@
+# We know DAAs work, so now what? Simplifying models of care to enhance the hepatitis C cascade.
+
+- **PMID**: 31472002
+- **DOI**: 10.1111/joim.12972
+- **PMCID**:  
+- **Journal**: Journal of internal medicine  ·  **Year**: 2019
+- **Authors**: J V Lazarus, J M Pericàs, C Picchio, J Cernosa, M Hoekstra, N Luhmann, M Maticic, P Read, E M Robinson, J F Dillon
+- **MeSH**: Critical Pathways, Delivery of Health Care, Hepatitis C, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31472002/
+- **Captured**: 2026-05-10T16:51:04
+
+## Abstract
+
+Globally, some 71 million people are chronically infected with hepatitis C virus (HCV). Marginalized populations, particularly people who inject drugs (PWID), have low testing, linkage to care and treatment rates for HCV. Several models of care (MoCs) and service delivery interventions have the potential to improve outcomes across the HCV cascade of care, but much of the relevant research was carried out when interferon-based treatment was the standard of care. Often it was not practical to scale-up these earlier models and interventions because the clinical care needs of patients taking interferon-based regimens imposed too much of a financial and human resource burden on health systems. Despite the adoption of highly effective, all-oral direct-acting antiviral (DAA) therapies in recent years, approaches to HCV testing and treatment have evolved slowly and often remain rooted in earlier paradigms. The effectiveness of DAAs allows for simpler approaches and has encouraged countries where the drugs are widely available to set their sights on the ambitious World Health Organization (WHO) HCV elimination targets. Since a large proportion of chronically HCV-infected people are not currently accessing treatment, there is an urgent need to identify and implement existing simplified MoCs that speak to specific populations' needs. This article aims to: (i) review the evidence on MoCs for HCV; and (ii) distil the findings into recommendations for how stakeholders can simplify the path taken by chronically HCV-infected individuals from testing to cure and subsequent care and monitoring.

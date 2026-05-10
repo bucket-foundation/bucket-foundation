@@ -1,0 +1,14 @@
+# Preeclampsia after Kidney Transplantation: Rates and Association with Graft Survival and Function.
+
+- **PMID**: 37099453
+- **DOI**: 10.1111/ajo.12399
+- **PMCID**: PMC9299975 (full-text saved)
+- **Journal**: Clinical journal of the American Society of Nephrology : CJASN  ·  **Year**: 2023
+- **Authors**: Joe Lu, Erandi Hewawasam, Christopher E Davies, Philip A Clayton, Stephen P McDonald, Shilpanjali Jesudason
+- **MeSH**: Humans, Kidney Transplantation, Female, Pregnancy, Pre-Eclampsia, Adult, Retrospective Studies, Graft Survival, Australia, Registries
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37099453/
+- **Captured**: 2026-05-10T16:52:11
+
+## Abstract
+
+Transplanted women have high rates of preeclampsia. However, determinants of preeclampsia and association with graft survival and function remain uncertain. We aimed to determine rates of preeclampsia and its association with kidney transplant survival and function. This was a retrospective cohort study analyzing postkidney transplantation pregnancies (≥20 weeks gestation) from the Australia and New Zealand Dialysis and Transplant Registry (2000-2021). Graft survival was assessed in three models accounting for repeated pregnancies and episodes of preeclampsia. Preeclampsia status was captured in 357 of 390 pregnancies and occurred in 133 pregnancies (37%). The percentage of pregnancies reported to have preeclampsia rose from 27% in 2000-2004 to 48% from 2018 to 2021. Reported prior exposure to calcineurin inhibitors was high overall and higher in women who had preeclampsia (97% versus 88%, P = 0.005). Seventy-two (27%) graft failures were identified after a pregnancy, with a median follow-up of 8.08 years. Although women with preeclampsia had higher median preconception serum creatinine concentration (1.24 [interquartile range, 1.00-1.50] versus 1.13 [0.99-1.36] mg/dl; P = 0.02), in all survival models, preeclampsia was not associated with higher death-censored graft failure. In multivariable analysis of maternal factors (age, body mass index, primary kidney disease and transplant-pregnancy interval, preconception serum creatinine concentration, era of birth event, and tacrolimus or cyclosporin exposure), only era and preconception serum creatinine concentration ≥1.24 mg/dl (odds ratio, 2.48; 95% confidence interval [CI], 1.19 to 5.18) were associated with higher preeclampsia risk. Both preconception eGFR <45 ml/min per 1.73 m 2 (adjusted hazard ratio [HR], 5.55; 95% CI, 3.27 to 9.44, P < 0.001) and preconception serum creatinine concentration ≥1.24 mg/dl (adjusted HR, 3.06; 95% CI, 1.77 to 5.27, P < 0.001) were associated with a higher risk of graft failure even after adjusting for maternal characteristics. In this large and contemporaneous registry cohort, preeclampsia was not associated with worse graft survival or function. Preconception kidney function was the main determinant of graft survival.

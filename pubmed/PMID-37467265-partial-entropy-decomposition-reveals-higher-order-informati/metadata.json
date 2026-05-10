@@ -1,0 +1,24 @@
+{
+  "pmid": "37467265",
+  "title": "Partial entropy decomposition reveals higher-order information structures in human brain activity.",
+  "abstract": "The standard approach to modeling the human brain as a complex system is with a network, where the basic unit of interaction is a pairwise link between two brain regions. While powerful, this approach is limited by the inability to assess higher-order interactions involving three or more elements directly. In this work, we explore a method for capturing higher-order dependencies in multivariate data: the partial entropy decomposition (PED). Our approach decomposes the joint entropy of the whole system into a set of nonnegative atoms that describe the redundant, unique, and synergistic interactions that compose the system's structure. PED gives insight into the mathematics of functional connectivity and its limitation. When applied to resting-state fMRI data, we find robust evidence of higher-order synergies that are largely invisible to standard functional connectivity analyses. Our approach can also be localized in time, allowing a frame-by-frame analysis of how the distributions of redundancies and synergies change over the course of a recording. We find that different ensembles of regions can transiently change from being redundancy-dominated to synergy-dominated and that the temporal pattern is structured in time. These results provide strong evidence that there exists a large space of unexplored structures in human brain data that have been largely missed by a focus on bivariate network connectivity models. This synergistic structure is dynamic in time and likely will illuminate interesting links between brain and behavior. Beyond brain-specific application, the PED provides a very general approach for understanding higher-order structures in a variety of complex systems.",
+  "authors": [
+    "Thomas F Varley",
+    "Maria Pope",
+    "Maria Grazia Puxeddu",
+    "Joshua Faskowitz",
+    "Olaf Sporns"
+  ],
+  "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+  "year": "2023",
+  "doi": "10.1162/netn_a_00321",
+  "pmcid": "PMC9319160",
+  "mesh": [
+    "Humans",
+    "Entropy",
+    "Brain",
+    "Brain Mapping",
+    "Magnetic Resonance Imaging",
+    "Rest"
+  ]
+}

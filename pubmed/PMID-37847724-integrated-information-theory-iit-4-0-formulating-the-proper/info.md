@@ -1,0 +1,14 @@
+# Integrated information theory (IIT) 4.0: Formulating the properties of phenomenal existence in physical terms.
+
+- **PMID**: 37847724
+- **DOI**: 10.3390/e21050493
+- **PMCID**: PMC7514983 (full-text saved)
+- **Journal**: PLoS computational biology  ·  **Year**: 2023
+- **Authors**: Larissa Albantakis, Leonardo Barbosa, Graham Findlay, Matteo Grasso, Andrew M Haun, William Marshall, William G P Mayner, Alireza Zaeemzadeh, Melanie Boly, Bjørn E Juel, Shuntaro Sasai, Keiko Fujii, Isaac David, Jeremiah Hendren, Jonathan P Lang, Giulio Tononi
+- **MeSH**: Brain, Information Theory, Models, Neurological, Consciousness
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37847724/
+- **Captured**: 2026-05-10T16:52:56
+
+## Abstract
+
+This paper presents Integrated Information Theory (IIT) 4.0. IIT aims to account for the properties of experience in physical (operational) terms. It identifies the essential properties of experience (axioms), infers the necessary and sufficient properties that its substrate must satisfy (postulates), and expresses them in mathematical terms. In principle, the postulates can be applied to any system of units in a state to determine whether it is conscious, to what degree, and in what way. IIT offers a parsimonious explanation of empirical evidence, makes testable predictions concerning both the presence and the quality of experience, and permits inferences and extrapolations. IIT 4.0 incorporates several developments of the past ten years, including a more accurate formulation of the axioms as postulates and mathematical expressions, the introduction of a unique measure of intrinsic information that is consistent with the postulates, and an explicit assessment of causal relations. By fully unfolding a system's irreducible cause-effect power, the distinctions and relations specified by a substrate can account for the quality of experience.

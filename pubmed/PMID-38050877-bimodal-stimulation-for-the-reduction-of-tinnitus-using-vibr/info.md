@@ -1,0 +1,14 @@
+# Bimodal Stimulation for the Reduction of Tinnitus Using Vibration on the Skin.
+
+- **PMID**: 38050877
+- **DOI**: 10.5935/0946-5448.20230001
+- **PMCID**:  
+- **Journal**: The international tinnitus journal  ·  **Year**: 2023
+- **Authors**: Michael V Perrotta, Izzy Kohler, David M Eagleman
+- **MeSH**: Adult, Humans, Tinnitus, Vibration, Sound
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38050877/
+- **Captured**: 2026-05-10T16:53:06
+
+## Abstract
+
+Tinnitus (ringing in the ears) affects 1 in 10 adults in the United States, often with damaging psychological consequences. Currently, there exists no cure for most forms of tinnitus. Recently, bimodal stimulation - the pairing of sounds with haptic stimulation - has shown efficacy in reducing the symptoms of tinnitus. Previous bimodal stimulation approaches have used electrical shocks on the tongue, a technique that requires daily in-person sessions at an audiologist's office. We here show that excellent results can be achieved wearing a wristband with multiple vibratory motors. Tones are played and the wristband correspondingly vibrates the wrist of the user at different spatial locations depending on the frequency of the tone. We compared the experimental group with a control group who listened to the tones but did not wear the wristband. The tone frequencies were centered on each user's tinnitus frequency and the tones were randomized both in frequency and duration. 45 participants with Tinnitus Functional Index (TFI) scores of 25 and above were tested. Results show a significantly greater reduction in TFI scores for the experimental group compared to the control. Importantly, with higher baseline severity we find larger differences between the experimental and control groups, revealing greater symptom improvement for those with severe tinnitus. The therapeutic approach of combining sounds with spatiallyand temporally-correlated vibrations on the wrist is found to be a simple, time-efficient, and effective procedure to lessen the symptoms of tinnitus.

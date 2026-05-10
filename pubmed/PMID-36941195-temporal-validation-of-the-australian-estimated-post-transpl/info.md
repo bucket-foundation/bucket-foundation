@@ -1,0 +1,14 @@
+# Temporal validation of the Australian estimated post-transplant survival score.
+
+- **PMID**: 36941195
+- **DOI**: 10.1111/nep.14158
+- **PMCID**:  
+- **Journal**: Nephrology (Carlton, Vic.)  ·  **Year**: 2023
+- **Authors**: G L Irish, S Campbell, J Kanellis, Kate Wyburn, Philip A Clayton
+- **MeSH**: Adult, Humans, United States, Renal Dialysis, Australia, Kidney Transplantation, Tissue Donors, Diabetes Mellitus, Graft Survival, Registries
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36941195/
+- **Captured**: 2026-05-10T16:51:59
+
+## Abstract
+
+The Australian estimated post-transplant survival (EPTS-AU) prediction score was developed by re-fitting the United States of America EPTS, without diabetes, to the Australian and New Zealand kidney transplant population over 2002-2013. The EPTS-AU score incorporates age, previous transplantation and time on dialysis. Diabetes was excluded from the score, as this was not previously recorded in the Australian allocation system. In May 2021, the EPTS-AU prediction score was incorporated into the Australian kidney allocation algorithm to optimize utility for recipients (maximized benefit). We aimed to temporally validate the EPTS-AU prediction score to ensure it can be used for this purpose. Using the Australia and New Zealand Dialysis and Transplant (ANZDATA) Registry, we included adult recipients of deceased donor kidney-only transplants between 2014 and 2021. We constructed Cox models for patient survival. We assessed validation using measures of model fit (Akaike information criterion and misspecification), discrimination (Harrell's C statistic and Kaplan-Meier curves), and calibration (observed vs. predicted survival). Six thousand four hundred and two recipients were included in the analysis. The EPTS-AU had moderate discrimination with a C statistic of 0.69 (95% CI 0.67, 0.71), and clear delineation between Kaplan-Meier's survival curves of EPTS-AU. The EPTS was well calibrated with the predicted survivals equating with the observed survival outcomes for all prognostic groups. The EPTS-AU performs reasonably well in choosing between recipients (discrimination) and to predict a recipient's survival (calibration). Reassuringly, the score is functioning as intended to predict post-transplant survival for recipients as part of the national allocation algorithm.

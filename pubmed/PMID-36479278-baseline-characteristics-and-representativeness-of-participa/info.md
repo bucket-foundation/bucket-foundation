@@ -1,0 +1,14 @@
+# Baseline Characteristics and Representativeness of Participants in the BEST-Fluids Trial: A Randomized Trial of Balanced Crystalloid Solution Versus Saline in Deceased Donor Kidney Transplantation.
+
+- **PMID**: 36479278
+- **DOI**: 10.1097/TXD.0000000000001399
+- **PMCID**: PMC5042675 (full-text saved)
+- **Journal**: Transplantation direct  ·  **Year**: 2022
+- **Authors**: Michael G Collins, Magid A Fahim, Elaine M Pascoe, Carmel M Hawley, David W Johnson, Julie Varghese, Laura E Hickey, Philip A Clayton, John S Gill, Kathryn B Dansie, Rachael C McConnochie, Liza A Vergara, Charani Kiriwandeniya, Donna Reidlinger, Peter F Mount, Laurence Weinberg, Colin J McArthur, P Toby Coates, Zoltan H Endre, David Goodman, Kirsten Howard, Martin Howell, Jagadish S Jamboti, John Kanellis, Jerome M Laurence, Wai H Lim, Steven J McTaggart, Philip J O'Connell, Helen L Pilmore, Germaine Wong, Steven J Chadban
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36479278/
+- **Captured**: 2026-05-10T16:51:25
+
+## Abstract
+
+Delayed graft function (DGF) is a major complication of deceased donor kidney transplantation. Saline (0.9% sodium chloride) is a commonly used intravenous fluid in transplantation but may increase the risk of DGF because of its high chloride content. Better Evidence for Selecting Transplant Fluids (BEST-Fluids), a pragmatic, registry-based, double-blind, randomized trial, sought to determine whether using a balanced low-chloride crystalloid solution (Plasma-Lyte 148) instead of saline would reduce DGF. We sought to evaluate the generalizability of the trial cohort by reporting the baseline characteristics and representativeness of the trial participants in detail. We compared the characteristics of BEST-Fluids participants with those of a contemporary cohort of deceased donor kidney transplant recipients in Australia and New Zealand using data from the Australia and New Zealand Dialysis and Transplant Registry. To explore potential international differences, we compared trial participants with a cohort of transplant recipients in the United States using data from the Scientific Registry of Transplant Recipients. During the trial recruitment period, 2373 deceased donor kidney transplants were performed in Australia and New Zealand; 2178 were eligible' and 808 were enrolled in BEST-Fluids. Overall, trial participants and nonparticipants were similar at baseline. Trial participants had more coronary artery disease (standardized difference [d] = 0.09;  BEST-Fluids participants had more comorbidities and received slightly fewer high-risk deceased donor kidneys but were otherwise representative of Australian and New Zealand transplant recipients and were generally similar to US recipients. The trial results should be broadly applicable to deceased donor kidney transplantation practice worldwide.

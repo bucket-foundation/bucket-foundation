@@ -1,0 +1,14 @@
+# Neuroscience needs Network Science.
+
+- **PMID**: 37214134
+- **DOI**: 10.1016/j.cell.2022.06.031
+- **PMCID**: PMC9342916 (full-text saved)
+- **Journal**: ArXiv  ·  **Year**: 2023
+- **Authors**: Dániel L Barabási, Ginestra Bianconi, Ed Bullmore, Mark Burgess, SueYeon Chung, Tina Eliassi-Rad, Dileep George, István A Kovács, Hernán Makse, Christos Papadimitriou, Thomas E Nichols, Olaf Sporns, Kim Stachenfeld, Zoltán Toroczkai, Emma K Towlson, Anthony M Zador, Hongkui Zeng, Albert-László Barabási, Amy Bernard, György Buzsáki
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37214134/
+- **Captured**: 2026-05-10T16:52:16
+
+## Abstract
+
+The brain is a complex system comprising a myriad of interacting elements, posing significant challenges in understanding its structure, function, and dynamics. Network science has emerged as a powerful tool for studying such intricate systems, offering a framework for integrating multiscale data and complexity. Here, we discuss the application of network science in the study of the brain, addressing topics such as network models and metrics, the connectome, and the role of dynamics in neural networks. We explore the challenges and opportunities in integrating multiple data streams for understanding the neural transitions from development to healthy function to disease, and discuss the potential for collaboration between network science and neuroscience communities. We underscore the importance of fostering interdisciplinary opportunities through funding initiatives, workshops, and conferences, as well as supporting students and postdoctoral fellows with interests in both disciplines. By uniting the network science and neuroscience communities, we can develop novel network-based methods tailored to neural circuits, paving the way towards a deeper understanding of the brain and its functions.

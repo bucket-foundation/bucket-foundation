@@ -1,0 +1,14 @@
+# Guillain-Barré Syndrome and COVID-19 Vaccine: A Multicenter Retrospective Study of 46 Cases.
+
+- **PMID**: 37611264
+- **DOI**: 10.1097/CND.0000000000000437
+- **PMCID**:  
+- **Journal**: Journal of clinical neuromuscular disease  ·  **Year**: 2023
+- **Authors**: Juan Ignacio Castiglione, José Manuel Crespo, Mariana Bendersky, Facundo Oscar Silveira, Lucila Lecchini, María Belén Luis, Francisco Caiza Zambrano, Norberto Cotti, Conrado J Simison, Florencia Aguirre, María Agustina Piedrabuena, Ricardo Nicolás Alonso, Carolina Laura Azcona, Pablo Sebastian Sosa, Evangelina Maldonado, Francisco Varela, Mariela Bettini, Roberto D Rey, Luciana León Cejas, Marcelo Rugiero, Ricardo Reisin, Fabio Barroso
+- **MeSH**: Humans, COVID-19 Vaccines, COVID-19, Guillain-Barre Syndrome, Retrospective Studies, Paresthesia
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37611264/
+- **Captured**: 2026-05-10T16:52:39
+
+## Abstract
+
+In the context of the global vaccination campaign against COVID-19, several cases of postvaccinal Guillain-Barré syndrome (GBS) were reported. Whether a causal relationship exists between these events has yet to be established. We investigated the clinical and electromyographic characteristics of patients who developed GBS after COVID-19 vaccination and compare these with findings in patients with GBS, without a history of recent vaccination. We included 91 cases between March 2020 and March 2022, treated at 10 referral hospitals of Buenos Aires, Argentina. Of these, 46 had received vaccination against COVID-19 within the previous month. Although Medical Research Council sum-scores were similar in both groups (median 52 vs. 50; P = 0.4), cranial nerve involvement was significantly more frequent in the postvaccination group (59% vs. 38%; P = 0.02), as was bilateral facial paralysis (57% vs. 24%; P = 0.002). No differences were found in clinical or neurophysiological phenotypes, although 17 subjects presented the variant of bilateral facial palsy with paresthesias (11 vs. 6; P = 0.1); nor were significant differences observed in length of hospital stay or mortality rates. Future vaccine safety monitoring and epidemiology studies are essential to demonstrate any potential causal relationship between these events.

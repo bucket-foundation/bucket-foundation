@@ -1,0 +1,14 @@
+# Online group music therapy: proactive management of undergraduate students' stress and anxiety.
+
+- **PMID**: 37151974
+- **DOI**: 10.1177/0706743716640752
+- **PMCID**: PMC5564891 (full-text saved)
+- **Journal**: Frontiers in psychiatry  ·  **Year**: 2023
+- **Authors**: Rachael Finnerty, Sean McWeeny, Laurel Trainor
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37151974/
+- **Captured**: 2026-05-10T16:52:14
+
+## Abstract
+
+In alignment with the World Health Organization's (WHO) goal to provide comprehensive and integrated mental health services in community-based settings, this randomized control trial explored the efficacy of online group music therapy as a proactive intervention for reducing stress and anxiety in university students who do not necessarily have a diagnosis. The study took place during COVID-19 restrictions. Students who volunteered were randomly assigned to 6 weeks of weekly (1) online active group music therapy, (2) online receptive group music therapy, (3) online group verbal therapy (standard of care), or (4) no-intervention (control group). Students rated their stress (Likert scale) and anxiety [State-Trait Anxiety Inventory, State version (STAI-S)], and provided heart rate variability (HRV) using a phone app, pre and post each therapy session. STAI-S and Likert stress scores significantly reduced from pre to post 45-min online music therapy sessions, with moderate evidence that these changes did not differ from the standard of care (verbal therapy). HRV results were not analyzed statistically as HRV collection was likely compromised due to challenges of remote collection. Students completed the Perceived Stress Scale (PSS) and provided a hair sample for cortisol analysis before and after the 6-week intervention. Changes in stress from week 1 to week 6 were not observed in the PSS measure; however, cortisol increased significantly in the control group as the term progressed, while it remained relatively stable in the therapy groups, suggesting therapy may lead to greater control of stress. Of participants' demographic characteristics, music sophistication, personality, and changes in quality of life, only the personality trait of conscientiousness correlated significantly with PSS, suggesting online group therapy may be beneficial for a wide range of university students. The results suggest group music therapy can be as effective as group verbal therapy. Further, the study indicates that online delivery can be achieved effectively, supporting the idea that remote therapy may be a viable option for other populations. While the study should be replicated with a larger multi-site sample, it provides one example toward achieving a health-promoting culture on university campuses, consistent with the mental health goals of the Okanagan Charter.

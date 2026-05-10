@@ -1,0 +1,14 @@
+# Information-processing dynamics in neural networks of macaque cerebral cortex reflect cognitive state and behavior.
+
+- **PMID**: 36603032
+- **DOI**: 10.1146/annurev-neuro-092619-094115
+- **PMCID**: PMC6605125 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2023
+- **Authors**: Thomas F Varley, Olaf Sporns, Stefan Schaffelhofer, Hansjörg Scherberger, Benjamin Dann
+- **MeSH**: Animals, Motor Cortex, Macaca mulatta, Parietal Lobe, Cognition, Neural Networks, Computer, Cerebral Cortex
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36603032/
+- **Captured**: 2026-05-10T16:51:36
+
+## Abstract
+
+One of the essential functions of biological neural networks is the processing of information. This includes everything from processing sensory information to perceive the environment, up to processing motor information to interact with the environment. Due to methodological limitations, it has been historically unclear how information processing changes during different cognitive or behavioral states and to what extent information is processed within or between the network of neurons in different brain areas. In this study, we leverage recent advances in the calculation of information dynamics to explore neural-level processing within and between the frontoparietal areas AIP, F5, and M1 during a delayed grasping task performed by three macaque monkeys. While information processing was high within all areas during all cognitive and behavioral states of the task, interareal processing varied widely: During visuomotor transformation, AIP and F5 formed a reciprocally connected processing unit, while no processing was present between areas during the memory period. Movement execution was processed globally across all areas with predominance of processing in the feedback direction. Furthermore, the fine-scale network structure reconfigured at the neuron level in response to different grasping conditions, despite no differences in the overall amount of information present. These results suggest that areas dynamically form higher-order processing units according to the cognitive or behavioral demand and that the information-processing network is hierarchically organized at the neuron level, with the coarse network structure determining the behavioral state and finer changes reflecting different conditions.

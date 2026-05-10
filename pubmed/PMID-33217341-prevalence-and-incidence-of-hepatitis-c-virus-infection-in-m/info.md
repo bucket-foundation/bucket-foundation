@@ -1,0 +1,14 @@
+# Prevalence and incidence of hepatitis C virus infection in men who have sex with men: a systematic review and meta-analysis.
+
+- **PMID**: 33217341
+- **DOI**: 10.1016/S2468-1253(20)30303-4
+- **PMCID**:  
+- **Journal**: The lancet. Gastroenterology & hepatology  ·  **Year**: 2021
+- **Authors**: Fengyi Jin, Gregory J Dore, Gail Matthews, Niklas Luhmann, Virginia Macdonald, Sahar Bajis, Rachel Baggaley, Bradley Mathers, Annette Verster, Andrew E Grulich
+- **MeSH**: HIV Infections, Hepatitis C, Humans, Incidence, Male, Prevalence, Risk Factors, Sexual and Gender Minorities
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33217341/
+- **Captured**: 2026-05-10T16:51:10
+
+## Abstract
+
+WHO has set targets for hepatitis C virus (HCV) elimination by 2030. We did a global systematic review of HCV prevalence and incidence in men who have sex with men (MSM) to provide updated estimates that can guide community education and public health policy. We did a systematic review and meta-analysis of studies published and listed on MEDLINE or Embase between Jan 1, 2000, and Oct 31, 2019, including conference proceedings. Studies were eligible if they reported measures of HCV prevalence or HCV incidence (or both) among MSM. Studies that relied on participants' self-reported HCV status with no laboratory confirmation were excluded. Pooled HCV estimates in MSM were stratified by HIV status and by injecting drug use, then by WHO region and by income level. Random-effects meta-analysis was done to account for between-study heterogeneity and examined using the I Of 1221 publications identified, 194 were deemed to be eligible and included in the systematic review and meta-analysis. Overall, the pooled HCV prevalence in MSM was 3·4% (95% CI 2·8-4·0; I HIV-positive MSM are at substantially increased risk of HCV. Overall, HIV-negative MSM had a slightly higher prevalence of HCV than the general population but had a lower prevalence than HIV-positive MSM. High HCV incidence in more recent PrEP studies suggests that as PrEP use increases, greater HCV transmission might occur. HCV burden in MSM varies considerably by region, which is likely to be associated with variation in the prevalence of injecting drug use and HIV. World Health Organization.

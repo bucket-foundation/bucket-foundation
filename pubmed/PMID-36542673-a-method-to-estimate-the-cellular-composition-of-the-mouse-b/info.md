@@ -1,0 +1,14 @@
+# A method to estimate the cellular composition of the mouse brain from heterogeneous datasets.
+
+- **PMID**: 36542673
+- **DOI**: 10.1523/JNEUROSCI.1869-10.2010
+- **PMCID**: PMC3025500 (full-text saved)
+- **Journal**: PLoS computational biology  ·  **Year**: 2022
+- **Authors**: Dimitri Rodarie, Csaba Verasztó, Yann Roussel, Michael Reimann, Daniel Keller, Srikanth Ramaswamy, Henry Markram, Marc-Oliver Gewaltig
+- **MeSH**: Mice, Animals, Mice, Transgenic, Neurons, Vasoactive Intestinal Peptide, Brain, Cell Count, Interneurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36542673/
+- **Captured**: 2026-05-10T16:51:29
+
+## Abstract
+
+The mouse brain contains a rich diversity of inhibitory neuron types that have been characterized by their patterns of gene expression. However, it is still unclear how these cell types are distributed across the mouse brain. We developed a computational method to estimate the densities of different inhibitory neuron types across the mouse brain. Our method allows the unbiased integration of diverse and disparate datasets into one framework to predict inhibitory neuron densities for uncharted brain regions. We constrained our estimates based on previously computed brain-wide neuron densities, gene expression data from in situ hybridization image stacks together with a wide range of values reported in the literature. Using constrained optimization, we derived coherent estimates of cell densities for the different inhibitory neuron types. We estimate that 20.3% of all neurons in the mouse brain are inhibitory. Among all inhibitory neurons, 18% predominantly express parvalbumin (PV), 16% express somatostatin (SST), 3% express vasoactive intestinal peptide (VIP), and the remainder 63% belong to the residual GABAergic population. We find that our density estimations improve as more literature values are integrated. Our pipeline is extensible, allowing new cell types or data to be integrated as they become available. The data, algorithms, software, and results of our pipeline are publicly available and update the Blue Brain Cell Atlas. This work therefore leverages the research community to collectively converge on the numbers of each cell type in each brain region.

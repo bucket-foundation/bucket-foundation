@@ -1,0 +1,14 @@
+# The modulation of emotional and social behaviors by oxytocin signaling in limbic network.
+
+- **PMID**: 36466805
+- **DOI**: 10.1371/journal.pone.0145638
+- **PMCID**: PMC4229574 (full-text saved)
+- **Journal**: Frontiers in molecular neuroscience  ·  **Year**: 2022
+- **Authors**: Rodrigo Triana-Del Rio, Sayali Ranade, Jahel Guardado, Joseph LeDoux, Eric Klann, Prerana Shrestha
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36466805/
+- **Captured**: 2026-05-10T16:51:25
+
+## Abstract
+
+Neuropeptides can exert volume modulation in neuronal networks, which account for a well-calibrated and fine-tuned regulation that depends on the sensory and behavioral contexts. For example, oxytocin (OT) and oxytocin receptor (OTR) trigger a signaling pattern encompassing intracellular cascades, synaptic plasticity, gene expression, and network regulation, that together function to increase the signal-to-noise ratio for sensory-dependent stress/threat and social responses. Activation of OTRs in emotional circuits within the limbic forebrain is necessary to acquire stress/threat responses. When emotional memories are retrieved, OTR-expressing cells act as gatekeepers of the threat response choice/discrimination. OT signaling has also been implicated in modulating social-exposure elicited responses in the neural circuits within the limbic forebrain. In this review, we describe the cellular and molecular mechanisms that underlie the neuromodulation by OT, and how OT signaling in specific neural circuits and cell populations mediate stress/threat and social behaviors. OT and downstream signaling cascades are heavily implicated in neuropsychiatric disorders characterized by emotional and social dysregulation. Thus, a mechanistic understanding of downstream cellular effects of OT in relevant cell types and neural circuits can help design effective intervention techniques for a variety of neuropsychiatric disorders.

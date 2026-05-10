@@ -1,0 +1,14 @@
+# Cross-Modal Sensory Boosting to Improve High-Frequency Hearing Loss: Device Development and Validation.
+
+- **PMID**: 38345294
+- **DOI**: 10.1097/AUD.0000000000000229
+- **PMCID**: PMC4767560 (full-text saved)
+- **Journal**: JMIRx med  ·  **Year**: 2024
+- **Authors**: Izzy Kohler, Michael V Perrotta, Tiago Ferreira, David M Eagleman
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38345294/
+- **Captured**: 2026-05-10T16:53:11
+
+## Abstract
+
+High-frequency hearing loss is one of the most common problems in the aging population and with those who have a history of exposure to loud noises. This type of hearing loss can be frustrating and disabling, making it difficult to understand speech communication and interact effectively with the world. This study aimed to examine the impact of spatially unique haptic vibrations representing high-frequency phonemes on the self-perceived ability to understand conversations in everyday situations. To address high-frequency hearing loss, a multi-motor wristband was developed that uses machine learning to listen for specific high-frequency phonemes. The wristband vibrates in spatially unique locations to represent which phoneme was present in real time. A total of 16 participants with high-frequency hearing loss were recruited and asked to wear the wristband for 6 weeks. The degree of disability associated with hearing loss was measured weekly using the Abbreviated Profile of Hearing Aid Benefit (APHAB). By the end of the 6-week study, the average APHAB benefit score across all participants reached 12.39 points, from a baseline of 40.32 to a final score of 27.93 (SD 13.11; N=16; P=.002, 2-tailed dependent t test). Those without hearing aids showed a 10.78-point larger improvement in average APHAB benefit score at 6 weeks than those with hearing aids (t14=2.14; P=.10, 2-tailed independent t test). The average benefit score across all participants for ease of communication was 15.44 (SD 13.88; N=16; P<.001, 2-tailed dependent t test). The average benefit score across all participants for background noise was 10.88 (SD 17.54; N=16; P=.03, 2-tailed dependent t test). The average benefit score across all participants for reverberation was 10.84 (SD 16.95; N=16; P=.02, 2-tailed dependent t test). These findings show that vibrotactile sensory substitution delivered by a wristband that produces spatially distinguishable vibrations in correspondence with high-frequency phonemes helps individuals with high-frequency hearing loss improve their perceived understanding of verbal communication. Vibrotactile feedback provides benefits whether or not a person wears hearing aids, albeit in slightly different ways. Finally, individuals with the greatest perceived difficulty understanding speech experienced the greatest amount of perceived benefit from vibrotactile feedback.

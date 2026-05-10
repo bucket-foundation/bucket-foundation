@@ -1,0 +1,14 @@
+# Babies, bugs and brains: How the early microbiome associates with infant brain and behavior development.
+
+- **PMID**: 37556397
+- **DOI**: 10.1093/ajcn/nqab325
+- **PMCID**: PMC8755080 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2023
+- **Authors**: Sebastian Hunter, Erica Flaten, Charisse Petersen, Judit Gervain, Janet F Werker, Laurel J Trainor, Brett B Finlay
+- **MeSH**: Humans, Infant, Pilot Projects, Gastrointestinal Microbiome, Microbiota, Bacteria, Feces, Brain
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37556397/
+- **Captured**: 2026-05-10T16:52:38
+
+## Abstract
+
+Growing evidence is demonstrating the connection between the microbiota gut-brain axis and neurodevelopment. Microbiota colonization occurs before the maturation of many neural systems and is linked to brain health. Because of this it has been hypothesized that the early microbiome interactions along the gut-brain axis evolved to promote advanced cognitive functions and behaviors. Here, we performed a pilot study with a multidisciplinary approach to test if the microbiota composition of infants is associated with measures of early cognitive development, in particular neural rhythm tracking; language (forward speech) versus non-language (backwards speech) discrimination; and social joint attention. Fecal samples were collected from 56 infants between four and six months of age and sequenced by shotgun metagenomic sequencing. Of these, 44 performed the behavioral Point and Gaze test to measure joint attention. Infants were tested on either language discrimination using functional near-infrared spectroscopy (fNIRS; 25 infants had usable data) or neural rhythm tracking using electroencephalogram (EEG; 15 had usable data). Infants who succeeded at the Point and Gaze test tended to have increased Actinobacteria and reduced Firmicutes at the phylum level; and an increase in Bifidobacterium and Eggerthella along with a reduction in Hungatella and Streptococcus at the genus level. Measurements of neural rhythm tracking associated negatively to the abundance of Bifidobacterium and positively to the abundance of Clostridium and Enterococcus for the bacterial abundances, and associated positively to metabolic pathways that can influence neurodevelopment, including branched chain amino acid biosynthesis and pentose phosphate pathways. No associations were found for the fNIRS language discrimination measurements. Although the tests were underpowered due to the small pilot sample sizes, potential associations were identified between the microbiome and measurements of early cognitive development that are worth exploring further.

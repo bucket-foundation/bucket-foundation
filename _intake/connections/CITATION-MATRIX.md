@@ -19,17 +19,22 @@
 | Jamshed J. Bharucha | Carol L. Krumhansl | 106 |
 | Yoshua Bengio | Yann LeCun | 101 |
 | Carlo Rovelli | Lee Smolin | 87 |
+| Richard H. Thaler | Daniel Kahneman | 87 |
 | Stuart R. Hameroff | Roger Penrose | 86 |
+| Evan Thompson | Francisco J. Varela | 82 |
 | Brian Greene | Edward Witten | 82 |
 | Lee Smolin | Carlo Rovelli | 77 |
 | Cumrun Vafa | Edward Witten | 75 |
+| Richard H. Thaler | Amos Tversky | 71 |
 | Anil K. Seth | Giulio Tononi | 68 |
 | Juan Maldacena | Edward Witten | 55 |
 | Giulio Tononi | Olaf Sporns | 52 |
+| Daniel Kahneman | Richard H. Thaler | 48 |
 | Henkjan Honing | Laurel J. Trainor | 47 |
 | Fred Lerdahl | Carol L. Krumhansl | 46 |
 | Ilya Sutskever | Geoffrey E. Hinton | 46 |
 | Carol L. Krumhansl | Jamshed J. Bharucha | 46 |
+| Alva Noë | Evan Thompson | 46 |
 | Juan Maldacena | Andrew Strominger | 45 |
 | Olaf Sporns | Karl Friston | 44 |
 | Ray Jackendoff | Steven Pinker | 42 |
@@ -54,10 +59,5 @@
 | Yann LeCun | Geoffrey E. Hinton | 31 |
 | Demis Hassabis | Ilya Sutskever | 30 |
 | Lisa Randall | Nima Arkani–Hamed | 29 |
+| Evan Thompson | Alva Noë | 28 |
 | Anil K. Seth | Olaf Sporns | 28 |
-| Geoffrey E. Hinton | Yann LeCun | 28 |
-| Steven Pinker | Ray Jackendoff | 27 |
-| Brian Greene | Andrew Strominger | 27 |
-| Joseph E. LeDoux | Eric R. Kandel | 26 |
-| Juan Maldacena | S. W. Hawking | 26 |
-| Alan H. Guth | Paul J. Steinhardt | 26 |
