@@ -1,0 +1,1782 @@
+{
+  "id": "https://openalex.org/W2075517727",
+  "doi": "https://doi.org/10.1126/science.8493579",
+  "title": "Human Sos1: a Guanine Nucleotide Exchange Factor for Ras that Binds to GRB2",
+  "display_name": "Human Sos1: a Guanine Nucleotide Exchange Factor for Ras that Binds to GRB2",
+  "publication_year": 1993,
+  "publication_date": "1993-05-28",
+  "ids": {
+    "openalex": "https://openalex.org/W2075517727",
+    "doi": "https://doi.org/10.1126/science.8493579",
+    "mag": "2075517727",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/8493579"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1126/science.8493579",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1126/science.8493579",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S3880285",
+      "display_name": "Science",
+      "issn_l": "0036-8075",
+      "issn": [
+        "0036-8075",
+        "1095-9203"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315823",
+      "host_organization_name": "American Association for the Advancement of Science",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315823"
+      ],
+      "host_organization_lineage_names": [
+        "American Association for the Advancement of Science"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Science",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5009091409",
+        "display_name": "Pierre Teilhard de Chardin",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1294671590",
+          "display_name": "Centre National de la Recherche Scientifique",
+          "ror": "https://ror.org/02feahw73",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I1294671590"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210160500",
+          "display_name": "Institut de Pharmacologie Moléculaire et Cellulaire",
+          "ror": "https://ror.org/05k4ema52",
+          "country_code": "FR",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I1294671590",
+            "https://openalex.org/I201841394",
+            "https://openalex.org/I4210096427",
+            "https://openalex.org/I4210160500"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Pierre Chardin",
+      "raw_affiliation_strings": [
+        "Institut de Pharmacologie Moleculaire et Cellulaire, CNRS, Valbonne, France",
+        "Institut de Pharmacologie, Moleculaire et Cellulaire, CNRS, Valbonne, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut de Pharmacologie Moleculaire et Cellulaire, CNRS, Valbonne, France",
+          "institution_ids": [
+            "https://openalex.org/I4210160500",
+            "https://openalex.org/I1294671590"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institut de Pharmacologie, Moleculaire et Cellulaire, CNRS, Valbonne, France",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5008047411",
+        "display_name": "Jacques Camonis",
+        "orcid": "https://orcid.org/0000-0003-2047-4150"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2750212522",
+          "display_name": "Cold Spring Harbor Laboratory",
+          "ror": "https://ror.org/02qz8b764",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jacques H. Camonis",
+      "raw_affiliation_strings": [
+        "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+        "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5036682345",
+        "display_name": "Nicholas W. Gale",
+        "orcid": "https://orcid.org/0000-0001-9324-268X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2750212522",
+          "display_name": "Cold Spring Harbor Laboratory",
+          "ror": "https://ror.org/02qz8b764",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Nicholas W. Gale",
+      "raw_affiliation_strings": [
+        "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+        "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5072827834",
+        "display_name": "Linda Van Aelst",
+        "orcid": "https://orcid.org/0000-0002-0870-012X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2750212522",
+          "display_name": "Cold Spring Harbor Laboratory",
+          "ror": "https://ror.org/02qz8b764",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Linda van Aelst",
+      "raw_affiliation_strings": [
+        "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+        "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5067994300",
+        "display_name": "Joseph Schlessinger",
+        "orcid": "https://orcid.org/0000-0002-5085-5969"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2799503643",
+          "display_name": "Columbia University Irving Medical Center",
+          "ror": "https://ror.org/01esghr10",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2799503643"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I57206974",
+          "display_name": "New York University",
+          "ror": "https://ror.org/0190ak572",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I57206974"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Joseph Schlessinger",
+      "raw_affiliation_strings": [
+        "Department of Pharmacology, New York University Medical Center, New York, NY 10016"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Pharmacology, New York University Medical Center, New York, NY 10016",
+          "institution_ids": [
+            "https://openalex.org/I2799503643",
+            "https://openalex.org/I57206974"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5000910342",
+        "display_name": "Michael Wigler",
+        "orcid": "https://orcid.org/0000-0003-4396-1971"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2750212522",
+          "display_name": "Cold Spring Harbor Laboratory",
+          "ror": "https://ror.org/02qz8b764",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Michael H. Wigler",
+      "raw_affiliation_strings": [
+        "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+        "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5056698491",
+        "display_name": "Dafna Bar‐Sagi",
+        "orcid": "https://orcid.org/0000-0003-2597-8948"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2750212522",
+          "display_name": "Cold Spring Harbor Laboratory",
+          "ror": "https://ror.org/02qz8b764",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Dafna Bar-Sagi",
+      "raw_affiliation_strings": [
+        "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+        "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory , Cold Spring Harbor, NY , 11724",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 7,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5009091409"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I1294671590",
+    "https://openalex.org/I4210160500"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 34.9131,
+  "has_fulltext": false,
+  "cited_by_count": 799,
+  "citation_normalized_percentile": {
+    "value": 0.99894253,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "260",
+    "issue": "5112",
+    "first_page": "1338",
+    "last_page": "1343"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10169",
+    "display_name": "Protein Kinase Regulation and GTPase Signaling",
+    "score": 0.9997000098228455,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1312",
+      "display_name": "Molecular Biology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10169",
+      "display_name": "Protein Kinase Regulation and GTPase Signaling",
+      "score": 0.9997000098228455,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12104",
+      "display_name": "Protein Tyrosine Phosphatases",
+      "score": 0.9995999932289124,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10952",
+      "display_name": "PI3K/AKT/mTOR signaling in cancer",
+      "score": 0.9994999766349792,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/guanine-nucleotide-exchange-factor",
+      "display_name": "Guanine nucleotide exchange factor",
+      "score": 0.8626272082328796
+    },
+    {
+      "id": "https://openalex.org/keywords/grb2",
+      "display_name": "GRB2",
+      "score": 0.7294320464134216
+    },
+    {
+      "id": "https://openalex.org/keywords/guanine",
+      "display_name": "Guanine",
+      "score": 0.661849856376648
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.615815281867981
+    },
+    {
+      "id": "https://openalex.org/keywords/cdc25",
+      "display_name": "Cdc25",
+      "score": 0.5666514039039612
+    },
+    {
+      "id": "https://openalex.org/keywords/sh3-domain",
+      "display_name": "SH3 domain",
+      "score": 0.5227782130241394
+    },
+    {
+      "id": "https://openalex.org/keywords/biochemistry",
+      "display_name": "Biochemistry",
+      "score": 0.4683116376399994
+    },
+    {
+      "id": "https://openalex.org/keywords/sh2-domain",
+      "display_name": "SH2 domain",
+      "score": 0.4291793704032898
+    },
+    {
+      "id": "https://openalex.org/keywords/molecular-biology",
+      "display_name": "Molecular biology",
+      "score": 0.3809802532196045
+    },
+    {
+      "id": "https://openalex.org/keywords/nucleotide",
+      "display_name": "Nucleotide",
+      "score": 0.3756134510040283
+    },
+    {
+      "id": "https://openalex.org/keywords/tyrosine-kinase",
+      "display_name": "Tyrosine kinase",
+      "score": 0.35946032404899597
+    },
+    {
+      "id": "https://openalex.org/keywords/cell-biology",
+      "display_name": "Cell biology",
+      "score": 0.34032052755355835
+    },
+    {
+      "id": "https://openalex.org/keywords/signal-transduction",
+      "display_name": "Signal transduction",
+      "score": 0.2644117772579193
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.23662668466567993
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C126619667",
+      "wikidata": "https://www.wikidata.org/wiki/Q901088",
+      "display_name": "Guanine nucleotide exchange factor",
+      "level": 3,
+      "score": 0.8626272082328796
+    },
+    {
+      "id": "https://openalex.org/C177917778",
+      "wikidata": "https://www.wikidata.org/wiki/Q14905188",
+      "display_name": "GRB2",
+      "level": 4,
+      "score": 0.7294320464134216
+    },
+    {
+      "id": "https://openalex.org/C2778301229",
+      "wikidata": "https://www.wikidata.org/wiki/Q169313",
+      "display_name": "Guanine",
+      "level": 4,
+      "score": 0.661849856376648
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.615815281867981
+    },
+    {
+      "id": "https://openalex.org/C2778583388",
+      "wikidata": "https://www.wikidata.org/wiki/Q3775177",
+      "display_name": "Cdc25",
+      "level": 5,
+      "score": 0.5666514039039612
+    },
+    {
+      "id": "https://openalex.org/C196347352",
+      "wikidata": "https://www.wikidata.org/wiki/Q24771787",
+      "display_name": "SH3 domain",
+      "level": 4,
+      "score": 0.5227782130241394
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 0.4683116376399994
+    },
+    {
+      "id": "https://openalex.org/C197153747",
+      "wikidata": "https://www.wikidata.org/wiki/Q24780316",
+      "display_name": "SH2 domain",
+      "level": 4,
+      "score": 0.4291793704032898
+    },
+    {
+      "id": "https://openalex.org/C153911025",
+      "wikidata": "https://www.wikidata.org/wiki/Q7202",
+      "display_name": "Molecular biology",
+      "level": 1,
+      "score": 0.3809802532196045
+    },
+    {
+      "id": "https://openalex.org/C512185932",
+      "wikidata": "https://www.wikidata.org/wiki/Q28745",
+      "display_name": "Nucleotide",
+      "level": 3,
+      "score": 0.3756134510040283
+    },
+    {
+      "id": "https://openalex.org/C42362537",
+      "wikidata": "https://www.wikidata.org/wiki/Q87099740",
+      "display_name": "Tyrosine kinase",
+      "level": 3,
+      "score": 0.35946032404899597
+    },
+    {
+      "id": "https://openalex.org/C95444343",
+      "wikidata": "https://www.wikidata.org/wiki/Q7141",
+      "display_name": "Cell biology",
+      "level": 1,
+      "score": 0.34032052755355835
+    },
+    {
+      "id": "https://openalex.org/C62478195",
+      "wikidata": "https://www.wikidata.org/wiki/Q828130",
+      "display_name": "Signal transduction",
+      "level": 2,
+      "score": 0.2644117772579193
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.23662668466567993
+    },
+    {
+      "id": "https://openalex.org/C29537977",
+      "wikidata": "https://www.wikidata.org/wiki/Q188941",
+      "display_name": "Cell cycle",
+      "level": 3,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C120504264",
+      "wikidata": "https://www.wikidata.org/wiki/Q1147372",
+      "display_name": "Cyclin-dependent kinase 1",
+      "level": 4,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000595",
+      "descriptor_name": "Amino Acid Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000595",
+      "descriptor_name": "Amino Acid Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000595",
+      "descriptor_name": "Amino Acid Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001483",
+      "descriptor_name": "Base Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001483",
+      "descriptor_name": "Base Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001483",
+      "descriptor_name": "Base Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002460",
+      "descriptor_name": "Cell Line",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002460",
+      "descriptor_name": "Cell Line",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002460",
+      "descriptor_name": "Cell Line",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005656",
+      "descriptor_name": "Fungal Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005656",
+      "descriptor_name": "Fungal Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005656",
+      "descriptor_name": "Fungal Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005656",
+      "descriptor_name": "Fungal Proteins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005656",
+      "descriptor_name": "Fungal Proteins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005656",
+      "descriptor_name": "Fungal Proteins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006153",
+      "descriptor_name": "Guanosine Diphosphate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006153",
+      "descriptor_name": "Guanosine Diphosphate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006153",
+      "descriptor_name": "Guanosine Diphosphate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006160",
+      "descriptor_name": "Guanosine Triphosphate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006160",
+      "descriptor_name": "Guanosine Triphosphate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006160",
+      "descriptor_name": "Guanosine Triphosphate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008565",
+      "descriptor_name": "Membrane Proteins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008969",
+      "descriptor_name": "Molecular Sequence Data",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008969",
+      "descriptor_name": "Molecular Sequence Data",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008969",
+      "descriptor_name": "Molecular Sequence Data",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011506",
+      "descriptor_name": "Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011506",
+      "descriptor_name": "Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011506",
+      "descriptor_name": "Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011993",
+      "descriptor_name": "Recombinant Fusion Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011993",
+      "descriptor_name": "Recombinant Fusion Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011993",
+      "descriptor_name": "Recombinant Fusion Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016283",
+      "descriptor_name": "Proto-Oncogene Proteins p21(ras)",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016283",
+      "descriptor_name": "Proto-Oncogene Proteins p21(ras)",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016283",
+      "descriptor_name": "Proto-Oncogene Proteins p21(ras)",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016415",
+      "descriptor_name": "Sequence Alignment",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016415",
+      "descriptor_name": "Sequence Alignment",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016415",
+      "descriptor_name": "Sequence Alignment",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018797",
+      "descriptor_name": "Cell Cycle Proteins",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D018797",
+      "descriptor_name": "Cell Cycle Proteins",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D018797",
+      "descriptor_name": "Cell Cycle Proteins",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020662",
+      "descriptor_name": "Guanine Nucleotide Exchange Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020662",
+      "descriptor_name": "Guanine Nucleotide Exchange Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020662",
+      "descriptor_name": "Guanine Nucleotide Exchange Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020663",
+      "descriptor_name": "ras Guanine Nucleotide Exchange Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020663",
+      "descriptor_name": "ras Guanine Nucleotide Exchange Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020663",
+      "descriptor_name": "ras Guanine Nucleotide Exchange Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020664",
+      "descriptor_name": "Son of Sevenless Proteins",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020664",
+      "descriptor_name": "Son of Sevenless Proteins",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020664",
+      "descriptor_name": "Son of Sevenless Proteins",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020666",
+      "descriptor_name": "ras-GRF1",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020666",
+      "descriptor_name": "ras-GRF1",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020666",
+      "descriptor_name": "ras-GRF1",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D048868",
+      "descriptor_name": "Adaptor Proteins, Signal Transducing",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D048868",
+      "descriptor_name": "Adaptor Proteins, Signal Transducing",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D048868",
+      "descriptor_name": "Adaptor Proteins, Signal Transducing",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D051379",
+      "descriptor_name": "Mice",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051379",
+      "descriptor_name": "Mice",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051379",
+      "descriptor_name": "Mice",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051380",
+      "descriptor_name": "GRB2 Adaptor Protein",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051380",
+      "descriptor_name": "GRB2 Adaptor Protein",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051380",
+      "descriptor_name": "GRB2 Adaptor Protein",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 3,
+  "locations": [
+    {
+      "id": "doi:10.1126/science.8493579",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1126/science.8493579",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S3880285",
+        "display_name": "Science",
+        "issn_l": "0036-8075",
+        "issn": [
+          "0036-8075",
+          "1095-9203"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315823",
+        "host_organization_name": "American Association for the Advancement of Science",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315823"
+        ],
+        "host_organization_lineage_names": [
+          "American Association for the Advancement of Science"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Science",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:8493579",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/8493579",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Science (New York, N.Y.)",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:repository.cshl.edu:26170",
+      "is_oa": false,
+      "landing_page_url": null,
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402288",
+        "display_name": "Cold Spring Harbor Laboratory Institutional Repository (Cold Spring Harbor Laboratory)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I2750212522",
+        "host_organization_name": "Cold Spring Harbor Laboratory",
+        "host_organization_lineage": [
+          "https://openalex.org/I2750212522"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "acceptedVersion",
+      "is_accepted": true,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "PeerReviewed"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 41,
+  "referenced_works": [
+    "https://openalex.org/W35071699",
+    "https://openalex.org/W143471271",
+    "https://openalex.org/W172411893",
+    "https://openalex.org/W215315140",
+    "https://openalex.org/W1526043578",
+    "https://openalex.org/W1557585018",
+    "https://openalex.org/W1627252162",
+    "https://openalex.org/W1825044054",
+    "https://openalex.org/W1849458801",
+    "https://openalex.org/W1873254229",
+    "https://openalex.org/W1920332992",
+    "https://openalex.org/W1935382092",
+    "https://openalex.org/W1971227936",
+    "https://openalex.org/W1971377120",
+    "https://openalex.org/W1975898157",
+    "https://openalex.org/W1977186059",
+    "https://openalex.org/W1978798502",
+    "https://openalex.org/W1984875233",
+    "https://openalex.org/W1999824494",
+    "https://openalex.org/W2000269495",
+    "https://openalex.org/W2026059959",
+    "https://openalex.org/W2028634080",
+    "https://openalex.org/W2031513892",
+    "https://openalex.org/W2033303857",
+    "https://openalex.org/W2044075747",
+    "https://openalex.org/W2045500858",
+    "https://openalex.org/W2046484554",
+    "https://openalex.org/W2050719006",
+    "https://openalex.org/W2051628416",
+    "https://openalex.org/W2053799953",
+    "https://openalex.org/W2058333572",
+    "https://openalex.org/W2065927746",
+    "https://openalex.org/W2069132844",
+    "https://openalex.org/W2074659620",
+    "https://openalex.org/W2074975109",
+    "https://openalex.org/W2078117164",
+    "https://openalex.org/W2085140159",
+    "https://openalex.org/W2107409046",
+    "https://openalex.org/W2162479263",
+    "https://openalex.org/W2167577928",
+    "https://openalex.org/W3036819080"
+  ],
+  "related_works": [
+    "https://openalex.org/W2415707200",
+    "https://openalex.org/W2419031090",
+    "https://openalex.org/W2080520906",
+    "https://openalex.org/W1981227239",
+    "https://openalex.org/W2034786275",
+    "https://openalex.org/W2076886801",
+    "https://openalex.org/W2063460015",
+    "https://openalex.org/W1985057592",
+    "https://openalex.org/W4234319658",
+    "https://openalex.org/W167017920"
+  ],
+  "abstract_inverted_index": {
+    "A": [
+      0,
+      49
+    ],
+    "human": [
+      1
+    ],
+    "complementary": [
+      2
+    ],
+    "DNA": [
+      3
+    ],
+    "was": [
+      4,
+      116
+    ],
+    "isolated": [
+      5
+    ],
+    "that": [
+      6,
+      13,
+      136
+    ],
+    "encodes": [
+      7
+    ],
+    "a": [
+      8,
+      32,
+      40,
+      92,
+      149
+    ],
+    "widely": [
+      9
+    ],
+    "expressed": [
+      10
+    ],
+    "protein,": [
+      11
+    ],
+    "hSos1,": [
+      12
+    ],
+    "is": [
+      14,
+      91,
+      146
+    ],
+    "closely": [
+      15
+    ],
+    "related": [
+      16
+    ],
+    "to": [
+      17,
+      38,
+      143
+    ],
+    "Sos,": [
+      18
+    ],
+    "the": [
+      19,
+      22,
+      54,
+      119,
+      125,
+      137
+    ],
+    "product": [
+      20
+    ],
+    "of": [
+      21,
+      25,
+      34,
+      51,
+      59,
+      122,
+      131,
+      139,
+      153
+    ],
+    "Drosophila": [
+      23
+    ],
+    "son": [
+      24
+    ],
+    "sevenless": [
+      26
+    ],
+    "gene.": [
+      27
+    ],
+    "The": [
+      28,
+      99
+    ],
+    "hSos1": [
+      29,
+      52,
+      65,
+      82,
+      90,
+      100,
+      123
+    ],
+    "protein": [
+      30,
+      106
+    ],
+    "contains": [
+      31
+    ],
+    "region": [
+      33
+    ],
+    "significant": [
+      35
+    ],
+    "sequence": [
+      36
+    ],
+    "similarity": [
+      37
+    ],
+    "CDC25,": [
+      39
+    ],
+    "guanine": [
+      41,
+      69,
+      85,
+      93
+    ],
+    "nucleotide": [
+      42,
+      70,
+      86,
+      94
+    ],
+    "exchange": [
+      43,
+      71,
+      87,
+      95
+    ],
+    "factor": [
+      44,
+      96,
+      104
+    ],
+    "for": [
+      45,
+      97
+    ],
+    "Ras": [
+      46,
+      74,
+      144
+    ],
+    "from": [
+      47
+    ],
+    "yeast.": [
+      48,
+      63
+    ],
+    "fragment": [
+      50
+    ],
+    "encoding": [
+      53
+    ],
+    "CDC25-related": [
+      55
+    ],
+    "domain": [
+      56,
+      66,
+      121
+    ],
+    "complemented": [
+      57
+    ],
+    "loss": [
+      58
+    ],
+    "CDC25": [
+      60
+    ],
+    "function": [
+      61
+    ],
+    "in": [
+      62,
+      76,
+      109,
+      112
+    ],
+    "This": [
+      64,
+      114
+    ],
+    "specifically": [
+      67
+    ],
+    "stimulated": [
+      68
+    ],
+    "on": [
+      72
+    ],
+    "mammalian": [
+      73
+    ],
+    "proteins": [
+      75
+    ],
+    "vitro.": [
+      77,
+      113
+    ],
+    "Mammalian": [
+      78
+    ],
+    "cells": [
+      79
+    ],
+    "overexpressing": [
+      80
+    ],
+    "full-length": [
+      81
+    ],
+    "had": [
+      83
+    ],
+    "increased": [
+      84
+    ],
+    "activity.": [
+      88
+    ],
+    "Thus": [
+      89
+    ],
+    "Ras.": [
+      98
+    ],
+    "interacted": [
+      101
+    ],
+    "with": [
+      102
+    ],
+    "growth": [
+      103
+    ],
+    "receptor-bound": [
+      105
+    ],
+    "2": [
+      107
+    ],
+    "(GRB2)": [
+      108
+    ],
+    "vivo": [
+      110
+    ],
+    "and": [
+      111,
+      124,
+      155
+    ],
+    "interaction": [
+      115
+    ],
+    "mediated": [
+      117,
+      147
+    ],
+    "by": [
+      118,
+      148
+    ],
+    "carboxyl-terminal": [
+      120
+    ],
+    "Src": [
+      126
+    ],
+    "homology": [
+      127
+    ],
+    "3": [
+      128
+    ],
+    "(SH3)": [
+      129
+    ],
+    "domains": [
+      130
+    ],
+    "GRB2.": [
+      132
+    ],
+    "These": [
+      133
+    ],
+    "results": [
+      134
+    ],
+    "suggest": [
+      135
+    ],
+    "coupling": [
+      138
+    ],
+    "receptor": [
+      140
+    ],
+    "tyrosine": [
+      141
+    ],
+    "kinases": [
+      142
+    ],
+    "signaling": [
+      145
+    ],
+    "molecular": [
+      150
+    ],
+    "complex": [
+      151
+    ],
+    "consisting": [
+      152
+    ],
+    "GRB2": [
+      154
+    ],
+    "hSos1.": [
+      156
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 18
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 13
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 7
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 12
+    }
+  ],
+  "updated_date": "2026-05-04T08:30:34.212998",
+  "created_date": "2025-10-10T00:00:00"
+}

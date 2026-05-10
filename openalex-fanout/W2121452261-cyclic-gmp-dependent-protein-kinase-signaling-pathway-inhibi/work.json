@@ -1,0 +1,2131 @@
+{
+  "id": "https://openalex.org/W2121452261",
+  "doi": "https://doi.org/10.1074/jbc.m000753200",
+  "title": "Cyclic GMP-dependent Protein Kinase Signaling Pathway Inhibits RhoA-induced Ca2+ Sensitization of Contraction in Vascular Smooth Muscle",
+  "display_name": "Cyclic GMP-dependent Protein Kinase Signaling Pathway Inhibits RhoA-induced Ca2+ Sensitization of Contraction in Vascular Smooth Muscle",
+  "publication_year": 2000,
+  "publication_date": "2000-07-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2121452261",
+    "doi": "https://doi.org/10.1074/jbc.m000753200",
+    "mag": "2121452261",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/10783386"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1074/jbc.m000753200",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1074/jbc.m000753200",
+    "pdf_url": "http://www.jbc.org/article/S0021925819798093/pdf",
+    "source": {
+      "id": "https://openalex.org/S140251998",
+      "display_name": "Journal of Biological Chemistry",
+      "issn_l": "0021-9258",
+      "issn": [
+        "0021-9258",
+        "1067-8816",
+        "1083-351X"
+      ],
+      "is_oa": false,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Journal of Biological Chemistry",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "hybrid",
+    "oa_url": "http://www.jbc.org/article/S0021925819798093/pdf",
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5016001012",
+        "display_name": "Vincent Sauzeau",
+        "orcid": "https://orcid.org/0000-0002-6187-0312"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4401041597",
+          "display_name": "Laboratoire de physiologie cellulaire et moléculaire",
+          "ror": "https://ror.org/03vv60b83",
+          "country_code": null,
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I4401041597",
+            "https://openalex.org/I4647051"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Vincent Sauzeau",
+      "raw_affiliation_strings": [
+        "Laboratoire de Physiologie Cellulaire et Moléculaire, INSERM U-533, Faculté des Sciences, 44322 Nantes, France",
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Laboratoire de Physiologie Cellulaire et Moléculaire, INSERM U-533, Faculté des Sciences, 44322 Nantes, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488",
+            "https://openalex.org/I4401041597"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5112905007",
+        "display_name": "Hélène Le Jeune",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Hélène Le Jeune",
+      "raw_affiliation_strings": [
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111924470",
+        "display_name": "Chrystelle Cario‐Toumaniantz",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Chrystelle Cario-Toumaniantz",
+      "raw_affiliation_strings": [
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5089913118",
+        "display_name": "Albert Smolenski",
+        "orcid": "https://orcid.org/0000-0001-9210-9406"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I25974101",
+          "display_name": "University of Würzburg",
+          "ror": "https://ror.org/00fbnyb24",
+          "country_code": "DE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I25974101"
+          ]
+        }
+      ],
+      "countries": [
+        "DE",
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Albert Smolenski",
+      "raw_affiliation_strings": [
+        "Institute of Clinical Biochemistry and Pathobiochemistry, Wuerzburg, Germany",
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Clinical Biochemistry and Pathobiochemistry, Wuerzburg, Germany",
+          "institution_ids": [
+            "https://openalex.org/I25974101"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5043523466",
+        "display_name": "Suzanne M. Lohmann",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I25974101",
+          "display_name": "University of Würzburg",
+          "ror": "https://ror.org/00fbnyb24",
+          "country_code": "DE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I25974101"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ],
+      "countries": [
+        "DE",
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Suzanne M. Lohmann",
+      "raw_affiliation_strings": [
+        "Institute of Clinical Biochemistry and Pathobiochemistry, Wuerzburg, Germany",
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Clinical Biochemistry and Pathobiochemistry, Wuerzburg, Germany",
+          "institution_ids": [
+            "https://openalex.org/I25974101"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5057941580",
+        "display_name": "Jacques Bertoglio",
+        "orcid": "https://orcid.org/0000-0002-9834-376X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jacques Bertoglio",
+      "raw_affiliation_strings": [
+        "INSERM U-461, 92296 Chatenay-Malabry, France",
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "INSERM U-461, 92296 Chatenay-Malabry, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5009091409",
+        "display_name": "Pierre Teilhard de Chardin",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210150884",
+          "display_name": "Fondation Sophia Antipolis",
+          "ror": "https://ror.org/05nkcfv27",
+          "country_code": "FR",
+          "type": "other",
+          "lineage": [
+            "https://openalex.org/I4210150884"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1294671590",
+          "display_name": "Centre National de la Recherche Scientifique",
+          "ror": "https://ror.org/02feahw73",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I1294671590"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Pierre Chardin",
+      "raw_affiliation_strings": [
+        "IPMC-CNRS UPR 411, 06560 Sophia-Antipolis, France",
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "IPMC-CNRS UPR 411, 06560 Sophia-Antipolis, France",
+          "institution_ids": [
+            "https://openalex.org/I4210150884",
+            "https://openalex.org/I1294671590"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5024595810",
+        "display_name": "Pierre Pacaud",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Pierre Pacaud",
+      "raw_affiliation_strings": [
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5086228247",
+        "display_name": "Gervaise Loirand",
+        "orcid": "https://orcid.org/0000-0002-2306-3931"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I154526488",
+          "display_name": "Inserm",
+          "ror": "https://ror.org/02vjkv261",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Gervaise Loirand",
+      "raw_affiliation_strings": [
+        "Inserm, Paris, France"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Inserm, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I154526488"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 9,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5016001012"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I154526488",
+    "https://openalex.org/I4401041597"
+  ],
+  "apc_list": {
+    "value": 2500,
+    "currency": "USD",
+    "value_usd": 2500
+  },
+  "apc_paid": {
+    "value": 2500,
+    "currency": "USD",
+    "value_usd": 2500
+  },
+  "fwci": 13.371,
+  "has_fulltext": false,
+  "cited_by_count": 599,
+  "citation_normalized_percentile": {
+    "value": 0.99358393,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 94,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "275",
+    "issue": "28",
+    "first_page": "21722",
+    "last_page": "21729"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10169",
+    "display_name": "Protein Kinase Regulation and GTPase Signaling",
+    "score": 0.9979000091552734,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1312",
+      "display_name": "Molecular Biology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10169",
+      "display_name": "Protein Kinase Regulation and GTPase Signaling",
+      "score": 0.9979000091552734,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10155",
+      "display_name": "Nitric Oxide and Endothelin Effects",
+      "score": 0.9958000183105469,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2737",
+        "display_name": "Physiology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10493",
+      "display_name": "Ion channel regulation and function",
+      "score": 0.9929999709129333,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/rhoa",
+      "display_name": "RHOA",
+      "score": 0.8113237619400024
+    },
+    {
+      "id": "https://openalex.org/keywords/sensitization",
+      "display_name": "Sensitization",
+      "score": 0.7244306802749634
+    },
+    {
+      "id": "https://openalex.org/keywords/vascular-smooth-muscle",
+      "display_name": "Vascular smooth muscle",
+      "score": 0.6814794540405273
+    },
+    {
+      "id": "https://openalex.org/keywords/cell-biology",
+      "display_name": "Cell biology",
+      "score": 0.6486899852752686
+    },
+    {
+      "id": "https://openalex.org/keywords/chemistry",
+      "display_name": "Chemistry",
+      "score": 0.6244755983352661
+    },
+    {
+      "id": "https://openalex.org/keywords/contraction",
+      "display_name": "Contraction (grammar)",
+      "score": 0.606269896030426
+    },
+    {
+      "id": "https://openalex.org/keywords/signal-transduction",
+      "display_name": "Signal transduction",
+      "score": 0.5537529587745667
+    },
+    {
+      "id": "https://openalex.org/keywords/protein-kinase-a",
+      "display_name": "Protein kinase A",
+      "score": 0.5245074033737183
+    },
+    {
+      "id": "https://openalex.org/keywords/muscle-contraction",
+      "display_name": "Muscle contraction",
+      "score": 0.4316529631614685
+    },
+    {
+      "id": "https://openalex.org/keywords/kinase",
+      "display_name": "Kinase",
+      "score": 0.42555883526802063
+    },
+    {
+      "id": "https://openalex.org/keywords/phosphorylation",
+      "display_name": "Phosphorylation",
+      "score": 0.41835853457450867
+    },
+    {
+      "id": "https://openalex.org/keywords/smooth-muscle",
+      "display_name": "Smooth muscle",
+      "score": 0.3531438708305359
+    },
+    {
+      "id": "https://openalex.org/keywords/biochemistry",
+      "display_name": "Biochemistry",
+      "score": 0.32717961072921753
+    },
+    {
+      "id": "https://openalex.org/keywords/endocrinology",
+      "display_name": "Endocrinology",
+      "score": 0.24353963136672974
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.23381191492080688
+    },
+    {
+      "id": "https://openalex.org/keywords/immunology",
+      "display_name": "Immunology",
+      "score": 0.10676568746566772
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2777093181",
+      "wikidata": "https://www.wikidata.org/wiki/Q15331450",
+      "display_name": "RHOA",
+      "level": 3,
+      "score": 0.8113237619400024
+    },
+    {
+      "id": "https://openalex.org/C2776217527",
+      "wikidata": "https://www.wikidata.org/wiki/Q944828",
+      "display_name": "Sensitization",
+      "level": 2,
+      "score": 0.7244306802749634
+    },
+    {
+      "id": "https://openalex.org/C2779395532",
+      "wikidata": "https://www.wikidata.org/wiki/Q7916469",
+      "display_name": "Vascular smooth muscle",
+      "level": 3,
+      "score": 0.6814794540405273
+    },
+    {
+      "id": "https://openalex.org/C95444343",
+      "wikidata": "https://www.wikidata.org/wiki/Q7141",
+      "display_name": "Cell biology",
+      "level": 1,
+      "score": 0.6486899852752686
+    },
+    {
+      "id": "https://openalex.org/C185592680",
+      "wikidata": "https://www.wikidata.org/wiki/Q2329",
+      "display_name": "Chemistry",
+      "level": 0,
+      "score": 0.6244755983352661
+    },
+    {
+      "id": "https://openalex.org/C163415756",
+      "wikidata": "https://www.wikidata.org/wiki/Q126473",
+      "display_name": "Contraction (grammar)",
+      "level": 2,
+      "score": 0.606269896030426
+    },
+    {
+      "id": "https://openalex.org/C62478195",
+      "wikidata": "https://www.wikidata.org/wiki/Q828130",
+      "display_name": "Signal transduction",
+      "level": 2,
+      "score": 0.5537529587745667
+    },
+    {
+      "id": "https://openalex.org/C97029542",
+      "wikidata": "https://www.wikidata.org/wiki/Q281417",
+      "display_name": "Protein kinase A",
+      "level": 3,
+      "score": 0.5245074033737183
+    },
+    {
+      "id": "https://openalex.org/C2776050358",
+      "wikidata": "https://www.wikidata.org/wiki/Q127006",
+      "display_name": "Muscle contraction",
+      "level": 2,
+      "score": 0.4316529631614685
+    },
+    {
+      "id": "https://openalex.org/C184235292",
+      "wikidata": "https://www.wikidata.org/wiki/Q421851",
+      "display_name": "Kinase",
+      "level": 2,
+      "score": 0.42555883526802063
+    },
+    {
+      "id": "https://openalex.org/C11960822",
+      "wikidata": "https://www.wikidata.org/wiki/Q242736",
+      "display_name": "Phosphorylation",
+      "level": 2,
+      "score": 0.41835853457450867
+    },
+    {
+      "id": "https://openalex.org/C2992686903",
+      "wikidata": "https://www.wikidata.org/wiki/Q208453",
+      "display_name": "Smooth muscle",
+      "level": 2,
+      "score": 0.3531438708305359
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 0.32717961072921753
+    },
+    {
+      "id": "https://openalex.org/C134018914",
+      "wikidata": "https://www.wikidata.org/wiki/Q162606",
+      "display_name": "Endocrinology",
+      "level": 1,
+      "score": 0.24353963136672974
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.23381191492080688
+    },
+    {
+      "id": "https://openalex.org/C203014093",
+      "wikidata": "https://www.wikidata.org/wiki/Q101929",
+      "display_name": "Immunology",
+      "level": 1,
+      "score": 0.10676568746566772
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000199",
+      "descriptor_name": "Actins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001011",
+      "descriptor_name": "Aorta",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001011",
+      "descriptor_name": "Aorta",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001011",
+      "descriptor_name": "Aorta",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002478",
+      "descriptor_name": "Cells, Cultured",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002478",
+      "descriptor_name": "Cells, Cultured",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002478",
+      "descriptor_name": "Cells, Cultured",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003599",
+      "descriptor_name": "Cytoskeleton",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003599",
+      "descriptor_name": "Cytoskeleton",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003599",
+      "descriptor_name": "Cytoskeleton",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003599",
+      "descriptor_name": "Cytoskeleton",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003599",
+      "descriptor_name": "Cytoskeleton",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003599",
+      "descriptor_name": "Cytoskeleton",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005711",
+      "descriptor_name": "Gallopamil",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005711",
+      "descriptor_name": "Gallopamil",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005711",
+      "descriptor_name": "Gallopamil",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006152",
+      "descriptor_name": "Cyclic GMP",
+      "qualifier_ui": "Q000031",
+      "qualifier_name": "analogs & derivatives",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006152",
+      "descriptor_name": "Cyclic GMP",
+      "qualifier_ui": "Q000031",
+      "qualifier_name": "analogs & derivatives",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006152",
+      "descriptor_name": "Cyclic GMP",
+      "qualifier_ui": "Q000031",
+      "qualifier_name": "analogs & derivatives",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006152",
+      "descriptor_name": "Cyclic GMP",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006152",
+      "descriptor_name": "Cyclic GMP",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006152",
+      "descriptor_name": "Cyclic GMP",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006168",
+      "descriptor_name": "Guinea Pigs",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006168",
+      "descriptor_name": "Guinea Pigs",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006168",
+      "descriptor_name": "Guinea Pigs",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007537",
+      "descriptor_name": "Isometric Contraction",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007537",
+      "descriptor_name": "Isometric Contraction",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007537",
+      "descriptor_name": "Isometric Contraction",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009131",
+      "descriptor_name": "Muscle, Smooth, Vascular",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009131",
+      "descriptor_name": "Muscle, Smooth, Vascular",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009131",
+      "descriptor_name": "Muscle, Smooth, Vascular",
+      "qualifier_ui": "Q000187",
+      "qualifier_name": "drug effects",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009131",
+      "descriptor_name": "Muscle, Smooth, Vascular",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009131",
+      "descriptor_name": "Muscle, Smooth, Vascular",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009131",
+      "descriptor_name": "Muscle, Smooth, Vascular",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009599",
+      "descriptor_name": "Nitroprusside",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009599",
+      "descriptor_name": "Nitroprusside",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009599",
+      "descriptor_name": "Nitroprusside",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010656",
+      "descriptor_name": "Phenylephrine",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010656",
+      "descriptor_name": "Phenylephrine",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010656",
+      "descriptor_name": "Phenylephrine",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010766",
+      "descriptor_name": "Phosphorylation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010766",
+      "descriptor_name": "Phosphorylation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010766",
+      "descriptor_name": "Phosphorylation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011169",
+      "descriptor_name": "Portal Vein",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011169",
+      "descriptor_name": "Portal Vein",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011169",
+      "descriptor_name": "Portal Vein",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011651",
+      "descriptor_name": "Pulmonary Artery",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011651",
+      "descriptor_name": "Pulmonary Artery",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011651",
+      "descriptor_name": "Pulmonary Artery",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011817",
+      "descriptor_name": "Rabbits",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011817",
+      "descriptor_name": "Rabbits",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011817",
+      "descriptor_name": "Rabbits",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015398",
+      "descriptor_name": "Signal Transduction",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015398",
+      "descriptor_name": "Signal Transduction",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015398",
+      "descriptor_name": "Signal Transduction",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016244",
+      "descriptor_name": "Guanosine 5'-O-(3-Thiotriphosphate)",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016244",
+      "descriptor_name": "Guanosine 5'-O-(3-Thiotriphosphate)",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016244",
+      "descriptor_name": "Guanosine 5'-O-(3-Thiotriphosphate)",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017208",
+      "descriptor_name": "Rats, Wistar",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017208",
+      "descriptor_name": "Rats, Wistar",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017208",
+      "descriptor_name": "Rats, Wistar",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017869",
+      "descriptor_name": "Cyclic GMP-Dependent Protein Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017869",
+      "descriptor_name": "Cyclic GMP-Dependent Protein Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017869",
+      "descriptor_name": "Cyclic GMP-Dependent Protein Kinases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019284",
+      "descriptor_name": "Thapsigargin",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019284",
+      "descriptor_name": "Thapsigargin",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019284",
+      "descriptor_name": "Thapsigargin",
+      "qualifier_ui": "Q000494",
+      "qualifier_name": "pharmacology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020013",
+      "descriptor_name": "Calcium Signaling",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020013",
+      "descriptor_name": "Calcium Signaling",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020013",
+      "descriptor_name": "Calcium Signaling",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020742",
+      "descriptor_name": "rhoA GTP-Binding Protein",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020742",
+      "descriptor_name": "rhoA GTP-Binding Protein",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020742",
+      "descriptor_name": "rhoA GTP-Binding Protein",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051381",
+      "descriptor_name": "Rats",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051381",
+      "descriptor_name": "Rats",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051381",
+      "descriptor_name": "Rats",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D066298",
+      "descriptor_name": "In Vitro Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D066298",
+      "descriptor_name": "In Vitro Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D066298",
+      "descriptor_name": "In Vitro Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1074/jbc.m000753200",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1074/jbc.m000753200",
+      "pdf_url": "http://www.jbc.org/article/S0021925819798093/pdf",
+      "source": {
+        "id": "https://openalex.org/S140251998",
+        "display_name": "Journal of Biological Chemistry",
+        "issn_l": "0021-9258",
+        "issn": [
+          "0021-9258",
+          "1067-8816",
+          "1083-351X"
+        ],
+        "is_oa": false,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Elsevier BV"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Journal of Biological Chemistry",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:10783386",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/10783386",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "The Journal of biological chemistry",
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1074/jbc.m000753200",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1074/jbc.m000753200",
+    "pdf_url": "http://www.jbc.org/article/S0021925819798093/pdf",
+    "source": {
+      "id": "https://openalex.org/S140251998",
+      "display_name": "Journal of Biological Chemistry",
+      "issn_l": "0021-9258",
+      "issn": [
+        "0021-9258",
+        "1067-8816",
+        "1083-351X"
+      ],
+      "is_oa": false,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Journal of Biological Chemistry",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2121452261.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2121452261.grobid-xml"
+  },
+  "referenced_works_count": 38,
+  "referenced_works": [
+    "https://openalex.org/W1236053900",
+    "https://openalex.org/W1597787921",
+    "https://openalex.org/W1650177910",
+    "https://openalex.org/W1967101583",
+    "https://openalex.org/W1972331465",
+    "https://openalex.org/W1974332277",
+    "https://openalex.org/W1974710505",
+    "https://openalex.org/W1986338378",
+    "https://openalex.org/W1995519760",
+    "https://openalex.org/W2016614735",
+    "https://openalex.org/W2021571150",
+    "https://openalex.org/W2027217536",
+    "https://openalex.org/W2032295238",
+    "https://openalex.org/W2039250066",
+    "https://openalex.org/W2041075406",
+    "https://openalex.org/W2048945367",
+    "https://openalex.org/W2050917247",
+    "https://openalex.org/W2052156502",
+    "https://openalex.org/W2053144857",
+    "https://openalex.org/W2062129029",
+    "https://openalex.org/W2068878178",
+    "https://openalex.org/W2077792958",
+    "https://openalex.org/W2085220858",
+    "https://openalex.org/W2085947939",
+    "https://openalex.org/W2089742414",
+    "https://openalex.org/W2094365932",
+    "https://openalex.org/W2098507108",
+    "https://openalex.org/W2100157594",
+    "https://openalex.org/W2100820768",
+    "https://openalex.org/W2112832183",
+    "https://openalex.org/W2117582045",
+    "https://openalex.org/W2121486402",
+    "https://openalex.org/W2133570574",
+    "https://openalex.org/W2138198341",
+    "https://openalex.org/W2150616706",
+    "https://openalex.org/W2151426663",
+    "https://openalex.org/W2341304214",
+    "https://openalex.org/W2407931818"
+  ],
+  "related_works": [
+    "https://openalex.org/W2050549532",
+    "https://openalex.org/W2287829455",
+    "https://openalex.org/W2734942203",
+    "https://openalex.org/W4291736526",
+    "https://openalex.org/W4285097145",
+    "https://openalex.org/W2808743966",
+    "https://openalex.org/W2282093804",
+    "https://openalex.org/W3075108714",
+    "https://openalex.org/W2791645463",
+    "https://openalex.org/W2773200456"
+  ],
+  "abstract_inverted_index": {
+    "The": [
+      0
+    ],
+    "potent": [
+      1
+    ],
+    "vasodilator": [
+      2,
+      202
+    ],
+    "action": [
+      3,
+      203
+    ],
+    "of": [
+      4,
+      15,
+      17,
+      22,
+      76,
+      78,
+      107,
+      134,
+      147,
+      191,
+      204
+    ],
+    "cyclic": [
+      5
+    ],
+    "GMP-dependent": [
+      6
+    ],
+    "protein": [
+      7
+    ],
+    "kinase": [
+      8
+    ],
+    "(cGK)": [
+      9
+    ],
+    "involves": [
+      10
+    ],
+    "decreasing": [
+      11
+    ],
+    "the": [
+      12,
+      54,
+      111,
+      114,
+      188,
+      201
+    ],
+    "Ca(2+)": [
+      13,
+      74,
+      89,
+      152,
+      193
+    ],
+    "sensitivity": [
+      14
+    ],
+    "contraction": [
+      16,
+      77
+    ],
+    "smooth": [
+      18,
+      156
+    ],
+    "muscle": [
+      19
+    ],
+    "via": [
+      20
+    ],
+    "stimulation": [
+      21
+    ],
+    "myosin": [
+      23
+    ],
+    "light": [
+      24,
+      47
+    ],
+    "chain": [
+      25,
+      48
+    ],
+    "phosphatase": [
+      26,
+      49
+    ],
+    "through": [
+      27
+    ],
+    "unknown": [
+      28
+    ],
+    "mechanisms": [
+      29
+    ],
+    "(Wu,": [
+      30
+    ],
+    "X.,": [
+      31
+    ],
+    "Somlyo,": [
+      32,
+      36
+    ],
+    "A.": [
+      33,
+      37
+    ],
+    "V.,": [
+      34
+    ],
+    "and": [
+      35,
+      58,
+      81,
+      91,
+      99,
+      145,
+      182,
+      185,
+      195
+    ],
+    "P.": [
+      38
+    ],
+    "(1996)": [
+      39
+    ],
+    "Biochem.": [
+      40
+    ],
+    "Biophys.": [
+      41
+    ],
+    "Res.": [
+      42
+    ],
+    "Commun.": [
+      43
+    ],
+    "220,": [
+      44
+    ],
+    "658-663).": [
+      45
+    ],
+    "Myosin": [
+      46
+    ],
+    "activity": [
+      50
+    ],
+    "is": [
+      51
+    ],
+    "controlled": [
+      52
+    ],
+    "by": [
+      53,
+      69,
+      96,
+      132
+    ],
+    "small": [
+      55
+    ],
+    "GTPase": [
+      56
+    ],
+    "RhoA": [
+      57,
+      109,
+      142,
+      184
+    ],
+    "its": [
+      59
+    ],
+    "target": [
+      60
+    ],
+    "Rho": [
+      61
+    ],
+    "kinase.": [
+      62
+    ],
+    "Here": [
+      63
+    ],
+    "we": [
+      64
+    ],
+    "demonstrate": [
+      65
+    ],
+    "cGMP": [
+      66
+    ],
+    "effects": [
+      67
+    ],
+    "mediated": [
+      68
+    ],
+    "cGK": [
+      70,
+      137,
+      140,
+      148,
+      180
+    ],
+    "that": [
+      71,
+      170,
+      179,
+      187
+    ],
+    "inhibit": [
+      72
+    ],
+    "RhoA-dependent": [
+      73
+    ],
+    "sensitization": [
+      75,
+      90,
+      153,
+      194
+    ],
+    "blood": [
+      79
+    ],
+    "vessels": [
+      80
+    ],
+    "actin": [
+      82,
+      92,
+      117,
+      159,
+      196
+    ],
+    "cytoskeleton": [
+      83,
+      197
+    ],
+    "organization": [
+      84,
+      93,
+      198
+    ],
+    "in": [
+      85,
+      121,
+      124,
+      143,
+      154,
+      163
+    ],
+    "cultured": [
+      86
+    ],
+    "vascular": [
+      87,
+      122,
+      164
+    ],
+    "myocytes.": [
+      88
+    ],
+    "were": [
+      94
+    ],
+    "inhibited": [
+      95,
+      150,
+      162
+    ],
+    "both": [
+      97
+    ],
+    "8-bromo-cGMP": [
+      98
+    ],
+    "sodium": [
+      100
+    ],
+    "nitroprusside": [
+      101
+    ],
+    "(SNP).": [
+      102
+    ],
+    "SNP": [
+      103
+    ],
+    "also": [
+      104
+    ],
+    "caused": [
+      105
+    ],
+    "translocation": [
+      106
+    ],
+    "activated": [
+      108
+    ],
+    "from": [
+      110
+    ],
+    "membrane": [
+      112
+    ],
+    "to": [
+      113,
+      200
+    ],
+    "cytosol.": [
+      115
+    ],
+    "SNP-induced": [
+      116
+    ],
+    "disassembly": [
+      118,
+      160
+    ],
+    "was": [
+      119,
+      130,
+      161
+    ],
+    "lost": [
+      120
+    ],
+    "myocytes": [
+      123,
+      165
+    ],
+    "culture": [
+      125
+    ],
+    "after": [
+      126
+    ],
+    "successive": [
+      127
+    ],
+    "passages": [
+      128
+    ],
+    "but": [
+      129
+    ],
+    "restored": [
+      131
+    ],
+    "transfection": [
+      133
+    ],
+    "cells": [
+      135
+    ],
+    "with": [
+      136
+    ],
+    "I.": [
+      138
+    ],
+    "Furthermore,": [
+      139
+    ],
+    "phosphorylated": [
+      141
+    ],
+    "vitro,": [
+      144
+    ],
+    "addition": [
+      146
+    ],
+    "I": [
+      149
+    ],
+    "RhoA-induced": [
+      151,
+      192
+    ],
+    "permeabilized": [
+      155
+    ],
+    "muscle.": [
+      157
+    ],
+    "8-Bromo-cGMP-induced": [
+      158
+    ],
+    "expressing": [
+      166
+    ],
+    "RhoA(Ala-188),": [
+      167
+    ],
+    "a": [
+      168
+    ],
+    "mutant": [
+      169
+    ],
+    "could": [
+      171
+    ],
+    "not": [
+      172
+    ],
+    "be": [
+      173
+    ],
+    "phosphorylated.": [
+      174
+    ],
+    "Collectively,": [
+      175
+    ],
+    "these": [
+      176
+    ],
+    "results": [
+      177
+    ],
+    "indicate": [
+      178
+    ],
+    "phosphorylates": [
+      181
+    ],
+    "inhibits": [
+      183
+    ],
+    "suggest": [
+      186
+    ],
+    "consequent": [
+      189
+    ],
+    "inhibition": [
+      190
+    ],
+    "contributes": [
+      199
+    ],
+    "nitric": [
+      205
+    ],
+    "oxide.": [
+      206
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 11
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 22
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 26
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 25
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 49
+    }
+  ],
+  "updated_date": "2026-05-04T08:30:34.212998",
+  "created_date": "2025-10-10T00:00:00"
+}

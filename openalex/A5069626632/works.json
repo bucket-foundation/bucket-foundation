@@ -1,0 +1,1919 @@
+[
+  {
+    "id": "https://openalex.org/W4254242382",
+    "doi": "https://doi.org/10.1145/1276377.1276476",
+    "title": "Stochastic simplification of aggregate detail",
+    "display_name": "Stochastic simplification of aggregate detail",
+    "publication_year": 2007,
+    "publication_date": "2007-07-29",
+    "ids": {
+      "openalex": "https://openalex.org/W4254242382",
+      "doi": "https://doi.org/10.1145/1276377.1276476"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1145/1276377.1276476",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1145/1276377.1276476",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S185367456",
+        "display_name": "ACM Transactions on Graphics",
+        "issn_l": "0730-0301",
+        "issn": [
+          "0730-0301",
+          "1557-7368"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319798",
+        "host_organization_name": "Association for Computing Machinery",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319798"
+        ],
+        "host_organization_lineage_names": [
+          "Association for Computing Machinery"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "ACM Transactions on Graphics",
+      "raw_type": "journal-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5101675767",
+          "display_name": "Robert L. Cook",
+          "orcid": "https://orcid.org/0000-0002-7770-3754"
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": true,
+        "raw_author_name": "Robert L. Cook",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5016418038",
+          "display_name": "John Halstead",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "John Halstead",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5069626632",
+          "display_name": "Maxwell Planck",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "Maxwell Planck",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5108404005",
+          "display_name": "David Ryu",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "David Ryu",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 0,
+    "institutions_distinct_count": 4,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5101675767"
+    ],
+    "corresponding_institution_ids": [],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 6.4732,
+    "has_fulltext": false,
+    "cited_by_count": 44,
+    "citation_normalized_percentile": {
+      "value": 0.9603321,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": true
+    },
+    "cited_by_percentile_year": {
+      "min": 89,
+      "max": 98
+    },
+    "biblio": {
+      "volume": "26",
+      "issue": "3",
+      "first_page": "79",
+      "last_page": "79"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T10481",
+      "display_name": "Computer Graphics and Visualization Techniques",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1704",
+        "display_name": "Computer Graphics and Computer-Aided Design"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T10481",
+        "display_name": "Computer Graphics and Visualization Techniques",
+        "score": 0.9998999834060669,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1704",
+          "display_name": "Computer Graphics and Computer-Aided Design"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10531",
+        "display_name": "Advanced Vision and Imaging",
+        "score": 0.9988999962806702,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10719",
+        "display_name": "3D Shape Modeling and Analysis",
+        "score": 0.996999979019165,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2206",
+          "display_name": "Computational Mechanics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/22",
+          "display_name": "Engineering"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.7504332661628723
+      },
+      {
+        "id": "https://openalex.org/keywords/rendering",
+        "display_name": "Rendering (computer graphics)",
+        "score": 0.7129195332527161
+      },
+      {
+        "id": "https://openalex.org/keywords/aggregate",
+        "display_name": "Aggregate (composite)",
+        "score": 0.5000438690185547
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-graphics",
+        "display_name": "Computer graphics (images)",
+        "score": 0.4684227705001831
+      },
+      {
+        "id": "https://openalex.org/keywords/stochastic-geometry",
+        "display_name": "Stochastic geometry",
+        "score": 0.431820273399353
+      },
+      {
+        "id": "https://openalex.org/keywords/algorithm",
+        "display_name": "Algorithm",
+        "score": 0.34473830461502075
+      },
+      {
+        "id": "https://openalex.org/keywords/mathematics",
+        "display_name": "Mathematics",
+        "score": 0.2035689353942871
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.7504332661628723
+      },
+      {
+        "id": "https://openalex.org/C205711294",
+        "wikidata": "https://www.wikidata.org/wiki/Q176953",
+        "display_name": "Rendering (computer graphics)",
+        "level": 2,
+        "score": 0.7129195332527161
+      },
+      {
+        "id": "https://openalex.org/C4679612",
+        "wikidata": "https://www.wikidata.org/wiki/Q866298",
+        "display_name": "Aggregate (composite)",
+        "level": 2,
+        "score": 0.5000438690185547
+      },
+      {
+        "id": "https://openalex.org/C121684516",
+        "wikidata": "https://www.wikidata.org/wiki/Q7600677",
+        "display_name": "Computer graphics (images)",
+        "level": 1,
+        "score": 0.4684227705001831
+      },
+      {
+        "id": "https://openalex.org/C31243852",
+        "wikidata": "https://www.wikidata.org/wiki/Q1666739",
+        "display_name": "Stochastic geometry",
+        "level": 2,
+        "score": 0.431820273399353
+      },
+      {
+        "id": "https://openalex.org/C11413529",
+        "wikidata": "https://www.wikidata.org/wiki/Q8366",
+        "display_name": "Algorithm",
+        "level": 1,
+        "score": 0.34473830461502075
+      },
+      {
+        "id": "https://openalex.org/C33923547",
+        "wikidata": "https://www.wikidata.org/wiki/Q395",
+        "display_name": "Mathematics",
+        "level": 0,
+        "score": 0.2035689353942871
+      },
+      {
+        "id": "https://openalex.org/C192562407",
+        "wikidata": "https://www.wikidata.org/wiki/Q228736",
+        "display_name": "Materials science",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C105795698",
+        "wikidata": "https://www.wikidata.org/wiki/Q12483",
+        "display_name": "Statistics",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C159985019",
+        "wikidata": "https://www.wikidata.org/wiki/Q181790",
+        "display_name": "Composite material",
+        "level": 1,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1145/1276377.1276476",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1145/1276377.1276476",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S185367456",
+          "display_name": "ACM Transactions on Graphics",
+          "issn_l": "0730-0301",
+          "issn": [
+            "0730-0301",
+            "1557-7368"
+          ],
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": true,
+          "host_organization": "https://openalex.org/P4310319798",
+          "host_organization_name": "Association for Computing Machinery",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310319798"
+          ],
+          "host_organization_lineage_names": [
+            "Association for Computing Machinery"
+          ],
+          "type": "journal"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "ACM Transactions on Graphics",
+        "raw_type": "journal-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "grobid_xml": false,
+      "pdf": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 32,
+    "referenced_works": [
+      "https://openalex.org/W1507930944",
+      "https://openalex.org/W1598795462",
+      "https://openalex.org/W1969695431",
+      "https://openalex.org/W2006226258",
+      "https://openalex.org/W2025022323",
+      "https://openalex.org/W2043242530",
+      "https://openalex.org/W2058598896",
+      "https://openalex.org/W2071846944",
+      "https://openalex.org/W2090614795",
+      "https://openalex.org/W2103576079",
+      "https://openalex.org/W2113634802",
+      "https://openalex.org/W2118544228",
+      "https://openalex.org/W2129511102",
+      "https://openalex.org/W2135314751",
+      "https://openalex.org/W2137212317",
+      "https://openalex.org/W2147680545",
+      "https://openalex.org/W2158037930",
+      "https://openalex.org/W2163324644",
+      "https://openalex.org/W2164191390",
+      "https://openalex.org/W2235901111",
+      "https://openalex.org/W2238680046",
+      "https://openalex.org/W2241508743",
+      "https://openalex.org/W2247485652",
+      "https://openalex.org/W2293404936",
+      "https://openalex.org/W2295216480",
+      "https://openalex.org/W2296148643",
+      "https://openalex.org/W2915054978",
+      "https://openalex.org/W3146052257",
+      "https://openalex.org/W4206191201",
+      "https://openalex.org/W4213231147",
+      "https://openalex.org/W4234259615",
+      "https://openalex.org/W4255286169"
+    ],
+    "related_works": [
+      "https://openalex.org/W291250033",
+      "https://openalex.org/W2008385118",
+      "https://openalex.org/W2035757446",
+      "https://openalex.org/W880955280",
+      "https://openalex.org/W2106647072",
+      "https://openalex.org/W4246858109",
+      "https://openalex.org/W54172855",
+      "https://openalex.org/W2170209930",
+      "https://openalex.org/W2046782623",
+      "https://openalex.org/W4205838854"
+    ],
+    "abstract_inverted_index": {
+      "Many": [
+        0
+      ],
+      "renderers": [
+        1
+      ],
+      "perform": [
+        2
+      ],
+      "poorly": [
+        3
+      ],
+      "on": [
+        4,
+        15,
+        34,
+        127
+      ],
+      "scenes": [
+        5
+      ],
+      "that": [
+        6,
+        31
+      ],
+      "contain": [
+        7
+      ],
+      "a": [
+        8,
+        85,
+        102,
+        128
+      ],
+      "lot": [
+        9
+      ],
+      "of": [
+        10,
+        29,
+        57,
+        74,
+        81,
+        104,
+        118,
+        123,
+        130,
+        139
+      ],
+      "detailed": [
+        11
+      ],
+      "geometry.": [
+        12
+      ],
+      "The": [
+        13,
+        121
+      ],
+      "load": [
+        14
+      ],
+      "the": [
+        16,
+        35,
+        55,
+        71,
+        105,
+        115,
+        119
+      ],
+      "renderer": [
+        17
+      ],
+      "can": [
+        18,
+        125
+      ],
+      "be": [
+        19
+      ],
+      "alleviated": [
+        20
+      ],
+      "by": [
+        21,
+        99
+      ],
+      "simplification": [
+        22,
+        38,
+        124
+      ],
+      "techniques,": [
+        23
+      ],
+      "which": [
+        24
+      ],
+      "create": [
+        25
+      ],
+      "less": [
+        26
+      ],
+      "expensive": [
+        27
+      ],
+      "representations": [
+        28
+      ],
+      "geometry": [
+        30
+      ],
+      "is": [
+        32
+      ],
+      "small": [
+        33
+      ],
+      "screen.": [
+        36
+      ],
+      "Current": [
+        37
+      ],
+      "techniques": [
+        39
+      ],
+      "for": [
+        40,
+        93
+      ],
+      "high-quality": [
+        41
+      ],
+      "surface-based": [
+        42
+      ],
+      "rendering": [
+        43
+      ],
+      "tend": [
+        44
+      ],
+      "to": [
+        45,
+        54,
+        70,
+        89,
+        113
+      ],
+      "work": [
+        46
+      ],
+      "best": [
+        47
+      ],
+      "with": [
+        48,
+        64
+      ],
+      "element": [
+        49
+      ],
+      "detail": [
+        50,
+        52,
+        66,
+        68
+      ],
+      "(i.e.,": [
+        51,
+        67
+      ],
+      "due": [
+        53,
+        69
+      ],
+      "complexity": [
+        56
+      ],
+      "individual": [
+        58
+      ],
+      "elements)": [
+        59
+      ],
+      "but": [
+        60
+      ],
+      "not": [
+        61
+      ],
+      "as": [
+        62
+      ],
+      "well": [
+        63
+      ],
+      "aggregate": [
+        65
+      ],
+      "large": [
+        72
+      ],
+      "number": [
+        73,
+        129
+      ],
+      "elements).": [
+        75
+      ],
+      "To": [
+        76
+      ],
+      "address": [
+        77
+      ],
+      "this": [
+        78
+      ],
+      "latter": [
+        79
+      ],
+      "type": [
+        80
+      ],
+      "detail,": [
+        82
+      ],
+      "we": [
+        83
+      ],
+      "introduce": [
+        84
+      ],
+      "stochastic": [
+        86
+      ],
+      "technique": [
+        87
+      ],
+      "related": [
+        88
+      ],
+      "some": [
+        90
+      ],
+      "approaches": [
+        91
+      ],
+      "used": [
+        92
+      ],
+      "point-based": [
+        94
+      ],
+      "renderers.": [
+        95
+      ],
+      "Scenes": [
+        96
+      ],
+      "are": [
+        97
+      ],
+      "rendered": [
+        98
+      ],
+      "randomly": [
+        100
+      ],
+      "selecting": [
+        101
+      ],
+      "subset": [
+        103
+      ],
+      "geometric": [
+        106
+      ],
+      "elements": [
+        107,
+        111
+      ],
+      "and": [
+        108,
+        137
+      ],
+      "altering": [
+        109
+      ],
+      "those": [
+        110
+      ],
+      "statistically": [
+        112
+      ],
+      "preserve": [
+        114
+      ],
+      "overall": [
+        116
+      ],
+      "appearance": [
+        117
+      ],
+      "scene.": [
+        120
+      ],
+      "amount": [
+        122
+      ],
+      "depend": [
+        126
+      ],
+      "factors,": [
+        131
+      ],
+      "including": [
+        132
+      ],
+      "screen": [
+        133
+      ],
+      "size,": [
+        134
+      ],
+      "motion": [
+        135
+      ],
+      "blur,": [
+        136
+      ],
+      "depth": [
+        138
+      ],
+      "field.": [
+        140
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2025,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2024,
+        "cited_by_count": 3
+      },
+      {
+        "year": 2023,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2022,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2021,
+        "cited_by_count": 4
+      },
+      {
+        "year": 2018,
+        "cited_by_count": 4
+      },
+      {
+        "year": 2017,
+        "cited_by_count": 3
+      },
+      {
+        "year": 2016,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2015,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2013,
+        "cited_by_count": 3
+      },
+      {
+        "year": 2012,
+        "cited_by_count": 5
+      }
+    ],
+    "updated_date": "2025-11-06T03:46:38.306776",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W2043710698",
+    "doi": "https://doi.org/10.1145/1275808.1276476",
+    "title": "Stochastic simplification of aggregate detail",
+    "display_name": "Stochastic simplification of aggregate detail",
+    "publication_year": 2007,
+    "publication_date": "2007-07-29",
+    "ids": {
+      "openalex": "https://openalex.org/W2043710698",
+      "doi": "https://doi.org/10.1145/1275808.1276476",
+      "mag": "2043710698"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1145/1275808.1276476",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1145/1275808.1276476",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "ACM SIGGRAPH 2007 papers",
+      "raw_type": "proceedings-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5040709494",
+          "display_name": "Robert L. Cook",
+          "orcid": "https://orcid.org/0000-0003-4246-2951"
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": true,
+        "raw_author_name": "Robert L. Cook",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5016418038",
+          "display_name": "John Halstead",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "John Halstead",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5069626632",
+          "display_name": "Maxwell Planck",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "Maxwell Planck",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5108404005",
+          "display_name": "David Ryu",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "David Ryu",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 0,
+    "institutions_distinct_count": 4,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5040709494"
+    ],
+    "corresponding_institution_ids": [],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 8.6282,
+    "has_fulltext": false,
+    "cited_by_count": 43,
+    "citation_normalized_percentile": {
+      "value": 0.97231621,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": true
+    },
+    "cited_by_percentile_year": {
+      "min": 90,
+      "max": 98
+    },
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "79",
+      "last_page": "79"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T10481",
+      "display_name": "Computer Graphics and Visualization Techniques",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1704",
+        "display_name": "Computer Graphics and Computer-Aided Design"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T10481",
+        "display_name": "Computer Graphics and Visualization Techniques",
+        "score": 0.9998999834060669,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1704",
+          "display_name": "Computer Graphics and Computer-Aided Design"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10531",
+        "display_name": "Advanced Vision and Imaging",
+        "score": 0.9986000061035156,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10719",
+        "display_name": "3D Shape Modeling and Analysis",
+        "score": 0.9969000220298767,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2206",
+          "display_name": "Computational Mechanics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/22",
+          "display_name": "Engineering"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.7745614051818848
+      },
+      {
+        "id": "https://openalex.org/keywords/rendering",
+        "display_name": "Rendering (computer graphics)",
+        "score": 0.7550565004348755
+      },
+      {
+        "id": "https://openalex.org/keywords/stochastic-geometry",
+        "display_name": "Stochastic geometry",
+        "score": 0.5278494358062744
+      },
+      {
+        "id": "https://openalex.org/keywords/aggregate",
+        "display_name": "Aggregate (composite)",
+        "score": 0.5056495666503906
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-graphics",
+        "display_name": "Computer graphics (images)",
+        "score": 0.4639197587966919
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-vision",
+        "display_name": "Computer vision",
+        "score": 0.3277512788772583
+      },
+      {
+        "id": "https://openalex.org/keywords/mathematics",
+        "display_name": "Mathematics",
+        "score": 0.1501251459121704
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.7745614051818848
+      },
+      {
+        "id": "https://openalex.org/C205711294",
+        "wikidata": "https://www.wikidata.org/wiki/Q176953",
+        "display_name": "Rendering (computer graphics)",
+        "level": 2,
+        "score": 0.7550565004348755
+      },
+      {
+        "id": "https://openalex.org/C31243852",
+        "wikidata": "https://www.wikidata.org/wiki/Q1666739",
+        "display_name": "Stochastic geometry",
+        "level": 2,
+        "score": 0.5278494358062744
+      },
+      {
+        "id": "https://openalex.org/C4679612",
+        "wikidata": "https://www.wikidata.org/wiki/Q866298",
+        "display_name": "Aggregate (composite)",
+        "level": 2,
+        "score": 0.5056495666503906
+      },
+      {
+        "id": "https://openalex.org/C121684516",
+        "wikidata": "https://www.wikidata.org/wiki/Q7600677",
+        "display_name": "Computer graphics (images)",
+        "level": 1,
+        "score": 0.4639197587966919
+      },
+      {
+        "id": "https://openalex.org/C31972630",
+        "wikidata": "https://www.wikidata.org/wiki/Q844240",
+        "display_name": "Computer vision",
+        "level": 1,
+        "score": 0.3277512788772583
+      },
+      {
+        "id": "https://openalex.org/C33923547",
+        "wikidata": "https://www.wikidata.org/wiki/Q395",
+        "display_name": "Mathematics",
+        "level": 0,
+        "score": 0.1501251459121704
+      },
+      {
+        "id": "https://openalex.org/C159985019",
+        "wikidata": "https://www.wikidata.org/wiki/Q181790",
+        "display_name": "Composite material",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C192562407",
+        "wikidata": "https://www.wikidata.org/wiki/Q228736",
+        "display_name": "Materials science",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C105795698",
+        "wikidata": "https://www.wikidata.org/wiki/Q12483",
+        "display_name": "Statistics",
+        "level": 1,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1145/1275808.1276476",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1145/1275808.1276476",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "ACM SIGGRAPH 2007 papers",
+        "raw_type": "proceedings-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "grobid_xml": false,
+      "pdf": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 40,
+    "referenced_works": [
+      "https://openalex.org/W171769125",
+      "https://openalex.org/W1507930944",
+      "https://openalex.org/W1583953270",
+      "https://openalex.org/W1598795462",
+      "https://openalex.org/W1969695431",
+      "https://openalex.org/W2006226258",
+      "https://openalex.org/W2025022323",
+      "https://openalex.org/W2043242530",
+      "https://openalex.org/W2046444055",
+      "https://openalex.org/W2058598896",
+      "https://openalex.org/W2071846944",
+      "https://openalex.org/W2090614795",
+      "https://openalex.org/W2102395683",
+      "https://openalex.org/W2103576079",
+      "https://openalex.org/W2113634802",
+      "https://openalex.org/W2118544228",
+      "https://openalex.org/W2129511102",
+      "https://openalex.org/W2135314751",
+      "https://openalex.org/W2137212317",
+      "https://openalex.org/W2141983659",
+      "https://openalex.org/W2147680545",
+      "https://openalex.org/W2152508418",
+      "https://openalex.org/W2158037930",
+      "https://openalex.org/W2163324644",
+      "https://openalex.org/W2164191390",
+      "https://openalex.org/W2171918950",
+      "https://openalex.org/W2235901111",
+      "https://openalex.org/W2238680046",
+      "https://openalex.org/W2241508743",
+      "https://openalex.org/W2247485652",
+      "https://openalex.org/W2293404936",
+      "https://openalex.org/W2295216480",
+      "https://openalex.org/W2296148643",
+      "https://openalex.org/W2560149116",
+      "https://openalex.org/W2915054978",
+      "https://openalex.org/W3146052257",
+      "https://openalex.org/W4206191201",
+      "https://openalex.org/W4213231147",
+      "https://openalex.org/W4234259615",
+      "https://openalex.org/W4255286169"
+    ],
+    "related_works": [
+      "https://openalex.org/W291250033",
+      "https://openalex.org/W2035757446",
+      "https://openalex.org/W2008385118",
+      "https://openalex.org/W880955280",
+      "https://openalex.org/W2106647072",
+      "https://openalex.org/W4246858109",
+      "https://openalex.org/W2172753644",
+      "https://openalex.org/W54172855",
+      "https://openalex.org/W2170209930",
+      "https://openalex.org/W2046782623"
+    ],
+    "abstract_inverted_index": {
+      "Many": [
+        0
+      ],
+      "renderers": [
+        1
+      ],
+      "perform": [
+        2
+      ],
+      "poorly": [
+        3
+      ],
+      "on": [
+        4,
+        15,
+        34,
+        127
+      ],
+      "scenes": [
+        5
+      ],
+      "that": [
+        6,
+        31
+      ],
+      "contain": [
+        7
+      ],
+      "a": [
+        8,
+        85,
+        102,
+        128
+      ],
+      "lot": [
+        9
+      ],
+      "of": [
+        10,
+        29,
+        57,
+        74,
+        81,
+        104,
+        118,
+        123,
+        130,
+        139
+      ],
+      "detailed": [
+        11
+      ],
+      "geometry.": [
+        12
+      ],
+      "The": [
+        13,
+        121
+      ],
+      "load": [
+        14
+      ],
+      "the": [
+        16,
+        35,
+        55,
+        71,
+        105,
+        115,
+        119
+      ],
+      "renderer": [
+        17
+      ],
+      "can": [
+        18,
+        125
+      ],
+      "be": [
+        19
+      ],
+      "alleviated": [
+        20
+      ],
+      "by": [
+        21,
+        99
+      ],
+      "simplification": [
+        22,
+        38,
+        124
+      ],
+      "techniques,": [
+        23
+      ],
+      "which": [
+        24
+      ],
+      "create": [
+        25
+      ],
+      "less": [
+        26
+      ],
+      "expensive": [
+        27
+      ],
+      "representations": [
+        28
+      ],
+      "geometry": [
+        30
+      ],
+      "is": [
+        32
+      ],
+      "small": [
+        33
+      ],
+      "screen.": [
+        36
+      ],
+      "Current": [
+        37
+      ],
+      "techniques": [
+        39
+      ],
+      "for": [
+        40,
+        93
+      ],
+      "high-quality": [
+        41
+      ],
+      "surface-based": [
+        42
+      ],
+      "rendering": [
+        43
+      ],
+      "tend": [
+        44
+      ],
+      "to": [
+        45,
+        54,
+        70,
+        89,
+        113
+      ],
+      "work": [
+        46
+      ],
+      "best": [
+        47
+      ],
+      "with": [
+        48,
+        64
+      ],
+      "element": [
+        49
+      ],
+      "detail": [
+        50,
+        52,
+        66,
+        68
+      ],
+      "(i.e.,": [
+        51,
+        67
+      ],
+      "due": [
+        53,
+        69
+      ],
+      "complexity": [
+        56
+      ],
+      "individual": [
+        58
+      ],
+      "elements)": [
+        59
+      ],
+      "but": [
+        60
+      ],
+      "not": [
+        61
+      ],
+      "as": [
+        62
+      ],
+      "well": [
+        63
+      ],
+      "aggregate": [
+        65
+      ],
+      "large": [
+        72
+      ],
+      "number": [
+        73,
+        129
+      ],
+      "elements).": [
+        75
+      ],
+      "To": [
+        76
+      ],
+      "address": [
+        77
+      ],
+      "this": [
+        78
+      ],
+      "latter": [
+        79
+      ],
+      "type": [
+        80
+      ],
+      "detail,": [
+        82
+      ],
+      "we": [
+        83
+      ],
+      "introduce": [
+        84
+      ],
+      "stochastic": [
+        86
+      ],
+      "technique": [
+        87
+      ],
+      "related": [
+        88
+      ],
+      "some": [
+        90
+      ],
+      "approaches": [
+        91
+      ],
+      "used": [
+        92
+      ],
+      "point-based": [
+        94
+      ],
+      "renderers.": [
+        95
+      ],
+      "Scenes": [
+        96
+      ],
+      "are": [
+        97
+      ],
+      "rendered": [
+        98
+      ],
+      "randomly": [
+        100
+      ],
+      "selecting": [
+        101
+      ],
+      "subset": [
+        103
+      ],
+      "geometric": [
+        106
+      ],
+      "elements": [
+        107,
+        111
+      ],
+      "and": [
+        108,
+        137
+      ],
+      "altering": [
+        109
+      ],
+      "those": [
+        110
+      ],
+      "statistically": [
+        112
+      ],
+      "preserve": [
+        114
+      ],
+      "overall": [
+        116
+      ],
+      "appearance": [
+        117
+      ],
+      "scene.": [
+        120
+      ],
+      "amount": [
+        122
+      ],
+      "depend": [
+        126
+      ],
+      "factors,": [
+        131
+      ],
+      "including": [
+        132
+      ],
+      "screen": [
+        133
+      ],
+      "size,": [
+        134
+      ],
+      "motion": [
+        135
+      ],
+      "blur,": [
+        136
+      ],
+      "depth": [
+        138
+      ],
+      "field.": [
+        140
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2025,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2021,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2020,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2018,
+        "cited_by_count": 4
+      },
+      {
+        "year": 2017,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2016,
+        "cited_by_count": 3
+      },
+      {
+        "year": 2015,
+        "cited_by_count": 4
+      },
+      {
+        "year": 2013,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2012,
+        "cited_by_count": 5
+      }
+    ],
+    "updated_date": "2025-11-06T03:46:38.306776",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W2080628786",
+    "doi": "https://doi.org/10.1145/1401032.1401064",
+    "title": "Shading the many",
+    "display_name": "Shading the many",
+    "publication_year": 2008,
+    "publication_date": "2008-08-11",
+    "ids": {
+      "openalex": "https://openalex.org/W2080628786",
+      "doi": "https://doi.org/10.1145/1401032.1401064",
+      "mag": "2080628786"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1145/1401032.1401064",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1145/1401032.1401064",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "ACM SIGGRAPH 2008 talks",
+      "raw_type": "proceedings-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5069626632",
+          "display_name": "Maxwell Planck",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": true,
+        "raw_author_name": "Maxwell Planck",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5061154296",
+          "display_name": "Stephan Vladimir Bugaj",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "Stephan Vladimir Bugaj",
+        "raw_affiliation_strings": [
+          "Pixar Animation Studios"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Pixar Animation Studios",
+            "institution_ids": []
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 0,
+    "institutions_distinct_count": 2,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5069626632"
+    ],
+    "corresponding_institution_ids": [],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 0.0,
+    "has_fulltext": false,
+    "cited_by_count": 1,
+    "citation_normalized_percentile": {
+      "value": 0.11654711,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 90,
+      "max": 94
+    },
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "1",
+      "last_page": "1"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T13523",
+      "display_name": "Mathematics, Computing, and Information Processing",
+      "score": 0.015300000086426735,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1703",
+        "display_name": "Computational Theory and Mathematics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T13523",
+        "display_name": "Mathematics, Computing, and Information Processing",
+        "score": 0.015300000086426735,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1703",
+          "display_name": "Computational Theory and Mathematics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12478",
+        "display_name": "Wikis in Education and Collaboration",
+        "score": 0.015200000256299973,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3315",
+          "display_name": "Communication"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10181",
+        "display_name": "Natural Language Processing Techniques",
+        "score": 0.01510000042617321,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1702",
+          "display_name": "Artificial Intelligence"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/shading",
+        "display_name": "Shading",
+        "score": 0.8007102608680725
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.5089094638824463
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-graphics",
+        "display_name": "Computer graphics (images)",
+        "score": 0.20149433612823486
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C177515723",
+        "wikidata": "https://www.wikidata.org/wiki/Q1191981",
+        "display_name": "Shading",
+        "level": 2,
+        "score": 0.8007102608680725
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.5089094638824463
+      },
+      {
+        "id": "https://openalex.org/C121684516",
+        "wikidata": "https://www.wikidata.org/wiki/Q7600677",
+        "display_name": "Computer graphics (images)",
+        "level": 1,
+        "score": 0.20149433612823486
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1145/1401032.1401064",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1145/1401032.1401064",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "ACM SIGGRAPH 2008 talks",
+        "raw_type": "proceedings-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "grobid_xml": false,
+      "pdf": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 0,
+    "referenced_works": [],
+    "related_works": [
+      "https://openalex.org/W4391375266",
+      "https://openalex.org/W2748952813",
+      "https://openalex.org/W2994336186",
+      "https://openalex.org/W2390827063",
+      "https://openalex.org/W2587512547",
+      "https://openalex.org/W2372305560",
+      "https://openalex.org/W2393851740",
+      "https://openalex.org/W2103040079",
+      "https://openalex.org/W2319567267",
+      "https://openalex.org/W2392589984"
+    ],
+    "abstract_inverted_index": {
+      "No": [
+        0
+      ],
+      "abstract": [
+        1
+      ],
+      "available.": [
+        2
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2016,
+        "cited_by_count": 1
+      }
+    ],
+    "updated_date": "2026-03-03T08:47:05.690250",
+    "created_date": "2016-06-24T00:00:00"
+  }
+]
