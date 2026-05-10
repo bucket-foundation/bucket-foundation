@@ -1,0 +1,14 @@
+# Selenium and copper interaction at supra-nutritional level affecting blood parameters including immune response against P. multocida antigen in Murrah buffalo (Bubalus bubalis) calves.
+
+- **PMID**: 30262314
+- **DOI**: 10.1016/j.jtemb.2018.08.008
+- **PMCID**:  
+- **Journal**: Journal of trace elements in medicine and biology : organ of the Society for Minerals and Trace Elements (GMS)  ·  **Year**: 2018
+- **Authors**: Vishal Mudgal, Anil Kumar Garg, Ram Sharan Dass, Mayank Rawat
+- **MeSH**: Animals, Antigens, Bacterial, Antioxidants, Buffaloes, Copper, Dietary Supplements, Oxidative Stress, Pasteurella multocida, Selenium
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30262314/
+- **Captured**: 2026-05-10T17:10:12
+
+## Abstract
+
+Minerals play important role in the diet of an animal. Bio-availability of minerals largely gets affected by absolute as well as the relative amount of each mineral present in the diet of an animal. Copper and selenium are two such an essential elements affect utilization of each other in the gastrointestinal tract. The present study elucidates the utilization of copper and selenium at supra-nutritional levels (higher than nutritional requirements). Male Murrah buffalo (Bubalus bubalis) calves (n = 10, 8-9 months, 111.7 ± 12.55 kg body weight) were divided equally into two groups and fed either a standard (Control) diet or the same diet supplemented with 0.3 ppm selenium (Se) and 10 ppm copper (Cu) (Treatment). Supplementation was made using liquid solutions of two inorganic mineral sources after mixing in the concentrate mixture and study lasts for a period of 80 days. Blood samples were collected just before starting supplementation (designated as 0 day of study) and at day 40 and 80 after starting supplementation. Blood samples were subjected to haematological parameters, plasma minerals and various oxidative stress-related parameters were determined with the cell-mediated and humoral immune response against antigen P. multocida (P

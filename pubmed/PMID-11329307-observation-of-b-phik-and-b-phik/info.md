@@ -1,0 +1,14 @@
+# Observation of B --> phiK and B --> phiK*.
+
+- **PMID**: 11329307
+- **DOI**: 10.1103/PhysRevLett.86.3718
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2001
+- **Authors**: R A Briere, G P Chen, T Ferguson, H Vogel, A Gritsan, J P Alexander, R Baker, C Bebek, B E Berger, K Berkelman, F Blanc, V Boisvert, D G Cassel, P S Drell, J E Duboscq, K M Ecklund, R Ehrlich, P Gaidarev, L Gibbons, B Gittelman, S W Gray, D L Hartill, B K Heltsley, P I Hopman, L Hsu, C D Jones, J Kandaswamy, D L Kreinick, M Lohner, A Magerkurth, T O Meyer, N B Mistry, E Nordberg, M Palmer, J R Patterson, D Peterson, D Riley, A Romano, J G Thayer, D Urner, B Valant-Spaight, G Viehhauser, A Warburton, P Avery, C Prescott, A I Rubiera, H Stoeck, J Yelton, G Brandenburg, A Ershov, D Y Kim, R Wilson, T Bergfeld, B I Eisenstein, J Ernst, G E Gladding, G D Gollin, R M Hans, E Johnson, I Karliner, M A Marsh, C Plager, C Sedlack, M Selen, J J Thaler, J Williams, K W Edwards, R Janicek, P M Patel, A J Sadoff, R Ammar, A Bean, D Besson, X Zhao, S Anderson, V V Frolov, Y Kubota, S J Lee, J J O'Neill, R Poling, T Riehle, A Smith, C J Stepaniak, J Urheim, S Ahmed, M S Alam, S B Athar, L Jian, L Ling, M Saleem, S Timm, F Wappler, A Anastassov, E Eckhart, K K Gan, C Gwon, T Hart, K Honscheid, D Hufnagel, H Kagan, R Kass, T K Pedlar, H Schwarthoff, J B Thayer, E von Toerne, M M Zoeller, S J Richichi, H Severini, P Skubic, A Undrus, V Savinov, S Chen, J Fast, J W Hinson, J Lee, D H Miller, E I Shibata, I P Shipsey, V Pavlunin, D Cronin-Hennessy, A L Lyon, E H Thorndike, T E Coan, V Fadeyev, Y S Gao, Y Maravin, I Narsky, R Stroynowski, J Ye, T Wlodek, M Artuso, C Boulahouache, K Bukin, E Dambasuren, G Majumder, R Mountain, S Schuh, T Skwarnicki, S Stone, J C Wang, A Wolf, J Wu, S Kopp, M Kostin, A H Mahmood, S E Csorna, I Danko, K W McLean, Z Xu, R Godang, G Bonvicini, D Cinabro, M Dubrovin, S McGee, G J Zhou, A Bornheim, E Lipeles, S P Pappas, M Schmidtler, A Shapiro, W M Sun, A J Weinstein, D E Jaffe, R Mahapatra, G Masek, H P Paar, D M Asner, A Eppich, T S Hill, R J Morrison
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11329307/
+- **Captured**: 2026-05-10T17:09:56
+
+## Abstract
+
+We have studied two-body charmless hadronic decays of B mesons into the final states straight phiK and phiK(*). Using 9.7 million B&Bmacr; pairs collected with the CLEO II detector, we observe the decays B- --> phiK- and B0--> phiK(*0) with the following branching fractions: B(B--->phiK-) = (5.5(+2.1)(-1.8)+/-0.6)x10(-6) and B(B0--> phiK(*0)) = (11.5(+4.5+1.8)(-3.7-1.7))x10(-6). We also see evidence for the decays B0-->phiK0 and B---> phiK(*-). However, since the statistical significance is not overwhelming for these modes, we determine upper limits of <12.3x10(-6) and <22.5x10(-6) ( 90% confidence level), respectively.

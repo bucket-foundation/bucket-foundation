@@ -1,0 +1,14 @@
+# Effect of different levels of selenium supplementation on growth rate, nutrient utilization, blood metabolic profile, and immune response in lambs.
+
+- **PMID**: 18759066
+- **DOI**: 10.1007/s12011-008-8214-8
+- **PMCID**:  
+- **Journal**: Biological trace element research  ·  **Year**: 2008
+- **Authors**: Neeraj Kumar, Anil Kumar Garg, Vishal Mudgal, Ram Sharan Dass, Vinod Kumar Chaturvedi, Vijai Prakash Varshney
+- **MeSH**: Animal Feed, Animal Nutritional Physiological Phenomena, Animals, Body Weight, Dietary Supplements, Dose-Response Relationship, Drug, Enzyme-Linked Immunosorbent Assay, Male, Sheep, Sodium Selenite
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18759066/
+- **Captured**: 2026-05-10T17:10:10
+
+## Abstract
+
+Eighteen male lambs (8-9 months of age, 25.00 +/- 0.90 kg body weight) were divided into three groups of six animals in each and fed a total mixed ration (TMR) containing concentrate mixture (30% maize grain, 27% soybean meal, 40% wheat bran, 2% mineral mixture, and 1% common salt) and wheat straw in 65:35 ratio and supplemented with selenium (Se) as sodium selenite at 0 (T1, control), 0.15 (T2), and 0.30 ppm (T3) levels. Experimental feeding was done for a period of 90 days including a 6-day metabolism trial. To assess the growth performance, lambs were weighed every 15 days throughout the experimental period. All the lambs were intramuscularly inoculated with a single dose (2 ml) of haemorrhagic septicaemia oil adjuvant vaccine on 0 day to evaluate the humoral immune response. Blood samples were collected on 0 day and thereafter at 30 days interval. Results revealed that supplementation of Se both at 0.15 and 0.30 ppm levels had no significant (P > 0.05) effect on intake and digestibility of dry matter, organic matter, crude protein (CP), ether extract, neutral detergent fiber, acid detergent fiber, and hemicellulose; balances of calcium and phosphorus; and level and intake of digestible CP and total digestible nutrients. Se supplementation also had no significant (P > 0.05) effect on the levels of serum total cholesterol, total protein, albumin, globulin, albumin/globulin ratio, tri-iodothyronine (T(3)), thyroxine (T(4)), and T(4)/T(3) ratio; and serum glutamate oxaloacetate transaminase and serum glutamate pyruvate transaminase enzyme activity in the lambs. However, there was a significant (P < 0.05) increase in the plasma Se levels, red blood cell glutathione peroxidase enzyme activity, and humoral immune response in both the Se-supplemented groups. Feed (TMR) required per kilogram gain was less by 11.1% and 16.5% in groups T2 and T3, respectively, as compared to control (T1) group. Average daily gain was highest (108.5 g) in group T3, followed by group T2 (98.2 g), and lowest (89.06 g) in the control group (T1). These results indicated that supplementation of 0.15 and 0.3 ppm Se in the diet (having 0.19 ppm Se) of lambs significantly improves their immune response and antioxidant status.

@@ -1,0 +1,14 @@
+# Improved measurement of /V(cb)/ using B-->D*l nu decays.
+
+- **PMID**: 12190458
+- **DOI**: 10.1103/PhysRevLett.89.081803
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2002
+- **Authors**: R A Briere, G P Chen, T Ferguson, G Tatishvili, H Vogel, N E Adam, J P Alexander, C Bebek, B E Berger, K Berkelman, F Blanc, V Boisvert, D G Cassel, P S Drell, J E Duboscq, K M Ecklund, R Ehrlich, L Gibbons, B Gittelman, S W Gray, D L Hartill, B K Heltsley, L Hsu, C D Jones, J Kandaswamy, D L Kreinick, A Magerkurth, H Mahlke-Krüger, T O Meyer, N B Mistry, E Nordberg, M Palmer, J R Patterson, D Peterson, J Pivarski, D Riley, A J Sadoff, H Schwarthoff, M R Shepherd, J G Thayer, D Urner, B Valant-Spaight, G Viehhauser, A Warburton, M Weinberger, S B Athar, P Avery, H Stoeck, J Yelton, G Brandenburg, A Ershov, D Y-J Kim, R Wilson, K Benslama, B I Eisenstein, J Ernst, G D Gollin, R M Hans, I Karliner, N Lowrey, M A Marsh, C Plager, C Sedlack, M Selen, J J Thaler, J Williams, K W Edwards, R Ammar, D Besson, X Zhao, S Anderson, V V Frolov, Y Kubota, S J Lee, S Z Li, R Poling, A Smith, C J Stepaniak, J Urheim, S Ahmed, M S Alam, L Jian, M Saleem, F Wappler, E Eckhart, K K Gan, C Gwon, T Hart, K Honscheid, D Hufnagel, H Kagan, R Kass, T K Pedlar, J B Thayer, E von Toerne, T Wilksen, M M Zoeller, S J Richichi, H Severini, P Skubic, S A Dytman, S Nam, V Savinov, S Chen, J W Hinson, J Lee, D H Miller, V Pavlunin, E I Shibata, I P J Shipsey, D Cronin-Hennessy, A L Lyon, C S Park, W Park, E H Thorndike, T E Coan, Y S Gao, F Liu, Y Maravin, I Narsky, R Stroynowski, J Ye, M Artuso, C Boulahouache, K Bukin, E Dambasuren, R Mountain, T Skwarnicki, S Stone, J C Wang, A H Mahmood, S E Csorna, I Danko, Z Xu, G Bonvicini, D Cinabro, M Dubrovin, S McGee, A Bornheim, E Lipeles, S P Pappas, A Shapiro, W M Sun, A J Weinstein, G Masek, H P Paar, R Mahapatra
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12190458/
+- **Captured**: 2026-05-10T17:10:04
+
+## Abstract
+
+We determine the weak coupling /V(cb)/ between the b and c quarks using a sample of 3 x 10(6) BB; events in the CLEO detector at the Cornell Electron Storage Ring. We determine the yield of reconstructed B-->D*l nu; decays as a function of w, the boost of the D* in the B rest frame, and from this we obtain the differential decay rate d Gamma/dw. By extrapolating d Gamma/dw to w=1, the kinematic end point at which the D* is at rest relative to the B, we extract the product /V(cb)/F(1), where F(1) is the form factor at w=1. Combined with theoretical results for F(1) we determine /V(cb)/=0.0469+/-0.0014(stat)+/-0.0020(syst)+/-0.0018(theor).
