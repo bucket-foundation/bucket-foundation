@@ -1,0 +1,14 @@
+# Changes in structural and functional connectivity among resting-state networks across the human lifespan.
+
+- **PMID**: 25109530
+- **DOI**: 10.1016/j.neuroimage.2014.07.067
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2014
+- **Authors**: Richard F Betzel, Lisa Byrge, Ye He, Joaquín Goñi, Xi-Nian Zuo, Olaf Sporns
+- **MeSH**: Adolescent, Adult, Aged, Aged, 80 and over, Aging, Brain, Brain Mapping, Child, Diffusion Tensor Imaging, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25109530/
+- **Captured**: 2026-05-10T16:17:26
+
+## Abstract
+
+At rest, the brain's sensorimotor and higher cognitive systems engage in organized patterns of correlated activity forming resting-state networks. An important empirical question is how functional connectivity and structural connectivity within and between resting-state networks change with age. In this study we use network modeling techniques to identify significant changes in network organization across the human lifespan. The results of this study demonstrate that whole-brain functional and structural connectivity both exhibit reorganization with age. On average, functional connections within resting-state networks weaken in magnitude while connections between resting-state networks tend to increase. These changes can be localized to a small subset of functional connections that exhibit systematic changes across the lifespan. Collectively, changes in functional connectivity are also manifest at a system-wide level, as components of the control, default mode, saliency/ventral attention, dorsal attention, and visual networks become less functionally cohesive, as evidenced by decreased component modularity. Paralleling this functional reorganization is a decrease in the density and weight of anatomical white-matter connections. Hub regions are particularly affected by these changes, and the capacity of those regions to communicate with other regions exhibits a lifelong pattern of decline. Finally, the relationship between functional connectivity and structural connectivity also appears to change with age; functional connectivity along multi-step structural paths tends to be stronger in older subjects than in younger subjects. Overall, our analysis points to age-related changes in inter-regional communication unfolding within and between resting-state networks.

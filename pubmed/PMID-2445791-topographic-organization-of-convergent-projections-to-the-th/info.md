@@ -1,0 +1,14 @@
+# Topographic organization of convergent projections to the thalamus from the inferior colliculus and spinal cord in the rat.
+
+- **PMID**: 2445791
+- **DOI**: 10.1002/cne.902640110
+- **PMCID**:  
+- **Journal**: The Journal of comparative neurology  ·  **Year**: 1987
+- **Authors**: J E Ledoux, D A Ruggiero, R Forest, R Stornetta, D J Reis
+- **MeSH**: Afferent Pathways, Animals, Auditory Pathways, Brain Mapping, Geniculate Bodies, Horseradish Peroxidase, Inferior Colliculi, Male, Rats, Rats, Inbred Strains
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2445791/
+- **Captured**: 2026-05-10T16:16:48
+
+## Abstract
+
+The purpose of this study was to identify thalamic areas receiving convergent sensory inputs from acoustic and spinal projection systems in the rat. The topographic distribution of afferents to the thalamus from the inferior colliculus and spinal cord was examined by using WGA-HRP as an anterograde axonal tracer. Following injections in the inferior colliculus, terminal labeling was present in ventral, medial, and dorsal divisions of the medial genicuate body (MGB) and in adjacent areas of the posterior thalamus, including the posterior limitans nucleus, the posterior intralaminar nucleus, the marginal zone, the peripeduncular region, the lateral or parvicellular part of the subparafascicular nucleus, and a region intercalated between the posterior limitans nucleus and the suprageniculate nucleus. In the caudal thalamus spinal projections remained in the reticular formation medial to the collicular terminal field. At intermediate levels of the MG, however, the spinal projection began to overlap the collicular field, terminating in the medial division of the MG and in the posterior intralaminar nucleus, the marginal zone, the lateral subparafascicular nucleus, and the area between the suprageniculate and posterior limitans nuclei. More rostrally, the convergent field expanded to include aspects of the dorsal MG division. The extent to which afferent projections to the thalamus from the inferior colliculus and spinal cord converge is thus graded in the caudorostral plane, with the greatest overlap occurring at the level of the rostral third of the MGB. These observations identify potential areas of acoustic and somesthetic integration and may account for observations of neuronal plasticity in the thalamus in response to the pairing of acoustic and somesthetic inputs.

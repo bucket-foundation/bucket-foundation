@@ -1,0 +1,14 @@
+# Behavioral stress accelerates prostate cancer development in mice.
+
+- **PMID**: 23348742
+- **DOI**: 10.1021/jm300881a
+- **PMCID**: PMC3738169 (full-text saved)
+- **Journal**: The Journal of clinical investigation  ·  **Year**: 2013
+- **Authors**: Sazzad Hassan, Yelena Karpova, Daniele Baiz, Dana Yancey, Ashok Pullikuth, Anabel Flores, Thomas Register, J Mark Cline, Ralph D'Agostino, Nika Danial, Sandeep Robert Datta, George Kulik
+- **MeSH**: Adrenergic beta-Antagonists, Animals, Apoptosis, Cell Line, Tumor, Disease Models, Animal, Epinephrine, Humans, Hypothalamo-Hypophyseal System, Male, Mice
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23348742/
+- **Captured**: 2026-05-10T16:15:23
+
+## Abstract
+
+Prostate cancer patients have increased levels of stress and anxiety. Conversely, men who take beta blockers, which interfere with signaling from the stress hormones adrenaline and noradrenaline, have a lower incidence of prostate cancer; however, the mechanisms underlying stress-prostate cancer interactions are unknown. Here, we report that stress promotes prostate carcinogenesis in mice in an adrenaline-dependent manner. Behavioral stress inhibited apoptosis and delayed prostate tumor involution both in phosphatase and tensin homolog-deficient (PTEN-deficient) prostate cancer xenografts treated with PI3K inhibitor and in prostate tumors of mice with prostate-restricted expression of c-MYC (Hi-Myc mice) subjected to androgen ablation therapy with bicalutamide. Additionally, stress accelerated prostate cancer development in Hi-Myc mice. The effects of stress were prevented by treatment with the selective β2-adrenergic receptor (ADRB2) antagonist ICI118,551 or by inducible expression of PKA inhibitor (PKI) or of BCL2-associated death promoter (BAD) with a mutated PKA phosphorylation site (BADS112A) in xenograft tumors. Effects of stress were also blocked in Hi-Myc mice expressing phosphorylation-deficient BAD (BAD3SA). These results demonstrate interactions between prostate tumors and the psychosocial environment mediated by activation of an adrenaline/ADRB2/PKA/BAD antiapoptotic signaling pathway. Our findings could be used to identify prostate cancer patients who could benefit from stress reduction or from pharmacological inhibition of stress-induced signaling.

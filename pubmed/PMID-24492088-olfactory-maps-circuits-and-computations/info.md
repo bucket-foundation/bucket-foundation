@@ -1,0 +1,14 @@
+# Olfactory maps, circuits and computations.
+
+- **PMID**: 24492088
+- **DOI**: 10.1016/j.conb.2013.09.010
+- **PMCID**: PMC2774785 (full-text saved)
+- **Journal**: Current opinion in neurobiology  ·  **Year**: 2014
+- **Authors**: Andrew J Giessel, Sandeep Robert Datta
+- **MeSH**: Animals, Brain Mapping, Humans, Models, Neurological, Olfactory Pathways, Olfactory Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24492088/
+- **Captured**: 2026-05-10T16:16:54
+
+## Abstract
+
+Sensory information in the visual, auditory and somatosensory systems is organized topographically, with key sensory features ordered in space across neural sheets. Despite the existence of a spatially stereotyped map of odor identity within the olfactory bulb, it is unclear whether the higher olfactory cortex uses topography to organize information about smells. Here, we review recent work on the anatomy, microcircuitry and neuromodulation of two higher-order olfactory areas: the piriform cortex and the olfactory tubercle. The piriform is an archicortical region with an extensive local associational network that constructs representations of odor identity. The olfactory tubercle is an extension of the ventral striatum that may use reward-based learning rules to encode odor valence. We argue that in contrast to brain circuits for other sensory modalities, both the piriform and the olfactory tubercle largely discard any topography present in the bulb and instead use distributive afferent connectivity, local learning rules and input from neuromodulatory centers to build behaviorally relevant representations of olfactory stimuli.

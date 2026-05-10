@@ -1,0 +1,14 @@
+# Neural and behavioral correlates of extended training during sleep deprivation in humans: evidence for local, task-specific effects.
+
+- **PMID**: 25788668
+- **DOI**: 10.1097/00001756-200106130-00049
+- **PMCID**: PMC3085007 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2015
+- **Authors**: Giulio Bernardi, Francesca Siclari, Xiaoqian Yu, Corinna Zennig, Michele Bellesi, Emiliano Ricciardi, Chiara Cirelli, Maria Felice Ghilardi, Pietro Pietrini, Giulio Tononi
+- **MeSH**: Adult, Brain, Electroencephalography, Female, Humans, Magnetic Resonance Imaging, Male, Nerve Net, Photic Stimulation, Psychomotor Performance
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25788668/
+- **Captured**: 2026-05-10T16:18:11
+
+## Abstract
+
+Recent work has demonstrated that behavioral manipulations targeting specific cortical areas during prolonged wakefulness lead to a region-specific homeostatic increase in theta activity (5-9 Hz), suggesting that theta waves could represent transient neuronal OFF periods (local sleep). In awake rats, the occurrence of an OFF period in a brain area relevant for behavior results in performance errors. Here we investigated the potential relationship between local sleep events and negative behavioral outcomes in humans. Volunteers participated in two prolonged wakefulness experiments (24 h), each including 12 h of practice with either a driving simulation (DS) game or a battery of tasks based on executive functions (EFs). Multiple high-density EEG recordings were obtained during each experiment, both in quiet rest conditions and during execution of two behavioral tests, a response inhibition test and a motor test, aimed at assessing changes in impulse control and visuomotor performance, respectively. In addition, fMRI examinations obtained at 12 h intervals were used to investigate changes in inter-regional connectivity. The EF experiment was associated with a reduced efficiency in impulse control, whereas DS led to a relative impairment in visuomotor control. A specific spatial and temporal correlation was observed between EEG theta waves occurring in task-related areas and deterioration of behavioral performance. The fMRI connectivity analysis indicated that performance impairment might partially depend on a breakdown in connectivity determined by a "network overload." Present results demonstrate the existence of an association between theta waves during wakefulness and performance errors and may contribute explaining behavioral impairments under conditions of sleep deprivation/restriction.

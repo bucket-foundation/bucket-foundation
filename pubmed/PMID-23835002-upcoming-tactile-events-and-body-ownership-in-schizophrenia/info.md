@@ -1,0 +1,14 @@
+# Upcoming tactile events and body ownership in schizophrenia.
+
+- **PMID**: 23835002
+- **DOI**: 10.1016/j.schres.2013.06.026
+- **PMCID**:  
+- **Journal**: Schizophrenia research  ·  **Year**: 2014
+- **Authors**: Francesca Ferri, Marcello Costantini, Anatolia Salone, Giuseppe Di Iorio, Giovanni Martinotti, Antonio Chiarelli, Arcangelo Merla, Massimo Di Giannantonio, Vittorio Gallese
+- **MeSH**: Adult, Female, Human Body, Humans, Illusions, Linear Models, Male, Middle Aged, Ownership, Schizophrenia
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23835002/
+- **Captured**: 2026-05-10T16:15:52
+
+## Abstract
+
+Schizophrenic patients may report unusual perception of their own body. Studies using the rubber hand illusion (RHI) proposed that they exhibit a distorted sense of body ownership. However, since the RHI is mostly achieved with the contribution of visuo-tactile integration, the stronger RHI observed in schizophrenic patients could reflect either a general increase of the response to multisensory stimuli or a larger influence of visual cues on the tactile sensory experience. The purpose of the present study is to investigate patients' perception of their own body by means of a behavioral paradigm that measures their proneness to the RHI without relying on multisensory integration occurring during actual experience of touch. In a previous study we demonstrated in healthy participants that expectation of touch experience arising at the sight of a human hand approaching a rubber hand is enough to induce a sense of ownership over the same hand. Here we take advantage of the same paradigm to investigate body ownership in schizophrenia. Patients observed the experimenter's hand while approaching--without touching--either a rubber hand or a piece of wood placed in front of them. The seen object could be either aligned to participant's hand or rotated by 180°. Phenomenology of the illusion revealed that schizophrenic patients exhibited sense of ownership over the rubber hand, but more weakly than healthy controls. The present study sheds new light on the experience of body ownership in schizophrenic patients, corroborating the notion that alterations of bodily self-awareness play an important role in schizophrenia.

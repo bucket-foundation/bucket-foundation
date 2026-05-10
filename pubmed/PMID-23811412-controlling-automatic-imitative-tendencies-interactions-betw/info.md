@@ -1,0 +1,14 @@
+# Controlling automatic imitative tendencies: interactions between mirror neuron and cognitive control systems.
+
+- **PMID**: 23811412
+- **DOI**: 10.1016/j.neuroimage.2013.06.060
+- **PMCID**: PMC3161133 (full-text saved)
+- **Journal**: NeuroImage  ·  **Year**: 2013
+- **Authors**: Katy A Cross, Salvatore Torrisi, Elizabeth A Reynolds Losin, Marco Iacoboni
+- **MeSH**: Adult, Brain Mapping, Cognition, Feedback, Physiological, Female, Frontal Lobe, Humans, Imitative Behavior, Male, Mirror Neurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23811412/
+- **Captured**: 2026-05-10T16:15:46
+
+## Abstract
+
+Humans have an automatic tendency to imitate others. Although several regions commonly observed in social tasks have been shown to be involved in imitation control, there is little work exploring how these regions interact with one another. We used fMRI and dynamic causal modeling to identify imitation-specific control mechanisms and examine functional interactions between regions. Participants performed a pre-specified action (lifting their index or middle finger) in response to videos depicting the same two actions (biological cues) or dots moving with similar trajectories (non-biological cues). On congruent trials, the stimulus and response were similar (e.g. index finger response to index finger or left side dot stimulus), while on incongruent trials the stimulus and response were dissimilar (e.g. index finger response to middle finger or right side dot stimulus). Reaction times were slower on incongruent compared to congruent trials for both biological and non-biological stimuli, replicating previous findings that suggest the automatic imitative or spatially compatible (congruent) response must be controlled on incongruent trials. Neural correlates of the congruency effects were different depending on the cue type. The medial prefrontal cortex, anterior cingulate, inferior frontal gyrus pars opercularis (IFGpo) and the left anterior insula were involved specifically in controlling imitation. In addition, the IFGpo was also more active for biological compared to non-biological stimuli, suggesting that the region represents the frontal node of the human mirror neuron system (MNS). Effective connectivity analysis exploring the interactions between these regions, suggests a role for the mPFC and ACC in imitative conflict detection and the anterior insula in conflict resolution processes, which may occur through interactions with the frontal node of the MNS. We suggest an extension of the previous models of imitation control involving interactions between imitation-specific and general cognitive control mechanisms.

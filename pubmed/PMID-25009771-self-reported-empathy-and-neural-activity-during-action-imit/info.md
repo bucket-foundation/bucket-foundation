@@ -1,0 +1,14 @@
+# Self-reported empathy and neural activity during action imitation and observation in schizophrenia.
+
+- **PMID**: 25009771
+- **DOI**: 10.1016/j.nicl.2014.06.006
+- **PMCID**: PMC3474329 (full-text saved)
+- **Journal**: NeuroImage. Clinical  ·  **Year**: 2014
+- **Authors**: William P Horan, Marco Iacoboni, Katy A Cross, Alex Korb, Junghee Lee, Poorang Nori, Javier Quintana, Jonathan K Wynn, Michael F Green
+- **MeSH**: Adult, Brain, Brain Mapping, Emotions, Empathy, Facial Expression, Female, Humans, Image Processing, Computer-Assisted, Imitative Behavior
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25009771/
+- **Captured**: 2026-05-10T16:17:23
+
+## Abstract
+
+Although social cognitive impairments are key determinants of functional outcome in schizophrenia their neural bases are poorly understood. This study investigated neural activity during imitation and observation of finger movements and facial expressions in schizophrenia, and their correlates with self-reported empathy. 23 schizophrenia outpatients and 23 healthy controls were studied with functional magnetic resonance imaging (fMRI) while they imitated, executed, or simply observed finger movements and facial emotional expressions. Between-group activation differences, as well as relationships between activation and self-reported empathy, were evaluated. Both patients and controls similarly activated neural systems previously associated with these tasks. We found no significant between-group differences in task-related activations. There were, however, between-group differences in the correlation between self-reported empathy and right inferior frontal (pars opercularis) activity during observation of facial emotional expressions. As in previous studies, controls demonstrated a positive association between brain activity and empathy scores. In contrast, the pattern in the patient group reflected a negative association between brain activity and empathy. Although patients with schizophrenia demonstrated largely normal patterns of neural activation across the finger movement and facial expression tasks, they reported decreased self perceived empathy and failed to show the typical relationship between neural activity and self-reported empathy seen in controls. These findings suggest that patients show a disjunction between automatic neural responses to low level social cues and higher level, integrative social cognitive processes involved in self-perceived empathy.

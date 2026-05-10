@@ -1,0 +1,14 @@
+# To imitate or not: Avoiding imitation involves preparatory inhibition of motor resonance.
+
+- **PMID**: 24473096
+- **DOI**: 10.1016/j.neuroimage.2014.01.027
+- **PMCID**: PMC6870802 (full-text saved)
+- **Journal**: NeuroImage  ·  **Year**: 2014
+- **Authors**: Katy A Cross, Marco Iacoboni
+- **MeSH**: Adolescent, Adult, Choice Behavior, Cognition, Cues, Electromyography, Evoked Potentials, Motor, Female, Hand, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24473096/
+- **Captured**: 2026-05-10T16:16:49
+
+## Abstract
+
+Stimulus-response compatibility (SRC)-the fact that some stimulus-response pairs are faster than others-is attributed in part to automatic activation of the stimulus-compatible response representation. Cognitive models of SRC propose that automatic response activation can be strategically suppressed if the automatic response is likely to interfere with behavior; in particular, suppression is thought to occur in preparation for incompatible responses and when the required stimulus-response mapping is unknown before stimulus presentation. We test this preparatory suppression hypothesis in the context of imitation, a special form of SRC particularly relevant to human social behavior. Using TMS, we measured muscle-specific corticospinal excitability during action observation (motor resonance) while human participants prepared to perform imitative and counterimitative responses to action videos. Motor resonance was suppressed during preparation to counterimitate and for unknown mappings, compared to preparation to imitate and a baseline measure of motor resonance. These results provide novel neurophysiological evidence that automatic activation of stimulus-compatible responses can be strategically suppressed when the automatic response is likely to interfere with task goals. Insofar as motor resonance measures mirror neuron system activity, these results also suggest that preparatory control of automatic imitative tendencies occurs through modulation of mirror neuron system activity.

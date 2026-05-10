@@ -1,0 +1,14 @@
+# Robust estimation of fractal measures for characterizing the structural complexity of the human brain: optimization and reproducibility.
+
+- **PMID**: 23831414
+- **DOI**: 10.1016/j.neuroimage.2013.06.072
+- **PMCID**: PMC2997151 (full-text saved)
+- **Journal**: NeuroImage  ·  **Year**: 2013
+- **Authors**: Joaquín Goñi, Olaf Sporns, Hu Cheng, Maite Aznárez-Sanado, Yang Wang, Santiago Josa, Gonzalo Arrondo, Vincent P Mathews, Tom A Hummer, William G Kronenberger, Andrea Avena-Koenigsberger, Andrew J Saykin, María A Pastor
+- **MeSH**: Adult, Algorithms, Brain, Female, Fractals, Humans, Image Processing, Computer-Assisted, Magnetic Resonance Imaging, Male, Reproducibility of Results
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23831414/
+- **Captured**: 2026-05-10T16:15:51
+
+## Abstract
+
+High-resolution isotropic three-dimensional reconstructions of human brain gray and white matter structures can be characterized to quantify aspects of their shape, volume and topological complexity. In particular, methods based on fractal analysis have been applied in neuroimaging studies to quantify the structural complexity of the brain in both healthy and impaired conditions. The usefulness of such measures for characterizing individual differences in brain structure critically depends on their within-subject reproducibility in order to allow the robust detection of between-subject differences. This study analyzes key analytic parameters of three fractal-based methods that rely on the box-counting algorithm with the aim to maximize within-subject reproducibility of the fractal characterizations of different brain objects, including the pial surface, the cortical ribbon volume, the white matter volume and the gray matter/white matter boundary. Two separate datasets originating from different imaging centers were analyzed, comprising 50 subjects with three and 24 subjects with four successive scanning sessions per subject, respectively. The reproducibility of fractal measures was statistically assessed by computing their intra-class correlations. Results reveal differences between different fractal estimators and allow the identification of several parameters that are critical for high reproducibility. Highest reproducibility with intra-class correlations in the range of 0.9-0.95 is achieved with the correlation dimension. Further analyses of the fractal dimensions of parcellated cortical and subcortical gray matter regions suggest robustly estimated and region-specific patterns of individual variability. These results are valuable for defining appropriate parameter configurations when studying changes in fractal descriptors of human brain structure, for instance in studies of neurological diseases that do not allow repeated measurements or for disease-course longitudinal studies.

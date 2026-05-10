@@ -1,0 +1,14 @@
+# Cascading reminiscence bumps in popular music.
+
+- **PMID**: 24006129
+- **DOI**: 10.1177/0956797613486486
+- **PMCID**:  
+- **Journal**: Psychological science  ·  **Year**: 2013
+- **Authors**: Carol Lynne Krumhansl, Justin Adam Zupnick
+- **MeSH**: Age Factors, Consumer Behavior, Emotions, Female, Humans, Judgment, Male, Memory, Episodic, Music, Recognition, Psychology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24006129/
+- **Captured**: 2026-05-10T16:16:13
+
+## Abstract
+
+Autobiographical memories are disproportionately recalled for events in late adolescence and early adulthood, a phenomenon called the reminiscence bump. Previous studies on music have found autobiographical memories and life-long preferences for music from this period. In the present study, we probed young adults' personal memories associated with top hits over 5-and-a-half decades, as well as the context of their memories and their recognition of, preference for, quality judgments of, and emotional reactions to that music. All these measures showed the typical increase for music released during the two decades of their lives. Unexpectedly, we found that the same measures peaked for the music of participants' parents' generation. This finding points to the impact of music in childhood and suggests that these results reflect the prevalence of music in the home environment. An earlier peak occurred for 1960s music, which may be explained by its quality or by its transmission through two generations. We refer to this pattern of musical cultural transmission over generations as cascading reminiscence bumps.

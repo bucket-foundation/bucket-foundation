@@ -1,0 +1,14 @@
+# Enculturation to musical pitch structure in young children: evidence from behavioral and electrophysiological methods.
+
+- **PMID**: 24205955
+- **DOI**: 10.1111/desc.12100
+- **PMCID**:  
+- **Journal**: Developmental science  ·  **Year**: 2014
+- **Authors**: Kathleen A Corrigall, Laurel J Trainor
+- **MeSH**: Acoustic Stimulation, Adult, Analysis of Variance, Brain, Brain Mapping, Child Behavior, Child, Preschool, Electroencephalography, Evoked Potentials, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24205955/
+- **Captured**: 2026-05-10T16:16:30
+
+## Abstract
+
+Children learn the structure of the music of their culture similarly to how they learn the language to which they are exposed in their daily environment. Furthermore, as with language, children acquire this musical knowledge without formal instruction. Two critical aspects of musical pitch structure in Western tonal music are key membership (understanding which notes belong in a key and which do not) and harmony (understanding which notes combine to form chords and which notes and chords tend to follow others). The early developmental trajectory of the acquisition of this knowledge remains unclear, in part because of the difficulty of testing young children. In two experiments, we investigated 4- and 5-year-olds' enculturation to Western musical pitch using a novel age-appropriate and engaging behavioral task (Experiment 1) and electroencephalography (EEG; Experiment 2). In Experiment 1 we found behavioral evidence that 5-year-olds were sensitive to key membership but not to harmony, and no evidence that 4-year-olds were sensitive to either. However, in Experiment 2 we found neurophysiological evidence that 4-year-olds were sensitive to both key membership and harmony. Our results suggest that musical enculturation has a long developmental trajectory, and that children may have some knowledge of key membership and harmony before that knowledge can be expressed through explicit behavioral judgments.

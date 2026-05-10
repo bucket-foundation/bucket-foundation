@@ -1,0 +1,14 @@
+# Synchronization dynamics and evidence for a repertoire of network states in resting EEG.
+
+- **PMID**: 23060785
+- **DOI**: 10.3389/fnsys.2010.00016
+- **PMCID**: PMC2893007 (full-text saved)
+- **Journal**: Frontiers in computational neuroscience  ·  **Year**: 2012
+- **Authors**: Richard F Betzel, Molly A Erickson, Malene Abell, Brian F O'Donnell, William P Hetrick, Olaf Sporns
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23060785/
+- **Captured**: 2026-05-10T16:15:11
+
+## Abstract
+
+Intrinsically driven neural activity generated at rest exhibits complex spatiotemporal dynamics characterized by patterns of synchronization across distant brain regions. Mounting evidence suggests that these patterns exhibit fluctuations and nonstationarity at multiple time scales. Resting-state electroencephalographic (EEG) recordings were examined in 12 young adults for changes in synchronization patterns on a fast time scale in the range of tens to hundreds of milliseconds. Results revealed that EEG dynamics continuously underwent rapid transitions between intermittently stable states. Numerous approximate recurrences of states were observed within single recording epochs, across different epochs separated by longer times, and between participants. For broadband (4-30 Hz) data, a majority of states could be grouped into three families, suggesting the existence of a limited repertoire of core states that is continually revisited and shared across participants. Our results document the existence of fast synchronization dynamics iterating amongst a small set of core networks in the resting brain, complementing earlier findings of nonstationary dynamics in electromagnetic recordings and transient EEG microstates.

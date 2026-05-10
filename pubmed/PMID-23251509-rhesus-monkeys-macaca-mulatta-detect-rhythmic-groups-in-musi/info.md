@@ -1,0 +1,14 @@
+# Rhesus monkeys (Macaca mulatta) detect rhythmic groups in music, but not the beat.
+
+- **PMID**: 23251509
+- **DOI**: 10.1073/pnas.0809035106
+- **PMCID**: PMC2953518 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2012
+- **Authors**: Henkjan Honing, Hugo Merchant, Gábor P Háden, Luis Prado, Ramón Bartolo
+- **MeSH**: Animals, Evoked Potentials, Macaca mulatta, Music
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23251509/
+- **Captured**: 2026-05-10T16:15:17
+
+## Abstract
+
+It was recently shown that rhythmic entrainment, long considered a human-specific mechanism, can be demonstrated in a selected group of bird species, and, somewhat surprisingly, not in more closely related species such as nonhuman primates. This observation supports the vocal learning hypothesis that suggests rhythmic entrainment to be a by-product of the vocal learning mechanisms that are shared by several bird and mammal species, including humans, but that are only weakly developed, or missing entirely, in nonhuman primates. To test this hypothesis we measured auditory event-related potentials (ERPs) in two rhesus monkeys (Macaca mulatta), probing a well-documented component in humans, the mismatch negativity (MMN) to study rhythmic expectation. We demonstrate for the first time in rhesus monkeys that, in response to infrequent deviants in pitch that were presented in a continuous sound stream using an oddball paradigm, a comparable ERP component can be detected with negative deflections in early latencies (Experiment 1). Subsequently we tested whether rhesus monkeys can detect gaps (omissions at random positions in the sound stream; Experiment 2) and, using more complex stimuli, also the beat (omissions at the first position of a musical unit, i.e. the 'downbeat'; Experiment 3). In contrast to what has been shown in human adults and newborns (using identical stimuli and experimental paradigm), the results suggest that rhesus monkeys are not able to detect the beat in music. These findings are in support of the hypothesis that beat induction (the cognitive mechanism that supports the perception of a regular pulse from a varying rhythm) is species-specific and absent in nonhuman primates. In addition, the findings support the auditory timing dissociation hypothesis, with rhesus monkeys being sensitive to rhythmic grouping (detecting the start of a rhythmic group), but not to the induced beat (detecting a regularity from a varying rhythm).

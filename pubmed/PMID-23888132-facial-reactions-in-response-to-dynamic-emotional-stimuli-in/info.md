@@ -1,0 +1,14 @@
+# Facial reactions in response to dynamic emotional stimuli in different modalities in patients suffering from schizophrenia: a behavioral and EMG study.
+
+- **PMID**: 23888132
+- **DOI**: 10.1017/S1355617710000329
+- **PMCID**: PMC3181757 (full-text saved)
+- **Journal**: Frontiers in human neuroscience  ·  **Year**: 2013
+- **Authors**: Mariateresa Sestito, Maria Alessandra Umiltà, Giancarlo De Paola, Renata Fortunati, Andrea Raballo, Emanuela Leuci, Simone Maffei, Matteo Tonna, Mario Amore, Carlo Maggini, Vittorio Gallese
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23888132/
+- **Captured**: 2026-05-10T16:15:58
+
+## Abstract
+
+Emotional facial expression is an important low-level mechanism contributing to the experience of empathy, thereby lying at the core of social interaction. Schizophrenia is associated with pervasive social cognitive impairments, including emotional processing of facial expressions. In this study we test a novel paradigm in order to investigate the evaluation of the emotional content of perceived emotions presented through dynamic expressive stimuli, facial mimicry evoked by the same stimuli, and their functional relation. Fifteen healthy controls and 15 patients diagnosed with schizophrenia were presented with stimuli portraying positive (laugh), negative (cry) and neutral (control) emotional stimuli in visual, auditory modalities in isolation, and congruently or incongruently associated. Participants where requested to recognize and quantitatively rate the emotional value of the perceived stimuli, while electromyographic activity of Corrugator and Zygomaticus muscles was recorded. All participants correctly judged the perceived emotional stimuli and prioritized the visual over the auditory modality in identifying the emotion when they were incongruently associated (Audio-Visual Incongruent condition). The neutral emotional stimuli did not evoke any muscle responses and were judged by all participants as emotionally neutral. Control group responded with rapid and congruent mimicry to emotional stimuli, and in Incongruent condition muscle responses were driven by what participants saw rather than by what they heard. Patient group showed a similar pattern only with respect to negative stimuli, whereas showed a lack of or a non-specific Zygomaticus response when positive stimuli were presented. Finally, we found that only patients with reduced facial mimicry (Internalizers) judged both positive and negative emotions as significantly more neutral than controls. The relevance of these findings for studying emotional deficits in schizophrenia is discussed.

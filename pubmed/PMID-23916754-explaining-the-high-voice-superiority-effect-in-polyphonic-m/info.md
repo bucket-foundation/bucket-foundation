@@ -1,0 +1,14 @@
+# Explaining the high voice superiority effect in polyphonic music: evidence from cortical evoked potentials and peripheral auditory models.
+
+- **PMID**: 23916754
+- **DOI**: 10.1016/j.heares.2013.07.014
+- **PMCID**:  
+- **Journal**: Hearing research  ·  **Year**: 2014
+- **Authors**: Laurel J Trainor, Céline Marie, Ian C Bruce, Gavin M Bidelman
+- **MeSH**: Acoustic Stimulation, Adult, Auditory Cortex, Auditory Pathways, Auditory Perception, Brain, Brain Mapping, Cochlear Nerve, Computer Simulation, Electroencephalography
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23916754/
+- **Captured**: 2026-05-10T16:16:00
+
+## Abstract
+
+Natural auditory environments contain multiple simultaneously-sounding objects and the auditory system must parse the incoming complex sound wave they collectively create into parts that represent each of these individual objects. Music often similarly requires processing of more than one voice or stream at the same time, and behavioral studies demonstrate that human listeners show a systematic perceptual bias in processing the highest voice in multi-voiced music. Here, we review studies utilizing event-related brain potentials (ERPs), which support the notions that (1) separate memory traces are formed for two simultaneous voices (even without conscious awareness) in auditory cortex and (2) adults show more robust encoding (i.e., larger ERP responses) to deviant pitches in the higher than in the lower voice, indicating better encoding of the former. Furthermore, infants also show this high-voice superiority effect, suggesting that the perceptual dominance observed across studies might result from neurophysiological characteristics of the peripheral auditory system. Although musically untrained adults show smaller responses in general than musically trained adults, both groups similarly show a more robust cortical representation of the higher than of the lower voice. Finally, years of experience playing a bass-range instrument reduces but does not reverse the high voice superiority effect, indicating that although it can be modified, it is not highly neuroplastic. Results of new modeling experiments examined the possibility that characteristics of middle-ear filtering and cochlear dynamics (e.g., suppression) reflected in auditory nerve firing patterns might account for the higher-voice superiority effect. Simulations show that both place and temporal AN coding schemes well-predict a high-voice superiority across a wide range of interval spacings and registers. Collectively, we infer an innate, peripheral origin for the higher-voice superiority observed in human ERP and psychophysical music listening studies.

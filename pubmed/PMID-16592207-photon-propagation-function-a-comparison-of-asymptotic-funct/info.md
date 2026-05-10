@@ -1,0 +1,14 @@
+# Photon propagation function: a comparison of asymptotic functions.
+
+- **PMID**: 16592207
+- **DOI**: 10.1073/pnas.71.12.5047
+- **PMCID**: PMC434037 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1974
+- **Authors**: J Schwinger
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16592207/
+- **Captured**: 2026-05-10T16:14:44
+
+## Abstract
+
+An earlier paper asserts the logarithmic asymptotic identity of various asymptotic functions associated with the photon propagation function, including the spectral weight function and the Gell-Mann-Low function. This note exhibits explicit expressions for the deviations between pairs of functions. It is emphasized that the differences are quantitatively small, and that the various functions have common qualitative characteristics. The discussion refers to a particular method for comparing the functions, which has no special physical status. When that restriction is removed, it becomes possible to prove the general existence of a transformation of variable that will produce the Gell-Mann-Low function from the spectral weight function. This supplies a physical interpretation that has otherwise been missing in the Gell-Mann-Low approach.

@@ -1,0 +1,14 @@
+# Extinction during reconsolidation of threat memory diminishes prefrontal cortex involvement.
+
+- **PMID**: 24277809
+- **DOI**: 10.1073/pnas.1320322110
+- **PMCID**: PMC1783626 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2013
+- **Authors**: Daniela Schiller, Jonathan W Kanen, Joseph E LeDoux, Marie-H Monfils, Elizabeth A Phelps
+- **MeSH**: Adult, Amygdala, Anxiety Disorders, Conditioning, Psychological, Electric Conductivity, Extinction, Psychological, Fear, Female, Humans, Linear Models
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24277809/
+- **Captured**: 2026-05-10T16:16:39
+
+## Abstract
+
+Controlling learned defensive responses through extinction does not alter the threat memory itself, but rather regulates its expression via inhibitory influence of the prefrontal cortex (PFC) over amygdala. Individual differences in amygdala-PFC circuitry function have been linked to trait anxiety and posttraumatic stress disorder. This finding suggests that exposure-based techniques may actually be least effective in those who suffer from anxiety disorders. A theoretical advantage of techniques influencing reconsolidation of threat memories is that the threat representation is altered, potentially diminishing reliance on this PFC circuitry, resulting in a more persistent reduction of defensive reactions. We hypothesized that timing extinction to coincide with threat memory reconsolidation would prevent the return of defensive reactions and diminish PFC involvement. Two conditioned stimuli (CS) were paired with shock and the third was not. A day later, one stimulus (reminded CS+) but not the other (nonreminded CS+) was presented 10 min before extinction to reactivate the threat memory, followed by extinction training for all CSs. The recovery of the threat memory was tested 24 h later. Extinction of the nonreminded CS+ (i.e., standard extinction) engaged the PFC, as previously shown, but extinction of the reminded CS+ (i.e., extinction during reconsolidation) did not. Moreover, only the nonreminded CS+ memory recovered on day 3. These results suggest that extinction during reconsolidation prevents the return of defensive reactions and diminishes PFC involvement. Reducing the necessity of the PFC-amygdala circuitry to control defensive reactions may help overcome a primary obstacle in the long-term efficacy of current treatments for anxiety disorders.

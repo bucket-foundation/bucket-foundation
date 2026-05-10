@@ -1,0 +1,14 @@
+# When early experiences build a wall to others' emotions: an electrophysiological and autonomic study.
+
+- **PMID**: 23593374
+- **DOI**: 10.1111/j.1469-8986.1995.tb01213.x
+- **PMCID**: PMC1801075 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2013
+- **Authors**: Martina Ardizzi, Francesca Martini, Maria Alessandra Umiltà, Mariateresa Sestito, Roberto Ravera, Vittorio Gallese
+- **MeSH**: Adolescent, Electromyography, Emotions, Face, Humans, Interpersonal Relations, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23593374/
+- **Captured**: 2026-05-10T16:15:37
+
+## Abstract
+
+Facial expression of emotions is a powerful vehicle for communicating information about others' emotional states and it normally induces facial mimicry in the observers. The aim of this study was to investigate if early aversive experiences could interfere with emotion recognition, facial mimicry, and with the autonomic regulation of social behaviors. We conducted a facial emotion recognition task in a group of "street-boys" and in an age-matched control group. We recorded facial electromyography (EMG), a marker of facial mimicry, and respiratory sinus arrhythmia (RSA), an index of the recruitment of autonomic system promoting social behaviors and predisposition, in response to the observation of facial expressions of emotions. Results showed an over-attribution of anger, and reduced EMG responses during the observation of both positive and negative expressions only among street-boys. Street-boys also showed lower RSA after observation of facial expressions and ineffective RSA suppression during presentation of non-threatening expressions. Our findings suggest that early aversive experiences alter not only emotion recognition but also facial mimicry of emotions. These deficits affect the autonomic regulation of social behaviors inducing lower social predisposition after the visualization of facial expressions and an ineffective recruitment of defensive behavior in response to non-threatening expressions.

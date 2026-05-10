@@ -1,0 +1,14 @@
+# Ancient origin of somatic and visceral neurons.
+
+- **PMID**: 23631531
+- **DOI**: 10.1093/molbev/msn047
+- **PMCID**: PMC2216043 (full-text saved)
+- **Journal**: BMC biology  ·  **Year**: 2013
+- **Authors**: Marc Nomaksteinsky, Stefan Kassabov, Zoubida Chettouh, Henri-Corto Stoeklé, Laure Bonnaud, Gilles Fortin, Eric R Kandel, Jean-François Brunet
+- **MeSH**: Animals, Biological Evolution, Ganglia, Invertebrate, Lymnaea, Mechanoreceptors, Mice, Neurons, Rats, Sensory Receptor Cells, Sepia
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23631531/
+- **Captured**: 2026-05-10T16:15:39
+
+## Abstract
+
+A key to understanding the evolution of the nervous system on a large phylogenetic scale is the identification of homologous neuronal types. Here, we focus this search on the sensory and motor neurons of bilaterians, exploiting their well-defined molecular signatures in vertebrates. Sensorimotor circuits in vertebrates are of two types: somatic (that sense the environment and respond by shaping bodily motions) and visceral (that sense the interior milieu and respond by regulating vital functions). These circuits differ by a small set of largely dedicated transcriptional determinants: Brn3 is expressed in many somatic sensory neurons, first and second order (among which mechanoreceptors are uniquely marked by the Brn3+/Islet1+/Drgx+ signature), somatic motoneurons uniquely co-express Lhx3/4 and Mnx1, while the vast majority of neurons, sensory and motor, involved in respiration, blood circulation or digestion are molecularly defined by their expression and dependence on the pan-visceral determinant Phox2b. We explore the status of the sensorimotor transcriptional code of vertebrates in mollusks, a lophotrochozoa clade that provides a rich repertoire of physiologically identified neurons. In the gastropods Lymnaea stagnalis and Aplysia californica, we show that homologues of Brn3, Drgx, Islet1, Mnx1, Lhx3/4 and Phox2b differentially mark neurons with mechanoreceptive, locomotory and cardiorespiratory functions. Moreover, in the cephalopod Sepia officinalis, we show that Phox2 marks the stellate ganglion (in line with the respiratory--that is, visceral--ancestral role of the mantle, its target organ), while the anterior pedal ganglion, which controls the prehensile and locomotory arms, expresses Mnx. Despite considerable divergence in overall neural architecture, a molecular underpinning for the functional allocation of neurons to interactions with the environment or to homeostasis was inherited from the urbilaterian ancestor by contemporary protostomes and deuterostomes.

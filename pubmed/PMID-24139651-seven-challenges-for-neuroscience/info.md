@@ -1,0 +1,14 @@
+# Seven challenges for neuroscience.
+
+- **PMID**: 24139651
+- **DOI**: 
+- **PMCID**: PMC1054880 (full-text saved)
+- **Journal**: Functional neurology  ·  **Year**: 2013
+- **Authors**: Henry Markram
+- **MeSH**: Animals, Brain, Brain Diseases, Computer Simulation, Data Mining, Databases, Factual, Forecasting, Humans, Neurosciences
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24139651/
+- **Captured**: 2026-05-10T16:16:26
+
+## Abstract
+
+Although twenty-first century neuroscience is a major scientific enterprise, advances in basic research have not yet translated into benefits for society. In this paper, I outline seven fundamental challenges that need to be overcome. First, neuroscience has to become "big science" - we need big teams with the resources and competences to tackle the big problems. Second, we need to create interlinked sets of data providing a complete picture of single areas of the brain at their different levels of organization with "rungs" linking the descriptions for humans and other species. Such "data ladders" will help us to meet the third challenge - the development of efficient predictive tools, enabling us to drastically increase the information we can extract from expensive experiments. The fourth challenge goes one step further: we have to develop novel hardware and software sufficiently powerful to simulate the brain. In the future, supercomputer-based brain simulation will enable us to make in silico manipulations and recordings, which are currently completely impossible in the lab. The fifth and sixth challenges are translational. On the one hand we need to develop new ways of classifying and simulating brain disease, leading to better diagnosis and more effective drug discovery. On the other, we have to exploit our knowledge to build new brain-inspired technologies, with potentially huge benefits for industry and for society. This leads to the seventh challenge. Neuroscience can indeed deliver huge benefits but we have to be aware of widespread social concern about our work. We need to recognize the fears that exist, lay them to rest, and actively build public support for neuroscience research. We have to set goals for ourselves that the public can recognize and share. And then we have to deliver on our promises. Only in this way, will we receive the support and funding we need.

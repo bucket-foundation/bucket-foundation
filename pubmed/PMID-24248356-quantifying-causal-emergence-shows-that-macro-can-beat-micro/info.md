@@ -1,0 +1,14 @@
+# Quantifying causal emergence shows that macro can beat micro.
+
+- **PMID**: 24248356
+- **DOI**: 10.1073/pnas.1314922110
+- **PMCID**: PMC2898896 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2013
+- **Authors**: Erik P Hoel, Larissa Albantakis, Giulio Tononi
+- **MeSH**: Computer Simulation, Information Theory, Models, Theoretical, Systems Biology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24248356/
+- **Captured**: 2026-05-10T16:16:36
+
+## Abstract
+
+Causal interactions within complex systems can be analyzed at multiple spatial and temporal scales. For example, the brain can be analyzed at the level of neurons, neuronal groups, and areas, over tens, hundreds, or thousands of milliseconds. It is widely assumed that, once a micro level is fixed, macro levels are fixed too, a relation called supervenience. It is also assumed that, although macro descriptions may be convenient, only the micro level is causally complete, because it includes every detail, thus leaving no room for causation at the macro level. However, this assumption can only be evaluated under a proper measure of causation. Here, we use a measure [effective information (EI)] that depends on both the effectiveness of a system's mechanisms and the size of its state space: EI is higher the more the mechanisms constrain the system's possible past and future states. By measuring EI at micro and macro levels in simple systems whose micro mechanisms are fixed, we show that for certain causal architectures EI can peak at a macro level in space and/or time. This happens when coarse-grained macro mechanisms are more effective (more deterministic and/or less degenerate) than the underlying micro mechanisms, to an extent that overcomes the smaller state space. Thus, although the macro level supervenes upon the micro, it can supersede it causally, leading to genuine causal emergence--the gain in EI when moving from a micro to a macro level of analysis.

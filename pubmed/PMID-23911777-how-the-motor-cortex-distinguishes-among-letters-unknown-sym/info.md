@@ -1,0 +1,14 @@
+# How the motor-cortex distinguishes among letters, unknown symbols and scribbles. A high density EEG study.
+
+- **PMID**: 23911777
+- **DOI**: 10.1016/j.neuropsychologia.2013.07.014
+- **PMCID**:  
+- **Journal**: Neuropsychologia  ·  **Year**: 2013
+- **Authors**: Katrin Heimann, Maria Alessandra Umilta, Vittorio Gallese
+- **MeSH**: Adolescent, Adult, Analysis of Variance, Brain Mapping, Cortical Synchronization, Electroencephalography, Female, Humans, Male, Motor Cortex
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23911777/
+- **Captured**: 2026-05-10T16:15:59
+
+## Abstract
+
+Previous research has reported that the perception of written language symbols activates the cortical motor hand representation of the dominant hemisphere also found to be activated during the writing of these symbols. It has been suggested that such motor activation supports reading. Nevertheless, the precise circumstances leading to such activation are still unknown. For instance, several studies suggested that motor activation necessarily depends on specific sensory-motor experience with the stimuli. Some results, however, also indicated that untrained stimuli can elicit the response. Moreover, due to the methods used so far, little is known about the temporal course of the motor activity. Our study explored these open questions using high-density EEG. We measured central alpha event-related desynchronization (ERD) as a marker of cortical motor activation during the observation of Roman letters (alphabet of participants' mother language), Chinese characters (not familiar to participants), and scribbles. Our results show that the cortical motor system is activated during the perception of all three stimuli in both hemispheres, with ERD stronger in the left (dominant) hemisphere. A significant difference of ERD time-course was observed in the left hemisphere between the observation of symbols (letters and characters) and scribbles. Scribbles elicited significantly faster resynchronization of central alpha than symbols. We suggest that ERD results are due to recognizing all stimuli as traces of hand gestures. Furthermore, differences in ERD found between symbols and scribbles might depend either on visuo-motor training, separating symbols from scribbles, or on stimuli specific features marking their status as either language symbols or scribbles.

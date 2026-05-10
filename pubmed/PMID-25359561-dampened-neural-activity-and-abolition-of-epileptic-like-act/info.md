@@ -1,0 +1,14 @@
+# Dampened neural activity and abolition of epileptic-like activity in cortical slices by active ingredients of spices.
+
+- **PMID**: 25359561
+- **DOI**: 10.1038/srep06825
+- **PMCID**: PMC3893566 (full-text saved)
+- **Journal**: Scientific reports  ·  **Year**: 2014
+- **Authors**: Maurizio Pezzoli, Abdeladim Elhamdani, Susana Camacho, Julie Meystre, Stephanie Michlig González, Johannes le Coutre, Henry Markram
+- **MeSH**: Action Potentials, Animals, Cells, Cultured, Cerebral Cortex, Epilepsy, Menthol, Mice, Neurons, Plant Extracts, Spices
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25359561/
+- **Captured**: 2026-05-10T16:17:41
+
+## Abstract
+
+Active ingredients of spices (AIS) modulate neural response in the peripheral nervous system, mainly through interaction with TRP channel/receptors. The present study explores how different AIS modulate neural response in layer 5 pyramidal neurons of S1 neocortex. The AIS tested are agonists of TRPV1/3, TRPM8 or TRPA1. Our results demonstrate that capsaicin, eugenol, menthol, icilin and cinnamaldehyde, but not AITC dampen the generation of APs in a voltage- and time-dependent manner. This effect was further tested for the TRPM8 ligands in the presence of a TRPM8 blocker (BCTC) and on TRPM8 KO mice. The observable effect was still present. Finally, the influence of the selected AIS was tested on in vitro gabazine-induced seizures. Results coincide with the above observations: except for cinnamaldehyde, the same AIS were able to reduce the number, duration of the AP bursts and increase the concentration of gabazine needed to elicit them. In conclusion, our data suggests that some of these AIS can modulate glutamatergic neurons in the brain through a TRP-independent pathway, regardless of whether the neurons are stimulated intracellularly or by hyperactive microcircuitry.

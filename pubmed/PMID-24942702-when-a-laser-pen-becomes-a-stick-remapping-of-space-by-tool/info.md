@@ -1,0 +1,14 @@
+# When a laser pen becomes a stick: remapping of space by tool-use observation in hemispatial neglect.
+
+- **PMID**: 24942702
+- **DOI**: 10.1007/s00221-014-4012-z
+- **PMCID**:  
+- **Journal**: Experimental brain research  ·  **Year**: 2014
+- **Authors**: Marcello Costantini, Francesca Frassinetti, Manuela Maini, Ettore Ambrosini, Vittorio Gallese, Corrado Sinigaglia
+- **MeSH**: Aged, Brain Injuries, Female, Functional Laterality, Hand, Humans, Lasers, Male, Middle Aged, Orientation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24942702/
+- **Captured**: 2026-05-10T16:17:14
+
+## Abstract
+
+The role of active tool use in the remapping of space in hemispatial neglect patients has been extensively investigated. To date, however, there is no evidence that observing tool use can play a role in the remapping of space in hemispatial neglect patients. In this study, a patient with a severe hemispatial neglect in near but not far space and twelve healthy controls were asked to bisect near and far lines using a laser pen. The task was performed both before and immediately after sessions in which they merely observed the experimenter bisecting near and far lines with a stick. During the observation session, participants were either holding an identical stick or empty-handed. Results, in both the neglect patient and healthy controls, showed that observing the experimenter bisecting line while holding the same tool, produces a remapping of the far space into the near space. This result was particularly evident in the neglect patient where observing line-bisection task extended the spatial deficit from the near to the far space. Our results provide new empirical support to the idea that the space around us is not mapped in merely metrical terms, rather it seems to be deeply impacted by both action observation and execution.

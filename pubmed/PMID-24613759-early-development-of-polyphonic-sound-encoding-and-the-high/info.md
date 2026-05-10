@@ -1,0 +1,14 @@
+# Early development of polyphonic sound encoding and the high voice superiority effect.
+
+- **PMID**: 24613759
+- **DOI**: 10.1016/j.neuropsychologia.2014.02.023
+- **PMCID**:  
+- **Journal**: Neuropsychologia  ·  **Year**: 2014
+- **Authors**: Céline Marie, Laurel J Trainor
+- **MeSH**: Acoustic Stimulation, Analysis of Variance, Brain Mapping, Contingent Negative Variation, Electroencephalography, Evoked Potentials, Auditory, Female, Humans, Infant, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24613759/
+- **Captured**: 2026-05-10T16:16:57
+
+## Abstract
+
+Previous research suggests that when two streams of pitched tones are presented simultaneously, adults process each stream in a separate memory trace, as reflected by mismatch negativity (MMN), a component of the event-related potential (ERP). Furthermore, a superior encoding of the higher tone or voice in polyphonic sounds has been found for 7-month-old infants and both musician and non-musician adults in terms of a larger amplitude MMN in response to pitch deviant stimuli in the higher than the lower voice. These results, in conjunction with modeling work, suggest that the high voice superiority effect might originate in characteristics of the peripheral auditory system. If this is the case, the high voice superiority effect should be present in infants younger than 7 months. In the present study we tested 3-month-old infants as there is no evidence at this age of perceptual narrowing or specialization of musical processing according to the pitch or rhythmic structure of music experienced in the infant׳s environment. We presented two simultaneous streams of tones (high and low) with 50% of trials modified by 1 semitone (up or down), either on the higher or the lower tone, leaving 50% standard trials. Results indicate that like the 7-month-olds, 3-month-old infants process each tone in a separate memory trace and show greater saliency for the higher tone. Although MMN was smaller and later in both voices for the group of sixteen 3-month-olds compared to the group of sixteen 7-month-olds, the size of the difference in MMN for the high compared to low voice was similar across ages. These results support the hypothesis of an innate peripheral origin of the high voice superiority effect.

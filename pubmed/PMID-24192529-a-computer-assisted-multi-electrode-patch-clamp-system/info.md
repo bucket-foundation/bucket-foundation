@@ -1,0 +1,14 @@
+# A computer-assisted multi-electrode patch-clamp system.
+
+- **PMID**: 24192529
+- **DOI**: 10.3791/50630
+- **PMCID**: PMC2614319 (full-text saved)
+- **Journal**: Journal of visualized experiments : JoVE  ·  **Year**: 2013
+- **Authors**: Rodrigo Perin, Henry Markram
+- **MeSH**: Brain, Computer Systems, Electrodes, Humans, Neurons, Patch-Clamp Techniques, Pyramidal Cells, User-Computer Interface
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24192529/
+- **Captured**: 2026-05-10T16:16:29
+
+## Abstract
+
+The patch-clamp technique is today the most well-established method for recording electrical activity from individual neurons or their subcellular compartments. Nevertheless, achieving stable recordings, even from individual cells, remains a time-consuming procedure of considerable complexity. Automation of many steps in conjunction with efficient information display can greatly assist experimentalists in performing a larger number of recordings with greater reliability and in less time. In order to achieve large-scale recordings we concluded the most efficient approach is not to fully automatize the process but to simplify the experimental steps and reduce the chances of human error while efficiently incorporating the experimenter's experience and visual feedback. With these goals in mind we developed a computer-assisted system which centralizes all the controls necessary for a multi-electrode patch-clamp experiment in a single interface, a commercially available wireless gamepad, while displaying experiment related information and guidance cues on the computer screen. Here we describe the different components of the system which allowed us to reduce the time required for achieving the recording configuration and substantially increase the chances of successfully recording large numbers of neurons simultaneously.

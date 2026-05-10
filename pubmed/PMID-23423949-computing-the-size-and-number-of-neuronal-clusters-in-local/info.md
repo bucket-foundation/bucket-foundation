@@ -1,0 +1,14 @@
+# Computing the size and number of neuronal clusters in local circuits.
+
+- **PMID**: 23423949
+- **DOI**: 10.1038/nature10958
+- **PMCID**: PMC3599787 (full-text saved)
+- **Journal**: Frontiers in neuroanatomy  ·  **Year**: 2013
+- **Authors**: Rodrigo Perin, Martin Telefont, Henry Markram
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23423949/
+- **Captured**: 2026-05-10T16:15:25
+
+## Abstract
+
+The organization of connectivity in neuronal networks is fundamental to understanding the activity and function of neural networks and information processing in the brain. Recent studies show that the neocortex is not only organized in columns and layers but also, within these, into synaptically connected clusters of neurons (Ko et al., 2011; Perin et al., 2011). The recently discovered common neighbor rule, according to which the probability of any two neurons being synaptically connected grows with the number of their common neighbors, is an organizing principle for this local clustering. Here we investigated the theoretical constraints for how the spatial extent of neuronal axonal and dendritic arborization, heretofore described by morphological reach, the density of neurons and the size of the network determine cluster size and numbers within neural networks constructed according to the common neighbor rule. In the formulation we developed, morphological reach, cell density, and network size are sufficient to estimate how many neurons, on average, occur in a cluster and how many clusters exist in a given network. We find that cluster sizes do not grow indefinitely as network parameters increase, but tend to characteristic limiting values.

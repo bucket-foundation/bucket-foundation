@@ -1,0 +1,14 @@
+# Integrated information theory of consciousness: an updated account.
+
+- **PMID**: 23165867
+- **DOI**: 10.4449/aib.v149i5.1388
+- **PMCID**:  
+- **Journal**: Archives italiennes de biologie  ·  **Year**: 2012
+- **Authors**: G Tononi
+- **MeSH**: Brain, Consciousness, Humans, Information Theory, Models, Neurological
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23165867/
+- **Captured**: 2026-05-10T16:15:13
+
+## Abstract
+
+This article presents an updated account of integrated information theory of consciousness (IIT) and some of its implications. IIT stems from thought experiments that lead to phenomenological axioms and ontological postulates. The information axiom asserts that every experience is one out of many, i.e. specific - it is what it is by differing in its particular way from a large repertoire of alternatives. The integration axiom asserts that each experience is one, i.e. unified - it cannot be reduced to independent components. The exclusion axiom asserts that every experience is definite - it is limited to particular things and not others and flows at a particular speed and resolution. IIT formalizes these intuitions with three postulates. The information postulate states that only "differences that make a difference" from the intrinsic perspective of a system matter: a mechanism generates cause-effect information if its present state has specific past causes and specific future effects within a system. The integration postulate states that only information that is irreducible matters: mechanisms generate integrated information only to the extent that the information they generate cannot be partitioned into that generated within independent components. The exclusion postulate states that only maxima of integrated information matter: a mechanism specifies only one maximally irreducible set of past causes and future effects - a concept. A complex is a set of elements specifying a maximally irreducible constellation of concepts, where the maximum is evaluated at the optimal spatio-temporal scale. Its concepts specify a maximally integrated conceptual information structure or quale, which is identical with an experience. Finally, changes in information integration upon exposure to the environment reflect a system's ability to match the causal structure of the world. After introducing an updated definition of information integration and related quantities, the article presents some theoretical considerations about the relationship between information and causation and about the relational structure of concepts within a quale. It also explores the relationship between the temporal grain size of information integration and the dynamic of metastable states in the corticothalamic complex. Finally, it summarizes how IIT accounts for empirical findings about the neural substrate of consciousness, and how various aspects of phenomenology may in principle be addressed in terms of the geometry of information integration.

@@ -1,0 +1,14 @@
+# Synapses lacking astrocyte appear in the amygdala during consolidation of Pavlovian threat conditioning.
+
+- **PMID**: 24338694
+- **DOI**: 10.1002/cne.23523
+- **PMCID**: PMC6763067 (full-text saved)
+- **Journal**: The Journal of comparative neurology  ·  **Year**: 2014
+- **Authors**: Linnaea E Ostroff, Mustfa K Manzur, Christopher K Cain, Joseph E Ledoux
+- **MeSH**: Acoustic Stimulation, Amygdala, Animals, Astrocytes, Auditory Perception, Axons, Conditioning, Classical, Dendritic Spines, Electroshock, Fear
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24338694/
+- **Captured**: 2026-05-10T16:16:41
+
+## Abstract
+
+There is growing evidence that astrocytes, long held to merely provide metabolic support in the adult brain, participate in both synaptic plasticity and learning and memory. Astrocytic processes are sometimes present at the synaptic cleft, suggesting that they might act directly at individual synapses. Associative learning induces synaptic plasticity and morphological changes at synapses in the lateral amygdala (LA). To determine whether astrocytic contacts are involved in these changes, we examined LA synapses after either threat conditioning (also called fear conditioning) or conditioned inhibition in adult rats by using serial section transmission electron microscopy (ssTEM) reconstructions. There was a transient increase in the density of synapses with no astrocytic contact after threat conditioning, especially on enlarged spines containing both polyribosomes and a spine apparatus. In contrast, synapses with astrocytic contacts were smaller after conditioned inhibition. This suggests that during memory consolidation astrocytic processes are absent if synapses are enlarging but present if they are shrinking. We measured the perimeter of each synapse and its degree of astrocyte coverage, and found that only about 20-30% of each synapse was ensheathed. The amount of synapse perimeter surrounded by astrocyte did not scale with synapse size, giving large synapses a disproportionately long astrocyte-free perimeter and resulting in a net increase in astrocyte-free perimeter after threat conditioning. Thus astrocytic processes do not mechanically isolate LA synapses, but may instead interact through local signaling, possibly via cell-surface receptors. Our results suggest that contact with astrocytic processes opposes synapse growth during memory consolidation.
