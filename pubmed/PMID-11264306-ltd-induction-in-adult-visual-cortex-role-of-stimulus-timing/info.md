@@ -1,0 +1,14 @@
+# LTD induction in adult visual cortex: role of stimulus timing and inhibition.
+
+- **PMID**: 11264306
+- **DOI**: 10.1523/JNEUROSCI.21-07-02308.2001
+- **PMCID**: PMC6577799 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2001
+- **Authors**: S P Perrett, S M Dudek, D Eagleman, P R Montague, M J Friedlander
+- **MeSH**: Action Potentials, Animals, Electric Stimulation, Electrophysiology, Guinea Pigs, Neuronal Plasticity, Neurons, Synapses, Visual Cortex
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11264306/
+- **Captured**: 2026-05-10T14:16:21
+
+## Abstract
+
+One Hertz stimulation of afferents for 15 min with constant interstimulus intervals (regular stimulation) can induce long-term depression (LTD) of synaptic strength in the neocortex. However, it is unknown whether natural patterns of low-frequency afferent spike activity induce LTD. Although neurons in the neocortex can fire at overall rates as low as 1 Hz, the intervals between spikes are irregular. This irregular spike activity (and thus, presumably, irregular activation of the synapses of that neuron onto postsynaptic targets) can be approximated by stimulation with Poisson-distributed interstimulus intervals (Poisson stimulation). Therefore, if low-frequency presynaptic spike activity in the intact neocortex is sufficient to induce a generalized LTD of synaptic transmission, then Poisson stimulation, which mimics this spike activity, should induce LTD in slices. We tested this hypothesis by comparing changes in the strength of synapses onto layer 2/3 pyramidal cells induced by regular and Poisson stimulation in slices from adult visual cortex. We find that regular stimulation induces LTD of excitatory synaptic transmission as assessed by field potentials and intracellular postsynaptic potentials (PSPs) with inhibition absent. However, Poisson stimulation does not induce a net LTD of excitatory synaptic transmission. When the PSP contained an inhibitory component, neither Poisson nor regular stimulation induced LTD. We propose that the short bursts of synaptic activity that occur during a Poisson train have potentiating effects that offset the induction of LTD that is favored with regular stimulation. Thus, natural (i.e., irregular) low-frequency activity in the adult neocortex in vivo should not consistently induce LTD.

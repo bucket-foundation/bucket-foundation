@@ -1,0 +1,14 @@
+# 14-3-3 inhibits Bad-induced cell death through interaction with serine-136.
+
+- **PMID**: 11723239
+- **DOI**: 10.1124/mol.60.6.1325
+- **PMCID**:  
+- **Journal**: Molecular pharmacology  ·  **Year**: 2001
+- **Authors**: S C Masters, H Yang, S R Datta, M E Greenberg, H Fu
+- **MeSH**: 14-3-3 Proteins, Animals, Apoptosis, Binding Sites, COS Cells, Carrier Proteins, Cells, Cultured, Epitopes, HeLa Cells, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11723239/
+- **Captured**: 2026-05-10T14:17:10
+
+## Abstract
+
+14-3-3 proteins are a family of multifunctional phosphoserine binding molecules that can serve as effectors of survival signaling. Understanding the molecular basis for the prosurvival effect of 14-3-3 may lead to the development of agents useful in the treatment of disorders involving dysregulated apoptosis. One target of 14-3-3 is the proapoptotic Bcl-2 family member Bad. Serine phosphorylation of Bad is associated with 14-3-3 binding and inhibition of Bad-induced cell death, but the relative contributions of the three known phosphorylation sites to 14-3-3 binding have not been established. Here we demonstrate that S136 of Bad is vital for 14-3-3 interaction, but S112 seems to be dispensable. 14-3-3/Bad interaction was strictly dependent on the presence of phosphorylated S136 in vitro, in yeast, and in mammalian cells. However, mutation of S112 did not affect 14-3-3 binding. The death caused by wild-type and S112A Bad, but not that caused by S136A Bad, could be almost completely abrogated by 14-3-3. These data support a critical role for 14-3-3 in regulating Bad proapoptotic activity. The effect of 14-3-3 on Bad is controlled largely by phosphorylation of S136, whereas S112 may represent a 14-3-3-independent pathway.

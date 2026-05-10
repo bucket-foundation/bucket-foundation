@@ -1,0 +1,14 @@
+# Coding of temporal information by activity-dependent synapses.
+
+- **PMID**: 11784736
+- **DOI**: 10.1152/jn.00258.2001
+- **PMCID**:  
+- **Journal**: Journal of neurophysiology  ·  **Year**: 2002
+- **Authors**: Galit Fuhrmann, Idan Segev, Henry Markram, Misha Tsodyks
+- **MeSH**: Action Potentials, Animals, Computer Simulation, Information Theory, Models, Neurological, Models, Statistical, Rats, Synapses, Synaptic Transmission, Time Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11784736/
+- **Captured**: 2026-05-10T14:17:13
+
+## Abstract
+
+Synaptic transmission in the neocortex is dynamic, such that the magnitude of the postsynaptic response changes with the history of the presynaptic activity. Therefore each response carries information about the temporal structure of the preceding presynaptic input spike train. We quantitatively analyze the information about previous interspike intervals, contained in single responses of dynamic synapses, using methods from information theory applied to experimentally based deterministic and probabilistic phenomenological models of depressing and facilitating synapses. We show that for any given dynamic synapse, there exists an optimal frequency of presynaptic spike firing for which the information content is maximal; simple relations between this optimal frequency and the synaptic parameters are derived. Depressing neocortical synapses are optimized for coding temporal information at low firing rates of 0.5-5 Hz, typical to the spontaneous activity of cortical neurons, and carry significant information about the timing of up to four preceding presynaptic spikes. Facilitating synapses, however, are optimized to code information at higher presynaptic rates of 9-70 Hz and can represent the timing of over eight presynaptic spikes.

@@ -1,0 +1,14 @@
+# Deconstructing apraxia: understanding disorders of intentional movement after stroke.
+
+- **PMID**: 11796953
+- **DOI**: 10.1097/00019052-200202000-00011
+- **PMCID**:  
+- **Journal**: Current opinion in neurology  ·  **Year**: 2002
+- **Authors**: Lisa Koski, Marco Iacoboni, John C Mazziotta
+- **MeSH**: Apraxias, Humans, Movement Disorders, Stroke
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11796953/
+- **Captured**: 2026-05-10T14:17:14
+
+## Abstract
+
+Impairments in praxic functioning are common after stroke, most frequently when the left hemisphere is affected. Several recent studies of apraxia after stroke have made advances in understanding the right hemisphere contribution to praxis, particularly for the performance of novel actions. Moreover, quantitative lesion analysis in stroke patients indicates the importance of cortical regions such as the intraparietal sulcus and the middle frontal gyrus for subserving praxic function. Complex neuropsychological models have been developed to account for the many dissociations observed in the types of errors observed in stroke patients. Relatively lacking, however, are models that attempt to relate the neurological data to what is known about praxis from functional neuroimaging in normal subjects and from physiological studies in the monkey. Moreover, a coherent interpretation of the results of apraxia studies remains hampered by the lack of a standard testing instrument to assess the nature and severity of apraxic impairments in the groups tested.

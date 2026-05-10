@@ -1,0 +1,14 @@
+# The ability to follow eye gaze and its emergence during development in macaque monkeys.
+
+- **PMID**: 11095722
+- **DOI**: 10.1073/pnas.250241197
+- **PMCID**: PMC6792917 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2000
+- **Authors**: P F Ferrari, E Kohler, L Fogassi, V Gallese
+- **MeSH**: Animals, Behavior, Animal, Eye Movements, Female, Macaca nemestrina, Male, Videotape Recording
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11095722/
+- **Captured**: 2026-05-10T14:16:11
+
+## Abstract
+
+The ability of monkeys to follow the gaze of other individuals is a matter of debate in many behavioral studies. Physiological studies have shown that in monkeys, as in humans, there are neural correlates of eye direction detection. There is little evidence at the behavioral level, however, of the presence and development of such abilities in monkeys. The aim of the present study was to assess in juveniles and adult pig-tailed macaques (Macaca nemestrina) the capacity to use eye cues only to follow the gaze of an experimenter. Biological stimuli (head, eye, and trunk movements) were presented by an experimenter to 2 adult monkeys with their heads restrained (Experiment 1) and to 11 monkeys of different ages, free to move in their home cages (Experiment 2). A nonbiological stimulus served as a control. Results showed that macaques can follow the gaze of the experimenter by using head/eye and eye cues alone. Trunk movements and nonbiological stimuli did not significantly elicit similar reactions. Juvenile monkeys were not able to orient their attention on the basis of eye cues alone. In general, gaze following was more frequent in adults than in juveniles. Like in humans, however, such abilities in macaques dramatically improve with age suggesting that the transition to adulthood is a crucial period in the development of gaze-following behavior.

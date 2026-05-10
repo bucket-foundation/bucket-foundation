@@ -1,0 +1,14 @@
+# A probabilistic atlas and reference system for the human brain: International Consortium for Brain Mapping (ICBM).
+
+- **PMID**: 11545704
+- **DOI**: 10.1098/rstb.2001.0915
+- **PMCID**: PMC1088516 (full-text saved)
+- **Journal**: Philosophical transactions of the Royal Society of London. Series B, Biological sciences  ·  **Year**: 2001
+- **Authors**: J Mazziotta, A Toga, A Evans, P Fox, J Lancaster, K Zilles, R Woods, T Paus, G Simpson, B Pike, C Holmes, L Collins, P Thompson, D MacDonald, M Iacoboni, T Schormann, K Amunts, N Palomero-Gallagher, S Geyer, L Parsons, K Narr, N Kabani, G Le Goualher, D Boomsma, T Cannon, R Kawashima, B Mazoyer
+- **MeSH**: Adult, Brain, Brain Mapping, Databases, Factual, Humans, Magnetic Resonance Imaging, Models, Statistical, Neuroanatomy
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11545704/
+- **Captured**: 2026-05-10T14:16:43
+
+## Abstract
+
+Motivated by the vast amount of information that is rapidly accumulating about the human brain in digital form, we embarked upon a program in 1992 to develop a four-dimensional probabilistic atlas and reference system for the human brain. Through an International Consortium for Brain Mapping (ICBM) a dataset is being collected that includes 7000 subjects between the ages of eighteen and ninety years and including 342 mono- and dizygotic twins. Data on each subject includes detailed demographic, clinical, behavioural and imaging information. DNA has been collected for genotyping from 5800 subjects. A component of the programme uses post-mortem tissue to determine the probabilistic distribution of microscopic cyto- and chemoarchitectural regions in the human brain. This, combined with macroscopic information about structure and function derived from subjects in vivo, provides the first large scale opportunity to gain meaningful insights into the concordance or discordance in micro- and macroscopic structure and function. The philosophy, strategy, algorithm development, data acquisition techniques and validation methods are described in this report along with database structures. Examples of results are described for the normal adult human brain as well as examples in patients with Alzheimer's disease and multiple sclerosis. The ability to quantify the variance of the human brain as a function of age in a large population of subjects for whom data is also available about their genetic composition and behaviour will allow for the first assessment of cerebral genotype-phenotype-behavioural correlations in humans to take place in a population this large. This approach and its application should provide new insights and opportunities for investigators interested in basic neuroscience, clinical diagnostics and the evaluation of neuropsychiatric disorders in patients.

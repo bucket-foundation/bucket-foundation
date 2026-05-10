@@ -1,0 +1,14 @@
+# Connectivity and complexity: the relationship between neuroanatomy and brain dynamics.
+
+- **PMID**: 11156201
+- **DOI**: 10.1016/s0893-6080(00)00053-8
+- **PMCID**:  
+- **Journal**: Neural networks : the official journal of the International Neural Network Society  ·  **Year**: 2000
+- **Authors**: O Sporns, G Tononi, G M Edelman
+- **MeSH**: Animals, Brain, Brain Mapping, Cerebral Cortex, Cognition, Humans, Macaca, Mammals, Models, Neurological, Nerve Net
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11156201/
+- **Captured**: 2026-05-10T14:16:15
+
+## Abstract
+
+Nervous systems facing complex environments have to balance two seemingly opposing requirements. First, there is a need quickly and reliably to extract important features from sensory inputs. This is accomplished by functionally segregated (specialized) sets of neurons, e.g. those found in different cortical areas. Second, there is a need to generate coherent perceptual and cognitive states allowing an organism to respond to objects and events, which represent conjunctions of numerous individual features. This need is accomplished by functional integration of the activity of specialized neurons through their dynamic interactions. These interactions produce patterns of temporal correlations or functional connectivity involving distributed neuronal populations, both within and across cortical areas. Empirical and computational studies suggest that changes in functional connectivity may underlie specific perceptual and cognitive states and involve the integration of information across specialized areas of the brain. The interplay between functional segregation and integration can be quantitatively captured using concepts from statistical information theory, in particular by defining a measure of neural complexity. Complexity measures the extent to which a pattern of functional connectivity produced by units or areas within a neural system combines the dual requirements of functional segregation and integration. We find that specific neuroanatomical motifs are uniquely associated with high levels of complexity and that such motifs are embedded in the pattern of long-range cortico-cortical pathways linking segregated areas of the mammalian cerebral cortex. Our theoretical findings offer new insight into the intricate relationship between connectivity and complexity in the nervous system.

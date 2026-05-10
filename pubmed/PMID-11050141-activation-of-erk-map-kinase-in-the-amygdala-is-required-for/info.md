@@ -1,0 +1,14 @@
+# Activation of ERK/MAP kinase in the amygdala is required for memory consolidation of pavlovian fear conditioning.
+
+- **PMID**: 11050141
+- **DOI**: 10.1523/JNEUROSCI.20-21-08177.2000
+- **PMCID**: PMC6782436 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2000
+- **Authors**: G E Schafe, C M Atkins, M W Swank, E P Bauer, J D Sweatt, J E LeDoux
+- **MeSH**: Acoustic Stimulation, Amygdala, Animals, Association, Blotting, Western, Butadienes, Conditioning, Classical, Electroshock, Enzyme Inhibitors, Excitatory Postsynaptic Potentials
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11050141/
+- **Captured**: 2026-05-10T14:16:10
+
+## Abstract
+
+Although much has been learned about the neurobiological mechanisms underlying Pavlovian fear conditioning at the systems and cellular levels, relatively little is known about the molecular mechanisms underlying fear memory consolidation. The present experiments evaluated the role of the extracellular signal-regulated kinase/mitogen-activated protein kinase (ERK/MAPK) signaling cascade in the amygdala during Pavlovian fear conditioning. We first show that ERK/MAPK is transiently activated-phosphorylated in the amygdala, specifically the lateral nucleus (LA), at 60 min, but not 15, 30, or 180 min, after conditioning, and that this activation is attributable to paired presentations of tone and shock rather than to nonassociative auditory stimulation, foot shock sensitization, or unpaired tone-shock presentations. We next show that infusions of U0126, an inhibitor of ERK/MAPK activation, aimed at the LA, dose-dependently impair long-term memory of Pavlovian fear conditioning but leaves short-term memory intact. Finally, we show that bath application of U0126 impairs long-term potentiation in the LA in vitro. Collectively, these results demonstrate that ERK/MAPK activation is necessary for both memory consolidation of Pavlovian fear conditioning and synaptic plasticity in the amygdala.

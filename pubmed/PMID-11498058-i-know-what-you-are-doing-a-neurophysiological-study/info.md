@@ -1,0 +1,14 @@
+# I know what you are doing. a neurophysiological study.
+
+- **PMID**: 11498058
+- **DOI**: 10.1016/s0896-6273(01)00337-3
+- **PMCID**:  
+- **Journal**: Neuron  ·  **Year**: 2001
+- **Authors**: M A Umiltà, E Kohler, V Gallese, L Fogassi, L Fadiga, C Keysers, G Rizzolatti
+- **MeSH**: Animals, Electric Stimulation, Female, Habituation, Psychophysiologic, Hand, Hand Strength, Humans, Macaca nemestrina, Male, Models, Neurological
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11498058/
+- **Captured**: 2026-05-10T14:16:30
+
+## Abstract
+
+In the ventral premotor cortex of the macaque monkey, there are neurons that discharge both during the execution of hand actions and during the observation of the same actions made by others (mirror neurons). In the present study, we show that a subset of mirror neurons becomes active during action presentation and also when the final part of the action, crucial in triggering the response in full vision, is hidden and can therefore only be inferred. This implies that the motor representation of an action performed by others can be internally generated in the observer's premotor cortex, even when a visual description of the action is lacking. The present findings support the hypothesis that mirror neuron activation could be at the basis of action recognition.
