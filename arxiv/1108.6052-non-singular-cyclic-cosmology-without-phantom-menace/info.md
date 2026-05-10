@@ -7,7 +7,7 @@
 - **Updated**: 2011-08-30T15:47:19Z
 - **Primary category**: gr-qc
 - **All categories**: gr-qc, astro-ph.CO, hep-th
-- **Captured**: 2026-05-10T10:32:55
+- **Captured**: 2026-05-10T11:42:43
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Updated**: 2014-04-17T13:20:13Z
 - **Primary category**: physics.gen-ph
 - **All categories**: physics.gen-ph
-- **Captured**: 2026-05-09T21:57:38
+- **Captured**: 2026-05-10T11:42:56
 
 ## Abstract
 
