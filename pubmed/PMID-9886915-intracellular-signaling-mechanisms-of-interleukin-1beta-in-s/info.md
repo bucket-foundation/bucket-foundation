@@ -1,0 +1,14 @@
+# Intracellular signaling mechanisms of interleukin-1beta in synovial fibroblasts.
+
+- **PMID**: 9886915
+- **DOI**: 10.1152/ajpcell.1999.276.1.C9
+- **PMCID**:  
+- **Journal**: The American journal of physiology  ·  **Year**: 1999
+- **Authors**: O V Kolomytkin, A A Marino, K K Sadasivan, R E Wolf, J A Albright
+- **MeSH**: Animals, Calcimycin, Calcium Channel Blockers, Cell Line, Enzyme Inhibitors, Fibroblasts, Indoles, Interleukin-1, Intracellular Membranes, Ionophores
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9886915/
+- **Captured**: 2026-05-10T11:54:02
+
+## Abstract
+
+The possibility that membrane depolarization of synovial fibroblasts caused by interleukin-1beta (IL-1beta) was mediated by protein kinase C (PKC) and Ca2+ influx was studied using inhibitor and activator analysis. The effect of IL-1beta was blocked by bisindolylmaleimide I, an inhibitor of PKC, and by the Ca2+ channel blockers nifedipine and verapamil. In other experiments, PKC was activated using phorbol 12-myristate 13-acetate, and Ca2+ influx was increased by means of a Ca2+ ionophore. Simultaneous application of phorbol ester and Ca2+ ionophore in the absence of IL-1beta mimicked the depolarization caused by IL-1beta. The results were consistent with the hypothesis that, under the conditions studied, activation of PKC and Ca2+ influx are necessary and sufficient processes in the transduction of IL-1beta by synovial cells leading to membrane depolarization. The essential role of protein phosphorylation and Ca2+ influx in the early electrophysiological response of synovial fibroblasts to IL-1beta was therefore established. The role of IL-1beta-induced depolarization in regulating protein expression by the cells remains to be determined, but the results reported here, taken together with observations that protein phosphorylation and Ca2+ influx also mediate the effect of IL-1beta on protease production (1, 2), suggest that electrophysiological changes are actually part of the pathway for expression of proteases in response to IL-1beta.

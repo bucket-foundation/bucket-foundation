@@ -1,0 +1,14 @@
+# Characterization of a major latex allergen associated with hypersensitivity in spina bifida patients.
+
+- **PMID**: 7650400
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Journal of immunology (Baltimore, Md. : 1950)  ·  **Year**: 1995
+- **Authors**: L J Lu, V P Kurup, D R Hoffman, K J Kelly, P S Murali, J N Fink
+- **MeSH**: Allergens, Amino Acid Sequence, Antibodies, Monoclonal, Drug Hypersensitivity, Humans, Immunoglobulin E, Latex, Lymphocyte Activation, Molecular Sequence Data, Spinal Dysraphism
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/7650400/
+- **Captured**: 2026-05-10T11:50:58
+
+## Abstract
+
+Hypersensitivity to latex proteins present in health care products, particularly in latex gloves, has emerged as an important public health problem in recent years. Most of these latex allergens have not been purified or characterized. Here we report the purification and characterization of a 23-kDa latex polypeptide from nonammoniated natural rubber latex. This purified 23-kDa polypeptide reacted with IgE from 13 of 17 (76%) latex-allergic spina bifida patients, but from only 1 of 5 health care workers with latex allergy. Furthermore, all the sera of patients with anaphylaxis to latex showed reactivity with the 23-kDa polypeptide. This allergen also induced significant lymphocyte proliferation by PBMC from spina bifida patients, but not from health care workers. The 90 amino acid residues sequenced from the 23-kDa polypeptide showed a 45.6% homology with a previously reported latex protein, rubber elongation factor. By using a mAb LAM-1, produced against the 23-kDa allergen, we could also detect this allergen or its epitope in ammoniated latex and natural rubber latex products used in health care management, but not in non-latex extracts studied.

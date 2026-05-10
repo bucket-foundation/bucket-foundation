@@ -1,0 +1,14 @@
+# Backbone-dependent rotamer library for proteins. Application to side-chain prediction.
+
+- **PMID**: 8464064
+- **DOI**: 10.1006/jmbi.1993.1170
+- **PMCID**:  
+- **Journal**: Journal of molecular biology  ·  **Year**: 1993
+- **Authors**: R L Dunbrack, M Karplus
+- **MeSH**: Amino Acid Sequence, Databases, Factual, Enzymes, Models, Molecular, Molecular Sequence Data, Probability, Protein Conformation, Proteins, Software, X-Ray Diffraction
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/8464064/
+- **Captured**: 2026-05-10T11:52:09
+
+## Abstract
+
+A backbone-dependent rotamer library for amino acid side-chains is developed and used for constructing protein side-chain conformations from the main-chain co-ordinates. The rotamer library is obtained from 132 protein chains in the Brookhaven Protein Database. A grid of 20 degrees by 20 degrees blocks for the main-chain angles phi, psi is used in the rotamer library. Significant correlations are found between side-chain dihedral angle probabilities and backbone phi, psi values. These probabilities are used to place the side-chains on the known backbone in test applications for six proteins for which high-resolution crystal structures are available. A minimization scheme is used to reorient side-chains that conflict with the backbone or other side-chains after the initial placement. The initial placement yields 59% of both chi 1 and chi 2 values in the correct position (to within 40 degrees) for thermolysin to 81% for crambin. After refinement the values range from 61% (lysozyme) to 89% (crambin). It is evident from the results that a single protein does not adequately test a prediction scheme. The computation time required by the method scales linearly with the number of side-chains. An initial prediction from the library takes only a few seconds of computer time, while the iterative refinement takes on the order of hours. The method is automated and can easily be applied to aid experimental side-chain determinations and homology modeling. The high degree of correlation between backbone and side-chain conformations may introduce a simplification in the protein folding process by reducing the available conformational space.

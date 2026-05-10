@@ -1,0 +1,14 @@
+# The Arthromitus stage of Bacillus cereus: intestinal symbionts of animals.
+
+- **PMID**: 9448315
+- **DOI**: 10.1073/pnas.95.3.1236
+- **PMCID**: PMC168169 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1998
+- **Authors**: L Margulis, J Z Jorgensen, S Dolan, R Kolchinsky, F A Rainey, S C Lo
+- **MeSH**: Animals, Arthropods, Bacillus cereus, DNA, Bacterial, DNA, Ribosomal, Intestines, Molecular Sequence Data, Symbiosis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9448315/
+- **Captured**: 2026-05-10T11:53:32
+
+## Abstract
+
+In the guts of more than 25 species of arthropods we observed filaments containing refractile inclusions previously discovered and named "Arthromitus" in 1849 by Joseph Leidy [Leidy, J. (1849) Proc. Acad. Nat. Sci. Philadelphia 4, 225-233]. We cultivated these microbes from boiled intestines of 10 different species of surface-cleaned soil insects and isopod crustaceans. Literature review and these observations lead us to conclude that Arthromitus are spore-forming, variably motile, cultivable bacilli. As long rod-shaped bacteria, they lose their flagella, attach by fibers or fuzz to the intestinal epithelium, grow filamentously, and sporulate from their distal ends. When these organisms are incubated in culture, their life history stages are accelerated by light and inhibited by anoxia. Characterization of new Arthromitus isolates from digestive tracts of common sow bugs (Porcellio scaber), roaches (Gromphodorhina portentosa, Blaberus giganteus) and termites (Cryptotermes brevis, Kalotermes flavicollis) identifies these flagellated, spore-forming symbionts as a Bacillus sp. Complete sequencing of the 16S rRNA gene from four isolates (two sow bug, one hissing roach, one death's head roach) confirms these as the low-G+C Gram-positive eubacterium Bacillus cereus. We suggest that B. cereus and its close relatives, easily isolated from soil and grown on nutrient agar, enjoy filamentous growth in moist nutrient-rich intestines of healthy arthropods and similar habitats.

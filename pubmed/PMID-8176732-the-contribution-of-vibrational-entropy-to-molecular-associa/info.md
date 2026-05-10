@@ -1,0 +1,14 @@
+# The contribution of vibrational entropy to molecular association. The dimerization of insulin.
+
+- **PMID**: 8176732
+- **DOI**: 10.1006/jmbi.1994.1300
+- **PMCID**:  
+- **Journal**: Journal of molecular biology  ·  **Year**: 1994
+- **Authors**: B Tidor, M Karplus
+- **MeSH**: Binding Sites, Insulin, Ligands, Mathematics, Polymers, Thermodynamics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/8176732/
+- **Captured**: 2026-05-10T11:51:45
+
+## Abstract
+
+The association reaction of two molecules to form a single complex must overcome a large entropic barrier due to the loss of translational and rotational degrees of freedom; estimates of the T delta S term are of the order of 30 kcal/mol for proteins. The approach of Chandler and Pratt is used to provide a statistical mechanical formulation for the connection between the gas-phase and solution binding free energies. This makes possible a clear separation of the vibrational contribution to the gas-phase binding enthalpy and entropy from the solvation terms. Further, it suggests that the calculated gas-phase result, should be a good approximation in solution for many systems. To illustrate the formulation, a harmonic dynamics model is used to study the dimerization of insulin. The vibrational entropy increase in the dimer complex, relative to the two separate monomers, is 23 entropy units. This contributes -7.2 kcal/mol to the dimerization free energy. It is not possible to identify a small number of specific dimer modes that give rise to this entropy contribution. Instead, small alterations in the frequencies of many modes below 400 to 600 cm-1 are found to contribute. The relative importance of vibrational and other effects in macromolecule-macromolecule and macromolecule-small molecule associations is discussed.

@@ -1,0 +1,14 @@
+# Solution structure of a 142-residue recombinant prion protein corresponding to the infectious fragment of the scrapie isoform.
+
+- **PMID**: 9294167
+- **DOI**: 10.1073/pnas.94.19.10086
+- **PMCID**: PMC23307 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1997
+- **Authors**: T L James, H Liu, N B Ulyanov, S Farr-Jones, H Zhang, D G Donne, K Kaneko, D Groth, I Mehlhorn, S B Prusiner, F E Cohen
+- **MeSH**: Amino Acid Sequence, Animals, Cricetinae, Crystallography, X-Ray, Humans, Isotope Labeling, Magnetic Resonance Spectroscopy, Mesocricetus, Molecular Sequence Data, Prions
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9294167/
+- **Captured**: 2026-05-10T11:53:03
+
+## Abstract
+
+The scrapie prion protein (PrPSc) is the major, and possibly the only, component of the infectious prion; it is generated from the cellular isoform (PrPC) by a conformational change. N-terminal truncation of PrPSc by limited proteolysis produces a protein of approximately 142 residues designated PrP 27-30, which retains infectivity. A recombinant protein (rPrP) corresponding to Syrian hamster PrP 27-30 was expressed in Escherichia coli and purified. After refolding rPrP into an alpha-helical form resembling PrPC, the structure was solved by multidimensional heteronuclear NMR, revealing many structural features of rPrP that were not found in two shorter PrP fragments studied previously. Extensive side-chain interactions for residues 113-125 characterize a hydrophobic cluster, which packs against an irregular beta-sheet, whereas residues 90-112 exhibit little defined structure. Although identifiable secondary structure is largely lacking in the N terminus of rPrP, paradoxically this N terminus increases the amount of secondary structure in the remainder of rPrP. The surface of a long helix (residues 200-227) and a structured loop (residues 165-171) form a discontinuous epitope for binding of a protein that facilitates PrPSc formation. Polymorphic residues within this epitope seem to modulate susceptibility of sheep and humans to prion disease. Conformational heterogeneity of rPrP at the N terminus may be key to the transformation of PrPC into PrPSc, whereas the discontinuous epitope near the C terminus controls this transition.

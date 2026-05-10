@@ -1,0 +1,14 @@
+# Characterizing stimulus-response functions using nonlinear regressors in parametric fMRI experiments.
+
+- **PMID**: 9740757
+- **DOI**: 10.1006/nimg.1998.0351
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 1998
+- **Authors**: C Büchel, A P Holmes, G Rees, K J Friston
+- **MeSH**: Arousal, Attention, Brain Mapping, Cerebral Cortex, Frontal Lobe, Humans, Linear Models, Magnetic Resonance Imaging, Occipital Lobe, Reaction Time
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9740757/
+- **Captured**: 2026-05-10T11:53:54
+
+## Abstract
+
+Parametric study designs proved very useful in characterizing the relationship between experimental parameters (e.g., word presentation rate) and regional cerebral blood flow in positron emission tomography studies. In a previous paper we presented a method that fits nonlinear functions of stimulus or task parameters to hemodynamic responses, using second-order polynomial expansions. Here we expand this approach to model nonlinear relationships between BOLD responses and experimental parameters, using fMRI. We present a framework that allows this technique to be implemented in the context of the general linear model employed by statistical parametric mapping (SPM). Statistical inferences, in this instance, are based on F statistics and in this respect we emphasize the use of corrected P values for F fields (i.e., SPM¿F¿). The approach is illustrated with a fMRI study that looked at the effect of increasing auditory word-presentation rate. Our parametric design allowed us to characterize different forms of rate-dependent responses in three critical regions: (i) bilateral frontal regions showed a categorical response to the presence of words irrespective of rate, suggesting a role for this region in establishing cognitive (e.g., attentional) set; (ii) in bilateral occipitotemporal regions activations increased linearly with increasing word rate; and (iii) posterior auditory association cortex exhibited a nonlinear (inverted U) relationship to word rate.

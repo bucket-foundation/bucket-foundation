@@ -1,0 +1,14 @@
+# Loop I can modulate ADP affinity, ATPase activity, and motility of different scallop myosins. Transient kinetic analysis of S1 isoforms.
+
+- **PMID**: 9585566
+- **DOI**: 10.1021/bi972844+
+- **PMCID**:  
+- **Journal**: Biochemistry  ·  **Year**: 1998
+- **Authors**: S E Kurzawa-Goertz, C L Perreault-Micale, K M Trybus, A G Szent-Györgyi, M A Geeves
+- **MeSH**: Actins, Adenosine Diphosphate, Adenosine Triphosphate, Animals, Fluorescent Dyes, Kinetics, Mollusca, Muscle, Skeletal, Myosin Subfragments, Myosins
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9585566/
+- **Captured**: 2026-05-10T11:53:41
+
+## Abstract
+
+The striated muscle myosin of Placopecten moves actin faster in in vitro motility assays and has a higher actin-activated ATPase turnover rate than the myosin of the catch muscle. The heavy chain sequences of the two PlacoS1s are almost identical except at the surface loop 1 near the nucleotide binding pocket, where the two sequences vary significantly. Argopecten striated muscle myosin is 96% identical to Placopecten striated myosin, and both move actin with a similar velocity. To identify the individual kinetic steps which differ between these myosins, we completed a transient kinetic characterization of the three myosin S1s. The two striated S1s have similar rates of nucleotide binding to S1 and to acto.S1. The largest differences between the two are in the rate of ADP dissociation from S1 and affinity of ADP to S1, which differ by a factor of 2. The rates of nucleotide binding, nucleotide dissociation and affinity to nucleotides of the two Placopecten S1s are similar and agree within a factor of 2. In contrast, the affinity of acto.S1 for ADP is nine times weaker for the striated acto.S1 than for the catch acto.S1, compatible with the differences in motility of the Placopectenmyosins. Thus the differences in ADP affinity to acto.S1 and in the in vitro motility can be attributed to the differences in surface loop 1.

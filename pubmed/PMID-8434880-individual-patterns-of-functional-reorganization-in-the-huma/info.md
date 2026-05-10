@@ -1,0 +1,14 @@
+# Individual patterns of functional reorganization in the human cerebral cortex after capsular infarction.
+
+- **PMID**: 8434880
+- **DOI**: 10.1002/ana.410330208
+- **PMCID**:  
+- **Journal**: Annals of neurology  ·  **Year**: 1993
+- **Authors**: C Weiller, S C Ramsay, R J Wise, K J Friston, R S Frackowiak
+- **MeSH**: Adult, Aged, Cerebral Cortex, Cerebral Infarction, Cerebrovascular Circulation, Female, Hand, Humans, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/8434880/
+- **Captured**: 2026-05-10T11:52:07
+
+## Abstract
+
+We have previously shown bilateral activation of motor pathways and the recruitment of additional motor areas in studies of groups of patients with recovery from motor stroke. We have now developed a new positron emission tomographic technique to measure the changes in regional cerebral blood flow elicited during a motor task in individual patients, relative to the cerebral activation found in normal subjects. The patterns of cerebral activation in each of 8 individual patients with capsular lesions of the pyramidal tract and complete recovery from hemiplegia are described by comparison with the pattern found in a representative sample of 10 normal subjects. We found a large ventral extension of the hand field of the contralateral (sensori)motor cortex in all patients with lesions of the posterior limb of the internal capsule. Greater activation than in normal subjects was found in variable combinations of the supplementary motor areas, the insula, the frontal operculum, and the parietal cortex. Structures belonging to motor pathways ipsilateral to the recovered limb were also more activated in the patients than in normal subjects. However, additional activation of the ipsilateral (sensori)motor cortex was only found in the 4 patients who exhibited associated movements of the unaffected hand when the recovered hand performed the motor task. We conclude that recovery from motor stroke due to striatocapsular damage is associated with individually different patterns of functional reorganization of the brain. These patterns are dependent on the site of the subcortical lesion and the somatotopic organization of the pyramidal tract, both of which may determine the precise potential for recovery of limb function following this type of brain injury.

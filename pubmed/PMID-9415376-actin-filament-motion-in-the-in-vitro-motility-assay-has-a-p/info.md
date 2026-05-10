@@ -1,0 +1,14 @@
+# Actin-filament motion in the in vitro motility assay has a periodic component.
+
+- **PMID**: 9415376
+- **DOI**: 10.1002/(SICI)1097-0169(1997)38:4<341::AID-CM4>3.0.CO;2-6
+- **PMCID**:  
+- **Journal**: Cell motility and the cytoskeleton  ·  **Year**: 1997
+- **Authors**: E L deBeer, A M Sontrop, M S Kellermayer, C Galambos, G H Pollack
+- **MeSH**: Actin Cytoskeleton, Actins, Movement, Myosins, Periodicity
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9415376/
+- **Captured**: 2026-05-10T11:53:27
+
+## Abstract
+
+The interaction between actin and myosin can be studied in the in vitro motility assay, where fluorescently labelled actin filaments are observed to move over a lawn of myosin heads. To examine details of this movement, we measured systematically the velocities of the front end, rear end, and centroid of the actin filament as the filament translated over the assay surface. We found that these velocities exhibited an unexpectedly periodic component, alternating regularly between high and low values, superimposed on the steady velocity component. The period of the oscillatory component was approximately 380 ms. When translation was stopped by an increase in osmolarity, the filaments wiggled with a periodicity similar to the translating filament, implying that wiggling and translation may be related. Rigor filaments showed no periodicity. From the frequency content of the auto- and cross-correlation functions derived from the velocities of the front end, rear end, and centroid of the actin filament, we infer a deterministic, possibly wave-like process travelling along the actin filament. Potential molecular mechanisms underlying this phenomenon are considered.

@@ -1,0 +1,14 @@
+# Doxepin effects on chronic pain, depression and plasma opioids.
+
+- **PMID**: 6284720
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: The Journal of clinical psychiatry  ·  **Year**: 1982
+- **Authors**: S R Hameroff, R C Cork, K Scherer, B R Crago, C Neuman, J R Womble, T P Davis
+- **MeSH**: Adult, Aged, Chronic Disease, Depression, Double-Blind Method, Doxepin, Endorphins, Enkephalins, Female, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/6284720/
+- **Captured**: 2026-05-10T11:49:12
+
+## Abstract
+
+Thirty patients with chronic low back or cervical pain combined with clinical depression were studied in a six-week, randomized, double-blind comparison of doxepin and placebo. Dependent variables included Hamilton Depression Scores, the Clinical Global Assessment Scale, and Profile of Mood States (POMS), and subjective ratings (visual analogue scales) of pain severity, percent of time pain felt, and effect of pain on activity, muscle tension, sleep, mood, and analgesic drug consumption. Plasma levels of doxepin, desmethyldoxepin, beta-endorphin, and enkephalin-like activity were also measured. Significant improvements in the doxepin-treated group compared to the placebo group were seen in Hamilton scores, Global Assessment Scale, Profile of Mood States, percent of time pain felt, and effect of pain on sleep, muscle tension, and mood. Some improvement was observed after 1 week, although most improvement occurred at 6 weeks, when the mean doxepin dose was 2.5 mg/kg and plasma doxepin and desmethyldoxepin averaged 70 ng/ml. Nonspecific enkephalin-like activity (but not beta-endorphins) increased for the treatment group and decreased for the placebo group. The efficacy of doxepin compared with that of placebo was thus documented in several depressive and pain parameters, indicating that doxepin is a valuable treatment for patients with chronic pain and depression.

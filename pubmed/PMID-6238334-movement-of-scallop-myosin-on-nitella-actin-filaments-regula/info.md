@@ -1,0 +1,14 @@
+# Movement of scallop myosin on Nitella actin filaments: regulation by calcium.
+
+- **PMID**: 6238334
+- **DOI**: 10.1073/pnas.81.21.6775
+- **PMCID**: PMC392014 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1984
+- **Authors**: R D Vale, A G Szent-Gyorgyi, M P Sheetz
+- **MeSH**: Actins, Adenosine Triphosphatases, Animals, Calcium, Chlorophyta, Cytoskeleton, Edetic Acid, Mollusca, Myosins
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/6238334/
+- **Captured**: 2026-05-10T11:49:11
+
+## Abstract
+
+In order to determine if Ca2+ regulates scallop myosin movement on actin, we have measured motility of scallop myosin along actin filaments using a direct visual assay. This procedure consists of covalently linking myosin to 1-micron beads and pipetting them onto a parallel array of actin filaments located on the cytoplasmic face of a Nitella internodal cell. In the absence of Ca2+, scallop myosin-coated beads exhibit no directed motion; however, in the presence of pCa2+ of greater than 5.84, these beads undergo linear translocations with average velocities of 2.0 micron/s. This Ca2+ -sensitive motility requires the presence of regulatory light chains on the scallop myosin. Removal of regulatory light chains with 10 mM EDTA produces a "desensitized" myosin, no longer sensitive to Ca2+, which moves at rates of 0.09-0.3 micron in the presence or absence of Ca2+. Readdition of regulatory light chains to preparations of desensitized myosin once again confers Ca2+-sensitive motility. The Ca2+ dependence of scallop-myosin motility shows a sharp transition, consistent with the Ca2+ activation sensitivity of the actin-activated ATPase. Furthermore, relative rates of movement of calcium-regulated myosins from various molluscan species are consistent with their respective rates of ATP hydrolysis. Thus, myosin motility along actin filaments provides a sensitive and direct assay of myosin activity and is suitable for studying myosin regulation.

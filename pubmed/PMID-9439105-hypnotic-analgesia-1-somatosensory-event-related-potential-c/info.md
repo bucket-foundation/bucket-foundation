@@ -1,0 +1,14 @@
+# Hypnotic analgesia: 1. Somatosensory event-related potential changes to noxious stimuli and 2. Transfer learning to reduce chronic low back pain.
+
+- **PMID**: 9439105
+- **DOI**: 10.1080/00207149808409992
+- **PMCID**:  
+- **Journal**: The International journal of clinical and experimental hypnosis  ·  **Year**: 1998
+- **Authors**: H J Crawford, T Knebel, L Kaplan, J M Vendemia, M Xie, S Jamison, K H Pribram
+- **MeSH**: Adult, Analysis of Variance, Attention, Behavior Therapy, Cerebral Cortex, Chronic Disease, Evoked Potentials, Female, Humans, Hypnosis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9439105/
+- **Captured**: 2026-05-10T11:53:29
+
+## Abstract
+
+Fifteen adults with chronic low back pain (M = 4 years), age 18 to 43 years (M = 29 years), participated. All but one were moderately to highly hypnotizable (M = 7.87; modified 11-point Stanford Hypnotic Susceptibility Scale, Form C [Weitzenhoffer & Hilgard, 1962]), and significantly reduced pain perception following hypnotic analgesia instructions during cold-pressor pain training. In Part 1, somatosensory event-related potential correlates of noxious electrical stimulation were evaluated during attend and hypnotic analgesia (HA) conditions at anterior frontal (Fp1, Fp2), midfrontal (F3, F4), central (C3, C4), and parietal (P3, P4) regions. During HA, hypothesized inhibitory processing was evidenced by enhanced N140 in the anterior frontal region and by a prestimulus positive-ongoing contingent cortical potential at Fp1 only. During HA, decreased spatiotemporal perception was evidenced by reduced amplitudes of P200 (bilateral midfrontal and central, and left parietal) and P300 (right midfrontal and central). HA led to highly significant mean reductions in perceived sensory pain and distress. HA is an active process that requires inhibitory effort, dissociated from conscious awareness, where the anterior frontal cortex participates in a topographically specific inhibitory feedback circuit that cooperates in the allocation of thalamocortical activities. In Part 2, the authors document the development of self-efficacy through the successful transfer by participants of newly learned skills of experimental pain reduction to reduction of their own chronic pain. Over three experimental sessions, participants reported chronic pain reduction, increased psychological well-being, and increased sleep quality. The development of "neurosignatures of pain" can influence subsequent pain experiences (Coderre, Katz, Vaccarino, & Melzack, 1993; Melzack, 1993) and may be expanded in size and easily reactivated (Flor & Birbaumer, 1994; Melzack, 1991, 1993). Therefore, hypnosis and other psychological interventions need to be introduced early as adjuncts in medical treatments for onset pain before the development of chronic pain.

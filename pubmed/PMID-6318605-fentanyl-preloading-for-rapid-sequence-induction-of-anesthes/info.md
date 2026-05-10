@@ -1,0 +1,14 @@
+# Fentanyl preloading for rapid-sequence induction of anesthesia.
+
+- **PMID**: 6318605
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Anesthesia and analgesia  ·  **Year**: 1984
+- **Authors**: R C Cork, J L Weiss, S R Hameroff, J Bentley
+- **MeSH**: Adult, Aged, Anesthesia, General, Blood Pressure, Catecholamines, Endorphins, Female, Fentanyl, Humans, Intubation, Intratracheal
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/6318605/
+- **Captured**: 2026-05-10T11:49:15
+
+## Abstract
+
+Protecting the patient's airway is of paramount importance in the induction of general anesthesia. For the patient at risk of regurgitation of stomach contents, the rapid-sequence (crash) induction provides protection, but at the expense of increased stress response to laryngoscopy and intubation. This stress response is especially dangerous for the patient at risk for myocardial ischemia. The purpose of this study was to examine the efficacy of using low-dose fentanyl (5 micrograms/kg) to reduce cardiovascular and neuroendocrine stress responses to rapid-sequence induction. Thirty patients were randomly assigned to a rapid-sequence induction protocol either with or without fentanyl preloading. Fentanyl-preloaded patients (fentanyl group) received 2 mg/kg of thiopental whereas patients who were not preloaded with fentanyl (control group) received 4 mg/kg of thiopental. Data collected as indices of the stress response included heart rate, systolic, diastolic, and mean blood pressures, and plasma concentrations of catecholamines (epinephrine, norepinephrine, dopamine) and beta-endorphin. Electrocardiograms (modified V5 lead) were monitored for dysrhythmias and ST segment depression. Control patients had higher systolic, diastolic, and mean blood pressures after intubation than did patients given fentanyl (P less than 0.05). Although the incidence of dysrhythmias was decreased by fentanyl (20% vs 42%), this difference was not statistically significant. Plasma concentrations of beta-endorphin and norepinephrine increased significantly in control patients but not in patients given fentanyl (P less than 0.05). Low-dose fentanyl (5 micrograms/kg) reduces some aspects of the stress response to rapid-sequence induction of anesthesia.

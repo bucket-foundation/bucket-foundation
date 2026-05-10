@@ -1,0 +1,14 @@
+# Evidence for protein X binding to a discontinuous epitope on the cellular prion protein during scrapie prion propagation.
+
+- **PMID**: 9294164
+- **DOI**: 10.1073/pnas.94.19.10069
+- **PMCID**: PMC2229975 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1997
+- **Authors**: K Kaneko, L Zulianello, M Scott, C M Cooper, A C Wallace, T L James, F E Cohen, S B Prusiner
+- **MeSH**: Animals, Cricetinae, Epitopes, Genetic Predisposition to Disease, Humans, Mesocricetus, Mice, Mutation, Nerve Tissue Proteins, Polymorphism, Genetic
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9294164/
+- **Captured**: 2026-05-10T11:53:02
+
+## Abstract
+
+Studies on the transmission of human (Hu) prions to transgenic (Tg) mice suggested that another molecule provisionally designated protein X participates in the formation of nascent scrapie isoform of prion protein (PrPSc). We report the identification of the site at which protein X binds to the cellular isoform of PrP (PrPC) using scrapie-infected mouse (Mo) neuroblastoma cells transfected with chimeric Hu/MoPrP genes even though protein X has not yet been isolated. Substitution of a Hu residue at position 214 or 218 prevented PrPSc formation. The side chains of these residues protrude from the same surface of the C-terminal alpha-helix and form a discontinuous epitope with residues 167 and 171 in an adjacent loop. Substitution of a basic residue at positions 167, 171, or 218 also prevented PrPSc formation: at a mechanistic level, these mutant PrPs appear to act as "dominant negatives" by binding protein X and rendering it unavailable for prion propagation. Our findings seem to explain the protective effects of basic polymorphic residues in PrP of humans and sheep and suggest therapeutic and prophylactic approaches to prion diseases.

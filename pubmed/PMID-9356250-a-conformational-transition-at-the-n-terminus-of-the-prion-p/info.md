@@ -1,0 +1,14 @@
+# A conformational transition at the N terminus of the prion protein features in formation of the scrapie isoform.
+
+- **PMID**: 9356250
+- **DOI**: 10.1006/jmbi.1997.1328
+- **PMCID**:  
+- **Journal**: Journal of molecular biology  ·  **Year**: 1997
+- **Authors**: D Peretz, R A Williamson, Y Matsunaga, H Serban, C Pinilla, R B Bastidas, R Rozenshteyn, T L James, R A Houghten, F E Cohen, S B Prusiner, D R Burton
+- **MeSH**: Animals, CHO Cells, Cricetinae, Enzyme-Linked Immunosorbent Assay, Epitopes, B-Lymphocyte, Guanidines, Immunoglobulin Fab Fragments, Isomerism, Mesocricetus, Mice
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9356250/
+- **Captured**: 2026-05-10T11:53:23
+
+## Abstract
+
+The scrapie prion protein (PrPSc) is formed from the cellular isoform (PrPC) by a post-translational process that involves a profound conformational change. Linear epitopes for recombinant antibody Fab fragments (Fabs) on PrPC and on the protease-resistant core of PrPSc, designated PrP 27-30, were identified using ELISA and immunoprecipitation. An epitope region at the C terminus was accessible in both PrPC and PrP 27-30; in contrast, epitopes towards the N-terminal region (residues 90 to 120) were accessible in PrPC but largely cryptic in PrP 27-30. Denaturation of PrP 27-30 exposed the epitopes of the N-terminal domain. We argue from our findings that the major conformational change underlying PrPSc formation occurs within the N-terminal segment of PrP 27-30.

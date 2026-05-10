@@ -1,0 +1,14 @@
+# Allergens in hymenoptera venom. IX. Species specificity to Polistes (paper wasp) venoms.
+
+- **PMID**: 7065471
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Annals of allergy  ·  **Year**: 1982
+- **Authors**: D R Hoffman, C A McDonald
+- **MeSH**: Allergens, Animals, Antibody Specificity, Bee Venoms, Binding, Competitive, Cross Reactions, Humans, Hymenoptera, Immunoglobulin E, Insect Bites and Stings
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/7065471/
+- **Captured**: 2026-05-10T11:50:18
+
+## Abstract
+
+Sera from 62 patients allergic to Polistes venom were used to study the allergenic relationships among four individual species of Polistes by both direct and inhibition RAST. Both direct and inhibition results showed that the four species' venoms were closely related. The species within the same subgenus were more closely related than those in different subgenera. The Polistes species were more closely related to each other than various yellow jacket (Vespula) species are to each other. The commercial Polistes venom mix appears to contain all of the relevant allergens.

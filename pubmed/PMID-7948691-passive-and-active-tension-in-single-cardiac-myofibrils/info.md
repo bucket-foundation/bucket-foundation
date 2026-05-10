@@ -1,0 +1,14 @@
+# Passive and active tension in single cardiac myofibrils.
+
+- **PMID**: 7948691
+- **DOI**: 10.1016/S0006-3495(94)80538-7
+- **PMCID**: PMC1225421 (full-text saved)
+- **Journal**: Biophysical journal  ·  **Year**: 1994
+- **Authors**: W A Linke, V I Popov, G H Pollack
+- **MeSH**: Animals, Heart, Heart Ventricles, Microscopy, Electron, Microscopy, Phase-Contrast, Muscles, Myocardial Contraction, Myofibrils, Rabbits, Stress, Mechanical
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/7948691/
+- **Captured**: 2026-05-10T11:51:21
+
+## Abstract
+
+Single myofibrils were isolated from chemically skinned rabbit heart and mounted in an apparatus described previously (Fearn et al., 1993; Linke et al., 1993). We measured the passive length-tension relation and active isometric force, both normalized to cross sectional area. Myofibrillar cross sectional area was calculated based on measurements of myofibril diameter from both phase-contrast images and electron micrographs. Passive tension values up to sarcomere lengths of approximately 2.2 microns were similar to those reported in larger cardiac muscle specimens. Thus, the element responsible for most, if not all, passive force of cardiac muscle at physiological sarcomere lengths appears to reside within the myofibrils. Above 2.2 microns, passive tension continued to rise, but not as steeply as reported in multicellular preparations. Apparently, structures other than the myofibrils become increasingly important in determining the magnitude of passive tension at these stretched lengths. Knowing the myofibrillar component of passive tension allowed us to infer the stress-strain relation of titin, the polypeptide thought to support passive force in the sarcomere. The elastic modulus of titin is 3.5 x 10(6) dyn cm-2, a value similar to that reported for elastin. Maximum active isometric tension in the single myofibril at sarcomere lengths of 2.1-2.3 microns was 145 +/- 35 mN/mm2 (mean +/- SD; n = 15). This value is comparable with that measured in fixed-end contractions of larger cardiac specimens, when the amount of nonmyofibrillar space in those preparations is considered. However, it is about 4 times lower than the maximum active tension previously measured in single skeletal myofibrils under similar conditions (Bartoo et al., 1993).

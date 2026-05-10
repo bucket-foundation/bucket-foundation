@@ -1,0 +1,14 @@
+# Evolutionary optimization in quantitative structure-activity relationship: an application of genetic neural networks.
+
+- **PMID**: 8691483
+- **DOI**: 10.1021/jm9507035
+- **PMCID**:  
+- **Journal**: Journal of medicinal chemistry  ·  **Year**: 1996
+- **Authors**: S S So, M Karplus
+- **MeSH**: Algorithms, Antimycin A, Computer-Aided Design, Drug Design, Genetics, Molecular Structure, Neural Networks, Computer, Structure-Activity Relationship
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/8691483/
+- **Captured**: 2026-05-10T11:52:27
+
+## Abstract
+
+A new hybrid method (GNN) combining a genetic algorithm and an artificial neural network has been developed for quantitative structure-activity relationship (QSAR) studies. A suitable set of molecular descriptors are selected by a genetic algorithm. This set serves as input to a neural network, in which model-free mapping of multivariate data is performed. Multiple predictors are generated that are superior to results obtained from previous studies of the Selwood data set, which is used to test the method. The neural network technique provides a graphical description of the functional form of the descriptors that play an important role in determining drug activity. This can serve as an aid in future design of drug analogues. The effectiveness of GNN is tested by comparing its results with a benchmark obtained by exhaustive enumeration. Different fitness strategies that tune the evolution of genetic models are examined, and QSARs with higher predictiveness are found. From these results, a composite model is constructed by averaging predictions from several high-ranking models. The predictions of the resulting QSAR should be more reliable than those derived from a single predictor because it makes greater use of information and also permits error estimation. An analysis of the sets of descriptors selected by GNN shows that it is essential to have one each for the steric, electrostatic, and hydrophobic attributes of a drug candidate to obtain a satisfactory QSAR for this data set. This type of result is expected to be of general utility in designing and understanding QSAR.

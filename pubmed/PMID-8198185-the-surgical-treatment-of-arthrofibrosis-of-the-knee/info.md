@@ -1,0 +1,14 @@
+# The surgical treatment of arthrofibrosis of the knee.
+
+- **PMID**: 8198185
+- **DOI**: 10.1177/036354659402200206
+- **PMCID**:  
+- **Journal**: The American journal of sports medicine  ·  **Year**: 1994
+- **Authors**: A J Cosgarea, K E DeHaven, J E Lovelock
+- **MeSH**: Adult, Anterior Cruciate Ligament, Female, Fibrosis, Humans, Knee Joint, Male, Postoperative Complications, Range of Motion, Articular, Reoperation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/8198185/
+- **Captured**: 2026-05-10T11:51:46
+
+## Abstract
+
+Sixty-one lysis of adhesion procedures were performed for arthrofibrosis of the knee between 1981 and 1990. In 43 cases (37 patients) the etiology was prior knee ligament surgery. Ten cases had sustained fractures about the knee and eight had miscellaneous etiologies. Six patients required a second lysis of adhesion procedure. A retrospective analysis of the 43 ligament patients was undertaken to evaluate the results of surgical treatment. All 43 cases were available for followup at an average of 3.6 years. Surgical indications included flexion or extension deficits of > or = 10 degrees or when motion failed to improve despite 2 months of intense therapy. Follow-up assessment included clinical and radiographic evaluation. Flexion improved from 83% to 97% of the contralateral side. Extension deficits improved from 14 degrees to 3 degrees. Only 23 of 37 patients (62%) achieved satisfactory functional results. Radiographic evidence of degenerative changes, soft tissue calcification, and patella infera was found in 89%, 51%, and 9% of the patients, respectively. Patients requiring surgical treatment for arthrofibrosis after knee ligament surgery achieved excellent motion gains, but functional outcome scores were compromised and radiographic findings were concerning. Patients with the localized anterior intraarticular variant or those undergoing lysis of adhesion surgery sooner than 6 months had outcomes comparable with controls.

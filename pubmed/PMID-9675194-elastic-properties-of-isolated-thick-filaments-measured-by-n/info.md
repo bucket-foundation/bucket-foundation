@@ -1,0 +1,14 @@
+# Elastic properties of isolated thick filaments measured by nanofabricated cantilevers.
+
+- **PMID**: 9675194
+- **DOI**: 10.1016/S0006-3495(98)77582-4
+- **PMCID**: PMC1299767 (full-text saved)
+- **Journal**: Biophysical journal  ·  **Year**: 1998
+- **Authors**: T Neumann, M Fauver, G H Pollack
+- **MeSH**: Actin Cytoskeleton, Animals, Bivalvia, Calibration, Elasticity, Equipment Design, Horseshoe Crabs, Materials Testing, Microscopy, Electron, Microscopy, Interference
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9675194/
+- **Captured**: 2026-05-10T11:53:47
+
+## Abstract
+
+Using newly developed nanofabricated cantilever force transducers, we have measured the mechanical properties of isolated thick filaments from the anterior byssus retractor muscle of the blue mussel Mytilus edulis and the telson levator muscle of the horseshoe crab Limulus polyphemus. The single thick filament specimen was suspended between the tip of a flexible cantilever and the tip of a stiff reference beam. Axial stress was placed on the filament, which bent the flexible cantilever. Cantilever tips were microscopically imaged onto a photodiode array to extract tip positions, which could be converted into force by using the cantilever stiffness value. Length changes up to 23% initial length (Mytilus) and 66% initial length (Limulus) were fully reversible and took place within the physiological force range. When stretch exceeded two to three times initial length (Mytilus) or five to six times initial length (Limulus), at forces approximately 18 nN and approximately 7 nN, respectively, the filaments broke. Appreciable and reversible strain within the physiological force range implies that thick-filament length changes could play a significant physiological role, at least in invertebrate muscles.

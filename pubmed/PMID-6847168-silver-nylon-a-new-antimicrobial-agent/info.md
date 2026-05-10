@@ -1,0 +1,14 @@
+# Silver-nylon: a new antimicrobial agent.
+
+- **PMID**: 6847168
+- **DOI**: 10.1128/AAC.23.3.356
+- **PMCID**: PMC184651 (full-text saved)
+- **Journal**: Antimicrobial agents and chemotherapy  ·  **Year**: 1983
+- **Authors**: E A Deitch, A A Marino, T E Gillespie, J A Albright
+- **MeSH**: Anti-Bacterial Agents, Bacteria, Nylons, Silver
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/6847168/
+- **Captured**: 2026-05-10T11:50:00
+
+## Abstract
+
+The potential effectiveness of a silver nylon (SN) fabric as an antimicrobial agent was evaluated in a series of in vitro experiments. The results indicated that silver ions from the SN fabric penetrated 2 mm of agar and killed a challenge of 6.9 X 10(7) Pseudomonas aeruginosa, 4.1 X 10(7) Staphylococcus aureus, and 1.4 X 10(7) Candida albicans organisms per cm2 of SN fabric after 24 h of incubation at 37 degrees C. To determine some of the microbicidal limits of the SN, the distance between the SN fabric and the microbial challenge was increased. Increasing the height of the agar column overlying the SN fabric diminished the inhibitory effect of SN on microbial growth. For each increase in agar height of 2 mm, up to a total height of 8 mm, the effectiveness of SN to inhibit microbial growth decreased by a factor of 10. This distance-related decrease in the microbicidal ability of SN could be overcome by placing the SN fabric in contact with the agar column for 24 to 72 h before microbial challenge. On the basis of these experiments, it appears that SN is an effective antimicrobial agent, although further work must be performed before it is applied clinically.

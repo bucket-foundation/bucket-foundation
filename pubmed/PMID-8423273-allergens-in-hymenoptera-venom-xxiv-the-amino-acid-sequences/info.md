@@ -1,0 +1,14 @@
+# Allergens in Hymenoptera venom XXIV: the amino acid sequences of imported fire ant venom allergens Sol i II, Sol i III, and Sol i IV.
+
+- **PMID**: 8423273
+- **DOI**: 10.1016/0091-6749(93)90298-t
+- **PMCID**:  
+- **Journal**: The Journal of allergy and clinical immunology  ·  **Year**: 1993
+- **Authors**: D R Hoffman
+- **MeSH**: Allergens, Amino Acid Sequence, Animals, Ant Venoms, Chromatography, Gel, Chromatography, High Pressure Liquid, Molecular Sequence Data, Peptides, Sequence Analysis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/8423273/
+- **Captured**: 2026-05-10T11:52:05
+
+## Abstract
+
+The most common cause of insect venom allergy in the Southeastern United States is the imported fire ant. The allergens are among the most potent known, with nanogram doses causing sensitization and provoking anaphylaxis. The complete amino acid sequences of imported fire ant venom allergens, Sol i II, III, and IV, were determined by solid-phase protein sequencing of overlapping peptide fragments. Sol i II has a single sequence of 119 amino acids and a molecular weight of 13,217. It has seven cysteine residues, and in its native form is a disulfide-linked dimer. The highly purified molecule does not have phospholipase activity and is not structurally related to phospholipases or other known proteins. Sol i IV has 117 amino acids, for a molecular weight of 13,340. It has six cysteines and is a monomer. Its sequence is 35% identical to Sol i II, but it is not significantly related to other proteins. The Sol i IV sequence showed two amino acid variations. Sol i III was found to consist of 212 amino acids of molecular weight 24,040 in good agreement with 26,000 by sodium dodecyl sulfate-polyacrylamide gel electrophoresis. The sequence contained eight cysteine residues and was found to be 44% to 50% identical to five vespid venom antigen 5 molecules. IgE antibodies against Sol i III do not exhibit strong cross-reactivity with vespid antigen 5s. The sequence similarity is consistent with other data, suggesting that ants are related to wasps of the superfamily Vespoidea.(ABSTRACT TRUNCATED AT 250 WORDS)

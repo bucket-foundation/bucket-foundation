@@ -1,0 +1,14 @@
+# Acute cardiovascular effects of dimethylsulfoxide.
+
+- **PMID**: 7318458
+- **DOI**: 10.1097/00003246-198112000-00011
+- **PMCID**:  
+- **Journal**: Critical care medicine  ·  **Year**: 1981
+- **Authors**: S R Hameroff, C W Otto, J Kanel, P R Weinstein, C D Blitt
+- **MeSH**: Animals, Blood Pressure, Cardiac Output, Central Nervous System, Central Nervous System Diseases, Dimethyl Sulfoxide, Dogs, Heart, Hemodynamics, Ischemia
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/7318458/
+- **Captured**: 2026-05-10T11:50:38
+
+## Abstract
+
+Dimethylsulfoxide (DMSO) has been advocated as a central nervous system (CNS) protectant against ischemia and trauma. The present study was performed to evaluate acute cardiovascular effects of DMSO which might complicate the clinical treatment of CNS compromised patients. Intravenously administered DMSO in doses which reportedly provide CNS protection, 2 g/kg, were infused in 6 dogs; hemodynamic variables were measured and compared to infusion of equal volumes of 0.9% sodium chloride. Immediately after infusion, DMSO caused increases in cardiac index, heart rate, pulmonary capillary wedge pressures (WP), and pulmonary arterial (systolic, mean, and diastolic) pressures which were significantly greater than changes induced by saline. DMSO decreased systematic diastolic pressure and systemic vascular resistance at the end of infusion. Most DMSO induced changes returned toward pre-infusion values 10 min after the end of infusion. These results suggest transient DMSO effects different from equal volumes of saline, possibly due to hyperosmotic expansion of plasma volume. A decrease in systemic vascular resistances was also observed. Although neither CNS production, intracranial pressure or blood flow were studied, these data suggest that DMSO used for CNS protection would not have adverse acute hemodynamic consequences. This may be particularly relevant in traumatized, hypovolemic patients.

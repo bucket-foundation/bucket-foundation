@@ -1,0 +1,14 @@
+# Pathologic conformations of prion proteins.
+
+- **PMID**: 9759504
+- **DOI**: 10.1146/annurev.biochem.67.1.793
+- **PMCID**:  
+- **Journal**: Annual review of biochemistry  ·  **Year**: 1998
+- **Authors**: F E Cohen, S B Prusiner
+- **MeSH**: Humans, Models, Theoretical, Prion Diseases, Prions, Protein Conformation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9759504/
+- **Captured**: 2026-05-10T11:53:54
+
+## Abstract
+
+While many aspects of prion disease biology are unorthodox, perhaps the most fundamental paradox is posed by the coexistence of inherited, sporadic, and infectious forms of these diseases. Sensible molecular mechanisms for prion propagation must explain all three forms of prion diseases in a manner that is compatible with the formidable array of experimental data derived from histopathological, biochemical, biophysical, human genetic, and transgenetic studies. In this review, we explore prion disease pathogenesis initially from the perspective of an autosomal dominant inherited disease. Subsequently, we examine how an intrinsically inherited disease could present in sporadic and infectious forms. Finally, we explore the phenomenologic constraints on models of prion replication with a specific emphasis on biophysical studies of prion protein structures.
