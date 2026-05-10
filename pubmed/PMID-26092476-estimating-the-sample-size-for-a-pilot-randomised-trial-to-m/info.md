@@ -1,0 +1,14 @@
+# Estimating the sample size for a pilot randomised trial to minimise the overall trial sample size for the external pilot and main trial for a continuous outcome variable.
+
+- **PMID**: 26092476
+- **DOI**: 10.1177/0962280215588241
+- **PMCID**: PMC3994566 (full-text saved)
+- **Journal**: Statistical methods in medical research  ·  **Year**: 2016
+- **Authors**: Amy L Whitehead, Steven A Julious, Cindy L Cooper, Michael J Campbell
+- **MeSH**: Humans, Outcome Assessment, Health Care, Pilot Projects, Randomized Controlled Trials as Topic, Sample Size
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26092476/
+- **Captured**: 2026-05-10T13:27:56
+
+## Abstract
+
+Sample size justification is an important consideration when planning a clinical trial, not only for the main trial but also for any preliminary pilot trial. When the outcome is a continuous variable, the sample size calculation requires an accurate estimate of the standard deviation of the outcome measure. A pilot trial can be used to get an estimate of the standard deviation, which could then be used to anticipate what may be observed in the main trial. However, an important consideration is that pilot trials often estimate the standard deviation parameter imprecisely. This paper looks at how we can choose an external pilot trial sample size in order to minimise the sample size of the overall clinical trial programme, that is, the pilot and the main trial together. We produce a method of calculating the optimal solution to the required pilot trial sample size when the standardised effect size for the main trial is known. However, as it may not be possible to know the standardised effect size to be used prior to the pilot trial, approximate rules are also presented. For a main trial designed with 90% power and two-sided 5% significance, we recommend pilot trial sample sizes per treatment arm of 75, 25, 15 and 10 for standardised effect sizes that are extra small (≤0.1), small (0.2), medium (0.5) or large (0.8), respectively.

@@ -1,0 +1,14 @@
+# Adjusting survival time estimates to account for treatment switching in randomized controlled trials--an economic evaluation context: methods, limitations, and recommendations.
+
+- **PMID**: 24449433
+- **DOI**: 10.1177/0272989X13520192
+- **PMCID**:  
+- **Journal**: Medical decision making : an international journal of the Society for Medical Decision Making  ·  **Year**: 2014
+- **Authors**: Nicholas R Latimer, Keith R Abrams, Paul C Lambert, Michael J Crowther, Allan J Wailoo, James P Morden, Ron L Akehurst, Michael J Campbell
+- **MeSH**: Biomedical Technology, Costs and Cost Analysis, Randomized Controlled Trials as Topic, Survival Analysis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24449433/
+- **Captured**: 2026-05-10T13:26:20
+
+## Abstract
+
+Treatment switching commonly occurs in clinical trials of novel interventions in the advanced or metastatic cancer setting. However, methods to adjust for switching have been used inconsistently and potentially inappropriately in health technology assessments (HTAs). We present recommendations on the use of methods to adjust survival estimates in the presence of treatment switching in the context of economic evaluations. We provide background on the treatment switching issue and summarize methods used to adjust for it in HTAs. We discuss the assumptions and limitations associated with adjustment methods and draw on results of a simulation study to make recommendations on their use. We demonstrate that methods used to adjust for treatment switching have important limitations and often produce bias in realistic scenarios. We present an analysis framework that aims to increase the probability that suitable adjustment methods can be identified on a case-by-case basis. We recommend that the characteristics of clinical trials, and the treatment switching mechanism observed within them, should be considered alongside the key assumptions of the adjustment methods. Key assumptions include the "no unmeasured confounders" assumption associated with the inverse probability of censoring weights (IPCW) method and the "common treatment effect" assumption associated with the rank preserving structural failure time model (RPSFTM). The limitations associated with switching adjustment methods such as the RPSFTM and IPCW mean that they are appropriate in different scenarios. In some scenarios, both methods may be prone to bias; "2-stage" methods should be considered, and intention-to-treat analyses may sometimes produce the least bias. The data requirements of adjustment methods also have important implications for clinical trialists.

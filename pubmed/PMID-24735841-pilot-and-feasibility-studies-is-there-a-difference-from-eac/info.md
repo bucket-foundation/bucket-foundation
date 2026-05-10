@@ -1,0 +1,14 @@
+# Pilot and feasibility studies: is there a difference from each other and from a randomised controlled trial?
+
+- **PMID**: 24735841
+- **DOI**: 10.1016/j.cct.2014.04.001
+- **PMCID**:  
+- **Journal**: Contemporary clinical trials  ·  **Year**: 2014
+- **Authors**: Amy L Whitehead, Benjamin G O Sully, Michael J Campbell
+- **MeSH**: Feasibility Studies, Humans, Pilot Projects, Randomized Controlled Trials as Topic, Research Design
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24735841/
+- **Captured**: 2026-05-10T13:26:26
+
+## Abstract
+
+A crucial part in the development of any intervention is the preliminary work carried out prior to a large-scale definitive trial. However, the definitions of these terms are not clear cut and many authors redefine them. Because of this, the terms feasibility and pilot are often misused. To provide an introduction to the topic area of pilot and feasibility trials and draw together the work of others in the area on defining what is a pilot or feasibility study. This study used a review of definitions and advice from the published literature and from funders' websites. Examples are used to show evidence of good practice and poor practice. We found that researchers use different terms to describe the various stages of the research process. Some define the terms feasibility and pilot as being different whereas others argue that these terms are synonymous. All reflective papers agree that feasibility/pilot studies should not test treatment comparisons nor estimate feasible effect sizes. However, this is not universally observed in practice. We believe that the term 'feasibility' should be used as an overarching term for preliminary studies and the term 'pilot' refers to a specific type of study which resembles the intended trial in aspects such as, having a control group and randomisation. However, studies labelled 'pilot' should have different aims and objectives to main trials and also should include an intention for future work. Researchers should not use the title 'pilot' for a trial which evaluates a treatment effect.

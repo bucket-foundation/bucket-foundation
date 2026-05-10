@@ -1,0 +1,14 @@
+# Synthetic recombinase-based state machines in living cells.
+
+- **PMID**: 27463678
+- **DOI**: 10.1126/science.aad8559
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 2016
+- **Authors**: Nathaniel Roquet, Ava P Soleimany, Alyssa C Ferris, Scott Aaronson, Timothy K Lu
+- **MeSH**: Base Sequence, Cells, Computers, Molecular, DNA, Escherichia coli, Gene Expression Regulation, Genetic Engineering, Recombinases, Synthetic Biology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27463678/
+- **Captured**: 2026-05-10T13:28:27
+
+## Abstract
+
+State machines underlie the sophisticated functionality behind human-made and natural computing systems that perform order-dependent information processing. We developed a recombinase-based framework for building state machines in living cells by leveraging chemically controlled DNA excision and inversion operations to encode states in DNA sequences. This strategy enables convenient readout of states (by sequencing and/or polymerase chain reaction) as well as complex regulation of gene expression. We validated our framework by engineering state machines in Escherichia coli that used one, two, or three chemical inputs to control up to 16 DNA states. These state machines were capable of recording the temporal order of all inputs and performing multi-input, multi-output control of gene expression. We also developed a computational tool for the automated design of gene regulation programs using recombinase-based state machines. Our scalable framework should enable new strategies for recording and studying how combinational and temporal events regulate complex cell functions and for programming sophisticated cell behaviors.

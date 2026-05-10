@@ -1,0 +1,14 @@
+# The Relative Effectiveness of Pumps Over MDI and Structured Education (REPOSE): study protocol for a cluster randomised controlled trial.
+
+- **PMID**: 25186159
+- **DOI**: 10.1136/bmjopen-2014-006204
+- **PMCID**: PMC1634743 (full-text saved)
+- **Journal**: BMJ open  ·  **Year**: 2014
+- **Authors**: David White, Norman Waugh, Jackie Elliott, Julia Lawton, Katharine Barnard, Michael J Campbell, Simon Dixon, Simon Heller
+- **MeSH**: Adult, Diabetes Mellitus, Type 1, Glycated Hemoglobin, Humans, Injections, Intramuscular, Insulin, Insulin Infusion Systems, Patient Education as Topic, Treatment Outcome
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25186159/
+- **Captured**: 2026-05-10T13:26:54
+
+## Abstract
+
+People with type 1 diabetes (T1DM) require insulin therapy to sustain life, and need optimal glycaemic control to prevent diabetic ketoacidosis and serious long-term complications. Insulin is generally administered using multiple daily injections but can also be delivered using an infusion pump (continuous subcutaneous insulin infusion), a more costly option with benefits for some patients. The UK National Institute for Health and Care Excellence (NICE) recommend the use of pumps for patients with the greatest need, citing insufficient evidence to approve extension to a wider population. Far fewer UK adults use pumps than in comparable countries. Previous trials of pump therapy have been small and of short duration and failed to control for training in insulin adjustment. This paper describes the protocol for a large randomised controlled trial comparing pump therapy with multiple daily injections, where both groups are provided with high-quality structured education. A multicentre, parallel group, cluster randomised controlled trial among 280 adults with T1DM. All participants attended the week-long dose adjustment for normal eating (DAFNE) structured education course, and receive either multiple daily injections or pump therapy for 2 years. The trial incorporates a detailed mixed-methods psychosocial evaluation and cost-effectiveness analysis. The primary outcome will be the change in glycosylated haemoglobin (HbA1c) at 24 months in those participants whose baseline HbA1c is at or above 7.5% (58 mmol/mol). The key secondary outcome will be the proportion of participants reaching the NICE target of an HbA1c of 7.5% (58 mmol/mol) or less at 24 months. The protocol was approved by the Research Ethics Committee North West, Liverpool East and received Medicines and Healthcare products Regulatory Agency (MHRA) clinical trials authorisation. Each participating centre gave National Health Service R&D approval. We shall disseminate study findings to study participants and through peer reviewed publications and conference presentations, including lay user groups. ISRCTN 61215213.

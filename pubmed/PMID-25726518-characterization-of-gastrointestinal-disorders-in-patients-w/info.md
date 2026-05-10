@@ -1,0 +1,14 @@
+# Characterization of gastrointestinal disorders in patients with parkinsonian syndromes.
+
+- **PMID**: 25726518
+- **DOI**: 10.1016/j.parkreldis.2015.02.005
+- **PMCID**:  
+- **Journal**: Parkinsonism & related disorders  ·  **Year**: 2015
+- **Authors**: Hyeyoung Park, Jee Young Lee, Cheol Min Shin, Jong-Min Kim, Tae Jeong Kim, Ji Won Kim
+- **MeSH**: Aged, Aged, 80 and over, Cross-Sectional Studies, Female, Gastrointestinal Diseases, Humans, Male, Middle Aged, Parkinsonian Disorders
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25726518/
+- **Captured**: 2026-05-10T13:27:08
+
+## Abstract
+
+This study was aimed to investigate gastrointestinal (GI) dysfunction in patients with Parkinson's disease (PD) compared with those in patients with other parkinsonian disorders, and to characterize parkinsonian motor and non-motor correlates for GI dysfunction. Consecutive patients with PD, atypical parkinsonism (P-plus) and vascular parkinsonism (VP) were enrolled in this multicenter systematic survey. Data for weight loss, appetite loss, sialorrhea, dysphagia, gastroesophageal reflux disease (GERD) and constipation were simultaneously collected using symptom-specific, structured questionnaires. For the PD group, information for onset age, PD duration, anti-parkinsonian drug dosages, unified PD rating scale, and Hoehn & Yahr stage were collected at the time of the interview. Enrolled in the study were 329 PD, 82 P-plus, and 62 VP patients. GI symptom frequencies were similar in PD and other parkinsonian groups. Among the PD patients, constipation was the most common symptom, followed by appetite loss, weight loss, dysphagia, sialorrhea, and GERD (64.9%, 45.4%, 35.7%, 19.4%, 15.0%, and 9.6%, respectively). Dysphagia, sialorrhea, and constipation became more frequent with more advanced PD stages. Cognition, sleep and mood disturbances were significantly associated with weight loss, appetite loss, and dysphagia, whereas bradykinesia, axial and postural instability with gait disturbance were associated with dysphagia. GI disturbance is common in patients with non-PD parkinsonism as well as in those with PD. GI symptoms correlated with distinct parkinsonian motor and nonmotor features in PD. Further studies are warranted to reveal the pathophysiological mechanisms and prognostic features of GI disturbances in parkinsonian disorders.

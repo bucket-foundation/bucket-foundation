@@ -1,0 +1,14 @@
+# The effects of breastfeeding on childhood BMI: a propensity score matching approach.
+
+- **PMID**: 27613768
+- **DOI**: 10.1093/pubmed/fdw093
+- **PMCID**: PMC3062903 (full-text saved)
+- **Journal**: Journal of public health (Oxford, England)  ·  **Year**: 2017
+- **Authors**: Laura A Gibson, Mónica Hernández Alava, Michael P Kelly, Michael J Campbell
+- **MeSH**: Age Factors, Body Mass Index, Breast Feeding, Child, Child, Preschool, Female, Humans, Infant, Infant, Newborn, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27613768/
+- **Captured**: 2026-05-10T13:28:27
+
+## Abstract
+
+Many studies have found a statistical association between breastfeeding and childhood adiposity. This paper investigates whether breastfeeding has an effect on subsequent childhood body mass index (BMI) using propensity scores to account for confounding. We use data from the Millennium Cohort Study, a nationally representative UK cohort survey, which contains detailed information on infant feeding and childhood BMI. Propensity score matching is used to investigate the mean BMI in children breastfed exclusively and partially for different durations of time. We find statistically significant influences of breastfeeding on childhood BMI, particularly in older children, when breastfeeding is prolonged and exclusive. At 7 years, children who were exclusively breastfed for 16 weeks had a BMI 0.28 kg/m2 (95% confidence interval 0.07 to 0.49) lower than those who were never breastfed, a 2% reduction from the mean BMI of 16.6 kg/m2. For this young cohort, even small effects of breastfeeding on BMI could be important. In order to reduce BMI, breastfeeding should be encouraged as part of wider lifestyle intervention. This evidence could help to inform public health bodies when creating public health guidelines and recommendations.

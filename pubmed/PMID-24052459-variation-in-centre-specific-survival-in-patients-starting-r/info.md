@@ -1,0 +1,14 @@
+# Variation in centre-specific survival in patients starting renal replacement therapy in England is explained by enhanced comorbidity information from hospitalization data.
+
+- **PMID**: 24052459
+- **DOI**: 10.1093/ndt/gft363
+- **PMCID**:  
+- **Journal**: Nephrology, dialysis, transplantation : official publication of the European Dialysis and Transplant Association - European Renal Association  ·  **Year**: 2014
+- **Authors**: James Fotheringham, Richard M Jacques, Damian Fogarty, Charles R V Tomson, Meguid El Nahas, Michael J Campbell
+- **MeSH**: Adolescent, Adult, Aged, Aged, 80 and over, Cardiovascular Diseases, Comorbidity, Data Collection, England, Ethnicity, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24052459/
+- **Captured**: 2026-05-10T13:26:07
+
+## Abstract
+
+Unadjusted survival on renal replacement therapy (RRT) varies widely from centre to centre in England. Until now, missing data on case mix have made it impossible to determine whether this variation reflects genuine differences in the quality of care. Data linkage has the capacity to reduce missing data. Modelling of survival using Cox proportional hazards of data returned to the UK Renal Registry on patients starting RRT for established renal failure in England. Data on ethnicity, socioeconomic status and comorbidity were obtained by linkage to the Hospital Episode Statistics database, using data from hospitalizations prior to starting RRT. Patients with missing data were reduced from 61 to 4%. The prevalence of comorbid conditions was remarkably similar across centres. When centre-specific survival was compared after adjustment solely for age, survival was below the 95% limit for 6 of 46 centres. The addition of variables into the multivariable model altered the number of centres that appeared to be 'outliers' with worse than expected survival as follows: ethnic origin four outliers, socioeconomic status eight outliers and year of the start of RRT four outliers. The addition of a combination of 16 comorbid conditions present at the start of RRT reduced the number of centres with worse than expected survival to one. Linked data between a national registry and hospital admission dramatically reduced missing data, and allowed us to show that nearly all the variation between English renal centres in 3-year survival on RRT was explained by demographic factors and by comorbidity.

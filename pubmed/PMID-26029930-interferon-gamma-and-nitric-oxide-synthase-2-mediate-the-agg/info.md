@@ -1,0 +1,14 @@
+# Interferon-gamma and nitric oxide synthase 2 mediate the aggregation of resident adherent peritoneal exudate cells: implications for the host response to pathogens.
+
+- **PMID**: 26029930
+- **DOI**: 10.1016/j.it.2015.01.003
+- **PMCID**: PMC128135 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2015
+- **Authors**: Bhagawat S Chandrasekar, Shikha Yadav, Emmanuel S Victor, Shamik Majumdar, Mukta Deobagkar-Lele, Nitin Wadhwa, Santosh Podder, Mrinmoy Das, Dipankar Nandi
+- **MeSH**: Actins, Animals, CD11b Antigen, Cell Adhesion, Cell Aggregation, Cell Movement, Cytoskeleton, Host-Pathogen Interactions, Interferon-gamma, Macrophages
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26029930/
+- **Captured**: 2026-05-10T13:27:48
+
+## Abstract
+
+Interferon-gamma (Ifnγ), a key macrophage activating cytokine, plays pleiotropic roles in host immunity. In this study, the ability of Ifnγ to induce the aggregation of resident mouse adherent peritoneal exudate cells (APECs), consisting primarily of macrophages, was investigated. Cell-cell interactions involve adhesion molecules and, upon addition of Ifnγ, CD11b re-localizes preferentially to the sites of interaction on APECs. A functional role of CD11b in enhancing aggregation is demonstrated using Reopro, a blocking reagent, and siRNA to Cd11b. Studies with NG-methyl-L-arginine (LNMA), an inhibitor of Nitric oxide synthase (Nos), NO donors, e.g., S-nitroso-N-acetyl-DL-penicillamine (SNAP) or Diethylenetriamine/nitric oxide adduct (DETA/NO), and Nos2-/- mice identified Nitric oxide (NO) induced by Ifnγ as a key regulator of aggregation of APECs. Further studies with Nos2-/- APECs revealed that some Ifnγ responses are independent of NO: induction of MHC class II and CD80. On the other hand, Nos2 derived NO is important for other functions: motility, phagocytosis, morphology and aggregation. Studies with cytoskeleton depolymerizing agents revealed that Ifnγ and NO mediate the cortical stabilization of Actin and Tubulin which contribute to aggregation of APECs. The biological relevance of aggregation of APECs was delineated using infection experiments with Salmonella Typhimurium (S. Typhimurium). APECs from orally infected, but not uninfected, mice produce high amounts of NO and aggregate upon ex vivo culture in a Nos2-dependent manner. Importantly, aggregated APECs induced by Ifnγ contain fewer intracellular S. Typhimurium compared to their single counterparts post infection. Further experiments with LNMA or Reopro revealed that both NO and CD11b are important for aggregation; in addition, NO is bactericidal. Overall, this study elucidates novel roles for Ifnγ and Nos2 in regulating Actin, Tubulin, CD11b, motility and morphology during the aggregation response of APECs. The implications of aggregation or "group behavior" of APECs are discussed in the context of host resistance to infectious organisms.

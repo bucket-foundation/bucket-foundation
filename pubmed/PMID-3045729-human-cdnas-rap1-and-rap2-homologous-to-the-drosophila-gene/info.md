@@ -1,0 +1,14 @@
+# Human cDNAs rap1 and rap2 homologous to the Drosophila gene Dras3 encode proteins closely related to ras in the 'effector' region.
+
+- **PMID**: 3045729
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Oncogene  ·  **Year**: 1988
+- **Authors**: V Pizon, P Chardin, I Lerosey, B Olofsson, A Tavitian
+- **MeSH**: Amino Acid Sequence, Animals, Base Sequence, DNA, Drosophila, Guanosine Triphosphate, Humans, Molecular Sequence Data, Proto-Oncogene Proteins, Proto-Oncogene Proteins p21(ras)
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3045729/
+- **Captured**: 2026-05-10T13:29:09
+
+## Abstract
+
+We have characterized two new ras-related genes rap1 and rap2 from a human cDNA library, by hybridization with the Drosophila Dras3 gene at low stringency conditions. The rap1 and rap2 genes encode proteins of 184 and 183 amino acid respectively with molecular weights of 20.9 kd and 20.7 kd. These proteins are 53% and 46% identical to the human K-ras protein and share several properties with the classical ras proteins. The C-terminal cysteine involved in the membrane anchoring as well as the GTP binding regions of the p21 ras proteins are present in the rap proteins suggesting that these proteins could bind GTP/GDP and have a membrane localization. The most striking difference between the rap and ras proteins resides in their 61st amino acid. As in the Drosophila Dras3 protein, both rap proteins have a threonine instead of the glutamine found at position 61 of the classical ras proteins. Furthermore the putative effector domain of the ras proteins is strictly conserved in the rap1 protein whereas only one amino acid difference is found in the rap2 protein. This suggests that the rap proteins might interact with the same effector as the ras proteins.

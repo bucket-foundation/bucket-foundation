@@ -1,0 +1,14 @@
+# A hazard ratio was estimated by a ratio of median survival times, but with considerable uncertainty.
+
+- **PMID**: 25063554
+- **DOI**: 10.1016/j.jclinepi.2014.05.017
+- **PMCID**:  
+- **Journal**: Journal of clinical epidemiology  ·  **Year**: 2014
+- **Authors**: Jordi Cortés, José A González, Michael J Campbell, Erik Cobo
+- **MeSH**: Confidence Intervals, Humans, Neoplasms, Proportional Hazards Models, Randomized Controlled Trials as Topic, Survival Rate
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25063554/
+- **Captured**: 2026-05-10T13:26:52
+
+## Abstract
+
+To evaluate the empirical concordance between the hazard ratio (HR) and the median ratio (MR) in survival cancer studies. We selected all cancer survival articles from the New England Journal of Medicine published between 2000 and 2010. The qualitative concordance was estimated by the proportion of measured pairs in which the treatment effects for the MR and HR are in the same direction. The quantitative concordance was assessed through (1) the mean difference between the logarithms of the measures, (2) the Lin coefficient, and (3) the Bland-Altman plot. We retrieved 106 measured pairs (HR-MR) corresponding to 54 articles. Concordance was high, at both the qualitative (99 of 106, 93.4%) and quantitative levels (mean MR-to-HR ratio, 1.01; 95% confidence interval: 0.95, 1.06). However, the 95% Bland-Altman discordance limits indicate that the MR can be up to 50% higher or 50% lower than the HR. The average concordance allows trialists to approximate HR from MR to determine sample size. However, the discordance limits are too great to consider that both measures are interchangeable. The actual policy to report HR only is not enough. Our results emphasize the need to attach descriptive survival measures to the HR.

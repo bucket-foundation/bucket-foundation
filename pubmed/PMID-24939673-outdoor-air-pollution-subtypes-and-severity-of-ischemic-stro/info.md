@@ -1,0 +1,14 @@
+# Outdoor air pollution, subtypes and severity of ischemic stroke--a small-area level ecological study.
+
+- **PMID**: 24939673
+- **DOI**: 10.1186/1476-072X-13-23
+- **PMCID**: PMC3270464 (full-text saved)
+- **Journal**: International journal of health geographics  ·  **Year**: 2014
+- **Authors**: Ravi Maheswaran, Tim Pearson, Sean D Beevers, Michael J Campbell, Charles D Wolfe
+- **MeSH**: Aged, Aged, 80 and over, Air Pollutants, Air Pollution, Brain Ischemia, Ecological and Environmental Phenomena, Environmental Monitoring, Female, Humans, London
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24939673/
+- **Captured**: 2026-05-10T13:26:39
+
+## Abstract
+
+Evidence linking outdoor air pollution and incidence of ischemic stroke subtypes and severity is limited. We examined associations between outdoor PM10 and NO2 concentrations modeled at a fine spatial resolution and etiological and clinical ischemic stroke subtypes and severity of ischemic stroke. We used a small-area level ecological study design and a stroke register set up to capture all incident cases of first ever stroke (1995-2007) occurring in a defined geographical area in South London (948 census output areas; population of 267839). Modeled PM10 and NO2 concentrations were available at a very fine spatial scale (20 meter by 20 meter grid point resolution) and were aggregated to output area level using postcode population weighted averages. Ischemic stroke was classified using the Oxford clinical classification, the Trial of Org 10172 in Acute Stroke Treatment (TOAST) etiological classification, National Institutes of Health Stroke Scale (NIHSS) score and a pragmatic clinical severity classification based on Glasgow coma score, ability to swallow, urinary continence and death <2 days of stroke onset. Mean (SD) concentrations were 25.1 (1.2) ug/m(3) (range 23.3-36.4) for PM10 and 41.4 (3.0) ug/m(3) (range 35.4-68.0) for NO2. There were 2492 incident cases of ischemic stroke. We found no evidence of association between these pollutants and the incidence of ischemic stroke subtypes classified using the Oxford and TOAST classifications. We found no significant association with stroke severity using NIHSS severity categories. However, we found that outdoor concentrations of both PM10 and NO2 appeared to be associated with increased incidence of mild but not severe ischemic stroke, classified using the pragmatic clinical severity classification. For mild ischemic stroke, the rate ratio in the highest PM10 category by tertile was 1.20 (1.05-1.38) relative to the lowest category. The rate ratio in the highest NO2 category was 1.22 (1.06-1.40) relative to the lowest category. We found no evidence of association between outdoor PM10 and NO2 concentrations and ischemic stroke subtypes but there was a suggestion that living in areas with elevated outdoor PM10 and NO2 concentrations might be associated with increased incidence of mild, but not severe, ischemic stroke.

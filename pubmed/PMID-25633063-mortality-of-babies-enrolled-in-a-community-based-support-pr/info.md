@@ -1,0 +1,14 @@
+# Mortality of babies enrolled in a community-based support programme: CONI PLUS (Care of Next Infant Plus).
+
+- **PMID**: 25633063
+- **DOI**: 10.1136/archdischild-2014-307232
+- **PMCID**:  
+- **Journal**: Archives of disease in childhood  ·  **Year**: 2015
+- **Authors**: Alison J Waite, Robert C Coombs, Angela McKenzie, Charlotte Daman-Willems, Marta C Cohen, Michael J Campbell, Robert G Carpenter
+- **MeSH**: Cause of Death, Community Health Services, England, Female, Health Promotion, Humans, Infant, Infant Care, Infant Mortality, Infant, Newborn
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25633063/
+- **Captured**: 2026-05-10T13:27:02
+
+## Abstract
+
+To report mortality in babies enrolled on a community-based programme, Care of Next Infant Plus (CONI PLUS), which primarily supports parents anxious because of previous sudden unexpected death in infancy (SUDI) in their extended family or following an apparent life threatening event (ALTE) in their baby. Prospective observational study from 1996 to 2010 in the UK. Of 6487 babies enrolled, 37 died (5.7 per 1000). There were 2789 (43.0%) SUDI related babies of whom, six died suddenly and unexpectedly (2.15 per 1000). Four babies were sharing a sofa at night or a bed with parent(s) who smoked or had consumed alcohol. Of the 1882 (29.0%) babies enrolled following an ALTE, five died suddenly and unexpectedly (2.66 per 1000): four unexplained and one due to infection. None occurred while sharing a sleep surface, and at least three died during the day. The remaining 1816 (28%) babies were enrolled for other reasons. Seven died suddenly and unexpectedly (3.85 per 1000), two were unexplained and none associated with bed sharing. The number of SUDI deaths in babies enrolled on CONI PLUS is higher than expected from UK averages. Deaths in babies enrolled because of family history of SUDI were mostly associated with inappropriate sharing of a sleep surface at night and mostly outside the peak age range for sudden infant death. The opposite is true for those enrolled following an ALTE. The number of deaths is small but findings suggest a different mechanism for death in these two groups.

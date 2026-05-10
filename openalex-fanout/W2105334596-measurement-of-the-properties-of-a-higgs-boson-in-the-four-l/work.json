@@ -1,0 +1,5442 @@
+{
+  "id": "https://openalex.org/W2105334596",
+  "doi": "https://doi.org/10.1103/physrevd.89.092007",
+  "title": "Measurement of the properties of a Higgs boson in the four-lepton final state",
+  "display_name": "Measurement of the properties of a Higgs boson in the four-lepton final state",
+  "publication_year": 2014,
+  "publication_date": "2014-05-14",
+  "ids": {
+    "openalex": "https://openalex.org/W2105334596",
+    "doi": "https://doi.org/10.1103/physrevd.89.092007",
+    "mag": "2105334596"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1103/physrevd.89.092007",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1103/physrevd.89.092007",
+    "pdf_url": "http://link.aps.org/pdf/10.1103/PhysRevD.89.092007",
+    "source": {
+      "id": "https://openalex.org/S4210210554",
+      "display_name": "Physical review. D. Particles, fields, gravitation, and cosmology/Physical review. D, Particles, fields, gravitation, and cosmology",
+      "issn_l": "1550-2368",
+      "issn": [
+        "1550-2368",
+        "1550-7998"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320261",
+      "host_organization_name": "American Physical Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320261"
+      ],
+      "host_organization_lineage_names": [
+        "American Physical Society"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Physical Review D",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "datacite"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "hybrid",
+    "oa_url": "http://link.aps.org/pdf/10.1103/PhysRevD.89.092007",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5107933385",
+        "display_name": "S. Chatrchyan",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132091411",
+          "display_name": "A. Alikhanyan National Laboratory",
+          "ror": "https://ror.org/00ad27c73",
+          "country_code": "AM",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I132091411"
+          ]
+        }
+      ],
+      "countries": [
+        "AM"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "S. Chatrchyan",
+      "raw_affiliation_strings": [
+        "Yerevan Physics Institute, Yerevan, Armenia"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Yerevan Physics Institute, Yerevan, Armenia",
+          "institution_ids": [
+            "https://openalex.org/I132091411"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5005250779",
+        "display_name": "V. Khachatryan",
+        "orcid": "https://orcid.org/0000-0003-2567-2930"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132091411",
+          "display_name": "A. Alikhanyan National Laboratory",
+          "ror": "https://ror.org/00ad27c73",
+          "country_code": "AM",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I132091411"
+          ]
+        }
+      ],
+      "countries": [
+        "AM"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "V. Khachatryan",
+      "raw_affiliation_strings": [
+        "Yerevan Physics Institute, Yerevan, Armenia"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Yerevan Physics Institute, Yerevan, Armenia",
+          "institution_ids": [
+            "https://openalex.org/I132091411"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5105697944",
+        "display_name": "A. M. Sirunyan",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132091411",
+          "display_name": "A. Alikhanyan National Laboratory",
+          "ror": "https://ror.org/00ad27c73",
+          "country_code": "AM",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I132091411"
+          ]
+        }
+      ],
+      "countries": [
+        "AM"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. M. Sirunyan",
+      "raw_affiliation_strings": [
+        "Yerevan Physics Institute, Yerevan, Armenia"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Yerevan Physics Institute, Yerevan, Armenia",
+          "institution_ids": [
+            "https://openalex.org/I132091411"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5069509278",
+        "display_name": "A. Tumasyan",
+        "orcid": "https://orcid.org/0009-0000-0684-6742"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132091411",
+          "display_name": "A. Alikhanyan National Laboratory",
+          "ror": "https://ror.org/00ad27c73",
+          "country_code": "AM",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I132091411"
+          ]
+        }
+      ],
+      "countries": [
+        "AM"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Tumasyan",
+      "raw_affiliation_strings": [
+        "Yerevan Physics Institute, Yerevan, Armenia"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Yerevan Physics Institute, Yerevan, Armenia",
+          "institution_ids": [
+            "https://openalex.org/I132091411"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5074924703",
+        "display_name": "W. Adam",
+        "orcid": "https://orcid.org/0000-0001-9099-4341"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "W. Adam",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5114334441",
+        "display_name": "T. Bergauer",
+        "orcid": "https://orcid.org/0000-0002-5786-0293"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "T. Bergauer",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5086528441",
+        "display_name": "M. Dragicevic",
+        "orcid": "https://orcid.org/0000-0003-1967-6783"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Dragicevic",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5113501345",
+        "display_name": "J. Erö",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Erö",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5108086684",
+        "display_name": "C. Fabjan",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. Fabjan",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5102904489",
+        "display_name": "M. Friedl",
+        "orcid": "https://orcid.org/0000-0002-7420-2559"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Friedl",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5027832388",
+        "display_name": "R. Frühwirth",
+        "orcid": "https://orcid.org/0000-0002-0054-3369"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. Frühwirth",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5072474839",
+        "display_name": "V. M. Ghete",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "V. M. Ghete",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106295240",
+        "display_name": "C. Hartl",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. Hartl",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5112601085",
+        "display_name": "N. Hörmann",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "N. Hörmann",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5112409794",
+        "display_name": "J. Hrubec",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Hrubec",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5078050797",
+        "display_name": "M. Jeitler",
+        "orcid": "https://orcid.org/0000-0002-5141-9560"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Jeitler",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5108090834",
+        "display_name": "W. Kiesenhofer",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "W. Kiesenhofer",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5040827092",
+        "display_name": "V. Knünz",
+        "orcid": "https://orcid.org/0000-0002-7235-4786"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "V. Knünz",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5028055522",
+        "display_name": "M. Krammer",
+        "orcid": "https://orcid.org/0000-0003-2257-7751"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Krammer",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5083183920",
+        "display_name": "I. Krätschmer",
+        "orcid": "https://orcid.org/0000-0002-5636-9259"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "I. Krätschmer",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5010908602",
+        "display_name": "D. Liko",
+        "orcid": "https://orcid.org/0000-0002-3380-473X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Liko",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5057586634",
+        "display_name": "I. Mikulec",
+        "orcid": "https://orcid.org/0000-0003-0385-2746"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "I. Mikulec",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107830750",
+        "display_name": "D. Rabady",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Rabady",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5110737549",
+        "display_name": "B. Rahbaran",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "B. Rahbaran",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5109902673",
+        "display_name": "H. Rohringer",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "H. Rohringer",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5115588019",
+        "display_name": "R. Schöfbeck",
+        "orcid": "https://orcid.org/0000-0002-2332-8784"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. Schöfbeck",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107829101",
+        "display_name": "J. Strauss",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Strauss",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107861999",
+        "display_name": "A. Taurok",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Taurok",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5110252917",
+        "display_name": "W. Treberer-Treberspurg",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "W. Treberer-Treberspurg",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5009221549",
+        "display_name": "W. Waltenberger",
+        "orcid": "https://orcid.org/0000-0002-6215-7228"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "W. Waltenberger",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5108167515",
+        "display_name": "C.-E. Wulz",
+        "orcid": "https://orcid.org/0000-0001-9226-5812"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210129701",
+          "display_name": "Institute of High Energy Physics",
+          "ror": "https://ror.org/039shy520",
+          "country_code": "AT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I138211613",
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C.-E. Wulz",
+      "raw_affiliation_strings": [
+        "Institut für Hochenergiephysik der OeAW, Wien, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut für Hochenergiephysik der OeAW, Wien, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210129701"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106306232",
+        "display_name": "V. Mossolov",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": false,
+      "raw_author_name": "V. Mossolov",
+      "raw_affiliation_strings": [
+        "National Centre for Particle and High Energy Physics, Minsk, Belarus"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "National Centre for Particle and High Energy Physics, Minsk, Belarus",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107839659",
+        "display_name": "N. Shumeiko",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": false,
+      "raw_author_name": "N. Shumeiko",
+      "raw_affiliation_strings": [
+        "National Centre for Particle and High Energy Physics, Minsk, Belarus"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "National Centre for Particle and High Energy Physics, Minsk, Belarus",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107843080",
+        "display_name": "J. Suarez Gonzalez",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": false,
+      "raw_author_name": "J. Suarez Gonzalez",
+      "raw_affiliation_strings": [
+        "National Centre for Particle and High Energy Physics, Minsk, Belarus"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "National Centre for Particle and High Energy Physics, Minsk, Belarus",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5011128192",
+        "display_name": "S. Alderweireldt",
+        "orcid": "https://orcid.org/0000-0002-8224-7036"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Alderweireldt",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5073119118",
+        "display_name": "M. Bansal",
+        "orcid": "https://orcid.org/0000-0002-5413-8115"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Bansal",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5000721235",
+        "display_name": "S. Bansal",
+        "orcid": "https://orcid.org/0000-0003-1992-0336"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Bansal",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5018937696",
+        "display_name": "T. Cornelis",
+        "orcid": "https://orcid.org/0000-0001-9502-5363"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "T. Cornelis",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107829018",
+        "display_name": "E. A. De Wolf",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "E. A. De Wolf",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5050343074",
+        "display_name": "X. Janssen",
+        "orcid": "https://orcid.org/0000-0002-3998-4081"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "X. Janssen",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107832148",
+        "display_name": "A. Knutsson",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Knutsson",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5112009920",
+        "display_name": "S. Luyckx",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Luyckx",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5047995334",
+        "display_name": "L. Mucibello",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. Mucibello",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5108507553",
+        "display_name": "S. Ochesanu",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Ochesanu",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5052505082",
+        "display_name": "B. Roland",
+        "orcid": "https://orcid.org/0000-0003-3397-6475"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "B. Roland",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5113931145",
+        "display_name": "R. Rougny",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. Rougny",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107831343",
+        "display_name": "H. Van Haevermaet",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "H. Van Haevermaet",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107872798",
+        "display_name": "P. Van Mechelen",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "P. Van Mechelen",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5025211898",
+        "display_name": "N. Van Remortel",
+        "orcid": "https://orcid.org/0000-0003-4180-8199"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "N. Van Remortel",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5105689558",
+        "display_name": "A. Van Spilbeeck",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149213910",
+          "display_name": "University of Antwerp",
+          "ror": "https://ror.org/008x57b05",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Van Spilbeeck",
+      "raw_affiliation_strings": [
+        "Universiteit Antwerpen, Antwerpen, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Universiteit Antwerpen, Antwerpen, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I149213910"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5025384198",
+        "display_name": "F. Blekman",
+        "orcid": "https://orcid.org/0000-0002-7366-7098"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "F. Blekman",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107858745",
+        "display_name": "S. Blyweert",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Blyweert",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5074481660",
+        "display_name": "J. D’Hondt",
+        "orcid": "https://orcid.org/0000-0002-9598-6241"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. D’Hondt",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5049216790",
+        "display_name": "N. Heracleous",
+        "orcid": "https://orcid.org/0000-0002-2744-7238"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "N. Heracleous",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107899418",
+        "display_name": "A. Kalogeropoulos",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Kalogeropoulos",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5100709425",
+        "display_name": "J. Keaveney",
+        "orcid": "https://orcid.org/0000-0003-0766-5307"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Keaveney",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5068632927",
+        "display_name": "T. J. Kim",
+        "orcid": "https://orcid.org/0000-0001-8336-2434"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "T. J. Kim",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5059553787",
+        "display_name": "S. Lowette",
+        "orcid": "https://orcid.org/0000-0003-3984-9987"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Lowette",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5043106490",
+        "display_name": "M. Maes",
+        "orcid": "https://orcid.org/0000-0003-1004-9978"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Maes",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5113774568",
+        "display_name": "A. Olbrechts",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Olbrechts",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107843119",
+        "display_name": "D. Strom",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Strom",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5090311900",
+        "display_name": "S. Tavernier",
+        "orcid": "https://orcid.org/0000-0002-6792-9522"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Tavernier",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5109921658",
+        "display_name": "W. Van Doninck",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "W. Van Doninck",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107926353",
+        "display_name": "P. Van Mulders",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "P. Van Mulders",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5101643806",
+        "display_name": "G. P. Van Onsem",
+        "orcid": "https://orcid.org/0000-0002-1664-2337"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "G. P. Van Onsem",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5103909631",
+        "display_name": "I. Villella",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I13469542",
+          "display_name": "Vrije Universiteit Brussel",
+          "ror": "https://ror.org/006e5kg04",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "I. Villella",
+      "raw_affiliation_strings": [
+        "Vrije Universiteit Brussel, Brussel, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Vrije Universiteit Brussel, Brussel, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I13469542"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107889735",
+        "display_name": "C. Caillol",
+        "orcid": "https://orcid.org/0000-0002-5642-3040"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. Caillol",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5052820665",
+        "display_name": "B. Clerbaux",
+        "orcid": "https://orcid.org/0000-0001-8547-8211"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "B. Clerbaux",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5036088365",
+        "display_name": "G. De Lentdecker",
+        "orcid": "https://orcid.org/0000-0001-5124-7693"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "G. De Lentdecker",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5066431650",
+        "display_name": "L. Favart",
+        "orcid": "https://orcid.org/0000-0003-1645-7454"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. Favart",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107848257",
+        "display_name": "A. P. R. Gay",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. P. R. Gay",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5108605242",
+        "display_name": "A. Léonard",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Léonard",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111908290",
+        "display_name": "P. E. Marage",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "P. E. Marage",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107883061",
+        "display_name": "A. Mohammadi",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Mohammadi",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106296190",
+        "display_name": "L. Perniè",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. Perniè",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5000080083",
+        "display_name": "T. Reis",
+        "orcid": "https://orcid.org/0000-0003-3703-6624"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "T. Reis",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106299055",
+        "display_name": "T. Seva",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "T. Seva",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5110184087",
+        "display_name": "L. Thomas",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. Thomas",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5108359291",
+        "display_name": "C. Vander Velde",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. Vander Velde",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111933763",
+        "display_name": "P. Vanlaer",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "P. Vanlaer",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106290066",
+        "display_name": "J. Wang",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I132053463",
+          "display_name": "Université Libre de Bruxelles",
+          "ror": "https://ror.org/01r9htc13",
+          "country_code": "BE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Wang",
+      "raw_affiliation_strings": [
+        "Université Libre de Bruxelles, Bruxelles, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Université Libre de Bruxelles, Bruxelles, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I132053463"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5104476443",
+        "display_name": "V. Adler",
+        "orcid": "https://orcid.org/0000-0002-4469-4468"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "V. Adler",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5105364678",
+        "display_name": "K. Beernaert",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "K. Beernaert",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107825971",
+        "display_name": "L. Benucci",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. Benucci",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5011710761",
+        "display_name": "A. Cimmino",
+        "orcid": "https://orcid.org/0000-0001-7510-4996"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Cimmino",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107835667",
+        "display_name": "S. Costantini",
+        "orcid": "https://orcid.org/0000-0001-7077-8983"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Costantini",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5108516611",
+        "display_name": "S. Dildick",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Dildick",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106307640",
+        "display_name": "G. Garcia",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "G. Garcia",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106558613",
+        "display_name": "B. Klein",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "B. Klein",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111733260",
+        "display_name": "J. Lellouch",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Lellouch",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111928113",
+        "display_name": "J. Mccartin",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Mccartin",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106499866",
+        "display_name": "A. A. Ocampo Rios",
+        "orcid": "https://orcid.org/0009-0002-1506-515X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. A. Ocampo Rios",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111891029",
+        "display_name": "D. Ryckbosch",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Ryckbosch",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106288780",
+        "display_name": "S. Salva Diblen",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Salva Diblen",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5113656031",
+        "display_name": "M. Sigamani",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Sigamani",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111672101",
+        "display_name": "N. Strobbe",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "N. Strobbe",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106295146",
+        "display_name": "F. Thyssen",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "F. Thyssen",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107027924",
+        "display_name": "M. Tytgat",
+        "orcid": "https://orcid.org/0000-0002-3990-2074"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Tytgat",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5107392555",
+        "display_name": "S. Walsh",
+        "orcid": "https://orcid.org/0000-0003-1689-2309"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Walsh",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5088249841",
+        "display_name": "E. Yazgan",
+        "orcid": "https://orcid.org/0000-0001-5732-7950"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2801227569",
+          "display_name": "Ghent University Hospital",
+          "ror": "https://ror.org/00xmkp704",
+          "country_code": "BE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ],
+      "countries": [
+        "BE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "E. Yazgan",
+      "raw_affiliation_strings": [
+        "Ghent University, Ghent, Belgium"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Ghent University, Ghent, Belgium",
+          "institution_ids": [
+            "https://openalex.org/I2801227569"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 41,
+  "institutions_distinct_count": 2207,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5107933385"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I132091411"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 181.5651,
+  "has_fulltext": true,
+  "cited_by_count": 504,
+  "citation_normalized_percentile": {
+    "value": 0.99991997,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 90,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "89",
+    "issue": "9",
+    "first_page": null,
+    "last_page": null
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10048",
+    "display_name": "Particle physics theoretical and experimental studies",
+    "score": 1.0,
+    "subfield": {
+      "id": "https://openalex.org/subfields/3106",
+      "display_name": "Nuclear and High Energy Physics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/31",
+      "display_name": "Physics and Astronomy"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10048",
+      "display_name": "Particle physics theoretical and experimental studies",
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3106",
+        "display_name": "Nuclear and High Energy Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11090",
+      "display_name": "Dark Matter and Cosmic Phenomena",
+      "score": 0.9980000257492065,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3106",
+        "display_name": "Nuclear and High Energy Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10921",
+      "display_name": "Neutrino Physics Research",
+      "score": 0.996399998664856,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3106",
+        "display_name": "Nuclear and High Energy Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.8957818150520325
+    },
+    {
+      "id": "https://openalex.org/keywords/particle-physics",
+      "display_name": "Particle physics",
+      "score": 0.859806478023529
+    },
+    {
+      "id": "https://openalex.org/keywords/higgs-boson",
+      "display_name": "Higgs boson",
+      "score": 0.7732155323028564
+    },
+    {
+      "id": "https://openalex.org/keywords/lepton",
+      "display_name": "Lepton",
+      "score": 0.6916991472244263
+    },
+    {
+      "id": "https://openalex.org/keywords/pseudoscalar",
+      "display_name": "Pseudoscalar",
+      "score": 0.6496101021766663
+    },
+    {
+      "id": "https://openalex.org/keywords/large-hadron-collider",
+      "display_name": "Large Hadron Collider",
+      "score": 0.6280427575111389
+    },
+    {
+      "id": "https://openalex.org/keywords/branching-fraction",
+      "display_name": "Branching fraction",
+      "score": 0.5730245113372803
+    },
+    {
+      "id": "https://openalex.org/keywords/standard-model",
+      "display_name": "Standard Model (mathematical formulation)",
+      "score": 0.5675380229949951
+    },
+    {
+      "id": "https://openalex.org/keywords/nuclear-physics",
+      "display_name": "Nuclear physics",
+      "score": 0.5361053943634033
+    },
+    {
+      "id": "https://openalex.org/keywords/boson",
+      "display_name": "Boson",
+      "score": 0.5321186184883118
+    },
+    {
+      "id": "https://openalex.org/keywords/inverse",
+      "display_name": "Inverse",
+      "score": 0.4785611927509308
+    },
+    {
+      "id": "https://openalex.org/keywords/quark",
+      "display_name": "Quark",
+      "score": 0.21975451707839966
+    },
+    {
+      "id": "https://openalex.org/keywords/electron",
+      "display_name": "Electron",
+      "score": 0.05449974536895752
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.8957818150520325
+    },
+    {
+      "id": "https://openalex.org/C109214941",
+      "wikidata": "https://www.wikidata.org/wiki/Q18334",
+      "display_name": "Particle physics",
+      "level": 1,
+      "score": 0.859806478023529
+    },
+    {
+      "id": "https://openalex.org/C158129726",
+      "wikidata": "https://www.wikidata.org/wiki/Q402",
+      "display_name": "Higgs boson",
+      "level": 2,
+      "score": 0.7732155323028564
+    },
+    {
+      "id": "https://openalex.org/C179203047",
+      "wikidata": "https://www.wikidata.org/wiki/Q82586",
+      "display_name": "Lepton",
+      "level": 3,
+      "score": 0.6916991472244263
+    },
+    {
+      "id": "https://openalex.org/C101583263",
+      "wikidata": "https://www.wikidata.org/wiki/Q1748985",
+      "display_name": "Pseudoscalar",
+      "level": 3,
+      "score": 0.6496101021766663
+    },
+    {
+      "id": "https://openalex.org/C87668248",
+      "wikidata": "https://www.wikidata.org/wiki/Q40605",
+      "display_name": "Large Hadron Collider",
+      "level": 2,
+      "score": 0.6280427575111389
+    },
+    {
+      "id": "https://openalex.org/C46460574",
+      "wikidata": "https://www.wikidata.org/wiki/Q370559",
+      "display_name": "Branching fraction",
+      "level": 2,
+      "score": 0.5730245113372803
+    },
+    {
+      "id": "https://openalex.org/C101454708",
+      "wikidata": "https://www.wikidata.org/wiki/Q17106019",
+      "display_name": "Standard Model (mathematical formulation)",
+      "level": 3,
+      "score": 0.5675380229949951
+    },
+    {
+      "id": "https://openalex.org/C185544564",
+      "wikidata": "https://www.wikidata.org/wiki/Q81197",
+      "display_name": "Nuclear physics",
+      "level": 1,
+      "score": 0.5361053943634033
+    },
+    {
+      "id": "https://openalex.org/C79118098",
+      "wikidata": "https://www.wikidata.org/wiki/Q43101",
+      "display_name": "Boson",
+      "level": 2,
+      "score": 0.5321186184883118
+    },
+    {
+      "id": "https://openalex.org/C207467116",
+      "wikidata": "https://www.wikidata.org/wiki/Q4385666",
+      "display_name": "Inverse",
+      "level": 2,
+      "score": 0.4785611927509308
+    },
+    {
+      "id": "https://openalex.org/C7602139",
+      "wikidata": "https://www.wikidata.org/wiki/Q6718",
+      "display_name": "Quark",
+      "level": 2,
+      "score": 0.21975451707839966
+    },
+    {
+      "id": "https://openalex.org/C147120987",
+      "wikidata": "https://www.wikidata.org/wiki/Q2225",
+      "display_name": "Electron",
+      "level": 2,
+      "score": 0.05449974536895752
+    },
+    {
+      "id": "https://openalex.org/C166957645",
+      "wikidata": "https://www.wikidata.org/wiki/Q23498",
+      "display_name": "Archaeology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C95457728",
+      "wikidata": "https://www.wikidata.org/wiki/Q309",
+      "display_name": "History",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C40976572",
+      "wikidata": "https://www.wikidata.org/wiki/Q2330873",
+      "display_name": "Gauge (firearms)",
+      "level": 2,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C2524010",
+      "wikidata": "https://www.wikidata.org/wiki/Q8087",
+      "display_name": "Geometry",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 22,
+  "locations": [
+    {
+      "id": "doi:10.1103/physrevd.89.092007",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1103/physrevd.89.092007",
+      "pdf_url": "http://link.aps.org/pdf/10.1103/PhysRevD.89.092007",
+      "source": {
+        "id": "https://openalex.org/S4210210554",
+        "display_name": "Physical review. D. Particles, fields, gravitation, and cosmology/Physical review. D, Particles, fields, gravitation, and cosmology",
+        "issn_l": "1550-2368",
+        "issn": [
+          "1550-2368",
+          "1550-7998"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320261",
+        "host_organization_name": "American Physical Society",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320261"
+        ],
+        "host_organization_lineage_names": [
+          "American Physical Society"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physical Review D",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmh:oai:polen.itu.edu.tr:11527/60961",
+      "is_oa": false,
+      "landing_page_url": "https://hdl.handle.net/11527/60961",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400460",
+        "display_name": "Istanbul Technical University Academic Open Archive (Istanbul Technical University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I48912391",
+        "host_organization_name": "Istanbul Technical University",
+        "host_organization_lineage": [
+          "https://openalex.org/I48912391"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": null,
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:infoscience.epfl.ch:274815",
+      "is_oa": true,
+      "landing_page_url": "https://infoscience.epfl.ch/handle/20.500.14299/165738",
+      "pdf_url": "https://infoscience.epfl.ch/record/274815/files/arXiv_1312.5353.pdf",
+      "source": {
+        "id": "https://openalex.org/S4306400487",
+        "display_name": "Infoscience (Ecole Polytechnique Fédérale de Lausanne)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-nc-nd",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "research article"
+    },
+    {
+      "id": "pmh:oai:www.research-collection.ethz.ch:20.500.11850/84216",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/20.500.11850/84216",
+      "pdf_url": "http://hdl.handle.net/20.500.11850/84216",
+      "source": {
+        "id": "https://openalex.org/S4306402302",
+        "display_name": "Repository for Publications and Research Data (ETH Zurich)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I35440088",
+        "host_organization_name": "ETH Zurich",
+        "host_organization_lineage": [
+          "https://openalex.org/I35440088"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Physical Review D, 89 (9)",
+      "raw_type": "info:eu-repo/semantics/publishedVersion"
+    },
+    {
+      "id": "pmh:oai:authors.library.caltech.edu:46575",
+      "is_oa": true,
+      "landing_page_url": "https://resolver.caltech.edu/CaltechAUTHORS:20140630-104222338",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402161",
+        "display_name": "CaltechAUTHORS (California Institute of Technology)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I122411786",
+        "host_organization_name": "California Institute of Technology",
+        "host_organization_lineage": [
+          "https://openalex.org/I122411786"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:acervodigital.unesp.br:11449/111353",
+      "is_oa": false,
+      "landing_page_url": "http://hdl.handle.net/11449/111353",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400256",
+        "display_name": "Acervo Digital da Universidade Estadual Paulista (Universidade Estadual Paulista)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I4210115194",
+        "host_organization_name": "Fundação para o Desenvolvimento da UNESP",
+        "host_organization_lineage": [
+          "https://openalex.org/I4210115194"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "outro"
+    },
+    {
+      "id": "pmh:oai:bura.brunel.ac.uk:2438/9243",
+      "is_oa": false,
+      "landing_page_url": "http://bura.brunel.ac.uk/handle/2438/9243",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401473",
+        "display_name": "Brunel University Research Archive (BURA) (Brunel University London)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I59433898",
+        "host_organization_name": "Brunel University of London",
+        "host_organization_lineage": [
+          "https://openalex.org/I59433898"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:comum.rcaap.pt:10400.26/26518",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/10400.26/26518",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401666",
+        "display_name": "Repositório Comum (Repositório Científico de Acesso Aberto de Portugal)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "other-oa",
+      "license_id": "https://openalex.org/licenses/other-oa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "journal article"
+    },
+    {
+      "id": "pmh:oai:digibuo.uniovi.es:10651/28360",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/10651/28360",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402334",
+        "display_name": "Consultation of the Doctoral Thesis Database (TESEO) (Ministerio de Educación, Cultura y Deporte)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I2801976130",
+        "host_organization_name": "Ministerio de Educación Cultura y Deporte",
+        "host_organization_lineage": [
+          "https://openalex.org/I2801976130"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-nc-nd",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "info:eu-repo/semantics/article"
+    },
+    {
+      "id": "pmh:oai:digital.csic.es:10261/110392",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/10261/110392",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400616",
+        "display_name": "DIGITAL.CSIC (Spanish National Research Council (CSIC))",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I134820265",
+        "host_organization_name": "Consejo Superior de Investigaciones Científicas",
+        "host_organization_lineage": [
+          "https://openalex.org/I134820265"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Artículo"
+    },
+    {
+      "id": "pmh:oai:eresearch.ozyegin.edu.tr:10679/769",
+      "is_oa": false,
+      "landing_page_url": "http://hdl.handle.net/10679/769",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "article"
+    },
+    {
+      "id": "pmh:oai:gcris.iyte.edu.tr:hdl.handle.net/10621",
+      "is_oa": false,
+      "landing_page_url": "https://hdl.handle.net/10621",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400894",
+        "display_name": "İYTE (İZMİR YÜKSEK TEKNOLOJİ ENSTİTÜSÜ)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I120217413",
+        "host_organization_name": "Izmir Institute of Technology",
+        "host_organization_lineage": [
+          "https://openalex.org/I120217413"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:https://open.metu.edu.tr:11511/88803",
+      "is_oa": false,
+      "landing_page_url": "https://hdl.handle.net/11511/88803",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402495",
+        "display_name": "OpenMETU (Middle East Technical University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I201799495",
+        "host_organization_name": "Middle East Technical University",
+        "host_organization_lineage": [
+          "https://openalex.org/I201799495"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "Journal Article"
+    },
+    {
+      "id": "pmh:oai:iris.unige.it:11567/812306",
+      "is_oa": false,
+      "landing_page_url": "http://hdl.handle.net/11567/812306",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196291",
+        "display_name": "CINECA IRIS Institutial Research Information System (University of Genoa)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I83816512",
+        "host_organization_name": "University of Genoa",
+        "host_organization_lineage": [
+          "https://openalex.org/I83816512"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "info:eu-repo/semantics/article"
+    },
+    {
+      "id": "pmh:oai:openaccess.iyte.edu.tr:11147/10394",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1103/PhysRevD.89.092007",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196445",
+        "display_name": "IYTE GCRIS Database (Izmir Institute of Technology)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I120217413",
+        "host_organization_name": "Izmir Institute of Technology",
+        "host_organization_lineage": [
+          "https://openalex.org/I120217413"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "other-oa",
+      "license_id": "https://openalex.org/licenses/other-oa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "info:eu-repo/semantics/article"
+    },
+    {
+      "id": "pmh:oai:openaccess.marmara.edu.tr:11424/283452",
+      "is_oa": true,
+      "landing_page_url": "https://hdl.handle.net/11424/283452",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S7407055305",
+        "display_name": "Marmara University Open Access System",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "other-oa",
+      "license_id": "https://openalex.org/licenses/other-oa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "info:eu-repo/semantics/article"
+    },
+    {
+      "id": "pmh:oai:repositorio.unesp.br:11449/232289",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/11449/232289",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402641",
+        "display_name": "LA Referencia (Red Federada de Repositorios Institucionales de Publicaciones Científicas)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I4383465926",
+        "host_organization_name": "LA Referencia",
+        "host_organization_lineage": [
+          "https://openalex.org/I4383465926"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "other-oa",
+      "license_id": "https://openalex.org/licenses/other-oa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "instacron:UNESP",
+      "raw_type": "info:eu-repo/semantics/article"
+    },
+    {
+      "id": "pmh:oai:repositorio.unican.es:10902/13869",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/10902/13869",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400398",
+        "display_name": "UCrea (University of Cantabria)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I13134134",
+        "host_organization_name": "Universidad de Cantabria",
+        "host_organization_lineage": [
+          "https://openalex.org/I13134134"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Phys. Rev. D, Vol. 89, Num. 9, Pag. 092007 (2014)",
+      "raw_type": "info:eu-repo/semantics/article"
+    },
+    {
+      "id": "pmh:oai:scholarship.rice.edu:1911/79614",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/1911/79614",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401268",
+        "display_name": "Rice Digital Scholarship Archive (Rice University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I74775410",
+        "host_organization_name": "Rice University",
+        "host_organization_lineage": [
+          "https://openalex.org/I74775410"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Journal article"
+    },
+    {
+      "id": "doi:10.48550/arxiv.1312.5353",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.48550/arxiv.1312.5353",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400194",
+        "display_name": "arXiv (Cornell University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I205783295",
+        "host_organization_name": "Cornell University",
+        "host_organization_lineage": [
+          "https://openalex.org/I205783295"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": null,
+      "is_accepted": false,
+      "is_published": null,
+      "raw_source_name": null,
+      "raw_type": "article-journal"
+    },
+    {
+      "id": "doi:10.3929/ethz-b-000084216",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.3929/ethz-b-000084216",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S7407051236",
+        "display_name": "ETH Zürich Research Collection",
+        "issn_l": null,
+        "issn": [],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": null,
+      "is_accepted": false,
+      "is_published": null,
+      "raw_source_name": null,
+      "raw_type": "article-journal"
+    },
+    {
+      "id": "doi:10.5167/uzh-92179",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.5167/uzh-92179",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S7407051291",
+        "display_name": "Universität Zürich, ZORA",
+        "issn_l": null,
+        "issn": [],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": null,
+      "is_accepted": false,
+      "is_published": null,
+      "raw_source_name": null,
+      "raw_type": "article-journal"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1103/physrevd.89.092007",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1103/physrevd.89.092007",
+    "pdf_url": "http://link.aps.org/pdf/10.1103/PhysRevD.89.092007",
+    "source": {
+      "id": "https://openalex.org/S4210210554",
+      "display_name": "Physical review. D. Particles, fields, gravitation, and cosmology/Physical review. D, Particles, fields, gravitation, and cosmology",
+      "issn_l": "1550-2368",
+      "issn": [
+        "1550-2368",
+        "1550-7998"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320261",
+      "host_organization_name": "American Physical Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320261"
+      ],
+      "host_organization_lineage_names": [
+        "American Physical Society"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Physical Review D",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [
+    {
+      "display_name": "Affordable and clean energy",
+      "id": "https://metadata.un.org/sdg/7",
+      "score": 0.7599999904632568
+    }
+  ],
+  "awards": [
+    {
+      "id": "https://openalex.org/G1396005211",
+      "display_name": null,
+      "funder_award_id": "ST/K003844/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G1398499875",
+      "display_name": null,
+      "funder_award_id": "ST/F006748/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G1670116615",
+      "display_name": null,
+      "funder_award_id": "ST/J005665/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G1725187365",
+      "display_name": null,
+      "funder_award_id": "ST/K001604/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G1800417284",
+      "display_name": null,
+      "funder_award_id": "ST/F007094/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G1939986256",
+      "display_name": null,
+      "funder_award_id": "CMS",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G2097003227",
+      "display_name": null,
+      "funder_award_id": "ST/I005912/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G2235766830",
+      "display_name": null,
+      "funder_award_id": "ST/G502347/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G2459026169",
+      "display_name": null,
+      "funder_award_id": "ST/I000410/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G3229260591",
+      "display_name": null,
+      "funder_award_id": "ST/L005603/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G4484497608",
+      "display_name": null,
+      "funder_award_id": "SF0690030s09",
+      "funder_id": "https://openalex.org/F4320321002",
+      "funder_display_name": "Research Promotion Foundation"
+    },
+    {
+      "id": "https://openalex.org/G5296477166",
+      "display_name": null,
+      "funder_award_id": "ST/K001256/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G5859219717",
+      "display_name": null,
+      "funder_award_id": "ST/L006340/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G5893884216",
+      "display_name": null,
+      "funder_award_id": "ST/L00609X/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G6115301621",
+      "display_name": null,
+      "funder_award_id": "ST/I002200/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G614013395",
+      "display_name": null,
+      "funder_award_id": "ST/I505580/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G6876771926",
+      "display_name": null,
+      "funder_award_id": "ST/K003542/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G7253814738",
+      "display_name": null,
+      "funder_award_id": "GRIDPP",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G7545800107",
+      "display_name": null,
+      "funder_award_id": "ST/I505572/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G7647846826",
+      "display_name": null,
+      "funder_award_id": "ST/H00081X/2",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G8811033030",
+      "display_name": null,
+      "funder_award_id": "ST/K001639/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    },
+    {
+      "id": "https://openalex.org/G8990077862",
+      "display_name": null,
+      "funder_award_id": "ST/J004901/1",
+      "funder_id": "https://openalex.org/F4320334632",
+      "funder_display_name": "Science and Technology Facilities Council"
+    }
+  ],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320306076",
+      "display_name": "National Science Foundation",
+      "ror": "https://ror.org/021nxhr62"
+    },
+    {
+      "id": "https://openalex.org/F4320306084",
+      "display_name": "U.S. Department of Energy",
+      "ror": "https://ror.org/01bj3aw27"
+    },
+    {
+      "id": "https://openalex.org/F4320306151",
+      "display_name": "Alfred P. Sloan Foundation",
+      "ror": "https://ror.org/052csg198"
+    },
+    {
+      "id": "https://openalex.org/F4320308269",
+      "display_name": "Alexander von Humboldt-Stiftung",
+      "ror": "https://ror.org/012kf4317"
+    },
+    {
+      "id": "https://openalex.org/F4320309746",
+      "display_name": "Compagnia di San Paolo",
+      "ror": "https://ror.org/00d1b1c41"
+    },
+    {
+      "id": "https://openalex.org/F4320309955",
+      "display_name": "Departamento Administrativo de Ciencia, Tecnología e Innovación (COLCIENCIAS)",
+      "ror": "https://ror.org/048jthh02"
+    },
+    {
+      "id": "https://openalex.org/F4320312062",
+      "display_name": "Türkiye Atom Enerjisi Kurumu",
+      "ror": "https://ror.org/05hp77p11"
+    },
+    {
+      "id": "https://openalex.org/F4320313559",
+      "display_name": "CERN",
+      "ror": "https://ror.org/01ggx4157"
+    },
+    {
+      "id": "https://openalex.org/F4320313864",
+      "display_name": "Thailand Center of Excellence in Physics",
+      "ror": "https://ror.org/01td4p294"
+    },
+    {
+      "id": "https://openalex.org/F4320316974",
+      "display_name": "Institute for the Promotion of Teaching Science and Technology",
+      "ror": "https://ror.org/02csmb731"
+    },
+    {
+      "id": "https://openalex.org/F4320318087",
+      "display_name": "Kanton Zürich",
+      "ror": null
+    },
+    {
+      "id": "https://openalex.org/F4320320300",
+      "display_name": "European Commission",
+      "ror": "https://ror.org/00k4n6c32"
+    },
+    {
+      "id": "https://openalex.org/F4320320879",
+      "display_name": "Deutsche Forschungsgemeinschaft",
+      "ror": "https://ror.org/018mejw64"
+    },
+    {
+      "id": "https://openalex.org/F4320320924",
+      "display_name": "Schweizerischer Nationalfonds zur Förderung der Wissenschaftlichen Forschung",
+      "ror": "https://ror.org/00yjd3n13"
+    },
+    {
+      "id": "https://openalex.org/F4320320997",
+      "display_name": "Fundação de Amparo à Pesquisa do Estado de São Paulo",
+      "ror": "https://ror.org/02ddkpn78"
+    },
+    {
+      "id": "https://openalex.org/F4320321001",
+      "display_name": "National Natural Science Foundation of China",
+      "ror": "https://ror.org/01h0zpd94"
+    },
+    {
+      "id": "https://openalex.org/F4320321002",
+      "display_name": "Research Promotion Foundation",
+      "ror": "https://ror.org/00en9ce74"
+    },
+    {
+      "id": "https://openalex.org/F4320321005",
+      "display_name": "Ministerstvo Školství, Mládeže a Tělovýchovy",
+      "ror": "https://ror.org/037n8p820"
+    },
+    {
+      "id": "https://openalex.org/F4320321040",
+      "display_name": "National Science Council",
+      "ror": "https://ror.org/02kv4zf79"
+    },
+    {
+      "id": "https://openalex.org/F4320321042",
+      "display_name": "Fundacja na rzecz Nauki Polskiej",
+      "ror": "https://ror.org/048zd9m77"
+    },
+    {
+      "id": "https://openalex.org/F4320321079",
+      "display_name": "Russian Foundation for Basic Research",
+      "ror": "https://ror.org/02mh1ke95"
+    },
+    {
+      "id": "https://openalex.org/F4320321091",
+      "display_name": "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
+      "ror": "https://ror.org/00x0ma614"
+    },
+    {
+      "id": "https://openalex.org/F4320321108",
+      "display_name": "Academy of Finland",
+      "ror": "https://ror.org/05k73zm37"
+    },
+    {
+      "id": "https://openalex.org/F4320321114",
+      "display_name": "Bundesministerium für Bildung und Forschung",
+      "ror": "https://ror.org/04pz7b180"
+    },
+    {
+      "id": "https://openalex.org/F4320321133",
+      "display_name": "Chinese Academy of Sciences",
+      "ror": "https://ror.org/034t30j35"
+    },
+    {
+      "id": "https://openalex.org/F4320321181",
+      "display_name": "Austrian Science Fund",
+      "ror": "https://ror.org/013tf3c58"
+    },
+    {
+      "id": "https://openalex.org/F4320321454",
+      "display_name": "Belgian Federal Science Policy Office",
+      "ror": "https://ror.org/01fapfv42"
+    },
+    {
+      "id": "https://openalex.org/F4320321652",
+      "display_name": "Eidgenössische Technische Hochschule Zürich",
+      "ror": "https://ror.org/05a28rw58"
+    },
+    {
+      "id": "https://openalex.org/F4320321732",
+      "display_name": "Agentschap voor Innovatie door Wetenschap en Technologie",
+      "ror": "https://ror.org/01antkr91"
+    },
+    {
+      "id": "https://openalex.org/F4320321739",
+      "display_name": "Consejo Nacional de Ciencia y Tecnología",
+      "ror": "https://ror.org/059ex5q34"
+    },
+    {
+      "id": "https://openalex.org/F4320321912",
+      "display_name": "Ministry of Education and Science of the Russian Federation",
+      "ror": "https://ror.org/00ghqgy32"
+    },
+    {
+      "id": "https://openalex.org/F4320321917",
+      "display_name": "General Secretariat for Research and Technology",
+      "ror": "https://ror.org/04yeh8h63"
+    },
+    {
+      "id": "https://openalex.org/F4320321983",
+      "display_name": "Ministry of Business, Innovation and Employment",
+      "ror": "https://ror.org/02jtq1b51"
+    },
+    {
+      "id": "https://openalex.org/F4320322025",
+      "display_name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico",
+      "ror": "https://ror.org/03swz6y49"
+    },
+    {
+      "id": "https://openalex.org/F4320322189",
+      "display_name": "Joint Institute for Nuclear Research",
+      "ror": "https://ror.org/044yd9t77"
+    },
+    {
+      "id": "https://openalex.org/F4320322349",
+      "display_name": "Ministry of Education, Science and Technology",
+      "ror": "https://ror.org/01p262204"
+    },
+    {
+      "id": "https://openalex.org/F4320322381",
+      "display_name": "A.G. Leventis Foundation",
+      "ror": null
+    },
+    {
+      "id": "https://openalex.org/F4320322437",
+      "display_name": "National Science and Technology Development Agency",
+      "ror": "https://ror.org/04vy95b61"
+    },
+    {
+      "id": "https://openalex.org/F4320322650",
+      "display_name": "Narodowym Centrum Nauki",
+      "ror": "https://ror.org/03ha2q922"
+    },
+    {
+      "id": "https://openalex.org/F4320322674",
+      "display_name": "Hrvatska Zaklada za Znanost",
+      "ror": "https://ror.org/03n51vw80"
+    },
+    {
+      "id": "https://openalex.org/F4320322729",
+      "display_name": "Ministarstvo Prosvete, Nauke i Tehnološkog Razvoja",
+      "ror": "https://ror.org/01znas443"
+    },
+    {
+      "id": "https://openalex.org/F4320322749",
+      "display_name": "Fundação Carlos Chagas Filho de Amparo à Pesquisa do Estado do Rio de Janeiro",
+      "ror": "https://ror.org/03kk0s825"
+    },
+    {
+      "id": "https://openalex.org/F4320322892",
+      "display_name": "Centre National de la Recherche Scientifique",
+      "ror": "https://ror.org/02feahw73"
+    },
+    {
+      "id": "https://openalex.org/F4320323233",
+      "display_name": "Universidad Autónoma de San Luis Potosí",
+      "ror": "https://ror.org/000917t60"
+    },
+    {
+      "id": "https://openalex.org/F4320323627",
+      "display_name": "School of Mathematics, Institute for Research in Fundamental Sciences",
+      "ror": "https://ror.org/04xreqs31"
+    },
+    {
+      "id": "https://openalex.org/F4320323911",
+      "display_name": "Commissariat à l'Énergie Atomique et aux Énergies Alternatives",
+      "ror": "https://ror.org/00jjx8s55"
+    },
+    {
+      "id": "https://openalex.org/F4320324190",
+      "display_name": "Bundesministerium für Wissenschaft und Forschung",
+      "ror": "https://ror.org/02d229b24"
+    },
+    {
+      "id": "https://openalex.org/F4320324279",
+      "display_name": "Ministry of Science and Technology of Thailand",
+      "ror": "https://ror.org/02nfy5246"
+    },
+    {
+      "id": "https://openalex.org/F4320325176",
+      "display_name": "Lietuvos Mokslų Akademija",
+      "ror": "https://ror.org/035gfy236"
+    },
+    {
+      "id": "https://openalex.org/F4320325307",
+      "display_name": "Pakistan Atomic Energy Commission",
+      "ror": "https://ror.org/0292p9y97"
+    },
+    {
+      "id": "https://openalex.org/F4320327820",
+      "display_name": "Federal Agency of Atomic Energy of the Russian Federation",
+      "ror": null
+    },
+    {
+      "id": "https://openalex.org/F4320327843",
+      "display_name": "Istituto Nazionale di Fisica Nucleare",
+      "ror": null
+    },
+    {
+      "id": "https://openalex.org/F4320331149",
+      "display_name": "Board of the Swiss Federal Institutes of Technology",
+      "ror": "https://ror.org/01rvn4p91"
+    },
+    {
+      "id": "https://openalex.org/F4320334632",
+      "display_name": "Science and Technology Facilities Council",
+      "ror": "https://ror.org/057g20z61"
+    },
+    {
+      "id": "https://openalex.org/F4320334779",
+      "display_name": "Fundação para a Ciência e a Tecnologia",
+      "ror": "https://ror.org/00snfqn58"
+    },
+    {
+      "id": "https://openalex.org/F4320334801",
+      "display_name": "Russian Academy of Sciences",
+      "ror": "https://ror.org/05qrfxd25"
+    },
+    {
+      "id": "https://openalex.org/F4320334840",
+      "display_name": "Fonds pour la Formation à la Recherche dans l’Industrie et dans l’Agriculture",
+      "ror": "https://ror.org/03q83t159"
+    },
+    {
+      "id": "https://openalex.org/F4320335204",
+      "display_name": "Secretaría de Estado de Investigación, Desarrollo e Innovación",
+      "ror": "https://ror.org/034900433"
+    },
+    {
+      "id": "https://openalex.org/F4320335322",
+      "display_name": "European Regional Development Fund",
+      "ror": "https://ror.org/00k4n6c32"
+    },
+    {
+      "id": "https://openalex.org/F4320335331",
+      "display_name": "Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional",
+      "ror": "https://ror.org/059sp8j34"
+    },
+    {
+      "id": "https://openalex.org/F4320335860",
+      "display_name": "Institut National de Physique Nucléaire et de Physique des Particules",
+      "ror": "https://ror.org/03fd77x13"
+    },
+    {
+      "id": "https://openalex.org/F4320338080",
+      "display_name": "European Social Fund",
+      "ror": "https://ror.org/00k4n6c32"
+    }
+  ],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2105334596.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2105334596.grobid-xml"
+  },
+  "referenced_works_count": 143,
+  "referenced_works": [
+    "https://openalex.org/W799974269",
+    "https://openalex.org/W941912815",
+    "https://openalex.org/W1497793468",
+    "https://openalex.org/W1503054655",
+    "https://openalex.org/W1505073703",
+    "https://openalex.org/W1544011939",
+    "https://openalex.org/W1544519545",
+    "https://openalex.org/W1567512734",
+    "https://openalex.org/W1581228648",
+    "https://openalex.org/W1594031697",
+    "https://openalex.org/W1608527739",
+    "https://openalex.org/W1749372596",
+    "https://openalex.org/W1776473873",
+    "https://openalex.org/W1858542512",
+    "https://openalex.org/W1964086742",
+    "https://openalex.org/W1966379985",
+    "https://openalex.org/W1967031839",
+    "https://openalex.org/W1968635670",
+    "https://openalex.org/W1978256560",
+    "https://openalex.org/W1980520729",
+    "https://openalex.org/W1982229081",
+    "https://openalex.org/W1987751853",
+    "https://openalex.org/W1989148365",
+    "https://openalex.org/W1992077732",
+    "https://openalex.org/W1993038673",
+    "https://openalex.org/W1996413343",
+    "https://openalex.org/W1998768335",
+    "https://openalex.org/W1998909324",
+    "https://openalex.org/W1999557321",
+    "https://openalex.org/W1999864907",
+    "https://openalex.org/W2019037825",
+    "https://openalex.org/W2019149276",
+    "https://openalex.org/W2019552458",
+    "https://openalex.org/W2020410627",
+    "https://openalex.org/W2021838941",
+    "https://openalex.org/W2022778241",
+    "https://openalex.org/W2023582477",
+    "https://openalex.org/W2036655183",
+    "https://openalex.org/W2040355924",
+    "https://openalex.org/W2041688602",
+    "https://openalex.org/W2042087867",
+    "https://openalex.org/W2044674787",
+    "https://openalex.org/W2045120204",
+    "https://openalex.org/W2045472496",
+    "https://openalex.org/W2048007089",
+    "https://openalex.org/W2048987940",
+    "https://openalex.org/W2051460571",
+    "https://openalex.org/W2051873898",
+    "https://openalex.org/W2055032269",
+    "https://openalex.org/W2055660575",
+    "https://openalex.org/W2057337685",
+    "https://openalex.org/W2057581299",
+    "https://openalex.org/W2059297139",
+    "https://openalex.org/W2059445709",
+    "https://openalex.org/W2063246391",
+    "https://openalex.org/W2064298112",
+    "https://openalex.org/W2064777467",
+    "https://openalex.org/W2064976905",
+    "https://openalex.org/W2069044372",
+    "https://openalex.org/W2070151728",
+    "https://openalex.org/W2070493638",
+    "https://openalex.org/W2079755804",
+    "https://openalex.org/W2081787372",
+    "https://openalex.org/W2086157270",
+    "https://openalex.org/W2088232960",
+    "https://openalex.org/W2093461383",
+    "https://openalex.org/W2095031697",
+    "https://openalex.org/W2095721433",
+    "https://openalex.org/W2099819985",
+    "https://openalex.org/W2100415386",
+    "https://openalex.org/W2100507804",
+    "https://openalex.org/W2101447717",
+    "https://openalex.org/W2105496423",
+    "https://openalex.org/W2107568049",
+    "https://openalex.org/W2107816296",
+    "https://openalex.org/W2108074968",
+    "https://openalex.org/W2109808846",
+    "https://openalex.org/W2115613123",
+    "https://openalex.org/W2117947047",
+    "https://openalex.org/W2122360507",
+    "https://openalex.org/W2123718200",
+    "https://openalex.org/W2125546901",
+    "https://openalex.org/W2125723868",
+    "https://openalex.org/W2126062805",
+    "https://openalex.org/W2126195231",
+    "https://openalex.org/W2126934655",
+    "https://openalex.org/W2127599600",
+    "https://openalex.org/W2128158076",
+    "https://openalex.org/W2128265410",
+    "https://openalex.org/W2128881154",
+    "https://openalex.org/W2128947363",
+    "https://openalex.org/W2129988043",
+    "https://openalex.org/W2130862055",
+    "https://openalex.org/W2131070921",
+    "https://openalex.org/W2132060721",
+    "https://openalex.org/W2132797217",
+    "https://openalex.org/W2136044884",
+    "https://openalex.org/W2139805716",
+    "https://openalex.org/W2140875611",
+    "https://openalex.org/W2144690984",
+    "https://openalex.org/W2150934279",
+    "https://openalex.org/W2150996184",
+    "https://openalex.org/W2151165908",
+    "https://openalex.org/W2151512268",
+    "https://openalex.org/W2152171676",
+    "https://openalex.org/W2153682765",
+    "https://openalex.org/W2154365559",
+    "https://openalex.org/W2155591485",
+    "https://openalex.org/W2155963195",
+    "https://openalex.org/W2156247879",
+    "https://openalex.org/W2158325186",
+    "https://openalex.org/W2158354663",
+    "https://openalex.org/W2158381045",
+    "https://openalex.org/W2158943375",
+    "https://openalex.org/W2162286620",
+    "https://openalex.org/W2165037242",
+    "https://openalex.org/W2165859309",
+    "https://openalex.org/W2166641256",
+    "https://openalex.org/W2167727518",
+    "https://openalex.org/W2169572362",
+    "https://openalex.org/W2169965230",
+    "https://openalex.org/W2170108495",
+    "https://openalex.org/W2173403199",
+    "https://openalex.org/W2212901559",
+    "https://openalex.org/W2223433365",
+    "https://openalex.org/W2224432624",
+    "https://openalex.org/W2232454336",
+    "https://openalex.org/W2258584306",
+    "https://openalex.org/W2263240235",
+    "https://openalex.org/W2595862429",
+    "https://openalex.org/W2769860045",
+    "https://openalex.org/W2952777086",
+    "https://openalex.org/W2962757871",
+    "https://openalex.org/W3098623224",
+    "https://openalex.org/W3100264312",
+    "https://openalex.org/W3100596801",
+    "https://openalex.org/W3103127594",
+    "https://openalex.org/W3106021771",
+    "https://openalex.org/W3106201210",
+    "https://openalex.org/W3106285637",
+    "https://openalex.org/W3177055064",
+    "https://openalex.org/W4236364674",
+    "https://openalex.org/W4251189918"
+  ],
+  "related_works": [
+    "https://openalex.org/W1544374011",
+    "https://openalex.org/W4295551330",
+    "https://openalex.org/W2183680732",
+    "https://openalex.org/W2116539773",
+    "https://openalex.org/W1641249831",
+    "https://openalex.org/W2082985219",
+    "https://openalex.org/W2951922014",
+    "https://openalex.org/W2093502973",
+    "https://openalex.org/W4289670480",
+    "https://openalex.org/W4301029566"
+  ],
+  "abstract_inverted_index": {
+    "Measurement": [
+      0
+    ],
+    "of": [
+      1,
+      4
+    ],
+    "the": [
+      2,
+      9
+    ],
+    "properties": [
+      3
+    ],
+    "a": [
+      5
+    ],
+    "Higgs": [
+      6
+    ],
+    "boson": [
+      7
+    ],
+    "in": [
+      8
+    ],
+    "four-lepton": [
+      10
+    ],
+    "final": [
+      11
+    ],
+    "state": [
+      12
+    ],
+    "S.": [
+      13
+    ],
+    "Chatrchyan": [
+      14
+    ],
+    "et": [
+      15
+    ],
+    "al.": [
+      16
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2025,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 31
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 45
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 95
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 144
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 92
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 1
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2016-06-24T00:00:00"
+}

@@ -1,0 +1,14 @@
+# A cluster randomized controlled non-inferiority trial of 5-day Dose Adjustment for Normal Eating (DAFNE) training delivered over 1 week versus 5-day DAFNE training delivered over 5 weeks: the DAFNE 5 × 1-day trial.
+
+- **PMID**: 25363466
+- **DOI**: 10.1111/dme.12621
+- **PMCID**:  
+- **Journal**: Diabetic medicine : a journal of the British Diabetic Association  ·  **Year**: 2015
+- **Authors**: J Elliott, D Rankin, R M Jacques, J Lawton, C J Emery, M J Campbell, S Dixon, S R Heller
+- **MeSH**: Adult, Aged, Cost-Benefit Analysis, Diabetes Mellitus, Type 1, Education, Feeding Behavior, Female, Glycated Hemoglobin, Humans, Hypoglycemia
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25363466/
+- **Captured**: 2026-05-10T13:26:58
+
+## Abstract
+
+To compare, in a randomized controlled non-inferiority trial, the outcomes of the traditional format for Dose Adjustment for Normal Eating structured education courses; that is, one delivered over 5 consecutive days (1-week course) with a variant of this format delivered 1 day a week for 5 consecutive weeks (5-week course). Adults with Type 1 diabetes, from seven UK Dose Adjustment For Normal Eating training centres, were individually randomized, stratified by centre, to receive either a 1-week or 5-week course. A qualitative study was embedded within the trial to explore patients' experiences. In total, 213 patients were randomized and 160 completed the study procedures. In the per-protocol analysis, the difference in HbA1c levels (95% CI) between the arms at 6 months was 0.4 mmol/mol (-2.4, 3.1) or 0.03% (-0.22, 0.28) and -0.9 mmol/mol (-3.9, 2.2) or -0.08% (-0.36, 0.20) at 12 months. All confidence limits were within the non-inferiority margin of ± 5.5 mmol/mol (0.5%) for HbA1c %. For those patients with a baseline HbA1c of ≥ 58 mmol/mol (≥ 7.5%) the mean change (95% CI) in HbA1c was -2.2 mmol/mol (-4.0, -0.4) or -0.20% (-0.37, -0.04) at 6 months (P = 0.016), and -2.0 mmol/mol (-4.1, 0.04) or -0.18% (-0.37 to 0.004) at 12 months (P = 0.055). Episodes of severe hypoglycaemia were decreased by 82% [relative risk 0.18 (95% CI 0.03-0.936); P = 0.042], psychosocial outcomes improved significantly, and the difference between arms was not significant. Qualitative interviews showed that patients overwhelmingly favoured the format of course that they attended. In summary, 5-week and 1-week Dose Adjustment for Normal Eating courses are equivalent in terms of biomedical and psychosocial outcomes, and we were persuaded that both course formats should be made available in routine care.

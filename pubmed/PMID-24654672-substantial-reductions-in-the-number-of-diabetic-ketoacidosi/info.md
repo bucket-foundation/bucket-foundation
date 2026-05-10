@@ -1,0 +1,14 @@
+# Substantial reductions in the number of diabetic ketoacidosis and severe hypoglycaemia episodes requiring emergency treatment lead to reduced costs after structured education in adults with Type 1 diabetes.
+
+- **PMID**: 24654672
+- **DOI**: 10.1111/dme.12441
+- **PMCID**: PMC2518338 (full-text saved)
+- **Journal**: Diabetic medicine : a journal of the British Diabetic Association  ·  **Year**: 2014
+- **Authors**: J Elliott, R M Jacques, J Kruger, M J Campbell, S A Amiel, P Mansell, J Speight, A Brennan, S R Heller
+- **MeSH**: Adult, Cost-Benefit Analysis, Diabetes Mellitus, Type 1, Diabetic Ketoacidosis, Emergency Treatment, Female, Glycated Hemoglobin, Hospitalization, Humans, Hyperglycemia
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24654672/
+- **Captured**: 2026-05-10T13:26:23
+
+## Abstract
+
+To determine the impact of structured education promoting flexible intensive insulin therapy on rates of diabetic ketoacidosis, and the costs associated with emergency treatment for severe hypoglycaemia and ketoacidosis in adults with Type 1 diabetes. Using the Dose Adjustment For Normal Eating research database we compared the rates of ketoacidosis and severe hypoglycaemia during the 12 months preceding Dose Adjustment For Normal Eating training with the rates during the 12-month follow-up after this training. Emergency treatment costs were calculated for associated paramedic assistance, Accident and Emergency department attendance and hospital admissions. Complete baseline and 1-year data were available for 939/1651 participants (57%). The risk of ketoacidosis in the 12 months after Dose Adjustment For Normal Eating training, compared with that before training, was 0.39 (95% CI: 0.23 to 0.65, P < 0.001), reduced from 0.07 to 0.03 episodes/patient/year. For every 1 mmol/mol unit increase in HbA1c concentration, the risk of a ketoacidosis episode increased by 6% (95% CI: 5 to 7%; 88% for a 1% increase), and for each 5-year increase in diabetes duration, the relative risk reduced by 20% (95% CI: 19 to 22%). The number of emergency treatments decreased for ketoacidosis (P < 0.001), and also for severe hypoglycaemia, including paramedic assistance (P < 0.001), Accident and Emergency department attendance (P = 0.029) and hospital admission (P = 0.001). In the study cohort, the combined cost of emergency treatment for ketoacidosis and severe hypoglycaemia fell by 64%, from £119,470 to £42,948. Structured training in flexible intensive insulin therapy is associated with a 61% reduction in the risk of ketoacidosis and with 64% lower emergency treatment costs for ketoacidosis and severe hypoglycaemia.

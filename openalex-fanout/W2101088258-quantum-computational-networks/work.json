@@ -1,0 +1,640 @@
+{
+  "id": "https://openalex.org/W2101088258",
+  "doi": "https://doi.org/10.1098/rspa.1989.0099",
+  "title": "Quantum computational networks",
+  "display_name": "Quantum computational networks",
+  "publication_year": 1989,
+  "publication_date": "1989-09-08",
+  "ids": {
+    "openalex": "https://openalex.org/W2101088258",
+    "doi": "https://doi.org/10.1098/rspa.1989.0099",
+    "mag": "2101088258"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1098/rspa.1989.0099",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1098/rspa.1989.0099",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4210212881",
+      "display_name": "Proceedings of the Royal Society of London A Mathematical and Physical Sciences",
+      "issn_l": "0080-4630",
+      "issn": [
+        "0080-4630",
+        "2053-9169"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/P4310319787",
+      "host_organization_name": "Royal Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319787"
+      ],
+      "host_organization_lineage_names": [
+        "Royal Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Proceedings of the Royal Society of London. A. Mathematical and Physical Sciences",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5050850280",
+        "display_name": "David Deutsch",
+        "orcid": "https://orcid.org/0000-0001-8413-8805"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210120676",
+          "display_name": "Mathematical Institute of the Slovak Academy of Sciences",
+          "ror": "https://ror.org/02fhy7464",
+          "country_code": "SK",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I207624831",
+            "https://openalex.org/I4210120676"
+          ]
+        }
+      ],
+      "countries": [
+        "SK"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "David Elieser Deutsch",
+      "raw_affiliation_strings": [
+        "Oxford University Mathematical Institute, 24-29 St Giles, Oxford OX1 3LB, U. K",
+        "Oxford University Mathematical Institute, 24-29 St Giles', Oxford OX1 3LB, U.K"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Oxford University Mathematical Institute, 24-29 St Giles, Oxford OX1 3LB, U. K",
+          "institution_ids": [
+            "https://openalex.org/I4210120676"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Oxford University Mathematical Institute, 24-29 St Giles', Oxford OX1 3LB, U.K",
+          "institution_ids": [
+            "https://openalex.org/I4210120676"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5050850280"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I4210120676"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 2.0305,
+  "has_fulltext": false,
+  "cited_by_count": 1295,
+  "citation_normalized_percentile": {
+    "value": 0.89161793,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": false
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "425",
+    "issue": "1868",
+    "first_page": "73",
+    "last_page": "90"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10682",
+    "display_name": "Quantum Computing Algorithms and Architecture",
+    "score": 1.0,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1702",
+      "display_name": "Artificial Intelligence"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/17",
+      "display_name": "Computer Science"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10682",
+      "display_name": "Quantum Computing Algorithms and Architecture",
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10020",
+      "display_name": "Quantum Information and Cryptography",
+      "score": 0.9970999956130981,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13182",
+      "display_name": "Quantum-Dot Cellular Automata",
+      "score": 0.9926000237464905,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1703",
+        "display_name": "Computational Theory and Mathematics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/quantum-gate",
+      "display_name": "Quantum gate",
+      "score": 0.5826747417449951
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-computer",
+      "display_name": "Quantum computer",
+      "score": 0.5747516751289368
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-network",
+      "display_name": "Quantum network",
+      "score": 0.5704432725906372
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.50350421667099
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-logic",
+      "display_name": "Quantum logic",
+      "score": 0.4921411871910095
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum",
+      "display_name": "Quantum",
+      "score": 0.46045735478401184
+    },
+    {
+      "id": "https://openalex.org/keywords/generalization",
+      "display_name": "Generalization",
+      "score": 0.45833876729011536
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-circuit",
+      "display_name": "Quantum circuit",
+      "score": 0.4474652409553528
+    },
+    {
+      "id": "https://openalex.org/keywords/theoretical-computer-science",
+      "display_name": "Theoretical computer science",
+      "score": 0.4275836944580078
+    },
+    {
+      "id": "https://openalex.org/keywords/topology",
+      "display_name": "Topology (electrical circuits)",
+      "score": 0.3433254063129425
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.3411380350589752
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.24908319115638733
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.20700863003730774
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C58849907",
+      "wikidata": "https://www.wikidata.org/wiki/Q2118982",
+      "display_name": "Quantum gate",
+      "level": 4,
+      "score": 0.5826747417449951
+    },
+    {
+      "id": "https://openalex.org/C58053490",
+      "wikidata": "https://www.wikidata.org/wiki/Q176555",
+      "display_name": "Quantum computer",
+      "level": 3,
+      "score": 0.5747516751289368
+    },
+    {
+      "id": "https://openalex.org/C186468114",
+      "wikidata": "https://www.wikidata.org/wiki/Q836478",
+      "display_name": "Quantum network",
+      "level": 4,
+      "score": 0.5704432725906372
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.50350421667099
+    },
+    {
+      "id": "https://openalex.org/C169460222",
+      "wikidata": "https://www.wikidata.org/wiki/Q1206311",
+      "display_name": "Quantum logic",
+      "level": 4,
+      "score": 0.4921411871910095
+    },
+    {
+      "id": "https://openalex.org/C84114770",
+      "wikidata": "https://www.wikidata.org/wiki/Q46344",
+      "display_name": "Quantum",
+      "level": 2,
+      "score": 0.46045735478401184
+    },
+    {
+      "id": "https://openalex.org/C177148314",
+      "wikidata": "https://www.wikidata.org/wiki/Q170084",
+      "display_name": "Generalization",
+      "level": 2,
+      "score": 0.45833876729011536
+    },
+    {
+      "id": "https://openalex.org/C124148022",
+      "wikidata": "https://www.wikidata.org/wiki/Q2122210",
+      "display_name": "Quantum circuit",
+      "level": 5,
+      "score": 0.4474652409553528
+    },
+    {
+      "id": "https://openalex.org/C80444323",
+      "wikidata": "https://www.wikidata.org/wiki/Q2878974",
+      "display_name": "Theoretical computer science",
+      "level": 1,
+      "score": 0.4275836944580078
+    },
+    {
+      "id": "https://openalex.org/C184720557",
+      "wikidata": "https://www.wikidata.org/wiki/Q7825049",
+      "display_name": "Topology (electrical circuits)",
+      "level": 2,
+      "score": 0.3433254063129425
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.3411380350589752
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.24908319115638733
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.20700863003730774
+    },
+    {
+      "id": "https://openalex.org/C134306372",
+      "wikidata": "https://www.wikidata.org/wiki/Q7754",
+      "display_name": "Mathematical analysis",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C114614502",
+      "wikidata": "https://www.wikidata.org/wiki/Q76592",
+      "display_name": "Combinatorics",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1098/rspa.1989.0099",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1098/rspa.1989.0099",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4210212881",
+        "display_name": "Proceedings of the Royal Society of London A Mathematical and Physical Sciences",
+        "issn_l": "0080-4630",
+        "issn": [
+          "0080-4630",
+          "2053-9169"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/P4310319787",
+        "host_organization_name": "Royal Society",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319787"
+        ],
+        "host_organization_lineage_names": [
+          "Royal Society"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Proceedings of the Royal Society of London. A. Mathematical and Physical Sciences",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 3,
+  "referenced_works": [
+    "https://openalex.org/W2095533469",
+    "https://openalex.org/W2139936285",
+    "https://openalex.org/W2148132004"
+  ],
+  "related_works": [
+    "https://openalex.org/W3092615945",
+    "https://openalex.org/W4379115997",
+    "https://openalex.org/W4318620911",
+    "https://openalex.org/W1986555820",
+    "https://openalex.org/W2066640878",
+    "https://openalex.org/W4226174265",
+    "https://openalex.org/W3185760328",
+    "https://openalex.org/W2230370311",
+    "https://openalex.org/W4313458338",
+    "https://openalex.org/W1999450843"
+  ],
+  "abstract_inverted_index": {
+    "Abstract": [
+      0
+    ],
+    "The": [
+      1
+    ],
+    "theory": [
+      2,
+      13
+    ],
+    "of": [
+      3,
+      11,
+      14,
+      27,
+      34
+    ],
+    "quantum": [
+      4,
+      9,
+      38,
+      42,
+      53
+    ],
+    "computational": [
+      5,
+      54
+    ],
+    "networks": [
+      6,
+      49
+    ],
+    "is": [
+      7,
+      45
+    ],
+    "the": [
+      8,
+      12,
+      25,
+      36
+    ],
+    "generalization": [
+      10,
+      26
+    ],
+    "logic": [
+      15,
+      29
+    ],
+    "circuits": [
+      16
+    ],
+    "used": [
+      17
+    ],
+    "in": [
+      18
+    ],
+    "classical": [
+      19,
+      28
+    ],
+    "computing": [
+      20
+    ],
+    "machines.": [
+      21
+    ],
+    "Quantum": [
+      22
+    ],
+    "gates": [
+      23
+    ],
+    "are": [
+      24
+    ],
+    "gates.": [
+      30
+    ],
+    "A": [
+      31
+    ],
+    "single": [
+      32
+    ],
+    "type": [
+      33
+    ],
+    "gate,": [
+      35,
+      39
+    ],
+    "universal": [
+      37
+    ],
+    "together": [
+      40
+    ],
+    "with": [
+      41,
+      50
+    ],
+    "‘unit": [
+      43
+    ],
+    "wires’,": [
+      44
+    ],
+    "adequate": [
+      46
+    ],
+    "for": [
+      47
+    ],
+    "constructing": [
+      48
+    ],
+    "any": [
+      51
+    ],
+    "possible": [
+      52
+    ],
+    "property.": [
+      55
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 29
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 38
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 60
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 38
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 45
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 45
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 32
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 27
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 32
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 40
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 36
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 35
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 36
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 44
+    }
+  ],
+  "updated_date": "2026-05-09T13:55:54.758798",
+  "created_date": "2016-06-24T00:00:00"
+}

@@ -1,0 +1,14 @@
+# Surface coated Eu(OH)3 nanorods: a facile synthesis, characterization, MR relaxivities and in vitro cytotoxicity.
+
+- **PMID**: 24245232
+- **DOI**: 10.1166/jnn.2013.8081
+- **PMCID**:  
+- **Journal**: Journal of nanoscience and nanotechnology  ·  **Year**: 2013
+- **Authors**: Krishna Kattel, Ja Young Park, Wenlong Xu, Badrul Alam Bony, Woo Cheol Heo, Tirusew Tegafaw, Cho Rong Kim, M Wasi Ahmad, Seonguk Jin, Jong Su Baeck, Yongmin Chang, Tae Jeong Kim, Ji Eun Bae, Kwon Seok Chae, Ji Yun Jeong, Gang Ho Lee
+- **MeSH**: Cell Line, Tumor, Cell Survival, Coated Materials, Biocompatible, Contrast Media, Europium, Humans, Hydroxides, Magnetic Resonance Imaging, Materials Testing, Metal Nanoparticles
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24245232/
+- **Captured**: 2026-05-10T13:26:14
+
+## Abstract
+
+The water-soluble and biocompatible D-glucuronic acid coated Eu(OH)3 nanorods (average thickness x average length = 9.0 x 118.3 nm) have been prepared in one-pot synthesis. The D-glucuronic acid coated Eu(OH)3 nanorods showed a strong fluorescence at approximately 600 nm with a narrow emission band width. A cytotoxicity test by using DU145 cells showed that D-glucuronic acid coated Eu(OH)3 nanorods are not toxic up to 100 microM, making them a promising candidate for biomedical applications such as fluorescent imaging. The minimum Eu concentration needed for a conventional confocal imaging was estimated to be approximately 0.1 mM. Therefore, D-glucuronic acid coated Eu(OH)3 nanorods can be applied to fluorescent imaging. However, a very tiny magnetization of approximately 1.2 emu/g at room temperature and at an applied field of 5 tesla was observed. As a result, very small r1 and r2 water proton relaxivities were estimated, implying that surface coated Eu(OH)3 nanorods are not sufficient for MRI contrast agents.

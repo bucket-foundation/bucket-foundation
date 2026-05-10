@@ -1,0 +1,14 @@
+# Population control of caged native fruitflies in the field by compound autosomes and temperature-sensitive mutants.
+
+- **PMID**: 24419603
+- **DOI**: 10.1007/BF00264752
+- **PMCID**:  
+- **Journal**: TAG. Theoretical and applied genetics. Theoretische und angewandte Genetik  ·  **Year**: 1975
+- **Authors**: M Fitz-Earle, D G Holm, D T Suzuki
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24419603/
+- **Captured**: 2026-05-10T13:26:20
+
+## Abstract
+
+A genetic technique for insect population control has been tested in cages under field conditions at two different locations in British Columbia. The method entails the population replacement of standard insects by those bearing compound autosomes using the principle of negative heterosis, thus permitting control or elimination through conditional mutations. Both native- and laboratory-derived compound strains of the fruitfly Drosophila melanogaster were tested in population cages against standards in the laboratory and at the two field sites. Those compound-bearing insects originating from the wild were the most successful, both in the laboratory and the field, in displacing standards from the cages down to a minimum initial ratio of 5 compounds to 1 standard. The importance is stressed of collecting strains from the wild, and performing the necessary genetic manipulations as rapidly as possible, prior to releasing the rearrangement in the field for control purposes.

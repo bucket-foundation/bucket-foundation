@@ -1,0 +1,14 @@
+# Methods and processes for development of a CONSORT extension for reporting pilot randomized controlled trials.
+
+- **PMID**: 27965844
+- **DOI**: 10.1371/journal.pone.0150205
+- **PMCID**: PMC3649856 (full-text saved)
+- **Journal**: Pilot and feasibility studies  ·  **Year**: 2016
+- **Authors**: Lehana Thabane, Sally Hopewell, Gillian A Lancaster, Christine M Bond, Claire L Coleman, Michael J Campbell, Sandra M Eldridge
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27965844/
+- **Captured**: 2026-05-10T13:28:32
+
+## Abstract
+
+Feasibility and pilot studies are essential components of planning or preparing for a larger randomized controlled trial (RCT). They are intended to provide useful information about the feasibility of the main RCT-with the goal of reducing uncertainty and thereby increasing the chance of successfully conducting the main RCT. However, research has shown that there are serious inadequacies in the reporting of pilot and feasibility studies. Reasons for this include a lack of explicit publication policies for pilot and feasibility studies in many journals, unclear definitions of what constitutes a pilot or feasibility RCT/study, and a lack of clarity in the objectives and methodological focus. All these suggest that there is an urgent need for new guidelines for reporting pilot and feasibility studies. The aim of this paper is to describe the methods and processes in our development of an extension to the Consolidated Standards of Reporting Trials (CONSORT) Statement for reporting pilot and feasibility RCTs, that are executed in preparation for a future, more definitive RCT. There were five overlapping parts to the project: (i)  We anticipate that implementation of our guideline will improve the reporting completeness, transparency, and quality of pilot RCTs, and hence benefit several constituencies, including authors of journal manuscripts, funding agencies, educators, researchers, and end-users.

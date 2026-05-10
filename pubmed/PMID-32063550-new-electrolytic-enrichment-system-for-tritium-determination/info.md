@@ -1,0 +1,14 @@
+# New electrolytic enrichment system for tritium determination in water research institute in Bratislava and IT'S first results of tritium activity in precipitation.
+
+- **PMID**: 32063550
+- **DOI**: 10.1016/j.jenvrad.2020.106177
+- **PMCID**:  
+- **Journal**: Journal of environmental radioactivity  ·  **Year**: 2020
+- **Authors**: G Wallova, J Meresova, S Zvachova, I Petranova, I Sykora
+- **MeSH**: Academies and Institutes, Radiation Monitoring, Scintillation Counting, Slovakia, Tritium, Water, Water Pollutants, Radioactive
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32063550/
+- **Captured**: 2026-05-10T13:29:56
+
+## Abstract
+
+The method of tritium activity measurements by electrolytic enrichment in combination with liquid scintillation counting is well known for many years. In the Water Research Institute in Bratislava was this system employed since the 60-ties of the 20th century. In 2018 the laboratory of radiochemistry of Water Research Institute obtained a new electrolytic enrichment system with higher enrichment factor (varying from 9 to 22, depending on the total ampere-hours used). The enrichment factor of the previous system was about 6. Complementary to the new system, also the new LCS counter Quantulus GCT 6220 was added. This spectrometer has active background suppression function (Guard Compensation Technology - GCT) and for the tritium measurement the background counts decreased from cca. 9 cpm (for Tricarb 2900 TR) to approximately 1 cpm. To demonstrate the capabilities of this system, we present results of the tritium concentration in precipitations during the period from May 2016 to May 2019. The seasonal variations of tritium activities in precipitation are observed, with maximum values in spring season and minimum in winter. Additionally, selected tritium activities from the extensive monitoring of river waters in Slovakia are presented.

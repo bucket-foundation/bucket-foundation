@@ -1,0 +1,14 @@
+# ADL-dependency, D-Dimers, LDH and absence of anticoagulation are independently associated with one-month mortality in older inpatients with Covid-19.
+
+- **PMID**: 32576712
+- **DOI**: 10.1016/j.jclinepi.2014.11.010
+- **PMCID**: PMC7102549 (full-text saved)
+- **Journal**: Aging  ·  **Year**: 2020
+- **Authors**: Guilhem Bousquet, Géraldine Falgarone, David Deutsch, Sophie Derolez, Marilucy Lopez-Sublet, François-Xavier Goudot, Khadaoudj Amari, Yurdagul Uzunhan, Olivier Bouchaud, Frédéric Pamoukdjian
+- **MeSH**: Activities of Daily Living, Aged, Aged, 80 and over, Aging, Anticoagulants, Betacoronavirus, Biomarkers, COVID-19, Coronavirus Infections, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32576712/
+- **Captured**: 2026-05-10T13:30:05
+
+## Abstract
+
+To assess factors associated with one-month mortality among older inpatients with Covid-19. The mean age was 78 ± 7.8 years, 55.5% were men, CT scan lung damage was observed in 76% of the patients (mild 23%, moderate 38%, extensive 22%, and severe 7%). The mortality rate was 26%. Dependency/Activities of Daily Living (ADL) score ≤ 5/6, D-Dimers, LDH, and no anticoagulation by reference for curative were independently associated with one-month mortality. A score derived from the multivariate model showed good calibration and very good discrimination (Harrell's C index [95%CI] = 0.83 [0.79-0.87]). ADL-dependency, high serum levels of D-Dimers and LDH and the absence of anticoagulation were independently associated with one-month mortality among older inpatients with Covid-19. 108 consecutive older inpatients aged 65 and over with Covid-19 confirmed by RT-PCR and/or typical CT chest scan were prospectively included in a French single-centre cohort study from March to April 2020. A systematic geriatric assessment was performed. Covariates were lymphocyte count, serum levels of albumin, C-Reactive Protein, D-Dimers and Lactate Dehydrogenase (LDH), anticoagulation level, and exposure to the hydroxychloroquine and azithromycin combined therapy. Cox uni- and multivariate proportional-hazard regressions were performed to identify predictors of one-month mortality.

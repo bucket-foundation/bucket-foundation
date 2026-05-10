@@ -1,0 +1,867 @@
+{
+  "id": "https://openalex.org/W2991415348",
+  "doi": null,
+  "title": "Hydrodynamic and hydromagnetic stability",
+  "display_name": "Hydrodynamic and hydromagnetic stability",
+  "publication_year": 1961,
+  "publication_date": "1961-01-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2991415348",
+    "mag": "2991415348"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "pmh:oai:aleph.bib-bvb.de:BVB01-001256950",
+    "is_oa": false,
+    "landing_page_url": null,
+    "pdf_url": null,
+    "source": null,
+    "license": null,
+    "license_id": null,
+    "version": "submittedVersion",
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": null,
+    "raw_type": "text"
+  },
+  "type": "article",
+  "indexed_in": [],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5110168523",
+        "display_name": "S. Chandrasekhar",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": true,
+      "raw_author_name": "S. Chandrasekhar",
+      "raw_affiliation_strings": [],
+      "affiliations": []
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 0,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5110168523"
+  ],
+  "corresponding_institution_ids": [],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 42.3351,
+  "has_fulltext": false,
+  "cited_by_count": 6564,
+  "citation_normalized_percentile": {
+    "value": 1.0,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": null,
+    "issue": null,
+    "first_page": null,
+    "last_page": null
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T13951",
+    "display_name": "Fluid dynamics and aerodynamics studies",
+    "score": 0.1818999946117401,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2206",
+      "display_name": "Computational Mechanics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/22",
+      "display_name": "Engineering"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T13951",
+      "display_name": "Fluid dynamics and aerodynamics studies",
+      "score": 0.1818999946117401,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2206",
+        "display_name": "Computational Mechanics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11602",
+      "display_name": "Magnetic Bearings and Levitation Dynamics",
+      "score": 0.1729000061750412,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2207",
+        "display_name": "Control and Systems Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/stability",
+      "display_name": "Stability (learning theory)",
+      "score": 0.5718063116073608
+    },
+    {
+      "id": "https://openalex.org/keywords/mechanics",
+      "display_name": "Mechanics",
+      "score": 0.39236322045326233
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.391408234834671
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.24957942962646484
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C112972136",
+      "wikidata": "https://www.wikidata.org/wiki/Q7595718",
+      "display_name": "Stability (learning theory)",
+      "level": 2,
+      "score": 0.5718063116073608
+    },
+    {
+      "id": "https://openalex.org/C57879066",
+      "wikidata": "https://www.wikidata.org/wiki/Q41217",
+      "display_name": "Mechanics",
+      "level": 1,
+      "score": 0.39236322045326233
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.391408234834671
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.24957942962646484
+    },
+    {
+      "id": "https://openalex.org/C119857082",
+      "wikidata": "https://www.wikidata.org/wiki/Q2539",
+      "display_name": "Machine learning",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 3,
+  "locations": [
+    {
+      "id": "pmh:oai:aleph.bib-bvb.de:BVB01-001256950",
+      "is_oa": false,
+      "landing_page_url": null,
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:cds.cern.ch:2270121",
+      "is_oa": false,
+      "landing_page_url": "http://cds.cern.ch/record/2270121",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402195",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I67311998",
+        "host_organization_name": "European Organization for Nuclear Research",
+        "host_organization_lineage": [
+          "https://openalex.org/I67311998"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": ""
+    },
+    {
+      "id": "mag:2991415348",
+      "is_oa": false,
+      "landing_page_url": "https://ui.adsabs.harvard.edu/abs/1961hhs..book.....C/abstract",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": null,
+      "is_accepted": false,
+      "is_published": null,
+      "raw_source_name": null,
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [
+    {
+      "display_name": "Affordable and clean energy",
+      "id": "https://metadata.un.org/sdg/7",
+      "score": 0.5799999833106995
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 0,
+  "referenced_works": [],
+  "related_works": [
+    "https://openalex.org/W2501645184",
+    "https://openalex.org/W2334976235",
+    "https://openalex.org/W2300130683",
+    "https://openalex.org/W3100158546",
+    "https://openalex.org/W3164706328",
+    "https://openalex.org/W3113853116",
+    "https://openalex.org/W2009060562",
+    "https://openalex.org/W2233005234",
+    "https://openalex.org/W3127223189",
+    "https://openalex.org/W128538597",
+    "https://openalex.org/W130194321",
+    "https://openalex.org/W1129221660",
+    "https://openalex.org/W2005623643",
+    "https://openalex.org/W2079188355",
+    "https://openalex.org/W2111841174",
+    "https://openalex.org/W2997142977",
+    "https://openalex.org/W3177822139",
+    "https://openalex.org/W153988746",
+    "https://openalex.org/W2301269025",
+    "https://openalex.org/W3045933134"
+  ],
+  "abstract_inverted_index": {
+    "Dr.": [
+      0,
+      54,
+      97
+    ],
+    "Chandrasekhar's": [
+      1,
+      55
+    ],
+    "book": [
+      2,
+      70,
+      120,
+      210
+    ],
+    "received": [
+      3
+    ],
+    "high": [
+      4
+    ],
+    "praise": [
+      5
+    ],
+    "when": [
+      6
+    ],
+    "it": [
+      7,
+      26,
+      80
+    ],
+    "first": [
+      8,
+      38
+    ],
+    "appeared": [
+      9
+    ],
+    "in": [
+      10,
+      32,
+      58,
+      65,
+      105,
+      161,
+      187,
+      196
+    ],
+    "1961": [
+      11
+    ],
+    "as": [
+      12,
+      192,
+      194
+    ],
+    "part": [
+      13
+    ],
+    "of": [
+      14,
+      20,
+      60,
+      63,
+      90,
+      93,
+      101,
+      111,
+      127,
+      138,
+      144,
+      147,
+      158,
+      174
+    ],
+    "Oxford": [
+      15
+    ],
+    "University": [
+      16
+    ],
+    "Press'": [
+      17
+    ],
+    "International": [
+      18
+    ],
+    "Series": [
+      19
+    ],
+    "Monographs": [
+      21
+    ],
+    "on": [
+      22
+    ],
+    "Physics.": [
+      23
+    ],
+    "Since": [
+      24
+    ],
+    "then": [
+      25
+    ],
+    "has": [
+      27,
+      81
+    ],
+    "been": [
+      28,
+      83
+    ],
+    "reprinted": [
+      29
+    ],
+    "numerous": [
+      30
+    ],
+    "times": [
+      31
+    ],
+    "its": [
+      33,
+      86
+    ],
+    "expensive": [
+      34
+    ],
+    "hardcover": [
+      35
+    ],
+    "format.": [
+      36
+    ],
+    "This": [
+      37,
+      69
+    ],
+    "lower-priced,": [
+      39
+    ],
+    "sturdy": [
+      40
+    ],
+    "paperback": [
+      41
+    ],
+    "edition": [
+      42
+    ],
+    "will": [
+      43,
+      199
+    ],
+    "be": [
+      44,
+      207
+    ],
+    "welcomed": [
+      45
+    ],
+    "by": [
+      46,
+      171
+    ],
+    "graduate": [
+      47
+    ],
+    "physics": [
+      48
+    ],
+    "students": [
+      49,
+      186
+    ],
+    "and": [
+      50,
+      135,
+      156,
+      164,
+      180,
+      189,
+      206
+    ],
+    "scientists": [
+      51
+    ],
+    "familiar": [
+      52
+    ],
+    "with": [
+      53,
+      108
+    ],
+    "work,": [
+      56
+    ],
+    "particularly": [
+      57
+    ],
+    "light": [
+      59
+    ],
+    "the": [
+      61,
+      66,
+      77,
+      91,
+      102,
+      109,
+      203
+    ],
+    "resurgence": [
+      62
+    ],
+    "interest": [
+      64
+    ],
+    "Rayleigh-Bénard": [
+      67,
+      78
+    ],
+    "problem.": [
+      68
+    ],
+    "presents": [
+      71
+    ],
+    "a": [
+      72,
+      115,
+      119,
+      139,
+      145,
+      172
+    ],
+    "most": [
+      73,
+      100
+    ],
+    "lucid": [
+      74
+    ],
+    "introduction": [
+      75
+    ],
+    "to": [
+      76
+    ],
+    "problem:": [
+      79
+    ],
+    "also": [
+      82,
+      183
+    ],
+    "applauded": [
+      84
+    ],
+    "for": [
+      85
+    ],
+    "thorough,": [
+      87
+    ],
+    "clear": [
+      88,
+      204
+    ],
+    "coverage": [
+      89
+    ],
+    "theory": [
+      92
+    ],
+    "instabilities": [
+      94
+    ],
+    "causing": [
+      95
+    ],
+    "convection.": [
+      96
+    ],
+    "Chandrasekhar": [
+      98
+    ],
+    "considers": [
+      99
+    ],
+    "typical": [
+      103
+    ],
+    "problems": [
+      104
+    ],
+    "hydromagnetic": [
+      106
+    ],
+    "stability,": [
+      107
+    ],
+    "exception": [
+      110
+    ],
+    "viscous": [
+      112
+    ],
+    "shear": [
+      113
+    ],
+    "flow;": [
+      114
+    ],
+    "specialized": [
+      116
+    ],
+    "domain": [
+      117
+    ],
+    "deserving": [
+      118
+    ],
+    "unto": [
+      121
+    ],
+    "itself.": [
+      122
+    ],
+    "Contents": [
+      123
+    ],
+    "include:": [
+      124
+    ],
+    "Rotation;": [
+      125
+    ],
+    "Stability": [
+      126,
+      137
+    ],
+    "More": [
+      128
+    ],
+    "General": [
+      129
+    ],
+    "Flows;": [
+      130
+    ],
+    "Bénard": [
+      131
+    ],
+    "Problem;": [
+      132
+    ],
+    "Gravitational": [
+      133
+    ],
+    "Equilibrium": [
+      134
+    ],
+    "Instability;": [
+      136,
+      153,
+      155
+    ],
+    "Magnetic": [
+      140
+    ],
+    "Field;": [
+      141
+    ],
+    "Thermal": [
+      142,
+      159
+    ],
+    "Instability": [
+      143,
+      160
+    ],
+    "Layer": [
+      146
+    ],
+    "Fluid": [
+      148,
+      162
+    ],
+    "heated": [
+      149
+    ],
+    "from": [
+      150
+    ],
+    "Below;": [
+      151
+    ],
+    "Rayleigh-Taylor": [
+      152
+    ],
+    "Kelvin-Helmholtz": [
+      154
+    ],
+    "Onset": [
+      157
+    ],
+    "Spheres": [
+      163
+    ],
+    "Spherical": [
+      165
+    ],
+    "Shells.": [
+      166
+    ],
+    "Each": [
+      167
+    ],
+    "chapter": [
+      168
+    ],
+    "is": [
+      169,
+      211
+    ],
+    "accompanied": [
+      170
+    ],
+    "section": [
+      173
+    ],
+    "bibliographical": [
+      175
+    ],
+    "notes:": [
+      176
+    ],
+    "indexes": [
+      177
+    ],
+    "locating": [
+      178
+    ],
+    "definitions": [
+      179
+    ],
+    "theorems": [
+      181
+    ],
+    "are": [
+      182
+    ],
+    "provided.": [
+      184
+    ],
+    "Graduate": [
+      185
+    ],
+    "theoretical": [
+      188
+    ],
+    "experimental": [
+      190
+    ],
+    "physics,": [
+      191
+    ],
+    "well": [
+      193
+    ],
+    "physicists": [
+      195
+    ],
+    "diverse": [
+      197
+    ],
+    "fields,": [
+      198
+    ],
+    "immediately": [
+      200
+    ],
+    "remark": [
+      201
+    ],
+    "upon": [
+      202
+    ],
+    "exposition,": [
+      205
+    ],
+    "glad": [
+      208
+    ],
+    "this": [
+      209
+    ],
+    "now": [
+      212
+    ],
+    "so": [
+      213
+    ],
+    "readily": [
+      214
+    ],
+    "available.": [
+      215
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2025,
+      "cited_by_count": 112
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 165
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 177
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 206
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 200
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 165
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 174
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 188
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 221
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 164
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 176
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 177
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 197
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 164
+    }
+  ],
+  "updated_date": "2026-04-05T17:49:38.594831",
+  "created_date": "2025-10-10T00:00:00"
+}

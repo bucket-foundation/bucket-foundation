@@ -1,0 +1,1187 @@
+{
+  "id": "https://openalex.org/W2063635674",
+  "doi": "https://doi.org/10.1103/physrevlett.77.2818",
+  "title": "Quantum Privacy Amplification and the Security of Quantum Cryptography over Noisy Channels",
+  "display_name": "Quantum Privacy Amplification and the Security of Quantum Cryptography over Noisy Channels",
+  "publication_year": 1996,
+  "publication_date": "1996-09-23",
+  "ids": {
+    "openalex": "https://openalex.org/W2063635674",
+    "doi": "https://doi.org/10.1103/physrevlett.77.2818",
+    "mag": "2063635674",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/10062053"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1103/physrevlett.77.2818",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1103/physrevlett.77.2818",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S24807848",
+      "display_name": "Physical Review Letters",
+      "issn_l": "0031-9007",
+      "issn": [
+        "0031-9007",
+        "1079-7114",
+        "1092-0145"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320261",
+      "host_organization_name": "American Physical Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320261"
+      ],
+      "host_organization_lineage_names": [
+        "American Physical Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Physical Review Letters",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "arxiv",
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "green",
+    "oa_url": "https://arxiv.org/pdf/quant-ph/9604039",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5050850280",
+        "display_name": "David Deutsch",
+        "orcid": "https://orcid.org/0000-0001-8413-8805"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "David Deutsch",
+      "raw_affiliation_strings": [
+        "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford OX1 3PU, United Kingdom",
+        "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford, OX1 3PU (United Kingdom)"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford OX1 3PU, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford, OX1 3PU (United Kingdom)",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5059030616",
+        "display_name": "Artur Ekert",
+        "orcid": "https://orcid.org/0000-0002-1504-5039"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Artur Ekert",
+      "raw_affiliation_strings": [
+        "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford OX1 3PU, United Kingdom",
+        "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford, OX1 3PU (United Kingdom)"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford OX1 3PU, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford, OX1 3PU (United Kingdom)",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5090379554",
+        "display_name": "Richard Jozsa",
+        "orcid": "https://orcid.org/0000-0001-5055-9513"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I897542642",
+          "display_name": "University of Plymouth",
+          "ror": "https://ror.org/008n7pv89",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I897542642"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Richard Jozsa",
+      "raw_affiliation_strings": [
+        "School of Mathematics and Statistics, University of Plymouth, Plymouth, Devon PL4 8AA, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "School of Mathematics and Statistics, University of Plymouth, Plymouth, Devon PL4 8AA, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I897542642"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5075206338",
+        "display_name": "Chiara Macchiavello",
+        "orcid": "https://orcid.org/0000-0002-2955-8759"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Chiara Macchiavello",
+      "raw_affiliation_strings": [
+        "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford OX1 3PU, United Kingdom",
+        "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford, OX1 3PU (United Kingdom)"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford OX1 3PU, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford, OX1 3PU (United Kingdom)",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5103188306",
+        "display_name": "Sandu Popescu",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I111088046",
+          "display_name": "Boston University",
+          "ror": "https://ror.org/05qwgg493",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I111088046"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Sandu Popescu",
+      "raw_affiliation_strings": [
+        "Department of Electrical, Computer and Systems Engineering, Boston University, Boston, Massachusetts 02215",
+        "Department of Electrical, Computer, and Systems Engineering, Boston University, Boston, Massachusetts 02215"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Electrical, Computer and Systems Engineering, Boston University, Boston, Massachusetts 02215",
+          "institution_ids": [
+            "https://openalex.org/I111088046"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Electrical, Computer, and Systems Engineering, Boston University, Boston, Massachusetts 02215",
+          "institution_ids": [
+            "https://openalex.org/I111088046"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5020479151",
+        "display_name": "Anna Sanpera",
+        "orcid": "https://orcid.org/0000-0002-8970-6127"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Anna Sanpera",
+      "raw_affiliation_strings": [
+        "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford OX1 3PU, United Kingdom",
+        "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford, OX1 3PU (United Kingdom)"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford OX1 3PU, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Clarendon Laboratory, Department of Physics, University of Oxford, Parks Road, Oxford, OX1 3PU (United Kingdom)",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 6,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5050850280"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I40120149"
+  ],
+  "apc_list": {
+    "value": 3750,
+    "currency": "USD",
+    "value_usd": 3750
+  },
+  "apc_paid": null,
+  "fwci": 37.5897,
+  "has_fulltext": false,
+  "cited_by_count": 1265,
+  "citation_normalized_percentile": {
+    "value": 0.99785401,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "77",
+    "issue": "13",
+    "first_page": "2818",
+    "last_page": "2821"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10020",
+    "display_name": "Quantum Information and Cryptography",
+    "score": 0.9998000264167786,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1702",
+      "display_name": "Artificial Intelligence"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/17",
+      "display_name": "Computer Science"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10020",
+      "display_name": "Quantum Information and Cryptography",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10682",
+      "display_name": "Quantum Computing Algorithms and Architecture",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10622",
+      "display_name": "Quantum Mechanics and Applications",
+      "score": 0.9991999864578247,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3107",
+        "display_name": "Atomic and Molecular Physics, and Optics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/quantum-cryptography",
+      "display_name": "Quantum cryptography",
+      "score": 0.7841721773147583
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.6977565288543701
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-channel",
+      "display_name": "Quantum channel",
+      "score": 0.5316807627677917
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-entanglement",
+      "display_name": "Quantum entanglement",
+      "score": 0.5267581343650818
+    },
+    {
+      "id": "https://openalex.org/keywords/cryptography",
+      "display_name": "Cryptography",
+      "score": 0.5263582468032837
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum",
+      "display_name": "Quantum",
+      "score": 0.47098347544670105
+    },
+    {
+      "id": "https://openalex.org/keywords/scheme",
+      "display_name": "Scheme (mathematics)",
+      "score": 0.45819908380508423
+    },
+    {
+      "id": "https://openalex.org/keywords/qubit",
+      "display_name": "Qubit",
+      "score": 0.4347136914730072
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-security",
+      "display_name": "Computer security",
+      "score": 0.38917243480682373
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-information",
+      "display_name": "Quantum information",
+      "score": 0.3334936499595642
+    },
+    {
+      "id": "https://openalex.org/keywords/theoretical-computer-science",
+      "display_name": "Theoretical computer science",
+      "score": 0.33189302682876587
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.26994389295578003
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.2423204779624939
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.14429926872253418
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C144901912",
+      "wikidata": "https://www.wikidata.org/wiki/Q471906",
+      "display_name": "Quantum cryptography",
+      "level": 4,
+      "score": 0.7841721773147583
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.6977565288543701
+    },
+    {
+      "id": "https://openalex.org/C187486625",
+      "wikidata": "https://www.wikidata.org/wiki/Q2122176",
+      "display_name": "Quantum channel",
+      "level": 4,
+      "score": 0.5316807627677917
+    },
+    {
+      "id": "https://openalex.org/C121040770",
+      "wikidata": "https://www.wikidata.org/wiki/Q215675",
+      "display_name": "Quantum entanglement",
+      "level": 3,
+      "score": 0.5267581343650818
+    },
+    {
+      "id": "https://openalex.org/C178489894",
+      "wikidata": "https://www.wikidata.org/wiki/Q8789",
+      "display_name": "Cryptography",
+      "level": 2,
+      "score": 0.5263582468032837
+    },
+    {
+      "id": "https://openalex.org/C84114770",
+      "wikidata": "https://www.wikidata.org/wiki/Q46344",
+      "display_name": "Quantum",
+      "level": 2,
+      "score": 0.47098347544670105
+    },
+    {
+      "id": "https://openalex.org/C77618280",
+      "wikidata": "https://www.wikidata.org/wiki/Q1155772",
+      "display_name": "Scheme (mathematics)",
+      "level": 2,
+      "score": 0.45819908380508423
+    },
+    {
+      "id": "https://openalex.org/C203087015",
+      "wikidata": "https://www.wikidata.org/wiki/Q378201",
+      "display_name": "Qubit",
+      "level": 3,
+      "score": 0.4347136914730072
+    },
+    {
+      "id": "https://openalex.org/C38652104",
+      "wikidata": "https://www.wikidata.org/wiki/Q3510521",
+      "display_name": "Computer security",
+      "level": 1,
+      "score": 0.38917243480682373
+    },
+    {
+      "id": "https://openalex.org/C169699857",
+      "wikidata": "https://www.wikidata.org/wiki/Q2122243",
+      "display_name": "Quantum information",
+      "level": 3,
+      "score": 0.3334936499595642
+    },
+    {
+      "id": "https://openalex.org/C80444323",
+      "wikidata": "https://www.wikidata.org/wiki/Q2878974",
+      "display_name": "Theoretical computer science",
+      "level": 1,
+      "score": 0.33189302682876587
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.26994389295578003
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.2423204779624939
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.14429926872253418
+    },
+    {
+      "id": "https://openalex.org/C134306372",
+      "wikidata": "https://www.wikidata.org/wiki/Q7754",
+      "display_name": "Mathematical analysis",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 7,
+  "locations": [
+    {
+      "id": "doi:10.1103/physrevlett.77.2818",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1103/physrevlett.77.2818",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S24807848",
+        "display_name": "Physical Review Letters",
+        "issn_l": "0031-9007",
+        "issn": [
+          "0031-9007",
+          "1079-7114",
+          "1092-0145"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320261",
+        "host_organization_name": "American Physical Society",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320261"
+        ],
+        "host_organization_lineage_names": [
+          "American Physical Society"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physical Review Letters",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:10062053",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/10062053",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physical review letters",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:research-information.bris.ac.uk:openaire_cris_publications/131a41a3-1cfd-482f-8027-4ac3d57e35a8",
+      "is_oa": false,
+      "landing_page_url": "https://research-information.bris.ac.uk/en/publications/131a41a3-1cfd-482f-8027-4ac3d57e35a8",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400895",
+        "display_name": "Bristol Research (University of Bristol)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I36234482",
+        "host_organization_name": "University of Bristol",
+        "host_organization_lineage": [
+          "https://openalex.org/I36234482"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Deutsch, D, Ekert, A, Jozsa, R O, Macchiavello, C, Popescu, S & Sampera, A 1996, 'Quantum privacy amplification and the security of quantum cryptography over noisy channels', Physical Review Letters, vol. 77, pp. 2818 - 2821. < http://www.cs.bris.ac.uk/Tools/Reports/Abstracts/1996-jozsa--0.html >",
+      "raw_type": "info:eu-repo/semantics/publishedVersion"
+    },
+    {
+      "id": "pmh:oai:arXiv.org:quant-ph/9604039",
+      "is_oa": true,
+      "landing_page_url": "http://arxiv.org/abs/quant-ph/9604039",
+      "pdf_url": "https://arxiv.org/pdf/quant-ph/9604039",
+      "source": {
+        "id": "https://openalex.org/S4306400194",
+        "display_name": "arXiv (Cornell University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I205783295",
+        "host_organization_name": "Cornell University",
+        "host_organization_lineage": [
+          "https://openalex.org/I205783295"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:CiteSeerX.psu:10.1.1.49.6692",
+      "is_oa": false,
+      "landing_page_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.49.6692",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "ftp://eve.physics.ox.ac.uk/Archive/Numbered/DEJMPS96/dejmps2.ps.gz",
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:cds.cern.ch:302189",
+      "is_oa": false,
+      "landing_page_url": "http://cds.cern.ch/record/302189",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402194",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I67311998",
+        "host_organization_name": "European Organization for Nuclear Research",
+        "host_organization_lineage": [
+          "https://openalex.org/I67311998"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": ""
+    },
+    {
+      "id": "pmh:oai:ora.ox.ac.uk:uuid:2632595a-188b-4ff8-a6be-d0133d72a309",
+      "is_oa": false,
+      "landing_page_url": "https://ora.ox.ac.uk/objects/uuid:2632595a-188b-4ff8-a6be-d0133d72a309",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402636",
+        "display_name": "Oxford University Research Archive (ORA) (University of Oxford)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I40120149",
+        "host_organization_name": "University of Oxford",
+        "host_organization_lineage": [
+          "https://openalex.org/I40120149"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "PubMed (http://www.ncbi.nlm.nih.gov/pubmed/)",
+      "raw_type": "Journal article"
+    }
+  ],
+  "best_oa_location": {
+    "id": "pmh:oai:arXiv.org:quant-ph/9604039",
+    "is_oa": true,
+    "landing_page_url": "http://arxiv.org/abs/quant-ph/9604039",
+    "pdf_url": "https://arxiv.org/pdf/quant-ph/9604039",
+    "source": {
+      "id": "https://openalex.org/S4306400194",
+      "display_name": "arXiv (Cornell University)",
+      "issn_l": null,
+      "issn": null,
+      "is_oa": true,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/I205783295",
+      "host_organization_name": "Cornell University",
+      "host_organization_lineage": [
+        "https://openalex.org/I205783295"
+      ],
+      "host_organization_lineage_names": [],
+      "type": "repository"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "submittedVersion",
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": null,
+    "raw_type": "text"
+  },
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/16",
+      "display_name": "Peace, Justice and strong institutions",
+      "score": 0.5199999809265137
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 15,
+  "referenced_works": [
+    "https://openalex.org/W1992265536",
+    "https://openalex.org/W2003992904",
+    "https://openalex.org/W2006226307",
+    "https://openalex.org/W2007661134",
+    "https://openalex.org/W2020725861",
+    "https://openalex.org/W2026358914",
+    "https://openalex.org/W2028815089",
+    "https://openalex.org/W2043293634",
+    "https://openalex.org/W2051051926",
+    "https://openalex.org/W2054388650",
+    "https://openalex.org/W2062258079",
+    "https://openalex.org/W2062292260",
+    "https://openalex.org/W2154300278",
+    "https://openalex.org/W2166400453",
+    "https://openalex.org/W2561675875"
+  ],
+  "related_works": [
+    "https://openalex.org/W4301359832",
+    "https://openalex.org/W2294476531",
+    "https://openalex.org/W2056138576",
+    "https://openalex.org/W2461874320",
+    "https://openalex.org/W4247841087",
+    "https://openalex.org/W2023115820",
+    "https://openalex.org/W2293736102",
+    "https://openalex.org/W4250029908",
+    "https://openalex.org/W1977821353",
+    "https://openalex.org/W2064832889"
+  ],
+  "abstract_inverted_index": {
+    "Existing": [
+      0
+    ],
+    "quantum": [
+      1,
+      17,
+      50,
+      81
+    ],
+    "cryptographic": [
+      2,
+      55
+    ],
+    "schemes": [
+      3,
+      34
+    ],
+    "are": [
+      4,
+      26,
+      35
+    ],
+    "not,": [
+      5
+    ],
+    "as": [
+      6
+    ],
+    "they": [
+      7,
+      21,
+      25
+    ],
+    "stand,": [
+      8
+    ],
+    "operable": [
+      9,
+      23
+    ],
+    "in": [
+      10
+    ],
+    "the": [
+      11,
+      16,
+      32,
+      47
+    ],
+    "presence": [
+      12
+    ],
+    "of": [
+      13,
+      49
+    ],
+    "noise": [
+      14
+    ],
+    "on": [
+      15
+    ],
+    "communication": [
+      18
+    ],
+    "channel.": [
+      19,
+      66
+    ],
+    "Although": [
+      20
+    ],
+    "become": [
+      22
+    ],
+    "if": [
+      24
+    ],
+    "supplemented": [
+      27
+    ],
+    "by": [
+      28
+    ],
+    "classical": [
+      29
+    ],
+    "privacy-amplification": [
+      30
+    ],
+    "techniques,": [
+      31
+    ],
+    "resulting": [
+      33
+    ],
+    "difficult": [
+      36
+    ],
+    "to": [
+      37
+    ],
+    "analyze": [
+      38
+    ],
+    "and": [
+      39,
+      53,
+      83
+    ],
+    "have": [
+      40
+    ],
+    "not": [
+      41
+    ],
+    "been": [
+      42
+    ],
+    "proved": [
+      43
+    ],
+    "secure.": [
+      44
+    ],
+    "We": [
+      45
+    ],
+    "introduce": [
+      46
+    ],
+    "concept": [
+      48
+    ],
+    "privacy": [
+      51
+    ],
+    "amplification": [
+      52
+    ],
+    "a": [
+      54,
+      64,
+      79
+    ],
+    "scheme": [
+      56,
+      68
+    ],
+    "incorporating": [
+      57
+    ],
+    "it": [
+      58,
+      76
+    ],
+    "which": [
+      59
+    ],
+    "is": [
+      60,
+      92
+    ],
+    "provably": [
+      61
+    ],
+    "secure": [
+      62
+    ],
+    "over": [
+      63
+    ],
+    "noisy": [
+      65
+    ],
+    "The": [
+      67
+    ],
+    "uses": [
+      69
+    ],
+    "an": [
+      70
+    ],
+    "``entanglement": [
+      71
+    ],
+    "purification''": [
+      72
+    ],
+    "procedure": [
+      73
+    ],
+    "which,": [
+      74
+    ],
+    "because": [
+      75
+    ],
+    "requires": [
+      77
+    ],
+    "only": [
+      78
+    ],
+    "few": [
+      80
+    ],
+    "controlled-not": [
+      82
+    ],
+    "single-qubit": [
+      84
+    ],
+    "operations,": [
+      85
+    ],
+    "could": [
+      86
+    ],
+    "be": [
+      87
+    ],
+    "implemented": [
+      88
+    ],
+    "using": [
+      89
+    ],
+    "technology": [
+      90
+    ],
+    "that": [
+      91
+    ],
+    "currently": [
+      93
+    ],
+    "being": [
+      94
+    ],
+    "developed.": [
+      95
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 23
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 89
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 52
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 62
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 41
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 59
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 38
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 42
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 33
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 44
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 46
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 39
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 54
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 42
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 58
+    }
+  ],
+  "updated_date": "2026-05-08T15:41:06.802602",
+  "created_date": "2025-10-10T00:00:00"
+}

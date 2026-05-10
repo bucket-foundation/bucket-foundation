@@ -1,0 +1,14 @@
+# Direct oral anticoagulants and digestive bleeding: therapeutic management and preventive measures.
+
+- **PMID**: 28567119
+- **DOI**: 10.1177/1756283X17702092
+- **PMCID**: PMC5568772 (full-text saved)
+- **Journal**: Therapeutic advances in gastroenterology  ·  **Year**: 2017
+- **Authors**: David Deutsch, Christian Boustière, Emile Ferrari, Pierre Albaladejo, Pierre-Emmanuel Morange, Robert Benamouzig
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28567119/
+- **Captured**: 2026-05-10T13:28:43
+
+## Abstract
+
+The use of direct oral anticoagulants (DOACs) was an important step forward in the management of atrial fibrillation and venous thromboembolism (VTE). The DOACs, anti-IIa for dabigatran and anti-Xa for rivaroxaban, apixaban and edoxaban, all have a rapid onset of action and a short half life. There is no need for routine hemostasis testing for treatment monitoring of a DOAC. Compared with vitamin K antagonists (VKAs), DOACs may increase the risk of gastrointestinal bleeding (relative risk 1.25). Withholding the DOAC treatment, evaluating the time of the last intake and estimating the patient's renal function are the first steps in the management of gastrointestinal bleeding. For patients without impaired renal function, achieving low coagulation takes around 24 h after the last intake of a DOAC. The use of DOAC antagonists will be helpful in controlling bleeding in the most severe and urgent situations. Idarucizumab is available for clinical use for dabigatran and andexanet is currently being reviewed by drug agencies for rivaroxaban, apixaban and edoxaban. It is important to assess the bleeding risk associated with the planned procedure, and the patient's renal function before withholding DOAC therapy for a scheduled intervention. It is mandatory to strengthen the local hemostasis strategies in DOAC-treated patients undergoing a therapeutic endoscopic procedure. Resuming or not resuming anticoagulation with a DOAC after bleeding or a risky procedure depends on the thrombotic and bleeding risk as well as the procedure involved. This discussion should always involve the cardiologist and decisions should be taken by a pluridisciplinary team.

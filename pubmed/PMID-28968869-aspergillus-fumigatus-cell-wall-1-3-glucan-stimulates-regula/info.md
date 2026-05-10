@@ -1,0 +1,14 @@
+# Aspergillus fumigatus Cell Wall α-(1,3)-Glucan Stimulates Regulatory T-Cell Polarization by Inducing PD-L1 Expression on Human Dendritic Cells.
+
+- **PMID**: 28968869
+- **DOI**: 10.1093/infdis/jix469
+- **PMCID**:  
+- **Journal**: The Journal of infectious diseases  ·  **Year**: 2017
+- **Authors**: Emmanuel Stephen-Victor, Anupama Karnam, Thierry Fontaine, Anne Beauvais, Mrinmoy Das, Pushpa Hegde, Praveen Prakhar, Sahana Holla, Kithiganahalli N Balaji, Srini V Kaveri, Jean-Paul Latgé, Vishukumar Aimanianda, Jagadeesh Bayry
+- **MeSH**: Animals, Aspergillus fumigatus, B7-H1 Antigen, Biomarkers, Cytokines, Dendritic Cells, Gene Expression, Glucans, Humans, Interferon-gamma
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28968869/
+- **Captured**: 2026-05-10T13:28:51
+
+## Abstract
+
+Human dendritic cell (DC) response to α-(1,3)-glucan polysaccharide of Aspergillus fumigatus and ensuing CD4+ T-cell polarization are poorly characterized. α-(1,3)-Glucan was isolated from A. fumigatus conidia and mycelia cell wall. For the analysis of polarization, DCs and autologous naive CD4+ T cells were cocultured. Phenotype of immune cells was analyzed by flow cytometry, and cytokines by enzyme-linked immunosorbent assay (ELISA). Blocking antibodies were used to dissect the role of Toll-like receptor 2 (TLR2) and programmed death-ligand 1 (PD-L1) in regulating α-(1,3)-glucan-mediated DC activation and T-cell responses. DCs from TLR2-deficient mice were additionally used to consolidate the findings. α-(1,3)-Glucan induced the maturation of DCs and was dependent in part on TLR2. "α-(1,3)-Glucan-educated" DCs stimulated the activation of naive T cells and polarized a subset of these cells into CD4+CD25+FoxP3+ regulatory T cells (Tregs). Mechanistically, Treg stimulation by α-(1,3)-glucan was dependent on the PD-L1 pathway that negatively regulated interferon-gamma (IFN-γ) secretion. Short α-(1,3)-oligosaccharides lacked the capacity to induce maturation of DCs but significantly blocked α-(1,3)-glucan-induced Treg polarization. PD-L1 dictates the balance between Treg and IFN-γ responses induced by α-(1,3)-glucan. Our data provide a rationale for the exploitation of immunotherapeutic approaches that target PD-1-PD-L1 to enhance protective immune responses to A. fumigatus infections.

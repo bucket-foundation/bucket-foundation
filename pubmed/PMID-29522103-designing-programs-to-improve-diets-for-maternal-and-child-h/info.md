@@ -1,0 +1,14 @@
+# Designing programs to improve diets for maternal and child health: estimating costs and potential dietary impacts of nutrition-sensitive programs in Ethiopia, Nigeria, and India.
+
+- **PMID**: 29522103
+- **DOI**: 10.1093/heapol/czy013
+- **PMCID**: PMC4726504 (full-text saved)
+- **Journal**: Health policy and planning  ·  **Year**: 2018
+- **Authors**: William A Masters, Katherine L Rosettie, Sarah Kranz, Goodarz Danaei, Patrick Webb, Dariush Mozaffarian
+- **MeSH**: Child Health, Child, Preschool, Diet, Ethiopia, Female, Food Supply, Humans, India, Infant, Infant, Newborn
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29522103/
+- **Captured**: 2026-05-10T13:28:55
+
+## Abstract
+
+Improving maternal and child nutrition in resource-poor settings requires effective use of limited resources, but priority-setting is constrained by limited information about program costs and impacts, especially for interventions designed to improve diet quality. This study utilized a mixed methods approach to identify, describe and estimate the potential costs and impacts on child dietary intake of 12 nutrition-sensitive programs in Ethiopia, Nigeria and India. These potential interventions included conditional livestock and cash transfers, media and education, complementary food processing and sales, household production and food pricing programs. Components and costs of each program were identified through a novel participatory process of expert regional consultation followed by validation and calibration from literature searches and comparison with actual budgets. Impacts on child diets were determined by estimating of the magnitude of economic mechanisms for dietary change, comprehensive reviews of evaluations and effectiveness for similar programs, and demographic data on each country. Across the 12 programs, total cost per child reached (net present value, purchasing power parity adjusted) ranged very widely: from 0.58 to 2650 USD/year among five programs in Ethiopia; 2.62 to 1919 USD/year among four programs in Nigeria; and 27 to 586 USD/year among three programs in India. When impacts were assessed, the largest dietary improvements were for iron and zinc intakes from a complementary food production program in Ethiopia (increases of 17.7 mg iron/child/day and 7.4 mg zinc/child/day), vitamin A intake from a household animal and horticulture production program in Nigeria (335 RAE/child/day), and animal protein intake from a complementary food processing program in Nigeria (20.0 g/child/day). These results add substantial value to the limited literature on the costs and dietary impacts of nutrition-sensitive interventions targeting children in resource-limited settings, informing policy discussions and serving as critical inputs to future cost-effectiveness analyses focusing on disease outcomes.

@@ -1,0 +1,14 @@
+# A blueprint for telerehabilitation guidelines.
+
+- **PMID**: 25945175
+- **DOI**: 10.5195/ijt.2010.6063
+- **PMCID**: PMC4296793 (full-text saved)
+- **Journal**: International journal of telerehabilitation  ·  **Year**: 2010
+- **Authors**: David Brennan, Lyn Tindall, Deborah Theodoros, Janet Brown, Michael Campbell, Diana Christiana, David Smith, Jana Cason, Alan Lee
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25945175/
+- **Captured**: 2026-05-10T13:27:46
+
+## Abstract
+
+Telerehabilitation refers to the delivery of rehabilitation services via information and communication technologies. Clinically, this term encompasses a range of rehabilitation and habilitation services that include assessment, monitoring, prevention, intervention, supervision, education, consultation, and counseling. Telerehabilitation has the capacity to provide service across the lifespan and across a continuum of care. Just as the services and providers of telerehabilitation are broad, so are the points of service, which may include health care settings, clinics, homes, schools, or community-based worksites. This document was developed collaboratively by members of the Telerehabilitation SIG of the American Telemedicine Association, with input and guidance from other practitioners in the field, strategic stakeholders, and ATA staff. Its purpose is to inform and assist practitioners in providing effective and safe services that are based on client needs, current empirical evidence, and available technologies. Telerehabilitation professionals, in conjunction with professional associations and other organizations are encouraged to use this document as a template for developing discipline-specific standards, guidelines, and practice requirements.
