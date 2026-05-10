@@ -1,0 +1,14 @@
+# Integrated Information Theory: A Consciousness-First Approach to What Exists
+
+- **arXiv ID**: `2510.25998`
+- **URL**: https://arxiv.org/abs/2510.25998
+- **Authors**: Giulio Tononi, Melanie Boly
+- **Published**: 2025-10-29T22:22:35Z
+- **Updated**: 2025-12-21T20:32:52Z
+- **Primary category**: q-bio.NC
+- **All categories**: q-bio.NC
+- **Captured**: 2026-05-09T21:57:13
+
+## Abstract
+
+This overview of integrated information theory (IIT) emphasizes IIT's "consciousness-first" approach to what exists. Consciousness demonstrates to each of us that something exists--experience--and reveals its essential properties--the axioms of phenomenal existence. IIT formulates these properties operationally, yielding the postulates of physical existence. To exist intrinsically or absolutely, an entity must have cause-effect power upon itself, in a specific, unitary, definite and structured manner. IIT's explanatory identity claims that an entity's cause-effect structure accounts for all properties of an experience--essential and accidental--with no additional ingredients. These include the feeling of spatial extendedness, temporal flow, of objects binding general concepts with particular configurations of features, and of qualia such as colors and sounds. IIT's intrinsic ontology has implications for understanding meaning, perception, and free will, for assessing consciousness in patients, infants, other species, and artifacts, and for reassessing our place in nature.

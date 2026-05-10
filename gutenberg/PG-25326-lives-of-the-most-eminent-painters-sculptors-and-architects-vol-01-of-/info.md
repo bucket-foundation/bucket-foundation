@@ -8,7 +8,7 @@
 - **Download count (PG)**: 6190
 - **Subjects**: Art, Italian, Artists -- Italy -- Biography
 - **Bookshelves**: Category: Art, Category: Biographies, Category: History - Early Modern (c. 1450-1750)
-- **Captured**: 2026-05-09T21:43:14
+- **Captured**: 2026-05-09T21:53:46
 
 ## Files
 

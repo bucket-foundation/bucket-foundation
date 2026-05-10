@@ -8,7 +8,7 @@
 - **Download count (PG)**: 9918
 - **Subjects**: Byzantine Empire -- History -- To 527, Rome -- History -- Empire, 30 B.C.-476 A.D.
 - **Bookshelves**: Category: History - Ancient, Category: History - Religious
-- **Captured**: 2026-05-09T21:44:30
+- **Captured**: 2026-05-09T21:51:44
 
 ## Files
 

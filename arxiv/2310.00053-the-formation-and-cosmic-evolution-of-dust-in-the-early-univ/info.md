@@ -1,0 +1,14 @@
+# The formation and cosmic evolution of dust in the early Universe. I. Dust sources
+
+- **arXiv ID**: `2310.00053`
+- **URL**: https://arxiv.org/abs/2310.00053
+- **Authors**: Raffaella Schneider, Roberto Maiolino
+- **Published**: 2023-09-29T18:00:03Z
+- **Updated**: 2024-01-31T13:01:29Z
+- **Primary category**: astro-ph.GA
+- **All categories**: astro-ph.GA, astro-ph.SR
+- **Captured**: 2026-05-09T21:56:13
+
+## Abstract
+
+Dust-obscured star formation has dominated the cosmic history of star formation since z = 4. However, the recent finding of significant amount of dust in galaxies out to z = 8 has opened the new frontier of investigating the origin of dust also in the earliest phases of galaxy formation, within the first 1.5 billion years from the Big Bang. This is a key and rapid transition phase for the evolution of dust, as galaxy evolutionary timescales become comparable with the formation timescales of dust. Our aim is to provide an overview of the several findings on dust formation and evolution at z > 4, and of the theoretical efforts to explain the observational results. We have organized the review in two parts. In the first part, presented here, we focus on dust sources, primarily supernovae and asymptotic giant branch stars, and the subsequent reprocessing of dust in the interstellar medium, through grain destruction and growth. We also discuss other dust production mechanisms, such as Red Super Giants, Wolf--Rayet stars, Classical Novae, Type Ia Supernovae, and dust formation in quasar winds. The focus of this first part is on theoretical models of dust production sources, although we also discuss the comparison with observations in the nearby Universe, which are key to put constraints on individual sources and processes. While the description has a general applicability at any redshift, we emphasize the relative role of different sources in the dust build-up in the early Universe. In the second part, which will be published later on, we will focus on the recent observational results at z > 4, discussing the theoretical models that have been proposed to interpret those results, as well as the profound implications for galaxy formation.

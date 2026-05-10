@@ -1,0 +1,14 @@
+# Black Hole Paradoxes
+
+- **arXiv ID**: `astro-ph/0412101`
+- **URL**: https://arxiv.org/abs/astro-ph/0412101
+- **Authors**: Mario Rabinowitz
+- **Published**: 2004-12-03T23:34:41Z
+- **Updated**: 2005-02-24T22:23:03Z
+- **Primary category**: astro-ph
+- **All categories**: astro-ph
+- **Captured**: 2026-05-09T21:53:57
+
+## Abstract
+
+The Black Hole enigma has produced many paradoxes. A consensus regarding the resolution of some conundrums such as the Naked Singularity Paradox and the Black Hole Lost Information Paradox (LIP) has still not been achieved. Black hole complementarity as related to the LIP and the LIP itself are challenged by gravitational tunneling radiation. Where possible, the paradoxes will be presented in historical context presenting the interplay of competing perspectives such as those of Bekenstein, Belinski, Chandrasekar, Finkelstein, Hawking, Maldacena, Page, Penrose, Preskill, Susskind, 't Hooft, Veneziano, Wald, Winterberg, Yilmaz, and others. The simplest possible equation is obtained for Hawking radiation. The average kinetic energy of emitted particles may have a feature in common with thermionic emission. A broad range of topics will be covered including: Why can or can't the formation of a black hole be observed? Can one observe a naked singularity like the one clothed by a black hole? What can come out of, or seem to come out of, a black hole? What happens to the information that falls into a black hole? Doesn't the resolution of the original black hole entropy paradox introduce an equally challenging puzzle? Related anomalies in the speed of light, the speed of gravity, the speed of inflation, and Mach's principle are considered. Black hole entropy violation of the Nernst heat theorem is virtual As we shall see, these paradoxes have served as an incentive for research to sharpen our thinking, and even to promote the development of new theoretical and experimental physics. A reasonable number of paradoxes are a good thing. But too many paradoxes requiring manifold patchwork fixes may augur basic flaws/inconsistencies that signal the need for a paradigm shift.

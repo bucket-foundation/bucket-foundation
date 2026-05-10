@@ -1,0 +1,14 @@
+# Applications of Tao General Difference in Discrete Domain
+
+- **arXiv ID**: `2401.15287`
+- **URL**: https://arxiv.org/abs/2401.15287
+- **Authors**: Linmi Tao, Ruiyang Liu, Donglai Tao, Wu Xia, Feilong Ma, Yu Cheng, Jingmao Cui
+- **Published**: 2024-01-27T03:57:32Z
+- **Updated**: 2024-01-27T03:57:32Z
+- **Primary category**: cs.CV
+- **All categories**: cs.CV, cs.DM, math.NA
+- **Captured**: 2026-05-09T21:53:31
+
+## Abstract
+
+Numerical difference computation is one of the cores and indispensable in the modern digital era. Tao general difference (TGD) is a novel theory and approach to difference computation for discrete sequences and arrays in multidimensional space. Built on the solid theoretical foundation of the general difference in a finite interval, the TGD operators demonstrate exceptional signal processing capabilities in real-world applications. A novel smoothness property of a sequence is defined on the first- and second TGD. This property is used to denoise one-dimensional signals, where the noise is the non-smooth points in the sequence. Meanwhile, the center of the gradient in a finite interval can be accurately location via TGD calculation. This solves a traditional challenge in computer vision, which is the precise localization of image edges with noise robustness. Furthermore, the power of TGD operators extends to spatio-temporal edge detection in three-dimensional arrays, enabling the identification of kinetic edges in video data. These diverse applications highlight the properties of TGD in discrete domain and the significant promise of TGD for the computation across signal processing, image analysis, and video analytic.

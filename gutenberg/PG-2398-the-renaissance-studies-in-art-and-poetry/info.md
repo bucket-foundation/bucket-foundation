@@ -8,7 +8,7 @@
 - **Download count (PG)**: 2171
 - **Subjects**: Arts, Renaissance, Renaissance, Renaissance -- Italy
 - **Bookshelves**: Category: Art, Category: Essays, Letters & Speeches
-- **Captured**: 2026-05-09T21:43:34
+- **Captured**: 2026-05-09T21:54:25
 
 ## Files
 

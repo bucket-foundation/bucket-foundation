@@ -1,0 +1,14 @@
+# From Neuronal Packets to Thoughtseeds: A Hierarchical Model of Embodied Cognition in the Global Workspace
+
+- **arXiv ID**: `2408.15982`
+- **URL**: https://arxiv.org/abs/2408.15982
+- **Authors**: Prakash Chandra Kavi, Gorka Zamora-López, Daniel Ari Friedman
+- **Published**: 2024-08-28T17:51:16Z
+- **Updated**: 2024-10-17T11:42:29Z
+- **Primary category**: q-bio.NC
+- **All categories**: q-bio.NC
+- **Captured**: 2026-05-09T21:57:18
+
+## Abstract
+
+The emergence of cognition requires a framework that bridges evolutionary principles with neurocomputational mechanisms. This paper introduces the novel "thoughtseed" framework, proposing that cognition arises from the dynamic interaction of self-organizing units of embodied knowledge called "thoughtseeds" within the Global Workspace of consciousness. Leveraging foundational concepts from evolutionary theory, neuronal packets, and free energy principle, we propose a hierarchical model of cognitive states, comprising Neuronal Packet Domains (NPDs), Knowledge Domains (KDs), the thoughtseed network, and meta-cognition. This hierarchical interplay, mediated by nested Markov blankets and reciprocal message passing, facilitates the emergence of thoughtseeds as coherent patterns of activity that guide perception, action, and learning. Thoughtseeds, posited as fundamental units of thought, compete for dominance within the Global Workspace, with the dominant thoughtseed shaping conscious experience and guiding behavior. We present a mathematical framework grounded in active inference and dynamical systems theory to model thoughtseed dynamics and their contribution to the unitary nature of consciousness. The thoughtseed framework offers a promising step towards a novel, biologically-grounded model for understanding the organizing principles and emergence of embodied cognition, offering a unified account of cognitive phenomena, with potential applications in understanding consciousness, attention, and decision-making.
