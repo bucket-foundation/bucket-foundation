@@ -1,0 +1,14 @@
+# Unveiling the Causal Role of Auditory Theta Rhythms in Musical Pleasure: A Transcranial Alternating Current Stimulation/Electroencephalogram Study.
+
+- **PMID**: 40824730
+- **DOI**: 10.1162/JOCN.a.91
+- **PMCID**:  
+- **Journal**: Journal of cognitive neuroscience  ·  **Year**: 2026
+- **Authors**: Alberto Ara, Albert León-Alsina, Gemma Fàbrega Camps, Oscar Bedford, Josep Marco-Pallarés, Robert J Zatorre
+- **MeSH**: Humans, Theta Rhythm, Transcranial Direct Current Stimulation, Male, Music, Female, Young Adult, Adult, Pleasure, Auditory Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40824730/
+- **Captured**: 2026-05-10T15:31:58
+
+## Abstract
+
+The enjoyment of music involves a complex interplay between brain perceptual areas and the reward network. While previous studies have shown that musical liking is related to an enhancement of synchronization between the right temporal and frontal brain regions via theta frequency band oscillations, the underlying mechanisms of this interaction remain elusive. Specifically, a causal relationship between theta oscillations and musical pleasure has yet to be shown. In the present study, we address this question by using transcranial alternating current stimulation (tACS). Twenty-four participants underwent three different sessions where they received tACS over the right auditory cortex before listening to and rating a set of melodies selected to vary in familiarity and complexity. In the target session, participants received theta stimulation, while in the other two sessions, they received beta and sham stimulation, serving as controls. We recorded brain activity using EEG during task performance to confirm the effects of tACS on oscillatory activity. Results revealed that compared with sham, theta, but not beta, stimulation resulted in higher liking ratings specifically for unfamiliar music with low complexity. In addition, we found increased theta connectivity between the right temporal and frontal electrodes for these stimuli when they were most liked after theta stimulation but not after beta stimulation. These findings support a causal and frequency-specific relationship between music hedonic judgments and theta oscillatory mechanisms that synchronize the right temporal and frontal areas. These mechanisms play a crucial role in different cognitive processes supported by frontotemporal loops, such as auditory working memory and predictive processing, which are fundamental to music reward processing.

@@ -1,0 +1,14 @@
+# Rapid biasing effect of prior auditory contexts on bistable tritone perception.
+
+- **PMID**: 41488739
+- **DOI**: 10.1371/journal.pbio.0050056
+- **PMCID**: PMC1800308 (full-text saved)
+- **Journal**: i-Perception  ·  **Year**: 2026
+- **Authors**: Cheng-You Hou, Jyun-Jhe Wang, Yu-Hui Lo, Philip Tseng
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41488739/
+- **Captured**: 2026-05-10T15:32:11
+
+## Abstract
+
+The tritone paradox is a bistable auditory phenomenon where two Shepard tones can be interpreted as either ascending or descending. Previous studies have demonstrated that preceding auditory context can bias the direction of tritone perception. Here, we systematically manipulated both the quantity (anywhere between 1 and 10) and types (higher, lower, same as first target tone, or silent) of context tones before presenting a target tritone pair. We found that the contextual biasing effect can emerge with as few as 1-2 context tones, and plateaus quickly within this small window. Notably, low-frequency context tones produced a more pronounced and immediate bias than high-frequency tones. Together, this study demonstrates a narrow window of the auditory context effect, where minimal contextual cues are sufficient to guide perceptual interpretation of ambiguous auditory stimuli. The findings pave the way for more detailed investigations into the cognitive mechanisms of auditory perception, emphasizing the swift influence of immediate auditory contexts on perceptual outcomes.

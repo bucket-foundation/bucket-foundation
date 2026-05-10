@@ -1,0 +1,29 @@
+{
+  "pmid": "15109681",
+  "title": "ARTSTREAM: a neural network model of auditory scene analysis and source segregation.",
+  "abstract": "Multiple sound sources often contain harmonics that overlap and may be degraded by environmental noise. The auditory system is capable of teasing apart these sources into distinct mental objects, or streams. Such an 'auditory scene analysis' enables the brain to solve the cocktail party problem. A neural network model of auditory scene analysis, called the ARTSTREAM model, is presented to propose how the brain accomplishes this feat. The model clarifies how the frequency components that correspond to a given acoustic source may be coherently grouped together into a distinct stream based on pitch and spatial location cues. The model also clarifies how multiple streams may be distinguished and separated by the brain. Streams are formed as spectral-pitch resonances that emerge through feedback interactions between frequency-specific spectral representations of a sound source and its pitch. First, the model transforms a sound into a spatial pattern of frequency-specific activation across a spectral stream layer. The sound has multiple parallel representations at this layer. A sound's spectral representation activates a bottom-up filter that is sensitive to the harmonics of the sound's pitch. This filter activates a pitch category which, in turn, activates a top-down expectation that is also sensitive to the harmonics of the pitch. Resonance develops when the spectral and pitch representations mutually reinforce one another. Resonance provides the coherence that allows one voice or instrument to be tracked through a noisy multiple source environment. Spectral components are suppressed if they do not match harmonics of the top-down expectation that is read-out by the selected pitch, thereby allowing another stream to capture these components, as in the 'old-plus-new heuristic' of Bregman. Multiple simultaneously occurring spectral-pitch resonances can hereby emerge. These resonance and matching mechanisms are specialized versions of Adaptive Resonance Theory, or ART, which clarifies how pitch representations can self-organize during learning of harmonic bottom-up filters and top-down expectations. The model also clarifies how spatial location cues can help to disambiguate two sources with similar spectral cues. Data are simulated from psychophysical grouping experiments, such as how a tone sweeping upwards in frequency creates a bounce percept by grouping with a downward sweeping tone due to proximity in frequency, even if noise replaces the tones at their intersection point. Illusory auditory percepts are also simulated, such as the auditory continuity illusion of a tone continuing through a noise burst even if the tone is not present during the noise, and the scale illusion of Deutsch whereby downward and upward scales presented alternately to the two ears are regrouped based on frequency proximity, leading to a bounce percept. Since related sorts of resonances have been used to quantitatively simulate psychophysical data about speech perception, the model strengthens the hypothesis that ART-like mechanisms are used at multiple levels of the auditory system. Proposals for developing the model to explain more complex streaming data are also provided.",
+  "authors": [
+    "Stephen Grossberg",
+    "Krishna K Govindarajan",
+    "Lonce L Wyse",
+    "Michael A Cohen"
+  ],
+  "journal": "Neural networks : the official journal of the International Neural Network Society",
+  "year": "2004",
+  "doi": "10.1016/j.neunet.2003.10.002",
+  "pmcid": "",
+  "mesh": [
+    "Acoustic Stimulation",
+    "Algorithms",
+    "Auditory Pathways",
+    "Auditory Perception",
+    "Cues",
+    "Functional Laterality",
+    "Humans",
+    "Neural Networks, Computer",
+    "Noise",
+    "Pitch Discrimination",
+    "Sound Spectrography",
+    "Speech Acoustics"
+  ]
+}

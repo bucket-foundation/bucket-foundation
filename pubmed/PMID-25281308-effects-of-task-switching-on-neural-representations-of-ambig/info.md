@@ -1,0 +1,14 @@
+# Effects of task-switching on neural representations of ambiguous sound input.
+
+- **PMID**: 25281308
+- **DOI**: 10.1016/j.neuropsychologia.2014.09.039
+- **PMCID**: PMC3282310 (full-text saved)
+- **Journal**: Neuropsychologia  ·  **Year**: 2014
+- **Authors**: Elyse S Sussman, Albert S Bregman, Wei-Wei Lee
+- **MeSH**: Acoustic Stimulation, Adolescent, Adult, Attention, Auditory Cortex, Auditory Perception, Cues, Electroencephalography, Evoked Potentials, Auditory, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25281308/
+- **Captured**: 2026-05-10T15:32:07
+
+## Abstract
+
+The ability to perceive discrete sound streams in the presence of competing sound sources relies on multiple mechanisms that organize the mixture of the auditory input entering the ears. Many studies have focused on mechanisms that contribute to integrating sounds that belong together into one perceptual stream (integration) and segregating those that come from different sound sources (segregation). However, little is known about mechanisms that allow us to perceive individual sound sources within a dynamically changing auditory scene, when the input may be ambiguous, and heard as either integrated or segregated. This study tested the question of whether focusing on one of two possible sound organizations suppressed representation of the alternative organization. We presented listeners with ambiguous input and cued them to switch between tasks that used either the integrated or the segregated percept. Electrophysiological measures indicated which organization was currently maintained in memory. If mutual exclusivity at the neural level was the rule, attention to one of two possible organizations would preclude neural representation of the other. However, significant MMNs were elicited to both the target organization and the unattended, alternative organization, along with the target-related P3b component elicited only to the designated target organization. Results thus indicate that both organizations (integrated and segregated) were simultaneously maintained in memory regardless of which task was performed. Focusing attention to one aspect of the sounds did not abolish the alternative, unattended organization when the stimulus input was ambiguous. In noisy environments, such as walking on a city street, rapid and flexible adaptive processes are needed to help facilitate rapid switching to different sound sources in the environment. Having multiple representations available to the attentive system would allow for such flexibility, needed in everyday situations to maintain stable auditory percepts, and to allow rapid scanning of interesting events in a busy environment.
