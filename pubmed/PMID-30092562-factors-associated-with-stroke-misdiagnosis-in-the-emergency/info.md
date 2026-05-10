@@ -1,0 +1,14 @@
+# Factors Associated with Stroke Misdiagnosis in the Emergency Department: A Retrospective Case-Control Study.
+
+- **PMID**: 30092562
+- **DOI**: 10.1159/000491635
+- **PMCID**:  
+- **Journal**: Neuroepidemiology  ·  **Year**: 2018
+- **Authors**: Abhay Venkat, Cecilia Cappelen-Smith, Shabeel Askar, Peter R Thomas, Sonu Bhaskar, Amanda Tam, Alan J McDougall, Suzanne J Hodgkinson, Dennis J Cordato
+- **MeSH**: Adult, Aged, Aged, 80 and over, Brain Ischemia, Case-Control Studies, Diagnostic Errors, Emergency Service, Hospital, Female, Humans, Ischemic Attack, Transient
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30092562/
+- **Captured**: 2026-05-10T12:24:42
+
+## Abstract
+
+Failure to recognise acute stroke may result in worse outcomes due to missed opportunity for acute stroke therapies. Our study examines factors associated with stroke misdiagnosis in patients admitted to a large comprehensive stroke centre. Retrospective review comparing 156 consecutive stroke patients misdiagnosed in emergency department (ED) with 156 randomly selected stroke controls matched for age, gender, language spoken and stroke subtype for the period 2014-2016. There were 141 ischemic and 15 hemorrhagic misdiagnosed strokes (median age: 77 years, male:female = 1.3: 1). Symptom resolution, altered mental status, nausea/vomiting, dizziness and vertigo favored misdiagnosis (p < 0.05). Hemiparesis and dysarthria favored an accurate diagnosis (p < 0.05). Misdiagnosed patients were more commonly triaged into a lower ED category (62 vs. 42%, p = 0.001), clinically assessed as Face, Arm, Speech and Time (FAST) - negative (78 vs. 22%, p < 0.001) and underwent delayed CT imaging (median 4.1 vs. 1.5 h, p < 0.001). Misdiagnosed patients were more likely to have posterior circulation stroke (PCS; 39 vs. 22%, p = 0.01) and be admitted under non-neurological services (35 vs. 11%, p < 0.001) with worse discharge outcomes including increased mortality. Patients with stroke misdiagnosis were commonly FAST-negative with nonspecific symptoms including altered mental status, dizziness and nausea/vomiting often associated with PCS. Improved diagnostic accuracy may increase access to acute therapies.

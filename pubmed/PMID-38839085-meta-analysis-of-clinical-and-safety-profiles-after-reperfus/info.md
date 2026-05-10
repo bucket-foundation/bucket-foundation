@@ -1,0 +1,14 @@
+# Meta-analysis of clinical and safety profiles after reperfusion therapy in acute posterior circulation strokes: insights and implications.
+
+- **PMID**: 38839085
+- **DOI**: 10.1177/02841851241255313
+- **PMCID**:  
+- **Journal**: Acta radiologica (Stockholm, Sweden : 1987)  ·  **Year**: 2024
+- **Authors**: Ashek Chowdhury, Murray C Killingsworth, Zeljka Calic, Sonu Mm Bhaskar
+- **MeSH**: Humans, Thrombolytic Therapy, Thrombectomy, Endovascular Procedures, Reperfusion, Ischemic Stroke, Treatment Outcome, Stroke
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38839085/
+- **Captured**: 2026-05-10T12:27:10
+
+## Abstract
+
+Posterior circulation stroke (PCS) accounts for approximately 20% of all acute ischemic strokes. The optimal reperfusion therapy for PCS management remains uncertain. To evaluate the prevalence and outcomes of intravenous thrombolysis (IVT), endovascular thrombectomy (EVT), and bridging therapy in PCS patients. We conducted a meta-analysis of 19 studies examining reperfusion therapy outcomes in PCS patients, including 9765 individuals. We pooled prevalence data and assessed associations between reperfusion therapies and clinical, safety, and recanalization outcomes using random-effects models. The pooled prevalence of reperfusion therapies post-acute PCS was 39% for IVT, 54% for EVT, and 48% for bridging therapy. EVT was associated with significantly higher odds of favorable functional outcomes (modified Rankin Score [mRS] 0-3) at 90 days compared to standard medical therapy (odds ratio [OR] = 5.68; 95% confidence interval [CI]=2.07-15.59;  Our meta-analysis underscores the favorable outcomes associated with EVT in PCS cases. With notable reperfusion rates, understanding factors influencing PCS outcomes can inform patient selection and prognostic considerations.

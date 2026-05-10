@@ -1,0 +1,14 @@
+# Effect of ocean acidification on the nutritional quality of marine phytoplankton for copepod reproduction.
+
+- **PMID**: 31107897
+- **DOI**: 10.1111/gcb.13295
+- **PMCID**: PMC4880321 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2019
+- **Authors**: Morgan T Meyers, William P Cochlan, Edward J Carpenter, Wim J Kimmerer
+- **MeSH**: Animal Feed, Animals, Carbon Dioxide, Copepoda, Diatoms, Fatty Acids, Unsaturated, Female, Hydrogen-Ion Concentration, Male, Nitrogen
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31107897/
+- **Captured**: 2026-05-10T12:24:50
+
+## Abstract
+
+Phytoplankton are the oceans' principal source of polyunsaturated fatty acids that support the growth and reproduction of consumers such as copepods. Previous studies have demonstrated ocean acidification (OA) can change the availability of polyunsaturated fatty acids to consumer diets which may affect consumer reproduction. Two laboratory experiments were conducted to examine the effects of feeding high-pCO2-reared phytoplankton on copepod egg production, hatching success, and naupliar survival. Marine phytoplankton Rhodomonas salina, Skeletonema marinoi, Prorocentrum micans, and Isochrysis galbana were exponentially grown in semi-continuous cultures at present (control) (400 ppm CO2, pH~8.1) and future (1,000 ppm CO2, pH~7.8) conditions and provided to Acartia tonsa copepods over 4 consecutive days as either nitrogen-limited (Exp. I) or nitrogen-depleted (Exp. II) mixed assemblage of phytoplankton. The composition of FAs in the phytoplankton diet was affected by pCO2 concentration and nitrogen deficiency; the ratio of essential fatty acids to total polyunsaturated fatty acids decreased in phytoplankton grown under high pCO2 and the mass of total fatty acids increased under nitrogen depletion. Additionally, total concentrations of essential fatty acids and polyunsaturated fatty acids in the diet mixtures were less under the high-pCO2 compared to the control-pCO2 treatments. Median egg production, hatching success, and naupliar survival were 48-52%, 4-87%, and 9-100% lower, respectively, in females fed high-pCO2 than females fed low-pCO2 phytoplankton, but this decrease in reproductive success was less severe when fed N-depleted, but fatty acid-rich cells. This study demonstrates that the effects of OA on the nutritional quality of phytoplankton (i.e., their cellular fatty acid composition and quota) were modified by the level of nitrogen deficiency and the resulting negative reproductive response of marine primary consumers.

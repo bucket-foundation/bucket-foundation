@@ -1,0 +1,14 @@
+# The impact of surface-adsorbed phosphorus on phytoplankton Redfield stoichiometry.
+
+- **PMID**: 15602560
+- **DOI**: 10.1038/nature03125
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 2004
+- **Authors**: Sergio A Sañudo-Wilhelmy, Antonio Tovar-Sanchez, Fei-Xue Fu, Douglas G Capone, Edward J Carpenter, David A Hutchins
+- **MeSH**: Adsorption, Atlantic Ocean, Carbon, Cyanobacteria, Manganese, Nitrogen, Nitrogen Fixation, Phosphorus, Phytoplankton
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15602560/
+- **Captured**: 2026-05-10T12:23:13
+
+## Abstract
+
+The Redfield ratio of 106 carbon:16 nitrogen:1 phosphorus in marine phytoplankton is one of the foundations of ocean biogeochemistry, with applications in algal physiology, palaeoclimatology and global climate change. However, this ratio varies substantially in response to changes in algal nutrient status and taxonomic affiliation. Here we report that Redfield ratios are also strongly affected by partitioning into surface-adsorbed and intracellular phosphorus pools. The C:N:surface-adsorbed P (80-105 C:15-18 N:1 P) and total (71-80 C:13-14 N:1 P) ratios in natural populations and cultures of Trichodesmium were close to Redfield values and not significantly different from each other. In contrast, intracellular ratios consistently exceeded the Redfield ratio (316-434 C:59-83 N:1 intracellular P). These high intracellular ratios were associated with reduced N2 fixation rates, suggestive of phosphorus deficiency. Other algal species also have substantial surface-adsorbed phosphorus pools, suggesting that our Trichodesmium results are generally applicable to all phytoplankton. Measurements of the distinct phytoplankton phosphorus pools may be required to assess nutrient limitation accurately from elemental composition. Deviations from Redfield stoichiometry may be attributable to surface adsorption of phosphorus rather than to biological processes, and this scavenging could affect the interpretation of marine nutrient inventories and ecosystem models.

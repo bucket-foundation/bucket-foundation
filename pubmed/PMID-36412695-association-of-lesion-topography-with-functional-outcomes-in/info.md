@@ -1,0 +1,14 @@
+# Association of Lesion Topography with Functional Outcomes in Acute Ischemic Stroke Patients Considered for, or Receiving, Reperfusion Therapy: A Meta-Analysis.
+
+- **PMID**: 36412695
+- **DOI**: 10.1161/STROKEAHA.114.005152
+- **PMCID**: PMC8008539 (full-text saved)
+- **Journal**: Neurology international  ·  **Year**: 2022
+- **Authors**: Shuyue Chen, Kevin J Spring, Murray C Killingsworth, Zeljka Calic, Roy G Beran, Sonu M M Bhaskar
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36412695/
+- **Captured**: 2026-05-10T12:26:30
+
+## Abstract
+
+Background: The impact of lesion topography (LT), characterised by the Alberta Stroke Programme Early CT Score (ASPECTS), on outcomes after reperfusion therapy in acute ischemic stroke (AIS) is poorly elucidated. We investigated the prognostic accuracy of ASPECTS-based LT assessment and its association with clinical outcomes in AIS patients considered for reperfusion therapy or receiving intravenous thrombolysis (IVT), endovascular thrombectomy (EVT), or none or both. Methods: Studies were identified from PubMed with additional studies added from Google Scholar. The prevalence of individual ASPECTS regions will also be determined. The association of individual ASPECTS regions with the functional outcome at 90 days will be assessed using random-effects modelling for various cut-offs, such as 6, 7 and 8. The association of continuous ASPECTS with the functional outcome at 90 days will also be undertaken. Forest plots of odds ratios (ORs) will be generated. Results: A total of 25 studies have been included in the final analysis, encompassing 11,404 patients. Pooled estimates indicate that the highest prevalence rates were in cases involving the insula and lentiform nucleus. Subgroup analysis for ASPECTS < 6 (OR 6.10; 95% CI 2.50−14.90; p < 0.0001), ASPECTS < 7 (OR 4.58; 95% CI 1.18−17.86; p < 0.0001) and ASPECTS < 8 (OR 2.26; 95% CI 1.32−3.89; p < 0.0001) revealed a significant association with poor functional outcome at 90 days. Decreasing ASPECTS significantly increased the odds of poor functional outcomes at 90 days (SMD −1.15; 95% CI −1.77−−0.52; p < 0.0001). Conclusions: Our meta-analysis demonstrates that decreasing ASPECTS is significantly associated with poor functional outcomes. Individual ASPECTS regions associated with the highest odds of poor functional outcomes were identified. Future studies on the association of LT and clinical outcomes specific to EVT are required.

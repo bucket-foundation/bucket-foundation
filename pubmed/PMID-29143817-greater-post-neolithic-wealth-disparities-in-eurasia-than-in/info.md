@@ -1,0 +1,14 @@
+# Greater post-Neolithic wealth disparities in Eurasia than in North America and Mesoamerica.
+
+- **PMID**: 29143817
+- **DOI**: 10.2139/ssrn.1912953
+- **PMCID**: PMC2666091 (full-text saved)
+- **Journal**: Nature  ·  **Year**: 2017
+- **Authors**: Timothy A Kohler, Michael E Smith, Amy Bogaard, Gary M Feinman, Christian E Peterson, Alleen Betzenhauser, Matthew Pailes, Elizabeth C Stone, Anna Marie Prentiss, Timothy J Dennehy, Laura J Ellyson, Linda M Nicholas, Ronald K Faulseit, Amy Styring, Jade Whitlam, Mattia Fochesato, Thomas A Foor, Samuel Bowles
+- **MeSH**: Animals, Agriculture, Animals, Domestic, Asia, Central America, Crop Production, Europe, Family Characteristics, History, Ancient, North America
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29143817/
+- **Captured**: 2026-05-10T12:24:34
+
+## Abstract
+
+How wealth is distributed among households provides insight into the fundamental characters of societies and the opportunities they afford for social mobility. However, economic inequality has been hard to study in ancient societies for which we do not have written records, which adds to the challenge of placing current wealth disparities into a long-term perspective. Although various archaeological proxies for wealth, such as burial goods or exotic or expensive-to-manufacture goods in household assemblages, have been proposed, the first is not clearly connected with households, and the second is confounded by abandonment mode and other factors. As a result, numerous questions remain concerning the growth of wealth disparities, including their connection to the development of domesticated plants and animals and to increases in sociopolitical scale. Here we show that wealth disparities generally increased with the domestication of plants and animals and with increased sociopolitical scale, using Gini coefficients computed over the single consistent proxy of house-size distributions. However, unexpected differences in the responses of societies to these factors in North America and Mesoamerica, and in Eurasia, became evident after the end of the Neolithic period. We argue that the generally higher wealth disparities identified in post-Neolithic Eurasia were initially due to the greater availability of large mammals that could be domesticated, because they allowed more profitable agricultural extensification, and also eventually led to the development of a mounted warrior elite able to expand polities (political units that cohere via identity, ability to mobilize resources, or governance) to sizes that were not possible in North America and Mesoamerica before the arrival of Europeans. We anticipate that this analysis will stimulate other work to enlarge this sample to include societies in South America, Africa, South Asia and Oceania that were under-sampled or not included in this study.

@@ -1,0 +1,14 @@
+# Trends in acute stroke presentations to an emergency department: implications for specific communities in accessing acute stroke care services.
+
+- **PMID**: 31097575
+- **DOI**: 10.1136/postgradmedj-2019-136413
+- **PMCID**:  
+- **Journal**: Postgraduate medical journal  ·  **Year**: 2019
+- **Authors**: Sonu Bhaskar, Peter Thomas, Qi Cheng, Nik Clement, Alan McDougall, Suzanne Hodgkinson, Dennis Cordato
+- **MeSH**: Aged, Australia, Emergency Service, Hospital, Female, Health Knowledge, Attitudes, Practice, Health Services Accessibility, Health Services Research, Healthcare Disparities, Humans, Ischemic Attack, Transient
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31097575/
+- **Captured**: 2026-05-10T12:24:48
+
+## Abstract
+
+South Western Sydney comprises of a culturally and linguistically diverse (CALD) and lower socioeconomic status population group within the state of New South Wales. Geographic location and sociodemographic factors play important roles in access to healthcare and may be crucial in the success of time-critical acute stroke intervention. The aim of this study was to examine the trends in the delayed presentation to emergency department (ED) and identify factors associated with prehospital delay for an acute stroke/transient ischaemic attack (TIA) at a comprehensive stroke centre. Patient health-related data were extracted for stroke/TIA discharges for the period 2009-2017. Electronic medical record data were used to determine sociodemographic characteristics and prehospital factors, and their associations with delayed presentation≥4.5 hours from stroke onset were studied. During the 9-year period, population-adjusted stroke/TIA discharge rates increased from 540 to 676 per 100 000. A significant reduction in the proportion of patients presenting to ED<4.5 hours (56% in 2009 versus 46% in 2017, p<0.001) was observed. Younger patients aged 55-64 and 65-74 years, those belonging to Polynesia, South Asia and Mainland Southeast Asia, and those not using state ambulance as the mode of arrival to the hospital were at increased risk of prehospital delay. Comprehensive reappraisal of educational programmes for early stroke recognition is required in our region due to delayed ED presentations of younger and specific CALD communities of stroke/TIA patients.

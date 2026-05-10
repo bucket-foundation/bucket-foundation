@@ -1,0 +1,14 @@
+# Impact of nutraceuticals on markers of systemic inflammation: Potential relevance to cardiovascular diseases - A position paper from the International Lipid Expert Panel (ILEP).
+
+- **PMID**: 34186099
+- **DOI**: 10.1016/j.pcad.2021.06.010
+- **PMCID**:  
+- **Journal**: Progress in cardiovascular diseases  ·  **Year**: 2021
+- **Authors**: Massimiliano Ruscica, Peter E Penson, Nicola Ferri, Cesare R Sirtori, Matteo Pirro, G B John Mancini, Naveed Sattar, Peter P Toth, Amirhossein Sahebkar, Carl J Lavie, Nathan D Wong, Maciej Banach
+- **MeSH**: Anti-Inflammatory Agents, Biomarkers, Cardiovascular Diseases, Dietary Supplements, Humans, Inflammation, Lipids
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34186099/
+- **Captured**: 2026-05-10T12:25:37
+
+## Abstract
+
+Inflammation is a marker of arterial disease stemming from cholesterol-dependent to -independent molecular mechanisms. In recent years, the role of inflammation in atherogenesis has been underpinned by pharmacological approaches targeting systemic inflammation that have led to a significant reduction in cardiovascular disease (CVD) risk. Although the use of nutraceuticals to prevent CVD has largely focused on lipid-lowering (e.g, red-yeast rice and omega-3 fatty acids), there is growing interest and need, especially now in the time of coronavirus pandemic, in the use of nutraceuticals to reduce inflammatory markers, and potentially the inflammatory CVD burden, however, there is still not enough evidence to confirm this. Indeed, diet is an important lifestyle determinant of health and can influence both systemic and vascular inflammation, to varying extents, according to the individual nutraceutical constituents. Thus, the aim of this Position Paper is to provide the first attempt at recommendations on the use of nutraceuticals with effective anti-inflammatory properties.

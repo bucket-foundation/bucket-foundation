@@ -1,0 +1,14 @@
+# Baseline collateral status and infarct topography in post-ischaemic perilesional hyperperfusion: An arterial spin labelling study.
+
+- **PMID**: 27256323
+- **DOI**: 10.1177/0271678X16653133
+- **PMCID**: PMC3164217 (full-text saved)
+- **Journal**: Journal of cerebral blood flow and metabolism : official journal of the International Society of Cerebral Blood Flow and Metabolism  ·  **Year**: 2017
+- **Authors**: Sonu Bhaskar, Andrew Bivard, Peter Stanwell, Mark Parsons, John R Attia, Michael Nilsson, Christopher Levi
+- **MeSH**: Aged, Aged, 80 and over, Brain Ischemia, Cerebrovascular Circulation, Cohort Studies, Collateral Circulation, Humans, Magnetic Resonance Angiography, Magnetic Resonance Imaging, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27256323/
+- **Captured**: 2026-05-10T12:24:13
+
+## Abstract
+
+Focal hyperperfusion after acute ischaemic stroke could be of prognostic value depending upon its spatial localisation and temporal dynamics. Factors associated with late stage (12-24 h) perilesional hyperperfusion, identified using arterial spin labelling, are poorly defined. A prospective cohort of acute ischaemic stroke patients presenting within 4.5 h of symptom onset were assessed with multi-modal computed tomography acutely and magnetic resonance imaging at 24 ± 8 h. Multivariate logistic regression analysis and receiver operating characteristics curves were used. One hundred and nineteen hemispheric acute ischaemic stroke patients (mean age = 71 ± 12 years) with 24 h arterial spin labelling imaging were included. Forty-two (35.3%) patients showed perilesional hyperperfusion on arterial spin labelling at 24 h. Several factors were independently associated with perilesional hyperperfusion: good collaterals (71% versus 29%, P < 0.0001; OR = 5, 95% CI = [1.6, 15.7], P = 0.005), major reperfusion (81% versus 48%, P = < 0.0001; OR = 7.5, 95% CI = [1.6, 35.1], P = 0.01), penumbral salvage (76.2% versus 47%, P = 0.002; OR = 6.6, 95% CI = [1.8, 24.5], P = 0.004), infarction in striatocapsular (OR = 9.5, 95% CI = [2.6, 34], P = 0.001) and in cortical superior division middle cerebral artery (OR = 4.7, 95% CI = [1.4, 15.7], P = 0.012) territory. The area under the receiver operating characteristic curve was 0.91. Our results demonstrate good arterial collaterals, major reperfusion, penumbral salvage, and infarct topographies involving cortical superior middle cerebral artery and striatocapsular are associated with perilesional hyperperfusion.

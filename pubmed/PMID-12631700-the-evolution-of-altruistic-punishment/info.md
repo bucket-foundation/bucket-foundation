@@ -1,0 +1,14 @@
+# The evolution of altruistic punishment.
+
+- **PMID**: 12631700
+- **DOI**: 10.1073/pnas.0630443100
+- **PMCID**: PMC152327 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2003
+- **Authors**: Robert Boyd, Herbert Gintis, Samuel Bowles, Peter J Richerson
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12631700/
+- **Captured**: 2026-05-10T12:23:09
+
+## Abstract
+
+Both laboratory and field data suggest that people punish noncooperators even in one-shot interactions. Although such "altruistic punishment" may explain the high levels of cooperation in human societies, it creates an evolutionary puzzle: existing models suggest that altruistic cooperation among nonrelatives is evolutionarily stable only in small groups. Thus, applying such models to the evolution of altruistic punishment leads to the prediction that people will not incur costs to punish others to provide benefits to large groups of nonrelatives. However, here we show that an important asymmetry between altruistic cooperation and altruistic punishment allows altruistic punishment to evolve in populations engaged in one-time, anonymous interactions. This process allows both altruistic punishment and altruistic cooperation to be maintained even when groups are large and other parameter values approximate conditions that characterize cultural evolution in the small-scale societies in which humans lived for most of our prehistory.

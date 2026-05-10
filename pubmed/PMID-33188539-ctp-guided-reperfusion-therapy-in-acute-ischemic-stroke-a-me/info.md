@@ -1,0 +1,14 @@
+# CTP-guided reperfusion therapy in acute ischemic stroke: a meta-analysis.
+
+- **PMID**: 33188539
+- **DOI**: 10.1111/ane.13374
+- **PMCID**:  
+- **Journal**: Acta neurologica Scandinavica  ·  **Year**: 2021
+- **Authors**: Anubhav Katyal, Sonu Bhaskar
+- **MeSH**: Adolescent, Aged, Brain Ischemia, Female, Humans, Ischemic Stroke, Male, Middle Aged, Randomized Controlled Trials as Topic, Reperfusion
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33188539/
+- **Captured**: 2026-05-10T12:25:19
+
+## Abstract
+
+Computed tomography perfusion (CTP) imaging could be useful in guiding reperfusion therapy or patient selection in acute ischemic stroke (AIS) patients. The aim of the current study was to determine the efficacy of the CTP-guided reperfusion therapy in AIS by performing a systematic review and meta-analysis. Medline/PubMed, Embase, and the Cochrane library were searched using the terms: "CT perfusion", "acute stroke" and "reperfusion therapy". The following studies were included: (a) studies reporting original data; (b) patients aged 18 years or above; (c) patients diagnosed with anterior circulation AIS; and (d) studies with good methodological design. Twenty-two studies were finally included in the metanalysis with a total of 5, 687 patients. CTP-guided reperfusion therapy was associated with increased odds of good functional outcome without significant difference in safety profile. CTP-guided reperfusion therapy improved functional outcomes in AIS, with increased benefits to patients treated with endovascular thrombectomy.

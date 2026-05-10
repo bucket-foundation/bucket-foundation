@@ -1,0 +1,14 @@
+# Emerging role of white matter lesions in cerebrovascular disease.
+
+- **PMID**: 34233379
+- **DOI**: 10.1111/ejn.15379
+- **PMCID**:  
+- **Journal**: The European journal of neuroscience  ·  **Year**: 2021
+- **Authors**: Aarushi Rastogi, Robert Weissert, Sonu Menachem Maimonides Bhaskar
+- **MeSH**: Aged, Cerebral Hemorrhage, Cerebrovascular Disorders, Humans, Magnetic Resonance Imaging, Stroke, White Matter
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34233379/
+- **Captured**: 2026-05-10T12:25:39
+
+## Abstract
+
+White matter lesions have been implicated in the setting of stroke, dementia, intracerebral haemorrhage, several other cerebrovascular conditions, migraine, various neuroimmunological diseases like multiple sclerosis, disorders of metabolism, mitochondrial diseases and others. While much is understood vis a vis neuroimmunological conditions, our knowledge of the pathophysiology of these lesions, and their role in, and implications to, management of cerebrovascular diseases or stroke, especially in the elderly, are limited. Several clinical assessment tools are available for delineating white matter lesions in clinical practice. However, their incorporation into clinical decision-making and specifically prognosis and management of patients is suboptimal for use in standards of care. This article sought to provide an overview of the current knowledge and recent advances on pathophysiology, as well as clinical and radiological assessment, of white matter lesions with a focus on its development, progression and clinical implications in cerebrovascular diseases. Key indications for clinical practice and recommendations on future areas of research are also discussed. Finally, a conceptual proposal on putative mechanisms underlying pathogenesis of white matter lesions in cerebrovascular disease has been presented. Understanding of pathophysiology of white matter lesions and how they mediate outcomes is important to develop therapeutic strategies.

@@ -1,0 +1,14 @@
+# The evolution of strong reciprocity: cooperation in heterogeneous populations.
+
+- **PMID**: 14642341
+- **DOI**: 10.1016/j.tpb.2003.07.001
+- **PMCID**:  
+- **Journal**: Theoretical population biology  ·  **Year**: 2004
+- **Authors**: Samuel Bowles, Herbert Gintis
+- **MeSH**: Altruism, Cooperative Behavior, Group Processes, Humans, Models, Theoretical, Punishment, United States
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14642341/
+- **Captured**: 2026-05-10T12:23:11
+
+## Abstract
+
+How do human groups maintain a high level of cooperation despite a low level of genetic relatedness among group members? We suggest that many humans have a predisposition to punish those who violate group-beneficial norms, even when this imposes a fitness cost on the punisher. Such altruistic punishment is widely observed to sustain high levels of cooperation in behavioral experiments and in natural settings. We offer a model of cooperation and punishment that we call STRONG RECIPROCITY: where members of a group benefit from mutual adherence to a social norm, strong reciprocators obey the norm and punish its violators, even though as a result they receive lower payoffs than other group members, such as selfish agents who violate the norm and do not punish, and pure cooperators who adhere to the norm but free-ride by never punishing. Our agent-based simulations show that, under assumptions approximating likely human environments over the 100000 years prior to the domestication of animals and plants, the proliferation of strong reciprocators when initially rare is highly likely, and that substantial frequencies of all three behavioral types can be sustained in a population. As a result, high levels of cooperation are sustained. Our results do not require that group members be related or that group extinctions occur.

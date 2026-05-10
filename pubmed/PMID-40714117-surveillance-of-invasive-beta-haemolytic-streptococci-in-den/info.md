@@ -1,0 +1,14 @@
+# Surveillance of invasive beta-haemolytic streptococci in Denmark, 2012 to 2023: A nationwide study.
+
+- **PMID**: 40714117
+- **DOI**: 10.1016/j.jinf.2025.106559
+- **PMCID**:  
+- **Journal**: The Journal of infection  ·  **Year**: 2025
+- **Authors**: Cecilie Hviid Christiansen, Kirstine Kobberøe Søgaard, Gertrud Dam-Dalgeir, Ram B Dessau, Esad Dzajic, Christian Salgård Jensen, Lisbeth Lützen, Michael Pedersen, Sissel Skovgaard, Thomas Vognbjerg Sydenham, Steen Hoffmann, Hans Linde Nielsen
+- **MeSH**: Humans, Denmark, Male, Streptococcal Infections, Female, Middle Aged, Adult, Incidence, Aged, Child, Preschool
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40714117/
+- **Captured**: 2026-05-10T12:27:58
+
+## Abstract
+
+To analyse trends in incidence, seasonality, and antimicrobial resistance of invasive beta-haemolytic streptococci (iBHS) in Denmark from 2012 to 2023. Nationwide laboratory surveillance included submission of invasive isolates of Lancefield group A, B, C, and G streptococci from blood, cerebrospinal fluid, and other sterile sites to the National Reference Laboratory. Incidence rates (IRs) per 100,000 were calculated. Seasonality was analysed using Poisson regression, and antimicrobial susceptibility was determined by EUCAST disc diffusion. In total, 9470 iBHS cases were identified. Annual IRs increased from 2.6 to 9.4 for iGAS, 2.5 to 4.9 for iGBS, 1.4 to 4.8 for iGCS, and 3.1 to 8.5 for iGGS. iGAS exhibited marked seasonality, peaking in February and troughing in September (peak-to-trough ratio 3.2). Incidence declined during the COVID-19 pandemic but rebounded in 2023. No seasonality was observed for iGBS, iGCS, or iGGS. Incidences were highest in males and older adults, except iGBS, which showed a bimodal distribution. Recurrent infections occurred in 5.4% of cases, predominantly with iGGS and iGCS. All isolates were penicillin susceptible, but erythromycin and clindamycin resistance increased in iGBS and iGGS. The rising incidence of iBHS, particularly iGAS resurgence and increasing resistance, highlights the need for continued surveillance.

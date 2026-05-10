@@ -1,0 +1,14 @@
+# Statins in Acute Ischemic Stroke: Mechanisms, Resistance, and Precision Strategies for Neurovascular and Cognitive Protection.
+
+- **PMID**: 40924293
+- **DOI**: 10.1177/17474930241310730
+- **PMCID**: 11733959 (full-text saved)
+- **Journal**: CNS drugs  ·  **Year**: 2025
+- **Authors**: Muskaan Gupta, Ivica Smokovski, Dimitrios G Chatzis, Kevin J Spring, Man Mohan Mehndiratta, Roy G Beran, Sonu M M Bhaskar
+- **MeSH**: Humans, Hydroxymethylglutaryl-CoA Reductase Inhibitors, Ischemic Stroke, Neuroprotective Agents, Animals, Precision Medicine
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40924293/
+- **Captured**: 2026-05-10T12:28:03
+
+## Abstract
+
+Acute ischemic stroke (AIS) remains a leading cause of mortality and long-term disability globally, with survivors at high risk of recurrent stroke, cardiovascular events, and post-stroke dementia. Statins, while widely used for their lipid-lowering effects, also possess pleiotropic properties, including anti-inflammatory, endothelial-stabilizing, and neuroprotective actions, which may offer added benefit in AIS management. This article synthesizes emerging evidence on statins' dual mechanisms of action and evaluates their role in reducing recurrence, improving survival, and mitigating cognitive decline. Key challenges limiting the full therapeutic potential of statins include interindividual variability in response and pharmacogenomic and biomarker-related resistance, inconsistencies across clinical guidelines, and limited central nervous system bioavailability. Innovations such as pharmacogenomic-guided therapy, pleiotropy-linked biomarkers, and advanced drug delivery systems (e.g., nanoparticle and intranasal formulations) may help overcome these barriers. Combination strategies with agents such as proprotein convertase subtilisin/kexin type 9 (PCSK9) inhibitors or sodium-glucose cotransporter 2 (SGLT2) inhibitors, and targeted interventions against neuroinflammatory resistance, show promise in enhancing treatment efficacy. In doing so, we propose a shift from conventional statin use to a precision medicine paradigm that can better serve AIS survivors, especially those at risk of post-stroke dementia or those living in resource-constrained settings. While such innovations, for example, genetic testing and novel delivery methods, may not yet be feasible in all contexts, particularly low-resource environments, they represent long-term goals for equity-driven innovation. Equity in access to high-intensity statins and novel therapies remains a global priority, particularly in low- and middle-income countries. Future research should prioritize personalized, biomarker-driven approaches and inclusive clinical trials to optimize statin use across diverse AIS populations. By advancing these strategies, statins can evolve from cardiovascular agents into integral components of precision neurovascular medicine, improving long-term outcomes and quality of life for stroke survivors.

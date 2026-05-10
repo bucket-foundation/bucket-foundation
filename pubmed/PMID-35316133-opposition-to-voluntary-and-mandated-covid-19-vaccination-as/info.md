@@ -1,0 +1,14 @@
+# Opposition to voluntary and mandated COVID-19 vaccination as a dynamic process: Evidence and policy implications of changing beliefs.
+
+- **PMID**: 35316133
+- **DOI**: 10.1073/pnas.2118721119
+- **PMCID**: PMC9060490 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2022
+- **Authors**: Katrin Schmelz, Samuel Bowles
+- **MeSH**: COVID-19, COVID-19 Vaccines, Dissent and Disputes, Humans, Patient Acceptance of Health Care, Public Health Surveillance, SARS-CoV-2, Vaccination
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35316133/
+- **Captured**: 2026-05-10T12:26:09
+
+## Abstract
+
+SignificanceThe challenge of securing adherence to public health policies is compounded when an emerging threat and a set of unprecedented remedies are not fully understood among the general public. The evolution of citizens' attitudes toward vaccination during the COVID-19 pandemic offers psychologically and sociologically grounded insights that enrich the conventional incentives- and constraints-based approach to policy design. We thus contribute to a behavioral science of policy compliance during public health emergencies of the kind that we may increasingly face in the future. From early in the pandemic, we have tracked the same individuals, providing a lens into the conditions under which people's attitudes toward voluntary and mandated vaccinations change, providing essential information for COVID-19 policy not available from cross-section data.

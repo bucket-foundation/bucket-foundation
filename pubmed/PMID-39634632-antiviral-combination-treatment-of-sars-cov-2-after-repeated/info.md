@@ -1,0 +1,14 @@
+# Antiviral combination treatment of SARS-CoV-2 after repeated treatment failures of remdesivir monotherapy: A case report.
+
+- **PMID**: 39634632
+- **DOI**: 10.1016/j.idcr.2024.e02118
+- **PMCID**: PMC9807602 (full-text saved)
+- **Journal**: IDCases  ·  **Year**: 2024
+- **Authors**: Anne Cathrine Bay, Michael R Clausen, Birgit Thorup Røge, Thomas V Sydenham, Kat Steinke, Rune Micha Pedersen, Line L Bang, Thomas E Andersen, Anders Jensen, Lone W Madsen
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/39634632/
+- **Captured**: 2026-05-10T12:27:28
+
+## Abstract
+
+Immunocompromised patients infected with severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) can have a longer duration of viral shedding and persistence of symptoms. The optimal treatment strategy for these patients remains to be established. This case describes a male in his late sixties with follicular lymphoma and persistent symptoms of infection with SARS-CoV-2 variant BA.2 who was treated with remdesivir five times over a period of six months. The clinical effect of remdesivir treatment decreased over time, and further viral sequencing revealed the emergence of mutations across the SARS-CoV-2 genome. Due to the lack of other treatment options, the patient was treated with a combination of remdesivir and molnupiravir for 10 days, and epcoritamab was discontinued, which led to the cessation of symptoms. This case illustrates the risk of a diminished effect of remdesivir with prolonged use and the need for treatment guidelines for immunocompromised patients with persistent COVID-19.

@@ -1,0 +1,14 @@
+# First cases of SARS-CoV-2 BA.2.86 in Denmark, 2023.
+
+- **PMID**: 37676147
+- **DOI**: 10.1093/molbev/msab120
+- **PMCID**: PMC8233496 (full-text saved)
+- **Journal**: Euro surveillance : bulletin Europeen sur les maladies transmissibles = European communicable disease bulletin  ·  **Year**: 2023
+- **Authors**: Morten Rasmussen, Frederik Trier Møller, Vithiagaran Gunalan, Sharmin Baig, Marc Bennedbæk, Lasse Engbo Christiansen, Arieh Sierra Cohen, Kirsten Ellegaard, Anders Fomsgaard, Kristina Træholt Franck, Nicolai Balle Larsen, Tine Graakjær Larsen, Ria Lassaunière, Charlotta Polacek, Amanda Gammelby Qvesel, Raphael Niklaus Sieber, Lasse Dam Rasmussen, Marc Stegger, Katja Spiess, Man-Hung Eric Tang, Lasse Skafte Vestergaard, Thomas Emil Andersen, Silje Vermedal Hoegh, Rune Micha Pedersen, Marianne Nielsine Skov, Kat Steinke, Thomas Vognbjerg Sydenham, Morten Hoppe, Lene Nielsen, Tyra Grove Krause, Henrik Ullum, Pikka Jokelainen
+- **MeSH**: Humans, COVID-19, SARS-CoV-2, Wastewater, Wastewater-Based Epidemiological Monitoring, Denmark
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37676147/
+- **Captured**: 2026-05-10T12:26:55
+
+## Abstract
+
+We describe 10 cases of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) variant BA.2.86 detected in Denmark, including molecular characteristics and results from wastewater surveillance that indicate that the variant is circulating in the country at a low level. This new variant with many spike gene mutations was classified as a variant under monitoring by the World Health Organization on 17 August 2023. Further global monitoring of COVID-19, BA.2.86 and other SARS-CoV-2 variants is highly warranted.

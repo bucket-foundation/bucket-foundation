@@ -1,0 +1,14 @@
+# Global, regional, and national incidence of six major immune-mediated inflammatory diseases: findings from the global burden of disease study 2019.
+
+- **PMID**: 37731935
+- **DOI**: 10.1016/j.eclinm.2023.102193
+- **PMCID**: PMC7385924 (full-text saved)
+- **Journal**: EClinicalMedicine  ·  **Year**: 2023
+- **Authors**: 
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37731935/
+- **Captured**: 2026-05-10T12:26:56
+
+## Abstract
+
+The causes for immune-mediated inflammatory diseases (IMIDs) are diverse and the incidence trends of IMIDs from specific causes are rarely studied. The study aims to investigate the pattern and trend of IMIDs from 1990 to 2019. We collected detailed information on six major causes of IMIDs, including asthma, inflammatory bowel disease, multiple sclerosis, rheumatoid arthritis, psoriasis, and atopic dermatitis, between 1990 and 2019, derived from the Global Burden of Disease study in 2019. The average annual percent change (AAPC) in number of incidents and age standardized incidence rate (ASR) on IMIDs, by sex, age, region, and causes, were calculated to quantify the temporal trends. In 2019, rheumatoid arthritis, atopic dermatitis, asthma, multiple sclerosis, psoriasis, inflammatory bowel disease accounted 1.59%, 36.17%, 54.71%, 0.09%, 6.84%, 0.60% of overall new IMIDs cases, respectively. The ASR of IMIDs showed substantial regional and global variation with the highest in High SDI region, High-income North America, and United States of America. Throughout human lifespan, the age distribution of incident cases from six IMIDs was quite different. Globally, incident cases of IMIDs increased with an AAPC of 0.68 and the ASR decreased with an AAPC of -0.34 from 1990 to 2019. The incident cases increased across six IMIDs, the ASR of rheumatoid arthritis increased (0.21, 95% CI 0.18, 0.25), while the ASR of asthma (AAPC = -0.41), inflammatory bowel disease (AAPC = -0.72), multiple sclerosis (AAPC = -0.26), psoriasis (AAPC = -0.77), and atopic dermatitis (AAPC = -0.15) decreased. The ASR of overall and six individual IMID increased with SDI at regional and global level. Countries with higher ASR in 1990 experienced a more rapid decrease in ASR. The incidence patterns of IMIDs varied considerably across the world. Innovative prevention and integrative management strategy are urgently needed to mitigate the increasing ASR of rheumatoid arthritis and upsurging new cases of other five IMIDs, respectively. The Global Burden of Disease Study is funded by the Bill and Melinda Gates Foundation. The project funded by Scientific Research Fund of Sichuan Academy of Medical Sciences & Sichuan Provincial People's Hospital (2022QN38).

@@ -1,0 +1,14 @@
+# Role of Neutrophil-Lymphocyte Ratio in the Prognosis of Acute Ischaemic Stroke After Reperfusion Therapy: A Systematic Review and Meta-analysis.
+
+- **PMID**: 35492740
+- **DOI**: 10.1007/s10072-020-04827-2
+- **PMCID**: PMC7490069 (full-text saved)
+- **Journal**: Journal of central nervous system disease  ·  **Year**: 2022
+- **Authors**: Divyansh Sharma, Kevin J Spring, Sonu M M Bhaskar
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35492740/
+- **Captured**: 2026-05-10T12:26:11
+
+## Abstract
+
+Inflammation may mediate response to acute reperfusion therapy (RT) in acute cerebral ischaemia. Neutrophil-lymphocyte ratio (NLR), an inflammatory biomarker, may play an important role in acute ischaemic stroke (AIS) prognostication. This meta-analysis sought to examine the effect of NLR on functional outcomes, mortality and adverse outcomes in AIS patients receiving RT. Individual studies were retrieved from PubMed/Medline, EMBASE and Cochrane databases. Data were extracted using a standardised data sheet and meta-analysis on association of admission (pre-RT) or delayed (post-RT) NLR with clinical/safety outcomes after RT was conducted. Thirty-five studies (n = 10 308) were identified for the systematic review with 27 (n = 8537) included in the meta-analyses. Lower admission NLR was associated with good functional outcomes (GFOs), defined as 3-month modified Rankin scale (mRS) 0-2 (SMD = -.46; 95% CI = -.62 to -.29; P < .0001), mRS 0-1 (SMD = -.44; 95% CI = -.66 to -.22; P < .0001) and early neurological improvement (ENI) (SMD = -.55; 95 %CI = -.84 to -.25; P < .0001). Lower delayed admission NLR was also associated with GFOs (SMD = -.80; 95%CI = -.91 to -.68; P < .0001). Higher admission NLR was significantly associated with mortality (SMD = .49; 95%CI = .12 to .85; P = .009), intracerebral haemorrhage (ICH) (SMD = .34; 95% CI = .09 to .59; P = .007), symptomatic ICH (sICH) (SMD = .48; 95% CI = .07 to .90; P = .022) and stroke-associated infection or pneumonia (SMD = .85; 95% CI = .50, 1.19; P < .0001). Higher delayed NLR was significantly associated with sICH (SMD = 1.40; 95% CI = .60 to 2.19; P = .001), ICH (SMD = .94; 95% CI = .41 to 1.46; P < .0001) and mortality (SMD = 1.12; 95% CI = .57 to 1.67; P < .0001). There were variations in outcomes across RT groups. Higher admission or delayed NLR is significantly associated with worse morbidity, mortality and safety outcomes in AIS patients receiving RT.

@@ -1,0 +1,14 @@
+# Costly signaling and cooperation.
+
+- **PMID**: 11708857
+- **DOI**: 10.1006/jtbi.2001.2406
+- **PMCID**:  
+- **Journal**: Journal of theoretical biology  ·  **Year**: 2001
+- **Authors**: H Gintis, E A Smith, S Bowles
+- **MeSH**: Animals, Biological Evolution, Communication, Cooperative Behavior, Game Theory, Group Processes, Models, Psychological
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11708857/
+- **Captured**: 2026-05-10T12:23:03
+
+## Abstract
+
+We propose an explanation of cooperation among unrelated members of a social group in which cooperation evolves because it constitutes an honest signal of the member's quality as a mate, coalition partner or competitor, and therefore results in advantageous alliances for those signaling in this manner. Our model is framed as a multi-player public goods game that involves no repeated or assortative interactions, so that non-cooperation would be a dominant strategy if there were no signaling benefits. We show that honest signaling of underlying quality by providing a public good to group members can be evolutionarily stable, and can proliferate in a population in which it is initially rare, provided that certain plausible conditions hold, including a link between group-beneficial signaling and underlying qualities of the signaler that would be of benefit to a potential mate or alliance partner. Our model applies to a range of cooperative interactions, including unconditionally sharing individually consumable resources, participating in group raiding or defense, and punishing free-riding or other violations of social norms.

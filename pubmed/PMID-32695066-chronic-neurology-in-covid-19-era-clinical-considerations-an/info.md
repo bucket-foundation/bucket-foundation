@@ -1,0 +1,14 @@
+# Chronic Neurology in COVID-19 Era: Clinical Considerations and Recommendations From the REPROGRAM Consortium.
+
+- **PMID**: 32695066
+- **DOI**: 10.1159/000373925
+- **PMCID**: PMC7308556 (full-text saved)
+- **Journal**: Frontiers in neurology  ·  **Year**: 2020
+- **Authors**: Sonu Bhaskar, Sian Bradley, Simon Israeli-Korn, Bindu Menon, Vijay Kumar Chattu, Pravin Thomas, Jasvinder Chawla, Rajeev Kumar, Paolo Prandi, Daniel Ray, Sailaja Golla, Nirmal Surya, Harvey Yang, Sandra Martinez, Mihriban Heval Ozgen, John Codrington, Eva María Jiménez González, Mandana Toosi, Nithya Hariya Mohan, Koravangattu Valsraj Menon, Abderrahmane Chahidi, Susana Mederer Hengstl
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32695066/
+- **Captured**: 2026-05-10T12:25:12
+
+## Abstract
+
+With the rapid pace and scale of the emerging coronavirus 2019 (COVID-19) pandemic, a growing body of evidence has shown a strong association of COVID-19 with pre- and post- neurological complications. This has necessitated the need to incorporate targeted neurological care for this subgroup of patients which warrants further reorganization of services, healthcare workforce, and ongoing management of chronic neurological cases. The social distancing and the shutdown imposed by several nations in the midst of COVID-19 have severely impacted the ongoing care, access and support of patients with chronic neurological conditions such as Multiple Sclerosis, Epilepsy, Neuromuscular Disorders, Migraine, Dementia, and Parkinson disease. There is a pressing need for governing bodies including national and international professional associations, health ministries and health institutions to harmonize policies, guidelines, and recommendations relating to the management of chronic neurological conditions. These harmonized guidelines should ensure patient continuity across the spectrum of hospital and community care including the well-being, safety, and mental health of the patients, their care partners and the health professionals involved. This article provides an in-depth analysis of the impact of COVID-19 on chronic neurological conditions and specific recommendations to minimize the potential harm to those at high risk.

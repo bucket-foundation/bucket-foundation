@@ -1,0 +1,14 @@
+# Global, regional, and national burden of chronic kidney disease in adults, 1990-2023, and its attributable risk factors: a systematic analysis for the Global Burden of Disease Study 2023.
+
+- **PMID**: 41213283
+- **DOI**: 10.1016/S0140-6736(25)01853-7
+- **PMCID**:  
+- **Journal**: Lancet (London, England)  ·  **Year**: 2025
+- **Authors**: 
+- **MeSH**: Humans, Renal Insufficiency, Chronic, Risk Factors, Global Burden of Disease, Adult, Middle Aged, Global Health, Prevalence, Male, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41213283/
+- **Captured**: 2026-05-10T12:28:24
+
+## Abstract
+
+Chronic kidney disease (CKD) is common and ranks among the leading causes of mortality and morbidity. This analysis aimed to present global CKD estimates using the Global Burden of Diseases, Injuries, and Risk Factors Study (GBD) 2023 to inform evidence-based policies for CKD identification and treatment. This analysis focused on adults aged 20 years and older over the period 1990 to 2023, from 204 countries and territories. Data sources used were published literature, vital registration systems, kidney failure treatment registries, and household surveys. Estimates of CKD burden, including deaths, incidence, prevalence, and disability-adjusted life-years (DALYs), were produced using a Cause of Death Ensemble model and a Bayesian meta-regression analytical tool. A comparative risk assessment approach estimated the proportion of cardiovascular deaths attributable to impaired kidney function and estimated risk factors for CKD. Globally, in 2023, 788 million (95% uncertainty interval 743-843) people aged 20 years and older were estimated to have CKD, up from 378 million (354-407) in 1990. The global age-standardised prevalence of CKD in adults was 14·2% (13·4-15·2), a relative rise of 3·5% (2·7-4·1) from 1990. The region with the highest age-standardised prevalence was north Africa and the Middle East (18·0%; 16·9-19·4). Most people had stage 1-3 CKD, with a combined prevalence of 13·9% (13·1-15·0). In 2023, CKD was the ninth leading cause of death globally, accounting for 1·48 million (1·30-1·65) deaths, and the 12th leading cause of DALYs, with an age-standardised DALY rate of 769·2 (691·8-857·4) per 100 000. Impaired kidney function as a risk factor accounted for 11·5% (8·4-14·5) of cardiovascular deaths. High fasting plasma glucose, body-mass index, and systolic blood pressure were all leading risk factors for CKD DALYs. CKD is a major global health issue, with rising prevalence and increasing importance as a cause of death and as a risk factor for cardiovascular death. A better understating of aetiology, appropriate screening, and implementation programmes are needed to translate advances in CKD treatment into improved patient outcomes. Gates Foundation, Wellcome, US National Kidney Foundation, and US National Institute of Diabetes and Digestive and Kidney Diseases.

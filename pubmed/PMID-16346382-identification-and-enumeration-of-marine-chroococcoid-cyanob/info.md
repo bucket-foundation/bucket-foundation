@@ -1,0 +1,14 @@
+# Identification and enumeration of marine chroococcoid cyanobacteria by immunofluorescence.
+
+- **PMID**: 16346382
+- **DOI**: 10.1128/aem.46.3.553-559.1983
+- **PMCID**: PMC239315 (full-text saved)
+- **Journal**: Applied and environmental microbiology  ·  **Year**: 1983
+- **Authors**: L Campbell, E J Carpenter, V J Iacono
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16346382/
+- **Captured**: 2026-05-10T12:23:14
+
+## Abstract
+
+We used an indirect immunofluorescence technique to permit the identification and enumeration of individual or closely related strains of chroococcoid cyanobacteria of the general Synechococcus and Synechocystis in natural seawater samples. Antisera directed against each of five strains (two phycoerythrin-containing Synechococcus strains, two phycocyanin-containing Synechococcus strains, and one Synechocystis strain) were produced and tested for cross-reactions with cultures of a variety of cyanobacteria and representatives of other algae and bacteria. Each antiserum was relatively specific. The observed cross-reactions occurred between strains that were isolated from similar oceanic environments. We were able, therefore, to apply this technique to field samples. Preliminary results for April to December 1982 in Great South Bay, New York, show that Synechocystis populations are present only during spring and summer, phycocyanin-containing Synechococcus strains are only a minor component in the spring and summer, and phycoerythrin-containing Synechococcus populations become significant in summer and remain so until late fall or winter.

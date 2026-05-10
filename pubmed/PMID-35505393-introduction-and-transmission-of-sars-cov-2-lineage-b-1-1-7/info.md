@@ -1,0 +1,14 @@
+# Introduction and transmission of SARS-CoV-2 lineage B.1.1.7, Alpha variant, in Denmark.
+
+- **PMID**: 35505393
+- **DOI**: 10.1016/S0140-6736(21)00257-9
+- **PMCID**: PMC8139423 (full-text saved)
+- **Journal**: Genome medicine  ·  **Year**: 2022
+- **Authors**: Thomas Y Michaelsen, Marc Bennedbæk, Lasse E Christiansen, Mia S F Jørgensen, Camilla H Møller, Emil A Sørensen, Simon Knutsson, Jakob Brandt, Thomas B N Jensen, Clarisse Chiche-Lapierre, Emilio F Collados, Trine Sørensen, Celine Petersen, Vang Le-Quy, Mantas Sereika, Frederik T Hansen, Morten Rasmussen, Jannik Fonager, Søren M Karst, Rasmus L Marvig, Marc Stegger, Raphael N Sieber, Robert Skov, Rebecca Legarth, Tyra G Krause, Anders Fomsgaard, Mads Albertsen
+- **MeSH**: COVID-19, Denmark, Humans, Phylogeny, SARS-CoV-2
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35505393/
+- **Captured**: 2026-05-10T12:26:12
+
+## Abstract
+
+In early 2021, the SARS-CoV-2 lineage B.1.1.7 (Alpha variant) became dominant across large parts of the world. In Denmark, comprehensive and real-time test, contact-tracing, and sequencing efforts were applied to sustain epidemic control. Here, we use these data to investigate the transmissibility, introduction, and onward transmission of B.1.1.7 in Denmark. We analyzed a comprehensive set of 60,178 SARS-CoV-2 genomes generated from high-throughput sequencing by the Danish COVID-19 Genome Consortium, representing 34% of all positive cases in the period 14 November 2020 to 7 February 2021. We calculated the transmissibility of B.1.1.7 relative to other lineages using Poisson regression. Including all 1976 high-quality B.1.1.7 genomes collected in the study period, we constructed a time-scaled phylogeny, which was coupled with detailed travel history and register data to outline the introduction and onward transmission of B.1.1.7 in Denmark. In a period with unchanged restrictions, we estimated an increased B.1.1.7 transmissibility of 58% (95% CI: [56%, 60%]) relative to other lineages. Epidemiological and phylogenetic analyses revealed that 37% of B.1.1.7 cases were related to the initial introduction in November 2020. The relative number of cases directly linked to introductions varied between 10 and 50% throughout the study period. Our findings corroborate early estimates of increased transmissibility of B.1.1.7. Both substantial early expansion when B.1.1.7 was still unmonitored and continuous foreign introductions contributed considerably to case numbers. Finally, our study highlights the benefit of balanced travel restrictions and self-isolation procedures coupled with comprehensive surveillance efforts, to sustain epidemic control in the face of emerging variants.

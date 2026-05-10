@@ -1,0 +1,14 @@
+# Carbon-Fixation Rates and Associated Microbial Communities Residing in Arid and Ephemerally Wet Antarctic Dry Valley Soils.
+
+- **PMID**: 26696969
+- **DOI**: 10.1111/j.1574-6968.1997.tb10165.x
+- **PMCID**: PMC308517 (full-text saved)
+- **Journal**: Frontiers in microbiology  ·  **Year**: 2015
+- **Authors**: Thomas D Niederberger, Jill A Sohm, Troy Gunderson, Joëlle Tirindelli, Douglas G Capone, Edward J Carpenter, S Craig Cary
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26696969/
+- **Captured**: 2026-05-10T12:24:11
+
+## Abstract
+
+Carbon-fixation is a critical process in severely oligotrophic Antarctic Dry Valley (DV) soils and may represent the major source of carbon in these arid environments. However, rates of C-fixation in DVs are currently unknown and the microorganisms responsible for these activities unidentified. In this study, C-fixation rates measured in the bulk arid soils (<5% moisture) ranged from below detection limits to ∼12 nmol C/cc/h. Rates in ephemerally wet soils ranged from ∼20 to 750 nmol C/cc/h, equating to turnover rates of ∼7-140 days, with lower rates in stream-associated soils as compared to lake-associated soils. Sequencing of the large subunit of RuBisCO (cbbL) in these soils identified green-type sequences dominated by the 1B cyanobacterial phylotype in both arid and wet soils including the RNA fraction of the wet soil. Red-type cbbL genes were dominated by 1C actinobacterial phylotypes in arid soils, with wetted soils containing nearly equal proportions of 1C (actinobacterial and proteobacterial signatures) and 1D (algal) phylotypes. Complementary 16S rRNA and 18S rRNA gene sequencing also revealed distinct differences in community structure between biotopes. This study is the first of its kind to examine C-fixation rates in DV soils and the microorganisms potentially responsible for these activities.

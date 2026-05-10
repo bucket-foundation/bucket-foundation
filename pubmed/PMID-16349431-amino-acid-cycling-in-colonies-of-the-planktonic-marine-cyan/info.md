@@ -1,0 +1,14 @@
+# Amino Acid Cycling in Colonies of the Planktonic Marine Cyanobacterium Trichodesmium thiebautii.
+
+- **PMID**: 16349431
+- **DOI**: 10.1128/aem.60.11.3989-3995.1994
+- **PMCID**: PMC201926 (full-text saved)
+- **Journal**: Applied and environmental microbiology  ·  **Year**: 1994
+- **Authors**: D G Capone, M D Ferrier, E J Carpenter
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16349431/
+- **Captured**: 2026-05-10T12:23:16
+
+## Abstract
+
+We examined diel trends in internal pools and net efflux of free amino acids in colonies of the nonheterocystous, diazotrophic cyanobacterium Trichodesmium thiebautii, freshly collected from waters of the Caribbean and the Bahamas. The kinetics of glutamate uptake by whole colonies were also examined. While intracolonial pools of most free amino acids were relatively constant through the day, pools of glutamate and glutamine varied over the diel cycle, with maxima during the early afternoon. This paralleled the daily cycle of nitrogenase activity. We also observed a large net release of these two amino acids from intact colonies. Glutamate release was typically 100 pmol of N colony h. This is about one-fourth the concurrent rate of N(2) fixation during the day. However, while nitrogenase activity only occurs during the day, net release of glutamate and glutamine persisted into the night and may therefore account for a greater loss of recently fixed N on a daily basis. This release may be an important route of new N input into tropical, oligotrophic waters. Whole colonies also displayed saturation kinetics with respect to glutamate uptake. The K(s) for whole colonies varied from 1.6 to 3.2 muM, or about 100-fold greater than typical ambient concentrations. Thus, uptake systems appear to be adapted to the higher concentrations of glutamate found within the intracellular spaces of the colonies. This suggests that glutamate may be a vehicle for N exchange among trichomes in the colony.

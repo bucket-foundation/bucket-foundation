@@ -1,0 +1,14 @@
+# The role of artificial intelligence in optimizing management of atrial fibrillation in acute ischemic stroke.
+
+- **PMID**: 39377991
+- **DOI**: 10.1111/nyas.15231
+- **PMCID**:  
+- **Journal**: Annals of the New York Academy of Sciences  ·  **Year**: 2024
+- **Authors**: Bill Goh, Sonu M M Bhaskar
+- **MeSH**: Humans, Atrial Fibrillation, Ischemic Stroke, Artificial Intelligence, Machine Learning, Prognosis, Algorithms
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/39377991/
+- **Captured**: 2026-05-10T12:27:17
+
+## Abstract
+
+Atrial fibrillation (AF) is a severe condition associated with high morbidity and mortality, including an increased risk of stroke and poor outcomes poststroke. Our understanding of the prognosis in AF remains poor. Machine learning (ML) has been applied to the diagnosis, management, and prognosis of AF in the context of stroke but remains suboptimal for clinical use. This article endeavors to provide a comprehensive overview of current ML applications to AF patients at risk of stroke, as well as poststroke patients without AF. Strategies to develop effective ML involve the validation of a variety of ML algorithms across internal and external datasets as well as exploring their predictive powers in hypothetical and realistic settings. Recent literature of this rapidly evolving field has displayed much promise. However, further testing and innovation of medical artificial intelligence are required before its imminent introduction to ensure complete patient trust within the community. Prioritizing this research is imperative for advancing the optimization of ongoing care for AF patients, as well as the management of stroke patients with AF.

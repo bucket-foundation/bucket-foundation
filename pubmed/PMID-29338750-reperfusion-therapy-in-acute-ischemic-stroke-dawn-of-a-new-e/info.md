@@ -1,0 +1,14 @@
+# Reperfusion therapy in acute ischemic stroke: dawn of a new era?
+
+- **PMID**: 29338750
+- **DOI**: 10.5853/jos.2015.17.3.221
+- **PMCID**: PMC4612767 (full-text saved)
+- **Journal**: BMC neurology  ·  **Year**: 2018
+- **Authors**: Sonu Bhaskar, Peter Stanwell, Dennis Cordato, John Attia, Christopher Levi
+- **MeSH**: Brain Ischemia, Endovascular Procedures, Fibrinolytic Agents, Humans, Patient Selection, Reperfusion, Stroke, Thrombolytic Therapy, Treatment Outcome
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29338750/
+- **Captured**: 2026-05-10T12:24:40
+
+## Abstract
+
+Following the success of recent endovascular trials, endovascular therapy has emerged as an exciting addition to the arsenal of clinical management of patients with acute ischemic stroke (AIS). In this paper, we present an extensive overview of intravenous and endovascular reperfusion strategies, recent advances in AIS neurointervention, limitations of various treatment paradigms, and provide insights on imaging-guided reperfusion therapies. A roadmap for imaging guided reperfusion treatment workflow in AIS is also proposed. Both systemic thrombolysis and endovascular treatment have been incorporated into the standard of care in stroke therapy. Further research on advanced imaging-based approaches to select appropriate patients, may widen the time-window for patient selection and would contribute immensely to early thrombolytic strategies, better recanalization rates, and improved clinical outcomes.

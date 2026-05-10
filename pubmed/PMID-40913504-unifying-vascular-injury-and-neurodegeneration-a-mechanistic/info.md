@@ -1,0 +1,14 @@
+# Unifying Vascular Injury and Neurodegeneration: A Mechanistic Continuum in Cerebral Small Vessel Disease and Dementia.
+
+- **PMID**: 40913504
+- **DOI**: 10.1111/ejn.70246
+- **PMCID**:  
+- **Journal**: The European journal of neuroscience  ·  **Year**: 2025
+- **Authors**: Chelsea Jin, Sonu Bhaskar
+- **MeSH**: Humans, Cerebral Small Vessel Diseases, Dementia, Blood-Brain Barrier, Animals
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40913504/
+- **Captured**: 2026-05-10T12:28:00
+
+## Abstract
+
+Cerebral small vessel disease (CSVD) is a major yet underappreciated driver of cognitive impairment and dementia, contributing to nearly half of all cases. Emerging evidence indicates that CSVD is not merely a coexisting vascular condition but an active amplifier of neurodegeneration, operating through a self-perpetuating cascade of microvascular injury, blood-brain barrier (BBB) breakdown, and glymphatic system dysfunction. In this hypothesis-driven review, we propose the Integrated Vascular-Neurodegenerative Continuum, a mechanistic model in which vascular pathology triggers and accelerates neurodegeneration via intersecting pathways, including chronic cerebral hypoperfusion, oxidative stress, and APOE ε4-associated endothelial vulnerability. We synthesize molecular, imaging, and genetic evidence supporting this continuum, highlighting novel diagnostic and therapeutic targets such as peak skeletonized mean diffusivity, dynamic contrast-enhanced magnetic resonance imaging-based BBB leakage quantification, and emerging agents like cilostazol and allopurinol. We also critically appraise the limitations of current diagnostic frameworks and advocate for integrative, multimodal approaches to risk stratification. This model offers a unifying framework that bridges cerebrovascular and neurodegenerative domains, offering a foundation for precision medicine strategies aimed at dementia prevention and treatment.

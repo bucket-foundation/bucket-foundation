@@ -1,0 +1,14 @@
+# Prognostic capacity of hyperdense middle cerebral artery sign in anterior circulation acute ischaemic stroke patients receiving reperfusion therapy: a systematic review and meta-analysis.
+
+- **PMID**: 34095978
+- **DOI**: 10.1161/STROKEAHA.110.605576
+- **PMCID**: PMC3094751 (full-text saved)
+- **Journal**: Acta neurologica Belgica  ·  **Year**: 2022
+- **Authors**: Chenyu Shi, Murray C Killingsworth, Sonu Menachem Maimonides Bhaskar
+- **MeSH**: Brain Ischemia, Cerebral Hemorrhage, Fibrinolytic Agents, Humans, Ischemic Stroke, Middle Cerebral Artery, Prognosis, Prospective Studies, Reperfusion, Retrospective Studies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34095978/
+- **Captured**: 2026-05-10T12:25:33
+
+## Abstract
+
+Pre-intervention CT imaging-based biomarkers, such as hyperdense middle cerebral artery sign (HMCAS) may have a role in acute ischaemic stroke prognostication. However, the clinical utility of HMCAS in settings of reperfusion therapy and the level of prognostic association is still unclear. This systematic review and meta-analysis investigated the association of HMCAS sign with clinical outcomes and its prognostic capacity in acute ischaemic stroke patients treated with reperfusion therapy. Prospective and retrospective studies from the following databases were retrieved from EMBASE, MEDLINE and Cochrane. Association of HMCAS with functional outcome, symptomatic intracerebral haemorrhage (sICH) and mortality were investigated. The random effect model was used to calculate the risk ratio (RR). Subgroup analyses were performed for subgroups of patients receiving thrombolysis (tPA), mechanical thrombectomy (EVT) and/or combined therapy (tPA + EVT). HMCAS significantly increased the rate of poor functional outcome by 1.43-fold in patients (RR 1.43; 95% CI 1.30-1.57; p < 0.0001) without any significant differences in sICH rates (RR 0.91; 95% CI 0.68-1.23; p = 0.546) and mortality (RR 1.34; 95% CI 0.72-2.51; p = 354) in patients with positive HMCAS as compared to negative HMCAS. In subgroup analyses, significant association between HMCAS and 90 days functional outcome was observed in patients receiving tPA (RR 1.53; 95% CI 1.40-1.67; p < 0.0001) or both therapies (RR 1.40; 95% CI 1.08-1.80; p = 0.010). This meta-analysis demonstrated that pre-treatment HMCAS increases risk of poor functional outcomes. However, its prognostic sensitivity and specificity in predicting long-term functional outcome, mortality and sICH after reperfusion therapy is poor.

@@ -1,0 +1,14 @@
+# The impact of chronic kidney disease on prognosis in acute stroke: unraveling the pathophysiology and clinical complexity for optimal management.
+
+- **PMID**: 39627467
+- **DOI**: 10.1001/jama.290.7.898
+- **PMCID**: 5321635 (full-text saved)
+- **Journal**: Clinical and experimental nephrology  ·  **Year**: 2025
+- **Authors**: Kruthajn Rajesh, Kevin J Spring, Ivica Smokovski, Vedant Upmanyue, Man Mohan Mehndiratta, Giovanni F M Strippoli, Roy G Beran, Sonu M M Bhaskar
+- **MeSH**: Humans, Renal Insufficiency, Chronic, Stroke, Risk Factors, Prognosis, Thrombolytic Therapy, Kidney, Ischemic Stroke, Treatment Outcome, Thrombectomy
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/39627467/
+- **Captured**: 2026-05-10T12:27:27
+
+## Abstract
+
+Chronic kidney disease (CKD) significantly increases stroke risk and severity, posing challenges in both acute management and long-term outcomes. CKD contributes to cerebrovascular pathology through systemic inflammation, oxidative stress, endothelial dysfunction, vascular calcification, impaired cerebral autoregulation, and a prothrombotic state, all of which exacerbate stroke risk and outcomes. This review synthesizes evidence from peer-reviewed literature to elucidate the pathophysiological mechanisms linking CKD and stroke. It evaluates the efficacy and safety of acute reperfusion therapies-intravenous thrombolysis and endovascular thrombectomy-in CKD patients with acute ischemic stroke. Considerations, such as renal function, drug dosage adjustments, and the risk of contrast-induced nephropathy, are critically analyzed. Evidence-based recommendations and research priorities are drawn from an analysis of current practices and existing knowledge gaps. CKD influences stroke outcomes through systemic and local pathophysiological changes, necessitating tailored therapeutic approaches. Reperfusion therapies are effective in CKD patients but require careful monitoring of renal function to mitigate risks, such as contrast-induced nephropathy and thrombolytic complications. The bidirectional relationship between stroke and CKD highlights the need for integrated management strategies to address both conditions. Early detection and optimized management of CKD significantly reduce stroke-related morbidity and mortality. Optimizing stroke care in CKD patients requires a comprehensive understanding of their pathophysiology and clinical management challenges. This article provides evidence-based recommendations, emphasizing individualized treatment decisions and coordinated care. It underscores the importance of integrating renal considerations into stroke treatment protocols and highlights the need for future research to refine therapeutic strategies, address knowledge gaps, and consider tailored interventions to improve outcomes and quality of life for this high-risk population.

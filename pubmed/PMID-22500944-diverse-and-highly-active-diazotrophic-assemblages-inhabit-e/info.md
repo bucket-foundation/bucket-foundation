@@ -1,0 +1,14 @@
+# Diverse and highly active diazotrophic assemblages inhabit ephemerally wetted soils of the Antarctic Dry Valleys.
+
+- **PMID**: 22500944
+- **DOI**: 10.1111/j.1574-6941.2012.01390.x
+- **PMCID**:  
+- **Journal**: FEMS microbiology ecology  ·  **Year**: 2012
+- **Authors**: Thomas D Niederberger, Jill A Sohm, Joëlle Tirindelli, Troy Gunderson, Douglas G Capone, Edward J Carpenter, Stephen C Cary
+- **MeSH**: Antarctic Regions, Carbon, Cyanobacteria, DNA Fingerprinting, DNA, Bacterial, Ecosystem, Genes, Bacterial, Nitrogen, Nitrogen Fixation, Nitrogenase
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22500944/
+- **Captured**: 2026-05-10T12:23:43
+
+## Abstract
+
+Eolian transport of biomass from ephemerally wetted soils, associated with summer glacial meltwater runoffs and lake edges, to low-productivity areas of the Antarctic Dry Valleys (DV) has been postulated to be an important source of organic matter (fixed nitrogen and fixed carbon) to the entire DV ecosystem. However, descriptions and identification of the microbial members responsible for N(2) fixation within these wetted sites are limited. In this study, N(2) fixers from wetted soils were identified by direct nifH gene sequencing and their in situ N(2) fixation activities documented via acetylene reduction and RNA-based quantitative PCR assays. Shannon-index nifH diversity levels ranged between 1.8 and 2.6 and included the expected cyanobacterial signatures and a large number of phylotypes related to the gamma-, beta-, alpha-, and delta-proteobacteria. N(2) fixation rates ranged between approximately 0.5 and 6 nmol N cm(-3) h(-1) with measurements indicating that approximately 50% of this activity was linked with sulfate reduction at some sites. Comparisons with proximal dry soils also suggested that these communities are not ubiquitously distributed, and conditions unrelated to moisture content may define the composition, diversity, or habitat suitability of the microbial communities within wetted soils of the DVs.

@@ -1,0 +1,14 @@
+# Cytokine Storm in COVID-19-Immunopathological Mechanisms, Clinical Considerations, and Therapeutic Approaches: The REPROGRAM Consortium Position Paper.
+
+- **PMID**: 32754159
+- **DOI**: 10.1101/2020.03.13.990226
+- **PMCID**: PMC7164900 (full-text saved)
+- **Journal**: Frontiers in immunology  ·  **Year**: 2020
+- **Authors**: Sonu Bhaskar, Akansha Sinha, Maciej Banach, Shikha Mittoo, Robert Weissert, Joseph S Kass, Santhosh Rajagopal, Anupama R Pai, Shelby Kutty
+- **MeSH**: Adrenal Cortex Hormones, Angiotensin-Converting Enzyme 2, Anti-Inflammatory Agents, Non-Steroidal, Betacoronavirus, CD4-CD8 Ratio, CD4-Positive T-Lymphocytes, CD8-Positive T-Lymphocytes, COVID-19, Clinical Decision-Making, Coronavirus Infections
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32754159/
+- **Captured**: 2026-05-10T12:25:13
+
+## Abstract
+
+Cytokine storm is an acute hyperinflammatory response that may be responsible for critical illness in many conditions including viral infections, cancer, sepsis, and multi-organ failure. The phenomenon has been implicated in critically ill patients infected with SARS-CoV-2, the novel coronavirus implicated in COVID-19. Critically ill COVID-19 patients experiencing cytokine storm are believed to have a worse prognosis and increased fatality rate. In SARS-CoV-2 infected patients, cytokine storm appears important to the pathogenesis of several severe manifestations of COVID-19: acute respiratory distress syndrome, thromboembolic diseases such as acute ischemic strokes caused by large vessel occlusion and myocardial infarction, encephalitis, acute kidney injury, and vasculitis (Kawasaki-like syndrome in children and renal vasculitis in adult). Understanding the pathogenesis of cytokine storm will help unravel not only risk factors for the condition but also therapeutic strategies to modulate the immune response and deliver improved outcomes in COVID-19 patients at high risk for severe disease. In this article, we present an overview of the cytokine storm and its implications in COVID-19 settings and identify potential pathways or biomarkers that could be targeted for therapy. Leveraging expert opinion, emerging evidence, and a case-based approach, this position paper provides critical insights on cytokine storm from both a prognostic and therapeutic standpoint.

@@ -1,0 +1,14 @@
+# Prevalence of antimicrobial resistance and the cfiA resistance gene in Danish Bacteroides fragilis group isolates since 1973.
+
+- **PMID**: 28666749
+- **DOI**: 10.1016/j.ijantimicag.2017.05.007
+- **PMCID**:  
+- **Journal**: International journal of antimicrobial agents  ·  **Year**: 2017
+- **Authors**: Simon Andreas Ferløv-Schwensen, Thomas Vognbjerg Sydenham, Kia Cirkeline Møller Hansen, Silje Vermedal Hoegh, Ulrik Stenz Justesen
+- **MeSH**: Anti-Bacterial Agents, Bacterial Proteins, Bacteroides fragilis, Clindamycin, Disk Diffusion Antimicrobial Tests, Drug Resistance, Bacterial, Humans, Meropenem, Metronidazole, Real-Time Polymerase Chain Reaction
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28666749/
+- **Captured**: 2026-05-10T12:24:25
+
+## Abstract
+
+The purpose of this study was to determine the prevalence of resistance and the cfiA carbapenemase-producing gene in historical Bacteroides fragilis group isolates. Danish clinical B. fragilis group isolates (n = 444) from 1973 to 2015 were identified with Matrix-Assisted Laser Desorption/Ionization Time-Of-Flight Mass Spectrometry (MALDI-TOF MS) on the Biotyper platform. Antimicrobial resistance was determined using a disk diffusion screening method and commercial antibiotic gradient strips. Division I (cfiA-negative) and division II (cfiA-positive) B. fragilis strains were differentiated using MALDI-TOF MS and real-time polymerase chain reaction (PCR). From 1973-1980 to 2010-2015 the prevalence of antimicrobial resistance rose from 0% to 21.2%, 2.5%, and 1% for clindamycin, meropenem, and metronidazole, respectively. MALDI-TOF MS and real-time PCR identified 16 of 266 (6.0%) B. fragilis strains as division II, of which 4 strains, isolated between 2010 and 2015, were resistant to meropenem. Substantial increases in resistance were found throughout this study. This supports the general perception that antimicrobial resistance in the B. fragilis group has been established in the recent decades in Europe. Resistance to meropenem, facilitated by expression of the cfiA resistance gene, seems to be increasing; therefore, it is imperative to monitor the occurrence of this gene, e.g. using MALDI-TOF MS.

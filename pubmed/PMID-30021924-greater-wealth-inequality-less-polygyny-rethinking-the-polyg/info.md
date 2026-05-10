@@ -1,0 +1,14 @@
+# Greater wealth inequality, less polygyny: rethinking the polygyny threshold model.
+
+- **PMID**: 30021924
+- **DOI**: 10.1016/0162-3095(91)90022-I
+- **PMCID**: PMC3122907 (full-text saved)
+- **Journal**: Journal of the Royal Society, Interface  ·  **Year**: 2018
+- **Authors**: Cody T Ross, Monique Borgerhoff Mulder, Seung-Yun Oh, Samuel Bowles, Bret Beheim, John Bunce, Mark Caudell, Gregory Clark, Heidi Colleran, Carmen Cortez, Patricia Draper, Russell D Greaves, Michael Gurven, Thomas Headland, Janet Headland, Kim Hill, Barry Hewlett, Hillard S Kaplan, Jeremy Koster, Karen Kramer, Frank Marlowe, Richard McElreath, David Nolin, Marsha Quinlan, Robert Quinlan, Caissa Revilla-Minaya, Brooke Scelza, Ryan Schacht, Mary Shenk, Ray Uehara, Eckart Voland, Kai Willführ, Bruce Winterhalder, John Ziker
+- **MeSH**: Female, Humans, Male, Marriage, Models, Theoretical, Socioeconomic Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30021924/
+- **Captured**: 2026-05-10T12:24:42
+
+## Abstract
+
+Monogamy appears to have become the predominant human mating system with the emergence of highly unequal agricultural populations that replaced relatively egalitarian horticultural populations, challenging the conventional idea-based on the polygyny threshold model-that polygyny should be positively associated with wealth inequality. To address this polygyny paradox, we generalize the standard polygyny threshold model to a mutual mate choice model predicting the fraction of women married polygynously. We then demonstrate two conditions that are jointly sufficient to make monogamy the predominant marriage form, even in highly unequal societies. We assess if these conditions are satisfied using individual-level data from 29 human populations. Our analysis shows that with the shift to stratified agricultural economies: (i) the population frequency of relatively poor individuals increased, increasing wealth inequality, but decreasing the frequency of individuals with sufficient wealth to secure polygynous marriage, and (ii) diminishing marginal fitness returns to additional wives prevent extremely wealthy men from obtaining as many wives as their relative wealth would otherwise predict. These conditions jointly lead to a high population-level frequency of monogamy.
