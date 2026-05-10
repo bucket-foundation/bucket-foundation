@@ -1,0 +1,14 @@
+# Death after Kidney Transplantation: An Analysis by Era and Time Post-Transplant.
+
+- **PMID**: 32908001
+- **DOI**: 10.1681/ASN.2020050566
+- **PMCID**: PMC2386715 (full-text saved)
+- **Journal**: Journal of the American Society of Nephrology : JASN  ·  **Year**: 2020
+- **Authors**: Tracey Ying, Bree Shi, Patrick J Kelly, Helen Pilmore, Philip A Clayton, Steven J Chadban
+- **MeSH**: Adolescent, Adult, Aged, Australia, Cause of Death, Child, Female, Graft Survival, Humans, Kidney Diseases
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32908001/
+- **Captured**: 2026-05-10T16:31:59
+
+## Abstract
+
+Mortality risk after kidney transplantation can vary significantly during the post-transplant course. A contemporary assessment of trends in all-cause and cause-specific mortality at different periods post-transplant is required to better inform patients, clinicians, researchers, and policy makers. We included all first kidney-only transplant recipients from 1980 through 2018 from the Australia and New Zealand Dialysis and Transplant Registry. We compared adjusted death rates per 5-year intervals, using a piecewise exponential survival model, stratified by time post-transplant or time post-graft failure. Of 23,210 recipients, 4765 died with a functioning graft. Risk of death declined over successive eras, at all periods post-transplant. Reductions in early deaths were most marked; however, recipients ≥10 years post-transplant were 20% less likely to die in the current era compared with preceding eras (2015-2018 versus 2005-2009, adjusted hazard ratio, 0.80; 95% confidence interval, 0.69 to 0.90). In 2015-2018, cardiovascular disease was the most common cause of death, particularly in months 0-3 post-transplant (1.18 per 100 patient-years). Cancer deaths were rare early post-transplant, but frequent at later time points (0.93 per 100 patient-years ≥10 years post-transplant). Among 3657 patients with first graft loss, 2472 died and were not retransplanted. Death was common in the first year after graft failure, and the cause was most commonly cardiovascular (50%). Reductions in death early and late post-transplant over the past 40 years represent a major achievement. Reductions in cause-specific mortality at all time points post-transplant are also apparent. However, relatively greater reductions in cardiovascular death have increased the prominence of late cancer deaths.

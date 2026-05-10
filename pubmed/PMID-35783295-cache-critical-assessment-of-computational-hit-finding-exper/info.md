@@ -1,0 +1,14 @@
+# CACHE (Critical Assessment of Computational Hit-finding Experiments): A public-private partnership benchmarking initiative to enable the development of computational methods for hit-finding.
+
+- **PMID**: 35783295
+- **DOI**: 10.1038/sdata.2016.18
+- **PMCID**: PMC4792175 (full-text saved)
+- **Journal**: Nature reviews. Chemistry  ·  **Year**: 2022
+- **Authors**: Suzanne Ackloo, Rima Al-Awar, Rommie E Amaro, Cheryl H Arrowsmith, Hatylas Azevedo, Robert A Batey, Yoshua Bengio, Ulrich A K Betz, Cristian G Bologa, John D Chodera, Wendy D Cornell, Ian Dunham, Gerhard F Ecker, Kristina Edfeldt, Aled M Edwards, Michael K Gilson, Claudia R Gordijo, Gerhard Hessler, Alexander Hillisch, Anders Hogner, John J Irwin, Johanna M Jansen, Daniel Kuhn, Andrew R Leach, Alpha A Lee, Uta Lessel, Maxwell R Morgan, John Moult, Ingo Muegge, Tudor I Oprea, Benjamin G Perry, Patrick Riley, Sophie A L Rousseaux, Kumar Singh Saikatendu, Vijayaratnam Santhakumar, Matthieu Schapira, Cora Scholten, Matthew H Todd, Masoud Vedadi, Andrea Volkamer, Timothy M Willson
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35783295/
+- **Captured**: 2026-05-10T16:34:36
+
+## Abstract
+
+One aspirational goal of computational chemistry is to predict potent and drug-like binders for any protein, such that only those that bind are synthesized. In this Roadmap, we describe the launch of Critical Assessment of Computational Hit-finding Experiments (CACHE), a public benchmarking project to compare and improve small molecule hit-finding algorithms through cycles of prediction and experimental testing. Participants will predict small molecule binders for new and biologically relevant protein targets representing different prediction scenarios. Predicted compounds will be tested rigorously in an experimental hub, and all predicted binders as well as all experimental screening data, including the chemical structures of experimentally tested compounds, will be made publicly available, and not subject to any intellectual property restrictions. The ability of a range of computational approaches to find novel binders will be evaluated, compared, and openly published. CACHE will launch 3 new benchmarking exercises every year. The outcomes will be better prediction methods, new small molecule binders for target proteins of importance for fundamental biology or drug discovery, and a major technological step towards achieving the goal of Target 2035, a global initiative to identify pharmacological probes for all human proteins.

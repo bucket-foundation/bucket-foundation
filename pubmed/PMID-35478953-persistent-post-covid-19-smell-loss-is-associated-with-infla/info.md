@@ -1,0 +1,14 @@
+# Persistent post-COVID-19 smell loss is associated with inflammatory infiltration and altered olfactory epithelial gene expression.
+
+- **PMID**: 35478953
+- **DOI**: 10.1101/2022.04.17.488474
+- **PMCID**: PMC9044903 (full-text saved)
+- **Journal**: bioRxiv : the preprint server for biology  ·  **Year**: 2022
+- **Authors**: John B Finlay, David H Brann, Ralph Abi-Hachem, David W Jang, Allison D Oliva, Tiffany Ko, Rupali Gupta, Sebastian A Wellford, E Ashley Moseman, Sophie S Jang, Carol H Yan, Hiroaki Matusnami, Tatsuya Tsukahara, Sandeep Robert Datta, Bradley J Goldstein
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35478953/
+- **Captured**: 2026-05-10T16:34:21
+
+## Abstract
+
+Most human subjects infected by SARS-CoV-2 report an acute alteration in their sense of smell, and more than 25% of COVID patients report lasting olfactory dysfunction. While animal studies and human autopsy tissues have suggested mechanisms underlying acute loss of smell, the pathophysiology that underlies persistent smell loss remains unclear. Here we combine objective measurements of smell loss in patients suffering from post-acute sequelae of SARS-CoV-2 infection (PASC) with single cell sequencing and histology of the olfactory epithelium (OE). This approach reveals that the OE of patients with persistent smell loss harbors a diffuse infiltrate of T cells expressing interferon-gamma; gene expression in sustentacular cells appears to reflect a response to inflammatory signaling, which is accompanied by a reduction in the number of olfactory sensory neurons relative to support cells. These data identify a persistent epithelial inflammatory process associated with PASC, and suggests mechanisms through which this T cell-mediated inflammation alters the sense of smell.

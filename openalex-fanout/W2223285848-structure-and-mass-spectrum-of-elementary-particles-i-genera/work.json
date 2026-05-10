@@ -1,0 +1,804 @@
+{
+  "id": "https://openalex.org/W2223285848",
+  "doi": "https://doi.org/10.1103/physrev.91.415.2",
+  "title": "Structure and Mass Spectrum of Elementary Particles. I. General Considerations",
+  "display_name": "Structure and Mass Spectrum of Elementary Particles. I. General Considerations",
+  "publication_year": 1953,
+  "publication_date": "1953-07-15",
+  "ids": {
+    "openalex": "https://openalex.org/W2223285848",
+    "doi": "https://doi.org/10.1103/physrev.91.415.2",
+    "mag": "2223285848"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1103/physrev.91.415.2",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1103/physrev.91.415.2",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S54862371",
+      "display_name": "Physical Review",
+      "issn_l": "0031-899X",
+      "issn": [
+        "0031-899X",
+        "1536-6065"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/P4310320257",
+      "host_organization_name": "American Institute of Physics",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320257"
+      ],
+      "host_organization_lineage_names": [
+        "American Institute of Physics"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Physical Review",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5110090983",
+        "display_name": "Hideki Yukawa",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Hideki Yukawa",
+      "raw_affiliation_strings": [
+        "Columbia University, New York, New York"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Columbia University, New York, New York",
+          "institution_ids": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5110090983"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I78577930"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 8.9912,
+  "has_fulltext": false,
+  "cited_by_count": 98,
+  "citation_normalized_percentile": {
+    "value": 0.98534202,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 89,
+    "max": 98
+  },
+  "biblio": {
+    "volume": "91",
+    "issue": "2",
+    "first_page": "415",
+    "last_page": "416"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11012",
+    "display_name": "Gas Dynamics and Kinetic Theory",
+    "score": 0.9861999750137329,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2604",
+      "display_name": "Applied Mathematics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/26",
+      "display_name": "Mathematics"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11012",
+      "display_name": "Gas Dynamics and Kinetic Theory",
+      "score": 0.9861999750137329,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2604",
+        "display_name": "Applied Mathematics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11683",
+      "display_name": "Quantum and Classical Electrodynamics",
+      "score": 0.9775000214576721,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3107",
+        "display_name": "Atomic and Molecular Physics, and Optics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11965",
+      "display_name": "Quantum, superfluid, helium dynamics",
+      "score": 0.9696999788284302,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3107",
+        "display_name": "Atomic and Molecular Physics, and Optics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.604122519493103
+    },
+    {
+      "id": "https://openalex.org/keywords/elementary-particle",
+      "display_name": "Elementary particle",
+      "score": 0.5857110619544983
+    },
+    {
+      "id": "https://openalex.org/keywords/spectrum",
+      "display_name": "Spectrum (functional analysis)",
+      "score": 0.5429009199142456
+    },
+    {
+      "id": "https://openalex.org/keywords/mass-spectrum",
+      "display_name": "Mass spectrum",
+      "score": 0.5221576690673828
+    },
+    {
+      "id": "https://openalex.org/keywords/subatomic-particle",
+      "display_name": "Subatomic particle",
+      "score": 0.45559123158454895
+    },
+    {
+      "id": "https://openalex.org/keywords/nuclear-physics",
+      "display_name": "Nuclear physics",
+      "score": 0.39900708198547363
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.21222245693206787
+    },
+    {
+      "id": "https://openalex.org/keywords/mass-spectrometry",
+      "display_name": "Mass spectrometry",
+      "score": 0.1457599401473999
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.604122519493103
+    },
+    {
+      "id": "https://openalex.org/C102999125",
+      "wikidata": "https://www.wikidata.org/wiki/Q43116",
+      "display_name": "Elementary particle",
+      "level": 2,
+      "score": 0.5857110619544983
+    },
+    {
+      "id": "https://openalex.org/C156778621",
+      "wikidata": "https://www.wikidata.org/wiki/Q1365748",
+      "display_name": "Spectrum (functional analysis)",
+      "level": 2,
+      "score": 0.5429009199142456
+    },
+    {
+      "id": "https://openalex.org/C40325409",
+      "wikidata": "https://www.wikidata.org/wiki/Q2360668",
+      "display_name": "Mass spectrum",
+      "level": 3,
+      "score": 0.5221576690673828
+    },
+    {
+      "id": "https://openalex.org/C28294206",
+      "wikidata": "https://www.wikidata.org/wiki/Q177013",
+      "display_name": "Subatomic particle",
+      "level": 3,
+      "score": 0.45559123158454895
+    },
+    {
+      "id": "https://openalex.org/C185544564",
+      "wikidata": "https://www.wikidata.org/wiki/Q81197",
+      "display_name": "Nuclear physics",
+      "level": 1,
+      "score": 0.39900708198547363
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.21222245693206787
+    },
+    {
+      "id": "https://openalex.org/C162356407",
+      "wikidata": "https://www.wikidata.org/wiki/Q180809",
+      "display_name": "Mass spectrometry",
+      "level": 2,
+      "score": 0.1457599401473999
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1103/physrev.91.415.2",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1103/physrev.91.415.2",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S54862371",
+        "display_name": "Physical Review",
+        "issn_l": "0031-899X",
+        "issn": [
+          "0031-899X",
+          "1536-6065"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/P4310320257",
+        "host_organization_name": "American Institute of Physics",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320257"
+        ],
+        "host_organization_lineage_names": [
+          "American Institute of Physics"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physical Review",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 10,
+  "referenced_works": [
+    "https://openalex.org/W1967142115",
+    "https://openalex.org/W2019490607",
+    "https://openalex.org/W2030914252",
+    "https://openalex.org/W2064437424",
+    "https://openalex.org/W2066219339",
+    "https://openalex.org/W2071261273",
+    "https://openalex.org/W2072127917",
+    "https://openalex.org/W2090810998",
+    "https://openalex.org/W2128965931",
+    "https://openalex.org/W4245765000"
+  ],
+  "related_works": [
+    "https://openalex.org/W2048998542",
+    "https://openalex.org/W2270408733",
+    "https://openalex.org/W4386031321",
+    "https://openalex.org/W4318051774",
+    "https://openalex.org/W2946415532",
+    "https://openalex.org/W2945083575",
+    "https://openalex.org/W4255019999",
+    "https://openalex.org/W4256274414",
+    "https://openalex.org/W2952260174",
+    "https://openalex.org/W4238022346"
+  ],
+  "abstract_inverted_index": {
+    "As": [
+      0
+    ],
+    "discussed": [
+      1
+    ],
+    "in": [
+      2,
+      10,
+      20,
+      68,
+      101,
+      119,
+      123,
+      163
+    ],
+    "previous": [
+      3
+    ],
+    "papers,1": [
+      4
+    ],
+    "the": [
+      5,
+      21,
+      60,
+      74,
+      77,
+      81,
+      94,
+      102,
+      110,
+      130,
+      137,
+      164
+    ],
+    "nonlocal": [
+      6,
+      83,
+      120,
+      149,
+      157
+    ],
+    "field": [
+      7,
+      121,
+      134
+    ],
+    "was": [
+      8,
+      18,
+      35
+    ],
+    "introduced": [
+      9
+    ],
+    "order": [
+      11
+    ],
+    "to": [
+      12,
+      40,
+      43,
+      109,
+      129,
+      135
+    ],
+    "describe": [
+      13
+    ],
+    "relativistically": [
+      14
+    ],
+    "a": [
+      15,
+      46,
+      151
+    ],
+    "system": [
+      16
+    ],
+    "which": [
+      17,
+      136
+    ],
+    "elementary": [
+      19,
+      32
+    ],
+    "sense": [
+      22
+    ],
+    "that": [
+      23,
+      112
+    ],
+    "it": [
+      24
+    ],
+    "could": [
+      25
+    ],
+    "no": [
+      26
+    ],
+    "longer": [
+      27
+    ],
+    "be": [
+      28,
+      41
+    ],
+    "decomposed": [
+      29
+    ],
+    "into": [
+      30
+    ],
+    "more": [
+      31,
+      152
+    ],
+    "constituents,": [
+      33
+    ],
+    "but": [
+      34,
+      125
+    ],
+    "so": [
+      36,
+      63
+    ],
+    "substantial,": [
+      37
+    ],
+    "nevertheless,": [
+      38
+    ],
+    "as": [
+      39,
+      161
+    ],
+    "able": [
+      42
+    ],
+    "contain": [
+      44
+    ],
+    "implicitly": [
+      45
+    ],
+    "great": [
+      47
+    ],
+    "variety": [
+      48
+    ],
+    "of": [
+      49,
+      76,
+      105,
+      133,
+      155
+    ],
+    "particles": [
+      50,
+      78
+    ],
+    "with": [
+      51,
+      80
+    ],
+    "different": [
+      52
+    ],
+    "masses,": [
+      53
+    ],
+    "spins,": [
+      54
+    ],
+    "and": [
+      55,
+      88,
+      90
+    ],
+    "other": [
+      56,
+      72
+    ],
+    "intrinsic": [
+      57
+    ],
+    "properties.": [
+      58
+    ],
+    "However,": [
+      59
+    ],
+    "conclusions": [
+      61
+    ],
+    "reached": [
+      62
+    ],
+    "far": [
+      64
+    ],
+    "were": [
+      65
+    ],
+    "very": [
+      66
+    ],
+    "unsatisfactory": [
+      67
+    ],
+    "many": [
+      69
+    ],
+    "respects.2": [
+      70
+    ],
+    "Among": [
+      71
+    ],
+    "things,": [
+      73
+    ],
+    "masses": [
+      75
+    ],
+    "associated": [
+      79
+    ],
+    "irreducible": [
+      82
+    ],
+    "fields": [
+      84,
+      97
+    ],
+    "remained": [
+      85
+    ],
+    "completely": [
+      86
+    ],
+    "arbitrary": [
+      87
+    ],
+    "simple": [
+      89
+    ],
+    "plausible": [
+      91
+    ],
+    "assumptions": [
+      92
+    ],
+    "concerning": [
+      93
+    ],
+    "interaction": [
+      95
+    ],
+    "between": [
+      96
+    ],
+    "did": [
+      98
+    ],
+    "not": [
+      99,
+      117
+    ],
+    "result": [
+      100
+    ],
+    "expected": [
+      103
+    ],
+    "convergence": [
+      104
+    ],
+    "self-energies.": [
+      106
+    ],
+    "It": [
+      107
+    ],
+    "seems": [
+      108
+    ],
+    "author": [
+      111,
+      138
+    ],
+    "these": [
+      113
+    ],
+    "disappointing": [
+      114
+    ],
+    "consequences": [
+      115
+    ],
+    "are": [
+      116,
+      126
+    ],
+    "inherent": [
+      118
+    ],
+    "theory,": [
+      122
+    ],
+    "general,": [
+      124
+    ],
+    "rather": [
+      127
+    ],
+    "related": [
+      128
+    ],
+    "particular": [
+      131
+    ],
+    "type": [
+      132
+    ],
+    "restricted": [
+      139,
+      148
+    ],
+    "himself.": [
+      140
+    ],
+    "Instead,": [
+      141
+    ],
+    "if": [
+      142
+    ],
+    "we": [
+      143
+    ],
+    "start": [
+      144
+    ],
+    "anew": [
+      145
+    ],
+    "from": [
+      146
+    ],
+    "less": [
+      147
+    ],
+    "fields,": [
+      150
+    ],
+    "promising": [
+      153
+    ],
+    "aspect": [
+      154
+    ],
+    "possible": [
+      156
+    ],
+    "theories": [
+      158
+    ],
+    "is": [
+      159
+    ],
+    "revealed,": [
+      160
+    ],
+    "shown": [
+      162
+    ],
+    "following.": [
+      165
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2025,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 1
+    }
+  ],
+  "updated_date": "2026-04-04T16:13:02.066488",
+  "created_date": "2025-10-10T00:00:00"
+}

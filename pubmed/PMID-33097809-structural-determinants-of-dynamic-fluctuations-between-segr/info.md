@@ -1,0 +1,14 @@
+# Structural determinants of dynamic fluctuations between segregation and integration on the human connectome.
+
+- **PMID**: 33097809
+- **DOI**: 10.1371/journal.pcbi.1000196
+- **PMCID**: PMC7584581 (full-text saved)
+- **Journal**: Communications biology  ·  **Year**: 2020
+- **Authors**: Makoto Fukushima, Olaf Sporns
+- **MeSH**: Adult, Brain, Connectome, Female, Humans, Magnetic Resonance Imaging, Male, Models, Neurological, Nerve Net, Young Adult
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33097809/
+- **Captured**: 2026-05-10T16:32:15
+
+## Abstract
+
+While segregation and integration of neural information in the neocortex are thought to be important for human behavior and cognition, the neural substrates enabling their dynamic fluctuations remain elusive. To tackle this problem, we aim to identify specific network features of the connectome that are responsible for the emergence of dynamic fluctuations between segregated and integrated patterns in human resting-state functional connectivity. Here we examine the contributions of network features to dynamic fluctuations by constructing rewired surrogate connectome in which network features of interest are selectively preserved, and then by assessing the magnitude of fluctuations simulated with these surrogates. Our analysis demonstrates significant contributions from global geometry and topology of the connectome, as well as from localized structural connections involving visual areas. By providing structural accounts of dynamic fluctuations in functional connectivity, this study offers new insights into generative mechanisms driving temporal changes in segregation and integration in the brain.

@@ -1,0 +1,14 @@
+# Cross-frequency coupling explains the preference for simple ratios in rhythmic behaviour and the relative stability across non-synchronous patterns.
+
+- **PMID**: 34420377
+- **DOI**: 10.1016/j.physa.2008.05.031
+- **PMCID**: PMC5665819 (full-text saved)
+- **Journal**: Philosophical transactions of the Royal Society of London. Series B, Biological sciences  ·  **Year**: 2021
+- **Authors**: Dobromir Dotov, Laurel J Trainor
+- **MeSH**: Hand, Humans, Movement, Periodicity, Psychomotor Performance
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34420377/
+- **Captured**: 2026-05-10T16:33:26
+
+## Abstract
+
+Rhythms are important for understanding coordinated behaviours in ecological systems. The repetitive nature of rhythms affords prediction, planning of movements and coordination of processes within and between individuals. A major challenge is to understand complex forms of coordination when they differ from complete synchronization. By expressing phase as ratio of a cycle, we adapted levels of the Farey tree as a metric of complexity mapped to the range between in-phase and anti-phase synchronization. In a bimanual tapping task, this revealed an increase of variability with ratio complexity, a range of hidden and unstable yet measurable modes, and a rank-frequency scaling law across these modes. We use the phase-attractive circle map to propose an interpretation of these findings in terms of hierarchical cross-frequency coupling (CFC). We also consider the tendency for small-integer attractors in the single-hand repeated tapping of three-interval rhythms reported in the literature. The phase-attractive circle map has wider basins of attractions for such ratios. This work motivates the question whether CFC intrinsic to neural dynamics implements low-level priors for timing and coordination and thus becomes involved in phenomena as diverse as attractor states in bimanual coordination and the cross-cultural tendency for musical rhythms to have simple interval ratios. This article is part of the theme issue 'Synchrony and rhythm interaction: from the brain to behavioural ecology'.

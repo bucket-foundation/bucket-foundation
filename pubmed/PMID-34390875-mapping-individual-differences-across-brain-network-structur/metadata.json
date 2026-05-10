@@ -1,0 +1,36 @@
+{
+  "pmid": "34390875",
+  "title": "Mapping individual differences across brain network structure to function and behavior with connectome embedding.",
+  "abstract": "The connectome, a comprehensive map of the brain's anatomical connections, is often summarized as a matrix comprising all dyadic connections among pairs of brain regions. This representation cannot capture higher-order relations within the brain graph. Connectome embedding (CE) addresses this limitation by creating compact vectorized representations of brain nodes capturing their context in the global network topology. Here, nodes \"context\" is defined as random walks on the brain graph and as such, represents a generative model of diffusive communication around nodes. Applied to group-averaged structural connectivity, CE was previously shown to capture relations between inter-hemispheric homologous brain regions and uncover putative missing edges from the network reconstruction. Here we extend this framework to explore individual differences with a novel embedding alignment approach. We test this approach in two lifespan datasets (NKI: n = 542; Cam-CAN: n = 601) that include diffusion-weighted imaging, resting-state fMRI, demographics and behavioral measures. We demonstrate that modeling functional connectivity with CE substantially improves structural to functional connectivity mapping both at the group and subject level. Furthermore, age-related differences in this structure-function mapping, are preserved and enhanced. Importantly, CE captures individual differences by out-of-sample prediction of age and intelligence. The resulting predictive accuracy was higher compared to using structural connectivity and functional connectivity. We attribute these findings to the capacity of the CE to incorporate aspects of both anatomy (the structural graph) and function (diffusive communication). Our novel approach allows mapping individual differences in the connectome through structure to function and behavior.",
+  "authors": [
+    "Gidon Levakov",
+    "Joshua Faskowitz",
+    "Galia Avidan",
+    "Olaf Sporns"
+  ],
+  "journal": "NeuroImage",
+  "year": "2021",
+  "doi": "10.1002/hbm.23200",
+  "pmcid": "PMC6867479",
+  "mesh": [
+    "Adolescent",
+    "Adult",
+    "Aged",
+    "Aged, 80 and over",
+    "Brain Mapping",
+    "Child",
+    "Connectome",
+    "Diffusion Tensor Imaging",
+    "Female",
+    "Humans",
+    "Image Processing, Computer-Assisted",
+    "Individuality",
+    "Intelligence",
+    "Longevity",
+    "Magnetic Resonance Imaging",
+    "Male",
+    "Middle Aged",
+    "Nerve Net",
+    "Young Adult"
+  ]
+}

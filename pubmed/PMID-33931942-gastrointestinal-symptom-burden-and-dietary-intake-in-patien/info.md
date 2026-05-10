@@ -1,0 +1,14 @@
+# Gastrointestinal symptom burden and dietary intake in patients with chronic kidney disease.
+
+- **PMID**: 33931942
+- **DOI**: 10.1111/jorc.12373
+- **PMCID**:  
+- **Journal**: Journal of renal care  ·  **Year**: 2021
+- **Authors**: Anthony Meade, Richard Le Leu, Nerylee Watson, Shilpa Jesudason, Philip Clayton, Randall Faull, Stephen McDonald, Claire Trimingham
+- **MeSH**: Cross-Sectional Studies, Eating, Female, Humans, Male, Middle Aged, Peritoneal Dialysis, Renal Dialysis, Renal Insufficiency, Chronic
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33931942/
+- **Captured**: 2026-05-10T16:32:51
+
+## Abstract
+
+Gastrointestinal (GI) symptoms can present a significant burden to patients with chronic kidney disease (CKD) but the reported prevalence is inconsistent. To examine the GI burden and dietary intake in patients with CKD with or without dialysis. This was a cross-sectional study of 216 adults, recruited from outpatient and dialysis clinics, with CKD stage 4 or 5 not receiving dialysis (CKD-ND), or receiving haemodialysis (HD) or peritoneal dialysis (PD). Three questionnaires were administered: the Bristol Stool Form Scale (BSFS); a modified Gastrointestinal Symptom Rating Scale and a short Food Frequency Questionnaire. Outcomes were stool frequency and consistency, GI symptoms and dietary intake. Data were collected from 216 patients (mean age, 63 years [95% CI: 61, 65]; 63% males; CKD-ND: n = 134; HD: n = 67; PD: n = 15). Mean stool frequency for all groups was one bowel action per day (p = .45) and consistency was normal (BSFS type 4, p = .95). Overall GI symptom burden was low but several symptoms occurred at least "most of the time" including "tiredness/lethargy" (54% of participants), "reduced appetite" (29%), "early satiety" (25%) and "change in taste" (15%). Low intakes of fresh fruit, vegetables, whole-grains and legumes were found. No associations were observed between diet and GI symptoms. The overall GI symptom burden was low, but >15% of participants reported several symptoms as occurring most to all of the time. Low intakes of fresh fruit, vegetables, whole-grains and legumes were observed in all CKD patients.

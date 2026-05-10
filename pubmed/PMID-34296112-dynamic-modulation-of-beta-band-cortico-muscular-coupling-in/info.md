@@ -1,0 +1,14 @@
+# Dynamic Modulation of Beta Band Cortico-Muscular Coupling Induced by Audio-Visual Rhythms.
+
+- **PMID**: 34296112
+- **DOI**: 10.1093/texcom/tgaa043
+- **PMCID**: PMC3798945 (full-text saved)
+- **Journal**: Cerebral cortex communications  ·  **Year**: 2020
+- **Authors**: Manuel Varlet, Sylvie Nozaradan, Laurel Trainor, Peter E Keller
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34296112/
+- **Captured**: 2026-05-10T16:33:15
+
+## Abstract
+
+Human movements often spontaneously fall into synchrony with auditory and visual environmental rhythms. Related behavioral studies have shown that motor responses are automatically and unintentionally coupled with external rhythmic stimuli. However, the neurophysiological processes underlying such motor entrainment remain largely unknown. Here, we investigated with electroencephalography (EEG) and electromyography (EMG) the modulation of neural and muscular activity induced by periodic audio and/or visual sequences. The sequences were presented at either 1 or 2 Hz, while participants maintained constant finger pressure on a force sensor. The results revealed that although there was no change of amplitude in participants' EMG in response to the sequences, the synchronization between EMG and EEG recorded over motor areas in the beta (12-40 Hz) frequency band was dynamically modulated, with maximal coherence occurring about 100 ms before each stimulus. These modulations in beta EEG-EMG motor coherence were found for the 2-Hz audio-visual sequences, confirming at a neurophysiological level the enhancement of motor entrainment with multimodal rhythms that fall within preferred perceptual and movement frequency ranges. Our findings identify beta band cortico-muscular coupling as a potential underlying mechanism of motor entrainment, further elucidating the nature of the link between sensory and motor systems in humans.

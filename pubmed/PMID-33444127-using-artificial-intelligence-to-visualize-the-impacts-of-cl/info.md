@@ -1,0 +1,14 @@
+# Using Artificial Intelligence to Visualize the Impacts of Climate Change.
+
+- **PMID**: 33444127
+- **DOI**: 10.1109/MCG.2020.3025425
+- **PMCID**:  
+- **Journal**: IEEE computer graphics and applications  ·  **Year**: 2021
+- **Authors**: Alexandra Luccioni, Victor Schmidt, Vahe Vardanyan, Yoshua Bengio, Theresa-Marie Rhyne
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33444127/
+- **Captured**: 2026-05-10T16:32:28
+
+## Abstract
+
+Public awareness and concern about climate change often do not match the magnitude of its threat to humans and our environment. One reason for this disagreement is that it is difficult to mentally simulate the effects of a process as complex as climate change and to have a concrete representation of the impact that our individual actions will have on our own future, especially if the consequences are long term and abstract. To overcome these challenges, we propose to use cutting-edge artificial intelligence (AI) approaches to develop an interactive personalized visualization tool, the AI climate impact visualizer. It will allow a user to enter an address-be it their house, their school, or their workplace--and it will provide them with an AI-imagined possible visualization of the future of this location in 2050 following the detrimental effects of climate change such as floods, storms, and wildfires. This image will be accompanied by accessible information regarding the science behind climate change, i.e., why extreme weather events are becoming more frequent and what kinds of changes are happening on a local and global scale.

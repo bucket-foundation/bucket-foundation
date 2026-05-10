@@ -1,0 +1,14 @@
+# Edge-centric functional network representations of human cerebral cortex reveal overlapping system-level architecture.
+
+- **PMID**: 33077948
+- **DOI**: 10.1038/s41593-020-00719-y
+- **PMCID**: 4625579 (full-text saved)
+- **Journal**: Nature neuroscience  ·  **Year**: 2020
+- **Authors**: Joshua Faskowitz, Farnaz Zamani Esfahlani, Youngheun Jo, Olaf Sporns, Richard F Betzel
+- **MeSH**: Adult, Algorithms, Behavior, Brain Mapping, Cerebral Cortex, Cluster Analysis, Connectome, Databases, Factual, Female, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33077948/
+- **Captured**: 2026-05-10T16:32:12
+
+## Abstract
+
+Network neuroscience has relied on a node-centric network model in which cells, populations and regions are linked to one another via anatomical or functional connections. This model cannot account for interactions of edges with one another. In this study, we developed an edge-centric network model that generates constructs 'edge time series' and 'edge functional connectivity' (eFC). Using network analysis, we show that, at rest, eFC is consistent across datasets and reproducible within the same individual over multiple scan sessions. We demonstrate that clustering eFC yields communities of edges that naturally divide the brain into overlapping clusters, with regions in sensorimotor and attentional networks exhibiting the greatest levels of overlap. We show that eFC is systematically modulated by variation in sensory input. In future work, the edge-centric approach could be useful for identifying novel biomarkers of disease, characterizing individual variation and mapping the architecture of highly resolved neural circuits.

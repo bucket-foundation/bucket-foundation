@@ -1,0 +1,14 @@
+# The volatility of stock market prices.
+
+- **PMID**: 17769311
+- **DOI**: 10.1126/science.235.4784.33
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 1987
+- **Authors**: R J Shiller
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17769311/
+- **Captured**: 2026-05-10T16:30:38
+
+## Abstract
+
+If the volatility of stock market prices is to be understood in terms of the efficient markets hypothesis, then there should be evidence that true investment value changes through time sufficiently to justify the price changes. Three indicators of change in true investment value of the aggregate stock market in the United States from 1871 to 1986 are considered: changes in dividends, in real interest rates, and in a direct measure of intertemporal marginal rates of substitution. Although there are some ambiguities in interpreting the evidence, dividend changes appear to contribute very little toward justifying the observed historical volatility of stock prices. The other indicators contribute some, but still most of the volatility of stock market prices appears unexplained.

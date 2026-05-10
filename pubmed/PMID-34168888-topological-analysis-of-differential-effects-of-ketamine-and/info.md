@@ -1,0 +1,14 @@
+# Topological analysis of differential effects of ketamine and propofol anaesthesia on brain dynamics.
+
+- **PMID**: 34168888
+- **DOI**: 10.1016/j.neuron.2020.01.026
+- **PMCID**: PMC8770991 (full-text saved)
+- **Journal**: Royal Society open science  ·  **Year**: 2021
+- **Authors**: Thomas F Varley, Vanessa Denny, Olaf Sporns, Alice Patania
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34168888/
+- **Captured**: 2026-05-10T16:33:07
+
+## Abstract
+
+Research has found that the vividness of conscious experience is related to brain dynamics. Despite both being anaesthetics, propofol and ketamine produce different subjective states: we explore the different effects of these two anaesthetics on the structure of dynamic attractors reconstructed from electrophysiological activity recorded from cerebral cortex of two macaques. We used two methods: the first embeds the recordings in a continuous high-dimensional manifold on which we use topological data analysis to infer the presence of higher-order dynamics. The second reconstruction, an ordinal partition network embedding, allows us to create a discrete state-transition network, which is amenable to information-theoretic analysis and contains rich information about state-transition dynamics. We find that the awake condition generally had the 'richest' structure, visiting the most states, the presence of pronounced higher-order structures, and the least deterministic dynamics. By contrast, the propofol condition had the most dissimilar dynamics, transitioning to a more impoverished, constrained, low-structure regime. The ketamine condition, interestingly, seemed to combine aspects of both: while it was generally less complex than the awake condition, it remained well above propofol in almost all measures. These results provide deeper and more comprehensive insights than what is typically gained by using point-measures of complexity.

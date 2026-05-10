@@ -1,0 +1,14 @@
+# Revealing the structure of pharmacobehavioral space through motion sequencing.
+
+- **PMID**: 32958923
+- **DOI**: 10.1126/science.1250298
+- **PMCID**: PMC3545781 (full-text saved)
+- **Journal**: Nature neuroscience  ·  **Year**: 2020
+- **Authors**: Alexander B Wiltschko, Tatsuya Tsukahara, Ayman Zeine, Rockwell Anyoha, Winthrop F Gillis, Jeffrey E Markowitz, Ralph E Peterson, Jesse Katon, Matthew J Johnson, Sandeep Robert Datta
+- **MeSH**: Animals, Behavior Observation Techniques, Behavior, Animal, Male, Mice, Inbred C57BL, Pattern Recognition, Automated, Video Recording
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32958923/
+- **Captured**: 2026-05-10T16:32:08
+
+## Abstract
+
+Understanding how genes, drugs and neural circuits influence behavior requires the ability to effectively organize information about similarities and differences within complex behavioral datasets. Motion Sequencing (MoSeq) is an ethologically inspired behavioral analysis method that identifies modular components of three-dimensional mouse body language called 'syllables'. Here, we show that MoSeq effectively parses behavioral differences and captures similarities elicited by a panel of neuroactive and psychoactive drugs administered to a cohort of nearly 700 mice. MoSeq identifies syllables that are characteristic of individual drugs, a finding we leverage to reveal specific on- and off-target effects of both established and candidate therapeutics in a mouse model of autism spectrum disorder. These results demonstrate that MoSeq can meaningfully organize large-scale behavioral data, illustrate the power of a fundamentally modular description of behavior and suggest that behavioral syllables represent a new class of druggable target.

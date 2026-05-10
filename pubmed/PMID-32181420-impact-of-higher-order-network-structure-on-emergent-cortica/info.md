@@ -1,0 +1,14 @@
+# Impact of higher order network structure on emergent cortical activity.
+
+- **PMID**: 32181420
+- **DOI**: 10.1101/320432
+- **PMCID**: PMC6733561 (full-text saved)
+- **Journal**: Network neuroscience (Cambridge, Mass.)  ·  **Year**: 2020
+- **Authors**: Max Nolte, Eyal Gal, Henry Markram, Michael W Reimann
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32181420/
+- **Captured**: 2026-05-10T16:31:16
+
+## Abstract
+
+Synaptic connectivity between neocortical neurons is highly structured. The network structure of synaptic connectivity includes first-order properties that can be described by pairwise statistics, such as strengths of connections between different neuron types and distance-dependent connectivity, and higher order properties, such as an abundance of cliques of all-to-all connected neurons. The relative impact of first- and higher order structure on emergent cortical network activity is unknown. Here, we compare network structure and emergent activity in two neocortical microcircuit models with different synaptic connectivity. Both models have a similar first-order structure, but only one model includes higher order structure arising from morphological diversity within neuronal types. We find that such morphological diversity leads to more heterogeneous degree distributions, increases the number of cliques, and contributes to a small-world topology. The increase in higher order network structure is accompanied by more nuanced changes in neuronal firing patterns, such as an increased dependence of pairwise correlations on the positions of neurons in cliques. Our study shows that circuit models with very similar first-order structure of synaptic connectivity can have a drastically different higher order network structure, and suggests that the higher order structure imposed by morphological diversity within neuronal types has an impact on emergent cortical activity.

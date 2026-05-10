@@ -1,0 +1,884 @@
+{
+  "id": "https://openalex.org/W2141394518",
+  "doi": "https://doi.org/10.1175/1520-0469(1963)020<0130:dnf>2.0.co;2",
+  "title": "Deterministic Nonperiodic Flow",
+  "display_name": "Deterministic Nonperiodic Flow",
+  "publication_year": 1963,
+  "publication_date": "1963-03-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2141394518",
+    "doi": "https://doi.org/10.1175/1520-0469(1963)020<0130:dnf>2.0.co;2",
+    "mag": "2141394518"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1175/1520-0469(1963)020<0130:dnf>2.0.co;2",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1175/1520-0469(1963)020<0130:dnf>2.0.co;2",
+    "pdf_url": "https://journals.ametsoc.org/downloadpdf/journals/atsc/20/2/1520-0469_1963_020_0130_dnf_2_0_co_2.pdf",
+    "source": {
+      "id": "https://openalex.org/S131264402",
+      "display_name": "Journal of the Atmospheric Sciences",
+      "issn_l": "0022-4928",
+      "issn": [
+        "0022-4928",
+        "1520-0469"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320260",
+      "host_organization_name": "American Meteorological Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320260"
+      ],
+      "host_organization_lineage_names": [
+        "American Meteorological Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Journal of the Atmospheric Sciences",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "bronze",
+    "oa_url": "https://journals.ametsoc.org/downloadpdf/journals/atsc/20/2/1520-0469_1963_020_0130_dnf_2_0_co_2.pdf",
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5108799790",
+        "display_name": "Edward N. Lorenz",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Edward N. Lorenz",
+      "raw_affiliation_strings": [
+        "Massachusetts Institute of Technology"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Massachusetts Institute of Technology",
+          "institution_ids": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5108799790"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I63966007"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 4.3996,
+  "has_fulltext": false,
+  "cited_by_count": 19230,
+  "citation_normalized_percentile": {
+    "value": 0.95008606,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "20",
+    "issue": "2",
+    "first_page": "130",
+    "last_page": "141"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T12727",
+    "display_name": "Differential Equations and Numerical Methods",
+    "score": 0.9753000140190125,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2612",
+      "display_name": "Numerical Analysis"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/26",
+      "display_name": "Mathematics"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T12727",
+      "display_name": "Differential Equations and Numerical Methods",
+      "score": 0.9753000140190125,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2612",
+        "display_name": "Numerical Analysis"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10466",
+      "display_name": "Meteorological Phenomena and Simulations",
+      "score": 0.9750000238418579,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1902",
+        "display_name": "Atmospheric Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10360",
+      "display_name": "Fluid Dynamics and Turbulent Flows",
+      "score": 0.9370999932289124,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2206",
+        "display_name": "Computational Mechanics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/bounded-function",
+      "display_name": "Bounded function",
+      "score": 0.7637681365013123
+    },
+    {
+      "id": "https://openalex.org/keywords/dissipative-system",
+      "display_name": "Dissipative system",
+      "score": 0.7207440137863159
+    },
+    {
+      "id": "https://openalex.org/keywords/ordinary-differential-equation",
+      "display_name": "Ordinary differential equation",
+      "score": 0.6307042241096497
+    },
+    {
+      "id": "https://openalex.org/keywords/nonlinear-system",
+      "display_name": "Nonlinear system",
+      "score": 0.6232107281684875
+    },
+    {
+      "id": "https://openalex.org/keywords/flow",
+      "display_name": "Flow (mathematics)",
+      "score": 0.5691102743148804
+    },
+    {
+      "id": "https://openalex.org/keywords/simple",
+      "display_name": "Simple (philosophy)",
+      "score": 0.4700305163860321
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.44196441769599915
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematical-analysis",
+      "display_name": "Mathematical analysis",
+      "score": 0.42762312293052673
+    },
+    {
+      "id": "https://openalex.org/keywords/range",
+      "display_name": "Range (aeronautics)",
+      "score": 0.42027518153190613
+    },
+    {
+      "id": "https://openalex.org/keywords/applied-mathematics",
+      "display_name": "Applied mathematics",
+      "score": 0.418887734413147
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.40473926067352295
+    },
+    {
+      "id": "https://openalex.org/keywords/differential-equation",
+      "display_name": "Differential equation",
+      "score": 0.33665385842323303
+    },
+    {
+      "id": "https://openalex.org/keywords/mechanics",
+      "display_name": "Mechanics",
+      "score": 0.31009769439697266
+    },
+    {
+      "id": "https://openalex.org/keywords/thermodynamics",
+      "display_name": "Thermodynamics",
+      "score": 0.06988507509231567
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C34388435",
+      "wikidata": "https://www.wikidata.org/wiki/Q2267362",
+      "display_name": "Bounded function",
+      "level": 2,
+      "score": 0.7637681365013123
+    },
+    {
+      "id": "https://openalex.org/C99692599",
+      "wikidata": "https://www.wikidata.org/wiki/Q596577",
+      "display_name": "Dissipative system",
+      "level": 2,
+      "score": 0.7207440137863159
+    },
+    {
+      "id": "https://openalex.org/C51544822",
+      "wikidata": "https://www.wikidata.org/wiki/Q465274",
+      "display_name": "Ordinary differential equation",
+      "level": 3,
+      "score": 0.6307042241096497
+    },
+    {
+      "id": "https://openalex.org/C158622935",
+      "wikidata": "https://www.wikidata.org/wiki/Q660848",
+      "display_name": "Nonlinear system",
+      "level": 2,
+      "score": 0.6232107281684875
+    },
+    {
+      "id": "https://openalex.org/C38349280",
+      "wikidata": "https://www.wikidata.org/wiki/Q1434290",
+      "display_name": "Flow (mathematics)",
+      "level": 2,
+      "score": 0.5691102743148804
+    },
+    {
+      "id": "https://openalex.org/C2780586882",
+      "wikidata": "https://www.wikidata.org/wiki/Q7520643",
+      "display_name": "Simple (philosophy)",
+      "level": 2,
+      "score": 0.4700305163860321
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.44196441769599915
+    },
+    {
+      "id": "https://openalex.org/C134306372",
+      "wikidata": "https://www.wikidata.org/wiki/Q7754",
+      "display_name": "Mathematical analysis",
+      "level": 1,
+      "score": 0.42762312293052673
+    },
+    {
+      "id": "https://openalex.org/C204323151",
+      "wikidata": "https://www.wikidata.org/wiki/Q905424",
+      "display_name": "Range (aeronautics)",
+      "level": 2,
+      "score": 0.42027518153190613
+    },
+    {
+      "id": "https://openalex.org/C28826006",
+      "wikidata": "https://www.wikidata.org/wiki/Q33521",
+      "display_name": "Applied mathematics",
+      "level": 1,
+      "score": 0.418887734413147
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.40473926067352295
+    },
+    {
+      "id": "https://openalex.org/C78045399",
+      "wikidata": "https://www.wikidata.org/wiki/Q11214",
+      "display_name": "Differential equation",
+      "level": 2,
+      "score": 0.33665385842323303
+    },
+    {
+      "id": "https://openalex.org/C57879066",
+      "wikidata": "https://www.wikidata.org/wiki/Q41217",
+      "display_name": "Mechanics",
+      "level": 1,
+      "score": 0.31009769439697266
+    },
+    {
+      "id": "https://openalex.org/C97355855",
+      "wikidata": "https://www.wikidata.org/wiki/Q11473",
+      "display_name": "Thermodynamics",
+      "level": 1,
+      "score": 0.06988507509231567
+    },
+    {
+      "id": "https://openalex.org/C159985019",
+      "wikidata": "https://www.wikidata.org/wiki/Q181790",
+      "display_name": "Composite material",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C111472728",
+      "wikidata": "https://www.wikidata.org/wiki/Q9471",
+      "display_name": "Epistemology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C192562407",
+      "wikidata": "https://www.wikidata.org/wiki/Q228736",
+      "display_name": "Materials science",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1175/1520-0469(1963)020<0130:dnf>2.0.co;2",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1175/1520-0469(1963)020<0130:dnf>2.0.co;2",
+      "pdf_url": "https://journals.ametsoc.org/downloadpdf/journals/atsc/20/2/1520-0469_1963_020_0130_dnf_2_0_co_2.pdf",
+      "source": {
+        "id": "https://openalex.org/S131264402",
+        "display_name": "Journal of the Atmospheric Sciences",
+        "issn_l": "0022-4928",
+        "issn": [
+          "0022-4928",
+          "1520-0469"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320260",
+        "host_organization_name": "American Meteorological Society",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320260"
+        ],
+        "host_organization_lineage_names": [
+          "American Meteorological Society"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Journal of the Atmospheric Sciences",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmh:AD0415300",
+      "is_oa": false,
+      "landing_page_url": "http://oai.dtic.mil/oai/oai?&amp;verb=getRecord&amp;metadataPrefix=html&amp;identifier=AD0415300",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4406923043",
+        "display_name": "Defense Technical Information Center (DTIC)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "DTIC AND NTIS",
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1175/1520-0469(1963)020<0130:dnf>2.0.co;2",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1175/1520-0469(1963)020<0130:dnf>2.0.co;2",
+    "pdf_url": "https://journals.ametsoc.org/downloadpdf/journals/atsc/20/2/1520-0469_1963_020_0130_dnf_2_0_co_2.pdf",
+    "source": {
+      "id": "https://openalex.org/S131264402",
+      "display_name": "Journal of the Atmospheric Sciences",
+      "issn_l": "0022-4928",
+      "issn": [
+        "0022-4928",
+        "1520-0469"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320260",
+      "host_organization_name": "American Meteorological Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320260"
+      ],
+      "host_organization_lineage_names": [
+        "American Meteorological Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Journal of the Atmospheric Sciences",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [
+    {
+      "score": 0.6700000166893005,
+      "display_name": "Climate action",
+      "id": "https://metadata.un.org/sdg/13"
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": true,
+    "pdf": false
+  },
+  "content_urls": {
+    "grobid_xml": "https://content.openalex.org/works/W2141394518.grobid-xml"
+  },
+  "referenced_works_count": 9,
+  "referenced_works": [
+    "https://openalex.org/W626920618",
+    "https://openalex.org/W1546156674",
+    "https://openalex.org/W1975490251",
+    "https://openalex.org/W2036878533",
+    "https://openalex.org/W2063618362",
+    "https://openalex.org/W2141699138",
+    "https://openalex.org/W2162163988",
+    "https://openalex.org/W2331308056",
+    "https://openalex.org/W2473365629"
+  ],
+  "related_works": [
+    "https://openalex.org/W2371200319",
+    "https://openalex.org/W2367609594",
+    "https://openalex.org/W2350320737",
+    "https://openalex.org/W2391455523",
+    "https://openalex.org/W2739518152",
+    "https://openalex.org/W2091416718",
+    "https://openalex.org/W9469511",
+    "https://openalex.org/W2015853617",
+    "https://openalex.org/W1568871354",
+    "https://openalex.org/W2043671984"
+  ],
+  "abstract_inverted_index": {
+    "Finite": [
+      0
+    ],
+    "systems": [
+      1,
+      31
+    ],
+    "of": [
+      2,
+      18,
+      82,
+      93,
+      99,
+      108
+    ],
+    "deterministic": [
+      3
+    ],
+    "ordinary": [
+      4
+    ],
+    "nonlinear": [
+      5
+    ],
+    "differential": [
+      6
+    ],
+    "equations": [
+      7,
+      20
+    ],
+    "may": [
+      8
+    ],
+    "be": [
+      9,
+      22,
+      88
+    ],
+    "designed": [
+      10
+    ],
+    "to": [
+      11,
+      46,
+      67,
+      87
+    ],
+    "represent": [
+      12
+    ],
+    "forced": [
+      13
+    ],
+    "dissipative": [
+      14
+    ],
+    "hydrodynamic": [
+      15
+    ],
+    "flow.": [
+      16
+    ],
+    "Solutions": [
+      17
+    ],
+    "these": [
+      19,
+      109
+    ],
+    "can": [
+      21,
+      55
+    ],
+    "identified": [
+      23
+    ],
+    "with": [
+      24,
+      32,
+      44,
+      62
+    ],
+    "trajectories": [
+      25
+    ],
+    "in": [
+      26,
+      105
+    ],
+    "phase": [
+      27
+    ],
+    "space.": [
+      28
+    ],
+    "For": [
+      29
+    ],
+    "those": [
+      30
+    ],
+    "bounded": [
+      33,
+      63,
+      69
+    ],
+    "solutions,": [
+      34
+    ],
+    "it": [
+      35
+    ],
+    "is": [
+      36,
+      78,
+      103
+    ],
+    "found": [
+      37,
+      86
+    ],
+    "that": [
+      38,
+      50
+    ],
+    "nonperiodic": [
+      39
+    ],
+    "solutions": [
+      40,
+      64,
+      84
+    ],
+    "are": [
+      41,
+      65,
+      85,
+      95
+    ],
+    "ordinarily": [
+      42
+    ],
+    "unstable": [
+      43
+    ],
+    "respect": [
+      45
+    ],
+    "small": [
+      47
+    ],
+    "modifications,": [
+      48
+    ],
+    "so": [
+      49
+    ],
+    "slightly": [
+      51
+    ],
+    "differing": [
+      52
+    ],
+    "initial": [
+      53
+    ],
+    "states": [
+      54
+    ],
+    "evolve": [
+      56
+    ],
+    "into": [
+      57
+    ],
+    "considerably": [
+      58
+    ],
+    "different": [
+      59
+    ],
+    "states.": [
+      60
+    ],
+    "Systems": [
+      61
+    ],
+    "shown": [
+      66
+    ],
+    "possess": [
+      68
+    ],
+    "numerical": [
+      70
+    ],
+    "solutions.": [
+      71
+    ],
+    "A": [
+      72
+    ],
+    "simple": [
+      73
+    ],
+    "system": [
+      74
+    ],
+    "representing": [
+      75
+    ],
+    "cellular": [
+      76
+    ],
+    "convection": [
+      77
+    ],
+    "solved": [
+      79
+    ],
+    "numerically.": [
+      80
+    ],
+    "All": [
+      81
+    ],
+    "the": [
+      83,
+      106
+    ],
+    "unstable,": [
+      89
+    ],
+    "and": [
+      90
+    ],
+    "almost": [
+      91
+    ],
+    "all": [
+      92
+    ],
+    "them": [
+      94
+    ],
+    "nonperiodic.": [
+      96
+    ],
+    "The": [
+      97
+    ],
+    "feasibility": [
+      98
+    ],
+    "very-long-range": [
+      100
+    ],
+    "weather": [
+      101
+    ],
+    "prediction": [
+      102
+    ],
+    "examined": [
+      104
+    ],
+    "light": [
+      107
+    ],
+    "results.": [
+      110
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 250
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 836
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 815
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 839
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 897
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 1073
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 866
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 860
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 836
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 770
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 747
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 744
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 686
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 686
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 650
+    }
+  ],
+  "updated_date": "2026-05-08T15:41:06.802602",
+  "created_date": "2025-10-10T00:00:00"
+}

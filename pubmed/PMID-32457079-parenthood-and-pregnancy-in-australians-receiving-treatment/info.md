@@ -1,0 +1,14 @@
+# Parenthood and pregnancy in Australians receiving treatment for end-stage kidney disease: protocol of a national study of perinatal and parental outcomes through population record linkage.
+
+- **PMID**: 32457079
+- **DOI**: 10.1053/j.ajkd.2015.08.023
+- **PMCID**: PMC5482562 (full-text saved)
+- **Journal**: BMJ open  ·  **Year**: 2020
+- **Authors**: Erandi Hewawasam, Aarti Gulyani, Christopher E Davies, Elizabeth Sullivan, Sally Wark, Philip A Clayton, Stephen P McDonald, Shilpanjali Jesudason
+- **MeSH**: Australia, Female, Humans, Kidney Failure, Chronic, New South Wales, New Zealand, Pregnancy, Renal Dialysis, South Australia, Western Australia
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32457079/
+- **Captured**: 2026-05-10T16:31:40
+
+## Abstract
+
+Achieving parenthood is challenging in individuals receiving renal replacement therapy (RRT; dialysis or kidney transplantation) for end-stage kidney disease. Decision-making regarding parenthood in RRT recipients should be underpinned by robust data, yet there is limited data on parental factors that drive adverse health outcomes. Therefore, we aim to investigate the perinatal risks and outcomes in parents receiving RRT. This is a multijurisdictional probabilistic data linkage study of perinatal, hospital, birth, death and renal registers from 1991 to 2013 from New South Wales, Western Australia, South Australia and the Australian Capital Territory. This study includes all babies born ≥20 weeks' gestation or 400 g birth weight captured through mandated data collection in the perinatal data sets. Through linkage with the Australian and New Zealand Dialysis and Transplant (ANZDATA) registry, babies exposed to RRT (and their parents) will be compared with babies who have not been exposed to RRT (and their parents) to determine obstetric and fetal outcomes, birth rates and fertility rates. One of the novel aspects of this study is the method that will be used to link fathers receiving RRT to the mothers and their babies within the perinatal data sets, using the birth register, enabling the identification of family units. The linked data set will be used to validate the parenthood events directly reported to ANZDATA. Ethics approval was obtained from Human Research Ethics Committees (HREC) and Aboriginal HREC in each jurisdiction. Findings of this study will be disseminated at scientific conferences and in peer-reviewed journals in tabular and aggregated forms. De-identified data will be presented and individual patients will not be identified. We will aim to present findings to relevant stakeholders (eg, patients, clinicians and policymakers) to maximise translational impact of research findings.

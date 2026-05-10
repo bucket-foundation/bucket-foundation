@@ -1,0 +1,14 @@
+# Patient and center characteristics associated with kidney transplant outcomes: a binational registry analysis.
+
+- **PMID**: 32589787
+- **DOI**: 10.1111/tri.13681
+- **PMCID**:  
+- **Journal**: Transplant international : official journal of the European Society for Organ Transplantation  ·  **Year**: 2020
+- **Authors**: Htay Htay, Elaine M Pascoe, Carmel M Hawley, Scott B Campbell, Jeremy Chapman, Yeoungjee Cho, Philip A Clayton, Michael G Collins, Ross S Francis, Nicole M Isbel, Wai H Lim, Samantha Putrino, David W Johnson
+- **MeSH**: Adult, Australia, Graft Rejection, Graft Survival, Humans, Kidney Transplantation, Living Donors, New Zealand, Registries
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32589787/
+- **Captured**: 2026-05-10T16:31:43
+
+## Abstract
+
+This registry-based study evaluated the contribution of center characteristics to kidney transplant outcomes in adult first kidney transplant recipients in Australia and New Zealand between 2004 and 2014. Primary outcomes were mortality and graft failure, and secondary outcomes were transplant complications. Overall, 6970 transplants from 17 centers were included. For deceased donor transplants, 5-year patient and graft survival rates varied considerably (81.0-93.9% and 72.2-88.3%, respectively). Variations in mortality and graft failure were partially reduced after adjustment for patient characteristics (1% and 20% reductions) and more markedly reduced after adjustment for center characteristics (41% and 55% reductions). For living donor transplants, 5-year patient and graft survival rates varied (89.7-100% and 79.2-96.9%, respectively). Centers with high average total ischemic times (>14 h) were associated with higher mortality for both deceased (adjusted hazard ratio [(AHR] 2.24, 95% CI 1.21-4.13) and living donor transplants (AHR 1.76, 95% CI 1.02-3.04). Small center size (<35 new kidney transplants/year) was associated with a lower hazard of mortality for living donor kidney transplants (AHR 0.48, 95% CI 0.28-0.81). No center characteristic was associated with graft failure. The appreciable variations in deceased donor kidney transplant recipient and graft survival outcomes across centers were attributable to center effects.

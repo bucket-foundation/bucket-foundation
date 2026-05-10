@@ -1,0 +1,14 @@
+# A Standardized Brain Molecular Atlas: A Resource for Systems Modeling and Simulation.
+
+- **PMID**: 34858137
+- **DOI**: 10.1074/mcp.TIR118.000686
+- **PMCID**: PMC6126383 (full-text saved)
+- **Journal**: Frontiers in molecular neuroscience  ·  **Year**: 2021
+- **Authors**: Polina Shichkova, Jay S Coggan, Henry Markram, Daniel Keller
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34858137/
+- **Captured**: 2026-05-10T16:33:48
+
+## Abstract
+
+Accurate molecular concentrations are essential for reliable analyses of biochemical networks and the creation of predictive models for molecular and systems biology, yet protein and metabolite concentrations used in such models are often poorly constrained or irreproducible. Challenges of using data from different sources include conflicts in nomenclature and units, as well as discrepancies in experimental procedures, data processing and implementation of the model. To obtain a consistent estimate of protein and metabolite levels, we integrated and normalized data from a large variety of sources to calculate Adjusted Molecular Concentrations. We found a high degree of reproducibility and consistency of many molecular species across brain regions and cell types, consistent with tight homeostatic regulation. We demonstrated the value of this normalization with differential protein expression analyses related to neurodegenerative diseases, brain regions and cell types. We also used the results in proof-of-concept simulations of brain energy metabolism. The standardized Brain Molecular Atlas overcomes the obstacles of missing or inconsistent data to support systems biology research and is provided as a resource for biomolecular modeling.

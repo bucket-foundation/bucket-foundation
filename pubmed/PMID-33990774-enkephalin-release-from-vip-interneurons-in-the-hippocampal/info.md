@@ -1,0 +1,14 @@
+# Enkephalin release from VIP interneurons in the hippocampal CA2/3a region mediates heterosynaptic plasticity and social memory.
+
+- **PMID**: 33990774
+- **DOI**: 10.1101/833723
+- **PMCID**: PMC6342523 (full-text saved)
+- **Journal**: Molecular psychiatry  ·  **Year**: 2022
+- **Authors**: Felix Leroy, Christopher A de Solis, Lara M Boyle, Tobias Bock, Olivia M Lofaro, Eric W Buss, Arun Asok, Eric R Kandel, Steven A Siegelbaum
+- **MeSH**: Enkephalins, GABAergic Neurons, Hippocampus, Interneurons, Neuronal Plasticity, Pyramidal Cells, Vasoactive Intestinal Peptide
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33990774/
+- **Captured**: 2026-05-10T16:32:55
+
+## Abstract
+
+The hippocampus contains a diverse array of inhibitory interneurons that gate information flow through local cortico-hippocampal circuits to regulate memory storage. Although most studies of interneurons have focused on their role in fast synaptic inhibition mediated by GABA release, different classes of interneurons express unique sets of neuropeptides, many of which have been shown to exert powerful effects on neuronal function and memory when applied pharmacologically. However, relatively little is known about whether and how release of endogenous neuropeptides from inhibitory cells contributes to their behavioral role in regulating memory formation. Here we report that vasoactive intestinal peptide (VIP)-expressing interneurons participate in social memory storage by enhancing information transfer from hippocampal CA3 pyramidal neurons to CA2 pyramidal neurons. Notably, this action depends on release of the neuropeptide enkephalin from VIP neurons, causing long-term depression of feedforward inhibition onto CA2 pyramidal cells. Moreover, VIP neuron activity in the CA2 region is increased selectively during exploration of a novel conspecific. Our findings, thus, enhance our appreciation of how GABAergic neurons can regulate synaptic plasticity and mnemonic behavior by demonstrating that such actions can be mediated by release of a specific neuropeptide, rather than through classic fast inhibitory transmission.

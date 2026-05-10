@@ -1,0 +1,14 @@
+# Intrinsic Shapes of Empathy: Functional Brain Network Topology Encodes Intersubjective Experience and Awareness Traits.
+
+- **PMID**: 35448008
+- **DOI**: 10.1111/ejn.15641
+- **PMCID**: PMC9314789 (full-text saved)
+- **Journal**: Brain sciences  ·  **Year**: 2022
+- **Authors**: Sjoerd J H Ebisch, Andrea Scalabrini, Georg Northoff, Clara Mucci, Maria Rita Sergi, Aristide Saggino, Antonio Aquino, Francesca R Alparone, Mauro Gianni Perrucci, Vittorio Gallese, Simone Di Plinio
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35448008/
+- **Captured**: 2026-05-10T16:34:17
+
+## Abstract
+
+Trait empathy is an essential personality feature in the intricacy of typical social inclinations of individuals. Empathy is likely supported by multilevel neuronal network functioning, whereas local topological properties determine network integrity. In the present functional MRI study (N = 116), we aimed to trace empathic traits to the intrinsic brain network architecture. Empathy was conceived as composed of two dimensions within the concept of pre-reflective, intersubjective understanding. Vicarious experience consists of the tendency to resonate with the feelings of other individuals, whereas intuitive understanding refers to a natural awareness of others' emotional states. Analyses of graph theoretical measures of centrality showed a relationship between the fronto-parietal network and psychometric measures of vicarious experience, whereas intuitive understanding was associated with sensorimotor and subcortical networks. Salience network regions could constitute hubs for information processing underlying both dimensions. The network properties related to empathy dimensions mainly concern inter-network information flow. Moreover, interaction effects implied several sex differences in the relationship between functional network organization and trait empathy. These results reveal that distinct intrinsic topological network features explain individual differences in separate dimensions of intersubjective understanding. The findings could help understand the impact of brain damage or stimulation through alterations of empathy-related network integrity.

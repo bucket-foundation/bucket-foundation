@@ -1,0 +1,14 @@
+# Lymphoproliferative cancer and other malignancy in patients with rheumatoid arthritis treated with azathioprine: a 20 year follow up study.
+
+- **PMID**: 3207388
+- **DOI**: 10.1136/ard.47.12.988
+- **PMCID**: PMC1003651 (full-text saved)
+- **Journal**: Annals of the rheumatic diseases  ·  **Year**: 1988
+- **Authors**: A J Silman, J Petrie, B Hazleman, S J Evans
+- **MeSH**: Arthritis, Rheumatoid, Azathioprine, Follow-Up Studies, Lymphoma, Lymphoma, Non-Hodgkin, Neoplasms, Risk Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3207388/
+- **Captured**: 2026-05-10T16:31:10
+
+## Abstract
+
+Two hundred and two patients with rheumatoid arthritis (RA) starting treatment with large doses of azathioprine (median 300 mg/day) between 1964 and 1974 were followed up until March 1984. All but one patient (99.5%) were traced from either hospital or general practice records; and death certificates, where relevant, were obtained. A comparison group of 202 patients with RA not treated with azathioprine was selected from the diagnostic index of another rheumatology unit and followed up in 1985 to assess their status retrospectively at March 1984. Each patient treated with azathioprine was matched for year of birth, year of diagnosis, sex, and serostatus with a control patient from the latter group. Four lymphoproliferative cancers occurred in the azathioprine treated group compared with two in the control group. Further analysis of these findings suggested an increased risk of lymphoma of one case per 1000 patient years of azathioprine treatment. The lymphoma rates were then compared with those expected based on the incidence in the general population. This comparison suggested a fivefold increase in the RA control group and a 10-fold increase in the azathioprine treated group. There was also an excess of patients with non-lymphoproliferative cancers, including one with myeloma in the azathioprine group (29 v 19), the excess being greater in the group with the longest duration of treatment. This significantly increased risk did not, however, persist on matched analysis, was not related to maximum daily dose, and was not site specific. These results from a possibly unique series of patients treated with high dose azathioprine give some reassurance about the magnitude of the previously postulated carcinogenic risk of such treatment in RA.

@@ -1,0 +1,14 @@
+# Interoception and the origin of feelings: A new synthesis.
+
+- **PMID**: 33763881
+- **DOI**: 10.1002/bies.202000261
+- **PMCID**:  
+- **Journal**: BioEssays : news and reviews in molecular, cellular and developmental biology  ·  **Year**: 2021
+- **Authors**: Gil B Carvalho, Antonio Damasio
+- **MeSH**: Emotions, Homeostasis, Interoception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33763881/
+- **Captured**: 2026-05-10T16:32:42
+
+## Abstract
+
+Feelings are conscious mental events that represent body states as they undergo homeostatic regulation. Feelings depend on the interoceptive nervous system (INS), a collection of peripheral and central pathways, nuclei and cortical regions which continuously sense chemical and anatomical changes in the organism. How such humoral and neural signals come to generate conscious mental states has been a major scientific question. The answer proposed here invokes (1) several distinctive and poorly known physiological features of the INS; and (2) a unique interaction between the body (the 'object' of interoception) and the central nervous system (which generates the 'subject' of interoception). The atypical traits of the INS and the direct interactions between neural and non-neural physiological compartments of the organism, neither of which is present in exteroceptive systems, plausibly explain the qualitative and subjective aspects of feelings, thus accounting for their conscious nature.

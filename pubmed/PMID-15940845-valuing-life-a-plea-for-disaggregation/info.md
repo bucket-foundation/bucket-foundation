@@ -1,0 +1,14 @@
+# Valuing life: a plea for disaggregation.
+
+- **PMID**: 15940845
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Duke law journal  ·  **Year**: 2004
+- **Authors**: Cass R Sunstein
+- **MeSH**: Cost-Benefit Analysis, Government Agencies, Humans, Individuation, Mortality, Personal Autonomy, Risk Assessment, United States, Value of Life
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15940845/
+- **Captured**: 2026-05-10T16:30:29
+
+## Abstract
+
+Each government agency uses a uniform figure to measure the value of a statistical life (VSL). This is a serious mistake. The very theory that underlies current practice calls for far more individuation of the relevant values. According to that theory, VSL should vary across risks. More controversially, VSL should vary across individuals -- even or especially if the result would be to produce a lower number for some people than for others. One practical implication is that a higher value should be given to programs that reduce cancer risks. Another is that government should use a higher VSL for programs that disproportionately benefit the wealthy -- and a lower VSL for programs that disproportionately benefit the poor. But there are two serious complications here. First, bounded rationality raises problems for the use of private willingness to pay, which underlies current calculations of VSL. Second, the beneficiaries of regulation sometimes pay only a fraction or even none of its cost; when this is so, the appropriate VSL for poor people might be higher, on distributional grounds, than market evidence suggests. An understanding of this point has implications for foundational issues about government regulation, including valuation of persons in poor and wealthy nations.

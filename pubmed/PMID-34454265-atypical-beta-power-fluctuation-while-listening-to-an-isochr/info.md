@@ -1,0 +1,14 @@
+# Atypical beta power fluctuation while listening to an isochronous sequence in dyslexia.
+
+- **PMID**: 34454265
+- **DOI**: 10.1016/j.clinph.2021.05.037
+- **PMCID**:  
+- **Journal**: Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology  ·  **Year**: 2021
+- **Authors**: Andrew Chang, Nathalie Bedoin, Laure-Helene Canette, Sylvie Nozaradan, Dave Thompson, Alexandra Corneyllie, Barbara Tillmann, Laurel J Trainor
+- **MeSH**: Acoustic Stimulation, Adult, Auditory Cortex, Auditory Perception, Beta Rhythm, Dyslexia, Electroencephalography, Female, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34454265/
+- **Captured**: 2026-05-10T16:33:29
+
+## Abstract
+
+Developmental dyslexia is a reading disorder that features difficulties in perceiving and tracking rhythmic regularities in auditory streams, such as speech and music. Studies on typical healthy participants have shown that power fluctuations of neural oscillations in beta band (15-25 Hz) reflect an essential mechanism for tracking rhythm or entrainment and relate to predictive timing and attentional processes. Here we investigated whether adults with dyslexia have atypical beta power fluctuation. The electroencephalographic activities of individuals with dyslexia (n = 13) and typical control participants (n = 13) were measured while they passively listened to an isochronous tone sequence (2 Hz presentation rate). The time-frequency neural activities generated from auditory cortices were analyzed. The phase of beta power fluctuation at the 2 Hz stimulus presentation rate differed and appeared opposite between individuals with dyslexia and controls. Atypical beta power fluctuation might reflect deficits in perceiving and tracking auditory rhythm in dyslexia. These findings extend our understanding of atypical neural activities for tracking rhythm in dyslexia and could inspire novel methods to objectively measure the benefits of training, and predict potential benefit of auditory rhythmic rehabilitation programs on an individual basis.

@@ -1,0 +1,14 @@
+# BigBrain 3D atlas of cortical layers: Cortical and laminar thickness gradients diverge in sensory and motor cortices.
+
+- **PMID**: 32243449
+- **DOI**: 10.1002/hbm.23363
+- **PMCID**: PMC6866936 (full-text saved)
+- **Journal**: PLoS biology  ·  **Year**: 2020
+- **Authors**: Konrad Wagstyl, Stéphanie Larocque, Guillem Cucurull, Claude Lepage, Joseph Paul Cohen, Sebastian Bludau, Nicola Palomero-Gallagher, Lindsay B Lewis, Thomas Funck, Hannah Spitzer, Timo Dickscheid, Paul C Fletcher, Adriana Romero, Karl Zilles, Katrin Amunts, Yoshua Bengio, Alan C Evans
+- **MeSH**: Brain, Cerebral Cortex, Humans, Imaging, Three-Dimensional, Magnetic Resonance Imaging, Neural Networks, Computer
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32243449/
+- **Captured**: 2026-05-10T16:31:21
+
+## Abstract
+
+Histological atlases of the cerebral cortex, such as those made famous by Brodmann and von Economo, are invaluable for understanding human brain microstructure and its relationship with functional organization in the brain. However, these existing atlases are limited to small numbers of manually annotated samples from a single cerebral hemisphere, measured from 2D histological sections. We present the first whole-brain quantitative 3D laminar atlas of the human cerebral cortex. It was derived from a 3D histological atlas of the human brain at 20-micrometer isotropic resolution (BigBrain), using a convolutional neural network to segment, automatically, the cortical layers in both hemispheres. Our approach overcomes many of the historical challenges with measurement of histological thickness in 2D, and the resultant laminar atlas provides an unprecedented level of precision and detail. We utilized this BigBrain cortical atlas to test whether previously reported thickness gradients, as measured by MRI in sensory and motor processing cortices, were present in a histological atlas of cortical thickness and which cortical layers were contributing to these gradients. Cortical thickness increased across sensory processing hierarchies, primarily driven by layers III, V, and VI. In contrast, motor-frontal cortices showed the opposite pattern, with decreases in total and pyramidal layer thickness from motor to frontal association cortices. These findings illustrate how this laminar atlas will provide a link between single-neuron morphology, mesoscale cortical layering, macroscopic cortical thickness, and, ultimately, functional neuroanatomy.

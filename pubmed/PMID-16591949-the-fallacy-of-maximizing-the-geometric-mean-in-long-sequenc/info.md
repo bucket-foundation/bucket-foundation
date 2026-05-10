@@ -1,0 +1,14 @@
+# The "fallacy" of maximizing the geometric mean in long sequences of investing or gambling.
+
+- **PMID**: 16591949
+- **DOI**: 10.1073/pnas.68.10.2493
+- **PMCID**: PMC389451 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1971
+- **Authors**: P A Samuelson
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16591949/
+- **Captured**: 2026-05-10T16:30:35
+
+## Abstract
+
+Because the outcomes of repeated investments or gambles involve products of variables, authorities have repeatedly been tempted to the belief that, in a long sequence, maximization of the expected value of terminal utility can be achieved or well-approximated by a strategy of maximizing at each stage the geometric mean of outcome (or its equivalent, the expected value of the logarithm of principal plus return). The law of large numbers or of the central limit theorem as applied to the logs can validate the conclusion that a maximum-geometric-mean strategy does indeed make it "virtually certain" that, in a "long" sequence, one will end with a higher terminal wealth and utility. However, this does not imply the false corollary that the geometric-mean strategy is optimal for any finite number of periods, however long, or that it becomes asymptotically a good approximation. As a trivial counter-example, it is shown that for utility proportional to x(gamma)/gamma, whenever gamma not equal 0, the geometric strategy is suboptimal for all T and never a good approximation. For utility bounded above, as when gamma < 0, the same conclusion holds. If utility is bounded above and finite at zero wealth, no uniform strategy can be optimal, even though it can be that the best uniform strategy will be that of the maximum geometric mean. However, asymptotically the same level of utility can be reached by an infinity of nearby uniform strategies. The true optimum in the bounded case involves nonuniform strategies, usually being more risky than the geometric-mean maximizer's strategy at low wealths and less risky at high wealths. The novel criterion of maximizing the expected average compound return, which asymptotically leads to maximizing of geometric mean, is shown to be arbitrary.

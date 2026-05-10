@@ -1,0 +1,14 @@
+# Sign language aphasia during left-hemisphere Amytal injection.
+
+- **PMID**: 3488507
+- **DOI**: 10.1038/322363a0
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 1986 Jul 24-30
+- **Authors**: A Damasio, U Bellugi, H Damasio, H Poizner, J Van Gilder
+- **MeSH**: Adult, Amobarbital, Aphasia, Dominance, Cerebral, Female, Humans, Injections, Intra-Arterial, Manual Communication, Seizures, Sign Language
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3488507/
+- **Captured**: 2026-05-10T16:33:53
+
+## Abstract
+
+Although it has been established that the left cerebral hemisphere subserves spoken language, the nature of brain organization for sign language remains relatively unexplored. The issue is especially important because sign language displays the complex linguistic structure of spoken languages, but conveys it through manipulation of visuo-spatial relations, thereby exhibiting properties for which the hemispheres of hearing individuals show opposing specializations. We had the unique opportunity to study a hearing signer proficient in American sign language (ASL), during the left intracarotid injection of a barbiturate (the Wada test), and before and after a right temporal lobectomy. The subject was a strong right-hander. Neuropsychological and anatomical asymmetries suggested left cerebral dominance for auditory-based language. Emission tomography revealed lateralized activity of left Broca's and Wernicke's regions for spoken language. The Wada test, during which all left language areas were rendered inoperative, caused a marked aphasia in both English and ASL. After partial ablation of the right temporal lobe, the abilities to sign and understand signing were unchanged. These data add further support to the notion that anatomical structures of the left cerebral hemisphere subserve language in a visuo-spatial as well as an auditory mode.

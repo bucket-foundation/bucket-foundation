@@ -1,0 +1,14 @@
+# Morphology, physiology and synaptic connectivity of local interneurons in the mouse somatosensory thalamus.
+
+- **PMID**: 34591324
+- **DOI**: 10.6084/m9.figshare.15046914.v1
+- **PMCID**: PMC6783068 (full-text saved)
+- **Journal**: The Journal of physiology  ·  **Year**: 2021
+- **Authors**: Jane Simko, Henry Markram
+- **MeSH**: Animals, Interneurons, Mice, Neurons, Thalamic Nuclei, Thalamus
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34591324/
+- **Captured**: 2026-05-10T16:33:39
+
+## Abstract
+
+The thalamic reticular nucleus (TRN) neurons, projecting across the external medullary lamina, have long been considered to be the only significant source of inhibition of the somatosensory ventral posterior (VP) nuclei of the thalamus. Here we report for the first time effective local inhibition and disinhibition in the VP. Inhibitory interneurons were found in GAD67-GFP-expressing mice and studied using in vitro multiple patch clamp. Inhibitory interneurons have expansive bipolar or tripolar morphologies, reach across most of the VP nucleus and display low threshold bursting behaviour. They form triadic and non-triadic synaptic connections onto thalamocortical relay neurons and other interneurons, mediating feedforward inhibition and disinhibition. Synaptic inputs arrive before those expected from the TRN neurons, suggesting that local inhibition plays an early and significant role in the functioning of the somatosensory thalamus. KEY POINTS: The physiology and structure of local interneurons in the mouse somatosensory thalamus is described for the first time. Inhibitory interneurons have extensive dendritic arborization providing significant local dendro-dendritic inhibition in the somatosensory thalamus. Triadic and non-triadic synaptic connectivity onto thalamic relay neurons and other interneurons provides both local feedforward inhibition and disinhibition. Interneurons of the somatosensory thalamus provide inhibition before the thalamic reticular nucleus, suggesting they play an important role in sensory perception.

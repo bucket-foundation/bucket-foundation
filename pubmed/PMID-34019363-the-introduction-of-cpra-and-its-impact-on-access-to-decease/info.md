@@ -1,0 +1,14 @@
+# The Introduction of cPRA and Its Impact on Access to Deceased Donor Kidney Transplantation for Highly Sensitized Patients in Australia.
+
+- **PMID**: 34019363
+- **DOI**: 10.1053/j.ajkd.2018.12.036
+- **PMCID**:  
+- **Journal**: Transplantation  ·  **Year**: 2021
+- **Authors**: Matthew P Sypek, Joshua Y Kausman, Narelle Watson, Kate Wyburn, Stephen G Holt, Peter Hughes, Philip A Clayton
+- **MeSH**: Adult, Australia, Female, Graft Rejection, HLA Antigens, Health Services Accessibility, Histocompatibility, Histocompatibility Testing, Humans, Isoantibodies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34019363/
+- **Captured**: 2026-05-10T16:32:58
+
+## Abstract
+
+In March 2016, Australia's deceased donor kidney allocation program introduced calculated panel reactive antibody (cPRA) based on antibody exclusions using multiplex assays to define sensitization for waitlisted candidates. We aimed to assess the impact of this change and review access to transplantation for highly sensitized patients under the current allocation rules. Registry data were used to reconstruct changes in panel reactive antibody (PRA)/cPRA for all patients active on the waiting list between 2013 and 2018. A multilevel, mixed-effects negative binomial regression model was used to determine the association between sensitization and transplantation rate in the cPRA era. Following the introduction of cPRA, there was an increase in the percentage of the waiting list classified as highly sensitized (PRA/cPRA ≥80%) from 7.2% to 27.8% and very highly sensitized (PRA/cPRA ≥99%) from 2.7% to 15.3%. Any degree of sensitization was associated with a decreased rate of transplantation with a marked reduction for those with cPRA 95%-98% (adjusted incidence rate ratio, 0.36 [95% confidence interval, 0.28-0.47], P < 0.001) and cPRA ≥99% (adjusted incidence rate ratio, 0.09 [95% confidence interval, 0.07-0.12], P < 0.001). The proportion of the waiting list classified as highly sensitized increased substantially following the introduction of cPRA, and despite current prioritization, very highly sensitized patients have markedly reduced access to deceased donor transplantation.

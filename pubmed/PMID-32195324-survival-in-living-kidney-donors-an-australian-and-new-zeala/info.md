@@ -1,0 +1,14 @@
+# Survival in Living Kidney Donors: An Australian and New Zealand Cohort Study Using Data Linkage.
+
+- **PMID**: 32195324
+- **DOI**: 10.1097/TXD.0000000000000975
+- **PMCID**: PMC2974389 (full-text saved)
+- **Journal**: Transplantation direct  ·  **Year**: 2020
+- **Authors**: Nicole L De La Mata, Philip A Clayton, Patrick J Kelly, Stephen McDonald, Steven Chadban, Kevan R Polkinghorne, Angela C Webster
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32195324/
+- **Captured**: 2026-05-10T16:31:18
+
+## Abstract
+
+Living kidney donors are a highly selected healthy population expected to have high survival postdonation, but mortality studies are limited. Our study aimed to compare mortality in living kidney donors with the general population in Australia and New Zealand, hypothesizing that donor survival would exceed average survival. All living kidney donors in Australia, 2004-2013, and New Zealand, 2004-2012, from the Australian and New Zealand Living Kidney Donor Registry were included. We ascertained primary cause of death from data linkage with national death registers. Standardized mortality ratios and relative survival were estimated, matching on age, sex, calendar year, and country. Among 3253 living kidney donors, there were 32 deaths over 20 331 person-years, with median follow-up 6.2 years [interquartile range: 3.9-8.4]. Only 25 donors had diabetes-fasting blood sugar level predonation, of which 3 had impaired glucose tolerance. At discharge, the median creatinine was 108 µmol/L and estimated glomerular filtration rate was 58 mL/min/1.72 m As expected, mortality in living kidney donors was substantially lower than the general population and is reassuring for potential donor counseling. The Living Donor Registry only captured a third of the deaths, highlighting the benefit of data linkage to national death registries in the long-term follow-up of living kidney donors.

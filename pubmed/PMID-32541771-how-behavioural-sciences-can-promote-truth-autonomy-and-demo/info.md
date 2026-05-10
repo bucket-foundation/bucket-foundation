@@ -1,0 +1,14 @@
+# How behavioural sciences can promote truth, autonomy and democratic discourse online.
+
+- **PMID**: 32541771
+- **DOI**: 10.37016/mr-2020-001
+- **PMCID**:  
+- **Journal**: Nature human behaviour  ·  **Year**: 2020
+- **Authors**: Philipp Lorenz-Spreen, Stephan Lewandowsky, Cass R Sunstein, Ralph Hertwig
+- **MeSH**: Algorithms, Behavioral Sciences, Decision Making, Democracy, Humans, Internet, Mass Media, Personal Autonomy, Social Media
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32541771/
+- **Captured**: 2026-05-10T16:31:42
+
+## Abstract
+
+Public opinion is shaped in significant part by online content, spread via social media and curated algorithmically. The current online ecosystem has been designed predominantly to capture user attention rather than to promote deliberate cognition and autonomous choice; information overload, finely tuned personalization and distorted social cues, in turn, pave the way for manipulation and the spread of false information. How can transparency and autonomy be promoted instead, thus fostering the positive potential of the web? Effective web governance informed by behavioural research is critically needed to empower individuals online. We identify technologically available yet largely untapped cues that can be harnessed to indicate the epistemic quality of online content, the factors underlying algorithmic decisions and the degree of consensus in online debates. We then map out two classes of behavioural interventions-nudging and boosting- that enlist these cues to redesign online environments for informed and autonomous choice.

@@ -1,0 +1,14 @@
+# Intergenerational resource transfers with random offspring numbers.
+
+- **PMID**: 19617553
+- **DOI**: 10.1073/pnas.0905613106
+- **PMCID**: PMC1513193 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2009
+- **Authors**: Kenneth J Arrow, Simon A Levin
+- **MeSH**: Adult, Aged, Behavior, Child, Child Rearing, Family, Family Characteristics, Financial Management, Humans, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19617553/
+- **Captured**: 2026-05-10T16:30:42
+
+## Abstract
+
+A problem common to biology and economics is the transfer of resources from parents to children. We consider the issue under the assumption that the number of offspring is unknown and can be represented as a random variable. There are 3 basic assumptions. The first assumption is that a given body of resources can be divided into consumption (yielding satisfaction) and transfer to children. The second assumption is that the parents' welfare includes a concern for the welfare of their children; this is recursive in the sense that the children's welfares include concern for their children and so forth. However, the welfare of a child from a given consumption is counted somewhat differently (generally less) than that of the parent (the welfare of a child is "discounted"). The third assumption is that resources transferred may grow (or decline). In economic language, investment, including that in education or nutrition, is productive. Under suitable restrictions, precise formulas for the resulting allocation of resources are found, demonstrating that, depending on the shape of the utility curve, uncertainty regarding the number of offspring may or may not favor increased consumption. The results imply that wealth (stock of resources) will ultimately have a log-normal distribution.

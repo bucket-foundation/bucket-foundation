@@ -1,0 +1,14 @@
+# A little history goes a long way toward understanding why we study consciousness the way we do today.
+
+- **PMID**: 32170012
+- **DOI**: 10.1073/pnas.1921623117
+- **PMCID**: PMC23203 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2020
+- **Authors**: Joseph E LeDoux, Matthias Michel, Hakwan Lau
+- **MeSH**: Animals, Behavior, Brain, Consciousness, History, 19th Century, History, 20th Century, Humans, Neurosciences, Psychology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32170012/
+- **Captured**: 2026-05-10T16:31:15
+
+## Abstract
+
+Consciousness is currently a thriving area of research in psychology and neuroscience. While this is often attributed to events that took place in the early 1990s, consciousness studies today are a continuation of research that started in the late 19th century and that continued throughout the 20th century. From the beginning, the effort built on studies of animals to reveal basic principles of brain organization and function, and of human patients to gain clues about consciousness itself. Particularly important and our focus here is research in the 1950s, 1960s, and 1970s involving three groups of patients-amnesia, split brain, and blindsight. Across all three groups, a similar pattern of results was found-the patients could respond appropriately to stimuli that they denied seeing (or in the case of amnesiacs, having seen before). These studies paved the way for the current wave of research on consciousness. The field is, in fact, still grappling with the implications of the findings showing that the ability to consciously know and report the identity of a visual stimulus can be dissociated in the brain from the mechanisms that underlie the ability to behave in a meaningful way to the same stimulus.

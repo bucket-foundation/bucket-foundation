@@ -1,0 +1,14 @@
+# Morality and the Brain: The Right Hemisphere and Doing Right.
+
+- **PMID**: 33264160
+- **DOI**: 10.1371/journal.pone.0037454
+- **PMCID**:  
+- **Journal**: Cognitive and behavioral neurology : official journal of the Society for Behavioral and Cognitive Neurology  ·  **Year**: 2020
+- **Authors**: Christopher M Filley, Isaiah Kletenik, Patricia S Churchland
+- **MeSH**: Brain, Brain Diseases, Female, Humans, Male, Morals
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33264160/
+- **Captured**: 2026-05-10T16:32:23
+
+## Abstract
+
+Morality, the set of shared attitudes and practices that regulate individual behavior to facilitate cohesion and well-being, is a function of the brain, yet its localization is uncertain. Neuroscientific study of morality has been conducted by examining departures from moral conduct after neurologic insult and by functional neuroimaging of moral decision-making in cognitively intact individuals. These investigations have yielded conflicting results: Acquired sociopathy, a syndromic surrogate for acquired immorality, has been reported predominantly after right frontotemporal lesions, whereas functional neuroimaging during moral decision-making has demonstrated bilateral activation. Although morality is bilaterally represented, the right hemisphere is clinically more critical in light of focal lesion data suggesting that moral behavior is subserved by a network of right frontotemporal structures and their subcortical connections. Evolution may have endowed the brain with bilaterally represented but unilaterally right-dominant morality. The unilateral dominance of morality permits concentration of an essential social cognitive function to support the perceptual and executive operations of moral behavior within a single hemisphere; the bilateral representation of morality allows activation of reserve tissue in the contralateral hemisphere in the event of an acquired hemispheric injury. The observed preponderance of right hemisphere lesions in individuals with acquired immorality offers a plausible hypothesis that can be tested in clinical settings. Advances in the neuroscience of morality promise to yield potentially transformative clinical and societal benefits. A deeper understanding of morality would help clinicians address disordered conduct after acquired neurologic insults and guide society in bolstering public health efforts to prevent brain disease.

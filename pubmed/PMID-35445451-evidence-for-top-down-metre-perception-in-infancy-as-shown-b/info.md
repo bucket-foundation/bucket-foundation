@@ -1,0 +1,14 @@
+# Evidence for top-down metre perception in infancy as shown by primed neural responses to an ambiguous rhythm.
+
+- **PMID**: 35445451
+- **DOI**: 10.1111/ejn.15671
+- **PMCID**:  
+- **Journal**: The European journal of neuroscience  ·  **Year**: 2022
+- **Authors**: Erica Flaten, Sara A Marshall, Angela Dittrich, Laurel J Trainor
+- **MeSH**: Acoustic Stimulation, Auditory Perception, Electroencephalography, Humans, Infant, Motor Activity, Music
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35445451/
+- **Captured**: 2026-05-10T16:34:15
+
+## Abstract
+
+From auditory rhythm patterns, listeners extract the underlying steady beat and perceptually group beats to form metres. While previous studies show infants discriminate different auditory metres, it remains unknown whether they can maintain (imagine) a metrical interpretation of an ambiguous rhythm through top-down processes. We investigated this via electroencephalographic mismatch responses. We primed 6-month-old infants (N = 24) to hear a 6-beat ambiguous rhythm either in duple metre (n = 13) or in triple metre (n = 11) through loudness accents either on every second or every third beat. Periods of priming were inserted before sequences of the ambiguous unaccented rhythm. To elicit mismatch responses, occasional pitch deviants occurred on either beat 4 (strong beat in triple metre; weak in duple) or beat 5 (strong in duple; weak in triple) of the unaccented trials. At frontal left sites, we found a significant interaction between beat and priming group in the predicted direction. Post-hoc analyses showed that mismatch response amplitudes were significantly larger for beat 5 in the duple-primed than triple-primed group (p = .047) and were non-significantly larger for beat 4 in the triple-primed than duple-primed group. Further, amplitudes were generally larger in infants with musically experienced parents. At frontal right sites, mismatch responses were generally larger for those in the duple compared with triple group, which may reflect a processing advantage for duple metre. These results indicate that infants can impose a top-down, internally generated metre on ambiguous auditory rhythms, an ability that would aid early language and music learning.

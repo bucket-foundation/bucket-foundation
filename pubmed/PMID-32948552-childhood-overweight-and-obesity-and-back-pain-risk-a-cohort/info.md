@@ -1,0 +1,14 @@
+# Childhood overweight and obesity and back pain risk: a cohort study of 466 997 children.
+
+- **PMID**: 32948552
+- **DOI**: 10.1111/jphd.12233
+- **PMCID**: PMC1446853 (full-text saved)
+- **Journal**: BMJ open  ·  **Year**: 2020
+- **Authors**: Antony J Palmer, Jose Luis Poveda, Daniel Martinez-Laguna, Carlen Reyes, Jeroen de Bont, Alan Silman, Andrew J Carr, Talita Duarte-Salles, Daniel Prieto-Alhambra
+- **MeSH**: Adult, Back Pain, Body Mass Index, Child, Child, Preschool, Cohort Studies, Female, Humans, Male, Overweight
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32948552/
+- **Captured**: 2026-05-10T16:32:05
+
+## Abstract
+
+To assess the association between age, sex, socioeconomic group, weight status and back pain risk in a large general population cohort of children. A dynamic cohort of children aged 4 years in the Information System for Research in Primary Care (SIDIAP) electronic primary care records data in Catalonia. Multivariable Cox models were fitted to explore the association between back pain and weight status categories according to the WHO 2007 growth reference groups (body mass index for age z-score). Models were adjusted for age, sex, socioeconomic status and nationality. Children seen at age 4 years at paediatric primary care clinics between 1 January 2006 and 31 December 2013 and followed up until 31 December 2016 or age 15 years. Incident back pain registered by paediatricians at primary care using the International Statistical Classification of Diseases and Health Related Problems, 10th Edition code M54. 466 997 children were followed for a median 5.0 years (IQR 5.1). In multivariable models, overweight and obesity increased back pain risk, with adjusted HRs of 1.18 (95% CI 1.09 to 1.27) and 1.34 (95%CI 1.19 to 1.51) for overweight and obesity, respectively. Females were at greater risk of back pain than males with adjusted HR 1.40 (95%CI 1.35 to 1.46). Adjusted HR was 1.43 (95%CI 1.33 to 1.55) for back pain in children from the most deprived socioeconomic groups compared with the least deprived socioeconomic groups. Maintaining a healthy weight from an early age may reduce the prevalence of back pain in both children and adults. Overweight female children from deprived socioeconomic groups are at greatest risk of back pain and represent a target population for intervention.

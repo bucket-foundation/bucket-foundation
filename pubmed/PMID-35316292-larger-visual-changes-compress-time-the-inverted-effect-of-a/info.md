@@ -1,0 +1,14 @@
+# Larger visual changes compress time: The inverted effect of asemantic visual features on interval time perception.
+
+- **PMID**: 35316292
+- **DOI**: 10.3389/fpsyg.2014.00917
+- **PMCID**: PMC4140165 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2022
+- **Authors**: Sandra Malpica, Belen Masia, Laura Herman, Gordon Wetzstein, David M Eagleman, Diego Gutierrez, Zoya Bylinskii, Qi Sun
+- **MeSH**: Humans, Judgment, Orientation, Spatial, Time, Time Perception, Vision, Ocular, Visual Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35316292/
+- **Captured**: 2026-05-10T16:34:10
+
+## Abstract
+
+Time perception is fluid and affected by manipulations to visual inputs. Previous literature shows that changes to low-level visual properties alter time judgments at the millisecond-level. At longer intervals, in the span of seconds and minutes, high-level cognitive effects (e.g., emotions, memories) elicited by visual inputs affect time perception, but these effects are confounded with semantic information in these inputs, and are therefore challenging to measure and control. In this work, we investigate the effect of asemantic visual properties (pure visual features devoid of emotional or semantic value) on interval time perception. Our experiments were conducted with binary and production tasks in both conventional and head-mounted displays, testing the effects of four different visual features (spatial luminance contrast, temporal frequency, field of view, and visual complexity). Our results reveal a consistent pattern: larger visual changes all shorten perceived time in intervals of up to 3min, remarkably contrary to their effect on millisecond-level perception. Our findings may help alter participants' time perception, which can have broad real-world implications.
