@@ -1,0 +1,9 @@
+# Internet Book of Shadows: Charge of the Phone Goddess (Ma... | Internet Sacred Text Archive
+
+- **URL**: https://www.sacred-texts.com/bos/bos180.htm
+- **Captured**: 2026-05-10T18:23:45
+- **Site**: www.sacred-texts.com
+
+---
+
+Internet Book of Shadows: Charge of the Phone Goddess (Ma... | Internet Sacred Text Archive Sacred Texts Index Previous Next Sponsored Links: Internet Book of Shadows , (Various Authors), [1999], at sacred-texts.com Charge of The Phone Goddess Listen to the words of the Phone Goddess, who in days of old was called Mama Cass, Ma Barker, Moms Mabley, the last of the Red Hot Mamas, and by many other names not mentionable in mixed company. Whenever you have need to make a call, preferably long distance, and better it be when the rates are high, then shall ye assemble your funds in some convenient place to pay me, who am Queen of all Highway Robbery. These ye shall assemble, ye who are fain to bankruptcy yet have not sent me all your earnings. To these shall I send bills as are yet unheard of. Ye shall be free from bank accounts, as a sign that ye be truly free ye shall be naked from my rates. And ye shall sing, talk, shout, trade gossip and love, all at your own expense. Let your fingers do the walking through my yellow pages. Let none stop you or turn you aside, just call information. For mine is the dial tone that opens upon the busy signal of life, which is the princess phone of immorality. Mine is the poverty of the masses, and call now, pay later. For my law is profit before people. Today I give knowledge of facts you do not wish to have, and tomorrow calls that will sell you things you do not wish to own. For behold, I demand everything in sacrifice. I am the next best thing to being there, and my bills are sent out upon the earth. (- Magenta G. and Steve P-C, 1982) 760 Next: Manhood Rituals (RMPJ)
