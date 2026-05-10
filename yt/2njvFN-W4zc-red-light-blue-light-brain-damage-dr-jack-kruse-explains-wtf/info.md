@@ -6,7 +6,7 @@
 - **Uploaded**: 20250606
 - **Duration**: 1:30:28 (5428s)
 - **Views**: 87640  ·  **Likes**: 2689
-- **Captured**: 2026-05-10T09:53:14
+- **Captured**: 2026-05-10T10:19:55
 
 ## Description
 
