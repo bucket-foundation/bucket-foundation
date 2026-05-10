@@ -1,0 +1,1690 @@
+{
+  "id": "https://openalex.org/W2159929956",
+  "doi": "https://doi.org/10.1371/journal.pbio.0060159",
+  "title": "Mapping the Structural Core of Human Cerebral Cortex",
+  "display_name": "Mapping the Structural Core of Human Cerebral Cortex",
+  "publication_year": 2008,
+  "publication_date": "2008-06-24",
+  "ids": {
+    "openalex": "https://openalex.org/W2159929956",
+    "doi": "https://doi.org/10.1371/journal.pbio.0060159",
+    "mag": "2159929956",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/18597554"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1371/journal.pbio.0060159",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1371/journal.pbio.0060159",
+    "pdf_url": "https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0060159&type=printable",
+    "source": {
+      "id": "https://openalex.org/S154343897",
+      "display_name": "PLoS Biology",
+      "issn_l": "1544-9173",
+      "issn": [
+        "1544-9173",
+        "1545-7885"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315706",
+      "host_organization_name": "Public Library of Science",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315706"
+      ],
+      "host_organization_lineage_names": [
+        "Public Library of Science"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "PLoS Biology",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "gold",
+    "oa_url": "https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0060159&type=printable",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5074539886",
+        "display_name": "Patric Hagmann",
+        "orcid": "https://orcid.org/0000-0002-2854-6561"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I5124864",
+          "display_name": "École Polytechnique Fédérale de Lausanne",
+          "ror": "https://ror.org/02s376052",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I2799323385",
+            "https://openalex.org/I5124864"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I97565354",
+          "display_name": "University of Lausanne",
+          "ror": "https://ror.org/019whta54",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Patric Hagmann",
+      "raw_affiliation_strings": [
+        "Department of Radiology, University Hospital Center and University of Lausanne (CHUV), Lausanne, Switzerland",
+        "Signal Processing Laboratory (LTS5), Ecole Polytechnique Fédérale de Lausanne (EPFL), Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Radiology, University Hospital Center and University of Lausanne (CHUV), Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I97565354"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Signal Processing Laboratory (LTS5), Ecole Polytechnique Fédérale de Lausanne (EPFL), Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5011559050",
+        "display_name": "Leila Cammoun",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I5124864",
+          "display_name": "École Polytechnique Fédérale de Lausanne",
+          "ror": "https://ror.org/02s376052",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I2799323385",
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Leila Cammoun",
+      "raw_affiliation_strings": [
+        "Signal Processing Laboratory (LTS5), Ecole Polytechnique Fédérale de Lausanne (EPFL), Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Signal Processing Laboratory (LTS5), Ecole Polytechnique Fédérale de Lausanne (EPFL), Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5087392239",
+        "display_name": "Xavier Gigandet",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I5124864",
+          "display_name": "École Polytechnique Fédérale de Lausanne",
+          "ror": "https://ror.org/02s376052",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I2799323385",
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Xavier Gigandet",
+      "raw_affiliation_strings": [
+        "Signal Processing Laboratory (LTS5), Ecole Polytechnique Fédérale de Lausanne (EPFL), Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Signal Processing Laboratory (LTS5), Ecole Polytechnique Fédérale de Lausanne (EPFL), Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5043517221",
+        "display_name": "Reto Meuli",
+        "orcid": "https://orcid.org/0000-0002-9573-3076"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I97565354",
+          "display_name": "University of Lausanne",
+          "ror": "https://ror.org/019whta54",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Reto Meuli",
+      "raw_affiliation_strings": [
+        "Department of Radiology, University Hospital Center and University of Lausanne (CHUV), Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Radiology, University Hospital Center and University of Lausanne (CHUV), Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5029077543",
+        "display_name": "Christopher J. Honey",
+        "orcid": "https://orcid.org/0000-0002-0745-5089"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210119109",
+          "display_name": "Indiana University Bloomington",
+          "ror": "https://ror.org/02k40bc56",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210119109",
+            "https://openalex.org/I592451"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Christopher J Honey",
+      "raw_affiliation_strings": [
+        "Department of Psychological and Brain Sciences, Indiana University, Bloomington, Indiana, United States of America"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Psychological and Brain Sciences, Indiana University, Bloomington, Indiana, United States of America",
+          "institution_ids": [
+            "https://openalex.org/I4210119109"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111836802",
+        "display_name": "Van J. Wedeen",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210127055",
+          "display_name": "Athinoula A. Martinos Center for Biomedical Imaging",
+          "ror": "https://ror.org/032q5ym94",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210087915",
+            "https://openalex.org/I4210127055",
+            "https://openalex.org/I48633490",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210087915",
+          "display_name": "Massachusetts General Hospital",
+          "ror": "https://ror.org/002pd6e78",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I4210087915",
+            "https://openalex.org/I48633490"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Van J Wedeen",
+      "raw_affiliation_strings": [
+        "Martinos Center for Biomedical Imaging, Department of Radiology, Massachusetts General Hospital and Harvard Medical School, Boston, Massachusetts, United States of America"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Martinos Center for Biomedical Imaging, Department of Radiology, Massachusetts General Hospital and Harvard Medical School, Boston, Massachusetts, United States of America",
+          "institution_ids": [
+            "https://openalex.org/I4210127055",
+            "https://openalex.org/I136199984",
+            "https://openalex.org/I4210087915"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5002202464",
+        "display_name": "Olaf Sporns",
+        "orcid": "https://orcid.org/0000-0001-7265-4036"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210119109",
+          "display_name": "Indiana University Bloomington",
+          "ror": "https://ror.org/02k40bc56",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210119109",
+            "https://openalex.org/I592451"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Olaf Sporns",
+      "raw_affiliation_strings": [
+        "Department of Psychological and Brain Sciences, Indiana University, Bloomington, Indiana, United States of America"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Psychological and Brain Sciences, Indiana University, Bloomington, Indiana, United States of America",
+          "institution_ids": [
+            "https://openalex.org/I4210119109"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 7,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5002202464"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I4210119109"
+  ],
+  "apc_list": {
+    "value": 5300,
+    "currency": "USD",
+    "value_usd": 5300
+  },
+  "apc_paid": {
+    "value": 5300,
+    "currency": "USD",
+    "value_usd": 5300
+  },
+  "fwci": 79.6228,
+  "has_fulltext": true,
+  "cited_by_count": 4355,
+  "citation_normalized_percentile": {
+    "value": 0.99993646,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "6",
+    "issue": "7",
+    "first_page": "e159",
+    "last_page": "e159"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10241",
+    "display_name": "Functional Brain Connectivity Studies",
+    "score": 1.0,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2805",
+      "display_name": "Cognitive Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10241",
+      "display_name": "Functional Brain Connectivity Studies",
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11304",
+      "display_name": "Advanced Neuroimaging Techniques and Applications",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2741",
+        "display_name": "Radiology, Nuclear Medicine and Imaging"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10581",
+      "display_name": "Neural dynamics and brain function",
+      "score": 0.9983999729156494,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/neuroscience",
+      "display_name": "Neuroscience",
+      "score": 0.755128026008606
+    },
+    {
+      "id": "https://openalex.org/keywords/betweenness-centrality",
+      "display_name": "Betweenness centrality",
+      "score": 0.7395137548446655
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.6403719186782837
+    },
+    {
+      "id": "https://openalex.org/keywords/human-brain",
+      "display_name": "Human brain",
+      "score": 0.6017706990242004
+    },
+    {
+      "id": "https://openalex.org/keywords/cortex",
+      "display_name": "Cortex (anatomy)",
+      "score": 0.5697357654571533
+    },
+    {
+      "id": "https://openalex.org/keywords/cerebral-cortex",
+      "display_name": "Cerebral cortex",
+      "score": 0.5484737157821655
+    },
+    {
+      "id": "https://openalex.org/keywords/functional-specialization",
+      "display_name": "Functional specialization",
+      "score": 0.5132948756217957
+    },
+    {
+      "id": "https://openalex.org/keywords/core",
+      "display_name": "Core (optical fiber)",
+      "score": 0.4771370589733124
+    },
+    {
+      "id": "https://openalex.org/keywords/centrality",
+      "display_name": "Centrality",
+      "score": 0.38655877113342285
+    },
+    {
+      "id": "https://openalex.org/keywords/anatomy",
+      "display_name": "Anatomy",
+      "score": 0.33736321330070496
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.15849828720092773
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C169760540",
+      "wikidata": "https://www.wikidata.org/wiki/Q207011",
+      "display_name": "Neuroscience",
+      "level": 1,
+      "score": 0.755128026008606
+    },
+    {
+      "id": "https://openalex.org/C117045392",
+      "wikidata": "https://www.wikidata.org/wiki/Q4899215",
+      "display_name": "Betweenness centrality",
+      "level": 3,
+      "score": 0.7395137548446655
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.6403719186782837
+    },
+    {
+      "id": "https://openalex.org/C2777670902",
+      "wikidata": "https://www.wikidata.org/wiki/Q492038",
+      "display_name": "Human brain",
+      "level": 2,
+      "score": 0.6017706990242004
+    },
+    {
+      "id": "https://openalex.org/C2777348757",
+      "wikidata": "https://www.wikidata.org/wiki/Q2346577",
+      "display_name": "Cortex (anatomy)",
+      "level": 2,
+      "score": 0.5697357654571533
+    },
+    {
+      "id": "https://openalex.org/C2781041448",
+      "wikidata": "https://www.wikidata.org/wiki/Q75839",
+      "display_name": "Cerebral cortex",
+      "level": 2,
+      "score": 0.5484737157821655
+    },
+    {
+      "id": "https://openalex.org/C107968991",
+      "wikidata": "https://www.wikidata.org/wiki/Q1868509",
+      "display_name": "Functional specialization",
+      "level": 2,
+      "score": 0.5132948756217957
+    },
+    {
+      "id": "https://openalex.org/C2164484",
+      "wikidata": "https://www.wikidata.org/wiki/Q5170150",
+      "display_name": "Core (optical fiber)",
+      "level": 2,
+      "score": 0.4771370589733124
+    },
+    {
+      "id": "https://openalex.org/C53811970",
+      "wikidata": "https://www.wikidata.org/wiki/Q5062194",
+      "display_name": "Centrality",
+      "level": 2,
+      "score": 0.38655877113342285
+    },
+    {
+      "id": "https://openalex.org/C105702510",
+      "wikidata": "https://www.wikidata.org/wiki/Q514",
+      "display_name": "Anatomy",
+      "level": 1,
+      "score": 0.33736321330070496
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.15849828720092773
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C76155785",
+      "wikidata": "https://www.wikidata.org/wiki/Q418",
+      "display_name": "Telecommunications",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C114614502",
+      "wikidata": "https://www.wikidata.org/wiki/Q76592",
+      "display_name": "Combinatorics",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000328",
+      "descriptor_name": "Adult",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000328",
+      "descriptor_name": "Adult",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000328",
+      "descriptor_name": "Adult",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001931",
+      "descriptor_name": "Brain Mapping",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001931",
+      "descriptor_name": "Brain Mapping",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001931",
+      "descriptor_name": "Brain Mapping",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008297",
+      "descriptor_name": "Male",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008297",
+      "descriptor_name": "Male",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008297",
+      "descriptor_name": "Male",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D021621",
+      "descriptor_name": "Imaging, Three-Dimensional",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D021621",
+      "descriptor_name": "Imaging, Three-Dimensional",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D021621",
+      "descriptor_name": "Imaging, Three-Dimensional",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D038524",
+      "descriptor_name": "Diffusion Magnetic Resonance Imaging",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D038524",
+      "descriptor_name": "Diffusion Magnetic Resonance Imaging",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D038524",
+      "descriptor_name": "Diffusion Magnetic Resonance Imaging",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 10,
+  "locations": [
+    {
+      "id": "doi:10.1371/journal.pbio.0060159",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1371/journal.pbio.0060159",
+      "pdf_url": "https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0060159&type=printable",
+      "source": {
+        "id": "https://openalex.org/S154343897",
+        "display_name": "PLoS Biology",
+        "issn_l": "1544-9173",
+        "issn": [
+          "1544-9173",
+          "1545-7885"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315706",
+        "host_organization_name": "Public Library of Science",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315706"
+        ],
+        "host_organization_lineage_names": [
+          "Public Library of Science"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "PLoS Biology",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:18597554",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/18597554",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "PLoS biology",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:dash.harvard.edu:1/4728517",
+      "is_oa": true,
+      "landing_page_url": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:4728517",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401540",
+        "display_name": "Digital Access to Scholarship at Harvard (DASH) (Harvard University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I136199984",
+        "host_organization_name": "Harvard University",
+        "host_organization_lineage": [
+          "https://openalex.org/I136199984"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Journal Article"
+    },
+    {
+      "id": "pmh:oai:CiteSeerX.psu:10.1.1.317.9869",
+      "is_oa": false,
+      "landing_page_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.317.9869",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "http://www.cs.unc.edu/~styner/public/DTI_tutorial/HARDI 5 Plos Biol 2008 Hagmann.pdf",
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:doaj.org/article:699440b8924f48e984214a6abf9d462a",
+      "is_oa": true,
+      "landing_page_url": "https://doaj.org/article/699440b8924f48e984214a6abf9d462a",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401280",
+        "display_name": "DOAJ (DOAJ: Directory of Open Access Journals)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-sa",
+      "license_id": "https://openalex.org/licenses/cc-by-sa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "PLoS Biology, Vol 6, Iss 7, p e159 (2008)",
+      "raw_type": "article"
+    },
+    {
+      "id": "pmh:oai:europepmc.org:1931393",
+      "is_oa": true,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2443193",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400806",
+        "display_name": "Europe PMC (PubMed Central)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1303153112",
+        "host_organization_name": "European Bioinformatics Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/I1303153112"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "Text"
+    },
+    {
+      "id": "pmh:oai:figshare.com:article/150586",
+      "is_oa": true,
+      "landing_page_url": "https://figshare.com/articles/dataset/Mapping_the_Structural_Core_of_Human_Cerebral_Cortex/150586",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196282",
+        "display_name": "Figshare",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I4210132348",
+        "host_organization_name": "Figshare (United Kingdom)",
+        "host_organization_lineage": [
+          "https://openalex.org/I4210132348"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Dataset"
+    },
+    {
+      "id": "pmh:oai:infoscience.epfl.ch:125049",
+      "is_oa": true,
+      "landing_page_url": "http://infoscience.epfl.ch/record/125049",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400487",
+        "display_name": "Infoscience (Ecole Polytechnique Fédérale de Lausanne)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Text"
+    },
+    {
+      "id": "pmh:oai:iris.unil.ch:iris/58177",
+      "is_oa": false,
+      "landing_page_url": "https://iris.unil.ch/handle/iris/58177",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S7407055444",
+        "display_name": "IRIS",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "journal article"
+    },
+    {
+      "id": "pmh:oai:serval.unil.ch:BIB_6A4D544D8AB8",
+      "is_oa": true,
+      "landing_page_url": "https://serval.unil.ch/notice/serval:BIB_6A4D544D8AB8",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401797",
+        "display_name": "SERVAL (Université de Lausanne)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I4210093590",
+        "host_organization_name": "Swiss School of Archaeology in Greece",
+        "host_organization_lineage": [
+          "https://openalex.org/I4210093590"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "other-oa",
+      "license_id": "https://openalex.org/licenses/other-oa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "PLoS Biology, vol. 6, no. 7, pp. e159",
+      "raw_type": "info:eu-repo/semantics/submittedVersion"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1371/journal.pbio.0060159",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1371/journal.pbio.0060159",
+    "pdf_url": "https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.0060159&type=printable",
+    "source": {
+      "id": "https://openalex.org/S154343897",
+      "display_name": "PLoS Biology",
+      "issn_l": "1544-9173",
+      "issn": [
+        "1544-9173",
+        "1545-7885"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315706",
+      "host_organization_name": "Public Library of Science",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315706"
+      ],
+      "host_organization_lineage_names": [
+        "Public Library of Science"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "PLoS Biology",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320306183",
+      "display_name": "James S. McDonnell Foundation",
+      "ror": "https://ror.org/03dy4aq19"
+    },
+    {
+      "id": "https://openalex.org/F4320320915",
+      "display_name": "École Polytechnique Fédérale de Lausanne",
+      "ror": "https://ror.org/02s376052"
+    },
+    {
+      "id": "https://openalex.org/F4320323831",
+      "display_name": "Université de Lausanne",
+      "ror": "https://ror.org/019whta54"
+    },
+    {
+      "id": "https://openalex.org/F4320323832",
+      "display_name": "Centre d'Imagerie BioMédicale",
+      "ror": "https://ror.org/03fw2bn12"
+    },
+    {
+      "id": "https://openalex.org/F4320323833",
+      "display_name": "Centre Hospitalier Universitaire Vaudois",
+      "ror": "https://ror.org/05a353079"
+    },
+    {
+      "id": "https://openalex.org/F4320332161",
+      "display_name": "National Institutes of Health",
+      "ror": "https://ror.org/01cwqze88"
+    }
+  ],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2159929956.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2159929956.grobid-xml"
+  },
+  "referenced_works_count": 57,
+  "referenced_works": [
+    "https://openalex.org/W1523723941",
+    "https://openalex.org/W1760829075",
+    "https://openalex.org/W1969533226",
+    "https://openalex.org/W1969676672",
+    "https://openalex.org/W1970695058",
+    "https://openalex.org/W1971937094",
+    "https://openalex.org/W1972412818",
+    "https://openalex.org/W1974764791",
+    "https://openalex.org/W1981036614",
+    "https://openalex.org/W1981176642",
+    "https://openalex.org/W1981220029",
+    "https://openalex.org/W1987638762",
+    "https://openalex.org/W1987924998",
+    "https://openalex.org/W2006312249",
+    "https://openalex.org/W2027781650",
+    "https://openalex.org/W2033078279",
+    "https://openalex.org/W2045758998",
+    "https://openalex.org/W2060464767",
+    "https://openalex.org/W2064125324",
+    "https://openalex.org/W2064927380",
+    "https://openalex.org/W2070069429",
+    "https://openalex.org/W2075220720",
+    "https://openalex.org/W2080512970",
+    "https://openalex.org/W2085989895",
+    "https://openalex.org/W2098580305",
+    "https://openalex.org/W2100657212",
+    "https://openalex.org/W2106650768",
+    "https://openalex.org/W2109278577",
+    "https://openalex.org/W2110040374",
+    "https://openalex.org/W2111613011",
+    "https://openalex.org/W2113319997",
+    "https://openalex.org/W2116818517",
+    "https://openalex.org/W2118136127",
+    "https://openalex.org/W2118323338",
+    "https://openalex.org/W2120259577",
+    "https://openalex.org/W2120895215",
+    "https://openalex.org/W2121538974",
+    "https://openalex.org/W2125757815",
+    "https://openalex.org/W2128314959",
+    "https://openalex.org/W2129057035",
+    "https://openalex.org/W2131478329",
+    "https://openalex.org/W2132957436",
+    "https://openalex.org/W2133015986",
+    "https://openalex.org/W2133903921",
+    "https://openalex.org/W2136435696",
+    "https://openalex.org/W2137240152",
+    "https://openalex.org/W2142711129",
+    "https://openalex.org/W2142808602",
+    "https://openalex.org/W2144631174",
+    "https://openalex.org/W2146693559",
+    "https://openalex.org/W2151130155",
+    "https://openalex.org/W2151721316",
+    "https://openalex.org/W2151936673",
+    "https://openalex.org/W2158592797",
+    "https://openalex.org/W2162010696",
+    "https://openalex.org/W2170596158",
+    "https://openalex.org/W3124885118"
+  ],
+  "related_works": [
+    "https://openalex.org/W1973509935",
+    "https://openalex.org/W4389076551",
+    "https://openalex.org/W2097992793",
+    "https://openalex.org/W2107855069",
+    "https://openalex.org/W2611574733",
+    "https://openalex.org/W2241641394",
+    "https://openalex.org/W2140653560",
+    "https://openalex.org/W2348831795",
+    "https://openalex.org/W2514739320",
+    "https://openalex.org/W4312461432"
+  ],
+  "abstract_inverted_index": {
+    "Structurally": [
+      0
+    ],
+    "segregated": [
+      1
+    ],
+    "and": [
+      2,
+      32,
+      56,
+      66,
+      79,
+      82,
+      112,
+      125,
+      136
+    ],
+    "functionally": [
+      3
+    ],
+    "specialized": [
+      4
+    ],
+    "regions": [
+      5,
+      70,
+      98
+    ],
+    "of": [
+      6,
+      17,
+      42,
+      104,
+      114,
+      139
+    ],
+    "the": [
+      7,
+      43,
+      72,
+      101,
+      105,
+      131,
+      140
+    ],
+    "human": [
+      8,
+      38,
+      106
+    ],
+    "cerebral": [
+      9,
+      58
+    ],
+    "cortex": [
+      10,
+      143
+    ],
+    "are": [
+      11
+    ],
+    "interconnected": [
+      12
+    ],
+    "by": [
+      13
+    ],
+    "a": [
+      14,
+      50,
+      119
+    ],
+    "dense": [
+      15
+    ],
+    "network": [
+      16
+    ],
+    "cortico-cortical": [
+      18
+    ],
+    "axonal": [
+      19
+    ],
+    "pathways.": [
+      20
+    ],
+    "By": [
+      21
+    ],
+    "using": [
+      22
+    ],
+    "diffusion": [
+      23
+    ],
+    "spectrum": [
+      24
+    ],
+    "imaging,": [
+      25
+    ],
+    "we": [
+      26,
+      117
+    ],
+    "noninvasively": [
+      27
+    ],
+    "mapped": [
+      28
+    ],
+    "these": [
+      29
+    ],
+    "pathways": [
+      30
+    ],
+    "within": [
+      31,
+      53,
+      71,
+      111,
+      142
+    ],
+    "across": [
+      33
+    ],
+    "cortical": [
+      34
+    ],
+    "hemispheres": [
+      35
+    ],
+    "in": [
+      36,
+      130,
+      148
+    ],
+    "individual": [
+      37
+    ],
+    "participants.": [
+      39,
+      133
+    ],
+    "An": [
+      40
+    ],
+    "analysis": [
+      41
+    ],
+    "resulting": [
+      44
+    ],
+    "large-scale": [
+      45
+    ],
+    "structural": [
+      46,
+      51,
+      73,
+      91,
+      94,
+      123
+    ],
+    "brain": [
+      47,
+      97
+    ],
+    "networks": [
+      48
+    ],
+    "reveals": [
+      49
+    ],
+    "core": [
+      52,
+      74,
+      95,
+      115,
+      141
+    ],
+    "posterior": [
+      54,
+      102
+    ],
+    "medial": [
+      55
+    ],
+    "parietal": [
+      57
+    ],
+    "cortex,": [
+      59
+    ],
+    "as": [
+      60,
+      62
+    ],
+    "well": [
+      61
+    ],
+    "several": [
+      63
+    ],
+    "distinct": [
+      64
+    ],
+    "temporal": [
+      65
+    ],
+    "frontal": [
+      67
+    ],
+    "modules.": [
+      68,
+      92
+    ],
+    "Brain": [
+      69
+    ],
+    "share": [
+      75
+    ],
+    "high": [
+      76
+    ],
+    "degree,": [
+      77
+    ],
+    "strength,": [
+      78
+    ],
+    "betweenness": [
+      80
+    ],
+    "centrality,": [
+      81
+    ],
+    "they": [
+      83
+    ],
+    "constitute": [
+      84
+    ],
+    "connector": [
+      85
+    ],
+    "hubs": [
+      86
+    ],
+    "that": [
+      87,
+      99
+    ],
+    "link": [
+      88
+    ],
+    "all": [
+      89
+    ],
+    "major": [
+      90
+    ],
+    "The": [
+      93,
+      134
+    ],
+    "contains": [
+      96
+    ],
+    "form": [
+      100
+    ],
+    "components": [
+      103
+    ],
+    "default": [
+      107
+    ],
+    "network.": [
+      108
+    ],
+    "Looking": [
+      109
+    ],
+    "both": [
+      110
+    ],
+    "outside": [
+      113
+    ],
+    "regions,": [
+      116
+    ],
+    "observed": [
+      118
+    ],
+    "substantial": [
+      120
+    ],
+    "correspondence": [
+      121
+    ],
+    "between": [
+      122
+    ],
+    "connectivity": [
+      124,
+      128
+    ],
+    "resting-state": [
+      126
+    ],
+    "functional": [
+      127,
+      149
+    ],
+    "measured": [
+      129
+    ],
+    "same": [
+      132
+    ],
+    "spatial": [
+      135
+    ],
+    "topological": [
+      137
+    ],
+    "centrality": [
+      138
+    ],
+    "suggests": [
+      144
+    ],
+    "an": [
+      145
+    ],
+    "important": [
+      146
+    ],
+    "role": [
+      147
+    ],
+    "integration.": [
+      150
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 53
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 196
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 198
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 218
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 276
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 283
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 278
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 296
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 305
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 287
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 267
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 310
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 306
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 311
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 246
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2025-10-10T00:00:00"
+}

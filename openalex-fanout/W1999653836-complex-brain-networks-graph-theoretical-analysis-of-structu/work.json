@@ -1,0 +1,1274 @@
+{
+  "id": "https://openalex.org/W1999653836",
+  "doi": "https://doi.org/10.1038/nrn2575",
+  "title": "Complex brain networks: graph theoretical analysis of structural and functional systems",
+  "display_name": "Complex brain networks: graph theoretical analysis of structural and functional systems",
+  "publication_year": 2009,
+  "publication_date": "2009-02-04",
+  "ids": {
+    "openalex": "https://openalex.org/W1999653836",
+    "doi": "https://doi.org/10.1038/nrn2575",
+    "mag": "1999653836",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/19190637"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1038/nrn2575",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1038/nrn2575",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S26843219",
+      "display_name": "Nature reviews. Neuroscience",
+      "issn_l": "1471-003X",
+      "issn": [
+        "1471-003X",
+        "1471-0048"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319908",
+      "host_organization_name": "Nature Portfolio",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319908",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Nature Portfolio",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Nature Reviews Neuroscience",
+    "raw_type": "journal-article"
+  },
+  "type": "review",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5041538919",
+        "display_name": "Edward T. Bullmore",
+        "orcid": "https://orcid.org/0000-0002-8955-8283"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210156194",
+          "display_name": "Addenbrooke's Hospital",
+          "ror": "https://ror.org/055vbxf86",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2802466933",
+            "https://openalex.org/I4210156194"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Ed Bullmore",
+      "raw_affiliation_strings": [
+        "University of Cambridge, Behavioural & Clinical Neurosciences Institute, Department of Psychiatry, Addenbrooke's Hospital, Cambridge, CB2 2QQ, UK. etb23@cam.ac.uk",
+        "Department of Psychiatry, University of Cambridge, Behavioural & Clinical Neurosciences Institute, Addenbrooke's Hospital, Cambridge, CB2 2QQ, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Cambridge, Behavioural & Clinical Neurosciences Institute, Department of Psychiatry, Addenbrooke's Hospital, Cambridge, CB2 2QQ, UK. etb23@cam.ac.uk",
+          "institution_ids": [
+            "https://openalex.org/I4210156194"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Psychiatry, University of Cambridge, Behavioural & Clinical Neurosciences Institute, Addenbrooke's Hospital, Cambridge, CB2 2QQ, UK",
+          "institution_ids": [
+            "https://openalex.org/I4210156194",
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5002202464",
+        "display_name": "Olaf Sporns",
+        "orcid": "https://orcid.org/0000-0001-7265-4036"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210119109",
+          "display_name": "Indiana University Bloomington",
+          "ror": "https://ror.org/02k40bc56",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210119109",
+            "https://openalex.org/I592451"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Olaf Sporns",
+      "raw_affiliation_strings": [
+        "Department of Psychological and Brain Sciences, Indiana University, Bloomington, 47405, Indiana, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Psychological and Brain Sciences, Indiana University, Bloomington, 47405, Indiana, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210119109"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 2,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5041538919"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I241749",
+    "https://openalex.org/I4210156194"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 154.4286,
+  "has_fulltext": false,
+  "cited_by_count": 11996,
+  "citation_normalized_percentile": {
+    "value": 1.0,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "10",
+    "issue": "3",
+    "first_page": "186",
+    "last_page": "198"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10241",
+    "display_name": "Functional Brain Connectivity Studies",
+    "score": 1.0,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2805",
+      "display_name": "Cognitive Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10241",
+      "display_name": "Functional Brain Connectivity Studies",
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10581",
+      "display_name": "Neural dynamics and brain function",
+      "score": 0.9979000091552734,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11304",
+      "display_name": "Advanced Neuroimaging Techniques and Applications",
+      "score": 0.996999979019165,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2741",
+        "display_name": "Radiology, Nuclear Medicine and Imaging"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/modularity",
+      "display_name": "Modularity (biology)",
+      "score": 0.7536306381225586
+    },
+    {
+      "id": "https://openalex.org/keywords/complex-network",
+      "display_name": "Complex network",
+      "score": 0.6969184279441833
+    },
+    {
+      "id": "https://openalex.org/keywords/magnetoencephalography",
+      "display_name": "Magnetoencephalography",
+      "score": 0.5979745388031006
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.5876113176345825
+    },
+    {
+      "id": "https://openalex.org/keywords/cognitive-science",
+      "display_name": "Cognitive science",
+      "score": 0.5440146923065186
+    },
+    {
+      "id": "https://openalex.org/keywords/connectomics",
+      "display_name": "Connectomics",
+      "score": 0.5186206698417664
+    },
+    {
+      "id": "https://openalex.org/keywords/diffusion-mri",
+      "display_name": "Diffusion MRI",
+      "score": 0.49459144473075867
+    },
+    {
+      "id": "https://openalex.org/keywords/graph-theory",
+      "display_name": "Graph theory",
+      "score": 0.4909985363483429
+    },
+    {
+      "id": "https://openalex.org/keywords/human-brain",
+      "display_name": "Human brain",
+      "score": 0.4855167865753174
+    },
+    {
+      "id": "https://openalex.org/keywords/network-science",
+      "display_name": "Network science",
+      "score": 0.4851720929145813
+    },
+    {
+      "id": "https://openalex.org/keywords/neuroscience",
+      "display_name": "Neuroscience",
+      "score": 0.4810190796852112
+    },
+    {
+      "id": "https://openalex.org/keywords/neuroimaging",
+      "display_name": "Neuroimaging",
+      "score": 0.4644377827644348
+    },
+    {
+      "id": "https://openalex.org/keywords/modalities",
+      "display_name": "Modalities",
+      "score": 0.4515378773212433
+    },
+    {
+      "id": "https://openalex.org/keywords/artificial-intelligence",
+      "display_name": "Artificial intelligence",
+      "score": 0.3751724660396576
+    },
+    {
+      "id": "https://openalex.org/keywords/functional-connectivity",
+      "display_name": "Functional connectivity",
+      "score": 0.373029887676239
+    },
+    {
+      "id": "https://openalex.org/keywords/data-science",
+      "display_name": "Data science",
+      "score": 0.3697545826435089
+    },
+    {
+      "id": "https://openalex.org/keywords/connectome",
+      "display_name": "Connectome",
+      "score": 0.29936039447784424
+    },
+    {
+      "id": "https://openalex.org/keywords/electroencephalography",
+      "display_name": "Electroencephalography",
+      "score": 0.2588536739349365
+    },
+    {
+      "id": "https://openalex.org/keywords/psychology",
+      "display_name": "Psychology",
+      "score": 0.23992818593978882
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.12737229466438293
+    },
+    {
+      "id": "https://openalex.org/keywords/sociology",
+      "display_name": "Sociology",
+      "score": 0.10120603442192078
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.09149861335754395
+    },
+    {
+      "id": "https://openalex.org/keywords/medicine",
+      "display_name": "Medicine",
+      "score": 0.08802863955497742
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2779478453",
+      "wikidata": "https://www.wikidata.org/wiki/Q6889748",
+      "display_name": "Modularity (biology)",
+      "level": 2,
+      "score": 0.7536306381225586
+    },
+    {
+      "id": "https://openalex.org/C34947359",
+      "wikidata": "https://www.wikidata.org/wiki/Q665189",
+      "display_name": "Complex network",
+      "level": 2,
+      "score": 0.6969184279441833
+    },
+    {
+      "id": "https://openalex.org/C556910895",
+      "wikidata": "https://www.wikidata.org/wiki/Q384188",
+      "display_name": "Magnetoencephalography",
+      "level": 3,
+      "score": 0.5979745388031006
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.5876113176345825
+    },
+    {
+      "id": "https://openalex.org/C188147891",
+      "wikidata": "https://www.wikidata.org/wiki/Q147638",
+      "display_name": "Cognitive science",
+      "level": 1,
+      "score": 0.5440146923065186
+    },
+    {
+      "id": "https://openalex.org/C2779097318",
+      "wikidata": "https://www.wikidata.org/wiki/Q2993446",
+      "display_name": "Connectomics",
+      "level": 4,
+      "score": 0.5186206698417664
+    },
+    {
+      "id": "https://openalex.org/C149550507",
+      "wikidata": "https://www.wikidata.org/wiki/Q899360",
+      "display_name": "Diffusion MRI",
+      "level": 3,
+      "score": 0.49459144473075867
+    },
+    {
+      "id": "https://openalex.org/C88230418",
+      "wikidata": "https://www.wikidata.org/wiki/Q131476",
+      "display_name": "Graph theory",
+      "level": 2,
+      "score": 0.4909985363483429
+    },
+    {
+      "id": "https://openalex.org/C2777670902",
+      "wikidata": "https://www.wikidata.org/wiki/Q492038",
+      "display_name": "Human brain",
+      "level": 2,
+      "score": 0.4855167865753174
+    },
+    {
+      "id": "https://openalex.org/C137753397",
+      "wikidata": "https://www.wikidata.org/wiki/Q2434424",
+      "display_name": "Network science",
+      "level": 3,
+      "score": 0.4851720929145813
+    },
+    {
+      "id": "https://openalex.org/C169760540",
+      "wikidata": "https://www.wikidata.org/wiki/Q207011",
+      "display_name": "Neuroscience",
+      "level": 1,
+      "score": 0.4810190796852112
+    },
+    {
+      "id": "https://openalex.org/C58693492",
+      "wikidata": "https://www.wikidata.org/wiki/Q551875",
+      "display_name": "Neuroimaging",
+      "level": 2,
+      "score": 0.4644377827644348
+    },
+    {
+      "id": "https://openalex.org/C2779903281",
+      "wikidata": "https://www.wikidata.org/wiki/Q6888026",
+      "display_name": "Modalities",
+      "level": 2,
+      "score": 0.4515378773212433
+    },
+    {
+      "id": "https://openalex.org/C154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "level": 1,
+      "score": 0.3751724660396576
+    },
+    {
+      "id": "https://openalex.org/C3018011982",
+      "wikidata": "https://www.wikidata.org/wiki/Q7316120",
+      "display_name": "Functional connectivity",
+      "level": 2,
+      "score": 0.373029887676239
+    },
+    {
+      "id": "https://openalex.org/C2522767166",
+      "wikidata": "https://www.wikidata.org/wiki/Q2374463",
+      "display_name": "Data science",
+      "level": 1,
+      "score": 0.3697545826435089
+    },
+    {
+      "id": "https://openalex.org/C45715564",
+      "wikidata": "https://www.wikidata.org/wiki/Q1292103",
+      "display_name": "Connectome",
+      "level": 3,
+      "score": 0.29936039447784424
+    },
+    {
+      "id": "https://openalex.org/C522805319",
+      "wikidata": "https://www.wikidata.org/wiki/Q179965",
+      "display_name": "Electroencephalography",
+      "level": 2,
+      "score": 0.2588536739349365
+    },
+    {
+      "id": "https://openalex.org/C15744967",
+      "wikidata": "https://www.wikidata.org/wiki/Q9418",
+      "display_name": "Psychology",
+      "level": 0,
+      "score": 0.23992818593978882
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.12737229466438293
+    },
+    {
+      "id": "https://openalex.org/C144024400",
+      "wikidata": "https://www.wikidata.org/wiki/Q21201",
+      "display_name": "Sociology",
+      "level": 0,
+      "score": 0.10120603442192078
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.09149861335754395
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.08802863955497742
+    },
+    {
+      "id": "https://openalex.org/C36289849",
+      "wikidata": "https://www.wikidata.org/wiki/Q34749",
+      "display_name": "Social science",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C126838900",
+      "wikidata": "https://www.wikidata.org/wiki/Q77604",
+      "display_name": "Radiology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C143409427",
+      "wikidata": "https://www.wikidata.org/wiki/Q161238",
+      "display_name": "Magnetic resonance imaging",
+      "level": 2,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C136764020",
+      "wikidata": "https://www.wikidata.org/wiki/Q466",
+      "display_name": "World Wide Web",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C114614502",
+      "wikidata": "https://www.wikidata.org/wiki/Q76592",
+      "display_name": "Combinatorics",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001931",
+      "descriptor_name": "Brain Mapping",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001931",
+      "descriptor_name": "Brain Mapping",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001931",
+      "descriptor_name": "Brain Mapping",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001931",
+      "descriptor_name": "Brain Mapping",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003196",
+      "descriptor_name": "Computer Graphics",
+      "qualifier_ui": "Q000639",
+      "qualifier_name": "trends",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003196",
+      "descriptor_name": "Computer Graphics",
+      "qualifier_ui": "Q000639",
+      "qualifier_name": "trends",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003196",
+      "descriptor_name": "Computer Graphics",
+      "qualifier_ui": "Q000639",
+      "qualifier_name": "trends",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003196",
+      "descriptor_name": "Computer Graphics",
+      "qualifier_ui": "Q000639",
+      "qualifier_name": "trends",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004569",
+      "descriptor_name": "Electroencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004569",
+      "descriptor_name": "Electroencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004569",
+      "descriptor_name": "Electroencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004569",
+      "descriptor_name": "Electroencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007091",
+      "descriptor_name": "Image Processing, Computer-Assisted",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007091",
+      "descriptor_name": "Image Processing, Computer-Assisted",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007091",
+      "descriptor_name": "Image Processing, Computer-Assisted",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007091",
+      "descriptor_name": "Image Processing, Computer-Assisted",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008279",
+      "descriptor_name": "Magnetic Resonance Imaging",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008279",
+      "descriptor_name": "Magnetic Resonance Imaging",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008279",
+      "descriptor_name": "Magnetic Resonance Imaging",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008279",
+      "descriptor_name": "Magnetic Resonance Imaging",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000033",
+      "qualifier_name": "anatomy & histology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015225",
+      "descriptor_name": "Magnetoencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015225",
+      "descriptor_name": "Magnetoencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015225",
+      "descriptor_name": "Magnetoencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015225",
+      "descriptor_name": "Magnetoencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016571",
+      "descriptor_name": "Neural Networks, Computer",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016571",
+      "descriptor_name": "Neural Networks, Computer",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016571",
+      "descriptor_name": "Neural Networks, Computer",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016571",
+      "descriptor_name": "Neural Networks, Computer",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    }
+  ],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1038/nrn2575",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1038/nrn2575",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S26843219",
+        "display_name": "Nature reviews. Neuroscience",
+        "issn_l": "1471-003X",
+        "issn": [
+          "1471-003X",
+          "1471-0048"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319908",
+        "host_organization_name": "Nature Portfolio",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319908",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Nature Portfolio",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature Reviews Neuroscience",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:19190637",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/19190637",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature reviews. Neuroscience",
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 168,
+  "referenced_works": [
+    "https://openalex.org/W950821216",
+    "https://openalex.org/W1520320129",
+    "https://openalex.org/W1573579329",
+    "https://openalex.org/W1603661052",
+    "https://openalex.org/W1632705170",
+    "https://openalex.org/W1655108579",
+    "https://openalex.org/W1673584506",
+    "https://openalex.org/W1760829075",
+    "https://openalex.org/W1838525153",
+    "https://openalex.org/W1850231759",
+    "https://openalex.org/W1923830127",
+    "https://openalex.org/W1933848166",
+    "https://openalex.org/W1963595563",
+    "https://openalex.org/W1965665664",
+    "https://openalex.org/W1965886953",
+    "https://openalex.org/W1966139283",
+    "https://openalex.org/W1969533226",
+    "https://openalex.org/W1970695058",
+    "https://openalex.org/W1971304951",
+    "https://openalex.org/W1971421925",
+    "https://openalex.org/W1971937094",
+    "https://openalex.org/W1972412818",
+    "https://openalex.org/W1974049455",
+    "https://openalex.org/W1974764791",
+    "https://openalex.org/W1979426401",
+    "https://openalex.org/W1981036614",
+    "https://openalex.org/W1981176642",
+    "https://openalex.org/W1981764342",
+    "https://openalex.org/W1983537704",
+    "https://openalex.org/W1985392528",
+    "https://openalex.org/W1986818175",
+    "https://openalex.org/W1987778722",
+    "https://openalex.org/W1987924998",
+    "https://openalex.org/W1994118090",
+    "https://openalex.org/W1994801733",
+    "https://openalex.org/W1996379253",
+    "https://openalex.org/W1996630013",
+    "https://openalex.org/W2001338562",
+    "https://openalex.org/W2002367251",
+    "https://openalex.org/W2002429803",
+    "https://openalex.org/W2006052322",
+    "https://openalex.org/W2006312249",
+    "https://openalex.org/W2008620264",
+    "https://openalex.org/W2009650955",
+    "https://openalex.org/W2011961540",
+    "https://openalex.org/W2013605485",
+    "https://openalex.org/W2014217492",
+    "https://openalex.org/W2015535473",
+    "https://openalex.org/W2017987256",
+    "https://openalex.org/W2018049970",
+    "https://openalex.org/W2021280765",
+    "https://openalex.org/W2021687531",
+    "https://openalex.org/W2021768951",
+    "https://openalex.org/W2022104574",
+    "https://openalex.org/W2026384313",
+    "https://openalex.org/W2026864246",
+    "https://openalex.org/W2029519094",
+    "https://openalex.org/W2030363891",
+    "https://openalex.org/W2033078279",
+    "https://openalex.org/W2035398019",
+    "https://openalex.org/W2038728393",
+    "https://openalex.org/W2042591446",
+    "https://openalex.org/W2044078323",
+    "https://openalex.org/W2044770804",
+    "https://openalex.org/W2052025169",
+    "https://openalex.org/W2056081184",
+    "https://openalex.org/W2057950952",
+    "https://openalex.org/W2059668389",
+    "https://openalex.org/W2060449369",
+    "https://openalex.org/W2060464767",
+    "https://openalex.org/W2061036191",
+    "https://openalex.org/W2061901927",
+    "https://openalex.org/W2064125324",
+    "https://openalex.org/W2065005587",
+    "https://openalex.org/W2067219344",
+    "https://openalex.org/W2069491929",
+    "https://openalex.org/W2070722739",
+    "https://openalex.org/W2071158443",
+    "https://openalex.org/W2071721277",
+    "https://openalex.org/W2076674596",
+    "https://openalex.org/W2078430761",
+    "https://openalex.org/W2080105404",
+    "https://openalex.org/W2080351494",
+    "https://openalex.org/W2080512970",
+    "https://openalex.org/W2082442136",
+    "https://openalex.org/W2084585676",
+    "https://openalex.org/W2088430597",
+    "https://openalex.org/W2090414491",
+    "https://openalex.org/W2098580305",
+    "https://openalex.org/W2102600873",
+    "https://openalex.org/W2104085672",
+    "https://openalex.org/W2104731571",
+    "https://openalex.org/W2105504969",
+    "https://openalex.org/W2106396500",
+    "https://openalex.org/W2107566823",
+    "https://openalex.org/W2107612402",
+    "https://openalex.org/W2107692942",
+    "https://openalex.org/W2109273473",
+    "https://openalex.org/W2110232607",
+    "https://openalex.org/W2110328981",
+    "https://openalex.org/W2111613011",
+    "https://openalex.org/W2112090702",
+    "https://openalex.org/W2112601177",
+    "https://openalex.org/W2114549884",
+    "https://openalex.org/W2115990221",
+    "https://openalex.org/W2116083905",
+    "https://openalex.org/W2117391947",
+    "https://openalex.org/W2117663940",
+    "https://openalex.org/W2118323338",
+    "https://openalex.org/W2118705344",
+    "https://openalex.org/W2120895215",
+    "https://openalex.org/W2121374475",
+    "https://openalex.org/W2124384418",
+    "https://openalex.org/W2124637492",
+    "https://openalex.org/W2125350568",
+    "https://openalex.org/W2125757815",
+    "https://openalex.org/W2126606094",
+    "https://openalex.org/W2127389037",
+    "https://openalex.org/W2127888717",
+    "https://openalex.org/W2128314959",
+    "https://openalex.org/W2129057035",
+    "https://openalex.org/W2129109788",
+    "https://openalex.org/W2130476447",
+    "https://openalex.org/W2131181615",
+    "https://openalex.org/W2133015986",
+    "https://openalex.org/W2133280087",
+    "https://openalex.org/W2133384983",
+    "https://openalex.org/W2133495748",
+    "https://openalex.org/W2133903921",
+    "https://openalex.org/W2135390742",
+    "https://openalex.org/W2138412635",
+    "https://openalex.org/W2138991775",
+    "https://openalex.org/W2139392105",
+    "https://openalex.org/W2139852582",
+    "https://openalex.org/W2146278257",
+    "https://openalex.org/W2146630029",
+    "https://openalex.org/W2146693559",
+    "https://openalex.org/W2147238273",
+    "https://openalex.org/W2148601705",
+    "https://openalex.org/W2151720121",
+    "https://openalex.org/W2152255412",
+    "https://openalex.org/W2153624566",
+    "https://openalex.org/W2154241112",
+    "https://openalex.org/W2157280774",
+    "https://openalex.org/W2159242554",
+    "https://openalex.org/W2159353177",
+    "https://openalex.org/W2159929956",
+    "https://openalex.org/W2160938187",
+    "https://openalex.org/W2162010696",
+    "https://openalex.org/W2162413315",
+    "https://openalex.org/W2162686834",
+    "https://openalex.org/W2163071595",
+    "https://openalex.org/W2163480486",
+    "https://openalex.org/W2164262344",
+    "https://openalex.org/W2164727176",
+    "https://openalex.org/W2165096765",
+    "https://openalex.org/W2169895600",
+    "https://openalex.org/W2171945929",
+    "https://openalex.org/W2799004609",
+    "https://openalex.org/W2912659123",
+    "https://openalex.org/W2989575095",
+    "https://openalex.org/W3099778492",
+    "https://openalex.org/W3101731150",
+    "https://openalex.org/W3103379766",
+    "https://openalex.org/W3124373653",
+    "https://openalex.org/W3210268394",
+    "https://openalex.org/W4210958102",
+    "https://openalex.org/W4213214460"
+  ],
+  "related_works": [
+    "https://openalex.org/W2424680827",
+    "https://openalex.org/W1727534076",
+    "https://openalex.org/W1932115741",
+    "https://openalex.org/W2061564920",
+    "https://openalex.org/W2614995223",
+    "https://openalex.org/W4394861163",
+    "https://openalex.org/W2990823038",
+    "https://openalex.org/W3073948538",
+    "https://openalex.org/W4381185673",
+    "https://openalex.org/W3099798011"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 257
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 809
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 822
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 874
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 868
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 993
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 942
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 884
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 907
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 837
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 746
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 736
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 650
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 581
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 441
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2025-10-10T00:00:00"
+}

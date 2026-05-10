@@ -1,0 +1,1355 @@
+{
+  "id": "https://openalex.org/W2025603247",
+  "doi": "https://doi.org/10.1038/nrn1519",
+  "title": "Interneurons of the neocortical inhibitory system",
+  "display_name": "Interneurons of the neocortical inhibitory system",
+  "publication_year": 2004,
+  "publication_date": "2004-09-20",
+  "ids": {
+    "openalex": "https://openalex.org/W2025603247",
+    "doi": "https://doi.org/10.1038/nrn1519",
+    "mag": "2025603247",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/15378039"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1038/nrn1519",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1038/nrn1519",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S26843219",
+      "display_name": "Nature reviews. Neuroscience",
+      "issn_l": "1471-003X",
+      "issn": [
+        "1471-003X",
+        "1471-0048"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319908",
+      "host_organization_name": "Nature Portfolio",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319908",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Nature Portfolio",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Nature Reviews Neuroscience",
+    "raw_type": "journal-article"
+  },
+  "type": "review",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "green",
+    "oa_url": "http://infoscience.epfl.ch/record/117800",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5069964239",
+        "display_name": "Henry Markram",
+        "orcid": "https://orcid.org/0000-0001-6164-2590"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I5124864",
+          "display_name": "École Polytechnique Fédérale de Lausanne",
+          "ror": "https://ror.org/02s376052",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I2799323385",
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Henry Markram",
+      "raw_affiliation_strings": [
+        "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, 1015 Lausanne, Switzerland. Henry.markram@epfl.ch",
+        "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, 1015 Lausanne, Switzerland. Henry.markram@epfl.ch",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5103099006",
+        "display_name": "Maria Toledo‐Rodriguez",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I5124864",
+          "display_name": "École Polytechnique Fédérale de Lausanne",
+          "ror": "https://ror.org/02s376052",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I2799323385",
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Maria Toledo-Rodriguez",
+      "raw_affiliation_strings": [
+        "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, 1015, Switzerland",
+        "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, 1015, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5100377659",
+        "display_name": "Yun Wang",
+        "orcid": "https://orcid.org/0000-0003-2426-2876"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I3018163063",
+          "display_name": "St. Elizabeth's Medical Center",
+          "ror": "https://ror.org/00cr15z55",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I3018163063"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Yun Wang",
+      "raw_affiliation_strings": [
+        "Department of Neurology, Caritas St. Elizabeth's Medical Center, 736 Cambridge Street, Boston, 02135, Massachusetts, USA",
+        "Department of Neurology, Caritas St. Elizabeth's Medical Center, Boston, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Neurology, Caritas St. Elizabeth's Medical Center, 736 Cambridge Street, Boston, 02135, Massachusetts, USA",
+          "institution_ids": [
+            "https://openalex.org/I3018163063"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Neurology, Caritas St. Elizabeth's Medical Center, Boston, USA",
+          "institution_ids": [
+            "https://openalex.org/I3018163063"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5102324450",
+        "display_name": "Anirudh Gupta",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I5124864",
+          "display_name": "École Polytechnique Fédérale de Lausanne",
+          "ror": "https://ror.org/02s376052",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I2799323385",
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Anirudh Gupta",
+      "raw_affiliation_strings": [
+        "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, 1015, Switzerland",
+        "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, 1015, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5061346581",
+        "display_name": "Gilad Silberberg",
+        "orcid": "https://orcid.org/0000-0001-9964-505X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I5124864",
+          "display_name": "École Polytechnique Fédérale de Lausanne",
+          "ror": "https://ror.org/02s376052",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I2799323385",
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Gilad Silberberg",
+      "raw_affiliation_strings": [
+        "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, 1015, Switzerland",
+        "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, 1015, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Laboratory of Neural Microcircuitry, Brain Mind Institute, Ecole Polytechnique Fédérale de Lausanne, Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I5124864"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5018601972",
+        "display_name": "Caizhi Wu",
+        "orcid": "https://orcid.org/0000-0002-2449-2818"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2750212522",
+          "display_name": "Cold Spring Harbor Laboratory",
+          "ror": "https://ror.org/02qz8b764",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Caizhi Wu",
+      "raw_affiliation_strings": [
+        "Cold Spring Harbor Laboratory, 1 Bungtown Road, Cold Spring Harbor, New York, 11724, USA",
+        "Cold Spring Harbor Laboratory, New York, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory, 1 Bungtown Road, Cold Spring Harbor, New York, 11724, USA",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cold Spring Harbor Laboratory, New York, USA",
+          "institution_ids": [
+            "https://openalex.org/I2750212522"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 6,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5069964239"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I5124864"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 31.3826,
+  "has_fulltext": false,
+  "cited_by_count": 3023,
+  "citation_normalized_percentile": {
+    "value": 0.9994448,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "5",
+    "issue": "10",
+    "first_page": "793",
+    "last_page": "807"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10581",
+    "display_name": "Neural dynamics and brain function",
+    "score": 0.9998000264167786,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2805",
+      "display_name": "Cognitive Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10581",
+      "display_name": "Neural dynamics and brain function",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10077",
+      "display_name": "Neuroscience and Neuropharmacology Research",
+      "score": 0.9993000030517578,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2804",
+        "display_name": "Cellular and Molecular Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12236",
+      "display_name": "Photoreceptor and optogenetics research",
+      "score": 0.9947999715805054,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2804",
+        "display_name": "Cellular and Molecular Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/neocortex",
+      "display_name": "Neocortex",
+      "score": 0.9383135437965393
+    },
+    {
+      "id": "https://openalex.org/keywords/inhibitory-postsynaptic-potential",
+      "display_name": "Inhibitory postsynaptic potential",
+      "score": 0.8356166481971741
+    },
+    {
+      "id": "https://openalex.org/keywords/neuroscience",
+      "display_name": "Neuroscience",
+      "score": 0.8146747946739197
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.5254732370376587
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2777222312",
+      "wikidata": "https://www.wikidata.org/wiki/Q726562",
+      "display_name": "Neocortex",
+      "level": 2,
+      "score": 0.9383135437965393
+    },
+    {
+      "id": "https://openalex.org/C17077164",
+      "wikidata": "https://www.wikidata.org/wiki/Q1185869",
+      "display_name": "Inhibitory postsynaptic potential",
+      "level": 2,
+      "score": 0.8356166481971741
+    },
+    {
+      "id": "https://openalex.org/C169760540",
+      "wikidata": "https://www.wikidata.org/wiki/Q207011",
+      "display_name": "Neuroscience",
+      "level": 1,
+      "score": 0.8146747946739197
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.5254732370376587
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001369",
+      "descriptor_name": "Axons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001369",
+      "descriptor_name": "Axons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001369",
+      "descriptor_name": "Axons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002135",
+      "descriptor_name": "Calcium-Binding Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002135",
+      "descriptor_name": "Calcium-Binding Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002135",
+      "descriptor_name": "Calcium-Binding Proteins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003712",
+      "descriptor_name": "Dendrites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003712",
+      "descriptor_name": "Dendrites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003712",
+      "descriptor_name": "Dendrites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004594",
+      "descriptor_name": "Electrophysiology",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004594",
+      "descriptor_name": "Electrophysiology",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004594",
+      "descriptor_name": "Electrophysiology",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007395",
+      "descriptor_name": "Interneurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007473",
+      "descriptor_name": "Ion Channels",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007473",
+      "descriptor_name": "Ion Channels",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D007473",
+      "descriptor_name": "Ion Channels",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008564",
+      "descriptor_name": "Membrane Potentials",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008564",
+      "descriptor_name": "Membrane Potentials",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008564",
+      "descriptor_name": "Membrane Potentials",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009433",
+      "descriptor_name": "Neural Inhibition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009433",
+      "descriptor_name": "Neural Inhibition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009433",
+      "descriptor_name": "Neural Inhibition",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009435",
+      "descriptor_name": "Synaptic Transmission",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009435",
+      "descriptor_name": "Synaptic Transmission",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009435",
+      "descriptor_name": "Synaptic Transmission",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009479",
+      "descriptor_name": "Neuropeptides",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009479",
+      "descriptor_name": "Neuropeptides",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009479",
+      "descriptor_name": "Neuropeptides",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000145",
+      "qualifier_name": "classification",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019579",
+      "descriptor_name": "Neocortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019579",
+      "descriptor_name": "Neocortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019579",
+      "descriptor_name": "Neocortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1038/nrn1519",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1038/nrn1519",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S26843219",
+        "display_name": "Nature reviews. Neuroscience",
+        "issn_l": "1471-003X",
+        "issn": [
+          "1471-003X",
+          "1471-0048"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319908",
+        "host_organization_name": "Nature Portfolio",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319908",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Nature Portfolio",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature Reviews Neuroscience",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:15378039",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/15378039",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature reviews. Neuroscience",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:repository.cshl.edu:22433",
+      "is_oa": false,
+      "landing_page_url": null,
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402288",
+        "display_name": "Cold Spring Harbor Laboratory Institutional Repository (Cold Spring Harbor Laboratory)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I2750212522",
+        "host_organization_name": "Cold Spring Harbor Laboratory",
+        "host_organization_lineage": [
+          "https://openalex.org/I2750212522"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "acceptedVersion",
+      "is_accepted": true,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "PeerReviewed"
+    },
+    {
+      "id": "pmh:oai:infoscience.epfl.ch:117800",
+      "is_oa": true,
+      "landing_page_url": "http://infoscience.epfl.ch/record/117800",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400487",
+        "display_name": "Infoscience (Ecole Polytechnique Fédérale de Lausanne)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "pmh:oai:infoscience.epfl.ch:117800",
+    "is_oa": true,
+    "landing_page_url": "http://infoscience.epfl.ch/record/117800",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4306400487",
+      "display_name": "Infoscience (Ecole Polytechnique Fédérale de Lausanne)",
+      "issn_l": null,
+      "issn": null,
+      "is_oa": true,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": null,
+      "host_organization_name": null,
+      "host_organization_lineage": [],
+      "host_organization_lineage_names": [],
+      "type": "repository"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "submittedVersion",
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": "",
+    "raw_type": "Text"
+  },
+  "sustainable_development_goals": [
+    {
+      "display_name": "Zero hunger",
+      "id": "https://metadata.un.org/sdg/2",
+      "score": 0.5099999904632568
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 160,
+  "referenced_works": [
+    "https://openalex.org/W168936335",
+    "https://openalex.org/W1485916201",
+    "https://openalex.org/W1487210357",
+    "https://openalex.org/W1489513029",
+    "https://openalex.org/W1492103690",
+    "https://openalex.org/W1518098954",
+    "https://openalex.org/W1518696936",
+    "https://openalex.org/W1522012042",
+    "https://openalex.org/W1536929369",
+    "https://openalex.org/W1576971765",
+    "https://openalex.org/W1588764503",
+    "https://openalex.org/W1594730842",
+    "https://openalex.org/W1603661052",
+    "https://openalex.org/W1605336512",
+    "https://openalex.org/W1623755432",
+    "https://openalex.org/W1624401920",
+    "https://openalex.org/W1719742103",
+    "https://openalex.org/W1747998245",
+    "https://openalex.org/W1784965721",
+    "https://openalex.org/W1836832549",
+    "https://openalex.org/W1865078798",
+    "https://openalex.org/W1873939206",
+    "https://openalex.org/W1898373063",
+    "https://openalex.org/W1923658178",
+    "https://openalex.org/W1926219845",
+    "https://openalex.org/W1930498924",
+    "https://openalex.org/W1963945272",
+    "https://openalex.org/W1966235122",
+    "https://openalex.org/W1967285334",
+    "https://openalex.org/W1969032408",
+    "https://openalex.org/W1974447763",
+    "https://openalex.org/W1974804836",
+    "https://openalex.org/W1976738367",
+    "https://openalex.org/W1978348356",
+    "https://openalex.org/W1980641455",
+    "https://openalex.org/W1985553704",
+    "https://openalex.org/W1991427102",
+    "https://openalex.org/W1991749817",
+    "https://openalex.org/W1992182809",
+    "https://openalex.org/W1993938009",
+    "https://openalex.org/W1995194777",
+    "https://openalex.org/W1995747963",
+    "https://openalex.org/W1996108053",
+    "https://openalex.org/W1996256189",
+    "https://openalex.org/W1996372033",
+    "https://openalex.org/W1996580405",
+    "https://openalex.org/W1997862361",
+    "https://openalex.org/W1998341727",
+    "https://openalex.org/W2002551165",
+    "https://openalex.org/W2004921550",
+    "https://openalex.org/W2009074192",
+    "https://openalex.org/W2009311165",
+    "https://openalex.org/W2009861136",
+    "https://openalex.org/W2010575361",
+    "https://openalex.org/W2012529293",
+    "https://openalex.org/W2016880507",
+    "https://openalex.org/W2017569276",
+    "https://openalex.org/W2018113839",
+    "https://openalex.org/W2022151670",
+    "https://openalex.org/W2023182720",
+    "https://openalex.org/W2024055161",
+    "https://openalex.org/W2029719613",
+    "https://openalex.org/W2030691825",
+    "https://openalex.org/W2031538300",
+    "https://openalex.org/W2031876531",
+    "https://openalex.org/W2032570777",
+    "https://openalex.org/W2034132958",
+    "https://openalex.org/W2034204817",
+    "https://openalex.org/W2035293573",
+    "https://openalex.org/W2037501027",
+    "https://openalex.org/W2037593266",
+    "https://openalex.org/W2040087806",
+    "https://openalex.org/W2040733551",
+    "https://openalex.org/W2041848975",
+    "https://openalex.org/W2042935897",
+    "https://openalex.org/W2048058806",
+    "https://openalex.org/W2048141820",
+    "https://openalex.org/W2048412465",
+    "https://openalex.org/W2050658671",
+    "https://openalex.org/W2051062578",
+    "https://openalex.org/W2054548520",
+    "https://openalex.org/W2054930781",
+    "https://openalex.org/W2055750307",
+    "https://openalex.org/W2055938779",
+    "https://openalex.org/W2056661320",
+    "https://openalex.org/W2056934252",
+    "https://openalex.org/W2057157090",
+    "https://openalex.org/W2059392118",
+    "https://openalex.org/W2062252136",
+    "https://openalex.org/W2062899906",
+    "https://openalex.org/W2063812162",
+    "https://openalex.org/W2064183906",
+    "https://openalex.org/W2067501282",
+    "https://openalex.org/W2068735603",
+    "https://openalex.org/W2068961574",
+    "https://openalex.org/W2070473979",
+    "https://openalex.org/W2070493184",
+    "https://openalex.org/W2071684215",
+    "https://openalex.org/W2072140806",
+    "https://openalex.org/W2072233684",
+    "https://openalex.org/W2074633386",
+    "https://openalex.org/W2075880496",
+    "https://openalex.org/W2077271006",
+    "https://openalex.org/W2077544618",
+    "https://openalex.org/W2077728073",
+    "https://openalex.org/W2079173805",
+    "https://openalex.org/W2079807760",
+    "https://openalex.org/W2081141482",
+    "https://openalex.org/W2085718223",
+    "https://openalex.org/W2086657106",
+    "https://openalex.org/W2087849583",
+    "https://openalex.org/W2087902986",
+    "https://openalex.org/W2090490936",
+    "https://openalex.org/W2092957824",
+    "https://openalex.org/W2096519870",
+    "https://openalex.org/W2096940802",
+    "https://openalex.org/W2097480079",
+    "https://openalex.org/W2099408092",
+    "https://openalex.org/W2105071895",
+    "https://openalex.org/W2106700142",
+    "https://openalex.org/W2107606288",
+    "https://openalex.org/W2108999432",
+    "https://openalex.org/W2113257084",
+    "https://openalex.org/W2113832930",
+    "https://openalex.org/W2116491807",
+    "https://openalex.org/W2119779699",
+    "https://openalex.org/W2120502618",
+    "https://openalex.org/W2124587559",
+    "https://openalex.org/W2124793944",
+    "https://openalex.org/W2124892164",
+    "https://openalex.org/W2130203263",
+    "https://openalex.org/W2131980109",
+    "https://openalex.org/W2135917845",
+    "https://openalex.org/W2138179494",
+    "https://openalex.org/W2139975927",
+    "https://openalex.org/W2147502381",
+    "https://openalex.org/W2147916701",
+    "https://openalex.org/W2149213494",
+    "https://openalex.org/W2155924534",
+    "https://openalex.org/W2156780983",
+    "https://openalex.org/W2157354637",
+    "https://openalex.org/W2160087707",
+    "https://openalex.org/W2160170375",
+    "https://openalex.org/W2160938187",
+    "https://openalex.org/W2161729720",
+    "https://openalex.org/W2162019295",
+    "https://openalex.org/W2165039060",
+    "https://openalex.org/W2166901944",
+    "https://openalex.org/W2178044595",
+    "https://openalex.org/W2264255990",
+    "https://openalex.org/W2322298199",
+    "https://openalex.org/W2332577778",
+    "https://openalex.org/W2395200037",
+    "https://openalex.org/W2420218903",
+    "https://openalex.org/W2469904693",
+    "https://openalex.org/W4206600001",
+    "https://openalex.org/W4211013093",
+    "https://openalex.org/W4238017158",
+    "https://openalex.org/W4242976046",
+    "https://openalex.org/W4244248436"
+  ],
+  "related_works": [
+    "https://openalex.org/W2011059219",
+    "https://openalex.org/W2203038761",
+    "https://openalex.org/W2099457853",
+    "https://openalex.org/W2147617498",
+    "https://openalex.org/W1987038781",
+    "https://openalex.org/W2123546263",
+    "https://openalex.org/W4385700099",
+    "https://openalex.org/W2626670817",
+    "https://openalex.org/W1998904244",
+    "https://openalex.org/W3106393101"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 36
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 144
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 170
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 123
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 138
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 156
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 158
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 177
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 163
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 190
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 174
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 158
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 160
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 178
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 163
+    }
+  ],
+  "updated_date": "2026-05-07T13:39:58.223016",
+  "created_date": "2025-10-10T00:00:00"
+}

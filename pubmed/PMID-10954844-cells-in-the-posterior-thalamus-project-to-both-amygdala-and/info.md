@@ -1,0 +1,14 @@
+# Cells in the posterior thalamus project to both amygdala and temporal cortex: a quantitative retrograde double-labeling study in the rat.
+
+- **PMID**: 10954844
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: The Journal of comparative neurology  ·  **Year**: 2000
+- **Authors**: N N Doron, J E Ledoux
+- **MeSH**: Amygdala, Animals, Auditory Cortex, Cell Count, Conditioning, Psychological, Fear, Injections, Male, Neural Pathways, Neurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10954844/
+- **Captured**: 2026-05-10T14:11:26
+
+## Abstract
+
+Auditory information from the posterior thalamus reaches the lateral nucleus of the amygdala (LA) by way of two pathways: a direct thalamo-amygdala projection and a polysynaptic thalamo-cortico-amygdala projection. However, the quantitative extent of thalamic neurons that project to the LA or to the auditory association cortex (AAC) is not known. Furthermore, the extent and topographical distribution of bifurcating cells that project to both LA and AAC are also unknown. Therefore, separate tracers were injected into LA and either into all of AAC or within discrete regions of AAC, such as temporal areas TE3 or perirhinal cortex (PRh), and quantitative analyses were performed on labeling within the subregions of the auditory thalamus in rats. Following LA injections, retrogradely labeled cells were most numerous in the posterior intralaminar nucleus (PIN; 48.0% of all labeled thalamic cells), whereas labeled cells following injections of the entire AAC were most numerous in the dorsal division of the medial geniculate nucleus (MGd; 32.9% of all labeled thalamic cells). Following AAC injections localized to only TE3, the MGd again had the majority of labeled cells (35.9%), whereas following AAC injections localized to PRh, the PIN had the most labeled cells (32.8%). Double-labeled cells were found in all the thalamic regions studied and were most commonly observed in the PIN (43.7% of all double-labeled cells following injections into LA and throughout the AAC). The percentage of double-labeled cells as a proportion of either LA-projecting or AAC-projecting cells varied among the thalamic nuclei studied, ranging from 2.9% up to 42.4%. The topographic distribution of double-labeled cells in the thalamic nuclei resembled that of single-labeled cells following LA injections more than single-labeled cells following AAC injection. These findings suggest that double-labeled cells contribute substantially to many of the direct thalamo-amygdala and indirect thalamo-AAC-amygdala projections. Among other functions, these bifurcating cells may help regulate the processing of input to the LA arriving from these two pathways to allow for certain types of plasticity in the LA during fear conditioning.

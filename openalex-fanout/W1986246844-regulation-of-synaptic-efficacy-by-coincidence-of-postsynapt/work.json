@@ -1,0 +1,1339 @@
+{
+  "id": "https://openalex.org/W1986246844",
+  "doi": "https://doi.org/10.1126/science.275.5297.213",
+  "title": "Regulation of Synaptic Efficacy by Coincidence of Postsynaptic APs and EPSPs",
+  "display_name": "Regulation of Synaptic Efficacy by Coincidence of Postsynaptic APs and EPSPs",
+  "publication_year": 1997,
+  "publication_date": "1997-01-10",
+  "ids": {
+    "openalex": "https://openalex.org/W1986246844",
+    "doi": "https://doi.org/10.1126/science.275.5297.213",
+    "mag": "1986246844",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/8985014"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1126/science.275.5297.213",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1126/science.275.5297.213",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S3880285",
+      "display_name": "Science",
+      "issn_l": "0036-8075",
+      "issn": [
+        "0036-8075",
+        "1095-9203"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315823",
+      "host_organization_name": "American Association for the Advancement of Science",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315823"
+      ],
+      "host_organization_lineage_names": [
+        "American Association for the Advancement of Science"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Science",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "green",
+    "oa_url": "http://infoscience.epfl.ch/record/183412",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5069964239",
+        "display_name": "Henry Markram",
+        "orcid": "https://orcid.org/0000-0001-6164-2590"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210087042",
+          "display_name": "Max Planck Institute for Medical Research",
+          "ror": "https://ror.org/000bxzc63",
+          "country_code": "DE",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I149899117",
+            "https://openalex.org/I4210087042"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Henry Markram",
+      "raw_affiliation_strings": [
+        "H. Markram and B. Sakmann, Max-Planck-Institut für Medizinische Forschung, Abteilung Zellphysiologie, Jahnstraße 29, D-69120 Heidelberg, Germany"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "H. Markram and B. Sakmann, Max-Planck-Institut für Medizinische Forschung, Abteilung Zellphysiologie, Jahnstraße 29, D-69120 Heidelberg, Germany",
+          "institution_ids": [
+            "https://openalex.org/I4210087042"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5011089938",
+        "display_name": "Joachim Lübke",
+        "orcid": "https://orcid.org/0000-0002-4086-3199"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I161046081",
+          "display_name": "University of Freiburg",
+          "ror": "https://ror.org/0245cg223",
+          "country_code": "DE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I161046081"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Joachim Lübke",
+      "raw_affiliation_strings": [
+        "J. Lübke and M. Frotscher, Anatomisches Institut der Albert-Ludwigs Universität Freiburg, Albertstraße 17, D-79104 Freiburg, Germany"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "J. Lübke and M. Frotscher, Anatomisches Institut der Albert-Ludwigs Universität Freiburg, Albertstraße 17, D-79104 Freiburg, Germany",
+          "institution_ids": [
+            "https://openalex.org/I161046081"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5026520425",
+        "display_name": "Michael Frotscher",
+        "orcid": "https://orcid.org/0000-0002-2859-8230"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I161046081",
+          "display_name": "University of Freiburg",
+          "ror": "https://ror.org/0245cg223",
+          "country_code": "DE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I161046081"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Michael Frotscher",
+      "raw_affiliation_strings": [
+        "J. Lübke and M. Frotscher, Anatomisches Institut der Albert-Ludwigs Universität Freiburg, Albertstraße 17, D-79104 Freiburg, Germany"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "J. Lübke and M. Frotscher, Anatomisches Institut der Albert-Ludwigs Universität Freiburg, Albertstraße 17, D-79104 Freiburg, Germany",
+          "institution_ids": [
+            "https://openalex.org/I161046081"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5082041058",
+        "display_name": "Bert Sakmann",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210087042",
+          "display_name": "Max Planck Institute for Medical Research",
+          "ror": "https://ror.org/000bxzc63",
+          "country_code": "DE",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I149899117",
+            "https://openalex.org/I4210087042"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Bert Sakmann",
+      "raw_affiliation_strings": [
+        "H. Markram and B. Sakmann, Max-Planck-Institut für Medizinische Forschung, Abteilung Zellphysiologie, Jahnstraße 29, D-69120 Heidelberg, Germany"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "H. Markram and B. Sakmann, Max-Planck-Institut für Medizinische Forschung, Abteilung Zellphysiologie, Jahnstraße 29, D-69120 Heidelberg, Germany",
+          "institution_ids": [
+            "https://openalex.org/I4210087042"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 4,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5069964239"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I4210087042"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 28.5313,
+  "has_fulltext": false,
+  "cited_by_count": 3870,
+  "citation_normalized_percentile": {
+    "value": 0.99955257,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "275",
+    "issue": "5297",
+    "first_page": "213",
+    "last_page": "215"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10077",
+    "display_name": "Neuroscience and Neuropharmacology Research",
+    "score": 0.6862000226974487,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2804",
+      "display_name": "Cellular and Molecular Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10077",
+      "display_name": "Neuroscience and Neuropharmacology Research",
+      "score": 0.6862000226974487,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2804",
+        "display_name": "Cellular and Molecular Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10581",
+      "display_name": "Neural dynamics and brain function",
+      "score": 0.17180000245571136,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10448",
+      "display_name": "Memory and Neural Mechanisms",
+      "score": 0.017100000753998756,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/excitatory-postsynaptic-potential",
+      "display_name": "Excitatory postsynaptic potential",
+      "score": 0.8995695114135742
+    },
+    {
+      "id": "https://openalex.org/keywords/postsynaptic-potential",
+      "display_name": "Postsynaptic potential",
+      "score": 0.8758053779602051
+    },
+    {
+      "id": "https://openalex.org/keywords/post-tetanic-potentiation",
+      "display_name": "Post-tetanic potentiation",
+      "score": 0.7866313457489014
+    },
+    {
+      "id": "https://openalex.org/keywords/neocortex",
+      "display_name": "Neocortex",
+      "score": 0.7651033401489258
+    },
+    {
+      "id": "https://openalex.org/keywords/neuroscience",
+      "display_name": "Neuroscience",
+      "score": 0.7271788716316223
+    },
+    {
+      "id": "https://openalex.org/keywords/inhibitory-postsynaptic-potential",
+      "display_name": "Inhibitory postsynaptic potential",
+      "score": 0.6893486976623535
+    },
+    {
+      "id": "https://openalex.org/keywords/postsynaptic-current",
+      "display_name": "Postsynaptic Current",
+      "score": 0.5823253989219666
+    },
+    {
+      "id": "https://openalex.org/keywords/postsynaptic-density",
+      "display_name": "Postsynaptic density",
+      "score": 0.4188601076602936
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.34356364607810974
+    },
+    {
+      "id": "https://openalex.org/keywords/receptor",
+      "display_name": "Receptor",
+      "score": 0.05913513898849487
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C112592302",
+      "wikidata": "https://www.wikidata.org/wiki/Q1207387",
+      "display_name": "Excitatory postsynaptic potential",
+      "level": 3,
+      "score": 0.8995695114135742
+    },
+    {
+      "id": "https://openalex.org/C197341189",
+      "wikidata": "https://www.wikidata.org/wiki/Q863533",
+      "display_name": "Postsynaptic potential",
+      "level": 3,
+      "score": 0.8758053779602051
+    },
+    {
+      "id": "https://openalex.org/C118232355",
+      "wikidata": "https://www.wikidata.org/wiki/Q7233588",
+      "display_name": "Post-tetanic potentiation",
+      "level": 4,
+      "score": 0.7866313457489014
+    },
+    {
+      "id": "https://openalex.org/C2777222312",
+      "wikidata": "https://www.wikidata.org/wiki/Q726562",
+      "display_name": "Neocortex",
+      "level": 2,
+      "score": 0.7651033401489258
+    },
+    {
+      "id": "https://openalex.org/C169760540",
+      "wikidata": "https://www.wikidata.org/wiki/Q207011",
+      "display_name": "Neuroscience",
+      "level": 1,
+      "score": 0.7271788716316223
+    },
+    {
+      "id": "https://openalex.org/C17077164",
+      "wikidata": "https://www.wikidata.org/wiki/Q1185869",
+      "display_name": "Inhibitory postsynaptic potential",
+      "level": 2,
+      "score": 0.6893486976623535
+    },
+    {
+      "id": "https://openalex.org/C2910581834",
+      "wikidata": "https://www.wikidata.org/wiki/Q1207387",
+      "display_name": "Postsynaptic Current",
+      "level": 4,
+      "score": 0.5823253989219666
+    },
+    {
+      "id": "https://openalex.org/C187541742",
+      "wikidata": "https://www.wikidata.org/wiki/Q4374336",
+      "display_name": "Postsynaptic density",
+      "level": 4,
+      "score": 0.4188601076602936
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.34356364607810974
+    },
+    {
+      "id": "https://openalex.org/C170493617",
+      "wikidata": "https://www.wikidata.org/wiki/Q208467",
+      "display_name": "Receptor",
+      "level": 2,
+      "score": 0.05913513898849487
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000200",
+      "descriptor_name": "Action Potentials",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000200",
+      "descriptor_name": "Action Potentials",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000200",
+      "descriptor_name": "Action Potentials",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003712",
+      "descriptor_name": "Dendrites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003712",
+      "descriptor_name": "Dendrites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003712",
+      "descriptor_name": "Dendrites",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004558",
+      "descriptor_name": "Electric Stimulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004558",
+      "descriptor_name": "Electric Stimulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004558",
+      "descriptor_name": "Electric Stimulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009435",
+      "descriptor_name": "Synaptic Transmission",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009435",
+      "descriptor_name": "Synaptic Transmission",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009435",
+      "descriptor_name": "Synaptic Transmission",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013569",
+      "descriptor_name": "Synapses",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013997",
+      "descriptor_name": "Time Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013997",
+      "descriptor_name": "Time Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013997",
+      "descriptor_name": "Time Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015536",
+      "descriptor_name": "Down-Regulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015536",
+      "descriptor_name": "Down-Regulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015536",
+      "descriptor_name": "Down-Regulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015854",
+      "descriptor_name": "Up-Regulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015854",
+      "descriptor_name": "Up-Regulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015854",
+      "descriptor_name": "Up-Regulation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016194",
+      "descriptor_name": "Receptors, N-Methyl-D-Aspartate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016194",
+      "descriptor_name": "Receptors, N-Methyl-D-Aspartate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016194",
+      "descriptor_name": "Receptors, N-Methyl-D-Aspartate",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017208",
+      "descriptor_name": "Rats, Wistar",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017208",
+      "descriptor_name": "Rats, Wistar",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017208",
+      "descriptor_name": "Rats, Wistar",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017966",
+      "descriptor_name": "Pyramidal Cells",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017966",
+      "descriptor_name": "Pyramidal Cells",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017966",
+      "descriptor_name": "Pyramidal Cells",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018408",
+      "descriptor_name": "Patch-Clamp Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018408",
+      "descriptor_name": "Patch-Clamp Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018408",
+      "descriptor_name": "Patch-Clamp Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051381",
+      "descriptor_name": "Rats",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051381",
+      "descriptor_name": "Rats",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D051381",
+      "descriptor_name": "Rats",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D066298",
+      "descriptor_name": "In Vitro Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D066298",
+      "descriptor_name": "In Vitro Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D066298",
+      "descriptor_name": "In Vitro Techniques",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 5,
+  "locations": [
+    {
+      "id": "doi:10.1126/science.275.5297.213",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1126/science.275.5297.213",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S3880285",
+        "display_name": "Science",
+        "issn_l": "0036-8075",
+        "issn": [
+          "0036-8075",
+          "1095-9203"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315823",
+        "host_organization_name": "American Association for the Advancement of Science",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315823"
+        ],
+        "host_organization_lineage_names": [
+          "American Association for the Advancement of Science"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Science",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:8985014",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/8985014",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Science (New York, N.Y.)",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:freidok.uni-freiburg.de:18874",
+      "is_oa": false,
+      "landing_page_url": "https://freidok.uni-freiburg.de/data/18874",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401057",
+        "display_name": "FreiDok plus (Universitätsbibliothek Freiburg)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I161046081",
+        "host_organization_name": "University of Freiburg",
+        "host_organization_lineage": [
+          "https://openalex.org/I161046081"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Science. - 275, 5297 (1997) , 213-215, ISSN: 0036-8075",
+      "raw_type": "article"
+    },
+    {
+      "id": "pmh:oai:infoscience.epfl.ch:183412",
+      "is_oa": true,
+      "landing_page_url": "http://infoscience.epfl.ch/record/183412",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400487",
+        "display_name": "Infoscience (Ecole Polytechnique Fédérale de Lausanne)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Text"
+    },
+    {
+      "id": "pmh:oai:pure.mpg.de:item_2095157",
+      "is_oa": false,
+      "landing_page_url": "http://hdl.handle.net/11858/00-001M-0000-0024-C3B0-7",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400654",
+        "display_name": "MPG.PuRe (Max Planck Society)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I149899117",
+        "host_organization_name": "Max Planck Society",
+        "host_organization_lineage": [
+          "https://openalex.org/I149899117"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Science",
+      "raw_type": "info:eu-repo/semantics/article"
+    }
+  ],
+  "best_oa_location": {
+    "id": "pmh:oai:infoscience.epfl.ch:183412",
+    "is_oa": true,
+    "landing_page_url": "http://infoscience.epfl.ch/record/183412",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4306400487",
+      "display_name": "Infoscience (Ecole Polytechnique Fédérale de Lausanne)",
+      "issn_l": null,
+      "issn": null,
+      "is_oa": true,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": null,
+      "host_organization_name": null,
+      "host_organization_lineage": [],
+      "host_organization_lineage_names": [],
+      "type": "repository"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "submittedVersion",
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": "",
+    "raw_type": "Text"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 15,
+  "referenced_works": [
+    "https://openalex.org/W9541871",
+    "https://openalex.org/W1964887816",
+    "https://openalex.org/W1990969569",
+    "https://openalex.org/W2001860569",
+    "https://openalex.org/W2006602134",
+    "https://openalex.org/W2021502471",
+    "https://openalex.org/W2047468613",
+    "https://openalex.org/W2049511526",
+    "https://openalex.org/W2065416066",
+    "https://openalex.org/W2099087536",
+    "https://openalex.org/W2108809409",
+    "https://openalex.org/W2160510653",
+    "https://openalex.org/W2172513721",
+    "https://openalex.org/W6600142936",
+    "https://openalex.org/W6824248975"
+  ],
+  "related_works": [
+    "https://openalex.org/W1535233600",
+    "https://openalex.org/W4285127779",
+    "https://openalex.org/W1512616480",
+    "https://openalex.org/W40473409",
+    "https://openalex.org/W2137331977",
+    "https://openalex.org/W1986246844",
+    "https://openalex.org/W2145130079",
+    "https://openalex.org/W3022261422",
+    "https://openalex.org/W1991999672",
+    "https://openalex.org/W2070493184"
+  ],
+  "abstract_inverted_index": {
+    "Activity-driven": [
+      0
+    ],
+    "modifications": [
+      1
+    ],
+    "in": [
+      2,
+      7,
+      42,
+      86
+    ],
+    "synaptic": [
+      3,
+      77
+    ],
+    "connections": [
+      4
+    ],
+    "between": [
+      5
+    ],
+    "neurons": [
+      6
+    ],
+    "the": [
+      8,
+      24,
+      54,
+      81,
+      87
+    ],
+    "neocortex": [
+      9
+    ],
+    "may": [
+      10
+    ],
+    "occur": [
+      11
+    ],
+    "during": [
+      12
+    ],
+    "development": [
+      13
+    ],
+    "and": [
+      14,
+      31,
+      89
+    ],
+    "learning.": [
+      15
+    ],
+    "In": [
+      16
+    ],
+    "dual": [
+      17
+    ],
+    "whole-cell": [
+      18
+    ],
+    "voltage": [
+      19
+    ],
+    "recordings": [
+      20
+    ],
+    "from": [
+      21
+    ],
+    "pyramidal": [
+      22
+    ],
+    "neurons,": [
+      23
+    ],
+    "coincidence": [
+      25
+    ],
+    "of": [
+      26,
+      57,
+      83
+    ],
+    "postsynaptic": [
+      27,
+      34,
+      58,
+      90
+    ],
+    "action": [
+      28
+    ],
+    "potentials": [
+      29,
+      35
+    ],
+    "(APs)": [
+      30
+    ],
+    "unitary": [
+      32
+    ],
+    "excitatory": [
+      33
+    ],
+    "(EPSPs)": [
+      36
+    ],
+    "was": [
+      37
+    ],
+    "found": [
+      38
+    ],
+    "to": [
+      39,
+      61,
+      73
+    ],
+    "induce": [
+      40
+    ],
+    "changes": [
+      41
+    ],
+    "EPSPs.": [
+      43,
+      62
+    ],
+    "Their": [
+      44
+    ],
+    "average": [
+      45
+    ],
+    "amplitudes": [
+      46
+    ],
+    "were": [
+      47
+    ],
+    "differentially": [
+      48
+    ],
+    "up-": [
+      49
+    ],
+    "or": [
+      50
+    ],
+    "down-regulated,": [
+      51
+    ],
+    "depending": [
+      52,
+      79
+    ],
+    "on": [
+      53,
+      80
+    ],
+    "precise": [
+      55
+    ],
+    "timing": [
+      56
+    ],
+    "APs": [
+      59,
+      67
+    ],
+    "relative": [
+      60
+    ],
+    "These": [
+      63
+    ],
+    "observations": [
+      64
+    ],
+    "suggest": [
+      65
+    ],
+    "that": [
+      66
+    ],
+    "propagating": [
+      68
+    ],
+    "back": [
+      69
+    ],
+    "into": [
+      70
+    ],
+    "dendrites": [
+      71
+    ],
+    "serve": [
+      72
+    ],
+    "modify": [
+      74
+    ],
+    "single": [
+      75
+    ],
+    "active": [
+      76
+    ],
+    "connections,": [
+      78
+    ],
+    "pattern": [
+      82
+    ],
+    "electrical": [
+      84
+    ],
+    "activity": [
+      85
+    ],
+    "pre-": [
+      88
+    ],
+    "neurons.": [
+      91
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 40
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 154
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 160
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 169
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 169
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 155
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 152
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 175
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 181
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 162
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 150
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 146
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 141
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 127
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 137
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2025-10-10T00:00:00"
+}

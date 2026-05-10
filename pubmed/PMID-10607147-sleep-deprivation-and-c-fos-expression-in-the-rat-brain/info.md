@@ -1,0 +1,14 @@
+# Sleep deprivation and c-fos expression in the rat brain.
+
+- **PMID**: 10607147
+- **DOI**: 10.1111/j.1365-2869.1995.tb00157.x
+- **PMCID**:  
+- **Journal**: Journal of sleep research  ·  **Year**: 1995
+- **Authors**: C Cirelli, M Pompeiano, G Tononi
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10607147/
+- **Captured**: 2026-05-10T14:11:11
+
+## Abstract
+
+This study examined the effects of sleep deprivation on the expression of the immediate early gene c-fos in the brain with both in situ hybridization and immunocytochemistry. Rats were manually sleep-derived for 3 h, 6 h, 12 h, and 24 h starting at light onset (08.00 hours), and for 12 h starting at dark onset (20.00 hours). c-Fos expression was found to be higher in sleep-deprived rats with respect to control animals in several brain areas. The increase was evident both in terms of c-fos mRNA and Fos protein, although with a different time course. Among the areas that showed a consistent induction of c-fos were many cortical regions, the medial preoptic area and the posterior hypothalamic area, some thalamic nuclei, and several nuclei of the dorsal pontine tegmentum. The pattern of c-fos expression after sleep deprivation was very similar to that observed after comparable periods of spontaneous wakefulness (Pompeiano et al. 1994). In general, the increase in c-fos expression was not simply proportional to the amount of previous wakefulness. In many areas, the highest levels of c-fos were seen after 3 h of sleep deprivation. These observations are discussed with respect to the homeostatic regulation of sleep and to the functional consequences of wakefulness in specific brain areas.

@@ -1,0 +1,14 @@
+# The emergence of modern neuroscience: some implications for neurology and psychiatry.
+
+- **PMID**: 10845068
+- **DOI**: 10.1146/annurev.neuro.23.1.343
+- **PMCID**:  
+- **Journal**: Annual review of neuroscience  ·  **Year**: 2000
+- **Authors**: W M Cowan, D H Harter, E R Kandel
+- **MeSH**: Animals, Humans, Memory, Mental Disorders, Nervous System Diseases, Neurodegenerative Diseases, Neurology, Neurosciences, Prefrontal Cortex, Psychiatry
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10845068/
+- **Captured**: 2026-05-10T14:11:24
+
+## Abstract
+
+One of the most significant developments in biology in the past half century was the emergence, in the late 1950s and early 1960s, of neuroscience as a distinct discipline. We review here factors that led to the convergence into a common discipline of the traditional fields of neurophysiology, neuroanatomy, neurochemistry, and behavior, and we emphasize the seminal roles played by David McKenzie Rioch, Francis O Schmitt, and especially Stephen W Kuffler in creating neuroscience as we now know it. The application of the techniques of molecular and cellular biology to the study of the nervous system has greatly accelerated our understanding of the mechanisms involved in neuronal signaling, neural development, and the function of the major sensory and motor systems of the brain. The elucidation of the underlying causes of most neurological and psychiatric disorders has proved to be more difficult; but striking progress is now being made in determining the genetic basis of such disorders as Alzheimer's disease, amyotrophic lateral sclerosis, Parkinson's disease, and a number of ion channel and mitochondrial disorders, and a significant start has been made in identifying genetic factors in the etiology of such disorders as manic depressive illness and schizophrenia. These developments presage the emergence in the coming decades of a new nosology, certainly in neurology and perhaps also in psychiatry, based not on symptomatology but on the dysfunction of specific genes, molecules, neuronal organelles and particular neural systems.

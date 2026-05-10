@@ -1,0 +1,815 @@
+{
+  "id": "https://openalex.org/W2167822639",
+  "doi": "https://doi.org/10.1016/j.neuroimage.2009.10.003",
+  "title": "Complex network measures of brain connectivity: Uses and interpretations",
+  "display_name": "Complex network measures of brain connectivity: Uses and interpretations",
+  "publication_year": 2009,
+  "publication_date": "2009-10-10",
+  "ids": {
+    "openalex": "https://openalex.org/W2167822639",
+    "doi": "https://doi.org/10.1016/j.neuroimage.2009.10.003",
+    "mag": "2167822639",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/19819337"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1016/j.neuroimage.2009.10.003",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1016/j.neuroimage.2009.10.003",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S103225281",
+      "display_name": "NeuroImage",
+      "issn_l": "1053-8119",
+      "issn": [
+        "1053-8119",
+        "1095-9572"
+      ],
+      "is_oa": false,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "NeuroImage",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5060560199",
+        "display_name": "Mikail Rubinov",
+        "orcid": "https://orcid.org/0000-0002-4787-7075"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210128581",
+          "display_name": "Information and Communication Technologies Centre",
+          "ror": "https://ror.org/034x2fx50",
+          "country_code": "AU",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1292875679",
+            "https://openalex.org/I2801453606",
+            "https://openalex.org/I4210128581",
+            "https://openalex.org/I4387156119"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I31746571",
+          "display_name": "UNSW Sydney",
+          "ror": "https://ror.org/03r8z3t63",
+          "country_code": "AU",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I31746571"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1292875679",
+          "display_name": "Commonwealth Scientific and Industrial Research Organisation",
+          "ror": "https://ror.org/03qn8fb07",
+          "country_code": "AU",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I1292875679",
+            "https://openalex.org/I2801453606",
+            "https://openalex.org/I4387156119"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I217937681",
+          "display_name": "QIMR Berghofer Medical Research Institute",
+          "ror": "https://ror.org/004y8wk30",
+          "country_code": "AU",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I217937681"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I16667517",
+          "display_name": "Black Dog Institute",
+          "ror": "https://ror.org/04rfr1008",
+          "country_code": "AU",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I16667517"
+          ]
+        }
+      ],
+      "countries": [
+        "AU"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Mikail Rubinov",
+      "raw_affiliation_strings": [
+        "Black Dog Institute and School of Psychiatry, University of New South Wales, Sydney, Australia",
+        "CSIRO Information and Communication Technologies Centre, Sydney, Australia",
+        "Mental Health Research Division, Queensland Institute of Medical Research, Brisbane, Australia"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Black Dog Institute and School of Psychiatry, University of New South Wales, Sydney, Australia",
+          "institution_ids": [
+            "https://openalex.org/I16667517",
+            "https://openalex.org/I31746571"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CSIRO Information and Communication Technologies Centre, Sydney, Australia",
+          "institution_ids": [
+            "https://openalex.org/I4210128581",
+            "https://openalex.org/I1292875679"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Mental Health Research Division, Queensland Institute of Medical Research, Brisbane, Australia",
+          "institution_ids": [
+            "https://openalex.org/I217937681"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5002202464",
+        "display_name": "Olaf Sporns",
+        "orcid": "https://orcid.org/0000-0001-7265-4036"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210119109",
+          "display_name": "Indiana University Bloomington",
+          "ror": "https://ror.org/02k40bc56",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210119109",
+            "https://openalex.org/I592451"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Olaf Sporns",
+      "raw_affiliation_strings": [
+        "Department of Psychological and Brain Sciences, Indiana University, Bloomington, IN 47405, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Psychological and Brain Sciences, Indiana University, Bloomington, IN 47405, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210119109"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 2,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5002202464"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I4210119109"
+  ],
+  "apc_list": {
+    "value": 3450,
+    "currency": "USD",
+    "value_usd": 3450
+  },
+  "apc_paid": null,
+  "fwci": 60.7143,
+  "has_fulltext": false,
+  "cited_by_count": 11861,
+  "citation_normalized_percentile": {
+    "value": 0.99978275,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "52",
+    "issue": "3",
+    "first_page": "1059",
+    "last_page": "1069"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10241",
+    "display_name": "Functional Brain Connectivity Studies",
+    "score": 1.0,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2805",
+      "display_name": "Cognitive Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10241",
+      "display_name": "Functional Brain Connectivity Studies",
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10581",
+      "display_name": "Neural dynamics and brain function",
+      "score": 0.9987000226974487,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11304",
+      "display_name": "Advanced Neuroimaging Techniques and Applications",
+      "score": 0.9973000288009644,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2741",
+        "display_name": "Radiology, Nuclear Medicine and Imaging"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/toolbox",
+      "display_name": "Toolbox",
+      "score": 0.6907827854156494
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.669418215751648
+    },
+    {
+      "id": "https://openalex.org/keywords/centrality",
+      "display_name": "Centrality",
+      "score": 0.6332849264144897
+    },
+    {
+      "id": "https://openalex.org/keywords/functional-connectivity",
+      "display_name": "Functional connectivity",
+      "score": 0.5792781710624695
+    },
+    {
+      "id": "https://openalex.org/keywords/complex-network",
+      "display_name": "Complex network",
+      "score": 0.5058343410491943
+    },
+    {
+      "id": "https://openalex.org/keywords/network-analysis",
+      "display_name": "Network analysis",
+      "score": 0.4349611699581146
+    },
+    {
+      "id": "https://openalex.org/keywords/resilience",
+      "display_name": "Resilience (materials science)",
+      "score": 0.41987675428390503
+    },
+    {
+      "id": "https://openalex.org/keywords/artificial-intelligence",
+      "display_name": "Artificial intelligence",
+      "score": 0.4122158885002136
+    },
+    {
+      "id": "https://openalex.org/keywords/neuroscience",
+      "display_name": "Neuroscience",
+      "score": 0.39702895283699036
+    },
+    {
+      "id": "https://openalex.org/keywords/machine-learning",
+      "display_name": "Machine learning",
+      "score": 0.3612839877605438
+    },
+    {
+      "id": "https://openalex.org/keywords/psychology",
+      "display_name": "Psychology",
+      "score": 0.17709049582481384
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2777655017",
+      "wikidata": "https://www.wikidata.org/wiki/Q1501161",
+      "display_name": "Toolbox",
+      "level": 2,
+      "score": 0.6907827854156494
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.669418215751648
+    },
+    {
+      "id": "https://openalex.org/C53811970",
+      "wikidata": "https://www.wikidata.org/wiki/Q5062194",
+      "display_name": "Centrality",
+      "level": 2,
+      "score": 0.6332849264144897
+    },
+    {
+      "id": "https://openalex.org/C3018011982",
+      "wikidata": "https://www.wikidata.org/wiki/Q7316120",
+      "display_name": "Functional connectivity",
+      "level": 2,
+      "score": 0.5792781710624695
+    },
+    {
+      "id": "https://openalex.org/C34947359",
+      "wikidata": "https://www.wikidata.org/wiki/Q665189",
+      "display_name": "Complex network",
+      "level": 2,
+      "score": 0.5058343410491943
+    },
+    {
+      "id": "https://openalex.org/C32946077",
+      "wikidata": "https://www.wikidata.org/wiki/Q618079",
+      "display_name": "Network analysis",
+      "level": 2,
+      "score": 0.4349611699581146
+    },
+    {
+      "id": "https://openalex.org/C2779585090",
+      "wikidata": "https://www.wikidata.org/wiki/Q3457762",
+      "display_name": "Resilience (materials science)",
+      "level": 2,
+      "score": 0.41987675428390503
+    },
+    {
+      "id": "https://openalex.org/C154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "level": 1,
+      "score": 0.4122158885002136
+    },
+    {
+      "id": "https://openalex.org/C169760540",
+      "wikidata": "https://www.wikidata.org/wiki/Q207011",
+      "display_name": "Neuroscience",
+      "level": 1,
+      "score": 0.39702895283699036
+    },
+    {
+      "id": "https://openalex.org/C119857082",
+      "wikidata": "https://www.wikidata.org/wiki/Q2539",
+      "display_name": "Machine learning",
+      "level": 1,
+      "score": 0.3612839877605438
+    },
+    {
+      "id": "https://openalex.org/C15744967",
+      "wikidata": "https://www.wikidata.org/wiki/Q9418",
+      "display_name": "Psychology",
+      "level": 0,
+      "score": 0.17709049582481384
+    },
+    {
+      "id": "https://openalex.org/C114614502",
+      "wikidata": "https://www.wikidata.org/wiki/Q76592",
+      "display_name": "Combinatorics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C199360897",
+      "wikidata": "https://www.wikidata.org/wiki/Q9143",
+      "display_name": "Programming language",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C97355855",
+      "wikidata": "https://www.wikidata.org/wiki/Q11473",
+      "display_name": "Thermodynamics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C136764020",
+      "wikidata": "https://www.wikidata.org/wiki/Q466",
+      "display_name": "World Wide Web",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001921",
+      "descriptor_name": "Brain",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009415",
+      "descriptor_name": "Nerve Net",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D016571",
+      "descriptor_name": "Neural Networks, Computer",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016571",
+      "descriptor_name": "Neural Networks, Computer",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016571",
+      "descriptor_name": "Neural Networks, Computer",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    }
+  ],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1016/j.neuroimage.2009.10.003",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1016/j.neuroimage.2009.10.003",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S103225281",
+        "display_name": "NeuroImage",
+        "issn_l": "1053-8119",
+        "issn": [
+          "1053-8119",
+          "1095-9572"
+        ],
+        "is_oa": false,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Elsevier BV"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "NeuroImage",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:19819337",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/19819337",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "NeuroImage",
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320306183",
+      "display_name": "James S. McDonnell Foundation",
+      "ror": "https://ror.org/03dy4aq19"
+    },
+    {
+      "id": "https://openalex.org/F4320320386",
+      "display_name": "Commonwealth Scientific and Industrial Research Organisation",
+      "ror": "https://ror.org/03qn8fb07"
+    }
+  ],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 73,
+  "referenced_works": [
+    "https://openalex.org/W1502432690",
+    "https://openalex.org/W1600348603",
+    "https://openalex.org/W1872954943",
+    "https://openalex.org/W1967931162",
+    "https://openalex.org/W1968439746",
+    "https://openalex.org/W1971421925",
+    "https://openalex.org/W1972986697",
+    "https://openalex.org/W1974764791",
+    "https://openalex.org/W1979426401",
+    "https://openalex.org/W1983345514",
+    "https://openalex.org/W1984249061",
+    "https://openalex.org/W1987924998",
+    "https://openalex.org/W1994801733",
+    "https://openalex.org/W1995876521",
+    "https://openalex.org/W1996630013",
+    "https://openalex.org/W1999345164",
+    "https://openalex.org/W1999653836",
+    "https://openalex.org/W2002396510",
+    "https://openalex.org/W2002429803",
+    "https://openalex.org/W2004824191",
+    "https://openalex.org/W2006312249",
+    "https://openalex.org/W2008620264",
+    "https://openalex.org/W2009650955",
+    "https://openalex.org/W2024088208",
+    "https://openalex.org/W2026384313",
+    "https://openalex.org/W2029173860",
+    "https://openalex.org/W2040956707",
+    "https://openalex.org/W2045497522",
+    "https://openalex.org/W2050943404",
+    "https://openalex.org/W2056944867",
+    "https://openalex.org/W2060038721",
+    "https://openalex.org/W2060464767",
+    "https://openalex.org/W2063251739",
+    "https://openalex.org/W2067219344",
+    "https://openalex.org/W2070722739",
+    "https://openalex.org/W2071158443",
+    "https://openalex.org/W2071869259",
+    "https://openalex.org/W2078152479",
+    "https://openalex.org/W2078204079",
+    "https://openalex.org/W2080105404",
+    "https://openalex.org/W2083744564",
+    "https://openalex.org/W2088905367",
+    "https://openalex.org/W2089458547",
+    "https://openalex.org/W2090414491",
+    "https://openalex.org/W2112090702",
+    "https://openalex.org/W2116083905",
+    "https://openalex.org/W2117663940",
+    "https://openalex.org/W2118323338",
+    "https://openalex.org/W2120043163",
+    "https://openalex.org/W2125757815",
+    "https://openalex.org/W2131181615",
+    "https://openalex.org/W2131681506",
+    "https://openalex.org/W2132022337",
+    "https://openalex.org/W2133015986",
+    "https://openalex.org/W2142326570",
+    "https://openalex.org/W2146693559",
+    "https://openalex.org/W2148340534",
+    "https://openalex.org/W2148606196",
+    "https://openalex.org/W2149055390",
+    "https://openalex.org/W2151230415",
+    "https://openalex.org/W2151936673",
+    "https://openalex.org/W2153624566",
+    "https://openalex.org/W2156737316",
+    "https://openalex.org/W2159929956",
+    "https://openalex.org/W2164485997",
+    "https://openalex.org/W2164727176",
+    "https://openalex.org/W2164928285",
+    "https://openalex.org/W2168396492",
+    "https://openalex.org/W2168719834",
+    "https://openalex.org/W2171707538",
+    "https://openalex.org/W3099768174",
+    "https://openalex.org/W3101421424",
+    "https://openalex.org/W6630163099"
+  ],
+  "related_works": [
+    "https://openalex.org/W2769306272",
+    "https://openalex.org/W3007305076",
+    "https://openalex.org/W1848393892",
+    "https://openalex.org/W2356638222",
+    "https://openalex.org/W2135602072",
+    "https://openalex.org/W4322747790",
+    "https://openalex.org/W118100147",
+    "https://openalex.org/W2626653991",
+    "https://openalex.org/W2161532087",
+    "https://openalex.org/W1663961612"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 312
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 961
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 1011
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 1053
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 1063
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 1172
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 1116
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 1036
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 870
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 793
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 638
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 563
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 471
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 368
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 241
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2025-10-10T00:00:00"
+}

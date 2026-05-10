@@ -1,0 +1,14 @@
+# Visuomotor neurons: ambiguity of the discharge or 'motor' perception?
+
+- **PMID**: 10677645
+- **DOI**: 10.1016/s0167-8760(99)00051-3
+- **PMCID**:  
+- **Journal**: International journal of psychophysiology : official journal of the International Organization of Psychophysiology  ·  **Year**: 2000
+- **Authors**: L Fadiga, L Fogassi, V Gallese, G Rizzolatti
+- **MeSH**: Animals, Humans, Motor Cortex, Motor Neurons, Neurons, Afferent, Perception, Vision, Ocular
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10677645/
+- **Captured**: 2026-05-10T14:11:16
+
+## Abstract
+
+The cortical motor system has been classically considered as the unitary, output stage of the brain processing of sensory information. According to this idea, the motor cortex - the acting brain - receives the result of the perceptual processing (visual, acoustical, tactile, etc.) elaborated by the 'associative cortex'. During the last two decades this perspective has been challenged by a series of anatomical, hodological, and neurophysiological data. This converging evidence delineates a dramatically changed picture. Far from being unitary, the cortical motor system appears to be constituted by a constellation of distinct areas, each of those endowed with specific functional properties and linked by reciprocal connections with distinct sectors of the parietal cortex. Furthermore, several 'motor' neurons in addition to their motor discharge, are also activated by somatosensory and visual stimulation (somatomotor and visuomotor neurons). In the present paper we will discuss the functional properties of those sensorimotor neurons located in the ventral part of the monkey premotor cortex. On the basis of electrophysiological data, we will propose that the apparent parodox stemming from the coexistence within the same neuron of motor and sensory properties can be solved by postulating that the motor system not only executes actions but also internally represents them in terms of 'motor ideas'. These motor ideas may provide the neurobiological basis for space representation, understanding of actions made by others and, possibly, semantic categorization of objects.
