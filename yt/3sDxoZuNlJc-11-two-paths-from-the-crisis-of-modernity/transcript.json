@@ -1,0 +1,5527 @@
+[
+  {
+    "start": "00:00:00.080",
+    "end": "00:00:02.230",
+    "text": "Welcome back to the deep dive. We're the"
+  },
+  {
+    "start": "00:00:02.240",
+    "end": "00:00:03.909",
+    "text": "show where we take these well sometimes"
+  },
+  {
+    "start": "00:00:03.919",
+    "end": "00:00:05.590",
+    "text": "pretty mind-ning ideas and really try to"
+  },
+  {
+    "start": "00:00:05.600",
+    "end": "00:00:07.990",
+    "text": "unpack them, figure out what's important"
+  },
+  {
+    "start": "00:00:08.000",
+    "end": "00:00:09.990",
+    "text": "and you know why it actually matters to"
+  },
+  {
+    "start": "00:00:10.000",
+    "end": "00:00:10.470",
+    "text": "us."
+  },
+  {
+    "start": "00:00:10.480",
+    "end": "00:00:11.030",
+    "text": "Absolutely."
+  },
+  {
+    "start": "00:00:11.040",
+    "end": "00:00:13.190",
+    "text": "Have you ever had that feeling that kind"
+  },
+  {
+    "start": "00:00:13.200",
+    "end": "00:00:16.070",
+    "text": "of strange nagging disconnect where the"
+  },
+  {
+    "start": "00:00:16.080",
+    "end": "00:00:19.510",
+    "text": "world that say science describes"
+  },
+  {
+    "start": "00:00:19.520",
+    "end": "00:00:22.390",
+    "text": "you know atoms, forces, math all sort of"
+  },
+  {
+    "start": "00:00:22.400",
+    "end": "00:00:25.910",
+    "text": "colorless, valueless, purely mechanical"
+  },
+  {
+    "start": "00:00:25.920",
+    "end": "00:00:27.109",
+    "text": "the machine view."
+  },
+  {
+    "start": "00:00:27.119",
+    "end": "00:00:28.710",
+    "text": "Yeah. Exactly. It feels so profoundly"
+  },
+  {
+    "start": "00:00:28.720",
+    "end": "00:00:30.070",
+    "text": "different from the world we actually"
+  },
+  {
+    "start": "00:00:30.080",
+    "end": "00:00:31.750",
+    "text": "experience, right? The one that's just"
+  },
+  {
+    "start": "00:00:31.760",
+    "end": "00:00:33.910",
+    "text": "bursting with color and beauty like a"
+  },
+  {
+    "start": "00:00:33.920",
+    "end": "00:00:36.389",
+    "text": "sunset or that feeling of love or"
+  },
+  {
+    "start": "00:00:36.399",
+    "end": "00:00:39.350",
+    "text": "purpose and just consciousness itself,"
+  },
+  {
+    "start": "00:00:39.360",
+    "end": "00:00:41.110",
+    "text": "our awareness of it all. It's like"
+  },
+  {
+    "start": "00:00:41.120",
+    "end": "00:00:42.709",
+    "text": "there's this invisible wall between the"
+  },
+  {
+    "start": "00:00:42.719",
+    "end": "00:00:44.630",
+    "text": "the sort of cold hard facts we're told"
+  },
+  {
+    "start": "00:00:44.640",
+    "end": "00:00:47.270",
+    "text": "are real and the rich meaningful reality"
+  },
+  {
+    "start": "00:00:47.280",
+    "end": "00:00:49.510",
+    "text": "we feel, you know, deep down every day."
+  },
+  {
+    "start": "00:00:49.520",
+    "end": "00:00:51.270",
+    "text": "It's a feeling a lot of us get, I think,"
+  },
+  {
+    "start": "00:00:51.280",
+    "end": "00:00:52.630",
+    "text": "even if we don't quite have a name for"
+  },
+  {
+    "start": "00:00:52.640",
+    "end": "00:00:54.310",
+    "text": "it. Well, that feeling you're"
+  },
+  {
+    "start": "00:00:54.320",
+    "end": "00:00:56.470",
+    "text": "describing, it's um it's not just some"
+  },
+  {
+    "start": "00:00:56.480",
+    "end": "00:00:59.029",
+    "text": "vague discomfort. It's actually a really"
+  },
+  {
+    "start": "00:00:59.039",
+    "end": "00:01:01.750",
+    "text": "profound philosophical problem. Some"
+  },
+  {
+    "start": "00:01:01.760",
+    "end": "00:01:03.270",
+    "text": "major thinkers have wrestled with this"
+  },
+  {
+    "start": "00:01:03.280",
+    "end": "00:01:04.950",
+    "text": "for well centuries."
+  },
+  {
+    "start": "00:01:04.960",
+    "end": "00:01:05.509",
+    "text": "Oh, really?"
+  },
+  {
+    "start": "00:01:05.519",
+    "end": "00:01:07.270",
+    "text": "Yeah. And Alfred North Whitehead, who's"
+  },
+  {
+    "start": "00:01:07.280",
+    "end": "00:01:08.390",
+    "text": "one of the thinkers we're really going"
+  },
+  {
+    "start": "00:01:08.400",
+    "end": "00:01:10.149",
+    "text": "to dive into today, a brilliant"
+  },
+  {
+    "start": "00:01:10.159",
+    "end": "00:01:12.310",
+    "text": "philosopher and mathematician, he"
+  },
+  {
+    "start": "00:01:12.320",
+    "end": "00:01:13.750",
+    "text": "actually gave this problem a name. He"
+  },
+  {
+    "start": "00:01:13.760",
+    "end": "00:01:15.590",
+    "text": "called it the bifurcation of nature."
+  },
+  {
+    "start": "00:01:15.600",
+    "end": "00:01:17.990",
+    "text": "Bifurcation of nature. Okay, that sounds"
+  },
+  {
+    "start": "00:01:18.000",
+    "end": "00:01:19.910",
+    "text": "uh pretty significant. What does it"
+  },
+  {
+    "start": "00:01:19.920",
+    "end": "00:01:22.390",
+    "text": "actually mean to say nature's been well"
+  },
+  {
+    "start": "00:01:22.400",
+    "end": "00:01:24.469",
+    "text": "split in two? It points to what he saw"
+  },
+  {
+    "start": "00:01:24.479",
+    "end": "00:01:27.030",
+    "text": "as the crisis in modern thought. See, on"
+  },
+  {
+    "start": "00:01:27.040",
+    "end": "00:01:28.630",
+    "text": "one side you have the world of"
+  },
+  {
+    "start": "00:01:28.640",
+    "end": "00:01:30.630",
+    "text": "scientific description. The universe is"
+  },
+  {
+    "start": "00:01:30.640",
+    "end": "00:01:32.469",
+    "text": "physics, chemistry presented. It's all"
+  },
+  {
+    "start": "00:01:32.479",
+    "end": "00:01:35.109",
+    "text": "math, particles, brute facts. Science is"
+  },
+  {
+    "start": "00:01:35.119",
+    "end": "00:01:37.030",
+    "text": "amazing at explaining how things work."
+  },
+  {
+    "start": "00:01:37.040",
+    "end": "00:01:37.990",
+    "text": "You know, cause and effect,"
+  },
+  {
+    "start": "00:01:38.000",
+    "end": "00:01:38.870",
+    "text": "right? The mechanics."
+  },
+  {
+    "start": "00:01:38.880",
+    "end": "00:01:40.950",
+    "text": "The mechanics. Exactly. But it often"
+  },
+  {
+    "start": "00:01:40.960",
+    "end": "00:01:42.469",
+    "text": "seems to leave out everything that gives"
+  },
+  {
+    "start": "00:01:42.479",
+    "end": "00:01:44.310",
+    "text": "life meaning. Where does beauty fit in"
+  },
+  {
+    "start": "00:01:44.320",
+    "end": "00:01:47.670",
+    "text": "that picture? Or love or consciousness,"
+  },
+  {
+    "start": "00:01:47.680",
+    "end": "00:01:49.830",
+    "text": "purpose. Where are they in a universe of"
+  },
+  {
+    "start": "00:01:49.840",
+    "end": "00:01:52.230",
+    "text": "just forces and fields?"
+  },
+  {
+    "start": "00:01:52.240",
+    "end": "00:01:53.670",
+    "text": "And that's where that feeling really"
+  },
+  {
+    "start": "00:01:53.680",
+    "end": "00:01:55.190",
+    "text": "hits home, isn't it? Because the other"
+  },
+  {
+    "start": "00:01:55.200",
+    "end": "00:01:57.350",
+    "text": "side is our world of human experience,"
+  },
+  {
+    "start": "00:01:57.360",
+    "end": "00:02:00.310",
+    "text": "our actual lived reality. And that"
+  },
+  {
+    "start": "00:02:00.320",
+    "end": "00:02:03.510",
+    "text": "reality is just soaked in these things,"
+  },
+  {
+    "start": "00:02:03.520",
+    "end": "00:02:06.709",
+    "text": "meaning value, vivid feelings. How do"
+  },
+  {
+    "start": "00:02:06.719",
+    "end": "00:02:09.190",
+    "text": "you even start to bridge that gap, make"
+  },
+  {
+    "start": "00:02:09.200",
+    "end": "00:02:11.270",
+    "text": "sense of a world that feels so vibrant"
+  },
+  {
+    "start": "00:02:11.280",
+    "end": "00:02:13.510",
+    "text": "to us when the scientific way of looking"
+  },
+  {
+    "start": "00:02:13.520",
+    "end": "00:02:15.510",
+    "text": "at it seems to strip all that away?"
+  },
+  {
+    "start": "00:02:15.520",
+    "end": "00:02:18.869",
+    "text": "Precisely. And this split, this uh this"
+  },
+  {
+    "start": "00:02:18.879",
+    "end": "00:02:21.910",
+    "text": "chasm, it leaves no coherent place for"
+  },
+  {
+    "start": "00:02:21.920",
+    "end": "00:02:23.270",
+    "text": "concepts that have always been central"
+  },
+  {
+    "start": "00:02:23.280",
+    "end": "00:02:24.949",
+    "text": "to how humans understand the world."
+  },
+  {
+    "start": "00:02:24.959",
+    "end": "00:02:26.869",
+    "text": "Things like, well, the mind itself, what"
+  },
+  {
+    "start": "00:02:26.879",
+    "end": "00:02:28.390",
+    "text": "meaning is, or even how we might"
+  },
+  {
+    "start": "00:02:28.400",
+    "end": "00:02:29.350",
+    "text": "conceive of God?"
+  },
+  {
+    "start": "00:02:29.360",
+    "end": "00:02:29.830",
+    "text": "Oh,"
+  },
+  {
+    "start": "00:02:29.840",
+    "end": "00:02:31.510",
+    "text": "because if that scientific description,"
+  },
+  {
+    "start": "00:02:31.520",
+    "end": "00:02:33.589",
+    "text": "that objective, valuefree world is the"
+  },
+  {
+    "start": "00:02:33.599",
+    "end": "00:02:35.589",
+    "text": "only reality. Then where do all these"
+  },
+  {
+    "start": "00:02:35.599",
+    "end": "00:02:37.430",
+    "text": "deep subjective really important parts"
+  },
+  {
+    "start": "00:02:37.440",
+    "end": "00:02:40.470",
+    "text": "of our lives fit? It just creates this"
+  },
+  {
+    "start": "00:02:40.480",
+    "end": "00:02:42.790",
+    "text": "this crisis of coherence for almost"
+  },
+  {
+    "start": "00:02:42.800",
+    "end": "00:02:44.710",
+    "text": "everything we value. And that's exactly"
+  },
+  {
+    "start": "00:02:44.720",
+    "end": "00:02:46.550",
+    "text": "the uh intellectual adventure we're"
+  },
+  {
+    "start": "00:02:46.560",
+    "end": "00:02:47.589",
+    "text": "setting out on today. We're going to"
+  },
+  {
+    "start": "00:02:47.599",
+    "end": "00:02:49.589",
+    "text": "explore the work of two really brilliant"
+  },
+  {
+    "start": "00:02:49.599",
+    "end": "00:02:51.509",
+    "text": "minds, Alfred North Whitehead, who are"
+  },
+  {
+    "start": "00:02:51.519",
+    "end": "00:02:53.110",
+    "text": "mentioned, and Wolfink Smith. Both of"
+  },
+  {
+    "start": "00:02:53.120",
+    "end": "00:02:55.190",
+    "text": "them saw this fundamental problem, this"
+  },
+  {
+    "start": "00:02:55.200",
+    "end": "00:02:57.990",
+    "text": "bifurcation as a core crisis for modern"
+  },
+  {
+    "start": "00:02:58.000",
+    "end": "00:03:00.070",
+    "text": "times. But here's where it gets really"
+  },
+  {
+    "start": "00:03:00.080",
+    "end": "00:03:02.710",
+    "text": "interesting. They came up with radically"
+  },
+  {
+    "start": "00:03:02.720",
+    "end": "00:03:04.869",
+    "text": "different solutions. I mean, completely"
+  },
+  {
+    "start": "00:03:04.879",
+    "end": "00:03:06.470",
+    "text": "different ways to try and mend that"
+  },
+  {
+    "start": "00:03:06.480",
+    "end": "00:03:06.869",
+    "text": "split."
+  },
+  {
+    "start": "00:03:06.879",
+    "end": "00:03:08.710",
+    "text": "Yeah. Night and day, really. And"
+  },
+  {
+    "start": "00:03:08.720",
+    "end": "00:03:11.190",
+    "text": "crucially for our deep dive today, their"
+  },
+  {
+    "start": "00:03:11.200",
+    "end": "00:03:13.670",
+    "text": "solutions have these huge profound"
+  },
+  {
+    "start": "00:03:13.680",
+    "end": "00:03:15.350",
+    "text": "implications for how they understand"
+  },
+  {
+    "start": "00:03:15.360",
+    "end": "00:03:17.670",
+    "text": "God, God's existence, God's nature,"
+  },
+  {
+    "start": "00:03:17.680",
+    "end": "00:03:18.390",
+    "text": "everything."
+  },
+  {
+    "start": "00:03:18.400",
+    "end": "00:03:20.390",
+    "text": "You can almost picture it like this."
+  },
+  {
+    "start": "00:03:20.400",
+    "end": "00:03:22.309",
+    "text": "Whitehead, his path is trying to"
+  },
+  {
+    "start": "00:03:22.319",
+    "end": "00:03:24.869",
+    "text": "integrate all the big findings of modern"
+  },
+  {
+    "start": "00:03:24.879",
+    "end": "00:03:27.589",
+    "text": "science, you know, relativity, quantum"
+  },
+  {
+    "start": "00:03:27.599",
+    "end": "00:03:29.270",
+    "text": "physics, stuff that showed the universe"
+  },
+  {
+    "start": "00:03:29.280",
+    "end": "00:03:31.110",
+    "text": "is way weirder and more dynamic than"
+  },
+  {
+    "start": "00:03:31.120",
+    "end": "00:03:31.830",
+    "text": "Newton thought,"
+  },
+  {
+    "start": "00:03:31.840",
+    "end": "00:03:33.350",
+    "text": "right? Integrate them into philosophy."
+  },
+  {
+    "start": "00:03:33.360",
+    "end": "00:03:35.750",
+    "text": "integrate them into a grand unified what"
+  },
+  {
+    "start": "00:03:35.760",
+    "end": "00:03:37.910",
+    "text": "he called an organic vision of reality."
+  },
+  {
+    "start": "00:03:37.920",
+    "end": "00:03:39.750",
+    "text": "Right? He didn't just tweak things. He"
+  },
+  {
+    "start": "00:03:39.760",
+    "end": "00:03:41.350",
+    "text": "built a whole new system process"
+  },
+  {
+    "start": "00:03:41.360",
+    "end": "00:03:43.110",
+    "text": "philosophy basically from scratch to do"
+  },
+  {
+    "start": "00:03:43.120",
+    "end": "00:03:43.670",
+    "text": "it."
+  },
+  {
+    "start": "00:03:43.680",
+    "end": "00:03:46.070",
+    "text": "And in his system, God isn't some"
+  },
+  {
+    "start": "00:03:46.080",
+    "end": "00:03:48.070",
+    "text": "exception to the rules of the universe."
+  },
+  {
+    "start": "00:03:48.080",
+    "end": "00:03:50.949",
+    "text": "God is actually a necessary dynamic part"
+  },
+  {
+    "start": "00:03:50.959",
+    "end": "00:03:53.670",
+    "text": "within this cosmic process subject to"
+  },
+  {
+    "start": "00:03:53.680",
+    "end": "00:03:55.110",
+    "text": "its ultimate principles."
+  },
+  {
+    "start": "00:03:55.120",
+    "end": "00:03:56.630",
+    "text": "Okay. So, Whitehead's building a"
+  },
+  {
+    "start": "00:03:56.640",
+    "end": "00:03:58.710",
+    "text": "completely new ship, a modern ship"
+  },
+  {
+    "start": "00:03:58.720",
+    "end": "00:04:00.229",
+    "text": "designed to navigate these new"
+  },
+  {
+    "start": "00:04:00.239",
+    "end": "00:04:03.190",
+    "text": "scientific waters. But Wolf Gang Smith,"
+  },
+  {
+    "start": "00:04:03.200",
+    "end": "00:04:04.710",
+    "text": "he takes a totally different approach,"
+  },
+  {
+    "start": "00:04:04.720",
+    "end": "00:04:05.990",
+    "text": "almost the reverse, doesn't he?"
+  },
+  {
+    "start": "00:04:06.000",
+    "end": "00:04:08.070",
+    "text": "He really does. Smith essentially says,"
+  },
+  {
+    "start": "00:04:08.080",
+    "end": "00:04:10.710",
+    "text": "\"Hang on, we took a major wrong turn way"
+  },
+  {
+    "start": "00:04:10.720",
+    "end": "00:04:13.509",
+    "text": "back.\" He argues we need to reject the"
+  },
+  {
+    "start": "00:04:13.519",
+    "end": "00:04:15.750",
+    "text": "basic philosophical assumptions that"
+  },
+  {
+    "start": "00:04:15.760",
+    "end": "00:04:17.509",
+    "text": "modern science itself rests on."
+  },
+  {
+    "start": "00:04:17.519",
+    "end": "00:04:19.670",
+    "text": "Reject the foundations. Wow."
+  },
+  {
+    "start": "00:04:19.680",
+    "end": "00:04:21.509",
+    "text": "Yeah. He argues that our whole modern"
+  },
+  {
+    "start": "00:04:21.519",
+    "end": "00:04:24.070",
+    "text": "worldview shaped by people like Decart"
+  },
+  {
+    "start": "00:04:24.080",
+    "end": "00:04:27.189",
+    "text": "Newton is inherently flawed. So his work"
+  },
+  {
+    "start": "00:04:27.199",
+    "end": "00:04:29.270",
+    "text": "is about reviving and reexplaining"
+  },
+  {
+    "start": "00:04:29.280",
+    "end": "00:04:31.189",
+    "text": "what's called the perennial philosophy."
+  },
+  {
+    "start": "00:04:31.199",
+    "end": "00:04:33.510",
+    "text": "He draws on these incredibly old deep"
+  },
+  {
+    "start": "00:04:33.520",
+    "end": "00:04:35.590",
+    "text": "traditions. Platonism, the hardcore"
+  },
+  {
+    "start": "00:04:35.600",
+    "end": "00:04:37.350",
+    "text": "logic of scholasticism, you know, think"
+  },
+  {
+    "start": "00:04:37.360",
+    "end": "00:04:38.230",
+    "text": "Thomas Aquinus,"
+  },
+  {
+    "start": "00:04:38.240",
+    "end": "00:04:39.670",
+    "text": "Aquinas, right? Big name,"
+  },
+  {
+    "start": "00:04:39.680",
+    "end": "00:04:41.990",
+    "text": "huge. And even insights from Eastern"
+  },
+  {
+    "start": "00:04:42.000",
+    "end": "00:04:44.790",
+    "text": "thought like Advite Vanta for Smith, God"
+  },
+  {
+    "start": "00:04:44.800",
+    "end": "00:04:46.310",
+    "text": "isn't in the system. God stands"
+  },
+  {
+    "start": "00:04:46.320",
+    "end": "00:04:48.629",
+    "text": "completely above the created order. God"
+  },
+  {
+    "start": "00:04:48.639",
+    "end": "00:04:50.390",
+    "text": "is the transcendent, unchanging,"
+  },
+  {
+    "start": "00:04:50.400",
+    "end": "00:04:51.749",
+    "text": "timeless source of it all."
+  },
+  {
+    "start": "00:04:51.759",
+    "end": "00:04:53.350",
+    "text": "So, one guy builds a new system to"
+  },
+  {
+    "start": "00:04:53.360",
+    "end": "00:04:54.870",
+    "text": "embrace science. The other says the"
+  },
+  {
+    "start": "00:04:54.880",
+    "end": "00:04:56.950",
+    "text": "scientific foundation itself is flawed"
+  },
+  {
+    "start": "00:04:56.960",
+    "end": "00:04:58.390",
+    "text": "and we need to go back to ancient"
+  },
+  {
+    "start": "00:04:58.400",
+    "end": "00:05:00.150",
+    "text": "wisdom. That's that's a fundamental"
+  },
+  {
+    "start": "00:05:00.160",
+    "end": "00:05:00.950",
+    "text": "disagreement."
+  },
+  {
+    "start": "00:05:00.960",
+    "end": "00:05:03.670",
+    "text": "It's a profound divergence. One tries to"
+  },
+  {
+    "start": "00:05:03.680",
+    "end": "00:05:05.670",
+    "text": "incorporate modern discoveries into a"
+  },
+  {
+    "start": "00:05:05.680",
+    "end": "00:05:07.590",
+    "text": "new framework. The other says the very"
+  },
+  {
+    "start": "00:05:07.600",
+    "end": "00:05:08.629",
+    "text": "framework that produced those"
+  },
+  {
+    "start": "00:05:08.639",
+    "end": "00:05:10.870",
+    "text": "discoveries is the problem and we need"
+  },
+  {
+    "start": "00:05:10.880",
+    "end": "00:05:14.150",
+    "text": "an older, wiser, more holistic view."
+  },
+  {
+    "start": "00:05:14.160",
+    "end": "00:05:16.550",
+    "text": "Okay. So, our mission today is to really"
+  },
+  {
+    "start": "00:05:16.560",
+    "end": "00:05:18.310",
+    "text": "dive deep into both of these conceptions"
+  },
+  {
+    "start": "00:05:18.320",
+    "end": "00:05:20.550",
+    "text": "of God. We want to understand the core"
+  },
+  {
+    "start": "00:05:20.560",
+    "end": "00:05:22.550",
+    "text": "ideas, get a feel for how they work from"
+  },
+  {
+    "start": "00:05:22.560",
+    "end": "00:05:24.550",
+    "text": "the inside out. Then we'll put them side"
+  },
+  {
+    "start": "00:05:24.560",
+    "end": "00:05:26.629",
+    "text": "by side, really highlight the sharp"
+  },
+  {
+    "start": "00:05:26.639",
+    "end": "00:05:28.550",
+    "text": "differences, and hopefully give you a"
+  },
+  {
+    "start": "00:05:28.560",
+    "end": "00:05:31.029",
+    "text": "solid grasp of these two, well,"
+  },
+  {
+    "start": "00:05:31.039",
+    "end": "00:05:32.629",
+    "text": "monumental ways of thinking."
+  },
+  {
+    "start": "00:05:32.639",
+    "end": "00:05:34.390",
+    "text": "Right. By the end, you should have a"
+  },
+  {
+    "start": "00:05:34.400",
+    "end": "00:05:36.469",
+    "text": "much clearer picture of these two"
+  },
+  {
+    "start": "00:05:36.479",
+    "end": "00:05:38.150",
+    "text": "fascinating, but ultimately, yeah,"
+  },
+  {
+    "start": "00:05:38.160",
+    "end": "00:05:40.310",
+    "text": "irreconcilable visions of reality and"
+  },
+  {
+    "start": "00:05:40.320",
+    "end": "00:05:41.110",
+    "text": "the divine."
+  },
+  {
+    "start": "00:05:41.120",
+    "end": "00:05:42.550",
+    "text": "Okay, let's start with Alfred North"
+  },
+  {
+    "start": "00:05:42.560",
+    "end": "00:05:44.230",
+    "text": "Whitehead. We said he was deeply"
+  },
+  {
+    "start": "00:05:44.240",
+    "end": "00:05:46.230",
+    "text": "concerned about this gap between science"
+  },
+  {
+    "start": "00:05:46.240",
+    "end": "00:05:48.390",
+    "text": "and lived experience. So, how did he"
+  },
+  {
+    "start": "00:05:48.400",
+    "end": "00:05:49.909",
+    "text": "propose to bring them back together?"
+  },
+  {
+    "start": "00:05:49.919",
+    "end": "00:05:51.670",
+    "text": "What kind of universe did he imagine"
+  },
+  {
+    "start": "00:05:51.680",
+    "end": "00:05:53.189",
+    "text": "that could heal that split?"
+  },
+  {
+    "start": "00:05:53.199",
+    "end": "00:05:54.710",
+    "text": "Well, Whitehead proposed a universe"
+  },
+  {
+    "start": "00:05:54.720",
+    "end": "00:05:57.590",
+    "text": "that's fundamentally about becoming."
+  },
+  {
+    "start": "00:05:57.600",
+    "end": "00:05:59.830",
+    "text": "It's about dynamic process, not static"
+  },
+  {
+    "start": "00:05:59.840",
+    "end": "00:06:02.310",
+    "text": "being. So, imagine reality isn't like a"
+  },
+  {
+    "start": "00:06:02.320",
+    "end": "00:06:04.790",
+    "text": "collection of fixed things like uh"
+  },
+  {
+    "start": "00:06:04.800",
+    "end": "00:06:05.749",
+    "text": "bricks in a wall."
+  },
+  {
+    "start": "00:06:05.759",
+    "end": "00:06:07.510",
+    "text": "Okay? Not static objects."
+  },
+  {
+    "start": "00:06:07.520",
+    "end": "00:06:09.430",
+    "text": "No, think of it more like a river,"
+  },
+  {
+    "start": "00:06:09.440",
+    "end": "00:06:11.110",
+    "text": "always flowing, always changing, always"
+  },
+  {
+    "start": "00:06:11.120",
+    "end": "00:06:13.110",
+    "text": "forming and transforming. This was a"
+  },
+  {
+    "start": "00:06:13.120",
+    "end": "00:06:14.550",
+    "text": "pretty radical shift from a lot of"
+  },
+  {
+    "start": "00:06:14.560",
+    "end": "00:06:16.550",
+    "text": "traditional western philosophy which"
+  },
+  {
+    "start": "00:06:16.560",
+    "end": "00:06:18.870",
+    "text": "tended to focus on what things are their"
+  },
+  {
+    "start": "00:06:18.880",
+    "end": "00:06:21.430",
+    "text": "substance. Whitehead said no the most"
+  },
+  {
+    "start": "00:06:21.440",
+    "end": "00:06:23.510",
+    "text": "fundamental reality isn't what is but"
+  },
+  {
+    "start": "00:06:23.520",
+    "end": "00:06:26.550",
+    "text": "what's happening the process itself."
+  },
+  {
+    "start": "00:06:26.560",
+    "end": "00:06:28.150",
+    "text": "So if everything's constantly flowing"
+  },
+  {
+    "start": "00:06:28.160",
+    "end": "00:06:29.909",
+    "text": "constantly in process what are the"
+  },
+  {
+    "start": "00:06:29.919",
+    "end": "00:06:32.230",
+    "text": "actual like building blocks? How does"
+  },
+  {
+    "start": "00:06:32.240",
+    "end": "00:06:33.909",
+    "text": "this process work at the very smallest"
+  },
+  {
+    "start": "00:06:33.919",
+    "end": "00:06:35.430",
+    "text": "level? What's it made of?"
+  },
+  {
+    "start": "00:06:35.440",
+    "end": "00:06:37.909",
+    "text": "Right for Whitehead the universe is made"
+  },
+  {
+    "start": "00:06:37.919",
+    "end": "00:06:40.469",
+    "text": "up of momentary actual occasions of"
+  },
+  {
+    "start": "00:06:40.479",
+    "end": "00:06:42.550",
+    "text": "experience. Now, try not to think of"
+  },
+  {
+    "start": "00:06:42.560",
+    "end": "00:06:45.029",
+    "text": "these as tiny solid bits, like little"
+  },
+  {
+    "start": "00:06:45.039",
+    "end": "00:06:46.629",
+    "text": "particles. That's the old way."
+  },
+  {
+    "start": "00:06:46.639",
+    "end": "00:06:47.830",
+    "text": "Okay? Not many marbles."
+  },
+  {
+    "start": "00:06:47.840",
+    "end": "00:06:49.830",
+    "text": "Not many marbles. No, they're more like"
+  },
+  {
+    "start": "00:06:49.840",
+    "end": "00:06:52.550",
+    "text": "fleeting flashes of experience, tiny"
+  },
+  {
+    "start": "00:06:52.560",
+    "end": "00:06:54.629",
+    "text": "pulses of coming into being, each"
+  },
+  {
+    "start": "00:06:54.639",
+    "end": "00:06:56.469",
+    "text": "lasting for just an incredibly brief"
+  },
+  {
+    "start": "00:06:56.479",
+    "end": "00:06:58.230",
+    "text": "moment. Think of them as the fundamental"
+  },
+  {
+    "start": "00:06:58.240",
+    "end": "00:06:59.990",
+    "text": "bits of reality, but the bits are"
+  },
+  {
+    "start": "00:07:00.000",
+    "end": "00:07:02.950",
+    "text": "events. They're experiences, not static"
+  },
+  {
+    "start": "00:07:02.960",
+    "end": "00:07:03.430",
+    "text": "things."
+  },
+  {
+    "start": "00:07:03.440",
+    "end": "00:07:05.909",
+    "text": "Whoa. Okay. So, tiny, super fast moments"
+  },
+  {
+    "start": "00:07:05.919",
+    "end": "00:07:07.510",
+    "text": "of experience, like little sparks."
+  },
+  {
+    "start": "00:07:07.520",
+    "end": "00:07:09.510",
+    "text": "Kind of like that. Yeah. Each actual"
+  },
+  {
+    "start": "00:07:09.520",
+    "end": "00:07:12.309",
+    "text": "occasion pops into existence. It lives"
+  },
+  {
+    "start": "00:07:12.319",
+    "end": "00:07:14.150",
+    "text": "out as momentary life. And in that"
+  },
+  {
+    "start": "00:07:14.160",
+    "end": "00:07:17.110",
+    "text": "moment, it experiences and takes in what"
+  },
+  {
+    "start": "00:07:17.120",
+    "end": "00:07:19.670",
+    "text": "came just before it. And then, and this"
+  },
+  {
+    "start": "00:07:19.680",
+    "end": "00:07:22.710",
+    "text": "is crucial, it perishes. It ceases to be"
+  },
+  {
+    "start": "00:07:22.720",
+    "end": "00:07:23.909",
+    "text": "that specific occasion."
+  },
+  {
+    "start": "00:07:23.919",
+    "end": "00:07:24.870",
+    "text": "It just vanishes."
+  },
+  {
+    "start": "00:07:24.880",
+    "end": "00:07:27.029",
+    "text": "Not exactly into nothing. This is the"
+  },
+  {
+    "start": "00:07:27.039",
+    "end": "00:07:29.670",
+    "text": "profound part. As it perishes, it"
+  },
+  {
+    "start": "00:07:29.680",
+    "end": "00:07:32.309",
+    "text": "becomes data or what Whitehead called"
+  },
+  {
+    "start": "00:07:32.319",
+    "end": "00:07:35.029",
+    "text": "prehensions for new actual occasions"
+  },
+  {
+    "start": "00:07:35.039",
+    "end": "00:07:36.390",
+    "text": "that are just coming into being right"
+  },
+  {
+    "start": "00:07:36.400",
+    "end": "00:07:39.029",
+    "text": "after it. So it's grasped, it's felt,"
+  },
+  {
+    "start": "00:07:39.039",
+    "end": "00:07:40.550",
+    "text": "it's taken into the being of the next"
+  },
+  {
+    "start": "00:07:40.560",
+    "end": "00:07:40.950",
+    "text": "moment."
+  },
+  {
+    "start": "00:07:40.960",
+    "end": "00:07:42.629",
+    "text": "Ah, I see. So it's like a continuous"
+  },
+  {
+    "start": "00:07:42.639",
+    "end": "00:07:44.390",
+    "text": "chain reaction of these experiential"
+  },
+  {
+    "start": "00:07:44.400",
+    "end": "00:07:45.990",
+    "text": "moments. Each one building on the last"
+  },
+  {
+    "start": "00:07:46.000",
+    "end": "00:07:46.309",
+    "text": "one."
+  },
+  {
+    "start": "00:07:46.319",
+    "end": "00:07:48.230",
+    "text": "Yeah. It's a constant flowing stream"
+  },
+  {
+    "start": "00:07:48.240",
+    "end": "00:07:50.629",
+    "text": "creating the very fabric of reality. Not"
+  },
+  {
+    "start": "00:07:50.639",
+    "end": "00:07:52.950",
+    "text": "static stuff, but a dynamic unfolding of"
+  },
+  {
+    "start": "00:07:52.960",
+    "end": "00:07:54.469",
+    "text": "experience influencing the next"
+  },
+  {
+    "start": "00:07:54.479",
+    "end": "00:07:55.110",
+    "text": "experience."
+  },
+  {
+    "start": "00:07:55.120",
+    "end": "00:07:56.309",
+    "text": "That's a very different picture of the"
+  },
+  {
+    "start": "00:07:56.319",
+    "end": "00:07:58.070",
+    "text": "universe. So where does God fit into"
+  },
+  {
+    "start": "00:07:58.080",
+    "end": "00:08:00.710",
+    "text": "this dynamic process driven reality? Is"
+  },
+  {
+    "start": "00:08:00.720",
+    "end": "00:08:02.390",
+    "text": "God somehow exempt from these rules"
+  },
+  {
+    "start": "00:08:02.400",
+    "end": "00:08:04.550",
+    "text": "standing outside the flow or is God part"
+  },
+  {
+    "start": "00:08:04.560",
+    "end": "00:08:06.629",
+    "text": "of this cosmic dance too? And that is"
+  },
+  {
+    "start": "00:08:06.639",
+    "end": "00:08:08.550",
+    "text": "one of Whitehead's most radical and I"
+  },
+  {
+    "start": "00:08:08.560",
+    "end": "00:08:11.670",
+    "text": "think brilliant insights. God in his"
+  },
+  {
+    "start": "00:08:11.680",
+    "end": "00:08:13.350",
+    "text": "system is not an exception to these"
+  },
+  {
+    "start": "00:08:13.360",
+    "end": "00:08:15.430",
+    "text": "rules. In fact, Whitehead says God is"
+  },
+  {
+    "start": "00:08:15.440",
+    "end": "00:08:17.749",
+    "text": "the chief exemplification of these very"
+  },
+  {
+    "start": "00:08:17.759",
+    "end": "00:08:19.510",
+    "text": "principles of process and becoming"
+  },
+  {
+    "start": "00:08:19.520",
+    "end": "00:08:21.189",
+    "text": "the chief example. So God also follows"
+  },
+  {
+    "start": "00:08:21.199",
+    "end": "00:08:21.909",
+    "text": "these rules."
+  },
+  {
+    "start": "00:08:21.919",
+    "end": "00:08:23.589",
+    "text": "Yes, it means God too has to be"
+  },
+  {
+    "start": "00:08:23.599",
+    "end": "00:08:25.510",
+    "text": "understood as a process deeply related"
+  },
+  {
+    "start": "00:08:25.520",
+    "end": "00:08:27.830",
+    "text": "to the world and yes in some way"
+  },
+  {
+    "start": "00:08:27.840",
+    "end": "00:08:30.309",
+    "text": "temporal involved in time. To make sense"
+  },
+  {
+    "start": "00:08:30.319",
+    "end": "00:08:32.070",
+    "text": "of God in this dynamic universe,"
+  },
+  {
+    "start": "00:08:32.080",
+    "end": "00:08:33.750",
+    "text": "Whitehead proposed that God has a"
+  },
+  {
+    "start": "00:08:33.760",
+    "end": "00:08:37.350",
+    "text": "dipolar nature, two poles. This idea is"
+  },
+  {
+    "start": "00:08:37.360",
+    "end": "00:08:39.110",
+    "text": "really central to his whole solution."
+  },
+  {
+    "start": "00:08:39.120",
+    "end": "00:08:41.029",
+    "text": "It's how he tries to resolve that old"
+  },
+  {
+    "start": "00:08:41.039",
+    "end": "00:08:44.070",
+    "text": "paradox. How can a perfect eternal being"
+  },
+  {
+    "start": "00:08:44.080",
+    "end": "00:08:46.389",
+    "text": "interact with a changing often suffering"
+  },
+  {
+    "start": "00:08:46.399",
+    "end": "00:08:46.949",
+    "text": "world?"
+  },
+  {
+    "start": "00:08:46.959",
+    "end": "00:08:48.870",
+    "text": "Okay, the depolar nature. This is where"
+  },
+  {
+    "start": "00:08:48.880",
+    "end": "00:08:50.630",
+    "text": "it gets really fascinating, maybe a bit"
+  },
+  {
+    "start": "00:08:50.640",
+    "end": "00:08:53.350",
+    "text": "um mind-bending for us. God has two"
+  },
+  {
+    "start": "00:08:53.360",
+    "end": "00:08:55.509",
+    "text": "complimentary sides or aspects. One"
+  },
+  {
+    "start": "00:08:55.519",
+    "end": "00:08:57.269",
+    "text": "that's unchanging and one that changes."
+  },
+  {
+    "start": "00:08:57.279",
+    "end": "00:08:59.670",
+    "text": "One transcendent, one involved. Exactly."
+  },
+  {
+    "start": "00:08:59.680",
+    "end": "00:09:01.509",
+    "text": "Let's unpack the first one. The"
+  },
+  {
+    "start": "00:09:01.519",
+    "end": "00:09:03.910",
+    "text": "primordial nature. This is sometimes"
+  },
+  {
+    "start": "00:09:03.920",
+    "end": "00:09:06.070",
+    "text": "called the mind of God. This pole is"
+  },
+  {
+    "start": "00:09:06.080",
+    "end": "00:09:09.030",
+    "text": "God's eternal unchanging abstract"
+  },
+  {
+    "start": "00:09:09.040",
+    "end": "00:09:12.230",
+    "text": "aspect. Unconscious but not like"
+  },
+  {
+    "start": "00:09:12.240",
+    "end": "00:09:13.990",
+    "text": "unawareness in humans. It means it"
+  },
+  {
+    "start": "00:09:14.000",
+    "end": "00:09:16.070",
+    "text": "doesn't experience concrete events like"
+  },
+  {
+    "start": "00:09:16.080",
+    "end": "00:09:17.990",
+    "text": "we do or like God's other pole does."
+  },
+  {
+    "start": "00:09:18.000",
+    "end": "00:09:19.190",
+    "text": "Okay. So what is it then?"
+  },
+  {
+    "start": "00:09:19.200",
+    "end": "00:09:21.509",
+    "text": "Its essence is like an infinite"
+  },
+  {
+    "start": "00:09:21.519",
+    "end": "00:09:23.750",
+    "text": "reservoir of all pure possibilities."
+  },
+  {
+    "start": "00:09:23.760",
+    "end": "00:09:25.670",
+    "text": "Whitehead called these eternal objects."
+  },
+  {
+    "start": "00:09:25.680",
+    "end": "00:09:27.269",
+    "text": "Eternal objects. That sounds a bit like"
+  },
+  {
+    "start": "00:09:27.279",
+    "end": "00:09:28.870",
+    "text": "Plato's forms, doesn't it? like the"
+  },
+  {
+    "start": "00:09:28.880",
+    "end": "00:09:30.630",
+    "text": "perfect timeless ideas of things,"
+  },
+  {
+    "start": "00:09:30.640",
+    "end": "00:09:31.509",
+    "text": "blueprints."
+  },
+  {
+    "start": "00:09:31.519",
+    "end": "00:09:32.870",
+    "text": "You're definitely on the right track."
+  },
+  {
+    "start": "00:09:32.880",
+    "end": "00:09:35.030",
+    "text": "It's similar to platonic forms but with"
+  },
+  {
+    "start": "00:09:35.040",
+    "end": "00:09:38.790",
+    "text": "a key whiteheadian twist. They are pure"
+  },
+  {
+    "start": "00:09:38.800",
+    "end": "00:09:41.190",
+    "text": "potentials. They are the what might be"
+  },
+  {
+    "start": "00:09:41.200",
+    "end": "00:09:43.430",
+    "text": "the ideal forms of say beauty or truth"
+  },
+  {
+    "start": "00:09:43.440",
+    "end": "00:09:45.509",
+    "text": "or justice or even specific things like"
+  },
+  {
+    "start": "00:09:45.519",
+    "end": "00:09:47.509",
+    "text": "the pure potential for the color red or"
+  },
+  {
+    "start": "00:09:47.519",
+    "end": "00:09:49.110",
+    "text": "a specific geometric shape or a"
+  },
+  {
+    "start": "00:09:49.120",
+    "end": "00:09:50.150",
+    "text": "particular emotion."
+  },
+  {
+    "start": "00:09:50.160",
+    "end": "00:09:51.910",
+    "text": "So all possibilities,"
+  },
+  {
+    "start": "00:09:51.920",
+    "end": "00:09:54.150",
+    "text": "all possibilities. Think of all the"
+  },
+  {
+    "start": "00:09:54.160",
+    "end": "00:09:55.829",
+    "text": "melodies a composer could ever write,"
+  },
+  {
+    "start": "00:09:55.839",
+    "end": "00:09:57.190",
+    "text": "all the stories a novelist could ever"
+  },
+  {
+    "start": "00:09:57.200",
+    "end": "00:09:59.190",
+    "text": "tell, all the designs an architect could"
+  },
+  {
+    "start": "00:09:59.200",
+    "end": "00:10:01.910",
+    "text": "dream up. They exist eternally as pure"
+  },
+  {
+    "start": "00:10:01.920",
+    "end": "00:10:04.070",
+    "text": "potential just waiting, needing to be"
+  },
+  {
+    "start": "00:10:04.080",
+    "end": "00:10:06.470",
+    "text": "actualized, made real in the world. It's"
+  },
+  {
+    "start": "00:10:06.480",
+    "end": "00:10:07.990",
+    "text": "the ultimate source of order, the form"
+  },
+  {
+    "start": "00:10:08.000",
+    "end": "00:10:08.949",
+    "text": "of forms."
+  },
+  {
+    "start": "00:10:08.959",
+    "end": "00:10:10.630",
+    "text": "Okay, so this infinite realm of"
+  },
+  {
+    "start": "00:10:10.640",
+    "end": "00:10:12.870",
+    "text": "potential,"
+  },
+  {
+    "start": "00:10:12.880",
+    "end": "00:10:14.870",
+    "text": "what does it do? How does this blueprint"
+  },
+  {
+    "start": "00:10:14.880",
+    "end": "00:10:17.829",
+    "text": "interact with the actual messy dynamic"
+  },
+  {
+    "start": "00:10:17.839",
+    "end": "00:10:19.030",
+    "text": "universe we live in?"
+  },
+  {
+    "start": "00:10:19.040",
+    "end": "00:10:21.110",
+    "text": "The primordial nature functions as the"
+  },
+  {
+    "start": "00:10:21.120",
+    "end": "00:10:22.949",
+    "text": "principle of order. It's what stops"
+  },
+  {
+    "start": "00:10:22.959",
+    "end": "00:10:25.030",
+    "text": "reality from just being random chaos."
+  },
+  {
+    "start": "00:10:25.040",
+    "end": "00:10:26.870",
+    "text": "For every single actual occasion,"
+  },
+  {
+    "start": "00:10:26.880",
+    "end": "00:10:28.230",
+    "text": "remember those fleeting moments of"
+  },
+  {
+    "start": "00:10:28.240",
+    "end": "00:10:29.990",
+    "text": "experience. As it comes into being, the"
+  },
+  {
+    "start": "00:10:30.000",
+    "end": "00:10:31.269",
+    "text": "primordial nature provides what"
+  },
+  {
+    "start": "00:10:31.279",
+    "end": "00:10:33.430",
+    "text": "Whitehead calls an initial aim or a"
+  },
+  {
+    "start": "00:10:33.440",
+    "end": "00:10:33.829",
+    "text": "lure."
+  },
+  {
+    "start": "00:10:33.839",
+    "end": "00:10:35.430",
+    "text": "A lure like bait"
+  },
+  {
+    "start": "00:10:35.440",
+    "end": "00:10:37.910",
+    "text": "sort of like a gentle suggestion, maybe"
+  },
+  {
+    "start": "00:10:37.920",
+    "end": "00:10:40.389",
+    "text": "a divine whisper or an irresistible"
+  },
+  {
+    "start": "00:10:40.399",
+    "end": "00:10:43.110",
+    "text": "pull. It guides each new moment of"
+  },
+  {
+    "start": "00:10:43.120",
+    "end": "00:10:45.350",
+    "text": "experience toward novelty, toward"
+  },
+  {
+    "start": "00:10:45.360",
+    "end": "00:10:47.269",
+    "text": "greater beauty, complexity, intensity of"
+  },
+  {
+    "start": "00:10:47.279",
+    "end": "00:10:49.750",
+    "text": "feeling. It's God's perfect conceptual"
+  },
+  {
+    "start": "00:10:49.760",
+    "end": "00:10:51.829",
+    "text": "vision of everything that could be kind"
+  },
+  {
+    "start": "00:10:51.839",
+    "end": "00:10:53.670",
+    "text": "of graded by relevance for that specific"
+  },
+  {
+    "start": "00:10:53.680",
+    "end": "00:10:55.670",
+    "text": "moment. Always offering the best"
+  },
+  {
+    "start": "00:10:55.680",
+    "end": "00:10:58.230",
+    "text": "possible way forward. But, and this is"
+  },
+  {
+    "start": "00:10:58.240",
+    "end": "00:11:00.710",
+    "text": "key, this poll is deficient in"
+  },
+  {
+    "start": "00:11:00.720",
+    "end": "00:11:03.350",
+    "text": "actuality. It's just a vision, an ideal,"
+  },
+  {
+    "start": "00:11:03.360",
+    "end": "00:11:06.150",
+    "text": "a potential. It's not yet concrete"
+  },
+  {
+    "start": "00:11:06.160",
+    "end": "00:11:06.870",
+    "text": "reality."
+  },
+  {
+    "start": "00:11:06.880",
+    "end": "00:11:08.550",
+    "text": "Ah, I like the analogy we talked about"
+  },
+  {
+    "start": "00:11:08.560",
+    "end": "00:11:10.150",
+    "text": "before. It's like the unplayed score of"
+  },
+  {
+    "start": "00:11:10.160",
+    "end": "00:11:11.910",
+    "text": "an infinite symphony, right? Yeah. It"
+  },
+  {
+    "start": "00:11:11.920",
+    "end": "00:11:13.670",
+    "text": "has every possible beautiful melody,"
+  },
+  {
+    "start": "00:11:13.680",
+    "end": "00:11:15.350",
+    "text": "every harmony, all the potential for"
+  },
+  {
+    "start": "00:11:15.360",
+    "end": "00:11:17.990",
+    "text": "amazing music. But no actual sound has"
+  },
+  {
+    "start": "00:11:18.000",
+    "end": "00:11:19.910",
+    "text": "been made yet. Just the blueprint, the"
+  },
+  {
+    "start": "00:11:19.920",
+    "end": "00:11:21.829",
+    "text": "ideal, the divine potential."
+  },
+  {
+    "start": "00:11:21.839",
+    "end": "00:11:23.030",
+    "text": "That's a great way to put it. It's the"
+  },
+  {
+    "start": "00:11:23.040",
+    "end": "00:11:25.110",
+    "text": "transcendent vision, the source of all"
+  },
+  {
+    "start": "00:11:25.120",
+    "end": "00:11:26.870",
+    "text": "potential, order, and beauty, constantly"
+  },
+  {
+    "start": "00:11:26.880",
+    "end": "00:11:28.790",
+    "text": "luring the world onward and upward."
+  },
+  {
+    "start": "00:11:28.800",
+    "end": "00:11:30.710",
+    "text": "Without it, there'd be no direction, no"
+  },
+  {
+    "start": "00:11:30.720",
+    "end": "00:11:31.190",
+    "text": "striving."
+  },
+  {
+    "start": "00:11:31.200",
+    "end": "00:11:32.550",
+    "text": "Okay, that's poll number one. The"
+  },
+  {
+    "start": "00:11:32.560",
+    "end": "00:11:34.069",
+    "text": "eternal mind of God, the ideal"
+  },
+  {
+    "start": "00:11:34.079",
+    "end": "00:11:35.910",
+    "text": "potential. What about the second poll?"
+  },
+  {
+    "start": "00:11:35.920",
+    "end": "00:11:38.069",
+    "text": "The consequent nature. This sounds like"
+  },
+  {
+    "start": "00:11:38.079",
+    "end": "00:11:40.069",
+    "text": "where God gets, well, much more involved"
+  },
+  {
+    "start": "00:11:40.079",
+    "end": "00:11:41.590",
+    "text": "in the actual world. That's exactly"
+  },
+  {
+    "start": "00:11:41.600",
+    "end": "00:11:42.949",
+    "text": "right. The consequent nature is the"
+  },
+  {
+    "start": "00:11:42.959",
+    "end": "00:11:45.190",
+    "text": "experience of God and is the complete"
+  },
+  {
+    "start": "00:11:45.200",
+    "end": "00:11:46.870",
+    "text": "opposite of the primordial nature in"
+  },
+  {
+    "start": "00:11:46.880",
+    "end": "00:11:49.509",
+    "text": "many ways. This pole is temporal. It"
+  },
+  {
+    "start": "00:11:49.519",
+    "end": "00:11:51.829",
+    "text": "exists in time. It's ever growing, fully"
+  },
+  {
+    "start": "00:11:51.839",
+    "end": "00:11:54.069",
+    "text": "conscious and deeply concrete. It is"
+  },
+  {
+    "start": "00:11:54.079",
+    "end": "00:11:56.069",
+    "text": "God's active living experience of the"
+  },
+  {
+    "start": "00:11:56.079",
+    "end": "00:11:58.550",
+    "text": "world as it actually happens moment by"
+  },
+  {
+    "start": "00:11:58.560",
+    "end": "00:11:59.030",
+    "text": "moment."
+  },
+  {
+    "start": "00:11:59.040",
+    "end": "00:12:01.269",
+    "text": "God's experience of the world. How does"
+  },
+  {
+    "start": "00:12:01.279",
+    "end": "00:12:02.069",
+    "text": "that work?"
+  },
+  {
+    "start": "00:12:02.079",
+    "end": "00:12:04.470",
+    "text": "As each actual occasion, those tiny"
+  },
+  {
+    "start": "00:12:04.480",
+    "end": "00:12:06.230",
+    "text": "flashes of experience lives out its"
+  },
+  {
+    "start": "00:12:06.240",
+    "end": "00:12:08.230",
+    "text": "momentary existence and then perishes."
+  },
+  {
+    "start": "00:12:08.240",
+    "end": "00:12:09.910",
+    "text": "Remember how it becomes data for the"
+  },
+  {
+    "start": "00:12:09.920",
+    "end": "00:12:11.670",
+    "text": "next occasion? Well, it also gets"
+  },
+  {
+    "start": "00:12:11.680",
+    "end": "00:12:13.750",
+    "text": "objectively immortalized in the"
+  },
+  {
+    "start": "00:12:13.760",
+    "end": "00:12:15.269",
+    "text": "consequent nature of God."
+  },
+  {
+    "start": "00:12:15.279",
+    "end": "00:12:16.949",
+    "text": "Objectively immortalized. Okay, that"
+  },
+  {
+    "start": "00:12:16.959",
+    "end": "00:12:18.310",
+    "text": "sounds a bit mystical. Can you break"
+  },
+  {
+    "start": "00:12:18.320",
+    "end": "00:12:19.430",
+    "text": "that down for us? What does it really"
+  },
+  {
+    "start": "00:12:19.440",
+    "end": "00:12:20.069",
+    "text": "mean?"
+  },
+  {
+    "start": "00:12:20.079",
+    "end": "00:12:22.550",
+    "text": "It means that God prehends, which for"
+  },
+  {
+    "start": "00:12:22.560",
+    "end": "00:12:25.509",
+    "text": "Whitehead means God feels, grasps, takes"
+  },
+  {
+    "start": "00:12:25.519",
+    "end": "00:12:27.509",
+    "text": "right into his own being and perfectly"
+  },
+  {
+    "start": "00:12:27.519",
+    "end": "00:12:30.790",
+    "text": "remembers every single event, every joy,"
+  },
+  {
+    "start": "00:12:30.800",
+    "end": "00:12:32.550",
+    "text": "every pain, every tiny flicker of"
+  },
+  {
+    "start": "00:12:32.560",
+    "end": "00:12:34.230",
+    "text": "experience, every detail from the entire"
+  },
+  {
+    "start": "00:12:34.240",
+    "end": "00:12:36.389",
+    "text": "cosmos. Nothing that actually happens,"
+  },
+  {
+    "start": "00:12:36.399",
+    "end": "00:12:37.750",
+    "text": "no act of kindness, no moment of"
+  },
+  {
+    "start": "00:12:37.760",
+    "end": "00:12:39.829",
+    "text": "suffering, no burst of creativity is"
+  },
+  {
+    "start": "00:12:39.839",
+    "end": "00:12:41.670",
+    "text": "ever truly lost or forgotten."
+  },
+  {
+    "start": "00:12:41.680",
+    "end": "00:12:43.670",
+    "text": "Wow. Nothing lost."
+  },
+  {
+    "start": "00:12:43.680",
+    "end": "00:12:46.470",
+    "text": "Nothing is truly lost. Every sensation,"
+  },
+  {
+    "start": "00:12:46.480",
+    "end": "00:12:48.389",
+    "text": "every thought, every interaction gets"
+  },
+  {
+    "start": "00:12:48.399",
+    "end": "00:12:50.150",
+    "text": "woven into the everlasting,"
+  },
+  {
+    "start": "00:12:50.160",
+    "end": "00:12:52.550",
+    "text": "everexpanding tapestry of God's own"
+  },
+  {
+    "start": "00:12:52.560",
+    "end": "00:12:56.550",
+    "text": "life. And this profoundly makes God the"
+  },
+  {
+    "start": "00:12:56.560",
+    "end": "00:12:57.910",
+    "text": "fellow sufferer who understands."
+  },
+  {
+    "start": "00:12:57.920",
+    "end": "00:12:59.030",
+    "text": "It's a fellow sufferer."
+  },
+  {
+    "start": "00:12:59.040",
+    "end": "00:13:01.750",
+    "text": "Yes. God isn't some distant detached"
+  },
+  {
+    "start": "00:13:01.760",
+    "end": "00:13:04.790",
+    "text": "monarch watching from above. God is an"
+  },
+  {
+    "start": "00:13:04.800",
+    "end": "00:13:06.550",
+    "text": "intimate participant in the whole cosmic"
+  },
+  {
+    "start": "00:13:06.560",
+    "end": "00:13:08.629",
+    "text": "drama, sharing in its tragedies and its"
+  },
+  {
+    "start": "00:13:08.639",
+    "end": "00:13:10.790",
+    "text": "triumphs. And crucially, because the"
+  },
+  {
+    "start": "00:13:10.800",
+    "end": "00:13:12.150",
+    "text": "world is always unfolding, always"
+  },
+  {
+    "start": "00:13:12.160",
+    "end": "00:13:13.990",
+    "text": "creating new experiences, this"
+  },
+  {
+    "start": "00:13:14.000",
+    "end": "00:13:16.470",
+    "text": "consequent nature of God grows and"
+  },
+  {
+    "start": "00:13:16.480",
+    "end": "00:13:18.710",
+    "text": "changes as the world grows and changes."
+  },
+  {
+    "start": "00:13:18.720",
+    "end": "00:13:21.110",
+    "text": "God's experience expands because reality"
+  },
+  {
+    "start": "00:13:21.120",
+    "end": "00:13:22.870",
+    "text": "itself is always expanding."
+  },
+  {
+    "start": "00:13:22.880",
+    "end": "00:13:24.389",
+    "text": "That's a profoundly different image of"
+  },
+  {
+    "start": "00:13:24.399",
+    "end": "00:13:26.230",
+    "text": "God for a lot of people. I think a God"
+  },
+  {
+    "start": "00:13:26.240",
+    "end": "00:13:27.910",
+    "text": "who isn't just watching, but is feeling"
+  },
+  {
+    "start": "00:13:27.920",
+    "end": "00:13:29.350",
+    "text": "everything right along with us, taking"
+  },
+  {
+    "start": "00:13:29.360",
+    "end": "00:13:31.590",
+    "text": "every moment into his own being. So if"
+  },
+  {
+    "start": "00:13:31.600",
+    "end": "00:13:33.430",
+    "text": "the primordial nature was the unplayed"
+  },
+  {
+    "start": "00:13:33.440",
+    "end": "00:13:36.069",
+    "text": "score, the consequent nature is like the"
+  },
+  {
+    "start": "00:13:36.079",
+    "end": "00:13:37.990",
+    "text": "symphony actually being performed. And"
+  },
+  {
+    "start": "00:13:38.000",
+    "end": "00:13:39.590",
+    "text": "God is both the conductor and the"
+  },
+  {
+    "start": "00:13:39.600",
+    "end": "00:13:40.949",
+    "text": "ultimate listener who doesn't miss a"
+  },
+  {
+    "start": "00:13:40.959",
+    "end": "00:13:41.750",
+    "text": "single note."
+  },
+  {
+    "start": "00:13:41.760",
+    "end": "00:13:43.750",
+    "text": "Precisely. Think of that symphony"
+  },
+  {
+    "start": "00:13:43.760",
+    "end": "00:13:45.590",
+    "text": "playing out right now, always expanding,"
+  },
+  {
+    "start": "00:13:45.600",
+    "end": "00:13:47.990",
+    "text": "always becoming richer. And the divine"
+  },
+  {
+    "start": "00:13:48.000",
+    "end": "00:13:49.829",
+    "text": "conductor doesn't just direct it through"
+  },
+  {
+    "start": "00:13:49.839",
+    "end": "00:13:52.389",
+    "text": "those initial lures, those primordial"
+  },
+  {
+    "start": "00:13:52.399",
+    "end": "00:13:55.670",
+    "text": "possibilities, but perfectly hears,"
+  },
+  {
+    "start": "00:13:55.680",
+    "end": "00:13:57.910",
+    "text": "remembers, and cherishes every single"
+  },
+  {
+    "start": "00:13:57.920",
+    "end": "00:14:00.150",
+    "text": "note, every sound, every clash, every"
+  },
+  {
+    "start": "00:14:00.160",
+    "end": "00:14:01.829",
+    "text": "harmony, every moment of the actual"
+  },
+  {
+    "start": "00:14:01.839",
+    "end": "00:14:03.829",
+    "text": "performance. All of it is held within"
+  },
+  {
+    "start": "00:14:03.839",
+    "end": "00:14:07.189",
+    "text": "God's being forever given eternal value."
+  },
+  {
+    "start": "00:14:07.199",
+    "end": "00:14:09.350",
+    "text": "So you have these two poles, the eternal"
+  },
+  {
+    "start": "00:14:09.360",
+    "end": "00:14:11.030",
+    "text": "potential and the ever growing"
+  },
+  {
+    "start": "00:14:11.040",
+    "end": "00:14:13.030",
+    "text": "experience. How does Whitehead then"
+  },
+  {
+    "start": "00:14:13.040",
+    "end": "00:14:14.949",
+    "text": "describe God's overall relationship to"
+  },
+  {
+    "start": "00:14:14.959",
+    "end": "00:14:16.710",
+    "text": "the world? Is God the world? is the"
+  },
+  {
+    "start": "00:14:16.720",
+    "end": "00:14:17.269",
+    "text": "world in God."
+  },
+  {
+    "start": "00:14:17.279",
+    "end": "00:14:18.230",
+    "text": "Okay, this is a really important"
+  },
+  {
+    "start": "00:14:18.240",
+    "end": "00:14:19.910",
+    "text": "distinction. Whiteheads view is called"
+  },
+  {
+    "start": "00:14:19.920",
+    "end": "00:14:22.230",
+    "text": "panentheism which sounds like pantheism"
+  },
+  {
+    "start": "00:14:22.240",
+    "end": "00:14:23.030",
+    "text": "but it's different."
+  },
+  {
+    "start": "00:14:23.040",
+    "end": "00:14:24.790",
+    "text": "Right. Pantheism is a god is the world."
+  },
+  {
+    "start": "00:14:24.800",
+    "end": "00:14:26.069",
+    "text": "Everything is god."
+  },
+  {
+    "start": "00:14:26.079",
+    "end": "00:14:28.230",
+    "text": "Exactly. Panentheism says the world is"
+  },
+  {
+    "start": "00:14:28.240",
+    "end": "00:14:31.350",
+    "text": "in god but god is more than the world."
+  },
+  {
+    "start": "00:14:31.360",
+    "end": "00:14:33.030",
+    "text": "So the consequent nature god's"
+  },
+  {
+    "start": "00:14:33.040",
+    "end": "00:14:34.790",
+    "text": "experience is constituted by the world's"
+  },
+  {
+    "start": "00:14:34.800",
+    "end": "00:14:37.030",
+    "text": "experiences. Yes. But the primordial"
+  },
+  {
+    "start": "00:14:37.040",
+    "end": "00:14:38.389",
+    "text": "nature that infinite realm of"
+  },
+  {
+    "start": "00:14:38.399",
+    "end": "00:14:40.710",
+    "text": "possibilities transcends the actual"
+  },
+  {
+    "start": "00:14:40.720",
+    "end": "00:14:44.310",
+    "text": "world. So God contains the world but God"
+  },
+  {
+    "start": "00:14:44.320",
+    "end": "00:14:46.310",
+    "text": "isn't limited to or exhausted by the"
+  },
+  {
+    "start": "00:14:46.320",
+    "end": "00:14:48.870",
+    "text": "world. God is the unifying experience of"
+  },
+  {
+    "start": "00:14:48.880",
+    "end": "00:14:50.710",
+    "text": "all things and also the transcendent"
+  },
+  {
+    "start": "00:14:50.720",
+    "end": "00:14:52.069",
+    "text": "potential for all things."
+  },
+  {
+    "start": "00:14:52.079",
+    "end": "00:14:55.030",
+    "text": "Okay. So the world is in God but God is"
+  },
+  {
+    "start": "00:14:55.040",
+    "end": "00:14:56.949",
+    "text": "bigger than the world. Got it. And if"
+  },
+  {
+    "start": "00:14:56.959",
+    "end": "00:14:58.790",
+    "text": "God isn't performing miracles in the"
+  },
+  {
+    "start": "00:14:58.800",
+    "end": "00:15:00.550",
+    "text": "oldfashioned sense, how does this"
+  },
+  {
+    "start": "00:15:00.560",
+    "end": "00:15:02.389",
+    "text": "process God actually act in the world?"
+  },
+  {
+    "start": "00:15:02.399",
+    "end": "00:15:04.150",
+    "text": "What kind of power are we talking about?"
+  },
+  {
+    "start": "00:15:04.160",
+    "end": "00:15:06.389",
+    "text": "God's power here is one of persuasion,"
+  },
+  {
+    "start": "00:15:06.399",
+    "end": "00:15:08.150",
+    "text": "not coercion. That's a key phrase for"
+  },
+  {
+    "start": "00:15:08.160",
+    "end": "00:15:09.590",
+    "text": "Whitehead. God doesn't intervene by"
+  },
+  {
+    "start": "00:15:09.600",
+    "end": "00:15:11.110",
+    "text": "breaking the laws of nature. doesn't"
+  },
+  {
+    "start": "00:15:11.120",
+    "end": "00:15:13.509",
+    "text": "force things to happen. Instead, God"
+  },
+  {
+    "start": "00:15:13.519",
+    "end": "00:15:15.670",
+    "text": "offers that best possible path forward"
+  },
+  {
+    "start": "00:15:15.680",
+    "end": "00:15:17.590",
+    "text": "for each actual occasion, for every"
+  },
+  {
+    "start": "00:15:17.600",
+    "end": "00:15:19.509",
+    "text": "event through those initial aims, those"
+  },
+  {
+    "start": "00:15:19.519",
+    "end": "00:15:21.030",
+    "text": "lures from the primordial nature."
+  },
+  {
+    "start": "00:15:21.040",
+    "end": "00:15:22.069",
+    "text": "Offers the path"
+  },
+  {
+    "start": "00:15:22.079",
+    "end": "00:15:24.629",
+    "text": "offers it. Yes. But, and this is crucial"
+  },
+  {
+    "start": "00:15:24.639",
+    "end": "00:15:27.829",
+    "text": "for freedom, each event, each actual"
+  },
+  {
+    "start": "00:15:27.839",
+    "end": "00:15:29.829",
+    "text": "occasion keeps its own measure of"
+  },
+  {
+    "start": "00:15:29.839",
+    "end": "00:15:32.710",
+    "text": "freedom, its own power of self-creation."
+  },
+  {
+    "start": "00:15:32.720",
+    "end": "00:15:34.550",
+    "text": "It can accept that divine name, it can"
+  },
+  {
+    "start": "00:15:34.560",
+    "end": "00:15:37.110",
+    "text": "reject it, or it can modify it. So God"
+  },
+  {
+    "start": "00:15:37.120",
+    "end": "00:15:38.949",
+    "text": "is often described beautifully as the"
+  },
+  {
+    "start": "00:15:38.959",
+    "end": "00:15:41.269",
+    "text": "poet of the world leading it with tender"
+  },
+  {
+    "start": "00:15:41.279",
+    "end": "00:15:43.189",
+    "text": "patience through his vision of truth,"
+  },
+  {
+    "start": "00:15:43.199",
+    "end": "00:15:46.550",
+    "text": "beauty, and goodness. God doesn't force."
+  },
+  {
+    "start": "00:15:46.560",
+    "end": "00:15:48.790",
+    "text": "God inspires, invites, lures."
+  },
+  {
+    "start": "00:15:48.800",
+    "end": "00:15:50.389",
+    "text": "Which leads us straight to one of the"
+  },
+  {
+    "start": "00:15:50.399",
+    "end": "00:15:52.790",
+    "text": "biggest theological questions there is."
+  },
+  {
+    "start": "00:15:52.800",
+    "end": "00:15:55.269",
+    "text": "The problem of evil. If God is good, why"
+  },
+  {
+    "start": "00:15:55.279",
+    "end": "00:15:56.470",
+    "text": "is there so much suffering? How does"
+  },
+  {
+    "start": "00:15:56.480",
+    "end": "00:15:58.710",
+    "text": "Whiteheads process God deal with this"
+  },
+  {
+    "start": "00:15:58.720",
+    "end": "00:16:01.110",
+    "text": "huge deeply human question? This is a"
+  },
+  {
+    "start": "00:16:01.120",
+    "end": "00:16:02.150",
+    "text": "really key point and it's where"
+  },
+  {
+    "start": "00:16:02.160",
+    "end": "00:16:04.150",
+    "text": "Whitehead's view offers a kind of unique"
+  },
+  {
+    "start": "00:16:04.160",
+    "end": "00:16:06.069",
+    "text": "comfort I think for many people. Because"
+  },
+  {
+    "start": "00:16:06.079",
+    "end": "00:16:07.829",
+    "text": "the world has its own freedom, its own"
+  },
+  {
+    "start": "00:16:07.839",
+    "end": "00:16:09.910",
+    "text": "power of self-creation and because God"
+  },
+  {
+    "start": "00:16:09.920",
+    "end": "00:16:12.230",
+    "text": "works through persuasion, not force, God"
+  },
+  {
+    "start": "00:16:12.240",
+    "end": "00:16:14.310",
+    "text": "is not omnipotent in the classical way."
+  },
+  {
+    "start": "00:16:14.320",
+    "end": "00:16:15.990",
+    "text": "God isn't all powerful in a way that"
+  },
+  {
+    "start": "00:16:16.000",
+    "end": "00:16:17.670",
+    "text": "means he can just unilaterally prevent"
+  },
+  {
+    "start": "00:16:17.680",
+    "end": "00:16:18.870",
+    "text": "all evil or suffering."
+  },
+  {
+    "start": "00:16:18.880",
+    "end": "00:16:20.470",
+    "text": "He can't just snap his fingers and stop"
+  },
+  {
+    "start": "00:16:20.480",
+    "end": "00:16:21.030",
+    "text": "it."
+  },
+  {
+    "start": "00:16:21.040",
+    "end": "00:16:23.030",
+    "text": "No, because doing that would violate the"
+  },
+  {
+    "start": "00:16:23.040",
+    "end": "00:16:24.470",
+    "text": "world's freedom, the very nature of"
+  },
+  {
+    "start": "00:16:24.480",
+    "end": "00:16:26.870",
+    "text": "process itself. So God's response to"
+  },
+  {
+    "start": "00:16:26.880",
+    "end": "00:16:29.110",
+    "text": "evil isn't to magically erase it. It's"
+  },
+  {
+    "start": "00:16:29.120",
+    "end": "00:16:30.790",
+    "text": "something more. empathetic and"
+  },
+  {
+    "start": "00:16:30.800",
+    "end": "00:16:33.590",
+    "text": "transformative. God's response is to"
+  },
+  {
+    "start": "00:16:33.600",
+    "end": "00:16:35.749",
+    "text": "absorb the suffering into his own being."
+  },
+  {
+    "start": "00:16:35.759",
+    "end": "00:16:37.430",
+    "text": "That's the consequent nature feeling at"
+  },
+  {
+    "start": "00:16:37.440",
+    "end": "00:16:39.509",
+    "text": "all. And then transform it by luring the"
+  },
+  {
+    "start": "00:16:39.519",
+    "end": "00:16:41.670",
+    "text": "world toward a better future. God"
+  },
+  {
+    "start": "00:16:41.680",
+    "end": "00:16:43.990",
+    "text": "redeems the world not by brute force,"
+  },
+  {
+    "start": "00:16:44.000",
+    "end": "00:16:46.629",
+    "text": "but by love, by understanding, by"
+  },
+  {
+    "start": "00:16:46.639",
+    "end": "00:16:48.629",
+    "text": "constant companionship. The pain isn't"
+  },
+  {
+    "start": "00:16:48.639",
+    "end": "00:16:50.389",
+    "text": "just wiped away, but it's held. It's"
+  },
+  {
+    "start": "00:16:50.399",
+    "end": "00:16:52.550",
+    "text": "felt. It's valued. And it's used as"
+  },
+  {
+    "start": "00:16:52.560",
+    "end": "00:16:54.949",
+    "text": "fuel, as data for new possibilities of"
+  },
+  {
+    "start": "00:16:54.959",
+    "end": "00:16:57.829",
+    "text": "good. Hm. What stands out to you about a"
+  },
+  {
+    "start": "00:16:57.839",
+    "end": "00:16:59.990",
+    "text": "God who feels and experiences all the"
+  },
+  {
+    "start": "00:17:00.000",
+    "end": "00:17:01.990",
+    "text": "pain of the world right alongside us?"
+  },
+  {
+    "start": "00:17:02.000",
+    "end": "00:17:03.350",
+    "text": "For many people, especially when they're"
+  },
+  {
+    "start": "00:17:03.360",
+    "end": "00:17:05.270",
+    "text": "facing terrible suffering that might"
+  },
+  {
+    "start": "00:17:05.280",
+    "end": "00:17:07.270",
+    "text": "feel more relatable, more comforting"
+  },
+  {
+    "start": "00:17:07.280",
+    "end": "00:17:09.429",
+    "text": "maybe, than a distant, all powerful God"
+  },
+  {
+    "start": "00:17:09.439",
+    "end": "00:17:12.069",
+    "text": "who just allows it. It's definitely a"
+  },
+  {
+    "start": "00:17:12.079",
+    "end": "00:17:13.829",
+    "text": "vision of the divine that emphasizes"
+  },
+  {
+    "start": "00:17:13.839",
+    "end": "00:17:16.069",
+    "text": "deep empathy and participation. It"
+  },
+  {
+    "start": "00:17:16.079",
+    "end": "00:17:17.669",
+    "text": "suggests that even in the darkest times,"
+  },
+  {
+    "start": "00:17:17.679",
+    "end": "00:17:19.590",
+    "text": "you're not alone. That suffering is"
+  },
+  {
+    "start": "00:17:19.600",
+    "end": "00:17:22.069",
+    "text": "known, felt, and carried by God himself."
+  },
+  {
+    "start": "00:17:22.079",
+    "end": "00:17:24.870",
+    "text": "Okay, now let's pivot. And it's a sharp"
+  },
+  {
+    "start": "00:17:24.880",
+    "end": "00:17:27.110",
+    "text": "pivot really. If Whitehead had set out"
+  },
+  {
+    "start": "00:17:27.120",
+    "end": "00:17:29.029",
+    "text": "to build this whole new philosophical"
+  },
+  {
+    "start": "00:17:29.039",
+    "end": "00:17:31.110",
+    "text": "ship, incorporating modern science to"
+  },
+  {
+    "start": "00:17:31.120",
+    "end": "00:17:33.669",
+    "text": "fix that bifurcation, Wolf Gang Smith"
+  },
+  {
+    "start": "00:17:33.679",
+    "end": "00:17:35.190",
+    "text": "takes a completely different tack,"
+  },
+  {
+    "start": "00:17:35.200",
+    "end": "00:17:37.830",
+    "text": "almost the opposite. He basically says"
+  },
+  {
+    "start": "00:17:37.840",
+    "end": "00:17:40.630",
+    "text": "the old ship was fine, better even, and"
+  },
+  {
+    "start": "00:17:40.640",
+    "end": "00:17:42.150",
+    "text": "we're the ones who need to get back on"
+  },
+  {
+    "start": "00:17:42.160",
+    "end": "00:17:42.549",
+    "text": "board."
+  },
+  {
+    "start": "00:17:42.559",
+    "end": "00:17:44.230",
+    "text": "That's a great way to put it. Wolf Gang"
+  },
+  {
+    "start": "00:17:44.240",
+    "end": "00:17:45.510",
+    "text": "Smith, who's fascinating because he's an"
+  },
+  {
+    "start": "00:17:45.520",
+    "end": "00:17:47.190",
+    "text": "accomplished physicist and mathematician"
+  },
+  {
+    "start": "00:17:47.200",
+    "end": "00:17:49.909",
+    "text": "as well as a a philosopher, argues that"
+  },
+  {
+    "start": "00:17:49.919",
+    "end": "00:17:51.909",
+    "text": "modernity's biggest mistake was throwing"
+  },
+  {
+    "start": "00:17:51.919",
+    "end": "00:17:53.430",
+    "text": "out what he calls the traditional"
+  },
+  {
+    "start": "00:17:53.440",
+    "end": "00:17:55.110",
+    "text": "hierarchical cosmology."
+  },
+  {
+    "start": "00:17:55.120",
+    "end": "00:17:57.350",
+    "text": "Traditional hierarchical cosmology."
+  },
+  {
+    "start": "00:17:57.360",
+    "end": "00:17:58.789",
+    "text": "He believes that somewhere along the"
+  },
+  {
+    "start": "00:17:58.799",
+    "end": "00:18:00.549",
+    "text": "line, maybe starting around Dayart"
+  },
+  {
+    "start": "00:18:00.559",
+    "end": "00:18:02.789",
+    "text": "Newton, we lost touch with a much"
+  },
+  {
+    "start": "00:18:02.799",
+    "end": "00:18:04.950",
+    "text": "deeper, more complete understanding of"
+  },
+  {
+    "start": "00:18:04.960",
+    "end": "00:18:07.350",
+    "text": "reality. So his work especially in books"
+  },
+  {
+    "start": "00:18:07.360",
+    "end": "00:18:09.190",
+    "text": "like the quantum enigma or cosmos and"
+  },
+  {
+    "start": "00:18:09.200",
+    "end": "00:18:11.430",
+    "text": "transcendence is all about trying to"
+  },
+  {
+    "start": "00:18:11.440",
+    "end": "00:18:14.390",
+    "text": "restore this ancient traditional view."
+  },
+  {
+    "start": "00:18:14.400",
+    "end": "00:18:16.789",
+    "text": "And for Smith, God isn't a part within"
+  },
+  {
+    "start": "00:18:16.799",
+    "end": "00:18:19.110",
+    "text": "the system like in Whitehead. God is the"
+  },
+  {
+    "start": "00:18:19.120",
+    "end": "00:18:20.789",
+    "text": "utterly transcendent ground of the"
+  },
+  {
+    "start": "00:18:20.799",
+    "end": "00:18:21.590",
+    "text": "system itself."
+  },
+  {
+    "start": "00:18:21.600",
+    "end": "00:18:23.750",
+    "text": "And he draws on older traditions"
+  },
+  {
+    "start": "00:18:23.760",
+    "end": "00:18:25.990",
+    "text": "very much so. He draws heavily on the"
+  },
+  {
+    "start": "00:18:26.000",
+    "end": "00:18:28.390",
+    "text": "perennial philosophy. This idea that"
+  },
+  {
+    "start": "00:18:28.400",
+    "end": "00:18:30.630",
+    "text": "there are universal truths found across"
+  },
+  {
+    "start": "00:18:30.640",
+    "end": "00:18:32.789",
+    "text": "many ancient spiritual and philosophical"
+  },
+  {
+    "start": "00:18:32.799",
+    "end": "00:18:35.669",
+    "text": "paths. and he particularly leans on"
+  },
+  {
+    "start": "00:18:35.679",
+    "end": "00:18:38.070",
+    "text": "scholastic metaphysics, the super"
+  },
+  {
+    "start": "00:18:38.080",
+    "end": "00:18:40.470",
+    "text": "rigorous philosophy of thinkers like St."
+  },
+  {
+    "start": "00:18:40.480",
+    "end": "00:18:42.070",
+    "text": "Thomas Aquinas from the Middle Ages."
+  },
+  {
+    "start": "00:18:42.080",
+    "end": "00:18:43.909",
+    "text": "So Smith is essentially saying our"
+  },
+  {
+    "start": "00:18:43.919",
+    "end": "00:18:46.150",
+    "text": "modern scientific view, yeah, it's"
+  },
+  {
+    "start": "00:18:46.160",
+    "end": "00:18:47.750",
+    "text": "powerful for what it does, but it's"
+  },
+  {
+    "start": "00:18:47.760",
+    "end": "00:18:49.430",
+    "text": "fundamentally broken at its"
+  },
+  {
+    "start": "00:18:49.440",
+    "end": "00:18:51.990",
+    "text": "philosophical roots. And to really get"
+  },
+  {
+    "start": "00:18:52.000",
+    "end": "00:18:54.070",
+    "text": "reality, we need to go back to an older,"
+  },
+  {
+    "start": "00:18:54.080",
+    "end": "00:18:56.470",
+    "text": "maybe forgotten way of seeing."
+  },
+  {
+    "start": "00:18:56.480",
+    "end": "00:18:57.270",
+    "text": "Pretty much. Yes."
+  },
+  {
+    "start": "00:18:57.280",
+    "end": "00:18:57.750",
+    "text": "Yeah."
+  },
+  {
+    "start": "00:18:57.760",
+    "end": "00:18:59.590",
+    "text": "And central to that older way is this"
+  },
+  {
+    "start": "00:18:59.600",
+    "end": "00:19:01.830",
+    "text": "idea of a hierarchy of being. This is"
+  },
+  {
+    "start": "00:19:01.840",
+    "end": "00:19:03.990",
+    "text": "absolutely core to understanding Smith"
+  },
+  {
+    "start": "00:19:04.000",
+    "end": "00:19:05.590",
+    "text": "hierarchy of being. What does he mean by"
+  },
+  {
+    "start": "00:19:05.600",
+    "end": "00:19:07.510",
+    "text": "that? How does reality stack up for him?"
+  },
+  {
+    "start": "00:19:07.520",
+    "end": "00:19:09.350",
+    "text": "Okay, this is a really crucial concept."
+  },
+  {
+    "start": "00:19:09.360",
+    "end": "00:19:11.750",
+    "text": "He argues reality is not like a flat"
+  },
+  {
+    "start": "00:19:11.760",
+    "end": "00:19:13.430",
+    "text": "single level playing field of just"
+  },
+  {
+    "start": "00:19:13.440",
+    "end": "00:19:14.950",
+    "text": "physical stuff, which is kind of how"
+  },
+  {
+    "start": "00:19:14.960",
+    "end": "00:19:16.630",
+    "text": "modern science often implicitly treats"
+  },
+  {
+    "start": "00:19:16.640",
+    "end": "00:19:19.350",
+    "text": "it. Instead, reality is a hierarchy of"
+  },
+  {
+    "start": "00:19:19.360",
+    "end": "00:19:21.350",
+    "text": "onlogical levels, distinct levels of"
+  },
+  {
+    "start": "00:19:21.360",
+    "end": "00:19:23.590",
+    "text": "being, of existence. Each level is more"
+  },
+  {
+    "start": "00:19:23.600",
+    "end": "00:19:25.110",
+    "text": "fundamental, more subtle, maybe more"
+  },
+  {
+    "start": "00:19:25.120",
+    "end": "00:19:26.630",
+    "text": "encompassing than the one below it."
+  },
+  {
+    "start": "00:19:26.640",
+    "end": "00:19:29.029",
+    "text": "Like floors in a building. Exactly like"
+  },
+  {
+    "start": "00:19:29.039",
+    "end": "00:19:31.430",
+    "text": "floors in a building where each floor"
+  },
+  {
+    "start": "00:19:31.440",
+    "end": "00:19:33.669",
+    "text": "has its own nature but it's ultimately"
+  },
+  {
+    "start": "00:19:33.679",
+    "end": "00:19:36.230",
+    "text": "held up sustained by the floors above"
+  },
+  {
+    "start": "00:19:36.240",
+    "end": "00:19:38.870",
+    "text": "it. He usually talks about three main"
+  },
+  {
+    "start": "00:19:38.880",
+    "end": "00:19:40.070",
+    "text": "domains or levels."
+  },
+  {
+    "start": "00:19:40.080",
+    "end": "00:19:41.990",
+    "text": "Okay. What are they? First at the bottom"
+  },
+  {
+    "start": "00:19:42.000",
+    "end": "00:19:44.070",
+    "text": "you have the corporeal domain. This is"
+  },
+  {
+    "start": "00:19:44.080",
+    "end": "00:19:45.669",
+    "text": "the physical world we usually think of"
+  },
+  {
+    "start": "00:19:45.679",
+    "end": "00:19:48.549",
+    "text": "objects, things in space and time, stuff"
+  },
+  {
+    "start": "00:19:48.559",
+    "end": "00:19:52.310",
+    "text": "we see, touch, measure, atoms, planets,"
+  },
+  {
+    "start": "00:19:52.320",
+    "end": "00:19:54.950",
+    "text": "bodies. This is the realm modern science"
+  },
+  {
+    "start": "00:19:54.960",
+    "end": "00:19:57.590",
+    "text": "mostly studies. It's real, but it's the"
+  },
+  {
+    "start": "00:19:57.600",
+    "end": "00:19:59.029",
+    "text": "lowest most derivative level."
+  },
+  {
+    "start": "00:19:59.039",
+    "end": "00:20:01.029",
+    "text": "Okay, the physical world level one."
+  },
+  {
+    "start": "00:20:01.039",
+    "end": "00:20:02.470",
+    "text": "Then above that, there's the psychic"
+  },
+  {
+    "start": "00:20:02.480",
+    "end": "00:20:04.390",
+    "text": "domain. This is an intermediate realm."
+  },
+  {
+    "start": "00:20:04.400",
+    "end": "00:20:06.230",
+    "text": "It's the realm of the soul, of images,"
+  },
+  {
+    "start": "00:20:06.240",
+    "end": "00:20:07.990",
+    "text": "emotions, thoughts, what he sometimes"
+  },
+  {
+    "start": "00:20:08.000",
+    "end": "00:20:10.150",
+    "text": "calls subtle forms. Think about your"
+  },
+  {
+    "start": "00:20:10.160",
+    "end": "00:20:12.070",
+    "text": "dreams, your imagination, your feelings."
+  },
+  {
+    "start": "00:20:12.080",
+    "end": "00:20:13.830",
+    "text": "They're real experiences, right? But"
+  },
+  {
+    "start": "00:20:13.840",
+    "end": "00:20:15.750",
+    "text": "they aren't physical like a rock is."
+  },
+  {
+    "start": "00:20:15.760",
+    "end": "00:20:17.110",
+    "text": "They exist on a different, more"
+  },
+  {
+    "start": "00:20:17.120",
+    "end": "00:20:18.950",
+    "text": "internal, non-physical plane,"
+  },
+  {
+    "start": "00:20:18.960",
+    "end": "00:20:21.270",
+    "text": "right? Thoughts, feelings, images. Got"
+  },
+  {
+    "start": "00:20:21.280",
+    "end": "00:20:23.110",
+    "text": "it? Level two. And then at the highest"
+  },
+  {
+    "start": "00:20:23.120",
+    "end": "00:20:24.950",
+    "text": "level you have the knowetic or spiritual"
+  },
+  {
+    "start": "00:20:24.960",
+    "end": "00:20:27.190",
+    "text": "domain. This is a realm of pure"
+  },
+  {
+    "start": "00:20:27.200",
+    "end": "00:20:30.470",
+    "text": "intellect, pure forms, archetypes,"
+  },
+  {
+    "start": "00:20:30.480",
+    "end": "00:20:33.110",
+    "text": "universal truths. And ultimately this is"
+  },
+  {
+    "start": "00:20:33.120",
+    "end": "00:20:35.270",
+    "text": "the realm where God resides or more"
+  },
+  {
+    "start": "00:20:35.280",
+    "end": "00:20:38.070",
+    "text": "accurately is the source of it's a realm"
+  },
+  {
+    "start": "00:20:38.080",
+    "end": "00:20:40.549",
+    "text": "beyond space, time, even beyond the"
+  },
+  {
+    "start": "00:20:40.559",
+    "end": "00:20:42.310",
+    "text": "individual soul. It's the ultimate"
+  },
+  {
+    "start": "00:20:42.320",
+    "end": "00:20:45.190",
+    "text": "source of all order, meaning reality"
+  },
+  {
+    "start": "00:20:45.200",
+    "end": "00:20:47.510",
+    "text": "itself. Okay, so a layered reality,"
+  },
+  {
+    "start": "00:20:47.520",
+    "end": "00:20:49.990",
+    "text": "physical, psychic, spiritual. It does"
+  },
+  {
+    "start": "00:20:50.000",
+    "end": "00:20:52.549",
+    "text": "sound like a ladder of existence. How do"
+  },
+  {
+    "start": "00:20:52.559",
+    "end": "00:20:54.230",
+    "text": "these layers connect? Is there like a"
+  },
+  {
+    "start": "00:20:54.240",
+    "end": "00:20:56.149",
+    "text": "flow between them or are they just"
+  },
+  {
+    "start": "00:20:56.159",
+    "end": "00:20:56.950",
+    "text": "separate floors?"
+  },
+  {
+    "start": "00:20:56.960",
+    "end": "00:20:58.710",
+    "text": "Oh, there's a profound connection, but"
+  },
+  {
+    "start": "00:20:58.720",
+    "end": "00:20:59.909",
+    "text": "it's not the kind of connection we"
+  },
+  {
+    "start": "00:20:59.919",
+    "end": "00:21:00.710",
+    "text": "usually think about."
+  },
+  {
+    "start": "00:21:00.720",
+    "end": "00:21:01.110",
+    "text": "Yeah."
+  },
+  {
+    "start": "00:21:01.120",
+    "end": "00:21:02.789",
+    "text": "This brings us to another absolutely"
+  },
+  {
+    "start": "00:21:02.799",
+    "end": "00:21:05.029",
+    "text": "critical idea for Smith. Vertical"
+  },
+  {
+    "start": "00:21:05.039",
+    "end": "00:21:05.909",
+    "text": "causality."
+  },
+  {
+    "start": "00:21:05.919",
+    "end": "00:21:07.430",
+    "text": "Vertical causality. Okay. How is that"
+  },
+  {
+    "start": "00:21:07.440",
+    "end": "00:21:08.950",
+    "text": "different from regular causality?"
+  },
+  {
+    "start": "00:21:08.960",
+    "end": "00:21:11.029",
+    "text": "Regular causality that Kayen science"
+  },
+  {
+    "start": "00:21:11.039",
+    "end": "00:21:13.590",
+    "text": "studies is horizontal causality. Thanks."
+  },
+  {
+    "start": "00:21:13.600",
+    "end": "00:21:15.350",
+    "text": "One bill ball hits another, makes a"
+  },
+  {
+    "start": "00:21:15.360",
+    "end": "00:21:18.230",
+    "text": "move. A causes B causes C. All happening"
+  },
+  {
+    "start": "00:21:18.240",
+    "end": "00:21:19.830",
+    "text": "within the same level of reality,"
+  },
+  {
+    "start": "00:21:19.840",
+    "end": "00:21:21.909",
+    "text": "unfolding sequentially in time."
+  },
+  {
+    "start": "00:21:21.919",
+    "end": "00:21:24.390",
+    "text": "Right. A leads to B leads to C along the"
+  },
+  {
+    "start": "00:21:24.400",
+    "end": "00:21:25.669",
+    "text": "timeline. That's how we normally think"
+  },
+  {
+    "start": "00:21:25.679",
+    "end": "00:21:27.590",
+    "text": "of cause and effect. Makes sense."
+  },
+  {
+    "start": "00:21:27.600",
+    "end": "00:21:29.750",
+    "text": "Exactly. Vertical causality is totally"
+  },
+  {
+    "start": "00:21:29.760",
+    "end": "00:21:31.669",
+    "text": "different. It's the momentby-moment"
+  },
+  {
+    "start": "00:21:31.679",
+    "end": "00:21:34.070",
+    "text": "sustaining of a lower level of being by"
+  },
+  {
+    "start": "00:21:34.080",
+    "end": "00:21:36.870",
+    "text": "a higher one. It's not a sequence in"
+  },
+  {
+    "start": "00:21:36.880",
+    "end": "00:21:39.510",
+    "text": "time. It's a continuous outpouring of"
+  },
+  {
+    "start": "00:21:39.520",
+    "end": "00:21:41.990",
+    "text": "existence right now from a higher more"
+  },
+  {
+    "start": "00:21:42.000",
+    "end": "00:21:44.070",
+    "text": "fundamental level down to a lower"
+  },
+  {
+    "start": "00:21:44.080",
+    "end": "00:21:46.789",
+    "text": "dependent level. It's about onlogical"
+  },
+  {
+    "start": "00:21:46.799",
+    "end": "00:21:50.070",
+    "text": "dependence. A constant act of creation."
+  },
+  {
+    "start": "00:21:50.080",
+    "end": "00:21:52.710",
+    "text": "Okay. Moment by-moment sustaining."
+  },
+  {
+    "start": "00:21:52.720",
+    "end": "00:21:54.070",
+    "text": "That's still a bit abstract. Can you"
+  },
+  {
+    "start": "00:21:54.080",
+    "end": "00:21:55.270",
+    "text": "give us another way to think about that?"
+  },
+  {
+    "start": "00:21:55.280",
+    "end": "00:21:56.310",
+    "text": "Maybe another analogy."
+  },
+  {
+    "start": "00:21:56.320",
+    "end": "00:21:58.230",
+    "text": "Sure. Think about an author and the"
+  },
+  {
+    "start": "00:21:58.240",
+    "end": "00:22:00.549",
+    "text": "characters in their novel. The author is"
+  },
+  {
+    "start": "00:22:00.559",
+    "end": "00:22:02.950",
+    "text": "the vertical cause of those characters."
+  },
+  {
+    "start": "00:22:02.960",
+    "end": "00:22:04.710",
+    "text": "The characters don't exist on their own."
+  },
+  {
+    "start": "00:22:04.720",
+    "end": "00:22:06.470",
+    "text": "Their entire being is continuously"
+  },
+  {
+    "start": "00:22:06.480",
+    "end": "00:22:08.470",
+    "text": "coming from the author's creative act,"
+  },
+  {
+    "start": "00:22:08.480",
+    "end": "00:22:10.710",
+    "text": "from the author's mind. They exist on a"
+  },
+  {
+    "start": "00:22:10.720",
+    "end": "00:22:12.310",
+    "text": "totally different level of reality than"
+  },
+  {
+    "start": "00:22:12.320",
+    "end": "00:22:13.990",
+    "text": "the author. You can't meet Sherlock"
+  },
+  {
+    "start": "00:22:14.000",
+    "end": "00:22:15.590",
+    "text": "Holmes on the street, but you could in"
+  },
+  {
+    "start": "00:22:15.600",
+    "end": "00:22:17.430",
+    "text": "theory meet Arthur Conan Doyle,"
+  },
+  {
+    "start": "00:22:17.440",
+    "end": "00:22:19.029",
+    "text": "right? The character depends entirely on"
+  },
+  {
+    "start": "00:22:19.039",
+    "end": "00:22:19.750",
+    "text": "the author,"
+  },
+  {
+    "start": "00:22:19.760",
+    "end": "00:22:22.470",
+    "text": "entirely and continuously. If the author"
+  },
+  {
+    "start": "00:22:22.480",
+    "end": "00:22:24.310",
+    "text": "stops thinking about them, stops writing"
+  },
+  {
+    "start": "00:22:24.320",
+    "end": "00:22:25.990",
+    "text": "in a sense, they cease to be. The"
+  },
+  {
+    "start": "00:22:26.000",
+    "end": "00:22:28.230",
+    "text": "author's mind, the higher level, is"
+  },
+  {
+    "start": "00:22:28.240",
+    "end": "00:22:29.830",
+    "text": "constantly sustaining the character's"
+  },
+  {
+    "start": "00:22:29.840",
+    "end": "00:22:31.830",
+    "text": "existence within the story, the lower"
+  },
+  {
+    "start": "00:22:31.840",
+    "end": "00:22:35.029",
+    "text": "level. Or another classic one, think"
+  },
+  {
+    "start": "00:22:35.039",
+    "end": "00:22:37.190",
+    "text": "about sunlight and a shadow. The"
+  },
+  {
+    "start": "00:22:37.200",
+    "end": "00:22:39.029",
+    "text": "sunlight is the vertical cause of the"
+  },
+  {
+    "start": "00:22:39.039",
+    "end": "00:22:41.590",
+    "text": "shadow. The shadow has no independent"
+  },
+  {
+    "start": "00:22:41.600",
+    "end": "00:22:43.590",
+    "text": "reality. Its existence is totally"
+  },
+  {
+    "start": "00:22:43.600",
+    "end": "00:22:45.590",
+    "text": "dependent on the light being there. If"
+  },
+  {
+    "start": "00:22:45.600",
+    "end": "00:22:47.190",
+    "text": "the sun goes behind a cloud, if the"
+  },
+  {
+    "start": "00:22:47.200",
+    "end": "00:22:49.190",
+    "text": "light is withdrawn, the shadow instantly"
+  },
+  {
+    "start": "00:22:49.200",
+    "end": "00:22:50.950",
+    "text": "vanishes. It's not that the light"
+  },
+  {
+    "start": "00:22:50.960",
+    "end": "00:22:52.630",
+    "text": "created the shadow earlier and then"
+  },
+  {
+    "start": "00:22:52.640",
+    "end": "00:22:54.630",
+    "text": "left. It's continuously causing the"
+  },
+  {
+    "start": "00:22:54.640",
+    "end": "00:22:55.990",
+    "text": "shadow to exist right now."
+  },
+  {
+    "start": "00:22:56.000",
+    "end": "00:22:58.390",
+    "text": "Ah, okay. That helps. The lower level"
+  },
+  {
+    "start": "00:22:58.400",
+    "end": "00:23:00.310",
+    "text": "instantly ceases if the higher level"
+  },
+  {
+    "start": "00:23:00.320",
+    "end": "00:23:02.549",
+    "text": "withdraws its influence. So the entire"
+  },
+  {
+    "start": "00:23:02.559",
+    "end": "00:23:04.549",
+    "text": "universe then at every moment is being"
+  },
+  {
+    "start": "00:23:04.559",
+    "end": "00:23:06.470",
+    "text": "sustained by a higher reality through"
+  },
+  {
+    "start": "00:23:06.480",
+    "end": "00:23:07.990",
+    "text": "this vertical causality."
+  },
+  {
+    "start": "00:23:08.000",
+    "end": "00:23:09.510",
+    "text": "That's exactly the idea for Smith."
+  },
+  {
+    "start": "00:23:09.520",
+    "end": "00:23:10.950",
+    "text": "So how does this hierarchical view"
+  },
+  {
+    "start": "00:23:10.960",
+    "end": "00:23:12.710",
+    "text": "define God? What is God's nature? His"
+  },
+  {
+    "start": "00:23:12.720",
+    "end": "00:23:15.190",
+    "text": "ontology in this traditionalist picture."
+  },
+  {
+    "start": "00:23:15.200",
+    "end": "00:23:17.110",
+    "text": "Following Aquinus very closely here,"
+  },
+  {
+    "start": "00:23:17.120",
+    "end": "00:23:19.350",
+    "text": "Smith defines God as essayipsum"
+  },
+  {
+    "start": "00:23:19.360",
+    "end": "00:23:22.070",
+    "text": "subsistence. That's Latin for subsistant"
+  },
+  {
+    "start": "00:23:22.080",
+    "end": "00:23:22.950",
+    "text": "being itself."
+  },
+  {
+    "start": "00:23:22.960",
+    "end": "00:23:23.830",
+    "text": "Being itself."
+  },
+  {
+    "start": "00:23:23.840",
+    "end": "00:23:27.270",
+    "text": "Being itself. This is huge. See, created"
+  },
+  {
+    "start": "00:23:27.280",
+    "end": "00:23:30.470",
+    "text": "things, you, me, a star, a tree, we"
+  },
+  {
+    "start": "00:23:30.480",
+    "end": "00:23:32.310",
+    "text": "participate in being. We have existence."
+  },
+  {
+    "start": "00:23:32.320",
+    "end": "00:23:34.870",
+    "text": "It's like a quality we possess. But God"
+  },
+  {
+    "start": "00:23:34.880",
+    "end": "00:23:37.510",
+    "text": "doesn't just have being. God is being."
+  },
+  {
+    "start": "00:23:37.520",
+    "end": "00:23:39.110",
+    "text": "God isn't a being, even the greatest"
+  },
+  {
+    "start": "00:23:39.120",
+    "end": "00:23:41.029",
+    "text": "being. God is the sheer uncaused"
+  },
+  {
+    "start": "00:23:41.039",
+    "end": "00:23:43.350",
+    "text": "infinite act of existing itself. The"
+  },
+  {
+    "start": "00:23:43.360",
+    "end": "00:23:45.110",
+    "text": "absolute source from which everything"
+  },
+  {
+    "start": "00:23:45.120",
+    "end": "00:23:47.430",
+    "text": "else receives its borrowed participated"
+  },
+  {
+    "start": "00:23:47.440",
+    "end": "00:23:48.149",
+    "text": "existence."
+  },
+  {
+    "start": "00:23:48.159",
+    "end": "00:23:50.789",
+    "text": "Wow. Okay. So God is existence, not just"
+  },
+  {
+    "start": "00:23:50.799",
+    "end": "00:23:52.789",
+    "text": "has existence. And this leads to another"
+  },
+  {
+    "start": "00:23:52.799",
+    "end": "00:23:55.110",
+    "text": "key term you mentioned, act as purus."
+  },
+  {
+    "start": "00:23:55.120",
+    "end": "00:23:57.110",
+    "text": "Precisely. Actis purus means pure"
+  },
+  {
+    "start": "00:23:57.120",
+    "end": "00:23:59.110",
+    "text": "actuality. Think about change again."
+  },
+  {
+    "start": "00:23:59.120",
+    "end": "00:24:01.190",
+    "text": "Anything that changes has to move from a"
+  },
+  {
+    "start": "00:24:01.200",
+    "end": "00:24:02.870",
+    "text": "state of potentiality, what it could be"
+  },
+  {
+    "start": "00:24:02.880",
+    "end": "00:24:04.950",
+    "text": "but isn't yet, to actuality, what it is"
+  },
+  {
+    "start": "00:24:04.960",
+    "end": "00:24:07.029",
+    "text": "now. An acorn has the potential to be an"
+  },
+  {
+    "start": "00:24:07.039",
+    "end": "00:24:08.870",
+    "text": "oak tree. When it grows, it actualizes"
+  },
+  {
+    "start": "00:24:08.880",
+    "end": "00:24:09.590",
+    "text": "that potential."
+  },
+  {
+    "start": "00:24:09.600",
+    "end": "00:24:10.230",
+    "text": "Makes sense."
+  },
+  {
+    "start": "00:24:10.240",
+    "end": "00:24:12.549",
+    "text": "But God being pure actuality, has zero"
+  },
+  {
+    "start": "00:24:12.559",
+    "end": "00:24:14.310",
+    "text": "potentiality. There's nothing God could"
+  },
+  {
+    "start": "00:24:14.320",
+    "end": "00:24:15.909",
+    "text": "become that God isn't already."
+  },
+  {
+    "start": "00:24:15.919",
+    "end": "00:24:17.830",
+    "text": "Infinitely and perfectly. Therefore, God"
+  },
+  {
+    "start": "00:24:17.840",
+    "end": "00:24:20.390",
+    "text": "must be absolutely simple, perfect, and"
+  },
+  {
+    "start": "00:24:20.400",
+    "end": "00:24:22.390",
+    "text": "immutable, unchanging."
+  },
+  {
+    "start": "00:24:22.400",
+    "end": "00:24:23.909",
+    "text": "Why immutable? Because there's no"
+  },
+  {
+    "start": "00:24:23.919",
+    "end": "00:24:25.510",
+    "text": "potential to actual life."
+  },
+  {
+    "start": "00:24:25.520",
+    "end": "00:24:27.750",
+    "text": "Exactly. Any change would mean moving"
+  },
+  {
+    "start": "00:24:27.760",
+    "end": "00:24:30.149",
+    "text": "from potential to actual. But God is"
+  },
+  {
+    "start": "00:24:30.159",
+    "end": "00:24:32.230",
+    "text": "fully actual. There's no potential left"
+  },
+  {
+    "start": "00:24:32.240",
+    "end": "00:24:34.549",
+    "text": "to fulfill. So God cannot change in any"
+  },
+  {
+    "start": "00:24:34.559",
+    "end": "00:24:37.029",
+    "text": "way. God is utterly complete, perfect,"
+  },
+  {
+    "start": "00:24:37.039",
+    "end": "00:24:39.750",
+    "text": "fully actualized, cannot improve, cannot"
+  },
+  {
+    "start": "00:24:39.760",
+    "end": "00:24:41.990",
+    "text": "diminish, just is perfectly"
+  },
+  {
+    "start": "00:24:42.000",
+    "end": "00:24:44.390",
+    "text": "a completely unchanging, perfectly"
+  },
+  {
+    "start": "00:24:44.400",
+    "end": "00:24:47.990",
+    "text": "actualized being. And this immutability,"
+  },
+  {
+    "start": "00:24:48.000",
+    "end": "00:24:50.390",
+    "text": "this perfection is directly tied to the"
+  },
+  {
+    "start": "00:24:50.400",
+    "end": "00:24:52.390",
+    "text": "idea of God's transcendence for Smith,"
+  },
+  {
+    "start": "00:24:52.400",
+    "end": "00:24:54.230",
+    "text": "right? God being totally separate."
+  },
+  {
+    "start": "00:24:54.240",
+    "end": "00:24:56.710",
+    "text": "Yes. God is radically transcendent. God"
+  },
+  {
+    "start": "00:24:56.720",
+    "end": "00:24:58.789",
+    "text": "is not in the world in that whiteheadian"
+  },
+  {
+    "start": "00:24:58.799",
+    "end": "00:25:00.549",
+    "text": "sense feeling its process is growing"
+  },
+  {
+    "start": "00:25:00.559",
+    "end": "00:25:03.190",
+    "text": "with it. No, God is the onlogical source"
+  },
+  {
+    "start": "00:25:03.200",
+    "end": "00:25:05.110",
+    "text": "from which the entire hierarchy,"
+  },
+  {
+    "start": "00:25:05.120",
+    "end": "00:25:07.990",
+    "text": "corporeal, psychic, noetic gets its"
+  },
+  {
+    "start": "00:25:08.000",
+    "end": "00:25:09.590",
+    "text": "existence moment by moment through"
+  },
+  {
+    "start": "00:25:09.600",
+    "end": "00:25:11.669",
+    "text": "vertical causality. or Smith putting God"
+  },
+  {
+    "start": "00:25:11.679",
+    "end": "00:25:13.510",
+    "text": "inside the temporal process suggesting"
+  },
+  {
+    "start": "00:25:13.520",
+    "end": "00:25:15.269",
+    "text": "God changes or suffers like Whitehead"
+  },
+  {
+    "start": "00:25:15.279",
+    "end": "00:25:17.430",
+    "text": "does. That's a catastrophic metaphysical"
+  },
+  {
+    "start": "00:25:17.440",
+    "end": "00:25:19.110",
+    "text": "error. It's confusing the creator with"
+  },
+  {
+    "start": "00:25:19.120",
+    "end": "00:25:20.870",
+    "text": "the creation. It blurs the infinite"
+  },
+  {
+    "start": "00:25:20.880",
+    "end": "00:25:22.470",
+    "text": "difference between the absolute source"
+  },
+  {
+    "start": "00:25:22.480",
+    "end": "00:25:24.070",
+    "text": "and everything that merely receives"
+  },
+  {
+    "start": "00:25:24.080",
+    "end": "00:25:25.350",
+    "text": "being from that source."
+  },
+  {
+    "start": "00:25:25.360",
+    "end": "00:25:27.029",
+    "text": "God is the cause, not part of the"
+  },
+  {
+    "start": "00:25:27.039",
+    "end": "00:25:27.430",
+    "text": "effect."
+  },
+  {
+    "start": "00:25:27.440",
+    "end": "00:25:28.870",
+    "text": "Exactly. The ultimate transcendent"
+  },
+  {
+    "start": "00:25:28.880",
+    "end": "00:25:29.430",
+    "text": "cause."
+  },
+  {
+    "start": "00:25:29.440",
+    "end": "00:25:32.470",
+    "text": "And because God is being itself, Smith"
+  },
+  {
+    "start": "00:25:32.480",
+    "end": "00:25:35.430",
+    "text": "also calls God supraontological."
+  },
+  {
+    "start": "00:25:35.440",
+    "end": "00:25:37.029",
+    "text": "What does that mean? It sounds like God"
+  },
+  {
+    "start": "00:25:37.039",
+    "end": "00:25:39.430",
+    "text": "is even beyond the idea of being. That's"
+  },
+  {
+    "start": "00:25:39.440",
+    "end": "00:25:40.470",
+    "text": "hard to grasp."
+  },
+  {
+    "start": "00:25:40.480",
+    "end": "00:25:42.070",
+    "text": "It basically means that the very word"
+  },
+  {
+    "start": "00:25:42.080",
+    "end": "00:25:44.310",
+    "text": "ontology, the study of being, doesn't"
+  },
+  {
+    "start": "00:25:44.320",
+    "end": "00:25:45.909",
+    "text": "quite apply to God in the same way it"
+  },
+  {
+    "start": "00:25:45.919",
+    "end": "00:25:47.990",
+    "text": "applies to everything else because God"
+  },
+  {
+    "start": "00:25:48.000",
+    "end": "00:25:50.310",
+    "text": "is the ground of all being. God sort of"
+  },
+  {
+    "start": "00:25:50.320",
+    "end": "00:25:52.310",
+    "text": "transcends the categories we use to"
+  },
+  {
+    "start": "00:25:52.320",
+    "end": "00:25:54.549",
+    "text": "define created things. God isn't just"
+  },
+  {
+    "start": "00:25:54.559",
+    "end": "00:25:56.549",
+    "text": "another kind of being. God is the"
+  },
+  {
+    "start": "00:25:56.559",
+    "end": "00:25:59.430",
+    "text": "source. So, in a way, God is beyond or"
+  },
+  {
+    "start": "00:25:59.440",
+    "end": "00:26:01.430",
+    "text": "above the very framework of being that"
+  },
+  {
+    "start": "00:26:01.440",
+    "end": "00:26:03.669",
+    "text": "defines creatures. It really emphasizes"
+  },
+  {
+    "start": "00:26:03.679",
+    "end": "00:26:05.430",
+    "text": "God's absolute uniqueness, his"
+  },
+  {
+    "start": "00:26:05.440",
+    "end": "00:26:06.950",
+    "text": "otherness, his mystery."
+  },
+  {
+    "start": "00:26:06.960",
+    "end": "00:26:09.430",
+    "text": "Okay. So, how do we know this God exists"
+  },
+  {
+    "start": "00:26:09.440",
+    "end": "00:26:11.269",
+    "text": "according to Smith? Is it through"
+  },
+  {
+    "start": "00:26:11.279",
+    "end": "00:26:13.430",
+    "text": "science studying the physical world?"
+  },
+  {
+    "start": "00:26:13.440",
+    "end": "00:26:15.110",
+    "text": "No, definitely not through scientific"
+  },
+  {
+    "start": "00:26:15.120",
+    "end": "00:26:16.710",
+    "text": "investigation of that horizontal chain"
+  },
+  {
+    "start": "00:26:16.720",
+    "end": "00:26:18.390",
+    "text": "of cause and effect. You find God"
+  },
+  {
+    "start": "00:26:18.400",
+    "end": "00:26:20.230",
+    "text": "through metaphysical reasoning. By"
+  },
+  {
+    "start": "00:26:20.240",
+    "end": "00:26:21.590",
+    "text": "reflecting on the contingent nature of"
+  },
+  {
+    "start": "00:26:21.600",
+    "end": "00:26:22.789",
+    "text": "the world, the fact that the world"
+  },
+  {
+    "start": "00:26:22.799",
+    "end": "00:26:24.710",
+    "text": "didn't have to exist, that it depends on"
+  },
+  {
+    "start": "00:26:24.720",
+    "end": "00:26:26.870",
+    "text": "something else for its being. Right?"
+  },
+  {
+    "start": "00:26:26.880",
+    "end": "00:26:29.269",
+    "text": "Now, you reason back to a non-ontingent"
+  },
+  {
+    "start": "00:26:29.279",
+    "end": "00:26:31.590",
+    "text": "necessary source, something that must"
+  },
+  {
+    "start": "00:26:31.600",
+    "end": "00:26:33.350",
+    "text": "exist, and whose existence doesn't"
+  },
+  {
+    "start": "00:26:33.360",
+    "end": "00:26:35.590",
+    "text": "depend on anything else. And that source"
+  },
+  {
+    "start": "00:26:35.600",
+    "end": "00:26:37.430",
+    "text": "is continuously acting"
+  },
+  {
+    "start": "00:26:37.440",
+    "end": "00:26:39.510",
+    "text": "continuously. The universe exists now"
+  },
+  {
+    "start": "00:26:39.520",
+    "end": "00:26:41.590",
+    "text": "because God is causing it to exist now"
+  },
+  {
+    "start": "00:26:41.600",
+    "end": "00:26:43.350",
+    "text": "through vertical causality. It's not"
+  },
+  {
+    "start": "00:26:43.360",
+    "end": "00:26:44.470",
+    "text": "like God wound it up at the beginning"
+  },
+  {
+    "start": "00:26:44.480",
+    "end": "00:26:45.590",
+    "text": "and let it go."
+  },
+  {
+    "start": "00:26:45.600",
+    "end": "00:26:48.390",
+    "text": "If God were to hypothetically withdraw"
+  },
+  {
+    "start": "00:26:48.400",
+    "end": "00:26:50.230",
+    "text": "that vertical causation, that constant"
+  },
+  {
+    "start": "00:26:50.240",
+    "end": "00:26:52.149",
+    "text": "outpouring of being, the whole universe"
+  },
+  {
+    "start": "00:26:52.159",
+    "end": "00:26:53.029",
+    "text": "would just cease."
+  },
+  {
+    "start": "00:26:53.039",
+    "end": "00:26:53.430",
+    "text": "Yeah."
+  },
+  {
+    "start": "00:26:53.440",
+    "end": "00:26:55.510",
+    "text": "Instantly. Its existence is utterly"
+  },
+  {
+    "start": "00:26:55.520",
+    "end": "00:26:57.269",
+    "text": "dependent moment by moment."
+  },
+  {
+    "start": "00:26:57.279",
+    "end": "00:27:01.350",
+    "text": "Wow. Constant dependence. Okay. So, what"
+  },
+  {
+    "start": "00:27:01.360",
+    "end": "00:27:02.950",
+    "text": "about suffering and knowledge for"
+  },
+  {
+    "start": "00:27:02.960",
+    "end": "00:27:05.510",
+    "text": "Smith's God? Is this God affected by the"
+  },
+  {
+    "start": "00:27:05.520",
+    "end": "00:27:07.590",
+    "text": "world? Does God feel our pain? Learn"
+  },
+  {
+    "start": "00:27:07.600",
+    "end": "00:27:09.269",
+    "text": "things like Whiteheads God."
+  },
+  {
+    "start": "00:27:09.279",
+    "end": "00:27:11.590",
+    "text": "No. Smith's God is impassible. That"
+  },
+  {
+    "start": "00:27:11.600",
+    "end": "00:27:13.510",
+    "text": "means God cannot be affected by or made"
+  },
+  {
+    "start": "00:27:13.520",
+    "end": "00:27:15.990",
+    "text": "to suffer by the world. Any suffering or"
+  },
+  {
+    "start": "00:27:16.000",
+    "end": "00:27:17.750",
+    "text": "change in God would imply potentiality,"
+  },
+  {
+    "start": "00:27:17.760",
+    "end": "00:27:19.750",
+    "text": "an imperfection, something lacking which"
+  },
+  {
+    "start": "00:27:19.760",
+    "end": "00:27:22.310",
+    "text": "contradicts God being pure actuality. So"
+  },
+  {
+    "start": "00:27:22.320",
+    "end": "00:27:24.630",
+    "text": "God is completely beyond suffering. For"
+  },
+  {
+    "start": "00:27:24.640",
+    "end": "00:27:26.789",
+    "text": "Smith, this impassibility is a defect."
+  },
+  {
+    "start": "00:27:26.799",
+    "end": "00:27:28.470",
+    "text": "It's a perfection. It shows God's"
+  },
+  {
+    "start": "00:27:28.480",
+    "end": "00:27:30.070",
+    "text": "absolute fullness and completeness."
+  },
+  {
+    "start": "00:27:30.080",
+    "end": "00:27:32.870",
+    "text": "Okay. So beyond suffering and knowledge,"
+  },
+  {
+    "start": "00:27:32.880",
+    "end": "00:27:34.630",
+    "text": "God's knowledge isn't a process of"
+  },
+  {
+    "start": "00:27:34.640",
+    "end": "00:27:36.310",
+    "text": "learning like Whitehead's consequent"
+  },
+  {
+    "start": "00:27:36.320",
+    "end": "00:27:38.710",
+    "text": "nature gathering experiences. God"
+  },
+  {
+    "start": "00:27:38.720",
+    "end": "00:27:41.110",
+    "text": "doesn't acquire knowledge over time. God"
+  },
+  {
+    "start": "00:27:41.120",
+    "end": "00:27:43.190",
+    "text": "knows all things past, present, and"
+  },
+  {
+    "start": "00:27:43.200",
+    "end": "00:27:46.149",
+    "text": "future in a single timeless eternal act"
+  },
+  {
+    "start": "00:27:46.159",
+    "end": "00:27:48.950",
+    "text": "of self-nowledge. Because God is perfect"
+  },
+  {
+    "start": "00:27:48.960",
+    "end": "00:27:51.269",
+    "text": "being and perfect intellect in knowing"
+  },
+  {
+    "start": "00:27:51.279",
+    "end": "00:27:53.590",
+    "text": "himself perfectly. God knows everything"
+  },
+  {
+    "start": "00:27:53.600",
+    "end": "00:27:55.990",
+    "text": "that proceeds from him all in one"
+  },
+  {
+    "start": "00:27:56.000",
+    "end": "00:27:58.230",
+    "text": "eternal now, completely outside of time."
+  },
+  {
+    "start": "00:27:58.240",
+    "end": "00:28:00.789",
+    "text": "and the problem of evil. How does this"
+  },
+  {
+    "start": "00:28:00.799",
+    "end": "00:28:03.350",
+    "text": "traditional view handle that? If God is"
+  },
+  {
+    "start": "00:28:03.360",
+    "end": "00:28:05.510",
+    "text": "perfect and impassible, it's obviously"
+  },
+  {
+    "start": "00:28:05.520",
+    "end": "00:28:07.269",
+    "text": "very different from the fellow sufferer"
+  },
+  {
+    "start": "00:28:07.279",
+    "end": "00:28:07.830",
+    "text": "idea."
+  },
+  {
+    "start": "00:28:07.840",
+    "end": "00:28:09.190",
+    "text": "It is very different from this"
+  },
+  {
+    "start": "00:28:09.200",
+    "end": "00:28:11.110",
+    "text": "traditional viewpoint. Evil isn't a"
+  },
+  {
+    "start": "00:28:11.120",
+    "end": "00:28:13.029",
+    "text": "positive thing that God creates. It's"
+  },
+  {
+    "start": "00:28:13.039",
+    "end": "00:28:15.830",
+    "text": "understood as a provide bonation, a lack"
+  },
+  {
+    "start": "00:28:15.840",
+    "end": "00:28:17.590",
+    "text": "of a good that should be there. Think of"
+  },
+  {
+    "start": "00:28:17.600",
+    "end": "00:28:19.590",
+    "text": "darkness. It's not a substance. It's the"
+  },
+  {
+    "start": "00:28:19.600",
+    "end": "00:28:21.510",
+    "text": "absence of light. Blindness isn't a"
+  },
+  {
+    "start": "00:28:21.520",
+    "end": "00:28:22.710",
+    "text": "thing. It's the lack of sight."
+  },
+  {
+    "start": "00:28:22.720",
+    "end": "00:28:25.430",
+    "text": "So, evil is a lack, an absence of good."
+  },
+  {
+    "start": "00:28:25.440",
+    "end": "00:28:27.990",
+    "text": "Yes. a defect, a falling short of the"
+  },
+  {
+    "start": "00:28:28.000",
+    "end": "00:28:30.070",
+    "text": "perfection that belongs to a particular"
+  },
+  {
+    "start": "00:28:30.080",
+    "end": "00:28:32.470",
+    "text": "created thing. It arises because the"
+  },
+  {
+    "start": "00:28:32.480",
+    "end": "00:28:35.430",
+    "text": "created order is by definition not God."
+  },
+  {
+    "start": "00:28:35.440",
+    "end": "00:28:38.070",
+    "text": "It's finite, limited, and involves"
+  },
+  {
+    "start": "00:28:38.080",
+    "end": "00:28:40.549",
+    "text": "creatures with freedom. God permits"
+  },
+  {
+    "start": "00:28:40.559",
+    "end": "00:28:43.029",
+    "text": "evil, allows it to happen for the sake"
+  },
+  {
+    "start": "00:28:43.039",
+    "end": "00:28:45.590",
+    "text": "of a greater good, like genuine freedom,"
+  },
+  {
+    "start": "00:28:45.600",
+    "end": "00:28:47.909",
+    "text": "which makes love possible. But God does"
+  },
+  {
+    "start": "00:28:47.919",
+    "end": "00:28:50.310",
+    "text": "not cause evil directly, and God is in"
+  },
+  {
+    "start": "00:28:50.320",
+    "end": "00:28:52.389",
+    "text": "no way diminished or harmed by it. It's"
+  },
+  {
+    "start": "00:28:52.399",
+    "end": "00:28:53.990",
+    "text": "a consequence of the nature of creation"
+  },
+  {
+    "start": "00:28:54.000",
+    "end": "00:28:56.470",
+    "text": "itself. So not a god who suffers with us"
+  },
+  {
+    "start": "00:28:56.480",
+    "end": "00:28:59.110",
+    "text": "but a transcendent perfect being who"
+  },
+  {
+    "start": "00:28:59.120",
+    "end": "00:29:01.430",
+    "text": "allows imperfection in creation for a"
+  },
+  {
+    "start": "00:29:01.440",
+    "end": "00:29:03.750",
+    "text": "greater purpose while remaining utterly"
+  },
+  {
+    "start": "00:29:03.760",
+    "end": "00:29:06.310",
+    "text": "untouched by it in his own nature."
+  },
+  {
+    "start": "00:29:06.320",
+    "end": "00:29:08.389",
+    "text": "Yeah, those are two profoundly different"
+  },
+  {
+    "start": "00:29:08.399",
+    "end": "00:29:09.909",
+    "text": "divine personalities. You could almost"
+  },
+  {
+    "start": "00:29:09.919",
+    "end": "00:29:10.230",
+    "text": "say"
+  },
+  {
+    "start": "00:29:10.240",
+    "end": "00:29:10.950",
+    "text": "worlds apart."
+  },
+  {
+    "start": "00:29:10.960",
+    "end": "00:29:12.310",
+    "text": "Okay, so let's try and put them side by"
+  },
+  {
+    "start": "00:29:12.320",
+    "end": "00:29:13.590",
+    "text": "side now. We've journeyied through these"
+  },
+  {
+    "start": "00:29:13.600",
+    "end": "00:29:15.350",
+    "text": "two really complex, intricate"
+  },
+  {
+    "start": "00:29:15.360",
+    "end": "00:29:17.110",
+    "text": "philosophical worlds. What happens when"
+  },
+  {
+    "start": "00:29:17.120",
+    "end": "00:29:18.470",
+    "text": "we stand them next to each other? It"
+  },
+  {
+    "start": "00:29:18.480",
+    "end": "00:29:20.070",
+    "text": "really feels like we're looking at two"
+  },
+  {
+    "start": "00:29:20.080",
+    "end": "00:29:22.470",
+    "text": "completely different universes, two"
+  },
+  {
+    "start": "00:29:22.480",
+    "end": "00:29:23.990",
+    "text": "utterly distinct ways of understanding"
+  },
+  {
+    "start": "00:29:24.000",
+    "end": "00:29:25.669",
+    "text": "reality. They seem"
+  },
+  {
+    "start": "00:29:25.679",
+    "end": "00:29:26.070",
+    "text": "Yeah."
+  },
+  {
+    "start": "00:29:26.080",
+    "end": "00:29:28.549",
+    "text": "well irreconcilable. They absolutely are"
+  },
+  {
+    "start": "00:29:28.559",
+    "end": "00:29:30.710",
+    "text": "irreconcilable. They represent"
+  },
+  {
+    "start": "00:29:30.720",
+    "end": "00:29:32.149",
+    "text": "fundamentally different metaphysical"
+  },
+  {
+    "start": "00:29:32.159",
+    "end": "00:29:34.149",
+    "text": "choices, different traditions, and"
+  },
+  {
+    "start": "00:29:34.159",
+    "end": "00:29:35.590",
+    "text": "radically different answers to the"
+  },
+  {
+    "start": "00:29:35.600",
+    "end": "00:29:37.990",
+    "text": "problems of modernity. Putting them side"
+  },
+  {
+    "start": "00:29:38.000",
+    "end": "00:29:39.830",
+    "text": "by side really throws their differences"
+  },
+  {
+    "start": "00:29:39.840",
+    "end": "00:29:42.549",
+    "text": "into sharp relief. It clarifies the"
+  },
+  {
+    "start": "00:29:42.559",
+    "end": "00:29:44.710",
+    "text": "profound choice one might make in how"
+  },
+  {
+    "start": "00:29:44.720",
+    "end": "00:29:47.350",
+    "text": "they conceive of well, everything. Let's"
+  },
+  {
+    "start": "00:29:47.360",
+    "end": "00:29:48.710",
+    "text": "maybe run through some of the key points"
+  },
+  {
+    "start": "00:29:48.720",
+    "end": "00:29:49.990",
+    "text": "we've discussed and compare them"
+  },
+  {
+    "start": "00:29:50.000",
+    "end": "00:29:51.830",
+    "text": "directly just to really hammer home the"
+  },
+  {
+    "start": "00:29:51.840",
+    "end": "00:29:54.070",
+    "text": "contrasts. First off, their basic idea"
+  },
+  {
+    "start": "00:29:54.080",
+    "end": "00:29:56.149",
+    "text": "of God's nature and relationship to the"
+  },
+  {
+    "start": "00:29:56.159",
+    "end": "00:29:56.549",
+    "text": "world."
+  },
+  {
+    "start": "00:29:56.559",
+    "end": "00:30:00.230",
+    "text": "Okay, Whitehead. God is pentheistic and"
+  },
+  {
+    "start": "00:30:00.240",
+    "end": "00:30:03.190",
+    "text": "dipolar. Remember, the world is in God,"
+  },
+  {
+    "start": "00:30:03.200",
+    "end": "00:30:05.350",
+    "text": "but God is more than the world. That"
+  },
+  {
+    "start": "00:30:05.360",
+    "end": "00:30:07.110",
+    "text": "dipolar nature lets God be both"
+  },
+  {
+    "start": "00:30:07.120",
+    "end": "00:30:09.110",
+    "text": "transcendent, the eternal primordial"
+  },
+  {
+    "start": "00:30:09.120",
+    "end": "00:30:11.430",
+    "text": "nature, and deeply imminent involved,"
+  },
+  {
+    "start": "00:30:11.440",
+    "end": "00:30:12.789",
+    "text": "the temporal consequent nature"
+  },
+  {
+    "start": "00:30:12.799",
+    "end": "00:30:15.990",
+    "text": "experiencing the world. Smith. God is"
+  },
+  {
+    "start": "00:30:16.000",
+    "end": "00:30:18.310",
+    "text": "theistic and radically transcendent. God"
+  },
+  {
+    "start": "00:30:18.320",
+    "end": "00:30:20.230",
+    "text": "is wholly other, infinitely superior to"
+  },
+  {
+    "start": "00:30:20.240",
+    "end": "00:30:22.389",
+    "text": "the world. The world isn't in God in the"
+  },
+  {
+    "start": "00:30:22.399",
+    "end": "00:30:24.149",
+    "text": "same way. The world is entirely from"
+  },
+  {
+    "start": "00:30:24.159",
+    "end": "00:30:26.470",
+    "text": "God, depending on him absolutely for its"
+  },
+  {
+    "start": "00:30:26.480",
+    "end": "00:30:27.830",
+    "text": "existence every second."
+  },
+  {
+    "start": "00:30:27.840",
+    "end": "00:30:29.750",
+    "text": "And their fundamental ontology, what"
+  },
+  {
+    "start": "00:30:29.760",
+    "end": "00:30:31.830",
+    "text": "they think is ultimately real. One sees"
+  },
+  {
+    "start": "00:30:31.840",
+    "end": "00:30:33.750",
+    "text": "a flowing river, the other a solid"
+  },
+  {
+    "start": "00:30:33.760",
+    "end": "00:30:35.029",
+    "text": "unchanging mountain peak."
+  },
+  {
+    "start": "00:30:35.039",
+    "end": "00:30:37.909",
+    "text": "That's a good image. Whiteheads ontology"
+  },
+  {
+    "start": "00:30:37.919",
+    "end": "00:30:40.870",
+    "text": "is being in process. Reality is dynamic"
+  },
+  {
+    "start": "00:30:40.880",
+    "end": "00:30:43.350",
+    "text": "becoming. God is the prime example of"
+  },
+  {
+    "start": "00:30:43.360",
+    "end": "00:30:46.149",
+    "text": "this. is a dynamic actual entity growing"
+  },
+  {
+    "start": "00:30:46.159",
+    "end": "00:30:47.909",
+    "text": "in his consequent nature along with the"
+  },
+  {
+    "start": "00:30:47.919",
+    "end": "00:30:50.549",
+    "text": "cosmos. Smith's view, God is being"
+  },
+  {
+    "start": "00:30:50.559",
+    "end": "00:30:53.909",
+    "text": "itself. Essay ipsom subsistence. God is"
+  },
+  {
+    "start": "00:30:53.919",
+    "end": "00:30:55.990",
+    "text": "pure actuality, the unmoved mover,"
+  },
+  {
+    "start": "00:30:56.000",
+    "end": "00:30:58.230",
+    "text": "timeless, perfectly static. All change"
+  },
+  {
+    "start": "00:30:58.240",
+    "end": "00:30:59.990",
+    "text": "and process belong to creation, which"
+  },
+  {
+    "start": "00:31:00.000",
+    "end": "00:31:02.310",
+    "text": "flows from this static perfect source,"
+  },
+  {
+    "start": "00:31:02.320",
+    "end": "00:31:03.750",
+    "text": "not the source itself."
+  },
+  {
+    "start": "00:31:03.760",
+    "end": "00:31:05.669",
+    "text": "That difference process versus static"
+  },
+  {
+    "start": "00:31:05.679",
+    "end": "00:31:07.190",
+    "text": "being seems like the absolute core"
+  },
+  {
+    "start": "00:31:07.200",
+    "end": "00:31:08.710",
+    "text": "distinction that everything else flows"
+  },
+  {
+    "start": "00:31:08.720",
+    "end": "00:31:10.230",
+    "text": "from. How does it affect their view of"
+  },
+  {
+    "start": "00:31:10.240",
+    "end": "00:31:10.789",
+    "text": "time?"
+  },
+  {
+    "start": "00:31:10.799",
+    "end": "00:31:13.029",
+    "text": "Hugely. For Whitehead, God has a"
+  },
+  {
+    "start": "00:31:13.039",
+    "end": "00:31:15.190",
+    "text": "temporal aspect. The consequent, nature"
+  },
+  {
+    "start": "00:31:15.200",
+    "end": "00:31:17.269",
+    "text": "evolves with the world in time,"
+  },
+  {
+    "start": "00:31:17.279",
+    "end": "00:31:19.190",
+    "text": "absorbing new experiences. So God"
+  },
+  {
+    "start": "00:31:19.200",
+    "end": "00:31:21.029",
+    "text": "journeys through time with creation. For"
+  },
+  {
+    "start": "00:31:21.039",
+    "end": "00:31:23.029",
+    "text": "Smith, God is eternal and timeless,"
+  },
+  {
+    "start": "00:31:23.039",
+    "end": "00:31:24.470",
+    "text": "completely outside of time. The whole"
+  },
+  {
+    "start": "00:31:24.480",
+    "end": "00:31:26.310",
+    "text": "timeline, past, present, future, is just"
+  },
+  {
+    "start": "00:31:26.320",
+    "end": "00:31:28.230",
+    "text": "simultaneously present to God in one"
+  },
+  {
+    "start": "00:31:28.240",
+    "end": "00:31:31.110",
+    "text": "single unchanging eternal now. No before"
+  },
+  {
+    "start": "00:31:31.120",
+    "end": "00:31:32.950",
+    "text": "or after God. God simply is."
+  },
+  {
+    "start": "00:31:32.960",
+    "end": "00:31:34.870",
+    "text": "Wow. One God experiencing time with us,"
+  },
+  {
+    "start": "00:31:34.880",
+    "end": "00:31:36.549",
+    "text": "the other seeing all of time at once"
+  },
+  {
+    "start": "00:31:36.559",
+    "end": "00:31:38.389",
+    "text": "from outside it, which naturally leads"
+  },
+  {
+    "start": "00:31:38.399",
+    "end": "00:31:40.070",
+    "text": "to change versus immutability."
+  },
+  {
+    "start": "00:31:40.080",
+    "end": "00:31:42.630",
+    "text": "Right? Whiteheads God has both a"
+  },
+  {
+    "start": "00:31:42.640",
+    "end": "00:31:44.950",
+    "text": "changing aspect, the consequent nature,"
+  },
+  {
+    "start": "00:31:44.960",
+    "end": "00:31:46.950",
+    "text": "feeling the world, and an unchanging"
+  },
+  {
+    "start": "00:31:46.960",
+    "end": "00:31:48.950",
+    "text": "aspect, the primordial nature, the realm"
+  },
+  {
+    "start": "00:31:48.960",
+    "end": "00:31:51.350",
+    "text": "of potentials. Smith's God as pure"
+  },
+  {
+    "start": "00:31:51.360",
+    "end": "00:31:53.590",
+    "text": "actuality is absolutely immutable."
+  },
+  {
+    "start": "00:31:53.600",
+    "end": "00:31:55.909",
+    "text": "Cannot change. Period. Any change would"
+  },
+  {
+    "start": "00:31:55.919",
+    "end": "00:31:57.909",
+    "text": "imply moving from potential to actual."
+  },
+  {
+    "start": "00:31:57.919",
+    "end": "00:31:59.990",
+    "text": "And God has no potential. He is fully"
+  },
+  {
+    "start": "00:32:00.000",
+    "end": "00:32:01.909",
+    "text": "actual. God's perfection is his"
+  },
+  {
+    "start": "00:32:01.919",
+    "end": "00:32:02.789",
+    "text": "unchangingness"
+  },
+  {
+    "start": "00:32:02.799",
+    "end": "00:32:04.470",
+    "text": "and divine power. We talked about"
+  },
+  {
+    "start": "00:32:04.480",
+    "end": "00:32:06.630",
+    "text": "Whiteheads persuasion, not coercion. How"
+  },
+  {
+    "start": "00:32:06.640",
+    "end": "00:32:08.470",
+    "text": "does that stack up against Smith's view?"
+  },
+  {
+    "start": "00:32:08.480",
+    "end": "00:32:10.070",
+    "text": "Very different. Whiteheads God uses"
+  },
+  {
+    "start": "00:32:10.080",
+    "end": "00:32:13.190",
+    "text": "persuasive power, luring, suggesting,"
+  },
+  {
+    "start": "00:32:13.200",
+    "end": "00:32:15.430",
+    "text": "inviting, respecting freedom. Not"
+  },
+  {
+    "start": "00:32:15.440",
+    "end": "00:32:17.029",
+    "text": "omnipotent in the classical sense of"
+  },
+  {
+    "start": "00:32:17.039",
+    "end": "00:32:18.389",
+    "text": "being able to just make anything happen"
+  },
+  {
+    "start": "00:32:18.399",
+    "end": "00:32:20.630",
+    "text": "or prevent anything. Smith's God is"
+  },
+  {
+    "start": "00:32:20.640",
+    "end": "00:32:22.470",
+    "text": "omnipotent in the traditional sense,"
+  },
+  {
+    "start": "00:32:22.480",
+    "end": "00:32:24.070",
+    "text": "exercising power through vertical"
+  },
+  {
+    "start": "00:32:24.080",
+    "end": "00:32:27.029",
+    "text": "causality. God's power is the absolute"
+  },
+  {
+    "start": "00:32:27.039",
+    "end": "00:32:28.630",
+    "text": "continuous act of creating and"
+  },
+  {
+    "start": "00:32:28.640",
+    "end": "00:32:30.950",
+    "text": "sustaining everything that exists."
+  },
+  {
+    "start": "00:32:30.960",
+    "end": "00:32:32.710",
+    "text": "Limitless ultimate power."
+  },
+  {
+    "start": "00:32:32.720",
+    "end": "00:32:34.389",
+    "text": "And back to suffering, which is such a"
+  },
+  {
+    "start": "00:32:34.399",
+    "end": "00:32:36.470",
+    "text": "critical point for many, Whiteheads God"
+  },
+  {
+    "start": "00:32:36.480",
+    "end": "00:32:39.190",
+    "text": "is the fellow sufferer. Correct."
+  },
+  {
+    "start": "00:32:39.200",
+    "end": "00:32:41.350",
+    "text": "Whitehead's God is passable, can be"
+  },
+  {
+    "start": "00:32:41.360",
+    "end": "00:32:43.909",
+    "text": "affected by, feels, absorbs the world's"
+  },
+  {
+    "start": "00:32:43.919",
+    "end": "00:32:45.990",
+    "text": "pain and joy into his own being,"
+  },
+  {
+    "start": "00:32:46.000",
+    "end": "00:32:48.310",
+    "text": "transforming it. Smith's God is"
+  },
+  {
+    "start": "00:32:48.320",
+    "end": "00:32:50.389",
+    "text": "impassible, cannot be affected or made"
+  },
+  {
+    "start": "00:32:50.399",
+    "end": "00:32:52.470",
+    "text": "to suffer by creation. That would imply"
+  },
+  {
+    "start": "00:32:52.480",
+    "end": "00:32:54.870",
+    "text": "imperfection or change. God's perfection"
+  },
+  {
+    "start": "00:32:54.880",
+    "end": "00:32:56.870",
+    "text": "means he's utterly beyond suffering,"
+  },
+  {
+    "start": "00:32:56.880",
+    "end": "00:32:58.950",
+    "text": "even though he permits it in creation."
+  },
+  {
+    "start": "00:32:58.960",
+    "end": "00:33:00.710",
+    "text": "And finally, just looking at where"
+  },
+  {
+    "start": "00:33:00.720",
+    "end": "00:33:02.149",
+    "text": "they're coming from philosophically,"
+  },
+  {
+    "start": "00:33:02.159",
+    "end": "00:33:04.870",
+    "text": "it's a clear split. Modern innovation"
+  },
+  {
+    "start": "00:33:04.880",
+    "end": "00:33:06.549",
+    "text": "versus ancient tradition."
+  },
+  {
+    "start": "00:33:06.559",
+    "end": "00:33:08.149",
+    "text": "Absolutely. Whitehead builds a"
+  },
+  {
+    "start": "00:33:08.159",
+    "end": "00:33:09.909",
+    "text": "completely new system, process"
+  },
+  {
+    "start": "00:33:09.919",
+    "end": "00:33:12.070",
+    "text": "philosophy, explicitly designed to"
+  },
+  {
+    "start": "00:33:12.080",
+    "end": "00:33:13.909",
+    "text": "integrate modern science, relativity,"
+  },
+  {
+    "start": "00:33:13.919",
+    "end": "00:33:15.990",
+    "text": "quantum theory, evolution into a"
+  },
+  {
+    "start": "00:33:16.000",
+    "end": "00:33:18.710",
+    "text": "coherent metaphysics for our time. Smith"
+  },
+  {
+    "start": "00:33:18.720",
+    "end": "00:33:20.310",
+    "text": "revives ancient and medieval"
+  },
+  {
+    "start": "00:33:20.320",
+    "end": "00:33:22.310",
+    "text": "metaphysics, perennial philosophy,"
+  },
+  {
+    "start": "00:33:22.320",
+    "end": "00:33:24.470",
+    "text": "scholasticism. He argues against the"
+  },
+  {
+    "start": "00:33:24.480",
+    "end": "00:33:26.230",
+    "text": "modern turn, saying we need to return to"
+  },
+  {
+    "start": "00:33:26.240",
+    "end": "00:33:28.230",
+    "text": "this older wisdom to find a more"
+  },
+  {
+    "start": "00:33:28.240",
+    "end": "00:33:29.430",
+    "text": "complete truth."
+  },
+  {
+    "start": "00:33:29.440",
+    "end": "00:33:31.110",
+    "text": "So even their fundamental response to"
+  },
+  {
+    "start": "00:33:31.120",
+    "end": "00:33:32.950",
+    "text": "that initial problem, the bifurcation of"
+  },
+  {
+    "start": "00:33:32.960",
+    "end": "00:33:34.950",
+    "text": "nature is totally different. One tries"
+  },
+  {
+    "start": "00:33:34.960",
+    "end": "00:33:36.710",
+    "text": "to weave the two worlds together. The"
+  },
+  {
+    "start": "00:33:36.720",
+    "end": "00:33:38.549",
+    "text": "other says we need to ditch the modern"
+  },
+  {
+    "start": "00:33:38.559",
+    "end": "00:33:40.389",
+    "text": "world's foundation and rebuild on the"
+  },
+  {
+    "start": "00:33:40.399",
+    "end": "00:33:41.110",
+    "text": "old one."
+  },
+  {
+    "start": "00:33:41.120",
+    "end": "00:33:43.750",
+    "text": "Exactly. Whitehead seeks to integrate"
+  },
+  {
+    "start": "00:33:43.760",
+    "end": "00:33:45.590",
+    "text": "science and experience into a new"
+  },
+  {
+    "start": "00:33:45.600",
+    "end": "00:33:48.149",
+    "text": "unified ontology where both are valid"
+  },
+  {
+    "start": "00:33:48.159",
+    "end": "00:33:49.830",
+    "text": "and illuminate each other within a"
+  },
+  {
+    "start": "00:33:49.840",
+    "end": "00:33:53.190",
+    "text": "dynamic cosmos. Smith seeks to replace"
+  },
+  {
+    "start": "00:33:53.200",
+    "end": "00:33:55.110",
+    "text": "the flawed philosophical foundations of"
+  },
+  {
+    "start": "00:33:55.120",
+    "end": "00:33:57.350",
+    "text": "the modern worldview. He argues we must"
+  },
+  {
+    "start": "00:33:57.360",
+    "end": "00:33:59.190",
+    "text": "return to traditional metaphysics to"
+  },
+  {
+    "start": "00:33:59.200",
+    "end": "00:34:01.029",
+    "text": "overcome the split because the modern"
+  },
+  {
+    "start": "00:34:01.039",
+    "end": "00:34:03.269",
+    "text": "scientific framework itself left to its"
+  },
+  {
+    "start": "00:34:03.279",
+    "end": "00:34:05.190",
+    "text": "own devices can't account for mind,"
+  },
+  {
+    "start": "00:34:05.200",
+    "end": "00:34:07.509",
+    "text": "meaning or God. He doesn't just try to"
+  },
+  {
+    "start": "00:34:07.519",
+    "end": "00:34:09.909",
+    "text": "make science fit. He challenges the very"
+  },
+  {
+    "start": "00:34:09.919",
+    "end": "00:34:12.149",
+    "text": "philosophical ground science stands on."
+  },
+  {
+    "start": "00:34:12.159",
+    "end": "00:34:14.069",
+    "text": "It really boils down to a fundamental"
+  },
+  {
+    "start": "00:34:14.079",
+    "end": "00:34:15.990",
+    "text": "choice, doesn't it? A core metaphysical"
+  },
+  {
+    "start": "00:34:16.000",
+    "end": "00:34:18.629",
+    "text": "commitment. Is ultimate reality at its"
+  },
+  {
+    "start": "00:34:18.639",
+    "end": "00:34:20.869",
+    "text": "heart a dynamic relational process"
+  },
+  {
+    "start": "00:34:20.879",
+    "end": "00:34:23.430",
+    "text": "always becoming, always experiencing? Or"
+  },
+  {
+    "start": "00:34:23.440",
+    "end": "00:34:25.669",
+    "text": "is it a timeless immutable being? the"
+  },
+  {
+    "start": "00:34:25.679",
+    "end": "00:34:27.190",
+    "text": "static perfect ground from which"
+  },
+  {
+    "start": "00:34:27.200",
+    "end": "00:34:28.470",
+    "text": "everything else flows. There doesn't"
+  },
+  {
+    "start": "00:34:28.480",
+    "end": "00:34:29.669",
+    "text": "seem to be much middle ground."
+  },
+  {
+    "start": "00:34:29.679",
+    "end": "00:34:31.270",
+    "text": "That really is the heart of it. However,"
+  },
+  {
+    "start": "00:34:31.280",
+    "end": "00:34:33.190",
+    "text": "two complete, coherent, but profoundly"
+  },
+  {
+    "start": "00:34:33.200",
+    "end": "00:34:35.109",
+    "text": "incompatible worldviews. Choosing"
+  },
+  {
+    "start": "00:34:35.119",
+    "end": "00:34:36.790",
+    "text": "between them demands a deep decision"
+  },
+  {
+    "start": "00:34:36.800",
+    "end": "00:34:38.149",
+    "text": "about the fundamental nature of"
+  },
+  {
+    "start": "00:34:38.159",
+    "end": "00:34:39.430",
+    "text": "existence itself."
+  },
+  {
+    "start": "00:34:39.440",
+    "end": "00:34:41.349",
+    "text": "So, we've walked down these two"
+  },
+  {
+    "start": "00:34:41.359",
+    "end": "00:34:42.950",
+    "text": "incredible but yeah, ultimately"
+  },
+  {
+    "start": "00:34:42.960",
+    "end": "00:34:45.109",
+    "text": "irreconcilable paths trying to make"
+  },
+  {
+    "start": "00:34:45.119",
+    "end": "00:34:46.950",
+    "text": "sense of things in the modern world. On"
+  },
+  {
+    "start": "00:34:46.960",
+    "end": "00:34:48.470",
+    "text": "one side, we had Alfred North"
+  },
+  {
+    "start": "00:34:48.480",
+    "end": "00:34:50.950",
+    "text": "Whitehead's process god. relational,"
+  },
+  {
+    "start": "00:34:50.960",
+    "end": "00:34:53.990",
+    "text": "involved, evolving, feeling the world's"
+  },
+  {
+    "start": "00:34:54.000",
+    "end": "00:34:56.470",
+    "text": "joys and pains as a fellow sufferer,"
+  },
+  {
+    "start": "00:34:56.480",
+    "end": "00:34:58.710",
+    "text": "constantly luring creation toward new"
+  },
+  {
+    "start": "00:34:58.720",
+    "end": "00:35:01.589",
+    "text": "possibilities, a vision offering perhaps"
+  },
+  {
+    "start": "00:35:01.599",
+    "end": "00:35:03.670",
+    "text": "companionship and hope in an uncertain"
+  },
+  {
+    "start": "00:35:03.680",
+    "end": "00:35:04.310",
+    "text": "universe."
+  },
+  {
+    "start": "00:35:04.320",
+    "end": "00:35:06.150",
+    "text": "Mhm. A god who journeys with us."
+  },
+  {
+    "start": "00:35:06.160",
+    "end": "00:35:08.230",
+    "text": "And on the other side, Wolf Gang Smith's"
+  },
+  {
+    "start": "00:35:08.240",
+    "end": "00:35:10.390",
+    "text": "traditionalist god, absolutely"
+  },
+  {
+    "start": "00:35:10.400",
+    "end": "00:35:13.109",
+    "text": "transcendent, unchanging, mysterious"
+  },
+  {
+    "start": "00:35:13.119",
+    "end": "00:35:15.510",
+    "text": "being itself, pure actuality,"
+  },
+  {
+    "start": "00:35:15.520",
+    "end": "00:35:17.349",
+    "text": "impassible, the immutable source of all"
+  },
+  {
+    "start": "00:35:17.359",
+    "end": "00:35:19.750",
+    "text": "that is. A God who provides maybe an"
+  },
+  {
+    "start": "00:35:19.760",
+    "end": "00:35:21.510",
+    "text": "unshakable foundation, ultimate"
+  },
+  {
+    "start": "00:35:21.520",
+    "end": "00:35:23.270",
+    "text": "security, unchanging truth in a world"
+  },
+  {
+    "start": "00:35:23.280",
+    "end": "00:35:25.589",
+    "text": "that feels like it's always in flux. A"
+  },
+  {
+    "start": "00:35:25.599",
+    "end": "00:35:27.910",
+    "text": "god existing timelessly untouched by"
+  },
+  {
+    "start": "00:35:27.920",
+    "end": "00:35:28.950",
+    "text": "creation's chaos."
+  },
+  {
+    "start": "00:35:28.960",
+    "end": "00:35:30.710",
+    "text": "The rock versus the river in a way."
+  },
+  {
+    "start": "00:35:30.720",
+    "end": "00:35:32.870",
+    "text": "Yeah. Both of these frameworks though in"
+  },
+  {
+    "start": "00:35:32.880",
+    "end": "00:35:34.310",
+    "text": "their own very different ways offer"
+  },
+  {
+    "start": "00:35:34.320",
+    "end": "00:35:36.550",
+    "text": "these powerful comprehensive lenses,"
+  },
+  {
+    "start": "00:35:36.560",
+    "end": "00:35:38.950",
+    "text": "ways to think about God, reality meaning"
+  },
+  {
+    "start": "00:35:38.960",
+    "end": "00:35:40.630",
+    "text": "how the pieces might fit together after"
+  },
+  {
+    "start": "00:35:40.640",
+    "end": "00:35:42.790",
+    "text": "that bifurcation. Even the final picture"
+  },
+  {
+    "start": "00:35:42.800",
+    "end": "00:35:44.150",
+    "text": "looks completely different depending on"
+  },
+  {
+    "start": "00:35:44.160",
+    "end": "00:35:45.829",
+    "text": "which lens you choose. What's really"
+  },
+  {
+    "start": "00:35:45.839",
+    "end": "00:35:48.150",
+    "text": "striking is how both thinkers wrestled"
+  },
+  {
+    "start": "00:35:48.160",
+    "end": "00:35:50.310",
+    "text": "so deeply with that same core problem"
+  },
+  {
+    "start": "00:35:50.320",
+    "end": "00:35:52.550",
+    "text": "the science experience split yet arrived"
+  },
+  {
+    "start": "00:35:52.560",
+    "end": "00:35:55.349",
+    "text": "at such opposite yet incredibly thought"
+  },
+  {
+    "start": "00:35:55.359",
+    "end": "00:35:58.150",
+    "text": "through solutions. They really push us"
+  },
+  {
+    "start": "00:35:58.160",
+    "end": "00:36:00.470",
+    "text": "to think about reality in ways that go"
+  },
+  {
+    "start": "00:36:00.480",
+    "end": "00:36:02.550",
+    "text": "far beyond just the scientific facts."
+  },
+  {
+    "start": "00:36:02.560",
+    "end": "00:36:03.829",
+    "text": "So, as you've been listening to these"
+  },
+  {
+    "start": "00:36:03.839",
+    "end": "00:36:05.510",
+    "text": "two profoundly different visions, what"
+  },
+  {
+    "start": "00:36:05.520",
+    "end": "00:36:07.510",
+    "text": "kind of universe, what kind of ultimate"
+  },
+  {
+    "start": "00:36:07.520",
+    "end": "00:36:10.790",
+    "text": "reality resonates more with you? Does"
+  },
+  {
+    "start": "00:36:10.800",
+    "end": "00:36:13.349",
+    "text": "that idea of a fellow sufferer, a god"
+  },
+  {
+    "start": "00:36:13.359",
+    "end": "00:36:15.190",
+    "text": "who feels the world's pain with us,"
+  },
+  {
+    "start": "00:36:15.200",
+    "end": "00:36:17.589",
+    "text": "offer more comfort, more understanding?"
+  },
+  {
+    "start": "00:36:17.599",
+    "end": "00:36:19.430",
+    "text": "Or does the concept of an immutable"
+  },
+  {
+    "start": "00:36:19.440",
+    "end": "00:36:22.710",
+    "text": "source, that unchanging perfect ground,"
+  },
+  {
+    "start": "00:36:22.720",
+    "end": "00:36:24.710",
+    "text": "provide a deeper sense of security in"
+  },
+  {
+    "start": "00:36:24.720",
+    "end": "00:36:26.310",
+    "text": "this chaotic world?"
+  },
+  {
+    "start": "00:36:26.320",
+    "end": "00:36:27.829",
+    "text": "And maybe how might holding one view"
+  },
+  {
+    "start": "00:36:27.839",
+    "end": "00:36:29.750",
+    "text": "versus the other actually shape how you"
+  },
+  {
+    "start": "00:36:29.760",
+    "end": "00:36:31.589",
+    "text": "think about meaning or purpose or your"
+  },
+  {
+    "start": "00:36:31.599",
+    "end": "00:36:33.190",
+    "text": "own place in the grand scheme of things?"
+  },
+  {
+    "start": "00:36:33.200",
+    "end": "00:36:34.550",
+    "text": "It's definitely a lot to chew on."
+  },
+  {
+    "start": "00:36:34.560",
+    "end": "00:36:38.839",
+    "text": "The deepest questions always are."
+  }
+]
