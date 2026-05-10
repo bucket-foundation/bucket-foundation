@@ -1,0 +1,14 @@
+# Two-stage genome-wide association study identifies variants in CAMSAP1L1 as susceptibility loci for epilepsy in Chinese.
+
+- **PMID**: 22116939
+- **DOI**: 10.1093/hmg/ddr550
+- **PMCID**:  
+- **Journal**: Human molecular genetics  ·  **Year**: 2012
+- **Authors**: Youling Guo, Larry W Baum, Pak Chung Sham, Virginia Wong, Ping Wing Ng, Colin Hiu Tung Lui, Ngai Chuen Sin, Tak Hong Tsoi, Clara S M Tang, Johnny S H Kwan, Benjamin H K Yip, Su-Mei Xiao, G Neil Thomas, Yu Lung Lau, Wanling Yang, Stacey S Cherny, Patrick Kwan
+- **MeSH**: Adolescent, Adult, Aged, Aged, 80 and over, Asian People, Child, Child, Preschool, Cytoskeletal Proteins, Epilepsy, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22116939/
+- **Captured**: 2026-05-10T18:34:27
+
+## Abstract
+
+In the majority of patients, epilepsy is a complex disorder with multiple susceptibility genes interacting with environmental factors. However, we understand little about its genetic risks. Here, we report the first genome-wide association study (GWAS) to identify common susceptibility variants of epilepsy in Chinese. This two-stage GWAS included a total of 1087 patients and 3444 matched controls. In the combined analysis of the two stages, the strongest signals were observed with two highly correlated variants, rs2292096 [G] [P= 1.0 × 10(-8), odds ratio (OR) = 0.63] and rs6660197 [T] (P= 9.9 × 10(-7), OR = 0.69), with the former reaching genome-wide significance, on 1q32.1 in the CAMSAP1L1 gene, which encodes a cytoskeletal protein. We also refined a previously reported association with rs9390754 (P= 1.7 × 10(-5)) on 6q21 in the GRIK2 gene, which encodes a glutamate receptor, and identified several other loci in genes involved in neurotransmission or neuronal networking that warrant further investigation. Our results suggest that common genetic variants may increase the susceptibility to epilepsy in Chinese.

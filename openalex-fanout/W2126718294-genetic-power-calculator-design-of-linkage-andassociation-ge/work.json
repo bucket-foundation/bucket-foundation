@@ -1,0 +1,1187 @@
+{
+  "id": "https://openalex.org/W2126718294",
+  "doi": "https://doi.org/10.1093/bioinformatics/19.1.149",
+  "title": "Genetic Power Calculator: design of linkage andassociation genetic mapping studies of complex traits",
+  "display_name": "Genetic Power Calculator: design of linkage andassociation genetic mapping studies of complex traits",
+  "publication_year": 2002,
+  "publication_date": "2002-12-23",
+  "ids": {
+    "openalex": "https://openalex.org/W2126718294",
+    "doi": "https://doi.org/10.1093/bioinformatics/19.1.149",
+    "mag": "2126718294",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/12499305"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1093/bioinformatics/19.1.149",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1093/bioinformatics/19.1.149",
+    "pdf_url": "https://academic.oup.com/bioinformatics/article-pdf/19/1/149/48903766/bioinformatics_19_1_149.pdf",
+    "source": {
+      "id": "https://openalex.org/S52395412",
+      "display_name": "Bioinformatics",
+      "issn_l": "1367-4803",
+      "issn": [
+        "1367-4803",
+        "1367-4811"
+      ],
+      "is_oa": false,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310311648",
+      "host_organization_name": "Oxford University Press",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310311648",
+        "https://openalex.org/P4310311647"
+      ],
+      "host_organization_lineage_names": [
+        "Oxford University Press",
+        "University of Oxford"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Bioinformatics",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "bronze",
+    "oa_url": "https://academic.oup.com/bioinformatics/article-pdf/19/1/149/48903766/bioinformatics_19_1_149.pdf",
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5108083384",
+        "display_name": "Shaun Purcell",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I183935753",
+          "display_name": "King's College London",
+          "ror": "https://ror.org/0220mzb33",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I124357947",
+            "https://openalex.org/I183935753"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "S. Purcell",
+      "raw_affiliation_strings": [
+        "Social, Genetics and Developmental Psychiatry Research Centre, Institute of Psychiatry, King's College London, De Crespigny Park, UK. s.purcell@iop.kcl.ac.uk",
+        "Social, Genetics and Developmental Psychiatry Research Centre, Institute of Psychiatry, King's College London, De Crespigny Park, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Social, Genetics and Developmental Psychiatry Research Centre, Institute of Psychiatry, King's College London, De Crespigny Park, UK. s.purcell@iop.kcl.ac.uk",
+          "institution_ids": [
+            "https://openalex.org/I183935753"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Social, Genetics and Developmental Psychiatry Research Centre, Institute of Psychiatry, King's College London, De Crespigny Park, UK",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5090072859",
+        "display_name": "Stacey S. Cherny",
+        "orcid": "https://orcid.org/0000-0002-0269-3352"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1336263701",
+          "display_name": "Centre for Human Genetics",
+          "ror": "https://ror.org/01rjnta51",
+          "country_code": "GB",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1336263701",
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210118524",
+          "display_name": "Université Bourgogne Franche-Comté",
+          "ror": "https://ror.org/02dn7x778",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210118524"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. S. Cherny",
+      "raw_affiliation_strings": [
+        "Wellcome Trust Centre for Human Genetics, University of Oxford, Roosevelt Drive, Oxford OX3 7BN, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Wellcome Trust Centre for Human Genetics, University of Oxford, Roosevelt Drive, Oxford OX3 7BN, UK",
+          "institution_ids": [
+            "https://openalex.org/I1336263701",
+            "https://openalex.org/I40120149",
+            "https://openalex.org/I4210118524"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5018516395",
+        "display_name": "Pak C. Sham",
+        "orcid": "https://orcid.org/0000-0002-2533-7270"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I183935753",
+          "display_name": "King's College London",
+          "ror": "https://ror.org/0220mzb33",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I124357947",
+            "https://openalex.org/I183935753"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "P. C. Sham",
+      "raw_affiliation_strings": [
+        "Social, Genetics and Developmental Psychiatry Research Centre, Institute of Psychiatry, King's College London, De Crespigny Park, London SE5 8AF, UK and",
+        "King ‘s College London"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Social, Genetics and Developmental Psychiatry Research Centre, Institute of Psychiatry, King's College London, De Crespigny Park, London SE5 8AF, UK and",
+          "institution_ids": [
+            "https://openalex.org/I183935753"
+          ]
+        },
+        {
+          "raw_affiliation_string": "King ‘s College London",
+          "institution_ids": [
+            "https://openalex.org/I183935753"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 3,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5108083384"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I183935753"
+  ],
+  "apc_list": {
+    "value": 3618,
+    "currency": "USD",
+    "value_usd": 3618
+  },
+  "apc_paid": null,
+  "fwci": 19.2007,
+  "has_fulltext": true,
+  "cited_by_count": 2073,
+  "citation_normalized_percentile": {
+    "value": 0.99601012,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "19",
+    "issue": "1",
+    "first_page": "149",
+    "last_page": "150"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11468",
+    "display_name": "Genetic Mapping and Diversity in Plants and Animals",
+    "score": 0.9995999932289124,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1311",
+      "display_name": "Genetics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11468",
+      "display_name": "Genetic Mapping and Diversity in Plants and Animals",
+      "score": 0.9995999932289124,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1311",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10594",
+      "display_name": "Genetic and phenotypic traits in livestock",
+      "score": 0.9970999956130981,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1311",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10261",
+      "display_name": "Genetic Associations and Epidemiology",
+      "score": 0.9955000281333923,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1311",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/calculator",
+      "display_name": "Calculator",
+      "score": 0.9182503819465637
+    },
+    {
+      "id": "https://openalex.org/keywords/linkage",
+      "display_name": "Linkage (software)",
+      "score": 0.6720110177993774
+    },
+    {
+      "id": "https://openalex.org/keywords/genetic-association",
+      "display_name": "Genetic association",
+      "score": 0.6361771821975708
+    },
+    {
+      "id": "https://openalex.org/keywords/association",
+      "display_name": "Association (psychology)",
+      "score": 0.550449013710022
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.49498289823532104
+    },
+    {
+      "id": "https://openalex.org/keywords/association-mapping",
+      "display_name": "Association mapping",
+      "score": 0.4614281952381134
+    },
+    {
+      "id": "https://openalex.org/keywords/computational-biology",
+      "display_name": "Computational biology",
+      "score": 0.4221998453140259
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.38914474844932556
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.3661261796951294
+    },
+    {
+      "id": "https://openalex.org/keywords/statistics",
+      "display_name": "Statistics",
+      "score": 0.3476099967956543
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.2002166211605072
+    },
+    {
+      "id": "https://openalex.org/keywords/single-nucleotide-polymorphism",
+      "display_name": "Single-nucleotide polymorphism",
+      "score": 0.16803684830665588
+    },
+    {
+      "id": "https://openalex.org/keywords/genotype",
+      "display_name": "Genotype",
+      "score": 0.1236734390258789
+    },
+    {
+      "id": "https://openalex.org/keywords/psychology",
+      "display_name": "Psychology",
+      "score": 0.1191125214099884
+    },
+    {
+      "id": "https://openalex.org/keywords/operating-system",
+      "display_name": "Operating system",
+      "score": 0.07369184494018555
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.06973832845687866
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2776836400",
+      "wikidata": "https://www.wikidata.org/wiki/Q31087",
+      "display_name": "Calculator",
+      "level": 2,
+      "score": 0.9182503819465637
+    },
+    {
+      "id": "https://openalex.org/C31266012",
+      "wikidata": "https://www.wikidata.org/wiki/Q6554340",
+      "display_name": "Linkage (software)",
+      "level": 3,
+      "score": 0.6720110177993774
+    },
+    {
+      "id": "https://openalex.org/C186413461",
+      "wikidata": "https://www.wikidata.org/wiki/Q744727",
+      "display_name": "Genetic association",
+      "level": 5,
+      "score": 0.6361771821975708
+    },
+    {
+      "id": "https://openalex.org/C142853389",
+      "wikidata": "https://www.wikidata.org/wiki/Q744778",
+      "display_name": "Association (psychology)",
+      "level": 2,
+      "score": 0.550449013710022
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.49498289823532104
+    },
+    {
+      "id": "https://openalex.org/C134443026",
+      "wikidata": "https://www.wikidata.org/wiki/Q4809584",
+      "display_name": "Association mapping",
+      "level": 5,
+      "score": 0.4614281952381134
+    },
+    {
+      "id": "https://openalex.org/C70721500",
+      "wikidata": "https://www.wikidata.org/wiki/Q177005",
+      "display_name": "Computational biology",
+      "level": 1,
+      "score": 0.4221998453140259
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.38914474844932556
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.3661261796951294
+    },
+    {
+      "id": "https://openalex.org/C105795698",
+      "wikidata": "https://www.wikidata.org/wiki/Q12483",
+      "display_name": "Statistics",
+      "level": 1,
+      "score": 0.3476099967956543
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.2002166211605072
+    },
+    {
+      "id": "https://openalex.org/C153209595",
+      "wikidata": "https://www.wikidata.org/wiki/Q501128",
+      "display_name": "Single-nucleotide polymorphism",
+      "level": 4,
+      "score": 0.16803684830665588
+    },
+    {
+      "id": "https://openalex.org/C135763542",
+      "wikidata": "https://www.wikidata.org/wiki/Q106016",
+      "display_name": "Genotype",
+      "level": 3,
+      "score": 0.1236734390258789
+    },
+    {
+      "id": "https://openalex.org/C15744967",
+      "wikidata": "https://www.wikidata.org/wiki/Q9418",
+      "display_name": "Psychology",
+      "level": 0,
+      "score": 0.1191125214099884
+    },
+    {
+      "id": "https://openalex.org/C111919701",
+      "wikidata": "https://www.wikidata.org/wiki/Q9135",
+      "display_name": "Operating system",
+      "level": 1,
+      "score": 0.07369184494018555
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.06973832845687866
+    },
+    {
+      "id": "https://openalex.org/C542102704",
+      "wikidata": "https://www.wikidata.org/wiki/Q183257",
+      "display_name": "Psychotherapist",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D002874",
+      "descriptor_name": "Chromosome Mapping",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002874",
+      "descriptor_name": "Chromosome Mapping",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002874",
+      "descriptor_name": "Chromosome Mapping",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005787",
+      "descriptor_name": "Gene Frequency",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005787",
+      "descriptor_name": "Gene Frequency",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005787",
+      "descriptor_name": "Gene Frequency",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005819",
+      "descriptor_name": "Genetic Markers",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005819",
+      "descriptor_name": "Genetic Markers",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005819",
+      "descriptor_name": "Genetic Markers",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008040",
+      "descriptor_name": "Genetic Linkage",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008040",
+      "descriptor_name": "Genetic Linkage",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008040",
+      "descriptor_name": "Genetic Linkage",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008957",
+      "descriptor_name": "Models, Genetic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008957",
+      "descriptor_name": "Models, Genetic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008957",
+      "descriptor_name": "Models, Genetic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010375",
+      "descriptor_name": "Pedigree",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010375",
+      "descriptor_name": "Pedigree",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010375",
+      "descriptor_name": "Pedigree",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012984",
+      "descriptor_name": "Software",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012984",
+      "descriptor_name": "Software",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012984",
+      "descriptor_name": "Software",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015233",
+      "descriptor_name": "Models, Statistical",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D015233",
+      "descriptor_name": "Models, Statistical",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D015233",
+      "descriptor_name": "Models, Statistical",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D015810",
+      "descriptor_name": "Linkage Disequilibrium",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015810",
+      "descriptor_name": "Linkage Disequilibrium",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D015810",
+      "descriptor_name": "Linkage Disequilibrium",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018401",
+      "descriptor_name": "Sample Size",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018401",
+      "descriptor_name": "Sample Size",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018401",
+      "descriptor_name": "Sample Size",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019655",
+      "descriptor_name": "Quantitative Trait, Heritable",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019655",
+      "descriptor_name": "Quantitative Trait, Heritable",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019655",
+      "descriptor_name": "Quantitative Trait, Heritable",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020022",
+      "descriptor_name": "Genetic Predisposition to Disease",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020022",
+      "descriptor_name": "Genetic Predisposition to Disease",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020022",
+      "descriptor_name": "Genetic Predisposition to Disease",
+      "qualifier_ui": "Q000235",
+      "qualifier_name": "genetics",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020407",
+      "descriptor_name": "Internet",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020407",
+      "descriptor_name": "Internet",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020407",
+      "descriptor_name": "Internet",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    }
+  ],
+  "locations_count": 5,
+  "locations": [
+    {
+      "id": "doi:10.1093/bioinformatics/19.1.149",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1093/bioinformatics/19.1.149",
+      "pdf_url": "https://academic.oup.com/bioinformatics/article-pdf/19/1/149/48903766/bioinformatics_19_1_149.pdf",
+      "source": {
+        "id": "https://openalex.org/S52395412",
+        "display_name": "Bioinformatics",
+        "issn_l": "1367-4803",
+        "issn": [
+          "1367-4803",
+          "1367-4811"
+        ],
+        "is_oa": false,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310311648",
+        "host_organization_name": "Oxford University Press",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310311648",
+          "https://openalex.org/P4310311647"
+        ],
+        "host_organization_lineage_names": [
+          "Oxford University Press",
+          "University of Oxford"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Bioinformatics",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:12499305",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/12499305",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Bioinformatics (Oxford, England)",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:CiteSeerX.psu:10.1.1.703.4745",
+      "is_oa": false,
+      "landing_page_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.703.4745",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "http://research.mssm.edu/statgen/library/purcell-2003-gpc.pdf",
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:hub.hku.hk:10722/143683",
+      "is_oa": false,
+      "landing_page_url": "http://hdl.handle.net/10722/143683",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196271",
+        "display_name": "The HKU Scholars Hub (University of Hong Kong)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I889458895",
+        "host_organization_name": "University of Hong Kong",
+        "host_organization_lineage": [
+          "https://openalex.org/I889458895"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:kclpure.kcl.ac.uk:publications/57d42c4c-d86d-4524-8b47-2842732f12bf",
+      "is_oa": false,
+      "landing_page_url": "https://kclpure.kcl.ac.uk/portal/en/publications/57d42c4c-d86d-4524-8b47-2842732f12bf",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400216",
+        "display_name": "Research Portal (King's College London)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I183935753",
+        "host_organization_name": "King's College London",
+        "host_organization_lineage": [
+          "https://openalex.org/I183935753"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Purcell, S, Cherny, S S & Sham, P C 2003, 'Genetic Power Calculator: design of linkage and association genetic mapping studies of complex traits', BIOINFORMATICS, vol. 19, no. 1, pp. 149 - 150. https://doi.org/10.1093/bioinformatics/19.1.149",
+      "raw_type": "info:eu-repo/semantics/publishedVersion"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1093/bioinformatics/19.1.149",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1093/bioinformatics/19.1.149",
+    "pdf_url": "https://academic.oup.com/bioinformatics/article-pdf/19/1/149/48903766/bioinformatics_19_1_149.pdf",
+    "source": {
+      "id": "https://openalex.org/S52395412",
+      "display_name": "Bioinformatics",
+      "issn_l": "1367-4803",
+      "issn": [
+        "1367-4803",
+        "1367-4811"
+      ],
+      "is_oa": false,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310311648",
+      "host_organization_name": "Oxford University Press",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310311648",
+        "https://openalex.org/P4310311647"
+      ],
+      "host_organization_lineage_names": [
+        "Oxford University Press",
+        "University of Oxford"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Bioinformatics",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "awards": [
+    {
+      "id": "https://openalex.org/G1688808066",
+      "display_name": null,
+      "funder_award_id": "EY-12562",
+      "funder_id": "https://openalex.org/F4320332161",
+      "funder_display_name": "National Institutes of Health"
+    },
+    {
+      "id": "https://openalex.org/G7294801217",
+      "display_name": null,
+      "funder_award_id": "G9700821",
+      "funder_id": "https://openalex.org/F4320334626",
+      "funder_display_name": "Medical Research Council"
+    }
+  ],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320311904",
+      "display_name": "Wellcome Trust",
+      "ror": "https://ror.org/029chgv08"
+    },
+    {
+      "id": "https://openalex.org/F4320332161",
+      "display_name": "National Institutes of Health",
+      "ror": "https://ror.org/01cwqze88"
+    },
+    {
+      "id": "https://openalex.org/F4320334626",
+      "display_name": "Medical Research Council",
+      "ror": "https://ror.org/03x94j517"
+    }
+  ],
+  "has_content": {
+    "grobid_xml": true,
+    "pdf": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2126718294.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2126718294.grobid-xml"
+  },
+  "referenced_works_count": 13,
+  "referenced_works": [
+    "https://openalex.org/W1485914324",
+    "https://openalex.org/W1543868019",
+    "https://openalex.org/W1579116234",
+    "https://openalex.org/W1595609022",
+    "https://openalex.org/W1976872925",
+    "https://openalex.org/W1979164118",
+    "https://openalex.org/W1989770763",
+    "https://openalex.org/W2020344898",
+    "https://openalex.org/W2040845149",
+    "https://openalex.org/W2056259531",
+    "https://openalex.org/W2078343620",
+    "https://openalex.org/W2078625752",
+    "https://openalex.org/W2115335486"
+  ],
+  "related_works": [
+    "https://openalex.org/W2200278762",
+    "https://openalex.org/W201200248",
+    "https://openalex.org/W4212923765",
+    "https://openalex.org/W1480804049",
+    "https://openalex.org/W2172194725",
+    "https://openalex.org/W2185242460",
+    "https://openalex.org/W2145083705",
+    "https://openalex.org/W2131251647",
+    "https://openalex.org/W1969997927",
+    "https://openalex.org/W1633340387"
+  ],
+  "abstract_inverted_index": {
+    "SUMMARY:": [
+      0
+    ],
+    "A": [
+      1
+    ],
+    "website": [
+      2
+    ],
+    "for": [
+      3,
+      7
+    ],
+    "performing": [
+      4
+    ],
+    "power": [
+      5
+    ],
+    "calculations": [
+      6
+    ],
+    "the": [
+      8
+    ],
+    "design": [
+      9
+    ],
+    "of": [
+      10,
+      17
+    ],
+    "linkage": [
+      11
+    ],
+    "and": [
+      12
+    ],
+    "association": [
+      13
+    ],
+    "genetic": [
+      14
+    ],
+    "mapping": [
+      15
+    ],
+    "studies": [
+      16
+    ],
+    "complex": [
+      18
+    ],
+    "traits.": [
+      19
+    ],
+    "AVAILABILITY:": [
+      20
+    ],
+    "The": [
+      21
+    ],
+    "package": [
+      22
+    ],
+    "is": [
+      23
+    ],
+    "made": [
+      24
+    ],
+    "available": [
+      25
+    ],
+    "athttp://statgen.iop.kcl.ac.uk/gpc/.": [
+      26
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 22
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 27
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 40
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 57
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 57
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 77
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 95
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 101
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 116
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 127
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 124
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 147
+    }
+  ],
+  "updated_date": "2026-04-28T14:05:53.105641",
+  "created_date": "2025-10-10T00:00:00"
+}

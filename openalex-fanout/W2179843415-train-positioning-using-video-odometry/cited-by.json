@@ -1,0 +1,1528 @@
+[
+  {
+    "id": "https://openalex.org/W4281812588",
+    "doi": "https://doi.org/10.3390/s22114185",
+    "title": "A Review on Technologies for Localisation and Navigation in Autonomous Railway Maintenance Systems",
+    "display_name": "A Review on Technologies for Localisation and Navigation in Autonomous Railway Maintenance Systems",
+    "publication_year": 2022,
+    "publication_date": "2022-05-31",
+    "ids": {
+      "openalex": "https://openalex.org/W4281812588",
+      "doi": "https://doi.org/10.3390/s22114185",
+      "pmid": "https://pubmed.ncbi.nlm.nih.gov/35684804"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.3390/s22114185",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.3390/s22114185",
+      "pdf_url": "https://www.mdpi.com/1424-8220/22/11/4185/pdf?version=1654054343",
+      "source": {
+        "id": "https://openalex.org/S101949793",
+        "display_name": "Sensors",
+        "issn_l": "1424-8220",
+        "issn": [
+          "1424-8220"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310310987",
+        "host_organization_name": "Multidisciplinary Digital Publishing Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310310987"
+        ],
+        "host_organization_lineage_names": [
+          "Multidisciplinary Digital Publishing Institute"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Sensors",
+      "raw_type": "journal-article"
+    },
+    "type": "review",
+    "indexed_in": [
+      "crossref",
+      "doaj",
+      "pubmed"
+    ],
+    "open_access": {
+      "is_oa": true,
+      "oa_status": "gold",
+      "oa_url": "https://www.mdpi.com/1424-8220/22/11/4185/pdf?version=1654054343",
+      "any_repository_has_fulltext": true
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5006565492",
+          "display_name": "Masoumeh Rahimi",
+          "orcid": "https://orcid.org/0000-0001-5395-9280"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I82284825",
+            "display_name": "Cranfield University",
+            "ror": "https://ror.org/05cncd958",
+            "country_code": "GB",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I82284825"
+            ]
+          }
+        ],
+        "countries": [
+          "GB"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Masoumeh Rahimi",
+        "raw_affiliation_strings": [
+          "School of Aerospace, Transport and Manufacturing, Cranfield University, Bedford MK43 0AL, UK"
+        ],
+        "raw_orcid": "https://orcid.org/0000-0001-5395-9280",
+        "affiliations": [
+          {
+            "raw_affiliation_string": "School of Aerospace, Transport and Manufacturing, Cranfield University, Bedford MK43 0AL, UK",
+            "institution_ids": [
+              "https://openalex.org/I82284825"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5070500491",
+          "display_name": "Haochen Liu",
+          "orcid": "https://orcid.org/0000-0002-2991-3642"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I82284825",
+            "display_name": "Cranfield University",
+            "ror": "https://ror.org/05cncd958",
+            "country_code": "GB",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I82284825"
+            ]
+          }
+        ],
+        "countries": [
+          "GB"
+        ],
+        "is_corresponding": true,
+        "raw_author_name": "Haochen Liu",
+        "raw_affiliation_strings": [
+          "School of Aerospace, Transport and Manufacturing, Cranfield University, Bedford MK43 0AL, UK"
+        ],
+        "raw_orcid": null,
+        "affiliations": [
+          {
+            "raw_affiliation_string": "School of Aerospace, Transport and Manufacturing, Cranfield University, Bedford MK43 0AL, UK",
+            "institution_ids": [
+              "https://openalex.org/I82284825"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5042657447",
+          "display_name": "Isidro Durazo-Cardenas",
+          "orcid": null
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I82284825",
+            "display_name": "Cranfield University",
+            "ror": "https://ror.org/05cncd958",
+            "country_code": "GB",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I82284825"
+            ]
+          }
+        ],
+        "countries": [
+          "GB"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Isidro Durazo Cardenas",
+        "raw_affiliation_strings": [
+          "School of Aerospace, Transport and Manufacturing, Cranfield University, Bedford MK43 0AL, UK"
+        ],
+        "raw_orcid": "https://orcid.org/0000-0002-3586-041X",
+        "affiliations": [
+          {
+            "raw_affiliation_string": "School of Aerospace, Transport and Manufacturing, Cranfield University, Bedford MK43 0AL, UK",
+            "institution_ids": [
+              "https://openalex.org/I82284825"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5002449661",
+          "display_name": "Andrew Starr",
+          "orcid": "https://orcid.org/0000-0001-9046-560X"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I82284825",
+            "display_name": "Cranfield University",
+            "ror": "https://ror.org/05cncd958",
+            "country_code": "GB",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I82284825"
+            ]
+          }
+        ],
+        "countries": [
+          "GB"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Andrew Starr",
+        "raw_affiliation_strings": [
+          "School of Aerospace, Transport and Manufacturing, Cranfield University, Bedford MK43 0AL, UK"
+        ],
+        "raw_orcid": "https://orcid.org/0000-0001-9046-560X",
+        "affiliations": [
+          {
+            "raw_affiliation_string": "School of Aerospace, Transport and Manufacturing, Cranfield University, Bedford MK43 0AL, UK",
+            "institution_ids": [
+              "https://openalex.org/I82284825"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5020686242",
+          "display_name": "Amanda Hall",
+          "orcid": "https://orcid.org/0009-0006-0826-0888"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I81935515",
+            "display_name": "Network Rail",
+            "ror": "https://ror.org/02ct12k14",
+            "country_code": "GB",
+            "type": "company",
+            "lineage": [
+              "https://openalex.org/I81935515"
+            ]
+          }
+        ],
+        "countries": [
+          "GB"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Amanda Hall",
+        "raw_affiliation_strings": [
+          "Network Rail, Milton Keynes MK9 1EN, UK"
+        ],
+        "raw_orcid": null,
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Network Rail, Milton Keynes MK9 1EN, UK",
+            "institution_ids": [
+              "https://openalex.org/I81935515"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5001975935",
+          "display_name": "Robert Anderson",
+          "orcid": null
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I81935515",
+            "display_name": "Network Rail",
+            "ror": "https://ror.org/02ct12k14",
+            "country_code": "GB",
+            "type": "company",
+            "lineage": [
+              "https://openalex.org/I81935515"
+            ]
+          }
+        ],
+        "countries": [
+          "GB"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Robert Anderson",
+        "raw_affiliation_strings": [
+          "Network Rail, Milton Keynes MK9 1EN, UK"
+        ],
+        "raw_orcid": null,
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Network Rail, Milton Keynes MK9 1EN, UK",
+            "institution_ids": [
+              "https://openalex.org/I81935515"
+            ]
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 1,
+    "institutions_distinct_count": 6,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5070500491"
+    ],
+    "corresponding_institution_ids": [
+      "https://openalex.org/I82284825"
+    ],
+    "apc_list": {
+      "value": 2400,
+      "currency": "CHF",
+      "value_usd": 2598
+    },
+    "apc_paid": {
+      "value": 2400,
+      "currency": "CHF",
+      "value_usd": 2598
+    },
+    "fwci": 2.1889,
+    "has_fulltext": false,
+    "cited_by_count": 23,
+    "citation_normalized_percentile": {
+      "value": 0.86693438,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 96,
+      "max": 99
+    },
+    "biblio": {
+      "volume": "22",
+      "issue": "11",
+      "first_page": "4185",
+      "last_page": "4185"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T10842",
+      "display_name": "Railway Engineering and Dynamics",
+      "score": 0.9994000196456909,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2210",
+        "display_name": "Mechanical Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T10842",
+        "display_name": "Railway Engineering and Dynamics",
+        "score": 0.9994000196456909,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2210",
+          "display_name": "Mechanical Engineering"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/22",
+          "display_name": "Engineering"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11568",
+        "display_name": "Railway Systems and Energy Efficiency",
+        "score": 0.9966999888420105,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2209",
+          "display_name": "Industrial and Manufacturing Engineering"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/22",
+          "display_name": "Engineering"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11606",
+        "display_name": "Infrastructure Maintenance and Monitoring",
+        "score": 0.9883999824523926,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2205",
+          "display_name": "Civil and Structural Engineering"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/22",
+          "display_name": "Engineering"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/software-deployment",
+        "display_name": "Software deployment",
+        "score": 0.7480932474136353
+      },
+      {
+        "id": "https://openalex.org/keywords/reliability",
+        "display_name": "Reliability (semiconductor)",
+        "score": 0.6451441049575806
+      },
+      {
+        "id": "https://openalex.org/keywords/engineering",
+        "display_name": "Engineering",
+        "score": 0.5066981911659241
+      },
+      {
+        "id": "https://openalex.org/keywords/reliability-engineering",
+        "display_name": "Reliability engineering",
+        "score": 0.4553419351577759
+      },
+      {
+        "id": "https://openalex.org/keywords/track",
+        "display_name": "Track (disk drive)",
+        "score": 0.45468661189079285
+      },
+      {
+        "id": "https://openalex.org/keywords/service",
+        "display_name": "Service (business)",
+        "score": 0.44742846488952637
+      },
+      {
+        "id": "https://openalex.org/keywords/transport-engineering",
+        "display_name": "Transport engineering",
+        "score": 0.4303785562515259
+      },
+      {
+        "id": "https://openalex.org/keywords/preventive-maintenance",
+        "display_name": "Preventive maintenance",
+        "score": 0.42650097608566284
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.40685001015663147
+      },
+      {
+        "id": "https://openalex.org/keywords/risk-analysis",
+        "display_name": "Risk analysis (engineering)",
+        "score": 0.3444089889526367
+      },
+      {
+        "id": "https://openalex.org/keywords/systems-engineering",
+        "display_name": "Systems engineering",
+        "score": 0.3416163921356201
+      },
+      {
+        "id": "https://openalex.org/keywords/software-engineering",
+        "display_name": "Software engineering",
+        "score": 0.08164608478546143
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C105339364",
+        "wikidata": "https://www.wikidata.org/wiki/Q2297740",
+        "display_name": "Software deployment",
+        "level": 2,
+        "score": 0.7480932474136353
+      },
+      {
+        "id": "https://openalex.org/C43214815",
+        "wikidata": "https://www.wikidata.org/wiki/Q7310987",
+        "display_name": "Reliability (semiconductor)",
+        "level": 3,
+        "score": 0.6451441049575806
+      },
+      {
+        "id": "https://openalex.org/C127413603",
+        "wikidata": "https://www.wikidata.org/wiki/Q11023",
+        "display_name": "Engineering",
+        "level": 0,
+        "score": 0.5066981911659241
+      },
+      {
+        "id": "https://openalex.org/C200601418",
+        "wikidata": "https://www.wikidata.org/wiki/Q2193887",
+        "display_name": "Reliability engineering",
+        "level": 1,
+        "score": 0.4553419351577759
+      },
+      {
+        "id": "https://openalex.org/C89992363",
+        "wikidata": "https://www.wikidata.org/wiki/Q5961558",
+        "display_name": "Track (disk drive)",
+        "level": 2,
+        "score": 0.45468661189079285
+      },
+      {
+        "id": "https://openalex.org/C2780378061",
+        "wikidata": "https://www.wikidata.org/wiki/Q25351891",
+        "display_name": "Service (business)",
+        "level": 2,
+        "score": 0.44742846488952637
+      },
+      {
+        "id": "https://openalex.org/C22212356",
+        "wikidata": "https://www.wikidata.org/wiki/Q775325",
+        "display_name": "Transport engineering",
+        "level": 1,
+        "score": 0.4303785562515259
+      },
+      {
+        "id": "https://openalex.org/C24090081",
+        "wikidata": "https://www.wikidata.org/wiki/Q1043452",
+        "display_name": "Preventive maintenance",
+        "level": 2,
+        "score": 0.42650097608566284
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.40685001015663147
+      },
+      {
+        "id": "https://openalex.org/C112930515",
+        "wikidata": "https://www.wikidata.org/wiki/Q4389547",
+        "display_name": "Risk analysis (engineering)",
+        "level": 1,
+        "score": 0.3444089889526367
+      },
+      {
+        "id": "https://openalex.org/C201995342",
+        "wikidata": "https://www.wikidata.org/wiki/Q682496",
+        "display_name": "Systems engineering",
+        "level": 1,
+        "score": 0.3416163921356201
+      },
+      {
+        "id": "https://openalex.org/C115903868",
+        "wikidata": "https://www.wikidata.org/wiki/Q80993",
+        "display_name": "Software engineering",
+        "level": 1,
+        "score": 0.08164608478546143
+      },
+      {
+        "id": "https://openalex.org/C163258240",
+        "wikidata": "https://www.wikidata.org/wiki/Q25342",
+        "display_name": "Power (physics)",
+        "level": 2,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C71924100",
+        "wikidata": "https://www.wikidata.org/wiki/Q11190",
+        "display_name": "Medicine",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C62520636",
+        "wikidata": "https://www.wikidata.org/wiki/Q944",
+        "display_name": "Quantum mechanics",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C121332964",
+        "wikidata": "https://www.wikidata.org/wiki/Q413",
+        "display_name": "Physics",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C78519656",
+        "wikidata": "https://www.wikidata.org/wiki/Q101333",
+        "display_name": "Mechanical engineering",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C162324750",
+        "wikidata": "https://www.wikidata.org/wiki/Q8134",
+        "display_name": "Economics",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C136264566",
+        "wikidata": "https://www.wikidata.org/wiki/Q159810",
+        "display_name": "Economy",
+        "level": 1,
+        "score": 0.0
+      }
+    ],
+    "mesh": [
+      {
+        "descriptor_ui": "D006801",
+        "descriptor_name": "Humans",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": false
+      },
+      {
+        "descriptor_ui": "D006801",
+        "descriptor_name": "Humans",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": false
+      },
+      {
+        "descriptor_ui": "D006801",
+        "descriptor_name": "Humans",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": false
+      },
+      {
+        "descriptor_ui": "D011890",
+        "descriptor_name": "Railroads",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": true
+      },
+      {
+        "descriptor_ui": "D011890",
+        "descriptor_name": "Railroads",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": true
+      },
+      {
+        "descriptor_ui": "D011890",
+        "descriptor_name": "Railroads",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": true
+      },
+      {
+        "descriptor_ui": "D012371",
+        "descriptor_name": "Robotics",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": true
+      },
+      {
+        "descriptor_ui": "D012371",
+        "descriptor_name": "Robotics",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": true
+      },
+      {
+        "descriptor_ui": "D012371",
+        "descriptor_name": "Robotics",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": true
+      },
+      {
+        "descriptor_ui": "D015203",
+        "descriptor_name": "Reproducibility of Results",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": false
+      },
+      {
+        "descriptor_ui": "D015203",
+        "descriptor_name": "Reproducibility of Results",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": false
+      },
+      {
+        "descriptor_ui": "D015203",
+        "descriptor_name": "Reproducibility of Results",
+        "qualifier_ui": null,
+        "qualifier_name": null,
+        "is_major_topic": false
+      }
+    ],
+    "locations_count": 6,
+    "locations": [
+      {
+        "id": "doi:10.3390/s22114185",
+        "is_oa": true,
+        "landing_page_url": "https://doi.org/10.3390/s22114185",
+        "pdf_url": "https://www.mdpi.com/1424-8220/22/11/4185/pdf?version=1654054343",
+        "source": {
+          "id": "https://openalex.org/S101949793",
+          "display_name": "Sensors",
+          "issn_l": "1424-8220",
+          "issn": [
+            "1424-8220"
+          ],
+          "is_oa": true,
+          "is_in_doaj": true,
+          "is_core": true,
+          "host_organization": "https://openalex.org/P4310310987",
+          "host_organization_name": "Multidisciplinary Digital Publishing Institute",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310310987"
+          ],
+          "host_organization_lineage_names": [
+            "Multidisciplinary Digital Publishing Institute"
+          ],
+          "type": "journal"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Sensors",
+        "raw_type": "journal-article"
+      },
+      {
+        "id": "pmid:35684804",
+        "is_oa": false,
+        "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/35684804",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S4306525036",
+          "display_name": "PubMed",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": "https://openalex.org/I1299303238",
+          "host_organization_name": "National Institutes of Health",
+          "host_organization_lineage": [
+            "https://openalex.org/I1299303238"
+          ],
+          "host_organization_lineage_names": [],
+          "type": "repository"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Sensors (Basel, Switzerland)",
+        "raw_type": null
+      },
+      {
+        "id": "pmh:oai:doaj.org/article:b6e4f6d55a6d48f9bdc14f6330adfaa5",
+        "is_oa": true,
+        "landing_page_url": "https://doaj.org/article/b6e4f6d55a6d48f9bdc14f6330adfaa5",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S4306401280",
+          "display_name": "DOAJ (DOAJ: Directory of Open Access Journals)",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": null,
+          "host_organization_name": null,
+          "host_organization_lineage": [],
+          "host_organization_lineage_names": [],
+          "type": "repository"
+        },
+        "license": "cc-by-sa",
+        "license_id": "https://openalex.org/licenses/cc-by-sa",
+        "version": "submittedVersion",
+        "is_accepted": false,
+        "is_published": false,
+        "raw_source_name": "Sensors, Vol 22, Iss 11, p 4185 (2022)",
+        "raw_type": "article"
+      },
+      {
+        "id": "pmh:oai:dspace.lib.cranfield.ac.uk:1826/17993",
+        "is_oa": true,
+        "landing_page_url": "https://dspace.lib.cranfield.ac.uk/handle/1826/17993",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S4306401778",
+          "display_name": "CERES (Cranfield University)",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": "https://openalex.org/I82284825",
+          "host_organization_name": "Cranfield University",
+          "host_organization_lineage": [
+            "https://openalex.org/I82284825"
+          ],
+          "host_organization_lineage_names": [],
+          "type": "repository"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "submittedVersion",
+        "is_accepted": false,
+        "is_published": false,
+        "raw_source_name": "",
+        "raw_type": "Article"
+      },
+      {
+        "id": "pmh:oai:mdpi.com:/1424-8220/22/11/4185/",
+        "is_oa": true,
+        "landing_page_url": "https://dx.doi.org/10.3390/s22114185",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S4306400947",
+          "display_name": "MDPI (MDPI AG)",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": true,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": "https://openalex.org/I4210097602",
+          "host_organization_name": "Multidisciplinary Digital Publishing Institute (Switzerland)",
+          "host_organization_lineage": [
+            "https://openalex.org/I4210097602"
+          ],
+          "host_organization_lineage_names": [],
+          "type": "repository"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "submittedVersion",
+        "is_accepted": false,
+        "is_published": false,
+        "raw_source_name": "Sensors; Volume 22; Issue 11; Pages: 4185",
+        "raw_type": "Text"
+      },
+      {
+        "id": "pmh:oai:pubmedcentral.nih.gov:9185565",
+        "is_oa": true,
+        "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/9185565",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S2764455111",
+          "display_name": "PubMed Central",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": true,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": "https://openalex.org/I1299303238",
+          "host_organization_name": "National Institutes of Health",
+          "host_organization_lineage": [
+            "https://openalex.org/I1299303238"
+          ],
+          "host_organization_lineage_names": [],
+          "type": "repository"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "submittedVersion",
+        "is_accepted": false,
+        "is_published": false,
+        "raw_source_name": "Sensors (Basel)",
+        "raw_type": "Text"
+      }
+    ],
+    "best_oa_location": {
+      "id": "doi:10.3390/s22114185",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.3390/s22114185",
+      "pdf_url": "https://www.mdpi.com/1424-8220/22/11/4185/pdf?version=1654054343",
+      "source": {
+        "id": "https://openalex.org/S101949793",
+        "display_name": "Sensors",
+        "issn_l": "1424-8220",
+        "issn": [
+          "1424-8220"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310310987",
+        "host_organization_name": "Multidisciplinary Digital Publishing Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310310987"
+        ],
+        "host_organization_lineage_names": [
+          "Multidisciplinary Digital Publishing Institute"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Sensors",
+      "raw_type": "journal-article"
+    },
+    "sustainable_development_goals": [
+      {
+        "score": 0.6399999856948853,
+        "display_name": "Industry, innovation and infrastructure",
+        "id": "https://metadata.un.org/sdg/9"
+      }
+    ],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "grobid_xml": true,
+      "pdf": true
+    },
+    "content_urls": {
+      "pdf": "https://content.openalex.org/works/W4281812588.pdf",
+      "grobid_xml": "https://content.openalex.org/works/W4281812588.grobid-xml"
+    },
+    "referenced_works_count": 110,
+    "referenced_works": [
+      "https://openalex.org/W164754330",
+      "https://openalex.org/W205942370",
+      "https://openalex.org/W222872729",
+      "https://openalex.org/W794298597",
+      "https://openalex.org/W974762316",
+      "https://openalex.org/W1489593923",
+      "https://openalex.org/W1638159426",
+      "https://openalex.org/W1654910760",
+      "https://openalex.org/W1847343635",
+      "https://openalex.org/W1969530839",
+      "https://openalex.org/W1973740568",
+      "https://openalex.org/W1982050021",
+      "https://openalex.org/W1988212776",
+      "https://openalex.org/W1995957864",
+      "https://openalex.org/W2009139002",
+      "https://openalex.org/W2020288031",
+      "https://openalex.org/W2038420319",
+      "https://openalex.org/W2048281124",
+      "https://openalex.org/W2051373630",
+      "https://openalex.org/W2055001855",
+      "https://openalex.org/W2057948661",
+      "https://openalex.org/W2069542567",
+      "https://openalex.org/W2073202476",
+      "https://openalex.org/W2080963377",
+      "https://openalex.org/W2090676684",
+      "https://openalex.org/W2097820246",
+      "https://openalex.org/W2098347382",
+      "https://openalex.org/W2102383783",
+      "https://openalex.org/W2104000067",
+      "https://openalex.org/W2107097965",
+      "https://openalex.org/W2108781811",
+      "https://openalex.org/W2113280325",
+      "https://openalex.org/W2120587676",
+      "https://openalex.org/W2125513870",
+      "https://openalex.org/W2132488979",
+      "https://openalex.org/W2133297572",
+      "https://openalex.org/W2134641200",
+      "https://openalex.org/W2146689056",
+      "https://openalex.org/W2158232616",
+      "https://openalex.org/W2158394323",
+      "https://openalex.org/W2159396715",
+      "https://openalex.org/W2160093340",
+      "https://openalex.org/W2160988125",
+      "https://openalex.org/W2162533123",
+      "https://openalex.org/W2167721184",
+      "https://openalex.org/W2179843415",
+      "https://openalex.org/W2193145675",
+      "https://openalex.org/W2194775991",
+      "https://openalex.org/W2260750670",
+      "https://openalex.org/W2262291965",
+      "https://openalex.org/W2273245045",
+      "https://openalex.org/W2316018670",
+      "https://openalex.org/W2328140033",
+      "https://openalex.org/W2406840893",
+      "https://openalex.org/W2521229691",
+      "https://openalex.org/W2525120681",
+      "https://openalex.org/W2565316591",
+      "https://openalex.org/W2588080234",
+      "https://openalex.org/W2604481872",
+      "https://openalex.org/W2613804044",
+      "https://openalex.org/W2691120755",
+      "https://openalex.org/W2750627398",
+      "https://openalex.org/W2762845973",
+      "https://openalex.org/W2765521311",
+      "https://openalex.org/W2774823974",
+      "https://openalex.org/W2787342202",
+      "https://openalex.org/W2790270910",
+      "https://openalex.org/W2791639158",
+      "https://openalex.org/W2794181575",
+      "https://openalex.org/W2921373016",
+      "https://openalex.org/W2965272433",
+      "https://openalex.org/W2981196771",
+      "https://openalex.org/W2989256313",
+      "https://openalex.org/W2990523941",
+      "https://openalex.org/W2996945478",
+      "https://openalex.org/W2999010483",
+      "https://openalex.org/W3000280594",
+      "https://openalex.org/W3004908459",
+      "https://openalex.org/W3008195728",
+      "https://openalex.org/W3008487049",
+      "https://openalex.org/W3008982437",
+      "https://openalex.org/W3017222518",
+      "https://openalex.org/W3045897451",
+      "https://openalex.org/W3048744603",
+      "https://openalex.org/W3076249718",
+      "https://openalex.org/W3091052424",
+      "https://openalex.org/W3092317128",
+      "https://openalex.org/W3106250896",
+      "https://openalex.org/W3109943374",
+      "https://openalex.org/W3112063056",
+      "https://openalex.org/W3112604704",
+      "https://openalex.org/W3126837140",
+      "https://openalex.org/W3129826731",
+      "https://openalex.org/W3133190857",
+      "https://openalex.org/W3135991645",
+      "https://openalex.org/W3155291413",
+      "https://openalex.org/W3160789703",
+      "https://openalex.org/W3167900848",
+      "https://openalex.org/W3213836962",
+      "https://openalex.org/W4213409102",
+      "https://openalex.org/W4250866180",
+      "https://openalex.org/W4255095071",
+      "https://openalex.org/W6631875217",
+      "https://openalex.org/W6636787879",
+      "https://openalex.org/W6637238438",
+      "https://openalex.org/W6647263261",
+      "https://openalex.org/W6649560732",
+      "https://openalex.org/W6675134861",
+      "https://openalex.org/W6677040827",
+      "https://openalex.org/W6740165559"
+    ],
+    "related_works": [
+      "https://openalex.org/W4214827973",
+      "https://openalex.org/W2315243270",
+      "https://openalex.org/W4231557335",
+      "https://openalex.org/W2394158014",
+      "https://openalex.org/W2370623581",
+      "https://openalex.org/W2065422689",
+      "https://openalex.org/W2130432129",
+      "https://openalex.org/W2372858080",
+      "https://openalex.org/W3019581320",
+      "https://openalex.org/W1978071414"
+    ],
+    "abstract_inverted_index": {
+      "Smart": [
+        0
+      ],
+      "maintenance": [
+        1,
+        13,
+        27,
+        49,
+        110
+      ],
+      "is": [
+        2,
+        15,
+        86
+      ],
+      "essential": [
+        3
+      ],
+      "to": [
+        4,
+        30,
+        46,
+        61,
+        132,
+        162,
+        196
+      ],
+      "achieving": [
+        5
+      ],
+      "a": [
+        6,
+        89,
+        163
+      ],
+      "safe": [
+        7
+      ],
+      "and": [
+        8,
+        17,
+        34,
+        41,
+        54,
+        106,
+        114,
+        126,
+        146,
+        150,
+        167,
+        172,
+        194
+      ],
+      "reliable": [
+        9
+      ],
+      "railway,": [
+        10
+      ],
+      "but": [
+        11
+      ],
+      "traditional": [
+        12
+      ],
+      "deployment": [
+        14,
+        38
+      ],
+      "costly": [
+        16
+      ],
+      "heavily": [
+        18
+      ],
+      "human-involved.": [
+        19
+      ],
+      "Ineffective": [
+        20
+      ],
+      "job": [
+        21
+      ],
+      "execution": [
+        22
+      ],
+      "or": [
+        23
+      ],
+      "failure": [
+        24
+      ],
+      "in": [
+        25,
+        94,
+        111,
+        202
+      ],
+      "preventive": [
+        26,
+        109
+      ],
+      "can": [
+        28
+      ],
+      "lead": [
+        29
+      ],
+      "railway": [
+        31,
+        112,
+        138,
+        204
+      ],
+      "service": [
+        32
+      ],
+      "disruption": [
+        33
+      ],
+      "unsafe": [
+        35
+      ],
+      "operations.": [
+        36
+      ],
+      "The": [
+        37
+      ],
+      "of": [
+        39,
+        64,
+        70,
+        82,
+        92,
+        96,
+        108,
+        148,
+        188
+      ],
+      "robotic": [
+        40
+      ],
+      "autonomous": [
+        42,
+        84,
+        190
+      ],
+      "systems": [
+        43,
+        60,
+        131
+      ],
+      "was": [
+        44
+      ],
+      "proposed": [
+        45
+      ],
+      "conduct": [
+        47
+      ],
+      "these": [
+        48,
+        59
+      ],
+      "tasks": [
+        50
+      ],
+      "with": [
+        51,
+        77,
+        174,
+        198
+      ],
+      "higher": [
+        52,
+        78
+      ],
+      "accuracy": [
+        53,
+        93,
+        171
+      ],
+      "reliability.": [
+        55
+      ],
+      "In": [
+        56
+      ],
+      "order": [
+        57
+      ],
+      "for": [
+        58,
+        185
+      ],
+      "be": [
+        62
+      ],
+      "capable": [
+        63
+      ],
+      "detecting": [
+        65
+      ],
+      "rail": [
+        66
+      ],
+      "flaws": [
+        67
+      ],
+      "along": [
+        68,
+        136
+      ],
+      "millions": [
+        69
+      ],
+      "mileages": [
+        71
+      ],
+      "they": [
+        72
+      ],
+      "must": [
+        73
+      ],
+      "register": [
+        74
+      ],
+      "their": [
+        75
+      ],
+      "location": [
+        76,
+        135
+      ],
+      "accuracy.": [
+        79
+      ],
+      "A": [
+        80
+      ],
+      "prerequisite": [
+        81
+      ],
+      "an": [
+        83,
+        182
+      ],
+      "vehicle": [
+        85
+      ],
+      "its": [
+        87,
+        97
+      ],
+      "possessing": [
+        88
+      ],
+      "high": [
+        90
+      ],
+      "degree": [
+        91
+      ],
+      "terms": [
+        95
+      ],
+      "positional": [
+        98
+      ],
+      "awareness.": [
+        99
+      ],
+      "This": [
+        100,
+        178
+      ],
+      "paper": [
+        101,
+        120,
+        142,
+        156
+      ],
+      "first": [
+        102
+      ],
+      "reviews": [
+        103
+      ],
+      "the": [
+        104,
+        115,
+        122,
+        134,
+        137,
+        144,
+        158,
+        186,
+        199,
+        203
+      ],
+      "importance": [
+        105
+      ],
+      "demands": [
+        107
+      ],
+      "networks": [
+        113
+      ],
+      "related": [
+        116
+      ],
+      "techniques.": [
+        117
+      ],
+      "Furthermore,": [
+        118
+      ],
+      "this": [
+        119,
+        141,
+        155
+      ],
+      "investigates": [
+        121
+      ],
+      "strategies,": [
+        123
+      ],
+      "techniques,": [
+        124
+      ],
+      "architecture,": [
+        125
+      ],
+      "references": [
+        127
+      ],
+      "used": [
+        128
+      ],
+      "by": [
+        129
+      ],
+      "different": [
+        130
+      ],
+      "resolve": [
+        133
+      ],
+      "network.": [
+        139,
+        205
+      ],
+      "Additionally,": [
+        140
+      ],
+      "discusses": [
+        143
+      ],
+      "advantages": [
+        145
+      ],
+      "applicability": [
+        147
+      ],
+      "on-board-based": [
+        149
+      ],
+      "infrastructure-based": [
+        151
+      ],
+      "sensing,": [
+        152
+      ],
+      "respectively.": [
+        153
+      ],
+      "Finally,": [
+        154
+      ],
+      "analyses": [
+        157
+      ],
+      "uncertainties": [
+        159
+      ],
+      "which": [
+        160
+      ],
+      "contribute": [
+        161
+      ],
+      "vehicle's": [
+        164
+      ],
+      "position": [
+        165
+      ],
+      "error": [
+        166
+      ],
+      "influence": [
+        168
+      ],
+      "on": [
+        169
+      ],
+      "positioning": [
+        170
+      ],
+      "reliability": [
+        173
+      ],
+      "corresponding": [
+        175
+      ],
+      "technique": [
+        176
+      ],
+      "solutions.": [
+        177
+      ],
+      "study": [
+        179
+      ],
+      "therefore": [
+        180
+      ],
+      "provides": [
+        181
+      ],
+      "overall": [
+        183
+      ],
+      "direction": [
+        184
+      ],
+      "development": [
+        187
+      ],
+      "further": [
+        189
+      ],
+      "track-based": [
+        191
+      ],
+      "system": [
+        192
+      ],
+      "designs": [
+        193
+      ],
+      "methods": [
+        195
+      ],
+      "deal": [
+        197
+      ],
+      "challenges": [
+        200
+      ],
+      "faced": [
+        201
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2026,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2025,
+        "cited_by_count": 8
+      },
+      {
+        "year": 2024,
+        "cited_by_count": 8
+      },
+      {
+        "year": 2023,
+        "cited_by_count": 3
+      },
+      {
+        "year": 2022,
+        "cited_by_count": 3
+      }
+    ],
+    "updated_date": "2026-05-06T08:25:59.206177",
+    "created_date": "2025-10-10T00:00:00"
+  }
+]

@@ -1,0 +1,1676 @@
+{
+  "id": "https://openalex.org/W2055850604",
+  "doi": "https://doi.org/10.1007/s00439-011-1118-2",
+  "title": "Evaluating the effective numbers of independent tests and significant p-value thresholds in commercial genotyping arrays and public imputation reference datasets",
+  "display_name": "Evaluating the effective numbers of independent tests and significant p-value thresholds in commercial genotyping arrays and public imputation reference datasets",
+  "publication_year": 2011,
+  "publication_date": "2011-12-05",
+  "ids": {
+    "openalex": "https://openalex.org/W2055850604",
+    "doi": "https://doi.org/10.1007/s00439-011-1118-2",
+    "mag": "2055850604",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/22143225"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1007/s00439-011-1118-2",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1007/s00439-011-1118-2",
+    "pdf_url": "https://link.springer.com/content/pdf/10.1007/s00439-011-1118-2.pdf",
+    "source": {
+      "id": "https://openalex.org/S199832308",
+      "display_name": "Human Genetics",
+      "issn_l": "0340-6717",
+      "issn": [
+        "0340-6717",
+        "1432-1203"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319900",
+      "host_organization_name": "Springer Science+Business Media",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319900",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Springer Science+Business Media",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by-nc",
+    "license_id": "https://openalex.org/licenses/cc-by-nc",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Human Genetics",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "hybrid",
+    "oa_url": "https://link.springer.com/content/pdf/10.1007/s00439-011-1118-2.pdf",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5040633212",
+        "display_name": "Miaoxin Li",
+        "orcid": "https://orcid.org/0000-0002-4733-0109"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I889458895",
+          "display_name": "University of Hong Kong",
+          "ror": "https://ror.org/02zhqgq86",
+          "country_code": "HK",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I889458895"
+          ]
+        }
+      ],
+      "countries": [
+        "HK"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Miao-Xin Li",
+      "raw_affiliation_strings": [
+        "Department of Psychiatry, The University of Hong Kong, Pokfulam, Hong Kong"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Psychiatry, The University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5031125973",
+        "display_name": "Juilian M. Y. Yeung",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I889458895",
+          "display_name": "University of Hong Kong",
+          "ror": "https://ror.org/02zhqgq86",
+          "country_code": "HK",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I889458895"
+          ]
+        }
+      ],
+      "countries": [
+        "HK"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Juilian M. Y. Yeung",
+      "raw_affiliation_strings": [
+        "Department of Psychiatry, The University of Hong Kong, Pokfulam, Hong Kong"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Psychiatry, The University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5090072859",
+        "display_name": "Stacey S. Cherny",
+        "orcid": "https://orcid.org/0000-0002-0269-3352"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I889458895",
+          "display_name": "University of Hong Kong",
+          "ror": "https://ror.org/02zhqgq86",
+          "country_code": "HK",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I889458895"
+          ]
+        }
+      ],
+      "countries": [
+        "HK"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Stacey S. Cherny",
+      "raw_affiliation_strings": [
+        "Department of Psychiatry, The University of Hong Kong, Pokfulam, Hong Kong",
+        "State Key Laboratory for Cognitive and Brain Sciences, The University of Hong Kong, Pokfulam, Hong Kong"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Psychiatry, The University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        },
+        {
+          "raw_affiliation_string": "State Key Laboratory for Cognitive and Brain Sciences, The University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5018516395",
+        "display_name": "Pak C. Sham",
+        "orcid": "https://orcid.org/0000-0002-2533-7270"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I889458895",
+          "display_name": "University of Hong Kong",
+          "ror": "https://ror.org/02zhqgq86",
+          "country_code": "HK",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I889458895"
+          ]
+        }
+      ],
+      "countries": [
+        "HK"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Pak C. Sham",
+      "raw_affiliation_strings": [
+        "Department of Psychiatry, LKS Faculty of Medicine, University of Hong Kong, Pokfulam, Hong Kong",
+        "Department of Psychiatry, The University of Hong Kong, Pokfulam, Hong Kong",
+        "Genome Research Centre, The University of Hong Kong, Pokfulam, Hong Kong",
+        "State Key Laboratory for Cognitive and Brain Sciences, The University of Hong Kong, Pokfulam, Hong Kong",
+        "The Centre for Reproduction, Development and Growth, The University of Hong Kong, Pokfulam, Hong Kong"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Psychiatry, LKS Faculty of Medicine, University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Psychiatry, The University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Genome Research Centre, The University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        },
+        {
+          "raw_affiliation_string": "State Key Laboratory for Cognitive and Brain Sciences, The University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        },
+        {
+          "raw_affiliation_string": "The Centre for Reproduction, Development and Growth, The University of Hong Kong, Pokfulam, Hong Kong",
+          "institution_ids": [
+            "https://openalex.org/I889458895"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 4,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5040633212"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I889458895"
+  ],
+  "apc_list": {
+    "value": 3790,
+    "currency": "EUR",
+    "value_usd": 4690
+  },
+  "apc_paid": {
+    "value": 3790,
+    "currency": "EUR",
+    "value_usd": 4690
+  },
+  "fwci": 6.7325,
+  "has_fulltext": true,
+  "cited_by_count": 1005,
+  "citation_normalized_percentile": {
+    "value": 0.97104673,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 97,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "131",
+    "issue": "5",
+    "first_page": "747",
+    "last_page": "756"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11468",
+    "display_name": "Genetic Mapping and Diversity in Plants and Animals",
+    "score": 0.9995999932289124,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1311",
+      "display_name": "Genetics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11468",
+      "display_name": "Genetic Mapping and Diversity in Plants and Animals",
+      "score": 0.9995999932289124,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1311",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10261",
+      "display_name": "Genetic Associations and Epidemiology",
+      "score": 0.9994999766349792,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1311",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10885",
+      "display_name": "Gene expression and cancer classification",
+      "score": 0.9986000061035156,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/international-hapmap-project",
+      "display_name": "International HapMap Project",
+      "score": 0.7397903203964233
+    },
+    {
+      "id": "https://openalex.org/keywords/imputation",
+      "display_name": "Imputation (statistics)",
+      "score": 0.7297844290733337
+    },
+    {
+      "id": "https://openalex.org/keywords/genotyping",
+      "display_name": "Genotyping",
+      "score": 0.6800975203514099
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.63919997215271
+    },
+    {
+      "id": "https://openalex.org/keywords/single-nucleotide-polymorphism",
+      "display_name": "Single-nucleotide polymorphism",
+      "score": 0.6250514984130859
+    },
+    {
+      "id": "https://openalex.org/keywords/genome-wide-association-study",
+      "display_name": "Genome-wide association study",
+      "score": 0.6178475022315979
+    },
+    {
+      "id": "https://openalex.org/keywords/1000-genomes-project",
+      "display_name": "1000 Genomes Project",
+      "score": 0.5724098086357117
+    },
+    {
+      "id": "https://openalex.org/keywords/linkage-disequilibrium",
+      "display_name": "Linkage disequilibrium",
+      "score": 0.5643005967140198
+    },
+    {
+      "id": "https://openalex.org/keywords/computational-biology",
+      "display_name": "Computational biology",
+      "score": 0.5215939283370972
+    },
+    {
+      "id": "https://openalex.org/keywords/genome",
+      "display_name": "Genome",
+      "score": 0.5195627212524414
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.47367197275161743
+    },
+    {
+      "id": "https://openalex.org/keywords/snp-genotyping",
+      "display_name": "SNP genotyping",
+      "score": 0.4733697772026062
+    },
+    {
+      "id": "https://openalex.org/keywords/false-discovery-rate",
+      "display_name": "False discovery rate",
+      "score": 0.4402805268764496
+    },
+    {
+      "id": "https://openalex.org/keywords/type-i-and-type-ii-errors",
+      "display_name": "Type I and type II errors",
+      "score": 0.42102938890457153
+    },
+    {
+      "id": "https://openalex.org/keywords/statistics",
+      "display_name": "Statistics",
+      "score": 0.3475985527038574
+    },
+    {
+      "id": "https://openalex.org/keywords/genotype",
+      "display_name": "Genotype",
+      "score": 0.32254743576049805
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.15763461589813232
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.12391039729118347
+    },
+    {
+      "id": "https://openalex.org/keywords/missing-data",
+      "display_name": "Missing data",
+      "score": 0.10275480151176453
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C177580304",
+      "wikidata": "https://www.wikidata.org/wiki/Q1147298",
+      "display_name": "International HapMap Project",
+      "level": 5,
+      "score": 0.7397903203964233
+    },
+    {
+      "id": "https://openalex.org/C58041806",
+      "wikidata": "https://www.wikidata.org/wiki/Q1660484",
+      "display_name": "Imputation (statistics)",
+      "level": 3,
+      "score": 0.7297844290733337
+    },
+    {
+      "id": "https://openalex.org/C31467283",
+      "wikidata": "https://www.wikidata.org/wiki/Q912147",
+      "display_name": "Genotyping",
+      "level": 4,
+      "score": 0.6800975203514099
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.63919997215271
+    },
+    {
+      "id": "https://openalex.org/C153209595",
+      "wikidata": "https://www.wikidata.org/wiki/Q501128",
+      "display_name": "Single-nucleotide polymorphism",
+      "level": 4,
+      "score": 0.6250514984130859
+    },
+    {
+      "id": "https://openalex.org/C106208931",
+      "wikidata": "https://www.wikidata.org/wiki/Q1098876",
+      "display_name": "Genome-wide association study",
+      "level": 5,
+      "score": 0.6178475022315979
+    },
+    {
+      "id": "https://openalex.org/C97425143",
+      "wikidata": "https://www.wikidata.org/wiki/Q164786",
+      "display_name": "1000 Genomes Project",
+      "level": 5,
+      "score": 0.5724098086357117
+    },
+    {
+      "id": "https://openalex.org/C35605836",
+      "wikidata": "https://www.wikidata.org/wiki/Q2064311",
+      "display_name": "Linkage disequilibrium",
+      "level": 5,
+      "score": 0.5643005967140198
+    },
+    {
+      "id": "https://openalex.org/C70721500",
+      "wikidata": "https://www.wikidata.org/wiki/Q177005",
+      "display_name": "Computational biology",
+      "level": 1,
+      "score": 0.5215939283370972
+    },
+    {
+      "id": "https://openalex.org/C141231307",
+      "wikidata": "https://www.wikidata.org/wiki/Q7020",
+      "display_name": "Genome",
+      "level": 3,
+      "score": 0.5195627212524414
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.47367197275161743
+    },
+    {
+      "id": "https://openalex.org/C163691529",
+      "wikidata": "https://www.wikidata.org/wiki/Q7391886",
+      "display_name": "SNP genotyping",
+      "level": 5,
+      "score": 0.4733697772026062
+    },
+    {
+      "id": "https://openalex.org/C193244246",
+      "wikidata": "https://www.wikidata.org/wiki/Q5432696",
+      "display_name": "False discovery rate",
+      "level": 3,
+      "score": 0.4402805268764496
+    },
+    {
+      "id": "https://openalex.org/C40696583",
+      "wikidata": "https://www.wikidata.org/wiki/Q989120",
+      "display_name": "Type I and type II errors",
+      "level": 2,
+      "score": 0.42102938890457153
+    },
+    {
+      "id": "https://openalex.org/C105795698",
+      "wikidata": "https://www.wikidata.org/wiki/Q12483",
+      "display_name": "Statistics",
+      "level": 1,
+      "score": 0.3475985527038574
+    },
+    {
+      "id": "https://openalex.org/C135763542",
+      "wikidata": "https://www.wikidata.org/wiki/Q106016",
+      "display_name": "Genotype",
+      "level": 3,
+      "score": 0.32254743576049805
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.15763461589813232
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.12391039729118347
+    },
+    {
+      "id": "https://openalex.org/C9357733",
+      "wikidata": "https://www.wikidata.org/wiki/Q6878417",
+      "display_name": "Missing data",
+      "level": 2,
+      "score": 0.10275480151176453
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000465",
+      "descriptor_name": "Algorithms",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000465",
+      "descriptor_name": "Algorithms",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000465",
+      "descriptor_name": "Algorithms",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005819",
+      "descriptor_name": "Genetic Markers",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005819",
+      "descriptor_name": "Genetic Markers",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005819",
+      "descriptor_name": "Genetic Markers",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005838",
+      "descriptor_name": "Genotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005838",
+      "descriptor_name": "Genotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005838",
+      "descriptor_name": "Genotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012984",
+      "descriptor_name": "Software",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012984",
+      "descriptor_name": "Software",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012984",
+      "descriptor_name": "Software",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013223",
+      "descriptor_name": "Statistics as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013223",
+      "descriptor_name": "Statistics as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013223",
+      "descriptor_name": "Statistics as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019992",
+      "descriptor_name": "Databases as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D019992",
+      "descriptor_name": "Databases as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D019992",
+      "descriptor_name": "Databases as Topic",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020411",
+      "descriptor_name": "Oligonucleotide Array Sequence Analysis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020411",
+      "descriptor_name": "Oligonucleotide Array Sequence Analysis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020411",
+      "descriptor_name": "Oligonucleotide Array Sequence Analysis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D020641",
+      "descriptor_name": "Polymorphism, Single Nucleotide",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020641",
+      "descriptor_name": "Polymorphism, Single Nucleotide",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D020641",
+      "descriptor_name": "Polymorphism, Single Nucleotide",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D055106",
+      "descriptor_name": "Genome-Wide Association Study",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D055106",
+      "descriptor_name": "Genome-Wide Association Study",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D055106",
+      "descriptor_name": "Genome-Wide Association Study",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D060148",
+      "descriptor_name": "HapMap Project",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D060148",
+      "descriptor_name": "HapMap Project",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D060148",
+      "descriptor_name": "HapMap Project",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1007/s00439-011-1118-2",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1007/s00439-011-1118-2",
+      "pdf_url": "https://link.springer.com/content/pdf/10.1007/s00439-011-1118-2.pdf",
+      "source": {
+        "id": "https://openalex.org/S199832308",
+        "display_name": "Human Genetics",
+        "issn_l": "0340-6717",
+        "issn": [
+          "0340-6717",
+          "1432-1203"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319900",
+        "host_organization_name": "Springer Science+Business Media",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319900",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Springer Science+Business Media",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by-nc",
+      "license_id": "https://openalex.org/licenses/cc-by-nc",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Human Genetics",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:22143225",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/22143225",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Human genetics",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:europepmc.org:2335912",
+      "is_oa": false,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3325408",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400806",
+        "display_name": "Europe PMC (PubMed Central)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1303153112",
+        "host_organization_name": "European Bioinformatics Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/I1303153112"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "Text"
+    },
+    {
+      "id": "pmh:oai:hub.hku.hk:10722/147134",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/10722/147134",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196271",
+        "display_name": "The HKU Scholars Hub (University of Hong Kong)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I889458895",
+        "host_organization_name": "University of Hong Kong",
+        "host_organization_lineage": [
+          "https://openalex.org/I889458895"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-nc-nd",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Article"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1007/s00439-011-1118-2",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1007/s00439-011-1118-2",
+    "pdf_url": "https://link.springer.com/content/pdf/10.1007/s00439-011-1118-2.pdf",
+    "source": {
+      "id": "https://openalex.org/S199832308",
+      "display_name": "Human Genetics",
+      "issn_l": "0340-6717",
+      "issn": [
+        "0340-6717",
+        "1432-1203"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319900",
+      "host_organization_name": "Springer Science+Business Media",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319900",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Springer Science+Business Media",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by-nc",
+    "license_id": "https://openalex.org/licenses/cc-by-nc",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Human Genetics",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [
+    {
+      "display_name": "Partnerships for the goals",
+      "score": 0.5099999904632568,
+      "id": "https://metadata.un.org/sdg/17"
+    }
+  ],
+  "awards": [],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320322170",
+      "display_name": "University of Hong Kong",
+      "ror": "https://ror.org/02zhqgq86"
+    }
+  ],
+  "has_content": {
+    "grobid_xml": true,
+    "pdf": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2055850604.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2055850604.grobid-xml"
+  },
+  "referenced_works_count": 32,
+  "referenced_works": [
+    "https://openalex.org/W1971604012",
+    "https://openalex.org/W1976741643",
+    "https://openalex.org/W1980505289",
+    "https://openalex.org/W1992133790",
+    "https://openalex.org/W1992436001",
+    "https://openalex.org/W2002052115",
+    "https://openalex.org/W2006712471",
+    "https://openalex.org/W2011550781",
+    "https://openalex.org/W2013824028",
+    "https://openalex.org/W2015714093",
+    "https://openalex.org/W2018617521",
+    "https://openalex.org/W2018823764",
+    "https://openalex.org/W2025306791",
+    "https://openalex.org/W2030705868",
+    "https://openalex.org/W2042514552",
+    "https://openalex.org/W2043601400",
+    "https://openalex.org/W2054881132",
+    "https://openalex.org/W2091143313",
+    "https://openalex.org/W2098762353",
+    "https://openalex.org/W2105239414",
+    "https://openalex.org/W2105673666",
+    "https://openalex.org/W2106077937",
+    "https://openalex.org/W2107755054",
+    "https://openalex.org/W2112285107",
+    "https://openalex.org/W2115623748",
+    "https://openalex.org/W2118526609",
+    "https://openalex.org/W2119279196",
+    "https://openalex.org/W2123466824",
+    "https://openalex.org/W2139911862",
+    "https://openalex.org/W2161633633",
+    "https://openalex.org/W2163184920",
+    "https://openalex.org/W2166774283"
+  ],
+  "related_works": [
+    "https://openalex.org/W2017753262",
+    "https://openalex.org/W154531455",
+    "https://openalex.org/W2113330311",
+    "https://openalex.org/W2122946544",
+    "https://openalex.org/W2609071159",
+    "https://openalex.org/W1989743336",
+    "https://openalex.org/W2115511842",
+    "https://openalex.org/W2889978286",
+    "https://openalex.org/W2126214064",
+    "https://openalex.org/W3135758431"
+  ],
+  "abstract_inverted_index": {
+    "Current": [
+      0
+    ],
+    "genome-wide": [
+      1,
+      61,
+      155,
+      205
+    ],
+    "association": [
+      2
+    ],
+    "studies": [
+      3
+    ],
+    "(GWAS)": [
+      4
+    ],
+    "use": [
+      5,
+      83,
+      194
+    ],
+    "commercial": [
+      6,
+      209,
+      225
+    ],
+    "genotyping": [
+      7,
+      167,
+      210,
+      226
+    ],
+    "microarrays": [
+      8
+    ],
+    "that": [
+      9
+    ],
+    "can": [
+      10
+    ],
+    "assay": [
+      11
+    ],
+    "over": [
+      12
+    ],
+    "a": [
+      13,
+      42,
+      115,
+      130,
+      196
+    ],
+    "million": [
+      14
+    ],
+    "single": [
+      15
+    ],
+    "nucleotide": [
+      16
+    ],
+    "polymorphisms": [
+      17
+    ],
+    "(SNPs).": [
+      18
+    ],
+    "The": [
+      19,
+      39
+    ],
+    "number": [
+      20,
+      44,
+      87
+    ],
+    "of": [
+      21,
+      41,
+      45,
+      56,
+      70,
+      73,
+      84,
+      88,
+      95,
+      101,
+      195,
+      199
+    ],
+    "SNPs": [
+      22,
+      46,
+      71,
+      232,
+      246
+    ],
+    "is": [
+      23,
+      65
+    ],
+    "further": [
+      24
+    ],
+    "boosted": [
+      25
+    ],
+    "by": [
+      26,
+      67
+    ],
+    "advanced": [
+      27
+    ],
+    "statistical": [
+      28,
+      57
+    ],
+    "genotype-imputation": [
+      29
+    ],
+    "algorithms": [
+      30
+    ],
+    "and": [
+      31,
+      118,
+      146,
+      175,
+      239
+    ],
+    "large": [
+      32
+    ],
+    "SNP": [
+      33
+    ],
+    "databases": [
+      34
+    ],
+    "for": [
+      35,
+      92,
+      103,
+      162,
+      172,
+      204,
+      207,
+      221,
+      229,
+      243
+    ],
+    "reference": [
+      36,
+      188
+    ],
+    "human": [
+      37
+    ],
+    "populations.": [
+      38
+    ],
+    "testing": [
+      40
+    ],
+    "huge": [
+      43
+    ],
+    "needs": [
+      47
+    ],
+    "to": [
+      48,
+      121,
+      152
+    ],
+    "be": [
+      49
+    ],
+    "taken": [
+      50
+    ],
+    "into": [
+      51
+    ],
+    "account": [
+      52
+    ],
+    "in": [
+      53,
+      59,
+      107,
+      129,
+      184,
+      233
+    ],
+    "the": [
+      54,
+      68,
+      82,
+      85,
+      93,
+      144,
+      147,
+      154,
+      193,
+      202,
+      234,
+      244
+    ],
+    "interpretation": [
+      55
+    ],
+    "significance": [
+      58,
+      206
+    ],
+    "such": [
+      60
+    ],
+    "studies,": [
+      62
+    ],
+    "but": [
+      63,
+      98,
+      212
+    ],
+    "this": [
+      64,
+      125
+    ],
+    "complicated": [
+      66
+    ],
+    "non-independence": [
+      69
+    ],
+    "because": [
+      72
+    ],
+    "linkage": [
+      74
+    ],
+    "disequilibrium": [
+      75
+    ],
+    "(LD).": [
+      76
+    ],
+    "Several": [
+      77
+    ],
+    "previous": [
+      78
+    ],
+    "groups": [
+      79
+    ],
+    "have": [
+      80
+    ],
+    "proposed": [
+      81
+    ],
+    "effective": [
+      86
+    ],
+    "independent": [
+      89
+    ],
+    "markers": [
+      90
+    ],
+    "(M(e))": [
+      91
+    ],
+    "adjustment": [
+      94
+    ],
+    "multiple": [
+      96
+    ],
+    "testing,": [
+      97
+    ],
+    "current": [
+      99,
+      222
+    ],
+    "methods": [
+      100
+    ],
+    "calculation": [
+      102
+    ],
+    "M(e)": [
+      104
+    ],
+    "are": [
+      105,
+      181
+    ],
+    "limited": [
+      106
+    ],
+    "accuracy": [
+      108
+    ],
+    "or": [
+      109,
+      165,
+      223
+    ],
+    "computational": [
+      110
+    ],
+    "speed.": [
+      111
+    ],
+    "Here,": [
+      112
+    ],
+    "we": [
+      113,
+      141
+    ],
+    "report": [
+      114
+    ],
+    "more": [
+      116,
+      214
+    ],
+    "robust": [
+      117
+    ],
+    "fast": [
+      119
+    ],
+    "method": [
+      120,
+      127
+    ],
+    "calculate": [
+      122
+    ],
+    "M(e).": [
+      123
+    ],
+    "Applying": [
+      124
+    ],
+    "efficient": [
+      126
+    ],
+    "[implemented": [
+      128
+    ],
+    "free": [
+      131
+    ],
+    "software": [
+      132
+    ],
+    "tool": [
+      133
+    ],
+    "named": [
+      134
+    ],
+    "Genetic": [
+      135
+    ],
+    "type": [
+      136,
+      156
+    ],
+    "1": [
+      137,
+      157
+    ],
+    "error": [
+      138,
+      158
+    ],
+    "calculator": [
+      139
+    ],
+    "(GEC)],": [
+      140
+    ],
+    "systematically": [
+      142
+    ],
+    "examined": [
+      143
+    ],
+    "M(e),": [
+      145
+    ],
+    "corresponding": [
+      148
+    ],
+    "p-value": [
+      149,
+      197,
+      216
+    ],
+    "thresholds": [
+      150,
+      217
+    ],
+    "required": [
+      151
+    ],
+    "control": [
+      153
+    ],
+    "rate": [
+      159
+    ],
+    "at": [
+      160
+    ],
+    "0.05,": [
+      161
+    ],
+    "13": [
+      163
+    ],
+    "Illumina": [
+      164
+    ],
+    "Affymetrix": [
+      166
+    ],
+    "arrays,": [
+      168,
+      211,
+      227
+    ],
+    "as": [
+      169,
+      171,
+      187,
+      201
+    ],
+    "well": [
+      170
+    ],
+    "HapMap": [
+      173
+    ],
+    "Project": [
+      174,
+      178,
+      237
+    ],
+    "1000": [
+      176,
+      235
+    ],
+    "Genomes": [
+      177,
+      236
+    ],
+    "datasets": [
+      179
+    ],
+    "which": [
+      180
+    ],
+    "widely": [
+      182
+    ],
+    "used": [
+      183
+    ],
+    "genotype": [
+      185
+    ],
+    "imputation": [
+      186
+    ],
+    "panels.": [
+      189
+    ],
+    "Our": [
+      190
+    ],
+    "results": [
+      191
+    ],
+    "suggested": [
+      192
+    ],
+    "threshold": [
+      198
+    ],
+    "~10(-7)": [
+      200
+    ],
+    "criterion": [
+      203
+    ],
+    "early": [
+      208
+    ],
+    "slightly": [
+      213
+    ],
+    "stringent": [
+      215
+    ],
+    "~5": [
+      218,
+      240
+    ],
+    "×": [
+      219,
+      241
+    ],
+    "10(-8)": [
+      220,
+      242
+    ],
+    "merged": [
+      224
+    ],
+    "~10(-8)": [
+      228
+    ],
+    "all": [
+      230
+    ],
+    "common": [
+      231,
+      245
+    ],
+    "dataset": [
+      238
+    ],
+    "only": [
+      247
+    ],
+    "within": [
+      248
+    ],
+    "genes.": [
+      249
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 28
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 121
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 120
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 122
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 98
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 144
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 110
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 63
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 52
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 46
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 42
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 24
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 22
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 4
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2025-10-10T00:00:00"
+}
