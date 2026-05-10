@@ -1,0 +1,9 @@
+# The Splendour of God
+
+- **URL**: https://www.sacred-texts.com/bhi/sog/index.htm
+- **Captured**: 2026-05-09T21:35:28
+- **Site**: www.sacred-texts.com
+
+---
+
+The Splendour of God Index | Internet Sacred Text Archive Sacred Texts Baha'i Wisdom of the East The Splendour of God by Eric Hammond [1909] Contents Start Reading Page Index Text [Zipped] This is a short introduction to the Baha'i religion, part of the Wisdom of the East series. It includes short but profound texts by the founders of the religion, including the Bab, Baha'u'llh and Abdul Baha (also known as Abbas Effendi). It includes a longer text, The Seven Valleys an allegorical tale of the journey of the soul. Title Page Contents The Benediction of Abbas Effendi Editorial Note A Glimpse Through the Gate The Bab: The Foreteller Baha'u'llah: The One Foretold Abdul Baha: ''The Servant of God'' The Seven Valleys Introduction The First Valley: The Valley of Search The Second Valley: The Valley of Love The Third Valley: The Valley of Divine Knowledge The Fourth Valley: The Valley of Divine Unity The Fifth Valley: The Valley of Contentment The Sixth Valley: The Valley of Astonishment The Seventh Valley: The Valley of Absolute Poverty and Annihilation Texts from the Tablets of Baha'u'llah Tablet of Tarazet Tablet of the World Words of Paradise The Tablet of Tajalleyat Tablet of Ishraket Baha‘u‘llah Some Hidden Words and Words of Wisdom from the Supreme Pen of Baha‘u‘llah Introduction Of the Light Of Divine Humanity Of Justice Of Disputation and Fault-Finding Of Poverty and Wealth Of Work and Fruitfulness Of Obedience Of Pride Of Companionship Of the Beloved and his Beauty Of Knowledge Of Oneness From the Book of the Covenant True Belief The Commands of the Blessed Master Abdul-Baha As Revealed in Tablets and Instructions for the Beloved in America

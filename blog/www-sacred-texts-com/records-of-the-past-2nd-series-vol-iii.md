@@ -1,0 +1,9 @@
+# Records of the Past, 2nd series, Vol. III
+
+- **URL**: https://www.sacred-texts.com/ane/rp/rp203/index.htm
+- **Captured**: 2026-05-09T21:40:11
+- **Site**: www.sacred-texts.com
+
+---
+
+Records of the Past, 2nd series, Vol. III Index | Internet Sacred Text Archive Sacred Texts Ancient Near East Records of the Past Egypt Records of the Past, 2nd series, Vol. III ed. by A. H. Sayce [1890] Contents Start Reading Page Index Text [Zipped] This entry in the Records of the Past series includes the Precepts of Ptah-Hotep , the 'oldest book in the world,' the Hymn to the Nile , and the India House inscription of Nebuchadrezzer. Title Page Preface Table of Contents Equivalents Of The Hebrew Letters In The Transliteration Of Assyrian Names Mentioned In These Volumes The Assyrian and Egyptian Calendars The Precepts of Ptah-Hotep Introduction Text The Daughter of the Prince of Bakhtan and the Spirit that Possessed Her Introduction Text Hymn to the Nile Introduction Text Letters to Egypt from Babylonia, Assyria, and Syria, in the Fifteenth Century B.C. Introduction I.—Letter of Assur-yuballidh, King of Assyria, to Amenophis IV, King of Egypt II.—Letter of Burna-buryas, King of Babylonia, to Amenophis IV of Egypt III.—Letter of Burna-buryas to Amenophis IV IV.—Letter from Aziru to his Brother Khâi V.—Letter from Aziru to his Father Dûdu VI.—Letter from Rib-Addu to the King of Egypt VII.—Letters from Dusratta, King of Mitanni, to Amenophis III VIII. IX.—Letter of Dusratta to Amenophis IV X.—Letter of Dusratta to Amenophis III XI.—Letter of Dusratta to Amenophis IV Ancient Babylonian Agricultural Precepts Introduction Text The India House Inscription of Nebuchadrezzar the Great Introduction Text Contract-Tablets Relating to Belshazzar Introduction Text The Kings of Ararat The Kings of Persia Advertisements

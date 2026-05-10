@@ -1,0 +1,352 @@
+It is shown that there are no valid reasons for constructing Dirac's statistics. Planck's approach is perhaps the only one that, when applied consistently, gives the correct radiation formula.
+
+  
+    
+      
+        §
+        1.
+      
+    
+    {\displaystyle \S 1.}
+  
+ For a system consisting of two parts of the same type coupled to any degree (e.g. two electrons in a helium atom), Schrödinger's equation is symmetric with respect to the coordinates of the two parts. In the discrete spectrum domain, each eigenvalue generally corresponds to only one eigenfunction (we assume the degeneracy has been lifted). Because of the symmetry of the wave equation, exchanging the coordinates of both subsystems gives a solution again. In view of the linearity of the equation, we can assert:
+
+ 
+(1,2 denote the coordinate of the first or the second system, 
+  
+    
+      
+        a
+      
+    
+    {\displaystyle a}
+  
+ is an yet undetermined constant).
+If we put "2" instead of "1" and vice versa, it follows that
+
+ 
+So there are two kinds of eigenfunctions, symmetric 
+  
+    
+      
+        (
+        a
+        =
+        +
+        1
+        )
+      
+    
+    {\displaystyle (a=+1)}
+  
+ and antisymmetric 
+  
+    
+      
+        (
+        a
+        =
+        −
+        1
+        )
+      
+    
+    {\displaystyle (a=-1)}
+  
+. Since every physical quantity (function "
+  
+    
+      
+        
+          F
+          
+            
+              s
+              y
+              m
+            
+          
+        
+      
+    
+    {\displaystyle F_{\rm {sym}}}
+  
+") must be symmetrical in the coordinates of the two systems, the corresponding eigenvalues do not intercombine:
+
+These results were used by Heisenberg as the first approximation; we see, however, that they also hold in any approximation. The generalization to several systems yields a number of non-intercombining eigenfunctions, including symmetric and antisymmetric and others corresponding to degenerate eigenvalues.
+
+  
+    
+      
+        §
+        2.
+      
+    
+    {\displaystyle \S 2.}
+  
+ In his recent work, Dirac suggests that from all solutions of the Schrödinger's equation, only the antisymmetric ones have to be chosen. He justifies the necessity of this assumption by Pauli's ban on equivalent orbits. But the same only means the following: There are no two electrons in the atom for which all four quantum numbers are the same. The generalization of this principle to another set of quantum numbers seems doubtful. For example, the spectrum of helium cannot be constructed from antisymmetric eigenfunctions (in the sense of three quantum numbers for each electron), but rather one is forced to use symmetric ones as well (Parahelium). In all cases where the electron spin is not considered, Pauli's principle does not apply; it is therefore of no importance for the general problems of statistics.
+We therefore believe that Dirac's justification of "antisymmetric" statistics is not sound; a selection of the solutions is also in contradiction with the fundamentals of wave mechanics.
+
+  
+    
+      
+        §
+        3.
+      
+    
+    {\displaystyle \S 3.}
+  
+ In order to set up a consistent statistic, it must be taken into account that in wave mechanics we are already dealing with a statistic, since it only yields average values over a number of systems of the same type (the introduction of stationary states is by no means necessary). The goal of the quantum statistics should be the determination of 
+  
+    
+      
+        
+          |
+        
+        
+          a
+          
+            n
+          
+        
+        
+          
+            |
+          
+          
+            2
+          
+        
+      
+    
+    {\displaystyle |a_{n}|^{2}}
+  
+ in 
+  
+    
+      
+        ψ
+        =
+        ∑
+        
+          a
+          
+            n
+          
+        
+        
+          ψ
+          
+            n
+          
+        
+        .
+      
+    
+    {\displaystyle \psi =\sum a_{n}\psi _{n}.}
+  
+
+Einstein's considerations transferred to wave mechanics, show that Planck's approach
+
+ 
+indeed leads to the correct radiation formula. All other forms of quantum statistics yield Planck's radiation formula at best only when using special ideas (light quanta in Bose's statistics), which in some sense contradict the wave mechanics.
+At this point we would like to thank Professor V. Bursian for some valuable comments and for looking through the manuscript.
+Leningrad, February 1927.
+Addendum to the correction. In the meantime, a note by P. Ehrenfest (Nature and Naturwiss., Fenruary 1927) touching on the same question has appeared. Ehrenfest believes that the physical reasons for extending Pauli's prohibition lie in the principle of the impenetrability of the molecules. Ehrenfest demands that 
+  
+    
+      
+        ψ
+      
+    
+    {\displaystyle \psi }
+  
+ becomes zero as a condition of impenetrability. Already the first example of the vessel wall shows that this condition is not necessary and can be replaced by 
+  
+    
+      
+        
+          
+            
+              ∂
+              ψ
+            
+            
+              ∂
+              n
+            
+          
+        
+        =
+        0.
+      
+    
+    {\displaystyle {\frac {\partial \psi }{\partial n}}=0.}
+  
+ It should not be the "density" 
+  
+    
+      
+        ρ
+        =
+        ψ
+        
+          
+            ψ
+            ¯
+          
+        
+      
+    
+    {\displaystyle \rho =\psi {\overline {\psi }}}
+  
+, but the normal components of the "mean" velocity at the edge that disappear. This last requirement, after taking into account
+
+ 
+ 
+or the normal component
+
+ 
+yields the condition mentioned before. Ehrenfest's "diagonal requirement" is therefore untenable; it contradicts the elementary explanations of wave mechanics. For example, in the case of hydrogen atoms, 
+  
+    
+      
+        ψ
+        (
+        0
+        ,
+        0
+        ,
+        0
+        )
+      
+    
+    {\displaystyle \psi (0,0,0)}
+  
+ (at the coordinate origin!) is not always zero. Aren't electrons and protons more "penetrable" than molecules?
+The situation becomes even clearer if we apply Ehrenfest's considerations to the case of two molecules with different masses. The general solution of Schrödinger's equation is then
+
+where 
+  
+    
+      
+        
+          χ
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \chi _{n}}
+  
+, 
+  
+    
+      
+        
+          ε
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \varepsilon _{n}}
+  
+ and 
+  
+    
+      
+        
+          χ
+          
+            m
+          
+          ′
+        
+      
+    
+    {\displaystyle \chi _{m}'}
+  
+, 
+  
+    
+      
+        
+          ε
+          
+            m
+          
+          ′
+        
+      
+    
+    {\displaystyle \varepsilon _{m}'}
+  
+ represent the eigenfunctions and eigenvalues of the two molecules, respectively. Here, all terms are unique (no degeneracy), in general, because of the unequal masses. The condition 
+  
+    
+      
+        ψ
+        (
+        x
+        ,
+        
+          x
+          ′
+        
+        )
+        =
+        0
+      
+    
+    {\displaystyle \psi (x,x')=0}
+  
+ leads to 
+  
+    
+      
+        
+          a
+          
+            n
+            m
+          
+        
+        =
+        0
+      
+    
+    {\displaystyle a_{nm}=0}
+  
+ for any 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  
+ and 
+  
+    
+      
+        m
+      
+    
+    {\displaystyle m}
+  
+ or, always 
+  
+    
+      
+        ψ
+        =
+        0
+      
+    
+    {\displaystyle \psi =0}
+  
+ ! The molecules of different masses thus do not coexist in the same vessel! Or one had to assume that the difference in mass makes the molecules penetrable to one another; that would be wonderful! In conclusion, we would like to remark that the impenetrability condition is fulfilled identically because of the assumed point nature of the molecules.

@@ -1,0 +1,9 @@
+# Chronicles of Jerahmeel
+
+- **URL**: https://www.sacred-texts.com/bib/coj/index.htm
+- **Captured**: 2026-05-09T21:37:01
+- **Site**: www.sacred-texts.com
+
+---
+
+Chronicles of Jerahmeel Index | Internet Sacred Text Archive Sacred Texts Bible Chronicles of Jerahmeel by Moses Gaster [1899] Contents Start Reading Page Index Text [Zipped] This is Moses Gaster's translation of the Chronicles of Jerahmeel . The book is a collection of extended Biblical events, mixed with Roman history, lists of geographical names, and Patriarchial genealogies. Gaster believed that the Chronicles were compiled from Hebrew sources, both ancient and medieval. The text runs from the void before Creation, through the Deuterocanonical Apocrypha. This book abounds with astounding folklore.--J.B. Hare, Dec. 30th, 2009. Title Page Contents Preface Introduction Compiler's Preface I II III IV V VI VII VIII IX. The Formation of the Child X XI XII XIII. The Beating of the Grave XIV. This Is the Description of Gehinnom (Hell) XV XVI XVII XVIII. Paradise XIX XX XXI XXII XXIII XXIV XXV. The Midrash of Shemḥazai and ‘Azael. XXVI XXVII XXVIII XXIX XXX XXXI XXXII XXXIII XXXIV XXXV XXXVI XXXVII XXXVIII. This Is the Will (Testament) of Naphtali, Son of Jacob XXXIX XL XLI XLII XLIII. The Chronicles of Moses XLIV XLV XLVI XLVII XLVIII XLIX. The Death of Aaron, of Blessed Memory L LI LII LIII LIV. The Smiting of the Firstborn LV. The Rebellion of Korah LVI LVII LVIII LIX LX. The Eight Exiles LXI. The Children of Moses LXII. The Ten Banishments of the Sanhedrim LXIII. Elchanan the Merchant LXIV. The Midrash of Aḥab Ben Qolaya and Zedekiah Ben Ma‘aseyah LXV. The History of Susanna LXVI LXVII LXVIII LXIX LXX LXXI LXXII LXXIII LXXIV LXXV LXXVI LXXVII LXXVIII LXXIX LXXX. The Beating of the Grave LXXXI LXXXII LXXXIII LXXXIV. The Throne of Solomon, King of Israel LXXXV. The Book of the Maccabee LXXXVI LXXXVII LXXXVIII LXXXIX XC XCI XCII XCIII XCIV XCV XCVI XCVII XCVIII

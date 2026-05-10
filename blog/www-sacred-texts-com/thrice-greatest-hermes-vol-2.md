@@ -1,0 +1,9 @@
+# Thrice-Greatest Hermes, Vol. 2
+
+- **URL**: https://www.sacred-texts.com/gno/th2/index.htm
+- **Captured**: 2026-05-09T21:38:14
+- **Site**: www.sacred-texts.com
+
+---
+
+Thrice-Greatest Hermes, Vol. 2 Index | Internet Sacred Text Archive Sacred Texts Gnosticism and Hermetica Buy this Book at Amazon.com Thrice-Greatest Hermes, Vol. 2 by G.R.S. Mead [1906] Volume 1 | Volume 2 | Volume 3 Contents Start Reading Page Index Text [Zipped] This is the second volume of three of G.R.S. Mead's comprehensive survey of the literature attributed to the legendary Egyptian sage, Hermes Trismegistus. This volume includes translations of the Corpus Hermeticum , including the Sheperd Poemandres , To Asclepius , The Secret Sermon on the Mountain , and more. Title Page Contents I. Corpus Hermeticum I. Pœmandres, the Shepherd of Men Commentary (II.) The General Sermon II. (III.) To Asclepius Commentary III. (IV.) The Sacred Sermon Commentary IV. (V.) The Cup or Monad Commentary V. (VI.) Though Unmanifest God is Most Manifest Commentary VI. (VII.) In God Alone is Good and Elsewhere Nowhere Commentary VII. (VIII.) The Greatest Ill Among Men is Ignorance of God Commentary VIII. (IX.) That No One of Existing Things doth Perish, but Men in Error Speak of Their Changes as Destructions and as Deaths Commentary IX. (X.) On Thought and Sense Commentary X. (XI.) The Key Commentary XI. (XII.) Mind Unto Hermes Commentary XII. (XIII.) About the Common Mind Commentary XIII. (XIV.) The Secret Sermon on the Mountain Commentary XIV. (XV.) A Letter to Asclepius Commentary (XVI.) The Definitions of Asclepius unto King Ammon Commentary (XVII.) Of Asclepius to the King Commentary (XVIII.) The Encomium of Kings Commentary II. The Perfect Sermon; or the Asclepius Part I Part II Part III Part IV Part V Part VI Part VII Part VIII Part IX Part X Part XI Part XII Part XIII Part XIV Part XV Commentary

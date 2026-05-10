@@ -1,0 +1,9 @@
+# (ISTA) - World's Largest Free Religious & Spiritual Text Archive | Internet Sacred Text Archive
+
+- **URL**: https://www.sacred-texts.com
+- **Captured**: 2026-05-09T21:31:17
+- **Site**: www.sacred-texts.com
+
+---
+
+(ISTA) - World's Largest Free Religious & Spiritual Text Archive | Internet Sacred Text Archive Dear Readers of ISTA, our newer site is temporarily down, thanks for browsing and for your support in the meantime! —ISTA Staff With the ISTA FLASH-DRIVE 9.0 you hold the world's wisdom in the palm of your hand - the most comprehensive collection of books on religion, mythology, folklore and the esoteric ever assembled...an incredible value with over 1700 books. Buy it here. W elcome to the largest freely available archive of online books about religion, mythology, folklore and the esoteric on the Internet. The site is dedicated to religious tolerance and scholarship, and has the largest readership of any similar site on the web. We need you to keep this site online. Help TODAY to ensure that these books are preserved by purchasing the new ISTA FLASH DRIVE 9.0 here ... SEARCH Search Sacred-texts TOP SEARCHES Nostradamus I Ching Timeline Apocrypha Vedas The Bible The Book of Shadows Talmud Native American Downloads Customer Support: +1 (831) 426-4700 We ship worldwide. Thank you! Get a Tarot Card Reading! FEATURED TEXTS The Teachings of Zoroaster (4/22/2010) The Splendour of God (4/17/2010) The Kebra Nagast (4/10/2010) The Tarjuman al-Ashwaq (3/31/2010) This is a quiet place in cyberspace devoted to religious tolerance and scholarship Non-public domain contents of this site not otherwise copyrighted are © copyright 2023, Evinity Publishing INC, All Rights Reserved. See Site copyrights , Terms of Service for more information. Index | FAQ | Contact | Search | Buy Disk Open Source for the Human Soul

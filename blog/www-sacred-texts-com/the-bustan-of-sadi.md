@@ -1,0 +1,9 @@
+# The Bustan of Sadi
+
+- **URL**: https://www.sacred-texts.com/isl/bus/index.htm
+- **Captured**: 2026-05-09T21:40:27
+- **Site**: www.sacred-texts.com
+
+---
+
+The Bustan of Sadi Index | Internet Sacred Text Archive Sacred Texts Islam Arab Caravan, by Jean-Leon Gerome [19th cent.] (Public Domain Image) The Bustan of Sadi tr. by A. Hart Edwards [1911] Contents Start Reading Page Index Text [Zipped] Be generous to the extent of thy power. If thou hast not dug a well in the desert, at least place a lamp in a shrine.--p. 48 This is a prose translation of the Bustan of Sadi, originally published as part of the Wisdom of the East series in the early 20th century, and long out of print. This little book is full of practical spiritual wisdom. Sadi doesn't lean on allegory as much as other Sufi writers of the period; most of the stories in this collection have a pretty obvious moral lesson. Born in Shiraz, Iran, in 1184, Sādi (pseudonym of Muslih-ud-Din Mushrif ibn Abdullah) is considered one of the major medieval Persian poets. He traveled widely, through regions of what is today Syria, Turkey, Egypt and Iraq. Vignettes of gritty caravan and street scenes give life to his tales. In old age he returned to Shiraz, and composed his two best-known works, the poetic Bustan , or Orchard (in 1257), and the prose Gulistan , the Rose Garden (in 1258). He died in 1283 or possibly 1291. Title Page Contents Editorial Note Introduction Prologue Chapter I. Concerning Justice, Counsel, and the Administration of Government Chapter II. Concerning Benevolence Chapter III. Concerning Love Chapter IV. Concerning Humility Chapter V. Concerning Resignation Chapter VI. Concerning Contentment Chapter VII. Concerning Education Chapter VIII. Concerning Gratitude Chapter IX. Concerning Repentance Chapter X. Concerning Prayer Notes

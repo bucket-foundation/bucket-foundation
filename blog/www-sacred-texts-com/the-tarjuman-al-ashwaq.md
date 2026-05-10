@@ -1,0 +1,9 @@
+# The Tarjuman al-Ashwaq
+
+- **URL**: https://www.sacred-texts.com/isl/taa/index.htm
+- **Captured**: 2026-05-09T21:35:34
+- **Site**: www.sacred-texts.com
+
+---
+
+The Tarjuman al-Ashwaq Index | Internet Sacred Text Archive Sacred Texts Islam The Tarjuman al-Ashwaq by Ibn al-Arabi tr. by Reynold A. Nicholson [1911] Contents Start Reading Page Index Text [Zipped] One of the most prolific of the medieval Sufi writers, al-Arabi wrote over 150 books. Unfortunately, very little of this output was translated, up to the early 20th century. This is Reynold Nicholson's translation of the Tarjuman al-Ashwaq , or the 'Interpreter of Desires,' the first edition of which was completed in 611 A.H. (1215 A.D.). This text is of great interest, aside from its literary merits as delightful (but highly encoded) Sufi love poetry, because the author supplied extensive commentary for each poem. This is key to disentangling the Sufi narrative from the exterior form of the work. At this level, rather than a series of love poems to a young woman, this book is actually a philosophical treatise with profound insights. PRODUCTION NOTE: The original book contains the original Arabic text following the introduction. That part of the book has been omitted for technical reasons, so there are a number of skipped pages in the etext. Short passages in Arabic in the body of the have been substituted with ###. All other text was transcribed--John Bruno Hare, 3/31/2010. Title Page Contents Preface Introduction Translation and Commentary I II III IV V VI VII VIII IX X XI XII XIII XIV XV XVI XVII XVIII XIX XX XXI XXII XXIII XXIV XXV XXVI XXVII XXVIII XXIX XXX XXXI XXXII XXXIII XXIV XXXV XXXVI XXXVII XXXVIII XXXIX XL XLI XLII XLIII XLIV XLV XLVI XLVII XLVIII XLIX L LI LII LIII LIV LV LVI LVII LVIII LIX LX LXI Index
