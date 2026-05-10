@@ -1,0 +1,6898 @@
+[
+  {
+    "id": "https://openalex.org/W1987252491",
+    "doi": "https://doi.org/10.1145/1667239.1667250",
+    "title": "Creating new interfaces for musical expression",
+    "display_name": "Creating new interfaces for musical expression",
+    "publication_year": 2009,
+    "publication_date": "2009-08-03",
+    "ids": {
+      "openalex": "https://openalex.org/W1987252491",
+      "doi": "https://doi.org/10.1145/1667239.1667250",
+      "mag": "1987252491"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1145/1667239.1667250",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1145/1667239.1667250",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "ACM SIGGRAPH 2009 Courses",
+      "raw_type": "proceedings-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5071585967",
+          "display_name": "Sidney Fels",
+          "orcid": "https://orcid.org/0000-0001-9279-9021"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I141945490",
+            "display_name": "University of British Columbia",
+            "ror": "https://ror.org/03rmrcq20",
+            "country_code": "CA",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I141945490"
+            ]
+          }
+        ],
+        "countries": [
+          "CA"
+        ],
+        "is_corresponding": true,
+        "raw_author_name": "Sidney Fels",
+        "raw_affiliation_strings": [
+          "University of British Columbia"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "University of British Columbia",
+            "institution_ids": [
+              "https://openalex.org/I141945490"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5046940171",
+          "display_name": "Michael J. Lyons",
+          "orcid": "https://orcid.org/0000-0002-7426-0628"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I135768898",
+            "display_name": "Ritsumeikan University",
+            "ror": "https://ror.org/0197nmd03",
+            "country_code": "JP",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I135768898",
+              "https://openalex.org/I4390039241"
+            ]
+          }
+        ],
+        "countries": [
+          "JP"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Michael Lyons",
+        "raw_affiliation_strings": [
+          "Ritsumeikan University"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Ritsumeikan University",
+            "institution_ids": [
+              "https://openalex.org/I135768898"
+            ]
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 2,
+    "institutions_distinct_count": 2,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5071585967"
+    ],
+    "corresponding_institution_ids": [
+      "https://openalex.org/I141945490"
+    ],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 1.2943,
+    "has_fulltext": false,
+    "cited_by_count": 18,
+    "citation_normalized_percentile": {
+      "value": 0.81249002,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 89,
+      "max": 98
+    },
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "1",
+      "last_page": "158"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11349",
+      "display_name": "Music Technology and Sound Studies",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11349",
+        "display_name": "Music Technology and Sound Studies",
+        "score": 0.9998999834060669,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11309",
+        "display_name": "Music and Audio Processing",
+        "score": 0.9994000196456909,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1711",
+          "display_name": "Signal Processing"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10788",
+        "display_name": "Neuroscience and Music Perception",
+        "score": 0.9947999715805054,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/flexibility",
+        "display_name": "Flexibility (engineering)",
+        "score": 0.7267086505889893
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.645291268825531
+      },
+      {
+        "id": "https://openalex.org/keywords/digital-audio",
+        "display_name": "Digital audio",
+        "score": 0.578105092048645
+      },
+      {
+        "id": "https://openalex.org/keywords/musical-expression",
+        "display_name": "Musical expression",
+        "score": 0.573766827583313
+      },
+      {
+        "id": "https://openalex.org/keywords/musical",
+        "display_name": "Musical",
+        "score": 0.5646337866783142
+      },
+      {
+        "id": "https://openalex.org/keywords/music-technology",
+        "display_name": "Music technology",
+        "score": 0.5434648394584656
+      },
+      {
+        "id": "https://openalex.org/keywords/emerging-technologies",
+        "display_name": "Emerging technologies",
+        "score": 0.5141308903694153
+      },
+      {
+        "id": "https://openalex.org/keywords/human–computer-interaction",
+        "display_name": "Human–computer interaction",
+        "score": 0.5121340751647949
+      },
+      {
+        "id": "https://openalex.org/keywords/multimedia",
+        "display_name": "Multimedia",
+        "score": 0.5103258490562439
+      },
+      {
+        "id": "https://openalex.org/keywords/new-interfaces-for-musical-expression",
+        "display_name": "New Interfaces for Musical Expression",
+        "score": 0.49852943420410156
+      },
+      {
+        "id": "https://openalex.org/keywords/sound",
+        "display_name": "Sound (geography)",
+        "score": 0.41931259632110596
+      },
+      {
+        "id": "https://openalex.org/keywords/musical-composition",
+        "display_name": "Musical composition",
+        "score": 0.22988468408584595
+      },
+      {
+        "id": "https://openalex.org/keywords/digital-signal-processing",
+        "display_name": "Digital signal processing",
+        "score": 0.15247389674186707
+      },
+      {
+        "id": "https://openalex.org/keywords/audio-signal",
+        "display_name": "Audio signal",
+        "score": 0.10943040251731873
+      },
+      {
+        "id": "https://openalex.org/keywords/art",
+        "display_name": "Art",
+        "score": 0.08778193593025208
+      },
+      {
+        "id": "https://openalex.org/keywords/artificial-intelligence",
+        "display_name": "Artificial intelligence",
+        "score": 0.08534413576126099
+      },
+      {
+        "id": "https://openalex.org/keywords/acoustics",
+        "display_name": "Acoustics",
+        "score": 0.08447480201721191
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-hardware",
+        "display_name": "Computer hardware",
+        "score": 0.08211511373519897
+      },
+      {
+        "id": "https://openalex.org/keywords/visual-arts",
+        "display_name": "Visual arts",
+        "score": 0.06927347183227539
+      },
+      {
+        "id": "https://openalex.org/keywords/music-education",
+        "display_name": "Music education",
+        "score": 0.06624171137809753
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C2780598303",
+        "wikidata": "https://www.wikidata.org/wiki/Q65921492",
+        "display_name": "Flexibility (engineering)",
+        "level": 2,
+        "score": 0.7267086505889893
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.645291268825531
+      },
+      {
+        "id": "https://openalex.org/C87687168",
+        "wikidata": "https://www.wikidata.org/wiki/Q173114",
+        "display_name": "Digital audio",
+        "level": 4,
+        "score": 0.578105092048645
+      },
+      {
+        "id": "https://openalex.org/C2779685156",
+        "wikidata": "https://www.wikidata.org/wiki/Q6942545",
+        "display_name": "Musical expression",
+        "level": 3,
+        "score": 0.573766827583313
+      },
+      {
+        "id": "https://openalex.org/C558565934",
+        "wikidata": "https://www.wikidata.org/wiki/Q2743",
+        "display_name": "Musical",
+        "level": 2,
+        "score": 0.5646337866783142
+      },
+      {
+        "id": "https://openalex.org/C196754913",
+        "wikidata": "https://www.wikidata.org/wiki/Q27333678",
+        "display_name": "Music technology",
+        "level": 3,
+        "score": 0.5434648394584656
+      },
+      {
+        "id": "https://openalex.org/C207267971",
+        "wikidata": "https://www.wikidata.org/wiki/Q120208",
+        "display_name": "Emerging technologies",
+        "level": 2,
+        "score": 0.5141308903694153
+      },
+      {
+        "id": "https://openalex.org/C107457646",
+        "wikidata": "https://www.wikidata.org/wiki/Q207434",
+        "display_name": "Human–computer interaction",
+        "level": 1,
+        "score": 0.5121340751647949
+      },
+      {
+        "id": "https://openalex.org/C49774154",
+        "wikidata": "https://www.wikidata.org/wiki/Q131765",
+        "display_name": "Multimedia",
+        "level": 1,
+        "score": 0.5103258490562439
+      },
+      {
+        "id": "https://openalex.org/C141841376",
+        "wikidata": "https://www.wikidata.org/wiki/Q4326497",
+        "display_name": "New Interfaces for Musical Expression",
+        "level": 4,
+        "score": 0.49852943420410156
+      },
+      {
+        "id": "https://openalex.org/C203718221",
+        "wikidata": "https://www.wikidata.org/wiki/Q491713",
+        "display_name": "Sound (geography)",
+        "level": 2,
+        "score": 0.41931259632110596
+      },
+      {
+        "id": "https://openalex.org/C109568592",
+        "wikidata": "https://www.wikidata.org/wiki/Q207628",
+        "display_name": "Musical composition",
+        "level": 3,
+        "score": 0.22988468408584595
+      },
+      {
+        "id": "https://openalex.org/C84462506",
+        "wikidata": "https://www.wikidata.org/wiki/Q173142",
+        "display_name": "Digital signal processing",
+        "level": 2,
+        "score": 0.15247389674186707
+      },
+      {
+        "id": "https://openalex.org/C64922751",
+        "wikidata": "https://www.wikidata.org/wiki/Q4650799",
+        "display_name": "Audio signal",
+        "level": 3,
+        "score": 0.10943040251731873
+      },
+      {
+        "id": "https://openalex.org/C142362112",
+        "wikidata": "https://www.wikidata.org/wiki/Q735",
+        "display_name": "Art",
+        "level": 0,
+        "score": 0.08778193593025208
+      },
+      {
+        "id": "https://openalex.org/C154945302",
+        "wikidata": "https://www.wikidata.org/wiki/Q11660",
+        "display_name": "Artificial intelligence",
+        "level": 1,
+        "score": 0.08534413576126099
+      },
+      {
+        "id": "https://openalex.org/C24890656",
+        "wikidata": "https://www.wikidata.org/wiki/Q82811",
+        "display_name": "Acoustics",
+        "level": 1,
+        "score": 0.08447480201721191
+      },
+      {
+        "id": "https://openalex.org/C9390403",
+        "wikidata": "https://www.wikidata.org/wiki/Q3966",
+        "display_name": "Computer hardware",
+        "level": 1,
+        "score": 0.08211511373519897
+      },
+      {
+        "id": "https://openalex.org/C153349607",
+        "wikidata": "https://www.wikidata.org/wiki/Q36649",
+        "display_name": "Visual arts",
+        "level": 1,
+        "score": 0.06927347183227539
+      },
+      {
+        "id": "https://openalex.org/C13553968",
+        "wikidata": "https://www.wikidata.org/wiki/Q27908",
+        "display_name": "Music education",
+        "level": 2,
+        "score": 0.06624171137809753
+      },
+      {
+        "id": "https://openalex.org/C33923547",
+        "wikidata": "https://www.wikidata.org/wiki/Q395",
+        "display_name": "Mathematics",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C121332964",
+        "wikidata": "https://www.wikidata.org/wiki/Q413",
+        "display_name": "Physics",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C105795698",
+        "wikidata": "https://www.wikidata.org/wiki/Q12483",
+        "display_name": "Statistics",
+        "level": 1,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1145/1667239.1667250",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1145/1667239.1667250",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "ACM SIGGRAPH 2009 Courses",
+        "raw_type": "proceedings-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 93,
+    "referenced_works": [
+      "https://openalex.org/W12970245",
+      "https://openalex.org/W19855640",
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W49422352",
+      "https://openalex.org/W50705277",
+      "https://openalex.org/W57783167",
+      "https://openalex.org/W62668296",
+      "https://openalex.org/W67470114",
+      "https://openalex.org/W109136850",
+      "https://openalex.org/W119330944",
+      "https://openalex.org/W126658970",
+      "https://openalex.org/W185137750",
+      "https://openalex.org/W191726870",
+      "https://openalex.org/W1480357676",
+      "https://openalex.org/W1510737763",
+      "https://openalex.org/W1512148200",
+      "https://openalex.org/W1513934811",
+      "https://openalex.org/W1520052486",
+      "https://openalex.org/W1528427903",
+      "https://openalex.org/W1528596025",
+      "https://openalex.org/W1530808419",
+      "https://openalex.org/W1549329517",
+      "https://openalex.org/W1566660863",
+      "https://openalex.org/W1572019598",
+      "https://openalex.org/W1591490676",
+      "https://openalex.org/W1592066919",
+      "https://openalex.org/W1605775511",
+      "https://openalex.org/W1966264494",
+      "https://openalex.org/W1967595366",
+      "https://openalex.org/W1969601749",
+      "https://openalex.org/W1969603681",
+      "https://openalex.org/W1976522035",
+      "https://openalex.org/W1978122678",
+      "https://openalex.org/W1988082944",
+      "https://openalex.org/W2010771919",
+      "https://openalex.org/W2014517420",
+      "https://openalex.org/W2021421911",
+      "https://openalex.org/W2045766318",
+      "https://openalex.org/W2047072073",
+      "https://openalex.org/W2048073916",
+      "https://openalex.org/W2058255800",
+      "https://openalex.org/W2062865822",
+      "https://openalex.org/W2074416527",
+      "https://openalex.org/W2079080230",
+      "https://openalex.org/W2087137043",
+      "https://openalex.org/W2090284173",
+      "https://openalex.org/W2090604403",
+      "https://openalex.org/W2093824445",
+      "https://openalex.org/W2101581748",
+      "https://openalex.org/W2102487696",
+      "https://openalex.org/W2102877304",
+      "https://openalex.org/W2103099811",
+      "https://openalex.org/W2113601247",
+      "https://openalex.org/W2114819038",
+      "https://openalex.org/W2115115071",
+      "https://openalex.org/W2124187803",
+      "https://openalex.org/W2128438249",
+      "https://openalex.org/W2132623271",
+      "https://openalex.org/W2134079826",
+      "https://openalex.org/W2135099678",
+      "https://openalex.org/W2135573740",
+      "https://openalex.org/W2136836540",
+      "https://openalex.org/W2143621823",
+      "https://openalex.org/W2144168917",
+      "https://openalex.org/W2144317439",
+      "https://openalex.org/W2145019926",
+      "https://openalex.org/W2151304636",
+      "https://openalex.org/W2152742269",
+      "https://openalex.org/W2155541957",
+      "https://openalex.org/W2158233635",
+      "https://openalex.org/W2159059077",
+      "https://openalex.org/W2163015395",
+      "https://openalex.org/W2164764235",
+      "https://openalex.org/W2166428112",
+      "https://openalex.org/W2168945679",
+      "https://openalex.org/W2170699275",
+      "https://openalex.org/W2294317068",
+      "https://openalex.org/W2315896104",
+      "https://openalex.org/W2316743980",
+      "https://openalex.org/W2400581922",
+      "https://openalex.org/W2402256895",
+      "https://openalex.org/W2406884706",
+      "https://openalex.org/W2536956779",
+      "https://openalex.org/W2582521406",
+      "https://openalex.org/W2738156664",
+      "https://openalex.org/W2762684428",
+      "https://openalex.org/W2911234582",
+      "https://openalex.org/W2912305069",
+      "https://openalex.org/W2913959833",
+      "https://openalex.org/W4285719527",
+      "https://openalex.org/W6602118589",
+      "https://openalex.org/W6654207259",
+      "https://openalex.org/W6812512883"
+    ],
+    "related_works": [
+      "https://openalex.org/W2113793864",
+      "https://openalex.org/W2776097975",
+      "https://openalex.org/W4205511617",
+      "https://openalex.org/W3104400581",
+      "https://openalex.org/W2147281554",
+      "https://openalex.org/W1602238806",
+      "https://openalex.org/W2111294903",
+      "https://openalex.org/W1558090354",
+      "https://openalex.org/W4324150130",
+      "https://openalex.org/W1987252491"
+    ],
+    "abstract_inverted_index": {
+      "Advances": [
+        0
+      ],
+      "in": [
+        1,
+        12
+      ],
+      "digital": [
+        2
+      ],
+      "audio": [
+        3
+      ],
+      "technologies": [
+        4,
+        19,
+        35
+      ],
+      "have": [
+        5
+      ],
+      "led": [
+        6
+      ],
+      "to": [
+        7
+      ],
+      "computers": [
+        8
+      ],
+      "playing": [
+        9
+      ],
+      "a": [
+        10
+      ],
+      "role": [
+        11
+      ],
+      "most": [
+        13
+      ],
+      "music": [
+        14
+      ],
+      "production": [
+        15
+      ],
+      "and": [
+        16,
+        25,
+        46
+      ],
+      "performance.": [
+        17
+      ],
+      "Digital": [
+        18
+      ],
+      "offer": [
+        20
+      ],
+      "unprecedented": [
+        21
+      ],
+      "opportunities": [
+        22
+      ],
+      "for": [
+        23,
+        42
+      ],
+      "creation": [
+        24
+      ],
+      "manipulation": [
+        26
+      ],
+      "of": [
+        27,
+        32,
+        40
+      ],
+      "sound,": [
+        28
+      ],
+      "but": [
+        29
+      ],
+      "the": [
+        30
+      ],
+      "flexibility": [
+        31
+      ],
+      "these": [
+        33
+      ],
+      "new": [
+        34
+      ],
+      "imply": [
+        36
+      ],
+      "an": [
+        37
+      ],
+      "often-confusing": [
+        38
+      ],
+      "array": [
+        39
+      ],
+      "choices": [
+        41
+      ],
+      "instrument": [
+        43
+      ],
+      "designers,": [
+        44
+      ],
+      "composers,": [
+        45
+      ],
+      "performers.": [
+        47
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2017,
+        "cited_by_count": 5
+      },
+      {
+        "year": 2016,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2015,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2014,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2013,
+        "cited_by_count": 3
+      },
+      {
+        "year": 2012,
+        "cited_by_count": 1
+      }
+    ],
+    "updated_date": "2025-11-06T03:46:38.306776",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W2130161091",
+    "doi": "https://doi.org/10.1145/2542266.2542283",
+    "title": "Creating new interfaces for musical expression",
+    "display_name": "Creating new interfaces for musical expression",
+    "publication_year": 2013,
+    "publication_date": "2013-11-12",
+    "ids": {
+      "openalex": "https://openalex.org/W2130161091",
+      "doi": "https://doi.org/10.1145/2542266.2542283",
+      "mag": "2130161091"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1145/2542266.2542283",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1145/2542266.2542283",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "SIGGRAPH Asia 2013 Courses",
+      "raw_type": "proceedings-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5046940171",
+          "display_name": "Michael J. Lyons",
+          "orcid": "https://orcid.org/0000-0002-7426-0628"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I135768898",
+            "display_name": "Ritsumeikan University",
+            "ror": "https://ror.org/0197nmd03",
+            "country_code": "JP",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I135768898",
+              "https://openalex.org/I4390039241"
+            ]
+          }
+        ],
+        "countries": [
+          "JP"
+        ],
+        "is_corresponding": true,
+        "raw_author_name": "Michael Lyons",
+        "raw_affiliation_strings": [
+          "Ritsumeikan University"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Ritsumeikan University",
+            "institution_ids": [
+              "https://openalex.org/I135768898"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5071585967",
+          "display_name": "Sidney Fels",
+          "orcid": "https://orcid.org/0000-0001-9279-9021"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I141945490",
+            "display_name": "University of British Columbia",
+            "ror": "https://ror.org/03rmrcq20",
+            "country_code": "CA",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I141945490"
+            ]
+          }
+        ],
+        "countries": [
+          "CA"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Sidney Fels",
+        "raw_affiliation_strings": [
+          "The University of British Columbia"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "The University of British Columbia",
+            "institution_ids": [
+              "https://openalex.org/I141945490"
+            ]
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 2,
+    "institutions_distinct_count": 2,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5046940171"
+    ],
+    "corresponding_institution_ids": [
+      "https://openalex.org/I135768898"
+    ],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 1.9051,
+    "has_fulltext": false,
+    "cited_by_count": 10,
+    "citation_normalized_percentile": {
+      "value": 0.88357504,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 90,
+      "max": 98
+    },
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "1",
+      "last_page": "164"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11349",
+      "display_name": "Music Technology and Sound Studies",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11349",
+        "display_name": "Music Technology and Sound Studies",
+        "score": 0.9998999834060669,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11309",
+        "display_name": "Music and Audio Processing",
+        "score": 0.9994000196456909,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1711",
+          "display_name": "Signal Processing"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10788",
+        "display_name": "Neuroscience and Music Perception",
+        "score": 0.9980999827384949,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/new-interfaces-for-musical-expression",
+        "display_name": "New Interfaces for Musical Expression",
+        "score": 0.7591615915298462
+      },
+      {
+        "id": "https://openalex.org/keywords/musical",
+        "display_name": "Musical",
+        "score": 0.7516753673553467
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.7179569602012634
+      },
+      {
+        "id": "https://openalex.org/keywords/human–computer-interaction",
+        "display_name": "Human–computer interaction",
+        "score": 0.6301285028457642
+      },
+      {
+        "id": "https://openalex.org/keywords/musical-expression",
+        "display_name": "Musical expression",
+        "score": 0.5913596153259277
+      },
+      {
+        "id": "https://openalex.org/keywords/field",
+        "display_name": "Field (mathematics)",
+        "score": 0.5330117344856262
+      },
+      {
+        "id": "https://openalex.org/keywords/natural",
+        "display_name": "Natural (archaeology)",
+        "score": 0.5267940163612366
+      },
+      {
+        "id": "https://openalex.org/keywords/interface",
+        "display_name": "Interface (matter)",
+        "score": 0.5236508846282959
+      },
+      {
+        "id": "https://openalex.org/keywords/expression",
+        "display_name": "Expression (computer science)",
+        "score": 0.5024855136871338
+      },
+      {
+        "id": "https://openalex.org/keywords/multimedia",
+        "display_name": "Multimedia",
+        "score": 0.459751158952713
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-music",
+        "display_name": "Computer music",
+        "score": 0.4425560534000397
+      },
+      {
+        "id": "https://openalex.org/keywords/musical-composition",
+        "display_name": "Musical composition",
+        "score": 0.35550457239151
+      },
+      {
+        "id": "https://openalex.org/keywords/visual-arts",
+        "display_name": "Visual arts",
+        "score": 0.19299909472465515
+      },
+      {
+        "id": "https://openalex.org/keywords/art",
+        "display_name": "Art",
+        "score": 0.12641167640686035
+      },
+      {
+        "id": "https://openalex.org/keywords/history",
+        "display_name": "History",
+        "score": 0.0667845606803894
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C141841376",
+        "wikidata": "https://www.wikidata.org/wiki/Q4326497",
+        "display_name": "New Interfaces for Musical Expression",
+        "level": 4,
+        "score": 0.7591615915298462
+      },
+      {
+        "id": "https://openalex.org/C558565934",
+        "wikidata": "https://www.wikidata.org/wiki/Q2743",
+        "display_name": "Musical",
+        "level": 2,
+        "score": 0.7516753673553467
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.7179569602012634
+      },
+      {
+        "id": "https://openalex.org/C107457646",
+        "wikidata": "https://www.wikidata.org/wiki/Q207434",
+        "display_name": "Human–computer interaction",
+        "level": 1,
+        "score": 0.6301285028457642
+      },
+      {
+        "id": "https://openalex.org/C2779685156",
+        "wikidata": "https://www.wikidata.org/wiki/Q6942545",
+        "display_name": "Musical expression",
+        "level": 3,
+        "score": 0.5913596153259277
+      },
+      {
+        "id": "https://openalex.org/C9652623",
+        "wikidata": "https://www.wikidata.org/wiki/Q190109",
+        "display_name": "Field (mathematics)",
+        "level": 2,
+        "score": 0.5330117344856262
+      },
+      {
+        "id": "https://openalex.org/C2776608160",
+        "wikidata": "https://www.wikidata.org/wiki/Q4785462",
+        "display_name": "Natural (archaeology)",
+        "level": 2,
+        "score": 0.5267940163612366
+      },
+      {
+        "id": "https://openalex.org/C113843644",
+        "wikidata": "https://www.wikidata.org/wiki/Q901882",
+        "display_name": "Interface (matter)",
+        "level": 4,
+        "score": 0.5236508846282959
+      },
+      {
+        "id": "https://openalex.org/C90559484",
+        "wikidata": "https://www.wikidata.org/wiki/Q778379",
+        "display_name": "Expression (computer science)",
+        "level": 2,
+        "score": 0.5024855136871338
+      },
+      {
+        "id": "https://openalex.org/C49774154",
+        "wikidata": "https://www.wikidata.org/wiki/Q131765",
+        "display_name": "Multimedia",
+        "level": 1,
+        "score": 0.459751158952713
+      },
+      {
+        "id": "https://openalex.org/C34259666",
+        "wikidata": "https://www.wikidata.org/wiki/Q1122550",
+        "display_name": "Computer music",
+        "level": 3,
+        "score": 0.4425560534000397
+      },
+      {
+        "id": "https://openalex.org/C109568592",
+        "wikidata": "https://www.wikidata.org/wiki/Q207628",
+        "display_name": "Musical composition",
+        "level": 3,
+        "score": 0.35550457239151
+      },
+      {
+        "id": "https://openalex.org/C153349607",
+        "wikidata": "https://www.wikidata.org/wiki/Q36649",
+        "display_name": "Visual arts",
+        "level": 1,
+        "score": 0.19299909472465515
+      },
+      {
+        "id": "https://openalex.org/C142362112",
+        "wikidata": "https://www.wikidata.org/wiki/Q735",
+        "display_name": "Art",
+        "level": 0,
+        "score": 0.12641167640686035
+      },
+      {
+        "id": "https://openalex.org/C95457728",
+        "wikidata": "https://www.wikidata.org/wiki/Q309",
+        "display_name": "History",
+        "level": 0,
+        "score": 0.0667845606803894
+      },
+      {
+        "id": "https://openalex.org/C202444582",
+        "wikidata": "https://www.wikidata.org/wiki/Q837863",
+        "display_name": "Pure mathematics",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C166957645",
+        "wikidata": "https://www.wikidata.org/wiki/Q23498",
+        "display_name": "Archaeology",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C129307140",
+        "wikidata": "https://www.wikidata.org/wiki/Q6795880",
+        "display_name": "Maximum bubble pressure method",
+        "level": 3,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C33923547",
+        "wikidata": "https://www.wikidata.org/wiki/Q395",
+        "display_name": "Mathematics",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C199360897",
+        "wikidata": "https://www.wikidata.org/wiki/Q9143",
+        "display_name": "Programming language",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C173608175",
+        "wikidata": "https://www.wikidata.org/wiki/Q232661",
+        "display_name": "Parallel computing",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C157915830",
+        "wikidata": "https://www.wikidata.org/wiki/Q2928001",
+        "display_name": "Bubble",
+        "level": 2,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1145/2542266.2542283",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1145/2542266.2542283",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "SIGGRAPH Asia 2013 Courses",
+        "raw_type": "proceedings-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [
+      {
+        "id": "https://metadata.un.org/sdg/4",
+        "display_name": "Quality Education",
+        "score": 0.4300000071525574
+      }
+    ],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 114,
+    "referenced_works": [
+      "https://openalex.org/W12970245",
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W49422352",
+      "https://openalex.org/W50705277",
+      "https://openalex.org/W57783167",
+      "https://openalex.org/W62668296",
+      "https://openalex.org/W67470114",
+      "https://openalex.org/W109136850",
+      "https://openalex.org/W119330944",
+      "https://openalex.org/W126658970",
+      "https://openalex.org/W185137750",
+      "https://openalex.org/W191726870",
+      "https://openalex.org/W1510737763",
+      "https://openalex.org/W1512148200",
+      "https://openalex.org/W1513934811",
+      "https://openalex.org/W1520052486",
+      "https://openalex.org/W1528427903",
+      "https://openalex.org/W1528596025",
+      "https://openalex.org/W1530808419",
+      "https://openalex.org/W1549329517",
+      "https://openalex.org/W1566660863",
+      "https://openalex.org/W1572019598",
+      "https://openalex.org/W1576420969",
+      "https://openalex.org/W1591490676",
+      "https://openalex.org/W1592066919",
+      "https://openalex.org/W1605775511",
+      "https://openalex.org/W1766934979",
+      "https://openalex.org/W1966264494",
+      "https://openalex.org/W1967595366",
+      "https://openalex.org/W1969601749",
+      "https://openalex.org/W1969603681",
+      "https://openalex.org/W1976522035",
+      "https://openalex.org/W1978122678",
+      "https://openalex.org/W1988082944",
+      "https://openalex.org/W2007292406",
+      "https://openalex.org/W2014517420",
+      "https://openalex.org/W2045766318",
+      "https://openalex.org/W2047072073",
+      "https://openalex.org/W2048073916",
+      "https://openalex.org/W2058255800",
+      "https://openalex.org/W2062865822",
+      "https://openalex.org/W2074416527",
+      "https://openalex.org/W2079080230",
+      "https://openalex.org/W2090284173",
+      "https://openalex.org/W2090604403",
+      "https://openalex.org/W2093824445",
+      "https://openalex.org/W2101581748",
+      "https://openalex.org/W2102487696",
+      "https://openalex.org/W2102877304",
+      "https://openalex.org/W2103099811",
+      "https://openalex.org/W2113601247",
+      "https://openalex.org/W2114819038",
+      "https://openalex.org/W2115115071",
+      "https://openalex.org/W2118812119",
+      "https://openalex.org/W2124187803",
+      "https://openalex.org/W2128438249",
+      "https://openalex.org/W2132623271",
+      "https://openalex.org/W2134079826",
+      "https://openalex.org/W2135099678",
+      "https://openalex.org/W2135573740",
+      "https://openalex.org/W2136836540",
+      "https://openalex.org/W2143621823",
+      "https://openalex.org/W2144168917",
+      "https://openalex.org/W2144317439",
+      "https://openalex.org/W2145019926",
+      "https://openalex.org/W2151304636",
+      "https://openalex.org/W2152742269",
+      "https://openalex.org/W2155251964",
+      "https://openalex.org/W2155541957",
+      "https://openalex.org/W2158233635",
+      "https://openalex.org/W2159059077",
+      "https://openalex.org/W2163015395",
+      "https://openalex.org/W2164764235",
+      "https://openalex.org/W2166428112",
+      "https://openalex.org/W2168945679",
+      "https://openalex.org/W2170699275",
+      "https://openalex.org/W2294317068",
+      "https://openalex.org/W2315896104",
+      "https://openalex.org/W2316743980",
+      "https://openalex.org/W2400581922",
+      "https://openalex.org/W2402256895",
+      "https://openalex.org/W2406884706",
+      "https://openalex.org/W2518814759",
+      "https://openalex.org/W2536956779",
+      "https://openalex.org/W2582521406",
+      "https://openalex.org/W2738156664",
+      "https://openalex.org/W2762684428",
+      "https://openalex.org/W2911234582",
+      "https://openalex.org/W2912305069",
+      "https://openalex.org/W2913959833",
+      "https://openalex.org/W3104400581",
+      "https://openalex.org/W4210890610",
+      "https://openalex.org/W4285719527",
+      "https://openalex.org/W6600552288",
+      "https://openalex.org/W6602036533",
+      "https://openalex.org/W6602118589",
+      "https://openalex.org/W6602517118",
+      "https://openalex.org/W6604448206",
+      "https://openalex.org/W6628483403",
+      "https://openalex.org/W6633849734",
+      "https://openalex.org/W6634234239",
+      "https://openalex.org/W6652874455",
+      "https://openalex.org/W6654207259",
+      "https://openalex.org/W6673929161",
+      "https://openalex.org/W6675920406",
+      "https://openalex.org/W6677264420",
+      "https://openalex.org/W6678314666",
+      "https://openalex.org/W6680150774",
+      "https://openalex.org/W6681311973",
+      "https://openalex.org/W6684611985",
+      "https://openalex.org/W6696760643",
+      "https://openalex.org/W6712917103",
+      "https://openalex.org/W6713417470",
+      "https://openalex.org/W6812512883"
+    ],
+    "related_works": [
+      "https://openalex.org/W3104400581",
+      "https://openalex.org/W2786473792",
+      "https://openalex.org/W3154067724",
+      "https://openalex.org/W2388512361",
+      "https://openalex.org/W7350038",
+      "https://openalex.org/W3049566288",
+      "https://openalex.org/W2111294903",
+      "https://openalex.org/W1582059369",
+      "https://openalex.org/W2500107738",
+      "https://openalex.org/W4229739851"
+    ],
+    "abstract_inverted_index": {
+      "Advances": [
+        0
+      ],
+      "in": [
+        1,
+        15,
+        86
+      ],
+      "digital": [
+        2
+      ],
+      "audio": [
+        3
+      ],
+      "technologies": [
+        4,
+        22,
+        39
+      ],
+      "have": [
+        5,
+        54
+      ],
+      "led": [
+        6
+      ],
+      "to": [
+        7,
+        62,
+        67,
+        97,
+        100,
+        127,
+        129
+      ],
+      "a": [
+        8,
+        13,
+        83
+      ],
+      "situation": [
+        9
+      ],
+      "where": [
+        10
+      ],
+      "computers": [
+        11,
+        60
+      ],
+      "play": [
+        12,
+        101
+      ],
+      "role": [
+        14
+      ],
+      "most": [
+        16,
+        75
+      ],
+      "music": [
+        17,
+        64
+      ],
+      "production": [
+        18
+      ],
+      "and": [
+        19,
+        29,
+        50,
+        65,
+        93,
+        111
+      ],
+      "performance.": [
+        20
+      ],
+      "Digital": [
+        21
+      ],
+      "offer": [
+        23
+      ],
+      "unprecedented": [
+        24
+      ],
+      "opportunities": [
+        25
+      ],
+      "for": [
+        26,
+        47,
+        108,
+        123
+      ],
+      "the": [
+        27,
+        34,
+        79,
+        87,
+        102,
+        117,
+        137
+      ],
+      "creation": [
+        28
+      ],
+      "manipulation": [
+        30
+      ],
+      "of": [
+        31,
+        36,
+        45,
+        70,
+        141
+      ],
+      "sound,": [
+        32
+      ],
+      "however": [
+        33
+      ],
+      "flexibilty": [
+        35
+      ],
+      "these": [
+        37
+      ],
+      "new": [
+        38,
+        71
+      ],
+      "imply": [
+        40
+      ],
+      "an": [
+        41,
+        68
+      ],
+      "often": [
+        42
+      ],
+      "confusing": [
+        43
+      ],
+      "array": [
+        44
+      ],
+      "choices": [
+        46
+      ],
+      "musical": [
+        48,
+        72,
+        84
+      ],
+      "composers": [
+        49
+      ],
+      "performers.": [
+        51
+      ],
+      "Some": [
+        52
+      ],
+      "artists": [
+        53
+      ],
+      "faced": [
+        55
+      ],
+      "this": [
+        56,
+        131
+      ],
+      "challenge": [
+        57
+      ],
+      "by": [
+        58,
+        133
+      ],
+      "using": [
+        59,
+        104
+      ],
+      "directly": [
+        61
+      ],
+      "create": [
+        63
+      ],
+      "leading": [
+        66
+      ],
+      "explosion": [
+        69
+      ],
+      "forms.": [
+        73
+      ],
+      "However,": [
+        74
+      ],
+      "would": [
+        76
+      ],
+      "agree": [
+        77
+      ],
+      "that": [
+        78,
+        159
+      ],
+      "computer": [
+        80
+      ],
+      "is": [
+        81,
+        95
+      ],
+      "not": [
+        82
+      ],
+      "instrument,": [
+        85
+      ],
+      "same": [
+        88
+      ],
+      "sense": [
+        89
+      ],
+      "as": [
+        90
+      ],
+      "traditional": [
+        91
+      ],
+      "instruments,": [
+        92
+      ],
+      "it": [
+        94
+      ],
+      "natural": [
+        96
+      ],
+      "ask": [
+        98
+      ],
+      "'how": [
+        99
+      ],
+      "computer'": [
+        103
+      ],
+      "interface": [
+        105
+      ],
+      "technology": [
+        106
+      ],
+      "appropriate": [
+        107
+      ],
+      "human": [
+        109
+      ],
+      "brains": [
+        110
+      ],
+      "bodies.": [
+        112
+      ],
+      "In": [
+        113
+      ],
+      "2001,": [
+        114
+      ],
+      "we": [
+        115
+      ],
+      "organized": [
+        116
+      ],
+      "first": [
+        118,
+        160
+      ],
+      "workshop": [
+        119
+      ],
+      "on": [
+        120
+      ],
+      "New": [
+        121
+      ],
+      "Interfaces": [
+        122
+      ],
+      "Musical": [
+        124
+      ],
+      "Expression": [
+        125
+      ],
+      "(NIME),": [
+        126
+      ],
+      "attempt": [
+        128
+      ],
+      "answer": [
+        130
+      ],
+      "question": [
+        132
+      ],
+      "exploring": [
+        134
+      ],
+      "connections": [
+        135
+      ],
+      "with": [
+        136
+      ],
+      "better": [
+        138
+      ],
+      "established": [
+        139
+      ],
+      "field": [
+        140
+      ],
+      "human-computer": [
+        142
+      ],
+      "interaction.": [
+        143
+      ],
+      "This": [
+        144
+      ],
+      "course": [
+        145
+      ],
+      "summarizes": [
+        146
+      ],
+      "what": [
+        147
+      ],
+      "has": [
+        148,
+        154
+      ],
+      "been": [
+        149,
+        155
+      ],
+      "learned": [
+        150
+      ],
+      "at": [
+        151
+      ],
+      "NIME": [
+        152
+      ],
+      "which": [
+        153
+      ],
+      "held": [
+        156
+      ],
+      "annually": [
+        157
+      ],
+      "since": [
+        158
+      ],
+      "workshop.": [
+        161
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2020,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2017,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2016,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2015,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2014,
+        "cited_by_count": 5
+      }
+    ],
+    "updated_date": "2025-11-06T03:46:38.306776",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W2036191951",
+    "doi": "https://doi.org/10.1080/14626260701847373",
+    "title": "The<i>Beatbug</i>– evolution of a musical controller",
+    "display_name": "The<i>Beatbug</i>– evolution of a musical controller",
+    "publication_year": 2008,
+    "publication_date": "2008-03-01",
+    "ids": {
+      "openalex": "https://openalex.org/W2036191951",
+      "doi": "https://doi.org/10.1080/14626260701847373",
+      "mag": "2036191951"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1080/14626260701847373",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1080/14626260701847373",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S72842422",
+        "display_name": "Digital Creativity",
+        "issn_l": "1462-6268",
+        "issn": [
+          "1462-6268",
+          "1744-3806"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320547",
+        "host_organization_name": "Taylor & Francis",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320547"
+        ],
+        "host_organization_lineage_names": [
+          "Taylor & Francis"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Digital Creativity",
+      "raw_type": "journal-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5103010206",
+          "display_name": "Gil Weinberg",
+          "orcid": "https://orcid.org/0000-0001-5263-2235"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I130701444",
+            "display_name": "Georgia Institute of Technology",
+            "ror": "https://ror.org/01zkghx44",
+            "country_code": "US",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I130701444"
+            ]
+          }
+        ],
+        "countries": [
+          "US"
+        ],
+        "is_corresponding": true,
+        "raw_author_name": "Gil Weinberg",
+        "raw_affiliation_strings": [
+          "Georgia Institute of Technology , USA",
+          "Georgia Institute of Technology,  USA"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Georgia Institute of Technology , USA",
+            "institution_ids": [
+              "https://openalex.org/I130701444"
+            ]
+          },
+          {
+            "raw_affiliation_string": "Georgia Institute of Technology,  USA",
+            "institution_ids": [
+              "https://openalex.org/I130701444"
+            ]
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 1,
+    "institutions_distinct_count": 1,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5103010206"
+    ],
+    "corresponding_institution_ids": [
+      "https://openalex.org/I130701444"
+    ],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 1.0536,
+    "has_fulltext": false,
+    "cited_by_count": 9,
+    "citation_normalized_percentile": {
+      "value": 0.78770998,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 89,
+      "max": 96
+    },
+    "biblio": {
+      "volume": "19",
+      "issue": "1",
+      "first_page": "3",
+      "last_page": "18"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11349",
+      "display_name": "Music Technology and Sound Studies",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11349",
+        "display_name": "Music Technology and Sound Studies",
+        "score": 0.9998000264167786,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10789",
+        "display_name": "Interactive and Immersive Displays",
+        "score": 0.998199999332428,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1709",
+          "display_name": "Human-Computer Interaction"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10914",
+        "display_name": "Tactile and Sensory Interactions",
+        "score": 0.9968000054359436,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/musical",
+        "display_name": "Musical",
+        "score": 0.776588499546051
+      },
+      {
+        "id": "https://openalex.org/keywords/controller",
+        "display_name": "Controller (irrigation)",
+        "score": 0.7265419363975525
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.6326164603233337
+      },
+      {
+        "id": "https://openalex.org/keywords/new-interfaces-for-musical-expression",
+        "display_name": "New Interfaces for Musical Expression",
+        "score": 0.5706290602684021
+      },
+      {
+        "id": "https://openalex.org/keywords/period",
+        "display_name": "Period (music)",
+        "score": 0.5110193490982056
+      },
+      {
+        "id": "https://openalex.org/keywords/strict-constructionism",
+        "display_name": "Strict constructionism",
+        "score": 0.5051193833351135
+      },
+      {
+        "id": "https://openalex.org/keywords/constructionism",
+        "display_name": "Constructionism",
+        "score": 0.48093146085739136
+      },
+      {
+        "id": "https://openalex.org/keywords/software",
+        "display_name": "Software",
+        "score": 0.4655410051345825
+      },
+      {
+        "id": "https://openalex.org/keywords/human–computer-interaction",
+        "display_name": "Human–computer interaction",
+        "score": 0.45885542035102844
+      },
+      {
+        "id": "https://openalex.org/keywords/cognitive-science",
+        "display_name": "Cognitive science",
+        "score": 0.33708417415618896
+      },
+      {
+        "id": "https://openalex.org/keywords/musical-composition",
+        "display_name": "Musical composition",
+        "score": 0.27326613664627075
+      },
+      {
+        "id": "https://openalex.org/keywords/psychology",
+        "display_name": "Psychology",
+        "score": 0.2120213508605957
+      },
+      {
+        "id": "https://openalex.org/keywords/visual-arts",
+        "display_name": "Visual arts",
+        "score": 0.21064987778663635
+      },
+      {
+        "id": "https://openalex.org/keywords/aesthetics",
+        "display_name": "Aesthetics",
+        "score": 0.17690545320510864
+      },
+      {
+        "id": "https://openalex.org/keywords/epistemology",
+        "display_name": "Epistemology",
+        "score": 0.12101471424102783
+      },
+      {
+        "id": "https://openalex.org/keywords/art",
+        "display_name": "Art",
+        "score": 0.08590567111968994
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C558565934",
+        "wikidata": "https://www.wikidata.org/wiki/Q2743",
+        "display_name": "Musical",
+        "level": 2,
+        "score": 0.776588499546051
+      },
+      {
+        "id": "https://openalex.org/C203479927",
+        "wikidata": "https://www.wikidata.org/wiki/Q5165939",
+        "display_name": "Controller (irrigation)",
+        "level": 2,
+        "score": 0.7265419363975525
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.6326164603233337
+      },
+      {
+        "id": "https://openalex.org/C141841376",
+        "wikidata": "https://www.wikidata.org/wiki/Q4326497",
+        "display_name": "New Interfaces for Musical Expression",
+        "level": 4,
+        "score": 0.5706290602684021
+      },
+      {
+        "id": "https://openalex.org/C2781291010",
+        "wikidata": "https://www.wikidata.org/wiki/Q178580",
+        "display_name": "Period (music)",
+        "level": 2,
+        "score": 0.5110193490982056
+      },
+      {
+        "id": "https://openalex.org/C154350673",
+        "wikidata": "https://www.wikidata.org/wiki/Q7623615",
+        "display_name": "Strict constructionism",
+        "level": 2,
+        "score": 0.5051193833351135
+      },
+      {
+        "id": "https://openalex.org/C2856821",
+        "wikidata": "https://www.wikidata.org/wiki/Q597136",
+        "display_name": "Constructionism",
+        "level": 2,
+        "score": 0.48093146085739136
+      },
+      {
+        "id": "https://openalex.org/C2777904410",
+        "wikidata": "https://www.wikidata.org/wiki/Q7397",
+        "display_name": "Software",
+        "level": 2,
+        "score": 0.4655410051345825
+      },
+      {
+        "id": "https://openalex.org/C107457646",
+        "wikidata": "https://www.wikidata.org/wiki/Q207434",
+        "display_name": "Human–computer interaction",
+        "level": 1,
+        "score": 0.45885542035102844
+      },
+      {
+        "id": "https://openalex.org/C188147891",
+        "wikidata": "https://www.wikidata.org/wiki/Q147638",
+        "display_name": "Cognitive science",
+        "level": 1,
+        "score": 0.33708417415618896
+      },
+      {
+        "id": "https://openalex.org/C109568592",
+        "wikidata": "https://www.wikidata.org/wiki/Q207628",
+        "display_name": "Musical composition",
+        "level": 3,
+        "score": 0.27326613664627075
+      },
+      {
+        "id": "https://openalex.org/C15744967",
+        "wikidata": "https://www.wikidata.org/wiki/Q9418",
+        "display_name": "Psychology",
+        "level": 0,
+        "score": 0.2120213508605957
+      },
+      {
+        "id": "https://openalex.org/C153349607",
+        "wikidata": "https://www.wikidata.org/wiki/Q36649",
+        "display_name": "Visual arts",
+        "level": 1,
+        "score": 0.21064987778663635
+      },
+      {
+        "id": "https://openalex.org/C107038049",
+        "wikidata": "https://www.wikidata.org/wiki/Q35986",
+        "display_name": "Aesthetics",
+        "level": 1,
+        "score": 0.17690545320510864
+      },
+      {
+        "id": "https://openalex.org/C111472728",
+        "wikidata": "https://www.wikidata.org/wiki/Q9471",
+        "display_name": "Epistemology",
+        "level": 1,
+        "score": 0.12101471424102783
+      },
+      {
+        "id": "https://openalex.org/C142362112",
+        "wikidata": "https://www.wikidata.org/wiki/Q735",
+        "display_name": "Art",
+        "level": 0,
+        "score": 0.08590567111968994
+      },
+      {
+        "id": "https://openalex.org/C6557445",
+        "wikidata": "https://www.wikidata.org/wiki/Q173113",
+        "display_name": "Agronomy",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C86803240",
+        "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C138885662",
+        "wikidata": "https://www.wikidata.org/wiki/Q5891",
+        "display_name": "Philosophy",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C199360897",
+        "wikidata": "https://www.wikidata.org/wiki/Q9143",
+        "display_name": "Programming language",
+        "level": 1,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1080/14626260701847373",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1080/14626260701847373",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S72842422",
+          "display_name": "Digital Creativity",
+          "issn_l": "1462-6268",
+          "issn": [
+            "1462-6268",
+            "1744-3806"
+          ],
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": true,
+          "host_organization": "https://openalex.org/P4310320547",
+          "host_organization_name": "Taylor & Francis",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310320547"
+          ],
+          "host_organization_lineage_names": [
+            "Taylor & Francis"
+          ],
+          "type": "journal"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Digital Creativity",
+        "raw_type": "journal-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [
+      {
+        "id": "https://metadata.un.org/sdg/4",
+        "display_name": "Quality Education",
+        "score": 0.44999998807907104
+      }
+    ],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 20,
+    "referenced_works": [
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W57783167",
+      "https://openalex.org/W1593596880",
+      "https://openalex.org/W1974152118",
+      "https://openalex.org/W1999686812",
+      "https://openalex.org/W2018699816",
+      "https://openalex.org/W2051866642",
+      "https://openalex.org/W2058184725",
+      "https://openalex.org/W2068319073",
+      "https://openalex.org/W2070352937",
+      "https://openalex.org/W2102225445",
+      "https://openalex.org/W2108308193",
+      "https://openalex.org/W2126770791",
+      "https://openalex.org/W2144063319",
+      "https://openalex.org/W2323903101",
+      "https://openalex.org/W2331011819",
+      "https://openalex.org/W2396720631",
+      "https://openalex.org/W2762684428",
+      "https://openalex.org/W4285719527",
+      "https://openalex.org/W6683060743"
+    ],
+    "related_works": [
+      "https://openalex.org/W4388850752",
+      "https://openalex.org/W2754030243",
+      "https://openalex.org/W2789417911",
+      "https://openalex.org/W3104400581",
+      "https://openalex.org/W1870016887",
+      "https://openalex.org/W2206881689",
+      "https://openalex.org/W2990436700",
+      "https://openalex.org/W2480618368",
+      "https://openalex.org/W2294571652",
+      "https://openalex.org/W4386234053"
+    ],
+    "abstract_inverted_index": {
+      "Abstract": [
+        0
+      ],
+      "The": [
+        1,
+        49,
+        83,
+        115
+      ],
+      "paper": [
+        2,
+        50,
+        116
+      ],
+      "describes": [
+        3
+      ],
+      "the": [
+        4,
+        52,
+        71,
+        81,
+        97,
+        123,
+        132
+      ],
+      "development": [
+        5,
+        88,
+        125
+      ],
+      "of": [
+        6,
+        65,
+        122
+      ],
+      "a": [
+        7,
+        63,
+        119,
+        128
+      ],
+      "novel": [
+        8,
+        34
+      ],
+      "handheld": [
+        9
+      ],
+      "musical": [
+        10,
+        39,
+        47
+      ],
+      "controller": [
+        11
+      ],
+      "called": [
+        12
+      ],
+      "Beatbug,": [
+        13
+      ],
+      "which": [
+        14
+      ],
+      "was": [
+        15
+      ],
+      "designed": [
+        16
+      ],
+      "to": [
+        17,
+        58
+      ],
+      "address": [
+        18,
+        59
+      ],
+      "three": [
+        19,
+        86,
+        124
+      ],
+      "main": [
+        20
+      ],
+      "goals": [
+        21,
+        61
+      ],
+      "–": [
+        22
+      ],
+      "providing": [
+        23
+      ],
+      "rich": [
+        24
+      ],
+      "gestural": [
+        25
+      ],
+      "experience": [
+        26
+      ],
+      "for": [
+        27
+      ],
+      "musicians": [
+        28
+      ],
+      "in": [
+        29,
+        37,
+        99,
+        106
+      ],
+      "different": [
+        30,
+        53
+      ],
+      "skill": [
+        31
+      ],
+      "levels,": [
+        32
+      ],
+      "exploring": [
+        33
+      ],
+      "group": [
+        35
+      ],
+      "interactions": [
+        36
+      ],
+      "local": [
+        38
+      ],
+      "networks": [
+        40
+      ],
+      "and": [
+        41,
+        75,
+        93,
+        95,
+        101,
+        112,
+        127
+      ],
+      "facilitating": [
+        42
+      ],
+      "constructionist-learning": [
+        43
+      ],
+      "activities": [
+        44
+      ],
+      "through": [
+        45
+      ],
+      "hands-on": [
+        46
+      ],
+      "interaction.": [
+        48
+      ],
+      "portrays": [
+        51
+      ],
+      "approaches": [
+        54
+      ],
+      "that": [
+        55,
+        77,
+        103
+      ],
+      "were": [
+        56,
+        78,
+        104
+      ],
+      "taken": [
+        57
+      ],
+      "these": [
+        60
+      ],
+      "over": [
+        62
+      ],
+      "period": [
+        64
+      ],
+      "seven": [
+        66
+      ],
+      "years,": [
+        67
+      ],
+      "as": [
+        68,
+        70
+      ],
+      "well": [
+        69
+      ],
+      "educational": [
+        72
+      ],
+      "activities,": [
+        73
+      ],
+      "compositions": [
+        74
+      ],
+      "performances": [
+        76
+      ],
+      "conducted": [
+        79
+      ],
+      "with": [
+        80,
+        118
+      ],
+      "controller.": [
+        82
+      ],
+      "description": [
+        84
+      ],
+      "follows": [
+        85
+      ],
+      "chronological": [
+        87
+      ],
+      "phases": [
+        89,
+        126
+      ],
+      "titled": [
+        90
+      ],
+      "‘Fireflies’,": [
+        91
+      ],
+      "‘Nerve’": [
+        92
+      ],
+      "‘iltur’": [
+        94
+      ],
+      "addresses": [
+        96
+      ],
+      "improvements": [
+        98
+      ],
+      "hardware": [
+        100
+      ],
+      "software": [
+        102
+      ],
+      "made": [
+        105
+      ],
+      "each": [
+        107
+      ],
+      "phase": [
+        108
+      ],
+      "based": [
+        109
+      ],
+      "on": [
+        110
+      ],
+      "observations": [
+        111
+      ],
+      "user": [
+        113
+      ],
+      "feedback.": [
+        114
+      ],
+      "concludes": [
+        117
+      ],
+      "comparative": [
+        120
+      ],
+      "summary": [
+        121
+      ],
+      "final": [
+        129
+      ],
+      "note": [
+        130
+      ],
+      "regarding": [
+        131
+      ],
+      "controller's": [
+        133
+      ],
+      "future": [
+        134
+      ],
+      "prospects.": [
+        135
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2018,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2017,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2014,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2013,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2012,
+        "cited_by_count": 2
+      }
+    ],
+    "updated_date": "2026-02-25T21:11:00.739837",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W4247404003",
+    "doi": "https://doi.org/10.1515/9783839408421",
+    "title": "Paradoxes of Interactivity",
+    "display_name": "Paradoxes of Interactivity",
+    "publication_year": 2008,
+    "publication_date": "2008-12-31",
+    "ids": {
+      "openalex": "https://openalex.org/W4247404003",
+      "doi": "https://doi.org/10.1515/9783839408421"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1515/9783839408421",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1515/9783839408421",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306464022",
+        "display_name": "transcript Verlag eBooks",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/P4310320004",
+        "host_organization_name": "Transcript Verlag",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320004"
+        ],
+        "host_organization_lineage_names": [
+          "Transcript Verlag"
+        ],
+        "type": "ebook platform"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": null,
+      "raw_type": "edited-book"
+    },
+    "type": "book",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": true,
+      "oa_status": "hybrid",
+      "oa_url": "https://doi.org/10.1515/9783839408421",
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": null,
+          "display_name": "Seifert, Uwe",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": true,
+        "raw_author_name": "Seifert, Uwe",
+        "raw_affiliation_strings": [],
+        "affiliations": []
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 0,
+    "institutions_distinct_count": 1,
+    "corresponding_author_ids": [],
+    "corresponding_institution_ids": [],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 0.0,
+    "has_fulltext": false,
+    "cited_by_count": 6,
+    "citation_normalized_percentile": {
+      "value": 0.56412338,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 90,
+      "max": 96
+    },
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": null,
+      "last_page": null
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T12090",
+      "display_name": "Language and cultural evolution",
+      "score": 0.08579999953508377,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3316",
+        "display_name": "Cultural Studies"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T12090",
+        "display_name": "Language and cultural evolution",
+        "score": 0.08579999953508377,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3316",
+          "display_name": "Cultural Studies"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13317",
+        "display_name": "Media, Communication, and Education",
+        "score": 0.03709999844431877,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3315",
+          "display_name": "Communication"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11883",
+        "display_name": "Embodied and Extended Cognition",
+        "score": 0.031300000846385956,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/interactivity",
+        "display_name": "Interactivity",
+        "score": 0.9099299907684326
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.4188101887702942
+      },
+      {
+        "id": "https://openalex.org/keywords/world-wide-web",
+        "display_name": "World Wide Web",
+        "score": 0.1932372748851776
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C144430266",
+        "wikidata": "https://www.wikidata.org/wiki/Q839721",
+        "display_name": "Interactivity",
+        "level": 2,
+        "score": 0.9099299907684326
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.4188101887702942
+      },
+      {
+        "id": "https://openalex.org/C136764020",
+        "wikidata": "https://www.wikidata.org/wiki/Q466",
+        "display_name": "World Wide Web",
+        "level": 1,
+        "score": 0.1932372748851776
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1515/9783839408421",
+        "is_oa": true,
+        "landing_page_url": "https://doi.org/10.1515/9783839408421",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S4306464022",
+          "display_name": "transcript Verlag eBooks",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": "https://openalex.org/P4310320004",
+          "host_organization_name": "Transcript Verlag",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310320004"
+          ],
+          "host_organization_lineage_names": [
+            "Transcript Verlag"
+          ],
+          "type": "ebook platform"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": null,
+        "raw_type": "edited-book"
+      }
+    ],
+    "best_oa_location": {
+      "id": "doi:10.1515/9783839408421",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1515/9783839408421",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306464022",
+        "display_name": "transcript Verlag eBooks",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/P4310320004",
+        "host_organization_name": "Transcript Verlag",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320004"
+        ],
+        "host_organization_lineage_names": [
+          "Transcript Verlag"
+        ],
+        "type": "ebook platform"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": null,
+      "raw_type": "edited-book"
+    },
+    "sustainable_development_goals": [
+      {
+        "id": "https://metadata.un.org/sdg/10",
+        "display_name": "Reduced inequalities",
+        "score": 0.4699999988079071
+      }
+    ],
+    "awards": [],
+    "funders": [
+      {
+        "id": "https://openalex.org/F4320320300",
+        "display_name": "European Commission",
+        "ror": "https://ror.org/00k4n6c32"
+      },
+      {
+        "id": "https://openalex.org/F4320320879",
+        "display_name": "Deutsche Forschungsgemeinschaft",
+        "ror": "https://ror.org/018mejw64"
+      }
+    ],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 212,
+    "referenced_works": [
+      "https://openalex.org/W5116590",
+      "https://openalex.org/W6466253",
+      "https://openalex.org/W6854706",
+      "https://openalex.org/W28096540",
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W57783167",
+      "https://openalex.org/W79685367",
+      "https://openalex.org/W81303499",
+      "https://openalex.org/W97252805",
+      "https://openalex.org/W104998059",
+      "https://openalex.org/W114474851",
+      "https://openalex.org/W132712565",
+      "https://openalex.org/W139725048",
+      "https://openalex.org/W142100896",
+      "https://openalex.org/W144814376",
+      "https://openalex.org/W167624062",
+      "https://openalex.org/W169850822",
+      "https://openalex.org/W178436627",
+      "https://openalex.org/W215530777",
+      "https://openalex.org/W226913955",
+      "https://openalex.org/W249434393",
+      "https://openalex.org/W299269725",
+      "https://openalex.org/W304727013",
+      "https://openalex.org/W394141480",
+      "https://openalex.org/W559991582",
+      "https://openalex.org/W572682039",
+      "https://openalex.org/W593176376",
+      "https://openalex.org/W593287454",
+      "https://openalex.org/W607860914",
+      "https://openalex.org/W610671864",
+      "https://openalex.org/W614572448",
+      "https://openalex.org/W650094704",
+      "https://openalex.org/W651132741",
+      "https://openalex.org/W790416100",
+      "https://openalex.org/W797873052",
+      "https://openalex.org/W848269430",
+      "https://openalex.org/W1484383818",
+      "https://openalex.org/W1488805620",
+      "https://openalex.org/W1491423167",
+      "https://openalex.org/W1495038747",
+      "https://openalex.org/W1506513518",
+      "https://openalex.org/W1511371761",
+      "https://openalex.org/W1511843655",
+      "https://openalex.org/W1515810707",
+      "https://openalex.org/W1520825245",
+      "https://openalex.org/W1523612465",
+      "https://openalex.org/W1524658540",
+      "https://openalex.org/W1526426957",
+      "https://openalex.org/W1528613479",
+      "https://openalex.org/W1537357046",
+      "https://openalex.org/W1538821400",
+      "https://openalex.org/W1540437073",
+      "https://openalex.org/W1542229793",
+      "https://openalex.org/W1549301519",
+      "https://openalex.org/W1551988933",
+      "https://openalex.org/W1557930328",
+      "https://openalex.org/W1558723060",
+      "https://openalex.org/W1575198668",
+      "https://openalex.org/W1576653627",
+      "https://openalex.org/W1577244027",
+      "https://openalex.org/W1591596752",
+      "https://openalex.org/W1593596880",
+      "https://openalex.org/W1594457234",
+      "https://openalex.org/W1595897223",
+      "https://openalex.org/W1596897039",
+      "https://openalex.org/W1597370786",
+      "https://openalex.org/W1604075941",
+      "https://openalex.org/W1605067591",
+      "https://openalex.org/W1633984001",
+      "https://openalex.org/W1738572841",
+      "https://openalex.org/W1782524615",
+      "https://openalex.org/W1878270404",
+      "https://openalex.org/W1886337131",
+      "https://openalex.org/W1916785559",
+      "https://openalex.org/W1947041002",
+      "https://openalex.org/W1957780744",
+      "https://openalex.org/W1964364892",
+      "https://openalex.org/W1973568831",
+      "https://openalex.org/W1974152118",
+      "https://openalex.org/W1987727095",
+      "https://openalex.org/W1991376523",
+      "https://openalex.org/W1998284588",
+      "https://openalex.org/W2012925169",
+      "https://openalex.org/W2013495805",
+      "https://openalex.org/W2018699816",
+      "https://openalex.org/W2022436400",
+      "https://openalex.org/W2029964659",
+      "https://openalex.org/W2032254851",
+      "https://openalex.org/W2034967522",
+      "https://openalex.org/W2040908214",
+      "https://openalex.org/W2043162293",
+      "https://openalex.org/W2045238991",
+      "https://openalex.org/W2045749853",
+      "https://openalex.org/W2050269148",
+      "https://openalex.org/W2051866642",
+      "https://openalex.org/W2051928432",
+      "https://openalex.org/W2056264488",
+      "https://openalex.org/W2056606531",
+      "https://openalex.org/W2058184725",
+      "https://openalex.org/W2058300759",
+      "https://openalex.org/W2061333939",
+      "https://openalex.org/W2061575843",
+      "https://openalex.org/W2061912997",
+      "https://openalex.org/W2062781769",
+      "https://openalex.org/W2063929304",
+      "https://openalex.org/W2067063915",
+      "https://openalex.org/W2068319073",
+      "https://openalex.org/W2070352937",
+      "https://openalex.org/W2070954485",
+      "https://openalex.org/W2071031624",
+      "https://openalex.org/W2084580522",
+      "https://openalex.org/W2088621588",
+      "https://openalex.org/W2097909335",
+      "https://openalex.org/W2099064020",
+      "https://openalex.org/W2102225445",
+      "https://openalex.org/W2106503382",
+      "https://openalex.org/W2108308193",
+      "https://openalex.org/W2114701260",
+      "https://openalex.org/W2114746372",
+      "https://openalex.org/W2118877769",
+      "https://openalex.org/W2120076632",
+      "https://openalex.org/W2122289169",
+      "https://openalex.org/W2124344619",
+      "https://openalex.org/W2125232939",
+      "https://openalex.org/W2126770791",
+      "https://openalex.org/W2131554141",
+      "https://openalex.org/W2132596409",
+      "https://openalex.org/W2135029532",
+      "https://openalex.org/W2135164979",
+      "https://openalex.org/W2141955344",
+      "https://openalex.org/W2141973273",
+      "https://openalex.org/W2142345582",
+      "https://openalex.org/W2144063319",
+      "https://openalex.org/W2144168917",
+      "https://openalex.org/W2149628368",
+      "https://openalex.org/W2152742269",
+      "https://openalex.org/W2153943092",
+      "https://openalex.org/W2156880699",
+      "https://openalex.org/W2157598146",
+      "https://openalex.org/W2163015395",
+      "https://openalex.org/W2165715280",
+      "https://openalex.org/W2167142086",
+      "https://openalex.org/W2167456084",
+      "https://openalex.org/W2167733097",
+      "https://openalex.org/W2168353797",
+      "https://openalex.org/W2169192695",
+      "https://openalex.org/W2169264582",
+      "https://openalex.org/W2171301064",
+      "https://openalex.org/W2223470274",
+      "https://openalex.org/W2258151900",
+      "https://openalex.org/W2290451615",
+      "https://openalex.org/W2314687552",
+      "https://openalex.org/W2316025217",
+      "https://openalex.org/W2316858008",
+      "https://openalex.org/W2319194981",
+      "https://openalex.org/W2322368572",
+      "https://openalex.org/W2323903101",
+      "https://openalex.org/W2329738111",
+      "https://openalex.org/W2334930053",
+      "https://openalex.org/W2335126927",
+      "https://openalex.org/W2344527636",
+      "https://openalex.org/W2396720631",
+      "https://openalex.org/W2405848401",
+      "https://openalex.org/W2467435795",
+      "https://openalex.org/W2486372883",
+      "https://openalex.org/W2572078071",
+      "https://openalex.org/W2922122341",
+      "https://openalex.org/W2937274607",
+      "https://openalex.org/W2995000888",
+      "https://openalex.org/W3017185380",
+      "https://openalex.org/W3034361615",
+      "https://openalex.org/W3035247552",
+      "https://openalex.org/W3100436695",
+      "https://openalex.org/W3125874266",
+      "https://openalex.org/W3139115493",
+      "https://openalex.org/W3146083582",
+      "https://openalex.org/W3191059658",
+      "https://openalex.org/W3208176882",
+      "https://openalex.org/W4205507427",
+      "https://openalex.org/W4210615750",
+      "https://openalex.org/W4211255591",
+      "https://openalex.org/W4230718620",
+      "https://openalex.org/W4230722971",
+      "https://openalex.org/W4231362607",
+      "https://openalex.org/W4234449013",
+      "https://openalex.org/W4235466133",
+      "https://openalex.org/W4237428584",
+      "https://openalex.org/W4237945170",
+      "https://openalex.org/W4239307578",
+      "https://openalex.org/W4240288091",
+      "https://openalex.org/W4241701732",
+      "https://openalex.org/W4243130869",
+      "https://openalex.org/W4243908275",
+      "https://openalex.org/W4244636964",
+      "https://openalex.org/W4244889587",
+      "https://openalex.org/W4247172179",
+      "https://openalex.org/W4249289945",
+      "https://openalex.org/W4251399284",
+      "https://openalex.org/W4251671769",
+      "https://openalex.org/W4251991266",
+      "https://openalex.org/W4252713891",
+      "https://openalex.org/W4293117802",
+      "https://openalex.org/W4298288039",
+      "https://openalex.org/W4299390018",
+      "https://openalex.org/W4300402905",
+      "https://openalex.org/W4300782779",
+      "https://openalex.org/W4300975645",
+      "https://openalex.org/W4301105553",
+      "https://openalex.org/W4301757174",
+      "https://openalex.org/W4303065134",
+      "https://openalex.org/W4307979480",
+      "https://openalex.org/W4388336338"
+    ],
+    "related_works": [
+      "https://openalex.org/W2748952813",
+      "https://openalex.org/W2319020389",
+      "https://openalex.org/W2001821990",
+      "https://openalex.org/W2272707781",
+      "https://openalex.org/W2747851897",
+      "https://openalex.org/W1975913006",
+      "https://openalex.org/W1513662110",
+      "https://openalex.org/W2063506784",
+      "https://openalex.org/W4240086805",
+      "https://openalex.org/W2521348551"
+    ],
+    "abstract_inverted_index": {
+      "A": [
+        0
+      ],
+      "perspective": [
+        1
+      ],
+      "which": [
+        2,
+        11,
+        43,
+        277,
+        348
+      ],
+      "is": [
+        3,
+        15,
+        30,
+        34,
+        114,
+        213,
+        228,
+        234,
+        246
+      ],
+      "not": [
+        4,
+        235,
+        280
+      ],
+      "dealt": [
+        5
+      ],
+      "with": [
+        6,
+        45,
+        55,
+        85,
+        163,
+        255,
+        304,
+        352
+      ],
+      "in": [
+        7,
+        35,
+        65,
+        71,
+        161,
+        191,
+        219,
+        243,
+        310,
+        355
+      ],
+      "this": [
+        8
+      ],
+      "book": [
+        9
+      ],
+      "but": [
+        10,
+        249
+      ],
+      "underlies": [
+        12
+      ],
+      "its": [
+        13,
+        40
+      ],
+      "conception": [
+        14
+      ],
+      "that": [
+        16,
+        32,
+        105,
+        122,
+        136,
+        193,
+        214,
+        232,
+        245,
+        294
+      ],
+      "tool": [
+        17,
+        46,
+        86
+      ],
+      "use,": [
+        18,
+        87
+      ],
+      "symbolisation,": [
+        19,
+        95
+      ],
+      "and": [
+        20,
+        48,
+        63,
+        68,
+        76,
+        92,
+        94,
+        110,
+        120,
+        126,
+        156,
+        166,
+        173,
+        180,
+        207,
+        225,
+        314,
+        361
+      ],
+      "the": [
+        21,
+        24,
+        56,
+        72,
+        78,
+        102,
+        131,
+        134,
+        138,
+        142,
+        145,
+        148,
+        167,
+        181,
+        236,
+        240,
+        251,
+        258,
+        270,
+        317,
+        323,
+        338,
+        342
+      ],
+      "evolution": [
+        22,
+        42,
+        152
+      ],
+      "of": [
+        23,
+        39,
+        58,
+        80,
+        101,
+        133,
+        147,
+        177,
+        222,
+        247,
+        263,
+        286,
+        292,
+        307,
+        325,
+        331
+      ],
+      "human": [
+        25,
+        149,
+        358
+      ],
+      "mind": [
+        26,
+        192
+      ],
+      "are": [
+        27,
+        184,
+        341
+      ],
+      "interwoven.": [
+        28
+      ],
+      "44It": [
+        29
+      ],
+      "hypothesised": [
+        31
+      ],
+      "humankind": [
+        33,
+        81
+      ],
+      "a": [
+        36,
+        99,
+        158,
+        275,
+        284,
+        290
+      ],
+      "new": [
+        37
+      ],
+      "phase": [
+        38
+      ],
+      "cultural": [
+        41,
+        159,
+        174,
+        203
+      ],
+      "started": [
+        44
+      ],
+      "use": [
+        47,
+        316
+      ],
+      "language": [
+        49
+      ],
+      "100": [
+        50
+      ],
+      "thousand": [
+        51
+      ],
+      "years": [
+        52,
+        61
+      ],
+      "BP,": [
+        53
+      ],
+      "continued": [
+        54
+      ],
+      "invention": [
+        57,
+        176
+      ],
+      "script": [
+        59
+      ],
+      "4000": [
+        60
+      ],
+      "BC,": [
+        62
+      ],
+      "printing": [
+        64,
+        182
+      ],
+      "1500": [
+        66
+      ],
+      "AD": [
+        67
+      ],
+      "digital": [
+        69,
+        215
+      ],
+      "technology": [
+        70,
+        217
+      ],
+      "20th": [
+        73
+      ],
+      "century.In": [
+        74
+      ],
+      "Anthropology": [
+        75
+      ],
+      "prehistory": [
+        77,
+        121
+      ],
+      "speciation": [
+        79
+      ],
+      "has": [
+        82,
+        153,
+        188
+      ],
+      "been": [
+        83
+      ],
+      "associated": [
+        84,
+        254
+      ],
+      "bipedality,": [
+        88
+      ],
+      "increasing": [
+        89,
+        115
+      ],
+      "brain": [
+        90
+      ],
+      "size": [
+        91
+      ],
+      "lateralisation,": [
+        93
+      ],
+      "to": [
+        96,
+        129,
+        189,
+        197,
+        211,
+        230,
+        283,
+        289,
+        312
+      ],
+      "mention": [
+        97
+      ],
+      "just": [
+        98
+      ],
+      "few": [
+        100
+      ],
+      "proposed": [
+        103
+      ],
+      "characteristics": [
+        104
+      ],
+      "distinguish": [
+        106,
+        137
+      ],
+      "humans": [
+        107
+      ],
+      "from": [
+        108,
+        117,
+        141
+      ],
+      "monkeys": [
+        109
+      ],
+      "apes.But": [
+        111
+      ],
+      "now": [
+        112
+      ],
+      "there": [
+        113
+      ],
+      "evidence": [
+        116
+      ],
+      "primatology,": [
+        118
+      ],
+      "anthropology": [
+        119
+      ],
+      "social": [
+        123,
+        199,
+        220,
+        350
+      ],
+      "intelligence,": [
+        124,
+        224
+      ],
+      "interaction,": [
+        125,
+        223
+      ],
+      "communication": [
+        127
+      ],
+      "seem": [
+        128
+      ],
+      "be": [
+        130
+      ],
+      "causes": [
+        132
+      ],
+      "differences": [
+        135
+      ],
+      "hominin": [
+        139
+      ],
+      "line": [
+        140
+      ],
+      "other": [
+        143
+      ],
+      "hominids.Since": [
+        144
+      ],
+      "advent": [
+        146
+      ],
+      "species,": [
+        150
+      ],
+      "biological": [
+        151
+      ],
+      "become": [
+        154
+      ],
+      "more": [
+        155,
+        157
+      ],
+      "\"evolution\"": [
+        160
+      ],
+      "connection": [
+        162
+      ],
+      "symbolisation": [
+        164
+      ],
+      "45": [
+        165
+      ],
+      "tools": [
+        168,
+        195,
+        313
+      ],
+      "for": [
+        169
+      ],
+      "communication,": [
+        170,
+        204
+      ],
+      "information": [
+        171,
+        205,
+        216
+      ],
+      "exchange": [
+        172
+      ],
+      "transmission.The": [
+        175
+      ],
+      "writing": [
+        178
+      ],
+      "systems": [
+        179
+      ],
+      "press": [
+        183
+      ],
+      "well-known": [
+        185
+      ],
+      "examples.But": [
+        186
+      ],
+      "one": [
+        187
+      ],
+      "bear": [
+        190
+      ],
+      "these": [
+        194
+      ],
+      "serve": [
+        196
+      ],
+      "facilitate": [
+        198
+      ],
+      "purposes": [
+        200
+      ],
+      "such": [
+        201
+      ],
+      "as": [
+        202,
+        274,
+        288
+      ],
+      "transmission": [
+        206
+      ],
+      "exchange.The": [
+        208
+      ],
+      "important": [
+        209,
+        229
+      ],
+      "point": [
+        210
+      ],
+      "note": [
+        212,
+        231
+      ],
+      "operates": [
+        218
+      ],
+      "realms": [
+        221
+      ],
+      "communication.Furthermore,": [
+        226
+      ],
+      "it": [
+        227,
+        233
+      ],
+      "material": [
+        237
+      ],
+      "culture,": [
+        238
+      ],
+      "i.e.": [
+        239,
+        328
+      ],
+      "physical": [
+        241
+      ],
+      "objects,": [
+        242,
+        287
+      ],
+      "itself": [
+        244
+      ],
+      "importance,": [
+        248
+      ],
+      "rather": [
+        250
+      ],
+      "procedural": [
+        252
+      ],
+      "knowledge": [
+        253,
+        262
+      ],
+      "their": [
+        256,
+        264,
+        315
+      ],
+      "use:": [
+        257
+      ],
+      "techniques": [
+        259
+      ],
+      "or": [
+        260,
+        345
+      ],
+      "(procedural)": [
+        261
+      ],
+      "use.The": [
+        265
+      ],
+      "ethnologist": [
+        266
+      ],
+      "Edwin": [
+        267
+      ],
+      "Hutchins": [
+        268
+      ],
+      "uses": [
+        269
+      ],
+      "term": [
+        271
+      ],
+      "\"cognitive": [
+        272
+      ],
+      "artifact\"": [
+        273
+      ],
+      "concept": [
+        276
+      ],
+      "\"…": [
+        278
+      ],
+      "points": [
+        279
+      ],
+      "so": [
+        281
+      ],
+      "much": [
+        282
+      ],
+      "category": [
+        285,
+        291
+      ],
+      "processes": [
+        293
+      ],
+      "produce": [
+        295
+      ],
+      "cognitive": [
+        296,
+        346
+      ],
+      "effects": [
+        297
+      ],
+      "by": [
+        298
+      ],
+      "bringing": [
+        299
+      ],
+      "functional": [
+        300
+      ],
+      "skills": [
+        301
+      ],
+      "into": [
+        302
+      ],
+      "coordination": [
+        303
+      ],
+      "various": [
+        305
+      ],
+      "kinds": [
+        306
+      ],
+      "structures.\"": [
+        308
+      ],
+      "46Similarly": [
+        309
+      ],
+      "relation": [
+        311
+      ],
+      "French": [
+        318
+      ],
+      "archaeologist": [
+        319
+      ],
+      "Leroi-Gourhan": [
+        320
+      ],
+      "pointed": [
+        321
+      ],
+      "out": [
+        322
+      ],
+      "relevance": [
+        324
+      ],
+      "operational": [
+        326,
+        329,
+        343
+      ],
+      "chains,": [
+        327
+      ],
+      "sequences": [
+        330
+      ],
+      "technical": [
+        332
+      ],
+      "actions.": [
+        333
+      ],
+      "47": [
+        334
+      ],
+      "This": [
+        335
+      ],
+      "may": [
+        336
+      ],
+      "raise": [
+        337
+      ],
+      "question:": [
+        339
+      ],
+      "What": [
+        340
+      ],
+      "chains": [
+        344
+      ],
+      "artefacts": [
+        347
+      ],
+      "guide": [
+        349
+      ],
+      "interactions": [
+        351
+      ],
+      "machines,": [
+        353
+      ],
+      "especially": [
+        354
+      ],
+      "44": [
+        356
+      ],
+      "On": [
+        357
+      ],
+      "evolution,": [
+        359
+      ],
+      "technology,": [
+        360
+      ],
+      "cognition": [
+        362
+      ],
+      "see": [
+        363
+      ],
+      "e.g.": [
+        364
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2025,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2024,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2023,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2022,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2015,
+        "cited_by_count": 1
+      }
+    ],
+    "updated_date": "2026-04-20T07:46:08.049788",
+    "created_date": "2022-05-12T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W2069042206",
+    "doi": "https://doi.org/10.1145/2776880.2792703",
+    "title": "How to design and build new musical interfaces",
+    "display_name": "How to design and build new musical interfaces",
+    "publication_year": 2015,
+    "publication_date": "2015-07-30",
+    "ids": {
+      "openalex": "https://openalex.org/W2069042206",
+      "doi": "https://doi.org/10.1145/2776880.2792703",
+      "mag": "2069042206"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1145/2776880.2792703",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1145/2776880.2792703",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "ACM SIGGRAPH 2015 Courses",
+      "raw_type": "proceedings-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5071585967",
+          "display_name": "Sidney Fels",
+          "orcid": "https://orcid.org/0000-0001-9279-9021"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I141945490",
+            "display_name": "University of British Columbia",
+            "ror": "https://ror.org/03rmrcq20",
+            "country_code": "CA",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I141945490"
+            ]
+          }
+        ],
+        "countries": [
+          "CA"
+        ],
+        "is_corresponding": true,
+        "raw_author_name": "Sidney Fels",
+        "raw_affiliation_strings": [
+          "University of British Columbia"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "University of British Columbia",
+            "institution_ids": [
+              "https://openalex.org/I141945490"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5046940171",
+          "display_name": "Michael J. Lyons",
+          "orcid": "https://orcid.org/0000-0002-7426-0628"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I135768898",
+            "display_name": "Ritsumeikan University",
+            "ror": "https://ror.org/0197nmd03",
+            "country_code": "JP",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I135768898",
+              "https://openalex.org/I4390039241"
+            ]
+          }
+        ],
+        "countries": [
+          "JP"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Michael Lyons",
+        "raw_affiliation_strings": [
+          "Ritsumeikan University"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Ritsumeikan University",
+            "institution_ids": [
+              "https://openalex.org/I135768898"
+            ]
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 2,
+    "institutions_distinct_count": 2,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5071585967"
+    ],
+    "corresponding_institution_ids": [
+      "https://openalex.org/I141945490"
+    ],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 0.0,
+    "has_fulltext": false,
+    "cited_by_count": 1,
+    "citation_normalized_percentile": {
+      "value": 0.07497236,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 90,
+      "max": 94
+    },
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "1",
+      "last_page": "125"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11349",
+      "display_name": "Music Technology and Sound Studies",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11349",
+        "display_name": "Music Technology and Sound Studies",
+        "score": 0.9998999834060669,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11309",
+        "display_name": "Music and Audio Processing",
+        "score": 0.9991999864578247,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1711",
+          "display_name": "Signal Processing"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10788",
+        "display_name": "Neuroscience and Music Perception",
+        "score": 0.996399998664856,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/citation",
+        "display_name": "Citation",
+        "score": 0.843754231929779
+      },
+      {
+        "id": "https://openalex.org/keywords/musical",
+        "display_name": "Musical",
+        "score": 0.8088565468788147
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.5822389125823975
+      },
+      {
+        "id": "https://openalex.org/keywords/world-wide-web",
+        "display_name": "World Wide Web",
+        "score": 0.45055273175239563
+      },
+      {
+        "id": "https://openalex.org/keywords/multimedia",
+        "display_name": "Multimedia",
+        "score": 0.3658143877983093
+      },
+      {
+        "id": "https://openalex.org/keywords/visual-arts",
+        "display_name": "Visual arts",
+        "score": 0.3249278664588928
+      },
+      {
+        "id": "https://openalex.org/keywords/art",
+        "display_name": "Art",
+        "score": 0.1742868721485138
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C2778805511",
+        "wikidata": "https://www.wikidata.org/wiki/Q1713",
+        "display_name": "Citation",
+        "level": 2,
+        "score": 0.843754231929779
+      },
+      {
+        "id": "https://openalex.org/C558565934",
+        "wikidata": "https://www.wikidata.org/wiki/Q2743",
+        "display_name": "Musical",
+        "level": 2,
+        "score": 0.8088565468788147
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.5822389125823975
+      },
+      {
+        "id": "https://openalex.org/C136764020",
+        "wikidata": "https://www.wikidata.org/wiki/Q466",
+        "display_name": "World Wide Web",
+        "level": 1,
+        "score": 0.45055273175239563
+      },
+      {
+        "id": "https://openalex.org/C49774154",
+        "wikidata": "https://www.wikidata.org/wiki/Q131765",
+        "display_name": "Multimedia",
+        "level": 1,
+        "score": 0.3658143877983093
+      },
+      {
+        "id": "https://openalex.org/C153349607",
+        "wikidata": "https://www.wikidata.org/wiki/Q36649",
+        "display_name": "Visual arts",
+        "level": 1,
+        "score": 0.3249278664588928
+      },
+      {
+        "id": "https://openalex.org/C142362112",
+        "wikidata": "https://www.wikidata.org/wiki/Q735",
+        "display_name": "Art",
+        "level": 0,
+        "score": 0.1742868721485138
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1145/2776880.2792703",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1145/2776880.2792703",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "ACM SIGGRAPH 2015 Courses",
+        "raw_type": "proceedings-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 82,
+    "referenced_works": [
+      "https://openalex.org/W12970245",
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W49422352",
+      "https://openalex.org/W50705277",
+      "https://openalex.org/W57783167",
+      "https://openalex.org/W62668296",
+      "https://openalex.org/W67470114",
+      "https://openalex.org/W109136850",
+      "https://openalex.org/W126658970",
+      "https://openalex.org/W191726870",
+      "https://openalex.org/W1512148200",
+      "https://openalex.org/W1513934811",
+      "https://openalex.org/W1520052486",
+      "https://openalex.org/W1528427903",
+      "https://openalex.org/W1528596025",
+      "https://openalex.org/W1530808419",
+      "https://openalex.org/W1549329517",
+      "https://openalex.org/W1566660863",
+      "https://openalex.org/W1572019598",
+      "https://openalex.org/W1576420969",
+      "https://openalex.org/W1591490676",
+      "https://openalex.org/W1592066919",
+      "https://openalex.org/W1605775511",
+      "https://openalex.org/W1707563359",
+      "https://openalex.org/W1766934979",
+      "https://openalex.org/W1966264494",
+      "https://openalex.org/W1967595366",
+      "https://openalex.org/W1969601749",
+      "https://openalex.org/W1976522035",
+      "https://openalex.org/W1978122678",
+      "https://openalex.org/W1988082944",
+      "https://openalex.org/W2010771919",
+      "https://openalex.org/W2014517420",
+      "https://openalex.org/W2045766318",
+      "https://openalex.org/W2047072073",
+      "https://openalex.org/W2048073916",
+      "https://openalex.org/W2058255800",
+      "https://openalex.org/W2062865822",
+      "https://openalex.org/W2074416527",
+      "https://openalex.org/W2079080230",
+      "https://openalex.org/W2089943962",
+      "https://openalex.org/W2090284173",
+      "https://openalex.org/W2090604403",
+      "https://openalex.org/W2093824445",
+      "https://openalex.org/W2101581748",
+      "https://openalex.org/W2102487696",
+      "https://openalex.org/W2102877304",
+      "https://openalex.org/W2103099811",
+      "https://openalex.org/W2113601247",
+      "https://openalex.org/W2114819038",
+      "https://openalex.org/W2115115071",
+      "https://openalex.org/W2118812119",
+      "https://openalex.org/W2128438249",
+      "https://openalex.org/W2134079826",
+      "https://openalex.org/W2135099678",
+      "https://openalex.org/W2135573740",
+      "https://openalex.org/W2136836540",
+      "https://openalex.org/W2143621823",
+      "https://openalex.org/W2144168917",
+      "https://openalex.org/W2144317439",
+      "https://openalex.org/W2145019926",
+      "https://openalex.org/W2151304636",
+      "https://openalex.org/W2152742269",
+      "https://openalex.org/W2155251964",
+      "https://openalex.org/W2155541957",
+      "https://openalex.org/W2158233635",
+      "https://openalex.org/W2159059077",
+      "https://openalex.org/W2163015395",
+      "https://openalex.org/W2164764235",
+      "https://openalex.org/W2166428112",
+      "https://openalex.org/W2168945679",
+      "https://openalex.org/W2170699275",
+      "https://openalex.org/W2294317068",
+      "https://openalex.org/W2315896104",
+      "https://openalex.org/W2316743980",
+      "https://openalex.org/W2400581922",
+      "https://openalex.org/W2402256895",
+      "https://openalex.org/W2406884706",
+      "https://openalex.org/W2536956779",
+      "https://openalex.org/W2738156664",
+      "https://openalex.org/W3099756572",
+      "https://openalex.org/W4285719527"
+    ],
+    "related_works": [
+      "https://openalex.org/W2748952813",
+      "https://openalex.org/W4317642157",
+      "https://openalex.org/W2363440148",
+      "https://openalex.org/W4239542068",
+      "https://openalex.org/W1974749013",
+      "https://openalex.org/W2150284098",
+      "https://openalex.org/W134931362",
+      "https://openalex.org/W2317510431",
+      "https://openalex.org/W1990811139",
+      "https://openalex.org/W4252843888"
+    ],
+    "abstract_inverted_index": {
+      "course": [
+        0
+      ],
+      "Share": [
+        1
+      ],
+      "on": [
+        2,
+        90
+      ],
+      "How": [
+        3
+      ],
+      "to": [
+        4,
+        100,
+        104,
+        106
+      ],
+      "design": [
+        5
+      ],
+      "and": [
+        6,
+        67
+      ],
+      "build": [
+        7
+      ],
+      "new": [
+        8
+      ],
+      "musical": [
+        9
+      ],
+      "interfaces": [
+        10
+      ],
+      "Authors:": [
+        11
+      ],
+      "Sidney": [
+        12
+      ],
+      "Fels": [
+        13
+      ],
+      "University": [
+        14,
+        18,
+        27
+      ],
+      "of": [
+        15,
+        19
+      ],
+      "British": [
+        16,
+        20
+      ],
+      "Columbia": [
+        17
+      ],
+      "ColumbiaView": [
+        21
+      ],
+      "Profile": [
+        22,
+        30
+      ],
+      ",": [
+        23
+      ],
+      "Michael": [
+        24
+      ],
+      "Lyons": [
+        25
+      ],
+      "Ritsumeikan": [
+        26,
+        28
+      ],
+      "UniversityView": [
+        29
+      ],
+      "Authors": [
+        31
+      ],
+      "Info": [
+        32
+      ],
+      "&": [
+        33
+      ],
+      "Claims": [
+        34
+      ],
+      "SIGGRAPH": [
+        35,
+        38
+      ],
+      "'15:": [
+        36
+      ],
+      "ACM": [
+        37
+      ],
+      "2015": [
+        39,
+        41
+      ],
+      "CoursesJuly": [
+        40
+      ],
+      "Article": [
+        42
+      ],
+      "No.:": [
+        43
+      ],
+      "15Pages": [
+        44
+      ],
+      "1–125https://doi.org/10.1145/2776880.2792703Published:30": [
+        45
+      ],
+      "July": [
+        46
+      ],
+      "2015Publication": [
+        47
+      ],
+      "History": [
+        48
+      ],
+      "0citation238DownloadsMetricsTotal": [
+        49
+      ],
+      "Citations0Total": [
+        50
+      ],
+      "Downloads238Last": [
+        51
+      ],
+      "12": [
+        52
+      ],
+      "Months13Last": [
+        53
+      ],
+      "6": [
+        54
+      ],
+      "weeks1": [
+        55
+      ],
+      "Get": [
+        56
+      ],
+      "Citation": [
+        57,
+        59,
+        96
+      ],
+      "AlertsNew": [
+        58,
+        95
+      ],
+      "Alert": [
+        60
+      ],
+      "added!This": [
+        61
+      ],
+      "alert": [
+        62,
+        87
+      ],
+      "has": [
+        63,
+        82
+      ],
+      "been": [
+        64,
+        83
+      ],
+      "successfully": [
+        65
+      ],
+      "added": [
+        66
+      ],
+      "will": [
+        68,
+        72
+      ],
+      "be": [
+        69,
+        73
+      ],
+      "sent": [
+        70
+      ],
+      "to:You": [
+        71
+      ],
+      "notified": [
+        74
+      ],
+      "whenever": [
+        75
+      ],
+      "a": [
+        76,
+        108
+      ],
+      "record": [
+        77
+      ],
+      "that": [
+        78
+      ],
+      "you": [
+        79
+      ],
+      "have": [
+        80
+      ],
+      "chosen": [
+        81
+      ],
+      "cited.To": [
+        84
+      ],
+      "manage": [
+        85
+      ],
+      "your": [
+        86,
+        101
+      ],
+      "preferences,": [
+        88
+      ],
+      "click": [
+        89
+      ],
+      "the": [
+        91
+      ],
+      "button": [
+        92
+      ],
+      "below.Manage": [
+        93
+      ],
+      "my": [
+        94
+      ],
+      "Alert!Please": [
+        97
+      ],
+      "log": [
+        98
+      ],
+      "in": [
+        99
+      ],
+      "account": [
+        102
+      ],
+      "Save": [
+        103
+      ],
+      "BinderSave": [
+        105
+      ],
+      "BinderCreate": [
+        107
+      ],
+      "New": [
+        109
+      ],
+      "BinderNameCancelCreateExport": [
+        110
+      ],
+      "CitationPublisher": [
+        111
+      ],
+      "SiteGet": [
+        112
+      ],
+      "Access": [
+        113
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2019,
+        "cited_by_count": 1
+      }
+    ],
+    "updated_date": "2025-11-06T03:46:38.306776",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W2177624248",
+    "doi": "https://doi.org/10.1145/2037636.2037638",
+    "title": "Advances in new interfaces for musical expression",
+    "display_name": "Advances in new interfaces for musical expression",
+    "publication_year": 2011,
+    "publication_date": "2011-08-07",
+    "ids": {
+      "openalex": "https://openalex.org/W2177624248",
+      "doi": "https://doi.org/10.1145/2037636.2037638",
+      "mag": "2177624248"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1145/2037636.2037638",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1145/2037636.2037638",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "ACM SIGGRAPH 2011 Courses",
+      "raw_type": "proceedings-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5071585967",
+          "display_name": "Sidney Fels",
+          "orcid": "https://orcid.org/0000-0001-9279-9021"
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": true,
+        "raw_author_name": "Sidney Fels",
+        "raw_affiliation_strings": [
+          ""
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5046940171",
+          "display_name": "Michael J. Lyons",
+          "orcid": "https://orcid.org/0000-0002-7426-0628"
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "Michael Lyons",
+        "raw_affiliation_strings": [
+          ""
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "",
+            "institution_ids": []
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 0,
+    "institutions_distinct_count": 2,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5071585967"
+    ],
+    "corresponding_institution_ids": [],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 0.2576,
+    "has_fulltext": false,
+    "cited_by_count": 1,
+    "citation_normalized_percentile": {
+      "value": 0.61840359,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 89,
+      "max": 94
+    },
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "1",
+      "last_page": "169"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11349",
+      "display_name": "Music Technology and Sound Studies",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11349",
+        "display_name": "Music Technology and Sound Studies",
+        "score": 0.9998999834060669,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11309",
+        "display_name": "Music and Audio Processing",
+        "score": 0.9994999766349792,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1711",
+          "display_name": "Signal Processing"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10788",
+        "display_name": "Neuroscience and Music Perception",
+        "score": 0.9969000220298767,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/musical-expression",
+        "display_name": "Musical expression",
+        "score": 0.7124033570289612
+      },
+      {
+        "id": "https://openalex.org/keywords/new-interfaces-for-musical-expression",
+        "display_name": "New Interfaces for Musical Expression",
+        "score": 0.7021127343177795
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.6819961071014404
+      },
+      {
+        "id": "https://openalex.org/keywords/musical",
+        "display_name": "Musical",
+        "score": 0.6274123191833496
+      },
+      {
+        "id": "https://openalex.org/keywords/human–computer-interaction",
+        "display_name": "Human–computer interaction",
+        "score": 0.6027674078941345
+      },
+      {
+        "id": "https://openalex.org/keywords/field",
+        "display_name": "Field (mathematics)",
+        "score": 0.5889380574226379
+      },
+      {
+        "id": "https://openalex.org/keywords/expression",
+        "display_name": "Expression (computer science)",
+        "score": 0.5513960719108582
+      },
+      {
+        "id": "https://openalex.org/keywords/emerging-technologies",
+        "display_name": "Emerging technologies",
+        "score": 0.487886905670166
+      },
+      {
+        "id": "https://openalex.org/keywords/multimedia",
+        "display_name": "Multimedia",
+        "score": 0.4811802804470062
+      },
+      {
+        "id": "https://openalex.org/keywords/musical-composition",
+        "display_name": "Musical composition",
+        "score": 0.21941623091697693
+      },
+      {
+        "id": "https://openalex.org/keywords/artificial-intelligence",
+        "display_name": "Artificial intelligence",
+        "score": 0.12191462516784668
+      },
+      {
+        "id": "https://openalex.org/keywords/visual-arts",
+        "display_name": "Visual arts",
+        "score": 0.1135769784450531
+      },
+      {
+        "id": "https://openalex.org/keywords/art",
+        "display_name": "Art",
+        "score": 0.11321741342544556
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C2779685156",
+        "wikidata": "https://www.wikidata.org/wiki/Q6942545",
+        "display_name": "Musical expression",
+        "level": 3,
+        "score": 0.7124033570289612
+      },
+      {
+        "id": "https://openalex.org/C141841376",
+        "wikidata": "https://www.wikidata.org/wiki/Q4326497",
+        "display_name": "New Interfaces for Musical Expression",
+        "level": 4,
+        "score": 0.7021127343177795
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.6819961071014404
+      },
+      {
+        "id": "https://openalex.org/C558565934",
+        "wikidata": "https://www.wikidata.org/wiki/Q2743",
+        "display_name": "Musical",
+        "level": 2,
+        "score": 0.6274123191833496
+      },
+      {
+        "id": "https://openalex.org/C107457646",
+        "wikidata": "https://www.wikidata.org/wiki/Q207434",
+        "display_name": "Human–computer interaction",
+        "level": 1,
+        "score": 0.6027674078941345
+      },
+      {
+        "id": "https://openalex.org/C9652623",
+        "wikidata": "https://www.wikidata.org/wiki/Q190109",
+        "display_name": "Field (mathematics)",
+        "level": 2,
+        "score": 0.5889380574226379
+      },
+      {
+        "id": "https://openalex.org/C90559484",
+        "wikidata": "https://www.wikidata.org/wiki/Q778379",
+        "display_name": "Expression (computer science)",
+        "level": 2,
+        "score": 0.5513960719108582
+      },
+      {
+        "id": "https://openalex.org/C207267971",
+        "wikidata": "https://www.wikidata.org/wiki/Q120208",
+        "display_name": "Emerging technologies",
+        "level": 2,
+        "score": 0.487886905670166
+      },
+      {
+        "id": "https://openalex.org/C49774154",
+        "wikidata": "https://www.wikidata.org/wiki/Q131765",
+        "display_name": "Multimedia",
+        "level": 1,
+        "score": 0.4811802804470062
+      },
+      {
+        "id": "https://openalex.org/C109568592",
+        "wikidata": "https://www.wikidata.org/wiki/Q207628",
+        "display_name": "Musical composition",
+        "level": 3,
+        "score": 0.21941623091697693
+      },
+      {
+        "id": "https://openalex.org/C154945302",
+        "wikidata": "https://www.wikidata.org/wiki/Q11660",
+        "display_name": "Artificial intelligence",
+        "level": 1,
+        "score": 0.12191462516784668
+      },
+      {
+        "id": "https://openalex.org/C153349607",
+        "wikidata": "https://www.wikidata.org/wiki/Q36649",
+        "display_name": "Visual arts",
+        "level": 1,
+        "score": 0.1135769784450531
+      },
+      {
+        "id": "https://openalex.org/C142362112",
+        "wikidata": "https://www.wikidata.org/wiki/Q735",
+        "display_name": "Art",
+        "level": 0,
+        "score": 0.11321741342544556
+      },
+      {
+        "id": "https://openalex.org/C33923547",
+        "wikidata": "https://www.wikidata.org/wiki/Q395",
+        "display_name": "Mathematics",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C202444582",
+        "wikidata": "https://www.wikidata.org/wiki/Q837863",
+        "display_name": "Pure mathematics",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C199360897",
+        "wikidata": "https://www.wikidata.org/wiki/Q9143",
+        "display_name": "Programming language",
+        "level": 1,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1145/2037636.2037638",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1145/2037636.2037638",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "ACM SIGGRAPH 2011 Courses",
+        "raw_type": "proceedings-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 92,
+    "referenced_works": [
+      "https://openalex.org/W12970245",
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W49422352",
+      "https://openalex.org/W50705277",
+      "https://openalex.org/W57783167",
+      "https://openalex.org/W62668296",
+      "https://openalex.org/W67470114",
+      "https://openalex.org/W109136850",
+      "https://openalex.org/W119330944",
+      "https://openalex.org/W126658970",
+      "https://openalex.org/W185137750",
+      "https://openalex.org/W191726870",
+      "https://openalex.org/W1512148200",
+      "https://openalex.org/W1513934811",
+      "https://openalex.org/W1520052486",
+      "https://openalex.org/W1528427903",
+      "https://openalex.org/W1528596025",
+      "https://openalex.org/W1530808419",
+      "https://openalex.org/W1549329517",
+      "https://openalex.org/W1566660863",
+      "https://openalex.org/W1572019598",
+      "https://openalex.org/W1576420969",
+      "https://openalex.org/W1592066919",
+      "https://openalex.org/W1605775511",
+      "https://openalex.org/W1766934979",
+      "https://openalex.org/W1966264494",
+      "https://openalex.org/W1967595366",
+      "https://openalex.org/W1969601749",
+      "https://openalex.org/W1969603681",
+      "https://openalex.org/W1976522035",
+      "https://openalex.org/W1978122678",
+      "https://openalex.org/W1987252491",
+      "https://openalex.org/W1988082944",
+      "https://openalex.org/W2007292406",
+      "https://openalex.org/W2010771919",
+      "https://openalex.org/W2014517420",
+      "https://openalex.org/W2045766318",
+      "https://openalex.org/W2047072073",
+      "https://openalex.org/W2048073916",
+      "https://openalex.org/W2058255800",
+      "https://openalex.org/W2062865822",
+      "https://openalex.org/W2074416527",
+      "https://openalex.org/W2079080230",
+      "https://openalex.org/W2090284173",
+      "https://openalex.org/W2090604403",
+      "https://openalex.org/W2093824445",
+      "https://openalex.org/W2101581748",
+      "https://openalex.org/W2101748228",
+      "https://openalex.org/W2102487696",
+      "https://openalex.org/W2102877304",
+      "https://openalex.org/W2103099811",
+      "https://openalex.org/W2113601247",
+      "https://openalex.org/W2114819038",
+      "https://openalex.org/W2115115071",
+      "https://openalex.org/W2118812119",
+      "https://openalex.org/W2124187803",
+      "https://openalex.org/W2127960861",
+      "https://openalex.org/W2128438249",
+      "https://openalex.org/W2132623271",
+      "https://openalex.org/W2134079826",
+      "https://openalex.org/W2135099678",
+      "https://openalex.org/W2135573740",
+      "https://openalex.org/W2136836540",
+      "https://openalex.org/W2143621823",
+      "https://openalex.org/W2144168917",
+      "https://openalex.org/W2144317439",
+      "https://openalex.org/W2145019926",
+      "https://openalex.org/W2151304636",
+      "https://openalex.org/W2152742269",
+      "https://openalex.org/W2155251964",
+      "https://openalex.org/W2155541957",
+      "https://openalex.org/W2158233635",
+      "https://openalex.org/W2159059077",
+      "https://openalex.org/W2163015395",
+      "https://openalex.org/W2164764235",
+      "https://openalex.org/W2166428112",
+      "https://openalex.org/W2168945679",
+      "https://openalex.org/W2170699275",
+      "https://openalex.org/W2294317068",
+      "https://openalex.org/W2315896104",
+      "https://openalex.org/W2316743980",
+      "https://openalex.org/W2400581922",
+      "https://openalex.org/W2402256895",
+      "https://openalex.org/W2406884706",
+      "https://openalex.org/W2536956779",
+      "https://openalex.org/W2738156664",
+      "https://openalex.org/W2762684428",
+      "https://openalex.org/W2911234582",
+      "https://openalex.org/W2912305069",
+      "https://openalex.org/W2913959833",
+      "https://openalex.org/W3104400581",
+      "https://openalex.org/W4285719527"
+    ],
+    "related_works": [
+      "https://openalex.org/W2036847900",
+      "https://openalex.org/W2999720856",
+      "https://openalex.org/W3126685182",
+      "https://openalex.org/W2340001565",
+      "https://openalex.org/W4400899290",
+      "https://openalex.org/W3104400581",
+      "https://openalex.org/W7350038",
+      "https://openalex.org/W3049566288",
+      "https://openalex.org/W2500107738",
+      "https://openalex.org/W3044396024"
+    ],
+    "abstract_inverted_index": {
+      "Advances": [
+        0
+      ],
+      "in": [
+        1,
+        12
+      ],
+      "digital": [
+        2
+      ],
+      "audio": [
+        3
+      ],
+      "technologies": [
+        4,
+        19,
+        35
+      ],
+      "have": [
+        5
+      ],
+      "led": [
+        6
+      ],
+      "to": [
+        7,
+        66
+      ],
+      "computers": [
+        8
+      ],
+      "playing": [
+        9
+      ],
+      "a": [
+        10
+      ],
+      "role": [
+        11
+      ],
+      "most": [
+        13
+      ],
+      "music": [
+        14
+      ],
+      "production": [
+        15
+      ],
+      "and": [
+        16,
+        25,
+        45
+      ],
+      "performance.": [
+        17
+      ],
+      "Digital": [
+        18
+      ],
+      "offer": [
+        20
+      ],
+      "unprecedented": [
+        21
+      ],
+      "opportunities": [
+        22
+      ],
+      "for": [
+        23,
+        43,
+        62
+      ],
+      "creation": [
+        24
+      ],
+      "manipulation": [
+        26
+      ],
+      "of": [
+        27,
+        32,
+        41,
+        52,
+        77
+      ],
+      "sound,": [
+        28
+      ],
+      "but": [
+        29
+      ],
+      "the": [
+        30,
+        50,
+        56,
+        74
+      ],
+      "flexibilty": [
+        31
+      ],
+      "these": [
+        33
+      ],
+      "new": [
+        34
+      ],
+      "provides": [
+        36
+      ],
+      "an": [
+        37
+      ],
+      "often": [
+        38
+      ],
+      "confusing": [
+        39
+      ],
+      "array": [
+        40
+      ],
+      "choices": [
+        42
+      ],
+      "composers": [
+        44
+      ],
+      "performers.": [
+        46
+      ],
+      "A": [
+        47
+      ],
+      "decade": [
+        48
+      ],
+      "ago,": [
+        49
+      ],
+      "presenters": [
+        51
+      ],
+      "this": [
+        53,
+        68
+      ],
+      "course": [
+        54
+      ],
+      "organized": [
+        55
+      ],
+      "first": [
+        57
+      ],
+      "workshop": [
+        58
+      ],
+      "on": [
+        59
+      ],
+      "New": [
+        60
+      ],
+      "Interfaces": [
+        61
+      ],
+      "Musical": [
+        63
+      ],
+      "Expression": [
+        64
+      ],
+      "(NIME),": [
+        65
+      ],
+      "clarify": [
+        67
+      ],
+      "situation": [
+        69
+      ],
+      "by": [
+        70
+      ],
+      "exploring": [
+        71
+      ],
+      "connections": [
+        72
+      ],
+      "with": [
+        73
+      ],
+      "better-established": [
+        75
+      ],
+      "field": [
+        76
+      ],
+      "human-computer": [
+        78
+      ],
+      "interaction.": [
+        79
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2013,
+        "cited_by_count": 1
+      }
+    ],
+    "updated_date": "2025-11-06T03:46:38.306776",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W1991970869",
+    "doi": "https://doi.org/10.1145/2659467.2659470",
+    "title": "How to design and build musical interfaces",
+    "display_name": "How to design and build musical interfaces",
+    "publication_year": 2014,
+    "publication_date": "2014-11-24",
+    "ids": {
+      "openalex": "https://openalex.org/W1991970869",
+      "doi": "https://doi.org/10.1145/2659467.2659470",
+      "mag": "1991970869"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1145/2659467.2659470",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1145/2659467.2659470",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "SIGGRAPH Asia 2014 Courses",
+      "raw_type": "proceedings-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5046940171",
+          "display_name": "Michael J. Lyons",
+          "orcid": "https://orcid.org/0000-0002-7426-0628"
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": true,
+        "raw_author_name": "Michael Lyons",
+        "raw_affiliation_strings": [
+          "Sidney Fels"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Sidney Fels",
+            "institution_ids": []
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 0,
+    "institutions_distinct_count": 1,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5046940171"
+    ],
+    "corresponding_institution_ids": [],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 0.2439,
+    "has_fulltext": false,
+    "cited_by_count": 1,
+    "citation_normalized_percentile": {
+      "value": 0.56180975,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 90,
+      "max": 94
+    },
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "1",
+      "last_page": "157"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11349",
+      "display_name": "Music Technology and Sound Studies",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11349",
+        "display_name": "Music Technology and Sound Studies",
+        "score": 0.9998000264167786,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11309",
+        "display_name": "Music and Audio Processing",
+        "score": 0.9987999796867371,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1711",
+          "display_name": "Signal Processing"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10788",
+        "display_name": "Neuroscience and Music Perception",
+        "score": 0.9980999827384949,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/citation",
+        "display_name": "Citation",
+        "score": 0.8257672190666199
+      },
+      {
+        "id": "https://openalex.org/keywords/musical",
+        "display_name": "Musical",
+        "score": 0.8212848901748657
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.6082682609558105
+      },
+      {
+        "id": "https://openalex.org/keywords/world-wide-web",
+        "display_name": "World Wide Web",
+        "score": 0.47959816455841064
+      },
+      {
+        "id": "https://openalex.org/keywords/multimedia",
+        "display_name": "Multimedia",
+        "score": 0.36072391271591187
+      },
+      {
+        "id": "https://openalex.org/keywords/visual-arts",
+        "display_name": "Visual arts",
+        "score": 0.3404678702354431
+      },
+      {
+        "id": "https://openalex.org/keywords/human–computer-interaction",
+        "display_name": "Human–computer interaction",
+        "score": 0.3311634659767151
+      },
+      {
+        "id": "https://openalex.org/keywords/art",
+        "display_name": "Art",
+        "score": 0.1718873679637909
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C2778805511",
+        "wikidata": "https://www.wikidata.org/wiki/Q1713",
+        "display_name": "Citation",
+        "level": 2,
+        "score": 0.8257672190666199
+      },
+      {
+        "id": "https://openalex.org/C558565934",
+        "wikidata": "https://www.wikidata.org/wiki/Q2743",
+        "display_name": "Musical",
+        "level": 2,
+        "score": 0.8212848901748657
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.6082682609558105
+      },
+      {
+        "id": "https://openalex.org/C136764020",
+        "wikidata": "https://www.wikidata.org/wiki/Q466",
+        "display_name": "World Wide Web",
+        "level": 1,
+        "score": 0.47959816455841064
+      },
+      {
+        "id": "https://openalex.org/C49774154",
+        "wikidata": "https://www.wikidata.org/wiki/Q131765",
+        "display_name": "Multimedia",
+        "level": 1,
+        "score": 0.36072391271591187
+      },
+      {
+        "id": "https://openalex.org/C153349607",
+        "wikidata": "https://www.wikidata.org/wiki/Q36649",
+        "display_name": "Visual arts",
+        "level": 1,
+        "score": 0.3404678702354431
+      },
+      {
+        "id": "https://openalex.org/C107457646",
+        "wikidata": "https://www.wikidata.org/wiki/Q207434",
+        "display_name": "Human–computer interaction",
+        "level": 1,
+        "score": 0.3311634659767151
+      },
+      {
+        "id": "https://openalex.org/C142362112",
+        "wikidata": "https://www.wikidata.org/wiki/Q735",
+        "display_name": "Art",
+        "level": 0,
+        "score": 0.1718873679637909
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1145/2659467.2659470",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1145/2659467.2659470",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "SIGGRAPH Asia 2014 Courses",
+        "raw_type": "proceedings-article"
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 121,
+    "referenced_works": [
+      "https://openalex.org/W12970245",
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W49422352",
+      "https://openalex.org/W50705277",
+      "https://openalex.org/W57783167",
+      "https://openalex.org/W62668296",
+      "https://openalex.org/W67470114",
+      "https://openalex.org/W109136850",
+      "https://openalex.org/W126658970",
+      "https://openalex.org/W183581093",
+      "https://openalex.org/W185137750",
+      "https://openalex.org/W191726870",
+      "https://openalex.org/W1480357676",
+      "https://openalex.org/W1510737763",
+      "https://openalex.org/W1512148200",
+      "https://openalex.org/W1513934811",
+      "https://openalex.org/W1520052486",
+      "https://openalex.org/W1528427903",
+      "https://openalex.org/W1528596025",
+      "https://openalex.org/W1530808419",
+      "https://openalex.org/W1549329517",
+      "https://openalex.org/W1551419517",
+      "https://openalex.org/W1566660863",
+      "https://openalex.org/W1572019598",
+      "https://openalex.org/W1576420969",
+      "https://openalex.org/W1591490676",
+      "https://openalex.org/W1592066919",
+      "https://openalex.org/W1605775511",
+      "https://openalex.org/W1766934979",
+      "https://openalex.org/W1966264494",
+      "https://openalex.org/W1967595366",
+      "https://openalex.org/W1969601749",
+      "https://openalex.org/W1969603681",
+      "https://openalex.org/W1972304292",
+      "https://openalex.org/W1976522035",
+      "https://openalex.org/W1978122678",
+      "https://openalex.org/W1987252491",
+      "https://openalex.org/W1988082944",
+      "https://openalex.org/W2007292406",
+      "https://openalex.org/W2010771919",
+      "https://openalex.org/W2012784384",
+      "https://openalex.org/W2014517420",
+      "https://openalex.org/W2042670213",
+      "https://openalex.org/W2045766318",
+      "https://openalex.org/W2047072073",
+      "https://openalex.org/W2048073916",
+      "https://openalex.org/W2058255800",
+      "https://openalex.org/W2062865822",
+      "https://openalex.org/W2074416527",
+      "https://openalex.org/W2079080230",
+      "https://openalex.org/W2089943962",
+      "https://openalex.org/W2090284173",
+      "https://openalex.org/W2090604403",
+      "https://openalex.org/W2093824445",
+      "https://openalex.org/W2101581748",
+      "https://openalex.org/W2102487696",
+      "https://openalex.org/W2102877304",
+      "https://openalex.org/W2103099811",
+      "https://openalex.org/W2105948537",
+      "https://openalex.org/W2113601247",
+      "https://openalex.org/W2114819038",
+      "https://openalex.org/W2115115071",
+      "https://openalex.org/W2118812119",
+      "https://openalex.org/W2128438249",
+      "https://openalex.org/W2130161091",
+      "https://openalex.org/W2134079826",
+      "https://openalex.org/W2135099678",
+      "https://openalex.org/W2135573740",
+      "https://openalex.org/W2136836540",
+      "https://openalex.org/W2143621823",
+      "https://openalex.org/W2144168917",
+      "https://openalex.org/W2144317439",
+      "https://openalex.org/W2145019926",
+      "https://openalex.org/W2151304636",
+      "https://openalex.org/W2152742269",
+      "https://openalex.org/W2155251964",
+      "https://openalex.org/W2155541957",
+      "https://openalex.org/W2158233635",
+      "https://openalex.org/W2159059077",
+      "https://openalex.org/W2163015395",
+      "https://openalex.org/W2164764235",
+      "https://openalex.org/W2166428112",
+      "https://openalex.org/W2168945679",
+      "https://openalex.org/W2170699275",
+      "https://openalex.org/W2294317068",
+      "https://openalex.org/W2315896104",
+      "https://openalex.org/W2316743980",
+      "https://openalex.org/W2400581922",
+      "https://openalex.org/W2402256895",
+      "https://openalex.org/W2406884706",
+      "https://openalex.org/W2536956779",
+      "https://openalex.org/W2738156664",
+      "https://openalex.org/W2762684428",
+      "https://openalex.org/W2911234582",
+      "https://openalex.org/W2912305069",
+      "https://openalex.org/W2913959833",
+      "https://openalex.org/W3099756572",
+      "https://openalex.org/W3104400581",
+      "https://openalex.org/W3210157590",
+      "https://openalex.org/W4210890610",
+      "https://openalex.org/W4285719527",
+      "https://openalex.org/W6600552288",
+      "https://openalex.org/W6602036533",
+      "https://openalex.org/W6602118589",
+      "https://openalex.org/W6602517118",
+      "https://openalex.org/W6604448206",
+      "https://openalex.org/W6628483403",
+      "https://openalex.org/W6633849734",
+      "https://openalex.org/W6634234239",
+      "https://openalex.org/W6652874455",
+      "https://openalex.org/W6654207259",
+      "https://openalex.org/W6673929161",
+      "https://openalex.org/W6675920406",
+      "https://openalex.org/W6677264420",
+      "https://openalex.org/W6680150774",
+      "https://openalex.org/W6681311973",
+      "https://openalex.org/W6684611985",
+      "https://openalex.org/W6696760643",
+      "https://openalex.org/W6712917103",
+      "https://openalex.org/W6713417470",
+      "https://openalex.org/W6812512883"
+    ],
+    "related_works": [
+      "https://openalex.org/W4317642157",
+      "https://openalex.org/W2363440148",
+      "https://openalex.org/W4239542068",
+      "https://openalex.org/W1974749013",
+      "https://openalex.org/W2150284098",
+      "https://openalex.org/W134931362",
+      "https://openalex.org/W2317510431",
+      "https://openalex.org/W1990811139",
+      "https://openalex.org/W4252843888",
+      "https://openalex.org/W2352401039"
+    ],
+    "abstract_inverted_index": {
+      "research-article": [
+        0
+      ],
+      "Share": [
+        1
+      ],
+      "on": [
+        2,
+        77
+      ],
+      "How": [
+        3
+      ],
+      "to": [
+        4,
+        87,
+        91,
+        93
+      ],
+      "design": [
+        5
+      ],
+      "and": [
+        6,
+        54
+      ],
+      "build": [
+        7
+      ],
+      "musical": [
+        8
+      ],
+      "interfaces": [
+        9
+      ],
+      "Author:": [
+        10
+      ],
+      "Michael": [
+        11
+      ],
+      "Lyons": [
+        12
+      ],
+      "Sidney": [
+        13,
+        15
+      ],
+      "Fels": [
+        14
+      ],
+      "FelsView": [
+        16
+      ],
+      "Profile": [
+        17
+      ],
+      "Authors": [
+        18
+      ],
+      "Info": [
+        19
+      ],
+      "&": [
+        20
+      ],
+      "Claims": [
+        21
+      ],
+      "SA": [
+        22
+      ],
+      "'14:": [
+        23
+      ],
+      "SIGGRAPH": [
+        24
+      ],
+      "Asia": [
+        25
+      ],
+      "2014": [
+        26,
+        28
+      ],
+      "CoursesNovember": [
+        27
+      ],
+      "Article": [
+        29
+      ],
+      "No.:": [
+        30
+      ],
+      "9Pages": [
+        31
+      ],
+      "1–157https://doi.org/10.1145/2659467.2659470Online:24": [
+        32
+      ],
+      "November": [
+        33
+      ],
+      "2014Publication": [
+        34
+      ],
+      "History": [
+        35
+      ],
+      "1citation270DownloadsMetricsTotal": [
+        36
+      ],
+      "Citations1Total": [
+        37
+      ],
+      "Downloads270Last": [
+        38
+      ],
+      "12": [
+        39
+      ],
+      "Months5Last": [
+        40
+      ],
+      "6": [
+        41
+      ],
+      "weeks0": [
+        42
+      ],
+      "Get": [
+        43
+      ],
+      "Citation": [
+        44,
+        46,
+        83
+      ],
+      "AlertsNew": [
+        45,
+        82
+      ],
+      "Alert": [
+        47
+      ],
+      "added!This": [
+        48
+      ],
+      "alert": [
+        49,
+        74
+      ],
+      "has": [
+        50,
+        69
+      ],
+      "been": [
+        51,
+        70
+      ],
+      "successfully": [
+        52
+      ],
+      "added": [
+        53
+      ],
+      "will": [
+        55,
+        59
+      ],
+      "be": [
+        56,
+        60
+      ],
+      "sent": [
+        57
+      ],
+      "to:You": [
+        58
+      ],
+      "notified": [
+        61
+      ],
+      "whenever": [
+        62
+      ],
+      "a": [
+        63,
+        95
+      ],
+      "record": [
+        64
+      ],
+      "that": [
+        65
+      ],
+      "you": [
+        66
+      ],
+      "have": [
+        67
+      ],
+      "chosen": [
+        68
+      ],
+      "cited.To": [
+        71
+      ],
+      "manage": [
+        72
+      ],
+      "your": [
+        73,
+        88
+      ],
+      "preferences,": [
+        75
+      ],
+      "click": [
+        76
+      ],
+      "the": [
+        78
+      ],
+      "button": [
+        79
+      ],
+      "below.Manage": [
+        80
+      ],
+      "my": [
+        81
+      ],
+      "Alert!Please": [
+        84
+      ],
+      "log": [
+        85
+      ],
+      "in": [
+        86
+      ],
+      "account": [
+        89
+      ],
+      "Save": [
+        90
+      ],
+      "BinderSave": [
+        92
+      ],
+      "BinderCreate": [
+        94
+      ],
+      "New": [
+        96
+      ],
+      "BinderNameCancelCreateExport": [
+        97
+      ],
+      "CitationPublisher": [
+        98
+      ],
+      "SiteGet": [
+        99
+      ],
+      "Access": [
+        100
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2016,
+        "cited_by_count": 1
+      }
+    ],
+    "updated_date": "2025-11-06T03:46:38.306776",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W2337602873",
+    "doi": null,
+    "title": "SINGING-DRIVEN INTERFACES FOR SOUND SYNTHESIZERS",
+    "display_name": "SINGING-DRIVEN INTERFACES FOR SOUND SYNTHESIZERS",
+    "publication_year": 2008,
+    "publication_date": "2008-01-01",
+    "ids": {
+      "openalex": "https://openalex.org/W2337602873",
+      "mag": "2337602873"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "mag:2337602873",
+      "is_oa": false,
+      "landing_page_url": "https://www.dtic.upf.edu/~jjaner/phd/Tesi_jjaner_online.pdf",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": null,
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": null
+    },
+    "type": "article",
+    "indexed_in": [],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5091054330",
+          "display_name": "Pompeu Fabra",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": true,
+        "raw_author_name": "Pompeu Fabra",
+        "raw_affiliation_strings": [],
+        "affiliations": []
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 0,
+    "institutions_distinct_count": 1,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5091054330"
+    ],
+    "corresponding_institution_ids": [],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 0.0,
+    "has_fulltext": false,
+    "cited_by_count": 0,
+    "citation_normalized_percentile": {
+      "value": 0.20271123,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": null,
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": null,
+      "last_page": null
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11349",
+      "display_name": "Music Technology and Sound Studies",
+      "score": 0.9993000030517578,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11349",
+        "display_name": "Music Technology and Sound Studies",
+        "score": 0.9993000030517578,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10860",
+        "display_name": "Speech and Audio Processing",
+        "score": 0.9976999759674072,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1711",
+          "display_name": "Signal Processing"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11309",
+        "display_name": "Music and Audio Processing",
+        "score": 0.9969000220298767,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1711",
+          "display_name": "Signal Processing"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/sound",
+        "display_name": "Sound (geography)",
+        "score": 0.6943404674530029
+      },
+      {
+        "id": "https://openalex.org/keywords/singing",
+        "display_name": "Singing",
+        "score": 0.5745875835418701
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.4838525354862213
+      },
+      {
+        "id": "https://openalex.org/keywords/acoustics",
+        "display_name": "Acoustics",
+        "score": 0.3843719959259033
+      },
+      {
+        "id": "https://openalex.org/keywords/communication",
+        "display_name": "Communication",
+        "score": 0.35824936628341675
+      },
+      {
+        "id": "https://openalex.org/keywords/psychology",
+        "display_name": "Psychology",
+        "score": 0.14735865592956543
+      },
+      {
+        "id": "https://openalex.org/keywords/physics",
+        "display_name": "Physics",
+        "score": 0.0975475013256073
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C203718221",
+        "wikidata": "https://www.wikidata.org/wiki/Q491713",
+        "display_name": "Sound (geography)",
+        "level": 2,
+        "score": 0.6943404674530029
+      },
+      {
+        "id": "https://openalex.org/C44819458",
+        "wikidata": "https://www.wikidata.org/wiki/Q27939",
+        "display_name": "Singing",
+        "level": 2,
+        "score": 0.5745875835418701
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.4838525354862213
+      },
+      {
+        "id": "https://openalex.org/C24890656",
+        "wikidata": "https://www.wikidata.org/wiki/Q82811",
+        "display_name": "Acoustics",
+        "level": 1,
+        "score": 0.3843719959259033
+      },
+      {
+        "id": "https://openalex.org/C46312422",
+        "wikidata": "https://www.wikidata.org/wiki/Q11024",
+        "display_name": "Communication",
+        "level": 1,
+        "score": 0.35824936628341675
+      },
+      {
+        "id": "https://openalex.org/C15744967",
+        "wikidata": "https://www.wikidata.org/wiki/Q9418",
+        "display_name": "Psychology",
+        "level": 0,
+        "score": 0.14735865592956543
+      },
+      {
+        "id": "https://openalex.org/C121332964",
+        "wikidata": "https://www.wikidata.org/wiki/Q413",
+        "display_name": "Physics",
+        "level": 0,
+        "score": 0.0975475013256073
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "mag:2337602873",
+        "is_oa": false,
+        "landing_page_url": "https://www.dtic.upf.edu/~jjaner/phd/Tesi_jjaner_online.pdf",
+        "pdf_url": null,
+        "source": null,
+        "license": null,
+        "license_id": null,
+        "version": null,
+        "is_accepted": false,
+        "is_published": null,
+        "raw_source_name": null,
+        "raw_type": null
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 141,
+    "referenced_works": [
+      "https://openalex.org/W6854706",
+      "https://openalex.org/W35756558",
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W58926815",
+      "https://openalex.org/W67840865",
+      "https://openalex.org/W74741002",
+      "https://openalex.org/W84238602",
+      "https://openalex.org/W86239470",
+      "https://openalex.org/W86310152",
+      "https://openalex.org/W110031624",
+      "https://openalex.org/W120662513",
+      "https://openalex.org/W144656967",
+      "https://openalex.org/W147487006",
+      "https://openalex.org/W153387881",
+      "https://openalex.org/W178001124",
+      "https://openalex.org/W179389285",
+      "https://openalex.org/W181056519",
+      "https://openalex.org/W207708663",
+      "https://openalex.org/W340067923",
+      "https://openalex.org/W360661208",
+      "https://openalex.org/W361149621",
+      "https://openalex.org/W605263502",
+      "https://openalex.org/W1483187657",
+      "https://openalex.org/W1483221175",
+      "https://openalex.org/W1484755815",
+      "https://openalex.org/W1484964806",
+      "https://openalex.org/W1485800236",
+      "https://openalex.org/W1493163583",
+      "https://openalex.org/W1498883201",
+      "https://openalex.org/W1502562476",
+      "https://openalex.org/W1502984613",
+      "https://openalex.org/W1506809288",
+      "https://openalex.org/W1508603446",
+      "https://openalex.org/W1508848762",
+      "https://openalex.org/W1510020678",
+      "https://openalex.org/W1511667084",
+      "https://openalex.org/W1512786422",
+      "https://openalex.org/W1517875418",
+      "https://openalex.org/W1518164296",
+      "https://openalex.org/W1519049421",
+      "https://openalex.org/W1523583581",
+      "https://openalex.org/W1525463578",
+      "https://openalex.org/W1527758523",
+      "https://openalex.org/W1528596025",
+      "https://openalex.org/W1532823206",
+      "https://openalex.org/W1534285095",
+      "https://openalex.org/W1538476838",
+      "https://openalex.org/W1540946237",
+      "https://openalex.org/W1542229793",
+      "https://openalex.org/W1546430964",
+      "https://openalex.org/W1548880615",
+      "https://openalex.org/W1550131517",
+      "https://openalex.org/W1551224184",
+      "https://openalex.org/W1558736065",
+      "https://openalex.org/W1560013842",
+      "https://openalex.org/W1566660863",
+      "https://openalex.org/W1571176132",
+      "https://openalex.org/W1581879603",
+      "https://openalex.org/W1585181552",
+      "https://openalex.org/W1591490676",
+      "https://openalex.org/W1592787280",
+      "https://openalex.org/W1607529156",
+      "https://openalex.org/W1608656397",
+      "https://openalex.org/W1642820549",
+      "https://openalex.org/W1725744678",
+      "https://openalex.org/W1796750674",
+      "https://openalex.org/W1904522824",
+      "https://openalex.org/W1908611440",
+      "https://openalex.org/W1944429397",
+      "https://openalex.org/W1977863522",
+      "https://openalex.org/W1978122678",
+      "https://openalex.org/W1983150338",
+      "https://openalex.org/W1983170584",
+      "https://openalex.org/W1985014571",
+      "https://openalex.org/W1986595194",
+      "https://openalex.org/W1991987978",
+      "https://openalex.org/W1993425853",
+      "https://openalex.org/W1995491973",
+      "https://openalex.org/W2000218448",
+      "https://openalex.org/W2005526997",
+      "https://openalex.org/W2007842460",
+      "https://openalex.org/W2016738952",
+      "https://openalex.org/W2018165409",
+      "https://openalex.org/W2019183077",
+      "https://openalex.org/W2027137987",
+      "https://openalex.org/W2027840501",
+      "https://openalex.org/W2029124359",
+      "https://openalex.org/W2029796895",
+      "https://openalex.org/W2046167571",
+      "https://openalex.org/W2047869087",
+      "https://openalex.org/W2048073916",
+      "https://openalex.org/W2053883410",
+      "https://openalex.org/W2056606531",
+      "https://openalex.org/W2059819740",
+      "https://openalex.org/W2064758410",
+      "https://openalex.org/W2067265757",
+      "https://openalex.org/W2069501481",
+      "https://openalex.org/W2072752513",
+      "https://openalex.org/W2074310426",
+      "https://openalex.org/W2078895845",
+      "https://openalex.org/W2082354564",
+      "https://openalex.org/W2088035623",
+      "https://openalex.org/W2091425152",
+      "https://openalex.org/W2093824445",
+      "https://openalex.org/W2096588881",
+      "https://openalex.org/W2098832077",
+      "https://openalex.org/W2101464305",
+      "https://openalex.org/W2102870814",
+      "https://openalex.org/W2106610722",
+      "https://openalex.org/W2110644015",
+      "https://openalex.org/W2110855421",
+      "https://openalex.org/W2111405625",
+      "https://openalex.org/W2115807171",
+      "https://openalex.org/W2120080783",
+      "https://openalex.org/W2120951132",
+      "https://openalex.org/W2125610452",
+      "https://openalex.org/W2125838338",
+      "https://openalex.org/W2127534467",
+      "https://openalex.org/W2131072493",
+      "https://openalex.org/W2134079826",
+      "https://openalex.org/W2135813473",
+      "https://openalex.org/W2136833314",
+      "https://openalex.org/W2148154194",
+      "https://openalex.org/W2149464648",
+      "https://openalex.org/W2152742269",
+      "https://openalex.org/W2157027721",
+      "https://openalex.org/W2164498268",
+      "https://openalex.org/W2165012380",
+      "https://openalex.org/W2168488086",
+      "https://openalex.org/W2170699275",
+      "https://openalex.org/W2182116349",
+      "https://openalex.org/W2271680855",
+      "https://openalex.org/W2274374118",
+      "https://openalex.org/W2327857499",
+      "https://openalex.org/W2406877384",
+      "https://openalex.org/W2428180336",
+      "https://openalex.org/W2460911410",
+      "https://openalex.org/W2575190032",
+      "https://openalex.org/W2945344925",
+      "https://openalex.org/W2971194844",
+      "https://openalex.org/W2978843202"
+    ],
+    "related_works": [
+      "https://openalex.org/W610788053",
+      "https://openalex.org/W2840806134",
+      "https://openalex.org/W3193304300",
+      "https://openalex.org/W2846171444",
+      "https://openalex.org/W2797723375",
+      "https://openalex.org/W2844980487",
+      "https://openalex.org/W2184368647",
+      "https://openalex.org/W2825505344",
+      "https://openalex.org/W2684954349",
+      "https://openalex.org/W1599064826",
+      "https://openalex.org/W2209538027",
+      "https://openalex.org/W3170879359",
+      "https://openalex.org/W3141791323",
+      "https://openalex.org/W2098430209",
+      "https://openalex.org/W2154961635",
+      "https://openalex.org/W2135813473",
+      "https://openalex.org/W2853315811",
+      "https://openalex.org/W2546116334",
+      "https://openalex.org/W2879647982",
+      "https://openalex.org/W2106246418"
+    ],
+    "abstract_inverted_index": null,
+    "counts_by_year": [],
+    "updated_date": "2025-11-06T04:12:42.849631",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W2982619338",
+    "doi": "https://doi.org/10.5072/zenodo.219625",
+    "title": "Kinesynth: Patching, Modulating, and Mixing a Hybrid Kinesthetic Synthesizer.",
+    "display_name": "Kinesynth: Patching, Modulating, and Mixing a Hybrid Kinesthetic Synthesizer.",
+    "publication_year": 2018,
+    "publication_date": "2018-06-01",
+    "ids": {
+      "openalex": "https://openalex.org/W2982619338",
+      "doi": "https://doi.org/10.5072/zenodo.219625",
+      "mag": "2982619338"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "mag:2982619338",
+      "is_oa": false,
+      "landing_page_url": "http://www.nime.org/proceedings/2018/nime2018_paper0009.pdf",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306420611",
+        "display_name": "New Interfaces for Musical Expression",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "conference"
+      },
+      "license": null,
+      "license_id": null,
+      "version": null,
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "New Interfaces for Musical Expression",
+      "raw_type": null
+    },
+    "type": "article",
+    "indexed_in": [],
+    "open_access": {
+      "is_oa": false,
+      "oa_status": "closed",
+      "oa_url": null,
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5004989723",
+          "display_name": "Don Derek Haddad",
+          "orcid": "https://orcid.org/0000-0001-6420-3219"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I63966007",
+            "display_name": "Massachusetts Institute of Technology",
+            "ror": "https://ror.org/042nb2s44",
+            "country_code": "US",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I63966007"
+            ]
+          }
+        ],
+        "countries": [
+          "US"
+        ],
+        "is_corresponding": true,
+        "raw_author_name": "Don Derek Haddad",
+        "raw_affiliation_strings": [
+          "Massachusetts Institute of Technology, Cambridge, United States"
+        ],
+        "raw_orcid": "https://orcid.org/0000-0001-6420-3219",
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Massachusetts Institute of Technology, Cambridge, United States",
+            "institution_ids": [
+              "https://openalex.org/I63966007"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5078927696",
+          "display_name": "Joe Paradiso",
+          "orcid": null
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I63966007",
+            "display_name": "Massachusetts Institute of Technology",
+            "ror": "https://ror.org/042nb2s44",
+            "country_code": "US",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I63966007"
+            ]
+          }
+        ],
+        "countries": [
+          "US"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Joe Paradiso",
+        "raw_affiliation_strings": [
+          "Massachusetts Institute of Technology, Cambridge, United States"
+        ],
+        "raw_orcid": null,
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Massachusetts Institute of Technology, Cambridge, United States",
+            "institution_ids": [
+              "https://openalex.org/I63966007"
+            ]
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 1,
+    "institutions_distinct_count": 2,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5004989723"
+    ],
+    "corresponding_institution_ids": [
+      "https://openalex.org/I63966007"
+    ],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 0.0,
+    "has_fulltext": false,
+    "cited_by_count": 0,
+    "citation_normalized_percentile": {
+      "value": 0.40809084,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": null,
+    "biblio": {
+      "volume": null,
+      "issue": null,
+      "first_page": "35",
+      "last_page": "36"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T12784",
+      "display_name": "Modular Robots and Swarm Intelligence",
+      "score": 0.9041000008583069,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2210",
+        "display_name": "Mechanical Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T12784",
+        "display_name": "Modular Robots and Swarm Intelligence",
+        "score": 0.9041000008583069,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2210",
+          "display_name": "Mechanical Engineering"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/22",
+          "display_name": "Engineering"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/mixing",
+        "display_name": "Mixing (physics)",
+        "score": 0.651329517364502
+      },
+      {
+        "id": "https://openalex.org/keywords/kinesthetic-learning",
+        "display_name": "Kinesthetic learning",
+        "score": 0.5977041721343994
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.4899088740348816
+      },
+      {
+        "id": "https://openalex.org/keywords/physics",
+        "display_name": "Physics",
+        "score": 0.23924916982650757
+      },
+      {
+        "id": "https://openalex.org/keywords/mathematics",
+        "display_name": "Mathematics",
+        "score": 0.10469689965248108
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C138777275",
+        "wikidata": "https://www.wikidata.org/wiki/Q6884054",
+        "display_name": "Mixing (physics)",
+        "level": 2,
+        "score": 0.651329517364502
+      },
+      {
+        "id": "https://openalex.org/C55457006",
+        "wikidata": "https://www.wikidata.org/wiki/Q3647098",
+        "display_name": "Kinesthetic learning",
+        "level": 2,
+        "score": 0.5977041721343994
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.4899088740348816
+      },
+      {
+        "id": "https://openalex.org/C121332964",
+        "wikidata": "https://www.wikidata.org/wiki/Q413",
+        "display_name": "Physics",
+        "level": 0,
+        "score": 0.23924916982650757
+      },
+      {
+        "id": "https://openalex.org/C33923547",
+        "wikidata": "https://www.wikidata.org/wiki/Q395",
+        "display_name": "Mathematics",
+        "level": 0,
+        "score": 0.10469689965248108
+      },
+      {
+        "id": "https://openalex.org/C145420912",
+        "wikidata": "https://www.wikidata.org/wiki/Q853077",
+        "display_name": "Mathematics education",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C62520636",
+        "wikidata": "https://www.wikidata.org/wiki/Q944",
+        "display_name": "Quantum mechanics",
+        "level": 1,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "mag:2982619338",
+        "is_oa": false,
+        "landing_page_url": "http://www.nime.org/proceedings/2018/nime2018_paper0009.pdf",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S4306420611",
+          "display_name": "New Interfaces for Musical Expression",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": null,
+          "host_organization_name": null,
+          "host_organization_lineage": [],
+          "host_organization_lineage_names": [],
+          "type": "conference"
+        },
+        "license": null,
+        "license_id": null,
+        "version": null,
+        "is_accepted": false,
+        "is_published": null,
+        "raw_source_name": "New Interfaces for Musical Expression",
+        "raw_type": null
+      }
+    ],
+    "best_oa_location": null,
+    "sustainable_development_goals": [],
+    "awards": [],
+    "funders": [],
+    "has_content": {
+      "pdf": false,
+      "grobid_xml": false
+    },
+    "content_urls": null,
+    "referenced_works_count": 4,
+    "referenced_works": [
+      "https://openalex.org/W49361195",
+      "https://openalex.org/W2029859325",
+      "https://openalex.org/W2090165134",
+      "https://openalex.org/W2123139789"
+    ],
+    "related_works": [
+      "https://openalex.org/W2271216666",
+      "https://openalex.org/W1489286343",
+      "https://openalex.org/W2594253383",
+      "https://openalex.org/W2938957823"
+    ],
+    "abstract_inverted_index": null,
+    "counts_by_year": [],
+    "updated_date": "2026-04-28T14:05:53.105641",
+    "created_date": "2025-10-10T00:00:00"
+  }
+]
