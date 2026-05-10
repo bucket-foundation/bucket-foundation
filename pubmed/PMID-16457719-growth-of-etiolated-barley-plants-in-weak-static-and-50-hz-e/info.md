@@ -1,0 +1,14 @@
+# Growth of etiolated barley plants in weak static and 50 Hz electromagnetic fields tuned to calcium ion cyclotron resonance.
+
+- **PMID**: 16457719
+- **DOI**: 10.1016/0302-4598(96)05085-4
+- **PMCID**: PMC117976 (full-text saved)
+- **Journal**: Biomagnetic research and technology  ·  **Year**: 2006
+- **Authors**: Alexander Pazur, Valentina Rassadina, Jörg Dandler, Jutta Zoller
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16457719/
+- **Captured**: 2026-05-10T09:39:37
+
+## Abstract
+
+The effects of weak magnetic and electromagnetic fields in biology have been intensively studied on animals, microorganisms and humans, but comparably less on plants. Perception mechanisms were attributed originally to ferrimagnetism, but later discoveries required additional explanations like the "radical pair mechanism" and the "Ion cyclotron resonance" (ICR), primarily considered by Liboff. The latter predicts effects by small ions involved in biological processes, that occur in definite frequency- and intensity ranges ("windows") of simultaneously impacting magnetic and electromagnetic fields related by a linear equation, which meanwhile is proven by a number of in vivo and in vitro experiments. Barley seedlings (Hordeum vulgare, L. var. Steffi) were grown in the dark for 5 and 6 days under static magnetic and 50 Hz electromagnetic fields matching the ICR conditions of Ca2+. Control cultures were grown under normal geomagnetic conditions, not matching this ICR. Morphology, pigmentation and long-term development of the adult plants were subsequently investigated. The shoots of plants exposed to Ca2+-ICR exposed grew 15-20% shorter compared to the controls, the plant weight was 10-12% lower, and they had longer coleoptiles that were adhering stronger to the primary leaf tissue. The total pigment contents of protochlorophyllide (PChlide) and carotenoids were significantly decreased. The rate of PChlide regeneration after light irradiation was reduced for the Ca2+-ICR exposed plants, also the Shibata shift was slightly delayed. Even a longer subsequent natural growing phase without any additional fields could only partially eliminate these effects: the plants initially exposed to Ca2+-ICR were still significantly shorter and had a lower chlorophyll (a+b) content compared to the controls. A continued cultivation and observation of the adult plants under natural conditions without any artificial electromagnetic fields showed a retardation of the originally Ca2+-ICR exposed plants compared to control cultures lasting several weeks, with an increased tendency for dehydration. A direct influence of the applied MF and EMF is discussed affecting Ca2+ levels via the ICR mechanism. It influences the available Ca2+ and thereby regulatory processes. Theoretical considerations on molecular level focus on ionic interactions with water related to models using quantum electrodynamics.

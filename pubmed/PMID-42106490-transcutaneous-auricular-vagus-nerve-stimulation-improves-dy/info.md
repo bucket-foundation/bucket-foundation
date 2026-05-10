@@ -1,0 +1,14 @@
+# Transcutaneous auricular vagus nerve stimulation improves dysautonomia, post-traumatic stress disorder and cognitive impairment in long covid patients: a pilot study.
+
+- **PMID**: 42106490
+- **DOI**: 10.1038/s41598-026-52582-9
+- **PMCID**:  
+- **Journal**: Scientific reports  ·  **Year**: 2026
+- **Authors**: Eric Azabou, Amelie Pillot, Guillaume Bao, Sara Mehlal, Annabelle Arnould, Nathalie Agar-Hug, Marine Zagdoun, Alix Genolini, Ashley Russo, Claire-Marie Rangon, Philippe Azouvi
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42106490/
+- **Captured**: 2026-05-10T09:40:11
+
+## Abstract
+
+Long COVID is frequently associated with persistent autonomic dysfunction, cognitive impairment, and psychological distress, reflecting sustained neuroimmune and autonomic dysregulation. Effective disease-modifying therapies remain scarce. To evaluate the effects of transcutaneous auricular vagus nerve stimulation (taVNS) on autonomic symptoms, post-traumatic stress symptoms, and cognitive performance in patients with long COVID. In this open-label, single-arm prospective pilot study, seventeen patients with long COVID underwent weekly one-hour taVNS sessions for eight consecutive weeks. Autonomic symptoms were assessed using the Composite Autonomic Symptom Score-31 (COMPASS-31), psychological symptoms using the PTSD Checklist for DSM-5 (PCL-5), and cognitive function using a standardized attention and executive function battery (COGBAT). Outcomes were evaluated at baseline and post-intervention. Paired non-parametric analyses were performed. Following taVNS, autonomic symptoms improved significantly, with mean COMPASS-31 scores decreasing from 33.71 ± 16.81 to 13.78 ± 9.38 (p < 0.0001). Post-traumatic stress symptoms were significantly reduced (PCL-5: 25.76 ± 14.99 to 19.47 ± 14.63; p = 0.028). Cognitive performance improved, with COGBAT scores increasing from 37.71 ± 25.75 to 49.41 ± 26.79 (p = 0.011). No adverse events were reported. taVNS appears to be a safe and promising non-pharmacological intervention for improving autonomic dysfunction, cognitive impairment, and psychological symptoms in long COVID. These findings warrant confirmation in randomized, sham-controlled trials.
