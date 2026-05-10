@@ -1,6 +1,6 @@
 # Curated Canon Claims (Kruse podcast corpus)
 
-*Generated 2026-05-10 from 164 candidate claims across 126 transcripts.*
+*Generated 2026-05-10 from 167 candidate claims across 126 transcripts.*
 
 
 Method: regex-based assertion-pattern detection ("the rule is", "always",
@@ -44,17 +44,18 @@ video + 90s timestamp window + 60% text overlap; top exemplar per cluster.
 - [`011-own-light-inside-when-the-sun-couldn-t-create-it-and-melanin`](melanin/011-own-light-inside-when-the-sun-couldn-t-create-it-and-melanin.md) — score=6 `01:29:40.440` — own light inside when the sun couldn't create it and melanin was the key to the story why because melanin is the darkest
 - [`012-water-is-always-adjacent-to-where-melanin-is-and-water-does-`](melanin/012-water-is-always-adjacent-to-where-melanin-is-and-water-does-.md) — score=6 `03:46:26.220` — water is always adjacent to where melanin is and water does have a limit to what it can do and what happens is those mel
 
-## blue-light (9)
+## blue-light (10)
 
 - [`001-really-really-appreciated-because-you-know-the-one-thing-tha`](blue-light/001-really-really-appreciated-because-you-know-the-one-thing-tha.md) — score=9 `00:46:31.500` — really really appreciated because you know the one thing that's always flummoxed me he goes why do we have so much melan
 - [`002-and-his-papers-that-were-published-in-science-challenged-tha`](blue-light/002-and-his-papers-that-were-published-in-science-challenged-tha.md) — score=7 `00:05:44.229` — and his papers that were published in science challenged that in a big way and I've been saying that for 15 years becaus
-- [`003-turns-out-that-you-have-to-turn-on-riboflavin-and-if-ribofla`](blue-light/003-turns-out-that-you-have-to-turn-on-riboflavin-and-if-ribofla.md) — score=7 `00:40:30.880` — turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy 
-- [`004-from-norcals-work-we-know-that-non-native-emf-and-blue-light`](blue-light/004-from-norcals-work-we-know-that-non-native-emf-and-blue-light.md) — score=6 `01:15:55.600` — from norcals work? We know that non-native EMF and blue light what's the fundamental thing they do? They cause a drop in
-- [`005-red-light-is-the-antidote-to-blue-so-guess-what-in-the-sun-t`](blue-light/005-red-light-is-the-antidote-to-blue-so-guess-what-in-the-sun-t.md) — score=6 `01:24:31.280` — red light is the antidote to Blue so guess what in the sun that's behind me you never get Blue by itself you always get 
-- [`006-blue-light-from-native-situation-meaning-the-sun-is-always-b`](blue-light/006-blue-light-from-native-situation-meaning-the-sun-is-always-b.md) — score=6 `00:13:28.640` — Blue light from native situation, meaning the sun, is always balanced by red. So, it turns out, guess what runs all the 
-- [`007-way-these-are-i-m-grateful-for-the-fact-that-i-ve-always-bee`](blue-light/007-way-these-are-i-m-grateful-for-the-fact-that-i-ve-always-bee.md) — score=6 `01:09:58.480` — way these are. I'm grateful for the fact that I've always been a sun advocate and I'd never wear glasses hardly. And I r
-- [`008-and-i-will-tell-you-if-you-re-a-shift-worker-my-advice-term-`](blue-light/008-and-i-will-tell-you-if-you-re-a-shift-worker-my-advice-term-.md) — score=6 `01:30:03.440` — and I will tell you if you're a shift worker my advice term insurance make me the beneficiary it's KR e okay and it's th
-- [`009-sunlight-always-has-red-in-it-when-blue-s-available-but-gues`](blue-light/009-sunlight-always-has-red-in-it-when-blue-s-available-but-gues.md) — score=6 `01:11:26.159` — sunlight always has red in it when Blue's available but guess what your iPhone never does that's the whole [ __ ] point 
+- [`003-blue-blocking-glasses-or-actually-use-amber-bulbs-in-your-ho`](blue-light/003-blue-blocking-glasses-or-actually-use-amber-bulbs-in-your-ho.md) — score=7 `00:17:42.679` — blue-blocking glasses or actually use amber bulbs in your house at nighttime because you really need to cut all blue lig
+- [`004-turns-out-that-you-have-to-turn-on-riboflavin-and-if-ribofla`](blue-light/004-turns-out-that-you-have-to-turn-on-riboflavin-and-if-ribofla.md) — score=7 `00:40:30.880` — turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy 
+- [`005-from-norcals-work-we-know-that-non-native-emf-and-blue-light`](blue-light/005-from-norcals-work-we-know-that-non-native-emf-and-blue-light.md) — score=6 `01:15:55.600` — from norcals work? We know that non-native EMF and blue light what's the fundamental thing they do? They cause a drop in
+- [`006-red-light-is-the-antidote-to-blue-so-guess-what-in-the-sun-t`](blue-light/006-red-light-is-the-antidote-to-blue-so-guess-what-in-the-sun-t.md) — score=6 `01:24:31.280` — red light is the antidote to Blue so guess what in the sun that's behind me you never get Blue by itself you always get 
+- [`007-blue-light-from-native-situation-meaning-the-sun-is-always-b`](blue-light/007-blue-light-from-native-situation-meaning-the-sun-is-always-b.md) — score=6 `00:13:28.640` — Blue light from native situation, meaning the sun, is always balanced by red. So, it turns out, guess what runs all the 
+- [`008-way-these-are-i-m-grateful-for-the-fact-that-i-ve-always-bee`](blue-light/008-way-these-are-i-m-grateful-for-the-fact-that-i-ve-always-bee.md) — score=6 `01:09:58.480` — way these are. I'm grateful for the fact that I've always been a sun advocate and I'd never wear glasses hardly. And I r
+- [`009-and-i-will-tell-you-if-you-re-a-shift-worker-my-advice-term-`](blue-light/009-and-i-will-tell-you-if-you-re-a-shift-worker-my-advice-term-.md) — score=6 `01:30:03.440` — and I will tell you if you're a shift worker my advice term insurance make me the beneficiary it's KR e okay and it's th
+- [`010-sunlight-always-has-red-in-it-when-blue-s-available-but-gues`](blue-light/010-sunlight-always-has-red-in-it-when-blue-s-available-but-gues.md) — score=6 `01:11:26.159` — sunlight always has red in it when Blue's available but guess what your iPhone never does that's the whole [ __ ] point 
 
 ## red-light (9)
 

@@ -33,6 +33,16 @@ Kruse(1), Jack Kruse(1), David Klein(1)
 
 **Citations**: 
 
+## 0MyNs3TbuAo-the-free-energy-principle-in-our-daily-life-with-karl-fristo
+
+**Concepts**: AGE(31), iron(28), WHO(12), EPA(6), quantum(4), heme(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 18lVJi_ioFk-39-dr-andrew-marino
 
 **Concepts**: WHO(62), Becker(48), electromagnetic(23), AGE(13), iron(7), FDA(7), EPA(6), NIH(6), collagen(4), EMF(4), electron(4), semiconductor(3), magnetic field(3)
@@ -50,6 +60,16 @@ Georgie(1), Leven(1), Marino(1)
 
 
 **Titled**: John Cruz(1)
+
+
+**Citations**: 
+
+## 1V-s0wod48E-the-psyche-telepathy-morphic-resonance-with-dr-rupert-sheldr
+
+**Concepts**: WHO(43), AGE(42), EPA(28), AGEs(18), Pauli(3), magnetic field(2), RAGE(2), heme(1), electromagnetic(1), iron(1), DHA(1), electron(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -85,6 +105,16 @@ Spencer(1), Elaine Ingam(1)
 
 **Citations**: Talk 2011(1)
 
+## 2HxQYH7SQQE-wim-hof-jack-kruse-ice-bath-lake-harriet-4-2-2019
+
+**Concepts**: 
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 2M-Oap97_Tc-robert-o-becker-electromedicine-hieronimus-september-16-1990
 
 **Concepts**: electromagnetic(22), AGE(13), Becker(13), iron(12), magnetic field(9), WHO(9), RAGE(4), EPA(2), geomagnetic(2), UV(1), AGEs(1)
@@ -118,6 +148,16 @@ Crawford(1)
 
 **Citations**: Rothchilds 1969(1), Lansky 1969(1)
 
+## 3Jz8UpmKTAc-cold-thermogenesis-testimonial-lonnie-daniels
+
+**Concepts**: WHO(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 3SEmyFm8ZAc-uncovering-the-secrets-of-life-the-4th-phase-of-water-with-g
 
 **Concepts**: WHO(48), infrared(24), AGE(20), exclusion zone(15), photosynthesis(10), EPA(7), proton(5), AGEs(4), red light(3), heme(3), fourth phase of water(2), iron(2), EZ water(1), semiconductor(1), RAGE(1), electron(1)
@@ -134,6 +174,16 @@ Crawford(1)
 
 
 **Titled**: Francisco(1), Pollock(1), Paula(1)
+
+
+**Citations**: 
+
+## 4QQCOugnQL4-jack-kruse-wim-hof-freezer-ice-bath-36degrees-6mins-6-3-19
+
+**Concepts**: WHO(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -159,12 +209,32 @@ Cruz(1)
 
 **Citations**: 
 
+## 5A8K0kbkmBk-how-morphic-resonance-affects-our-memories-families-rituals-
+
+**Concepts**: WHO(48), AGE(22), EPA(8), AGEs(7), quantum(4), iron(3), NAD(2), heme(1), RAGE(1), Faraday(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 5W6x7EsE8C4-the-most-epic-jack-kruse-interview-ever-ep-75-76-the-life-st
 
 **Concepts**: WHO(52), mitochondria(47), infrared(37), EMF(25), blue light(23), UV(20), dopamine(18), iron(16), AGE(13), mitochondrial(9), quantum(9), red light(8), melatonin(7), circadian(7), UVA(6), electron(6), POMC(4), photosynthesis(4), cytochrome(4), autoimmune(4)
 
 
 **Titled**: Jack Kruse Facebook(2)
+
+
+**Citations**: 
+
+## 5bCJ6Xf5MRg-morphic-resonance-telepathy-w-rupert-sheldrake
+
+**Concepts**: WHO(72), EPA(30), AGE(25), AGEs(7), RAGE(4), iron(1), quantum(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -199,6 +269,16 @@ Cruz(1)
 
 **Citations**: Rockefeller 1911(1), Fair 1893(1), Paris 1924(1), University 1994(1)
 
+## 6hZo0ZFtThs-wim-hof-jack-kruse-ice-bath-2mins-30sec-2nd-timde-with-head-
+
+**Concepts**: 
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 7IjfRQSRLt8-dr-jack-kruse-reveals-insights-banned-ted-talk-2012
 
 **Concepts**: WHO(8), leptin(5), circadian(1), AGE(1), NIH(1)
@@ -228,6 +308,16 @@ Cruz(1)
 
 
 **Citations**: 
+
+## 7jnpSs3gMl4-rupert-sheldrake-on-morphic-resonance-telepathy-the-extended
+
+**Concepts**: AGE(47), WHO(41), AGEs(13), EPA(11), magnetic field(6), electromagnetic(6), RAGE(6), Einstein(4), iron(2), quantum(2), Maxwell(2), Faraday(2), electron(1), Russell(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: French 1898(1), English 1911(1)
 
 ## 8JFmG2yTf4E-nicotine-and-adhd
 
@@ -564,6 +654,26 @@ Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
 
 **Citations**: 
 
+## Kb5X8xOWgpc-is-the-brain-a-statistical-organ-the-free-energy-principle-a
+
+**Concepts**: WHO(35), AGE(30), quantum(11), EPA(8), iron(6), Feynman(6), Maxwell(5), RAGE(3), Helmholtz(3), electron(2)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## KkR24ieh5Ow-033-karl-friston-the-free-energy-principle
+
+**Concepts**: AGE(28), WHO(20), iron(11), EPA(9), quantum(5), heme(4), AGEs(2), RAGE(2), Feynman(2), Maxwell(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## L3W-yuOyE2M-cell-permeability-based-on-the-ai-hypothesis-gilbert-ling
 
 **Concepts**: iron(14), ATP(11), electron(10), WHO(8), EPA(2), AGE(2), heme(1), AGEs(1)
@@ -593,6 +703,16 @@ Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
 
 
 **Citations**: 
+
+## MC6ljzgRVfY-morphic-resonance-after-forty-years
+
+**Concepts**: WHO(62), AGE(27), quantum(12), RAGE(8), EPA(7), electromagnetic(4), magnetic field(3), NAD(2), AGEs(2), Einstein(2), UV(1), red light(1), iron(1), Penrose(1)
+
+
+**Titled**: 
+
+
+**Citations**: America 1982(1), Bombay 1982(1)
 
 ## MIWmqyacaOo-it-took-a-brain-surgeon-to-uncover-insane-bitcoin-connection
 
@@ -703,6 +823,16 @@ Cruz Dr(1)
 
 **Citations**: 
 
+## NwzuibY5kUs-karl-friston-neuroscience-and-the-free-energy-principle-lex-
+
+**Concepts**: AGE(22), WHO(14), iron(7), AGEs(5), electromagnetic(4), EPA(3), RAGE(3), magnetic field(2), Einstein(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## ODPdr_vaJ3w-the-great-gilbert-ling-cell-physiologist-biochemist-and-scie
 
 **Concepts**: WHO(6), EPA(1)
@@ -712,6 +842,16 @@ Cruz Dr(1)
 
 
 **Citations**: 
+
+## OIKpAKVBsnY-terence-mckenna-rupert-sheldrake-forms-and-mysteries-morphic
+
+**Concepts**: WHO(55), AGE(42), quantum(12), AGEs(6), Newton(6), EPA(3), electromagnetic(2), iron(2), RAGE(2), UV(1), heme(1), NAD(1), Einstein(1), Russell(1), Maxwell(1)
+
+
+**Titled**: 
+
+
+**Citations**: June 1986(1), Hawk 1906(1)
 
 ## OJaR2XgTmPI-dr-jack-kruse-decentralizing-medicine-and-shaping-future-hea
 
@@ -745,6 +885,17 @@ Becker(1)
 
 **Citations**: 
 
+## OkuQIG_9LXs-endorsement-of-dr-jack-kruse
+
+**Concepts**: WHO(2), AGE(1), AGEs(1)
+
+
+**Titled**: Cruz(3), Rob Hamilton(2), Jack
+Cruz(1)
+
+
+**Citations**: 
+
 ## Omug2kdB8VM-dr-jack-kruse-on-the-biological-implications-of-time-cancer-
 
 **Concepts**: mitochondria(26), AGE(14), WHO(13), vitamin A(11), UV(9), iron(8), quantum(6), photosynthesis(5), cytochrome(5), circadian(5), red light(4), electron(4), melatonin(3), mitochondrial(3), infrared(3), blue light(3), electromagnetic(3), vitamin D(3), NAD(3), biophoton(2)
@@ -772,6 +923,16 @@ Hameroff(1), Brian Keating(1)
 
 
 **Titled**: Levan(2), Chris(1), Anthony(1), Becker Jack Cruz(1), Michael Levan(1), Pollock(1), Cruz(1)
+
+
+**Citations**: 
+
+## PNYWi996Beg-your-brain-is-a-prediction-machine-not-a-processor-karl-fris
+
+**Concepts**: AGE(39), WHO(15), iron(12), quantum(9), Maxwell(6), EPA(5), Newton(3), UV(2), AGEs(2), dopamine(1), magnetic field(1), electromagnetic(1), RAGE(1), electron(1), Helmholtz(1), Becker(1)
+
+
+**Titled**: Friston(3), Fen(2), Fston(1), Priston(1), Preston(1)
 
 
 **Citations**: 
@@ -867,6 +1028,16 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 **Citations**: Salvador 2020(1), States 1801(1)
 
+## TcFLQvz5uEg-mindscape-87-karl-friston-on-brains-predictions-and-free-ene
+
+**Concepts**: AGE(22), WHO(19), EPA(6), heme(4), iron(3), AGEs(3), Helmholtz(3), quantum(2), RAGE(2), Feynman(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## TcbuqQd57rY-decentralized-medicine-jack-kruse-assembly-2023
 
 **Concepts**: WHO(25), electromagnetic(3), AGE(3), FDA(2), circadian(1), iron(1), EPA(1), RAGE(1), NIH(1)
@@ -877,9 +1048,29 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 **Citations**: 
 
+## U5j-NL3_LgA-activate-your-fat-burning-pathway-with-dr-jack-kruse
+
+**Concepts**: WHO(25), iron(14), electron(12), photoelectric(10), ATP(10), photoelectric effect(9), vitamin D(9), quantum(9), mitochondria(8), EMF(8), ketogenic(8), vitamin A(7), NAD(7), seafood(6), Becker(6), DHA(5), AGE(5), cytochrome(4), circadian(4), mitochondrial(3)
+
+
+**Titled**: Cruz(3), Jack Cruz(2), Warren(1), Chris(1)
+
+
+**Citations**: 
+
 ## Uvm0dho_KRM-dr-jack-kruse-nourish-vermont-2017-q-a-part-10-of-10
 
 **Concepts**: UV(17), mitochondria(10), UVA(7), electron(7), WHO(6), dopamine(4), cytochrome(4), mitochondrial(3), blue light(3), quantum(3), melatonin(2), circadian(2), infrared(2), red light(2), NAD(2), AGE(2), proton(2), electromagnetic(1), EMF(1), iron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## VLq8mnmaNpI-why-sherpas-are-super-humans-with-dr-jack-kruse-a-life-of-gr
+
+**Concepts**: AGE(2), WHO(2), quantum(1), quantum biology(1), RAGE(1), Einstein(1)
 
 
 **Titled**: 
@@ -958,6 +1149,16 @@ Camellia(1), Sean(1), Who(1)
 
 **Citations**: Vermont 2018(2), Vermont 2019(1), Minutes 1977(1)
 
+## ZklRSn92ek4-joe-rogan-experience-550-rupert-sheldrake
+
+**Concepts**: WHO(91), AGE(58), EPA(20), AGEs(9), RAGE(7), iron(6), red light(1), heme(1), magnetic field(1), NAD(1), electron(1), FDA(1)
+
+
+**Titled**: Merlin(2), Sab(1)
+
+
+**Citations**: 
+
 ## _Inspd0gKEs-dr-jack-kruse-de-centralized-medicine-meets-de-centralized-m
 
 **Concepts**: WHO(68), leptin(15), AGE(12), UV(5), EPA(5), iron(4), NIH(4), Einstein(4), circadian(3), melanin(3), electron(3), photoelectric effect(2), photoelectric(2), photosynthesis(2), mitochondria(2), NAD(2), deuterium(1), melatonin(1), infrared(1), blue light(1)
@@ -999,6 +1200,16 @@ Smith(1), Hammer(1), Wade(1), Whit(1), James Alison(1), James Allison(1), Martin
 
 **Citations**: 
 
+## b1hEc6vay_k-karl-friston-2016-ccn-workshop-predictive-coding
+
+**Concepts**: AGE(53), heme(18), WHO(11), iron(6), RAGE(6), dopamine(5), AGEs(5), EPA(2)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## cCU6JShp5-k-dr-jack-kruse-emf-podcast-debrief-5g-explained-and-q-a-live
 
 **Concepts**: EMF(43), mitochondria(24), WHO(23), AGE(21), melanin(16), mitochondrial(13), iron(12), Faraday(9), quantum(8), red light(7), circadian(6), blue light(6), EPA(6), UV(5), electromagnetic(4), infrared(3), vitamin D(3), AGEs(3), electron(3), melatonin(2)
@@ -1020,6 +1231,16 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 **Citations**: 
 
+## dLXKFA33SSM-karl-friston-free-energy-and-active-inference-rovereto-novem
+
+**Concepts**: AGE(23), iron(15), WHO(8), heme(6), RAGE(5), EPA(3), AGEs(1), Helmholtz(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## dOJt-wFNe3E-the-fourth-phase-of-water-gerald-pollack-phd-79
 
 **Concepts**: WHO(47), EPA(24), infrared(16), AGE(14), electron(14), ATP(7), exclusion zone(6), fourth phase of water(6), red light(5), quantum(3), heme(2), magnetic field(2), electromagnetic(2), AGEs(2), proton(2), EZ water(1), mitochondria(1), iron(1), NAD(1), DHA(1)
@@ -1036,6 +1257,16 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 
 **Titled**: Jack Cruz(1)
+
+
+**Citations**: 
+
+## e8R7KicFCSs-karl-friston-decodes-the-real-ooda-loop-active-inference-and
+
+**Concepts**: AGE(64), iron(47), WHO(14), EPA(7), mitochondria(3), quantum(2), RAGE(2), Feynman(2), Helmholtz(1)
+
+
+**Titled**: Hippolito(1), Karl Friston(1), Bejan(1), Ippolito(1), Hippolytus(1)
 
 
 **Citations**: 
@@ -1069,6 +1300,17 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 
 **Citations**: Ultra 1973(1)
+
+## fskWPCapafI-dr-jack-kruse-lost-133-lbs-in-1-year-without-exercising-warn
+
+**Concepts**: WHO(33), EMF(28), leptin(23), quantum(14), AGE(14), iron(10), blue light(9), electromagnetic(8), circadian(7), Becker(7), photoelectric effect(6), photoelectric(6), electron(5), melatonin(3), magnetic field(3), glutathione(3), mitochondria(2), mitochondrial(2), methylene blue(2), epi-paleo(2)
+
+
+**Titled**: Kruse(10), Jack Kruse(5), Morton Walker(1), Jack
+Kruse(1), Lindsey Duncan(1), Marino(1), Shade(1)
+
+
+**Citations**: 
 
 ## gXjj2EoElFg-brain-surgeon-vs-pharma-lobbyist-what-s-really-making-you-si
 
@@ -1131,6 +1373,16 @@ Sherman(1), Kurt(1), Kur(1)
 
 **Citations**: Forum 2025(1), Katrina 2005(1), Egypt 1967(1)
 
+## jZ1fsXQz7M4-karl-friston-s-unfalsifiable-free-energy-principle
+
+**Concepts**: iron(37), WHO(25), AGE(22), EPA(15), quantum(11), RAGE(9), Schrodinger(3), Einstein(2), Feynman(2), dopamine(1), UV(1), heme(1), electron(1)
+
+
+**Titled**: Carl(1)
+
+
+**Citations**: 
+
 ## jtMu-KFyKxM-bitcoin-is-a-time-machine-with-dr-jack-kruse
 
 **Concepts**: WHO(28), AGE(14), Einstein(10), Newton(10), mitochondria(9), iron(7), quantum(7), POMC(6), mitochondrial(4), heme(4), electron(4), circadian(3), melanin(3), EPA(3), UV(2), hemoglobin(2), leptin(2), photoelectric effect(1), photoelectric(1), AGEs(1)
@@ -1151,6 +1403,16 @@ Kruse(1)
 
 
 **Citations**: Falls 1977(1), Ferrari 2015(1)
+
+## kbs2ozkXGjI-the-mathematical-boundary-between-you-and-the-universe-karl-
+
+**Concepts**: AGE(38), WHO(31), quantum(13), EPA(13), iron(7), electron(3), heme(2), AGEs(2), RAGE(2), Einstein(2), Helmholtz(1), Newton(1)
+
+
+**Titled**: Carl Fristen(1)
+
+
+**Citations**: 
 
 ## l9Ubguvfpys-dr-jack-kruse-water-non-native-emfs-mitochondrial-basis-of-d
 
@@ -1326,6 +1588,16 @@ Platner(1)
 
 **Citations**: Prize 1992(1)
 
+## q1AK90iaRkk-jack-kruse-animation
+
+**Concepts**: leptin(5), WHO(1)
+
+
+**Titled**: Jack Cruz(1)
+
+
+**Citations**: 
+
 ## qHnE8yfuT_E-who-the-heck-is-gilbert-ling
 
 **Concepts**: WHO(13), ATP(10), AGE(6), electron(5), iron(3), RAGE(2), proton(2), NIH(2), exclusion zone(1), mitochondria(1), heme(1), EPA(1), AGEs(1)
@@ -1359,6 +1631,16 @@ Malone(1)
 
 
 **Citations**: Fouchy 2006(2), Bitcoin 2024(1)
+
+## qrIlWrGe4w4-nature-s-hidden-intelligence-morphic-fields-rupert-sheldrake
+
+**Concepts**: WHO(50), AGE(19), EPA(12), quantum(9), AGEs(7), magnetic field(6), RAGE(4), electromagnetic(3), iron(3), NAD(3), electron(2), Einstein(2), Maxwell(2), mitochondria(1), Faraday(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## rKDl37lqEBg-dr-jack-kruse-sunlight-is-the-key-to-health-digestive-issues
 
@@ -1541,6 +1823,16 @@ Cruz(1), Cruz Jack(1)
 
 
 **Citations**: 
+
+## xIisdGsOuEo-morphic-resonance-nature-s-memory-extended-mind-rupert-sheld
+
+**Concepts**: WHO(46), AGE(32), EPA(16), electromagnetic(14), magnetic field(13), AGEs(6), Newton(6), iron(4), Faraday(4), RAGE(3), quantum(2), Maxwell(2), UV(1), heme(1), DHA(1), Einstein(1)
+
+
+**Titled**: 
+
+
+**Citations**: English 1911(1), India 1968(1), India 1974(1), Harvard 1963(1)
 
 ## xT8Qtt8LCV0-253-the-fourth-phase-of-water-gerald-h-pollack-being-human
 

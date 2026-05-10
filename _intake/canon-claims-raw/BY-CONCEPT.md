@@ -207,7 +207,7 @@
 - **5** [never/because] · `00:17:50.559` [Dr. Jack Kruse UNFILTERED: The FULL 1-Hour Interview They Do](https://www.youtube.com/watch?v=usB5IKPK04E&t=1070)
   > from photosynthesis on. It's like you and Joe never look back and go, "What the [&nbsp;__&nbsp;] happened before?" Why don't we ever talk about the three billion years? You know why? Because that's the melanin
 
-## blue-light (77 candidates, top 50)
+## blue-light (81 candidates, top 50)
 
 - **9** [always/because/only] · `00:46:31.500` [Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTO](https://www.youtube.com/watch?v=cy8cByk8H00&t=2791)
   > really really appreciated because you know the one thing that's always flummoxed me he goes why do we have so much melanops in our brain we all know blue light doesn't get through
@@ -221,6 +221,12 @@
   > I've been saying that for 15 years because it's how I figured out that blue light was the cause of my obesity and simplified my gut flora and what I did is I used the central retinal pathways
 - **7** [causes/because/i-proved] · `00:05:50.680` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=350)
   > because it's how I figured out that blue light was the cause of my obesity and simplified my gut flora and what I did is I used the central retinal pathways and my skin as well as my gut surface to
+- **7** [always/must/because] · `00:17:42.679` [Dr. Jack Kruse Lost 133 lbs in 1 Year Without Exercising - W](https://www.youtube.com/watch?v=fskWPCapafI&t=1062)
+  > blue-blocking glasses or actually use amber bulbs in your house at nighttime because you really need to cut all blue light exposure. And you know, I I always like
+- **7** [always/must/because] · `00:17:44.960` [Dr. Jack Kruse Lost 133 lbs in 1 Year Without Exercising - W](https://www.youtube.com/watch?v=fskWPCapafI&t=1064)
+  > amber bulbs in your house at nighttime because you really need to cut all blue light exposure. And you know, I I always like to tell people, think about the Pink
+- **7** [always/must/because] · `00:17:47.040` [Dr. Jack Kruse Lost 133 lbs in 1 Year Without Exercising - W](https://www.youtube.com/watch?v=fskWPCapafI&t=1067)
+  > bulbs in your house at nighttime because you really need to cut all blue light exposure. And you know, I I always like to tell people, think about the Pink Floyd album back from, you know, the
 - **7** [never/causes/because] · `00:40:30.880` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2430)
   > turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy it that's one of the causes of Lupton resistance you know then it turns out that your microbiome simplifies that's how Jack got fat and I realized that this was
 - **7** [never/causes/because] · `00:40:35.240` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2435)
@@ -303,12 +309,6 @@
   > your leptin resistant and leptin resistance is what causes obesity we now know all the effects of blue light this is the artificial light that were around here causes all these things take a look
 - **5** [never/because] · `00:53:07.200` [Dr. Jack Kruse on How Light Controls Metabolism & Diabetes |](https://www.youtube.com/watch?v=tg9c6shuazI&t=3187)
   > those are broken. So diabetics can never photo repair themselves because of this process. What allows them to gain control, get rid of the blue light and get melanin back in their body. So what
-- **5** [causes/evidence] · `01:17:22.400` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4642)
-  > but if you can't do anything with the signal, you're leptin resistant. And leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light
-- **5** [causes/evidence] · `01:17:24.199` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4644)
-  > signal, you're leptin resistant. And leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light that we're around here. Causes all these
-- **5** [causes/evidence] · `01:17:27.679` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4647)
-  > leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light that we're around here. Causes all these things. Take a look at them. Every
 
 ## red-light (70 candidates, top 50)
 
@@ -940,6 +940,45 @@
 - **5** [never/causes] · `01:09:51.080` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4191)
   > state of iron from plus two to plus three, and certainly never learned about the implications that this creates methemoglobinemia. Yeah. I never learned I never learned
 
+## becker (18 candidates, top 50)
+
+- **5** [causes/evidence] · `03:52:30.319` ["These People Must Pay" Bitcoin, Trump, COVID, and Zionism w](https://www.youtube.com/watch?v=yALOChgRrHQ&t=13950)
+  > Clean Diet Becker finds out that all the avionics in the plane the non-mf is what causes it and what else does he find their vitamin D levels drop he didn't know about pomy but we now know yeah
+- **5** [never/because] · `01:04:16.799` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3856)
+  > who are diabetic have no super oxide pulse and have shitty nitric oxide because they never go outside. They're never in the sun. Mhm. That's why they don't heal. They never get to Becker's
+- **5** [never/because] · `01:04:18.160` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3858)
+  > pulse and have shitty nitric oxide because they never go outside. They're never in the sun. Mhm. That's why they don't heal. They never get to Becker's regeneration
+- **5** [never/because] · `01:04:19.920` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3859)
+  > because they never go outside. They're never in the sun. Mhm. That's why they don't heal. They never get to Becker's regeneration currents. Duh. Because they're watching
+- **5** [never/because] · `01:04:22.400` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3862)
+  > never in the sun. Mhm. That's why they don't heal. They never get to Becker's regeneration currents. Duh. Because they're watching Jerry Springer and they're inside behind
+- **5** [never/because] · `01:04:23.799` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3863)
+  > don't heal. They never get to Becker's regeneration currents. Duh. Because they're watching Jerry Springer and they're inside behind glass, which blocks what? UV and near
+- **5** [never/must] · `00:52:51.839` [Activate Your Fat Burning Pathway with Dr. Jack Kruse](https://www.youtube.com/watch?v=U5j-NL3_LgA&t=3171)
+  > disease Generation Um the work of Dr robertto Becker in this area the guy was nominated twice for Nobel PR never one people need to go back to read what he
+- **5** [never/must] · `00:52:53.920` [Activate Your Fat Burning Pathway with Dr. Jack Kruse](https://www.youtube.com/watch?v=U5j-NL3_LgA&t=3173)
+  > Generation Um the work of Dr robertto Becker in this area the guy was nominated twice for Nobel PR never one people need to go back to read what he found 50 years ago and read what he
+- **5** [never/must] · `00:52:57.920` [Activate Your Fat Burning Pathway with Dr. Jack Kruse](https://www.youtube.com/watch?v=U5j-NL3_LgA&t=3177)
+  > Becker in this area the guy was nominated twice for Nobel PR never one people need to go back to read what he found 50 years ago and read what he wrote before he
+- **5** [never/because] · `01:14:09.320` [#13 - Jack Kruse](https://www.youtube.com/watch?v=VO4JwdXuXXs&t=4449)
+  > correctly his students never took it to the next level I I give Albert St Georgie a lot of credit even though he was wrong because without him we don't get robertto Becker without Becker we
+- **5** [never/because] · `01:14:13.320` [#13 - Jack Kruse](https://www.youtube.com/watch?v=VO4JwdXuXXs&t=4453)
+  > Georgie a lot of credit even though he was wrong because without him we don't get robertto Becker without Becker we don't get to where I am I could I can never do the things that I'm doing
+- **5** [never/because] · `01:14:15.639` [#13 - Jack Kruse](https://www.youtube.com/watch?v=VO4JwdXuXXs&t=4455)
+  > was wrong because without him we don't get robertto Becker without Becker we don't get to where I am I could I can never do the things that I'm doing without the insights that Becker gave me
+- **5** [never/because] · `01:14:32.040` [#13 - Jack Kruse](https://www.youtube.com/watch?v=VO4JwdXuXXs&t=4472)
+  > Becker's work um and there's so many different parts to this story and I have a reverence for those scientists that actually pulled me to the decentralized way why because I never get there
+- **5** [never/because] · `01:05:14.940` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3914)
+  > what I just told you about Becker Marina can you imagine coming up with such a novel idea and why jobs never told anybody about it because it would immediately brought the
+- **5** [always/because] · `01:21:31.440` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4891)
+  > talking about all the way down to the periodic&nbsp; table of elements and then what happens with water&nbsp;&nbsp; so you went Ultra reduction yes totally but I&nbsp; had to also realize that the things that I was&nbsp;&nbsp; learning in physics at the time okay because what&nbs
+- **5** [always/because] · `01:21:38.580` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4898)
+  > so you went Ultra reduction yes totally but I&nbsp; had to also realize that the things that I was&nbsp;&nbsp; learning in physics at the time okay because what&nbsp; I did effectively is very similar I stole this&nbsp;&nbsp; from Einstein I always tell people the four most&nbsp;
+- **5** [always/because] · `01:21:43.560` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4903)
+  > learning in physics at the time okay because what&nbsp; I did effectively is very similar I stole this&nbsp;&nbsp; from Einstein I always tell people the four most&nbsp; important scientists to me were Einstein Da Vinci&nbsp;&nbsp; Michelangelo and Roberto Becker those were the&n
+- **5** [always/because] · `01:21:52.680` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4912)
+  > from Einstein I always tell people the four most&nbsp; important scientists to me were Einstein Da Vinci&nbsp;&nbsp; Michelangelo and Roberto Becker those were the&nbsp; four people that have defined my life and find him&nbsp;&nbsp; into I I got to put number five and Fineman was
+
 ## photosynthesis (17 candidates, top 50)
 
 - **7** [never/causes/because] · `01:30:19.740` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=5419)
@@ -1046,39 +1085,6 @@
   > So, if you want to know why electrons from carbohydrates always enter at cytochrome 1, now you know why. Because carbohydrates grow when long light cycles when what kind of lights out?
 - **5** [always/because] · `01:56:33.280` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=6993)
   > from carbohydrates always enter at cytochrome 1, now you know why. Because carbohydrates grow when long light cycles when what kind of lights out? Purple light. So, if you live in Vermont
-
-## becker (15 candidates, top 50)
-
-- **5** [causes/evidence] · `03:52:30.319` ["These People Must Pay" Bitcoin, Trump, COVID, and Zionism w](https://www.youtube.com/watch?v=yALOChgRrHQ&t=13950)
-  > Clean Diet Becker finds out that all the avionics in the plane the non-mf is what causes it and what else does he find their vitamin D levels drop he didn't know about pomy but we now know yeah
-- **5** [never/because] · `01:04:16.799` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3856)
-  > who are diabetic have no super oxide pulse and have shitty nitric oxide because they never go outside. They're never in the sun. Mhm. That's why they don't heal. They never get to Becker's
-- **5** [never/because] · `01:04:18.160` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3858)
-  > pulse and have shitty nitric oxide because they never go outside. They're never in the sun. Mhm. That's why they don't heal. They never get to Becker's regeneration
-- **5** [never/because] · `01:04:19.920` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3859)
-  > because they never go outside. They're never in the sun. Mhm. That's why they don't heal. They never get to Becker's regeneration currents. Duh. Because they're watching
-- **5** [never/because] · `01:04:22.400` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3862)
-  > never in the sun. Mhm. That's why they don't heal. They never get to Becker's regeneration currents. Duh. Because they're watching Jerry Springer and they're inside behind
-- **5** [never/because] · `01:04:23.799` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3863)
-  > don't heal. They never get to Becker's regeneration currents. Duh. Because they're watching Jerry Springer and they're inside behind glass, which blocks what? UV and near
-- **5** [never/because] · `01:14:09.320` [#13 - Jack Kruse](https://www.youtube.com/watch?v=VO4JwdXuXXs&t=4449)
-  > correctly his students never took it to the next level I I give Albert St Georgie a lot of credit even though he was wrong because without him we don't get robertto Becker without Becker we
-- **5** [never/because] · `01:14:13.320` [#13 - Jack Kruse](https://www.youtube.com/watch?v=VO4JwdXuXXs&t=4453)
-  > Georgie a lot of credit even though he was wrong because without him we don't get robertto Becker without Becker we don't get to where I am I could I can never do the things that I'm doing
-- **5** [never/because] · `01:14:15.639` [#13 - Jack Kruse](https://www.youtube.com/watch?v=VO4JwdXuXXs&t=4455)
-  > was wrong because without him we don't get robertto Becker without Becker we don't get to where I am I could I can never do the things that I'm doing without the insights that Becker gave me
-- **5** [never/because] · `01:14:32.040` [#13 - Jack Kruse](https://www.youtube.com/watch?v=VO4JwdXuXXs&t=4472)
-  > Becker's work um and there's so many different parts to this story and I have a reverence for those scientists that actually pulled me to the decentralized way why because I never get there
-- **5** [never/because] · `01:05:14.940` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3914)
-  > what I just told you about Becker Marina can you imagine coming up with such a novel idea and why jobs never told anybody about it because it would immediately brought the
-- **5** [always/because] · `01:21:31.440` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4891)
-  > talking about all the way down to the periodic&nbsp; table of elements and then what happens with water&nbsp;&nbsp; so you went Ultra reduction yes totally but I&nbsp; had to also realize that the things that I was&nbsp;&nbsp; learning in physics at the time okay because what&nbs
-- **5** [always/because] · `01:21:38.580` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4898)
-  > so you went Ultra reduction yes totally but I&nbsp; had to also realize that the things that I was&nbsp;&nbsp; learning in physics at the time okay because what&nbsp; I did effectively is very similar I stole this&nbsp;&nbsp; from Einstein I always tell people the four most&nbsp;
-- **5** [always/because] · `01:21:43.560` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4903)
-  > learning in physics at the time okay because what&nbsp; I did effectively is very similar I stole this&nbsp;&nbsp; from Einstein I always tell people the four most&nbsp; important scientists to me were Einstein Da Vinci&nbsp;&nbsp; Michelangelo and Roberto Becker those were the&n
-- **5** [always/because] · `01:21:52.680` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4912)
-  > from Einstein I always tell people the four most&nbsp; important scientists to me were Einstein Da Vinci&nbsp;&nbsp; Michelangelo and Roberto Becker those were the&nbsp; four people that have defined my life and find him&nbsp;&nbsp; into I I got to put number five and Fineman was
 
 ## photoelectric (8 candidates, top 50)
 

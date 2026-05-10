@@ -1,0 +1,1979 @@
+it's it's lovely to be here with such a
+select group of people in great
+surroundings um I'm going to actually
+commit the sin which Jim um sort of
+hinted at I'm actually going to take us
+to the next level uh in predictive
+coding there been there have been a
+large number of uh theoretical
+developments in the past couple of years
+that take predictive coding into a
+slightly different realm that I wanted
+to share with you uh some theoretical
+results some um
+simulations lots of stuff which I
+thought might be interesting for
+discussion so I'm going to use my first
+half hour just to quickly survey a lot
+of results and slides almost as a sort
+of showcasing of the sorts of things
+that we could talk about and then use
+the remaining half hour just to go back
+and revisit those bits that you found
+interesting so if I if you see a slide
+that you think oh that's interesting I'd
+like to talk about that remember it and
+then we'll go back to it and that gives
+me an excuse not to have to explain
+everything in detail because there is
+lots of things that I'd like to actually
+expose uh as to for discussion um
+interestingly ending up exactly where
+where um the introduction end up which
+is the importance of violations or using
+violations to
+disclose the quintessential role of
+prediction in perception so if we get
+that far we'll end up where we started
+um the trick that I'm going to take here
+though is I'm actually going to start
+not with perception but with action um
+and I'm going to start off as if I was
+talking to a group of people doing
+optimal control theory or reinforcement
+learning or uh utility Theory and show
+how thinking about the way that we
+sample the environment the epistemic and
+pragmatic imperatives of interacting
+with the world can be unpacked in a
+principled way and gets us back to
+predictive coding so that's my agenda
+that's what I'm going to try and uh try
+and
+do
+oh
+thank
+you so this is an overview what we're
+going to go through um I'm going to
+introduce the notion that that you the
+free energy principle but from a um
+using a slightly heris approach in terms
+of uh action in the path of least
+resistance highlighting the importance
+of having internal models or hypotheses
+that enable us to generate predictions
+um talking about active inference and
+one key thing that I'm going to focus on
+is translating the theory into a process
+theory that can be used to understand
+neuronal message passing on the brain
+and help us exactly con strain the sorts
+of experiments that Jim was talking
+about that's going to be a big part of
+what you know what I hope we'll be
+talking about taking normative
+principles and seeing how they unpack in
+the service of understanding empirical
+measurements anatomy and physiology and
+how they can um be used to Nuance
+experimental design showing the sorts of
+things that one can simulate um and uh
+speaking to some empirical predictions
+of these sorts of schemes and I put as
+an epilog more re recent work uh
+simulations of reading um that introduce
+hierarchies into into the particular
+forms of generative models that I want
+to survey for you we won't have time to
+go through that but I just want to show
+you the slides in case it's something
+that catches your attention so I'm going
+to start with a question let's assume
+you're
+hungry and let's assume you're an owl so
+what are you going to
+do you're going to do search for
+mouse are you going to do
+that don't cheat you you have look at me
+not absolutely perfect answer so in
+terms of optimal Behavior the first
+thing you do is search you scan you um
+confront the epistemics of reducing
+uncertainty about what you need to do in
+order to fulfill your goal so it's all
+about beliefs so in that answer is the
+basis of everything that I'm going to
+say your behavior is always driven by
+beliefs and that tells us something
+quite uh quite important because so
+here's here's you scanning and searching
+and you found found a little mouse that
+you might want to eat there um that's
+quite important because it speaks to two
+basic classes of ways of thinking about
+optimizing Behavior you can
+either imagine that there is some value
+function of the next state that would be
+brought about by some action and
+optimize that action by selecting the
+action that maximizes the value of the
+next
+state that's the classical way of doing
+it but that just doesn't work if the
+best next thing to do is to search and
+resolve
+uncertainty because uncertainty is an
+attribute of beliefs therefore the
+functional or the function of a function
+that you need to optimize in terms terms
+of action you hear is a function of
+beliefs which I'm denoting by Q beliefs
+about the states of the world um and
+that introduces a fundamental
+distinction between the sorts of schemes
+that you bring to bear in terms of
+understanding optimal Behavior the other
+thing about the sort of um scanning and
+searching answer is that action depends
+upon um beliefs about the world states
+of the world and subsequent action so
+not only not only is it a function of
+beliefs about the world but it's the
+order in which you interrogate that
+world so it makes a difference whether
+you search then eat as opposed to eat
+then
+search and that means we are in the game
+of optimizing sequences of policies or
+actions and I'm going to call a sequence
+of actions policy so what that means
+from the point of view technically of
+what sort of thing we have to optimize
+it's a functional of a belief Bel
+integrated over time or summed over time
+a path integral uh and if we call that
+an energy then the integral the path
+integral of an energy is called an
+action so what we've just said is that
+we've reduced the problem of good
+behavior to Hamilton's principle of
+least action where action is the path
+integral or the trajectory integral or
+the sum over uh an energy functional of
+beliefs and that's the
+basic premise that I'm going to pursue
+um and just to highlight the distinction
+if you subscribe to this way of thinking
+about how systems work then you end up
+with optimal control theory Bas in
+decision Theory reinforcement learning
+and all that good
+stuff conversely if you believe this is
+how U biological systems work then you
+end up essentially with Hamilton's
+principle of leased action the free
+energy principle active influence Active
+Learning and so on and that's what we're
+going to focus on uh and the the energy
+functional they I'm going to consider
+we've already heard mentioned is the uh
+is the variational free energy or the
+free energy which we've already heard
+very roughly scores surprise it
+approximates surprise or surprisal uh
+under some simplifying assumptions
+prediction error so what we are saying
+is that we're just in the game of
+minimizing prediction error and more
+specifically prediction error over time
+over sequences of behavior um I'm going
+to quickly go through this because it's
+it's an interesting um the lots of
+interesting connections with existing
+theories and formulations uh this is a
+bit technical these are both iconic and
+ironic equations you'll hear about more
+about those later on um the in words if
+it's the case that good agents good
+people minimize their free energy their
+surprise their average surprise and they
+with their uncertainty then they must
+believe that the actions that they emit
+will minimize expect Ed free energy and
+you can write that down very simply in
+terms of these belief functions here and
+rearrange them in a way that discloses
+important links with lots of established
+formal treatments of behavior so I
+really uh the expected free energy
+associated with any particular policy in
+terms of its extrinsic value here um and
+its epistemic value and basically these
+things score the
+surprise about what you predict will
+happen under a particular behavior and
+what you think should happen your
+preference is like I'm going to eat a
+mouse I'm not going to be hungry um so
+that's a surprise bit explicit or
+extrinsic surprise bit but there's
+another surprise there's another sort of
+uh average surpriser entropy a relative
+entropy which is called epistemic value
+it's reduction in uncertainty or the
+information gain and that's the key bit
+it's the epistemics which is missing
+from classic theories uh but is part of
+this this form of um formulation of
+Hamilton's principle of least action and
+that relates very closely um to theories
+uh of visual salance or basing surprise
+technically um basing surprise is the
+Divergence or the difference between a
+uh a prior belief and a posterior belief
+or a posterior belief is been formed by
+observations here so what we're saying
+is that we will choose to act in a way
+that reduces our
+uncertainty relative to Pride beliefs
+looking at data which gives us
+information that maximally reduces that
+uncertainty that has the greatest
+epistemic value or Bas in surprise in
+fact mathematically that's exactly the
+same as the mutual information between
+the causes the hidden states of the
+world s and the consequences the
+outcomes that we actually observe so
+another way of saying this is that we
+are subscribing to the principle of
+Maximum information Mutual information
+or minimum redundancy or maximum
+information efficiency of the S
+articulated by Horus barow all ways of
+expressing one particular form of uh or
+perspective on this uh underlying
+functional another way of thinking about
+this in the case if there is no
+ambiguity if we actually can observe the
+states directly um then we can discount
+this uncertainty term here and what
+we're left with is something called KL
+control which is the state-of-the-art of
+what people would use in optimal control
+theory and dynamical systems control in
+economics it's called risk risk
+sensitive control it's minimizing risk
+so it's it's a surprise between what I
+think will happen and what I want to
+happen uh and if what I think will
+happen is surprising relation to what I
+thought was going to H happen um then I
+have a high degree of surprise a high
+degree of risk and I want to minimize
+that and then finally um if there's no
+ambiguity or there's no risk then we
+reduce to classical expected utility
+Theory or all the sorts of theories that
+reinforcement depends upon just
+maximizing our preferred outcomes there
+so clearly in order to be surprised we
+have to have predictions against which
+we can match outcomes to score that
+surprise and this brings us to
+generative models um and the departure
+that I promised you from um what people
+currently understand in terms of
+predicted coding and what I I'm going to
+talk about for the next few minutes is
+I'm going to formulate generative models
+not for continuous State space of the
+sorts used in um predicted coding of say
+visual angles or content or Acoustics
+but generative models in which we can
+label the entire world in terms of a
+number of discrete States so these are
+generative models for discrete State
+spaces and they don't normally have the
+look and feel of predictive coding but
+my story will be is in fact they do they
+are actually formly very very similar to
+the sorts of schemes that we understand
+in terms of top down predictions and
+bottom up prediction errors in
+hierarchical message passing um all
+predictive coding in the visual cortex
+so in these models all we have um this
+is ignore the equations but just focus
+on this graphical model here what we're
+saying is that the world unfolds in one
+of many many states and the transitions
+from one state of the world to the next
+state of the world encoded by
+probability transitions that themselves
+depend upon how we act they depend upon
+the policies that we choose and we have
+a certain confidence in those policies
+dided by their Precision or inverse
+temperature beta here so when if we knew
+the probability transitions or the
+transitions from State uh from time to
+time of the states we can generate a
+sequence or trajectory of states and
+each States each state at each point in
+time generates an outcome through this
+uh likelihood Matrix a and that's it
+that's that's that's the generative
+model is saying the world has States
+they unfold and each state generates an
+outcome that's
+observable and that's the that's the
+basis of um everything else that I'm
+going to say so if I'm if I'm now given
+a generative model what I can do is I
+can evaluate the free energy of my
+beliefs under that generative model and
+I can then minimize everything with
+respect to that um proxy for surprise or
+uncertainty namely uh the uh the
+expected free energy and I can write
+down equations or
+solutions that tell me how an optimal
+agent person would
+behave in a in a sort of basian sense
+and these are the solutions to the
+equations expressed in terms of the
+parameters of that model so a was this
+mapping from states of the world to
+outcomes and B was the mapping between
+subsequent hidden states and
+despite the uh complicated nature of the
+equations on the previous Slide the
+actual updates the solutions are
+incredibly simple and furthermore they
+look very much like the sorts of things
+that the brain does so for example
+expected State the world are a nonlinear
+uh sigmoid function of linear mixtures
+of expected states of the world and
+observations so we're mixing together
+evidence from outcomes and our beliefs
+about the states of the world to update
+our beliefs about the current state of
+the world our beliefs about what we're
+going to do next our policy Pi here is
+is a soft Max function of the expected
+free energy weighted by um an inverse
+temperature parameter that you will see
+uh we associate with dopamine a
+classical softmax response rule um if
+you're not familiar with that that's
+what people in economics and choice
+Behavior use um for those people who um
+deal more with perception um we also
+have a model of incentive sence the the
+confidence or the Precision or the
+inverse temperature associated with our
+beliefs about Action Now becomes um as a
+base optimal solution that depends upon
+it the goodness of a policy or the
+negative goodness the expected free
+energy here and the form of these
+equations speaks to a rough anatomy of
+computations in the brain a
+computational Anatomy um and it sort of
+goes like this where we have um these
+equations dictate what each update needs
+to know about the other updates so
+basically it prescribes a connectome for
+the exchange of information or
+sufficient statistics that is implied by
+placing the Hamilton's principle least
+action on the simplest sort of
+generative model that you can imagine
+and that's the sort of anatomy we we
+have here outcomes expected States
+expected policies the goodness or the
+expected fre energy of policies the
+Precision of policies uh States um in
+the future and which prescribe action so
+I won't go through that but I'll just
+give you a more heris version of that
+one so what those equations tell us so
+this is this is if like a very top- down
+argument it's not you know let's think
+about how the brain works and come up
+with some hypothesis this unfolds or
+unravels from unpacks from just applying
+Hamilton's principle least action to a
+very simple generative model and what it
+tells us is that sensory input comes in
+say at the back of the brain it informs
+and updates um expectations about hidden
+states of the world sometimes referred
+to a state estimation they are
+associated with the free energy or a
+surprise that is combined with an
+evaluation of those States in relation
+to Prior preferences and their the
+potential reduction of uncertainty their
+epistemic value they are combined to
+give us beliefs about the policy that we
+are currently um uh pursuing um we have
+a certain confidence in that policy and
+then those policies are used to wait all
+the different states conditioned upon
+what we are currently doing to give us
+the best estimate of what's going to
+happen next the next state of the world
+and if we know that then we can choose
+the action that brings about that
+realizes our expectations our
+predictions about the next state of the
+world that action solicits a new
+observation from the environment and the
+cycle begins again so we have a
+perception Action Cycle that falls out
+of the minimization scheme that we've
+just been talking about so very briefly
+I'm just going to show you how that sort
+of thing works with a series of examples
+and then hopefully I'll turn it over for
+to you to see what you want to talk
+about um the first example is just a
+very simple simulation of foraging in a
+two arm maze so in this example there's
+a little rat here and there are rewards
+on the right and the left arms of the
+maze but the rat doesn't know where the
+reward is but there's also an
+informative cue at the bottom of the
+maze here that if it went to solicit
+that queue it would then know where the
+reward was and it can only make two
+moves right so it can either take a
+chance and go to one of the other the
+top arms or it can be a bit more clever
+and resolve any uncertainty about the
+context it's currently operating in I
+which is which arm is baited and go and
+retrieve the epistemic value of the
+informative queue and then make an
+informed decision so this is exactly the
+searching that you were talking about
+before scaning your environment knowing
+where you are resolving your epistemic
+um solve the epistemic problem and then
+turn to your prior preferences or your
+your your pragmatics uh and you can
+write this model down very in very
+simple terms uh of these A and B
+matrices here they are trivially there's
+partial reinforcement uh here and the C
+Matrix here just denotes the preferences
+in terms of the uh what what sorts of
+States this this rout thinks it should
+occupy it basically thinks it should be
+uh in the uh baited arm and not in the
+unb baited arm that's that's all it's
+all it's saying here with minus 3es and
+plus threes on the uh on the on the
+upper um arms that are baited and if we
+do that and we just integrate that sort
+of um those solutions that I told you
+before we actually generate very
+realistic behavior um summarized here in
+terms of the expected policy and the
+policies that this agent or this little
+um animal can entertain are it stays
+there and then goes to one of the three
+arms
+um sorry it uh um or it goes to um one
+of the two arms or it goes to the bottom
+and then goes to any of the three arms
+so there are um eight sorry six six yeah
+eight policies here um and what it um
+does in the first instance is because it
+doesn't know where the reward is it goes
+gets the queue and then goes and obtains
+its
+reward what we've done here is actually
+baited the left arm all the time so
+slowly it
+accumulates evidence that in fact the
+rewards always on this side here so as
+time goes on it actually switches and
+learns that it's probably better to um
+avoid or dispense with the epistemic
+move and go directly to the to the
+reward uh and it starts doing that um
+after about 20 or 30 uh trials here at
+which point it's reaction times and the
+this is the actual floating Point
+operations of the scheme decrease
+uh and because where the goodness of a
+policy is this path integral it's
+actually spent more time being rewarded
+so the um if you like the payoff uh also
+increases uh by going straight there so
+this prescribes good policies uh and it
+can be used to simulate nice behaviors
+of the sort we've seen
+experimentally But what I want to do
+finally is just connect that to
+neurophysiology and neuroanatomy but to
+do that I have to have a process Theory
+I have to have a theory which says this
+particular neural activity or this
+particular connection strength
+corresponds to this quantity in the
+model so I have to have a process um in
+play that is neuronally plausible and
+the way that we're going to do that is
+just take those um update equations that
+we've seen before and instead of just
+writing down the solutions
+mathematically I'm going to recast the
+Solutions in terms of of a a gradient
+descent or a hill climbing or actually a
+hill um descent here so this is a
+standard way of optimizing something if
+you if you got a quantity you want to
+minimize you just go downhill until it
+stops getting smaller if I do that I can
+write down exactly the same scheme in
+terms of differential equations on
+expected states of the world so very
+similar form but here that's a rate of
+change of activity which is now a
+nonlinear function of um linear mixtures
+of expectations about states of the
+world and the observations and in doing
+that I've created a dynamical system
+that now has is much closer to the look
+and feel of a neuronal system um and
+that now enables me to look at the
+Dynamics that underly the behavior and
+these are the Dynamics here and we can
+basically break these into inference and
+state estimation in terms of the updates
+or the fluctuations in the states as new
+evidence comes along uh policy selection
+that we've already seen with our softmax
+uh response Rule and learning as we
+accumulate from trial to trial evidence
+about particular States or contingen of
+the world in this instance that the left
+hand uh arm of the of the maze was
+always baited I just Illustrated those
+things here couple of interesting things
+to note first of all with every new move
+and every bit of new sensory information
+there are lots of fluctuations in these
+states that look very much like an r p
+furthermore when we become a little bit
+Auto automatic or not Hab not habitual
+but certainly going straight for our
+reward um there is an attenuation of
+these uh responses um the confidence the
+Precision in those responses also shows
+these phasic changes and Progressive
+changes as we learn the context so we
+actually get something which looks
+remarkably similar to a transfer of
+dopamine responses um as we become more
+familiar and more confident about the
+outcomes um that we see let me just
+quickly show you a couple of those
+outcomes um this slide highlights just
+one
+trial um and it shows the
+representations of time over the
+different um um hidden states of the
+world um and just highlights a couple of
+things first of all it shows that as we
+accumulate evidence for our preferred
+policies or our preferred outcomes the
+prob probability that we are in a state
+which we will uh ultimately choose
+increases whereas the probability of
+states that we don't decreases and this
+is formly identical to evidence
+accumulation or drift diffusion models
+but now cast or now a consequence of um
+a gradient descent on variation free
+energy or a Bound for surprise um what
+we also see is a an interesting Dynamics
+in the sense that if information keeps
+coming in every say 250 millisecond like
+the frequency at which we make we we go
+and Sample the world with with santic
+eye
+movements that means that we have two
+time scales in play one is a theeta
+rhythm as we go and get information once
+four say four times every second but
+within each sampling there's this fast
+updating that's minimizing and
+optimizing our beliefs and that faster
+updating has a temporal scale in the
+gamma range so what we see is
+effectively as we move along fast
+updating that repeats itself every
+theater cycle but as we accumulate more
+and more evidence we get more and more
+efficient and confident about the things
+that we are
+inferring the dynamics mean that they
+accumulate evidence more quickly more
+efficiently and we get a face procession
+of the sorts seen in the hippocampus and
+I've already mentioned that as um Time
+Goes On by virtue of increasing our
+confidence as we assimilate this
+evidence um then that confidence is
+expressed in the confidence of our
+policies and we have a nice way of
+simulating dopamine
+responses um we can look at the behavior
+or the activity of these
+representations of different states of
+the world at different points in time
+during our policy and if we plot their
+responses into as a function of where
+the rat actually is we can simulate play
+cell activity uh that has many
+characteristics of the sort seen
+empirically
+um this just illustrates this Theta
+gamma coupling which is an almost
+necessary consequence of this sort of um
+saltatory sampling of the world and then
+updating beliefs quickly before the next
+sample comes along again the sort of
+thing that one sees empirically uh we
+can now do violation responses exactly
+as Jim was talking about what I've shown
+here are the responses to two um trials
+they're identical in nature but one is
+from the beginning of the trial where
+the the rat was not familiar with its
+environment and one is at the end of the
+trial when it becomes very familiar just
+before it starts going directly for the
+reward and interesting if we look at the
+representations of key States here what
+we see is are much more efficient and
+therefore less exuberant updating of
+expectations of hidden states that if we
+subtract the uh if like the standard
+familiar one from the OD ball or the
+unfamiliar one we reproduce the temporal
+dynamics of things like the mismatch
+negativity in Erp research and we also
+demonstrate this transfer of confidence
+or dopamine simulated dopamine responses
+uh from the rewarded um queue per se to
+this instructional or condition stimulus
+here so I'm going from um slightly
+negative to positive here uh we can play
+similar games by introducing deliberate
+violations and illicit p300 responses uh
+we can look at reinforcement learning by
+switching contingencies halfway through
+and look at the effects on uh dop
+energic responses and also
+electrophysiological responses
+um how long have I
+got I got oh that's very good is so I've
+only been talking for 25 minutes
+W good that I that I can be true to my
+promise to finish in half an hour so
+this is the epilog um so that's the
+story so far most of that is uh or will
+be in the next few weeks um in the
+published
+literature you'll notice at the moment
+there's nothing really about hierarchies
+so you know you most people here I'm
+sure more interested in the per the
+implications of this sort of theory for
+perceptual hierarchies and evence
+accumulation and purely perceptual
+domain so the the the more recent work
+that I wanted to this is not published
+um just just introduce you too is now
+taking this formalism which has a lot of
+constru validity in relation to sort of
+Choice Behavior uh neuroeconomics um um
+um Active Vision active sensing uh and
+see what it has to say about the sorts
+of themes we're more interested in which
+is the hierarchical message passing and
+the deeper the Deep generative models
+that we assume that the brain is using
+to actually understand perceptual
+sequences
+say so this is the epilogue again I'll
+just speed through this in five minutes
+what we're going to do now is tell
+exactly the same story
+but now we're going to put one of those
+discrete State Spates models they're
+known as Markoff decision processes on
+top of the first one and another one on
+top of that and another one on top of
+that so in this
+construction hidden States any one level
+in the model don't generate outcomes
+they generate the first or the initial
+hidden state of the level
+below and then that Cycles over a few
+iterations and then terminates like the
+rap terminated um when it found its um
+when it entered the U the the baited
+arms of the qes and that process recurs
+um repeats hierarchically down you know
+to any arbitrary depth so what we have
+are deep temporal generative models um
+and they're really interesting because
+not only do they have a hierarchical
+structure
+um uh in in their form but also in their
+time because if the state at any high
+level is generating the initial state
+that must have subsequent
+States then it means that the lower
+States unfold more quickly than the
+higher States so one way of thinking
+about this is the generative model says
+that um at this hour at this minute and
+at this second I am say if I was reading
+I'm on this page on this paragraph and
+on this word so if you think about the
+lower levels of as ticking over more
+quickly like the second hand of a clock
+and every Revol Revolution or every
+trajectory or every path they take then
+the high level goes forward one step and
+then it goes around again it goes
+another step another G sorry again and
+then another step and then that process
+is repeated so as the minute hand is
+going round once it goes around then the
+hour hand goes around so what we have
+here is a generative model that
+basically has in mind
+literally um beliefs about the world
+that are much more protracted in time
+and a hierarchically nested so that the
+if you could invert this sort of model
+you would have a representation of the
+context and the context of context and
+the context of context at each point as
+you go deeper into the model they are
+more temporary enduring so you'd know
+the working from the top down you'd know
+the story The Narrative if you knew the
+story of The Narrative You' knew You'
+you'd be able to generate a particular
+sentence if you could generate a
+particular sentence you could generate a
+particular word if you could generate a
+particular word you could generate a
+particular level letter um all at faster
+and faster and more Elemental time
+scales so that's the sort of model now
+that um people are starting to uh to
+play with it has exactly the same form
+as before we still got our policies in
+play that generate transitions among
+hidden states that generate outcomes but
+now the first hidden state is generated
+by the same sort of model identical
+formly identical at a high level and
+that transits there are transitions uh
+over time here but they are much slower
+and I've indicated that by making these
+red lines and red States here um a
+different color from these because these
+basically are the same as these but
+they're reused at a later point in
+time and this sort of model now allows
+you to think more carefully about the
+hierarchical message passing and the
+implications of NE Anatomy so if we now
+turn straight to the process Theory
+these are the differential equations
+that you want that fall out of that
+generative model in the previous slide
+if I express them in terms of a gradient
+descent on free energy and what we've
+done here is to write them in terms of
+prediction errors so we're back now in
+the rhetoric of predictive coding uh and
+things that people are familiar with and
+the prediction errors here are basically
+the difference between the log of an
+expected state of the world and the
+evidence for that um uh in in terms of
+previous and subsequent uh hidden States
+and the observations at any particular
+level we also have prediction errors on
+our uh preferred outcomes dened by C
+here and the actual um uh observations
+here and this actually renders the
+computation of the free energy and the
+expected free energy very very simply
+simple that the there is actually
+average prediction errors uh which he's
+trying to suppress in um in a
+statistical sense here but the important
+thing or from the point of view of of
+neuron atomy and
+neurophysiology is once we've written
+down these equations for each
+hierarchical level I here we now
+know what representations or
+expectations are needed to compute other
+expectations and representations so in
+exactly the same way as previously we
+now can write down the computation
+Anatomy the the mathematical connectone
+implied by putting a gradient descent on
+these hierarchal or deep temporal models
+here um that's helped enormously by
+knowing about the brain so for example
+we know that um the only neural
+populations that send messages to other
+parts of the brain are are principal
+cells by definition superficial and deep
+pamal cells if we look at this we know
+the only things that have to be passed
+between different uh levels hierarchal
+levels are the expected States down here
+which are the sort of basy model
+averages over the policies when we
+condition the states on each policy so
+we can associate the expected states
+with these red cells here superficial
+and deep paramal cells we also know from
+this message these
+equations that the um expected states
+have to be passed to the prediction
+errors and we know that the cells in
+receipt or forward connections are the
+spino stellic cells in granular layers
+here uh denoted by the blue layers here
+that are in re seat of the forward
+connections so we now can write down at
+least iconically or graphically a
+message passing scheme that starts to
+look very much like the intrinsic and
+extrinsic connections that we know about
+intrinsic being within a say a cortical
+macroc column or a cortical area and ex
+it being between areas different
+hierarchical levels so this could be say
+V1 V2 uh V3 here with the four
+connections going from The Superficial
+State estimates here to the um the
+granular layer here and then the Deep
+paramal cells sending back predictions
+to uh um The Superficial and the Deep
+layers encoded by the C and the d uh
+parameters of our generative model um
+that from the previous slide and also we
+now have an interesting candidate role
+for the uh basil ganga in the sense that
+we also have do the evaluation and that
+evaluation has to go back a Nuance the
+selection of the policies that are in uh
+necessary to actually take the Bas model
+averages to get the expected States
+there's a nice circular causality here
+that is necessary from the uh the
+mathematical structure of this inversion
+scheme um and that's just cartooned here
+in terms of the exic connectivity again
+I won't we can go back to this if people
+are interested but the there is actually
+a remarkable correspondence between not
+only the deployment but also the of
+these extrinsic connections um and those
+dictated by uh that particular message
+passing or gradient descent that I
+showed on the previous slide and if you
+subscribe to this sort of scheme
+anatomically and the theory being a a
+metaphor for neuronal uh activity in the
+brain what you'd end up claiming is that
+the goodness of a policy it's negative
+expected free energy is encoded in the
+cordate for for high level more abstract
+um uh representations in the Deep
+generative
+model um for more uh intermediate levels
+uh sorry the cordate for intermediate
+levels for more abstract ones in the
+Globus paladim um and in um the putan
+for uh motor Loops uh whereas the policy
+expectations per se um have U here been
+assigned again to the uh Globus paladis
+interna so just you know a way of
+getting from the mathematical Anatomy to
+the uh to the to biological or
+neuroanatomy in a purely top- down
+dispassionate mathematically dryway just
+taking the equations and seeing what
+form did they imply for message passing
+and what sorts of message passing do we
+see in the real brain uh Andre bastos
+will I think he may not but he did do a
+lot of work on of this sort on intrinsic
+connectivity within a macro column um
+chical microcircuits predictive coding
+exactly the same game can be played here
+for this discrete State space model with
+one key exception which Lars might like
+because there's been a lot of debate in
+Scotland about whether um The
+Superficial paramal cells incode
+predictions uh or expectations or
+prediction errors in this scheme in this
+discrete State space scheme The
+Superficial paramet cells code
+expectations not prediction errors and
+you may ask why well the reason is they
+do encode prediction errors but they do
+it by physically in a very different way
+and that follows from this the form of
+this differential equation here where
+we're expressing the states as a sigmoid
+function a softmax operator on V which
+we can associate with depolarization
+where the rate of change of
+depolarization or voltage is
+proportional to the error so the error
+from the point of view of a neural Mass
+model now becomes a conductance so so
+the cells are encoding prediction error
+but the error is in the conductance so
+when all the all the post synaptic
+drives to the conductance post
+synaptically are
+imbalance and there is no further change
+or drive to the potential that means
+prediction errors are zero so when the
+when the cell or a population has
+reached electrodynamically steady state
+it's found its minimum prediction error
+uh and then it fires but the it is the
+firing here that is uh asso iated with
+the um oops with the um the expected
+states of the world here so that's an
+interesting thing which I thought might
+be useful for discussion in terms of
+reconciling a lot of paradoxes about
+what's what's been passed forward and
+would you expect it to be explained away
+or would you expect it to be boosted
+sharpened uh all sorts of interesting
+issues here uh closing with an example
+of reading deep hierarchical model where
+we have um uh beliefs about six
+sentences each comprising four words
+each word um here has iconic letters
+that can either be an uppercase or a
+lowercase the par dromic in the sense it
+doesn't matter whether uh the word
+whether the cat has to flee from the uh
+the the sorry the bird has to flee from
+the cat it doesn't matter whether
+whether um we flip them in a horizontal
+way it still means the same thing but it
+does these this agent is surprise if we
+use a lowercase three words oops it
+ises
+oh um let me just skip it through this
+because um we want to spend more time in
+uh in discussion if we can uh so that's
+just the generative model with two
+levels um semantics or sentence
+structure word structure and outcomes
+generating particular if you like
+letters but they're icons in this
+instance and then with this scheme we
+can simulate things like reading um so
+here's a little four-page story or
+sentence that and that word is flee that
+word is weight because there's nothing
+next to the bird that word is feed
+because there are seeds that the bird
+can feed on and that is weight so this
+is a sentence flee weight feed weight
+and that's a happy sentence uh and it
+will categorize it as happy but the
+problem that we're trying to address
+here is exactly what we started with how
+do you scan how do you search where do
+you go and forage for information to
+resolve as much uncertainty as you can
+about which of these six sentences is in
+play uh and when the system does this
+just by Trying to minimize its expective
+free energy it shows this very
+interesting Behavior where it um jumps
+from one word or page to the next um
+Without Really dwelling and wasting time
+resolving uncertainty that is already
+resolved so once it sees a cat it
+already knows that this has to be a flea
+word and it does need to see where the
+other other letters in this word are
+actually doing it already knows there's
+no more epistemic value to be had
+there's no more uncertainty resolve
+it'll now jump to the next page uh and
+resolves uncertainty after a couple of
+pyic eye movements then jump to the next
+page and um after this once a card at in
+the final page it knows exactly what the
+sentence was doing um and if I
+can I'll just show a movie of of um of
+it doing that
+so the red dots correspond to where it's
+looking at the present time and the um
+images that uh mixtures of the icons
+represent conditional expectations and
+the main point to be taken from this is
+that it knows there's a bird there but
+it never looked there it has sufficient
+PR knowledge in its deep temporal model
+it doesn't need to actually go and see
+stuff it knows stuff is there because it
+knows what caused that stuff um and with
+this sort of simulation one can then do
+exactly what Jim was talking about which
+was if it knows stuff and it has
+predictions then it should be possible
+to disclose or reveal that knowledge
+that
+predictability by introducing violations
+and elicit the sorts of classical
+responses that we see empirically uh and
+what we've done here is because we've
+got a deep model we can do local and
+global viol ations we can um make the
+final Story the final sentence a very
+surprising one without changing any of
+the stimuli at the same time with or
+without um making the PRI least about
+the upper lowercase the sort of local
+featural uh
+expectations um we can switch those
+around to so we replay exactly the same
+stimuli and the same behaviors but just
+by changing the PRI beliefs of the agent
+we can cause certain things to be
+surprising and those things can either
+be the local the first level or the
+higher uh the second level and if we do
+that um we get lots of um behaviors that
+looks that look again um a little bit
+like delay period activity in the
+prefontal cortex of A perisic Sort that
+you s you see prior to aard being being
+selected and enacted while at the same
+time the filter the um the band pass
+filtered voltages that are being driven
+by the implicit prediction errors look
+very much like perisic or um uh erps and
+when you look at those perisic erps
+under local versus global violations
+what you actually see is something looks
+almost identical if it's a local
+violation to a mismatch negativity
+whereas for the global violation you get
+the mismatches or the um
+um the differences much later on in time
+look very much like a p300 um I can see
+what I was going to show you um no I
+can't yes I can go that was a that was a
+very pretty slide but I
+can't very clever it's a quote from well
+you don't need to know that and then um
+and then the final slide it's got a
+thank you um a lot of people were on
+this slide but you'll never know who now
+will you so thank you very
+much
+so um the uh Workshop is structured so
+that there's a lot of time for
+discussion after each talk um and uh uh
+so the floor is open now for people to
+uh ask questions or make
+observations uh I was just informed
+about how they do this in philosophy
+conferences that involves raising your
+hand or your finger but I haven't
+mastered that yet so I don't understand
+it um uh so
+I I think it's too complicated for
+so I I think it's too complicated for
+this group but not for
+philosophers so does who would like to
+uh to
+start I'll
+start um yeah I was just wondering if
+you could say more you mentioned that uh
+you get something when there's uh Choice
+involved with the rat experiment
+simulation uh something looks like a
+drift diffusion model and I've always
+been puzzled at how you get something
+that looks really like choice or agency
+out of a predictive coding uh model so
+maybe you can uh elaborate a little bit
+on
+that so the question is um where does
+the choice come into predicted coding um
+I I think that question let me just uh
+be a little more specific it's not that
+I don't see how you get Choice behavior
+in the sense that you can use predictive
+coding in order to uh evaluate some
+options but the notion of
+agency seems if what you're doing is
+just predicting what
+you will do yeah then it seems to kind
+of undermine the notion of agency I see
+so the answer to that question it's very
+simple it's trivially simple um you put
+agency into these schemes through prior
+preferences Define the sort of agent
+that I am um so we were talking before
+about reducing surprise of All Sorts
+whether it's epistemic uncertainty um
+but the simplest sort of pragmatic
+surprise if I have a cost function that
+I don't want to be very hungry or I
+don't want to end up in an arm that has
+no rewards in it then I'd simply have to
+have the PRI believe that at the end of
+the day I will end up rewarded or sated
+or happy or complete so that anything
+else that happens is
+surprising and therefore I can then
+bring the whole Machinery predicted
+coding to Bear upon the problem of
+suppressing prediction errors and
+surprises so put it very simply in terms
+of predictive coding if I a priority
+believe that I am always going to be
+happy and complete and that I am built
+to always minimize my prediction errors
+in the future then I will look as if I
+have agency I will look as if I have
+purpose because I will always choose my
+actions in a way that avoids the
+prediction errors that suggest that I am
+not happy and complete so it's just uh
+the answer is just to absorb cost
+functions into inference by making
+costly States surprising through pre
+preferences and that and that comes out
+of things like planning a
+inference
+there lots of lots of ways of
+articulating that what from the point of
+view of the rhetoric that that I was
+using the expected free energy has two
+bits to it it has this sort of epistemic
+bit and this pragmatic bit but very
+simply it's uncertainty and surprise the
+epistemic bit is minimizing uncertainty
+the value the purpose the goal is a
+pragmatic bit defined through cost
+functions that are literally the
+surprise of of a costly a costly outcome
+so um just to follow up a little bit so
+is this sort of like a hyper prior
+that's going to be I mean it sounds like
+we all have to have this ultimate belief
+that it's all going to end well at the
+end of the day you know so pessimist
+none of us are really pessimists or
+something like that right by
+definition you may be perverse in your
+optimism but you are quintessentially
+optimistic
+yeah yeah I me you're getting to to some
+you know the deeper Back stories behind
+the the free energy principle the only
+the the only um if you like assumption
+that this instance of Hamilton's
+principal relase action makes is that
+you exist and if you exist that means
+you behave as if you have beliefs that
+you exist and by existing that just
+means that you're not decaying or dying
+you're you're you're all your states are
+within some bounds be they physiological
+or homeostatic or pecuniary in terms of
+being rich or uh in terms of
+interceptive inference you're um and um
+you know theonics on that happy but it's
+all about keeping things in bounds it's
+all about minimizing entropy minimizing
+uncertainty so um it always looks as if
+agents that exist have prior beliefs
+that they
+exist and when you unpack that that
+simply means I have preferred states
+that
+I um I will uh expect myself to occupy
+literally they are attracting States
+they are are an attractor so that
+rhetoric which actually is a retoric
+from dynamical systems theory applies
+identically to this sort of
+purposeful um uh reinforcement learning
+or sort of um um go directed um style of
+thinking about things there are
+attracting States they are simply the
+ones that you that you you uh
+frequent um which means that you will
+appear to be here appear to behave as if
+you have prior preferences for being in
+those States and you'll always choose
+actions to get to those States and it is
+those prior preferences that Define the
+sort of agent you are so in answer to
+your very first question the agent
+fullness comes
+in by implication or just through the
+sorts of Prior that that that
+characterize that particular sort of
+agent so if I was a virus I have very
+different preferences than if I was a
+person but the still both plausible and
+viable um preferences and sorts of
+Agents hi thanks for your Talk Carl um I
+was wondering now that the slides are
+back if we could go to the um delay
+period activity that you had briefly
+mentioned and um I just wanted to see
+that a little bit unpacked and related
+to what you were just talking about that
+is uh agents reducing their free energy
+how does that principle then generate
+the uh delay period activity that we see
+in places like prefrontal cortex and in
+working memory and so forth thanks right
+well those sorts of um phenomena which
+we all know and love and will um try to
+explain and measure empirically so let
+me just try and find it do you remember
+where it was right thank
+you there you are um all those sorts of
+nuts and bolts getting down and dirty in
+terms of what this scheme would do in
+when you put down Dynamics on it through
+the great and descent depend upon the
+generative model so actually very
+similar to the last you one key
+component of the generative model are
+the pride beliefs the preferences what
+gives it purpose what what are its goals
+your question I think has a very Sim
+similar answer once you've written down
+the gened model everything else is not
+you know it's not up for discussion uh
+the math tells you exactly what has to
+happen once you've written down the
+generative model and the delay per
+activity you're talking about simply
+follows from the fact you've got a deep
+generative model or a deep temporal
+model
+so as soon as you write that deep uh
+structure into the model it means that
+certain beliefs have to outlive or
+change on a slower temporal scale than
+other beliefs lower in the hierarchy
+which means you have to have delay
+period activity whilst other stuff
+unfolds at the lower levels of the of
+the hierarchy so in this particular
+example um what I've done here show the
+beliefs about um the six
+sentences over the four mov moves giving
+us uh six times uh is it four moves or
+five moves about so it's should be about
+30 uh beliefs here um uh uh on the same
+time AIS as beliefs about the particular
+word that's currently been SE and and
+these um if you like resets here uh
+indicate the onset of SARS and the
+acquisition of new information and you
+can see roughly every 250 milliseconds
+as a sard and new beliefs are updated
+about the current word but each um at
+the high level we're only considering
+considering beliefs about the um each
+letter my point is really considering
+beliefs about the word so beliefs about
+the word corresponding to what's on this
+page or what's you know um in this word
+are are invariant during the successive
+sards as you sample the different
+letters so these things change more
+quickly than these two than these things
+and when these are completed then
+there's a change here and then the cycle
+begins again so these tick over faster
+than this and then this looks a little
+bit now like um the rusters uh that you
+see prior to the emission of the sard
+here and the not from the same paper but
+um a related Paradigm if I take the
+voltage causing this delay period
+activity and bass filterate you get
+these sorts of fluctuations out here so
+when there's an increase in delay period
+activity there's usually a positive
+deflection that looks a little bit like
+a an EOP and just to followup um so is
+the um presence of delayed period
+activity is that Associated then with
+prediction error or with the buildup of
+a prediction no I think um I said the
+prediction error in in this scheme and
+this is the math that comes from the
+discrete aspect of the gentic models uh
+lies in the uh the rate of change of
+neuronal firing if you associate the bip
+physical encoding of expected states of
+the world in terms of population firing
+rates that if you subscribe to that if
+you accept that then the prediction
+error now becomes the conductances that
+drive the depolarization that drive the
+firing um so these basically reflect the
+fact that you as time goes on you become
+more and more confident that one
+particular sentence is in play and you
+can see that this is beliefs about the
+uh which sentence is in play at the
+first second third fourth and fifth eye
+movement or page sorry not eye movement
+P page or word
+um and they are now internally
+consistent and at every point in time in
+the past at the end I now believe I was
+reading the first sentence and that
+belief endures during the sampling of
+all the actual letters within each of
+the words so these would now represent
+just basically numbers between n and one
+zero and 100% neural firing that score
+your expectation that this is the
+current state of the world at the
+beginning there's lots of I'm uity not
+an enormous amount but there is
+ambiguity it's 50/50 because the the of
+the six sentences only two of them uh
+begin with the word flee which means
+that we've resolved our uncertainty
+about four of them but we're still um
+ambiguous about have an ambiguity about
+sentences one and four and that can only
+be resolved at the end because these
+sentences only differ in the words right
+at the end so during this time there's
+delayed period activity which we've got
+these two explanations hypotheses in
+play that are resolved epistemically
+optimally right at the end when we get
+to the last word here and it's a weight
+and that determines which which of the
+letters it
+was uh thank you for the talk uh I
+wanted to go back to uh this uh idea of
+this this contrast between uh
+reinforcement learning and the kind of
+formulation that uh that you're making
+here um so one of the things I I I
+thought was interesting is this
+formulation in terms of uh external
+Value Plus you you basically decompose
+your K Divergence to external value and
+uh epistemic value so how do you get uh
+exploration in the in this in this model
+so it seems to me that you're doing an R
+Max over actions to
+get some balance
+between uh immediate value and
+Information Gain
+is that is is that the uh the basic idea
+yes yeah I mean we can look at the
+equation or we can look at this that's
+absolutely right so well the expiration
+and nice it's good that you brought that
+in because another perspective on this
+is the whole foraging ethological
+perspective on expiration versus
+exploitation that rhetoric just Maps
+very simply to the epistemic and the
+pragmatic so um and there is no again
+there's no up for discussion or there's
+no ad hoc waiting between the two the
+expect free energy can always be written
+down in terms of expiration plus uh
+exploitation in terms of the epistemic
+value and the pragmatic value and what
+happens is in minimizing that one uh
+quantity you get this scanning searching
+behavior until the epistemic bit has
+been reduced allowing then you to focus
+on the prag the pragmatic bit so for
+free you get a Baye optimal expiration
+to the extent that it is sufficient to
+resolve uncertainty given the Precision
+of your beliefs about your prior
+preferences that then allow you to
+pursue pursue your goals so this solves
+the exploration exploitation dilemma in
+a Bas optimal sense it also suggests
+that the you know the very carving of
+behavior into these two complimentary
+drives is actually probably a
+misdirection so it's only that it's only
+you and me that have actually teased
+apart the two uh components of the
+expected free energy and called one an
+epistemic exploratory one or novelty
+seeking one and the other bit of
+pragmatic cost function like rewarding
+preference go directed like one there
+are lots of different ways of
+rearranging those you can also rearrange
+them in terms of risk and
+ambiguity um intrinsic and extrinsic
+value there are lots of ways of of sort
+of carving them and getting different
+perspectives and when when you see that
+and when you work with that you start to
+realize that that it's not necessarily
+the best thing just to have one
+particular religious
+perspective on it um because it lends
+you to the false uh belief if you
+subscribe to this formalism that there
+has to be some other
+adjudicator there has to be some other
+um hulas that's decides oh I need to
+explore now yeah and now I've done my
+exploration and now I'm going to go and
+do a bit of prag you know stop the
+scanning and then I'm going to go and
+you know exploit what I what I've
+discovered it doesn't work like that you
+should get that for free if you just if
+they're both part of the same cost
+function um then once you've
+sufficiently reduced your your
+uncertainty you then just naturally get
+you know you go into as Illustrated here
+um your exploitative behavior so this is
+exploitive behavior or novelty-seeking
+in the sense that you don't know what
+the que is going to tell you it doesn't
+have any immediate um uh rewarding
+aspect to it there are no preferences
+associated with the condition stimulus
+but it's interesting it's uncertainty
+resolving but after a time it becomes
+boring because you you know that you
+already know what it's going to tell you
+and once it does that then you get
+exploitive Behavior so I should have
+done that I should have um hello I
+should have um exploration
+exploitation have an argument with me
+because this is meant to be discussion
+do you not like that I'm telling you the
+I it's it's very interesting uh
+perspective on it uh I'm I'm surprised
+that it comes out that
+uh the simple uh deterministic policy uh
+works well and just kind of works out of
+the box
+that's that's more the the uh uh my uh
+inkling is uh that when you you go and
+and uh implement the stuff that can be
+difficult for it to classically balance
+uh to to balance this exploration
+exploitation so there's no tuning
+parameters there's no off policy that
+sort of estimation there's you just
+throw it in there and it all works out
+I don't know I I know exactly what
+you're saying because because you know
+this was a big selling point when we
+first realized it a couple of years ago
+and it will remain a bit like one of
+these sort of 5 to 10 year you know
+changing the direction of the ocean
+liner or the oil tanker um but yeah but
+two years later all that we're saying is
+in fact people behave according to
+Hamilton's principle of least
+action that that's all that we're saying
+and that implicitly or it looks like
+that has the behavior has this dual
+aspect but it doesn't if you could if
+you formulate it as a variational
+principle of the sort you would you did
+at school when doing urn mechanics and
+the 9th standard with general relativity
+um it sort of falls out of the mix in a
+way that um does actually
+dismiss the these separatist
+perspectives on you know I can either do
+this or that and and I got to now um
+optimize the you know the exploration in
+relation to the exploitation and the key
+trick that puts you into this simple
+world of Hamilton's principle of least
+action is the realization you can't
+prescribe good behavior unless the
+prescription is an optimization of a
+function of beliefs so a really simple
+example would be you know I've you an
+economics game and I've got a really
+high risk and a lowrisk option
+um but there may be a third option which
+is if I don't know which is which I
+should do nothing until I know more but
+if I you know in using words like I
+don't know I am now saying that my
+behavior now becomes a function of my
+knowledge or my uncertainty so I now
+induce different options different
+behaviors different policies and actions
+that rest upon my degree of belief which
+means you can't do it with value
+functional optimization or utility
+function optimization or reinforcement
+learning it can't be done with Q
+learning it cannot be done with a
+Bellman optimization scheme because what
+you've done is you've said that there
+are better behaviors when I don't know
+what to do which I generally don't do
+anything or wait until more information
+comes about and once you write that down
+you make your objective function a
+function of a probability distribution
+which becomes an energy and then you
+integrate that over time and then you've
+got to Hamilton's principle relas action
+so you know the Simplicity post Hawk is
+evident for me anyway um does that make
+any sense
+yeah can I ask you a question about the
+general approach here which is um I see
+that you start saying that you know
+there is an urge there is an Force to
+reduce your prise so this is like a I'm
+I'm making analogy with physics because
+that's what you're doing and uh there
+you start saying I can rewrite the whole
+thing instead of force in terms of an a
+energy and then you go on and you know
+explain what it implies my fear is that
+there is a difference here between what
+we do in terms of behavior first of all
+reducing Behavior to um to just
+minimizing surprise there is there are
+other forces that we cannot measure we
+cannot even measure forces force in
+terms of surprise reducing surprise in
+in an individual so even though you can
+write these equations and describe
+something general so you can prescribe
+what should be the brain
+doing do you think you can actually make
+any prediction I know you're doing it
+but I'm I'm asking how can you think
+that you can do it because there is no
+measurement to tell you that's actually
+the case so in physics you could come up
+with any any new new evidence you would
+write a new term into your equation and
+just keep adding it and then you're
+always safe because there are some
+conservation laws that basically will
+keep the Hamilton principle intact but
+who said there is such a thing in terms
+of behavior and is I think it I mean the
+simplest thing to assume there is no
+such thing so then by doing that if you
+let's say you keep adding terms because
+you believe that what we are doing is
+just reducing surprise this is the
+ultimate goal of behavior then you just
+keep adding terms to your free energy uh
+and then basically this the whole thing
+become uh a topology because you're
+assuming that you're adding terms and
+there is no no prove or disprove for
+that so that's my main question is that
+what what is I mean how do you think
+it's going to
+work right that's a very good ended
+quite a bit weakly but that was a very
+good question
+uh so lots of really interesting issues
+that so the the tautology issue um the
+Practical utility of this style of
+theorizing um Can it ever be falsified
+um adding things to so I I think you
+you're we could spend hours talking
+about any one of those first of all I
+I'm not the whole point of my style of
+Neuroscience is that that that we never
+add anything in you're always obliged to
+for every Advance you have to get rid of
+something which was a distraction or
+adhoc or heuristic we've been talking
+about this magic parameter the nuances
+the bounce being expiration and uh
+exploitation so that just goes there's
+only one thing that's being minimized
+here by everything and that's
+variational free energy that's it
+there's nothing being added however of
+course the free energy is a function of
+the generative model so all the
+interesting all the hard work all the
+heavy lifting understanding this
+biological system in this experimental
+context or this social context that
+really calls upon you writing down a
+generative model so that's it doesn't
+mean um there is no free lunch there's
+still a lot of neurobiology and
+psychology and con neuroscience and
+computation Neuroscience to do it's just
+all at the level of the of the model not
+the um not the normative principles or
+the variational principles behind it the
+tautology part of that drive to
+simplification is a drive to get to the
+ultimate explanation which has to be
+tautological and and for me the free
+energy principle is torical it's as
+torical as the natural selection but
+beautifully so and once it's completely
+torical I'll be happy uh part of that
+tautology um comes along in in a
+slightly technical guise called the
+complete class theorem and I'm bringing
+that to the discussion because it speaks
+to I think very interesting point you
+were essentially making is there
+anything that you can not exp any
+behavior in a real biological system
+that cannot be explained by this because
+if there isn't then what's the point um
+now if fact there is no behavior that
+this cannot explain so it is provably
+true that for any pair of um functions
+and behaviors there are a set of pry
+beliefs pry preferences that we're
+talking about that endow the um the
+behavior with an agent uh with with
+agency uh that render that behavior base
+optimal and by definition therefore
+conforms to the freeny principle so what
+that means is that there is no Behavior
+This Can't Describe if you can find the
+right prize so is that a weakness or a
+strength well in the sense of
+falsifiability it's a weakness in in the
+in the sense of actually using it
+practically it's a real strength because
+what that means is any system normal
+human being or psychiatric um cohort
+that you bring to me if I can solve the
+problem of getting the most appropriate
+or sufficiently good generative model
+that describes their behavior it means I
+can quantify exactly the sort of person
+they are by their priv beliefs and we
+actually come right back down to the
+first question again is what makes an
+agent an agent it's their pride beliefs
+it's that attract in set that describes
+the sorts of states that that sort of
+person occupies so yeah there is a
+deepology there's a um there there's a
+fundamental difficulty for falsification
+but there's also a glorious Insight
+underneath that which means that
+everything can now be written down in
+terms of an agent's prior beliefs and
+that if you can get the right model you
+can actually estimate these things you
+can actually quantify them um and this
+is one of the tenents of computational
+Psychiatry be able to use games erps
+mismatch negativities whatever in the
+service of say what sort of person am I
+looking at Quantified in terms of the
+pride beliefs about the way the way they
+should
+behave Carl but AR aren't you making the
+assumption that there is just a unique
+set of belief that will match a data set
+because if you have a several several
+beliefs and I would think that when you
+minimize those type of system that's
+equivalent with several Solutions and
+which almost always we've got several
+Solutions because we've got several
+minimas there cuz you you it's not
+convex the story that we are minimizing
+there so therefore we have a lot of
+minimas and I would say that if we lucky
+that mean that for any behavior that we
+can measure we now we have a set and
+that could be thrilling to know which
+one a set of Prior beliefs and so so
+it's hard so in other words we cannot
+inverse that or am I wrong no no no
+you're absolutely right but you you've
+taken us into meta metab basian land now
+okay so just to for those people
+getting a bit um who may be getting a
+bit confused so the argument I think let
+me just paraphrase it if we're now um
+saying well how do we practically use
+this style of thinking um and I'm now in
+the job of quantifying this person with
+um autistic Spectrum Disorder given a
+beads task an earn task uh in terms of
+the pry beliefs about the volatility of
+the environment and their um the need to
+please the experiment M my uh um
+responding within a certain time
+frame if that is the problem then we're
+now in and observing The Observer or
+using basian inference to make
+inferences about a basian uh machine
+which is the autistic patient um which
+is hence the metabasin thing and you're
+absolutely right that could be an ill
+poos problem so there may be um the
+complete class theorem does not say that
+there is there is only one unique set of
+uh Pride beliefs that will make render
+the behavior Bas say it exists it
+doesn't have to be a unique solution
+however what will happen is that if you
+actually use Bas in statistics to infer
+the prior beliefs of the basian or or
+ASD subject um you will you will then
+see if you've got the appropriate model
+that there are a number of equally
+plausible Solutions uh and you will also
+see that you haven't got enough data to
+disambiguate between them but you will
+also have an insight into which sorts of
+experiments you would need to do that
+disambiguation because you've got a a
+generative model underneath of this you
+can do simulations to see the sorts of
+data that you or the ways of looking at
+the responses that would enable you now
+to narrow down these uh competing but
+equally plausible sets of Pride beliefs
+that characterize that subject so it's
+you it's a very important important um
+issue but I think it's a generic one
+about how we actually apply Basin
+statistics to understand the ways in
+which our data are being
+generated I think that sort of in that
+sense it's less profound than the
+complete class theorem in itself which
+is which speaks to the sort of torgy of
+the game that we're you know we find
+ourselves
+in I think we can have time for one more
+short question okay a short one here I
+have two uh short ones oh that makes
+three so first one is about the the
+semantics and the the the second one is
+about the substance so regarding the
+semantics I'm wondering seems as though
+um there these two aspects to to the
+problem one is inference the other is
+control um and there's the epistemic
+cost in the context of inference and
+there's the pragmatic costs ultimately
+reproduction the well-being and survival
+um of the organism and seems as though
+you're uh declaring the Primacy of
+surprise so you want to sort of absorb
+the pragmatic costs under the epistemic
+costs so that's a bit of a semantic
+issue perhaps but doesn't it make more
+sense to do it the other way around and
+say so the ultimate goal is reproduction
+and
+epistemic um benefits should be a sub
+goal of that so that's the the semantic
+question and the the question on
+substance is um is this something that
+uh is already going on in
+Engineering in AI for example can can
+these principles be scaled up um to real
+world tasks such as visual object
+recognition um
+if so has it already been done or is
+this an impending Revolution for for
+AI and if not is it just a
+reinterpretation of what already exists
+J is agree because they were very short
+questions you go very short you couldn't
+get them shorter than that could
+you do you want me to try and answer
+them shortly um the semantics one
+um no no no I don't think so um I I I
+take your point um that one could
+articulate a whole Theory and absorb
+uncertainty into cost functions but that
+I think that um misses the key point
+that I was trying to make at the
+beginning of the talk that the quantity
+you have to optimize is a function of
+probability distributions or
+beliefs and that's the key thing which
+means you can never use a Bellman
+optimality scheme to properly solve that
+you do see
+heroic attempts and and those heroic
+attempts have been endemic for the past
+40 years they're known as partially
+observe Markoff decision processes or
+belief State machines and all sorts of
+heroic attempts to try and recover or
+resolve the problem of once you write
+down a discrete State space over
+continuous beliefs you can't do it
+therefore you have to prorize those
+continuous beliefs in all sorts of uh
+glorious and clever ways they don't work
+they don't scale so people have been
+aware of the problem and hence the vast
+literature un partially observed Mark of
+decision problems what I'm saying is
+that's the wrong approach the right
+approach is Hamilton's principle of
+least action where the functional that
+you need to optimize is a function of
+the beliefs before you start and by
+proof of principle I can demonstrate the
+veracity of that argument because I can
+solve problems which people working with
+partial obser mdps cannot solve so I I I
+I think it's much more than semantic I I
+think it's actually people have just got
+it wrong in the 20th century and I think
+the bellman's optimality equation is a
+very beautiful construct complete
+misdirection we should have been looking
+at Hamilton's principle of least action
+and that's 21st century are people doing
+this yeah so um so Google Deep Mind for
+example they've now uh a small group
+within Google Deep Mind have now started
+using VAR uh free energy in the in their
+deep generative model not the temporal
+models but certainly sort of you know 10
+L uh neural networks in the context of
+the uh sort of patent recognition
+approach um so people all have always
+rears I think that the variational
+approach was the right way to do this
+and of course you remember most of deep
+learning started with Jeffrey hinton's
+work and he came from uh the variational
+formulations so he was the first person
+with Peter down to to to um propose the
+helm HS machine but they've taken a sort
+of Securus Ro back to those uh that
+early work in the 1990s will it scale uh
+I I don't know because I don't think
+they're quite on top of that because
+what they do is they they haven't quite
+um got well this is insulting but I hope
+does anybody hear from
+Google oh well I won't say that
+then well anyway they love amotization
+they love casting things in terms of
+learning so what they do is instead of
+actually trying to um optimize their
+beliefs their expectations
+they try and optimize beautifully
+constructed deep Nets convolution Nets
+um that that have parameters that would
+map from data to beliefs or sufficient
+statistics of beliefs and then they
+learn that because they're experts and
+you know more than World experts they
+are the experts in optimizing the
+parameters that's a slight problem
+because it denies any context
+sensitivity the sort that that we deal
+with the neuroscientists and I deal with
+in my simulations I think once they get
+Beyond azing um their deep networks then
+they'll be in this game and then we'll
+find out whether it scales you know you
+you'll need lots of computer scientists
+big computers um so I would imagine the
+next 5 to 10 years this style of
+approach and certain the variational
+free energy formulation will become
+increasingly dominant uh in people doing
+um artificial intelligence and I I I
+should quip I mean for for some people
+the new AI is actually active inference
+you know
+it wasn't it wasn't um um a coincidence
+that we chose that sort of rhetoric you
+know to promote
+it yes so maybe I could just have a
+comment rather than a question
+then okay okay so that's a a bit um
+straight laced approach to um free
+energy reduction it's on uh based on um
+surprise aversion but I'm sure you have
+another talk on surprise seeking
+curiosity creativity playful managerial
+Styles which must have some adaptive
+purpose
+beyond our interest in horror movies and
+jokes uh it must help us get out of uh
+you know deadend problem space to
+problem spaces we can't even
+imagine um so the the comment is if you
+add surprise seeking to free energy
+minimization I don't believe it remains
+tractable so I'll leave it at
+that
