@@ -8,7 +8,7 @@
 - **Download count (PG)**: 1593
 - **Subjects**: Handel, George Frideric, 1685-1759
 - **Bookshelves**: Category: Biographies, Category: Music, Nobel Prizes in Literature
-- **Captured**: 2026-05-10T14:26:34
+- **Captured**: 2026-05-10T14:55:59
 
 ## Files
 
