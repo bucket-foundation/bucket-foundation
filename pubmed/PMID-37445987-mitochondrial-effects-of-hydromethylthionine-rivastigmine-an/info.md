@@ -7,7 +7,7 @@
 - **Authors**: Constantin Kondak, Michael Leith, Thomas C Baddeley, Renato X Santos, Charles R Harrington, Claude M Wischik, Gernot Riedel, Jochen Klein
 - **MeSH**: Mice, Animals, Rivastigmine, Memantine, tau Proteins, Mice, Transgenic, Cholinesterase Inhibitors, Alzheimer Disease, Mitochondria, Methylene Blue
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/37445987/
-- **Captured**: 2026-05-09T09:41:52
+- **Captured**: 2026-05-10T09:53:20
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: Sunghyun Hong, Hanbin Lim, Do-Hee Kim
 - **MeSH**: Melanins, Humans, Biological Products, Animals, Signal Transduction, Melanocytes
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41596305/
-- **Captured**: 2026-05-10T09:14:43
+- **Captured**: 2026-05-10T09:54:58
 
 ## Abstract
 

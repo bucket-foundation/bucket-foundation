@@ -7,7 +7,7 @@
 - **Authors**: Anthony M Kyriakopoulos, Stephanie Seneff
 - **MeSH**: Humans, Deuterium, Neoplasms, Mitochondria, Water, Reactive Oxygen Species
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41347524/
-- **Captured**: 2026-05-09T09:22:34
+- **Captured**: 2026-05-10T09:51:36
 
 ## Abstract
 

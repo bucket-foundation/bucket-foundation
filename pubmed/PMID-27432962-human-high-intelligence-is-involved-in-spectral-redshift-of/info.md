@@ -7,7 +7,7 @@
 - **Authors**: Zhuo Wang, Niting Wang, Zehua Li, Fangyan Xiao, Jiapei Dai
 - **MeSH**: Algorithms, Animals, Biophysical Phenomena, Brain, Chickens, Glutamic Acid, Haplorhini, Humans, Intelligence, Mice
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/27432962/
-- **Captured**: 2026-05-09T09:42:20
+- **Captured**: 2026-05-10T09:53:37
 
 ## Abstract
 

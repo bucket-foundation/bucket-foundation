@@ -7,7 +7,7 @@
 - **Authors**: Stephanie Seneff, László G Boros
 - **MeSH**: Methylamines, Gastrointestinal Microbiome, Humans, Animals, Deuterium, Mitochondria, Hydrogen, Mice
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42050215/
-- **Captured**: 2026-05-09T09:22:32
+- **Captured**: 2026-05-10T09:51:33
 
 ## Abstract
 

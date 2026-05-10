@@ -7,7 +7,7 @@
 - **Authors**: Iman Rad, Rainer Stahlberg, Kurt Kung, Gerald H Pollack
 - **MeSH**: Electricity, Electrodes, Electromagnetic Fields, Platinum, Water
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/34855917/
-- **Captured**: 2026-05-09T09:30:39
+- **Captured**: 2026-05-10T09:52:03
 
 ## Abstract
 

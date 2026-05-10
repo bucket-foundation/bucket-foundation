@@ -7,7 +7,7 @@
 - **Authors**: Geun-Ho Kang, Kilyong Lee, Chang Hwan Jeon, Seong Kyoung Kim, SungHoon Cho
 - **MeSH**: Humans, Mitochondria, Wound Healing, Skin, Animals, Biological Products, Regeneration, Skin Aging, Low-Level Light Therapy
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41828428/
-- **Captured**: 2026-05-10T09:39:17
+- **Captured**: 2026-05-10T09:53:45
 
 ## Abstract
 

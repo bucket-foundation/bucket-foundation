@@ -7,7 +7,7 @@
 - **Authors**: B A Malyarchuk, N V Pokhilyuk, G A Denisova, A N Litvinov
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41971652/
-- **Captured**: 2026-05-10T09:13:05
+- **Captured**: 2026-05-10T09:54:21
 
 ## Abstract
 

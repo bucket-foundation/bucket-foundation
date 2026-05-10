@@ -7,7 +7,7 @@
 - **Authors**: Do-Houn Kim, Gloria Salazar, Alex Klemp, Hyun-Seok Hwang, Mingchia Yeh, Lynn B Panton, Jeong-Su Kim
 - **MeSH**: Animals, Male, Muscle, Skeletal, Sequestosome-1 Protein, Obesity, Mice, Mice, Knockout, Insulin Resistance, Autophagy, TOR Serine-Threonine Kinases
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41981772/
-- **Captured**: 2026-05-10T09:40:27
+- **Captured**: 2026-05-10T09:55:51
 
 ## Abstract
 

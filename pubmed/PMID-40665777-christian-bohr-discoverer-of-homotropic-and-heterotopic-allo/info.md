@@ -7,7 +7,7 @@
 - **Authors**: Niels Bindslev
 - **MeSH**: Allosteric Regulation, History, 20th Century, Humans, Oxygen, Hemoglobins, History, 19th Century
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/40665777/
-- **Captured**: 2026-05-10T09:14:13
+- **Captured**: 2026-05-10T09:54:49
 
 ## Abstract
 

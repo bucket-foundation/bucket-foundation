@@ -7,7 +7,7 @@
 - **Authors**: Ahmad Zare, Elham Elahifard, Zahra Asadinejad
 - **MeSH**: Germination, Poaceae, Seeds, Temperature, Salinity, Adaptation, Physiological, Light, Osmotic Pressure, Egypt, Plant Weeds
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42096461/
-- **Captured**: 2026-05-09T09:30:47
+- **Captured**: 2026-05-10T09:52:13
 
 ## Abstract
 

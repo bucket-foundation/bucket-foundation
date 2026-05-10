@@ -7,7 +7,7 @@
 - **Authors**: Muhammad Ali
 - **MeSH**: Bioelectric Energy Sources, Wastewater, Electricity, Electrodes, Water Purification, Biofilms, Computer Simulation, Workflow
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42096448/
-- **Captured**: 2026-05-09T09:30:46
+- **Captured**: 2026-05-10T09:52:12
 
 ## Abstract
 

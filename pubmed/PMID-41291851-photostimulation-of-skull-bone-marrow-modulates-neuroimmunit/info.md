@@ -7,7 +7,7 @@
 - **Authors**: Yicheng Li, Yutao Du, Fanfan Ye, Hanxiao Cai, Wenmian Huang, Tao Liu, Yaoju Li, Xiaochang Xue, Guodong Feng
 - **MeSH**: Animals, Mice, Skull, Sepsis-Associated Encephalopathy, Male, Brain, Bone Marrow, Mice, Inbred C57BL, Dura Mater, Neuroimmunomodulation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41291851/
-- **Captured**: 2026-05-09T09:42:03
+- **Captured**: 2026-05-10T09:53:26
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: Naofumi Ohtsu, Eishi Hashiba, Yoshifumi Kitadate, Atsuto Yoshino, Madoka Tachibana, Mitsuhiro Hirano, Masayuki Uto
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42098584/
-- **Captured**: 2026-05-09T09:30:52
+- **Captured**: 2026-05-10T09:52:21
 
 ## Abstract
 

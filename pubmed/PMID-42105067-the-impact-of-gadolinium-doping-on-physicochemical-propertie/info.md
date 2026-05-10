@@ -7,7 +7,7 @@
 - **Authors**: Rugmani Meenambal, Tomasz Kruk, Piotr Warszyński, Natalia Łopuszyńska, Władysław P Węglarz, Katarzyna Stan-Głowińska, Joanna Wojewoda-Budka, Krzysztof Jasiński, Aleksandra Mąsior, Danuta Jantas
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42105067/
-- **Captured**: 2026-05-10T09:13:44
+- **Captured**: 2026-05-10T09:54:39
 
 ## Abstract
 

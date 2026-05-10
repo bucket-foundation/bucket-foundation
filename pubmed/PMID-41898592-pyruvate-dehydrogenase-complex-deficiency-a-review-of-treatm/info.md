@@ -7,7 +7,7 @@
 - **Authors**: Batya Betesh-Abay, Eilon Shany, Orna Staretz-Chacham, Ilan Shelef, Abed N Azab
 - **MeSH**: Humans, Pyruvate Dehydrogenase Complex Deficiency Disease, Diet, Ketogenic, Male, Female, Dichloroacetic Acid, Animals
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41898592/
-- **Captured**: 2026-05-10T09:40:24
+- **Captured**: 2026-05-10T09:55:50
 
 ## Abstract
 

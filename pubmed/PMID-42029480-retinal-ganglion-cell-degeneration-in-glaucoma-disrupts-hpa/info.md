@@ -7,7 +7,7 @@
 - **Authors**: Pietra Souza Barsanele, Juliano Jefferson da Silva, Bryan Fellipe da Silva Cortes, Eliz Maria de Oliveira Furtado, José Cipolla-Neto, Leonardo Vinícius Monteiro de Assis, Maristela Oliveira Poletini, Maria Nathália Moraes
 - **MeSH**: Animals, Corticosterone, Hypothalamo-Hypophyseal System, Pituitary-Adrenal System, Glaucoma, Mice, Male, Circadian Rhythm, Retinal Degeneration, Mice, Inbred C57BL
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42029480/
-- **Captured**: 2026-05-10T09:13:31
+- **Captured**: 2026-05-10T09:54:29
 
 ## Abstract
 

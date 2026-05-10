@@ -7,7 +7,7 @@
 - **Authors**: Sameera Ramjan, Melissa Blum, Rung-Yu Tseng, Katherine Davey, Ahmed Duke Shereen, Yoko Nomura
 - **MeSH**: Humans, Ecological Momentary Assessment, Female, Wearable Electronic Devices, Feasibility Studies, Male, Adolescent, Environmental Exposure, Young Adult, Pilot Projects
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42102276/
-- **Captured**: 2026-05-10T09:39:54
+- **Captured**: 2026-05-10T09:55:30
 
 ## Abstract
 

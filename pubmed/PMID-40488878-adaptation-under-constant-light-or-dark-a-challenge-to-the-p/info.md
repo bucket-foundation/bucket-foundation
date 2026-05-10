@@ -7,7 +7,7 @@
 - **Authors**: Alisa P Becin, Milica Trkulja, Aleksandra Bradasevic, Ivana Jokanovic, Dijana Z Travicic, Marija L J Medar, Silvana A Andric, Tatjana S Kostic
 - **MeSH**: Animals, Pineal Gland, Melatonin, Male, Darkness, Circadian Rhythm, Rats, Adaptation, Physiological, Light, Photoperiod
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/40488878/
-- **Captured**: 2026-05-10T09:39:10
+- **Captured**: 2026-05-10T09:55:07
 
 ## Abstract
 

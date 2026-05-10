@@ -7,7 +7,7 @@
 - **Authors**: R Pethig, P R Gascoyne, J A McLaughlin, A Szent-Györgyi
 - **MeSH**: Animals, Ascorbic Acid, Cell Survival, Electron Spin Resonance Spectroscopy, Female, Free Radicals, Kinetics, Mice, Oxidation-Reduction, Quinones
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/6296861/
-- **Captured**: 2026-05-09T09:21:55
+- **Captured**: 2026-05-10T09:51:27
 
 ## Abstract
 

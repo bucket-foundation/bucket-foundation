@@ -2,12 +2,12 @@
 
 - **PMID**: 42103706
 - **DOI**: 10.1038/s41592-021-01358-2
-- **PMCID**: 8828470 (full-text saved)
+- **PMCID**: PMC8828470 (full-text saved)
 - **Journal**: Nature communications  ·  **Year**: 2026
 - **Authors**: Mahsa Zabihi, Ali Khadim, Arun Lingampally, Ana Ivonne Vazquez-Armendariz, Stefan Hadzic, Georgios-Dimitrios Panagiotidis, Daniel Kalina, Jan Halweg, Tara Procida-Kowalski, Marek Bartkuhn, Xuran Chu, Janine Koepke, Christos Samakovlis, Mario Boehm, Norbert Weissmann, Andreas Günther, Werner Seeger, Peter Braubach, Susanne Herold, Malgorzata Wygrecka, Saverio Bellusci, Elie El Agha
 - **MeSH**: Animals, Humans, Mice, Myofibroblasts, Pulmonary Alveoli, Fibroblasts, Disease Models, Animal, ADAMTS4 Protein, Idiopathic Pulmonary Fibrosis, Cell Differentiation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42103706/
-- **Captured**: 2026-05-09T09:31:24
+- **Captured**: 2026-05-10T09:52:41
 
 ## Abstract
 

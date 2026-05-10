@@ -7,7 +7,7 @@
 - **Authors**: Tao Ye, Gerald H Pollack
 - **MeSH**: Salts, Sodium Chloride, Water, Acids, Electric Conductivity, Solutions
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/36301987/
-- **Captured**: 2026-05-09T09:30:41
+- **Captured**: 2026-05-10T09:52:09
 
 ## Abstract
 

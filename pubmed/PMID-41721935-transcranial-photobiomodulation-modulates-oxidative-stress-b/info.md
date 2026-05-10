@@ -7,7 +7,7 @@
 - **Authors**: Luciana Bortoluzzi, Rafael Colombo, Karoline Borges da Motta Pinto, Lucas Henriques Viscardi, Ricardo Missiaggia, Douglas Jean Turella, Lisandra Schwantess, Mirian Salvador, Catia Santos Branco, Marina Rigotti, Ellen Scotton, Tainá Schons, Silene Bazi Ribeiro, Marco Antonio Caldieraro, Adriane R Rosa
 - **MeSH**: Animals, Rats, Wistar, Male, Oxidative Stress, Low-Level Light Therapy, Rats, Electron Transport Complex IV, Biomarkers, Stress, Psychological, Major Depressive Disorder
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41721935/
-- **Captured**: 2026-05-09T09:41:58
+- **Captured**: 2026-05-10T09:53:25
 
 ## Abstract
 

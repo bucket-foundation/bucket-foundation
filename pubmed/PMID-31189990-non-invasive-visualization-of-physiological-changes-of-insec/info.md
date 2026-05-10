@@ -7,7 +7,7 @@
 - **Authors**: Shoko Usui, Mika Tada, Masaki Kobayashi
 - **MeSH**: Animals, Butterflies, Metamorphosis, Biological, Optical Imaging, Photons
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/31189990/
-- **Captured**: 2026-05-09T09:42:20
+- **Captured**: 2026-05-10T09:53:35
 
 ## Abstract
 

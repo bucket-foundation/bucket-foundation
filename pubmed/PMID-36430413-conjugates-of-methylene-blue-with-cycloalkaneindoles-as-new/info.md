@@ -7,7 +7,7 @@
 - **Authors**: Sergey O Bachurin, Elena F Shevtsova, Galina F Makhaeva, Alexey Yu Aksinenko, Vladimir V Grigoriev, Tatiana V Goreva, Tatiana A Epishina, Nadezhda V Kovaleva, Natalia P Boltneva, Sofya V Lushchekina, Elena V Rudakova, Darya V Vinogradova, Pavel N Shevtsov, Elena A Pushkareva, Ludmila G Dubova, Tatiana P Serkova, Ivan M Veselov, Vladimir P Fisenko, Rudy J Richardson
 - **MeSH**: Humans, Neurodegenerative Diseases, Cholinesterase Inhibitors, Methylene Blue, Ligands, Alzheimer Disease, Receptors, N-Methyl-D-Aspartate, Calcium, Cholinesterases
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/36430413/
-- **Captured**: 2026-05-09T09:41:53
+- **Captured**: 2026-05-10T09:53:24
 
 ## Abstract
 

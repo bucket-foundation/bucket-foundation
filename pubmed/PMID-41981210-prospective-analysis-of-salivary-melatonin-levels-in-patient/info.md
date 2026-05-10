@@ -7,7 +7,7 @@
 - **Authors**: Xenia Hautmann, Fares Komboz, Tammam Abboud, Dorothee Mielke, Veit Rohde
 - **MeSH**: Humans, Melatonin, Female, Saliva, Pineal Gland, Adult, Middle Aged, Prospective Studies, Circadian Rhythm, Cysts
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41981210/
-- **Captured**: 2026-05-10T09:12:04
+- **Captured**: 2026-05-10T09:53:49
 
 ## Abstract
 

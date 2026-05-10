@@ -7,7 +7,7 @@
 - **Authors**: Candela Zorzo, Lucía Rodríguez-Fernández, Juan A Martínez, Jorge L Arias
 - **MeSH**: Rats, Male, Female, Animals, Low-Level Light Therapy, Electron Transport Complex IV, Oxidation-Reduction, Brain, Hippocampus
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/38214813/
-- **Captured**: 2026-05-10T09:12:17
+- **Captured**: 2026-05-10T09:53:56
 
 ## Abstract
 

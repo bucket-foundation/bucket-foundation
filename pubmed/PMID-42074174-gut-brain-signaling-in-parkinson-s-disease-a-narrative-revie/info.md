@@ -7,7 +7,7 @@
 - **Authors**: Karolina Ratajczyk, Emilia Kaczorowska, Karolina Wyka, Aleksandra Tarasiuk-Zawadzka, Jakub Fichna, Agata Gajos
 - **MeSH**: Humans, Parkinson Disease, Gastrointestinal Microbiome, Brain, Animals, Signal Transduction, Brain-Gut Axis, Neurotransmitter Agents
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42074174/
-- **Captured**: 2026-05-10T09:40:10
+- **Captured**: 2026-05-10T09:55:43
 
 ## Abstract
 

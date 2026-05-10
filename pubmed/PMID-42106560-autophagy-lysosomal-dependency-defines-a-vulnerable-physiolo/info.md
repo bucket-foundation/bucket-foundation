@@ -7,7 +7,7 @@
 - **Authors**: Essha Chatterjee, Biswajit Dey, Anamika Sharma, Anil Dharavath, Aliva Naik, Hoshiyar Singh, Santanu Basak, Bhavna Pratyusha, Vigneshwar Reddy Ashireddygari, Prasad Tammineni, Harikrishna Adicherla, Ira Bhatnagar, Nandkumar Doijad, Rahul Kumar, Santosh Kumar Guru
 - **MeSH**: Triple Negative Breast Neoplasms, Lysosomes, Autophagy, Humans, Female, Doxorubicin, Animals, Cell Line, Tumor, Paclitaxel, Drug Resistance, Neoplasm
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42106560/
-- **Captured**: 2026-05-10T09:12:28
+- **Captured**: 2026-05-10T09:54:05
 
 ## Abstract
 

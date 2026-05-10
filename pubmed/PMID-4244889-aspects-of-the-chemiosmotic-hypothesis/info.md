@@ -7,7 +7,7 @@
 - **Authors**: P Mitchell
 - **MeSH**: Adenosine Triphosphatases, Adenosine Triphosphate, Animals, Biological Transport, Cell Membrane Permeability, Mitochondria, Mitochondria, Liver, Models, Chemical, Osmosis, Oxidation-Reduction
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/4244889/
-- **Captured**: 2026-05-09T09:41:15
+- **Captured**: 2026-05-10T09:53:01
 
 ## Abstract
 

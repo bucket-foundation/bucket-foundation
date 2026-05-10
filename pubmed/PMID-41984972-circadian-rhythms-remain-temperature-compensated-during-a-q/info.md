@@ -7,7 +7,7 @@
 - **Authors**: Arisa Hirano, Tohru M Takahashi, Hiroto Ashitomi, Kazumasa Z Tanaka, Takeshi Sakurai
 - **MeSH**: Animals, Circadian Rhythm, Hibernation, Neurons, Suprachiasmatic Nucleus, Mice, Period Circadian Proteins, Male, Body Temperature, Mice, Inbred C57BL
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41984972/
-- **Captured**: 2026-05-10T09:13:36
+- **Captured**: 2026-05-10T09:54:31
 
 ## Abstract
 

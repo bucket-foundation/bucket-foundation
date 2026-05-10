@@ -7,7 +7,7 @@
 - **Authors**: Miklos Nyitrai, Andrew G Szent-Györgyi, Michael A Geeves
 - **MeSH**: Actins, Adenosine Diphosphate, Adenosine Triphosphate, Animals, Calcium, Mollusca, Muscle, Skeletal, Myosin Subfragments, Nucleotides, Protein Binding
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/12441001/
-- **Captured**: 2026-05-09T09:21:54
+- **Captured**: 2026-05-10T09:51:26
 
 ## Abstract
 

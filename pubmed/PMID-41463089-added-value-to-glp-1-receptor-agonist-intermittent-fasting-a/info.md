@@ -7,7 +7,7 @@
 - **Authors**: Dragos Cozma, Cristina Văcărescu, Claudiu Stoicescu
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41463089/
-- **Captured**: 2026-05-10T09:40:32
+- **Captured**: 2026-05-10T09:55:56
 
 ## Abstract
 

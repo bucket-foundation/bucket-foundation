@@ -7,7 +7,7 @@
 - **Authors**: Stephanie Seneff, Anthony M Kyriakopoulos
 - **MeSH**: Taurine, Humans, Mitochondria, Deuterium, Reactive Oxygen Species, Oxidative Stress, Animals, Gastrointestinal Microbiome
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/39789296/
-- **Captured**: 2026-05-09T09:22:36
+- **Captured**: 2026-05-10T09:51:39
 
 ## Abstract
 

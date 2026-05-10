@@ -7,7 +7,7 @@
 - **Authors**: Mohsen Sharifzadeh
 - **MeSH**: Humans, Macular Pigment, Carotenoids, Skin, Spectrum Analysis, Raman, Biomarkers, Macula Lutea, Retina
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41683314/
-- **Captured**: 2026-05-10T09:39:41
+- **Captured**: 2026-05-10T09:55:22
 
 ## Abstract
 

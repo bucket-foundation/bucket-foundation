@@ -8,7 +8,7 @@
 - **Download count (PG)**: 667
 - **Subjects**: Relativity (Physics)
 - **Bookshelves**: Mathematics, Physics
-- **Captured**: 2026-05-09T21:39:53
+- **Captured**: 2026-05-10T09:49:41
 
 ## Files
 

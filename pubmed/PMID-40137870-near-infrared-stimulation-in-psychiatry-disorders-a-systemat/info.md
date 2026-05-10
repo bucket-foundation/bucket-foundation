@@ -7,7 +7,7 @@
 - **Authors**: Joanna Woźniak, Michał Pazdrak, Ada Domanasiewicz, Jakub Kaźmierski
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/40137870/
-- **Captured**: 2026-05-10T09:12:12
+- **Captured**: 2026-05-10T09:53:52
 
 ## Abstract
 

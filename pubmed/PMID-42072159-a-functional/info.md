@@ -7,7 +7,7 @@
 - **Authors**: Vincent Beauchamps, Julianne Touron, Danielle Gomez-Merino, Adrien Lagraniere, Carine Malle, Marie-Claire Erkel, Damien Léger, Mounir Chennaoui, Fabien Sauvet, Pierre A Fabries
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42072159/
-- **Captured**: 2026-05-10T09:13:55
+- **Captured**: 2026-05-10T09:54:42
 
 ## Abstract
 

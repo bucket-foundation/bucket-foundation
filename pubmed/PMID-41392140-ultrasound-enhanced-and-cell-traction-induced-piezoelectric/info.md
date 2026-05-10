@@ -7,7 +7,7 @@
 - **Authors**: Xing Zhang, Meifei Lian, Juncen Zhou, Ruida Xu, Zhiguang Qiao, Jinwu Wang
 - **MeSH**: Tissue Scaffolds, Tissue Engineering, Animals, Bone Regeneration, Bone and Bones, Ultrasonic Waves, Electric Stimulation, Humans
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41392140/
-- **Captured**: 2026-05-10T09:14:57
+- **Captured**: 2026-05-10T09:55:03
 
 ## Abstract
 

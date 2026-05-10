@@ -7,7 +7,7 @@
 - **Authors**: Richard Hammerschlag, Michael Levin, Rollin McCraty, Namuun Bat, John A Ives, Susan K Lutgendorf, James L Oschman
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/26665040/
-- **Captured**: 2026-05-09T09:42:22
+- **Captured**: 2026-05-10T09:53:39
 
 ## Abstract
 

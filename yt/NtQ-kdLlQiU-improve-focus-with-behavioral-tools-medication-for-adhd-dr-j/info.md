@@ -5,8 +5,8 @@
 - **Channel**: Andrew Huberman — https://www.youtube.com/channel/UC2D2CMWXMOVWx7giW1n3LIg
 - **Uploaded**: 20250310
 - **Duration**: 2:38:06 (9486s)
-- **Views**: 422729  ·  **Likes**: 10756
-- **Captured**: 2026-05-09T09:42:44
+- **Views**: 423081  ·  **Likes**: 10762
+- **Captured**: 2026-05-10T09:52:10
 
 ## Description
 

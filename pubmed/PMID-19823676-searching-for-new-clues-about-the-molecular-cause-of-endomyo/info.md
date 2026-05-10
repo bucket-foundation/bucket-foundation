@@ -7,7 +7,7 @@
 - **Authors**: Misaki Wayengera
 - **MeSH**: Autoantigens, Autoimmunity, Chagas Disease, Chemistry Techniques, Analytical, Computational Biology, Endomyocardial Fibrosis, Heart, Humans, Models, Molecular, Molecular Conformation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/19823676/
-- **Captured**: 2026-05-10T09:39:34
+- **Captured**: 2026-05-10T09:55:16
 
 ## Abstract
 

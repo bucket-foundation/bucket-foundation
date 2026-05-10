@@ -7,7 +7,7 @@
 - **Authors**: Nicole Korchinsky, Anne M Davis, László G Boros
 - **MeSH**: Humans, Deuterium, Energy Metabolism
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/39397213/
-- **Captured**: 2026-05-09T09:22:36
+- **Captured**: 2026-05-10T09:51:41
 
 ## Abstract
 

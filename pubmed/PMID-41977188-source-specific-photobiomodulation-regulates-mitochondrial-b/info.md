@@ -7,7 +7,7 @@
 - **Authors**: Ana Elena Aviña, Nguyen Le Thanh Hang, Che-Yi Chang, Yi-Fan Chen, Yun Yen, Xavier Pei-Chun Wong, Aline Yen Ling Wang, Cheng-Jen Chang, Tzu-Sen Yang
 - **MeSH**: Animals, Mice, Myoblasts, Oxidation-Reduction, Energy Metabolism, Mitochondria, Signal Transduction, Cellular Senescence, Cell Line, Low-Level Light Therapy
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41977188/
-- **Captured**: 2026-05-10T09:11:13
+- **Captured**: 2026-05-10T09:53:42
 
 ## Abstract
 

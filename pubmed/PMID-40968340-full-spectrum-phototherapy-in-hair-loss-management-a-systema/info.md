@@ -7,7 +7,7 @@
 - **Authors**: Wei Feng Zhang, Hao Wu
 - **MeSH**: Humans, Alopecia, Hair Follicle, Infrared Rays, Low-Level Light Therapy, Phototherapy
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/40968340/
-- **Captured**: 2026-05-09T09:42:05
+- **Captured**: 2026-05-10T09:53:27
 
 ## Abstract
 

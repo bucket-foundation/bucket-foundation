@@ -2,12 +2,12 @@
 
 - **PMID**: 42104167
 - **DOI**: 10.1002/adhm.202402139
-- **PMCID**: 11643635 (full-text saved)
+- **PMCID**: PMC11643635 (full-text saved)
 - **Journal**: Cell regeneration (London, England)  ·  **Year**: 2026
 - **Authors**: Jiatong Han, Xinyue Yang, Arooj Khabbir, Chun Hu, Yidan Gao, Xinran Liu, Renping Liu, Yuyang Zhang, Yang Lei
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42104167/
-- **Captured**: 2026-05-09T09:31:35
+- **Captured**: 2026-05-10T09:52:56
 
 ## Abstract
 

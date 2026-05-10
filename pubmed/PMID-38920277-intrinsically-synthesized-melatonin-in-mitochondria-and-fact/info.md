@@ -7,7 +7,7 @@
 - **Authors**: Russel J Reiter, Ramaswamy N Sharma, Luiz Gustavo de Almieda Chuffa, Danilo Grunig Humberto da Silva, Sergio Rosales-Corral
 - **MeSH**: Melatonin, Animals, Mitochondria, Humans, Pineal Gland
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/38920277/
-- **Captured**: 2026-05-10T09:39:13
+- **Captured**: 2026-05-10T09:55:11
 
 ## Abstract
 

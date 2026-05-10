@@ -2,12 +2,12 @@
 
 - **PMID**: 42103718
 - **DOI**: 10.1016/j.mattod.2019.12.005
-- **PMCID**: 10847453 (full-text saved)
+- **PMCID**: PMC12596676 (full-text saved)
 - **Journal**: Bone research  ·  **Year**: 2026
 - **Authors**: Lan Yao, Jiafei Sun, Zhiqiang Liu, Jiale Liang, Yun Wang, Ye Chen, Ruiqing Wang, Tao He, Yichen Yang, Yao He, Yunfeng Lin, Taoran Tian
 - **MeSH**: Hydrogels, Bone Regeneration, Animals, DNA, Immunomodulation, Tissue Scaffolds, Mice, Osteogenesis, Tissue Engineering, RAW 264.7 Cells
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42103718/
-- **Captured**: 2026-05-09T09:31:26
+- **Captured**: 2026-05-10T09:52:44
 
 ## Abstract
 

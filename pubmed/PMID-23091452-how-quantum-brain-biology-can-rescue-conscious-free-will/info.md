@@ -7,7 +7,7 @@
 - **Authors**: Stuart Hameroff
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/23091452/
-- **Captured**: 2026-05-09T09:42:10
+- **Captured**: 2026-05-10T09:53:29
 
 ## Abstract
 

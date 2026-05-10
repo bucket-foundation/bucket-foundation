@@ -7,7 +7,7 @@
 - **Authors**: Nana Bao, Min Zhang, Ming Tang, Ziyi Shen, Shenglin Wang, Guohui Jiang
 - **MeSH**: Animals, Alzheimer Disease, Diet, Ketogenic, Energy Metabolism, Mice, Ubiquitin Thiolesterase, Male, Cognition, Hippocampus, Brain
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42007524/
-- **Captured**: 2026-05-10T09:40:19
+- **Captured**: 2026-05-10T09:55:44
 
 ## Abstract
 

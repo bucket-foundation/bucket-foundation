@@ -7,7 +7,7 @@
 - **Authors**: Joseph Mercola
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41994801/
-- **Captured**: 2026-05-09T09:41:55
+- **Captured**: 2026-05-10T09:51:44
 
 ## Abstract
 

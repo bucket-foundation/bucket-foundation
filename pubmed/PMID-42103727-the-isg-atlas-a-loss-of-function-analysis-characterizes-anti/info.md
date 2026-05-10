@@ -2,12 +2,12 @@
 
 - **PMID**: 42103727
 - **DOI**: 10.1093/nar/gkab1038
-- **PMCID**: 8728295 (full-text saved)
+- **PMCID**: PMC8728295 (full-text saved)
 - **Journal**: Nature communications  ·  **Year**: 2026
 - **Authors**: Karsten Krey, Jennifer Risso-Ballester, Sabri Hamad, Susanne Maidl, Sara Bilekova, Quirin Emslander, Melissa Verin, Sarah Mundigl, Alexandrina Cernat, Antonio Piras, Valter Bergant, Vincent Grass, Andreas Pichlmair
 - **MeSH**: Humans, SARS-CoV-2, Interferons, COVID-19, Immunity, Innate, Virus Internalization, Antiviral Agents, Animals, Endosomes, Signal Transduction
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42103727/
-- **Captured**: 2026-05-09T09:31:27
+- **Captured**: 2026-05-10T09:52:48
 
 ## Abstract
 

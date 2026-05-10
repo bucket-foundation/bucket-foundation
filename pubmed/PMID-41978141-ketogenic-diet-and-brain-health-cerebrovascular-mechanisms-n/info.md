@@ -7,7 +7,7 @@
 - **Authors**: Noémi Mózes, Ágnes Fehér, Tamás Csípő, Vince Fazekas-Pongor, Ágnes Lipécz, Dávid Major, Andrea Lehoczki, Norbert Dósa, Kata Pártos, Boglárka Csík, Hung Wei Yi, Csilla Kaposvári, Krisztián Horváth, Mónika Fekete
 - **MeSH**: Humans, Diet, Ketogenic, Neuroprotection, Brain, Translational Research, Biomedical, Energy Metabolism, Aging, Animals, Oxidative Stress
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41978141/
-- **Captured**: 2026-05-10T09:40:22
+- **Captured**: 2026-05-10T09:55:48
 
 ## Abstract
 

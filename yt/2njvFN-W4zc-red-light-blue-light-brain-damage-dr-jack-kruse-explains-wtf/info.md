@@ -5,8 +5,8 @@
 - **Channel**: Dr Brandon Crawford, DC, FIBFN-CND — https://www.youtube.com/channel/UCSCoxBZ4hxhS6S80InRZz4w
 - **Uploaded**: 20250606
 - **Duration**: 1:30:28 (5428s)
-- **Views**: 87458  ·  **Likes**: 2680
-- **Captured**: 2026-05-09T09:15:47
+- **Views**: 87640  ·  **Likes**: 2689
+- **Captured**: 2026-05-10T09:53:14
 
 ## Description
 

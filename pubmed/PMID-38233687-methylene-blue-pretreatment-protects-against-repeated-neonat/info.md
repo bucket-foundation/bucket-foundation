@@ -7,7 +7,7 @@
 - **Authors**: Chongyun Wu, Qianting Deng, Ling Zhu, Timon Cheng-Yi Liu, Rui Duan, Luodan Yang
 - **MeSH**: Animals, Isoflurane, Animals, Newborn, Memory Disorders, Methylene Blue, Brain Injuries, Rats, Sprague-Dawley, Male, Apoptosis, Neuroprotective Agents
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/38233687/
-- **Captured**: 2026-05-09T09:41:52
+- **Captured**: 2026-05-10T09:53:18
 
 ## Abstract
 

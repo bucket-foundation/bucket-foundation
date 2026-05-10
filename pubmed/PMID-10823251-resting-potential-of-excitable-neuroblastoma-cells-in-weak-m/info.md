@@ -7,7 +7,7 @@
 - **Authors**: H Sonnier, O V Kolomytkin, A A Marino
 - **MeSH**: Brain Neoplasms, Electromagnetic Fields, Humans, Ion Transport, Membrane Potentials, Neuroblastoma, Neurons, Tumor Cells, Cultured
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/10823251/
-- **Captured**: 2026-05-09T09:41:26
+- **Captured**: 2026-05-10T09:53:09
 
 ## Abstract
 

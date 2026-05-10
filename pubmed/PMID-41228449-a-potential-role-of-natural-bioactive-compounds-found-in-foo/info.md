@@ -7,7 +7,7 @@
 - **Authors**: Sandro Huenchuguala, Juan Segura-Aguilar
 - **MeSH**: Humans, Parkinson Disease, Melanins, Animals, Dopaminergic Neurons, Neuroprotective Agents, Signal Transduction
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41228449/
-- **Captured**: 2026-05-10T09:39:43
+- **Captured**: 2026-05-10T09:55:26
 
 ## Abstract
 

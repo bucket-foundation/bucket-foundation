@@ -7,7 +7,7 @@
 - **Authors**: Jesús Bocio-Núñez, Mª José Montoya-García, Mª Ángeles Vázquez-Gámez, Daniel Martín, Pedro Chacón, Miguel Ángel Rico, Miguel Ángel Colmenero, Alberto Yufera, Mercè Giner
 - **MeSH**: Cell Differentiation, Osteoblasts, Animals, Mice, Electric Stimulation, Cell Survival, Alkaline Phosphatase, Osteogenesis, Cell Proliferation, Core Binding Factor Alpha 1 Subunit
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41968506/
-- **Captured**: 2026-05-10T09:14:54
+- **Captured**: 2026-05-10T09:55:00
 
 ## Abstract
 

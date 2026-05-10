@@ -7,7 +7,7 @@
 - **Authors**: Zheng Li, Gerald H Pollack
 - **MeSH**: Heart, Hemodynamics, Cardiovascular System, Blood Flow Velocity, Blood Circulation, Blood Pressure
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/37856567/
-- **Captured**: 2026-05-09T09:30:42
+- **Captured**: 2026-05-10T09:52:10
 
 ## Abstract
 

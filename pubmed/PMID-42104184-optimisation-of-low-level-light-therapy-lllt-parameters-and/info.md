@@ -2,12 +2,12 @@
 
 - **PMID**: 42104184
 - **DOI**: 10.1155/2023/7638223
-- **PMCID**: 10471456 (full-text saved)
+- **PMCID**: PMC10471456 (full-text saved)
 - **Journal**: Lasers in medical science  ·  **Year**: 2026
 - **Authors**: Anna Ścisłowska-Czarnecka, Amelia Lizak, Aleksandra Matuła, Aneta Bac, Joanna Homa, Magdalena Chadzińska, Beata Stenka
 - **MeSH**: Fibroblasts, Low-Level Light Therapy, Humans, Cell Movement, Matrix Metalloproteinase 2, Nitric Oxide, Cells, Cultured, Wound Healing, Matrix Metalloproteinase 9, Cell Adhesion
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42104184/
-- **Captured**: 2026-05-09T09:31:36
+- **Captured**: 2026-05-10T09:52:58
 
 ## Abstract
 

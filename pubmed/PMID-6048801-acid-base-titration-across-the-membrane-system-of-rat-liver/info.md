@@ -7,7 +7,7 @@
 - **Authors**: P Mitchell, J Moyle
 - **MeSH**: Animals, Dinitrophenols, Hydrogen-Ion Concentration, Hypoxia, In Vitro Techniques, Kinetics, Liver, Male, Membrane Potentials, Mitochondria
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/6048801/
-- **Captured**: 2026-05-09T09:41:16
+- **Captured**: 2026-05-10T09:53:04
 
 ## Abstract
 

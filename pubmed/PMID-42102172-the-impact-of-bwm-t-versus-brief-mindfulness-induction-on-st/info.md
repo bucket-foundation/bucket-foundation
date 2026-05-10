@@ -7,7 +7,7 @@
 - **Authors**: Mauro Cozzolino, Marco Borgese, Giovanna Celia
 - **MeSH**: Humans, Self Efficacy, Mindfulness, Female, Male, Stress, Psychological, Anxiety, Students, Young Adult, Universities
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42102172/
-- **Captured**: 2026-05-10T09:39:56
+- **Captured**: 2026-05-10T09:55:39
 
 ## Abstract
 

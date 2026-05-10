@@ -5,8 +5,8 @@
 - **Channel**: Maria Menounos — https://www.youtube.com/channel/UCr1QfZg76KdSuhRck5HCaGQ
 - **Uploaded**: 20240123
 - **Duration**: 1:02:29 (3749s)
-- **Views**: 69244  ·  **Likes**: 2439
-- **Captured**: 2026-05-09T09:17:05
+- **Views**: 69277  ·  **Likes**: 2442
+- **Captured**: 2026-05-10T09:53:52
 
 ## Description
 

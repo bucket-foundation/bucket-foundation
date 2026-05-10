@@ -7,7 +7,7 @@
 - **Authors**: Guiqiang Zhou, Xing Wang, Tongzhou Qin, Ling Guo, Jiajin Lin, Zhaowen Zhang, Peng Gao, Yan Zhou, Wei He, Jing Li, Guirong Ding
 - **MeSH**: Animals, NLR Family, Pyrin Domain-Containing 3 Protein, Tryptophan, Gastrointestinal Microbiome, Pyroptosis, Prefrontal Cortex, Serotonin, Mice, Anxiety, Male
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42106547/
-- **Captured**: 2026-05-10T09:40:03
+- **Captured**: 2026-05-10T09:55:41
 
 ## Abstract
 

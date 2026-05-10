@@ -7,7 +7,7 @@
 - **Authors**: Asmaa Ibrahim, Hanan Elhaes, Medhat A Ibrahim
 - **MeSH**: Quantum Dots, Graphite, HIV Protease Inhibitors, HIV Protease, HIV-1, Static Electricity, Models, Molecular, Quantum Theory, Density Functional Theory, Humans
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42098206/
-- **Captured**: 2026-05-09T09:30:50
+- **Captured**: 2026-05-10T09:52:15
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: Daisuke Suzuki, Akio Iida, Shohei Omokawa, Kenji Kawamura, Sitthiphong Suwannaphisit, Pasuk Mahakkanukrauh
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/42100156/
-- **Captured**: 2026-05-09T09:30:53
+- **Captured**: 2026-05-10T09:52:24
 
 ## Abstract
 

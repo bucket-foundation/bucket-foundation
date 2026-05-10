@@ -3,4 +3,4 @@
 - **Wikisource**: https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Function
 - **Page ID**: 2906619
 - **Length (chars)**: 423
-- **Captured**: 2026-05-09T21:31:41
+- **Captured**: 2026-05-10T09:49:32

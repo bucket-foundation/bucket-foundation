@@ -5,8 +5,8 @@
 - **Channel**: Dr. Ryan Welage — https://www.youtube.com/channel/UCTCEkXPpc3X_8pedc2SX0Gg
 - **Uploaded**: 20250104
 - **Duration**: 24:18 (1458s)
-- **Views**: 6689  ·  **Likes**: 346
-- **Captured**: 2026-05-09T09:17:53
+- **Views**: 6698  ·  **Likes**: 346
+- **Captured**: 2026-05-10T09:55:05
 
 ## Description
 

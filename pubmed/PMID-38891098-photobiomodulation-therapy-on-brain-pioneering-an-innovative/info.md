@@ -7,7 +7,7 @@
 - **Authors**: Tahsin Nairuz, Sangwoo-Cho, Jong-Ha Lee
 - **MeSH**: Humans, Low-Level Light Therapy, Brain, Cognition, Animals
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/38891098/
-- **Captured**: 2026-05-10T09:12:14
+- **Captured**: 2026-05-10T09:53:54
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: Balázs Takács, Elizabeth O'Neall-Hennessey, Csaba Hetényi, József Kardos, Andrew G Szent-Györgyi, Mihály Kovács
 - **MeSH**: Actins, Actomyosin, Animals, Binding Sites, Calorimetry, Kinetics, Muscle, Skeletal, Myosin Subfragments, Myosins, Protein Binding
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/20837775/
-- **Captured**: 2026-05-09T09:21:53
+- **Captured**: 2026-05-10T09:51:25
 
 ## Abstract
 

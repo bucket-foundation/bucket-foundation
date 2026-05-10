@@ -7,7 +7,7 @@
 - **Authors**: Yolanda Ramírez-Casas, José Fernández-Martínez, María Martín-Estebané, Paula Aranda-Martínez, Alba López-Rodríguez, Sergio Esquivel-Ruiz, Yang Yang, Germaine Escames, Darío Acuña-Castroviejo
 - **MeSH**: Animals, Melatonin, Sarcopenia, ARNTL Transcription Factors, Mice, Mice, Knockout, Physical Conditioning, Animal, Muscle Development, Mitochondrial Dynamics, Muscle, Skeletal
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/40241474/
-- **Captured**: 2026-05-10T09:39:11
+- **Captured**: 2026-05-10T09:55:09
 
 ## Abstract
 

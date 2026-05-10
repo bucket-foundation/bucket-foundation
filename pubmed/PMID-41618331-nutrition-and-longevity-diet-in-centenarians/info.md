@@ -7,7 +7,7 @@
 - **Authors**: Evelyn Frias-Toral, Claudia Reytor-González, Giuseppe Annunziata, Ludovica Verde, Emilia Jimenez-Flores, Keya Sen, Martina Galasso, Giovanna Muscogiuri, Daniel Simancas-Racines, Maria Dalamaga, Luigi Barrea
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/41618331/
-- **Captured**: 2026-05-10T09:40:29
+- **Captured**: 2026-05-10T09:55:54
 
 ## Abstract
 

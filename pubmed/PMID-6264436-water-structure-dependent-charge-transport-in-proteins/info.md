@@ -7,7 +7,7 @@
 - **Authors**: P R Gascoyne, R Pethig, A Szent-Györgyi
 - **MeSH**: Animals, Cattle, Chemical Phenomena, Chemistry, Physical, Electric Conductivity, Electron Transport, Mathematics, Proteins, Protons, Serum Albumin, Bovine
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/6264436/
-- **Captured**: 2026-05-09T09:21:56
+- **Captured**: 2026-05-10T09:51:28
 
 ## Abstract
 
