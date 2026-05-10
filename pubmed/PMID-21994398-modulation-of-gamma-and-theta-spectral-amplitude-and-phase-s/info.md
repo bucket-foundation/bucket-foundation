@@ -1,0 +1,14 @@
+# Modulation of gamma and theta spectral amplitude and phase synchronization is associated with the development of visuo-motor learning.
+
+- **PMID**: 21994398
+- **DOI**: 10.1016/j.clinph.2011.05.001
+- **PMCID**: PMC6673178 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2011
+- **Authors**: Bernardo Perfetti, Clara Moisello, Eric Carl Landsness, Svetlana Kvint, Simona Lanzafame, Marco Onofrj, Alessandro Di Rocco, Giulio Tononi, M Felice Ghilardi
+- **MeSH**: Adaptation, Physiological, Biomechanical Phenomena, Brain Mapping, Brain Waves, Cortical Synchronization, Electroencephalography, Female, Functional Laterality, Humans, Learning
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21994398/
+- **Captured**: 2026-05-10T16:08:40
+
+## Abstract
+
+The formation of new motor memories, which is fundamental for efficient performance during adaptation to a visuo-motor rotation, occurs when accurate planning is achieved mostly with feedforward mechanisms. The dynamics of brain activity underlying the switch from feedback to feedforward control is still matter of debate. Based on the results of studies in declarative learning, it is likely that phase synchronization of low and high frequencies as well as their temporal modulation in power amplitude underlie the formation of new motor memories during visuo-motor adaptation. High-density EEG (256 electrodes) was recorded in 17 normal human subjects during adaptation to a visuo-motor rotation of 60° in four incremental steps of 15°. We found that initial learning is associated with enhancement of gamma power in a right parietal region during movement execution as well as gamma/theta phase coherence during movement planning. Late stages of learning are instead accompanied by an increase of theta power over that same right parietal region during movement planning, which is correlated with the degree of learning and retention. Altogether, these results suggest that the formation of new motor memories and, thus, the switch from feedback to feedforward control is associated with the modulation of gamma and theta spectral activities, with respect to their amplitude and phase, during movement planning and execution. Specifically, we propose that gamma/theta phase coupling plays a pivotal role in the integration of a new representation into motor memories.

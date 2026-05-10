@@ -1,0 +1,14 @@
+# Interleaved practice enhances skill learning and the functional connectivity of fronto-parietal networks.
+
+- **PMID**: 22359276
+- **DOI**: 10.1002/hbm.22009
+- **PMCID**: PMC2652177 (full-text saved)
+- **Journal**: Human brain mapping  ·  **Year**: 2013
+- **Authors**: Chien-Ho Janice Lin, Ming-Chang Chiang, Barbara J Knowlton, Marco Iacoboni, Parima Udompholkul, Allan D Wu
+- **MeSH**: Adult, Brain Mapping, Cross-Over Studies, Female, Frontal Lobe, Functional Laterality, Humans, Image Processing, Computer-Assisted, Linear Models, Magnetic Resonance Imaging
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22359276/
+- **Captured**: 2026-05-10T16:09:06
+
+## Abstract
+
+Practice of tasks in an interleaved order generally induces superior learning compared with practicing in a repetitive order, a phenomenon known as the contextual-interference (CI) effect. Increased neural activity during interleaved over repetitive practice has been associated with the beneficial effects of CI. Here, we used psychophysiological interaction (PPI) analysis to investigate whether the neural connectivity of the dorsal premotor (PM) and the dorsolateral prefrontal (DLPFC) cortices changes when motor sequences are acquired through interleaved practice. Sixteen adults practiced a serial reaction time task where a set of three 4-element sequences were arranged in a repetitive or in an interleaved order on 2 successive days. On Day 5, participants were tested with practiced sequences to evaluate retention. A within-subjects design was used so that participants practiced sequences in the other condition (repetitive or interleaved) 2-4 weeks later. Functional magnetic resonance images were acquired during practice and retention. On Day 2 of practice, there was greater inter-regional functional connectivity in the interleaved compared with the repetitive condition for both PM-seeded and DLPFC-seeded connectivity. The increased functional connectivity between both seeded regions and sensorimotor cortical areas correlated with the benefit of interleaved practice during later retention. During retention, a significant PPI effect was found in DLPFC-seeded connectivity, with increased DLPFC-supplementary motor area connectivity correlated with the benefits of interleaved practice. These data suggest that interleaved practice benefits learning by enhancing coordination of sensorimotor cortical regions, and superior performance of sequences learned under CI is characterized by increased functional connectivity in frontal cortex.

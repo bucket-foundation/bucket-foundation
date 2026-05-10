@@ -1,0 +1,14 @@
+# Visuotactile empathy within the primary somatosensory cortex revealed by short-latency afferent inhibition.
+
+- **PMID**: 20152882
+- **DOI**: 10.1016/j.neulet.2010.02.012
+- **PMCID**:  
+- **Journal**: Neuroscience letters  ·  **Year**: 2010
+- **Authors**: Rachel Wood, Vittorio Gallese, Luigi Cattaneo
+- **MeSH**: Adult, Afferent Pathways, Empathy, Evoked Potentials, Motor, Female, Humans, Male, Motor Cortex, Neural Inhibition, Photic Stimulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20152882/
+- **Captured**: 2026-05-10T16:06:28
+
+## Abstract
+
+Intersubjectivity entails the taking of another's perspective in order to understand their experience of the world. This perspective taking capacity extends to the intra-individual sharing of tactile experience. Previous studies have shown modulation of motor cortex excitability in response to the observation of aversive tactile stimulation to the hand of another person. Here we used transcranial magnetic stimulation (TMS) and peripheral stimulation to induce a short-latency afferent inhibition (SAI) effect, which we then sought to modulate via observation of non-noxious tactile stimulation to the hand of a model. Side congruency between the observed (model) and the recorded (participant) hand induced an increase of SAI and this effect was found to hold for motor-evoked potentials (MEPs) recorded from both left and right hands. Inhibition was not found with MEPs evoked using unconditioned pulses of TMS. These results demonstrate a sensorimotor response to observed non-noxious stimulation and suggest an empathic matching system for the tactile experiences of others.

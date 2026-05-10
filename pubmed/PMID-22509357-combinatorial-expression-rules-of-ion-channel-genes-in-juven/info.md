@@ -1,0 +1,14 @@
+# Combinatorial expression rules of ion channel genes in juvenile rat (Rattus norvegicus) neocortical neurons.
+
+- **PMID**: 22509357
+- **DOI**: 10.1371/journal.pone.0034786
+- **PMCID**: PMC403769 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2012
+- **Authors**: Georges Khazen, Sean L Hill, Felix Schürmann, Henry Markram
+- **MeSH**: Animals, Gene Expression Regulation, Gene Regulatory Networks, Ion Channels, Neocortex, Neurons, Rats, Support Vector Machine
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22509357/
+- **Captured**: 2026-05-10T16:09:18
+
+## Abstract
+
+The electrical diversity of neurons arises from the expression of different combinations of ion channels. The gene expression rules governing these combinations are not known. We examined the expression of twenty-six ion channel genes in a broad range of single neocortical neuron cell types. Using expression data from a subset of twenty-six ion channel genes in ten different neocortical neuronal types, classified according to their electrophysiological properties, morphologies and anatomical positions, we first developed an incremental Support Vector Machine (iSVM) model that prioritizes the predictive value of single and combinations of genes for the rest of the expression pattern. With this approach we could predict the expression patterns for the ten neuronal types with an average 10-fold cross validation accuracy of 87% and for a further fourteen neuronal types not used in building the model, with an average accuracy of 75%. The expression of the genes for HCN4, Kv2.2, Kv3.2 and Caβ3 were found to be particularly strong predictors of ion channel gene combinations, while expression of the Kv1.4 and Kv3.3 genes has no predictive value. Using a logic gate analysis, we then extracted a spectrum of observed combinatorial gene expression rules of twenty ion channels in different neocortical neurons. We also show that when applied to a completely random and independent data, the model could not extract any rules and that it is only possible to extract them if the data has consistent expression patterns. This novel strategy can be used for predictive reverse engineering combinatorial expression rules from single-cell data and could help identify candidate transcription regulatory processes.

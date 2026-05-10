@@ -1,0 +1,14 @@
+# Intra-hemispheric functional coupling of alpha rhythms is related to golfer's performance: a coherence EEG study.
+
+- **PMID**: 21945478
+- **DOI**: 10.1016/j.ijpsycho.2011.09.008
+- **PMCID**:  
+- **Journal**: International journal of psychophysiology : official journal of the International Organization of Psychophysiology  ·  **Year**: 2011
+- **Authors**: Claudio Babiloni, Francesco Infarinato, Nicola Marzano, Marco Iacoboni, Federica Dassù, Andrea Soricelli, Paolo Maria Rossini, Cristina Limatola, Claudio Del Percio
+- **MeSH**: Adolescent, Adult, Algorithms, Alpha Rhythm, Artifacts, Cerebral Cortex, Data Interpretation, Statistical, Electroencephalography, Electromyography, Electrooculography
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21945478/
+- **Captured**: 2026-05-10T16:08:32
+
+## Abstract
+
+It has been shown that frontocentral electroencephalographic (EEG) alpha rhythms (about 10-12 Hz) were higher in amplitude in expert golfers in successful than unsuccessful putts, possibly reflecting the idea that amplitude regulation of frontocentral alpha rhythms is a physiological mechanism implied in motor control and golfer's performance (Babiloni et al., 2008). Here, we tested the ancillary hypothesis that golfer's performance is also associated to an improved coordination of cortical activity, as reflected by functional coupling of alpha rhythms across cortical regions. To this aim, between-electrodes spectral coherence was computed from spatially enhanced EEG data of the mentioned study (i.e. right handed 12 expert golfers; augmented 10-20 system; surface Laplacian estimation). Low- (about 8-10 Hz) and high-frequency (about 10-12 Hz) alpha sub-bands were considered with reference to individual alpha frequency peak. Statistical results showed that intra-hemispheric low-frequency alpha coherence in bilateral parietal-frontal (P3-F3 and P4-F4 electrodes) and parietal-central (P3-C3 and P4-C4 electrodes) was higher in amplitude in successful than unsuccessful putts (p<0.004). The same was true for intra-hemispheric high-frequency alpha coherence in bilateral parietal-frontal regions (p<0.004). These findings suggest that intra-hemispheric functional coupling of cortical alpha rhythms between "visuo-spatial" parietal area and other cortical areas is implicated in fine motor control of golfer's performance.

@@ -1,0 +1,14 @@
+# Development of auditory phase-locked activity for music sounds.
+
+- **PMID**: 19864443
+- **DOI**: 10.1152/jn.00402.2009
+- **PMCID**: PMC4349687 (full-text saved)
+- **Journal**: Journal of neurophysiology  ·  **Year**: 2010
+- **Authors**: Antoine J Shahin, Laurel J Trainor, Larry E Roberts, Kristina C Backer, Lee M Miller
+- **MeSH**: Acoustic Stimulation, Adolescent, Adult, Aging, Analysis of Variance, Auditory Perception, Brain, Child, Child, Preschool, Electroencephalography
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19864443/
+- **Captured**: 2026-05-10T16:06:11
+
+## Abstract
+
+The auditory cortex undergoes functional and anatomical development that reflects specialization for learned sounds. In humans, auditory maturation is evident in transient auditory-evoked potentials (AEPs) elicited by speech or music. However, neural oscillations at specific frequencies are also known to play an important role in perceptual processing. We hypothesized that, if oscillatory activity in different frequency bands reflects different aspects of sound processing, the development of phase-locking to stimulus attributes at these frequencies may have different trajectories. We examined the development of phase-locking of oscillatory responses to music sounds and to pure tones matched to the fundamental frequency of the music sounds. Phase-locking for theta (4-8 Hz), alpha (8-14 Hz), lower-to-mid beta (14-25 Hz), and upper-beta and gamma (25-70 Hz) bands strengthened with age. Phase-locking in the upper-beta and gamma range matured later than in lower frequencies and was stronger for music sounds than for pure tones, likely reflecting the maturation of neural networks that code spectral complexity. Phase-locking for theta, alpha, and lower-to-mid beta was sensitive to temporal onset (rise time) sound characteristics. The data were also consistent with phase-locked oscillatory effects of acoustic (spectrotemporal) complexity and timbre familiarity. Future studies are called for to evaluate developmental trajectories for oscillatory activity, using stimuli selected to address hypotheses related to familiarity and spectral and temporal encoding suggested by the current findings.

@@ -1,0 +1,14 @@
+# Pharmacologic rescue of motivational deficit in an animal model of the negative symptoms of schizophrenia.
+
+- **PMID**: 21414604
+- **DOI**: 10.1016/j.biopsych.2011.01.012
+- **PMCID**: PMC1572953 (full-text saved)
+- **Journal**: Biological psychiatry  ·  **Year**: 2011
+- **Authors**: Eleanor H Simpson, Christoph Kellendonk, Ryan D Ward, Vanessa Richards, Olga Lipatova, Stephen Fairhurst, Eric R Kandel, Peter D Balsam
+- **MeSH**: Affective Symptoms, Aminopyridines, Analysis of Variance, Animals, Conditioning, Operant, Corpus Striatum, Disease Models, Animal, Gene Expression, Indoles, Mice
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21414604/
+- **Captured**: 2026-05-10T16:07:57
+
+## Abstract
+
+Deficits in incentive motivation, the energizing of behavior in pursuit of a goal, occur in many psychiatric disorders including schizophrenia. We previously reported deficits in both cognition and incentive motivation in a transgenic mouse model of increased striatal-specific dopamine D2 receptor (D2R) density (D2R-OE mice). This molecular alteration is observed in patients with schizophrenia, making D2R-OE mice a suitable system to study the cellular and molecular mechanisms of motivation and avolition, as well as a tool for testing potential therapies against motivational deficits. Behavioral studies using operant conditioning methods were performed both to further characterize the incentive motivation deficit in D2R-OE mice and test a novel pharmacological treatment target that arose from an unbiased expression study performed using gene chips and was validated by quantitative reverse transcription polymerase chain reaction, in situ hybridization, and immunohistochemistry. The reluctance of D2R-OE mice to work is due neither to intolerance for low rates of reward, decreased reactivity to reward, nor increased sensitivity to satiety or fatigue but to a difference in willingness to work for reward. As in patients with schizophrenia, this deficit was not ameliorated by D2R blockade, suggesting that reversal of the motivational deficit by switching off the transgene results from molecular changes downstream of D2R overexpression. We observed a reversible increase in serotonin subtype 2C (5-HT2C) receptor expression in D2R-OE mice. Systemic injection of a 5-HT2C receptor antagonist increased incentive motivation in D2R-OE and control mice. We propose that targeting 5-HT2C receptors may be a useful approach to modulate incentive motivation in psychiatric illness.

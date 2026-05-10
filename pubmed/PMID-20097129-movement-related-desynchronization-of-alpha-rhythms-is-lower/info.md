@@ -1,0 +1,14 @@
+# Movement-related desynchronization of alpha rhythms is lower in athletes than non-athletes: a high-resolution EEG study.
+
+- **PMID**: 20097129
+- **DOI**: 10.1016/j.clinph.2009.12.004
+- **PMCID**:  
+- **Journal**: Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology  ·  **Year**: 2010
+- **Authors**: Claudio Del Percio, Francesco Infarinato, Marco Iacoboni, Nicola Marzano, Andrea Soricelli, Pierluigi Aschieri, Fabrizio Eusebi, Claudio Babiloni
+- **MeSH**: Adolescent, Adult, Alpha Rhythm, Analysis of Variance, Athletes, Brain Mapping, Cerebral Cortex, Electroencephalography, Electromyography, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20097129/
+- **Captured**: 2026-05-10T16:06:24
+
+## Abstract
+
+The "neural efficiency" hypothesis posits that neural activity is reduced in experts. Here we tested the hypothesis that compared with non-athletes, elite athletes are characterized by a reduced cortical activation during simple voluntary movement and that this is reflected by the modulation of dominant alpha rhythms (8-12 Hz). EEG data (56 channels; EB-Neuro) were continuously recorded in the following right-handed subjects: 10 elite karate athletes and 12 non-athletes. During the EEG recordings, they performed brisk voluntary wrist extensions of the right or left hand (right movement and left movement). The EEG cortical sources were estimated by standardized low-resolution brain electromagnetic tomography (sLORETA) freeware. With reference to a baseline period, the power decrease of alpha rhythms during the motor preparation and execution indexed the cortical activation (event-related desynchronization, ERD). During both preparation and execution of the right movements, the low- (about 8-10 Hz) and high-frequency alpha ERD (about 10-12 Hz) was lower in amplitude in primary motor area, in lateral and medial premotor areas in the elite karate athletes than in the non-athletes. For the left movement, only the high-frequency alpha ERD during the motor execution was lower in the elite karate athletes than in the non-athletes. These results confirmed that compared with non-athletes, elite athletes are characterized by a reduced cortical activation during simple voluntary movement. Cortical alpha rhythms are implicated in the "neural efficiency" of athletes' motor systems.

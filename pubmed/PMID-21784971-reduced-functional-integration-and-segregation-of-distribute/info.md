@@ -1,0 +1,14 @@
+# Reduced functional integration and segregation of distributed neural systems underlying social and emotional information processing in autism spectrum disorders.
+
+- **PMID**: 21784971
+- **DOI**: 10.1093/cercor/bhr171
+- **PMCID**: PMC2633557 (full-text saved)
+- **Journal**: Cerebral cortex (New York, N.Y. : 1991)  ·  **Year**: 2012
+- **Authors**: Jeffrey D Rudie, Zarrar Shehzad, Leanna M Hernandez, Natalie L Colich, Susan Y Bookheimer, Marco Iacoboni, Mirella Dapretto
+- **MeSH**: Adolescent, Brain, Brain Mapping, Child, Child Development Disorders, Pervasive, Female, Humans, Image Interpretation, Computer-Assisted, Magnetic Resonance Imaging, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21784971/
+- **Captured**: 2026-05-10T16:08:24
+
+## Abstract
+
+A growing body of evidence suggests that autism spectrum disorders (ASDs) are related to altered communication between brain regions. Here, we present findings showing that ASD is characterized by a pattern of reduced functional integration as well as reduced segregation of large-scale brain networks. Twenty-three children with ASD and 25 typically developing matched controls underwent functional magnetic resonance imaging while passively viewing emotional face expressions. We examined whole-brain functional connectivity of two brain structures previously implicated in emotional face processing in autism: the amygdala bilaterally and the right pars opercularis of the inferior frontal gyrus (rIFGpo). In the ASD group, we observed reduced functional integration (i.e., less long-range connectivity) between amygdala and secondary visual areas, as well as reduced segregation between amygdala and dorsolateral prefrontal cortex. For the rIFGpo seed, we observed reduced functional integration with parietal cortex and increased integration with right frontal cortex as well as right nucleus accumbens. Finally, we observed reduced segregation between rIFGpo and the ventromedial prefrontal cortex. We propose that a systems-level approach-whereby the integration and segregation of large-scale brain networks in ASD is examined in relation to typical development-may provide a more detailed characterization of the neural basis of ASD.

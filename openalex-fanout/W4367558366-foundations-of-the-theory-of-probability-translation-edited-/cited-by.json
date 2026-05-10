@@ -1,0 +1,2740 @@
+[
+  {
+    "id": "https://openalex.org/W4306697889",
+    "doi": "https://doi.org/10.1609/hcomp.v8i1.7459",
+    "title": "Privacy-Preserving Face Redaction Using Crowdsourcing",
+    "display_name": "Privacy-Preserving Face Redaction Using Crowdsourcing",
+    "publication_year": 2020,
+    "publication_date": "2020-10-01",
+    "ids": {
+      "openalex": "https://openalex.org/W4306697889",
+      "doi": "https://doi.org/10.1609/hcomp.v8i1.7459"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.1609/hcomp.v8i1.7459",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1609/hcomp.v8i1.7459",
+      "pdf_url": "https://ojs.aaai.org/index.php/HCOMP/article/download/7459/7301",
+      "source": {
+        "id": "https://openalex.org/S4387284122",
+        "display_name": "Proceedings of the AAAI Conference on Human Computation and Crowdsourcing",
+        "issn_l": "2769-1330",
+        "issn": [
+          "2769-1330",
+          "2769-1349"
+        ],
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Proceedings of the AAAI Conference on Human Computation and Crowdsourcing",
+      "raw_type": "journal-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref"
+    ],
+    "open_access": {
+      "is_oa": true,
+      "oa_status": "diamond",
+      "oa_url": "https://ojs.aaai.org/index.php/HCOMP/article/download/7459/7301",
+      "any_repository_has_fulltext": false
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5077408080",
+          "display_name": "Abdullah Alshaibani",
+          "orcid": null
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I219193219",
+            "display_name": "Purdue University West Lafayette",
+            "ror": "https://ror.org/02dqehb95",
+            "country_code": "US",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I219193219"
+            ]
+          }
+        ],
+        "countries": [
+          "US"
+        ],
+        "is_corresponding": true,
+        "raw_author_name": "Abdullah Alshaibani",
+        "raw_affiliation_strings": [
+          "Purdue University"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Purdue University",
+            "institution_ids": [
+              "https://openalex.org/I219193219"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5075819441",
+          "display_name": "Sylvia Carrell",
+          "orcid": null
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I4210104735",
+            "display_name": "Sandia National Laboratories",
+            "ror": "https://ror.org/01apwpt12",
+            "country_code": "US",
+            "type": "facility",
+            "lineage": [
+              "https://openalex.org/I1330989302",
+              "https://openalex.org/I198811213",
+              "https://openalex.org/I4210104735"
+            ]
+          }
+        ],
+        "countries": [
+          "US"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Sylvia Carrell",
+        "raw_affiliation_strings": [
+          "Sandia National Laboratories"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Sandia National Laboratories",
+            "institution_ids": [
+              "https://openalex.org/I4210104735"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5048153069",
+          "display_name": "Li-Hsin Tseng",
+          "orcid": null
+        },
+        "institutions": [],
+        "countries": [],
+        "is_corresponding": false,
+        "raw_author_name": "Li-Hsin Tseng",
+        "raw_affiliation_strings": [
+          "YouTube"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "YouTube",
+            "institution_ids": []
+          }
+        ]
+      },
+      {
+        "author_position": "middle",
+        "author": {
+          "id": "https://openalex.org/A5103207649",
+          "display_name": "Jungmin Shin",
+          "orcid": "https://orcid.org/0009-0006-7471-0437"
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I184908088",
+            "display_name": "Korea Military Academy",
+            "ror": "https://ror.org/024ctqw02",
+            "country_code": "KR",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I184908088"
+            ]
+          }
+        ],
+        "countries": [
+          "KR"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Jungmin Shin",
+        "raw_affiliation_strings": [
+          "c16267@mnd.go.kr",
+          "Korea Military Academy"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "c16267@mnd.go.kr",
+            "institution_ids": []
+          },
+          {
+            "raw_affiliation_string": "Korea Military Academy",
+            "institution_ids": [
+              "https://openalex.org/I184908088"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5108138605",
+          "display_name": "Alexander Quinn",
+          "orcid": null
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I219193219",
+            "display_name": "Purdue University West Lafayette",
+            "ror": "https://ror.org/02dqehb95",
+            "country_code": "US",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I219193219"
+            ]
+          }
+        ],
+        "countries": [
+          "US"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Alexander Quinn",
+        "raw_affiliation_strings": [
+          "Purdue University"
+        ],
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Purdue University",
+            "institution_ids": [
+              "https://openalex.org/I219193219"
+            ]
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 2,
+    "institutions_distinct_count": 5,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5077408080"
+    ],
+    "corresponding_institution_ids": [
+      "https://openalex.org/I219193219"
+    ],
+    "apc_list": null,
+    "apc_paid": null,
+    "fwci": 0.1963,
+    "has_fulltext": true,
+    "cited_by_count": 7,
+    "citation_normalized_percentile": {
+      "value": 0.54096839,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 89,
+      "max": 97
+    },
+    "biblio": {
+      "volume": "8",
+      "issue": null,
+      "first_page": "13",
+      "last_page": "22"
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11448",
+      "display_name": "Face recognition and analysis",
+      "score": 0.9790999889373779,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11448",
+        "display_name": "Face recognition and analysis",
+        "score": 0.9790999889373779,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12357",
+        "display_name": "Digital Media Forensic Detection",
+        "score": 0.9325000047683716,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1707",
+          "display_name": "Computer Vision and Pattern Recognition"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10828",
+        "display_name": "Biometric Identification and Security",
+        "score": 0.9189000129699707,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1711",
+          "display_name": "Signal Processing"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/17",
+          "display_name": "Computer Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/crowdsourcing",
+        "display_name": "Crowdsourcing",
+        "score": 0.8473971486091614
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.7035110592842102
+      },
+      {
+        "id": "https://openalex.org/keywords/crowds",
+        "display_name": "Crowds",
+        "score": 0.699870765209198
+      },
+      {
+        "id": "https://openalex.org/keywords/filter",
+        "display_name": "Filter (signal processing)",
+        "score": 0.6606999635696411
+      },
+      {
+        "id": "https://openalex.org/keywords/context",
+        "display_name": "Context (archaeology)",
+        "score": 0.575446367263794
+      },
+      {
+        "id": "https://openalex.org/keywords/pace",
+        "display_name": "Pace",
+        "score": 0.5675157904624939
+      },
+      {
+        "id": "https://openalex.org/keywords/redaction",
+        "display_name": "Redaction",
+        "score": 0.544492244720459
+      },
+      {
+        "id": "https://openalex.org/keywords/task",
+        "display_name": "Task (project management)",
+        "score": 0.5390334725379944
+      },
+      {
+        "id": "https://openalex.org/keywords/face",
+        "display_name": "Face (sociological concept)",
+        "score": 0.5299537777900696
+      },
+      {
+        "id": "https://openalex.org/keywords/artificial-intelligence",
+        "display_name": "Artificial intelligence",
+        "score": 0.5016212463378906
+      },
+      {
+        "id": "https://openalex.org/keywords/set",
+        "display_name": "Set (abstract data type)",
+        "score": 0.49976611137390137
+      },
+      {
+        "id": "https://openalex.org/keywords/perception",
+        "display_name": "Perception",
+        "score": 0.47843673825263977
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-vision",
+        "display_name": "Computer vision",
+        "score": 0.43697887659072876
+      },
+      {
+        "id": "https://openalex.org/keywords/identification",
+        "display_name": "Identification (biology)",
+        "score": 0.4212713837623596
+      },
+      {
+        "id": "https://openalex.org/keywords/machine-learning",
+        "display_name": "Machine learning",
+        "score": 0.3705343008041382
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-security",
+        "display_name": "Computer security",
+        "score": 0.2716347575187683
+      },
+      {
+        "id": "https://openalex.org/keywords/world-wide-web",
+        "display_name": "World Wide Web",
+        "score": 0.13124769926071167
+      },
+      {
+        "id": "https://openalex.org/keywords/engineering",
+        "display_name": "Engineering",
+        "score": 0.1272316873073578
+      },
+      {
+        "id": "https://openalex.org/keywords/psychology",
+        "display_name": "Psychology",
+        "score": 0.09781959652900696
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C62230096",
+        "wikidata": "https://www.wikidata.org/wiki/Q275969",
+        "display_name": "Crowdsourcing",
+        "level": 2,
+        "score": 0.8473971486091614
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.7035110592842102
+      },
+      {
+        "id": "https://openalex.org/C2777852691",
+        "wikidata": "https://www.wikidata.org/wiki/Q13430821",
+        "display_name": "Crowds",
+        "level": 2,
+        "score": 0.699870765209198
+      },
+      {
+        "id": "https://openalex.org/C106131492",
+        "wikidata": "https://www.wikidata.org/wiki/Q3072260",
+        "display_name": "Filter (signal processing)",
+        "level": 2,
+        "score": 0.6606999635696411
+      },
+      {
+        "id": "https://openalex.org/C2779343474",
+        "wikidata": "https://www.wikidata.org/wiki/Q3109175",
+        "display_name": "Context (archaeology)",
+        "level": 2,
+        "score": 0.575446367263794
+      },
+      {
+        "id": "https://openalex.org/C2777526511",
+        "wikidata": "https://www.wikidata.org/wiki/Q691543",
+        "display_name": "Pace",
+        "level": 2,
+        "score": 0.5675157904624939
+      },
+      {
+        "id": "https://openalex.org/C2776795254",
+        "wikidata": "https://www.wikidata.org/wiki/Q561071",
+        "display_name": "Redaction",
+        "level": 2,
+        "score": 0.544492244720459
+      },
+      {
+        "id": "https://openalex.org/C2780451532",
+        "wikidata": "https://www.wikidata.org/wiki/Q759676",
+        "display_name": "Task (project management)",
+        "level": 2,
+        "score": 0.5390334725379944
+      },
+      {
+        "id": "https://openalex.org/C2779304628",
+        "wikidata": "https://www.wikidata.org/wiki/Q3503480",
+        "display_name": "Face (sociological concept)",
+        "level": 2,
+        "score": 0.5299537777900696
+      },
+      {
+        "id": "https://openalex.org/C154945302",
+        "wikidata": "https://www.wikidata.org/wiki/Q11660",
+        "display_name": "Artificial intelligence",
+        "level": 1,
+        "score": 0.5016212463378906
+      },
+      {
+        "id": "https://openalex.org/C177264268",
+        "wikidata": "https://www.wikidata.org/wiki/Q1514741",
+        "display_name": "Set (abstract data type)",
+        "level": 2,
+        "score": 0.49976611137390137
+      },
+      {
+        "id": "https://openalex.org/C26760741",
+        "wikidata": "https://www.wikidata.org/wiki/Q160402",
+        "display_name": "Perception",
+        "level": 2,
+        "score": 0.47843673825263977
+      },
+      {
+        "id": "https://openalex.org/C31972630",
+        "wikidata": "https://www.wikidata.org/wiki/Q844240",
+        "display_name": "Computer vision",
+        "level": 1,
+        "score": 0.43697887659072876
+      },
+      {
+        "id": "https://openalex.org/C116834253",
+        "wikidata": "https://www.wikidata.org/wiki/Q2039217",
+        "display_name": "Identification (biology)",
+        "level": 2,
+        "score": 0.4212713837623596
+      },
+      {
+        "id": "https://openalex.org/C119857082",
+        "wikidata": "https://www.wikidata.org/wiki/Q2539",
+        "display_name": "Machine learning",
+        "level": 1,
+        "score": 0.3705343008041382
+      },
+      {
+        "id": "https://openalex.org/C38652104",
+        "wikidata": "https://www.wikidata.org/wiki/Q3510521",
+        "display_name": "Computer security",
+        "level": 1,
+        "score": 0.2716347575187683
+      },
+      {
+        "id": "https://openalex.org/C136764020",
+        "wikidata": "https://www.wikidata.org/wiki/Q466",
+        "display_name": "World Wide Web",
+        "level": 1,
+        "score": 0.13124769926071167
+      },
+      {
+        "id": "https://openalex.org/C127413603",
+        "wikidata": "https://www.wikidata.org/wiki/Q11023",
+        "display_name": "Engineering",
+        "level": 0,
+        "score": 0.1272316873073578
+      },
+      {
+        "id": "https://openalex.org/C15744967",
+        "wikidata": "https://www.wikidata.org/wiki/Q9418",
+        "display_name": "Psychology",
+        "level": 0,
+        "score": 0.09781959652900696
+      },
+      {
+        "id": "https://openalex.org/C142362112",
+        "wikidata": "https://www.wikidata.org/wiki/Q735",
+        "display_name": "Art",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C144024400",
+        "wikidata": "https://www.wikidata.org/wiki/Q21201",
+        "display_name": "Sociology",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C59822182",
+        "wikidata": "https://www.wikidata.org/wiki/Q441",
+        "display_name": "Botany",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C151730666",
+        "wikidata": "https://www.wikidata.org/wiki/Q7205",
+        "display_name": "Paleontology",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C169760540",
+        "wikidata": "https://www.wikidata.org/wiki/Q207011",
+        "display_name": "Neuroscience",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C201995342",
+        "wikidata": "https://www.wikidata.org/wiki/Q682496",
+        "display_name": "Systems engineering",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C199360897",
+        "wikidata": "https://www.wikidata.org/wiki/Q9143",
+        "display_name": "Programming language",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C86803240",
+        "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C124952713",
+        "wikidata": "https://www.wikidata.org/wiki/Q8242",
+        "display_name": "Literature",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C13280743",
+        "wikidata": "https://www.wikidata.org/wiki/Q131089",
+        "display_name": "Geodesy",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C36289849",
+        "wikidata": "https://www.wikidata.org/wiki/Q34749",
+        "display_name": "Social science",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C205649164",
+        "wikidata": "https://www.wikidata.org/wiki/Q1071",
+        "display_name": "Geography",
+        "level": 0,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 1,
+    "locations": [
+      {
+        "id": "doi:10.1609/hcomp.v8i1.7459",
+        "is_oa": true,
+        "landing_page_url": "https://doi.org/10.1609/hcomp.v8i1.7459",
+        "pdf_url": "https://ojs.aaai.org/index.php/HCOMP/article/download/7459/7301",
+        "source": {
+          "id": "https://openalex.org/S4387284122",
+          "display_name": "Proceedings of the AAAI Conference on Human Computation and Crowdsourcing",
+          "issn_l": "2769-1330",
+          "issn": [
+            "2769-1330",
+            "2769-1349"
+          ],
+          "is_oa": true,
+          "is_in_doaj": false,
+          "is_core": true,
+          "host_organization": null,
+          "host_organization_name": null,
+          "host_organization_lineage": [],
+          "host_organization_lineage_names": [],
+          "type": "journal"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Proceedings of the AAAI Conference on Human Computation and Crowdsourcing",
+        "raw_type": "journal-article"
+      }
+    ],
+    "best_oa_location": {
+      "id": "doi:10.1609/hcomp.v8i1.7459",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1609/hcomp.v8i1.7459",
+      "pdf_url": "https://ojs.aaai.org/index.php/HCOMP/article/download/7459/7301",
+      "source": {
+        "id": "https://openalex.org/S4387284122",
+        "display_name": "Proceedings of the AAAI Conference on Human Computation and Crowdsourcing",
+        "issn_l": "2769-1330",
+        "issn": [
+          "2769-1330",
+          "2769-1349"
+        ],
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Proceedings of the AAAI Conference on Human Computation and Crowdsourcing",
+      "raw_type": "journal-article"
+    },
+    "sustainable_development_goals": [
+      {
+        "display_name": "Peace, Justice and strong institutions",
+        "id": "https://metadata.un.org/sdg/16",
+        "score": 0.46000000834465027
+      }
+    ],
+    "awards": [
+      {
+        "id": "https://openalex.org/G2209453243",
+        "display_name": null,
+        "funder_award_id": "DE-NA0003525",
+        "funder_id": "https://openalex.org/F4320306084",
+        "funder_display_name": "U.S. Department of Energy"
+      },
+      {
+        "id": "https://openalex.org/G2214935549",
+        "display_name": null,
+        "funder_award_id": "NA0003525",
+        "funder_id": "https://openalex.org/F4320338291",
+        "funder_display_name": "Sandia National Laboratories"
+      },
+      {
+        "id": "https://openalex.org/G288067973",
+        "display_name": null,
+        "funder_award_id": "0003525",
+        "funder_id": "https://openalex.org/F4320306084",
+        "funder_display_name": "U.S. Department of Energy"
+      },
+      {
+        "id": "https://openalex.org/G2950341064",
+        "display_name": null,
+        "funder_award_id": "DE-NA0003525.",
+        "funder_id": "https://openalex.org/F4320332369",
+        "funder_display_name": "National Nuclear Security Administration"
+      },
+      {
+        "id": "https://openalex.org/G3437464539",
+        "display_name": null,
+        "funder_award_id": "DE-NA000352",
+        "funder_id": "https://openalex.org/F4320332369",
+        "funder_display_name": "National Nuclear Security Administration"
+      },
+      {
+        "id": "https://openalex.org/G4903105778",
+        "display_name": null,
+        "funder_award_id": "NA0003525",
+        "funder_id": "https://openalex.org/F4320306084",
+        "funder_display_name": "U.S. Department of Energy"
+      },
+      {
+        "id": "https://openalex.org/G4947178736",
+        "display_name": null,
+        "funder_award_id": "-NA0003525",
+        "funder_id": "https://openalex.org/F4320306084",
+        "funder_display_name": "U.S. Department of Energy"
+      },
+      {
+        "id": "https://openalex.org/G5211897158",
+        "display_name": null,
+        "funder_award_id": "DE-NA0003525",
+        "funder_id": "https://openalex.org/F4320332369",
+        "funder_display_name": "National Nuclear Security Administration"
+      },
+      {
+        "id": "https://openalex.org/G5339743583",
+        "display_name": null,
+        "funder_award_id": "NA0003525",
+        "funder_id": "https://openalex.org/F4320332369",
+        "funder_display_name": "National Nuclear Security Administration"
+      },
+      {
+        "id": "https://openalex.org/G648530007",
+        "display_name": null,
+        "funder_award_id": "DE-NA000352",
+        "funder_id": "https://openalex.org/F4320338291",
+        "funder_display_name": "Sandia National Laboratories"
+      },
+      {
+        "id": "https://openalex.org/G8178004050",
+        "display_name": null,
+        "funder_award_id": "contract DE-NA0003525",
+        "funder_id": "https://openalex.org/F4320332369",
+        "funder_display_name": "National Nuclear Security Administration"
+      },
+      {
+        "id": "https://openalex.org/G8279418378",
+        "display_name": null,
+        "funder_award_id": "DE-NA0003525",
+        "funder_id": "https://openalex.org/F4320338291",
+        "funder_display_name": "Sandia National Laboratories"
+      },
+      {
+        "id": "https://openalex.org/G847302206",
+        "display_name": null,
+        "funder_award_id": "DE-NA0003525.",
+        "funder_id": "https://openalex.org/F4320306084",
+        "funder_display_name": "U.S. Department of Energy"
+      }
+    ],
+    "funders": [
+      {
+        "id": "https://openalex.org/F4320306084",
+        "display_name": "U.S. Department of Energy",
+        "ror": "https://ror.org/01bj3aw27"
+      },
+      {
+        "id": "https://openalex.org/F4320309036",
+        "display_name": "Purdue University",
+        "ror": "https://ror.org/02dqehb95"
+      },
+      {
+        "id": "https://openalex.org/F4320322668",
+        "display_name": "Kuwait University",
+        "ror": "https://ror.org/021e5j056"
+      },
+      {
+        "id": "https://openalex.org/F4320332369",
+        "display_name": "National Nuclear Security Administration",
+        "ror": "https://ror.org/03sk1we31"
+      },
+      {
+        "id": "https://openalex.org/F4320338291",
+        "display_name": "Sandia National Laboratories",
+        "ror": "https://ror.org/01apwpt12"
+      }
+    ],
+    "has_content": {
+      "pdf": true,
+      "grobid_xml": true
+    },
+    "content_urls": {
+      "pdf": "https://content.openalex.org/works/W4306697889.pdf",
+      "grobid_xml": "https://content.openalex.org/works/W4306697889.grobid-xml"
+    },
+    "referenced_works_count": 37,
+    "referenced_works": [
+      "https://openalex.org/W119950205",
+      "https://openalex.org/W182571476",
+      "https://openalex.org/W1607092595",
+      "https://openalex.org/W1968990388",
+      "https://openalex.org/W1987118995",
+      "https://openalex.org/W1997504572",
+      "https://openalex.org/W2051441824",
+      "https://openalex.org/W2076232502",
+      "https://openalex.org/W2088664555",
+      "https://openalex.org/W2091759811",
+      "https://openalex.org/W2107384509",
+      "https://openalex.org/W2114100913",
+      "https://openalex.org/W2116907524",
+      "https://openalex.org/W2159024459",
+      "https://openalex.org/W2160532515",
+      "https://openalex.org/W2432917172",
+      "https://openalex.org/W2464002812",
+      "https://openalex.org/W2510725918",
+      "https://openalex.org/W2559974890",
+      "https://openalex.org/W2788481061",
+      "https://openalex.org/W2793887949",
+      "https://openalex.org/W2962884579",
+      "https://openalex.org/W2964026145",
+      "https://openalex.org/W4244924007",
+      "https://openalex.org/W4287824081",
+      "https://openalex.org/W4292480680",
+      "https://openalex.org/W4308944065",
+      "https://openalex.org/W4367558366",
+      "https://openalex.org/W6604939966",
+      "https://openalex.org/W6636164156",
+      "https://openalex.org/W6638400380",
+      "https://openalex.org/W6647726041",
+      "https://openalex.org/W6658947328",
+      "https://openalex.org/W6669775053",
+      "https://openalex.org/W6682012998",
+      "https://openalex.org/W6730490500",
+      "https://openalex.org/W7072257459"
+    ],
+    "related_works": [
+      "https://openalex.org/W3032998312",
+      "https://openalex.org/W1503094549",
+      "https://openalex.org/W4384486036",
+      "https://openalex.org/W135177976",
+      "https://openalex.org/W2337920774",
+      "https://openalex.org/W4318823662",
+      "https://openalex.org/W2886410948",
+      "https://openalex.org/W2025875869",
+      "https://openalex.org/W3207526114",
+      "https://openalex.org/W4286908577"
+    ],
+    "abstract_inverted_index": {
+      "Redaction": [
+        0
+      ],
+      "of": [
+        1,
+        9,
+        33,
+        80,
+        93,
+        101,
+        108,
+        147,
+        151,
+        167,
+        174,
+        178
+      ],
+      "private": [
+        2
+      ],
+      "information": [
+        3
+      ],
+      "from": [
+        4,
+        73
+      ],
+      "images": [
+        5,
+        74,
+        154
+      ],
+      "is": [
+        6,
+        17,
+        26
+      ],
+      "the": [
+        7,
+        31,
+        77,
+        94,
+        99,
+        102,
+        111,
+        118,
+        121,
+        131,
+        140,
+        157,
+        162,
+        165,
+        168,
+        172,
+        179
+      ],
+      "kind": [
+        8
+      ],
+      "tedious,": [
+        10
+      ],
+      "yet": [
+        11
+      ],
+      "context-independent,": [
+        12
+      ],
+      "task": [
+        13
+      ],
+      "for": [
+        14,
+        66
+      ],
+      "which": [
+        15,
+        37,
+        125,
+        134
+      ],
+      "crowdsourcing": [
+        16
+      ],
+      "especially": [
+        18
+      ],
+      "well": [
+        19
+      ],
+      "suited.": [
+        20
+      ],
+      "Despite": [
+        21
+      ],
+      "tremendous": [
+        22
+      ],
+      "progress,": [
+        23
+      ],
+      "machine": [
+        24
+      ],
+      "learning": [
+        25
+      ],
+      "not": [
+        27
+      ],
+      "keeping": [
+        28
+      ],
+      "pace": [
+        29
+      ],
+      "with": [
+        30,
+        88,
+        104,
+        156
+      ],
+      "needs": [
+        32
+      ],
+      "sensitive": [
+        34
+      ],
+      "applications": [
+        35
+      ],
+      "in": [
+        36,
+        153
+      ],
+      "inadvertent": [
+        38
+      ],
+      "disclosure": [
+        39
+      ],
+      "could": [
+        40
+      ],
+      "have": [
+        41
+      ],
+      "real-world": [
+        42
+      ],
+      "consequences.": [
+        43
+      ],
+      "Human": [
+        44
+      ],
+      "workers": [
+        45,
+        69,
+        109
+      ],
+      "can": [
+        46
+      ],
+      "detect": [
+        47
+      ],
+      "faces": [
+        48,
+        72,
+        152
+      ],
+      "that": [
+        49
+      ],
+      "machines": [
+        50
+      ],
+      "cannot;": [
+        51
+      ],
+      "however,": [
+        52
+      ],
+      "an": [
+        53
+      ],
+      "open": [
+        54
+      ],
+      "call": [
+        55
+      ],
+      "to": [
+        56,
+        70
+      ],
+      "crowds": [
+        57
+      ],
+      "would": [
+        58
+      ],
+      "entail": [
+        59
+      ],
+      "disclosure.": [
+        60
+      ],
+      "We": [
+        61,
+        160
+      ],
+      "present": [
+        62,
+        161
+      ],
+      "IntoFocus,": [
+        63
+      ],
+      "a": [
+        64,
+        89,
+        105,
+        126,
+        144,
+        175
+      ],
+      "method": [
+        65,
+        84
+      ],
+      "engaging": [
+        67
+      ],
+      "crowd": [
+        68
+      ],
+      "redact": [
+        71
+      ],
+      "without": [
+        75
+      ],
+      "disclosing": [
+        76
+      ],
+      "facial": [
+        78
+      ],
+      "identities": [
+        79
+      ],
+      "people": [
+        81
+      ],
+      "depicted.": [
+        82
+      ],
+      "The": [
+        83
+      ],
+      "works": [
+        85
+      ],
+      "iteratively,": [
+        86
+      ],
+      "starting": [
+        87
+      ],
+      "heavily": [
+        90
+      ],
+      "filtered": [
+        91,
+        155
+      ],
+      "form": [
+        92
+      ],
+      "image,": [
+        95
+      ],
+      "and": [
+        96,
+        130,
+        149,
+        171
+      ],
+      "gradually": [
+        97
+      ],
+      "reducing": [
+        98
+      ],
+      "strength": [
+        100
+      ],
+      "filter,": [
+        103
+      ],
+      "different": [
+        106
+      ],
+      "set": [
+        107
+      ],
+      "reviewing": [
+        110
+      ],
+      "image": [
+        112
+      ],
+      "at": [
+        113,
+        124,
+        133
+      ],
+      "each": [
+        114
+      ],
+      "step.": [
+        115
+      ],
+      "IntoFocus": [
+        116
+      ],
+      "exploits": [
+        117
+      ],
+      "gap": [
+        119
+      ],
+      "between": [
+        120
+      ],
+      "filter": [
+        122
+      ],
+      "level": [
+        123,
+        132
+      ],
+      "face": [
+        127
+      ],
+      "becomes": [
+        128,
+        136
+      ],
+      "unidentifiable": [
+        129
+      ],
+      "it": [
+        135
+      ],
+      "undetectable.": [
+        137
+      ],
+      "To": [
+        138
+      ],
+      "calibrate": [
+        139
+      ],
+      "algorithm,": [
+        141
+      ],
+      "we": [
+        142
+      ],
+      "performed": [
+        143
+      ],
+      "perceptual": [
+        145
+      ],
+      "study": [
+        146
+      ],
+      "detection": [
+        148
+      ],
+      "identification": [
+        150
+      ],
+      "median": [
+        158
+      ],
+      "filter.": [
+        159
+      ],
+      "system": [
+        163,
+        180
+      ],
+      "design,": [
+        164
+      ],
+      "results": [
+        166,
+        173
+      ],
+      "perception": [
+        169
+      ],
+      "study,": [
+        170
+      ],
+      "summative": [
+        176
+      ],
+      "evaluation": [
+        177
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2025,
+        "cited_by_count": 3
+      },
+      {
+        "year": 2024,
+        "cited_by_count": 2
+      },
+      {
+        "year": 2023,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2021,
+        "cited_by_count": 1
+      }
+    ],
+    "updated_date": "2026-04-21T08:09:41.155169",
+    "created_date": "2025-10-10T00:00:00"
+  },
+  {
+    "id": "https://openalex.org/W4390945037",
+    "doi": "https://doi.org/10.3389/feduc.2023.1217790",
+    "title": "Meta-critical thinking, paradox, and probabilities",
+    "display_name": "Meta-critical thinking, paradox, and probabilities",
+    "publication_year": 2024,
+    "publication_date": "2024-01-17",
+    "ids": {
+      "openalex": "https://openalex.org/W4390945037",
+      "doi": "https://doi.org/10.3389/feduc.2023.1217790"
+    },
+    "language": "en",
+    "primary_location": {
+      "id": "doi:10.3389/feduc.2023.1217790",
+      "is_oa": true,
+      "landing_page_url": "http://dx.doi.org/10.3389/feduc.2023.1217790",
+      "pdf_url": "https://www.frontiersin.org/articles/10.3389/feduc.2023.1217790/pdf?isPublishedV2=False",
+      "source": {
+        "id": "https://openalex.org/S2596526815",
+        "display_name": "Frontiers in Education",
+        "issn_l": "2504-284X",
+        "issn": [
+          "2504-284X"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320527",
+        "host_organization_name": "Frontiers Media",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320527"
+        ],
+        "host_organization_lineage_names": [
+          "Frontiers Media"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Frontiers in Education",
+      "raw_type": "journal-article"
+    },
+    "type": "article",
+    "indexed_in": [
+      "crossref",
+      "doaj"
+    ],
+    "open_access": {
+      "is_oa": true,
+      "oa_status": "gold",
+      "oa_url": "https://www.frontiersin.org/articles/10.3389/feduc.2023.1217790/pdf?isPublishedV2=False",
+      "any_repository_has_fulltext": true
+    },
+    "authorships": [
+      {
+        "author_position": "first",
+        "author": {
+          "id": "https://openalex.org/A5050994916",
+          "display_name": "Gordon G. Brittan",
+          "orcid": null
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I23732399",
+            "display_name": "Montana State University",
+            "ror": "https://ror.org/02w0trx84",
+            "country_code": "US",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I23732399",
+              "https://openalex.org/I4210126032"
+            ]
+          }
+        ],
+        "countries": [
+          "US"
+        ],
+        "is_corresponding": true,
+        "raw_author_name": "Gordon Brittan",
+        "raw_affiliation_strings": [
+          "Department of History and Philosophy, Montana State University, Bozeman, MT, United States"
+        ],
+        "raw_orcid": null,
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Department of History and Philosophy, Montana State University, Bozeman, MT, United States",
+            "institution_ids": [
+              "https://openalex.org/I23732399"
+            ]
+          }
+        ]
+      },
+      {
+        "author_position": "last",
+        "author": {
+          "id": "https://openalex.org/A5021356456",
+          "display_name": "Mark L. Taper",
+          "orcid": null
+        },
+        "institutions": [
+          {
+            "id": "https://openalex.org/I23732399",
+            "display_name": "Montana State University",
+            "ror": "https://ror.org/02w0trx84",
+            "country_code": "US",
+            "type": "education",
+            "lineage": [
+              "https://openalex.org/I23732399",
+              "https://openalex.org/I4210126032"
+            ]
+          }
+        ],
+        "countries": [
+          "US"
+        ],
+        "is_corresponding": false,
+        "raw_author_name": "Mark Louis Taper",
+        "raw_affiliation_strings": [
+          "Department of Ecology, Montana State University, Bozeman, MT, United States"
+        ],
+        "raw_orcid": null,
+        "affiliations": [
+          {
+            "raw_affiliation_string": "Department of Ecology, Montana State University, Bozeman, MT, United States",
+            "institution_ids": [
+              "https://openalex.org/I23732399"
+            ]
+          }
+        ]
+      }
+    ],
+    "institutions": [],
+    "countries_distinct_count": 1,
+    "institutions_distinct_count": 2,
+    "corresponding_author_ids": [
+      "https://openalex.org/A5050994916"
+    ],
+    "corresponding_institution_ids": [
+      "https://openalex.org/I23732399"
+    ],
+    "apc_list": {
+      "value": 950,
+      "currency": "USD",
+      "value_usd": 950
+    },
+    "apc_paid": {
+      "value": 950,
+      "currency": "USD",
+      "value_usd": 950
+    },
+    "fwci": 1.2916,
+    "has_fulltext": true,
+    "cited_by_count": 2,
+    "citation_normalized_percentile": {
+      "value": 0.77388692,
+      "is_in_top_1_percent": false,
+      "is_in_top_10_percent": false
+    },
+    "cited_by_percentile_year": {
+      "min": 90,
+      "max": 95
+    },
+    "biblio": {
+      "volume": "8",
+      "issue": null,
+      "first_page": null,
+      "last_page": null
+    },
+    "is_retracted": false,
+    "is_paratext": false,
+    "is_xpac": false,
+    "primary_topic": {
+      "id": "https://openalex.org/T11875",
+      "display_name": "Statistics Education and Methodologies",
+      "score": 0.9404000043869019,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2613",
+        "display_name": "Statistics and Probability"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    "topics": [
+      {
+        "id": "https://openalex.org/T11875",
+        "display_name": "Statistics Education and Methodologies",
+        "score": 0.9404000043869019,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2613",
+          "display_name": "Statistics and Probability"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/26",
+          "display_name": "Mathematics"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "id": "https://openalex.org/keywords/critical-thinking",
+        "display_name": "Critical thinking",
+        "score": 0.6277428865432739
+      },
+      {
+        "id": "https://openalex.org/keywords/clarity",
+        "display_name": "CLARITY",
+        "score": 0.6194782257080078
+      },
+      {
+        "id": "https://openalex.org/keywords/identification",
+        "display_name": "Identification (biology)",
+        "score": 0.5796349048614502
+      },
+      {
+        "id": "https://openalex.org/keywords/epistemology",
+        "display_name": "Epistemology",
+        "score": 0.5600592494010925
+      },
+      {
+        "id": "https://openalex.org/keywords/process",
+        "display_name": "Process (computing)",
+        "score": 0.5482809543609619
+      },
+      {
+        "id": "https://openalex.org/keywords/inference",
+        "display_name": "Inference",
+        "score": 0.5124700665473938
+      },
+      {
+        "id": "https://openalex.org/keywords/task",
+        "display_name": "Task (project management)",
+        "score": 0.491960734128952
+      },
+      {
+        "id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science",
+        "score": 0.4573303163051605
+      },
+      {
+        "id": "https://openalex.org/keywords/psychology",
+        "display_name": "Psychology",
+        "score": 0.4115932881832123
+      },
+      {
+        "id": "https://openalex.org/keywords/management-science",
+        "display_name": "Management science",
+        "score": 0.3919917643070221
+      },
+      {
+        "id": "https://openalex.org/keywords/data-science",
+        "display_name": "Data science",
+        "score": 0.3512558937072754
+      },
+      {
+        "id": "https://openalex.org/keywords/cognitive-psychology",
+        "display_name": "Cognitive psychology",
+        "score": 0.3358076214790344
+      },
+      {
+        "id": "https://openalex.org/keywords/artificial-intelligence",
+        "display_name": "Artificial intelligence",
+        "score": 0.24122241139411926
+      }
+    ],
+    "concepts": [
+      {
+        "id": "https://openalex.org/C533356498",
+        "wikidata": "https://www.wikidata.org/wiki/Q843894",
+        "display_name": "Critical thinking",
+        "level": 2,
+        "score": 0.6277428865432739
+      },
+      {
+        "id": "https://openalex.org/C2777146004",
+        "wikidata": "https://www.wikidata.org/wiki/Q14949826",
+        "display_name": "CLARITY",
+        "level": 2,
+        "score": 0.6194782257080078
+      },
+      {
+        "id": "https://openalex.org/C116834253",
+        "wikidata": "https://www.wikidata.org/wiki/Q2039217",
+        "display_name": "Identification (biology)",
+        "level": 2,
+        "score": 0.5796349048614502
+      },
+      {
+        "id": "https://openalex.org/C111472728",
+        "wikidata": "https://www.wikidata.org/wiki/Q9471",
+        "display_name": "Epistemology",
+        "level": 1,
+        "score": 0.5600592494010925
+      },
+      {
+        "id": "https://openalex.org/C98045186",
+        "wikidata": "https://www.wikidata.org/wiki/Q205663",
+        "display_name": "Process (computing)",
+        "level": 2,
+        "score": 0.5482809543609619
+      },
+      {
+        "id": "https://openalex.org/C2776214188",
+        "wikidata": "https://www.wikidata.org/wiki/Q408386",
+        "display_name": "Inference",
+        "level": 2,
+        "score": 0.5124700665473938
+      },
+      {
+        "id": "https://openalex.org/C2780451532",
+        "wikidata": "https://www.wikidata.org/wiki/Q759676",
+        "display_name": "Task (project management)",
+        "level": 2,
+        "score": 0.491960734128952
+      },
+      {
+        "id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science",
+        "level": 0,
+        "score": 0.4573303163051605
+      },
+      {
+        "id": "https://openalex.org/C15744967",
+        "wikidata": "https://www.wikidata.org/wiki/Q9418",
+        "display_name": "Psychology",
+        "level": 0,
+        "score": 0.4115932881832123
+      },
+      {
+        "id": "https://openalex.org/C539667460",
+        "wikidata": "https://www.wikidata.org/wiki/Q2414942",
+        "display_name": "Management science",
+        "level": 1,
+        "score": 0.3919917643070221
+      },
+      {
+        "id": "https://openalex.org/C2522767166",
+        "wikidata": "https://www.wikidata.org/wiki/Q2374463",
+        "display_name": "Data science",
+        "level": 1,
+        "score": 0.3512558937072754
+      },
+      {
+        "id": "https://openalex.org/C180747234",
+        "wikidata": "https://www.wikidata.org/wiki/Q23373",
+        "display_name": "Cognitive psychology",
+        "level": 1,
+        "score": 0.3358076214790344
+      },
+      {
+        "id": "https://openalex.org/C154945302",
+        "wikidata": "https://www.wikidata.org/wiki/Q11660",
+        "display_name": "Artificial intelligence",
+        "level": 1,
+        "score": 0.24122241139411926
+      },
+      {
+        "id": "https://openalex.org/C187736073",
+        "wikidata": "https://www.wikidata.org/wiki/Q2920921",
+        "display_name": "Management",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C138885662",
+        "wikidata": "https://www.wikidata.org/wiki/Q5891",
+        "display_name": "Philosophy",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C162324750",
+        "wikidata": "https://www.wikidata.org/wiki/Q8134",
+        "display_name": "Economics",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C111919701",
+        "wikidata": "https://www.wikidata.org/wiki/Q9135",
+        "display_name": "Operating system",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C86803240",
+        "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C185592680",
+        "wikidata": "https://www.wikidata.org/wiki/Q2329",
+        "display_name": "Chemistry",
+        "level": 0,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C59822182",
+        "wikidata": "https://www.wikidata.org/wiki/Q441",
+        "display_name": "Botany",
+        "level": 1,
+        "score": 0.0
+      },
+      {
+        "id": "https://openalex.org/C55493867",
+        "wikidata": "https://www.wikidata.org/wiki/Q7094",
+        "display_name": "Biochemistry",
+        "level": 1,
+        "score": 0.0
+      }
+    ],
+    "mesh": [],
+    "locations_count": 3,
+    "locations": [
+      {
+        "id": "doi:10.3389/feduc.2023.1217790",
+        "is_oa": true,
+        "landing_page_url": "http://dx.doi.org/10.3389/feduc.2023.1217790",
+        "pdf_url": "https://www.frontiersin.org/articles/10.3389/feduc.2023.1217790/pdf?isPublishedV2=False",
+        "source": {
+          "id": "https://openalex.org/S2596526815",
+          "display_name": "Frontiers in Education",
+          "issn_l": "2504-284X",
+          "issn": [
+            "2504-284X"
+          ],
+          "is_oa": true,
+          "is_in_doaj": true,
+          "is_core": true,
+          "host_organization": "https://openalex.org/P4310320527",
+          "host_organization_name": "Frontiers Media",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310320527"
+          ],
+          "host_organization_lineage_names": [
+            "Frontiers Media"
+          ],
+          "type": "journal"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Frontiers in Education",
+        "raw_type": "journal-article"
+      },
+      {
+        "id": "pmh:oai:scholarworks.montana.edu:1/18329",
+        "is_oa": true,
+        "landing_page_url": "https://scholarworks.montana.edu/handle/1/18329",
+        "pdf_url": "https://scholarworks.montana.edu/bitstreams/cbde0afc-716f-4aab-8808-dd40dc6149b7/download",
+        "source": {
+          "id": "https://openalex.org/S4306402563",
+          "display_name": "Montana State University ScholarWorks (Montana State University)",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": "https://openalex.org/I23732399",
+          "host_organization_name": "Montana State University",
+          "host_organization_lineage": [
+            "https://openalex.org/I23732399"
+          ],
+          "host_organization_lineage_names": [],
+          "type": "repository"
+        },
+        "license": "cc-by",
+        "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "submittedVersion",
+        "is_accepted": false,
+        "is_published": false,
+        "raw_source_name": null,
+        "raw_type": "Article"
+      },
+      {
+        "id": "pmh:oai:doaj.org/article:9d6e81c303604ebd8ba37aeb2c693ff7",
+        "is_oa": true,
+        "landing_page_url": "https://doaj.org/article/9d6e81c303604ebd8ba37aeb2c693ff7",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S4306401280",
+          "display_name": "DOAJ (DOAJ: Directory of Open Access Journals)",
+          "issn_l": null,
+          "issn": null,
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": false,
+          "host_organization": null,
+          "host_organization_name": null,
+          "host_organization_lineage": [],
+          "host_organization_lineage_names": [],
+          "type": "repository"
+        },
+        "license": "cc-by-sa",
+        "license_id": "https://openalex.org/licenses/cc-by-sa",
+        "version": "submittedVersion",
+        "is_accepted": false,
+        "is_published": false,
+        "raw_source_name": "Frontiers in Education, Vol 8 (2024)",
+        "raw_type": "article"
+      }
+    ],
+    "best_oa_location": {
+      "id": "doi:10.3389/feduc.2023.1217790",
+      "is_oa": true,
+      "landing_page_url": "http://dx.doi.org/10.3389/feduc.2023.1217790",
+      "pdf_url": "https://www.frontiersin.org/articles/10.3389/feduc.2023.1217790/pdf?isPublishedV2=False",
+      "source": {
+        "id": "https://openalex.org/S2596526815",
+        "display_name": "Frontiers in Education",
+        "issn_l": "2504-284X",
+        "issn": [
+          "2504-284X"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320527",
+        "host_organization_name": "Frontiers Media",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320527"
+        ],
+        "host_organization_lineage_names": [
+          "Frontiers Media"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Frontiers in Education",
+      "raw_type": "journal-article"
+    },
+    "sustainable_development_goals": [
+      {
+        "display_name": "Climate action",
+        "id": "https://metadata.un.org/sdg/13",
+        "score": 0.6800000071525574
+      }
+    ],
+    "awards": [],
+    "funders": [
+      {
+        "id": "https://openalex.org/F4320311310",
+        "display_name": "Montana State University",
+        "ror": "https://ror.org/02w0trx84"
+      }
+    ],
+    "has_content": {
+      "pdf": true,
+      "grobid_xml": true
+    },
+    "content_urls": {
+      "pdf": "https://content.openalex.org/works/W4390945037.pdf",
+      "grobid_xml": "https://content.openalex.org/works/W4390945037.grobid-xml"
+    },
+    "referenced_works_count": 64,
+    "referenced_works": [
+      "https://openalex.org/W73375746",
+      "https://openalex.org/W404240460",
+      "https://openalex.org/W1510271585",
+      "https://openalex.org/W1946738347",
+      "https://openalex.org/W1976663963",
+      "https://openalex.org/W1996769961",
+      "https://openalex.org/W1998828938",
+      "https://openalex.org/W2002325953",
+      "https://openalex.org/W2007367842",
+      "https://openalex.org/W2013385108",
+      "https://openalex.org/W2028956548",
+      "https://openalex.org/W2031388235",
+      "https://openalex.org/W2050337742",
+      "https://openalex.org/W2061370921",
+      "https://openalex.org/W2073554231",
+      "https://openalex.org/W2073704760",
+      "https://openalex.org/W2124218485",
+      "https://openalex.org/W2145860152",
+      "https://openalex.org/W2148280081",
+      "https://openalex.org/W2183741897",
+      "https://openalex.org/W2233921750",
+      "https://openalex.org/W2272811869",
+      "https://openalex.org/W2317509341",
+      "https://openalex.org/W2329686691",
+      "https://openalex.org/W2335218735",
+      "https://openalex.org/W2428478754",
+      "https://openalex.org/W2476485050",
+      "https://openalex.org/W2482551329",
+      "https://openalex.org/W2495504291",
+      "https://openalex.org/W2573294167",
+      "https://openalex.org/W2600777428",
+      "https://openalex.org/W2612406231",
+      "https://openalex.org/W2970541597",
+      "https://openalex.org/W2982189774",
+      "https://openalex.org/W2982200178",
+      "https://openalex.org/W2992094909",
+      "https://openalex.org/W3000910295",
+      "https://openalex.org/W3004083978",
+      "https://openalex.org/W3015238844",
+      "https://openalex.org/W3082953748",
+      "https://openalex.org/W3133236490",
+      "https://openalex.org/W3205944958",
+      "https://openalex.org/W4200502293",
+      "https://openalex.org/W4211177544",
+      "https://openalex.org/W4224435804",
+      "https://openalex.org/W4231120538",
+      "https://openalex.org/W4233442238",
+      "https://openalex.org/W4233522785",
+      "https://openalex.org/W4240464022",
+      "https://openalex.org/W4246364360",
+      "https://openalex.org/W4246696576",
+      "https://openalex.org/W4284701209",
+      "https://openalex.org/W4298091299",
+      "https://openalex.org/W4300049574",
+      "https://openalex.org/W4367558366",
+      "https://openalex.org/W6613934775",
+      "https://openalex.org/W6635213189",
+      "https://openalex.org/W6676958527",
+      "https://openalex.org/W6678302784",
+      "https://openalex.org/W6686378957",
+      "https://openalex.org/W6735067395",
+      "https://openalex.org/W6827534343",
+      "https://openalex.org/W6852279462",
+      "https://openalex.org/W6999647206"
+    ],
+    "related_works": [
+      "https://openalex.org/W2086338133",
+      "https://openalex.org/W4367679314",
+      "https://openalex.org/W225526533",
+      "https://openalex.org/W2009234990",
+      "https://openalex.org/W2078361494",
+      "https://openalex.org/W4244083766",
+      "https://openalex.org/W2091016074",
+      "https://openalex.org/W2023583523",
+      "https://openalex.org/W2134615400",
+      "https://openalex.org/W26869551"
+    ],
+    "abstract_inverted_index": {
+      "There": [
+        0,
+        35
+      ],
+      "is": [
+        1,
+        21,
+        36,
+        65,
+        83,
+        88,
+        149,
+        209,
+        293
+      ],
+      "as": [
+        2,
+        19,
+        194,
+        196
+      ],
+      "much": [
+        3
+      ],
+      "lack": [
+        4
+      ],
+      "of": [
+        5,
+        61,
+        74,
+        79,
+        95,
+        117,
+        174,
+        189,
+        222,
+        225,
+        238,
+        243,
+        260,
+        280,
+        288,
+        304,
+        321
+      ],
+      "clarity": [
+        6
+      ],
+      "concerning": [
+        7
+      ],
+      "what": [
+        8
+      ],
+      "“critical": [
+        9,
+        63,
+        81
+      ],
+      "thinking”": [
+        10,
+        64,
+        82
+      ],
+      "involves,": [
+        11
+      ],
+      "even": [
+        12
+      ],
+      "among": [
+        13,
+        251
+      ],
+      "those": [
+        14
+      ],
+      "charged": [
+        15
+      ],
+      "with": [
+        16,
+        137,
+        306,
+        314
+      ],
+      "teaching": [
+        17
+      ],
+      "it,": [
+        18
+      ],
+      "there": [
+        20,
+        113
+      ],
+      "consensus": [
+        22
+      ],
+      "that": [
+        23,
+        48,
+        94,
+        102,
+        146
+      ],
+      "we": [
+        24,
+        157
+      ],
+      "need": [
+        25,
+        39
+      ],
+      "more": [
+        26,
+        73,
+        150,
+        166,
+        265
+      ],
+      "emphasis": [
+        27
+      ],
+      "on": [
+        28,
+        240
+      ],
+      "it": [
+        29,
+        160
+      ],
+      "in": [
+        30,
+        59,
+        77,
+        132,
+        206,
+        262,
+        312,
+        331
+      ],
+      "both": [
+        31
+      ],
+      "academia": [
+        32
+      ],
+      "and": [
+        33,
+        69,
+        91,
+        168,
+        179,
+        234,
+        255,
+        257,
+        283,
+        319,
+        326
+      ],
+      "society.": [
+        34
+      ],
+      "an": [
+        37,
+        46
+      ],
+      "apparent": [
+        38
+      ],
+      "to": [
+        40,
+        135,
+        159,
+        161,
+        183,
+        186,
+        192,
+        214,
+        272,
+        294,
+        308,
+        316,
+        327
+      ],
+      "think": [
+        41
+      ],
+      "critically": [
+        42
+      ],
+      "about": [
+        43
+      ],
+      "critical": [
+        44
+      ],
+      "thinking,": [
+        45
+      ],
+      "exercise": [
+        47
+      ],
+      "might": [
+        49,
+        299
+      ],
+      "be": [
+        50,
+        181,
+        300
+      ],
+      "called": [
+        51,
+        301
+      ],
+      "meta-critical": [
+        52
+      ],
+      "thinking.": [
+        53
+      ],
+      "It": [
+        54
+      ],
+      "involves": [
+        55
+      ],
+      "emphasizing": [
+        56
+      ],
+      "a": [
+        57,
+        210
+      ],
+      "practice": [
+        58,
+        87
+      ],
+      "terms": [
+        60,
+        78
+      ],
+      "which": [
+        62,
+        80,
+        119,
+        193,
+        244,
+        307
+      ],
+      "helpfully": [
+        66
+      ],
+      "carried": [
+        67
+      ],
+      "out": [
+        68
+      ],
+      "clarifying": [
+        70
+      ],
+      "one": [
+        71
+      ],
+      "or": [
+        72,
+        151
+      ],
+      "the": [
+        75,
+        92,
+        115,
+        122,
+        147,
+        164,
+        175,
+        187,
+        190,
+        223,
+        231,
+        236,
+        241,
+        284,
+        317,
+        322
+      ],
+      "concepts": [
+        76,
+        259
+      ],
+      "usually": [
+        84
+      ],
+      "defined.": [
+        85
+      ],
+      "The": [
+        86
+      ],
+      "distinction": [
+        89
+      ],
+      "making": [
+        90
+      ],
+      "concept": [
+        93,
+        165
+      ],
+      "evidence.": [
+        96
+      ],
+      "Science": [
+        97
+      ],
+      "advances": [
+        98
+      ],
+      "by": [
+        99,
+        220
+      ],
+      "constructing": [
+        100
+      ],
+      "models": [
+        101,
+        109,
+        120
+      ],
+      "explain": [
+        103
+      ],
+      "real-world": [
+        104,
+        123
+      ],
+      "processes.": [
+        105
+      ],
+      "Once": [
+        106
+      ],
+      "multiple": [
+        107
+      ],
+      "potential": [
+        108
+      ],
+      "have": [
+        110,
+        264
+      ],
+      "been": [
+        111
+      ],
+      "distinguished,": [
+        112
+      ],
+      "remains": [
+        114
+      ],
+      "task": [
+        116
+      ],
+      "identifying": [
+        118
+      ],
+      "match": [
+        121
+      ],
+      "process": [
+        124
+      ],
+      "better": [
+        125
+      ],
+      "than": [
+        126
+      ],
+      "others.": [
+        127
+      ],
+      "Since": [
+        128
+      ],
+      "statistical": [
+        129,
+        228,
+        310
+      ],
+      "inference": [
+        130
+      ],
+      "has": [
+        131
+      ],
+      "large": [
+        133
+      ],
+      "part": [
+        134
+      ],
+      "do": [
+        136,
+        218
+      ],
+      "showing": [
+        138
+      ],
+      "how": [
+        139,
+        197
+      ],
+      "data": [
+        140,
+        198
+      ],
+      "provide": [
+        141,
+        184,
+        199,
+        295
+      ],
+      "support,": [
+        142
+      ],
+      "i.e.,": [
+        143
+      ],
+      "furnish": [
+        144
+      ],
+      "evidence,": [
+        145
+      ],
+      "model/hypothesis": [
+        148
+      ],
+      "less": [
+        152
+      ],
+      "likely": [
+        153
+      ],
+      "while": [
+        154
+      ],
+      "still": [
+        155
+      ],
+      "uncertain,": [
+        156
+      ],
+      "turn": [
+        158,
+        263
+      ],
+      "help": [
+        162
+      ],
+      "make": [
+        163,
+        215
+      ],
+      "precise": [
+        167
+      ],
+      "thereby": [
+        169
+      ],
+      "useful.": [
+        170
+      ],
+      "In": [
+        171
+      ],
+      "fact,": [
+        172
+      ],
+      "two": [
+        173,
+        273
+      ],
+      "leading": [
+        176
+      ],
+      "methodological": [
+        177
+      ],
+      "paradigms—Bayesian": [
+        178
+      ],
+      "likelihood—can": [
+        180
+      ],
+      "taken": [
+        182
+      ],
+      "answers": [
+        185,
+        205
+      ],
+      "questions": [
+        188
+      ],
+      "extent": [
+        191,
+        320
+      ],
+      "well": [
+        195
+      ],
+      "evidence": [
+        200,
+        256,
+        323
+      ],
+      "for": [
+        201
+      ],
+      "conclusions.": [
+        202
+      ],
+      "Examining": [
+        203
+      ],
+      "these": [
+        204
+      ],
+      "some": [
+        207,
+        296
+      ],
+      "detail": [
+        208
+      ],
+      "highly": [
+        211,
+        274
+      ],
+      "promising": [
+        212
+      ],
+      "way": [
+        213,
+        221
+      ],
+      "progress.": [
+        216
+      ],
+      "We": [
+        217
+      ],
+      "so": [
+        219
+      ],
+      "analysis": [
+        224
+      ],
+      "three": [
+        226
+      ],
+      "well-known": [
+        227
+      ],
+      "paradoxes—the": [
+        229
+      ],
+      "Lottery,": [
+        230
+      ],
+      "Old": [
+        232
+      ],
+      "Evidence,": [
+        233
+      ],
+      "Humphreys’—and": [
+        235
+      ],
+      "identification": [
+        237
+      ],
+      "distinctions": [
+        239
+      ],
+      "basis": [
+        242
+      ],
+      "their": [
+        245,
+        329
+      ],
+      "plausible": [
+        246
+      ],
+      "resolutions": [
+        247
+      ],
+      "depend.": [
+        248
+      ],
+      "These": [
+        249
+      ],
+      "distinctions,": [
+        250
+      ],
+      "others": [
+        252
+      ],
+      "between": [
+        253
+      ],
+      "belief": [
+        254
+      ],
+      "different": [
+        258
+      ],
+      "probability,": [
+        261
+      ],
+      "general": [
+        266
+      ],
+      "applications.": [
+        267
+      ],
+      "They": [
+        268
+      ],
+      "are": [
+        269
+      ],
+      "applied": [
+        270
+      ],
+      "here": [
+        271
+      ],
+      "contested": [
+        275
+      ],
+      "public": [
+        276
+      ],
+      "policy": [
+        277
+      ],
+      "issues—the": [
+        278
+      ],
+      "efficacy": [
+        279
+      ],
+      "COVID": [
+        281
+      ],
+      "vaccinations": [
+        282
+      ],
+      "fossil": [
+        285
+      ],
+      "fuel": [
+        286
+      ],
+      "cause": [
+        287
+      ],
+      "climate": [
+        289
+      ],
+      "change.": [
+        290
+      ],
+      "Our": [
+        291
+      ],
+      "aim": [
+        292
+      ],
+      "tools,": [
+        297
+      ],
+      "they": [
+        298,
+        324
+      ],
+      "“healthy": [
+        302
+      ],
+      "habits": [
+        303
+      ],
+      "mind,”": [
+        305
+      ],
+      "assess": [
+        309
+      ],
+      "arguments,": [
+        311
+      ],
+      "particular": [
+        313
+      ],
+      "respect": [
+        315
+      ],
+      "nature": [
+        318
+      ],
+      "furnish,": [
+        325
+      ],
+      "illustrate": [
+        328
+      ],
+      "use": [
+        330
+      ],
+      "well-defined": [
+        332
+      ],
+      "ways.": [
+        333
+      ]
+    },
+    "counts_by_year": [
+      {
+        "year": 2025,
+        "cited_by_count": 1
+      },
+      {
+        "year": 2024,
+        "cited_by_count": 1
+      }
+    ],
+    "updated_date": "2026-05-06T08:25:59.206177",
+    "created_date": "2025-10-10T00:00:00"
+  }
+]

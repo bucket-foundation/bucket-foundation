@@ -1,0 +1,14 @@
+# Neural correlates of subsecond time distortion in the middle temporal area of visual cortex.
+
+- **PMID**: 21671739
+- **DOI**: 10.1162/jocn_a_00071
+- **PMCID**:  
+- **Journal**: Journal of cognitive neuroscience  ·  **Year**: 2011
+- **Authors**: Navid G Sadeghi, Vani Pariyadath, Sameer Apte, David M Eagleman, Erik P Cook
+- **MeSH**: Action Potentials, Animals, Female, Humans, Macaca mulatta, Male, Motion Perception, Photic Stimulation, Time Factors, Visual Cortex
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21671739/
+- **Captured**: 2026-05-10T16:08:16
+
+## Abstract
+
+How does the brain represent the passage of time at the subsecond scale? Although different conceptual models for time perception have been proposed, its neurophysiological basis remains unknown. We took advantage of a visual duration illusion produced by stimulus novelty to link changes in cortical activity in monkeys with distortions of duration perception in humans. We found that human subjects perceived the duration of a subsecond motion pulse with a novel direction longer than a motion pulse with a repeated direction. Recording from monkeys viewing identical motion stimuli but performing a different behavioral task, we found that both the duration and amplitude of the neural response in the middle temporal area of visual cortex were positively correlated with the degree of novelty of the motion direction. In contrast to previous accounts that attribute distortions in duration perception to changes in the speed of a putative internal clock, our results suggest that the known adaptive properties of neural activity in visual cortex contributes to subsecond temporal distortions.

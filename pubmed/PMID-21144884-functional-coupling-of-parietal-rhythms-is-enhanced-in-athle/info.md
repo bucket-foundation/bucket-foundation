@@ -1,0 +1,14 @@
+# Functional coupling of parietal α rhythms is enhanced in athletes before visuomotor performance: a coherence electroencephalographic study.
+
+- **PMID**: 21144884
+- **DOI**: 10.1016/j.neuroscience.2010.11.031
+- **PMCID**:  
+- **Journal**: Neuroscience  ·  **Year**: 2011
+- **Authors**: C Del Percio, M Iacoboni, R Lizio, N Marzano, F Infarinato, F Vecchio, M Bertollo, C Robazza, S Comani, C Limatola, C Babiloni
+- **MeSH**: Adult, Alpha Rhythm, Athletic Performance, Beta Rhythm, Brain Mapping, Female, Humans, Male, Middle Aged, Motor Skills
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21144884/
+- **Captured**: 2026-05-10T16:07:30
+
+## Abstract
+
+It has been shown that elite pistol shooters are characterized by a power increase of wide cortical electroencephalographic (EEG) alpha (about 8-12 Hz) and beta (about 14-35 Hz) rhythms during the preparation of air pistol shots, possibly related to selective attentional and "neural efficiency" processes [Del Percio C, Babiloni C, Bertollo M, Marzano N, Iacoboni M, Infarinato F, Lizio R, Stocchi M, Robazza C, Cibelli G, Comani S, Eusebi F (2009a) Hum Brain Mapp 30(11):3527-3540; Del Percio C, Babiloni C, Marzano N, Iacoboni M, Infarinato F, Vecchio F, Lizio R, Aschieri P, Fiore A, Toràn G, Gallamini M, Baratto M, Eusebi F (2009b) Brain Res Bull 79(3-4):193-200]. Here, we tested the hypothesis that such processes are associated with an enhanced functional coupling of posterior cortical regions involved in task-relevant attentional processes and visuo-motor transformations. To this aim, between-electrodes spectral coherence was computed from spatially enhanced EEG data collected during a previous study (i.e. right handed 18 elite air pistol shooters and 10 matched non-athletes; augmented 10-20 system; surface Laplacian estimation). Theta (about 4-6 Hz), low-frequency alpha (about 8-10 Hz), high-frequency alpha (about 10-12 Hz), low-frequency beta (14-22 Hz), high-frequency beta (23-35 Hz), and gamma (36-44 Hz) bands were considered. Statistical results showed that intra-hemispheric low-frequency alpha (parietal-temporal and parietal-occipital regions), high-frequency alpha (parietal-temporal and parietal-occipital regions), high-frequency beta, and gamma (parietal-temporal regions) coherence values were stable in amplitude in the elite athletes but not in the non-athletes during the preparation of pistol shots. The same applies to inter-hemispheric low-frequency alpha (parietal regions), high-frequency alpha (parietal regions), high-frequency beta and gamma coherence values. These findings suggest that under the present experimental conditions, elite athletes are characterized by the stabilization of functional coupling of preparatory EEG rhythms between "visuo-spatial" parietal area and other posterior cortical areas.

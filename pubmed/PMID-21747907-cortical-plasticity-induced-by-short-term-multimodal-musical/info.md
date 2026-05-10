@@ -1,0 +1,14 @@
+# Cortical plasticity induced by short-term multimodal musical rhythm training.
+
+- **PMID**: 21747907
+- **DOI**: 10.1371/journal.pone.0021493
+- **PMCID**: PMC3601836 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2011
+- **Authors**: Claudia Lappe, Laurel J Trainor, Sibylle C Herholz, Christo Pantev
+- **MeSH**: Adult, Behavior, Brain, Female, Hearing, Humans, Laboratories, Learning, Magnetoencephalography, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21747907/
+- **Captured**: 2026-05-10T16:08:23
+
+## Abstract
+
+Performing music is a multimodal experience involving the visual, auditory, and somatosensory modalities as well as the motor system. Therefore, musical training is an excellent model to study multimodal brain plasticity. Indeed, we have previously shown that short-term piano practice increase the magnetoencephalographic (MEG) response to melodic material in novice players. Here we investigate the impact of piano training using a rhythmic-focused exercise on responses to rhythmic musical material. Musical training with non musicians was conducted over a period of two weeks. One group (sensorimotor-auditory, SA) learned to play a piano sequence with a distinct musical rhythm, another group (auditory, A) listened to, and evaluated the rhythmic accuracy of the performances of the SA-group. Training-induced cortical plasticity was evaluated using MEG, comparing the mismatch negativity (MMN) in response to occasional rhythmic deviants in a repeating rhythm pattern before and after training. The SA-group showed a significantly greater enlargement of MMN and P2 to deviants after training compared to the A- group. The training-induced increase of the rhythm MMN was bilaterally expressed in contrast to our previous finding where the MMN for deviants in the pitch domain showed a larger right than left increase. The results indicate that when auditory experience is strictly controlled during training, involvement of the sensorimotor system and perhaps increased attentional recources that are needed in producing rhythms lead to more robust plastic changes in the auditory cortex compared to when rhythms are simply attended to in the auditory domain in the absence of motor production.

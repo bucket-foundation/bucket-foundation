@@ -1,0 +1,14 @@
+# Neural correlates of conceptual knowledge for actions.
+
+- **PMID**: 20957578
+- **DOI**: 10.1080/02643290244000248
+- **PMCID**:  
+- **Journal**: Cognitive neuropsychology  ·  **Year**: 2003
+- **Authors**: Daniel Tranel, David Kemmerer, Ralph Adolphs, Hanna Damasio, Antonio R Damasio
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20957578/
+- **Captured**: 2026-05-10T16:07:25
+
+## Abstract
+
+The neural correlates of conceptual knowledge for actions are not well understood. To begin to address this knowledge gap, we tested the hypothesis that the retrieval of conceptual knowledge for actions depends on neural systems located in higher-order association cortices of left premotor/prefrontal, parietal, and posterior middle temporal regions. The investigation used the lesion method and involved 90 subjects with damage to various regions of the left or right hemisphere. The experimental tasks measured retrieval of knowledge for actions, in a nonverbal format: Subjects evaluated attributes of pictured actions, and compared and matched pictures of actions. In support of our hypothesis, we found that the regions of highest lesion overlap in subjects with impaired retrieval of conceptual knowledge for actions were in the left premotor/prefrontal sector, the left parietal region, and in the white matter underneath the left posterior middle temporal region. These sites are partially distinct from those identified previously as being important for the retrieval of words for actions. We propose that a key function of the sites is to operate as two-way intermediaries between perception and concept retrieval, to promote the retrieval of the multidimensional aspects of knowledge that are necessary and sufficient for the mental representation of a concept of a given action.

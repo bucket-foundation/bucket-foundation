@@ -1,0 +1,14 @@
+# Electrophysiological correlates of behavioural changes in vigilance in vegetative state and minimally conscious state.
+
+- **PMID**: 21841201
+- **DOI**: 10.1093/brain/awr152
+- **PMCID**: PMC2801329 (full-text saved)
+- **Journal**: Brain : a journal of neurology  ·  **Year**: 2011
+- **Authors**: Eric Landsness, Marie-Aurélie Bruno, Quentin Noirhomme, Brady Riedner, Olivia Gosseries, Caroline Schnakers, Marcello Massimini, Steven Laureys, Giulio Tononi, Mélanie Boly
+- **MeSH**: Adult, Aged, Arousal, Brain Mapping, Electroencephalography, Electromyography, Electrophysiological Phenomena, Female, Humans, Magnetic Resonance Imaging
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21841201/
+- **Captured**: 2026-05-10T16:08:26
+
+## Abstract
+
+The existence of normal sleep in patients in a vegetative state is still a matter of debate. Previous electrophysiological sleep studies in patients with disorders of consciousness did not differentiate patients in a vegetative state from patients in a minimally conscious state. Using high-density electroencephalographic sleep recordings, 11 patients with disorders of consciousness (six in a minimally conscious state, five in a vegetative state) were studied to correlate the electrophysiological changes associated with sleep to behavioural changes in vigilance (sustained eye closure and muscle inactivity). All minimally conscious patients showed clear electroencephalographic changes associated with decreases in behavioural vigilance. In the five minimally conscious patients showing sustained behavioural sleep periods, we identified several electrophysiological characteristics typical of normal sleep. In particular, all minimally conscious patients showed an alternating non-rapid eye movement/rapid eye movement sleep pattern and a homoeostatic decline of electroencephalographic slow wave activity through the night. In contrast, for most patients in a vegetative state, while preserved behavioural sleep was observed, the electroencephalographic patterns remained virtually unchanged during periods with the eyes closed compared to periods of behavioural wakefulness (eyes open and muscle activity). No slow wave sleep or rapid eye movement sleep stages could be identified and no homoeostatic regulation of sleep-related slow wave activity was observed over the night-time period. In conclusion, we observed behavioural, but no electrophysiological, sleep wake patterns in patients in a vegetative state, while there were near-to-normal patterns of sleep in patients in a minimally conscious state. These results shed light on the relationship between sleep electrophysiology and the level of consciousness in severely brain-damaged patients. We suggest that the study of sleep and homoeostatic regulation of slow wave activity may provide a complementary tool for the assessment of brain function in minimally conscious state and vegetative state patients.

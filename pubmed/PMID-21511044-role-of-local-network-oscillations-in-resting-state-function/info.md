@@ -1,0 +1,14 @@
+# Role of local network oscillations in resting-state functional connectivity.
+
+- **PMID**: 21511044
+- **DOI**: 10.1016/j.neuroimage.2011.04.010
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2011
+- **Authors**: Joana Cabral, Etienne Hugues, Olaf Sporns, Gustavo Deco
+- **MeSH**: Brain, Brain Mapping, Humans, Magnetic Resonance Imaging, Models, Neurological, Neural Pathways, Rest
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21511044/
+- **Captured**: 2026-05-10T16:08:06
+
+## Abstract
+
+Spatio-temporally organized low-frequency fluctuations (<0.1 Hz), observed in BOLD fMRI signal during rest, suggest the existence of underlying network dynamics that emerge spontaneously from intrinsic brain processes. Furthermore, significant correlations between distinct anatomical regions-or functional connectivity (FC)-have led to the identification of several widely distributed resting-state networks (RSNs). This slow dynamics seems to be highly structured by anatomical connectivity but the mechanism behind it and its relationship with neural activity, particularly in the gamma frequency range, remains largely unknown. Indeed, direct measurements of neuronal activity have revealed similar large-scale correlations, particularly in slow power fluctuations of local field potential gamma frequency range oscillations. To address these questions, we investigated neural dynamics in a large-scale model of the human brain's neural activity. A key ingredient of the model was a structural brain network defined by empirically derived long-range brain connectivity together with the corresponding conduction delays. A neural population, assumed to spontaneously oscillate in the gamma frequency range, was placed at each network node. When these oscillatory units are integrated in the network, they behave as weakly coupled oscillators. The time-delayed interaction between nodes is described by the Kuramoto model of phase oscillators, a biologically-based model of coupled oscillatory systems. For a realistic setting of axonal conduction speed, we show that time-delayed network interaction leads to the emergence of slow neural activity fluctuations, whose patterns correlate significantly with the empirically measured FC. The best agreement of the simulated FC with the empirically measured FC is found for a set of parameters where subsets of nodes tend to synchronize although the network is not globally synchronized. Inside such clusters, the simulated BOLD signal between nodes is found to be correlated, instantiating the empirically observed RSNs. Between clusters, patterns of positive and negative correlations are observed, as described in experimental studies. These results are found to be robust with respect to a biologically plausible range of model parameters. In conclusion, our model suggests how resting-state neural activity can originate from the interplay between the local neural dynamics and the large-scale structure of the brain.

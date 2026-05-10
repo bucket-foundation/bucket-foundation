@@ -1,0 +1,14 @@
+# Bodily self: an implicit knowledge of what is explicitly unknown.
+
+- **PMID**: 21553263
+- **DOI**: 10.1007/s00221-011-2708-x
+- **PMCID**:  
+- **Journal**: Experimental brain research  ·  **Year**: 2011
+- **Authors**: Francesca Frassinetti, Francesca Ferri, Manuela Maini, Maria Grazia Benassi, Vittorio Gallese
+- **MeSH**: Adult, Body Image, Female, Humans, Middle Aged, Photic Stimulation, Reaction Time, Self Concept, Young Adult
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21553263/
+- **Captured**: 2026-05-10T16:08:10
+
+## Abstract
+
+We tested the hypothesis that the body self-advantage, i.e., the facilitation in discriminating self versus other people's body-effectors, is the expression of an implicit and body-specific knowledge, based mainly on the sensorimotor representation of one's own body-effectors. Alternatively, the body self-advantage could rely on visual recognition of pictorial cues. According to the first hypothesis, using gray-scale pictures of body-parts, the body self-advantage should emerge when self-body recognition is implicitly required and should be specific for body-effectors and not for inanimate-objects. In contrast, if the self-advantage is due to a mere visual-perceptual facilitation, it should be independent of the implicit or explicit request (and could be extended also to objects). To disentangle these hypotheses, healthy participants were implicitly or explicitly required to recognize either their own body-effectors or inanimate-objects. Participants were more accurate in the implicit task with self rather than with others' body-effectors. In contrast, the self-advantage was not found when an explicit recognition of one's own body-effectors was required, suggesting that the body self-advantage relies upon a sensorimotor, rather than a mere visual representation of one's own body. Moreover, the absence of both self/other and implicit/explicit effects, when processing inanimate-objects, underlines the differences between the body and other objects.

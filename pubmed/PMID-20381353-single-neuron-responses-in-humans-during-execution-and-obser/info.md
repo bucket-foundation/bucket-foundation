@@ -1,0 +1,14 @@
+# Single-neuron responses in humans during execution and observation of actions.
+
+- **PMID**: 20381353
+- **DOI**: 10.1016/j.cub.2010.02.045
+- **PMCID**: PMC2865083 (full-text saved)
+- **Journal**: Current biology : CB  ·  **Year**: 2010
+- **Authors**: Roy Mukamel, Arne D Ekstrom, Jonas Kaplan, Marco Iacoboni, Itzhak Fried
+- **MeSH**: Animals, Cerebral Cortex, Electrophysiology, Emotions, Facial Expression, Hand, Humans, Imitative Behavior, Motor Activity, Neurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20381353/
+- **Captured**: 2026-05-10T16:06:51
+
+## Abstract
+
+Direct recordings in monkeys have demonstrated that neurons in frontal and parietal areas discharge during execution and perception of actions [1-8]. Because these discharges "reflect" the perceptual aspects of actions of others onto the motor repertoire of the perceiver, these cells have been called mirror neurons. Their overlapping sensory-motor representations have been implicated in observational learning and imitation, two important forms of learning [9]. In humans, indirect measures of neural activity support the existence of sensory-motor mirroring mechanisms in homolog frontal and parietal areas [10, 11], other motor regions [12-15], and also the existence of multisensory mirroring mechanisms in nonmotor regions [16-19]. We recorded extracellular activity from 1177 cells in human medial frontal and temporal cortices while patients executed or observed hand grasping actions and facial emotional expressions. A significant proportion of neurons in supplementary motor area, and hippocampus and environs, responded to both observation and execution of these actions. A subset of these neurons demonstrated excitation during action-execution and inhibition during action-observation. These findings suggest that multiple systems in humans may be endowed with neural mechanisms of mirroring for both the integration and differentiation of perceptual and motor aspects of actions performed by self and others.

@@ -1,0 +1,14 @@
+# From simple graphs to the connectome: networks in neuroimaging.
+
+- **PMID**: 21964480
+- **DOI**: 10.1016/j.neuroimage.2011.08.085
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2012
+- **Authors**: Olaf Sporns
+- **MeSH**: Brain, Humans, Nerve Net, Neuroimaging
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21964480/
+- **Captured**: 2026-05-10T16:08:33
+
+## Abstract
+
+Connectivity is fundamental for understanding the nature of brain function. The intricate web of synaptic connections among neurons is critically important for shaping neural responses, representing statistical features of the sensory environment, coordinating distributed resources for brain-wide processing, and retaining a structural record of the past in order to anticipate future events and infer their relations. The importance of brain connectivity naturally leads to the adoption of the theoretical framework of networks and graphs. Network science approaches have been productively deployed in other domains of science and technology and are now beginning to make contributions across many areas of neuroscience. This article offers a personal perspective on the confluence of networks and neuroimaging, charting the origins of some of its major intellectual themes.

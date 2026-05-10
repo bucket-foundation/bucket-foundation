@@ -1,0 +1,14 @@
+# Spatial extension of brain activity fools the single-channel reconstruction of EEG dynamics.
+
+- **PMID**: 20408208
+- **DOI**: 10.1002/(SICI)1097-0193(1997)5:1<26::AID-HBM4>3.0.CO;2-P
+- **PMCID**:  
+- **Journal**: Human brain mapping  ·  **Year**: 1997
+- **Authors**: J P Lachaux, L Pezard, L Garnero, C Pelte, B Renault, F J Varela, J Martinerie
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20408208/
+- **Captured**: 2026-05-10T16:06:54
+
+## Abstract
+
+We report here on a first attempt to settle the methodological controversy between advocates of two alternative reconstruction approaches for temporal dynamics in brain signals: the single-channel method (using data from one recording site and reconstructing by time-lags), and the multiple-channel method (using data from a spatially distributed set of recordings sites and reconstructing by means of spatial position). For the purpose of a proper comparison of these two techniques, we computed a series of EEG-like measures on the basis of well-known dynamical systems placed inside a spherical model of the head. For each of the simulations, the correlation dimension estimates obtained by both methods were calculated and compared, when possible, with the known (or estimated) dimension of the underlying dynamical system. We show that the single-channel method fails to reliably quantify spatially extended dynamics, while the multichannel method performs better. It follows that the latter is preferable, given the known spatially distributed nature of brain processes. Hum. Brain Mapping 5:26-47, 1997. (c) 1997 Wiley-Liss, Inc.

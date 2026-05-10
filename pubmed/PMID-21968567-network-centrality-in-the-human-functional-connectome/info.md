@@ -1,0 +1,14 @@
+# Network centrality in the human functional connectome.
+
+- **PMID**: 21968567
+- **DOI**: 10.1093/cercor/bhr269
+- **PMCID**:  
+- **Journal**: Cerebral cortex (New York, N.Y. : 1991)  ·  **Year**: 2012
+- **Authors**: Xi-Nian Zuo, Ross Ehmke, Maarten Mennes, Davide Imperati, F Xavier Castellanos, Olaf Sporns, Michael P Milham
+- **MeSH**: Adult, Aging, Algorithms, Brain, Brain Mapping, Female, Humans, Magnetic Resonance Imaging, Male, Nerve Net
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21968567/
+- **Captured**: 2026-05-10T16:08:34
+
+## Abstract
+
+The network architecture of functional connectivity within the human brain connectome is poorly understood at the voxel level. Here, using resting state functional magnetic resonance imaging data from 1003 healthy adults, we investigate a broad array of network centrality measures to provide novel insights into connectivity within the whole-brain functional network (i.e., the functional connectome). We first assemble and visualize the voxel-wise (4 mm) functional connectome as a functional network. We then demonstrate that each centrality measure captures different aspects of connectivity, highlighting the importance of considering both global and local connectivity properties of the functional connectome. Beyond "detecting functional hubs," we treat centrality as measures of functional connectivity within the brain connectome and demonstrate their reliability and phenotypic correlates (i.e., age and sex). Specifically, our analyses reveal age-related decreases in degree centrality, but not eigenvector centrality, within precuneus and posterior cingulate regions. This implies that while local or (direct) connectivity decreases with age, connections with hub-like regions within the brain remain stable with age at a global level. In sum, these findings demonstrate the nonredundancy of various centrality measures and raise questions regarding their underlying physiological mechanisms that may be relevant to the study of neurodegenerative and psychiatric disorders.

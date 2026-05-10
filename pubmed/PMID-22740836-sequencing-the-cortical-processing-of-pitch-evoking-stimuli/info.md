@@ -1,0 +1,14 @@
+# Sequencing the Cortical Processing of Pitch-Evoking Stimuli using EEG Analysis and Source Estimation.
+
+- **PMID**: 22740836
+- **DOI**: 10.1111/j.1749-6632.2001.tb05734.x
+- **PMCID**: PMC3098378 (full-text saved)
+- **Journal**: Frontiers in psychology  ·  **Year**: 2012
+- **Authors**: Blake E Butler, Laurel J Trainor
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22740836/
+- **Captured**: 2026-05-10T16:09:38
+
+## Abstract
+
+Cues to pitch include spectral cues that arise from tonotopic organization and temporal cues that arise from firing patterns of auditory neurons. fMRI studies suggest a common pitch center is located just beyond primary auditory cortex along the lateral aspect of Heschl's gyrus, but little work has examined the stages of processing for the integration of pitch cues. Using electroencephalography, we recorded cortical responses to high-pass filtered iterated rippled noise (IRN) and high-pass filtered complex harmonic stimuli, which differ in temporal and spectral content. The two stimulus types were matched for pitch saliency, and a mismatch negativity (MMN) response was elicited by infrequent pitch changes. The P1 and N1 components of event-related potentials (ERPs) are thought to arise from primary and secondary auditory areas, respectively, and to result from simple feature extraction. MMN is generated in secondary auditory cortex and is thought to act on feature-integrated auditory objects. We found that peak latencies of both P1 and N1 occur later in response to IRN stimuli than to complex harmonic stimuli, but found no latency differences between stimulus types for MMN. The location of each ERP component was estimated based on iterative fitting of regional sources in the auditory cortices. The sources of both the P1 and N1 components elicited by IRN stimuli were located dorsal to those elicited by complex harmonic stimuli, whereas no differences were observed for MMN sources across stimuli. Furthermore, the MMN component was located between the P1 and N1 components, consistent with fMRI studies indicating a common pitch region in lateral Heschl's gyrus. These results suggest that while the spectral and temporal processing of different pitch-evoking stimuli involves different cortical areas during early processing, by the time the object-related MMN response is formed, these cues have been integrated into a common representation of pitch.

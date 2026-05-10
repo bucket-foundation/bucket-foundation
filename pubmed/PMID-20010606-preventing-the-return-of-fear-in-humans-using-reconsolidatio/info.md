@@ -1,0 +1,14 @@
+# Preventing the return of fear in humans using reconsolidation update mechanisms.
+
+- **PMID**: 20010606
+- **DOI**: 10.1038/nature08637
+- **PMCID**: PMC2634865 (full-text saved)
+- **Journal**: Nature  ·  **Year**: 2010
+- **Authors**: Daniela Schiller, Marie-H Monfils, Candace M Raio, David C Johnson, Joseph E Ledoux, Elizabeth A Phelps
+- **MeSH**: Conditioning, Classical, Cues, Electrodes, Electroshock, Extinction, Psychological, Fear, Humans, Memory, Models, Neurological, Models, Psychological
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20010606/
+- **Captured**: 2026-05-10T16:06:19
+
+## Abstract
+
+Recent research on changing fears has examined targeting reconsolidation. During reconsolidation, stored information is rendered labile after being retrieved. Pharmacological manipulations at this stage result in an inability to retrieve the memories at later times, suggesting that they are erased or persistently inhibited. Unfortunately, the use of these pharmacological manipulations in humans can be problematic. Here we introduce a non-invasive technique to target the reconsolidation of fear memories in humans. We provide evidence that old fear memories can be updated with non-fearful information provided during the reconsolidation window. As a consequence, fear responses are no longer expressed, an effect that lasted at least a year and was selective only to reactivated memories without affecting others. These findings demonstrate the adaptive role of reconsolidation as a window of opportunity to rewrite emotional memories, and suggest a non-invasive technique that can be used safely in humans to prevent the return of fear.

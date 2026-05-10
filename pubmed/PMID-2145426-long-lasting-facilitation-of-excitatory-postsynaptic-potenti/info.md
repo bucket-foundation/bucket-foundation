@@ -1,0 +1,14 @@
+# Long-lasting facilitation of excitatory postsynaptic potentials in the rat hippocampus by acetylcholine.
+
+- **PMID**: 2145426
+- **DOI**: 10.1113/jphysiol.1990.sp018177
+- **PMCID**: PMC1189936 (full-text saved)
+- **Journal**: The Journal of physiology  ·  **Year**: 1990
+- **Authors**: H Markram, M Segal
+- **MeSH**: Acetylcholine, Action Potentials, Animals, Hippocampus, In Vitro Techniques, N-Methylaspartate, Rats, Rats, Inbred Strains, Receptors, N-Methyl-D-Aspartate, Time Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2145426/
+- **Captured**: 2026-05-10T16:08:00
+
+## Abstract
+
+1. The effects of acetylcholine (ACh) on excitatory postsynaptic potentials (EPSPs) evoked by stimulating Schaffer-commissural afferents and on ionophoretically applied L-glutamate ligands, were investigated in CA1 neurones of hippocampal slices using current- and voltage-clamp techniques. 2. ACh produced a transient suppression followed by a long-lasting facilitation of EPSPs. The facilitation was also seen in Cs(+)-filled cells under voltage-clamp conditions. Both suppressing and facilitating effects were blocked by atropine. 3. All components of the EPSP were reduced in the initial phase of ACh action, while only the slow component was enhanced during the later phase. The facilitation was blocked by an N-methyl-D-aspartate (NMDA) receptor antagonist, d-2-amino-5-phosphonovalerate (2-APV) and by hyperpolarization. 4. ACh also facilitated responses to ionophoretically applied NMDA in voltage-clamped, Cs(+)-filled cells in Ba2(+)-treated slices. ACh facilitated responses to L-glutamate which was blocked by 2-APV. ACh failed to affect responses to kainate or quisqualate. 5. We conclude that ACh, acting on muscarinic receptors, exerts a primary effect in the hippocampus to specifically amplify NMDA receptor-mediated synaptic responses and thereby facilitate EPSPs.

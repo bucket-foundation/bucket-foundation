@@ -1,0 +1,14 @@
+# Wired to be social: the ontogeny of human interaction.
+
+- **PMID**: 20949058
+- **DOI**: 10.1371/journal.pone.0013199
+- **PMCID**: PMC4137867 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2010
+- **Authors**: Umberto Castiello, Cristina Becchio, Stefania Zoia, Cristian Nelini, Luisa Sartori, Laura Blason, Giuseppina D'Ottavio, Maria Bulgheroni, Vittorio Gallese
+- **MeSH**: Female, Fetus, Humans, Pregnancy, Social Behavior, Ultrasonography, Prenatal
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20949058/
+- **Captured**: 2026-05-10T16:07:24
+
+## Abstract
+
+Newborns come into the world wired to socially interact. Is a propensity to socially oriented action already present before birth? Twin pregnancies provide a unique opportunity to investigate the social pre-wiring hypothesis. Although various types of inter-twins contact have been demonstrated starting from the 11(th) week of gestation, no study has so far investigated the critical question whether intra-pair contact is the result of motor planning rather then the accidental outcome of spatial proximity. Kinematic profiles of movements in five pairs of twin foetuses were studied by using four-dimensional ultrasonography during two separate recording sessions carried out at the 14(th) and 18(th) week of gestation. We demonstrate that by the 14th week of gestation twin foetuses do not only display movements directed towards the uterine wall and self-directed movements, but also movements specifically aimed at the co-twin, the proportion of which increases between the 14(th) and 18(th) gestational week. Kinematic analysis revealed that movement duration was longer and deceleration time was prolonged for other-directed movements compared to movements directed towards the uterine wall. Similar kinematic profiles were observed for movements directed towards the co-twin and self-directed movements aimed at the eye-region, i.e. the most delicate region of the body. We conclude that performance of movements towards the co-twin is not accidental: already starting from the 14th week of gestation twin foetuses execute movements specifically aimed at the co-twin.

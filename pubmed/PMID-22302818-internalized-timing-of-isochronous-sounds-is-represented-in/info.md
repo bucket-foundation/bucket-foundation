@@ -1,0 +1,14 @@
+# Internalized timing of isochronous sounds is represented in neuromagnetic β oscillations.
+
+- **PMID**: 22302818
+- **DOI**: 10.1523/JNEUROSCI.4107-11.2012
+- **PMCID**: PMC6763859 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2012
+- **Authors**: Takako Fujioka, Laurel J Trainor, Edward W Large, Bernhard Ross
+- **MeSH**: Acoustic Stimulation, Adult, Auditory Cortex, Auditory Perception, Beta Rhythm, Female, Humans, Magnetoencephalography, Male, Motor Cortex
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22302818/
+- **Captured**: 2026-05-10T16:09:00
+
+## Abstract
+
+Moving in synchrony with an auditory rhythm requires predictive action based on neurodynamic representation of temporal information. Although it is known that a regular auditory rhythm can facilitate rhythmic movement, the neural mechanisms underlying this phenomenon remain poorly understood. In this experiment using human magnetoencephalography, 12 young healthy adults listened passively to an isochronous auditory rhythm without producing rhythmic movement. We hypothesized that the dynamics of neuromagnetic beta-band oscillations (~20 Hz)-which are known to reflect changes in an active status of sensorimotor functions-would show modulations in both power and phase-coherence related to the rate of the auditory rhythm across both auditory and motor systems. Despite the absence of an intention to move, modulation of beta amplitude as well as changes in cortico-cortical coherence followed the tempo of sound stimulation in auditory cortices and motor-related areas including the sensorimotor cortex, inferior-frontal gyrus, supplementary motor area, and the cerebellum. The time course of beta decrease after stimulus onset was consistent regardless of the rate or regularity of the stimulus, but the time course of the following beta rebound depended on the stimulus rate only in the regular stimulus conditions such that the beta amplitude reached its maximum just before the occurrence of the next sound. Our results suggest that the time course of beta modulation provides a mechanism for maintaining predictive timing, that beta oscillations reflect functional coordination between auditory and motor systems, and that coherence in beta oscillations dynamically configure the sensorimotor networks for auditory-motor coupling.

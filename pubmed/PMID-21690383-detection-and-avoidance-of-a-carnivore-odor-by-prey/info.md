@@ -1,0 +1,14 @@
+# Detection and avoidance of a carnivore odor by prey.
+
+- **PMID**: 21690383
+- **DOI**: 10.1073/pnas.1103317108
+- **PMCID**: PMC15912 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2011
+- **Authors**: David M Ferrero, Jamie K Lemon, Daniela Fluegge, Stan L Pashkovski, Wayne J Korzan, Sandeep Robert Datta, Marc Spehr, Markus Fendt, Stephen D Liberles
+- **MeSH**: Animals, Avoidance Learning, Behavior, Animal, Carnivora, Lynx, Male, Mice, Odorants, Olfactory Receptor Neurons, Phenethylamines
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21690383/
+- **Captured**: 2026-05-10T16:08:19
+
+## Abstract
+
+Predator-prey relationships provide a classic paradigm for the study of innate animal behavior. Odors from carnivores elicit stereotyped fear and avoidance responses in rodents, although sensory mechanisms involved are largely unknown. Here, we identified a chemical produced by predators that activates a mouse olfactory receptor and produces an innate behavioral response. We purified this predator cue from bobcat urine and identified it to be a biogenic amine, 2-phenylethylamine. Quantitative HPLC analysis across 38 mammalian species indicates enriched 2-phenylethylamine production by numerous carnivores, with some producing >3,000-fold more than herbivores examined. Calcium imaging of neuronal responses in mouse olfactory tissue slices identified dispersed carnivore odor-selective sensory neurons that also responded to 2-phenylethylamine. Two prey species, rat and mouse, avoid a 2-phenylethylamine odor source, and loss-of-function studies involving enzymatic depletion of 2-phenylethylamine from a carnivore odor indicate it to be required for full avoidance behavior. Thus, rodent olfactory sensory neurons and chemosensory receptors have the capacity for recognizing interspecies odors. One such cue, carnivore-derived 2-phenylethylamine, is a key component of a predator odor blend that triggers hard-wired aversion circuits in the rodent brain. These data show how a single, volatile chemical detected in the environment can drive an elaborate danger-associated behavioral response in mammals.

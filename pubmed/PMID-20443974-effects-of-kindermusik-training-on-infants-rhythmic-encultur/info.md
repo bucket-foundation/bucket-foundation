@@ -1,0 +1,14 @@
+# Effects of Kindermusik training on infants' rhythmic enculturation.
+
+- **PMID**: 20443974
+- **DOI**: 10.1111/j.1467-7687.2009.00912.x
+- **PMCID**:  
+- **Journal**: Developmental science  ·  **Year**: 2010
+- **Authors**: David W Gerry, Ashley L Faux, Laurel J Trainor
+- **MeSH**: Acoustic Stimulation, Analysis of Variance, Auditory Perception, Child Development, Female, Humans, Infant, Learning, Male, Music
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20443974/
+- **Captured**: 2026-05-10T16:06:55
+
+## Abstract
+
+Phillips-Silver and Trainor (2005) demonstrated a link between movement and the metrical interpretation of rhythm patterns in 7-month-old infants. Infants bounced on every second beat of a rhythmic pattern with no auditory accents later preferred to listen to an accented version of the pattern with accents every second beat (duple or march meter), whereas infants bounced on every third beat of the same rhythmic pattern preferred to listen to a version with accents every third beat (triple or waltz meter). The present study compared infants participating in Kindermusik classes with infants not participating in music classes. In Kindermusik classes infants receive enriched experience moving to music. Following Western musical norms, the majority of the music samples in the classes are in duple meter. During the preference test, Kindermusik infants listened longer overall, indicating heightened interest in musical rhythms. Both groups listened longer to the accented version that matched how they had been bounced, but only the Kindermusik group showed a stronger preference in the case of duple bouncing than in the case of triple bouncing. We conclude that musical classes for infants can accelerate the development of culture-specific metrical perception.

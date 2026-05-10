@@ -1,0 +1,14 @@
+# Persistence of feelings and sentience after bilateral damage of the insula.
+
+- **PMID**: 22473895
+- **DOI**: 10.1093/cercor/bhs077
+- **PMCID**: PMC2748680 (full-text saved)
+- **Journal**: Cerebral cortex (New York, N.Y. : 1991)  ·  **Year**: 2013
+- **Authors**: Antonio Damasio, Hanna Damasio, Daniel Tranel
+- **MeSH**: Aged, 80 and over, Cerebral Cortex, Emotions, Encephalitis, Herpes Simplex, Food Preferences, Humans, Imaging, Three-Dimensional, Longitudinal Studies, Magnetic Resonance Imaging, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22473895/
+- **Captured**: 2026-05-10T16:09:14
+
+## Abstract
+
+It has been convincingly established, over the past decade, that the human insular cortices are involved in processing both body feelings (such as pain) and feelings of emotion. Recently, however, an interpretation of this finding has emerged suggesting that the insular cortices are the necessary and sufficient platform for human feelings, in effect, the sole neural source of feeling experiences. In this study, we investigate this proposal in a patient whose insular cortices were destroyed bilaterally as a result of Herpes simplex encephalitis. The fact that all aspects of feeling were intact indicates that the proposal is problematic. The signals used to assemble the neural substrates of feelings hail from different sectors of the body and are conveyed by neural and humoral pathways to complex and topographically organized nuclei of the brain stem, prior to being conveyed again to cerebral cortices in the somatosensory, insular, and cingulate regions. We suggest that the neural substrate of feeling states is to be found first subcortically and then secondarily repeated at cortical level. The subcortical level would ensure basic feeling states while the cortical level would largely relate feeling states to cognitive processes such as decision-making and imagination.

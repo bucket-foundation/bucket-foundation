@@ -1,0 +1,14 @@
+# Spatio-temporal characterizations of non-linear changes in intracranial activities prior to human temporal lobe seizures.
+
+- **PMID**: 10886352
+- **DOI**: 10.1046/j.1460-9568.2000.00088.x
+- **PMCID**:  
+- **Journal**: The European journal of neuroscience  ·  **Year**: 2000
+- **Authors**: M Le Van Quyen, C Adam, J Martinerie, M Baulac, S Clémenceau, F Varela
+- **MeSH**: Cerebral Cortex, Electroencephalography, Epilepsy, Temporal Lobe, Humans, Models, Neurological, Nonlinear Dynamics, Seizures
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10886352/
+- **Captured**: 2026-05-10T16:05:27
+
+## Abstract
+
+Recent studies have shown that non-linear analysis of intracranial activities can detect a 'pre-ictal phase' preceding the epileptic seizure. Nevertheless, the dynamical nature of the underlying neuronal process and the spatial extension of this pre-ictal phase still remain unknown. In this paper, we address these aspects using a new non-linear measure of dynamic similarity between different parts of intracranial recordings of nine patients with medial temporal lobe epilepsy recorded during transitions to seizure. Our results confirm that non-linear changes in neuronal dynamics allow, in most cases (16 out of 17), a seizure anticipation several minutes in advance. Furthermore, we show that the spatial distribution of pre-ictal changes often involves an extended network projecting beyond the limits of the epileptogenic region. Finally, the pre-ictal phase could frequently (13 out of 17) be characterized with a marked shift toward slower frequencies in upper delta or theta frequency range.

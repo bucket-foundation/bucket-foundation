@@ -1,0 +1,14 @@
+# Finding out about filling-in: a guide to perceptual completion for visual science and the philosophy of perception.
+
+- **PMID**: 10191878
+- **DOI**: 10.1017/s0140525x98001757
+- **PMCID**:  
+- **Journal**: The Behavioral and brain sciences  ·  **Year**: 1998
+- **Authors**: L Pessoa, E Thompson, A Noë
+- **MeSH**: Humans, Optical Illusions, Psychophysics, Time Factors, Vision, Ocular, Visual Cortex, Visual Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10191878/
+- **Captured**: 2026-05-10T16:05:25
+
+## Abstract
+
+In visual science the term filling-in is used in different ways, which often leads to confusion. This target article presents a taxonomy of perceptual completion phenomena to organize and clarify theoretical and empirical discussion. Examples of boundary completion (illusory contours) and featural completion (color, brightness, motion, texture, and depth) are examined, and single-cell studies relevant to filling-in are reviewed and assessed. Filling-in issues must be understood in relation to theoretical issues about neural-perceptual isomorphism and linking propositions. Six main conclusions are drawn: (1) visual filling-in comprises a multitude of different perceptual completion phenomena; (2) certain forms of visual completion seem to involve spatially propagating neural activity (neural filling-in) and so, contrary to Dennett's (1991; 1992) recent discussion of filling-in, cannot be described as results of the brain's "ignoring an absence" or "jumping to a conclusion"; (3) in certain cases perceptual completion seems to have measurable effects that depend on neural signals representing a presence rather than ignoring an absence; (4) neural filling-in does not imply either "analytic isomorphism" or "Cartesian materialism," and thus the notion of the bridge locus--a particular neural stage that forms the immediate substrate of perceptual experience--is problematic and should be abandoned; (5) to reject the representational conception of vision in favor of an "enactive" or "animate" conception reduces the importance of filling-in as a theoretical category in the explanation of vision; and (6) the evaluation of perceptual content should not be determined by "subpersonal" considerations about internal processing, but rather by considerations about the task of vision at the level of the animal or person interacting with the world.

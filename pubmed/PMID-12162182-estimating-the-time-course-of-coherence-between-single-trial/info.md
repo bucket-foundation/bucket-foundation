@@ -1,0 +1,14 @@
+# Estimating the time-course of coherence between single-trial brain signals: an introduction to wavelet coherence.
+
+- **PMID**: 12162182
+- **DOI**: 10.1016/s0987-7053(02)00301-5
+- **PMCID**:  
+- **Journal**: Neurophysiologie clinique = Clinical neurophysiology  ·  **Year**: 2002
+- **Authors**: Jean-Philippe Lachaux, Antoine Lutz, David Rudrauf, Diego Cosmelli, Michel Le Van Quyen, Jacques Martinerie, Francisco Varela
+- **MeSH**: Algorithms, Brain, Electroencephalography, Fourier Analysis, Humans, Signal Processing, Computer-Assisted
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12162182/
+- **Captured**: 2026-05-10T16:05:37
+
+## Abstract
+
+This paper introduces the use of wavelet analysis to follow the temporal variations in the coupling between oscillatory neural signals. Coherence, based on Fourier analysis, has been commonly used as a first approximation to track such coupling under the assumption that neural signals are stationary. Yet, stationary neural processing may be the exception rather than the rule. In this context, the recent application to physical systems of a wavelet-based coherence, which does not depend on the stationarity of the signals, is highly relevant. This paper fully develops the method of wavelet coherence and its statistical properties so that it can be practically applied to continuous neural signals. In realistic simulations, we show that, in contrast to Fourier coherence, wavelet coherence can detect short, significant episodes of coherence between non-stationary neural signals. This method can be directly applied for an 'online' quantification of the instantaneous coherence between two signals.

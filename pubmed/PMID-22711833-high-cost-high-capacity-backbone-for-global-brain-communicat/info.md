@@ -1,0 +1,14 @@
+# High-cost, high-capacity backbone for global brain communication.
+
+- **PMID**: 22711833
+- **DOI**: 10.1093/cercor/bhr269
+- **PMCID**: PMC2522263 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2012
+- **Authors**: Martijn P van den Heuvel, René S Kahn, Joaquín Goñi, Olaf Sporns
+- **MeSH**: Algorithms, Brain, Brain Mapping, Communication, Diffusion Tensor Imaging, Humans, Models, Biological, Models, Neurological, Models, Statistical, Neural Pathways
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22711833/
+- **Captured**: 2026-05-10T16:09:35
+
+## Abstract
+
+Network studies of human brain structural connectivity have identified a specific set of brain regions that are both highly connected and highly central. Recent analyses have shown that these putative hub regions are mutually and densely interconnected, forming a "rich club" within the human brain. Here we show that the set of pathways linking rich club regions forms a central high-cost, high-capacity backbone for global brain communication. Diffusion tensor imaging (DTI) data of two sets of 40 healthy subjects were used to map structural brain networks. The contributions to network cost and communication capacity of global cortico-cortical connections were assessed through measures of their topology and spatial embedding. Rich club connections were found to be more costly than predicted by their density alone and accounted for 40% of the total communication cost. Furthermore, 69% of all minimally short paths between node pairs were found to travel through the rich club and a large proportion of these communication paths consisted of ordered sequences of edges ("path motifs") that first fed into, then traversed, and finally exited the rich club, while passing through nodes of increasing and then decreasing degree. The prevalence of short paths that follow such ordered degree sequences suggests that neural communication might take advantage of strategies for dynamic routing of information between brain regions, with an important role for a highly central rich club. Taken together, our results show that rich club connections make an important contribution to interregional signal traffic, forming a central high-cost, high-capacity backbone for global brain communication.

@@ -1,0 +1,14 @@
+# Race modulates neural activity during imitation.
+
+- **PMID**: 22062193
+- **DOI**: 10.1016/j.neuroimage.2011.10.074
+- **PMCID**: PMC1913205 (full-text saved)
+- **Journal**: NeuroImage  ·  **Year**: 2012
+- **Authors**: Elizabeth A Reynolds Losin, Marco Iacoboni, Alia Martin, Katy A Cross, Mirella Dapretto
+- **MeSH**: Adolescent, Adult, Black or African American, Asian, Brain, Brain Mapping, Female, Humans, Imitative Behavior, Magnetic Resonance Imaging
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22062193/
+- **Captured**: 2026-05-10T16:08:44
+
+## Abstract
+
+Imitation plays a central role in the acquisition of culture. People preferentially imitate others who are self-similar, prestigious or successful. Because race can indicate a person's self-similarity or status, race influences whom people imitate. Prior studies of the neural underpinnings of imitation have not considered the effects of race. Here we measured neural activity with fMRI while European American participants imitated meaningless gestures performed by actors of their own race, and two racial outgroups, African American, and Chinese American. Participants also passively observed the actions of these actors and their portraits. Frontal, parietal and occipital areas were differentially activated while participants imitated actors of different races. More activity was present when imitating African Americans than the other racial groups, perhaps reflecting participants' reported lack of experience with and negative attitudes towards this group, or the group's lower perceived social status. This pattern of neural activity was not found when participants passively observed the gestures of the actors or simply looked at their faces. Instead, during face-viewing neural responses were overall greater for own-race individuals, consistent with prior race perception studies not involving imitation. Our findings represent a first step in elucidating neural mechanisms involved in cultural learning, a process that influences almost every aspect of our lives but has thus far received little neuroscientific study.

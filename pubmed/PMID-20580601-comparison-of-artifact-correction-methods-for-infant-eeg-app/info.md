@@ -1,0 +1,14 @@
+# Comparison of artifact correction methods for infant EEG applied to extraction of event-related potential signals.
+
+- **PMID**: 20580601
+- **DOI**: 10.1016/j.clinph.2010.04.036
+- **PMCID**:  
+- **Journal**: Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology  ·  **Year**: 2011
+- **Authors**: Takako Fujioka, Nasser Mourad, Chao He, Laurel J Trainor
+- **MeSH**: Age Factors, Artifacts, Brain, Brain Diseases, Brain Waves, Electroencephalography, Evoked Potentials, Female, Humans, Infant
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20580601/
+- **Captured**: 2026-05-10T16:07:00
+
+## Abstract
+
+EEG recording is useful for neurological and cognitive assessment, but acquiring reliable data in infants and special populations has the challenges of limited recording time, high-amplitude background activity, and movement-related artifacts. This study objectively evaluated our previously proposed ERP analysis techniques. We compared three artifact removal techniques: Conventional Trial Rejection (CTR), Independent Channel Rejection (ICR; He et al., 2007), and Artifact Blocking (AB; Mourad et al., 2007). We embedded a synthesized auditory ERP signal into real EEG activity recorded from 4-month-old infants. We then compared the ability of the three techniques to extract that signal from the noise. Examination of correlation coefficients, variance in the gain across sensors, and residual power revealed that ICR and AB were significantly more successful than CTR at accurately extracting the signal. Overall performance of ICR and AB was comparable, although the AB algorithm introduced less spatial distortion than ICR. ICR and AB are improvements over CTR in cases where the signal-to-noise ratio is low. Both ICR and AB are improvements over standard techniques. AB can be applied to both continuous and epoched EEG.

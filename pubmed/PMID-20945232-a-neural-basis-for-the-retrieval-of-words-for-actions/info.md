@@ -1,0 +1,14 @@
+# A neural basis for the retrieval of words for actions.
+
+- **PMID**: 20945232
+- **DOI**: 10.1080/02643290126377
+- **PMCID**:  
+- **Journal**: Cognitive neuropsychology  ·  **Year**: 2001
+- **Authors**: D Tranel, R Adolphs, H Damasio, A R Damasio
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20945232/
+- **Captured**: 2026-05-10T16:07:24
+
+## Abstract
+
+Although much has been learned in recent years about the neural basis for retrieving words denoting concrete entities, the neural basis for retrieving words denoting actions remains poorly understood. We addressed this issue by testing two specific anatomical hypotheses. (1) Naming of actions depends not only on the classical implementation structures of the left frontal operculum, but also on mediational structures located in left premotor/prefrontal areas. (2) The neural systems subserving naming of actions and naming of concrete entities are segregated. The study used the lesion method and involved 75 subjects with focal, stable lesions in the left or right hemispheres, whose magnetic resonance data were analysed with a three-dimensional reconstruction method. The experimental tasks were standardised procedures for measuring action and object naming. The findings offered partial support for the hypotheses, in that: (1) lesions related to impaired action naming overlapped maximally in the left frontal operculum and in the underlying white matter and anterior insula; and (2) lesions of the left anterior temporal and inferotemporal regions, which produce impairments in naming of concrete entities, did not cause action naming deficits. A follow-up analysis indicated that action naming impairments, especially when they were disproportionate relative to concrete entity naming impairments, were not only associated with premotor/prefrontal lesions, but also with lesions of the left mesial occipital cortex and of the paraventricular white matter underneath the supramarginal and posterior temporal regions.

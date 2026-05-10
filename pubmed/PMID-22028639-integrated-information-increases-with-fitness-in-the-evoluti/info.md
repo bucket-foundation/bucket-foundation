@@ -1,0 +1,14 @@
+# Integrated information increases with fitness in the evolution of animats.
+
+- **PMID**: 22028639
+- **DOI**: 10.1371/journal.pcbi.1002236
+- **PMCID**: PMC39624 (full-text saved)
+- **Journal**: PLoS computational biology  ·  **Year**: 2011
+- **Authors**: Jeffrey A Edlund, Nicolas Chaumont, Arend Hintze, Christof Koch, Giulio Tononi, Christoph Adami
+- **MeSH**: Animals, Behavior, Animal, Biological Evolution, Genetic Fitness, Humans, Memory, Mental Processes
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22028639/
+- **Captured**: 2026-05-10T16:08:42
+
+## Abstract
+
+One of the hallmarks of biological organisms is their ability to integrate disparate information sources to optimize their behavior in complex environments. How this capability can be quantified and related to the functional complexity of an organism remains a challenging problem, in particular since organismal functional complexity is not well-defined. We present here several candidate measures that quantify information and integration, and study their dependence on fitness as an artificial agent ("animat") evolves over thousands of generations to solve a navigation task in a simple, simulated environment. We compare the ability of these measures to predict high fitness with more conventional information-theoretic processing measures. As the animat adapts by increasing its "fit" to the world, information integration and processing increase commensurately along the evolutionary line of descent. We suggest that the correlation of fitness with information integration and with processing measures implies that high fitness requires both information processing as well as integration, but that information integration may be a better measure when the task requires memory. A correlation of measures of information integration (but also information processing) and fitness strongly suggests that these measures reflect the functional complexity of the animat, and that such measures can be used to quantify functional complexity even in the absence of fitness data.
