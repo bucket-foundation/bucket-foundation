@@ -1,11 +1,12 @@
 # Kruse References Mined
 
-*From 468 transcript(s):*
+*From 552 transcript(s):*
 - `-4O4hUwcpDw-wittgenstein-interview-with-prof-michael-potter`
 - `-IhX_8iVf2w-history-of-jazz-dave-jasen-on-novelty-ragtime-confrey-bargy-`
 - `-VFTXZrbyNA-58-dr-jack-kruse-high-latitude-living-cold-exposure-sunlight`
 - `-i1SskhaLik-2023-10-26-bernardo-kastrup-michael-james-analytic-idealism-`
 - `-sB12gk9ESA-a-i-revolution-full-documentary-nova-pbs`
+- `-t1_ffaFXao-stephen-wolfram-fundamental-theory-of-physics-life-and-the-u`
 - `-z95oKVXw9A-archetypes-explained-introduction-to-jung`
 - `0IjUzKzfIbI-blue-light-kills-the-fit-people-dr-jack-kruse-ep-15`
 - `0Km3Bsg3bLg-lecture-recital-a-history-of-the-viol-o-de-sete-cordas`
@@ -22,6 +23,7 @@
 - `1V-s0wod48E-the-psyche-telepathy-morphic-resonance-with-dr-rupert-sheldr`
 - `1_eCsTz1sRw-revolution-in-farming-god-s-laws-for-land-animals-and-health`
 - `2-AKskkKZzA-sunlight-is-king-w-dr-jack-kruse`
+- `22TrTXZLmmU-civilization-as-a-paperclip-maximizer-daniel-schmachtenberge`
 - `2EqExGl4rQU-the-science-of-sunlight-and-cold-this-will-transform-your-he`
 - `2HvZl7n0wXs-glenn-gould-the-communicator`
 - `2HxQYH7SQQE-wim-hof-jack-kruse-ice-bath-lake-harriet-4-2-2019`
@@ -41,8 +43,10 @@
 - `4E6irMB2ANs-what-s-the-best-argument-against-analytic-idealism-bernardo-`
 - `4FG8Lynp6Ss-critique-9-13-hannah-arendt-the-human-condition`
 - `4QQCOugnQL4-jack-kruse-wim-hof-freezer-ice-bath-36degrees-6mins-6-3-19`
+- `4RlKcheHHOo-wonder-and-enchantment-iain-mcgilchrist-and-patrick-curry`
 - `4RlbKZrkgEg-cracking-the-health-code-w-dr-jack-kruse`
 - `4_lhKw2Vq50-vrg-the-human-condition-2021-ep-2-the-human-condition`
+- `4dC_nRYIDZU-sam-harris-consciousness-free-will-psychedelics-ai-ufos-and-`
 - `4kgGrgF3JhQ-8-jack-kerouac-on-the-road`
 - `52BwgibSVWU-medisun-podcast-19-dr-jack-kruse-epstein-cabal-circus-maximu`
 - `56yLoF-PGbk-alan-watts-philosophy-of-the-tao-pt-1-flow-balance-and-the-c`
@@ -78,8 +82,10 @@
 - `7xyGtI7KKIY-lecture-5-part-1-3-karlheinz-stockhausen-four-criteria-of-el`
 - `7zAGVbgKsY8-learn-every-chord-in-moonlight-sonata-chord-names-theory-and`
 - `88CFLcDqNak-chris-cutrone-lecture-on-adorno-s-negative-dialectics-2`
+- `8CRcgEnz5rM-hive-mind-the-324th-evolutionary-lens-with-bret-weinstein-an`
 - `8JFmG2yTf4E-nicotine-and-adhd`
 - `8V6D0GZbrAs-dr-jack-kruse-counting-calories-doesn-t-work`
+- `8WK-auo8Miw-does-physicalism-or-idealism-best-explain-reality-dr-graham-`
 - `8fHi36dvTdE-the-unanswered-question-1973-1-musical-phonology-bernstein-n`
 - `8oIoY_d6XCc-introdu-o-teoria-da-literatura-17-com-paul-fry-de-yale`
 - `8qqyCA9vz_s-the-fourth-phase-of-water-beyond-the-three-you-already-know-`
@@ -93,53 +99,71 @@
 - `AOLIbFIzPnI-dr-jack-kruse-the-false-belief-that-food-and-exercise-is-eve`
 - `AZj01XPMIyA-648-civilization-s-imbalance-and-restoring-the-humanities-th`
 - `AfYY9v0Q0X4-brian-eno-on-ai-art-and-what-makes-us-human`
+- `Ax64XtvR2mk-heather-heying-bret-weinstein-a-hunter-gatherer-s-guide-to-t`
 - `B8VcGXbKR34-cancer-prevention-secret-sunlight-beats-food-dr-jack-kruse-i`
+- `BCdV6BMMpOo-philip-goff-consciousness-panpsychism-and-the-philosophy-of-`
 - `BG31Oz0VWmI-eastern-and-western-lenses-to-analytic-idealism-with-bernard`
 - `BO4mhs0qlLg-can-creatine-help-your-brain`
 - `BPUGIsJe0Cs-unlocking-the-mind-with-anil-seth-and-christof-koch-on-consc`
+- `BVkUya368Es-why-people-are-terrified-of-eric-weinstein-s-geometric-unity`
+- `Bnh-UNrxYZg-frederic-schuller-the-physicist-who-derived-gravity-from-ele`
 - `BrwjP3zpm64-dr-jack-kruse-the-cia-don-t-want-you-to-know-this-ep-502`
 - `C-VgHJ1I2as-karlheinz-stockhausen-lecture-iv-telemusik-1972`
+- `C4F63t7Zwsg-the-end-of-philosophy-as-we-know-it-a-conversation-with-bern`
+- `C85Vyq-yQtk-why-the-west-is-losing-meaning-iain-mcgilchrist-interview`
 - `C8aa1ic6yWE-carl-jung-the-relations-between-the-ego-and-the-unconscious`
 - `CFHZyse4VGw-2015-personality-lecture-07-depth-psychology-carl-jung-part-`
 - `CFVjyscaSTc-music-of-the-edo-period-traditional-japanese-music`
+- `CVHZshSyiXo-how-decentralized-medicine-could-save-your-life`
 - `CVwpAzpOVuU-sunshine-is-reduction-electron-theft-vs-electron-donor-oxida`
 - `CVz-5qK4zBE-nature-s-hidden-healing-powers-w-dr-jack-kruse`
 - `CZBLhELkF3U-the-body-electric-robert-o-becker`
 - `CgKCJY182r4-medisun-podcast-13-dr-jack-kruse-the-modern-medical-system-i`
 - `CmuCkRly-HI-82-jorge-luis-borges-the-garden-of-forking-paths-and-other-s`
 - `CpJoAUltmgs-dr-jack-kruse-on-neonatal-jaundice-healthtopic-usa-healthpod`
+- `DAjTEOIH8Ww-sh-t-hitting-the-fan-is-coming-soon-bitcoiners-prepare-kruse`
 - `DC0faZiBcG0-lecture-2015-personality-lecture-06-depth-psychology-carl-ju`
 - `DHbfLM1VMIk-revisiting-robert-becker-s-the-body-electric-with-margaret-d`
 - `DJc5WEFaQlE-javanese-gamelan-music-of-indonesia-2-hours`
 - `DSOT5NU3glQ-sama-vedam-chanting-h-a-sastry-d-viswanatha-sarma-d-srikrish`
 - `DTSwlu0yaCE-experience-ancient-music-with-a-full-reconstruction`
+- `DbwXe5LhNNA-bishop-barron-presents-heather-heying-and-bret-weinstein-evo`
 - `De97zQi5rzc-music-theory-masterclass-1-drilling-the-basics`
 - `DgpIwVvrgc4-martin-heidegger-being-and-time-part-1-9`
 - `Dj5CqT9QvR0-how-nicotine-affects-focus-adhd-dr-john-kruse-dr-andrew-hube`
 - `DrMEL20o5KE-why-materialism-is-complete-nonsense-bernardo-kastrup`
+- `Ds_ZNpDqu5s-haunted-by-the-hanta-virus-the-325th-evolutionary-lens-with-`
+- `DyzHYnOqIoU-10k-subscribers-a-q-a-with-bernardo-kastrup`
 - `EHvR_QThCI0-rick-beato-songwriters-got-poorer-ai-is-next-so-where-is-mus`
 - `EMrMf_jkaWo-a-discussion-on-general-relativity-by-students-of-john-wheel`
 - `EWthpbsfMJI-dr-gerald-pollack-the-importance-of-water-for-energy-heart-h`
 - `FFpGf7aPXNA-17-the-frankfurt-school-of-critical-theory`
 - `FOsX666lCPk-how-left-brain-thinking-is-killing-civilization-dr-iain-mcgi`
 - `FSG1LR03ICg-mus-5-sound-in-time-stockhausen-kontakte-explained`
+- `FcaV3EEmR9k-is-consciousness-the-final-reality-questioning-the-material-`
+- `FkYer0xP37E-stephen-wolfram-s-radical-theory-of-everything`
 - `FtB3dDS7shQ-kruse-leadership-chat`
 - `Fz_srDeCNTQ-dostoevsky-and-nietzsche`
 - `G1o-5RYki-g-critique-7-13-negative-dialectics-theodor-adorno`
 - `G8hYx_caMis-women-in-the-history-of-the-classical-guitar-dr-candice-mowb`
 - `GDKLt5MA5M4-sam-harris-2018-our-perception-as-a-controlled-hallucination`
 - `GEw0ePZUMHA-joe-rogan-experience-1216-sir-roger-penrose`
+- `GOZ4m202OYQ-heather-heying-bret-weinstein-culture-consciousness-diet-dru`
 - `GRKcpj6tH2k-2018-icsi-public-lecture-richard-j-bernstein-the-relevance-o`
 - `Ghl9gaast-I-dr-jack-kruse-epi-paleo-keto-lchf-hcg-2-0-ha2cg-leptin-reset`
 - `H9nKr6DPxK4-why-music-theory-falls-apart-explaining-this-beatles-hit`
 - `HCV27LRNlUU-relaxing-music-gamelan-bali`
+- `HMiC5ma_laY-the-matter-with-things-the-case-for-shifting-our-attention-d`
 - `HPgVgjyZ7mM-andrew-a-marino-interviewed-dr-alexis-cowan`
 - `HU6LfXNeQM4-your-brain-perception-deception-full-documentary-nova-pbs`
+- `HYJFgyqs0sM-joe-rogan-experience-1081-bret-weinstein-heather-heying`
 - `Hf1q-bZMEo4-what-are-traces-of-consciousness-a-new-breakthrough-unifying`
 - `HrXoKhkKFDU-011-dr-jack-kruse-part-1-the-inner-turning-point-inside-the-`
 - `I537lQoiu5c-neuro-surgeon-by-day-mito-hacker-by-night-dr-jack-kruse`
 - `I7r97vidvm4-the-unknown-truth-about-the-water-dr-gerald-h-pollack-univer`
 - `I8c03xlTbIA-beethoven-analysis-dr-b-music-theory`
+- `IHSMqhrfvaU-episode-19-dr-jack-kruse-the-light-connection-adhd-sleep-dis`
+- `ILlhFKuu3NQ-geometric-unity-unifying-all-forces-generations-eric-weinste`
 - `INGBS1LIBCA-5-the-enlightenment-and-the-public-sphere`
 - `IdbajMwBBUY-chris-cutrone-lecture-on-adorno-s-negative-dialectics`
 - `Iq3tDpoFVL0-unraveling-the-medical-matrix-w-dr-jack-kruse`
@@ -147,6 +171,7 @@
 - `J--0hk89hmU-breakthrough-how-consciousness-creates-the-simulation-dr-don`
 - `JAnmObVELUE-simulation-680-dr-donald-hoffman-conscious-agent-theory`
 - `JCW6hhJ9qLc-live-with-carnegie-hall-emanuel-ax-legacy-of-great-pianists-`
+- `JCdGPJBQGwU-fog-of-war-the-316th-evolutionary-lens-with-bret-weinstein-a`
 - `JFsUQpP1afM-brian-eno-breaks-down-the-future-of-generative-music-creativ`
 - `JRicmld6AkU-andrw-a-marino-interviewed-by-dr-kamau-kokayi`
 - `JUL8kNYmgsA-brian-eno-on-exploring-creativity-red-bull-music-academy`
@@ -154,9 +179,11 @@
 - `JdB-BMdgFbk-the-master-his-emissary-the-meaning-crisis-iain-mcgilchrist-`
 - `JiNKlhspdKg-new-horizons-in-music-polyrhythms-loop`
 - `JsQEm3EiXmY-glenn-gould-interviewed-by-alan-rich-1959`
+- `KAZ2a-vawMk-understanding-the-matter-with-things-dialogues-episode-20-ch`
 - `KCcX03Q6Lkw-the-quantum-labyrinth-richard-feynman-john-wheeler-quantum-r`
 - `KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick-rubin-podcast-full-breakd`
 - `Kb5X8xOWgpc-is-the-brain-a-statistical-organ-the-free-energy-principle-a`
+- `Kclh9hSs8d0-iain-mcgilchrist-on-what-truly-matters`
 - `KfoUAB9yIPg-harold-bloom-how-to-read-and-why`
 - `KkR24ieh5Ow-033-karl-friston-the-free-energy-principle`
 - `KqfuMM-6yAk-vrg-the-human-condition-2021-ep-1-prologue`
@@ -166,12 +193,15 @@
 - `L6d7NxK3k04-bernstein-conducting-himself`
 - `LGXujmTAcUM-uncover-the-history-sound-of-t-rrega-the-tonic-ft-rosie-benn`
 - `LGumhl8-kiY-fyodor-dostoevsky-complete-lecture-series-matt-raphael-johns`
+- `LLgv2QJRYSg-how-to-steer-civilization-away-from-catastrophe-with-daniel-`
 - `LXtMSnowOxo-fractalverse-podcast-2-music-of-the-spheres-pythagoras-and-a`
 - `LZ5C11mlTH4-your-brain-has-2-masters-and-one-is-leading-us-astray-dr-iai`
 - `La9qnPwx3Nc-stanislav-grof-the-healing-potential-of-non-ordinary-states-`
 - `Lg6yR73aBYs-tones-drones-and-arpeggios-the-magic-of-minimalism-episode-1`
 - `Ln3WszTq0uA-dr-jack-kruse-light-melanin-pomc-in-human-evolution-disease`
+- `LqiDTeDe7ig-flowgrade-show-19-jamie-wheal-on-transcendence-and-the-metap`
 - `LwOUoNJGDtU-dr-jack-kruse-real-cause-of-skin-cancer`
+- `M5Hz1giUUT8-is-reality-an-illusion-interface-theory-of-perception-consci`
 - `M7RlYdoybT4-the-emancipatory-intent-of-critical-theory-j-rgen-habermas-b`
 - `MAFUdIZnI5o-the-grotesque-legacy-of-music-as-property`
 - `MC3Ztal5gzc-polka`
@@ -181,15 +211,18 @@
 - `MPqCi9ywzOc-master-class-with-yo-yo-ma`
 - `MQv8ObsaG-U-borges-a-poet-s-creed-lecture-1968`
 - `MSJk1RDH7Aw-uc-327-water-light-and-magnetism-for-health-with-dr-jack-kru`
+- `MTM-8memDHs-mindscape-245-solo-the-crisis-in-physics`
 - `MZJvDWKbV48-thoughts-on-jack-kruse-harryserpanos`
 - `Mar2X6bvid4-bernardo-kastrup-the-case-for-idealism-full-lecture-part-1`
 - `Mb8lQtKduVI-how-our-gut-health-is-linkd-with-the-sun-by-dr-jack-kruse-he`
 - `MvrKwzXTtfw-ifs-podcast-1-decoding-the-science-of-ultimate-human-health-`
 - `N-_DTk9hYvI-nourish-vermont-2016-dr-jack-kruse-how-to-bio-hack-your-zip-`
+- `N5sbRPOR5uE-making-circadian-medicine-quantum-biology-accessible-for-eve`
 - `NG98vFRYYSc-men-of-law-podcast-19-with-dr-jack-kruse`
 - `NOwnb6CkFlQ-humanity-s-meaning-crisis-what-ancient-wisdom-modern-psychol`
 - `NSs87xQ9hts-nancy-hanks-lecture-2009-wynton-marsalis`
 - `NgMoP95gUlI-psw-2442-quantum-gravity-carlo-rovelli`
+- `NiZl-cYohqM-consciousness-perception-evolution-the-nature-of-reality-don`
 - `NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018`
 - `Np72VPguqeI-10-deconstruction-i`
 - `NtQ-kdLlQiU-improve-focus-with-behavioral-tools-medication-for-adhd-dr-j`
@@ -200,6 +233,7 @@
 - `OJaR2XgTmPI-dr-jack-kruse-decentralizing-medicine-and-shaping-future-hea`
 - `OT3ocBG5PPA-the-rise-of-the-virtuoso`
 - `OUFYo1svKgQ-1959-in-jazz-history-with-gil-harel-davis-kind-of-blue`
+- `OWyugUdBups-stephen-wolfram-computation-at-the-foundations-of-everything`
 - `O_w-G80FqcU-dr-jack-kruse-nourish-vermont-2017-lecture-part-1-of-10`
 - `Oii1TNH4FeM-interview-with-robert-o-becker-md`
 - `OkuQIG_9LXs-endorsement-of-dr-jack-kruse`
@@ -212,6 +246,7 @@
 - `PH1MbzHXPsY-cancer-beyond-metabolism-bioelectricity-mitochondria-quantum`
 - `PIZmDZAI0mU-chris-cutrone-lecture-on-adorno-s-dialectical-epilegomena-19`
 - `PNYWi996Beg-your-brain-is-a-prediction-machine-not-a-processor-karl-fris`
+- `PTknjbaDy88-mindscape-275-solo-quantum-fields-particles-forces-and-symme`
 - `PXONvpL2S40-on-uncertainty-wittgenstein-habits-of-thought-and-thoughts-o`
 - `PaSik_fGCLM-hannah-arendt-s-the-human-condition-part-1`
 - `PdZbpIP_VcM-jazz-miles-davis-and-john-coltrane-what-s-in-a-mode`
@@ -224,15 +259,18 @@
 - `Q9zR4lWyVN8-the-hero-s-journey-isn-t-what-you-think-joseph-campbell-part`
 - `QBiVwempeiw-oma-j-dilla-instrumentals-live-at-barouche-2025`
 - `QEzULMNHygM-a-firebreathing-conversation-with-dr-jack-kruse-on-technolog`
+- `QN_PHiLJOEA-panel-cens0rship-of-free-speech-health-btc-prague-2025-ep-11`
 - `QfP5BgOz97U-quantum-consciousness-and-the-illusion-of-reality-federico-f`
 - `R0dhvBZX08Y-the-many-lives-of-brian-eno`
 - `RI123H9R-68-bernstein-the-unanswered-question-norton-lectures-5-the-twen`
 - `RLEL6o24uIA-sean-d-kelly-heidegger-s-being-and-time-part-1`
+- `RQqlWLMBA14-idea-cast-episode-two-bernardo-kastrup`
 - `RSCq8rQjZvA-pt-rakesh-chaurasia-live-at-eml-lecture-demonstration-rakesh`
 - `Ree_q4WweCI-12-introduction-to-critical-theory`
 - `Rz5b4dPhzIQ-the-neuroscience-of-consciousness-anil-seth`
 - `SIs7wcGR0zY-dr-jack-kruse-ketosis-fails-with-circadian-mismatches-quantu`
 - `SNj7a4fKJYQ-rock-chalk-suite-the-story-behind-the-music-conversation-wit`
+- `SPnyxnvU4ko-is-reality-an-illusion-dr-donald-hoffman-ep-387`
 - `SR3uwW_SX0o-scientific-realism-lecture-by-prof-carlo-rovelli`
 - `SiBFtwbyv44-exiled-brain-surgeon-darpa-mind-control-quantum-biology-sunl`
 - `Sj1d-XBs1nQ-chris-cutrone-lecture-on-adorno-s-negative-dialectics-1`
@@ -246,12 +284,16 @@
 - `TUT6nhFMHtM-ep-14-craig-leblanc-w-dr-jack-kruse-the-daily-bitcoin-podcas`
 - `TcFLQvz5uEg-mindscape-87-karl-friston-on-brains-predictions-and-free-ene`
 - `TcbuqQd57rY-decentralized-medicine-jack-kruse-assembly-2023`
+- `TpZfsQpqaq8-can-science-be-efficient-the-264th-evolutionary-lens-with-br`
 - `U5j-NL3_LgA-activate-your-fat-burning-pathway-with-dr-jack-kruse`
 - `U6JsfDIo4TA-leonard-bernstein-young-people-s-concerts-what-does-music-me`
+- `U99dQrZdVTg-the-matter-with-things-iain-mcgilchrist`
 - `U9GD35Pfa1o-hero-s-journey-explained-joseph-campbell-s-universal-story-o`
 - `UBy0YLub9dU-marianna-chelidoni-the-decline-of-the-guitar-after-1850s-and`
 - `UZ8BA25T5GA-glyn-johns-recording-the-beatles-the-stones-led-zeppelin-the`
 - `UarXGSuyyrw-22-post-colonial-criticism`
+- `UrQRVitzPkY-on-science-conscious-agent-dynamics-donald-hoffman-interview`
+- `UvNnnU1GnNM-2020-plenary-2-the-science-of-consciousness-2020-reality-ill`
 - `Uvm0dho_KRM-dr-jack-kruse-nourish-vermont-2017-q-a-part-10-of-10`
 - `VLQMGHBnxVg-eastern-and-western-zen-08-eastern-wisdom-alan-watts`
 - `VLq8mnmaNpI-why-sherpas-are-super-humans-with-dr-jack-kruse-a-life-of-gr`
@@ -263,41 +305,54 @@
 - `W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re`
 - `W7U35lKiZQc-exploring-the-historical-roots-of-gregorian-chants-and-their`
 - `WMZBN_76VBE-iain-mcgilchrist-on-the-divided-brain-and-the-master-and-his`
+- `WX9mg3uN92w-understanding-our-evolutionary-baggage-with-heather-heying-b`
 - `WYjdsqmrXqY-ep-23-robert-greenberg-composer-music-historian-pianist-and-`
 - `WZgv7h0Iy88-history-of-jazz-oxygen-for-the-ears-music-documentary-full-m`
 - `Wco0xZ8epsY-the-3-musical-geniuses-behind-the-most-popular-jazz-album-of`
 - `WgjBaXpuSE4-how-the-earth-was-made-from-molten-rock-to-green-planet-full`
+- `WivRq9xPfns-understanding-the-matter-with-things-dialogues-episode-8-cha`
 - `WwxOqw1kQeo-thc-clips-dr-jack-kruse-on-deuterium-depleted-water-water-ma`
 - `X5WCYlaPAwM-blue-light-emf-circadian-rhythm-mitochondria-and-quantum-bio`
 - `X8K9gkuHpMo-lecture-7-part-1-3-karlheinz-stockhausen-mantra-1973-british`
+- `XG89xUm8Hz0-jamie-wheal-on-going-beyond-alpha-burner-party-crowd-spiritu`
 - `Xa_LaphlVGg-lecture-5-melody-notes-scales-nuts-and-bolts`
 - `Xnt-c5i5prM-the-art-of-listening-music-documentary-2021`
 - `YCN-kgAH2hM-dr-kruse-patient-interview`
 - `YRIrf7XzEnA-federico-faggin-bernardo-kastrup-quantum-physics-spiritualit`
 - `YSLV7t9DvN8-jorge-luis-borges-this-craft-of-verse-lectures-thepostarchiv`
+- `YSLpdWmjfMQ-metaphysics-the-matter-with-things-an-evening-with-iain-mcgi`
 - `YTCF0w_kOFU-sir-niall-ferguson-war-and-peace-by-leo-tolstoy-the-book-clu`
 - `YTI7IIsYPKo-explore-flamenco-and-guitars-in-southern-spain-with-lucy-hal`
 - `YgwFEXx9syU-sacred-choir-of-knights-gregorian-chant-medieval-music-epic-`
 - `Yj3XjNxCO5I-khayal-a-musical-journey-hindustani-classical-music-1987-nar`
+- `YkL1Mp2Cj6M-science-the-rebel-reboot-the-304th-evolutionary-lens-with-br`
 - `YrwbDsTx0Uw-water-the-matrix-and-engine-of-life-pioneer-in-water-researc`
 - `Z7eTeIt_HiU-full-lecture-by-alan-watts-on-buddhism-zen-reconsidered`
+- `Z7rd04KzLcg-a-portal-special-presentation-geometric-unity-a-first-look`
+- `ZalV8MuSJ_I-evolution-the-challenge-of-modern-life-feedback-loop-ep-34-b`
 - `ZdvGcLXD7mU-alan-watts-philosophies-of-asia-eco-zen-1-2`
 - `Zka4Lnire1k-uncomfortable-truths-with-dr-jack-kruse`
 - `ZklRSn92ek4-joe-rogan-experience-550-rupert-sheldrake`
+- `_7aIgHoydP8-saving-civilization-healthcare-tech-democracy-w-daniel-schma`
 - `_Inspd0gKEs-dr-jack-kruse-de-centralized-medicine-meets-de-centralized-m`
 - `_MPUls6VSzk-being-time-introduction-i`
 - `_QDZqFKmnBo-wittgenstein-wheeler-and-wallace-the-curious-relation-of-phi`
 - `_WevaeimzF8-vrg-the-human-condition-2014-ep-1-the-prologue`
 - `_fDgW9M1NKo-isaac-p-witz-ph-d-award-speech-2023-szent-gy-rgyi-prize`
 - `aQUo2KCK2GU-music-historian-robert-greenberg-presents-a-lecture-on-the-l`
+- `acUf7PuGWXA-informal-history-of-physics`
 - `ahW5Qr6ADKI-don-t-force-life-alan-watts-on-wu-wei-zen-gardens-solitude`
 - `amM835C0i94-godfather-of-quantum-biology-upbringing-andrew-huberman-ligh`
 - `b1hEc6vay_k-karl-friston-2016-ccn-workshop-predictive-coding`
+- `bA28Di3G-Ak-dr-jack-kruse-deep-politics-trump-bitcoin-becoming-a-decentr`
 - `bMV6pHfu1Fo-essentially-ellington-2023-wynton-marsalis-q-a`
 - `bNxzQSheCkc-firing-line-with-william-f-buckley-jr-borges-south-america-s`
 - `bP-te0P_rE8-cbc-presents-glenn-gould-on-bach`
 - `bUMZb_Otta8-harold-bloom-shakespeare-the-invention-of-the-human-1998`
 - `bme25f0IUb8-martin-heidegger-explained-part-1-being-and-time-1927`
+- `c-J9U_Hjg-A-idea-cast-interview-series-episode-sixteen-bernardo-kastrup`
+- `c6igdqUZ6kM-metaphysical-idealism-dr-bernado-kastrup-interview`
+- `cC1HszE5Hcw-sean-kelly-existentialism-nihilism-and-the-search-for-meanin`
 - `cCU6JShp5-k-dr-jack-kruse-emf-podcast-debrief-5g-explained-and-q-a-live`
 - `cCyapf0E5ns-consciousness-neuroscience-perception-and-hallucination-prof`
 - `cmpXEIJ8Y-c-music-semiotics-and-social-construction-in-african-art-music`
@@ -306,32 +361,44 @@
 - `d6NHRB5V1eE-top-physicist-science-spirituality-merge-in-this-new-theory-`
 - `dLXKFA33SSM-karl-friston-free-energy-and-active-inference-rovereto-novem`
 - `dOJt-wFNe3E-the-fourth-phase-of-water-gerald-pollack-phd-79`
+- `db-Xn2gzGxU-neurohackers-advice-on-what-we-must-do-to-stop-the-end-of-ci`
+- `dkLA2nHSY2Y-cosmic-drives-intuition-ai-and-the-soul-iain-mcgilchrist`
 - `dogVQDydRGQ-iain-mcgilchrist-wisdom-nature-and-the-brain-the-great-simpl`
 - `drdn_hDGALk-57-dr-jack-kruse`
 - `e8R7KicFCSs-karl-friston-decodes-the-real-ooda-loop-active-inference-and`
+- `enORrSXRTa4-dr-jack-kruse-part-3-bitcoin-blackmail-american-revolution-b`
 - `epoRGnCWyXw-personality-psychology-lecture-one-official-peterson-academy`
 - `epzlGsgbVS8-he-changed-everything-twice-ludwig-wittgenstein-s-complete-p`
 - `etfeXUZou-g-anubhav-festival-lecture-demonstration-by-dr-sriram-parasura`
 - `f3CLZVZfTH8-we-made-a-huge-mistake-ignoring-the-sun-dr-jack-kruse`
+- `f6Vkhov_qx8-the-matter-with-things-iain-mcgilchrist-ep-278`
 - `fVIbcg3La_E-on-the-back-of-a-tiger-episode-one-gilbert-ling`
 - `fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars`
 - `fskWPCapafI-dr-jack-kruse-lost-133-lbs-in-1-year-without-exercising-warn`
 - `g1XPu-_6LIU-ep-37-wynton-marsalis-the-wisdom-of-jazz`
 - `gDjDWA4XUkI-habermas-on-modernity-postmodernity-1984`
+- `gINYis8BgSY-mindscape-323-jacob-barandes-on-indivisible-stochastic-quant`
 - `gXjj2EoElFg-brain-surgeon-vs-pharma-lobbyist-what-s-really-making-you-si`
 - `g_rlcavhGLs-jack-kruse-on-how-light-sculpts-your-microbiome-implications`
 - `gdabzUSjTLo-the-legendary-stan-groff-holotropic-breathwork-documentary`
 - `gel94sjJOOo-african-drum-music-tribal-beats-shaman-dance-unleash-your-pr`
 - `gnbdyhDraIk-introdu-o-teoria-da-literatura-10-com-paul-fry-de-yale`
 - `goyZbut_KFY-all-9-solfeggio-frequencies-full-body-aura-cleanse-cell-rege`
+- `gwQHLHNsKvw-bret-weinstein-heather-heying-on-evolution-innovation-and-we`
+- `h2FemT5aZQQ-hunter-gatherer-s-guide-to-21st-century-heying-weinstein-on-`
 - `hED4nEXGOpM-after-the-eclipse-the-light-of-reason-in-late-critical-theor`
+- `hGRNUw559SE-daniel-schmachtenberger-steering-civilization-away-from-self`
 - `hOMTiBqhbQc-lars-edvinsson-s-opening-lecture-of-the-albert-szent-gy-rgyi`
 - `hZsx5lQB38c-this-was-toscanini`
 - `hn8d_kQwFN4-joseph-campbell-the-hero-s-journey-jonathan-young-interview`
 - `hwBey7UIXpE-7-what-is-a-musical-instrument-prehistoric-origins-of-musica`
 - `hwXO3I8ASSg-the-unanswered-question-1973-4-the-delights-dangers-of-ambig`
+- `hzuOC9e7wZU-dr-jack-kruse-why-bitcoin-is-the-key-to-health-freedom-the-f`
 - `i0djHJBAP3U-huun-huur-tu-live-berkely`
+- `i4FsmcGCJcU-what-s-the-return-on-roi-the-213th-evolutionary-lens-with-br`
+- `iAcB0yBtXLM-daniel-schmachtenberger-developing-a-deeper-understanding-of`
 - `iEZVWWk6qHg-2014-personality-lecture-03-heroic-shamanic-initiations-part`
+- `iGOGxaZZHwE-it-s-not-that-we-don-t-know-it-s-that-we-can-t`
 - `iK4gG7TBgNM-gerald-pollack-water-rethinking-cell-biology-ricci-flow-nutr`
 - `iNvGmFMswuQ-holotropic-states-of-consciousness-radical-visions-of-psycho`
 - `iRlFvArtcfU-dr-jack-kruse-keynote-speech-bitcoin-prague-2025-time-is-you`
@@ -342,6 +409,7 @@
 - `ii6phXev37A-harold-bloom-lectures-on-shakespeare-s-major-tragedies`
 - `iiIMMfu78Gs-30-forgotten-ancient-musical-instruments-and-their-powers-my`
 - `jAAA11vEwiI-what-they-didn-t-tell-you-about-critical-theory-horkheimer-a`
+- `jDSIUPJ7XIM-bitcoin-sovereignty-the-global-health-crisis-dr-jack-kruse-s`
 - `jIc_USZtIiE-genius-within-the-inner-life-of-glenn-gould`
 - `jPur5rXqOeA-episode-5-pythagoras-and-the-music-of-the-spheres`
 - `jZ1fsXQz7M4-karl-friston-s-unfalsifiable-free-energy-principle`
@@ -365,19 +433,25 @@
 - `lhxca0ANvIk-bitcoin-and-humanity-s-decentralized-revolution-with-dr-jack`
 - `lkAXsR5WINc-13-jacques-lacan-in-theory`
 - `m3YVmZ-Xm3g-dr-gerald-h-pollack-the-water-electrons-interview-nion-healt`
+- `mNh7WmeDUvI-the-washington-state-of-science-the-309th-evolutionary-lens-`
+- `mOsvZc9Jv8E-heather-heying-bret-weinstein-what-evolutionary-biology-says`
 - `mT7roDHocuc-5-the-idea-of-the-autonomous-artwork`
 - `mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-`
 - `mfXkXp37oZM-dr-jack-kruse-circadian-biology-melanin-how-to-heal-your-mit`
+- `mg93Dm-vYc8-roger-penrose-on-the-portal-w-eric-weinstein-ep-020-plotting`
 - `nR4JAonAR4g-inside-brian-eno-s-studio-zane-lowe-interview`
 - `nVQKbQVc2_w-4-philosophers-and-kings-plato-s-republic-i-ii`
 - `ncpbNXmJNzA-dr-jack-kruse-nourish-vermont-2017-lecture-part-7-of-10`
 - `njnohokIEcQ-glenn-gould-plays-bach-the-art-of-the-fugue-bruno-monsaingeo`
 - `nok4GhijvAA-is-consciousness-related-to-quantum-physics-with-roger-penro`
+- `o31cGMENDTI-eigenbros-ep-120-timothy-nguyen-problems-with-eric-weinstein`
 - `oXR9AiqRXVQ-ucla-professor-erain-kristal-delivers-the-118th-faculty-rese`
 - `oeJiX7LQq00-ep-57-guest-interview-dr-jack-kruse-kruse-longevity-center`
 - `oml8eX9aJhY-semester-opening-lecture-at-the-albert-szent-gy-rgyi-medical`
+- `ou2JgH2Jy8E-bernardo-kastrup-the-radical-view-of-mind-only-elevating-con`
 - `ouksSZxRtnc-dr-robert-becker-and-the-dc-electric-current-jack-kruse-hube`
 - `p2J7wSuFRl8-1-course-introduction`
+- `pDSEjaDCtOU-ian-hutchinson-nuclear-fusion-plasma-physics-and-religion-le`
 - `pE_q4A9uFkc-paleo-summit-2012-dr-jack-kruse-mitochondria`
 - `pEofHxgpoaE-glenn-gould-well-tempered-polymath`
 - `pKEOaE3VTJA-dr-kruse-your-body-was-designed-for-500-years-ago`
@@ -394,14 +468,18 @@
 - `qTEltTx7Y90-the-darkest-wisdom-all-of-dostoevsky-s-philosophy-explained-`
 - `qUdcIVGeI9A-a-guide-to-brian-eno`
 - `qa3FaUXZFSc-the-war-on-sunlight-is-real-and-it-s-not-an-accident-dr-jack`
+- `qfKyNxfyWbo-sheldon-solomon-death-and-meaning-lex-fridman-podcast-117`
 - `qrIlWrGe4w4-nature-s-hidden-intelligence-morphic-fields-rupert-sheldrake`
 - `rALeChtSYN4-human-nature-and-the-divided-brain-iain-mcgilchrist`
+- `rIpUf-Vy2JA-joscha-bach-nature-of-reality-dreams-and-consciousness-lex-f`
 - `rKDl37lqEBg-dr-jack-kruse-sunlight-is-the-key-to-health-digestive-issues`
 - `rOC4tHjZslw-harold-bloom-discusses-freud-s-major-concepts-mar-21-1983`
 - `rRM_FNooJHc-gagaku-the-court-music-of-japan-complete`
 - `rTOXgqMAMeo-08-mitochondria-low-carb-advocates-metabolic-stress-gilbert-`
 - `r_fxB6yrDVo-the-unanswered-question-1973-2-musical-syntax-bernstein-nort`
 - `rv62qJGjVB4-as-much-music-theory-as-i-can-teach-in-1-hour`
+- `s2ygDb2CozE-understanding-the-matter-with-things-dialogues-episode-1-the`
+- `s7I5j2cteFQ-idea-cast-episode-twenty-nine-bernardo-kastrup-in-dialogue-w`
 - `s9vsbINyIWQ-dr-enqi-what-is-the-origin-of-bioelectricty-dr-sebi-robert-o`
 - `sCxL1g_D4Io-traditional-indonesian-music-indonesian-folk-music-bali-medi`
 - `sIpXCMINceE-dr-jack-kruse-s-mindblowing-answer-to-who-is-satoshi-nakamot`
@@ -415,12 +493,16 @@
 - `skRCLJxCpDI-how-to-read-and-why-harold-bloom-short-story-section`
 - `snFsXVJdT7I-sacred-choir-of-knights-gregorian-chant-medieval-music-epic-`
 - `t06aTX9jM34-decoding-the-universe-quantum-full-documentary-nova-pbs`
+- `tJCJRE8c2eU-understanding-the-matter-with-things-dialogues-episode-15-ch`
 - `tKqJs3MVR1k-awakening-to-the-meaning-crisis-robert-wright-john-vervaeke`
 - `tTjtAWu_yOY-bernardo-kastrup-on-sean-carroll-illusionism-more`
 - `tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue`
 - `tha7IPtUTAU-dr-jack-kruse-on-what-big-pharma-big-food-don-t-want-you-to-`
+- `toZPGhq3VqQ-civilization-as-a-paperclip-maximizer-daniel-schmachtenberge`
 - `tsA1X4jGNi8-gamelan-javanese-music-meditation-relaxing-music-calm-music`
 - `uEwYlfekOIY-homeopathy-new-evidence-fourth-phase-of-water-a-central-role`
+- `uNR67elfPUw-b-rad-podcast-breather-circadian-rhythm-24-hour-tour-inspire`
+- `umg4P0aurjM-bitcoin-maximalist-dr-jack-kruse-exposes-trump-admin-el-salv`
 - `unUTOBIXvdc-banned-neurosurgeon-decentralize-your-health-b4-it-s-too-lat`
 - `usB5IKPK04E-dr-jack-kruse-unfiltered-the-full-1-hour-interview-they-don-`
 - `uzJYPj7mfyA-203-dr-jack-kruse-bitcoin-and-biology`
@@ -430,6 +512,7 @@
 - `vM1WN_1hIsE-lecture-7-mantra-q-a-karlheinz-stockhausen-british-lectures-`
 - `vRtb3qfhJe0-hannah-arendt-s-the-human-condition-part-2`
 - `vSmzTlan80E-the-way-of-zen-by-alan-watts-full-audiobook-in-high-quality-`
+- `vWGuUr-6q9k-mindscape-300-solo-does-time-exist`
 - `vnC2lRmGHSU-banned-neurosurgeon-decentralize-your-health-b4-it-s-too-lat`
 - `w9wjPMBNJXo-glenn-gould-and-natsume-soseki`
 - `wJDjUmSYZNo-the-slave-that-broke-free-dr-jack-kruse`
@@ -450,6 +533,7 @@
 - `xryT4B4sOY0-harvard-engl-e-129-lecture-12-the-tempest`
 - `xsy8p435DqM-conscious-agents-vs-cognitive-agents-with-donald-hoffman-and`
 - `y1kafU4oODc-wittgenstein-drury-the-philosopher-and-the-psychiatrist`
+- `yAJTctpzp5w-can-space-and-time-emerge-from-simple-rules-stephen-wolfram-`
 - `yALOChgRrHQ-these-people-must-pay-bitcoin-trump-covid-and-zionism-with-d`
 - `yJgAQ3xWMoA-robert-sandall-and-mark-russell-interview-brian-eno-about-ge`
 - `yTrSFddva8Q-dr-jack-kruse-fix-the-money-fix-the-body-orange-pill-order-e`
@@ -475,76 +559,76 @@
 
 ## Concepts (term frequency across all transcripts)
 
-- **WHO** — 16075
-- **AGE** — 11105
-- **quantum** — 2467
-- **iron** — 2013
-- **EPA** — 1942
-- **mitochondria** — 1788
-- **electron** — 1382
-- **AGEs** — 1374
-- **UV** — 1030
-- **RAGE** — 1027
-- **DHA** — 994
-- **melanin** — 918
-- **blue light** — 716
-- **Einstein** — 651
-- **Becker** — 640
-- **electromagnetic** — 587
-- **mitochondrial** — 577
-- **heme** — 572
-- **leptin** — 560
-- **infrared** — 539
-- **NAD** — 495
-- **red light** — 442
-- **EMF** — 408
-- **circadian** — 402
-- **dopamine** — 353
-- **ATP** — 344
-- **proton** — 334
-- **photosynthesis** — 333
-- **vitamin D** — 301
-- **semiconductor** — 283
-- **melatonin** — 282
-- **deuterium** — 278
-- **NIH** — 263
-- **magnetic field** — 257
-- **Newton** — 253
-- **Russell** — 234
-- **cytochrome** — 230
-- **Rockefeller** — 199
-- **Wheeler** — 195
-- **UVA** — 162
-- **hemoglobin** — 159
+- **WHO** — 20653
+- **AGE** — 13928
+- **quantum** — 3992
+- **iron** — 2556
+- **EPA** — 2466
+- **mitochondria** — 1866
+- **electron** — 1774
+- **AGEs** — 1700
+- **RAGE** — 1318
+- **Einstein** — 1171
+- **UV** — 1082
+- **DHA** — 1012
+- **melanin** — 957
+- **blue light** — 760
+- **Becker** — 688
+- **electromagnetic** — 679
+- **heme** — 661
+- **leptin** — 608
+- **mitochondrial** — 605
+- **NAD** — 566
+- **infrared** — 557
+- **red light** — 474
+- **circadian** — 456
+- **proton** — 443
+- **Newton** — 429
+- **EMF** — 424
+- **dopamine** — 401
+- **ATP** — 354
+- **NIH** — 341
+- **photosynthesis** — 340
+- **magnetic field** — 337
+- **vitamin D** — 336
+- **melatonin** — 323
+- **deuterium** — 285
+- **semiconductor** — 284
+- **Rockefeller** — 264
+- **Russell** — 247
+- **cytochrome** — 242
+- **Wheeler** — 226
+- **Maxwell** — 198
+- **hemoglobin** — 169
+- **UVA** — 166
 - **exclusion zone** — 137
-- **photoelectric** — 118
-- **vitamin A** — 118
-- **methylene blue** — 112
-- **NIR** — 104
-- **seafood** — 100
-- **redox** — 99
-- **FDA** — 95
-- **cortisol** — 91
-- **photoelectric effect** — 90
-- **quantum biology** — 80
-- **copper** — 75
+- **photoelectric** — 129
+- **vitamin A** — 120
+- **methylene blue** — 117
+- **FDA** — 110
+- **Feynman** — 107
+- **cortisol** — 106
+- **NIR** — 105
+- **redox** — 103
+- **seafood** — 101
+- **photoelectric effect** — 95
+- **quantum biology** — 85
+- **copper** — 77
+- **Planck** — 75
+- **Faraday** — 74
 - **biophoton** — 74
 - **collagen** — 70
-- **Maxwell** — 70
-- **Tesla** — 63
-- **Faraday** — 60
-- **autoimmune** — 57
-- **UVB** — 52
+- **Tesla** — 66
 
 ## Titled people (Dr./Professor/Prof.)
 
-- Cruz — 140
-- Jack Cruz — 88
+- Cruz — 156
+- Jack Cruz — 97
 - Becker — 67
-- Jack — 29
+- Jack — 30
 - Grace — 20
 - Jack
-Cruz — 18
+Cruz — 19
 - Bloom — 15
 - Jack Kruse — 14
 - Who — 12
@@ -559,14 +643,18 @@ Cruz — 18
 - Robert — 6
 - Allison — 6
 - Thomas — 6
+- Ian — 6
 - Gerald Pollock — 6
 - Jack Cruz Dr — 6
+- Hoffman — 6
 - Jack
 Kruse — 5
 - Greenberg — 5
 - John Cruz — 4
 - Alexis Cowan — 4
 - Pollock — 4
+- Bret Weinstein — 4
+- Heather Heying — 4
 - Deutsch — 4
 - Ted — 4
 - Bob — 4
@@ -577,9 +665,11 @@ Wallace — 3
 - David Klein — 3
 - Robert
 Becker — 3
+- Brandon Crawford — 3
 - Amy
 Hungerford — 3
 - Hilarius — 3
+- Doug Wallace — 3
 - Daniel Callahan — 3
 - Wallace — 3
 - Pas — 3
@@ -593,17 +683,10 @@ Hungerford — 3
 - Johnson — 3
 - Donald Hoffman — 3
 - Jack Crews — 3
-- Ian — 3
 - Kagan — 3
 - Hans Eichner — 3
 - Habermas — 3
 - Levin — 3
-- Mary Stewart — 3
-- Michael — 2
-- Roberto Becker — 2
-- Albert St
-Georgie — 2
-- Leven — 2
 
 ## Citations (Name year, Name et al)
 
@@ -615,12 +698,14 @@ Georgie — 2
 - Vermont 2016 — 3
 - Napoleon 1812 — 2
 - Tractatus 1919 — 2
+- Rockefeller 1911 — 2
 - University 1994 — 2
 - November 1915 — 2
 - English 1911 — 2
 - Curtain 1989 — 2
 - Moscow 1926 — 2
 - Tarter 1990 — 2
+- January 2021 — 2
 - Institute 1939 — 2
 - Philharmonic 1978 — 2
 - Shannon 1948 — 2
@@ -661,7 +746,6 @@ Georgie — 2
 - Italy 2010 — 1
 - Prize 2011 — 1
 - Eddie 1957 — 1
-- Rockefeller 1911 — 1
 - Fair 1893 — 1
 - Paris 1924 — 1
 - London 1985 — 1
@@ -681,12 +765,11 @@ Georgie — 2
 - Agenda 2030 — 1
 - November 2025 — 1
 - Museum 1963 — 1
+- Doge 2000 — 1
 - Papers 1803 — 1
+- York 1994 — 1
 - States 1963 — 1
-- Publishing 1992 — 1
-- Thriller 1983 — 1
-- Avid 2000 — 1
-- Carolina 2007 — 1
+- July 2020 — 1
 
 ## "By author" patterns
 
@@ -695,10 +778,13 @@ Georgie — 2
 - Philip Handler — 3
 - Philip
 Handler — 3
+- Free Will — 3
+- William James — 3
 - Miles Davis — 3
 - Dr Albert St
 Georgie — 2
 - Dave Asprey — 2
+- Jude Caravan — 2
 - Mother Nature — 2
 - Leo Strauss — 2
 - Theodor Herzl — 2
@@ -713,6 +799,7 @@ Wheeler — 2
 - The Observer — 2
 - Nora Jones — 2
 - Michael Pollan — 2
+- David Wallace — 2
 - Charles Prince — 2
 - Bitcoin Well — 2
 - The Beatles — 2
@@ -733,186 +820,183 @@ Samuels Milo — 1
 - Jeffrey Epstein — 1
 - Flat
 Earth — 1
-- Miss Jessie — 1
-- Kyle Shanahan — 1
-- Jude Caravan — 1
-- The
-Observer — 1
 
 ## Quoted titles
 
+- "Aging an
+Infection" — 1
 
 ## High-frequency capitalized names (filtered)
 
-- El Salvador — 300
-- Nobel Prize — 181
+- El Salvador — 322
+- World War — 205
+- Nobel Prize — 199
 - United
-States — 171
-- World War — 167
-- Uncle Jack — 154
-- Jack Cruz — 152
+States — 196
+- Uncle Jack — 168
+- Jack Cruz — 167
 - El
-Salvador — 107
+Salvador — 115
+- Bobby Kennedy — 95
 - Gilbert Ling — 93
+- Rick Rubin — 88
 - Miles Davis — 84
-- Bobby Kennedy — 81
-- Rick Rubin — 80
 - Glenn Gould — 73
 - The Beatles — 72
+- Steve Jobs — 62
+- Elon Musk — 62
 - Doug Wallace — 60
-- Steve Jobs — 58
-- Elon Musk — 50
-- Free Will — 48
-- John Lennon — 45
-- Grand Theft — 44
+- Free Will — 58
+- South America — 55
+- Silicon Valley — 50
+- Dark Matter — 49
 - Nobel
-Prize — 43
-- Silicon Valley — 43
-- South America — 42
+Prize — 46
+- Grand Theft — 46
+- John Lennon — 45
+- Danny Jones — 44
 - Albert St — 42
 - Holy God — 42
-- Soviet Union — 39
-- Hannah Arendt — 39
-- The Human — 38
-- Civil War — 37
-- Bill Gates — 34
-- Danny Jones — 34
-- Thomas Jefferson — 33
+- The Human — 41
+- Soviet Union — 41
+- Nick Lane — 41
+- Hannah Arendt — 41
+- Bill Gates — 40
+- Middle East — 40
+- Civil War — 39
+- Costa Rica — 38
+- Thomas Jefferson — 38
+- John Wheeler — 36
+- William James — 34
+- North America — 34
+- Joe Rogan — 34
+- Federal Reserve — 34
+- Black Swan — 33
 - General Gro — 33
-- Black Swan — 32
-- John Wheeler — 32
+- King George — 31
 - St Georgie — 31
-- Costa Rica — 31
-- Nick Lane — 31
-- North America — 30
-- Federal Reserve — 30
+- Quantum State — 30
+- Michael Jackson — 30
 - Brian Eno — 30
 - Charlie Parker — 30
-- Michael Jackson — 29
-- Jack Kruse — 28
-- Joe Rogan — 27
+- Albert Einstein — 29
+- Jack Kruse — 29
+- Isaac Newton — 29
+- Uncle
+Jack — 27
+- Pacific Ocean — 27
+- Bobby
+Kennedy — 27
 - Leonard Bernstein — 27
-- King George — 26
-- Albert Einstein — 25
-- North Carolina — 25
-- William James — 25
-- Goldberg Variations — 25
-- Myer Lansky — 25
-- Middle East — 24
-- San Diego — 24
-- Pacific Ocean — 24
+- Myer Lansky — 27
+- San Diego — 26
+- Jack Dorsey — 26
 - Um
-So — 24
+So — 26
+- String Theory — 25
+- Donald Trump — 25
+- North Carolina — 25
+- Goldberg Variations — 25
+- Joseph Campbell — 25
+- Supreme Court — 25
+- Lee Harvey — 25
+- Manhattan Project — 24
+- Um
+And — 24
 - La Monte — 24
 - Prince Andre — 24
-- Uncle
-Jack — 23
 - Roland Van — 23
-- Supreme Court — 23
-- Isaac Newton — 23
+- Jack
+Cruz — 23
 - John Coltrane — 23
 - Middle Ages — 22
 - States Of — 22
-- Jack
-Cruz — 22
-- Joseph Campbell — 22
+- French Revolution — 22
+- Michael Levan — 22
 - Jesus Christ — 22
 - Frankfurt School — 22
-- Lee Harvey — 22
-- Um
-And — 22
 - Philly Joe — 22
 - Mother Nature — 21
-- French Revolution — 21
 - Audience Member — 21
+- Dunning Krueger — 21
+- Satoshi Nakamoto — 21
 - Negative Dialectics — 21
-- Jack Dorsey — 21
+- Mind At — 21
 - On Certainty — 21
 - Jack Jack — 21
+- East African — 20
+- Our Lives — 20
 - Bertrand Russell — 20
-- Bobby
-Kennedy — 20
+- Health Care — 20
+- Southern California — 20
+- Michael Sailor — 20
+- Benjamin Rush — 20
 - Duke Ellington — 20
-- East African — 19
-- Our Lives — 19
-- Michael Levan — 19
-- Health Care — 19
-- Southern California — 19
-- Benjamin Rush — 19
-- Manhattan Project — 19
-- David Ferry — 19
-- Blue Light — 18
-- Catholic Church — 18
-- Nicole Shanahan — 18
-- Satoshi Nakamoto — 18
-- Eddie Chang — 18
-- Louis Armstrong — 18
-- Daniel M. Callahan — 18
-- Charity Hospital — 18
-- Optimal Health — 17
+- Blue Light — 19
+- Catholic Church — 19
 - Doug
-Wallace — 17
-- Dunning Krueger — 17
+Wallace — 19
+- Sergey Brin — 19
 
 ## URLs / domains
 
-- patreon.com — 15
-- cruz.com — 13
+- patreon.com — 21
+- cruz.com — 15
 - stamps.com — 12
+- economist.com/TOE — 8
+- sunbasket.com — 6
 - jackkruse.com — 6
+- darkhorse.com — 6
 - blueapron.com — 6
 - dynamics.com — 6
 - pbs.org — 5
+- jackcruise.com — 5
+- Masachips.com — 5
 - bitcoin.com — 5
+- gmail.com — 4
 - jackcruz.com — 4
-- jackcruise.com — 4
+- getfreshdarkhorse.com — 4
+- carawayhome.com — 4
+- expressvpn.com — 4
+- powerdot.com — 4
 - beyondwwellelnessradio.com — 4
 - manscape.com — 4
 - Carlisle.com — 3
-- gmail.com — 3
 - marin.com — 3
+- civilizationemerging.com — 3
 - destin.com — 3
 - sheldrake.org — 3
 - gilbertling.org — 3
+- CurtJaimungal.org — 3
+- shopify.com/jbp — 3
 - extremehealthradio.com — 3
 - wildrx.com — 3
+- blinkist.com — 3
+- safe.com — 2
+- masterclass.com — 2
+- charleseisenstein.net — 2
+- eisenstein.net — 2
 - tape.com — 2
+- drbrandcrawford.com — 2
 - science.org — 2
+- ridge.com — 2
+- foundation.org — 2
+- mentor.io — 2
 - supermobile.com — 2
 - www.patreon.com — 2
+- jackruz.com — 2
+- mikevira.com — 2
 - wisdom.substack.com — 2
+- joincrowdhealth.com — 2
+- claude.ai/theoriesofeverything — 2
+- C-U-R-T-J-A-I-M-U-N-G-A-L.org — 2
+- nobsroutines.com — 2
 - wellnesscouch.com — 2
 - awareness.com — 2
+- athleticgreens.com — 2
 - 8sleep.com — 2
 - element.com — 2
 - maa.com — 2
-- 110.com — 2
-- shopify.com/bartlet — 2
-- jamescaplan.net — 2
-- IVscience.org — 2
-- extremehealthradio.com/facebook — 2
-- extremehealthradio.com/ — 2
-- extremehealthradio.com/bellicon — 2
-- extremehealthradio.com/qigong — 2
-- extremehealthradio.com/subscribe — 2
-- extremehealthradio.com/174 — 2
-- www.moderncashprepaid.com — 2
-- unchained.com/frontier — 2
-- farm.com — 2
-- fatburningman.com — 2
-- www.jackcruise.com — 2
-- computing.com — 1
-- self.com — 1
-- root.co — 1
-- sis.com — 1
-- permapasturesfarm.com — 1
-- barefoot.com — 1
-- barfoot.co — 1
-- protein.com — 1
-- drbrandcrawford.com — 1
-- simonix.com — 1
-- Cruz.com — 1
-- com.org — 1
-- rickbott.com — 1
-- rickba.com — 1
-- tech.com — 1
+- preborn.com/jordan — 2
+- life.com — 2
+- health.com — 2

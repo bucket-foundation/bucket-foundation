@@ -1,0 +1,1542 @@
+I was stunned as a theoretical physicist.&nbsp; We now believe to have cracked at least two&nbsp;&nbsp;
+of the three most prominent problems. Professor&nbsp; Frederic Schuller has done something that should&nbsp;&nbsp;
+be impossible. He's derived Einstein's general&nbsp; relativity from Maxwell's electromagnetism alone.&nbsp;&nbsp;
+Not postulated, not assumed, but derived. So you&nbsp; start with electromagnetic fields on an arbitrary&nbsp;&nbsp;
+background, you demand predictivity, and out pops&nbsp; not only that must the geometry be Lorentzian,&nbsp;&nbsp;
+but the dynamics must be Einsteinian. However,&nbsp; Schuller's maverick conclusions don't end there.&nbsp;&nbsp;
+He's found a formalism from engineering which&nbsp; may help shed light on the measurement problem&nbsp;&nbsp;
+from an extremely unlikely place. This&nbsp; podcast was tremendously impactful to me,&nbsp;&nbsp;
+which is not something I often say about the&nbsp; math and physics podcasts on this channel. The&nbsp;&nbsp;
+heartfelt impacts tend to come from explorations&nbsp; of meaning and even consciousness. But today,&nbsp;&nbsp;
+Frederick reveals for the first time his teaching&nbsp; philosophy and why starting from propositional&nbsp;&nbsp;
+logic and building all the way through set&nbsp; theory to differential geometry has resonated&nbsp;&nbsp;
+with millions of people. Professor Schuller&nbsp; shows physics as it actually is. A conceptual&nbsp;&nbsp;
+masterpiece where every piece interlocks like&nbsp; a da Vinci painting. This podcast will not only&nbsp;&nbsp;
+give you a new perspective on physics, but will&nbsp; fundamentally change how you think about physics.
+Welcome, Professor.
+Thank you very much, Curt. This was&nbsp; a long time in the making, right?
+Yes, many, many months. Yes, yes. So tell me,&nbsp;&nbsp;
+what are you working on these days?&nbsp; What's in your mind research-wise?
+Research-wise, I'm thinking about foundations&nbsp; of quantum mechanics these days, and I never&nbsp;&nbsp;
+wanted to do that because that's a very, very&nbsp; thorny subject. And of course, there are obvious&nbsp;&nbsp;
+problems, the measurement problem above all, that&nbsp; bother me, but they bother me from a new angle.&nbsp;&nbsp;
+And this new angle is that in engineering, I work&nbsp; a lot with engineers these days at the University&nbsp;&nbsp;
+of Twente. And they have a very strong robotics&nbsp; lab, many groups. And I learned something in 2020,&nbsp;&nbsp;
+actually. I was invited to participate in a small&nbsp; conference, actually not that small after all,&nbsp;&nbsp;
+in Paris. And I saw their engineers and they&nbsp; talked about something that's called the Port&nbsp;&nbsp;
+Hamiltonian approach to dynamics. And this is&nbsp; in essence an extension of Hamiltonian theory.&nbsp;&nbsp;
+It's just that you do not only provide the&nbsp; formalism to talk about a closed system where&nbsp;&nbsp;
+no energy can flow out or in. You talk about open&nbsp; systems where energy can flow out, but you don't&nbsp;&nbsp;
+say how it flows out. There is an open port that&nbsp; gives you the possibility for it to flow out. And&nbsp;&nbsp;
+if you take two such systems, you can connect them&nbsp; via something called the Dirac structure. That has&nbsp;&nbsp;
+been studied before. And that is a different&nbsp; decomposition of a physical system governed by&nbsp;&nbsp;
+Hamiltonians, classical mechanics, classical&nbsp; field theory, than we would usually have.
+We would usually describe it as one big system,&nbsp; and we would talk a lot about energy flowing&nbsp;&nbsp;
+from that part of the system to that part of the&nbsp; system, especially if you think about kinetic and&nbsp;&nbsp;
+potential energy. Even in the introductory&nbsp; lectures, we talk about energy flowing from&nbsp;&nbsp;
+the kinetic energy to the potential energy&nbsp; back and forth, such that all of energy is&nbsp;&nbsp;
+conserved. We do a good talk on this, right? But&nbsp; ultimately, it's just talk. It's not reflected&nbsp;&nbsp;
+in the formalism in how we describe the theory.&nbsp; What is that good for? It's just a rewriting,&nbsp;&nbsp;
+right? But engineers have the need to control&nbsp; energy flows. For instance, if you have robots&nbsp;&nbsp;
+interacting with humans, and the robots have&nbsp; joints and so on. If the robot interacts, there's,&nbsp;&nbsp;
+of course, energy being transmitted from the human&nbsp; being and so on. And how do you actually capture&nbsp;&nbsp;
+this? How does the robot react to this? If you&nbsp; want to study this, and you need to study this&nbsp;&nbsp;
+because that robot might otherwise decapitate you&nbsp; if there is an unwanted energy flow, so to speak.
+It's moderately important.
+It's moderately important if you want it&nbsp; to survive, but who knows whether we do&nbsp;&nbsp;
+anyway. Joking apart, engineers understand&nbsp; the need of this. Also huge networks like,&nbsp;&nbsp;
+say, the French electricity network. What happens&nbsp; if certain power plants all of a sudden shut down&nbsp;&nbsp;
+and there are other problems? They need to get the&nbsp; energy routing through the system right. And this&nbsp;&nbsp;
+is done these days by a port Hamiltonian approach&nbsp; to all of this. And I was stunned as a theoretical&nbsp;&nbsp;
+physicist because I thought, oh yes, this is&nbsp; something, it's a good formalism. Every time you&nbsp;&nbsp;
+reflect something in the formalism, you can then&nbsp; calculate with it. If you have just a good idea&nbsp;&nbsp;
+about it, you say, “yeah, yeah, we know all about&nbsp; that,” and “of course, of course.” But if it's&nbsp;&nbsp;
+not reflected in the formalism, you can't really&nbsp; apply the mathematics to it. And so it's important&nbsp;&nbsp;
+or it could be important depending on what you&nbsp; want to do to reformulate theories like this.
+Well, long story short, in the classical&nbsp; domain this has been developed over decades by,&nbsp;&nbsp;
+I think it originated with Arjan van der Schaft&nbsp; and Bernhard Maschke, and many other people work&nbsp;&nbsp;
+on this. Now in Germany, there's a big research&nbsp; center on this. So this port Hamiltonian viewpoint&nbsp;&nbsp;
+is a very interesting one. It won't solve&nbsp; everything. Maybe it solves nothing, but it gives&nbsp;&nbsp;
+you a new perspective. Okay, that's what it is.&nbsp; And I started thinking together with collaborators&nbsp;&nbsp;
+on how this could turn out or play out in&nbsp; quantum mechanics. And in quantum mechanics, we&nbsp;&nbsp;
+superficially, we also talk about energy. We have&nbsp; a Hamiltonian. We could make energy measurements.&nbsp;&nbsp;
+The Hamiltonian is still the generator of the&nbsp; time evolution, as long as you don't measure,&nbsp;&nbsp;
+right? So for the unitary evolution. So could&nbsp; we talk about these energy flows in quantum&nbsp;&nbsp;
+systems? And the answer is, if you look closely&nbsp; at it, no, that doesn't seem to make much sense.&nbsp;&nbsp;
+But it's something else that flows there. It's&nbsp; probability that flows in quantum systems between&nbsp;&nbsp;
+subsystems. And that's the next thorny issue. How&nbsp; do you deal with subsystems in quantum mechanics&nbsp;&nbsp;
+and so on? And we now believe to have cracked at&nbsp; least two of the three most prominent problems.
+How does this work? What is actually flowing&nbsp; there? How do you actually get this onto the&nbsp;&nbsp;
+street formally? And also, how do you deal&nbsp; with composed systems? Because quantum systems&nbsp;&nbsp;
+famously compose by tensor products. So the&nbsp; Hilbert space of a composite system is the&nbsp;&nbsp;
+tensor product of the Hilbert spaces of what we&nbsp; think are the constituent systems. But of course,&nbsp;&nbsp;
+the tensor product contains many states&nbsp; that could never be understood in terms&nbsp;&nbsp;
+of the state of one subsystem and the other&nbsp; subsystem. Those are the entangled states,&nbsp;&nbsp;
+of course. And so any idea of decomposition into&nbsp; systems and probability flows, all of this must&nbsp;&nbsp;
+work together. And we now think we made good&nbsp; progress. And one thing we haven't done yet,&nbsp;&nbsp;
+and that's of course the most difficult thing,&nbsp; we would like to formulate the measurement&nbsp;&nbsp;
+axioms as they are in quantum mechanics. As you&nbsp; postulate them, they're a little mysterious,&nbsp;&nbsp;
+to say the least. But most of all,&nbsp; they contain a lot of talk. You say&nbsp;&nbsp;
+you conduct a measurement. For that, you have a&nbsp; Hermitian operator. Let's talk finite dimensions,&nbsp;&nbsp;
+otherwise self-adjoint operator. Okay, let's&nbsp; think finite dimensions. Quantum information&nbsp;&nbsp;
+technology justifies us in doing that, right?&nbsp; You have a Hermitian operator and then you find&nbsp;&nbsp;
+the eigenvalues. And of course you can then&nbsp; calculate from the spectral decomposition,&nbsp;&nbsp;
+you can calculate the probability with which a&nbsp; certain measurement will occur if you measure now.
+But what do you mean “will occur” and “if you&nbsp; measure now”? And what does this all mean? It's&nbsp;&nbsp;
+just talk. It's talk that works spectacularly well&nbsp; as we know, right? Quantum mechanics, in a sense,&nbsp;&nbsp;
+it works spectacularly well, but much of&nbsp; this talk, especially around measurement,&nbsp;&nbsp;
+is not at all reflected in the formalism. And&nbsp; of course, many people have worked on that. Many&nbsp;&nbsp;
+very smart people have worked on that, trying to&nbsp; explain measurement, the idea that decoherence may&nbsp;&nbsp;
+play a role. I guess it does, but is that the&nbsp; whole answer to the measurement problem? No,&nbsp;&nbsp;
+it is not. You know, all of these things. But&nbsp; this, what we're trying to do, is very modest,&nbsp;&nbsp;
+but maybe therefore it can be successful. We try&nbsp; to give an extended formalism, not deviating from&nbsp;&nbsp;
+quantum mechanics, but capturing much of the talk&nbsp; as much as we can in a formalism. And this idea of&nbsp;&nbsp;
+ports, but now not energy ports, but probability&nbsp; ports, play a big role. So it's a natural idea.&nbsp;&nbsp;
+Everybody can have it. We worked for a long time&nbsp; to really get this onto the street because there&nbsp;&nbsp;
+are many little things you can trip over. And&nbsp; now I think we made some good progress. And&nbsp;&nbsp;
+well, once we're convinced, we went to a point&nbsp; that it's worth putting it out so that other&nbsp;&nbsp;
+people can start thinking about it too, if they&nbsp; like, you will hear from it. That's it. So, but&nbsp;&nbsp;
+that's what I'm thinking about from about quantum&nbsp; mechanics. And it's a very thorny issue because,&nbsp;&nbsp;
+you know, I mean, it's also very easy to talk&nbsp; about the measurement problem because, yeah,&nbsp;&nbsp;
+yeah, it has been talked a lot about. It is&nbsp; a little bit quite dramatically a problem,&nbsp;&nbsp;
+right? Roger Penrose talks about it,&nbsp; of course, too. That's not a secret,&nbsp;&nbsp;
+so to speak. And we try to have a modest new&nbsp; approach to it. But the claim to fame, well,&nbsp;&nbsp;
+not fame, but you know what I mean, right? The&nbsp; reason why I think it might be useful, it uses a&nbsp;&nbsp;
+new technique and a new formalism with a purpose.&nbsp; So that's what I'm thinking about on that side.
+Okay, so earlier you said that undergrads,&nbsp; well, you didn't use the word undergrad,&nbsp;&nbsp;
+but undergrads are taught about kinetic and&nbsp; potential and how you can flow between them&nbsp;&nbsp;
+as long as energy is conserved. But then&nbsp; you said it was all talk. What do you mean&nbsp;&nbsp;
+that it's all talk and not reflected in the&nbsp; formalism? And also port, because people keep&nbsp;&nbsp;
+hearing this word port. Port is spelled&nbsp; P-O-R-T and refers to the boundary ports.
+Yes, there are boundary ports, there are&nbsp; other ports. It's very easily explained&nbsp;&nbsp;
+if we write it down. We can't do that&nbsp; right now. They're simple examples. Well,&nbsp;&nbsp;
+the point is, what is not reflected is…&nbsp; You have a total energy that's conserved,&nbsp;&nbsp;
+and of course you can define a potential and a&nbsp; kinetic energy, and you say it flows between them&nbsp;&nbsp;
+because the sum of them is preserved. Right? So,&nbsp; yeah, I mean, I'm not saying it's wrong talk. What&nbsp;&nbsp;
+I mean by it's only talk is, is it built into the&nbsp; formalism that you make use of that insight? No,&nbsp;&nbsp;
+you're just saying you're looking at two&nbsp; observables, kinetic and potential energy.&nbsp;&nbsp;
+Yeah, okay. And they change their values as&nbsp; your system evolves, classically. You can,&nbsp;&nbsp;
+in a sense, monitor that classically. But&nbsp; as I said, we're not making use of that in&nbsp;&nbsp;
+any way. We're not. And then the question is, is&nbsp; really the kinetic energy, does that constitute a&nbsp;&nbsp;
+conceptual subsystem from which something flows&nbsp; elsewhere? You know, this all sounds good. I&nbsp;&nbsp;
+think there's also in some videos that you talk&nbsp; about where the mathematics… one confuses what&nbsp;&nbsp;
+physically happens with the mathematics and&nbsp; so on. It's of this type. I think it's really,&nbsp;&nbsp;
+I could now try to explain in words what a port is&nbsp; and it would sound very fancy with dual variables&nbsp;&nbsp;
+and the application to each other gives them the&nbsp; measurable quantity, but it's really much better&nbsp;&nbsp;
+to actually write this down. Maybe I could&nbsp; write a small document after the podcast.
+That would be great. I think&nbsp; people would love that.
+Note, I'll be placing these notes&nbsp; from this podcast in my Substack,&nbsp;&nbsp;
+which you can get by searching my name and the&nbsp; word Substack, or by visiting CurtJaimungal.com.&nbsp;&nbsp;
+C-U-R-T-J-A-I-M-U-N-G-A-L.com. I&nbsp; know it's a mouthful. Yeah, yeah,&nbsp;&nbsp;
+yeah. But this is not my idea. So this has&nbsp; been done quite a while ago. It's just,&nbsp;&nbsp;
+I think it deserves, let me state it like this,&nbsp; it deserves some attention from theoretical&nbsp;&nbsp;
+physicists as well for application. Maybe&nbsp; in fundamental physics. We should at least&nbsp;&nbsp;
+think about whether this could help&nbsp; us with things we do. So that's the…
+Yeah, yeah. There are a couple questions&nbsp; here that I have. So you said the phrase,&nbsp;&nbsp;
+“it's a modest proposal, therefore, it could&nbsp; be successful.” Now that's interesting. Not&nbsp;&nbsp;
+“it's a modest proposal and it could&nbsp; be successful.” It's a modest proposal,&nbsp;&nbsp;
+therefore, it could be successful. So I have&nbsp; a stickler for words and I noticed that.
+Yes, yes, yes.
+Please tell me what did you mean by that?&nbsp; Why is the modesty connected to the success?
+Okay, at least for my means, I always think if I&nbsp; have one idea about something like a measurement&nbsp;&nbsp;
+problem or something else, one idea, you know,&nbsp; ideas are cheap in our field. We can have many,&nbsp;&nbsp;
+many ideas, right? And we can then find the fifth&nbsp; and the sixth idea. And if we take these 10 ideas&nbsp;&nbsp;
+together… I believe trying to bring one idea&nbsp; to success works because you have this one&nbsp;&nbsp;
+idea and then this idea, if it's any good,&nbsp; will lead you, if you try to implement it,&nbsp;&nbsp;
+will lead you to more insights. And then the&nbsp; problem dictates to you what your next idea would&nbsp;&nbsp;
+have to be, something like that. Okay. Look,&nbsp; this is a very philosophical subject, right?&nbsp;&nbsp;
+And I claim no truth to this, of course. But if&nbsp; you asked, I don't know, you could view, say,&nbsp;&nbsp;
+the whole development up to general relativity&nbsp; starting from Maxwell theory, that Einstein&nbsp;&nbsp;
+stared at the Maxwell equations. And the longer&nbsp; he stared and the more he thought about it,&nbsp;&nbsp;
+he realized that there is something&nbsp; at odds with the idea of, you know,&nbsp;&nbsp;
+the speed of light being in there. I mean,&nbsp; the constant, the C constant by what is it,&nbsp;&nbsp;
+epsilon times mu is in there. How can that&nbsp; be in that equation? Because if you go to&nbsp;&nbsp;
+a moving system, shouldn't it be C plus&nbsp; V where V is the moving system, right?
+So Einstein looked at Maxwell's theory. In&nbsp; a sense, you can see Einstein took Maxwell's&nbsp;&nbsp;
+theory very seriously. Okay? And taking&nbsp; Maxwell's theory, the theory very seriously,&nbsp;&nbsp;
+he was prompted to change the idea of space and&nbsp; time, or even the separate existence of something&nbsp;&nbsp;
+like space and something of time. There's only&nbsp; spacetime. So it's a very simple idea. It's very&nbsp;&nbsp;
+modest to say there is a theory that tells you&nbsp; how electromagnetic signals—now Heinrich Hertz,&nbsp;&nbsp;
+I think, in 1888, he proved that you can actually&nbsp; transmit by electromagnetic waves. You can send&nbsp;&nbsp;
+signals. Yeah. And stuff like this. And I think&nbsp; Maxwell was something like 1850, 1860, something&nbsp;&nbsp;
+like this with his equations. In ‘88, this was&nbsp; demonstrated. So the predicted electromagnetic&nbsp;&nbsp;
+waves, they really exist and it works and so on.&nbsp; So in a sense saying, well, that works and then we&nbsp;&nbsp;
+have a radio and the radio… So it's a modest&nbsp; idea to say, let's take Maxwell theory very,&nbsp;&nbsp;
+very seriously. And then it leads to special&nbsp; relativity and then for the inclusion of gravity&nbsp;&nbsp;
+by whatever way you want to take there, say the&nbsp; Einstein way, it leads to the curvature of space&nbsp;&nbsp;
+and time. And if you want to, a prediction in that&nbsp; theory, in that view, the prediction of the Big&nbsp;&nbsp;
+Bang, right? So in a sense it's a very modest&nbsp; idea seen through. You see through this idea&nbsp;&nbsp;
+that you say Maxwell theory is correct. Right? And&nbsp; so I think seeing through one idea can open doors.&nbsp;&nbsp;
+Yeah, so that's what I mean by it's a modest&nbsp; idea. One can make many constructions and&nbsp;&nbsp;
+ideas and intuitions and so on. I always think&nbsp; we need to rely on nature giving us a hint.
+Uh-huh.
+Because theory space is infinite dimensional. And&nbsp; if you tip with your finger somewhere and you say,&nbsp;&nbsp;
+“oh, the metric may be non-symmetric.” Einstein&nbsp; did that, right? I mean, Einstein in his later&nbsp;&nbsp;
+years, he fanatically looked for the inclusion&nbsp; of Maxwell theory into the geometric framework&nbsp;&nbsp;
+of general relativity. And of course, we&nbsp; had Kaluza-Klein, all these nice things,&nbsp;&nbsp;
+all very nice, but ultimately it doesn't work.&nbsp; So far, we think. Einstein didn't find it. So,&nbsp;&nbsp;
+once Einstein, let's take Einstein also as&nbsp; a counterexample in a sense, once he started&nbsp;&nbsp;
+thinking in this formal way and had an idea we&nbsp; could include this here, that didn't work so much&nbsp;&nbsp;
+anymore. I think because he didn't have nature on&nbsp; his side like he had before with Maxwell theory.
+Yes. I don't know whether I make&nbsp; myself clear. And obviously,&nbsp;&nbsp;
+this is not wisdom to follow by as a&nbsp; strict rule. It's a little bit my guiding…
+That's a fascinating principle in&nbsp; doing research, for better or worse.
+Right. Well, I have the advantage&nbsp; that I've gone through your work,&nbsp;&nbsp;
+so I know that you're&nbsp; presaging constructive gravity.
+As well, yeah.
+I'll place a link on screen. As a preview,&nbsp;&nbsp;
+we're going to talk about that, about how&nbsp; you derive gravity from matter dynamics,&nbsp;&nbsp;
+rather than seeing gravity and matter as&nbsp; separate postulates. We'll talk about that.
+Well, right, yes, yes. So I can tell you&nbsp; where this came from, this whole thing. So,&nbsp;&nbsp;
+absolutely counter to what I just said in&nbsp; the past, I also looked at modified gravity&nbsp;&nbsp;
+theories for this reason and for that reason.&nbsp; And of course, these are all reasons that are&nbsp;&nbsp;
+dreamt up. There's a lot of modified gravity ideas&nbsp; out there. And how do we know which one is right?&nbsp;&nbsp;
+And at some point I came to the conclusion&nbsp; for myself, of course, that doesn't disparage&nbsp;&nbsp;
+anybody else's attempts in any other direction.&nbsp; It's a little bit hopeless to just try to think&nbsp;&nbsp;
+that you think up something half-half and&nbsp; then write down a new Lagrangian. That's&nbsp;&nbsp;
+easy. You can do that. Everybody can write down&nbsp; a Lagrangian, a modified Lagrangian for a theory.
+I thought, what could actually give us&nbsp; a hint at modified gravity if we don't&nbsp;&nbsp;
+just look at gravity itself? And well,&nbsp; we do a lot of observations about matter,&nbsp;&nbsp;
+right? We do very precise observations&nbsp; about matter. And the question was,&nbsp;&nbsp;
+is it actually true that you have to postulate&nbsp; both the dynamics for gravity and the dynamics&nbsp;&nbsp;
+for the matter? And at some point we stumbled&nbsp; across this that we thought no, it's a crazy idea,&nbsp;&nbsp;
+but maybe if you're given a… Could you determine&nbsp; a matter Lagrangian on an assumed background,&nbsp;&nbsp;
+and I mean just the geometric structure, so to&nbsp; speak, of the background, but not the concrete,&nbsp;&nbsp;
+say, you could say on a Lorentzian background or&nbsp; on a background that allows for birefringence or&nbsp;&nbsp;
+something like this. Could you actually determine&nbsp; from the matter action how this background has to&nbsp;&nbsp;
+get its dynamics in order to be compatible with&nbsp; this matter action? And the only connection we saw&nbsp;&nbsp;
+is that the matter action and the gravity&nbsp; action, they must evolve together. Say,&nbsp;&nbsp;
+if you speak mathematically, from the same&nbsp; Cauchy surfaces, they must take the initial data,&nbsp;&nbsp;
+those must be evolved to again a shared Cauchy&nbsp; surface or a whole family of shared Cauchy&nbsp;&nbsp;
+surfaces. This seems to be a minimal requirement&nbsp; if you want a predictive classical theory.
+Predictive being the key.
+And quantizable, not for the gravity, but for&nbsp; the matter. Yeah, quantizable. This is that&nbsp;&nbsp;
+came in as a technical… but let's quantizable&nbsp; out for the moment. It came in to justify an&nbsp;&nbsp;
+apparently classical condition, technical&nbsp; condition to do that. That's why we… Let's&nbsp;&nbsp;
+leave it out for the clarity of the… So, and now&nbsp; you might think that's a very weak connection,&nbsp;&nbsp;
+that they have to have the same Cauchy surfaces,&nbsp; so to speak. The matter dynamics on the background&nbsp;&nbsp;
+you give me and what dynamics the background&nbsp; could get to evolve together with the matter&nbsp;&nbsp;
+dynamics. And it turns out it's a very&nbsp; strong connection, actually. In fact,&nbsp;&nbsp;
+you can write down equations that you need&nbsp; to solve in order to get as a result… So, as&nbsp;&nbsp;
+a solution to these equations, you get the&nbsp; gravity action that you would have to give&nbsp;&nbsp;
+to that geometric structure. Yes. That is&nbsp; in the background of the matter theory.
+All right. Sorry, just a moment. I just&nbsp; want to make sure I'm understanding. So,&nbsp;&nbsp;
+let's just make this concrete. How do you go from&nbsp;&nbsp;
+Maxwell's equations to the action of&nbsp; Einstein and Hilbert? Spell that out.
+So, you know how in physics, we like&nbsp; to reduce something that's complex into&nbsp;&nbsp;
+something that's more elegant, more efficient,&nbsp; more efficient? It's more simple. Turns out,&nbsp;&nbsp;
+you can do that… with dinner. HelloFresh sends&nbsp; you exactly the ingredients you need. They're&nbsp;&nbsp;
+pre-measured. They're pre-portioned. So, you&nbsp; don't have to do this superposition of too&nbsp;&nbsp;
+much cilantro versus why is there no cilantro or&nbsp; what have you collapsing in your kitchen every&nbsp;&nbsp;
+night. They have literally 40 different recipes&nbsp; every week. Vegetarian, calorie smart recipes,&nbsp;&nbsp;
+protein heavy recipes, which is my favorite.&nbsp; Whatever your diet function looks like. And&nbsp;&nbsp;
+they all take approximately 15 minutes to a&nbsp; half hour. That's less time than it takes me&nbsp;&nbsp;
+to figure out whether time is fundamental. I've&nbsp; been using it myself. It's the one experiment that&nbsp;&nbsp;
+in my life has always had reproducible results.&nbsp; It's delicious. It's easy. It saves me time from&nbsp;&nbsp;
+living on black coffee while editing episodes at&nbsp; 2am, say. Personally, my favorite part, though,&nbsp;&nbsp;
+is that it's an activity I can do with my wife.&nbsp; Thus, it not only serves as dinner, but as a&nbsp;&nbsp;
+bond… a corresponding enterprise. So, if you want&nbsp; to make dinner the most predictable part of your&nbsp;&nbsp;
+day, go to HelloFresh.com/TheoriesOfEverything10FM&nbsp; to get 10 free meals plus a free item for life.&nbsp;&nbsp;
+One per box with an active subscription.&nbsp; Free meals applied as discounts on first&nbsp;&nbsp;
+box. New subscribers only varies by plan. Again,&nbsp; that's HelloFresh.com/TheoriesOfEverything10FM.&nbsp;&nbsp;
+All one word. HelloFresh. The&nbsp; best way to cook just got better.
+How do you go from Maxwell's equations to the&nbsp; action of Einstein and Hilbert? Spell that out.
+Okay. So, ask how does this bigger scheme&nbsp; work in the special case if you would,&nbsp;&nbsp;
+say, start with matter, that is&nbsp; Maxwell electrodynamics, right?
+Yes.
+On some metric background. Let's not even say&nbsp; Lorentzian, any metric, any signature. Well,&nbsp;&nbsp;
+the first thing you would do is to… So, you&nbsp; would find out for what background signature,&nbsp;&nbsp;
+if you start with a metric like this, would you&nbsp; have a well-defined Cauchy problem for Maxwell's&nbsp;&nbsp;
+theory. And then it turns out immediately only&nbsp; for a Lorentzian signature. Right? So, but then&nbsp;&nbsp;
+the question is, aha, so a Lorentzian metric is&nbsp; in the background of this theory and that's also&nbsp;&nbsp;
+clear from the phenomenology that we see. Aha,&nbsp; but what is now the dynamics for that background&nbsp;&nbsp;
+metric? That's the question. And of course the&nbsp; textbook answer is the Einstein equation. Why?&nbsp;&nbsp;
+Because Einstein told us so and there are&nbsp; good reasons and it works out. But in fact,&nbsp;&nbsp;
+you can derive, if you solve these equations we&nbsp; call them construction equations, you set them up&nbsp;&nbsp;
+only with information extracted from the matter&nbsp; action. You set up these construction equations,&nbsp;&nbsp;
+you solve them, and their solution gives you the&nbsp; action that is Einstein with the cosmological&nbsp;&nbsp;
+constant and of course the gravitational constant&nbsp; undetermined. So you can say, aha, well, we didn't&nbsp;&nbsp;
+learn anything new. And no, we didn't. But we&nbsp; learned new that if you just say Maxwell and you&nbsp;&nbsp;
+want the background to evolve together with it,&nbsp; it must be Einstein. It must be Einstein-Hilbert.
+Now, is that true with other fields, other&nbsp; standard model fields, not just Maxwell?
+Yes. We also investigated with other&nbsp; standard model fields. Of course,&nbsp;&nbsp;
+if that hadn't also yielded Einstein theory,&nbsp; there would be something terribly wrong,&nbsp;&nbsp;
+either with our construction or with the physics&nbsp; as we do it. No, indeed, everything works out.&nbsp;&nbsp;
+Even if you take non-abelian gauge theories.&nbsp; I actually had a very good master's student,&nbsp;&nbsp;
+Alexander Wirtz, he worked on that and we figured&nbsp; out and no, nothing new comes up. We also tried to&nbsp;&nbsp;
+use the same method to break… Because you see what&nbsp; it is, if you say you have the matter actions,&nbsp;&nbsp;
+say you keep the background constant&nbsp; like an eta mu nu and a Minkowski metric,&nbsp;&nbsp;
+right? Flat space. Then you could count these&nbsp; eta mu nu as a constant. But the idea of gravity&nbsp;&nbsp;
+is to make it dynamic. And what we then did&nbsp; is that we say, okay, but there are other&nbsp;&nbsp;
+parameters in matter actions. Maybe for them,&nbsp; we can also predict dynamics. And that would,&nbsp;&nbsp;
+of course, be interesting, right? If some neutrino&nbsp; masses or something like this. But no. These are&nbsp;&nbsp;
+things we had a lot of hopes for. So, before&nbsp; once the actual thing worked, what we wanted&nbsp;&nbsp;
+to do to predict the gravity or to derive the&nbsp; gravity theory from a new matter theory. Okay.
+So, look, the thing would be as follows.&nbsp; Let me tell you a fantasy story. Okay?
+Okay.
+The fantasy story is that tomorrow we look into&nbsp; the universe and we see somewhere, either directly&nbsp;&nbsp;
+or indirectly, a light ray split. Right? So, like&nbsp; in a birefringent medium. Well, again, directly or&nbsp;&nbsp;
+indirectly, we could see a light ray split. Right?&nbsp; So, like in the hydrogen spectrum and stuff like&nbsp;&nbsp;
+this. But let's say for simplicity, the light ray&nbsp; splits in space as it is bent in space, you know.
+Yes.
+Before Einstein, if somebody would have said&nbsp; the light ray bends around something without&nbsp;&nbsp;
+there being a lens, he would say no, in materials&nbsp; this is possible. It's called glasses, right? But&nbsp;&nbsp;
+without any material, how would it happen? Well,&nbsp; so again, it's a fantasy story. Assume the light&nbsp;&nbsp;
+ray would split in vacuum. So one photon is&nbsp; coming, one photon is moving, and then, let's&nbsp;&nbsp;
+say classical light ray, a light ray, a&nbsp; laser ray, something like this. I mean,&nbsp;&nbsp;
+it's fantasy anyway. But if that would be seen&nbsp; directly or indirectly, general relativity,&nbsp;&nbsp;
+and you can ensure it's vacuum and stuff like&nbsp; this, right? General relativity would be dead.&nbsp;&nbsp;
+Because a Lorentzian metric does not support&nbsp; the splitting of light rays into different&nbsp;&nbsp;
+polarizations. Right? So, with one observation,&nbsp; you can state the death of general relativity.
+Sure. I mean, with the usual caveats, is there&nbsp; another effect we don't take into account?
+Yes. You know, you're talking to a&nbsp; theorist, right? So, I can dream. So,&nbsp;&nbsp;
+let's say something like this. But if something&nbsp; that dramatic happened, or another case. So, many&nbsp;&nbsp;
+years ago, when I developed this theory at the&nbsp; Max Planck Institute for Gravitational Physics,&nbsp;&nbsp;
+there was this group in the Gran Sasso Laboratory.&nbsp; They ran experiments. So, it was a renowned&nbsp;&nbsp;
+group. It is a renowned group, obviously. And they&nbsp; measured faster than speed of light neutrinos.&nbsp;&nbsp;
+That was announced. And that was exciting. And it&nbsp; was a serious group. I think something in the end,&nbsp;&nbsp;
+somebody forgot to unplug something or plug&nbsp; something. That was the reason. So, there are…&nbsp;&nbsp;
+In the end, it was clarified. But, I mean,&nbsp; if that had been true, and actually that day,&nbsp;&nbsp;
+Herman Nicolai, the director of the&nbsp; Max Planck Institute there at the time,&nbsp;&nbsp;
+he came into my office and said, can you do this&nbsp; with the theory you're working on? And I, well,&nbsp;&nbsp;
+of course, he was my director, so I said, of&nbsp; course you can do this. We could do this. We&nbsp;&nbsp;
+could do this. But what we would need is a&nbsp; particle phenomenologist, right? And like,&nbsp;&nbsp;
+I mean, all physics is phenomenology. A particle&nbsp; phenomenologist, to write down a really good&nbsp;&nbsp;
+model for it. And that good model couldn't be&nbsp; built on, if it was really in vacuum and so on,&nbsp;&nbsp;
+couldn't be built on a Lorentzian metric. It&nbsp; needs a more refined structure. For instance,&nbsp;&nbsp;
+you could take a fourth-rank tensor as&nbsp; a geometric background with symmetries&nbsp;&nbsp;
+like the Riemann tensor, you know, antisymmetric&nbsp; pairs and stuff like this. It's just the model.
+The point is, we are prepared for something that&nbsp; hasn't happened yet, right? If somebody sees&nbsp;&nbsp;
+matter that cannot have due to their behavior&nbsp; a Lorentzian background but you would then,&nbsp;&nbsp;
+phenomenologists would pretty quickly figure out&nbsp; what may be the simplest background that could do&nbsp;&nbsp;
+that, then the question comes up, but what's the&nbsp; action for that background? It can't be Einstein,&nbsp;&nbsp;
+right? Einstein is for a Lorentzian metric&nbsp; or a metric in general. But then you would&nbsp;&nbsp;
+try to solve our equations and they're hard to&nbsp; solve. In the Einstein for the Maxwell case,&nbsp;&nbsp;
+we can solve them, we get Einstein. They're hard&nbsp; to solve. But the result would be the action for&nbsp;&nbsp;
+that geometry in the background that could support&nbsp; that new exotic but the new required matter. So,&nbsp;&nbsp;
+in a sense, we converted the physical question,&nbsp; what's the gravity theory that can support such&nbsp;&nbsp;
+matter into a mathematical question? Solve these&nbsp; equations whose coefficients are constructed in&nbsp;&nbsp;
+various ways from the properties of the matter&nbsp; action. That's the idea. That's the idea. And&nbsp;&nbsp;
+there are many technical issues. Anyway, that&nbsp; was our idea. How can we actually say something&nbsp;&nbsp;
+about modified gravity that takes seriously&nbsp; some other physical observation we make about&nbsp;&nbsp;
+matter. And it's quite remarkable that this&nbsp; is possible in the first case. Yes. I mean,&nbsp;&nbsp;
+all of this builds on earlier work by&nbsp; Kuchař and Teitelboim and ADM. I mean,&nbsp;&nbsp;
+there's lots of predecessors, but we kind of,&nbsp; in a sense, pushed it there because, in a sense,&nbsp;&nbsp;
+I guess before people didn't have the motivation&nbsp; to look at this, but yeah. That's a question.
+So, I can see how you can get the signature.&nbsp; You just talked about it with Maxwell. What&nbsp;&nbsp;
+makes a Lorentzian metric isn't just it's a zero&nbsp; two tensor, it also has a certain signature,&nbsp;&nbsp;
+and then it's non-degenerate, and so on.&nbsp; But how do you get the condition that it&nbsp;&nbsp;
+is compatible with the connection? Is that&nbsp; a condition from the principal polynomial?
+Yeah. So, this is also something else. It's&nbsp; very elegant. Actually, Schrödinger did that,&nbsp;&nbsp;
+right? Schrödinger had a modified idea. Again,&nbsp; Schrödinger had an idea of modified gravity.&nbsp;&nbsp;
+And he said, “no, no, no, no. Einstein does&nbsp; these non-symmetric metrics. But actually,&nbsp;&nbsp;
+a deeper structural concept than the&nbsp; metric is the connection.” And there&nbsp;&nbsp;
+are connections that come from a metric, and&nbsp; they're more general connections, right? So,&nbsp;&nbsp;
+that was Schrödinger's idea. Actually, a wonderful&nbsp; book by Schrödinger, Space-Time Structure.&nbsp;&nbsp;
+A very beautiful, thin book on general relativity&nbsp; for a beginner. But there he follows this route,&nbsp;&nbsp;
+and it's technically and conceptually wonderful.&nbsp; And then he assigns to this connection a deeper&nbsp;&nbsp;
+meaning than to the metric, you could argue. And&nbsp; he tries to make a theory for connections rather&nbsp;&nbsp;
+than for metrics as the fundamental structure. I&nbsp; think he even announced this in the New York Times&nbsp;&nbsp;
+or something like this. And Einstein was angry. I&nbsp; don't know whether this is historically correct.&nbsp;&nbsp;
+This is the rumor. Anyway, it didn't work, right?&nbsp; I mean, we would know about it. And you can say,&nbsp;&nbsp;
+okay, all the idea with Palatini action, all&nbsp; of these things, come from there and relate to&nbsp;&nbsp;
+this. But it wasn't new physics. So the idea&nbsp; that a generalization of relativity goes via&nbsp;&nbsp;
+a connection, if you go away from a metric,&nbsp; is an old idea by Schrödinger. But it's not&nbsp;&nbsp;
+the idea here. Here the idea is, why do we talk&nbsp; about a spacetime metric in the first place? Well,&nbsp;&nbsp;
+because of Maxwell. Remember, the pluses and&nbsp; the minuses, say in the Minkowski metric,&nbsp;&nbsp;
+are the pluses and minuses. Undergraduate&nbsp; students have to learn in the badly written&nbsp;&nbsp;
+3 plus 1 decomposed Maxwell equations, right? But&nbsp; if we have matter that has a different causality,&nbsp;&nbsp;
+then the regular cones would be cones that are&nbsp; a little bit more folded like this and so on.
+I'll place an image on screen at this point.
+Okay, okay, okay, okay, okay.&nbsp; Yeah, yeah, yeah. And again,&nbsp;&nbsp;
+this is all theoretical considerations,&nbsp; right? Sorry, what did you ask before?
+Oh, I was saying, okay, so in the principal&nbsp;&nbsp;
+polynomial, I can imagine that there's a lot&nbsp; of theoretical considerations. I can imagine&nbsp;&nbsp;
+how you can get symmetry or anti-symmetry&nbsp; conditions. I can imagine how you can get&nbsp;&nbsp;
+signature. I can imagine how you get that it is&nbsp; non-degenerate or that is degenerate. But I don't&nbsp;&nbsp;
+see how you get compatibility with connection&nbsp; as a condition of the principal polynomial.
+But there's no connection at all. So, okay, what&nbsp; we call signature in the metric, if I look at it&nbsp;&nbsp;
+from the point of Cauchy's surface, is to say&nbsp; that the theory, the matter theory that has an&nbsp;&nbsp;
+underlying background of a Lorentzian signature&nbsp; metric, that the theory is hyperbolic, globally&nbsp;&nbsp;
+hyperbolic. You have a Cauchy surface and so on.&nbsp; For a metric, it translates into this algebraic&nbsp;&nbsp;
+condition of having a certain signature, 1,3, a&nbsp; Lorentzian signature. For a non-metric structure,&nbsp;&nbsp;
+say a fourth-rank tensor that could&nbsp; produce as a background to Maxwell theory,&nbsp;&nbsp;
+it could produce birefringence. There, still the&nbsp; global hyperbolicity of the matter theory is the&nbsp;&nbsp;
+condition we need, but it translates not directly&nbsp; into a signature condition. There are many other&nbsp;&nbsp;
+algebraic classes. So the point is, well, this is&nbsp; a whole thing one has to work out. But it's the&nbsp;&nbsp;
+global hyperbolicity of the matter action tells&nbsp; you how to construct Cauchy's surfaces also for&nbsp;&nbsp;
+the matter action. And remarkably also how this&nbsp; matter action must look like. At the end of the&nbsp;&nbsp;
+day it's a very simple idea executed. It has&nbsp; some technical hurdles in between, but it's a&nbsp;&nbsp;
+cute idea. And that's what it is. I mean, we have&nbsp; no claim that it's realized in nature. But in a&nbsp;&nbsp;
+sense, if really tomorrow somebody discovered&nbsp; something like I said, something that would be…
+Faster than light neutrinos.
+Yeah, faster than light neutrinos&nbsp; could have been a possibility or&nbsp;&nbsp;
+birefringence in vacuum. The whole theory&nbsp; of physics or Einsteinian physics is dead.
+We don't know what to do tomorrow if&nbsp; we saw faster than light particles.
+Exactly, exactly. I mean, general&nbsp; relativity couldn't be right, right? I mean,&nbsp;&nbsp;
+it builds with Lorentzian metric that this&nbsp; is just not possible. But if then, again,&nbsp;&nbsp;
+I'm not saying I could then immediately say&nbsp; how the gravity theory looks like. But if some&nbsp;&nbsp;
+phenomenologist makes a really good model for this&nbsp; matter, now, so say, standard model grade model,&nbsp;&nbsp;
+right? So we incorporated the standard model,&nbsp; let's fantasize. And then we have a standard&nbsp;&nbsp;
+model with faster than speed of light neutrinos.&nbsp; Say, okay, say. Then I would say now is the time&nbsp;&nbsp;
+to invest the time and money to set up our&nbsp; construction equations. Well, that can be&nbsp;&nbsp;
+done over the weekend, so to speak. But then to&nbsp; solve them. And there you might really, I mean,&nbsp;&nbsp;
+you know, it's very complicated equations.&nbsp; But if you solve them, you get the gravity&nbsp;&nbsp;
+action that would support the new full matter&nbsp; model. So, we think. We think we showed that.
+Okay, I'd like to talk about your mind.&nbsp; When we spoke a couple months ago, off air,&nbsp;&nbsp;
+we were speaking about how there are toy models&nbsp; in physics, and you were thinking, okay, well,&nbsp;&nbsp;
+what is it that compels a theorist to go in this&nbsp; direction? That's the question you would ask them.&nbsp;&nbsp;
+If you're getting too abstract, you just want to&nbsp; say, well, what compels you? Can you please talk&nbsp;&nbsp;
+about that? And how that guides your own research,&nbsp; maybe your teaching, maybe your philosophy?
+Yes, yes. Well, you see, in research, we're&nbsp; always tiptoeing the line between the known&nbsp;&nbsp;
+and the unknown, right? If we stay firmly in the&nbsp; known, we're not conducting research. We say,&nbsp;&nbsp;
+that's the theory. That's how we look at it.&nbsp; Nothing to change about it. Yes, there are&nbsp;&nbsp;
+problems, but who knows what that is, okay? I'm&nbsp; simplifying here. But especially as a theorist,&nbsp;&nbsp;
+we're tiptoeing on this line where we're always&nbsp; with one foot in the certainty, the uncertainty,&nbsp;&nbsp;
+and one foot in the unknown. And so if you&nbsp; want to do research, we need to introduce a&nbsp;&nbsp;
+new idea into something. Otherwise, at least as&nbsp; a theorist, what are you doing? There needs to&nbsp;&nbsp;
+be one new element in it. As I mentioned before,&nbsp; I believe if you say, “oh, I have five new ideas&nbsp;&nbsp;
+how things could be different at once,” I think&nbsp; it's not manageable to deal with this. At least&nbsp;&nbsp;
+I would claim that for myself. So let's say one&nbsp; idea. And you know, if you have two brilliant&nbsp;&nbsp;
+ideas and it works, my congratulations. I&nbsp; just, you know, it's an indicator, right?
+So tiptoeing, tiptoeing the line. But now you have&nbsp; a new idea and you have the old. First of all,&nbsp;&nbsp;
+are they compatible or not? Well,&nbsp; if they're not really compatible,&nbsp;&nbsp;
+you have a problem to solve because&nbsp; you have to incorporate this new idea&nbsp;&nbsp;
+without… and thereby you typically have&nbsp; to also change the old theory, right?
+Yes.
+If the new idea is not fully compatible. Okay.&nbsp; And typically, this leads to a contradiction&nbsp;&nbsp;
+in the old theory or to a prediction&nbsp; of the modified theory in three lines,&nbsp;&nbsp;
+I exaggerate, where you say, “yeah,&nbsp; but nature isn't like that.” Well,&nbsp;&nbsp;
+what happens then? Well, you throw&nbsp; away your… So, your new idea, right?
+Hopefully.
+Yeah, you should. You should. Oh,&nbsp; sometimes people don't, right? Sometimes people&nbsp;&nbsp;
+keep saying, “oh, but the idea is right. It just&nbsp; hasn't been shown yet.” And it might be true,&nbsp;&nbsp;
+you see. But if you have a new idea, and if&nbsp; you start incorporating or modifying the old&nbsp;&nbsp;
+theory or aspects of the old theory in that,&nbsp; according to this idea or incorporating this&nbsp;&nbsp;
+idea or incorporating this technique, you get&nbsp; something that is slightly new, which is not&nbsp;&nbsp;
+immediately obviously false. And then the question&nbsp; is, what do you do next? And the answer is, well,&nbsp;&nbsp;
+I hope at least usually it is, what you're&nbsp; doing there, if you keep looking at it and keep&nbsp;&nbsp;
+working with it, you will be forced, you will be&nbsp; compelled to maybe do a next step. For instance,&nbsp;&nbsp;
+you could have a new idea, let's do&nbsp; this and that. And then it tells you,&nbsp;&nbsp;
+oh, but unless you choose this object to be&nbsp; of this and that class rather than the other&nbsp;&nbsp;
+class, a class it could have, then there's&nbsp; an immediate contradiction. Well, you already&nbsp;&nbsp;
+have learned you need this other class of object&nbsp; and so on, another algebraic class or whatnot.
+Yeah. Can you be more concrete?&nbsp; Can you give a specific example?&nbsp;&nbsp;
+Maybe you're trying to tiptoe and&nbsp; be diplomatic and non-offensive?
+No, no, no. No, not really. You see, that's&nbsp; the problem of this. All I say are vague ideas&nbsp;&nbsp;
+of how to not run away in a theoretical direction&nbsp; that doesn't lead nowhere. Right? It's very easy,&nbsp;&nbsp;
+you see. And I think a lot of physics maybe always&nbsp; has been, maybe is, including some of my own work&nbsp;&nbsp;
+in the past, is having an idea and going here and&nbsp; going there and trying to implement it here and&nbsp;&nbsp;
+here. It's a little bit we need, what guides us?&nbsp; What is the guiding principles we use, right? And&nbsp;&nbsp;
+yeah, more concrete. Yeah, let's say what I said&nbsp; in the beginning with these Port Hamiltonian&nbsp;&nbsp;
+theories where you reformulate classical&nbsp; theories such that you have the energy flow,&nbsp;&nbsp;
+the fundamental variables immediately relate&nbsp; to the energy flow between subsystems. It's&nbsp;&nbsp;
+a reformulation of Hamiltonian mechanics. And I&nbsp; said, let's apply it to quantum mechanics. Okay?
+Okay.
+But then we played around for a few months with&nbsp; energy flows in quantum mechanics. In the end,&nbsp;&nbsp;
+we discarded the idea. Well, essentially, because&nbsp; in quantum mechanics, you don't have a continuous&nbsp;&nbsp;
+energy variable that describes the system. You&nbsp; have a Hamiltonian. But you see, if you have a&nbsp;&nbsp;
+Hamiltonian, let's say you take two states that&nbsp; are two different eigenstates of that Hamiltonian,&nbsp;&nbsp;
+right? Two different energy eigenstates. And&nbsp; you take a superposition. Well, then you have&nbsp;&nbsp;
+a new state, right? The superposition of two&nbsp; states is a new state. But for this Hamiltonian,&nbsp;&nbsp;
+upon measurement, you would get either one or the&nbsp; other value, right? You would get one eigenvalue&nbsp;&nbsp;
+or the other one. You wouldn't get the average&nbsp; of the eigenvalues, right? So this state itself,&nbsp;&nbsp;
+the superposition state of two different energy&nbsp; eigenstates, I don't know how we would say it has&nbsp;&nbsp;
+this and that energy. It doesn't. So that means&nbsp; most states, almost all states in Hilbert space,&nbsp;&nbsp;
+let's say a finite dimensional one, almost all&nbsp; states in a finite dimensional Hilbert space&nbsp;&nbsp;
+do not have an energy with respect to&nbsp; a given Hamiltonian operator, right?
+Yes.
+That's a fact. So, and then this whole&nbsp; idea of construction of ports for reasons&nbsp;&nbsp;
+that are not clear now, but fails because&nbsp; you would need a continuous, obviously,&nbsp;&nbsp;
+in time evolving or even differentially in time&nbsp; evolving quantity, whatever it's supposed to be,&nbsp;&nbsp;
+you would need in order to create these&nbsp; parts. But energy is not the right thing.&nbsp;&nbsp;
+And while energy plays in quantum theory also&nbsp; the role of the generator of the time evolution,&nbsp;&nbsp;
+like in classical theory, energy is the&nbsp; generator of time evolution. It is not&nbsp;&nbsp;
+the right quantity to introduce these parts in&nbsp; quantum theory, right? So what I say, you need to,&nbsp;&nbsp;
+you can't just push an idea. I want energy flows.&nbsp; I want to study energy flows. You need to react&nbsp;&nbsp;
+what the theory reports back to you if you try&nbsp; to modify it like that. That's the rough idea.
+Look, I think we're talking a little bit&nbsp; too much about how I think one could, could,&nbsp;&nbsp;
+should constrain oneself to make good progress&nbsp; without running away uncontrollably. But this is&nbsp;&nbsp;
+very personal. You see, if I thought this&nbsp; had deep philosophical value, what I say,&nbsp;&nbsp;
+I would have written it up and published it.&nbsp; Okay. But it's something I discuss a lot with my,&nbsp;&nbsp;
+with my research students. I tell them,&nbsp; well, ideas are cheap, very easy to have,&nbsp;&nbsp;
+and get rid of ideas if they don't seem&nbsp; to work out. Or put them to the side,&nbsp;&nbsp;
+right? And try to have some standards of how&nbsp; you push ideas forward. I think that's what&nbsp;&nbsp;
+it is. And every researcher should have&nbsp; his own set of rules because otherwise&nbsp;&nbsp;
+we're all doing the same. That's not good.&nbsp; Right? So yes, variability is good. Right?
+Yeah, yeah, yeah. So, so, so, so, so if&nbsp; I, I want to qualify what I say, it's,&nbsp;&nbsp;
+it's not out of not offending anybody,&nbsp; but it's, I think it's the truth, right?&nbsp;&nbsp;
+These are basic ideas of, of, of how to orient&nbsp; one's own research, but that's very personal.
+Yes. Okay. So these are yours. You're not&nbsp; advocating that if people aren't following it,&nbsp;&nbsp;
+then they're doing something incorrectly.
+Oh, no, no. Look, I mean, that&nbsp; would, how do you say, I mean,&nbsp;&nbsp;
+look at the history of physics in the 20th&nbsp; century, right? I mean, the revolutions that&nbsp;&nbsp;
+were there and what people predicted about&nbsp; it before, it would be totally absurd to say,&nbsp;&nbsp;
+because it's not on my radar right now, or&nbsp; I can't imagine this to be a good one way,&nbsp;&nbsp;
+to say nobody should do this. Of course not.&nbsp; I tell it to my students though. My, I, I,&nbsp;&nbsp;
+I put this on my students and my justification&nbsp; is, well, they don't have to listen to me.
+Right.
+And they can take it as one element of what one&nbsp; could think about and hopefully they add something&nbsp;&nbsp;
+else to it or they reject it or they take it&nbsp; over. And they learn from other colleagues too,&nbsp;&nbsp;
+from other sources too. So I think we should speak&nbsp; out about these things. These are subtle things,&nbsp;&nbsp;
+you know? Probably somebody not doing research&nbsp; doesn't know the hell what I'm talking about&nbsp;&nbsp;
+here. Yeah. And, but these are ideas and we&nbsp; should put them on our research students,&nbsp;&nbsp;
+but not to force them to take them, but just as,&nbsp; as, because otherwise we can't teach them. We&nbsp;&nbsp;
+could, you can teach people by telling them&nbsp; your own ideas about something and they are&nbsp;&nbsp;
+less attached to them. They might change them&nbsp; a little and have more success, for instance.
+Yeah. So speaking of teaching your&nbsp; work. As a middle class teacher,&nbsp;&nbsp;
+you've won several awards, some&nbsp; of the most prestigious awards.
+Yeah no, I was very lucky because I, it was&nbsp; sort of history. I tell you the history of&nbsp;&nbsp;
+one of these awards. I was very lucky to have&nbsp; been invited by the German physical society to&nbsp;&nbsp;
+have a youth organization. Actually the German&nbsp; physical society is I think the biggest physical&nbsp;&nbsp;
+society in the world. It's a little bit funny, but&nbsp; they have many, many members and they have a youth&nbsp;&nbsp;
+organization. And they invited me in 2015 to give&nbsp; a big lecture series on general relativity. And&nbsp;&nbsp;
+so I did it. We did this in Austria and they&nbsp; gave us a fantastic place to do that. And out&nbsp;&nbsp;
+of that came these gravity and light lectures on&nbsp; YouTube and we put them on YouTube and we didn't&nbsp;&nbsp;
+think anything of it and they took off quite a&nbsp; bit. And then there were other lectures taken&nbsp;&nbsp;
+in Erlangen University on the geometric anatomy&nbsp; of fundamental physics or whatever I call it.
+Geometric anatomy of theoretical physics.
+Yes, yes, yes. It's about differential geometry.&nbsp; Yeah, yeah. It was one of these things that they&nbsp;&nbsp;
+do in Germany, which is fantastic. Every now&nbsp; and then you can get into the… you can give a&nbsp;&nbsp;
+lecture that you want to give a lecture course,&nbsp; right? You give, of course, lecture courses that&nbsp;&nbsp;
+need to be given. They're part of the curriculum.&nbsp; But then there are optional courses where if you&nbsp;&nbsp;
+have an idea and you want to do it, you do it.&nbsp; And I just wanted to teach people differential&nbsp;&nbsp;
+geometry from the ground up as it's then used&nbsp; in theoretical physics. And so it's more of an&nbsp;&nbsp;
+applied mathematics course than it's a theoretical&nbsp; physics course. And that kind of took off once,&nbsp;&nbsp;
+once the university put this on YouTube. Or first&nbsp; on iTunes or something like this. And, and yeah,&nbsp;&nbsp;
+that gave me some international followership&nbsp; and also national followership. And then at some&nbsp;&nbsp;
+point I was proposed for the Ars Legendi prize,&nbsp; which is, well, it's probably the top German&nbsp;&nbsp;
+teaching prize for, for university teachers.&nbsp; And, yeah, they were so kind to find that in&nbsp;&nbsp;
+that year I was the best candidate. They like&nbsp; the best at least. Yes. Yes. Yeah. Yeah. Yeah.
+So you have this geometric anatomy course?
+Yes. Yes.
+And that didn't have a curriculum&nbsp; before you came up with that?
+That's right. That's right. Yeah.
+Do you have other ideas for courses?
+Yeah, all the time, all the time. But the&nbsp; question is whether you can give them,&nbsp;&nbsp;
+right? Whether the university gives the&nbsp; opportunity to give these courses or give&nbsp;&nbsp;
+these courses or when they say, no, we are&nbsp; already busy with the curriculum, right?
+But what's in your mind? I'm curious. So&nbsp; for instance, for people who understand&nbsp;&nbsp;
+differential geometry, what's extremely&nbsp; important? What's really interesting&nbsp;&nbsp;
+about your course is you started in the&nbsp; first lecture with propositional logic.
+Right, right.
+And then you built up to the empty set,&nbsp; I think in the second or third lecture.
+Yeah, yeah.
+No course on differential geometry starts with&nbsp; the empty set, let alone propositional logic.
+Yes, yes.
+You started from the ground up. That&nbsp; was extremely interesting. You're&nbsp;&nbsp;
+exceptionally clear. Exceptionally&nbsp; clear. I absolutely love that.
+Yeah, I think I rewatched those. I may&nbsp; have rewatched that as many times as I&nbsp;&nbsp;
+rewatched Seinfeld, which is many times. Oh wow.
+Yes, yes. Well, well, I mean, look, it was a&nbsp; course, because it was an extracurricular course,&nbsp;&nbsp;
+I had some mathematicians in it, some&nbsp; physicists and so on. And if you want to,&nbsp;&nbsp;
+I can tell you the reason was very simple. If&nbsp; you want to tell people what a manifold is,&nbsp;&nbsp;
+you need to tell them a smooth manifold. You need&nbsp; to tell them what a topological manifold is. They&nbsp;&nbsp;
+need to know what a topological space is. Well,&nbsp; a topological space is a very simple thing. If&nbsp;&nbsp;
+you know that you have a set and then the set has&nbsp; a power set. How do you know the set has a power&nbsp;&nbsp;
+set? How do you know the power set is a power&nbsp; set? Aha, you need to have some set theory. Now,&nbsp;&nbsp;
+if you do naive set theory, you have all kinds&nbsp; of contradictions in two lines. If you say a set&nbsp;&nbsp;
+is a collection of elements. That sounds good,&nbsp; but that doesn't make any sense. First of all,&nbsp;&nbsp;
+I didn't tell you what a collection is. Second,&nbsp; I didn't tell you what an element is. So to&nbsp;&nbsp;
+define a set as a collection of elements is&nbsp; not particularly insightful. And in fact,&nbsp;&nbsp;
+as is well known, naive set theory&nbsp; is contradictory in line two.
+And so ultimately, if I want to tell people&nbsp; from a broader range of backgrounds, also in&nbsp;&nbsp;
+physics and mathematics and so on, what are we&nbsp; actually talking about here? I have to tell them&nbsp;&nbsp;
+also about the axioms of set theory. Now that's&nbsp; a thorny issue. It's a very kind of complicated&nbsp;&nbsp;
+issue if you really go deeply into this. But&nbsp; if you want to do it, you can do it. Actually,&nbsp;&nbsp;
+if you wanted to explain what set theory is, you&nbsp; need to write down the axioms. If you want to&nbsp;&nbsp;
+write down the axioms, you need a formalism in&nbsp; which you formulate these axioms. Because if I&nbsp;&nbsp;
+then formulate them with other flowery words, I'm&nbsp; as bad as I was before. And so there was the idea,&nbsp;&nbsp;
+okay, we have to do some quantours and so on and&nbsp; some, some, some propositional logic before. Well,&nbsp;&nbsp;
+that can actually be pushed even deeper. And&nbsp; I didn't do that in this course to some first&nbsp;&nbsp;
+order logic and so on. So, so there are many&nbsp; steps. Ultimately, I mean, it's now known,&nbsp;&nbsp;
+it was Hilbert's dream, but it's now known.&nbsp; Ultimately, it's very difficult to find a really&nbsp;&nbsp;
+foundational beginning from nothing. Even if you&nbsp; say you have an alphabet and symbols and so on.
+But what I wanted to do, at least I wanted to go&nbsp; beyond the usual undergrad or even master level&nbsp;&nbsp;
+idea about what a set is. For these students,&nbsp; they are all very excellent students in Erlang&nbsp;&nbsp;
+back then. They had also this elite graduate&nbsp; program and so on. I mean, super students,&nbsp;&nbsp;
+top, top, top students. So I could deliver&nbsp; that to them. It was an attempt at some type&nbsp;&nbsp;
+of completeness of the presentation, starting&nbsp; virtually from nothing. And then you see rigor&nbsp;&nbsp;
+in mathematics of course extremely important. But&nbsp; for me the best rigor is the conceptual rigor. Now&nbsp;&nbsp;
+I mean of course you can write down things with&nbsp; epsilons and deltas and can make it very, very,&nbsp;&nbsp;
+very, very rigorous. Before that actually you need&nbsp; to be conceptually rigorous. You need to, if I say&nbsp;&nbsp;
+set and we just have a set of, I have a vague&nbsp; idea about it and then I build a big edifice&nbsp;&nbsp;
+on it and then at every other junction I have&nbsp; to say, well, now you can show that whatever,&nbsp;&nbsp;
+that a vector space always has a basis, even an&nbsp; infinite dimensional one. Well, how do we know&nbsp;&nbsp;
+that? Well, ultimately this comes from the axiom&nbsp; of choice, right? Well, why do you have the axiom&nbsp;&nbsp;
+of choice? Because at some point I required it.&nbsp; You see, so I wanted to give it the full picture&nbsp;&nbsp;
+without claiming that this is at the same time&nbsp; a foundational logic, a foundational set theory&nbsp;&nbsp;
+course, because you could probably spend your&nbsp; life if you want to fill in all the details. But&nbsp;&nbsp;
+at least I want to be a bit more clear about what&nbsp; all the assumptions are. And this is a general,&nbsp;&nbsp;
+because you asked about teaching. This is&nbsp; something that's very important in teaching.
+And I always joke with people when they&nbsp; ask me, I say my assumptions in teaching,&nbsp;&nbsp;
+the foundational assumptions are two. A,&nbsp; students, no matter whoever who comes to you,&nbsp;&nbsp;
+beginners, masters, Master students, they&nbsp; know nothing, nothing at all. And second,&nbsp;&nbsp;
+they're infinitely intelligent. Okay. Okay.&nbsp; So both assumptions are slightly wrong,&nbsp;&nbsp;
+right? Students do know things and they're not&nbsp; infinitely intelligent. But I present my courses&nbsp;&nbsp;
+a little bit like that. And I like to develop&nbsp; things from the beginning because I don't know&nbsp;&nbsp;
+what they know and I don't know in which way&nbsp; they know it. So I like to start from scratch.
+Yes. You even told me that, instead&nbsp; of starting with a textbook,&nbsp;&nbsp;
+you'll go into a room, a blank room with blank&nbsp; paper and think, how can I teach this subject?
+Right. Right. Well, I mean, I think that&nbsp; that's, so that's another thing. I think,&nbsp;&nbsp;
+well, it's all not my original ideas, a very old&nbsp; idea, you know, unity of research and teaching. I&nbsp;&nbsp;
+think at university, only people who bring&nbsp; to the table some research grade thinking&nbsp;&nbsp;
+should actually teach the important&nbsp; lectures at least for the students&nbsp;&nbsp;
+who take the subject very seriously.&nbsp; Let's say it like this. Now, so if you,&nbsp;&nbsp;
+if some biology student has a physics course that&nbsp; can be excellently taught without much ado, but if&nbsp;&nbsp;
+you say you want to educate the next generation of&nbsp; theoretical physics and maybe you hope that some&nbsp;&nbsp;
+of them might make groundbreaking discoveries or&nbsp; something, well, we better, we better give them&nbsp;&nbsp;
+our best and don't just repeat what, what, what&nbsp; in the general, how we learned it. Right. And,&nbsp;&nbsp;
+and so how do you do this and how do you not&nbsp; just follow what is written in the textbook?
+I think you say this in one of your&nbsp; videos where you say, “oh yeah,&nbsp;&nbsp;
+we're just often just repeat what we&nbsp; have heard.” Was it you who said that?
+Yeah. Somebody else you interviewed.
+And, and, and, and you can recognize this. If&nbsp; you would never use this phrase somewhere else.
+Exactly. What was, on an&nbsp; equal footing, I think it was.
+Yeah. There are many such&nbsp; phrases. I keep a catalog of them.
+“All possible paths” seems to be echoed&nbsp; due to doctrinal inheritance without&nbsp;&nbsp;
+thinking. Just like the word “equal&nbsp; footing.” Time and space are relative&nbsp;&nbsp;
+and treated on equal footing. Time and space&nbsp; are supposed to enter on equal footing. We&nbsp;&nbsp;
+should think of space and time on the same&nbsp; footing. What is equal footing? Have you&nbsp;&nbsp;
+seen a mathematical definition of equal&nbsp; footing? We're supposed to be rigorous.
+Yeah, yeah, yeah. Space and time on an equal&nbsp; footing. Oh yeah, indeed. What the heck is&nbsp;&nbsp;
+that supposed to be? Okay. Nevertheless, we&nbsp; all do that. But indeed, I would say one way&nbsp;&nbsp;
+to make your research much better is to try&nbsp; to detect where you're using such phrases in&nbsp;&nbsp;
+order to justify something. Well, they're of&nbsp; course placeholders for a better explanation.
+Interesting.
+Sometimes you have a much better explanation.&nbsp; Everybody knows the better explanation. And&nbsp;&nbsp;
+then you refer to it as on the equal, on an equal&nbsp; footing. And then everybody, however, if pushed&nbsp;&nbsp;
+would give you a brilliant explanation to it, then&nbsp; you're allowed to use this short term. Yes. But&nbsp;&nbsp;
+if it's just used to gloss over your own ignorance&nbsp; consciously or unconsciously, one should eliminate&nbsp;&nbsp;
+it. But we all do this. So first of all, if people&nbsp; ask me, how do I teach better or very well, I&nbsp;&nbsp;
+say something like that. Right. And then say I, I&nbsp; mean, general relativity is one of my, my, my, my,&nbsp;&nbsp;
+in my expertise. So if I teach a course in general&nbsp; relativity, I can teach this in any number, in two&nbsp;&nbsp;
+or three different ways. Okay. Not any number in&nbsp; two or three different ways. And then I, first of&nbsp;&nbsp;
+all, think what is the best way for this, for this&nbsp; group? Huh? And for instance, I once taught, I had&nbsp;&nbsp;
+the task to teach physics to material scientists.&nbsp; They're not hardcore physicists, but they need&nbsp;&nbsp;
+some good quantum mechanics. And it was a quantum&nbsp; mechanics course. And I decided that because they&nbsp;&nbsp;
+need the energy bands, you know, in solids and so&nbsp; on, I teach them a tempered distribution theory,&nbsp;&nbsp;
+right? Schwartz spaces, tempered distributions&nbsp; and so on, a distribution theory which you&nbsp;&nbsp;
+would say is a very advanced subject. I mean, most&nbsp; physicists don't hear this in their undergraduate&nbsp;&nbsp;
+studies, right? Right. But I decided for&nbsp; the applications we want to do, we just&nbsp;&nbsp;
+need this. I taught this to them. It's not that&nbsp; difficult after all. They all did pretty well.
+Right. So sometimes we must not shy&nbsp; away from using very advanced methods,&nbsp;&nbsp;
+of course explained very well from the&nbsp; bottom up, also to people who will say,&nbsp;&nbsp;
+oh, normally they wouldn't use this theory,&nbsp; but I think they should. Right. So, and, and,&nbsp;&nbsp;
+and then I usually textbooks, many textbooks don't&nbsp; offer them precisely the line you want to take.&nbsp;&nbsp;
+And I think it's also good for the lecturing&nbsp; style. If I don't take a particular textbook,&nbsp;&nbsp;
+certainly in a subject I know very well, yeah,&nbsp; I take a stack of paper in the summer break,&nbsp;&nbsp;
+and I start sketching what is a good storyline,&nbsp; but I mean scientifically conceptually rigorous&nbsp;&nbsp;
+storyline as today one would have to present&nbsp; it in order to get it accepted in a very good&nbsp;&nbsp;
+journal. If this was a discovery, so to&nbsp; speak. Right. So, yeah. So, so I try to,&nbsp;&nbsp;
+to apply research grade thinking to the design&nbsp; or redesign. That's the better word. The redesign&nbsp;&nbsp;
+of also very established courses. And very&nbsp; often you change the order in which you teach&nbsp;&nbsp;
+subjects. What you think is an advanced subject&nbsp; is typically something you learned later. And a&nbsp;&nbsp;
+less advanced subject or topic is one you&nbsp; yourself learned earlier. But that's not a&nbsp;&nbsp;
+particularly meaningful classification&nbsp; of advanced and not advanced, right?
+For instance, in Erlangen, I taught the classical&nbsp; mechanics course. I decided to teach it using half&nbsp;&nbsp;
+of the semester to develop differential geometry.&nbsp; Then I did the mechanics and in the last lecture&nbsp;&nbsp;
+I could tell them what general relativity is.&nbsp; Okay. That worked pretty well. Colleagues said&nbsp;&nbsp;
+you're crazy, right? I mean, you have bad&nbsp; passing rates. Not true. We have excellent&nbsp;&nbsp;
+passing rates or very good passing rates,&nbsp; at least the usual ones. And some of these&nbsp;&nbsp;
+students do just absolutely spectacularly&nbsp; because once you do it properly, you see,&nbsp;&nbsp;
+you should never do something because it looks&nbsp; fancy. “Whoo, we did differential geometry.” No,&nbsp;&nbsp;
+I need to tell you what a covector is if I want&nbsp; to talk about momenta, right? Because momenta,&nbsp;&nbsp;
+canonical momenta, are covectors. They're&nbsp; not vectors. How do I tell you? Do I tell&nbsp;&nbsp;
+you about this in vector space? I could, but&nbsp; then people think about the position vector.&nbsp;&nbsp;
+But position is not a vector. And you can't get&nbsp; away from this structurally conceptually wrong&nbsp;&nbsp;
+idea unless you immediately put it in the setting&nbsp; of a manifold. And then of course if you do then&nbsp;&nbsp;
+Lagrangian mechanics or something, you anyway,&nbsp; generalized coordinates are nothing than what&nbsp;&nbsp;
+the differential geometer calls coordinates.&nbsp; They're not generalized. They're coordinates.&nbsp;&nbsp;
+It's actually the Cartesian coordinates which are&nbsp; very, very special coordinates existing under very&nbsp;&nbsp;
+special circumstances. And then you don't have&nbsp; to choose them necessarily. Right? So you put&nbsp;&nbsp;
+the whole conceptual basis properly rather than&nbsp; giving people the wrong idea. Because once you&nbsp;&nbsp;
+taught something in a way that is ultimately&nbsp; not correct, ultimately doesn't carry you far&nbsp;&nbsp;
+and you have to replace it later on anyway,&nbsp; you shouldn't teach people in the wrong way.
+And that's why it's important to be a researcher&nbsp; because you know where it's going to be carried.&nbsp;&nbsp;
+Whereas if you're just a general teacher,&nbsp; you don't know the forefront of the field.
+I think many, both, both somehow, yes,&nbsp; it's because you need to know where you,&nbsp;&nbsp;
+where you want to go. And, no, but the other thing&nbsp; is you see in research, you learn this. Oh, could&nbsp;&nbsp;
+I explain this, this other way? Oh, this is a new&nbsp; take on, let's, let's explain it that way. And,&nbsp;&nbsp;
+but what if it's almost only slightly wrong? If&nbsp; you do something in a new way, you need to apply&nbsp;&nbsp;
+the criticism, some of a researcher to it to&nbsp; say, is this really a valid derivation? And&nbsp;&nbsp;
+is it really as general as the one that you get&nbsp; otherwise, you know? So, I'm a big skeptic of&nbsp;&nbsp;
+teaching methods as a one size fits all method of&nbsp; how you teach better, whether you teach the piano&nbsp;&nbsp;
+or you teach general relativity. I do not believe&nbsp; that is true. I would never dare to recommend to a&nbsp;&nbsp;
+piano teacher my teaching methods because I think,&nbsp; oh boy, I mean, you're a concert pianist. I mean,&nbsp;&nbsp;
+the really good piano teachers that people&nbsp; study with, they're concert pianists,&nbsp;&nbsp;
+right? They don't have just a fancy teaching&nbsp; method. They can play it at a really great level.&nbsp;&nbsp;
+And then they have methods to teach them, which&nbsp; you can't come up from general considerations.
+So in physics is also like this&nbsp; teaching. I think good teaching&nbsp;&nbsp;
+always springs from a deep understanding&nbsp; of the subject coupled with an awareness&nbsp;&nbsp;
+of what you already explained and what&nbsp; you didn't. Now sometimes people say,&nbsp;&nbsp;
+“oh that person is a really brilliant scientist&nbsp; but he doesn't teach well.” That's often the case.
+In the University of Toronto it's infamous for&nbsp;&nbsp;
+having great researchers but they&nbsp; don't care about the teaching.
+Maybe they would be great if they… Okay, okay.&nbsp; That's of course one possibility. You don't care&nbsp;&nbsp;
+about it or you hate your students. No,&nbsp; but I think a more benevolent view could&nbsp;&nbsp;
+be they want to explain it. Well, let's take&nbsp; those hypothetical ones who are really great,&nbsp;&nbsp;
+who really know their subject, and who really&nbsp; want to explain well but don't. I think the most&nbsp;&nbsp;
+likely cause in those, and I know such cases,&nbsp; but not many actually, and I think there it is,&nbsp;&nbsp;
+they're not fully aware what they already&nbsp; explained. They explain something. Oh,&nbsp;&nbsp;
+I forgot this. And then, okay, you forgot. Okay.&nbsp; I put this as an aside, that happens to all of us,&nbsp;&nbsp;
+but then it's the next thing. Oh, and I&nbsp; did this. And, and, and, and as we know,&nbsp;&nbsp;
+and as you could show, but you know, then&nbsp; it's a mess. Then it's all over the place.
+Left as a homework exercise.
+There's a homework exercise. Yeah. Yeah. Yeah.&nbsp; Yeah. Yeah. Yeah. Well, that's, that's an easy&nbsp;&nbsp;
+opt out. Now I say you show this young man or&nbsp; young lady. Yeah. No, seriously, it's, I believe&nbsp;&nbsp;
+it's certainly the implication error goes in one&nbsp; direction. I think you need to know your subject&nbsp;&nbsp;
+really well, really deep, really far in order&nbsp; to design a really nice lecture course on it.
+It's a necessary condition.
+And, yeah, and,&nbsp; and we all are fallible, right? I mean,&nbsp;&nbsp;
+I think I eradicated these and those&nbsp; problems from this subject in teaching&nbsp;&nbsp;
+it and how it's strangely and things like&nbsp; this. But then do I know, right? I mean,&nbsp;&nbsp;
+then somebody else must come and do it better,&nbsp; but at least we do better and better. If I&nbsp;&nbsp;
+think if we, if I can improve 5% of how I&nbsp; learned a subject, and it's really solid,&nbsp;&nbsp;
+a solid 5% improvement. I think we, yeah, we can&nbsp; tap our own shoulders, right? And say, you know,&nbsp;&nbsp;
+but that's what we owe our students. So it's&nbsp; what we owe our students to really improve it&nbsp;&nbsp;
+because otherwise they must… So, you might have a&nbsp; better starting point than we did, although our,&nbsp;&nbsp;
+my starting point was excellent. I&nbsp; had brilliant teachers everywhere.
+Some of the privileges in life, well, for&nbsp; me, I think for anyone is running water,&nbsp;&nbsp;
+air conditioning, and if you're a physics&nbsp; student, it's taking one of your courses.
+Oh, wow.
+Immediately after water and air conditioning.&nbsp; I'm not even kidding. It's an absolute joy. I&nbsp;&nbsp;
+don't know. So why do you care so much?&nbsp; Why do you care so much about teaching?
+That's a very good question. You see, I think,&nbsp; and then I think it's a good lesson to, to maybe&nbsp;&nbsp;
+young people out there. When I went to study to&nbsp; university, I was just so wanting to understand&nbsp;&nbsp;
+physics and to also make new discoveries and&nbsp; mathematics as well. I studied both in parallel.&nbsp;&nbsp;
+That was my aim. And if I now look back,&nbsp; even before that, when I was a younger man,&nbsp;&nbsp;
+I did lots of sports and I actually started&nbsp; working as a trainer already at a very early time,&nbsp;&nbsp;
+myself being active, but also teaching youth&nbsp; groups and so on. And if I look back in my life,&nbsp;&nbsp;
+I think from the age of 15 onwards, I have&nbsp; always in one or the other capacity in sports&nbsp;&nbsp;
+or elsewhere, I have been teaching. I have been&nbsp; teaching. And more or less what I told you is my&nbsp;&nbsp;
+philosophy about teaching today was my teaching&nbsp; back then. I wanted to make them really good. I&nbsp;&nbsp;
+wanted to make them really good competition&nbsp; sportsmen and women and things like that.&nbsp;&nbsp;
+And I had this idea and I had myself good teachers&nbsp; in all of these fields. And I pass this on,&nbsp;&nbsp;
+but not out of a reflected moral imperative or&nbsp; something. It, it just in retrospect, I saw this.
+And when I went to university in the&nbsp; first semester, I had little meetings&nbsp;&nbsp;
+in the library where I told my fellow students&nbsp; things that we were currently discussing and&nbsp;&nbsp;
+that I understood before. And I taught them on the&nbsp; blackboard in the library, in the university. So,&nbsp;&nbsp;
+so I always did this and it was natural when I&nbsp; was at university and at research institutes,&nbsp;&nbsp;
+I was also invited. Well, Germany has a very&nbsp; sophisticated talent… So, we have a, we have&nbsp;&nbsp;
+something called the scholarship foundation. This&nbsp; is a state organization. They select 0.1% of the&nbsp;&nbsp;
+best high school, university students in any&nbsp; subject. And there they get special summer&nbsp;&nbsp;
+schools by top professors and so on. And&nbsp; we have a similar thing for last year high&nbsp;&nbsp;
+school students where every high school in&nbsp; Germany can send their one best student to&nbsp;&nbsp;
+one of these academies. They can choose, they can&nbsp; choose beforehand courses. And for many years I've&nbsp;&nbsp;
+taught their course on general relativity to last&nbsp; year, high school students. What did I do? Well,&nbsp;&nbsp;
+taught them differential geometry, taught them&nbsp; different, general relativity. Right? Wow.
+So I think, so I have always done that. And my aim&nbsp; is always to make the people as good as can be. So&nbsp;&nbsp;
+I'm a little of an, I don't know, a little bit of&nbsp; an elitist this way. I think, look, you come here&nbsp;&nbsp;
+to study. I give you the real thing. I was just&nbsp; like, not a good person, but the real thing is&nbsp;&nbsp;
+hard. And I do my very best that I deliver to you&nbsp; so that you can live up to the demands I put on&nbsp;&nbsp;
+you. Right? So I put high demands, but at the same&nbsp; time I know I'm responsible for teaching them. And&nbsp;&nbsp;
+in the end, if it fails, if not a significant&nbsp; proportion of them takes a big benefit, which&nbsp;&nbsp;
+from your kind words I take it many people do,&nbsp; right? It's now obvious through YouTube. Then I,&nbsp;&nbsp;
+at university too, of course I got always good&nbsp; evaluations or very good evaluations, not a doubt,&nbsp;&nbsp;
+but I think I succeeded. I succeeded. I once had a&nbsp; student who I met in Erlangen on the street years&nbsp;&nbsp;
+after he took my classical mechanics course. I&nbsp; told you about that started with differential&nbsp;&nbsp;
+geometry and he stopped me and he was very kind.&nbsp; And he said, because of you, I stopped physics.&nbsp;&nbsp;
+And I thought, oh really? He said, no, no, it&nbsp; was the best thing ever. Your course was great,&nbsp;&nbsp;
+but I just realized I'm not good enough. And&nbsp; I said, maybe you should have tried more.&nbsp;&nbsp;
+No, no, no, absolutely not. I'm so grateful to you&nbsp; because I realized I should have understood it. So&nbsp;&nbsp;
+many in my course said it was great. I thought&nbsp; it was great, but I'm not good enough. I just&nbsp;&nbsp;
+couldn't do it. So it's, it's a weird compliment,&nbsp; but, but it was genuine. I think it was genuine.&nbsp;&nbsp;
+He meant it. And I said, again, apologized. And&nbsp; I say, I hope I didn't do anything wrong. And&nbsp;&nbsp;
+so on. He said, no, no, no, no. He's very&nbsp; happy now with what he's doing and so on.
+So, anyway, that's it. I think&nbsp; putting high demands is important,&nbsp;&nbsp;
+also to motivate people, right? Today,&nbsp; we have a lot of talk in teaching circles&nbsp;&nbsp;
+about people being demotivated by&nbsp; high demand. I think high demand,&nbsp;&nbsp;
+if it's justified from what you yourself as&nbsp; a teacher deliver, is the biggest motivator&nbsp;&nbsp;
+of all. Because the good students are pushed&nbsp; beyond what would be their comfort zone. And&nbsp;&nbsp;
+the not so good students see that a good number&nbsp; of students succeed very well. So it is possible.
+Yes. Yes.
+Maybe they need to up their game. Maybe they need&nbsp; to spend more time on it. I was just like, I'm&nbsp;&nbsp;
+going to be more confident or be more courageous&nbsp; or be less disheartened or, you know, anyway,&nbsp;&nbsp;
+that's my, my, my view. And I, yeah, so maybe&nbsp; that's the nicest outcome of, or a conclusion for&nbsp;&nbsp;
+me from all these awards. I got others and, and,&nbsp; and, and, and the many, many, many thousands of&nbsp;&nbsp;
+emails I got, of course, and not of course, but&nbsp; I got kindly on, and many I couldn't even read&nbsp;&nbsp;
+because it was just too much at some time.&nbsp; One year I got 6,000 emails on these YouTube&nbsp;&nbsp;
+lectures. It was impossible for me to read. They&nbsp; all go to some folder, but I feel very guilty&nbsp;&nbsp;
+about it because some people write very nice&nbsp; things. If I look at, but I just can't cope with&nbsp;&nbsp;
+these masses of of of emails. So maybe here my&nbsp; thank you to everybody who who wrote and addressed&nbsp;&nbsp;
+very kind words to me. But the nicest conclusion&nbsp; of that for me is I think my methods, method is&nbsp;&nbsp;
+at least justified, right? So to high demands and&nbsp; trying to deliver what it takes to satisfy them.
+Yeah. One of the reasons I resonate with&nbsp; you and your lectures is that I care about&nbsp;&nbsp;
+mathematical rigor, although you don't just&nbsp; care about rigor for rigor sake or formality&nbsp;&nbsp;
+for formality sake. You care about it because&nbsp; what is required to understand subject X,&nbsp;&nbsp;
+you have to drill down to point&nbsp; Y. So you don't care about point&nbsp;&nbsp;
+Z and ABC. You care about point Y as it&nbsp; relates to X, not just what's around Y.
+Yes. Yes. Yes. Although also you, you see, the&nbsp; coherence is actually what we're saying. Well,&nbsp;&nbsp;
+true is it. Is it really conclusive what we're&nbsp; saying? Is it compelling? Right? So we set up&nbsp;&nbsp;
+a theory. We start with assumptions. They could be&nbsp; wrong or false. As far as I said, I'm not sure. as&nbsp;&nbsp;
+physics is concerned, wrong or false. No, yeah.&nbsp; True or false as far as physics is concerned.&nbsp;&nbsp;
+But then once we set down our assumptions,&nbsp; is everything else we say, is it actually&nbsp;&nbsp;
+conclusive? Is that actually at least compatible&nbsp; with what we said? And there you need to be very&nbsp;&nbsp;
+careful because many things are plausible, but&nbsp; just not correct. And if we start hand waving,&nbsp;&nbsp;
+it's always very cool, right? It's a little&nbsp; bit, sometimes I blame it on Feynman, who was,&nbsp;&nbsp;
+of course, quite a charismatic character. Right.&nbsp; And physicists then, well, like me too, right? So&nbsp;&nbsp;
+I know this is like this, you can think about&nbsp; it like this and that and so on. Yeah, you can&nbsp;&nbsp;
+think about it like this, but is it correct? Does&nbsp; it fit with everything else? In the end, there is&nbsp;&nbsp;
+no way beyond the rigor, right? The rigor in how&nbsp; things are connected. And so that, you know, if&nbsp;&nbsp;
+you pull a little string in the theory here, how&nbsp; does it move in the theory over there? You know?
+Yes. Why don't you be concrete? Why don't you&nbsp; give an example of what ordinarily is hand wavy,&nbsp;&nbsp;
+but then when you examine&nbsp; it, it's to something wrong.
+Oh God, a million things, a million&nbsp; things. It's very easy to, for instance,&nbsp;&nbsp;
+talk about the center of mass of two particles,&nbsp; right? Two particles are flying around center&nbsp;&nbsp;
+of mass. Now think of it relativistically and&nbsp; blah, blah, blah. For instance, relativistically,&nbsp;&nbsp;
+there is no center of mass because center of mass,&nbsp; of course, requires you to take the positions&nbsp;&nbsp;
+of it. I think in a flat space, not even curved&nbsp; space, flat space. You need to take the positions&nbsp;&nbsp;
+of the two particles, say Minkowski space, there&nbsp; could be position vectors in quotation marks.&nbsp;&nbsp;
+Okay. And then you find the middle point,&nbsp; right? But for particles at the same time,&nbsp;&nbsp;
+you find the middle point, right? The positions&nbsp; at the same time, but we know there is no&nbsp;&nbsp;
+simultaneity in objective simultaneity in special&nbsp; relativity even. So in special relativity, there&nbsp;&nbsp;
+is no center of mass. That's a concept that Kant,&nbsp; I think it's interesting because Kant says this&nbsp;&nbsp;
+is a what is it synthetic a priori or something&nbsp; like this. And I think it's something like this,&nbsp;&nbsp;
+or even analytic, an analytic truth. No, it's&nbsp; just not true. Nature isn't like this. Nature&nbsp;&nbsp;
+doesn't have simultaneity as a foundational thing&nbsp; that you can talk about that makes sense, right?
+So, so it's very easy to give arguments,&nbsp; hand-waving arguments if you don't define&nbsp;&nbsp;
+it very precisely and then check whether&nbsp; it's well defined under whatever… Yeah.&nbsp;&nbsp;
+You got to be very careful now. So the hand&nbsp; wavy stuff is very, very dangerous. I mean,&nbsp;&nbsp;
+even the, the written down, the rigorous&nbsp; stuff is very dangerous. We all know this,&nbsp;&nbsp;
+right? We call it a sign error or some&nbsp; other conceptual error. So it's not like,&nbsp;&nbsp;
+because it's written in mathematics is necessarily&nbsp; conceptually coherent or consistent. Of course,&nbsp;&nbsp;
+then there is ultimately a mistake somewhere,&nbsp; no, but it becomes mere talk if we start hand&nbsp;&nbsp;
+waving. Of course, if you do formalism and&nbsp; you don't occasionally bring it to life, say&nbsp;&nbsp;
+to the students, right? That also doesn't work.&nbsp; But we really got to be careful in how we talk.
+I understand we don't have a blackboard and we&nbsp; don't have the ability for you to draw right now,&nbsp;&nbsp;
+but if you were to explain to the audience&nbsp; and they're educated in physics and math,&nbsp;&nbsp;
+what is the problem with quantum&nbsp; gravity? How would you say it?
+Oh, well, that's…
+Why is it so difficult to&nbsp; make gravity into a quantum&nbsp;&nbsp;
+theory? Should gravity be a quantum theory?
+Exactly. Exactly. Exactly. I&nbsp; want to hear your viewpoint.
+Well, I mean, okay, I have, I don't&nbsp; think I have anything new to add,&nbsp;&nbsp;
+but I think if you ask me as a&nbsp; little examination, I'd be obliged.
+PhD defense.
+Okay. We have a nice theory of gravity. General&nbsp; relativity is the best one we have. We use it.&nbsp;&nbsp;
+It's subject to the interpretation of the data&nbsp; we get and so on. It has the following form.&nbsp;&nbsp;
+G mu nu is T mu nu and G mu nu is the spacetime&nbsp; curvature and T mu nu is the annoyingly&nbsp;&nbsp;
+metric-containing energy momentum tensor of the&nbsp; matter. So the matter is, the metric is also in&nbsp;&nbsp;
+the T mu nu, but very roughly speaking, the T mu&nbsp; nu, of course, is mainly determined by the matter&nbsp;&nbsp;
+content and distribution in the universe, say.&nbsp; Now there are many issues to be discussed. Well,&nbsp;&nbsp;
+this is already a God-like view on all of&nbsp; spacetime. You would actually have to go&nbsp;&nbsp;
+to three plus one to talk about evolution&nbsp; and so on, but let's leave this all out.
+The problem is on the matter side, as long as&nbsp; you have classical fields like Maxwell fields,&nbsp;&nbsp;
+classical, this T mu nu is a classical field.&nbsp; It's a tensor on a smooth manifold. It can be&nbsp;&nbsp;
+beautifully equated to the G mu nu Einstein&nbsp; curvature tensor on the manifold. This is&nbsp;&nbsp;
+mathematically meaningful. And then you&nbsp; solve that. There's a big elephant there,&nbsp;&nbsp;
+but you solve these equations and you get&nbsp; the prediction of how the gravity and the&nbsp;&nbsp;
+matter in the end work together. You also need&nbsp; the matter field equations. But unfortunately,&nbsp;&nbsp;
+Planck got us the idea. And then people&nbsp; said, oh yeah, that's true. There seems to&nbsp;&nbsp;
+be no classical matter. All the matter, light&nbsp; and particles and so on. They're all quantum.&nbsp;&nbsp;
+I don't think this is to be doubted that that&nbsp; seems to be the case, at least the way we look&nbsp;&nbsp;
+at it. Fine. But then how do you build this T mu&nbsp; nu tensor on the right-hand side of this equation&nbsp;&nbsp;
+G mu nu is T mu nu? Because now all of a&nbsp; sudden there are quantum fields there. Okay.&nbsp;&nbsp;
+Big question. And then the easiest, so, and then&nbsp; you can say, oh, so in a sense, this T mu nu is&nbsp;&nbsp;
+also more like an operator operating on some&nbsp; vector space, Hilbert, sorry, Hilbert space,&nbsp;&nbsp;
+Fock space was not, no matter how you, there are&nbsp; many, many issues, perturbative theory and so on.
+Anyway, you have this on the T mu nu&nbsp; side. And then you say that doesn't&nbsp;&nbsp;
+fit. You can't equate a classical&nbsp; tensor to some operator. The equal&nbsp;&nbsp;
+sign makes no sense anymore. Right? The&nbsp; matter you want to put on the right-hand&nbsp;&nbsp;
+side is quantum, but the right-hand side&nbsp; is formulated only for classical fields.
+Uh-huh.
+And many things you can try. Oh, we take the&nbsp; expectation value. All of this doesn't work,&nbsp;&nbsp;
+right? All of this doesn't work, obviously.&nbsp; So then the, in a sense, laziest idea,&nbsp;&nbsp;
+and I'm unnecessarily provocative, but the&nbsp; laziest idea is to say, why don't we make&nbsp;&nbsp;
+the left-hand side also an operator or a bit more&nbsp; seriously formulated, maybe gravity should also&nbsp;&nbsp;
+be quantized. Then we have both theories, matter&nbsp; and gravity in the same formalism. And then we&nbsp;&nbsp;
+can write down a new equation roughly speaking in&nbsp; this new formalism where now the matter and the&nbsp;&nbsp;
+spacetime speak the same language or we speak the&nbsp; same language in looking at them. And that's the&nbsp;&nbsp;
+origin of the idea we should quantize gravity.&nbsp; At least from a formal point of view. There are&nbsp;&nbsp;
+other good reasons. What happens with black holes?&nbsp; What with singularities? Big Bang? Was there a big&nbsp;&nbsp;
+bang? Is the theory actually to be extrapolated&nbsp; up down to the Big Bang? Many questions. The&nbsp;&nbsp;
+Heisenberg idea. What does it actually mean to&nbsp; talk about spacetime as a smooth manifold and&nbsp;&nbsp;
+the metric measuring so pretty much so precisely?&nbsp; How would you measure? You would use higher and&nbsp;&nbsp;
+higher frequency to be more precise, say photons&nbsp; to check something, but then that would disturb&nbsp;&nbsp;
+the spacetime, the very spacetime you'd like to&nbsp; measure. There are many, many reasons that you&nbsp;&nbsp;
+can concoct a whole bouquet of reasons why you&nbsp; think quantum gravity, quantum, quantum, quantum&nbsp;&nbsp;
+formulation of gravity might address, solve,&nbsp; enlighten us concerning all these problems.
+Okay. But this comes ultimately from the way&nbsp; we look at things in the first place. And I&nbsp;&nbsp;
+think there is no really compelling reason why&nbsp; gravity has to be quantized in the first place.&nbsp;&nbsp;
+Maybe something very else is going, something very&nbsp; different is going on. Huh? Right? So that's the&nbsp;&nbsp;
+first thing. Do I know? No. Well, I don't know. I&nbsp; don't know better than anybody else, but it's not&nbsp;&nbsp;
+so clear that we want to quantize gravity. Look,&nbsp; I mean, there are many things, many questions one&nbsp;&nbsp;
+could ask and probably none of them is original.&nbsp; If you do quantum theory, ordinary quantum theory,&nbsp;&nbsp;
+and three dimensions, say in Euclidean space,&nbsp; and you do, I don't know, quantum information&nbsp;&nbsp;
+deal with qubits, what your quantum systems are,&nbsp; at least the constituents of it, the opposite,&nbsp;&nbsp;
+they must come from representations. If it's&nbsp; elementary, irreducible representations of the&nbsp;&nbsp;
+universal covering group of the symmetry group&nbsp; of the classical space in which you think about&nbsp;&nbsp;
+this quantum system. Right? So this is how you get&nbsp; the spin. So they come from the three-dimensional&nbsp;&nbsp;
+Euclidean group and you look at all the unitary,&nbsp; projective unitary representations of the group&nbsp;&nbsp;
+of this Euclidean group, or technically you can&nbsp; also look at the universal covering group. That&nbsp;&nbsp;
+would be then, yeah, something like say without&nbsp; translations, SU(2), right? So if you just take&nbsp;&nbsp;
+SO(3), universal covering group is SU(2), you find&nbsp; the unitary representations of those. And then you&nbsp;&nbsp;
+know how you can build your quantum systems&nbsp; that live, sorry, that live in such a space.
+Sure.
+Okay. And the same then works with the Poincaré&nbsp; group and Wigner figured that out. What are&nbsp;&nbsp;
+actually the possible representations of of of&nbsp; the SL(2,C)? Oh well, SO(1,3) is SL(2,C) of of of&nbsp;&nbsp;
+this universal covering group of the symmetry&nbsp; group of physical space. Why do I say this?&nbsp;&nbsp;
+Well the whole standard model is built on this.&nbsp; It has very clear conceptual reasons why it must&nbsp;&nbsp;
+be so, if you're done like this. This is not&nbsp; an abstract thing. But that means physical,&nbsp;&nbsp;
+classical space, be it spacetime or&nbsp; space, you need to have a concept of&nbsp;&nbsp;
+classical space in order to talk about&nbsp; quantum matter in the way we do it.
+Yes.
+Aha. If you now say, I want to quantize&nbsp; this classical geometry or, you know,&nbsp;&nbsp;
+whatever ideas you might get, the dynamics&nbsp; of it, the geometry. Well, you, in a sense,&nbsp;&nbsp;
+undermining the very foundation of what brought&nbsp; you to the quantum matter. Right. You see,&nbsp;&nbsp;
+so that's not immediately plausible to me. And of&nbsp; course you can always say, yeah, that was just the&nbsp;&nbsp;
+ladder we used to get up to the theory. And in&nbsp; the end it all works out. And then we throw away&nbsp;&nbsp;
+the original idea of the space. But, but you know,&nbsp; the point is, I don't know. Probably nobody knows,&nbsp;&nbsp;
+but these are also, I think probably to most&nbsp; of us, so the idea is why gravity should be&nbsp;&nbsp;
+quantized. One could at least make intelligent&nbsp; counter arguments why that is a funny idea.
+Okay. So maybe something else is at work.&nbsp; There were these proposals by Oppenheim and&nbsp;&nbsp;
+collaborators on this idea that that gravity&nbsp; is not to be quantized, but rather it's to&nbsp;&nbsp;
+be treated as a stochastical theory, classical&nbsp; theory. So the statistical stochastic theory,&nbsp;&nbsp;
+interacting with the matter. That's an interesting&nbsp; idea, I find, because the quantum axioms, I never,&nbsp;&nbsp;
+yeah, the quantum axioms say something like this.&nbsp; You say you can't measure, you can't predict&nbsp;&nbsp;
+what the measurement outcome is, but you can&nbsp; give a probability distribution, a classical&nbsp;&nbsp;
+probability distribution. So the axioms tell&nbsp; you classically, you're not connecting to a&nbsp;&nbsp;
+classical theory in a pure state, you connect into&nbsp; a classical probability distribution. And I think&nbsp;&nbsp;
+that's a little bit the idea they have. I hope&nbsp; I don't misrepresent that. You should ask them.&nbsp;&nbsp;
+But you see this is a priori also a very plausible&nbsp; way, whether this works out and whether what that&nbsp;&nbsp;
+works, that's not the question. The question&nbsp; is there are many other, I don't know many,&nbsp;&nbsp;
+that that for instance is a plausible&nbsp; thing. We see from the quantum axioms,&nbsp;&nbsp;
+the quantum axioms at no point instruct&nbsp; us to quantize the spacetime behind it.
+Yes.
+Right? And maybe this representation theory&nbsp; construction, except construction speaks against&nbsp;&nbsp;
+it. So no, no, you need this classical space idea.&nbsp; Otherwise we don't know what we're talking about&nbsp;&nbsp;
+in the quantum theory either. And so, but the&nbsp; quantum axioms talk about the quantum… So the,&nbsp;&nbsp;
+and I mean, it has failed for so long to bring&nbsp; this idea to quantize gravity to success. But&nbsp;&nbsp;
+I mean, who knows? I mean, there's a lot of&nbsp; criticism of string theory these days and hey,&nbsp;&nbsp;
+I share it, but you know what? Maybe they pull&nbsp; it off. You know, we don't know. We should be&nbsp;&nbsp;
+not very sure. I'm not so judgmental about it. I&nbsp; mean, very clever people spend a lot of time and&nbsp;&nbsp;
+very clever people in the past were wrong about&nbsp; what they wanted to do, although they were very&nbsp;&nbsp;
+clever and sometimes people are lucky. I also&nbsp; wouldn't discard the string theorists who keep&nbsp;&nbsp;
+pursuing it. I wouldn't, but who am I to say?&nbsp; Who's anybody to say? I think that's the good&nbsp;&nbsp;
+thing about science that everybody can and should&nbsp; do what they think is. So the idea of the fact&nbsp;&nbsp;
+that everything is right is right, everything&nbsp; is right. Everything is right. And it's less,&nbsp;&nbsp;
+less personal, less personal than we&nbsp; often take it. Now, of course, yeah,&nbsp;&nbsp;
+I want to win a Nobel prize, but we all won't,&nbsp; right? We all won't, but it's a fantastic,&nbsp;&nbsp;
+the project of science is fantastic. Everybody&nbsp; does what they think they should do. Huh?
+And, and you see, I mean, in a sense that&nbsp; has changed a little bit. There are also&nbsp;&nbsp;
+some commentators of that also in the German&nbsp; speaking area, I think Sabine Hossenfelder&nbsp;&nbsp;
+and so on. She brings some very strong&nbsp; criticism of how the scientific system&nbsp;&nbsp;
+works these days and so on. And some of these&nbsp; points are just valid. Yes, absolutely valid.
+Like what?
+Well, the old idea is freedom of teaching&nbsp; and research. There's a Humboldtian&nbsp;&nbsp;
+idea, no? Humboldt, I had this idea when he&nbsp; was asked to, I think to create a educational&nbsp;&nbsp;
+system for Prussia. Oh God, my history, but I&nbsp; think something like that. Okay. And he said,&nbsp;&nbsp;
+education at university is not vocational&nbsp; training. It's not for you to find a job.&nbsp;&nbsp;
+It's for you to learn to think. And if you&nbsp; learn to think, and if you dig deep, well,&nbsp;&nbsp;
+I don't know whether he said it like this. Let&nbsp; me say what he wanted to say if he was alive&nbsp;&nbsp;
+today. Okay. If you dig deep in physics&nbsp; and you become a really good physicist,&nbsp;&nbsp;
+and then you talk to a lawyer, a legal scholar who&nbsp; really dug deep on legal thinking, you recognize&nbsp;&nbsp;
+a good thinker because you learn thinking well in&nbsp; your subject and the other way around. Right? And&nbsp;&nbsp;
+if you can do that and you go out in the world,&nbsp; you're infinitely more useful for a company who&nbsp;&nbsp;
+has a good thinker with a lot of skill and has&nbsp; learned to think deeply, to think critically.&nbsp;&nbsp;
+In the long run, that produces growth for&nbsp; the company. Right? At least on average.
+The idea that we educate people to conform with&nbsp; the expectations of current employers. Well,&nbsp;&nbsp;
+the current employers do not know how the&nbsp; world looks like in 10 or 20 years. I don't&nbsp;&nbsp;
+know. Nobody knows, right? Right. But for&nbsp; 800 years, the universities have actually&nbsp;&nbsp;
+provided us with thinkers who then&nbsp; took on the problems of their time.&nbsp;&nbsp;
+And you have to be educated to do that. And&nbsp; what is not going well, it's what that is.&nbsp;&nbsp;
+The idea of freedom of teaching and research&nbsp; and the diversity, to use that trigger word,&nbsp;&nbsp;
+but the diversity of the university, of the&nbsp; university of the university. But there it's&nbsp;&nbsp;
+actually appropriate. The diversity of different&nbsp; thinkers, because we're all naturally diverse,&nbsp;&nbsp;
+we're all different. We should be allowed to do&nbsp; what we want to do. And then society has to decide&nbsp;&nbsp;
+to whose people, to who people this privilege,&nbsp; to which people this privilege is given. What is,&nbsp;&nbsp;
+however, happening at the moment, say if&nbsp; you're in the European Union, universities,&nbsp;&nbsp;
+of course, they want you to gain grants. And&nbsp; the biggest grants are the European grants&nbsp;&nbsp;
+from the European Union. And they decide on&nbsp; topics. Oh, they're open grants to be fair.&nbsp;&nbsp;
+They're open grants. You can bring your topic,&nbsp; but some very big grants, they decide on topics,&nbsp;&nbsp;
+what it would be important to have scientific&nbsp; research on. And they're decided politically.
+How does that work? Well, would you think that in&nbsp; the current situation, energy situation and so on,&nbsp;&nbsp;
+energy would be such a topic? Of course, such&nbsp; energy is such a topic. That such a topic.&nbsp;&nbsp;
+Energy is such a topic. Okay. That means if you&nbsp; do energy research, you're good. You can apply&nbsp;&nbsp;
+for these big grants. I mean, I'm caricaturing the&nbsp; whole thing a little bit, but that's what it is.
+Sure.
+Ultimately what we do research on is decided&nbsp; by bureaucrats and politicians who thinks that&nbsp;&nbsp;
+is plausible. And of course it's plausible to do&nbsp; energy research. But even if we look in the past,&nbsp;&nbsp;
+did nuclear power be invented by government&nbsp; programs looking for energy research? It&nbsp;&nbsp;
+came out of blue sky research. Right? So&nbsp; if you look at the financial situation,&nbsp;&nbsp;
+it's no longer true that researchers really&nbsp; decide entirely freely on what they do&nbsp;&nbsp;
+research in. That's a fact. That's a fact.&nbsp; And the problem with that is a monoculture.
+Explain.
+Well, if people go for the big grants,&nbsp; either they're already famous, they've&nbsp;&nbsp;
+already done fantastic things, then I would&nbsp; also say, give them another grant, very high&nbsp;&nbsp;
+probability. They keep doing very good work. But&nbsp; new ideas that are a little bit out of the box,&nbsp;&nbsp;
+and again, they're also funded. I'm just giving&nbsp; the general idea. It's much harder because once,&nbsp;&nbsp;
+look, research doesn't work by you telling&nbsp; me I need you to research this in this. It&nbsp;&nbsp;
+works if I have to research a travel journey&nbsp; for you. I can do that for you. I can deliver&nbsp;&nbsp;
+that. But if you say I need you to find the&nbsp; solution to the problem of quantum gravity,&nbsp;&nbsp;
+it's nice that you think it's important or anybody&nbsp; thinks it's important. I think it's important.&nbsp;&nbsp;
+It's a good research field. But that doesn't mean&nbsp; that that is where the next breakthrough will be.
+So you think that the&nbsp; academics should be more free?
+Oh yeah. Oh yeah. Oh yeah. Oh yeah. Of&nbsp; course. Freedom. Look, look, it's, yeah,&nbsp;&nbsp;
+look, it's the same. Let's go back to teaching&nbsp; because it's a similar argument, no? I think&nbsp;&nbsp;
+every professor who has the right background,&nbsp; educated in it, specialist in it and so on, who&nbsp;&nbsp;
+should be given total freedom on how he teaches&nbsp; a, say, quantum theory course. For Audience X,&nbsp;&nbsp;
+total freedom. This principle gets you some of&nbsp; the worst lecture courses you have ever attended.&nbsp;&nbsp;
+Well, that's unfortunate. But I also believe it&nbsp; gives you the most brilliant lecture courses you&nbsp;&nbsp;
+have ever attended. And I think it's better to&nbsp; have in your student life two or three different&nbsp;&nbsp;
+lectures. So, yes, that's what I bet. And I think&nbsp; three or four or five would be a luxury, brilliant&nbsp;&nbsp;
+lecture courses. I think I had as many brilliant&nbsp; ones. Thank you to my teachers, right? But then&nbsp;&nbsp;
+there are some that are not that good. That&nbsp; also comes from the freedom, but the freedom is&nbsp;&nbsp;
+necessary to develop new things, to do it better,&nbsp; to do it differently. You know, that's what there&nbsp;&nbsp;
+is no general commission that can decide. I mean,&nbsp; should we, very simple curriculum, should we teach&nbsp;&nbsp;
+momentum vectors? Of course we should, we need&nbsp; it. There's no momentum vector. It's a covector.
+Uh-huh.
+So you know, even if a committee agrees this is&nbsp; important stuff, what if you say, “yeah, but that&nbsp;&nbsp;
+doesn't really fit together at a deeper level of&nbsp; analysis”? Should I teach it because the committee&nbsp;&nbsp;
+decided it, you know, the accreditation committee&nbsp; for the course? I don't think so. I don't think&nbsp;&nbsp;
+so. Huh? Look, if we had a wild west of teaching&nbsp; and everybody would give terrible lectures and&nbsp;&nbsp;
+everybody did what they wanted and nothing&nbsp; would ever fit together, I would advocate for&nbsp;&nbsp;
+some structure. At the moment we have, at least in&nbsp; Europe, the tendency of more and more structure,&nbsp;&nbsp;
+of more and more ideas of centrally accredited&nbsp; courses and core systems and so on. And what you&nbsp;&nbsp;
+get is an average good thing. Hmm. But if you&nbsp; want to get something really good, you need to&nbsp;&nbsp;
+give freedom. It's a belief, I admit, but it's&nbsp; an old Humboldt idea. And it served, certainly&nbsp;&nbsp;
+it served Germany very, very well for very long&nbsp; in educating an extremely broad, extremely broad&nbsp;&nbsp;
+part of the society, educating them very, very&nbsp; actively. You know, you're doing excellently in&nbsp;&nbsp;
+engineering and also in mathematics and physics&nbsp; and so on. I mean, early 20th century, I mean,&nbsp;&nbsp;
+Germany was quite the powerhouse of all these&nbsp; fields. Now these, these, these, I mean, look,&nbsp;&nbsp;
+can I state this with, with sociological,&nbsp; how do you say, scientific certainty? No,&nbsp;&nbsp;
+but I think it's an outflow of the Humboldt&nbsp; principles of how you, how you teach at high&nbsp;&nbsp;
+level at university level. Don't look at the&nbsp; vocational use first. The vocational use and&nbsp;&nbsp;
+that companies and the economy profits from&nbsp; these people, this is doubtless afterwards.
+Don't be too short sighted.
+No. And so, yeah, the diversity of the&nbsp; approach is important and you have only&nbsp;&nbsp;
+diversity with freedom. I restrict the&nbsp; statement really to what I'm talking&nbsp;&nbsp;
+about here. Yes. Different researchers should&nbsp; follow their way. And then it's a question.&nbsp;&nbsp;
+Would you make a researcher? Right? It's a fair&nbsp; question. Yeah. Well, a teacher, at university.
+Yeah. So let me ask you. I already asked you&nbsp; about what you're pursuing, but I'm curious also,&nbsp;&nbsp;
+there are some fashionable subjects, subjects&nbsp; that are in vogue like AdS/CFT or quantum&nbsp;&nbsp;
+information or black hole information, string&nbsp; theory, and so on. Why are you not pursuing&nbsp;&nbsp;
+the more fashionable ones? Is it merely is&nbsp; just you're not interested in it? What is it?
+That's not true. Some of them I'm interested&nbsp; with, some of them I have some contact. Some&nbsp;&nbsp;
+of them I understand, others I didn't look into&nbsp; or not. I mean, it's a lot of stuff out there.&nbsp;&nbsp;
+I like to follow the ideas I, my collaborators&nbsp; have and I try to make my contribution that&nbsp;&nbsp;
+way. So mainstream subjects on which&nbsp; already thousands of people work,&nbsp;&nbsp;
+will I make the difference? I like to manage,&nbsp; but you can, that's totally fine as well. So I&nbsp;&nbsp;
+certainly know the foundations of many of these&nbsp; things quite, quite well, and some attracted me&nbsp;&nbsp;
+more than others. So string theory didn't attract&nbsp; me so much. At the time there was the saying, “oh,&nbsp;&nbsp;
+the best students go to string theory.” And that&nbsp; was true. The best students went to string theory.&nbsp;&nbsp;
+I think I was a reasonably good student there,&nbsp; right? But it, I kind of didn't, didn't really&nbsp;&nbsp;
+feel it. I didn't really feel it. I'm not saying&nbsp; I was prescient and I knew it was not going to&nbsp;&nbsp;
+work. Of course not. Of course. But, you know,&nbsp; you make a pick. It's also emotional to make it.&nbsp;&nbsp;
+Now where you say, hmm, I thought that I find&nbsp; interesting, this direction I would go on. And…
+You weren't feeling it?
+I wasn't feeling it. No, no, no. Well, I didn't&nbsp; understand. One thing actually I once discussed&nbsp;&nbsp;
+with, I think with Peter Goddard for a short&nbsp; while and I asked him, so why do we take the&nbsp;&nbsp;
+Minkowski metric in our, yeah, what was it?&nbsp; 26th dimensional space? I mean, basic string.
+Uh-huh.
+And he told us, he told me, “well, because&nbsp; Einstein told us so.” And I say, yeah,&nbsp;&nbsp;
+but he told us for four dimensional space&nbsp; and didn't, isn't the reason for using it&nbsp;&nbsp;
+that you have point particles that move there&nbsp; and you want to get the clock postulate by the&nbsp;&nbsp;
+length of the curve and stuff like this.&nbsp; But this is a point particle based idea.&nbsp;&nbsp;
+But now if you think about strings being the&nbsp; first thing, fundamental objects rather than&nbsp;&nbsp;
+point particles. Wouldn't you rather have&nbsp; something that measures area fundamentally&nbsp;&nbsp;
+rather than length? Much later, I&nbsp; wrote a paper about these things.
+Interesting.
+He said, yeah, it's a plausible idea. Okay, fine.&nbsp; It's a plausible idea. I also did something. I&nbsp;&nbsp;
+don't think it solves anything. But you see, the&nbsp; point is, the setup, I found it too ad hoc in a&nbsp;&nbsp;
+way. In a sense, the only idea, at least as it was&nbsp; communicated to us back then, later on, of course,&nbsp;&nbsp;
+people change perspective. I'm not a specialist.&nbsp; It's like, let's rather start from little strings,&nbsp;&nbsp;
+closed or open, and quantize them, difficult&nbsp; enough, quantize them rather than point particles&nbsp;&nbsp;
+as a first quantization. And let's see what&nbsp; happens. And there was some remarkable results.&nbsp;&nbsp;
+And at least at the time, I thought it&nbsp; was remarkable that the Einstein action&nbsp;&nbsp;
+kind of drops out if you look at it in a certain&nbsp; way. And so on. Later on, I thought, well,&nbsp;&nbsp;
+it's not so remarkable because if you didn't do&nbsp; anything wrong from a differential geometry point&nbsp;&nbsp;
+of view or from a calculation point of view, what&nbsp; else would you get? But in lowest order, general&nbsp;&nbsp;
+relativity, maybe the factor could be zero in&nbsp; front of the Ricci scalar or something. Right? So,&nbsp;&nbsp;
+look, I mean, were these mature reasons to reject&nbsp; it? Of course not. I was a student, right? And,&nbsp;&nbsp;
+but I didn't, it didn't pull, I wasn't pulled&nbsp; in that direction. And so we all make this and&nbsp;&nbsp;
+I'm happy that many other people did, right? So&nbsp; far it wasn't successful, which is maybe just&nbsp;&nbsp;
+very unfortunate. I would much rather have that&nbsp; the people who did it were successful and would&nbsp;&nbsp;
+have exciting new discovery in theory. And that I&nbsp; would say, yeah, look, look, fool me. Yeah. But,&nbsp;&nbsp;
+yeah, yeah, yeah, it's, it's, it's, we don't&nbsp; know, right? It's like investing in the stock&nbsp;&nbsp;
+market. Will the stock go up? So, up and&nbsp; down, nobody knows. Nobody knows. Right?
+And, and it's the same here. We can just try to do&nbsp; our best. And I think it's good in academic life.&nbsp;&nbsp;
+You do research, you really try to push something&nbsp; and to do something. And, but then on the side,&nbsp;&nbsp;
+you educate the next generation. And if&nbsp; you then educate them to a higher level to,&nbsp;&nbsp;
+if you improve it by 5%, what you present&nbsp; them with, we also did a great thing. No? So,&nbsp;&nbsp;
+so that's the nice thing, I think, about the&nbsp; academic job, right? I mean, you're not only&nbsp;&nbsp;
+relying on winning or doing Nobel or similar&nbsp; worthy work, of course, would be nice. But we&nbsp;&nbsp;
+have another very, very important task in society&nbsp; because if we don't at least pass on what we have&nbsp;&nbsp;
+and make it a little bit better so that more can&nbsp; be passed on, it was more efficient, then we lose&nbsp;&nbsp;
+that knowledge. That would be also catastrophic.&nbsp; So I, I sleep very well. I sleep very well.
+I think you're passing on stuff.
+That's very important. And trying to do&nbsp; new things. Yeah. Trying to new things is&nbsp;&nbsp;
+an audible thing and it is exciting. And it's&nbsp; also training for students to for them to do&nbsp;&nbsp;
+research. Now I mean you can do research which&nbsp; goes that far, but maybe your student learned&nbsp;&nbsp;
+many things contents wise and method wise&nbsp; and they bring something else to success.&nbsp;&nbsp;
+Right? So that's the life of an academic. We&nbsp; are often talking about the holiest grail,&nbsp;&nbsp;
+right? There is the big open questions. And&nbsp; I'm also thinking about some of these things.&nbsp;&nbsp;
+But I think the path there is, is&nbsp; more modest steps. More modest steps.
+Oh. So, yeah. You just did something&nbsp; psychologically interesting with the&nbsp;&nbsp;
+string theory case when they were extending to&nbsp; 26 or 10 dimensions with the Minkowski metric.&nbsp;&nbsp;
+They said it's because Einstein told us. And&nbsp; then you said, well, what was the motivation&nbsp;&nbsp;
+for Einstein? It was point particles in&nbsp; four dimensions and light clocks. Okay.&nbsp;&nbsp;
+Even in your constructive gravity approach, where&nbsp; you were saying Einstein tried to anti-symmetrize&nbsp;&nbsp;
+the metric, or at least not make it symmetric,&nbsp; metric symmetric, that if you're doing so,&nbsp;&nbsp;
+then raising and lowering isn't going to&nbsp; be the same, but you can only see that from&nbsp;&nbsp;
+your approach because there's a Gauss map and&nbsp; there's a Legendre map, if I recall correctly.
+Oh yeah, that's right. Well,&nbsp; okay. That's one of the,&nbsp;&nbsp;
+okay. Okay. Yeah. Yeah. Yeah. Yeah. I would&nbsp; like to at some point, but, but the point is,
+And the idea is that what you just did there was&nbsp; extremely interesting. You said, look, we don't&nbsp;&nbsp;
+willy nilly modify up here without understanding&nbsp; the reason from which here came from. Because if&nbsp;&nbsp;
+you modify here, maybe you don't have to modify&nbsp; just this. You think you do, but it's all of this.
+Oh yeah. I mean, or it's only this.&nbsp; Why don't you talk on that then?
+Well, I mean, that's, that's, that's,&nbsp; that's, so, so what you're describing&nbsp;&nbsp;
+there is one could summarize it abstractly&nbsp; as follows. Formal generalizations typically&nbsp;&nbsp;
+fail. That's what Einstein did. I have a&nbsp; symmetric metric. Now I do a non-symmetric&nbsp;&nbsp;
+one. There's a motivation because F mu nu is&nbsp; not symmetric, right? Today, of course, we,&nbsp;&nbsp;
+we smile a little bit at that because the&nbsp; F mu nu is the field strength and not the&nbsp;&nbsp;
+potential and stuff like that. But he had&nbsp; some reason for making it non-symmetric,&nbsp;&nbsp;
+right? But then if you formally say we generalized&nbsp; this, so if you think about this formally,&nbsp;&nbsp;
+then you don't know what you're doing. You need&nbsp; to generalize conceptually. So you have to ask,&nbsp;&nbsp;
+why was it symmetric there? Why was it the&nbsp; metric? And then you might have a starting&nbsp;&nbsp;
+point to say under what circumstances would&nbsp; the same why question have a different answer?
+Yes.
+Right? So, so yeah, you have to think&nbsp; conceptually, not formally. Formally is good once,&nbsp;&nbsp;
+once, look, I mean, every equation in physics is&nbsp; only a secondary product. Let's take the first&nbsp;&nbsp;
+thing. So what is energy? What does Einstein do?&nbsp; Einstein said energy is what is it, MC squared&nbsp;&nbsp;
+plus and then all the higher order terms in the&nbsp; P. No, it's the square root of… You have all&nbsp;&nbsp;
+these and you can say Einstein, Newton wrote the&nbsp; P… So you have a P squared over 2m term for, say,&nbsp;&nbsp;
+kinetic energy. But if you do relativity, you have&nbsp; also a P cubed, a P, well, at least a P square, a&nbsp;&nbsp;
+P to the fourth power, to the sixth power, to the&nbsp; sixth power. You have this whole expansion coming&nbsp;&nbsp;
+from the square roots, right? In relativity.&nbsp; So you say, ah, look here, Newton didn't see&nbsp;&nbsp;
+or didn't consider the higher order terms in P.&nbsp; That's correct, right? They're there in relativity&nbsp;&nbsp;
+if you write it in this form. But Newton also&nbsp; didn't see the zeroth order term, the MC squared.
+Uh-huh.
+You see what I mean? So the point is, if&nbsp; you say energy, it's a different concept&nbsp;&nbsp;
+in relativity than it is in classical physics.&nbsp; And if you think you come from one theory to&nbsp;&nbsp;
+the next by adding higher order terms, because&nbsp; that is only the only thing that could happen&nbsp;&nbsp;
+measurement wise or something, you make, I&nbsp; don't know whether it's a category error,&nbsp;&nbsp;
+but something like this, you want a new idea of&nbsp; energy, then you have to first have a concept&nbsp;&nbsp;
+for that and don't do it purely formally. You&nbsp; see what I mean? So, so this, that's why you&nbsp;&nbsp;
+need to think conceptually. And once you have the&nbsp; conception, right, I'm simplifying a little bit,&nbsp;&nbsp;
+then the equation flows out of the idea. It's&nbsp; not the equation first. It's the concept first.
+Yes, yes. Okay. Because otherwise the&nbsp; ambitious undergraduate would say, well,&nbsp;&nbsp;
+maybe there's a fifth order term in energy.&nbsp; Let me try that. But then you're wondering,&nbsp;&nbsp;
+well, where did that fifth order, where was&nbsp; the impetus for the second order coming from?
+Something like that. Something like that.&nbsp; You always, in order to generalize a theory,&nbsp;&nbsp;
+you must understand the to be generalized&nbsp; theory first at a deeper conceptual level. And&nbsp;&nbsp;
+there that's already ambiguous because you can&nbsp; look at things at different conceptual levels,&nbsp;&nbsp;
+right? You can describe, take gravity. Okay.&nbsp; High school question. High school teacher asks&nbsp;&nbsp;
+the student here, final fail or pass will be&nbsp; decided on your correct answer to the following&nbsp;&nbsp;
+question. Student says, okay, is gravity a&nbsp; force? And we mean Newtonian gravity because&nbsp;&nbsp;
+high school only Newtonian gravity. Is Newtonian&nbsp; gravity a force? And a student will say, yes,&nbsp;&nbsp;
+it's a force. And he says, excellent, you passed.&nbsp; But if the student had said, no, it's not a force,&nbsp;&nbsp;
+he should also pass because you can rewrite&nbsp; Newtonian gravity as a curvature of Newtonian&nbsp;&nbsp;
+spacetime, not right? Newtonian spacetime&nbsp; is also curved in the time direction, which&nbsp;&nbsp;
+there is now a unique time direction. And fully&nbsp; equivalently, fully different conceptualization&nbsp;&nbsp;
+of what gravity is, not a force, but a curvature&nbsp; of the space. And you know, freefall is geodesics,&nbsp;&nbsp;
+auto-parallels in that context, because you have&nbsp; to do it with a connection in Newtonian spacetime.
+Sure.
+So that means the answer to&nbsp; the question is, is gravity,&nbsp;&nbsp;
+Newtonian gravity a force? Yes or no? Both answers&nbsp; are correct. If you conceptualize differently,&nbsp;&nbsp;
+predictions are the same. What does that tell&nbsp; us? Well, gravity is gravity, what it does,&nbsp;&nbsp;
+and our formalism for it could come in many&nbsp; different guises and it could give the same&nbsp;&nbsp;
+result. So we shouldn't confuse the formalism for&nbsp; the physics or the objects in the form. I mean,&nbsp;&nbsp;
+force is a concept in Newtonian mechanics and&nbsp; gravitational force is then also there. But&nbsp;&nbsp;
+you could argue, well, gravity also in&nbsp; Newtonian theory should be… So we made&nbsp;&nbsp;
+a curvature of Newtonian spacetime. And&nbsp; then the first axiom starts making sense.
+Right.
+The first axiom says there's a particle under the&nbsp; influence of no force moves along a straight line.&nbsp;&nbsp;
+Okay. So you can say, do you know an example&nbsp; for that? No force. And you would say, well,&nbsp;&nbsp;
+at least where we live on earth, the first axiom&nbsp; is out of work, right? It's unemployed because&nbsp;&nbsp;
+there's always the gravitational force. It's&nbsp; just there. It's just there. So what do you mean&nbsp;&nbsp;
+a particle under no, under the influence&nbsp; of no force? If you ever say no gravity,&nbsp;&nbsp;
+also Newtonian theory is the curvature of&nbsp; Newtonian spacetime, then it would mean,&nbsp;&nbsp;
+ah, any particle on which no force other than&nbsp; gravity, which we no longer consider a force acts,&nbsp;&nbsp;
+moves along a straight line that defines straight&nbsp; line, right? Operational way. And then the second&nbsp;&nbsp;
+axiom says, and should you ever see a particle&nbsp; not move along the way, right? The lines&nbsp;&nbsp;
+that particles on which no force acts, then&nbsp; those, those other particles a force acted.
+Yes. Otherwise the first axiom&nbsp; is a special case of the second.
+Exactly. That makes no sense. Newton&nbsp; wasn't stupid. He doesn't say, I first&nbsp;&nbsp;
+do it for the beginners. I say no force,&nbsp; then do it with the force for people who&nbsp;&nbsp;
+can't set the right-hand side of ma double&nbsp; dot or ma equals f to zero, right? I mean,&nbsp;&nbsp;
+no, no, no, right? He wasn't silly. No, the&nbsp; first one defines what a straight line is.
+Hi everyone. Hope you're enjoying today's episode.&nbsp; If you're hungry for deeper dives into physics,&nbsp;&nbsp;
+AI, consciousness, philosophy, along with my&nbsp; personal reflections, you'll find it all on&nbsp;&nbsp;
+my Substack. Subscribers get first access to&nbsp; new episodes, new posts as well, behind the&nbsp;&nbsp;
+scenes insights, and the chance to be a part of&nbsp; a thriving community of like-minded pilgrimers.&nbsp;&nbsp;
+By joining, you'll directly be supporting my&nbsp; work and helping keep these conversations at&nbsp;&nbsp;
+the cutting edge. So click the link on screen&nbsp; here, hit subscribe, and let's keep pushing&nbsp;&nbsp;
+the boundaries of knowledge together. Thank&nbsp; you and enjoy the show. Just so you know,&nbsp;&nbsp;
+if you're listening, it's C U R T J I M U&nbsp; N G A L dot org. Curt Jaimungal dot org.
+How is it that you get to learn a subject? How is&nbsp; it that you, Frederic Schuller, learn a subject?&nbsp;&nbsp;
+Now you said you had great teachers and so on, but&nbsp; let's remove that self-studying. How is it that&nbsp;&nbsp;
+you learn a subject so well? What is it that&nbsp; you do to learn a subject conceptually well?
+Well, if you're an absolute beginner,&nbsp; you do need a teacher because in the&nbsp;&nbsp;
+flood of textbooks and lectures, you need a guide.&nbsp; You need a good guide. But if you now say, forget&nbsp;&nbsp;
+about the teachers, how do you learn it? Well,&nbsp; it's different at different times. As a student,&nbsp;&nbsp;
+I learned the lecture notes. I learned&nbsp; the textbook in the sense I've tried to&nbsp;&nbsp;
+understand every equal sign. I still tell this my&nbsp; student, every implication error. I must be able&nbsp;&nbsp;
+to say why precisely this is a valid step. It's&nbsp; a passive approach, right? Great people set this&nbsp;&nbsp;
+up. If it's properly presented, I can check.&nbsp; I can check that what is said makes sense,&nbsp;&nbsp;
+fits together. This is very far away from&nbsp; finding it, right? And, and then the quality&nbsp;&nbsp;
+of material reveals itself. If you can start on&nbsp; page one and you're properly equipped, you know,&nbsp;&nbsp;
+if you can start on page one and you really&nbsp; try hard to understand it, but again and again,&nbsp;&nbsp;
+there are jumps and gaps and things you don't&nbsp; understand. It might be you, but I always, yeah,&nbsp;&nbsp;
+but actually good material goes step by step. And&nbsp; I always tell my students my quality guarantee or&nbsp;&nbsp;
+my hope is that if you don't understand something&nbsp; in lecture 23, then the answer should be in&nbsp;&nbsp;
+lectures 1 to 22. Otherwise I need to up my game.&nbsp; Look, do I satisfy this in the strictest sense? Of&nbsp;&nbsp;
+course not. I'm human. Like everybody is human,&nbsp; right? We all make mistakes. As we said before,&nbsp;&nbsp;
+we all use ways to think about it which one could&nbsp; would better think about it twice when this is&nbsp;&nbsp;
+really a good argument and so on. But at least we&nbsp; should try to eliminate that as much as possible.
+But as you asked the question from a student side,&nbsp; I judge, I judge material. Is it, can I understand&nbsp;&nbsp;
+every step in detail? Okay. And then you have a&nbsp; lot to do this as a student. Now, of course, with&nbsp;&nbsp;
+so many years of experience, I look at things, I&nbsp; read over them, I read the gist of them and I say,&nbsp;&nbsp;
+okay, what do they actually do? And then I apply&nbsp; all my knowledge as far as its existence. And I&nbsp;&nbsp;
+try to redevelop it. As I think what they actually&nbsp; wanted to say, but might not have said. And half&nbsp;&nbsp;
+of the time, at least, no, make that, let's make&nbsp; that more modest. 80% of the time I realize I just&nbsp;&nbsp;
+didn't understand. Okay. They did the right thing&nbsp; and they did the right. I just didn't understand.&nbsp;&nbsp;
+Silly me. But I don't know whether it's 20%.&nbsp; I'm making up these percentages, obviously,&nbsp;&nbsp;
+but I would think 20% of the time I say, oh, come&nbsp; on, that's such a naive argument. No, no, no, no,&nbsp;&nbsp;
+no. Oh, that's more like, and then I try to set&nbsp; it up new. And so in some cases I really succeed&nbsp;&nbsp;
+in this. And then I bring this into my lecture.&nbsp; And I redevelop a course entirely from there.&nbsp;&nbsp;
+There's of course a difference of how I did it as&nbsp; a student and how I, how I did it later. However,&nbsp;&nbsp;
+what I did as a graduate student, as a PhD&nbsp; student, I often sat in the cafeteria on Fridays,&nbsp;&nbsp;
+and I also took only white paper. So that's a&nbsp; thing that started there. And I thought, okay,&nbsp;&nbsp;
+now I'm here doing my PhD in theoretical physics.&nbsp; Let me write down for myself what is actually&nbsp;&nbsp;
+the basic subjects, quantum mechanics, classical&nbsp; mechanics, quantum mechanics, Maxwell mechanics,&nbsp;&nbsp;
+what is it really? How would I write it down&nbsp; now if I had to write some summary of it? And&nbsp;&nbsp;
+then I realized all my gaps and all my lack&nbsp; of understanding. And sometimes this lack of&nbsp;&nbsp;
+understanding was simply because it wasn't&nbsp; properly said and taught. Okay. And so I,&nbsp;&nbsp;
+I made, I confronted myself with the need, with&nbsp; what happens if I have no textbook with me and I'm&nbsp;&nbsp;
+supposed to write up a subject. I define subject,&nbsp; you know, a lecture course type subject as we&nbsp;&nbsp;
+know classical mechanics, Lagrangian mechanics&nbsp; from scratch, including its justification, the&nbsp;&nbsp;
+whole setting, what is the scope of it and so on.&nbsp; That's very humbling. It's very humbling, but it's&nbsp;&nbsp;
+a very good training. And I think meanwhile I can&nbsp; make more out of it. I can then make it better.
+Okay, so let me see if I can formalize that.&nbsp; You are in a room, you're alone, you have blank&nbsp;&nbsp;
+paper and you're thinking, you pick a subject&nbsp; arbitrarily? Or is it just whatever is next up?
+Well, back then, no. Back then I thought, let me&nbsp; go through the four elementary things, classical&nbsp;&nbsp;
+mechanics, electronics, quantum mechanics,&nbsp; statistical physics. You know, these are&nbsp;&nbsp;
+standard big lecture courses, say in Germany, but&nbsp; anywhere, right? In theory, theoretical thinking,&nbsp;&nbsp;
+theory. And yeah, and then I said, okay, how&nbsp; was this again? The whole Lagrangian business,&nbsp;&nbsp;
+what's actually the setting? What's the idea?&nbsp; What is the formalism? How does it start?&nbsp;&nbsp;
+What are the concepts? And how do I bring this&nbsp; into an order that makes sense? A, B, C, D, E,&nbsp;&nbsp;
+not in another order, right? So, and if one really&nbsp; tries this and even as a very, I mean, I was a&nbsp;&nbsp;
+very good student and very good graduate student,&nbsp; I realized, oh my gosh, I mean, this is, there's&nbsp;&nbsp;
+more holes than anything, right? I realize, and&nbsp; then you will recognize to go the holes, then&nbsp;&nbsp;
+you can start to fill them. And in a sense, I'm&nbsp; still filling them on some points, right? Yeah.
+I also noticed that when you're lecturing,&nbsp;&nbsp;
+sometimes you'll pause at the blackboard&nbsp; and you'll derive, you'll make sure that&nbsp;&nbsp;
+you can derive it right then. I mean,&nbsp; there are even in front of the students.
+Oh, yeah.
+I wasn't sure if that was for you, for your own&nbsp; pride that you need to be able to derive it or if&nbsp;&nbsp;
+it's for your own intellectual satisfaction&nbsp; or if it's to role model for the students,&nbsp;&nbsp;
+because it seemed clear to me, you have lecture&nbsp; notes behind you. You could actually look, well,&nbsp;&nbsp;
+what's the final formula? Where am I trying to&nbsp; get to and use that as a hint? But then you don't.
+Yeah. Well, the reason is all of the above plus a&nbsp; sanity check that what I, with all my experience&nbsp;&nbsp;
+of doing this for me, I think I'm going to do&nbsp; it for you. For what? 30 years? Can't do freely&nbsp;&nbsp;
+after I, of course, had the, think about, thought&nbsp; about it for four hours in the morning. I always&nbsp;&nbsp;
+prepare my lectures four hours earlier in the&nbsp; morning. And then I go and I write them up in&nbsp;&nbsp;
+nitty gritty detail with headlines and everything&nbsp; in order to give them structure. Then I put the&nbsp;&nbsp;
+paper on the big desk. And then I only look at&nbsp; the headlines. Typically on the rarest occasion,&nbsp;&nbsp;
+I need to look at a formula again. I get confused,&nbsp; but I essentially, but I essentially really&nbsp;&nbsp;
+think A, what I cannot freely develop after&nbsp; having thought about in the morning again,&nbsp;&nbsp;
+and of course it's a big thing, a whole lecture&nbsp; course, it's just one lecture of those, right?&nbsp;&nbsp;
+So everything needs to make sense in the end.&nbsp; What I can't lecture freely and precisely and&nbsp;&nbsp;
+convincingly and step by step on, how can I expect&nbsp; the students at the end of the term to to do it?
+Yes.
+They should be able to do it. So I must be able&nbsp; to do it. So it's not only it's pride as well. I&nbsp;&nbsp;
+want to be able to do that, but it's a sanity&nbsp; check. If I can't do it, what am I asking the&nbsp;&nbsp;
+students to do? I ask too much of them. Okay.&nbsp; Number one. Second, only if I develop this live,&nbsp;&nbsp;
+does a student, can a student follow? It slows&nbsp; me down as a person. I'm not sure if I copy&nbsp;&nbsp;
+from my paper. If I take, sometimes I did that on&nbsp; very rare occasion. I took the sheet I had there&nbsp;&nbsp;
+because it was a bit complicated and I started&nbsp; writing what was on the sheet. My teaching quality&nbsp;&nbsp;
+goes down 70%. It's not a good thing. It is as&nbsp; if you had sent me your questions before. I would&nbsp;&nbsp;
+have thought about your questions and would now&nbsp; have paper where I have very intelligent answers&nbsp;&nbsp;
+to your questions. At least intelligent sounding&nbsp; answers. I would now read them off and I say,&nbsp;&nbsp;
+“oh yeah, Curt, that is a very interesting…” We&nbsp; wouldn't have a conversation anymore, right? It&nbsp;&nbsp;
+would feel strange. Only the best speakers&nbsp; can read from a sheet and speak well. Okay?&nbsp;&nbsp;
+So it's also serves, what I want to say is&nbsp; it also serves the communication with the&nbsp;&nbsp;
+students. It's a real conversation. It's like&nbsp; a story I tell you over a campfire. It's very&nbsp;&nbsp;
+real. I might not complete every sentence&nbsp; ideally and so on, but your focus is on it.
+Yes. That has to do with yet another thing. What&nbsp; do you have to do if you have 200 people sitting&nbsp;&nbsp;
+there and you want them to not open their laptops?&nbsp; They all have laptops. You don't want them to open&nbsp;&nbsp;
+the laptops. You want them to listen what you do,&nbsp; to write what you write, to see or copy maybe what&nbsp;&nbsp;
+you write and have their eyes where you want them&nbsp; to open their laptops. I want them to have their&nbsp;&nbsp;
+eyes or use a blackboard. And on the blackboard,&nbsp; there's a drama developing with actors,&nbsp;&nbsp;
+my fingers, the chalk, sometimes I tip on the&nbsp; blackboard and then here and so on. People look&nbsp;&nbsp;
+there, nobody opens their blackboard. I think in&nbsp; the last six or seven years, I once had to ask a&nbsp;&nbsp;
+young lady who was probably for very good reasons&nbsp; on her mobile phone. I told her, please take it&nbsp;&nbsp;
+away. I can't lecture like this. And it's really&nbsp; true. I have an inability. If people don't pay&nbsp;&nbsp;
+attention, it makes me nervous. Okay. Yeah. But&nbsp; of course I can't force people to pay attention.&nbsp;&nbsp;
+I have to play my game such that people don't&nbsp; want to look away. And if you go to the cinema&nbsp;&nbsp;
+and you watch a well-made movie, you don't look&nbsp; away. So I have to present a well-made movie,&nbsp;&nbsp;
+which has to be scientifically sound as well.&nbsp; And one of the things is use the blackboard,&nbsp;&nbsp;
+speak to the people, speak to them in real&nbsp; time and let them participate in your thought,&nbsp;&nbsp;
+you know, roughly speaking. So all of&nbsp; this, I see no alternative to using the&nbsp;&nbsp;
+blackboard. Nobody follows a little laser dot on&nbsp; a screen, on a projection wall. If you project,&nbsp;&nbsp;
+and then you can have your little laser pointer,&nbsp; and then you point at things, you point at the&nbsp;&nbsp;
+next things. Honestly, do you want to follow&nbsp; this little jumping red dot? You don't. It's&nbsp;&nbsp;
+very difficult to focus, but a blackboard&nbsp; lecture is natural. The equation evolves.
+And the nicest thing is the lecturer makes&nbsp; mistakes. And then the student can say,&nbsp;&nbsp;
+your second equation, there's something wrong.&nbsp; It must be a minus. I say, no. And then I look,&nbsp;&nbsp;
+I honestly, I honestly, I'm honestly surprised,&nbsp; honestly secure about it, confident about it,&nbsp;&nbsp;
+and then still wrong. And it shouldn't happen&nbsp; too often, right? In every lecture you make a&nbsp;&nbsp;
+mistake. And if every lecture you make a&nbsp; mistake where the student knows better,&nbsp;&nbsp;
+they think you're a fool. Maybe that's correct.&nbsp; But occasionally you can't get it. And I say,&nbsp;&nbsp;
+that's right. And then I look at it.&nbsp; And sometimes, very, very rarely,&nbsp;&nbsp;
+but sometimes I spend 20 minutes in a lecture&nbsp; recovering an error, which I made where I,&nbsp;&nbsp;
+oh, that's not how it audio right. And then the&nbsp; first thing I say to the student, very honestly,&nbsp;&nbsp;
+you saw something that I didn't. Very good. I see&nbsp; whether I can save this. And then it's pride. And&nbsp;&nbsp;
+it's pride. But it's also to students a statement&nbsp; like, you know, I don't say, yeah, yeah, yeah, I&nbsp;&nbsp;
+look this up at home and then you will see next&nbsp; time I say, oh, there was a little mistake. No,&nbsp;&nbsp;
+a mistake is a mistake. Mathematics and our&nbsp; subject in general makes you very humble.&nbsp;&nbsp;
+You know, if you have made a mistake, you can&nbsp; be the smartest and the cleverest or the most&nbsp;&nbsp;
+arrogant or whatever. If it's a mistake, it's&nbsp; a mistake. You better immediately admit it. You&nbsp;&nbsp;
+immediately admit it and try to see whether you&nbsp; can really get it. And sometimes you can't. And&nbsp;&nbsp;
+so that all of this is only this is the life. I&nbsp; think it's remarkable that in the YouTube videos,&nbsp;&nbsp;
+I think some of these things still come through.&nbsp; So that students who attended my lectures and&nbsp;&nbsp;
+watch the videos as well say that still comes&nbsp; through somehow. Okay, good. Wouldn't have&nbsp;&nbsp;
+predicted that I must say. I thought it needs the&nbsp; immediacy of the classroom. But maybe, yeah. So&nbsp;&nbsp;
+maybe that's also part of why. While maybe it&nbsp; might be more than not enjoyable to watch them.
+So these are all, you see, these are little ideas.&nbsp; None of them per se is a principle that's set in&nbsp;&nbsp;
+stone. And everybody who does it different does&nbsp; it wrong. I'm not saying this. There are people&nbsp;&nbsp;
+who give lectures in a very different way. I say,&nbsp; oh God, I would never do this. I recently had this&nbsp;&nbsp;
+very excellent colleague, Pim van der Hoorn. He&nbsp; gave a lecture in a course we gave together and&nbsp;&nbsp;
+he explained something and he said, “oh and&nbsp; what if you did it like this?” And I said,&nbsp;&nbsp;
+“oh no, you're leading them on the&nbsp; wrong track. Don't do that.” I mean,&nbsp;&nbsp;
+I thought, I didn't make this gesture, but&nbsp; internally I did. No, I don't do this. No,&nbsp;&nbsp;
+such a bad idea. And then he turned this around&nbsp; in such a brilliant manner. I thought, oh,&nbsp;&nbsp;
+well done. Respect. I would never do it like this,&nbsp; but respect, you know. So if as a teacher, you can&nbsp;&nbsp;
+make your method fly, wonderful, wonderful.&nbsp; And I have my method to make it fly. Yeah.
+So what was the bad method or the topic that&nbsp; he had that you wouldn't have taught like that?
+I think, I think if I remember correctly, we&nbsp; talked about… We talked about quantum mechanics to&nbsp;&nbsp;
+high school students, highly talented high school&nbsp; students who every year we have at the university,&nbsp;&nbsp;
+we invite 100 top talents from Germany&nbsp; and the Netherlands for a talent course,&nbsp;&nbsp;
+where in three days we teach them quantum theory&nbsp; from nothing up to the teleportation protocol,&nbsp;&nbsp;
+but including the foundations, I mean, the axioms&nbsp; and the techniques and all of this. Anyway, let&nbsp;&nbsp;
+me not talk too much about this course. Anyway,&nbsp; and there on the first day we do complex numbers,&nbsp;&nbsp;
+but we don't say complex numbers. We do them&nbsp; as a tuple of real numbers with a very special&nbsp;&nbsp;
+additional multiplication because then&nbsp; they're totally demystified. Okay. The&nbsp;&nbsp;
+complex numbers. And he said, okay, you add&nbsp; them like this here, you know, component wise,&nbsp;&nbsp;
+so to speak. And then the multiplication,&nbsp; of course, is not component wise. It needs&nbsp;&nbsp;
+to mix. And then he asked them, so how would&nbsp; you multiply them? And then of course he got&nbsp;&nbsp;
+them on the wrong track because they would also&nbsp; say component wise, you multiply the components&nbsp;&nbsp;
+of these two pairs of real numbers. And I don't&nbsp; do that as a principle because you can't guess&nbsp;&nbsp;
+how you multiply tuples of real numbers if you&nbsp; want to make them into complex numbers because&nbsp;&nbsp;
+it's a definition. And only after you made it,&nbsp; you can then start investigating what it is.
+Yes. Okay. And here the point was to define&nbsp; the code. So I didn't, I wouldn't ever do&nbsp;&nbsp;
+that. It's a micro thing. You see, I thought&nbsp; about it. All these things are very good.
+Interesting.
+I would never do that. I think, ah no,&nbsp; don't do that. Because then they have&nbsp;&nbsp;
+this bad idea which you then say is wrong.&nbsp; And ah no, no, not this way around. But he&nbsp;&nbsp;
+did it so skillfully. He's an excellent&nbsp; teacher. He did it so skillfully. Damn,&nbsp;&nbsp;
+well done. I still wouldn't do it. But you&nbsp; did. Well man. I mean, I thought I was sitting&nbsp;&nbsp;
+there and watching. Okay. And so I want to say&nbsp; these are all… for instance, another obsession I&nbsp;&nbsp;
+have is no motivating examples. Well, that sounds&nbsp; very strange, right? I mean, isn't a motivating&nbsp;&nbsp;
+example a great thing? I mean it in a strict&nbsp; sense. If I say I want to teach you vector spaces&nbsp;&nbsp;
+or vectors, but never teach you vectors because&nbsp; there's no such thing. They're vector spaces,&nbsp;&nbsp;
+but vectors. And then people say, well, look, you&nbsp; here. And then you can add them up by moving this&nbsp;&nbsp;
+one like here. And then you have this one as the&nbsp; addition and you can scale them. As soon as you&nbsp;&nbsp;
+start with little arrows or fingers or whatever,&nbsp; you have a very special type of vector space,&nbsp;&nbsp;
+right? And why is addition by moving things&nbsp; around? What the heck are you talking about?
+If you give people this kind of motivation, which&nbsp; almost every one of us got upon seeing vectors the&nbsp;&nbsp;
+first time in, then you get the idea, A, there are&nbsp; objects that are vectors. And if I see a vector,&nbsp;&nbsp;
+I recognize a vector. Well, this is all not&nbsp; true. Because the only mathematical object in&nbsp;&nbsp;
+the game is a vector space. It's a set with two&nbsp; operations, plus and the scaling. And for these,&nbsp;&nbsp;
+in this set together with the operations,&nbsp; only if the following eight axioms hold,&nbsp;&nbsp;
+then we call that entire structure a vector space.&nbsp; And yes, we can then nickname the elements of that&nbsp;&nbsp;
+set. If the set carries with it as companions,&nbsp; these two, we can nickname the elements of such&nbsp;&nbsp;
+a set vectors, a vector. And we mean an element&nbsp; from that set. But the correct word would be&nbsp;&nbsp;
+an element from the set that underlies the&nbsp; vector space. The vector space is a triple&nbsp;&nbsp;
+V plus dot. Okay. But there is no such thing&nbsp; as a vector. If I write on paper a tuple 1, 2,&nbsp;&nbsp;
+right? 1, 2 as a tuple with brackets. I ask you,&nbsp; is that a vector? You can't answer that question.&nbsp;&nbsp;
+Do you know that there are others which can be&nbsp; added to this one and scaled by which addition,&nbsp;&nbsp;
+which scaling? You might think that is clear what&nbsp; it is. No, it isn't. You can make beautiful vector&nbsp;&nbsp;
+spaces out of, for instance, positive real&nbsp; numbers. They can be made to R plus to the&nbsp;&nbsp;
+end. It's kind of like an octant or something.&nbsp; It can be made into an R vector space where the&nbsp;&nbsp;
+addition is by pointwise multiplication of&nbsp; the components and the scaling is by taking&nbsp;&nbsp;
+the components to the power of the scaling factor.&nbsp; That vector space, the zero in that vector space,&nbsp;&nbsp;
+so the neutral element of addition is&nbsp; 1,1,1,1,1,1. It's not 0,0,0,0,0. Stuff like this.
+But if you start with these little&nbsp; vectors, you never get the general…&nbsp;&nbsp;
+And if you give a motivating example,&nbsp; you always introduce special situations,&nbsp;&nbsp;
+special structures that people will never forget.&nbsp; And they will always somehow refer to these maybe&nbsp;&nbsp;
+in extremes or in a way. So if you're not doing&nbsp; extreme cases only, why not instead of giving a&nbsp;&nbsp;
+motivating example, which by its nature is not&nbsp; understandable for anybody who doesn't know the&nbsp;&nbsp;
+concept yet, it's maybe more vague. And then you&nbsp; give the definition, but the definition doesn't&nbsp;&nbsp;
+follow from the example. Of course it doesn't.&nbsp; It's a more general thing. It cannot follow. Why&nbsp;&nbsp;
+not make a little commutation, give the definition&nbsp; first and then give 15 examples afterwards, very,&nbsp;&nbsp;
+very different examples. That's a much better&nbsp; teaching. Because that's the object we want to&nbsp;&nbsp;
+talk about. It's very mathematical thinking. And&nbsp; then I show you what variety of crazy situations&nbsp;&nbsp;
+are all covered by this general structure. So we&nbsp; better study the general structure than all these&nbsp;&nbsp;
+crazy examples. You see, so I have obsessions.&nbsp; One obsession is no motivating examples.&nbsp;&nbsp;
+Sometimes you start a subject, especially in&nbsp; physics, and it's too good. I think it's too&nbsp;&nbsp;
+good to not give this motivating example. But&nbsp; I always regret it. I always regret it. I mean,&nbsp;&nbsp;
+I can pull this off. It sounds very good. But&nbsp; ultimately, I always realized down the line,&nbsp;&nbsp;
+it can cause confusions in the students.&nbsp; Motivating examples are of the devil. Okay.
+So anyway, and you see, and whoever skillfully,&nbsp; like my colleague I mentioned before in another&nbsp;&nbsp;
+principle of mine, whoever skillfully&nbsp; and masterfully, if you don't violate&nbsp;&nbsp;
+these principles, bravo. But these are my&nbsp; principles. I try to not do that. So I think,&nbsp;&nbsp;
+yeah, so I've thought about many of these&nbsp; things. Of course, a lot of experience in&nbsp;&nbsp;
+trying it this way and trying it this way and&nbsp; being dissatisfied. And the highest judge is&nbsp;&nbsp;
+always, was it correct what I said or was it&nbsp; mumble-jumble? And almost by construction,&nbsp;&nbsp;
+motivating examples are mumble-jumble. Unless&nbsp; it really follows from what you did before and&nbsp;&nbsp;
+leads to the fact that you don't want to do&nbsp; it to a question. Not based on the previous&nbsp;&nbsp;
+lectures. I do this calculation or this&nbsp; construction or something and everything&nbsp;&nbsp;
+can be understood in detail. And then I say,&nbsp; but here's a question. And that motivates this&nbsp;&nbsp;
+lecture. That would be good. That would be&nbsp; more a derivation than a motivating example&nbsp;&nbsp;
+to introduce a new idea. So I have probably, I&nbsp; don't know whether I have 50 of these principles,&nbsp;&nbsp;
+but many things I think very strongly&nbsp; about. And they're extremely personal.
+Of course. I mean, that's one of the&nbsp; reasons why many people have asked you,&nbsp;&nbsp;
+hey, can I interview you about how you&nbsp; teach? And you're not so keen to do so.
+That's true. I gave some interviews. Usually if my&nbsp; own university asks, I don't want to say no. No,&nbsp;&nbsp;
+I was once introduced. It's interesting. It's&nbsp; interesting. I think even audio, I just put&nbsp;&nbsp;
+a snippet on the internet where I was asked&nbsp; whether this one, these online lectures took&nbsp;&nbsp;
+off like crazy internationally. They asked me&nbsp; from a research center for education in Erlangen&nbsp;&nbsp;
+whether by doing these videos, I also want to&nbsp; promote the new online teaching media or something&nbsp;&nbsp;
+like this to the social media or something&nbsp; like this. And I said very undiplomatically,&nbsp;&nbsp;
+I said that doesn't interest me one bit,&nbsp; right? So, no, I'm not, I don't want to&nbsp;&nbsp;
+promote. I don't want to do YouTube. I&nbsp; don't want to promote distance teaching,&nbsp;&nbsp;
+learning. None of this. I want to do good&nbsp; physics. And back then, they actually, in Erlang,&nbsp;&nbsp;
+the students could always choose whose lectures&nbsp; are being recorded. And that's when a number of&nbsp;&nbsp;
+these Erlangen lectures that are on the internet&nbsp; have been recorded by the university. So I just&nbsp;&nbsp;
+try, as I said, I try to give students something&nbsp; really valuable and try to make them really good&nbsp;&nbsp;
+as much as I can. That's my only aim. And the&nbsp; other things are side effects. And of course,&nbsp;&nbsp;
+I like it. Of course, I like it that&nbsp; these lectures are so well-received.
+Yeah. So, wait. I'm confused.&nbsp; You're not a fan of your lectures&nbsp;&nbsp;
+being online or you're not a fan of&nbsp; distance teaching? What do you mean?
+No, I'm not a fan of… I'm neither a fan nor an&nbsp; enemy of distance teaching. No. Well, first of&nbsp;&nbsp;
+all, a little anecdote. None of the lectures&nbsp; online have been put online by myself. So,&nbsp;&nbsp;
+there's a video, a YouTube account called Frederic&nbsp; Schuller that features these lectures. That's&nbsp;&nbsp;
+not me. Somebody took my picture. Somebody&nbsp; took my name and downloaded these lectures,&nbsp;&nbsp;
+I think mainly from Erlangen University and&nbsp; put them on YouTube. Great service. I thought,&nbsp;&nbsp;
+okay, it's a fan. Whatever. Okay. Only&nbsp; a few years later when there were really&nbsp;&nbsp;
+views went into the millions and totals and so on,&nbsp; I thought, okay, I got a little bit scared. What&nbsp;&nbsp;
+if this person one day posts something? I think&nbsp; that something inappropriate, right? I mean,&nbsp;&nbsp;
+it could be anything. And it's my name. And then&nbsp; I wrote via YouTube to them. I never received a&nbsp;&nbsp;
+reply. And then meanwhile, then all of a sudden&nbsp; it was a name I didn't recognize. And then it was&nbsp;&nbsp;
+back my name. And I decided, come on. I mean, I&nbsp; could now tell YouTube about this and then maybe&nbsp;&nbsp;
+then they take the lectures down and I thought,&nbsp; oh come on, but people are watching them at the&nbsp;&nbsp;
+moment. I don't want that. And you know, so I also&nbsp; then at some time there was some commercials in&nbsp;&nbsp;
+between. I thought, okay, somebody is making money&nbsp; of it. But I thought, yeah, okay, fine. Okay, good&nbsp;&nbsp;
+for them. So I, so these are not my accounts. The&nbsp; gravity and light, I gave my okay to the gravity&nbsp;&nbsp;
+and light lectures, but the others have all been&nbsp; taken from, however public, it's not kind of&nbsp;&nbsp;
+copyright infringement or anything, public service&nbsp; of the university where they were recorded.
+No, I mean, look, I think, of course, it's great&nbsp; that there are so many online resources. I mean,&nbsp;&nbsp;
+that's the positive side of the internet. What&nbsp; we can all look up is brilliant, okay? And if&nbsp;&nbsp;
+people like this stuff and I think it's not wrong&nbsp; or terribly wrong, then I leave it on. Everything&nbsp;&nbsp;
+is fine. But I think ultimately, psychologists&nbsp; would tell you that you can only be formed,&nbsp;&nbsp;
+children for sure, but also young adults, in the&nbsp; presence of another human being on whom you can,&nbsp;&nbsp;
+in the weakest sense, model yourself. And so,&nbsp; this goes back to my teachers in high school,&nbsp;&nbsp;
+impressive teachers in high school. And all these&nbsp; people, without trying, “oh, I want to be like him&nbsp;&nbsp;
+or her,” but in a way you model, you imitate, you&nbsp; model yourself. So, I think we need the personal&nbsp;&nbsp;
+contact. And then, of course, in the tutorials&nbsp; to all these courses, I have, of course, tutorial&nbsp;&nbsp;
+teachers, assistants, now very good people as&nbsp; well, themselves, very good people. I go to many&nbsp;&nbsp;
+of these tutorials and I sit there in the row and&nbsp; if I see the students don't engage enough because&nbsp;&nbsp;
+they're maybe too shy or too nah, I start pushing&nbsp; the tutors on, say, well, how can you say this and&nbsp;&nbsp;
+stuff like this. And that then mixes up the whole&nbsp; atmosphere a little bit, right? And sometimes&nbsp;&nbsp;
+I confront students, right? So, didn't come&nbsp; prepared. And I said, oh, do you play basketball?&nbsp;&nbsp;
+Anyway, I pushed them a little bit and I say,&nbsp; well, I mean, it's a professional enterprise&nbsp;&nbsp;
+here. I mean, you want to be a professional. And&nbsp; then you become a professional. What do you mean&nbsp;&nbsp;
+you come unprepared? I don't understand. Do you&nbsp; have a big business running on the side? Because&nbsp;&nbsp;
+otherwise, I mean, come on, right? So sometimes&nbsp; confront people a little bit, right? And we&nbsp;&nbsp;
+always, I mean, it well, I always mean it well,&nbsp; but sometimes I'm a little… I try to confront&nbsp;&nbsp;
+them with what it means to be there and sit there&nbsp; and do things and but not do it seriously. Well&nbsp;&nbsp;
+then don't do it at all. And face that you're not&nbsp; doing it, right? Because where does that get you?
+So anyway, so I mean, I try to be nice most of&nbsp; the time. No, I think I'm nice, but I push people,&nbsp;&nbsp;
+I challenge people sometimes a little bit in the&nbsp; tutorials. All of this is not on the videos, no.&nbsp;&nbsp;
+And but it's also because I believe yeah, there is&nbsp; some, you see it like if I was an arts professor,&nbsp;&nbsp;
+I would take my students to the gallery and&nbsp; I would show them the Picassos and the all&nbsp;&nbsp;
+the others. And I would discuss with them about&nbsp; these pictures and would say, isn't that… Look&nbsp;&nbsp;
+at it. First of all, look at it. Just look at it.&nbsp; Okay? So, it's a little bit like this. You say,&nbsp;&nbsp;
+look at classical mechanics. I mean, look at this.&nbsp; And of course, in order to make them look, I have&nbsp;&nbsp;
+to expose the theory, right? I have to go step by&nbsp; step. And, but it's really, I think the classical&nbsp;&nbsp;
+subjects we teach, I show them, how to say, like&nbsp; a masterpiece of a I think of an artist, like of a&nbsp;&nbsp;
+world, justifiably world-known art, world-known&nbsp; artist. Yes. Look at this thing, this theory,&nbsp;&nbsp;
+look what marvelous cultural achievement this&nbsp; is. I don't use ever these words, right? I just&nbsp;&nbsp;
+do whatever I do. I do what you see on the videos.&nbsp; But essentially, I do that. I show them. And then&nbsp;&nbsp;
+I showed them a theory, which is one of the most&nbsp; developed, one of the classical mechanics also.&nbsp;&nbsp;
+Look, in all the theories, most developed theories&nbsp; we have, how can I expect them to later on make&nbsp;&nbsp;
+their own theory, that's asked a lot, or modify&nbsp; liberty, if I didn't show them the masterpieces?&nbsp;&nbsp;
+What is, how does an end product of research look&nbsp; like? If 10 geniuses, say in classical mechanics,&nbsp;&nbsp;
+let's say 10 geniuses developed it, maybe it&nbsp; was five. 10 super geniuses and a thousand&nbsp;&nbsp;
+almost geniuses I think that's the purpose of the&nbsp; geniuses who kept shaping it. What you get today&nbsp;&nbsp;
+is the product of, whatever, five or ten geniuses&nbsp; and a thousand almost geniuses who shaped it into&nbsp;&nbsp;
+this form and this you get. This is my present&nbsp; to you. The thought of genius and you understand&nbsp;&nbsp;
+it. Is that something? I think that's something. I&nbsp; think that's something. It's quite different from,&nbsp;&nbsp;
+oh, I can calculate this. No, it's brilliant. It's&nbsp; a brilliant thing we have the privilege to have&nbsp;&nbsp;
+done. And others are younger, general relativity,&nbsp; quantum field theory studies and others are still&nbsp;&nbsp;
+developing. But we want to make the masterpieces&nbsp; that don't look like the old masterpieces,&nbsp;&nbsp;
+like a Picasso doesn't look like a Rembrandt,&nbsp; right? But new masterpieces that stand next to&nbsp;&nbsp;
+the old masterpieces and all are recognizable&nbsp; as masterpieces, right? And so that also one&nbsp;&nbsp;
+part of teaching at a high level in theoretical&nbsp; physics or mathematics, the same same logic.
+But I think that you need to be present. So&nbsp; that's your question. I, if look, it might be&nbsp;&nbsp;
+that one day only very few very rich people can&nbsp; afford to go to the remaining few universities. I&nbsp;&nbsp;
+don't know whether this is a dystopian or utopian&nbsp; scenario. Would that be the worst? I don't think&nbsp;&nbsp;
+it would be the worst, but it would probably in&nbsp; the long run wouldn't be so good. I think every&nbsp;&nbsp;
+one of us has some spark of maybe, maybe. I don't&nbsp; know. That's not a good statement. A little. The&nbsp;&nbsp;
+tiniest spark of genius, I think, is in everybody.&nbsp; And everybody should go to places where he sees&nbsp;&nbsp;
+other people participate in lectures, as I said&nbsp; before, right? Students need to see you as a&nbsp;&nbsp;
+teacher to model themselves on you. They need to&nbsp; see there are many other people in the classroom&nbsp;&nbsp;
+who struggle with this. But they also see, so I'm&nbsp; not the stupid one, but they also see people who&nbsp;&nbsp;
+apparently fly through the material and excel.&nbsp; So, they say, it can be done. If you can do it,&nbsp;&nbsp;
+you're apparently very special. But others&nbsp; can't do it either, but some actually make it,&nbsp;&nbsp;
+I'll give it a try. You know? You need both sides.&nbsp; You need to see it can be done. You need to see.&nbsp;&nbsp;
+It's not so easy. I'm not stupid because I&nbsp; haven't gotten it yet so well. You know? All&nbsp;&nbsp;
+of this only happens in presence. And during&nbsp; Corona, we had beginners starting and I gave,&nbsp;&nbsp;
+I think it was a lecture, it was a tutorial, I&nbsp; think it was a lecture. I gave lectures and I&nbsp;&nbsp;
+didn't see the students. Of course not, right?&nbsp; It was online. They saw my face and I had some&nbsp;&nbsp;
+things on screen. They were beginners, right?&nbsp; It didn't work well. It didn't work well. I did&nbsp;&nbsp;
+my best. I think I gave a good lecture. But it's&nbsp; too remote. It's, I need to see their faces. They&nbsp;&nbsp;
+need to see mine. They need to see my gestures.&nbsp; They, you know, and they need to see other human&nbsp;&nbsp;
+beings doing the same thing. I think they were&nbsp; mainly disoriented because they didn't see who&nbsp;&nbsp;
+succeeds and doesn't or that the other people who&nbsp; succeed and don't. You know, we need this. So,&nbsp;&nbsp;
+no, I'm not a proponent of online or remote&nbsp; learning. But of course, it's not a bad thing&nbsp;&nbsp;
+as such. Right? But none of that is my intention&nbsp; to, you know, and I'm happy that the people&nbsp;&nbsp;
+elsewhere who don't have, many people wrote to me,&nbsp; wrote many positive things. And then they said,&nbsp;&nbsp;
+it's nice that these lectures are available for&nbsp; free online. I would never have access to such&nbsp;&nbsp;
+teaching where I live. Okay. I believe that&nbsp; for those people who write very kind emails&nbsp;&nbsp;
+and I'm very happy. It makes me very happy&nbsp; that they take so much out of it, not only joy,&nbsp;&nbsp;
+but also maybe future development and so on.&nbsp; But I have no agenda on this. I think scientists&nbsp;&nbsp;
+shouldn't have an agenda anyway. I think we, the&nbsp; only thing we should do is, is do our stuff well.
+Yeah. Well, you do your stuff extremely&nbsp; well. Speaking of masterpieces,&nbsp;&nbsp;
+your lectures are a masterpiece. I'll&nbsp; place a link to all of the lectures,&nbsp;&nbsp;
+all of your playlists, and they'll be&nbsp; in the description. It's a privilege&nbsp;&nbsp;
+for me to be able to speak with you. It's a&nbsp; privilege for the audience. The audience is,&nbsp;&nbsp;
+well, I'm grateful and I'm sure the audience is&nbsp; grateful as well. Thank you so much, Professor.
+Thank you very much, Curt, for the invitation.&nbsp; It's very pleasurable to talk about this because&nbsp;&nbsp;
+indeed we talked about many things I usually don't&nbsp; talk about because they're, you know, they're not&nbsp;&nbsp;
+science. They're opinions on science and views.&nbsp; And I think it's very important to talk about this&nbsp;&nbsp;
+too. I really, very much like this. I like your&nbsp; podcast. I watched a good number of episodes. So&nbsp;&nbsp;
+I think this is also going to be a masterpiece.&nbsp; I think you said this in some, in some places,&nbsp;&nbsp;
+you like to at least occasionally delve into&nbsp; technical detail or at least pseudo-technical&nbsp;&nbsp;
+detail for for people who know more, who&nbsp; know about the real background of things.
+Thank you very much. Thank you.
+Yes. In parts, I think what it is, it's like&nbsp; overhearing two colleagues in the office&nbsp;&nbsp;
+talking with the door open. And I think&nbsp; your podcast does this particularly well.
+Hi there, Curt here. If you'd like more content&nbsp; from Theories of Everything and the very best&nbsp;&nbsp;
+listening experience, then be sure to check out&nbsp; my Substack at CurtJaimungal.org. Some of the&nbsp;&nbsp;
+top perks are that every week you get brand new&nbsp; episodes ahead of time. You also get bonus written&nbsp;&nbsp;
+content exclusively for our members. That's&nbsp; C-U-R-T-J-A-I-M-U-N-G. And then they go to the&nbsp;&nbsp;
+same page. Now again, I like to see my students,&nbsp; I like to see my name and the word Substack on&nbsp;&nbsp;
+Google. Since I started that Substack, it somehow&nbsp; already became number two in the science category.&nbsp;&nbsp;
+Now Substack for those who are unfamiliar is like&nbsp; a newsletter, one that's beautifully formatted.&nbsp;&nbsp;
+There's zero spam. This is the best place to&nbsp; follow the content of this channel that isn't&nbsp;&nbsp;
+anywhere else. It's not on YouTube. It's not&nbsp; on Patreon. It's exclusive to the Substack.&nbsp;&nbsp;
+It's free. There are ways for you to support me on&nbsp; Substack if you want and you get special bonuses&nbsp;&nbsp;
+if you do. Several people ask me like, “hey&nbsp; Curt, you've spoken, I've been talking to so&nbsp;&nbsp;
+many people in the fields of theoretical physics,&nbsp; of philosophy, of consciousness. What are your&nbsp;&nbsp;
+thoughts, man?” Well, while I remain impartial&nbsp; in interviews, this Substack is a way to peer&nbsp;&nbsp;
+into my present deliberations on these topics.&nbsp; And it's the perfect way to support me directly.&nbsp;&nbsp;
+CurtJaimungal.org or search Curt Jaimungal&nbsp; Substack on Google. Oh, and I've received several&nbsp;&nbsp;
+messages, emails and comments from professors and&nbsp; researchers saying that they recommend theories of&nbsp;&nbsp;
+everything to their students. That's fantastic.&nbsp; If you're a professor or a lecturer or what have&nbsp;&nbsp;
+you and there's a particular standout episode&nbsp; that students can benefit from or your friends,&nbsp;&nbsp;
+please do share. And of course, a huge thank&nbsp; you to our advertising sponsor, The Economist.&nbsp;&nbsp;
+Visit economist.com/TOE, T-O-E, to get a massive&nbsp; discount on their annual subscription. I subscribe&nbsp;&nbsp;
+to The Economist and you'll love it as well. TOE&nbsp; is actually the only podcast that they currently&nbsp;&nbsp;
+partner with, so it's a huge honor for me. And for&nbsp; you, you're getting an exclusive discount. That's&nbsp;&nbsp;
+economist.com/TOE, T-O-E. And finally, you should&nbsp; know this podcast is on iTunes. It's on Spotify.&nbsp;&nbsp;
+It's on all the audio platforms. All you have to&nbsp; do is type in theories of everything and you'll&nbsp;&nbsp;
+find it. I know my last name is complicated.&nbsp; So maybe you don't want to type in Jaimungal,&nbsp;&nbsp;
+but you can type in theories of everything&nbsp; and you'll find it. Personally, I gain from&nbsp;&nbsp;
+rewatching lectures and podcasts. I also read, I&nbsp; read in the comment that TOE listeners also gain&nbsp;&nbsp;
+from replaying. So how about instead you re-listen&nbsp; on one of those platforms like iTunes, Spotify,&nbsp;&nbsp;
+Google Podcasts, whatever podcast catcher you&nbsp; use, I'm there with you. Thank you for listening.

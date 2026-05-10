@@ -1,0 +1,1351 @@
+I'm shocked. Oh my gosh, this is&nbsp; something that completely violates&nbsp;&nbsp;
+the intuition that I've always had. It's&nbsp; something that I said couldn't happen.
+From discrete space to Darwinian evolution to&nbsp; entropy and the second law, Stephen Wolfram's&nbsp;&nbsp;
+computational view of the universe makes&nbsp; claims about all of these in a unified&nbsp;&nbsp;
+fashion. Today's episode is a treat. If you're&nbsp; a fan of this channel, Theories of Everything,&nbsp;&nbsp;
+then you're likely someone who enjoys surveying&nbsp; large swaths of lessons from disparate fields,&nbsp;&nbsp;
+attempting to see how they all relate and&nbsp; integrate. Same with me, Curt Jaimungal.
+Now today, Stephen Wolfram outlines how this&nbsp; polymathic disposition has helped him solve,&nbsp;&nbsp;
+to his satisfaction, some of the major outstanding&nbsp; problems in fields as diverse as computer science,&nbsp;&nbsp;
+fundamental physics, and biology.&nbsp; This is a journey through his life&nbsp;&nbsp;
+in science where I tease out the lessons&nbsp; he's learned throughout his career and&nbsp;&nbsp;
+how you can apply them yourself if&nbsp; you also want to make contributions.
+I was honored to have been invited&nbsp; to the Augmentation Lab Summit,&nbsp;&nbsp;
+a weekend of events at MIT last month,&nbsp; hosted by MIT researcher Dunya Baradari.&nbsp;&nbsp;
+The summit featured talks on the future of&nbsp; biological and artificial intelligence brain&nbsp;&nbsp;
+interfaces and included speakers such&nbsp; as the aforementioned Stephen Wolfram&nbsp;&nbsp;
+and Andres Gomez-Emilsson. Subscribe to the&nbsp; channel to see the upcoming talks.
+Stephen, welcome.
+Thank you. It's a pleasure.
+How does one do good science?
+It's an interesting question. I mean, I've&nbsp; been lucky enough to have done some science,&nbsp;&nbsp;
+I think it's fairly interesting, over&nbsp; the course of years, and I wonder,&nbsp;&nbsp;
+how does this happen? And I look at other&nbsp; people doing science, and I say, how could&nbsp;&nbsp;
+they do better science? You know, I think the&nbsp; first thing to understand is when does good&nbsp;&nbsp;
+science get done? And the typical pattern is some&nbsp; new tools, some new methodology gets developed,&nbsp;&nbsp;
+maybe some new paradigm, some new way of&nbsp; thinking about things. And then there's&nbsp;&nbsp;
+a period when there's low-hanging fruit to be&nbsp; picked. Lasts maybe five years, maybe 10 years,&nbsp;&nbsp;
+maybe a few decades. And then some field of&nbsp; science gets established, it gets a name,&nbsp;&nbsp;
+and then there's a long grind for the next&nbsp; hundred years or something that people are doing,&nbsp;&nbsp;
+sort of making incremental progress in that area.&nbsp; And then maybe some new methodology gets invented,&nbsp;&nbsp;
+things liven up again, and one has the&nbsp; opportunity to do things in that period.
+I have been lucky in my life because I kind&nbsp; of alternated between developing technology&nbsp;&nbsp;
+and doing science maybe about five times in my&nbsp; life and that cycle has been very healthy. It&nbsp;&nbsp;
+wasn't intentional but it's been worked out&nbsp; really well because I spent a bunch of time&nbsp;&nbsp;
+developing tools that I've then been able to&nbsp; use to do science. The science shows me things&nbsp;&nbsp;
+about how to develop more tools and the cycle&nbsp; goes on, so to speak. So I've kind of had the&nbsp;&nbsp;
+opportunity to be sort of have first dibs on a&nbsp; whole bunch of new tools because I made them, so&nbsp;&nbsp;
+to speak. And that's let me do a bunch of things&nbsp; in science that have been exciting and fun to do.
+I mean, I think a bunch of science I've done,&nbsp; I was realizing recently that it's also a&nbsp;&nbsp;
+consequence of sort of a paradigmatic change, this&nbsp; idea, taking the idea of computation seriously.&nbsp;&nbsp;
+And by computation, the fundamental thing I mean&nbsp; is you're specifying rules for something and then&nbsp;&nbsp;
+you're letting those rules run rather than saying,&nbsp; “I'm going to understand the whole thing at the&nbsp;&nbsp;
+beginning.” It's kind of a more starting&nbsp; from the foundation's point of view. Well,&nbsp;&nbsp;
+what I realized actually very recently, and it's&nbsp; always surprising how long it takes one to realize&nbsp;&nbsp;
+these sort of somewhat obvious features of history&nbsp; of science, even one's own history, is that I've&nbsp;&nbsp;
+been working on a bunch of things in fundamental&nbsp; physics and foundations of mathematics,&nbsp;&nbsp;
+foundations of biology, a bunch of other areas&nbsp; where I'm looking at the foundations of things&nbsp;&nbsp;
+using a bunch of the same kinds of ideas, the same&nbsp; kinds of paradigms. And I was realizing that a&nbsp;&nbsp;
+bunch of what I'm doing is kind of following&nbsp; on from what people did about 100 years ago,&nbsp;&nbsp;
+maybe sometimes a little bit more than 100 years&nbsp; ago. And I was wondering, why is it that a bunch&nbsp;&nbsp;
+of things I'm interested in, I'm going back&nbsp; and looking at what people did 100 years ago,&nbsp;&nbsp;
+and what I'm saying, they got stuck. I think&nbsp; we can now make progress. What happened?
+I think what happened is that in&nbsp; the 1800s, there was this kind of&nbsp;&nbsp;
+push towards abstraction. There was this idea&nbsp; that you could make formal versions of things.&nbsp;&nbsp;
+It happened most notably in mathematics,&nbsp; where kind of the idea emerged that sort&nbsp;&nbsp;
+of mathematics was just a formal game where&nbsp; you're defining axioms and then seeing their&nbsp;&nbsp;
+consequences. It wasn't a thing about actual&nbsp; triangles or whatever else. It was an abstract&nbsp;&nbsp;
+exercise. And once people had ground things down&nbsp; to that level of abstraction, same kind of thing&nbsp;&nbsp;
+happened with atoms and so on in the structure&nbsp; of physics. Once people had ground things down&nbsp;&nbsp;
+to that sort of deconstructed level, they had&nbsp; something where they didn't know what to do&nbsp;&nbsp;
+next. Because what turns out to be the case is&nbsp; that that's sort of the setup for computation,&nbsp;&nbsp;
+is you've ground things down to these kind of&nbsp; elementary primitives, and then computation&nbsp;&nbsp;
+takes over, and that's the thing that uses those&nbsp; primitives to do whatever is going to happen.
+And so I think a lot of what got stuck then&nbsp; was closely related to this phenomenon of&nbsp;&nbsp;
+computational irreducibility that I studied for&nbsp; the last 40 years or so. That has to do with, even&nbsp;&nbsp;
+though you know the rules, it will not necessarily&nbsp; be the case that you can kind of jump ahead and&nbsp;&nbsp;
+say what will happen. You may just have to follow&nbsp; those rules step by step and see what happens. You&nbsp;&nbsp;
+may not be able to make the big theory that sort&nbsp; of encompasses, that describes everything that&nbsp;&nbsp;
+happens. And I think what happened in a bunch of&nbsp; these fields is people kind of ground things down&nbsp;&nbsp;
+to the primitives. Then they effectively&nbsp; discovered computational irreducibility,&nbsp;&nbsp;
+implicitly discovered it by the fact that&nbsp; they couldn't make progress. And I think that,&nbsp;&nbsp;
+and things like Gödel's theorem, which are&nbsp; reflections of computational irreducibility,&nbsp;&nbsp;
+kind of were the other signs, more direct&nbsp; signs of that phenomenon. But the end result&nbsp;&nbsp;
+was people got to these primitives and&nbsp; then they couldn't get any further. And&nbsp;&nbsp;
+now that we actually understand something&nbsp; about the kind of computational paradigm,&nbsp;&nbsp;
+we can see to what extent you can get further&nbsp; and the kinds of things that you can now say.
+So it was kind of interesting to me to see that. I&nbsp; mean one particular area where I only learned the&nbsp;&nbsp;
+history recently and I'm kind of shocked that&nbsp; I didn't know the history earlier is about the&nbsp;&nbsp;
+discreteness of space. So, back in antiquity,&nbsp; people were arguing back and forth, you know,&nbsp;&nbsp;
+“Is the universe continuous or discrete?” “Are&nbsp; there atoms?” “Does everything flow?” And nobody&nbsp;&nbsp;
+knew. End of the 19th century, finally, one had&nbsp; evidence that, yes, matter is made of molecules&nbsp;&nbsp;
+and atoms and so on, matter is discrete. Then&nbsp; first decade of the 20th century became clear you&nbsp;&nbsp;
+could think of light as discrete. That had been&nbsp; another debate for a long time. And at that time,&nbsp;&nbsp;
+first few decades of the 20th century, most&nbsp; physicists were sure this whole discreteness&nbsp;&nbsp;
+thing was going to go all the way, that&nbsp; everything was going to turn out to be discrete,&nbsp;&nbsp;
+including space. I didn't know that because&nbsp; they published very little about this. And&nbsp;&nbsp;
+the reason was they couldn't make it work. After&nbsp; relativity came in, it was like, “How do we make&nbsp;&nbsp;
+something that is like space, but is capable of&nbsp; working like relativity says space should work?”&nbsp;&nbsp;
+And it was also somewhat confused by the idea&nbsp; of space-time and the similarities between&nbsp;&nbsp;
+time and space, which were more mathematical than&nbsp; physical, really. That kind of confused the story.
+But I think then, the thing that became clear&nbsp; was I think 1930 was I think the time when&nbsp;&nbsp;
+particularly Werner Heisenberg was one of the ones&nbsp; who was really, you know, space is discrete. He&nbsp;&nbsp;
+had some, I need to go look at his archives&nbsp; and things, but I think he had some kind of&nbsp;&nbsp;
+discrete cellular model of space, and he couldn't&nbsp; really make it work. And then eventually he said,&nbsp;&nbsp;
+“Forget about all of this. I'm just going&nbsp; to think about processes in physics as being&nbsp;&nbsp;
+these particles come in, something happens in the&nbsp; middle, but we're not going to talk about that.&nbsp;&nbsp;
+We're just going to say it's an S matrix and then&nbsp; things go out.” And so that's when he started just&nbsp;&nbsp;
+saying, “I'm going to look at the S matrix, this&nbsp; thing that just says how what goes in is related&nbsp;&nbsp;
+to what comes out. I'm not going to talk about&nbsp; what's in the middle because I got really stuck&nbsp;&nbsp;
+thinking about sort of the ontology of what's&nbsp; in the middle.” So then after that, the sort&nbsp;&nbsp;
+of quantum field theory and quantum mechanics&nbsp; and so on started working pretty well. People&nbsp;&nbsp;
+forgot about this idea of discrete space. And in&nbsp; fact, the methods that they had would not have&nbsp;&nbsp;
+allowed them to have much interesting to say at&nbsp; that time. And finally, through sort of a series&nbsp;&nbsp;
+of events that are kind of mildly interesting&nbsp; in my own life, I kind of came to realize how&nbsp;&nbsp;
+you could think about that in computational terms&nbsp; and how you could actually make all of that work.
+One of the cautionary tales for me is this&nbsp; question about is matter even discrete or&nbsp;&nbsp;
+continuous. The people had argued about, people&nbsp; like Ludwig Boltzmann had gotten, had sort of said&nbsp;&nbsp;
+towards the end of the 19th century, he kind of&nbsp; said he'd believed very much in the atomic theory&nbsp;&nbsp;
+of matter. He was like, nobody else believes this.&nbsp; He said, “I'm going to write down what I have to&nbsp;&nbsp;
+say about this.” He says, “One man can't turn back&nbsp; the tide of history. I'm going to write down what&nbsp;&nbsp;
+I know about this so that when eventually this is&nbsp; rediscovered, when eventually people realize this&nbsp;&nbsp;
+is the right idea, they won't have to rediscover&nbsp; everything.” Well, in fact, it's kind of a shame&nbsp;&nbsp;
+because in 1827, I think, a chap called Robert&nbsp; Brown, who was a botanist, had observed this&nbsp;&nbsp;
+little pollen grains being kicked discreetly&nbsp; when they were on water or something. And&nbsp;&nbsp;
+that was realized eventually that that Brownian&nbsp; motion is direct evidence for the existence of&nbsp;&nbsp;
+molecules. So if Boltzmann had known the botany&nbsp; literature, he would have known that, in fact,&nbsp;&nbsp;
+there was evidence for molecules that existed.&nbsp; It's just those connections were not made.
+And so for me, that's a kind of cautionary tale&nbsp; because in modern times, I think about what does&nbsp;&nbsp;
+it take to kind of find experimental implications&nbsp; of the kinds of theories that I've worked on. And,&nbsp;&nbsp;
+some of those things are difficult and it's like,&nbsp; well, it might be 200 years until we can do this&nbsp;&nbsp;
+kind of investigation, or it might cost $10&nbsp; billion to set up this giant space-based thing.&nbsp;&nbsp;
+But it might also be the case that, in fact,&nbsp; somebody in 1972 observed exactly a phenomenon&nbsp;&nbsp;
+that is the thing that would be what I'm looking&nbsp; for. And, in fact, one of the things that's kind&nbsp;&nbsp;
+of ironic, and I've seen this a bunch of times&nbsp; in my career in science, is that when people&nbsp;&nbsp;
+don't have a theory that says how an experiment&nbsp; should come out, and they do the experiment,&nbsp;&nbsp;
+and the experiment comes out differently from&nbsp; the way they expected, they say, “I'm not going&nbsp;&nbsp;
+to publish this. This must be wrong.” And so a lot&nbsp; of things which later on one might realize were,&nbsp;&nbsp;
+when you have a different theory, one might&nbsp; realize, “Gosh, that experiment should have&nbsp;&nbsp;
+come out a different way,” it got hidden&nbsp; in the literature, so to speak. Which is,&nbsp;&nbsp;
+this is a feature of the kind of institutional&nbsp; structure of science, but it's something where,&nbsp;&nbsp;
+if one's lucky, somebody would have said, sort&nbsp; of done the honest experiment and just said&nbsp;&nbsp;
+“this is what we found,” even though this doesn't&nbsp; agree with the theory that so far we understand,&nbsp;&nbsp;
+so to speak. And so I've actually been using LLMs&nbsp; quite a bit to try and do this kind of thematic&nbsp;&nbsp;
+searching of the scientific literature to try and&nbsp; figure out whether you could save the $10 billion,&nbsp;&nbsp;
+not do the experiment now, but just use&nbsp; the thing that already got figured out.
+But, I think in terms of, I don't know,&nbsp; my efforts to do science, as I was saying,&nbsp;&nbsp;
+I think one of the things that is sort of a&nbsp; critical feature is methodology and when new&nbsp;&nbsp;
+methodologies open up. And I've been kind of&nbsp; lucky to be alive at a time when computation&nbsp;&nbsp;
+and computers first make it possible to do kind&nbsp; of experiments with computers, so to speak. And&nbsp;&nbsp;
+that's it. I built lots of tooling to be able&nbsp; to do that. But I think the thing that's always&nbsp;&nbsp;
+interesting about doing computer experiments, and&nbsp; particularly this is a consequence in the end of&nbsp;&nbsp;
+this whole computational irreducibility idea, is&nbsp; almost every computer experiment I ever do comes&nbsp;&nbsp;
+out in a way that I didn't expect. In other words,&nbsp; I do something, been doing some things even the&nbsp;&nbsp;
+last week or so on a particular domain where I've&nbsp; got some theory about how it will come out. And if&nbsp;&nbsp;
+I didn't have any theory about how it would come&nbsp; out, I wouldn't do the experiment. First point is&nbsp;&nbsp;
+the experiment has to be easy enough for me to&nbsp; do that on a whim I can do the experiment. It&nbsp;&nbsp;
+can't be the case that I've got to spend a month&nbsp; figuring out how to do the experiment because then&nbsp;&nbsp;
+I've got to be really sure about why it's worth&nbsp; doing. It's got to be something where the tooling&nbsp;&nbsp;
+is such that I can do the experiment easily. I&nbsp; happen to have spent the last 40 years building&nbsp;&nbsp;
+that tooling and it's available to everybody else&nbsp; in the world too, but I'm as far as I'm concerned,&nbsp;&nbsp;
+I'm the number one user of Wolfram Language and&nbsp; so on. As far as I'm concerned, I don't, I doubt&nbsp;&nbsp;
+I'm the person who uses it the most of everybody&nbsp; out there, but I'm the user I care about the most,&nbsp;&nbsp;
+so to speak. And it's a very nice thing to be&nbsp; able to take an idea that I have and be able&nbsp;&nbsp;
+to quickly translate that into something where&nbsp; I can make it real and do an experiment on it.
+So I have to have some idea about what's&nbsp; going to happen, otherwise I wouldn't do&nbsp;&nbsp;
+the experiment. But then I do it, and the&nbsp; thing I typically say to people who work with&nbsp;&nbsp;
+me is we have to understand the computational&nbsp; animals are always smarter than we are. So,&nbsp;&nbsp;
+do the experiment, and you find things&nbsp; that you never expected to find.
+Why don't you give an example, a specific one?
+Yeah, I mean, so let's see. I was looking&nbsp; at almost any kind of simple program. The&nbsp;&nbsp;
+question is what kind of thing can it do? And so&nbsp; for instance, let's say looking at simple programs&nbsp;&nbsp;
+that rewrite networks. Okay. You run the network&nbsp; rewrite thing, what's it going to do? Well,&nbsp;&nbsp;
+sometimes it builds this elaborate geometrical&nbsp; structure. I had no idea it was going to do&nbsp;&nbsp;
+that. I thought it was going to make this messy&nbsp; kind of sort of random looking thing. But no,&nbsp;&nbsp;
+actually it builds this very sort of organized,&nbsp; elegant structure in some particular cases.
+Or for example, I've been looking most&nbsp; recently, as it happens, at lambda calculus,&nbsp;&nbsp;
+very old model of computation that I happen to&nbsp; have never studied before, but have a particular&nbsp;&nbsp;
+reason to be interested in right now. And it's a&nbsp; question of, okay, I'll give you an example that&nbsp;&nbsp;
+happened to me just a few days ago. So there's&nbsp; a very simple specification, simple program. The&nbsp;&nbsp;
+program will run for a while. There are different&nbsp; versions of this program. You can enumerate lots&nbsp;&nbsp;
+of different possibilities. It will typically&nbsp; run for a while and, well, usually it will stop.&nbsp;&nbsp;
+Sometimes it won't stop. It will just keep going.&nbsp; Sometimes it will go on repetitively and so on.&nbsp;&nbsp;
+And so I was looking at a bunch of these things,&nbsp; and I was wondering, what's the maximum lifetime&nbsp;&nbsp;
+of one that eventually stops? So I studied&nbsp; a bunch of different cases, and there was,&nbsp;&nbsp;
+I thought, okay, I found it. It's a lifetime, I&nbsp; don't know what, a few hundred or something. And I&nbsp;&nbsp;
+could find that with some simple experiments. But&nbsp; then there was one where I started looking at it,&nbsp;&nbsp;
+and I started looking at pictures of it, and I'm&nbsp; kind of a seasoned hunter at this point for these&nbsp;&nbsp;
+kinds of things. And there was something about it&nbsp; that didn't seem quite right. There was something&nbsp;&nbsp;
+about one that I thought was going to just go on&nbsp; forever, but it seemed like it was doing things&nbsp;&nbsp;
+that might not allow it to go on forever. So&nbsp; I pushed it a bit harder, pushed it harder.
+Sorry, what do you mean by you pushed&nbsp; it harder? Pushed the program harder.
+I've been using Claude to prep for theories&nbsp; of everything episodes, and it's fundamentally&nbsp;&nbsp;
+changed how I approach topics. Something that's&nbsp; changed as of the past few weeks is that I used&nbsp;&nbsp;
+to rely on ChatGPT for what's related to LLMs,&nbsp; but Claude converted me, especially since GPT-5.&nbsp;&nbsp;
+I don't remember the last time I've used&nbsp; ChatGPT consistently. Even something as&nbsp;&nbsp;
+simple as pasting large pieces of text, I love&nbsp; how Claude's interface has these as attachments,&nbsp;&nbsp;
+rather than embedding them as large walls of&nbsp; text. I also like how extremely fast it is to&nbsp;&nbsp;
+answer. I like Claude's personality. I like its&nbsp; intelligence. I also use Claude code on a daily&nbsp;&nbsp;
+basis and have been for the past few months.&nbsp; It's a game changer for developers. It works&nbsp;&nbsp;
+directly in your terminal and understands your&nbsp; entire code base and handles complex engineering&nbsp;&nbsp;
+tasks. I also used Claude, the web version,&nbsp; live during this podcast with Eva Miranda here.&nbsp;&nbsp;
+That's actually a feature named artifacts, and no&nbsp; coding is required. I just describe what I want,&nbsp;&nbsp;
+and it spits out what I'm looking for.&nbsp; It's the interactive version of, hey,&nbsp;&nbsp;
+you put words to what I was thinking. Instead,&nbsp; this one's more like you put implementation&nbsp;&nbsp;
+into what I was thinking. That's extremely&nbsp; powerful. Now, what sets Claude apart is its&nbsp;&nbsp;
+research depth. What I like about Claude is that&nbsp; it actually synthesizes across dozens of papers,&nbsp;&nbsp;
+finds connections between seemingly unrelated&nbsp; areas and helps me spot philosophical assumptions&nbsp;&nbsp;
+that are buried within technical arguments. Use&nbsp; promo code theoriesofeverything, all one word&nbsp;&nbsp;
+capitalized, ready to tackle bigger problems. Sign&nbsp; up for Claude today and get 50% off Claude Pro,&nbsp;&nbsp;
+which includes access to Claude code when you&nbsp; use my link claude.ai/theoriesofeverything.
+Sorry, what do you mean by you pushed it harder?
+Pushed the program harder. I let it run for&nbsp; longer. I let it run overnight on a network&nbsp;&nbsp;
+of computers. I mean, that's what I did. Okay.&nbsp; And then come back in the morning and oops,&nbsp;&nbsp;
+it ran for, I don't know, some tens of thousands&nbsp; of steps and then stopped. Never expected that.&nbsp;&nbsp;
+And then there was another one where, having&nbsp; seen that particular phenomenon, there was&nbsp;&nbsp;
+another one where I kind of suspected this one&nbsp; is going to stop, and that one stops after some,&nbsp;&nbsp;
+well let's see, that one I kind of found a method&nbsp; for figuring out how it will develop and that one&nbsp;&nbsp;
+I think stops after a few billion steps. So&nbsp; these are things you just don't expect and&nbsp;&nbsp;
+this is very typical of what happens in this&nbsp; computational universe. It's a bit similar to&nbsp;&nbsp;
+the physical universe. There are things that&nbsp; happen in the physical universe that you don't&nbsp;&nbsp;
+expect. But it's particularly sort of in your&nbsp; face when you can see, in the physical universe,&nbsp;&nbsp;
+you don't necessarily know what the underlying&nbsp; rules for something are. So you could always&nbsp;&nbsp;
+be wondering, do I just not know enough&nbsp; about how snowflakes form or something?&nbsp;&nbsp;
+But in this case you know the rules, you know&nbsp; exactly what went in. And yet you sort of have&nbsp;&nbsp;
+this forced humility of realizing you're not&nbsp; going to be able to figure out what happens,&nbsp;&nbsp;
+and sometimes you'll be quite wrong in&nbsp; your guess about what's going to happen.
+So one of the principles in doing that kind&nbsp; of science is, you do these experiments,&nbsp;&nbsp;
+they'll often come out in ways you don't expect.&nbsp; You kind of just have to let the chips fall where&nbsp;&nbsp;
+they fall, which is something in doing science&nbsp; that can be psychologically very difficult. You&nbsp;&nbsp;
+had to have had some kind of theory that caused&nbsp; you to start doing the experiment. Otherwise, you&nbsp;&nbsp;
+wouldn't have done the experiment. And so there's&nbsp; something of a psychological pressure to say,&nbsp;&nbsp;
+“Look, I have this theory. This theory has to be&nbsp; correct. Something went wrong with my experiment.&nbsp;&nbsp;
+Let me tweak my experiment. Let me ignore that&nbsp; part of the experiment or something.” And because&nbsp;&nbsp;
+I'm sure this theory must be correct. One of the&nbsp; things that is an important thing that I kind of&nbsp;&nbsp;
+learned long, long, long ago now is just let the&nbsp; damn chips fall where they'll fall. And turns out,&nbsp;&nbsp;
+one of the things that's happened to me is&nbsp; sometimes these chips fall in places that&nbsp;&nbsp;
+very much violate various kinds of prejudices&nbsp; that I have. And it's just like, I'm more&nbsp;&nbsp;
+interested in where the chips actually fall&nbsp; than in supporting some prejudice that I have.
+And as it turned out, in the end, what's&nbsp; happened is, sometimes several years later,&nbsp;&nbsp;
+I realized, actually, the way those chips&nbsp; fell was more consistent with my prejudice&nbsp;&nbsp;
+than I could ever have imagined. So I'll give&nbsp; you an example. So, a lot of things I've done&nbsp;&nbsp;
+have been sort of deeply deconstructive&nbsp; of the way the universe works. That is,&nbsp;&nbsp;
+they're very non-human interpretations of what&nbsp; goes on in the universe and so on. They're very,&nbsp;&nbsp;
+the universe is some giant hypergraph&nbsp; of things. It's a very kind of humanly&nbsp;&nbsp;
+meaningless object. It doesn't have sort of a&nbsp; resonance with kind of our human sensibilities&nbsp;&nbsp;
+and so on. It's deeply abstract, sort of deeply&nbsp; deconstructed in a sense. And yet, as a person,&nbsp;&nbsp;
+I'm quite a people enthusiast. I like people.&nbsp; I find people interesting. I work with people,&nbsp;&nbsp;
+a company full of people and so on. And so for&nbsp; me, it was always something of a conflict that&nbsp;&nbsp;
+on the one hand, I'm interested in people.&nbsp; On the other hand, the things I'm doing in&nbsp;&nbsp;
+science are deeply deconstructive of anything&nbsp; sort of human about what's going on in science.
+And that was the situation in my world for a&nbsp; couple of decades. And then I realized more&nbsp;&nbsp;
+recently that the nature of the observer is&nbsp; actually critical in the end. In the end,&nbsp;&nbsp;
+sort of the ideas about the Ruliad and&nbsp; so on, the kind of entangled, limitable,&nbsp;&nbsp;
+possible computations, that's sort of the&nbsp; ultimately deconstructed, dehumanized thing.&nbsp;&nbsp;
+But what you then realize, what I realized&nbsp; eventually, is how our perception of the&nbsp;&nbsp;
+laws of physics depends critically on our nature&nbsp; as observers within the Ruliad. In other words,&nbsp;&nbsp;
+from going from a completely dehumanized view of&nbsp; science, that is this totally abstracted Ruliad,&nbsp;&nbsp;
+turns out the humans are actually really important&nbsp; in giving us the science that we have. So from,&nbsp;&nbsp;
+even though I was sort of unhappy in some&nbsp; sense of some sort of psychological prejudice,&nbsp;&nbsp;
+I was unhappy with the idea that everything&nbsp; is deeply dehumanized because I kind of like&nbsp;&nbsp;
+humans. In the end, a couple of decades later, I&nbsp; realized actually the humans are kind of much more&nbsp;&nbsp;
+at the center of things than I had ever expected.&nbsp; So that was kind of an interesting realization.
+Another one like that, that I resisted for a long&nbsp; time, is these things I call multiway systems,&nbsp;&nbsp;
+which I had invented back in the early nineties&nbsp; and which I had thought by the late nineties that&nbsp;&nbsp;
+was a possible view of how quantum mechanics might&nbsp; work, that there are these many paths of history&nbsp;&nbsp;
+that are being followed by the universe and&nbsp; so on. I really resisted that idea because I&nbsp;&nbsp;
+felt sort of egotistically that I didn't want&nbsp; it to be the case that there were all these&nbsp;&nbsp;
+different possible paths of history and the&nbsp; one I was experiencing was just one of those&nbsp;&nbsp;
+paths or something like that. That was the&nbsp; assumption that I had made about what the&nbsp;&nbsp;
+implications of this idea of multi-way&nbsp; systems would be. What I realized when&nbsp;&nbsp;
+we did the physics project in 2019 was that,&nbsp; in fact, that isn't the right picture. That&nbsp;&nbsp;
+the idea of multi-way systems and the idea&nbsp; that there are these many paths of history,&nbsp;&nbsp;
+that's the right story. But the thing to realize&nbsp; is we are embedded as observers in this universe&nbsp;&nbsp;
+that is branching all the time. And the critical&nbsp; point then is that we are branching as well.
+So from this idea, from this first sort of naive&nbsp; idea that when you have something where you have&nbsp;&nbsp;
+many branches of history, that our experience&nbsp; must just go down one branch, that's really not&nbsp;&nbsp;
+the right picture. Actually there are a couple&nbsp; of issues. One is that the branches can merge&nbsp;&nbsp;
+and the other is that our experience can span many&nbsp; branches. We are extended objects. Our minds are&nbsp;&nbsp;
+extended objects in this branchial space, in&nbsp; the space of these possible branches. I didn't&nbsp;&nbsp;
+realize that until 2019. And that means that&nbsp; my sort of ignoring multi-way systems for close&nbsp;&nbsp;
+to 30 years was a piece of sort of incorrect&nbsp; prejudice. And I was kind of lucky enough that&nbsp;&nbsp;
+eventually kind of started thinking about, look,&nbsp; might as well try and take this seriously and&nbsp;&nbsp;
+see what its consequences actually are. It was&nbsp; something actually, Jonathan Gorard was one of&nbsp;&nbsp;
+the people who was like, “you should take&nbsp; these more seriously.” I'm not sure he saw&nbsp;&nbsp;
+what the outcome would be, but that was a, “why&nbsp; are you resisting this so much?” It's perhaps a,&nbsp;&nbsp;
+so that was, but so it's always an interesting&nbsp; thing when you have kind of this sort of, you&nbsp;&nbsp;
+have to have a belief about how things are going&nbsp; to work, otherwise you don't even look there.&nbsp;&nbsp;
+But you have to just believe the experiments&nbsp; you're doing or the things you figure out.
+I mean, for me, if I was doing, back in the day&nbsp; when I was long ago when I was sort of first doing&nbsp;&nbsp;
+physics, I worked a bunch with Dick Feynman, who&nbsp; was a physicist who one of his great strengths&nbsp;&nbsp;
+was he was a really good human calculator. And&nbsp; I can't do that. I'm a good computer calculator,&nbsp;&nbsp;
+but not a good human calculator. I built these&nbsp; computer tools because I wasn't a very good human&nbsp;&nbsp;
+calculator. But Dick Feynman was really good&nbsp; at doing these calculations and getting to the&nbsp;&nbsp;
+right answer. And then he would go back and say&nbsp; he didn't think anybody would be impressed by the&nbsp;&nbsp;
+fact that he got to the right answer by doing this&nbsp; complicated calculation. He thought people would&nbsp;&nbsp;
+only be impressed if he could come up with this&nbsp; really simple kind of intuitive explanation of&nbsp;&nbsp;
+what was going on, which he often managed to come&nbsp; up with. Then he would throw away the calculation,&nbsp;&nbsp;
+never tell anybody about the calculation. And&nbsp; everybody would be like, “How did you possibly&nbsp;&nbsp;
+figure out this kind of intuitive thing?” And&nbsp; they'd all think, “Oh, it must be simple to come&nbsp;&nbsp;
+out with this intuitive thing.” It wasn't simple.&nbsp; It was the result of some long calculation,&nbsp;&nbsp;
+which he didn't think anybody would be impressed&nbsp; with because he found it easy to do those things.
+For me, the only kind of thing where I know I&nbsp; know what I'm talking about is I do a computer&nbsp;&nbsp;
+experiment. It comes out in a certain way.&nbsp; The computer does what the computer does.&nbsp;&nbsp;
+There's no kind of sort of, “I might have made&nbsp; a mistake somewhere” type situation. I mean,&nbsp;&nbsp;
+I think if I look at the kinds of things that I've&nbsp; tended to do in science, they sort of mix what one&nbsp;&nbsp;
+might think of as kind of philosophy and what one&nbsp; might think of as this kind of very detailed kind&nbsp;&nbsp;
+of solid computational experiments and so on. I&nbsp; mean that turns out to be for me has been sort of&nbsp;&nbsp;
+a powerful methodology for dealing with things,&nbsp; to go from, on the one side, sort of a general,&nbsp;&nbsp;
+almost philosophical understanding of how things&nbsp; might work, and then sort of the challenges to be&nbsp;&nbsp;
+able to sort of think computationally fluently&nbsp; enough that you can go from that sort of&nbsp;&nbsp;
+philosophical understanding to say, “Okay, here's&nbsp; the program I should run that is a manifestation&nbsp;&nbsp;
+of that philosophical understanding, and then&nbsp; let's see what it actually does.” And then I don't&nbsp;&nbsp;
+have to worry, “Am I getting it wrong?” Because&nbsp; the program just does what the program does.
+And it's kind of, I find it kind of charming when&nbsp; my *New Kind of Science* book came out in 2002,&nbsp;&nbsp;
+people saying, “But it's wrong.” It's like, what&nbsp; does that mean? What about it was wrong? I don't&nbsp;&nbsp;
+know. But I mean, it's kind of people assume that&nbsp; you could sort of have got the wrong answer by&nbsp;&nbsp;
+doing the wrong calculation or something. But&nbsp; this is the nature of computer experiments.&nbsp;&nbsp;
+You just, you know, you specify&nbsp; the rule, you run the program,&nbsp;&nbsp;
+the program does what the program does. There's&nbsp; no, no humans are involved. No possibility of&nbsp;&nbsp;
+error exists, so to speak. There can be, you&nbsp; can be wrong in the interpretation of what's&nbsp;&nbsp;
+happening. You can be wrong in the belief that&nbsp; what's happening in the computer experiment is&nbsp;&nbsp;
+relevant to something else. But the actual&nbsp; experiment itself, it just is what it is.
+Now, you can be confused, I will say. And the&nbsp; number one source of confusion is when people&nbsp;&nbsp;
+don't look at everything that happens&nbsp; in the experiment. So people say there's&nbsp;&nbsp;
+a certain tendency, in science, people&nbsp; have had this idea that being scientific&nbsp;&nbsp;
+is about generating numbers. And so one&nbsp; quite common type of mistake is to say,&nbsp;&nbsp;
+well, there's a lot of detailed stuff going on&nbsp; underneath, but I'm just going to plot this one&nbsp;&nbsp;
+curve as the result. And that means that you&nbsp; don't really get to see sort of the detail of&nbsp;&nbsp;
+what's happening. You're just seeing this one sort&nbsp; of summary. And sometimes that one summary can be&nbsp;&nbsp;
+utterly confusing. It can just lead you into&nbsp; kind of thinking the wrong thing. And so for me,&nbsp;&nbsp;
+being able to have sort of the highest bandwidth&nbsp; thing that I think we have to kind of understand&nbsp;&nbsp;
+what's going on is our visual system. And being&nbsp; able to sort of visualize what's happening in as&nbsp;&nbsp;
+much detail as possible I always found very&nbsp; important. And often when I do projects,&nbsp;&nbsp;
+in fact I just got bitten with this in&nbsp; the very latest project that I was doing,&nbsp;&nbsp;
+I always try to make sure that I front the&nbsp; effort to make the best possible visualizations.
+Interesting.
+Because if the thing that one does that's&nbsp; a mistake is to do the project with kind&nbsp;&nbsp;
+of crummy visualizations and then say, “And now&nbsp; I'm going to present it and I'm going to make a&nbsp;&nbsp;
+really good visualization.” Then you do a really&nbsp; good visualization and then you're like, “Oh gosh,&nbsp;&nbsp;
+there's something I can now see that I didn't see&nbsp; while I was doing the project.” So I just got a&nbsp;&nbsp;
+little bit bitten with that because there was a&nbsp; particularly complicated kind of visualization&nbsp;&nbsp;
+that I didn't go to the effort to make quite early&nbsp; enough in the project that I'm currently doing.&nbsp;&nbsp;
+And so I'm just having to redo a bunch of things&nbsp; because I realized that I can understand them much&nbsp;&nbsp;
+more clearly using this sort of more sophisticated&nbsp; visualization technique. But that's kind of,&nbsp;&nbsp;
+you know, you have to, that's just one of these&nbsp; things when you kind of start sort of thinking&nbsp;&nbsp;
+computationally about things, this idea that you&nbsp; can see as deep into the computation as possible&nbsp;&nbsp;
+is important, rather than saying, “All I care&nbsp; about here is this thing of plotting this one&nbsp;&nbsp;
+curve, because that's what scientists have&nbsp; done for the last couple of hundred years.”
+I think one of the things I realized only&nbsp; very recently about my own personal sort&nbsp;&nbsp;
+of scientific journey, is back in the early 80s,&nbsp; I started doing a bunch of computer experiments,&nbsp;&nbsp;
+visualizing sort of the computations that were&nbsp; going on, figuring things out from that. And for&nbsp;&nbsp;
+me, doing that in 1981 or something like&nbsp; that was completely obvious. It was like,&nbsp;&nbsp;
+how could you ever not think about doing&nbsp; something like that? But the question was,&nbsp;&nbsp;
+why was that obvious to me? And it turns out what&nbsp; I had been doing for several years previously was&nbsp;&nbsp;
+building my first big computer system, which was&nbsp; a system for doing algebraic computation, symbolic&nbsp;&nbsp;
+algebraic computation. And I had gotten into&nbsp; doing that because I was doing particle physics.&nbsp;&nbsp;
+In particle physics, one of the things you get&nbsp; to spend a lot of time doing is computing Feynman&nbsp;&nbsp;
+diagrams. Feynman diagrams are this way of working&nbsp; out, well, actually this S-matrix thing that I'd&nbsp;&nbsp;
+mentioned earlier, a particular way of doing that&nbsp; that's sort of the best way we know to do it.
+I have to say as a sort of footnote to this, Dick&nbsp; Feynman always used to say about Feynman diagrams,&nbsp;&nbsp;
+they're kind of the stupidest way to do this kind&nbsp; of calculation. There's got to be a better way,&nbsp;&nbsp;
+he said. I remember one time&nbsp; telling him, if you work out,&nbsp;&nbsp;
+there's sort of a series that you generate of&nbsp; Feynman diagrams. And I think at the kth order&nbsp;&nbsp;
+in these Feynman diagrams I worked out that&nbsp; the computational complexity of doing these&nbsp;&nbsp;
+Feynman diagrams went like k factorial to the&nbsp; fifth power. So as you go to higher orders,&nbsp;&nbsp;
+it takes unbelievably much more difficult to work&nbsp; things out. And so I was telling this to Feynman,&nbsp;&nbsp;
+he's like, “Yeah, this is a stupid way to work&nbsp; things out. There's got to be a better way to&nbsp;&nbsp;
+do it.” We haven't known what that better way is.&nbsp; I'm sort of excited right now because I finally&nbsp;&nbsp;
+think I understand kind of in a bigger, more&nbsp; foundational picture of what Feynman diagrams&nbsp;&nbsp;
+really are and how one can think about them in a&nbsp; way that does allow one to sort of go underneath&nbsp;&nbsp;
+that formalism and potentially work things out&nbsp; in a much more effective way. It's, to sort of,&nbsp;&nbsp;
+it's a spoiler for some things that I'm still&nbsp; working on, but essentially in Feynman diagrams,&nbsp;&nbsp;
+you're drawing these diagrams that sort&nbsp; of say an electron goes here and then it&nbsp;&nbsp;
+interacts with a photon and then the photon&nbsp; interacts with another electron and so on.
+It's a diagram of sort of interactions.&nbsp; And what I realized is that really those&nbsp;&nbsp;
+diagrams are diagrams about causality.&nbsp; They're diagrams that show the lines&nbsp;&nbsp;
+that represent here's an electron. Really&nbsp; the electron is basically a carrier of&nbsp;&nbsp;
+a causality. There's an event that happens&nbsp; when an electron interacts with a photon and&nbsp;&nbsp;
+that event has a causal effect on some other event&nbsp; and that causal connection is represented by this&nbsp;&nbsp;
+electron line so to speak in this Feynman&nbsp; diagram. That way of understanding things&nbsp;&nbsp;
+allows one to connect sort of Feynman diagrams to&nbsp; a bunch of things that have come up in our physics&nbsp;&nbsp;
+project to do with things we call multi-causal&nbsp; graphs. And there's a whole rather lovely&nbsp;&nbsp;
+theory that's starting to emerge about these&nbsp; things but I haven't figured it all out yet.
+In any case, that's an irrelevant&nbsp; sideshow. But back in the late 70s,&nbsp;&nbsp;
+I was trying to get computers to do these very&nbsp; ugly, nasty calculations of Feynman diagrams,&nbsp;&nbsp;
+because that was the only way we knew to work&nbsp; out the consequences of quantum field theory in&nbsp;&nbsp;
+those days, particularly QCD, which was a young&nbsp; field in those days. And I, as the teenage me,&nbsp;&nbsp;
+had the fun of being able to work out a bunch&nbsp; of calculations about QCDs sort of for the first&nbsp;&nbsp;
+time. And, now they're well-known sort of classic&nbsp; kinds of things, but then they were fresh and new&nbsp;&nbsp;
+because it was a new field. But it was, one of&nbsp; the things that had happened was I had built a&nbsp;&nbsp;
+bunch of capability to do symbolic computation,&nbsp; algebraic computation. And one of the features of&nbsp;&nbsp;
+doing algebraic computation is that you don't just&nbsp; get a number as the answer. If the answer to your&nbsp;&nbsp;
+calculation, if the computer spits out 17, there's&nbsp; not a lot you can do with 17. There's not a lot of&nbsp;&nbsp;
+intuition you can get from 17 on its own. But when&nbsp; the computer spits out this big, long algebraic&nbsp;&nbsp;
+expression, it has a lot of structure. And one&nbsp; of the things that I had kind of learned to do&nbsp;&nbsp;
+was to get intuition from that structure. And&nbsp; so, for example, if you're doing, I don't know,&nbsp;&nbsp;
+you're doing integrals, let's say. I've never been&nbsp; good at doing integrals by hand, but I became,&nbsp;&nbsp;
+what I learned from doing thousands of integrals&nbsp; by computer was kind of things about the intuition&nbsp;&nbsp;
+about the structure of what happens in integrals.&nbsp; And that allows one to kind of make, to sort of&nbsp;&nbsp;
+jump ahead and see this complicated integral. It's&nbsp; going to be, I think, intuitively, roughly of the&nbsp;&nbsp;
+structure. And that's a big clue in actually&nbsp; being able to solve the thing on a computer.
+So the thing that I realized only very recently&nbsp; is that my kind of experience in doing algebraic&nbsp;&nbsp;
+computation had gotten me used to the idea that&nbsp; what a computer produces will be a thing that has&nbsp;&nbsp;
+structure from which you can get intuition.&nbsp; And so when I started thinking about sort&nbsp;&nbsp;
+of actual simple programs and what they do, it&nbsp; was sort of obvious to me, really was obvious,&nbsp;&nbsp;
+that I should just make some sort of visualization&nbsp; of what all the steps that were going on were,&nbsp;&nbsp;
+because I expected to get intuition from kind&nbsp; of the innards of the computation, so to speak.
+However, one of the things that I will say&nbsp; is that I started studying, in that case,&nbsp;&nbsp;
+cellular automata back in 1981. And I found out a&nbsp; bunch of things about cellular automata. I thought&nbsp;&nbsp;
+they were pretty interesting. And I had generated,&nbsp; back in 1981, I generated a picture of this thing&nbsp;&nbsp;
+called Rule 30, which is a particular cellular&nbsp; automaton that's been my all-time favorite. And it&nbsp;&nbsp;
+has the feature that has a very, very simple rule.&nbsp; But you start it off from just this one black&nbsp;&nbsp;
+cell. It makes this complicated pattern. Many&nbsp; aspects of that pattern look, for all practical&nbsp;&nbsp;
+purposes, random. It's something that my intuition&nbsp; back in 1981 said couldn't happen. It said, if the&nbsp;&nbsp;
+rule was simple enough, there will be a trace of&nbsp; that simplicity in the behavior that's generated.&nbsp;&nbsp;
+And so when I generated a picture of Rule 30, I&nbsp; even put it into a paper I published, but I didn't&nbsp;&nbsp;
+really pay attention to it because my intuition&nbsp; was so strongly, nothing like that can happen.
+Then, actually, sort of methodologically&nbsp; amusing, I think June of 1984, I happened&nbsp;&nbsp;
+to get a high laser printer. They were a new&nbsp; thing. They were big clunky objects at that&nbsp;&nbsp;
+time. And I thought I was going to go on some&nbsp; plane flight and I thought I'd make some cool&nbsp;&nbsp;
+pictures for my new laser printer. So I printed&nbsp; out Rule 30 at high resolution and took it with&nbsp;&nbsp;
+me and I'm starting to look at it, and it's like,&nbsp; “Hmm, what on earth is going on here?” I finally&nbsp;&nbsp;
+sort of really started—well, actually, some&nbsp; other things had happened. I had also studied&nbsp;&nbsp;
+other aspects of cellular automata and how they&nbsp; related to theory of computation and so on,&nbsp;&nbsp;
+and that kind of primed me for really looking&nbsp; more seriously at this picture and realizing,&nbsp;&nbsp;
+oh my gosh, this is something that completely&nbsp; violates the intuition that I've always had,&nbsp;&nbsp;
+that to get something complicated, you&nbsp; need complicated rules in some sense,&nbsp;&nbsp;
+or you need a complicated initial condition.&nbsp; This is something new and different.
+And it is kind of amusing that I realized that&nbsp; it really at that point I was primed enough&nbsp;&nbsp;
+from the other things I'd studied particularly&nbsp; about computation theory that it only took a&nbsp;&nbsp;
+couple of days before I was like sort of telling&nbsp; people about, I was going to some conference and&nbsp;&nbsp;
+actually I found recently there's a transcript&nbsp; of a Q&amp;A session at that conference where I'm&nbsp;&nbsp;
+kind of talking as if I'd known it forever about&nbsp; how Rule 30 works and so on. But actually I'd only&nbsp;&nbsp;
+known it for two days. But an important point&nbsp; about that was first of all, it's something&nbsp;&nbsp;
+I had kind of quotes discovered but I had not&nbsp; understood. I had not internalized it. But to&nbsp;&nbsp;
+be able to internalize it required me to build&nbsp; up a bunch of other context from studying, well,&nbsp;&nbsp;
+a bunch of things about cellular automata, a bunch&nbsp; of things about computation theory. Given that&nbsp;&nbsp;
+priming, I was able to actually understand this&nbsp; point about what Rule 30 is and what it means.
+Now, for example, this phenomenon of computational&nbsp; irreducibility, I'm now at sort of 40 years and&nbsp;&nbsp;
+counting since I came up with that idea. And I'm&nbsp; still understanding what its implications are&nbsp;&nbsp;
+for whether it's for, you know, AI ethics or for&nbsp; proof of work for blockchains or a whole bunch of&nbsp;&nbsp;
+different areas. I'm only now understanding.&nbsp; In fact, the thing that I've understood most&nbsp;&nbsp;
+recently, I would say, is that I think a lot&nbsp; of the story of physics is a story of the&nbsp;&nbsp;
+interplay between computational irreducibility&nbsp; and our kind of limitations as observers of the&nbsp;&nbsp;
+world. That it's something like, for example, the&nbsp; simplest case is the second law of thermodynamics,&nbsp;&nbsp;
+where kind of the idea is you've got a bunch of&nbsp; molecules bouncing around and the second law says&nbsp;&nbsp;
+most of the time it will seem like those molecules&nbsp; get sort of more random in the configurations that&nbsp;&nbsp;
+they take on. And that's something people have&nbsp; wondered about since the mid-19th century. And&nbsp;&nbsp;
+I had wondered about it. It was one of&nbsp; the first things I got really interested&nbsp;&nbsp;
+in physics back when I was 12 years old or so,&nbsp; was this phenomenon of how does randomization&nbsp;&nbsp;
+happen in the second law. And what I finally have&nbsp; understood is that it happens because the sort of&nbsp;&nbsp;
+computational irreducibility of the underlying&nbsp; dynamics of these molecules bouncing around,&nbsp;&nbsp;
+yet there's an interplay between that and&nbsp; the sort of computational limitations of&nbsp;&nbsp;
+us as observers. Because we as observers&nbsp; aren't capable of sort of decrypting the&nbsp;&nbsp;
+sort of computation that happened in these&nbsp; underlying collisions, we just have to say,&nbsp;&nbsp;
+“Oh, it looks random to me,” so to speak. And so&nbsp; this phenomenon of computational irreducibility,&nbsp;&nbsp;
+at 40 years and counting, I'm still understanding&nbsp; the implications of this particular idea.
+And I mean, another thing to say about the&nbsp; progress of science, which I can see in my own&nbsp;&nbsp;
+life and I can also see from history of science,&nbsp; is it can take a long time. Once you've had some&nbsp;&nbsp;
+sort of paradigmatic idea, it can take a long&nbsp; time for one to understand the implications&nbsp;&nbsp;
+of that idea. And I know for things I've done,&nbsp; I fully recognize the fact that it's taken me&nbsp;&nbsp;
+sometimes 30 years or more to understand what it&nbsp; was that I actually really discovered. It's kind&nbsp;&nbsp;
+of like if other people don't figure it out for 50&nbsp; or 100 years, that's kind of par for the course.&nbsp;&nbsp;
+Because it took me 30 years to figure out what the&nbsp; significance of this or that thing was. I mean,&nbsp;&nbsp;
+I see that also in technology development. In&nbsp; building Wolfram language, we build certain&nbsp;&nbsp;
+paradigmatic ideas. We have certain ideas about&nbsp; the structure of what can be in the language.&nbsp;&nbsp;
+And then it can sometimes take a decade before&nbsp; we really realize, given that structure, here's&nbsp;&nbsp;
+what you can build. You kind of have to get used&nbsp; to the ideas. You have to grind around the ideas&nbsp;&nbsp;
+for a long time before you kind of get to the next&nbsp; step in kind of seeing what's possible from them.&nbsp;&nbsp;
+I mean, I kind of see it as sort of this tower&nbsp; that one's building of ideas and technology in&nbsp;&nbsp;
+that case. And the higher you are on the tower,&nbsp; the further you've built up on the tower,&nbsp;&nbsp;
+the further you can see into the distance, so to&nbsp; speak, about what other things might be possible.
+Now, I think sometimes when people sort&nbsp; of hear about the history of science,&nbsp;&nbsp;
+discoveries that are being made and so on,&nbsp; there's a certain tendency for people to&nbsp;&nbsp;
+think that science works by, and somebody wakes&nbsp; up one day and just figures out some big thing.
+Right.
+My own efforts in studying history of science and&nbsp; my own experience in my life doing science is that&nbsp;&nbsp;
+simply never happens. There's basically many&nbsp; years, usually a decade, of buildup to whatever&nbsp;&nbsp;
+it is one is going to potentially discover.&nbsp; I mentioned what happened with me in Rule 30.&nbsp;&nbsp;
+Once I was adequately primed, it was kind of&nbsp; like it all happened very quickly. But that&nbsp;&nbsp;
+priming took many years. And that's the thing&nbsp; that usually what's reported in the storybook,&nbsp;&nbsp;
+so to speak, is only that final moment after that&nbsp; priming of when you realize, “Well, actually this&nbsp;&nbsp;
+fits together in that way” and so on. And&nbsp; you can then sort of describe what happened.
+One of the things I learned about&nbsp; Einstein recently was that in 1904,&nbsp;&nbsp;
+he'd written several papers about a very&nbsp; different subject. He'd written a bunch of&nbsp;&nbsp;
+papers about thermodynamics, particularly about&nbsp; the second law of thermodynamics. I think he was&nbsp;&nbsp;
+much influenced by Boltzmann, who was a very&nbsp; philosophically oriented physicist. He was a&nbsp;&nbsp;
+person who sort of believed you could figure out&nbsp; things about physics just by thinking about them&nbsp;&nbsp;
+in the style of natural philosophy, so to speak,&nbsp; rather than sort of being driven by experiment to&nbsp;&nbsp;
+experiment type thing. And Boltzmann had figured&nbsp; out a bunch of things about atoms. Boltzmann had&nbsp;&nbsp;
+basically had the core ideas of quantum mechanics,&nbsp; although of discreteness and so on. That's what&nbsp;&nbsp;
+Planck picked up when he studied the black body&nbsp; radiation problem. But in any case, at the time,&nbsp;&nbsp;
+1904, it was still very much, can you prove the&nbsp; second law of thermodynamics from some underlying&nbsp;&nbsp;
+principles that did not just sort of introduce the&nbsp; second law as a law of physics? Could you prove&nbsp;&nbsp;
+it from some underlying mechanical principles? And&nbsp; many people have been involved in that. Planck was&nbsp;&nbsp;
+trying to do that, actually. Planck was trying to&nbsp; do that when he discovered the quantum mechanics,&nbsp;&nbsp;
+the way of sort of understanding black body&nbsp; radiation in terms of discrete photons. I mean,&nbsp;&nbsp;
+that's a weird story because Planck, people&nbsp; had wondered, why do things get more random?&nbsp;&nbsp;
+And they kept on saying, to get randomness, you&nbsp; have to have some magic source of randomness. So&nbsp;&nbsp;
+Planck's idea was that infrared radiation,&nbsp; radiative heat, would be sort of the magic&nbsp;&nbsp;
+source of randomness that would sort of produce&nbsp; heat in everything and lead to that randomness.&nbsp;&nbsp;
+And so he was actually studying that question when&nbsp; experiments came out about blackbody radiation.
+And he then noticed that these calculations that&nbsp; Boltzmann had done a lot earlier, where Boltzmann,&nbsp;&nbsp;
+just as a matter of sort of mathematical&nbsp; convenience, had said, “Let's assume energy&nbsp;&nbsp;
+is discrete,” and had then worked out what&nbsp; the consequences of that were. Planck said,&nbsp;&nbsp;
+“Well, actually, if you say that energy really&nbsp; is discrete, you fit this data a lot better than&nbsp;&nbsp;
+otherwise.” It took Planck another decade&nbsp; to actually believe that this was more than&nbsp;&nbsp;
+just a mathematical trick. Einstein was the one&nbsp; who really sort of said photons might be real a&nbsp;&nbsp;
+few years later. But in any case, the thing that&nbsp; was interesting there was that Einstein was using&nbsp;&nbsp;
+kind of this natural philosophy, philosophical&nbsp; approach to science as a way to think about how&nbsp;&nbsp;
+things might work. And he tried applying that&nbsp; to thermodynamics in 1904, and he didn't get&nbsp;&nbsp;
+it right. He didn't figure out the second law. As&nbsp; we now know, sort of the paradigmatic ideas that&nbsp;&nbsp;
+you need to figure out the second law come from&nbsp; ideas about computation and so on, which were&nbsp;&nbsp;
+another close to 100 years in the future, so to&nbsp; speak. But it's sort of interesting that he was&nbsp;&nbsp;
+applying those kinds of philosophical thinking&nbsp; ideas. And it was a misfire in thermodynamics.&nbsp;&nbsp;
+It was a hit in relativity, in the photoelectric&nbsp; effect, and the existence of photons, and also&nbsp;&nbsp;
+in Brownian motion. But it's an interesting&nbsp; sort of footnote to the history of science.
+And I think another point that one realizes&nbsp; there is there are things that there is an&nbsp;&nbsp;
+ambient level of understanding that will allow&nbsp; one to make progress in that area. And there are&nbsp;&nbsp;
+things where there isn't. And in fact, Einstein&nbsp; himself, I think 1916, he wrote to somebody,&nbsp;&nbsp;
+“In the end, space will turn out to be discrete.&nbsp; But right now, we don't have the tools necessary&nbsp;&nbsp;
+to see how this works,” which was very smart of&nbsp; him. I mean, that was correct. It took another&nbsp;&nbsp;
+hundred years to have those tools. But it's&nbsp; a thing where when you think about science,&nbsp;&nbsp;
+another issue is, are you at the right time&nbsp; in history, so to speak? Is the ambient sort&nbsp;&nbsp;
+of understanding of what's going on sufficient&nbsp; to let you make the progress you want to make?
+So one area I've been interested in recently is&nbsp; biology, where biology has been a field which&nbsp;&nbsp;
+really hasn't had a theory. The closest one gets&nbsp; to a theory in biology is natural selection from&nbsp;&nbsp;
+1859. But that's a very, we say, “Well why is&nbsp; biology the way it is?” When we look at a biology&nbsp;&nbsp;
+textbook, what's the theoretical foundation&nbsp; of a biology textbook? We haven't known that.&nbsp;&nbsp;
+And the question is, can there be a theory of&nbsp; biology? Most biologists don't really imagine&nbsp;&nbsp;
+there's a theory of biology. They just say, “We're&nbsp; collecting this data, we do these experiments,&nbsp;&nbsp;
+we work out these probabilities of things if&nbsp; you're doing medicine.” That's the typical&nbsp;&nbsp;
+approach. And we don't imagine that there is&nbsp; an underlying theory. It's not like physics,&nbsp;&nbsp;
+where we imagine there might be some underlying&nbsp; sort of primitive theory, so to speak.
+Sorry, why wouldn't computational irreducibility&nbsp; come into play in the biological case? For you to&nbsp;&nbsp;
+say, or for a biologist to say, that that's&nbsp; the reason why there is no TOE for biology.
+Yep. Well, there's some truth to that.
+Am I jumping ahead?
+No, no, that's good, good inference. I mean,&nbsp; that's, I think the reason that biology looks&nbsp;&nbsp;
+as complicated as it does is precisely because of&nbsp; computational irreducibility. And the thing that&nbsp;&nbsp;
+surprised me, this is another sort of story of&nbsp; my life in science. I worked on cellular automata&nbsp;&nbsp;
+back in the early 80s. It's kind of a funny fact&nbsp; is that this was days before the internet so you&nbsp;&nbsp;
+couldn't look things up as easily, or at least&nbsp; before the web. And people had seen that I was&nbsp;&nbsp;
+working on cellular automata. So I got invited&nbsp; to all the theoretical biology conferences&nbsp;&nbsp;
+because they figured this must be about biological&nbsp; kinds of things. And it's kind of funny because&nbsp;&nbsp;
+looking back now, I was kind of—the period&nbsp; in the 1980s was a time when there was sort&nbsp;&nbsp;
+of a burst of somewhat interest in theoretical&nbsp; biology. There'd been another one in the 1940s,&nbsp;&nbsp;
+and it kept on sort of dying off. But in the&nbsp; 1980s, there was something of a burst of interest.&nbsp;&nbsp;
+And I realized that, in fact, somebody who's&nbsp; working with me now, who's a biologist, sort of&nbsp;&nbsp;
+went back and looked at some of these conferences&nbsp; and things. And I keep on saying, “I don't really&nbsp;&nbsp;
+know much about biology.” And he kept on saying,&nbsp; “But you were there at all these key conferences.”
+Wait, just a moment. It's one thing for you&nbsp; to be invited because of cellular automata.&nbsp;&nbsp;
+It's another thing for you to accept it. Why did&nbsp; you go if you thought, hey, this is irrelevant?
+Oh, no, I didn't think it was irrelevant. I&nbsp; thought it was interesting. I just had a certain—
+I see.
+And, you know, when I talked about cellular&nbsp; automata there and talked about the way that&nbsp;&nbsp;
+cellular automata are relevant to things like&nbsp; the growth of organisms and so on, I thought it&nbsp;&nbsp;
+was interesting and other people thought it was&nbsp; interesting. And it turned into a whole sort of&nbsp;&nbsp;
+subfield of people studying things. But I didn't&nbsp; think when it comes to sort of the foundations&nbsp;&nbsp;
+of biology and things like, why does natural&nbsp; selection work, I didn't think it had anything&nbsp;&nbsp;
+much, well, I wasn't sure if it had anything to&nbsp; say about that. Back in the mid-80s, I tried to&nbsp;&nbsp;
+see if it had something to say about that. I tried&nbsp; to see if you could take cellular automata, which&nbsp;&nbsp;
+have these definite little underlying rules, those&nbsp; little underlying rules are a little bit like&nbsp;&nbsp;
+genomic sequences, so to speak, where the genome&nbsp; is specifying the rules for building an organism.&nbsp;&nbsp;
+So in a cellular automaton, you can think about&nbsp; it the same way. The underlying rules specify the&nbsp;&nbsp;
+rules for building these patterns that you make&nbsp; in cellular automata. So the obvious question was,&nbsp;&nbsp;
+could you evolve those rules like natural&nbsp; selection does? Could you make mutations&nbsp;&nbsp;
+and selection and so on on those underlying&nbsp; rules? And could you see that produce some&nbsp;&nbsp;
+sort of interesting patterns of growth. So I tried&nbsp; that in 1985. I didn't find anything interesting.
+Do you mind explaining how you tried that?&nbsp; Because look, the way that it works with&nbsp;&nbsp;
+cellular automata, like rule 30, is you have&nbsp; some grid. How long is the grid? Maybe 30, 40?
+It's an infinite grid.
+Okay. So you have some grid,&nbsp; and then you have some rules,&nbsp;&nbsp;
+but at no point do you change the rules.
+Correct.
+Okay. So even if you were to change the rules,&nbsp;&nbsp;
+are you changing the rules for&nbsp; only finite parts of the grid?
+No, no, no. This is saying, instead of looking,&nbsp; and it's not going to work so well with something&nbsp;&nbsp;
+as simple as Rule 30, because you can go from Rule&nbsp; 30 to Rule 31. Rule 30 and Rule 31 behave very,&nbsp;&nbsp;
+very differently. By the time you're&nbsp; dealing with sort of Rule a billion,&nbsp;&nbsp;
+Rule a billion and one potentially doesn't behave&nbsp; really that differently from Rule a billion.&nbsp;&nbsp;
+Because many of the cases in the rule, the rule&nbsp; is saying, “If you see right near where you are,&nbsp;&nbsp;
+if you see cells red, green, white, then make&nbsp; this.” And, you know, by the time you've got&nbsp;&nbsp;
+enough colors and so on, you can imagine that&nbsp; some of those particular rules won't even be&nbsp;&nbsp;
+used when a typical pattern is produced. It'll&nbsp; be something so you can make some small changes&nbsp;&nbsp;
+to those rules and expect that maybe it won't make&nbsp; a huge change in what comes out. At least in the—
+Yes, yes. I mean, well, that's a complicated&nbsp; issue because it depends on what subpart of&nbsp;&nbsp;
+the rules you end up selecting as you make this&nbsp; pattern. I mean it's usually the case that when&nbsp;&nbsp;
+you produce some pattern from a cellular automaton&nbsp; for example, every little subpart is typically&nbsp;&nbsp;
+using only some small subset of the rules and&nbsp; it's using them in some particular way and it&nbsp;&nbsp;
+maybe makes some periodic little subpart and&nbsp; then something comes along that's using some&nbsp;&nbsp;
+different part of the rule sort of crashes into&nbsp; that and destroys the simplicity that existed in&nbsp;&nbsp;
+that region. So in the case of Rule 30, there are&nbsp; only eight cases in its rule, so you don't get to&nbsp;&nbsp;
+make any change to that is a big change, so to&nbsp; speak. By the time you have something with like,&nbsp;&nbsp;
+say, 27 cases in its rule, you can kind of&nbsp; imagine, making a little change in that is less&nbsp;&nbsp;
+significant to the behavior that will occur.&nbsp; But okay, back in mid-1980s, I tried this. I&nbsp;&nbsp;
+tried looking at slightly bigger rules and making&nbsp; small changes. I didn't find anything interesting.
+Regarding biology?
+Yes.
+Okay.
+Yes. No, I was interested in kind of a model&nbsp; for natural selection. It was a time when&nbsp;&nbsp;
+artificial life was first being talked about&nbsp; and worked on. And Chris Langton had done a&nbsp;&nbsp;
+bunch of nice stuff with my cellular automata&nbsp; and thinking about artificial life and so on.&nbsp;&nbsp;
+And it was seen sort of the obvious thing&nbsp; to do, but it didn't work. And so for years,&nbsp;&nbsp;
+I was like, it's just not going to&nbsp; work. And then last year actually,&nbsp;&nbsp;
+I was interested in the foundations of machine&nbsp; learning. And the big lesson of machine learning&nbsp;&nbsp;
+that we particularly learned in 2011 was in&nbsp; a neural net, if you bash it hard enough,&nbsp;&nbsp;
+it will learn stuff. And that wasn't obvious.&nbsp; Nobody knew that you could get sort of a deep&nbsp;&nbsp;
+learning, a deep neural net to recognize&nbsp; images of cats and dogs and things. And&nbsp;&nbsp;
+sort of by accident it was discovered that if&nbsp; you just leave the thing learning long enough,&nbsp;&nbsp;
+if you leave it training long enough, it comes out&nbsp; and it's actually succeeded in learning something.
+So that's a new piece of intuition that you can&nbsp; have a system like a neural net. Neural net is&nbsp;&nbsp;
+much more complicated than one of these cellular&nbsp; automata. You can have a system like that. You&nbsp;&nbsp;
+just keep bashing it, a quadrillion times or&nbsp; something, and eventually it will successfully&nbsp;&nbsp;
+achieve some fitness function, will learn&nbsp; something, will do the thing you want it to do.&nbsp;&nbsp;
+So that was a piece of new intuition.&nbsp; So I thought, let me just run these,&nbsp;&nbsp;
+this, I was writing something about actually&nbsp; foundations of machine learning. And I thought,&nbsp;&nbsp;
+let me just try this experiment that I, I thought&nbsp; I'd tried it in the 1980s and it hadn't worked,&nbsp;&nbsp;
+but now we know something different from our&nbsp; studies of neural nets. Let me try running it&nbsp;&nbsp;
+a bit longer. And by golly it worked. And I felt&nbsp; a bit silly for not having discovered this any&nbsp;&nbsp;
+time in the intervening 40 years or something. But&nbsp; nevertheless, it was really cool that it worked.
+And that meant that one could actually see for&nbsp; the first time kind of sort of more, in a more&nbsp;&nbsp;
+detailed way, how natural selection operates. And&nbsp; what's really going on in the end is computational&nbsp;&nbsp;
+irreducibility lets one go from these quite simple&nbsp; rules, to these very elaborate kinds of behavior.&nbsp;&nbsp;
+The fitness functions, the things that sort&nbsp; of are determining whether you survive or not,&nbsp;&nbsp;
+those are fairly coarse in biology. But let's&nbsp; imagine you have a coarse fitness function,&nbsp;&nbsp;
+like what's the overall lifetime of the pattern&nbsp; before it dies out, let's say, or how wide does&nbsp;&nbsp;
+the pattern get? You're not saying how it&nbsp; gets wide. You're not saying particularly,&nbsp;&nbsp;
+but you're saying how wide does it get? Turns&nbsp; out with those kinds of coarse fitness functions,&nbsp;&nbsp;
+you can successfully achieve high fitness, but&nbsp; you achieve it in this very complicated way.&nbsp;&nbsp;
+You achieve it by sort of putting together&nbsp; these pieces of irreducible computation.
+And that means that, so in the end, the&nbsp; answer, I think, to why does biological&nbsp;&nbsp;
+evolution work is that it is the same story&nbsp; as what happens in physics and mathematics,&nbsp;&nbsp;
+actually. It is an interplay between underlying&nbsp; computational irreducibility and the computational&nbsp;&nbsp;
+boundedness of, quotes, observers of that&nbsp; computation. So in the case of physics,&nbsp;&nbsp;
+the observers are us, doing experiments in the&nbsp; physical world. In the case of mathematics,&nbsp;&nbsp;
+it's mathematicians looking at the structure of&nbsp; mathematics. In the case of biology, the observer&nbsp;&nbsp;
+is kind of the environment. It's the fitness&nbsp; function. The fitness function is kind of the&nbsp;&nbsp;
+analog of the observer. And the fitness function&nbsp; is saying, “You're a success if you achieve this&nbsp;&nbsp;
+kind of course objective.” And the reason that&nbsp; biological evolution works is that kind of there's&nbsp;&nbsp;
+so much power in the underlying irreducible&nbsp; computation that you're able to achieve many&nbsp;&nbsp;
+of these kind of coarse fitness functions. So,&nbsp; you know, if you imagine that the only way,&nbsp;&nbsp;
+I don't know, an organism could survive is if it&nbsp; breaks out of its egg and immediately it computes&nbsp;&nbsp;
+a thousand primes and does all kinds of other&nbsp; weird things, right? It's not going to survive.
+I did that.
+Right. So I did when I was born.
+As one does.
+But one isn't going to be able to hit that&nbsp; particular very complicated target. What&nbsp;&nbsp;
+actually happens is the fitness functions&nbsp; are much coarser than that and that's why&nbsp;&nbsp;
+biological evolution has been able to work. But&nbsp; if you say well what's actually going on inside?&nbsp;&nbsp;
+What's going on inside is pieces of computational&nbsp; irreducibility being stuck together in a way that&nbsp;&nbsp;
+happens to achieve this coarse fitness function.&nbsp; By the way, this is the same thing as what's going&nbsp;&nbsp;
+on in machine learning, I think. In machine&nbsp; learning, it's the same story that the fitness&nbsp;&nbsp;
+function in that case is you're trying to achieve&nbsp; some training objective. And you do that by sort&nbsp;&nbsp;
+of fitting together these lumps of irreducible&nbsp; computation. Kind of the analogy I've been using&nbsp;&nbsp;
+is it's kind of like building a stone wall.&nbsp; If you're doing kind of precise engineering,&nbsp;&nbsp;
+you might build a wall by making precise bricks&nbsp; and putting them together in a very precise way.&nbsp;&nbsp;
+But the alternative is you can make a stone wall&nbsp; where you're just picking up random rocks off the&nbsp;&nbsp;
+ground and noticing, “Well, this one more or less&nbsp; fits in here. Let me stick that in that way.” And&nbsp;&nbsp;
+so on. That's what's going on in machine learning.&nbsp; You're sort of building this stone wall. If you&nbsp;&nbsp;
+then say, “Well, why does this particular feature&nbsp; of this machine learning system work the way it&nbsp;&nbsp;
+does?” It's, “Well, it's because we happen to find&nbsp; that particular rock lying around on the ground,&nbsp;&nbsp;
+or because we happen to go down this particular&nbsp; branch in the random numbers that we chose for&nbsp;&nbsp;
+the training.” And so it's kind of an assembly&nbsp; of these random lumps of irreducible computation.
+That's what we are too. And that, I mean in&nbsp; biology, the history of biology on Earth,&nbsp;&nbsp;
+the dice has been rolled in particular ways.&nbsp; We have stuck together these sort of lumps of&nbsp;&nbsp;
+irreducible computation and we make the organism&nbsp; that we are today. There are many other possible&nbsp;&nbsp;
+paths we could have taken, which would have also&nbsp; achieved a bunch of fitness objectives. But it&nbsp;&nbsp;
+was just a particular historical path that was&nbsp; taken. One of the things that's kind of a sort&nbsp;&nbsp;
+of slightly shocking thing to do is to take one&nbsp; of these evolved cellular automata that looks&nbsp;&nbsp;
+very elaborate, has all these mechanisms in it,&nbsp; has all these patches that do particular things&nbsp;&nbsp;
+and that fit together in these interesting&nbsp; ways and so on. And you ask an LLM, say,&nbsp;&nbsp;
+write a description of this pattern in the style&nbsp; of a biology textbook. And it's kind of shocking&nbsp;&nbsp;
+because it sounds just like biology because it's&nbsp; successfully describing, there's a, I don't know,&nbsp;&nbsp;
+it makes up, sometimes it can make up names for&nbsp; things. There's a distal triangle of this and so&nbsp;&nbsp;
+on and interacting with this and this and this.&nbsp; And you go and you open a biology textbook and it&nbsp;&nbsp;
+reads kind of just the same. It's a description&nbsp; in biology, and the detail in biology is a&nbsp;&nbsp;
+description of this particular sort of sequence&nbsp; of pieces of computational irreducibility that&nbsp;&nbsp;
+got put together by the history of life&nbsp; on Earth and that make us as we are today.
+Now, since we care about us, it's very worthwhile&nbsp; to study that detailed history, that detailed lump&nbsp;&nbsp;
+of computational irreducibility that is us. But if&nbsp; you want to make a more general theory of biology,&nbsp;&nbsp;
+it better generalize beyond the details of us&nbsp; and the details of our particular history. And&nbsp;&nbsp;
+the thing that I've been doing actually most&nbsp; recently is I think we are at the beginnings&nbsp;&nbsp;
+of finding a way to talk about sort of any&nbsp; system that was adaptively evolved. So in&nbsp;&nbsp;
+the case of the—if we look at all possible&nbsp; rules that could be going on in biology,&nbsp;&nbsp;
+many of those rules won't be ones that would&nbsp; have been found by adaptive evolution with&nbsp;&nbsp;
+coarse fitness functions. So a way to think&nbsp; about this. So the thing—we look at sort of&nbsp;&nbsp;
+what is biology doing. Biology is, if nothing&nbsp; else, a sort of story of bulk orchestration of&nbsp;&nbsp;
+molecular processes. There are all these, one&nbsp; might have thought at some time in the past&nbsp;&nbsp;
+that biology is sort of just chemistry. And by&nbsp; that, I mean, in chemistry, we sort of imagine&nbsp;&nbsp;
+we've got liquids and so on, and they just have&nbsp; molecules randomly bumping into each other. But&nbsp;&nbsp;
+that's not what biology mostly seems to be&nbsp; doing. Biology is mostly a story of detailed&nbsp;&nbsp;
+assemblies of molecules that orchestrate, this&nbsp; molecule hooks into this one and then does this,&nbsp;&nbsp;
+et cetera, et cetera, et cetera. And sort of&nbsp; discoveries in molecular biology keep on being&nbsp;&nbsp;
+about how orchestrated things are, not how this&nbsp; molecule randomly bumps into this other molecule.
+It's sophisticated.
+Yes. But it also has this sort of mechanism to it.&nbsp; It has a, it's not just random collisions. It's&nbsp;&nbsp;
+this molecule is guided into doing this with this&nbsp; molecule and so on. It's a big tower of things, a&nbsp;&nbsp;
+bit like in these evolved cellular automata, which&nbsp; also do what they do through this big tower of&nbsp;&nbsp;
+detailed sort of applications of rules and so on.&nbsp; But so what I'm interested in is to have a theory&nbsp;&nbsp;
+of bulk orchestration. That's something that can&nbsp; tell one about what happens in any system that&nbsp;&nbsp;
+is sort of bulk orchestrated, which can include&nbsp; things like a microprocessor, let's say, which&nbsp;&nbsp;
+has its own sort of complicated set of things that&nbsp; it does. A microprocessor is not well described&nbsp;&nbsp;
+by the random motion of electrons. It's something&nbsp; different from that. But what is it? And does that&nbsp;&nbsp;
+theory that you make of the microprocessor&nbsp; depend on the details of the engineers who&nbsp;&nbsp;
+designed it? Or are there necessary features&nbsp; of any system that has been built to achieve&nbsp;&nbsp;
+certain coarse-grained purposes? So I'm sort of,&nbsp; I'm going down this path. We're not there yet.
+I mean, in physics, the idea of statistical&nbsp; mechanics is an idea a bit like this,&nbsp;&nbsp;
+because the idea of statistical mechanics&nbsp; is once you have enough molecules in there,&nbsp;&nbsp;
+you can start making conclusions just by looking&nbsp; at sort of averages based on what all possible&nbsp;&nbsp;
+configurations of molecules are like, without&nbsp; having to have any details about the particulars&nbsp;&nbsp;
+of these collisions and those collisions&nbsp; and so on. So the statistics wins out. The,&nbsp;&nbsp;
+there's lots of stuff there is more important&nbsp; than the details of what each of the pieces of&nbsp;&nbsp;
+stuff does. In the case of biology, there's one&nbsp; additional thing you seem to know, which is that&nbsp;&nbsp;
+the stuff you have has rules that were subject&nbsp; to some kind of adaptive evolution. And even&nbsp;&nbsp;
+though we don't know what the purpose was, you&nbsp; know when people use sort of natural selection&nbsp;&nbsp;
+as a theory in biology, they look at some weird&nbsp; creature and they say it is this way because...&nbsp;&nbsp;
+And sometimes that because is less convincing than&nbsp; other times. But that's been the model of how one&nbsp;&nbsp;
+makes a theory in biology. And so I think what&nbsp; I'm interested in is, is there a theory that's&nbsp;&nbsp;
+independent of what the because is? Just that&nbsp; there is a because, is that there is some coarse&nbsp;&nbsp;
+grain fitness that's achieved, is that enough&nbsp; of a criterion to tell you that something about&nbsp;&nbsp;
+sort of this bulk orchestration, this limit of a&nbsp; larger number of things subject to that kind of&nbsp;&nbsp;
+constraint? Actually, I figured out something this&nbsp; morning about this. We'll see whether it pans out.
+But one of the things that's really, really&nbsp; striking about these kinds of systems where&nbsp;&nbsp;
+one has done this kind of adaptive evolution on&nbsp; a large scale is you just make pictures of them,&nbsp;&nbsp;
+and they just look very organic. It's a strange&nbsp; thing. And I think I have an idea about how to&nbsp;&nbsp;
+sort of characterize that more precisely that may&nbsp; lead one to something that is sort of a, I mean,&nbsp;&nbsp;
+what one's looking for is something that's kind of&nbsp; a theory of bulk orchestration has, for example,&nbsp;&nbsp;
+information theory has been a general theory of&nbsp; just sort of the all possibilities type situation&nbsp;&nbsp;
+with data or with statistical mechanics and so&nbsp; on. So this is, but sort of it's interesting&nbsp;&nbsp;
+methodologically perhaps when I'm working on&nbsp; something like this, it's an interesting, for me,&nbsp;&nbsp;
+it's an interesting mixture of thinking quite&nbsp; sort of philosophically about things and then just&nbsp;&nbsp;
+doing a bunch of experiments, which often will&nbsp; show me things that I absolutely didn't expect.
+And I suppose there's a third branch to that,&nbsp; which is doing my homework, which is, okay,&nbsp;&nbsp;
+so what have other people thought about this? And&nbsp; what I found is that, when I try and learn some&nbsp;&nbsp;
+field, I often spend years kind of accumulating&nbsp; knowledge about that field. And I'm lucky enough&nbsp;&nbsp;
+I bump into the world experts on this field&nbsp; from time to time and I'll ask them a bunch of&nbsp;&nbsp;
+questions. And usually I'll be kind of probing&nbsp; the foundations of the field. And one of the&nbsp;&nbsp;
+things I learned about sort of doing science&nbsp; is you might think, the foundations of a field&nbsp;&nbsp;
+are always much more difficult to make progress&nbsp; in than some detail high up in the tree of that&nbsp;&nbsp;
+field. This is often not the case, particularly&nbsp; not if the foundations were laid down 50 or 100&nbsp;&nbsp;
+years ago or something because what's happened&nbsp; is, what you discover is when you talk to the&nbsp;&nbsp;
+people who are sort of in the first generation&nbsp; of doing that field of science and you say,&nbsp;&nbsp;
+“Well what about these foundations?” they'll&nbsp; say, “Good question. We wondered about that.&nbsp;&nbsp;
+We're not sure those foundations are right,” et&nbsp; cetera, et cetera, et cetera. Now you go five&nbsp;&nbsp;
+academic generations later, and people will say,&nbsp; “Of course those foundations are right. How could&nbsp;&nbsp;
+you possibly doubt that?” It just becomes their&nbsp; building on top of this thing that's far away from&nbsp;&nbsp;
+the foundations. Well, often the foundations are&nbsp; in a sense very unprotected. Nobody's looked at&nbsp;&nbsp;
+them for decades, maybe longer. And often the&nbsp; ambient methodologies that exist have changed&nbsp;&nbsp;
+completely. In modern times and things I've&nbsp; done a lot, sort of the computational paradigm&nbsp;&nbsp;
+is the biggest such change. And then you go&nbsp; look at these foundations and you realize,&nbsp;&nbsp;
+gosh, you can actually say things about&nbsp; these foundations, which nobody has even&nbsp;&nbsp;
+looked at for ages because they were just&nbsp; building many layers above those foundations.
+And so I think that's been one of the things I've&nbsp; noticed, and it's one of the, for people who are&nbsp;&nbsp;
+sort of doing science and they want to make some&nbsp; progress in some particular area, it's like,&nbsp;&nbsp;
+“Well, what is the foundational question&nbsp; of this field?” And, you know, sometimes&nbsp;&nbsp;
+people will sometimes have to think about&nbsp; that quite a bit. What really is the question&nbsp;&nbsp;
+that we're really trying to answer in this field&nbsp; foundationally? Not the thing that is the latest&nbsp;&nbsp;
+thing that the latest papers were talking about&nbsp; and so on, but what it really is the foundational&nbsp;&nbsp;
+question. And then you say, “Well can you make&nbsp; progress on that foundational question?” And&nbsp;&nbsp;
+quite often the answer is yes. And even the effort&nbsp; to figure out what the foundational question is,&nbsp;&nbsp;
+is often very useful. But by the way, when you&nbsp; do make progress on a foundational question,&nbsp;&nbsp;
+the kind of the trickle down into everything&nbsp; else is dramatic. Although often then the stream&nbsp;&nbsp;
+trickles in a different area than the existing&nbsp; stuff had been built. So in other words, you make&nbsp;&nbsp;
+progress on the foundations, and now there are&nbsp; new kinds of questions about that field that you&nbsp;&nbsp;
+get to be able to answer, even if the existing&nbsp; questions you don't make very much progress on.&nbsp;&nbsp;
+They've been well worked out by the existing&nbsp; foundations. You make new foundations, you can&nbsp;&nbsp;
+kind of answer a new collection of questions.&nbsp; So I think that's a sort of a typical pattern.
+And for me, kind of this effort, I tend to try&nbsp; and sort of ambiently understand some field for a&nbsp;&nbsp;
+while and then I'll typically form some hypothesis&nbsp; about it. Hopefully I'll be able to turn it into&nbsp;&nbsp;
+something kind of computational and then I can&nbsp; do the experiments. I can know that I'm actually&nbsp;&nbsp;
+getting the right answer and so on. And then I&nbsp; try and go back and often at that point I try&nbsp;&nbsp;
+and understand how does this relate to what people&nbsp; have thought about before? And sometimes I say,&nbsp;&nbsp;
+“Wow, that's a great connection. This person&nbsp; had figured out this thing 50 years ago that&nbsp;&nbsp;
+was pretty close to what I was talking about&nbsp; now.” I mean, like the idea of computational&nbsp;&nbsp;
+irreducibility, for example. Once you have&nbsp; that idea, you can go back and say, well,&nbsp;&nbsp;
+when did people almost have that idea before?&nbsp; Like Newton, for example, had this statement that,&nbsp;&nbsp;
+he'd worked out celestial mechanics and&nbsp; calculus for the motion of planets. And he&nbsp;&nbsp;
+made this statement that, what did he say? He said&nbsp; something like, to work out the motions of all&nbsp;&nbsp;
+these different planets is beyond, he said, if I'm&nbsp; not mistaken, “the force of any human mind.” So he&nbsp;&nbsp;
+had figured out that there would be, you very&nbsp; diplomatically said in his time, it was beyond&nbsp;&nbsp;
+the force of any human mind. The mind of God would&nbsp; be capable of working it out, because after all,&nbsp;&nbsp;
+the planets were moving the way they were moving.&nbsp; But that was sort of an interesting precursor that&nbsp;&nbsp;
+you can go back and see that already he&nbsp; was thinking about those kinds of things.
+But sometimes you find that people just utterly&nbsp; missed something that later seems quite obvious.&nbsp;&nbsp;
+Like for example one of the things in physics&nbsp; is the belief in space, the belief that time&nbsp;&nbsp;
+is something very similar to space, which is&nbsp; something that's been quite pervasive in the&nbsp;&nbsp;
+last hundred years of physics, and I think is&nbsp; just a mistake. I think Einstein didn't really&nbsp;&nbsp;
+believe that. The person who brought in that idea&nbsp; was Herman Minkowski in 1908, who kind of noticed&nbsp;&nbsp;
+that this thing that Einstein had defined, this&nbsp; kind of distance metric, the proper time, was,&nbsp;&nbsp;
+T squared minus X squared minus Y squared or&nbsp; whatever, minus Z squared. And Minkowski was a&nbsp;&nbsp;
+number theorist, and he'd been studying quadratic&nbsp; forms, sums of things with squares in them and so&nbsp;&nbsp;
+on. He's like, “This is a quadratic form. It's so&nbsp; great. And look, time enters into the quadratic&nbsp;&nbsp;
+form just like space. Let's bundle these things&nbsp; together and talk about space-time.” And I think&nbsp;&nbsp;
+that was, as I said, I think that was a mistake. I&nbsp; think that misled a lot of people. I think my own&nbsp;&nbsp;
+view, and which is pretty, I think, it's clear&nbsp; this is the way things work, is that sort of&nbsp;&nbsp;
+the nature of space as kind of the extent of some&nbsp; data structure, effectively, some hypergraph, for&nbsp;&nbsp;
+example, that the nature of that is very different&nbsp; from the kind of computational process that is the&nbsp;&nbsp;
+unfolding of the universe through time. The fact&nbsp; that those things seem very different at first,&nbsp;&nbsp;
+it's then a matter of sort of mathematical&nbsp; derivation to find out the relativity works&nbsp;&nbsp;
+and makes them enter into equations and things&nbsp; together. But that's not their underlying nature.
+But in any case, that's the thing where in that&nbsp; particular case, that was a thing where when you&nbsp;&nbsp;
+go back and look at the history, you say, why&nbsp; do people believe in space-time? Why do people&nbsp;&nbsp;
+believe that space and time are the same kind&nbsp; of thing? You eventually discover that piece&nbsp;&nbsp;
+of history and you say they went off in the&nbsp; wrong direction. Sometimes you're like, “Wow,&nbsp;&nbsp;
+they figured it out. They really were in the right&nbsp; direction or they were in the right direction,&nbsp;&nbsp;
+but they didn't have the right tools” or whatever&nbsp; else. And for me, that's a very important&nbsp;&nbsp;
+grounding to know that I know what I'm talking&nbsp; about, so to speak. Like recently, I was studying&nbsp;&nbsp;
+the second law of thermodynamics. I finally think&nbsp; after sort of 50 years of thinking about it,&nbsp;&nbsp;
+that I finally nailed down how it really works and&nbsp; how it sort of arises from this kind of interplay&nbsp;&nbsp;
+between computational irreducibility and our&nbsp; nature as observers. And I was like, let me really&nbsp;&nbsp;
+check that I'm actually getting it right. And I'd&nbsp; known about the second law for a very long time.&nbsp;&nbsp;
+And the second law is one of these things which&nbsp; in a textbook you often see the textbook say, “Oh&nbsp;&nbsp;
+you can derive that entropy increases.” You say,&nbsp; well actually you can flip around this argument&nbsp;&nbsp;
+and say that the same argument will say that&nbsp; entropy should decrease. And my favorite is the&nbsp;&nbsp;
+books where the chapter ends. “This point is often&nbsp; puzzling to the student.” It's been puzzling to&nbsp;&nbsp;
+everybody else too. But the question was, why did&nbsp; people come up with the things they came up with&nbsp;&nbsp;
+in this area? And so I went and kind of untangled&nbsp; the whole history of the second law, which I was&nbsp;&nbsp;
+surprised nobody had written before. Although&nbsp; after I figured it out, I wasn't as surprised&nbsp;&nbsp;
+because it's really complicated. And it requires&nbsp; kind of understanding various points of view&nbsp;&nbsp;
+that people had that are a little bit tricky to&nbsp; understand. But I think, in the end, I feel very&nbsp;&nbsp;
+confident that how what I figured out fits into&nbsp; what people have known before, what people have&nbsp;&nbsp;
+sort of been able to do experiments on, and so on.&nbsp; And that, for me, is an important sort of step in&nbsp;&nbsp;
+the kind of the philosophy, the computational&nbsp; experiments, the homework, so to speak.
+I mean, I find that if I study some field and I'm&nbsp; like trying to read all these papers and so on,&nbsp;&nbsp;
+and it's a complicated field with lots of&nbsp; complicated formalism, I just, I find it&nbsp;&nbsp;
+difficult to absorb all that stuff. For me, it's&nbsp; actually easier just to work it out for myself and&nbsp;&nbsp;
+then see where those chips have fallen and then&nbsp; go back and figure out what the history is and see&nbsp;&nbsp;
+how what I've done relates to that history. Maybe&nbsp; sometimes, it's not so common, I have to say, but&nbsp;&nbsp;
+sometimes I'll discover something in the history&nbsp; where I say, “That's an interesting idea and I&nbsp;&nbsp;
+can use that idea in something that I'm trying&nbsp; to do.” It tends to be the case that I've kind&nbsp;&nbsp;
+of learned enough of the ambient kind of history&nbsp; beforehand that I'm not usually surprised at that&nbsp;&nbsp;
+level. But it's always a humbling experience&nbsp; to learn some new field because you always,&nbsp;&nbsp;
+I mean, I feel a field I've been trying to learn&nbsp; for a while is economics, which is deeply related&nbsp;&nbsp;
+to kind of structure of human society and so on.&nbsp; And I'm still at the stage, it happens whenever I&nbsp;&nbsp;
+learn a field, that for a while, every new person&nbsp; I talk to will tell me something I didn't know&nbsp;&nbsp;
+that makes me very confused about what is actually&nbsp; going on in the field. I feel like I'm just at the&nbsp;&nbsp;
+crest of the hill now for economics. It's starting&nbsp; to be the case that I've heard that idea before,&nbsp;&nbsp;
+and I'm beginning to understand how it&nbsp; fits into the global set of things that&nbsp;&nbsp;
+I'm thinking about. And I do think, by&nbsp; the way, that it's going to turn out that&nbsp;&nbsp;
+economics like biology—well economics thinks it&nbsp; has more theories than biology thinks it has. And&nbsp;&nbsp;
+it, but you know there's sort of a question of&nbsp; what kind of a thing is economics? What are its&nbsp;&nbsp;
+foundational questions? What can one actually&nbsp; understand? I'm not there yet, but I think it&nbsp;&nbsp;
+is really clear to me that the methodologies that&nbsp; I've developed are going to be very relevant to&nbsp;&nbsp;
+that. I don't know how it will come out. That's&nbsp; one of these things you have to let the chips&nbsp;&nbsp;
+fall as they will. I don't know how it's going&nbsp; to come out. I don't know whether, I mean,&nbsp;&nbsp;
+I have kind of prejudices about what I'm going to&nbsp; learn about cryptocurrencies and things like this,&nbsp;&nbsp;
+which is an interesting case because it's kind&nbsp; of a case where sort of all there is is the kind&nbsp;&nbsp;
+of economic network. There isn't the kind of&nbsp; obvious underlying human utility of things.
+Just to give a preview of some of the thinking&nbsp; there, one of the questions in economics&nbsp;&nbsp;
+is what is value? What makes something&nbsp; valuable? And my proto-theory of that,&nbsp;&nbsp;
+which is subject to change because it's&nbsp; not fully worked out at all, is in the end,&nbsp;&nbsp;
+the main thing that's valuable is essentially&nbsp; computational reducibility. In other words,&nbsp;&nbsp;
+in the world at large, there's lots&nbsp; of computational irreducibility,&nbsp;&nbsp;
+lots of things that are unpredictable, lots of&nbsp; things you can't do quickly, and so on. But we&nbsp;&nbsp;
+humans have one thing in fairly short supply, and&nbsp; that's time. Because at least for the time being,&nbsp;&nbsp;
+we're mortal. We have only a limited amount&nbsp; of time. So for us, anything that kind of&nbsp;&nbsp;
+speeds up what we can achieve is something&nbsp; that is valuable to us. And computational&nbsp;&nbsp;
+reducibility is the possibility of finding these&nbsp; little pockets where you can kind of jump ahead,&nbsp;&nbsp;
+where you're not stuck just going through&nbsp; letting things work as they work, so to speak.
+I see. So I think my proto-theory is that&nbsp; the ultimate concept of the ultimate source&nbsp;&nbsp;
+of value is pockets of computational reducibility.&nbsp;&nbsp;
+The fact that you can sort of put together a&nbsp; smartphone and it's a whole smartphone rather&nbsp;&nbsp;
+than having to get all the ingredients&nbsp; together and just go step by step,&nbsp;&nbsp;
+so to speak. If we had infinite time, we could&nbsp; build every smartphone from scratch ourselves.&nbsp;&nbsp;
+But because we only have finite lifetimes, it's&nbsp; worthwhile for us to have the finished goods,&nbsp;&nbsp;
+so to speak. It's the very beginning. I'm&nbsp; just trying to understand these things.
+So roughly speaking, anything that saves us time&nbsp; will be valuable, or at least what is valuable&nbsp;&nbsp;
+will save us time. And then what saves us time&nbsp; is something that's computationally reducible.
+Yes, yes, that's the idea. And I think there&nbsp; are sort of questions about kind of what,&nbsp;&nbsp;
+when you invent something, how do you build&nbsp; on that invention? How do you take that lump&nbsp;&nbsp;
+of reducibility and make use of it and so on?&nbsp; What is the value of that invention? That's&nbsp;&nbsp;
+not something usually taken into account in&nbsp; economics. There's the scarcity of stuff,&nbsp;&nbsp;
+but not the value of this idea and so on. And&nbsp; in biology, we can see the same thing happening.&nbsp;&nbsp;
+There is some sort of piece of reducibility,&nbsp; some mechanism that you see being found,&nbsp;&nbsp;
+and then that mechanism is reused. I don't&nbsp; understand how this stuff works yet. But this is,&nbsp;&nbsp;
+in the end, it's kind of a theory that&nbsp; allows one to understand something&nbsp;&nbsp;
+about the function of things as well as about the&nbsp; mechanism by which the things occur, so to speak.
+But, you know, this is... So for me, in terms&nbsp; of doing a project like that, it's sort of this&nbsp;&nbsp;
+mixture of sort of the philosophy of what's&nbsp; going on, the kind of conceptual framework,&nbsp;&nbsp;
+a bunch of computer experiments to see what&nbsp; actually happens, and then sort of a doing one's&nbsp;&nbsp;
+homework understanding of how this fits into what&nbsp; other people have figured out. And it's a thing&nbsp;&nbsp;
+that I've done for the last 30 years or so now is,&nbsp; in academia, it's often like you write a paper and&nbsp;&nbsp;
+then you're like, get some citations, boom, boom,&nbsp; boom. This is whatever. But I have to say, I find&nbsp;&nbsp;
+it amusing that people pointed out to me that&nbsp; citations to my own stuff sort of got corrupted&nbsp;&nbsp;
+in various databases. And so people are now&nbsp; copying the utterly incorrect citations that are&nbsp;&nbsp;
+just complete nonsense. And you can kind of see&nbsp; that they didn't look at anything. They just like&nbsp;&nbsp;
+click, click, click. Now I've papered my paper,&nbsp; so to speak, by putting in the right citations.&nbsp;&nbsp;
+The other thing that's amusing to me right now&nbsp; is because papers aren't on paper anymore. It's&nbsp;&nbsp;
+starting to be the case that you can have the&nbsp; citations where they'll cite all thousand authors&nbsp;&nbsp;
+explicitly. It's very nice and egalitarian. And&nbsp; it means that the length of the— I'm always, when&nbsp;&nbsp;
+I'm reading papers, I'm always like, “Something&nbsp; exciting is about to happen. Something exciting&nbsp;&nbsp;
+is about to happen. Oh, shit. We reached&nbsp; the end of the paper. Nothing happened.”
+Right. And I thought I hadn't&nbsp; reached the end because the&nbsp;&nbsp;
+thumb on my... as I'm moving down on my&nbsp; window... you can see the percentage.
+Yeah, yeah, right. It's like there's still a lot&nbsp; of way to go. But no, actually it's just pages&nbsp;&nbsp;
+and pages and pages of citations. But, what I've&nbsp; always thought, at least for the last 30 years,&nbsp;&nbsp;
+the much more interesting thing is the actual&nbsp; narrative history of the ideas. That's the&nbsp;&nbsp;
+thing that really matters. It's not, you know,&nbsp; it's like it's nice to be able to sort of cite&nbsp;&nbsp;
+your friends or whatever else you're doing.&nbsp; But what's much more significant for sort of&nbsp;&nbsp;
+the history of ideas is can you actually thread&nbsp; together how this relates to other ideas that&nbsp;&nbsp;
+have come up? And so when I wrote *A New Kind of&nbsp; Science*, I put a huge amount of effort into the&nbsp;&nbsp;
+historical notes at the back. And people, it's&nbsp; like, “Oh, you didn't cite my thing.” Well,&nbsp;&nbsp;
+read the frigging note. It's like, did I&nbsp; get it right? Yes, actually, it's a very,&nbsp;&nbsp;
+very good portrayal of what actually happened.&nbsp; And I think for me that's a much more useful&nbsp;&nbsp;
+thing than like, “Boom, I copied this citation&nbsp; from some database that had it wrong anyway.”
+And I think it's part of the story. I mean, to me,&nbsp; when you do a piece of science, there's the doing&nbsp;&nbsp;
+of the science. And there's the kind of explaining&nbsp; of the science, and there's the contextualizing&nbsp;&nbsp;
+of the science. For me, kind of the effort of&nbsp; exposition is critical to my process in doing&nbsp;&nbsp;
+science. I mean, the fact that I'm going to write&nbsp; something, talk about something, is very important&nbsp;&nbsp;
+to me actually understanding what I'm talking&nbsp; about, so to speak. And when I write expositions&nbsp;&nbsp;
+of things, I try and write expositions that I&nbsp; intend anybody to be able to understand. And&nbsp;&nbsp;
+that is a, that's a big sort of constraint on what&nbsp; one does because if one doesn't know what one's&nbsp;&nbsp;
+talking about, it's really hard to explain it in&nbsp; a way that anybody has a chance to understand. And&nbsp;&nbsp;
+so that's, for me has been an important constraint&nbsp; in my efforts to do science is can I explain it?&nbsp;&nbsp;
+And people sometimes think it's more impressive&nbsp; if you explain the science in this very elaborate&nbsp;&nbsp;
+technical way. That's not my point of view. It's&nbsp; more impressive if you can grind it down to be&nbsp;&nbsp;
+able to explain it in a way that anybody can who&nbsp; puts the effort in can actually understand it.&nbsp;&nbsp;
+And it forces you to understand what you're&nbsp; talking about much more clearly, and it prevents&nbsp;&nbsp;
+the possibility of you just sort of floating over&nbsp; the formalism and completely missing the point.
+But I think, one of the things that, it's sort of&nbsp; the doing of science. There's one another question&nbsp;&nbsp;
+is who should be doing science? I mean, I do&nbsp; science as a hobby. And I do it because I discover&nbsp;&nbsp;
+interesting things. And I think that's fun. If&nbsp; I wasn't discovering interesting things, I just&nbsp;&nbsp;
+wouldn't do it. It's not what I do for a living.&nbsp; I run a tech company for a living. It's something&nbsp;&nbsp;
+that has been kind of a, I started off earlier in&nbsp; my life, I did science for a living, so to speak.&nbsp;&nbsp;
+But for, it's been what, 40 years or something&nbsp; since I did science for a living, so to speak.
+So before we get to who should do science, we&nbsp; started this conversation about what is good&nbsp;&nbsp;
+science, and I wanted to understand your&nbsp; position, not only your views on science,&nbsp;&nbsp;
+but your position in the history of science, and&nbsp; you took us through the past 50 years up until&nbsp;&nbsp;
+even this morning. So that's great. What's missing&nbsp; there is even a definition of what is science.&nbsp;&nbsp;
+I opened with what is good science, and then I&nbsp; should have said, well, what is science to begin&nbsp;&nbsp;
+with? And then we can also contrast that with what&nbsp; is bad science, understand what is good science.
+To me, I think science has been traditionally&nbsp; about taking the world as it is, the natural world&nbsp;&nbsp;
+for example, and somehow finding a way to produce&nbsp; a human narrative about what's going on there.&nbsp;&nbsp;
+So in other words, science is this attempt to&nbsp; bridge from what actually happens in the world&nbsp;&nbsp;
+to something that we can understand about&nbsp; what happens in the world. That's what the&nbsp;&nbsp;
+act of doing science is, that effort to find this&nbsp; thing, which kind of is the explanation that fits&nbsp;&nbsp;
+in a human mind, so to speak, for what's going&nbsp; on in the world. That's been the traditional&nbsp;&nbsp;
+view of science. Now, there are things that call&nbsp; themselves sciences, let's say computer science,&nbsp;&nbsp;
+that really isn't about that. That's really a&nbsp; different kind of thing. Computer science, if it&nbsp;&nbsp;
+was a science like that, will be what I now call&nbsp; ruleology, the study of simple rules and what they&nbsp;&nbsp;
+do, the computation in the wild, so to speak. So&nbsp; it's sort of a misnomer of a science, but that's&nbsp;&nbsp;
+the tradition of how it's called. But so, for me,&nbsp; the science is this, what is it that we humans&nbsp;&nbsp;
+can understand that relates to what actually&nbsp; happens out there in the world, so to speak?
+Now, I called my big book *A New Kind of&nbsp; Science* for a reason because I saw it as&nbsp;&nbsp;
+being a different twist on that idea of what&nbsp; science is. Because when you have these simple&nbsp;&nbsp;
+rules and you can only know what they do by just&nbsp; running them, you have a slightly different case.&nbsp;&nbsp;
+You have something where you can understand the&nbsp; essence of what's happening, the primitives,&nbsp;&nbsp;
+but you cannot understand. You can only&nbsp; have kind of a meta-understanding of the&nbsp;&nbsp;
+whole arc of what happens. You can't expect what&nbsp; people have been hoping for from, for example,&nbsp;&nbsp;
+the physical sciences, where you say, “Now I'm&nbsp; going to wrap my arms around the whole thing.&nbsp;&nbsp;
+I'm going to be able to say everything about&nbsp; everything that's going to go on there.” So&nbsp;&nbsp;
+it's a slightly, it's a different kind of science,&nbsp; hence the title of the book, so to speak. But so,&nbsp;&nbsp;
+that's my view of sort of what science is. I would&nbsp; say that good science tends to be science that,&nbsp;&nbsp;
+at least science that I think is good, is&nbsp; science that has some sort of foundational,&nbsp;&nbsp;
+it has sort of some foundational connections.&nbsp; It's, there is science, maybe I shouldn't say&nbsp;&nbsp;
+good science, I should say high leverage science,&nbsp; science that's that we can be fairly certain&nbsp;&nbsp;
+is going to have importance in the future,&nbsp; so to speak. When you're at some tentacle,&nbsp;&nbsp;
+some detail of some detail, that maybe the detail&nbsp; of the detail will open up some crack that will&nbsp;&nbsp;
+let you see something much more foundational, but&nbsp; much of the time that won't happen. And I think&nbsp;&nbsp;
+the thing that to me makes science that sort of&nbsp; high leverage science is a science where sort of&nbsp;&nbsp;
+the thing you're explaining, the thing you're&nbsp; talking about is somehow very simple, very,&nbsp;&nbsp;
+very clean, very much the kind of thing that you&nbsp; can imagine will show up over and over and over&nbsp;&nbsp;
+again. Not something where you built this whole&nbsp; long description that went three pages long to say&nbsp;&nbsp;
+what you're studying. It's like, this is this&nbsp; very simple thing, and now there's a lot that&nbsp;&nbsp;
+comes out of that simple thing, but it is sort&nbsp; of based on this kind of foundational primitive,&nbsp;&nbsp;
+that's at least, I wouldn't necessarily say&nbsp; that that is, I mean, if we talk about good&nbsp;&nbsp;
+science versus not very good science, you know,&nbsp; one thing is, so what would be my criteria?
+I mean, I would say that science that nobody&nbsp; can understand isn't very good science,&nbsp;&nbsp;
+since the point of science is to&nbsp; have a narrative that we humans&nbsp;&nbsp;
+can understand. If you are producing&nbsp; something that nobody understands,&nbsp;&nbsp;
+or nobody has the chance to understand, so to&nbsp; speak, that's not going to be a good thing.&nbsp;&nbsp;
+I think that there's also a lot of science that&nbsp; gets done that I would say is not, I don't know,&nbsp;&nbsp;
+it's not what it's advertised to be, so to speak.&nbsp; This happens both in theory and in experiment.
+What do you mean?
+Well, science is hard. And unless you, it's&nbsp; like, did it really work that way? Or did you&nbsp;&nbsp;
+fudge something in the middle, so to speak? And&nbsp; there's a certain rate of fudging in the middle.&nbsp;&nbsp;
+I don't think we know what the rate is. In some&nbsp; fields, it's probably very high. And it's often&nbsp;&nbsp;
+not even like I'm nefariously fudging it in the&nbsp; middle. It's just I knew it was going to come out&nbsp;&nbsp;
+this way, so the mouse that didn't do that, that&nbsp; mouse must have been under the weather that day.&nbsp;&nbsp;
+So we'll ignore that mouse type thing. It's&nbsp; not nefariously ignoring the mouse, it's just&nbsp;&nbsp;
+ignoring the mouse because we're sure it isn't,&nbsp; that mouse isn't the important mouse type thing.
+And I know when I was doing particle physics back&nbsp; in the late 70s, a formative experience for me was&nbsp;&nbsp;
+a thing, a calculation I did from QCD about some&nbsp; particular particle interaction, charm particle&nbsp;&nbsp;
+production in proton-proton collisions. Okay, so I&nbsp; had worked out it will happen at this rate. There&nbsp;&nbsp;
+was an experiment that said no such thing was&nbsp; observed at a rate, I don't remember what it was,&nbsp;&nbsp;
+five times below what I said it should happen at.&nbsp; And so if you are the official scientific method&nbsp;&nbsp;
+operative, you say, “Well, then my theory must&nbsp; be wrong.” Well, I didn't think the theory was&nbsp;&nbsp;
+likely to be wrong because it was based on sort&nbsp; of pretty foundational things. And I wrote some&nbsp;&nbsp;
+paper with a couple of other people and half the&nbsp; paper was, here's the calculation. The other half&nbsp;&nbsp;
+of the paper was, well there's this experiment and&nbsp; how could our calculation possibly be wrong? Well&nbsp;&nbsp;
+it turns out as you might guess I remember this&nbsp; story that the experiment was wrong. And that was&nbsp;&nbsp;
+for me an important kind of formative realization.&nbsp; Now do I blame the experimentalists for the fact&nbsp;&nbsp;
+that it was wrong? No, experiments are hard.&nbsp; And they had a certain set of ideas about how&nbsp;&nbsp;
+it would work out, and those were not satisfied&nbsp; and they missed it. Just like in doing computer&nbsp;&nbsp;
+experiments. If you don't measure the right&nbsp; thing, you might miss what you're looking for.
+Now, just a moment. How does that jive&nbsp; with earlier when you were talking about&nbsp;&nbsp;
+the experiments, you have to let the&nbsp; chips fall where they may and accept it?
+Fair point. I mean, you have to do a good&nbsp; experiment, and that's not a trivial thing.&nbsp;&nbsp;
+In other words, if you do a bad experiment,&nbsp; you come to the wrong conclusions. And one&nbsp;&nbsp;
+of the things that I suppose I've gotten so&nbsp; used to in doing computer experiments is,&nbsp;&nbsp;
+how do you make a very clean experiment? This&nbsp; is the typical problem. The typical problem&nbsp;&nbsp;
+with experiments is you do the experiment and&nbsp; you get a result, and there was some effect&nbsp;&nbsp;
+that you didn't know that it mattered that&nbsp; the experiment was done not at sea level or&nbsp;&nbsp;
+something. But that was the critical thing. And&nbsp; you just didn't know that. And so what tends to&nbsp;&nbsp;
+happen with computer experiments is an awful lot&nbsp; easier than with physical experiments. It's like,&nbsp;&nbsp;
+can you whittle it down to the point where&nbsp; you're doing a very, very minimal experiment&nbsp;&nbsp;
+where there's no, “Oh, there's some complicated&nbsp; thing and we don't know what it came from.”
+I mean, back in the 80s when people were working&nbsp; on some, not all, but some of the artificial&nbsp;&nbsp;
+life stuff, that was very much bitten by the&nbsp; experiments were just unbelievably complicated.&nbsp;&nbsp;
+They were like, “Well, I'm going to make this&nbsp; model of a fish and it's going to have 100&nbsp;&nbsp;
+parameters in it.” Well, then you can conclude&nbsp; almost nothing from such an experiment. And you&nbsp;&nbsp;
+say, “Well, the fish wiggles in this way,” but it&nbsp; could do anything with 100 parameters. And so I&nbsp;&nbsp;
+think the, I would say perhaps the right thing&nbsp; to say is that the most common cause of error,&nbsp;&nbsp;
+I suspect, in experiments, is prejudice about&nbsp; how it's going to come out, and then muddiness&nbsp;&nbsp;
+in the experiment. When the experiment is whittled&nbsp; down enough, you can't kind of hide. You can't let&nbsp;&nbsp;
+the prejudice, you can't distort the experiment&nbsp; by the prejudice, so to speak, because it is so&nbsp;&nbsp;
+simple. You can just see this is what goes in,&nbsp; this is what comes out. There's nothing behind&nbsp;&nbsp;
+the curtain, so to speak. So I think that's, but&nbsp; a lot of experiments, physical experiments, people&nbsp;&nbsp;
+who do physical experiments have it much worse&nbsp; than people like me who do computer experiments.&nbsp;&nbsp;
+Because it's really hard to make sure you're not&nbsp; having any other effect you don't understand,&nbsp;&nbsp;
+et cetera, et cetera, et cetera. I mean, the&nbsp; particular mistake that was made in the experiment&nbsp;&nbsp;
+I mentioned before was they were studying, they&nbsp; were looking for tracks of particles in some&nbsp;&nbsp;
+emulsion stack, and the particle tracks were a&nbsp; bit shorter than they were looking for because&nbsp;&nbsp;
+they just didn't know about how those kinds of&nbsp; particles worked. Well, that's something I suppose&nbsp;&nbsp;
+there are analogous mistakes one could make in a&nbsp; computer experiment, but it's a lot easier to not&nbsp;&nbsp;
+make those mistakes in a computer experiment,&nbsp; particularly if you do the visualization well&nbsp;&nbsp;
+and you're really kind of seeing every&nbsp; bit, so to speak, at least at some level.
+Visualization is something I want to get back to,&nbsp;&nbsp;
+so I'm glad you brought it up because you&nbsp; brought it up three or four times now as&nbsp;&nbsp;
+something extremely important. So can you talk&nbsp; about how can visualization be done mediocrely&nbsp;&nbsp;
+and then how is it done well? Let's imagine you&nbsp; have several particles and you want to visualize&nbsp;&nbsp;
+them. Are you just talking about we visualize&nbsp; them as spheres instead of just 2D blocks? Are&nbsp;&nbsp;
+you just talking about, well, we should be&nbsp; able to rotate? What are you talking about?
+No, the most common mistake is that there's a&nbsp; lot going on, and you choose to only look at some&nbsp;&nbsp;
+small slice of what's going on. So, for example,&nbsp; classic example, people studying snowflake growth.&nbsp;&nbsp;
+They were studying, they said, “Well, the thing we&nbsp; really got to concentrate on is the growth rate of&nbsp;&nbsp;
+the snowflake, how fast the snowflake expands.”&nbsp; So they had worked out their growth rate,&nbsp;&nbsp;
+and they'd carefully calibrated it, and they&nbsp; found out it was correct for snowflakes and so&nbsp;&nbsp;
+on. But they never bothered to make a picture of&nbsp; what the actual snowflakes they were growing with&nbsp;&nbsp;
+their model looked like. They were spherical.&nbsp; Okay. All right. So that's an example of kind&nbsp;&nbsp;
+of a visualization type mistake. So the trick&nbsp; is can you make a representation of things that&nbsp;&nbsp;
+is as faithful as possible, has as many of the&nbsp; details as possible, but yet is comprehensible&nbsp;&nbsp;
+to our visual system? And that's easier in some&nbsp; cases than others. Like cellular automata are a&nbsp;&nbsp;
+particularly easy case. They are particularly&nbsp; suitable for our visual system. At least the&nbsp;&nbsp;
+one-dimensional ones that I always studied. You&nbsp; know, you just have this line of cells and they go&nbsp;&nbsp;
+down the page. You get this picture. Boom, there&nbsp; it is. Now, even there, with cellular automata,&nbsp;&nbsp;
+what had been done before my efforts were to&nbsp; look at two-dimensional cellular automata,&nbsp;&nbsp;
+where you have kind of a video of what's going&nbsp; on. When you have that video, it is really hard&nbsp;&nbsp;
+to tell what's happening. Some things, like the&nbsp; Game of Life cellular automaton, people studied&nbsp;&nbsp;
+that at some length, and you can see these gliders&nbsp; moving across the screen, and they look very cool,&nbsp;&nbsp;
+and you can see glider guns doing their thing, and&nbsp; all that kind of thing. But when you tip it on its&nbsp;&nbsp;
+side, and you look at the kind of space-time&nbsp; picture of what's happening, it becomes much&nbsp;&nbsp;
+clearer what's going on. And that's a case&nbsp; where our visual system, yes, we can see movies,&nbsp;&nbsp;
+but we don't get sort of in one gulp the whole&nbsp; story of what happened. And so that's another&nbsp;&nbsp;
+case where the more faithful visualization,&nbsp; if you can do it, it's not so trivial to do&nbsp;&nbsp;
+it because it's kind of a three-dimensional&nbsp; thing and you can't see through all the&nbsp;&nbsp;
+layers and you have to figure out how you're&nbsp; going to deal with that. And it's complicated.
+For the things that I studied for example&nbsp; in our models of physics where we're dealing&nbsp;&nbsp;
+with hypergraphs. Hypergraphs are not trivial&nbsp; things to visualize. And in fact one of the&nbsp;&nbsp;
+things that made the physics project possible&nbsp; was that a decade earlier, in Wolfram Language,&nbsp;&nbsp;
+we had developed good visualization techniques&nbsp; for graphs, for networks, which was a completely&nbsp;&nbsp;
+independent effort that had nothing directly&nbsp; to do with my sort of project in physics,&nbsp;&nbsp;
+but it was something we did for other reasons. And&nbsp; that was something that was critically useful in&nbsp;&nbsp;
+doing physics projects. I mean, back in the&nbsp; nineties, when I was doing graph layout, I&nbsp;&nbsp;
+actually found a young woman who was spectacularly&nbsp; good on a piece of paper, laying out a graph to&nbsp;&nbsp;
+have the lines not crossed and so on. Later on,&nbsp; she became a distinguished knitwear designer.&nbsp;&nbsp;
+So I think that was, I don't know what was cause&nbsp; and what was effect, but it was kind of a unique&nbsp;&nbsp;
+skill. Most people are not, you know, most people&nbsp; can't do it. You give them a bunch of nodes and a&nbsp;&nbsp;
+graph and you say, “Untangle this thing.” It's&nbsp; really hard to do. I can't do it at all. But,&nbsp;&nbsp;
+you know, we had found algorithms for doing&nbsp; that, which I used a lot in doing things with&nbsp;&nbsp;
+the physics project because that was, you know, it&nbsp; was a sort of a pre-existing thing, but it's still&nbsp;&nbsp;
+more difficult to visualize what's happening.&nbsp; And things I've been doing very recently, last&nbsp;&nbsp;
+few weeks on lambda calculus, that's an area where&nbsp; the obvious visualizations are just horrendous.&nbsp;&nbsp;
+Our visual system doesn't figure out what the heck&nbsp; is going on. And it's been possible, I found some&nbsp;&nbsp;
+reasonable ways to do that, which are very helpful&nbsp; in getting intuition about what's happening. But&nbsp;&nbsp;
+that's our highest bandwidth way of getting data&nbsp; into our brains, is 10 megapixels of stuff that&nbsp;&nbsp;
+we get through our eyes. And so that's the best.&nbsp; And that's the question, is can you make a sort&nbsp;&nbsp;
+of a faithful representation of what's going on&nbsp; underneath that you can get into your brain so&nbsp;&nbsp;
+that your brain has the chance to get intuition&nbsp; about what's happening or to notice anomalies?
+I mean, somehow I think the story of my life in&nbsp; science devolves every so often, and like it did&nbsp;&nbsp;
+just a few days ago, into a very large number of&nbsp; little pictures on the screen and going through&nbsp;&nbsp;
+screen after screen of these things, looking for&nbsp; ones that are interesting. It's kind of a very&nbsp;&nbsp;
+natural history-like activity. It's kind of like,&nbsp; when do I see the flightless bird or something&nbsp;&nbsp;
+like this? And why do I do that? Obviously I used&nbsp; machine learning techniques to prune these things&nbsp;&nbsp;
+et cetera et cetera et cetera. But in the end, I'm&nbsp; looking for the unexpected. And the unexpected for&nbsp;&nbsp;
+me is what my brain registers as unexpected, and&nbsp; that's the thing I'm interested in, so to speak.
+Okay, so two questions here. One, if you're using&nbsp; machine learning to sift through, I remember&nbsp;&nbsp;
+there's a talk from Freeman Dyson. He was saying&nbsp; that when the Higgs particle was discovered,&nbsp;&nbsp;
+he's happy that the Higgs was discovered, but&nbsp; he's not happy with how it was discovered because&nbsp;&nbsp;
+there was so much filtering out of data. And he&nbsp; says you want to be looking for the anomalies.
+I'm happy that the particle is finally&nbsp; discovered after many years of effort,&nbsp;&nbsp;
+but I'm unhappy with the way the particle&nbsp; was discovered. The Large Hadron Collider&nbsp;&nbsp;
+is not a good machine for making discoveries.&nbsp; The Higgs particle was only discovered with&nbsp;&nbsp;
+this machine because we told the machine&nbsp; what we expected it to discover. It is an&nbsp;&nbsp;
+unfortunate deficiency of the Hadron&nbsp; Collider that cannot make unexpected&nbsp;&nbsp;
+discoveries. Big steps ahead in science&nbsp; usually come from unexpected discoveries.
+Do you have reservations about how some&nbsp; of these filtering techniques can be done?
+Absolutely. You get it wrong all&nbsp; the time. The less filtering you do,&nbsp;&nbsp;
+the better. The more that's why I end&nbsp; up with looking at arrays of pictures,&nbsp;&nbsp;
+screen after screen of arrays of pictures. It&nbsp; used to be on paper. But I would print these&nbsp;&nbsp;
+things out and go through sheaves of paper looking&nbsp; for things. Yeah, I mean there are things that are&nbsp;&nbsp;
+fairly safe to do, although they bite you from&nbsp; time to time. Like I was just mentioning earlier,&nbsp;&nbsp;
+this very long-lived Lambda creature that I found,&nbsp; the automated techniques that I had missed it.&nbsp;&nbsp;
+So that was, and I noticed something was wrong by&nbsp; looking at a visualization of what it was doing.
+Okay. And then the other question was&nbsp; approximately an hour and a half ago or so,&nbsp;&nbsp;
+we were talking about bulk organization&nbsp; theory and natural selection. So BOT.
+Bulk orchestration. Theory of orchestration.
+Got it. Yeah. You made an acronym. Okay.&nbsp; That's a new acronym. Okay. The BOT theory.&nbsp;&nbsp;
+And the question is whether it's critical to&nbsp; how BOTs themselves work. Let's skip that.&nbsp;&nbsp;
+So what I want to know is you mentioned, if&nbsp; I recall correctly that there was a recent&nbsp;&nbsp;
+visualization you did in order to make it&nbsp; easier to see the connection to biology.
+Not quite. I mean, no, not quite. That was&nbsp; related to this. I'm doing multiple projects&nbsp;&nbsp;
+right now. So that was about a different&nbsp; project, which actually happens to have&nbsp;&nbsp;
+some relevance to biology, but that&nbsp; relevance is more related to origin of&nbsp;&nbsp;
+life and it's a slightly more circuitous&nbsp; route. But so, different kind of thing.
+But let's end the conversation on many people&nbsp; who email you, they email you their theory,&nbsp;&nbsp;
+their theory of everything. They'll say, “I have&nbsp; a theory.” You have a recent blog post about this.&nbsp;&nbsp;
+Yes, I have several quotes from that. We can&nbsp; get to that if you like. But how can someone,&nbsp;&nbsp;
+many of the people who watch this show, many&nbsp; people who are fans of yours, many people who&nbsp;&nbsp;
+watch Sean Carroll's show or any science show at&nbsp; all, they want to contribute to science. And they&nbsp;&nbsp;
+may not have the tools to contribute to science.&nbsp; So they use LLMs, generally speaking. Or they&nbsp;&nbsp;
+just don't do anything, but they have the want.&nbsp; How can they productively contribute to science?
+That's an interesting question. So I&nbsp; think there are a couple of... Okay,&nbsp;&nbsp;
+so first point is there are different areas&nbsp; of science, right? And at different times,&nbsp;&nbsp;
+people with different levels of training&nbsp; and expertise have been able to contribute&nbsp;&nbsp;
+in different ways. Like there was a time when&nbsp; in natural history, you could go and just find&nbsp;&nbsp;
+beetles and so on. And that was a contribution&nbsp; to science because, every beetle you found was&nbsp;&nbsp;
+something which eventually there would be some&nbsp; systematic thing that came out from looking at&nbsp;&nbsp;
+that. Similarly in astronomy, you find a comet,&nbsp; you find some astronomical phenomenon. That's&nbsp;&nbsp;
+going to become more difficult to do as an amateur&nbsp; because there are systematic, high precision&nbsp;&nbsp;
+telescopes and so on that are doing these things.&nbsp; You're not going to find another continent.
+Not anymore.
+There have been times when&nbsp; this wasn't done so much by amateurs,&nbsp;&nbsp;
+but chemistry, for example, there was a&nbsp; thing where you study another compound,&nbsp;&nbsp;
+and you just keep on doing that. And in the end,&nbsp; you build up this kind of collection of knowledge&nbsp;&nbsp;
+where somebody is going to pick up, somebody&nbsp; studied lithium hydroxide back in the day for&nbsp;&nbsp;
+no particularly good reason. And then somebody&nbsp; at NASA realizes that's a way to scrub carbon&nbsp;&nbsp;
+dioxide or whatever, and it gets used in the&nbsp; Apollo spacecraft or whatever it is. So I think&nbsp;&nbsp;
+there's this thing where there are things that&nbsp; you can kind of accumulate that maybe are not,&nbsp;&nbsp;
+not necessarily in and of themselves. They&nbsp; don't require sort of integrating a lot of,&nbsp;&nbsp;
+a lot of things to be able to make progress.&nbsp; There are areas that are more difficult.
+So for example, right now, physics is,&nbsp; as it has traditionally been done is&nbsp;&nbsp;
+a more difficult area to contribute to.&nbsp; Because back, I would say, in the 1700s,&nbsp;&nbsp;
+not so difficult. But now there's a pretty&nbsp; tall tower of stuff that's known. I mean,&nbsp;&nbsp;
+stuff from mathematical physics and so on that's&nbsp; known. And if you say, “Well I'm going to have&nbsp;&nbsp;
+a theory of how space works,” if you don't know&nbsp; what's already known about space, which is couched&nbsp;&nbsp;
+in quite sophisticated mathematical terms, and&nbsp; not capriciously. It's just that is, our human,&nbsp;&nbsp;
+our everyday human experience doesn't happen to&nbsp; extend to how space-time curves around a black&nbsp;&nbsp;
+hole. That's not everyday intuition. And so it's&nbsp; inevitable that it's going to be couched in terms&nbsp;&nbsp;
+that are not accessible from just having everyday&nbsp; intuition. And there are fields where that's not&nbsp;&nbsp;
+so much of that has happened. Physics is one&nbsp; where there's a pretty tall tower of things that&nbsp;&nbsp;
+have been figured out that get you to the sort of&nbsp; the description of physics as we know it today.
+Now it turns out that the things that we've&nbsp; been able to do with our model of physics,&nbsp;&nbsp;
+it's one's a little bit closer to the ground&nbsp; again in some aspects of it. Because the study of&nbsp;&nbsp;
+hypergraph rewriting and so on, that's something&nbsp; pretty much anybody can understand the ideas of&nbsp;&nbsp;
+hypergraph rewriting. It doesn't require that you&nbsp; know a whole bunch of stuff about, I don't know,&nbsp;&nbsp;
+sophisticated things about partial differential&nbsp; equations and function spaces and all this kind&nbsp;&nbsp;
+of thing which are fairly complicated abstract&nbsp; concepts. It's something where at least at the&nbsp;&nbsp;
+simplest level, it's like you've got this&nbsp; thing, you could run it on your computer,&nbsp;&nbsp;
+you can see what it does. Now, connecting&nbsp; that to what's known in physics,&nbsp;&nbsp;
+that's more challenging. And knowing kind&nbsp; of how that relates to, I don't know,&nbsp;&nbsp;
+some result in quantum field theory or something&nbsp; is more challenging. The result in quantum field&nbsp;&nbsp;
+theory is not a waste of time. The result in&nbsp; quantum field theory is our best condensation&nbsp;&nbsp;
+of what we know about how the universe&nbsp; works. It's not something where it's like,&nbsp;&nbsp;
+“Forget all that stuff. We can just go back to&nbsp; kind of the everyday intuition about physics.”&nbsp;&nbsp;
+That was a good thing a few hundred years ago.&nbsp; It isn't a good thing anymore because we already&nbsp;&nbsp;
+learned a bunch of stuff. We already figured&nbsp; out a bunch of things. And if you say, “Well,&nbsp;&nbsp;
+just throw away all those things, let's start&nbsp; from scratch,” then you've got to recapitulate&nbsp;&nbsp;
+those few hundred years of discoveries. And&nbsp; that's a tall hill to climb, so to speak.
+But I think one of the areas where there's sort of&nbsp; a wonderful opportunity for people to contribute&nbsp;&nbsp;
+to science that is sort of high science is in&nbsp; this field that I call ruleology which is kind of&nbsp;&nbsp;
+studying simple rules and seeing what they do. And&nbsp; whether it's cellular automata or Turing machines&nbsp;&nbsp;
+or lambda calculus or hypergraph rewriting, these&nbsp; are things where you run it on your computer.&nbsp;&nbsp;
+Okay, I built a bunch of tools for doing this,&nbsp; which make it really easy. But you do this, you're&nbsp;&nbsp;
+well organized, you kind of, you won't immediately&nbsp; have intuition about how these things work. At&nbsp;&nbsp;
+least I never have. It takes actually doing it for&nbsp; a while to have the intuition. And people usually&nbsp;&nbsp;
+don't at the beginning. They're just like, “Oh,&nbsp; it'll never do anything interesting.” We'll just&nbsp;&nbsp;
+run it and see what it does. And then if you're&nbsp; well organized and kind of can develop intuition,&nbsp;&nbsp;
+you will eventually get to the point where&nbsp; you can say, “Okay, I see how this works.&nbsp;&nbsp;
+I can build this thing where I can, I can&nbsp; add some definite piece to knowledge.”
+Like for example we have this summer&nbsp; school every year for grown-ups and&nbsp;&nbsp;
+we have another summer research program&nbsp; for high school students. So this year&nbsp;&nbsp;
+for the high school students we had like,&nbsp; I don't know, 80 students or something and&nbsp;&nbsp;
+I'm the one who gets to figure out&nbsp; projects for at least almost all of them.
+Oh, you define them or they come&nbsp; to you and you sift through them?
+No, no, I define them. And usually during&nbsp; the year, I kind of accumulate a list of&nbsp;&nbsp;
+ones I'd really like to see done.&nbsp; And so this year, several students,&nbsp;&nbsp;
+I gave them projects which I've been wanting to do&nbsp; for decades and which are just studying particular&nbsp;&nbsp;
+kinds of simple systems. One was multi-way&nbsp; register machines was one of them. Another one&nbsp;&nbsp;
+this year was games between programs. Another one&nbsp; was this year was another. There were several.&nbsp;&nbsp;
+But anyway, these are things where, and,&nbsp; you know, I can say these high school kids,&nbsp;&nbsp;
+okay, they're very bright high school kids, and&nbsp; they're using our tools and so on. In two weeks,&nbsp;&nbsp;
+we're able to make quite nice progress and&nbsp; we're able to add something. I'm sure those&nbsp;&nbsp;
+things will turn into academic papers and&nbsp; things like this. And they were able to,&nbsp;&nbsp;
+starting from just being a bright high school&nbsp; student, so to speak, not knowing eight years&nbsp;&nbsp;
+of mathematical physics. They don't know group&nbsp; theory, they don't know differential calculus,&nbsp;&nbsp;
+or maybe some. They probably know basic calculus,&nbsp; probably, but they wouldn't need to. This is just&nbsp;&nbsp;
+a sort of be organized, be careful and have the&nbsp; motivation and a little bit think foundationally&nbsp;&nbsp;
+enough that you're kind of drilling down to say&nbsp; what's the obvious experiment to do. Don't invent&nbsp;&nbsp;
+this incredibly elaborate experiment where the&nbsp; conclusions won't tell you anything. Try and have&nbsp;&nbsp;
+the simplest experiment. What is the simplest&nbsp; version of this that we can look at and so on?
+And that, it's really neat because it means it's&nbsp; an area. Ruleology is an area. It's a vast area.&nbsp;&nbsp;
+It's the whole computational universe. If you&nbsp; say, “Well, what's the thing that's never been&nbsp;&nbsp;
+studied before?” I get out my computer, pick&nbsp; a random number, and I'm going to be able to&nbsp;&nbsp;
+give you something that I guarantee has never been&nbsp; studied before. And it'll have a lot of richness&nbsp;&nbsp;
+to it. If you study that thing, that randomly&nbsp; generated thing, the particulars of that thing&nbsp;&nbsp;
+may or may not show up as important in particular&nbsp; in the future. But certainly building up that body&nbsp;&nbsp;
+of knowledge about things like that is something&nbsp; that is very high leverage science. It's something&nbsp;&nbsp;
+that you can kind of be sure is something that's a&nbsp; solid thing that people will be able to build on.
+One of the things I find striking and a bit&nbsp; encouraging, I suppose, is you think about&nbsp;&nbsp;
+something like platonic solids, the icosahedron,&nbsp; the dodecahedron, and so on. You say, well,&nbsp;&nbsp;
+you have an object, a piece of wooden dodecahedron&nbsp; or something. And you go back and you say, well,&nbsp;&nbsp;
+we find a dodecahedron from ancient Egypt. It&nbsp; looks exactly the same as the dodecahedron we&nbsp;&nbsp;
+have today. This is a timeless object. It's a&nbsp; thing that, the dodecahedron has been something&nbsp;&nbsp;
+that has been worth talking about from the time&nbsp; of ancient Egypt to today. And so similarly,&nbsp;&nbsp;
+these things in ruleology have the same&nbsp; character. They're very abstract, precise,&nbsp;&nbsp;
+simple, and they're sort of foundational. And&nbsp; it's something where, this particular rule,&nbsp;&nbsp;
+it's not going to be the case that somebody's&nbsp; going to say, “Oh, we learned more about the&nbsp;&nbsp;
+immune system. So that model of the immune system&nbsp; is irrelevant now. The things you measured about&nbsp;&nbsp;
+this are irrelevant.” That's not going to happen&nbsp; because this is, we're at the foundation, so to&nbsp;&nbsp;
+speak. This is an ultimate abstract thing. And&nbsp; so anything you build there is a permanent thing.
+And, whether you happen to find, whether you&nbsp; do, there were many naturalists before Darwin&nbsp;&nbsp;
+who went and collected lots of critters around&nbsp; the world. Darwin realized having collected lots&nbsp;&nbsp;
+of critters that there was a bigger picture&nbsp; that he could build. It was still useful for&nbsp;&nbsp;
+people to have collected all those critters.&nbsp; And, a bunch of the information that had been&nbsp;&nbsp;
+collected by those people. It's a different&nbsp; thing to kind of integrate all those things,&nbsp;&nbsp;
+have the sort of philosophical integration&nbsp; to be able to come up with the bigger theory.&nbsp;&nbsp;
+But that's a much more difficult thing to&nbsp; do than to add these kind of solid bricks&nbsp;&nbsp;
+to science. And I would say that, as a person&nbsp; who's done lots of ruleology in my time, it's,&nbsp;&nbsp;
+if you have a certain turn of mind, it's a lot of&nbsp; fun. Because you just, you keep on finding stuff.&nbsp;&nbsp;
+You keep on discovering things. I mean, I'm sure&nbsp; back in the day when the whole planet hadn't yet&nbsp;&nbsp;
+been explored, you would go to someplace in the&nbsp; center of Africa, and it's like, “Oh my gosh,&nbsp;&nbsp;
+there's a tree that does this or this.” And&nbsp; this is exactly the same thing. Every day,&nbsp;&nbsp;
+you see lots of things, like in this stuff about&nbsp; lambda calculus I've just been doing, there's all&nbsp;&nbsp;
+kinds of weird stuff. I've never seen it before.&nbsp; I don't think anybody's ever seen it before. And&nbsp;&nbsp;
+I'm sure nobody's ever seen it before. And it's&nbsp; remarkable. And it's interesting. And it's kind&nbsp;&nbsp;
+of, it feels, it's an explorational kind of&nbsp; thing. It's kind of you get to see for the&nbsp;&nbsp;
+first time something nobody's ever seen before&nbsp; and something that is that you kind of know is&nbsp;&nbsp;
+going to be a permanent thing that is going to&nbsp; be a thing that is never going to change. It's&nbsp;&nbsp;
+never going to be “Oh it doesn't work that&nbsp; way anymore.” It is what it is, so to speak.
+And I think that ruleology is a is a great example&nbsp; of a place where there has been a fair amount of&nbsp;&nbsp;
+sort of quotes amateur ruleology that's been done&nbsp; over the years. It's not been as well organized&nbsp;&nbsp;
+as it should be. And I fault myself for that in&nbsp; large measure. I mean, back in the 80s, I got a&nbsp;&nbsp;
+bunch of people interested in this, and a bunch of&nbsp; people, both professional scientists and amateurs,&nbsp;&nbsp;
+started studying these kinds of things. And I&nbsp; started a journal that collected some of these&nbsp;&nbsp;
+things, *Complex Systems*. But I would say that&nbsp; the kind of the rhythm of how to present ruleology&nbsp;&nbsp;
+and so on, I didn't really develop as well as I&nbsp; should have done, and I'm now hoping to do that.&nbsp;&nbsp;
+And it's a question of, for example, back in the&nbsp; day when people started having academic papers&nbsp;&nbsp;
+back in the 1600s, if you read those papers, they&nbsp; read like today's blog posts. They're much more&nbsp;&nbsp;
+kind of anecdotal. “I went to the top of this&nbsp; mountain. I saw this and this and this.” And&nbsp;&nbsp;
+they're more personal. They're actually, I would&nbsp; say, better communication than what one gets in&nbsp;&nbsp;
+sort of the very cold academic paper of today,&nbsp; where particularly I would say math papers are&nbsp;&nbsp;
+one of my favorite, non-favorite examples, where&nbsp; it just starts, “Let G be a group.” It's like,&nbsp;&nbsp;
+why are we looking at this group? Who knows?&nbsp; It's just, because it's like it is beneath&nbsp;&nbsp;
+us or it is not appropriate or it is kind of&nbsp; not professional enough for us to describe why&nbsp;&nbsp;
+we're doing this. But so back in the 1600s&nbsp; when academic papers kind of originated,&nbsp;&nbsp;
+they were like the blog posts of today. So at&nbsp; least my blog posts today where there's both the&nbsp;&nbsp;
+content and a certain amount of the kind of the&nbsp; wrapping of why we're doing this and kind of...
+You have the purpose in mind&nbsp; and you're conveying it.
+Yes. And you're showing how what&nbsp; you're doing is connected to that.
+Yeah, right. And it's sort of telling a story&nbsp; more so than it's just saying fact, fact,&nbsp;&nbsp;
+fact. And, I'm just filing the facts, so to speak.&nbsp; I think with ruleology, one of the things that is&nbsp;&nbsp;
+interesting is it's a place where you discover&nbsp; something interesting, you want to just say,&nbsp;&nbsp;
+“This is my discovery.” And you want a way to&nbsp; sort of accumulate lots and lots of discoveries&nbsp;&nbsp;
+without having to always feel like you have to&nbsp; wrap a whole kind of academic story around it. And&nbsp;&nbsp;
+the academic system has not is not well set up for&nbsp; that. The academic system, it's like there's this&nbsp;&nbsp;
+unit, the sort of unit of academic achievement,&nbsp; which is the paper, so to speak. And just there's&nbsp;&nbsp;
+this particular thing that I observed in these&nbsp; particular characteristics. That's not so much&nbsp;&nbsp;
+the kind of thing that one sees there. It's the&nbsp; kind of thing that one should be accumulating lots&nbsp;&nbsp;
+of in ruleology. And it's something that is very&nbsp; accessible to sort of well-organized people who&nbsp;&nbsp;
+want to sort of work cleanly on this without, as&nbsp; amateurs, so to speak. I think that's a powerful&nbsp;&nbsp;
+thing, and I'm hoping to have the bandwidth to&nbsp; kind of put together a properly organized kind&nbsp;&nbsp;
+of ruleological society or something where we&nbsp; can kind of accumulate this kind of information.
+I think it's a thing where, I mean, one of the&nbsp; things I do and the things that I write about&nbsp;&nbsp;
+science is every picture in everything I write,&nbsp; you can click that picture, you'll get a piece&nbsp;&nbsp;
+of Wolfram language code. And at least if our&nbsp; QA department didn't mess up, it will forever&nbsp;&nbsp;
+produce the picture that I said it produced, so to&nbsp; speak. And I mentioned the QA department because&nbsp;&nbsp;
+it isn't actually trivial to have, you know, you&nbsp; make some piece of code and you have got to make&nbsp;&nbsp;
+sure it keeps on working. We've been very good in&nbsp; Wolfram Language in maintaining compatibility for&nbsp;&nbsp;
+the last 38 years with the language, but if I&nbsp; used some weird undocumented feature that day,&nbsp;&nbsp;
+that might change. I don't, so that usually&nbsp; isn't a problem. But that fact that you kind&nbsp;&nbsp;
+of have it as a constraint for yourself, I&nbsp; like to have it as a constraint for myself,&nbsp;&nbsp;
+the things I write should be understandable to&nbsp; anybody who puts the effort in to understand them.
+And reproducible.
+Yes. But also that they're understandable not&nbsp; only to the humans, but also to the computers,&nbsp;&nbsp;
+so to speak. And that everything I do is like&nbsp; you can immediately reproduce it. That's turned&nbsp;&nbsp;
+out in practice to be a very powerful thing&nbsp; because people just take the code and all the&nbsp;&nbsp;
+visualizations and so on that I've made, and they&nbsp; just go and start from there. They kind of start&nbsp;&nbsp;
+from that level of the tower, so to speak, rather&nbsp; than having to climb the tower themselves. And&nbsp;&nbsp;
+I think that's a powerful thing. It's pretty&nbsp; much undone in most of academic science,&nbsp;&nbsp;
+partly because academics, well, they don't tend&nbsp; to package sort of the kind of code in a form that&nbsp;&nbsp;
+will actually be reproducible and runnable. They&nbsp; do more with our technology than anywhere else,&nbsp;&nbsp;
+but still it's somewhat inadequate. And also, I&nbsp; think the motivations on the part of the typical&nbsp;&nbsp;
+academic scientist is kind of in the game of&nbsp; academia, so to speak. Which involves, I'm going&nbsp;&nbsp;
+to publish my thing, I'm going to publish another&nbsp; thing that leverages the thing I just published,&nbsp;&nbsp;
+and I'm going to get as many papers as possible,&nbsp; and so on. For me, the calculation is actually&nbsp;&nbsp;
+rather different, because for me, I'm trying to&nbsp; do a bunch of different things in my finite life,&nbsp;&nbsp;
+so to speak. And for me, I'll write something,&nbsp; and I really don't want to write something about&nbsp;&nbsp;
+the same topic again. It's kind of like, it's&nbsp; a write-once type activity. And so as much as&nbsp;&nbsp;
+possible, I'm like, I'm going to write this thing&nbsp; and okay, world, here it is. I hope you can do&nbsp;&nbsp;
+something useful with it because I'm not going&nbsp; to come back to this particular thing. I mean,&nbsp;&nbsp;
+I find actually that the, having, I do end&nbsp; up sort of building on the things I've done,&nbsp;&nbsp;
+but not kind of writing sort of an incremental&nbsp; version of the same document again. I find it,&nbsp;&nbsp;
+maybe it's just me, but I just,&nbsp; I can't bring myself to do that.
+I feel the same way. And it's actually&nbsp; very frustrating when I do a project,&nbsp;&nbsp;
+I like to pick all the low-hanging fruit.&nbsp; And I know that any fruit I don't pick&nbsp;&nbsp;
+first time around, I'm not going to come&nbsp; back and pick. And it's just going to sit&nbsp;&nbsp;
+there and it's going to be frustrating to me&nbsp; because it's kind of like here's this thing&nbsp;&nbsp;
+and I just figured out a little bit more&nbsp; but I have no place to write that down.
+Actually one thing I've been doing recently is in&nbsp; the NKS book there were many notes at the back,&nbsp;&nbsp;
+and many hundred-page things that I'm writing&nbsp; today are the expansion of three-paragraph&nbsp;&nbsp;
+notes in the NKS book. So, for example, the thing&nbsp; that I've been doing the last few weeks is in many&nbsp;&nbsp;
+ways an expansion of a small note in the NKS book&nbsp; that will turn into a hundred page document. And&nbsp;&nbsp;
+so that's okay by my standards in the sense&nbsp; that I didn't really work it out in enough&nbsp;&nbsp;
+detail before and now I am and that's not kind&nbsp; of recapitulating something I've already done.
+Anyway, Stephen, it's been wonderful. Thank you so&nbsp;&nbsp;
+much for spending almost three&nbsp; hours, two and a half or so.
+Oh my god, it's that long? I just, I&nbsp; just start yakking and it keeps on going.
+Well, this will be released in approximately two&nbsp; weeks, and maybe by then people will be wondering,&nbsp;&nbsp;
+“Okay, I've heard about Ruleology. I've&nbsp; heard that I can contribute by looking&nbsp;&nbsp;
+at Rule 2,000,002. But specifically,&nbsp; I want more detail.” So you mentioned&nbsp;&nbsp;
+there are 40 high school projects. Maybe&nbsp; within two weeks, there'll be a blog post&nbsp;&nbsp;
+out for people who want more. They can&nbsp; say, “Okay, well, we can go to that.”
+It won't be two weeks. I want to do it,&nbsp; but it won't be two weeks, unfortunately.
+Well, maybe whenever it's done, I can put a link&nbsp; on the description. I'll update the description.
+Yeah, please.
+So if you're watching this,&nbsp; whenever you're watching this,&nbsp;&nbsp;
+check the description. Or maybe I'll&nbsp; have something on my Substack about&nbsp;&nbsp;
+how one can possibly use Ruleology,&nbsp; as Stephen would hopefully approve.
+Sounds good.
+Hi there. Curt here. If you'd like more&nbsp; content from Theories of Everything and&nbsp;&nbsp;
+the very best listening experience, then be sure&nbsp; to check out my Substack at CURTJAIMUNGAL.org.&nbsp;&nbsp;
+Some of the top perks are that every week you&nbsp; get brand new episodes ahead of time. You also&nbsp;&nbsp;
+get bonus written content exclusively for our&nbsp; members. That's C-U-R-T-J-A-I-M-U-N-G-A-L.org.&nbsp;&nbsp;
+You can also just search my name and the word&nbsp; Substack on Google. Since I started that Substack,&nbsp;&nbsp;
+it somehow already became number two in the&nbsp; science category. Now, Substack, for those&nbsp;&nbsp;
+who are unfamiliar, is like a newsletter.&nbsp; One that's beautifully formatted. There's&nbsp;&nbsp;
+zero spam. This is the best place to follow the&nbsp; content of this channel that isn't anywhere else.&nbsp;&nbsp;
+It's not on YouTube. It's not on Patreon. It's&nbsp; exclusive to the Substack. It's free. There are&nbsp;&nbsp;
+ways for you to support me on Substack if you&nbsp; want and you get special bonuses if you do.
+Several people ask me, like, “Hey, Curt,&nbsp; you've spoken to so many people in the&nbsp;&nbsp;
+field of theoretical physics, of philosophy,&nbsp; of consciousness. What are your thoughts,&nbsp;&nbsp;
+man?” Well, while I remain impartial&nbsp; in interviews, this Substack is a way&nbsp;&nbsp;
+to peer into my present deliberations on&nbsp; these topics. And it's the perfect way to&nbsp;&nbsp;
+support me directly. CurtJaimungal.org or&nbsp; search Curt Jaimungal Substack on Google.
+Oh, and I've received several messages, emails,&nbsp; and comments from professors and researchers&nbsp;&nbsp;
+saying that they recommend theories of everything&nbsp; to their students. That's fantastic. If you're a&nbsp;&nbsp;
+professor or a lecturer or what have you,&nbsp; and there's a particular standout episode&nbsp;&nbsp;
+that students can benefit from, or your&nbsp; friends, please do share. And of course,&nbsp;&nbsp;
+a huge thank you to our advertising sponsor, The&nbsp; Economist. Visit economist.com/TOE, T-O-E, to get&nbsp;&nbsp;
+a massive discount on their annual subscription. I&nbsp; subscribe to The Economist, and you'll love it as&nbsp;&nbsp;
+well. TOE is actually the only podcast that they&nbsp; currently partner with. So it's a huge honor for&nbsp;&nbsp;
+me. And for you, you're getting an exclusive&nbsp; discount. That's economist.com/TOE, T-O-E.
+And finally, you should know this podcast is&nbsp; on iTunes. It's on Spotify. It's on all the&nbsp;&nbsp;
+audio platforms. All you have to do is type&nbsp; in theories of everything and you'll find&nbsp;&nbsp;
+it. I know my last name is complicated, so&nbsp; maybe you don't want to type in Jaimungal,&nbsp;&nbsp;
+but you can type in Theories of Everything&nbsp; and you'll find it. Personally, I gain from&nbsp;&nbsp;
+re-watching lectures and podcasts. I also read&nbsp; in the comments that TOE listeners also gain from&nbsp;&nbsp;
+replaying. So how about instead you re-listen&nbsp; on one of those platforms like iTunes, Spotify,&nbsp;&nbsp;
+Google Podcasts, whatever podcast catcher you&nbsp; use, I'm there with you. Thank you for listening.

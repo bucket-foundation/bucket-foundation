@@ -1,7 +1,7 @@
 # Claim candidates by concept
 
 
-## mitochondria (129 candidates, top 50)
+## mitochondria (133 candidates, top 50)
 
 - **8** [always/never/because] · `01:11:21.900` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=4281)
   > why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when Blue's available but guess what your iPhone never does that's the whole
@@ -55,6 +55,14 @@
   > like light water magnetism and mitochondrial medicine that doctors and researchers never code for like for example every single study in obesity is always done on nocturnal
 - **6** [always/never] · `00:00:40.960` [Dr Jack Kruse | Counting Calories Doesn't Work!](https://www.youtube.com/watch?v=8V6D0GZbrAs&t=40)
   > mitochondrial medicine that doctors and researchers never code for like for example every single study in obesity is always done on nocturnal animals in a lab that's blue lit
+- **6** [must/only] · `01:18:10.280` [Episode 19: Dr. Jack Kruse - The Light Connection: ADHD, Sle](https://www.youtube.com/watch?v=IHSMqhrfvaU&t=4690)
+  > this is the beautiful part of decentralized medicine you don't need you need to understand every single cell in your body except one has mitochondria red blood cell is the only one that does
+- **6** [must/only] · `01:18:12.880` [Episode 19: Dr. Jack Kruse - The Light Connection: ADHD, Sle](https://www.youtube.com/watch?v=IHSMqhrfvaU&t=4692)
+  > decentralized medicine you don't need you need to understand every single cell in your body except one has mitochondria red blood cell is the only one that does it that's it but do you understand the
+- **6** [must/only] · `01:18:16.520` [Episode 19: Dr. Jack Kruse - The Light Connection: ADHD, Sle](https://www.youtube.com/watch?v=IHSMqhrfvaU&t=4696)
+  > you need to understand every single cell in your body except one has mitochondria red blood cell is the only one that does it that's it but do you understand the red blood cell also has a problem
+- **6** [because/only] · `01:18:18.040` [Episode 19: Dr. Jack Kruse - The Light Connection: ADHD, Sle](https://www.youtube.com/watch?v=IHSMqhrfvaU&t=4698)
+  > in your body except one has mitochondria red blood cell is the only one that does it that's it but do you understand the red blood cell also has a problem because it's got he hemog
 - **6** [because/only] · `00:20:23.520` [UC 327: Water, Light and Magnetism for Health with Dr Jack K](https://www.youtube.com/watch?v=MSJk1RDH7Aw&t=1223)
   > world. Why? Because it turns out the way electromagnetic radiation works with your mitochondria it it means the environment that is literally one or two feet around you is the single most
 - **6** [because/only] · `01:00:41.680` [UC 327: Water, Light and Magnetism for Health with Dr Jack K](https://www.youtube.com/watch?v=MSJk1RDH7Aw&t=3641)
@@ -95,16 +103,8 @@
   > goes back and see this is the cool part maybe we can end on this yeah this is the cool part about Quantum biology because guess what 10 years ago I never knew about that and when my mitochondria
 - **5** [never/because] · `00:54:27.319` [Why Mitochondria, Water, Light, Magnetism, & MitoHacking wit](https://www.youtube.com/watch?v=7SYSPlQa5eY&t=3267)
   > maybe we can end on this yeah this is the cool part about Quantum biology because guess what 10 years ago I never knew about that and when my mitochondria recovered in my brain and I started to
-- **5** [never/because] · `00:54:29.319` [Why Mitochondria, Water, Light, Magnetism, & MitoHacking wit](https://www.youtube.com/watch?v=7SYSPlQa5eY&t=3269)
-  > the cool part about Quantum biology because guess what 10 years ago I never knew about that and when my mitochondria recovered in my brain and I started to really really think well I wanted to
-- **5** [always/causes] · `01:02:36.120` [Neuro Surgeon by Day | Mito Hacker By Night | Dr. Jack Kruse](https://www.youtube.com/watch?v=I537lQoiu5c&t=3756)
-  > You'll learn about what survivor soup is. Survivor soup is actually how you create deuterium-depleted water in your body, especially if you have a serious mitochondrial disease. Probably the last thing that I would say is, over my 10 years being in public now and talking about th
-- **5** [always/causes] · `01:02:38.380` [Neuro Surgeon by Day | Mito Hacker By Night | Dr. Jack Kruse](https://www.youtube.com/watch?v=I537lQoiu5c&t=3758)
-  > Survivor soup is actually how you create deuterium-depleted water in your body, especially if you have a serious mitochondrial disease. Probably the last thing that I would say is, over my 10 years being in public now and talking about this, always had a goal, actually make a qua
-- **5** [always/fundamental] · `00:32:54.919` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=1974)
-  > mitochondria okay still think it's about food folks it's about light it's always been about light and you have to realize that life fundamentally is photoelectric okay technology in biology
 
-## melanin (99 candidates, top 50)
+## melanin (100 candidates, top 50)
 
 - **8** [never/because/i-proved] · `02:19:45.300` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=8385)
   > fascinated by it since I'm a little boy but I didn't know what melanin really did until I got to be about 40 years old then when I figured out I'm like this is the [&nbsp;__&nbsp;] Greatest Story never told
@@ -207,7 +207,7 @@
 - **5** [never/because] · `00:17:50.559` [Dr. Jack Kruse UNFILTERED: The FULL 1-Hour Interview They Do](https://www.youtube.com/watch?v=usB5IKPK04E&t=1070)
   > from photosynthesis on. It's like you and Joe never look back and go, "What the [&nbsp;__&nbsp;] happened before?" Why don't we ever talk about the three billion years? You know why? Because that's the melanin
 
-## blue-light (81 candidates, top 50)
+## blue-light (87 candidates, top 50)
 
 - **9** [always/because/only] · `00:46:31.500` [Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTO](https://www.youtube.com/watch?v=cy8cByk8H00&t=2791)
   > really really appreciated because you know the one thing that's always flummoxed me he goes why do we have so much melanops in our brain we all know blue light doesn't get through
@@ -619,6 +619,87 @@
 - **5** [always/because] · `01:52:19.860` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6739)
   > that's the analogy I want you to&nbsp; understand now the caveat is as a physician&nbsp;&nbsp; is there times where I'll use different substances&nbsp; that I would consider as a supplement for example&nbsp;&nbsp; the big one that I always get asked about is&nbsp; vitamin D I don
 
+## circadian (39 candidates, top 50)
+
+- **9** [never/because/only] · `00:44:07.680` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=2647)
+  > that because it controls circadian biology what have I been consistent about like when you read the letin prescription those six steps the one thing you're never going to see in there
+- **7** [always/must/because] · `01:16:05.280` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4565)
+  > developing cancer. Why? Because this growth is sped up. That's what the clocks do. That's what circadian biology is all about. So, the way we're built, the top clock always has to run faster
+- **7** [never/must/because] · `00:37:43.260` [Sunlight Is the Source of Life | Dr. Jack Kruse | EP 04](https://www.youtube.com/watch?v=6ClqKnD10p4&t=2263)
+  > and never need the prescription part the lever needs to go see the doctor no because you'll have optimized circadian biology because circadian
+- **7** [always/causes/because] · `02:41:37.319` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9697)
+  > always say in circadian biology I didn't say it&nbsp; first of course like light is the most powerful&nbsp;&nbsp; zeitge Gaber time keeper because temperature will&nbsp; shift your circadian clock eating will change your&nbsp;&nbsp; circadian clock um so but light is it light is&
+- **6** [must/causes/fundamental] · `00:53:13.920` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=3193)
+  > but I will tell you that some of the things about&nbsp; circadian biology some of the things that I write&nbsp;&nbsp; about some of the things I talk about death is the&nbsp; slowest form of of time we create or I should say&nbsp;&nbsp; maybe the other way around it was really ba
+- **6** [because/only] · `00:43:57.960` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=2637)
+  > what is the single most important physical Force in the ubiquination uh System Light and why is that because it controls circadian
+- **6** [must/causes/because] · `01:55:21.679` [Dr. Jack Kruse: Sunlight is the Key to Health (Digestive Iss](https://www.youtube.com/watch?v=rKDl37lqEBg&t=6921)
+  > understand circadian biology the basics because he realized that if you're G to create the ultimate form of money what we call hard money that the governments can't steal it has to be valuable in
+- **6** [always/never] · `00:16:32.340` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=992)
+  > six things are important turns out one of the&nbsp; things that are in there is alpha msh alpha msh&nbsp;&nbsp; is the reason you have a tan malarian stimulating&nbsp; hormone correct Alpha msh was big so I was like&nbsp;&nbsp; that's the part the biggest part of the story as I&n
+- **6** [always/never] · `00:16:40.500` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1000)
+  > is the reason you have a tan malarian stimulating&nbsp; hormone correct Alpha msh was big so I was like&nbsp;&nbsp; that's the part the biggest part of the story as I&nbsp; started to realize okay how do we assimilate light&nbsp;&nbsp; so one of the things in neurosurgery that al
+- **6** [always/never] · `00:16:46.140` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1006)
+  > that's the part the biggest part of the story as I&nbsp; started to realize okay how do we assimilate light&nbsp;&nbsp; so one of the things in neurosurgery that always&nbsp; confounded me in my training we never learned we&nbsp;&nbsp; know about the sen super cosmetic nucleus bu
+- **6** [always/never] · `00:16:52.860` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1012)
+  > so one of the things in neurosurgery that always&nbsp; confounded me in my training we never learned we&nbsp;&nbsp; know about the sen super cosmetic nucleus but we&nbsp; didn't learn that much about circadian biology at&nbsp;&nbsp; all and I started to realize there were certain
+- **5** [always/because] · `00:23:33.400` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=1413)
+  > doing this like wearing red glasses in the daytime but the problem is I was always afraid that I'm going to um ruin my circadian rhythm because you need blue light in the daytime to set those
+- **5** [always/because] · `00:23:36.480` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=1416)
+  > the daytime but the problem is I was always afraid that I'm going to um ruin my circadian rhythm because you need blue light in the daytime to set those clock jeans um you only need the blue
+- **5** [always/because] · `00:23:38.120` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=1418)
+  > always afraid that I'm going to um ruin my circadian rhythm because you need blue light in the daytime to set those clock jeans um you only need the blue light in the beginning of the morning
+- **5** [never/because] · `01:04:10.559` [#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Su](https://www.youtube.com/watch?v=-VFTXZrbyNA&t=3850)
+  > started because I'm on trauma call now but the things that I'm GNA do in the next month I have never done in my life and they are going to be the biggest circadian disruptors that you can
+- **5** [never/because] · `00:20:24.799` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=1224)
+  > realize that light and dark is important. Why? Because you can never appreciate how beneficial the sun is without the darkness at night. Reason why circadian
+- **5** [never/because] · `00:20:26.320` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=1226)
+  > important. Why? Because you can never appreciate how beneficial the sun is without the darkness at night. Reason why circadian biology uses those two together.
+- **5** [never/because] · `00:20:27.679` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=1227)
+  > Because you can never appreciate how beneficial the sun is without the darkness at night. Reason why circadian biology uses those two together. Uh we're going to get back to the uh
+- **5** [never/because] · `00:43:10.559` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=2590)
+  > but protein and fat but you never see the sunrise do you think it's a wise choice to eat that type of diet because really the carnivore diet is a wintertime diet what does the Circadian
+- **5** [always/must] · `01:16:07.840` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4567)
+  > growth is sped up. That's what the clocks do. That's what circadian biology is all about. So, the way we're built, the top clock always has to run faster than every other. And the reason is a
+- **5** [always/must] · `01:16:10.760` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4570)
+  > clocks do. That's what circadian biology is all about. So, the way we're built, the top clock always has to run faster than every other. And the reason is a physics reason. It's tied back to
+- **5** [never/because] · `00:22:14.400` [Making Circadian Medicine & Quantum Biology accessible for e](https://www.youtube.com/watch?v=N5sbRPOR5uE&t=1334)
+  > light you know especially like a green light shining on my hand could disrupt my circadian rhythms and so um I may go back to the old generation one because I never sent it back in uh
+- **5** [never/because] · `00:22:17.340` [Making Circadian Medicine & Quantum Biology accessible for e](https://www.youtube.com/watch?v=N5sbRPOR5uE&t=1337)
+  > light shining on my hand could disrupt my circadian rhythms and so um I may go back to the old generation one because I never sent it back in uh after the baby gets here but I just you
+- **5** [never/because] · `00:22:19.440` [Making Circadian Medicine & Quantum Biology accessible for e](https://www.youtube.com/watch?v=N5sbRPOR5uE&t=1339)
+  > my circadian rhythms and so um I may go back to the old generation one because I never sent it back in uh after the baby gets here but I just you know keep it on airplane mode because
+- **5** [always/because] · `03:36:20.279` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=12980)
+  > present in US we are the one mammal that doesn't really use it like we should why because what are the two metrics that circadian biology works on light and dark and temperature people always
+- **5** [always/because] · `03:36:23.120` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=12983)
+  > doesn't really use it like we should why because what are the two metrics that circadian biology works on light and dark and temperature people always forget the temperature part right and
+- **5** [always/because] · `03:36:25.640` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=12985)
+  > because what are the two metrics that circadian biology works on light and dark and temperature people always forget the temperature part right and that's where cold plays a role and it
+- **5** [always/because] · `00:23:31.799` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=1411)
+  > right the question is I've thought about doing this like wearing red glasses in the daytime but the problem is I was always afraid that I'm going to um ruin my circadian rhythm because you need
+- **5** [always/fundamental] · `01:05:31.240` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=3931)
+  > want to make to young guys like you is that I want you to understand fundamentally why we have these breakdowns and it almost always comes back to circadian biology it doesn't
+- **5** [always/fundamental] · `01:05:33.520` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=3933)
+  > that I want you to understand fundamentally why we have these breakdowns and it almost always comes back to circadian biology it doesn't start food and I know that when I say
+- **5** [always/fundamental] · `01:05:35.079` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=3935)
+  > fundamentally why we have these breakdowns and it almost always comes back to circadian biology it doesn't start food and I know that when I say that to people and don't give them the
+- **5** [never/because] · `00:11:38.880` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=698)
+  > and if you make a mistake on either side and it&nbsp; becomes unbalanced for want of a better term the&nbsp;&nbsp; Circadian mechanism is no longer yoked and that&nbsp; allows destruction to come to cells in terms of&nbsp;&nbsp; how cells are organized so you've probably heard&nb
+- **5** [never/because] · `00:11:45.600` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=705)
+  > Circadian mechanism is no longer yoked and that&nbsp; allows destruction to come to cells in terms of&nbsp;&nbsp; how cells are organized so you've probably heard&nbsp; in the Reuben podcast that the organization of&nbsp;&nbsp; cells also a solid state so I kind of blown&nbsp; th
+- **5** [never/because] · `00:11:51.900` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=711)
+  > how cells are organized so you've probably heard&nbsp; in the Reuben podcast that the organization of&nbsp;&nbsp; cells also a solid state so I kind of blown&nbsp; that Paradigm up I was never able to really&nbsp;&nbsp; get that far in the Paleo Community because&nbsp; they they 
+- **5** [never/because] · `00:11:59.940` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=719)
+  > cells also a solid state so I kind of blown&nbsp; that Paradigm up I was never able to really&nbsp;&nbsp; get that far in the Paleo Community because&nbsp; they they effectively try to cancel my message&nbsp;&nbsp; um so I just built my own site and did my own&nbsp; deal to teach
+- **5** [never/because] · `00:16:57.180` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1017)
+  > know about the sen super cosmetic nucleus but we&nbsp; didn't learn that much about circadian biology at&nbsp;&nbsp; all and I started to realize there were certain&nbsp; things I was taught in medical school that I knew&nbsp;&nbsp; were [&nbsp;__&nbsp;] place that I went to medi
+- **5** [always/because] · `02:41:22.560` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9682)
+  > so Bueno for things deep to it which is your&nbsp; area and my area do you see how simple this is&nbsp;&nbsp; when you well I too now that excuse me if I&nbsp; just keep reminding myself and and it's like&nbsp;&nbsp; it's definitely today there's an of course bulb&nbsp; going off
+- **5** [always/because] · `02:41:29.280` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9689)
+  > when you well I too now that excuse me if I&nbsp; just keep reminding myself and and it's like&nbsp;&nbsp; it's definitely today there's an of course bulb&nbsp; going off for me like of course like light is we&nbsp;&nbsp; always say in circadian biology I didn't say it&nbsp; firs
+- **5** [always/because] · `02:41:32.580` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9692)
+  > it's definitely today there's an of course bulb&nbsp; going off for me like of course like light is we&nbsp;&nbsp; always say in circadian biology I didn't say it&nbsp; first of course like light is the most powerful&nbsp;&nbsp; zeitge Gaber time keeper because temperature will&n
+
 ## EMF (37 candidates, top 50)
 
 - **8** [never/must/evidence] · `00:50:56.160` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3056)
@@ -696,81 +777,6 @@
 - **5** [always/because] · `00:58:11.440` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=3491)
   > non-native EMF and they're always doing concerts when at night under what kind of light. Why do they have to use drugs? because their body can't make betaendorphine. So guess
 
-## circadian (36 candidates, top 50)
-
-- **9** [never/because/only] · `00:44:07.680` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=2647)
-  > that because it controls circadian biology what have I been consistent about like when you read the letin prescription those six steps the one thing you're never going to see in there
-- **7** [always/must/because] · `01:16:05.280` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4565)
-  > developing cancer. Why? Because this growth is sped up. That's what the clocks do. That's what circadian biology is all about. So, the way we're built, the top clock always has to run faster
-- **7** [never/must/because] · `00:37:43.260` [Sunlight Is the Source of Life | Dr. Jack Kruse | EP 04](https://www.youtube.com/watch?v=6ClqKnD10p4&t=2263)
-  > and never need the prescription part the lever needs to go see the doctor no because you'll have optimized circadian biology because circadian
-- **7** [always/causes/because] · `02:41:37.319` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9697)
-  > always say in circadian biology I didn't say it&nbsp; first of course like light is the most powerful&nbsp;&nbsp; zeitge Gaber time keeper because temperature will&nbsp; shift your circadian clock eating will change your&nbsp;&nbsp; circadian clock um so but light is it light is&
-- **6** [must/causes/fundamental] · `00:53:13.920` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=3193)
-  > but I will tell you that some of the things about&nbsp; circadian biology some of the things that I write&nbsp;&nbsp; about some of the things I talk about death is the&nbsp; slowest form of of time we create or I should say&nbsp;&nbsp; maybe the other way around it was really ba
-- **6** [because/only] · `00:43:57.960` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=2637)
-  > what is the single most important physical Force in the ubiquination uh System Light and why is that because it controls circadian
-- **6** [must/causes/because] · `01:55:21.679` [Dr. Jack Kruse: Sunlight is the Key to Health (Digestive Iss](https://www.youtube.com/watch?v=rKDl37lqEBg&t=6921)
-  > understand circadian biology the basics because he realized that if you're G to create the ultimate form of money what we call hard money that the governments can't steal it has to be valuable in
-- **6** [always/never] · `00:16:32.340` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=992)
-  > six things are important turns out one of the&nbsp; things that are in there is alpha msh alpha msh&nbsp;&nbsp; is the reason you have a tan malarian stimulating&nbsp; hormone correct Alpha msh was big so I was like&nbsp;&nbsp; that's the part the biggest part of the story as I&n
-- **6** [always/never] · `00:16:40.500` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1000)
-  > is the reason you have a tan malarian stimulating&nbsp; hormone correct Alpha msh was big so I was like&nbsp;&nbsp; that's the part the biggest part of the story as I&nbsp; started to realize okay how do we assimilate light&nbsp;&nbsp; so one of the things in neurosurgery that al
-- **6** [always/never] · `00:16:46.140` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1006)
-  > that's the part the biggest part of the story as I&nbsp; started to realize okay how do we assimilate light&nbsp;&nbsp; so one of the things in neurosurgery that always&nbsp; confounded me in my training we never learned we&nbsp;&nbsp; know about the sen super cosmetic nucleus bu
-- **6** [always/never] · `00:16:52.860` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1012)
-  > so one of the things in neurosurgery that always&nbsp; confounded me in my training we never learned we&nbsp;&nbsp; know about the sen super cosmetic nucleus but we&nbsp; didn't learn that much about circadian biology at&nbsp;&nbsp; all and I started to realize there were certain
-- **5** [always/because] · `00:23:33.400` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=1413)
-  > doing this like wearing red glasses in the daytime but the problem is I was always afraid that I'm going to um ruin my circadian rhythm because you need blue light in the daytime to set those
-- **5** [always/because] · `00:23:36.480` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=1416)
-  > the daytime but the problem is I was always afraid that I'm going to um ruin my circadian rhythm because you need blue light in the daytime to set those clock jeans um you only need the blue
-- **5** [always/because] · `00:23:38.120` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=1418)
-  > always afraid that I'm going to um ruin my circadian rhythm because you need blue light in the daytime to set those clock jeans um you only need the blue light in the beginning of the morning
-- **5** [never/because] · `01:04:10.559` [#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Su](https://www.youtube.com/watch?v=-VFTXZrbyNA&t=3850)
-  > started because I'm on trauma call now but the things that I'm GNA do in the next month I have never done in my life and they are going to be the biggest circadian disruptors that you can
-- **5** [never/because] · `00:20:24.799` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=1224)
-  > realize that light and dark is important. Why? Because you can never appreciate how beneficial the sun is without the darkness at night. Reason why circadian
-- **5** [never/because] · `00:20:26.320` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=1226)
-  > important. Why? Because you can never appreciate how beneficial the sun is without the darkness at night. Reason why circadian biology uses those two together.
-- **5** [never/because] · `00:20:27.679` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=1227)
-  > Because you can never appreciate how beneficial the sun is without the darkness at night. Reason why circadian biology uses those two together. Uh we're going to get back to the uh
-- **5** [never/because] · `00:43:10.559` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=2590)
-  > but protein and fat but you never see the sunrise do you think it's a wise choice to eat that type of diet because really the carnivore diet is a wintertime diet what does the Circadian
-- **5** [always/must] · `01:16:07.840` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4567)
-  > growth is sped up. That's what the clocks do. That's what circadian biology is all about. So, the way we're built, the top clock always has to run faster than every other. And the reason is a
-- **5** [always/must] · `01:16:10.760` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4570)
-  > clocks do. That's what circadian biology is all about. So, the way we're built, the top clock always has to run faster than every other. And the reason is a physics reason. It's tied back to
-- **5** [always/because] · `03:36:20.279` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=12980)
-  > present in US we are the one mammal that doesn't really use it like we should why because what are the two metrics that circadian biology works on light and dark and temperature people always
-- **5** [always/because] · `03:36:23.120` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=12983)
-  > doesn't really use it like we should why because what are the two metrics that circadian biology works on light and dark and temperature people always forget the temperature part right and
-- **5** [always/because] · `03:36:25.640` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=12985)
-  > because what are the two metrics that circadian biology works on light and dark and temperature people always forget the temperature part right and that's where cold plays a role and it
-- **5** [always/because] · `00:23:31.799` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=1411)
-  > right the question is I've thought about doing this like wearing red glasses in the daytime but the problem is I was always afraid that I'm going to um ruin my circadian rhythm because you need
-- **5** [always/fundamental] · `01:05:31.240` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=3931)
-  > want to make to young guys like you is that I want you to understand fundamentally why we have these breakdowns and it almost always comes back to circadian biology it doesn't
-- **5** [always/fundamental] · `01:05:33.520` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=3933)
-  > that I want you to understand fundamentally why we have these breakdowns and it almost always comes back to circadian biology it doesn't start food and I know that when I say
-- **5** [always/fundamental] · `01:05:35.079` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=3935)
-  > fundamentally why we have these breakdowns and it almost always comes back to circadian biology it doesn't start food and I know that when I say that to people and don't give them the
-- **5** [never/because] · `00:11:38.880` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=698)
-  > and if you make a mistake on either side and it&nbsp; becomes unbalanced for want of a better term the&nbsp;&nbsp; Circadian mechanism is no longer yoked and that&nbsp; allows destruction to come to cells in terms of&nbsp;&nbsp; how cells are organized so you've probably heard&nb
-- **5** [never/because] · `00:11:45.600` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=705)
-  > Circadian mechanism is no longer yoked and that&nbsp; allows destruction to come to cells in terms of&nbsp;&nbsp; how cells are organized so you've probably heard&nbsp; in the Reuben podcast that the organization of&nbsp;&nbsp; cells also a solid state so I kind of blown&nbsp; th
-- **5** [never/because] · `00:11:51.900` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=711)
-  > how cells are organized so you've probably heard&nbsp; in the Reuben podcast that the organization of&nbsp;&nbsp; cells also a solid state so I kind of blown&nbsp; that Paradigm up I was never able to really&nbsp;&nbsp; get that far in the Paleo Community because&nbsp; they they 
-- **5** [never/because] · `00:11:59.940` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=719)
-  > cells also a solid state so I kind of blown&nbsp; that Paradigm up I was never able to really&nbsp;&nbsp; get that far in the Paleo Community because&nbsp; they they effectively try to cancel my message&nbsp;&nbsp; um so I just built my own site and did my own&nbsp; deal to teach
-- **5** [never/because] · `00:16:57.180` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1017)
-  > know about the sen super cosmetic nucleus but we&nbsp; didn't learn that much about circadian biology at&nbsp;&nbsp; all and I started to realize there were certain&nbsp; things I was taught in medical school that I knew&nbsp;&nbsp; were [&nbsp;__&nbsp;] place that I went to medi
-- **5** [always/because] · `02:41:22.560` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9682)
-  > so Bueno for things deep to it which is your&nbsp; area and my area do you see how simple this is&nbsp;&nbsp; when you well I too now that excuse me if I&nbsp; just keep reminding myself and and it's like&nbsp;&nbsp; it's definitely today there's an of course bulb&nbsp; going off
-- **5** [always/because] · `02:41:29.280` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9689)
-  > when you well I too now that excuse me if I&nbsp; just keep reminding myself and and it's like&nbsp;&nbsp; it's definitely today there's an of course bulb&nbsp; going off for me like of course like light is we&nbsp;&nbsp; always say in circadian biology I didn't say it&nbsp; firs
-- **5** [always/because] · `02:41:32.580` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9692)
-  > it's definitely today there's an of course bulb&nbsp; going off for me like of course like light is we&nbsp;&nbsp; always say in circadian biology I didn't say it&nbsp; first of course like light is the most powerful&nbsp;&nbsp; zeitge Gaber time keeper because temperature will&n
-
 ## oxygen (34 candidates, top 50)
 
 - **7** [always/must/because] · `00:54:37.120` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=3277)
@@ -842,7 +848,7 @@
 - **5** [always/because] · `00:43:37.500` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=2617)
   > oxygen had on the planet so we call this event&nbsp; and brick I know you've heard it it's called&nbsp;&nbsp; the Cambrian explosion why do I always laugh at&nbsp; people who are like Richard Dawkins Neo darwinists&nbsp;&nbsp; they always love to get on Catholics and religious&nb
 
-## dopamine (31 candidates, top 50)
+## dopamine (33 candidates, top 50)
 
 - **6** [causes/because/fundamental] · `01:01:59.920` [#57 - Dr. Jack Kruse](https://www.youtube.com/watch?v=drdn_hDGALk&t=3719)
   > leads to neurodeeneration. And fundamentally, this is the reason why everybody's addicted to things that emit microwaves and RF. Why? because it destroys your melanin, makes dopamine.
@@ -884,6 +890,10 @@
   > artists are always low dopamine people because they're isotopically damaged. They get to see the world as it is. And guess what they do? They transfer it to their artwork. So, this is the reason
 - **5** [always/because] · `00:40:08.200` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=2408)
   > always there, but you know what the key thing is? We don't see them because we're obedient idiots because we're addicted to modern things that reduce our dopamine level. My job is to make
+- **5** [always/causes] · `00:47:56.640` [Is Reality an Illusion? | Dr. Donald Hoffman | EP 387](https://www.youtube.com/watch?v=SPnyxnvU4ko&t=2876)
+  > decreases somewhat, that produces a dopamine kick. And that's a signal of reduced entropy in relationship. And it seems to me that entropy is always calculated in
+- **5** [always/causes] · `00:47:58.920` [Is Reality an Illusion? | Dr. Donald Hoffman | EP 387](https://www.youtube.com/watch?v=SPnyxnvU4ko&t=2878)
+  > that produces a dopamine kick. And that's a signal of reduced entropy in relationship. And it seems to me that entropy is always calculated in relationship to a goal, right? You say,
 - **5** [always/because] · `00:18:21.760` [Dr. Jack Kruse Nourish Vermont 2017 Q & A- part 10 of 10](https://www.youtube.com/watch?v=Uvm0dho_KRM&t=1101)
   > time i went to chicago i always wanted to go back you know why what i just told you dopamine because when you have and you're around
 - **5** [always/because] · `00:10:45.560` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=645)
@@ -956,8 +966,14 @@
 - **5** [never/causes] · `01:09:51.080` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4191)
   > state of iron from plus two to plus three, and certainly never learned about the implications that this creates methemoglobinemia. Yeah. I never learned I never learned
 
-## becker (18 candidates, top 50)
+## becker (21 candidates, top 50)
 
+- **7** [never/causes/because] · `01:27:06.360` [Episode 19: Dr. Jack Kruse - The Light Connection: ADHD, Sle](https://www.youtube.com/watch?v=IHSMqhrfvaU&t=5226)
+  > is maybe how we end the wounds create the wisdom you have to embrace the suck the chaos why because what did Becker tell us the wound creates the Regeneration and it's never a bad thing
+- **7** [never/causes/because] · `01:27:08.800` [Episode 19: Dr. Jack Kruse - The Light Connection: ADHD, Sle](https://www.youtube.com/watch?v=IHSMqhrfvaU&t=5228)
+  > the wisdom you have to embrace the suck the chaos why because what did Becker tell us the wound creates the Regeneration and it's never a bad thing if you learn the lesson from the wound
+- **7** [never/causes/because] · `01:27:11.360` [Episode 19: Dr. Jack Kruse - The Light Connection: ADHD, Sle](https://www.youtube.com/watch?v=IHSMqhrfvaU&t=5231)
+  > the chaos why because what did Becker tell us the wound creates the Regeneration and it's never a bad thing if you learn the lesson from the wound you know when it is a bad thing when you
 - **5** [causes/evidence] · `03:52:30.319` ["These People Must Pay" Bitcoin, Trump, COVID, and Zionism w](https://www.youtube.com/watch?v=yALOChgRrHQ&t=13950)
   > Clean Diet Becker finds out that all the avionics in the plane the non-mf is what causes it and what else does he find their vitamin D levels drop he didn't know about pomy but we now know yeah
 - **5** [never/because] · `01:04:16.799` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=3856)
@@ -1102,7 +1118,7 @@
 - **5** [always/because] · `01:56:33.280` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=6993)
   > from carbohydrates always enter at cytochrome 1, now you know why. Because carbohydrates grow when long light cycles when what kind of lights out? Purple light. So, if you live in Vermont
 
-## photoelectric (8 candidates, top 50)
+## photoelectric (9 candidates, top 50)
 
 - **7** [only/i-proved] · `01:46:51.639` [Optimize Your Health in the Modern World with Dr. Jack Kruse](https://www.youtube.com/watch?v=mYMUiOMkKMM&t=6411)
   > looked at what Helm holds did I looked about what Herz did I looked at the thermodynamic gens and he goes I figured out the photoelectric effect this is the only way it could work could you expand
@@ -1116,6 +1132,8 @@
   > ring looks really similar. You know, there must be a story here. And the story was I thought the story was always going to be about the different number of electrons and the photoelectric
 - **5** [always/must] · `01:08:27.279` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4107)
   > there must be a story here. And the story was I thought the story was always going to be about the different number of electrons and the photoelectric effect. Turned out that's part of the
+- **5** [must/evidence] · `00:45:43.760` [Stephen Wolfram's Radical Theory of Everything](https://www.youtube.com/watch?v=FkYer0xP37E&t=2743)
+  > it right. He didn't figure out the second law. As&nbsp; we now know, sort of the paradigmatic ideas that&nbsp;&nbsp; you need to figure out the second law come from&nbsp; ideas about computation and so on, which were&nbsp;&nbsp; another close to 100 years in the future, so to&nbs
 - **5** [always/because] · `02:26:30.120` [Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Dis](https://www.youtube.com/watch?v=Ln3WszTq0uA&t=8790)
   > um with the photoelectric effect I always like to tell the story I told the story of Rick Rubin when we just did the podcast I'm going to recount it for you because people ask me
 - **5** [always/fundamental] · `00:32:57.080` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=1977)
