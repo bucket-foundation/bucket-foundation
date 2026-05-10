@@ -1,0 +1,14 @@
+# How much water is made "non-free" by 36% native hemoglobin?
+
+- **PMID**: 16268125
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Physiological chemistry and physics and medical NMR  ·  **Year**: 2004
+- **Authors**: Gilbert N Ling, Wei-Xiao Hu
+- **MeSH**: Animals, Cattle, Hemoglobins, Polyethylene Glycols, Raffinose, Sucrose, Water
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16268125/
+- **Captured**: 2026-05-10T11:04:56
+
+## Abstract
+
+At equilibrium, the concentration ratio of poly(ethylene gycol) (PEG-4000) in a dialysis sac containing a 35.1% solution of native bovine hemoglobin over that in the external solution is 0.196 +/- 0.028 (mean +/- SD). This apparent equilibrium distribution constant or rho-value of 0.196, when viewed side-by-side with the near-equal distribution of sucrose and raffinose in similar native-hemoglobin dominated water suggests all (rather than 80%) of the water in this solution has been altered by the native hemoglobin and is no longer free liquid water. Based on Ling's equation for solute exclusion, we found that an excess of water-to-water interaction energy of a mere 4.25 cal/mole could account for both the observed exclusion of PEG-4000 and non-exclusion of sucrose and raffinose. Finally, the long-range action of (even this relatively inactive) native hemoglobin on the dynamic water structure was compared with the exclusion of coated latex microspheres from the altered water 100 microm from the surface of polyvinylalcohol gel (Zheng and Pollack) --in the light of Ling's new theory of ad infinitum water polarization-orientation (under idealized conditions) first publicized at the Gordon Research Conference on "Interfacial Water in Cell Biology" on the campus of the Mount Holyoke College in June 2004.

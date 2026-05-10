@@ -1,0 +1,9 @@
+# Septuagint: 4 Macabees
+
+- **URL**: https://www.sacred-texts.com/bib/sep/ma4.htm
+- **Captured**: 2026-05-10T11:01:04
+- **Site**: www.sacred-texts.com
+
+---
+
+Septuagint: 4 Macabees: 4 Macabees index | Internet Sacred Text Archive Sacred Texts Bible Index 3 Macabees Psalms Septuagint: 4 Macabees Polyglot 4 Macabees Chapter 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 4 Macabees Chapter 2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 4 Macabees Chapter 3 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 4 Macabees Chapter 4 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 4 Macabees Chapter 5 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 4 Macabees Chapter 6 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 4 Macabees Chapter 7 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 4 Macabees Chapter 8 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 4 Macabees Chapter 9 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 4 Macabees Chapter 10 1 2 3 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 4 Macabees Chapter 11 1 2 3 4 5 6 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 4 Macabees Chapter 12 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 4 Macabees Chapter 13 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 4 Macabees Chapter 14 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 4 Macabees Chapter 15 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 4 Macabees Chapter 16 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 4 Macabees Chapter 17 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 4 Macabees Chapter 18 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24

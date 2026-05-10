@@ -1,0 +1,14 @@
+# Functional anatomy of human procedural learning determined with regional cerebral blood flow and PET.
+
+- **PMID**: 1613546
+- **DOI**: 10.1523/JNEUROSCI.12-07-02542.1992
+- **PMCID**: PMC6575851 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 1992
+- **Authors**: S T Grafton, J C Mazziotta, S Presty, K J Friston, R S Frackowiak, M E Phelps
+- **MeSH**: Adult, Brain, Brain Mapping, Cerebrovascular Circulation, Eye Movements, Female, Functional Laterality, Humans, Learning, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1613546/
+- **Captured**: 2026-05-10T11:04:49
+
+## Abstract
+
+The functional anatomy of motor skill acquisition was investigated in six normal human subjects who learned to perform a pursuit rotor task with their dominant right hand during serial positron emission tomography (PET) imaging of relative cerebral blood flow (relCBF). The effect of motor execution, rather than learning, was identified by a comparison of four motor performance scans with two control scans (eye movements only). Motor execution was associated with activation of a distributed network involving cortical, striatonigral, and cerebellar sites. Second, the effect of early motor learning was examined. Performance improved from 17% to 66% mean time on target across the four PET scans obtained during pursuit rotor performance. Across the same scans, significant longitudinal increases of relCBF were located in the left primary motor cortex, the left supplementary motor area, and the left pulvinar thalamus. The results demonstrate that changes of regional cerebral activity associated with early learning of skilled movements occur in sites that are a subset of a more widely distributed network that is active during motor execution.

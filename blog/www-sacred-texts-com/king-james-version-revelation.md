@@ -1,0 +1,9 @@
+# King James Version: Revelation
+
+- **URL**: https://www.sacred-texts.com/bib/kjv/rev.htm
+- **Captured**: 2026-05-10T11:03:18
+- **Site**: www.sacred-texts.com
+
+---
+
+King James Version: Revelation: Revelation index | Internet Sacred Text Archive Sacred Texts Bible Index Jude King James Version: Revelation Polyglot GNT | Vul Revelation Chapter 1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 Revelation Chapter 2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 Revelation Chapter 3 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 Revelation Chapter 4 1 2 3 4 5 6 7 8 9 10 11 Revelation Chapter 5 1 2 3 4 5 6 7 8 9 10 11 12 13 14 Revelation Chapter 6 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 Revelation Chapter 7 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 Revelation Chapter 8 1 2 3 4 5 6 7 8 9 10 11 12 13 Revelation Chapter 9 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Revelation Chapter 10 1 2 3 4 5 6 7 8 9 10 11 Revelation Chapter 11 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 Revelation Chapter 12 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 Revelation Chapter 13 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 Revelation Chapter 14 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 Revelation Chapter 15 1 2 3 4 5 6 7 8 Revelation Chapter 16 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Revelation Chapter 17 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 Revelation Chapter 18 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 Revelation Chapter 19 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Revelation Chapter 20 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Revelation Chapter 21 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 Revelation Chapter 22 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21

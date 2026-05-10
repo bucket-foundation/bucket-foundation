@@ -1,0 +1,14 @@
+# Identifying hallmarks of consciousness in non-mammalian species.
+
+- **PMID**: 15766896
+- **DOI**: 10.1016/j.concog.2004.09.001
+- **PMCID**:  
+- **Journal**: Consciousness and cognition  ·  **Year**: 2005
+- **Authors**: David B Edelman, Bernard J Baars, Anil K Seth
+- **MeSH**: Animals, Behavior, Animal, Biological Evolution, Birds, Brain, Consciousness, Neurophysiology, Octopodiformes, Social Behavior, Species Specificity
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15766896/
+- **Captured**: 2026-05-10T11:04:39
+
+## Abstract
+
+Most early studies of consciousness have focused on human subjects. This is understandable, given that humans are capable of reporting accurately the events they experience through language or by way of other kinds of voluntary response. As researchers turn their attention to other animals, "accurate report" methodologies become increasingly difficult to apply. Alternative strategies for amassing evidence for consciousness in non-human species include searching for evolutionary homologies in anatomical substrates and measurement of physiological correlates of conscious states. In addition, creative means must be developed for eliciting behaviors consistent with consciousness. In this paper, we explore whether necessary conditions for consciousness can be established for species as disparate as birds and cephalopods. We conclude that a strong case can be made for avian species and that the case for cephalopods remains open. Nonetheless, a consistent effort should yield new means for interpreting animal behavior.

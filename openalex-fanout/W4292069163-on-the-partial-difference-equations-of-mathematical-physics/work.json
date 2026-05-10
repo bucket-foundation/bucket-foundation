@@ -1,0 +1,935 @@
+{
+  "id": "https://openalex.org/W4292069163",
+  "doi": "https://doi.org/10.1147/rd.112.0215",
+  "title": "On the Partial Difference Equations of Mathematical Physics",
+  "display_name": "On the Partial Difference Equations of Mathematical Physics",
+  "publication_year": 1967,
+  "publication_date": "1967-03-01",
+  "ids": {
+    "openalex": "https://openalex.org/W4292069163",
+    "doi": "https://doi.org/10.1147/rd.112.0215"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1147/rd.112.0215",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1147/rd.112.0215",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4210219925",
+      "display_name": "IBM Journal of Research and Development",
+      "issn_l": "0018-8646",
+      "issn": [
+        "0018-8646",
+        "2151-8556"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320652",
+      "host_organization_name": "IBM",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320652"
+      ],
+      "host_organization_lineage_names": [
+        "IBM"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "IBM Journal of Research and Development",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5076112588",
+        "display_name": "Richard Courant",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I36672615",
+          "display_name": "Courant Institute of Mathematical Sciences",
+          "ror": "https://ror.org/037tm7f56",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I36672615",
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I57206974",
+          "display_name": "New York University",
+          "ror": "https://ror.org/0190ak572",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I57206974"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "R. Courant",
+      "raw_affiliation_strings": [
+        "Courant Institute of Mathematical Sciences, New York University, USA",
+        "Courant Institute of Mathematical Sciences, New York University"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Courant Institute of Mathematical Sciences, New York University, USA",
+          "institution_ids": [
+            "https://openalex.org/I36672615",
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Courant Institute of Mathematical Sciences, New York University",
+          "institution_ids": [
+            "https://openalex.org/I36672615",
+            "https://openalex.org/I57206974"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5013351653",
+        "display_name": "Kurt Friedrichs",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I36672615",
+          "display_name": "Courant Institute of Mathematical Sciences",
+          "ror": "https://ror.org/037tm7f56",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I36672615",
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I57206974",
+          "display_name": "New York University",
+          "ror": "https://ror.org/0190ak572",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I57206974"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "K. Friedrichs",
+      "raw_affiliation_strings": [
+        "Courant Institute of Mathematical Sciences, New York University, USA",
+        "Courant Institute of Mathematical Sciences, New York University"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Courant Institute of Mathematical Sciences, New York University, USA",
+          "institution_ids": [
+            "https://openalex.org/I36672615",
+            "https://openalex.org/I57206974"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Courant Institute of Mathematical Sciences, New York University",
+          "institution_ids": [
+            "https://openalex.org/I36672615",
+            "https://openalex.org/I57206974"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5065907595",
+        "display_name": "Hans Lewy",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I95457486",
+          "display_name": "University of California, Berkeley",
+          "ror": "https://ror.org/01an7q238",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I95457486"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "H. Lewy",
+      "raw_affiliation_strings": [
+        "University of California, Berkeley, USA",
+        "University of California, Berkeley"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of California, Berkeley, USA",
+          "institution_ids": [
+            "https://openalex.org/I95457486"
+          ]
+        },
+        {
+          "raw_affiliation_string": "University of California, Berkeley",
+          "institution_ids": [
+            "https://openalex.org/I95457486"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 3,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5076112588"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I36672615",
+    "https://openalex.org/I57206974"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 0.5507,
+  "has_fulltext": false,
+  "cited_by_count": 2364,
+  "citation_normalized_percentile": {
+    "value": 0.718107,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": false
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "11",
+    "issue": "2",
+    "first_page": "215",
+    "last_page": "234"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11416",
+    "display_name": "Numerical methods for differential equations",
+    "score": 0.7476000189781189,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2612",
+      "display_name": "Numerical Analysis"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/26",
+      "display_name": "Mathematics"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11416",
+      "display_name": "Numerical methods for differential equations",
+      "score": 0.7476000189781189,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2612",
+        "display_name": "Numerical Analysis"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12727",
+      "display_name": "Differential Equations and Numerical Methods",
+      "score": 0.7368000149726868,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2612",
+        "display_name": "Numerical Analysis"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/simple",
+      "display_name": "Simple (philosophy)",
+      "score": 0.7107574939727783
+    },
+    {
+      "id": "https://openalex.org/keywords/limit",
+      "display_name": "Limit (mathematics)",
+      "score": 0.6725720167160034
+    },
+    {
+      "id": "https://openalex.org/keywords/partial-differential-equation",
+      "display_name": "Partial differential equation",
+      "score": 0.5874682068824768
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.585773766040802
+    },
+    {
+      "id": "https://openalex.org/keywords/algebraic-number",
+      "display_name": "Algebraic number",
+      "score": 0.5843675136566162
+    },
+    {
+      "id": "https://openalex.org/keywords/applied-mathematics",
+      "display_name": "Applied mathematics",
+      "score": 0.5193961262702942
+    },
+    {
+      "id": "https://openalex.org/keywords/zero",
+      "display_name": "Zero (linguistics)",
+      "score": 0.5190294981002808
+    },
+    {
+      "id": "https://openalex.org/keywords/algebraic-equation",
+      "display_name": "Algebraic equation",
+      "score": 0.4798135757446289
+    },
+    {
+      "id": "https://openalex.org/keywords/quotient",
+      "display_name": "Quotient",
+      "score": 0.46870157122612
+    },
+    {
+      "id": "https://openalex.org/keywords/differential-equation",
+      "display_name": "Differential equation",
+      "score": 0.45903515815734863
+    },
+    {
+      "id": "https://openalex.org/keywords/calculus",
+      "display_name": "Calculus (dental)",
+      "score": 0.4074494540691376
+    },
+    {
+      "id": "https://openalex.org/keywords/algebra-over-a-field",
+      "display_name": "Algebra over a field",
+      "score": 0.3428037464618683
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematical-analysis",
+      "display_name": "Mathematical analysis",
+      "score": 0.3211827874183655
+    },
+    {
+      "id": "https://openalex.org/keywords/pure-mathematics",
+      "display_name": "Pure mathematics",
+      "score": 0.28672167658805847
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.24420121312141418
+    },
+    {
+      "id": "https://openalex.org/keywords/nonlinear-system",
+      "display_name": "Nonlinear system",
+      "score": 0.2074565589427948
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.09540778398513794
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2780586882",
+      "wikidata": "https://www.wikidata.org/wiki/Q7520643",
+      "display_name": "Simple (philosophy)",
+      "level": 2,
+      "score": 0.7107574939727783
+    },
+    {
+      "id": "https://openalex.org/C151201525",
+      "wikidata": "https://www.wikidata.org/wiki/Q177239",
+      "display_name": "Limit (mathematics)",
+      "level": 2,
+      "score": 0.6725720167160034
+    },
+    {
+      "id": "https://openalex.org/C93779851",
+      "wikidata": "https://www.wikidata.org/wiki/Q271977",
+      "display_name": "Partial differential equation",
+      "level": 2,
+      "score": 0.5874682068824768
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.585773766040802
+    },
+    {
+      "id": "https://openalex.org/C9376300",
+      "wikidata": "https://www.wikidata.org/wiki/Q168817",
+      "display_name": "Algebraic number",
+      "level": 2,
+      "score": 0.5843675136566162
+    },
+    {
+      "id": "https://openalex.org/C28826006",
+      "wikidata": "https://www.wikidata.org/wiki/Q33521",
+      "display_name": "Applied mathematics",
+      "level": 1,
+      "score": 0.5193961262702942
+    },
+    {
+      "id": "https://openalex.org/C2780813799",
+      "wikidata": "https://www.wikidata.org/wiki/Q3274237",
+      "display_name": "Zero (linguistics)",
+      "level": 2,
+      "score": 0.5190294981002808
+    },
+    {
+      "id": "https://openalex.org/C23917780",
+      "wikidata": "https://www.wikidata.org/wiki/Q50698",
+      "display_name": "Algebraic equation",
+      "level": 3,
+      "score": 0.4798135757446289
+    },
+    {
+      "id": "https://openalex.org/C199422724",
+      "wikidata": "https://www.wikidata.org/wiki/Q41118",
+      "display_name": "Quotient",
+      "level": 2,
+      "score": 0.46870157122612
+    },
+    {
+      "id": "https://openalex.org/C78045399",
+      "wikidata": "https://www.wikidata.org/wiki/Q11214",
+      "display_name": "Differential equation",
+      "level": 2,
+      "score": 0.45903515815734863
+    },
+    {
+      "id": "https://openalex.org/C2777686260",
+      "wikidata": "https://www.wikidata.org/wiki/Q144037",
+      "display_name": "Calculus (dental)",
+      "level": 2,
+      "score": 0.4074494540691376
+    },
+    {
+      "id": "https://openalex.org/C136119220",
+      "wikidata": "https://www.wikidata.org/wiki/Q1000660",
+      "display_name": "Algebra over a field",
+      "level": 2,
+      "score": 0.3428037464618683
+    },
+    {
+      "id": "https://openalex.org/C134306372",
+      "wikidata": "https://www.wikidata.org/wiki/Q7754",
+      "display_name": "Mathematical analysis",
+      "level": 1,
+      "score": 0.3211827874183655
+    },
+    {
+      "id": "https://openalex.org/C202444582",
+      "wikidata": "https://www.wikidata.org/wiki/Q837863",
+      "display_name": "Pure mathematics",
+      "level": 1,
+      "score": 0.28672167658805847
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.24420121312141418
+    },
+    {
+      "id": "https://openalex.org/C158622935",
+      "wikidata": "https://www.wikidata.org/wiki/Q660848",
+      "display_name": "Nonlinear system",
+      "level": 2,
+      "score": 0.2074565589427948
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.09540778398513794
+    },
+    {
+      "id": "https://openalex.org/C138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C199343813",
+      "wikidata": "https://www.wikidata.org/wiki/Q12128",
+      "display_name": "Dentistry",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C111472728",
+      "wikidata": "https://www.wikidata.org/wiki/Q9471",
+      "display_name": "Epistemology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C41895202",
+      "wikidata": "https://www.wikidata.org/wiki/Q8162",
+      "display_name": "Linguistics",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1147/rd.112.0215",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1147/rd.112.0215",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4210219925",
+        "display_name": "IBM Journal of Research and Development",
+        "issn_l": "0018-8646",
+        "issn": [
+          "0018-8646",
+          "2151-8556"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320652",
+        "host_organization_name": "IBM",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320652"
+        ],
+        "host_organization_lineage_names": [
+          "IBM"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "IBM Journal of Research and Development",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 0,
+  "referenced_works": [],
+  "related_works": [
+    "https://openalex.org/W2061175295",
+    "https://openalex.org/W2082076615",
+    "https://openalex.org/W2063829785",
+    "https://openalex.org/W2004048750",
+    "https://openalex.org/W1977935000",
+    "https://openalex.org/W2952657582",
+    "https://openalex.org/W2084454430",
+    "https://openalex.org/W2089788961",
+    "https://openalex.org/W2480921170",
+    "https://openalex.org/W2031088914"
+  ],
+  "abstract_inverted_index": {
+    "Problems": [
+      0
+    ],
+    "involving": [
+      1
+    ],
+    "the": [
+      2,
+      25,
+      49,
+      52,
+      55,
+      81,
+      84
+    ],
+    "classical": [
+      3
+    ],
+    "linear": [
+      4
+    ],
+    "partial": [
+      5
+    ],
+    "differential": [
+      6
+    ],
+    "equations": [
+      7,
+      90
+    ],
+    "of": [
+      8,
+      17,
+      42,
+      48,
+      51,
+      83
+    ],
+    "mathematical": [
+      9
+    ],
+    "physics": [
+      10
+    ],
+    "can": [
+      11
+    ],
+    "be": [
+      12
+    ],
+    "reduced": [
+      13
+    ],
+    "to": [
+      14,
+      59,
+      68,
+      86,
+      92
+    ],
+    "algebraic": [
+      15,
+      44
+    ],
+    "ones": [
+      16
+    ],
+    "a": [
+      18,
+      78
+    ],
+    "very": [
+      19
+    ],
+    "much": [
+      20
+    ],
+    "simpler": [
+      21
+    ],
+    "structure": [
+      22
+    ],
+    "by": [
+      23,
+      27
+    ],
+    "replacing": [
+      24
+    ],
+    "differentials": [
+      26
+    ],
+    "difference": [
+      28,
+      89
+    ],
+    "quotients": [
+      29
+    ],
+    "on": [
+      30
+    ],
+    "some": [
+      31
+    ],
+    "(say": [
+      32
+    ],
+    "rectilinear)": [
+      33
+    ],
+    "mesh.": [
+      34
+    ],
+    "This": [
+      35
+    ],
+    "paper": [
+      36
+    ],
+    "will": [
+      37
+    ],
+    "undertake": [
+      38
+    ],
+    "an": [
+      39
+    ],
+    "elementary": [
+      40
+    ],
+    "discussion": [
+      41
+    ],
+    "these": [
+      43
+    ],
+    "problems,": [
+      45
+    ],
+    "in": [
+      46,
+      76
+    ],
+    "particular": [
+      47
+    ],
+    "behavior": [
+      50
+    ],
+    "solution": [
+      53
+    ],
+    "as": [
+      54
+    ],
+    "mesh": [
+      56
+    ],
+    "width": [
+      57
+    ],
+    "tends": [
+      58
+    ],
+    "zero.": [
+      60
+    ],
+    "For": [
+      61
+    ],
+    "present": [
+      62
+    ],
+    "purposes": [
+      63
+    ],
+    "we": [
+      64
+    ],
+    "limit": [
+      65
+    ],
+    "ourselves": [
+      66
+    ],
+    "mainly": [
+      67
+    ],
+    "simple": [
+      69
+    ],
+    "but": [
+      70
+    ],
+    "typical": [
+      71
+    ],
+    "cases,": [
+      72
+    ],
+    "and": [
+      73,
+      91
+    ],
+    "treat": [
+      74
+    ],
+    "them": [
+      75
+    ],
+    "such": [
+      77
+    ],
+    "way": [
+      79
+    ],
+    "that": [
+      80
+    ],
+    "applicability": [
+      82
+    ],
+    "method": [
+      85
+    ],
+    "more": [
+      87
+    ],
+    "general": [
+      88
+    ],
+    "those": [
+      93
+    ],
+    "with": [
+      94
+    ],
+    "arbitrarily": [
+      95
+    ],
+    "many": [
+      96
+    ],
+    "independent": [
+      97
+    ],
+    "variables": [
+      98
+    ],
+    "is": [
+      99
+    ],
+    "made": [
+      100
+    ],
+    "clear.": [
+      101
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 58
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 183
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 188
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 156
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 183
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 163
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 160
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 144
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 153
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 131
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 116
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 110
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 94
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 98
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 81
+    }
+  ],
+  "updated_date": "2026-05-09T13:55:54.758798",
+  "created_date": "2025-10-10T00:00:00"
+}

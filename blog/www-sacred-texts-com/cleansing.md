@@ -1,0 +1,9 @@
+# Cleansing
+
+- **URL**: https://www.sacred-texts.com/bos/bos000.htm
+- **Captured**: 2026-05-10T11:03:49
+- **Site**: www.sacred-texts.com
+
+---
+
+Internet Book of Shadows: Cleansing (Rowan Moonstone) | Internet Sacred Text Archive Sacred Texts Index Previous Next Sponsored Links: Internet Book of Shadows , (Various Authors), [1999], at sacred-texts.com Cleansing Rowan Moonstone 05-28-89 When I cleanse a dwelling place, first I burn a good cleansing incense, like frankincense or sandalwood in the home while I prepare for the rest of the ritual. You should have in addition to the incense, a candle, a bowl of salt water and a bowl of herbs. I particularly like to use rose buds for love, lavender for preservation, rosemary for protection, and any other sweet-smelling ones that appeal to you personally. If you can get them home-grown, so much the better. You should proceed around the house, widdershins (counterclockwise) and cleanse the area with the salt water. Be sure to get each corner, window, door, drain, etc. Simply sprinkle a little salt water on each and ask that any evil or disruptive influences leave the place. When this is finished, proceed around the house deosil (clockwise) sprinkling the blessing herbs and invoke whatever deities or properties you wish on the home, such as peace, prosperity, tranquility, etc. In the past, I have used 3 candles on the central altar. Blue, symbolizing tranquility, green for healing and prosperity, and purple for protection. Others might be pink for love, or brown for hearth and home. You and anyone who is to share the home with you should share food and drink, and don't forget to leave a little of the food and drink to take outside and return to the Earth that which has been given. Blessed Be. Rowan --- DragonMail 0.00 Origin: Beagle Express - (405)848-2828 - *ISA* *IFNA* (1:147/4) Next: Second Degree Initiation (Gary Dumbauld)

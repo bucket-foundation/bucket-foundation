@@ -1,0 +1,982 @@
+{
+  "id": "https://openalex.org/W1526007200",
+  "doi": "https://doi.org/10.1090/s0894-0347-06-00526-1",
+  "title": "Weil-Petersson volumes and intersection theory on the moduli space of curves",
+  "display_name": "Weil-Petersson volumes and intersection theory on the moduli space of curves",
+  "publication_year": 2006,
+  "publication_date": "2006-03-08",
+  "ids": {
+    "openalex": "https://openalex.org/W1526007200",
+    "doi": "https://doi.org/10.1090/s0894-0347-06-00526-1",
+    "mag": "1526007200"
+  },
+  "language": "lv",
+  "primary_location": {
+    "id": "doi:10.1090/s0894-0347-06-00526-1",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1090/s0894-0347-06-00526-1",
+    "pdf_url": "https://www.ams.org/jams/2007-20-01/S0894-0347-06-00526-1/S0894-0347-06-00526-1.pdf",
+    "source": {
+      "id": "https://openalex.org/S130224168",
+      "display_name": "Journal of the American Mathematical Society",
+      "issn_l": "0894-0347",
+      "issn": [
+        "0894-0347",
+        "1088-6834"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315719",
+      "host_organization_name": "American Mathematical Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315719"
+      ],
+      "host_organization_lineage_names": [
+        "American Mathematical Society"
+      ],
+      "type": "journal"
+    },
+    "license": "public-domain",
+    "license_id": "https://openalex.org/licenses/public-domain",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Journal of the American Mathematical Society",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "hybrid",
+    "oa_url": "https://www.ams.org/jams/2007-20-01/S0894-0347-06-00526-1/S0894-0347-06-00526-1.pdf",
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5058749368",
+        "display_name": "Maryam Mirzakhani",
+        "orcid": "https://orcid.org/0000-0001-8327-4434"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I20089843",
+          "display_name": "Princeton University",
+          "ror": "https://ror.org/00hx57361",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I20089843"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Maryam Mirzakhani",
+      "raw_affiliation_strings": [
+        "Department of Mathematics, Princeton University, Princeton, NJ 08544"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Mathematics, Princeton University, Princeton, NJ 08544",
+          "institution_ids": [
+            "https://openalex.org/I20089843"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5058749368"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I20089843"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 25.4431,
+  "has_fulltext": true,
+  "cited_by_count": 332,
+  "citation_normalized_percentile": {
+    "value": 0.9990661,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 98,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "20",
+    "issue": "1",
+    "first_page": "1",
+    "last_page": "23"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10061",
+    "display_name": "Algebraic Geometry and Number Theory",
+    "score": 0.6970999836921692,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2608",
+      "display_name": "Geometry and Topology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/26",
+      "display_name": "Mathematics"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10061",
+      "display_name": "Algebraic Geometry and Number Theory",
+      "score": 0.6970999836921692,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2608",
+        "display_name": "Geometry and Topology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12351",
+      "display_name": "Geometry and complex manifolds",
+      "score": 0.05909999832510948,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2608",
+        "display_name": "Geometry and Topology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11680",
+      "display_name": "Advanced Algebra and Geometry",
+      "score": 0.05400000140070915,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2610",
+        "display_name": "Mathematical Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/algorithm",
+      "display_name": "Algorithm",
+      "score": 0.5756115317344666
+    },
+    {
+      "id": "https://openalex.org/keywords/artificial-intelligence",
+      "display_name": "Artificial intelligence",
+      "score": 0.46901458501815796
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.3241259455680847
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.31958386301994324
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C11413529",
+      "wikidata": "https://www.wikidata.org/wiki/Q8366",
+      "display_name": "Algorithm",
+      "level": 1,
+      "score": 0.5756115317344666
+    },
+    {
+      "id": "https://openalex.org/C154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "level": 1,
+      "score": 0.46901458501815796
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.3241259455680847
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.31958386301994324
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1090/s0894-0347-06-00526-1",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1090/s0894-0347-06-00526-1",
+      "pdf_url": "https://www.ams.org/jams/2007-20-01/S0894-0347-06-00526-1/S0894-0347-06-00526-1.pdf",
+      "source": {
+        "id": "https://openalex.org/S130224168",
+        "display_name": "Journal of the American Mathematical Society",
+        "issn_l": "0894-0347",
+        "issn": [
+          "0894-0347",
+          "1088-6834"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315719",
+        "host_organization_name": "American Mathematical Society",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315719"
+        ],
+        "host_organization_lineage_names": [
+          "American Mathematical Society"
+        ],
+        "type": "journal"
+      },
+      "license": "public-domain",
+      "license_id": "https://openalex.org/licenses/public-domain",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Journal of the American Mathematical Society",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1090/s0894-0347-06-00526-1",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1090/s0894-0347-06-00526-1",
+    "pdf_url": "https://www.ams.org/jams/2007-20-01/S0894-0347-06-00526-1/S0894-0347-06-00526-1.pdf",
+    "source": {
+      "id": "https://openalex.org/S130224168",
+      "display_name": "Journal of the American Mathematical Society",
+      "issn_l": "0894-0347",
+      "issn": [
+        "0894-0347",
+        "1088-6834"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315719",
+      "host_organization_name": "American Mathematical Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315719"
+      ],
+      "host_organization_lineage_names": [
+        "American Mathematical Society"
+      ],
+      "type": "journal"
+    },
+    "license": "public-domain",
+    "license_id": "https://openalex.org/licenses/public-domain",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Journal of the American Mathematical Society",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": true,
+    "pdf": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W1526007200.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W1526007200.grobid-xml"
+  },
+  "referenced_works_count": 39,
+  "referenced_works": [
+    "https://openalex.org/W7399659",
+    "https://openalex.org/W16862691",
+    "https://openalex.org/W564708397",
+    "https://openalex.org/W582672715",
+    "https://openalex.org/W1494701719",
+    "https://openalex.org/W1495814711",
+    "https://openalex.org/W1515616043",
+    "https://openalex.org/W1560981208",
+    "https://openalex.org/W1564862916",
+    "https://openalex.org/W1574680617",
+    "https://openalex.org/W1576341203",
+    "https://openalex.org/W1606674658",
+    "https://openalex.org/W1962268619",
+    "https://openalex.org/W1971001314",
+    "https://openalex.org/W1972563066",
+    "https://openalex.org/W1972759892",
+    "https://openalex.org/W1973746954",
+    "https://openalex.org/W1986699862",
+    "https://openalex.org/W2013580178",
+    "https://openalex.org/W2024202664",
+    "https://openalex.org/W2028752706",
+    "https://openalex.org/W2035124968",
+    "https://openalex.org/W2043403008",
+    "https://openalex.org/W2043855108",
+    "https://openalex.org/W2053441708",
+    "https://openalex.org/W2065761068",
+    "https://openalex.org/W2070463078",
+    "https://openalex.org/W2128559058",
+    "https://openalex.org/W2134090618",
+    "https://openalex.org/W2171240654",
+    "https://openalex.org/W2319179834",
+    "https://openalex.org/W2582995724",
+    "https://openalex.org/W3039948875",
+    "https://openalex.org/W3099126563",
+    "https://openalex.org/W3100746112",
+    "https://openalex.org/W4234628138",
+    "https://openalex.org/W4236095685",
+    "https://openalex.org/W4246446534",
+    "https://openalex.org/W6600287854"
+  ],
+  "related_works": [
+    "https://openalex.org/W2748952813",
+    "https://openalex.org/W1979597421",
+    "https://openalex.org/W2007980826",
+    "https://openalex.org/W4245490552",
+    "https://openalex.org/W4225152035",
+    "https://openalex.org/W2061531152",
+    "https://openalex.org/W3002753104",
+    "https://openalex.org/W2077600819",
+    "https://openalex.org/W1587224694",
+    "https://openalex.org/W2911598644"
+  ],
+  "abstract_inverted_index": {
+    "In": [
+      0
+    ],
+    "this": [
+      1
+    ],
+    "paper,": [
+      2
+    ],
+    "we": [
+      3,
+      265
+    ],
+    "establish": [
+      4
+    ],
+    "a": [
+      5,
+      202,
+      267,
+      275
+    ],
+    "relationship": [
+      6
+    ],
+    "between": [
+      7
+    ],
+    "the": [
+      8,
+      49,
+      148,
+      155,
+      206,
+      248,
+      271,
+      282
+    ],
+    "Weil-": [
+      9
+    ],
+    "Petersson": [
+      10
+    ],
+    "volume": [
+      11
+    ],
+    "<inline-formula": [
+      12,
+      52,
+      105,
+      126,
+      158,
+      210
+    ],
+    "content-type=\"math/mathml\">": [
+      13,
+      53,
+      106,
+      127,
+      159,
+      211
+    ],
+    "<mml:math": [
+      14,
+      54,
+      107,
+      128,
+      160,
+      212
+    ],
+    "xmlns:mml=\"http://www.w3.org/1998/Math/MathML\"": [
+      15,
+      55,
+      108,
+      129,
+      161,
+      213
+    ],
+    "alttext=\"upper": [
+      16,
+      214
+    ],
+    "V": [
+      17,
+      215
+    ],
+    "Subscript": [
+      18,
+      59,
+      131,
+      166,
+      216
+    ],
+    "g": [
+      19,
+      60,
+      167,
+      217
+    ],
+    "comma": [
+      20,
+      61,
+      168,
+      218
+    ],
+    "n": [
+      21,
+      62,
+      219
+    ],
+    "Baseline": [
+      22,
+      63,
+      220
+    ],
+    "left-parenthesis": [
+      23,
+      64,
+      221
+    ],
+    "b": [
+      24,
+      65,
+      222
+    ],
+    "right-parenthesis\">": [
+      25,
+      66,
+      223
+    ],
+    "<mml:semantics>": [
+      26,
+      67,
+      111,
+      133,
+      170,
+      224
+    ],
+    "<mml:mrow>": [
+      27,
+      68,
+      225
+    ],
+    "<mml:msub>": [
+      28,
+      69,
+      112,
+      134,
+      171,
+      226
+    ],
+    "<mml:mi>V</mml:mi>": [
+      29,
+      227
+    ],
+    "<mml:mrow": [
+      30,
+      70,
+      76,
+      114,
+      136,
+      173,
+      184,
+      228
+    ],
+    "class=\"MJX-TeXAtom-ORD\">": [
+      31,
+      71,
+      77,
+      115,
+      137,
+      174,
+      185,
+      229
+    ],
+    "<mml:mi>g</mml:mi>": [
+      32,
+      78,
+      186,
+      230
+    ],
+    "<mml:mo>,</mml:mo>": [
+      33,
+      79,
+      187,
+      231
+    ],
+    "<mml:mi>n</mml:mi>": [
+      34,
+      80,
+      138,
+      188,
+      232
+    ],
+    "</mml:mrow>": [
+      35,
+      42,
+      75,
+      81,
+      88,
+      117,
+      139,
+      178,
+      189,
+      233,
+      240
+    ],
+    "</mml:msub>": [
+      36,
+      82,
+      118,
+      140,
+      190,
+      234
+    ],
+    "<mml:mo": [
+      37,
+      40,
+      83,
+      86,
+      179,
+      235,
+      238
+    ],
+    "stretchy=\"false\">(</mml:mo>": [
+      38,
+      84,
+      236
+    ],
+    "<mml:mi>b</mml:mi>": [
+      39,
+      85,
+      113,
+      135,
+      237
+    ],
+    "stretchy=\"false\">)</mml:mo>": [
+      41,
+      87,
+      239
+    ],
+    "<mml:annotation": [
+      43,
+      89,
+      119,
+      141,
+      191,
+      241
+    ],
+    "encoding=\"application/x-tex\">V_{g,n}(b)</mml:annotation>": [
+      44,
+      242
+    ],
+    "</mml:semantics>": [
+      45,
+      92,
+      121,
+      143,
+      195,
+      243
+    ],
+    "</mml:math>": [
+      46,
+      93,
+      122,
+      144,
+      196,
+      244
+    ],
+    "</inline-formula>": [
+      47,
+      94,
+      123,
+      145,
+      197,
+      245
+    ],
+    "of": [
+      48,
+      95,
+      103,
+      151,
+      198,
+      255,
+      258,
+      270
+    ],
+    "moduli": [
+      50,
+      156,
+      256
+    ],
+    "space": [
+      51,
+      157
+    ],
+    "alttext=\"script": [
+      56,
+      162
+    ],
+    "upper": [
+      57,
+      163
+    ],
+    "M": [
+      58,
+      164
+    ],
+    "<mml:mi": [
+      72,
+      175
+    ],
+    "class=\"MJX-tex-caligraphic\"": [
+      73,
+      176
+    ],
+    "mathvariant=\"script\">M</mml:mi>": [
+      74,
+      177
+    ],
+    "encoding=\"application/x-tex\">\\mathcal": [
+      90
+    ],
+    "{M}_{g,n}(b)</mml:annotation>": [
+      91
+    ],
+    "hyperbolic": [
+      96
+    ],
+    "Riemann": [
+      97,
+      260
+    ],
+    "surfaces": [
+      98
+    ],
+    "with": [
+      99
+    ],
+    "geodesic": [
+      100
+    ],
+    "boundary": [
+      101
+    ],
+    "components": [
+      102
+    ],
+    "lengths": [
+      104
+    ],
+    "alttext=\"b": [
+      109,
+      130
+    ],
+    "1\">": [
+      110
+    ],
+    "<mml:mn>1</mml:mn>": [
+      116
+    ],
+    "encoding=\"application/x-tex\">b_{1}</mml:annotation>": [
+      120
+    ],
+    ",": [
+      124,
+      146,
+      262
+    ],
+    "…,": [
+      125
+    ],
+    "n\">": [
+      132,
+      169
+    ],
+    "encoding=\"application/x-tex\">b_{n}</mml:annotation>": [
+      142
+    ],
+    "and": [
+      147,
+      252
+    ],
+    "intersection": [
+      149
+    ],
+    "numbers": [
+      150
+    ],
+    "tautological": [
+      152
+    ],
+    "classes": [
+      153
+    ],
+    "on": [
+      154
+    ],
+    "overbar": [
+      165
+    ],
+    "<mml:mover>": [
+      172
+    ],
+    "accent=\"false\">": [
+      180
+    ],
+    "¯": [
+      181
+    ],
+    "</mml:mo>": [
+      182
+    ],
+    "</mml:mover>": [
+      183
+    ],
+    "encoding=\"application/x-tex\">\\overline": [
+      192
+    ],
+    "{\\mathcal": [
+      193
+    ],
+    "{M}}_{g,n}</mml:annotation>": [
+      194
+    ],
+    "stable": [
+      199
+    ],
+    "curves.": [
+      200
+    ],
+    "As": [
+      201
+    ],
+    "result,": [
+      203
+    ],
+    "by": [
+      204
+    ],
+    "using": [
+      205
+    ],
+    "recursive": [
+      207
+    ],
+    "formula": [
+      208
+    ],
+    "for": [
+      209,
+      274
+    ],
+    "obtained": [
+      246
+    ],
+    "in": [
+      247
+    ],
+    "author’s": [
+      249
+    ],
+    "<italic>Simple": [
+      250
+    ],
+    "geodesics": [
+      251
+    ],
+    "Weil-Petersson": [
+      253
+    ],
+    "volumes": [
+      254
+    ],
+    "spaces": [
+      257
+    ],
+    "bordered": [
+      259
+    ],
+    "surfaces</italic>": [
+      261
+    ],
+    "preprint,": [
+      263
+    ],
+    "2003,": [
+      264
+    ],
+    "derive": [
+      266
+    ],
+    "new": [
+      268
+    ],
+    "proof": [
+      269
+    ],
+    "Virasoro": [
+      272
+    ],
+    "constraints": [
+      273
+    ],
+    "point.": [
+      276
+    ],
+    "This": [
+      277
+    ],
+    "result": [
+      278
+    ],
+    "is": [
+      279
+    ],
+    "equivalent": [
+      280
+    ],
+    "to": [
+      281
+    ],
+    "Witten-Kontsevich": [
+      283
+    ],
+    "formula.": [
+      284
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 18
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 27
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 23
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 22
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 28
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 19
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 11
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 12
+    }
+  ],
+  "updated_date": "2026-04-21T06:05:55.347736",
+  "created_date": "2025-10-10T00:00:00"
+}

@@ -1,0 +1,14 @@
+# Learning and inference in the brain.
+
+- **PMID**: 14622888
+- **DOI**: 10.1016/j.neunet.2003.06.005
+- **PMCID**:  
+- **Journal**: Neural networks : the official journal of the International Neural Network Society  ·  **Year**: 2003
+- **Authors**: Karl Friston
+- **MeSH**: Bayes Theorem, Brain, Learning, Neural Networks, Computer
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14622888/
+- **Captured**: 2026-05-10T11:03:39
+
+## Abstract
+
+This article is about how the brain data mines its sensory inputs. There are several architectural principles of functional brain anatomy that have emerged from careful anatomic and physiologic studies over the past century. These principles are considered in the light of representational learning to see if they could have been predicted a priori on the basis of purely theoretical considerations. We first review the organisation of hierarchical sensory cortices, paying special attention to the distinction between forward and backward connections. We then review various approaches to representational learning as special cases of generative models, starting with supervised learning and ending with learning based upon empirical Bayes. The latter predicts many features, such as a hierarchical cortical system, prevalent top-down backward influences and functional asymmetries between forward and backward connections that are seen in the real brain. The key points made in article are: (i). hierarchical generative models enable the learning of empirical priors and eschew prior assumptions about the causes of sensory input that are inherent in non-hierarchical models. These assumptions are necessary for learning schemes based on information theory and efficient or sparse coding, but are not necessary in a hierarchical context. Critically, the anatomical infrastructure that may implement generative models in the brain is hierarchical. Furthermore, learning based on empirical Bayes can proceed in a biologically plausible way. (ii). The second point is that backward connections are essential if the processes generating inputs cannot be inverted, or the inversion cannot be parameterised. Because these processes involve many-to-one mappings, are non-linear and dynamic in nature, they are generally non-invertible. This enforces an explicit parameterisation of generative models (i.e. backward connections) to afford recognition and suggests that forward architectures, on their own, are not sufficient for perception. (iii). Finally, non-linearities in generative models, mediated by backward connections, require these connections to be modulatory, so that representations in higher cortical levels can interact to predict responses in lower levels. This is important in relation to functional asymmetries in forward and backward connections that have been demonstrated empirically.

@@ -1,0 +1,14 @@
+# Conjunction revisited.
+
+- **PMID**: 15808967
+- **DOI**: 10.1016/j.neuroimage.2005.01.013
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2005
+- **Authors**: Karl J Friston, William D Penny, Daniel E Glaser
+- **MeSH**: Arousal, Attention, Bias, Brain, Humans, Image Enhancement, Image Processing, Computer-Assisted, Logic, Magnetic Resonance Imaging, Mathematical Computing
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15808967/
+- **Captured**: 2026-05-10T11:04:39
+
+## Abstract
+
+The aim of this note is to revisit the analysis of conjunctions in imaging data. We review some conceptual issues that have emerged from recent discussion (Nichols, T., Brett, M., Andersson, J., Wager, T., Poline, J.-B., 2004. Valid Conjunction Inference with the Minimum Statistic.) and reformulate the conjunction of null hypotheses as a conjunction of k or more effects. Analyses based on minimum statistics have typically used the null hypothesis that k = 0. This enables inferences about one or more effects (k > 0). However, this does not provide control over false-positive rates (FPR) for inferences about a conjunction of k = n effects, over n tests. This is the key point made by Nichols et al., who suggest a procedure based on supremum P values that provides an upper bound on FPR for k = n. Although valid, this is a very conservative procedure, particularly in the context of multiple comparisons. We suggest that an inference on a conjunction of k = n effects is generally unnecessary and distinguish between congruent contrasts that test for the same treatment and incongruent contrasts of the sort used in cognitive conjunctions. For congruent contrasts, the usual inference, k > 0, is sufficient. With incongruent contrasts it is sufficient to infer a conjunction of k >u effects, where u is the number of contrasts that share some uninteresting effect. The issues highlighted by Nichols et al., have important implications for the design and analysis of cognitive conjunction studies and have motivated a change to the SPM software, that affords a test for the more general hypothesis k >u. This more general conjunction test is described.

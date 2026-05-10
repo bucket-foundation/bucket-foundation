@@ -1,0 +1,14 @@
+# Is 'virtual histology' the next step after the 'virtual autopsy'? Magnetic resonance microscopy in forensic medicine.
+
+- **PMID**: 15528000
+- **DOI**: 10.1016/j.mri.2004.08.019
+- **PMCID**:  
+- **Journal**: Magnetic resonance imaging  ·  **Year**: 2004
+- **Authors**: M J Thali, R Dirnhofer, R Becker, W Oliver, K Potter
+- **MeSH**: Adult, Electric Injuries, Female, Forensic Medicine, Histological Techniques, Humans, Magnetic Resonance Imaging, Microscopy, Skin
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15528000/
+- **Captured**: 2026-05-10T11:04:31
+
+## Abstract
+
+The study aimed to validate magnetic resonance microscopy (MRM) studies of forensic tissue specimens (skin samples with electric injury patterns) against the results from routine histology. Computed tomography and magnetic resonance imaging are fast becoming important tools in clinical and forensic pathology. This study is the first forensic application of MRM to the analysis of electric injury patterns in human skin. Three-dimensional high-resolution MRM images of fixed skin specimens provided a complete 3D view of the damaged tissues at the site of an electric injury as well as in neighboring tissues, consistent with histologic findings. The image intensity of the dermal layer in T2-weighted MRM images was reduced in the central zone due to carbonization or coagulation necrosis and increased in the intermediate zone because of dermal edema. A subjacent blood vessel with an intravascular occlusion supports the hypothesis that current traveled through the vascular system before arcing to ground. High-resolution imaging offers a noninvasive alternative to conventional histology in forensic wound analysis and can be used to perform 3D virtual histology.

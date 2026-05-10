@@ -1,0 +1,14 @@
+# The relationship between the Gabor elementary function and a stochastic model of the inter-spike interval distribution in the responses of visual cortex neurons.
+
+- **PMID**: 1320946
+- **DOI**: 10.1007/BF00201026
+- **PMCID**:  
+- **Journal**: Biological cybernetics  ·  **Year**: 1992
+- **Authors**: D H Berger, K H Pribram
+- **MeSH**: Animals, Humans, Models, Neurological, Stochastic Processes, Synaptic Transmission, Visual Cortex
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1320946/
+- **Captured**: 2026-05-10T11:01:23
+
+## Abstract
+
+In a previously reported study (Berger et al. 1990) we analyzed distributions of interspike intervals recorded extracellularly from cat visual cortex under four stimulus conditions. Stimuli were gratings differing in orientation and spatial frequency. The probability density function of first passage time for a random walk with drift process, which is defined by its barrier height and drift coefficient, was used to characterize the generating process of axonal discharge under resting and stimulus conditions. Drift coefficient and barrier height were derived from the sample mean and standard deviation of the measured inter-spike intervals. For cells with simple receptive fields, variations in spatial frequency produced changes only in drift coefficient. Variations in barrier height were produced only by changes in orientation of the stimulus. Currently, the method used to analyze these data was implemented in a simulation which displayed the relationship between the interval distribution of impulses, the random walk which represents the time series characteristic of the spike train model and the Gabor filter function which represents the geometry of the receptive field process.

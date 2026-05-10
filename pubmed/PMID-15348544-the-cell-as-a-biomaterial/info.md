@@ -1,0 +1,14 @@
+# The cell as a biomaterial.
+
+- **PMID**: 15348544
+- **DOI**: 10.1023/a:1016547409660
+- **PMCID**:  
+- **Journal**: Journal of materials science. Materials in medicine  ·  **Year**: 2002
+- **Authors**: Gerald H Pollack
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15348544/
+- **Captured**: 2026-05-10T11:04:25
+
+## Abstract
+
+For materials scientists, the cell is evidently a biomaterial - rich with polymers, surface forces, solvent-solute interactions, liquid-crystalline structures, etc. Yet, the language of the materials scientist is as foreign to the biological world as French is to Chinese. Little of the materials scientists' perspective has been brought to bear on the question of biological function. This review aims to begin bridging the gap between the two disciplines-to show that a materials-oriented approach has power to bring fresh insights into an otherwise impenetrably complex maze. In this approach the cell is treated as a polymer gel. If the cell is a gel, then a logical approach to the understanding of cell function is through an understanding of gel function. Great strides have been made recently in understanding the principles of polymer-gel dynamics. It has become clear that a central mechanism is the phase-transition - a major structural change prompted by a subtle change of environment. Phase-transitions are capable of doing work and such work could be responsible for much of the work of the cell. Here, we pursue this approach. We set up a polymer-gel-based foundation for cell behavior, and explore the extent to which this foundation explains how the cell achieves its everyday tasks.
