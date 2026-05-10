@@ -88,35 +88,48 @@ The phenomenon of <<ultraweak photon>> emission from living systems was further 
 **Query**: `<<biophoton>> OR "<<ultraweak photon>>"`  ·  **Hits**: 35
 
 
-## pubmed (10)
+## pubmed (11)
 
-- **Imaging of <<ultraweak photon>> emission for evaluating the oxidative stress of human skin … 
+- **<<Biophoton>> emission of human body.**
+  - `pubmed/PMID-15244265-<<biophoton>>-emission-of-human-body … 
 - **Fritz-Albert Popp**
   - `_intake/canon-profiles/popp-fritz-albert.md`
   -  … https://pubmed.ncbi.nlm … 
 
-## intake (10)
+## intake (11)
 
 - **<<biophoton>>-popp**
   - `_intake/concept-digests/<<biophoton>>-popp.md`
   - # <<<<biophoton>>>>-<<popp>>
 
-**Query**: `<<<<biophoton>>>> OR "<<<<ultraweak>> photon>>"`  ·  **Hits**: 30
+**Query**: `<<<<biophoton>>>> OR "<<<<ultraweak>> photon>>"`  ·  **Hits**: 35
 
 
 ## pubmed … 
 - **uv-uva-uvb**
   - `_intake/concept-digests/uv-uva-uvb.md`
-  -  … digests/<<biophoton>>-popp.md`
+  -  … 35
+
+
+## pubmed (7)
+
+- **Imaging of <<ultraweak photon>> emission for evaluating the oxidative … 
+- **<<biophoton>>-popp**
+  - `_intake/concept-digests/<<biophoton>>-popp.md`
   -  … 30 … 
-- **<<uv>>-<<uva>>-<<uvb>>**
-  - `_intake/concept-digests/<<uv>>-<<uva>>-<<uvb>>.md`
+- **<<uv>>-<<uva>>-<<uvb … 
+- **infrared-near-ir**
+  - `_intake/concept-digests/infrared-near-ir.md`
+  -  … TOLD BY <<<<BIOPHOTON>>>> EMISSION?**
+  - `_intake … 
+- **uv-uva-uvb**
+  - `_intake/concept-digests/uv-uva-uvb.md`
   -  … 30
 
 
 ## pubmed (2)
 
-- **Imaging of <<<<ultraweak photon>>>> emission for … 
+- **Imaging of <<ultraweak photon>> emission for … 
 - **TIME # 19:  IS TIME TOLD BY BIOPHOTON EMISSION?**
   - `_intake/kruse-blog-corpus/articles/time-for-biophotons.md`
   -  … IS TIME TOLD BY <<BIOPHOTON>> EMISSION?
@@ -130,25 +143,8 @@ Source: https://jackkruse.com/time-for-<<biophotons>>/
 
 
 **THE TAKE HOME … 
-- **mendeleev-periodic**
-  - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … <<biophoton>>>>-<<popp>>.md`
-  -  … <<<<biophoton>>>> … 
-- **<<mendeleev>>-<<periodic>>**
-  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
-  -  … 1871 English revision; full <<<<periodic>>>> <<<<table>>>> papers … 
-- **<<<<biophoton>>>>-<<popp>>**
-  - `_intake/concept … 
-- **<<biophoton>> … 
-- **Dmitri Mendeleev**
-  - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … 30
-
-
-## archive (5)
-
-- **A Modern Handbook Of Physics**
-  - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook … 
-- **<<biophoton>>-popp**
-  - `_intake/concept-digests/<<biophoton>>-popp.md`
-  -  … 11 … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … IS TIME TOLD BY <<BIOPHOTON>> EMISSION?**
+  - `_intake/kruse-blog-corpus/articles/time-for-<<biophotons>>.md`
+  -  … an exciton with ease but it cannot do it … 

@@ -50,13 +50,6 @@ The effects of 1.5- and 10-Hz <<electromagnetic>> fields (<<EMFs>>), 0.2-0.4 gau
 ## Abstract
 
 A World War II-era study, involving the effects of <<electromagnetic>> fields (<<EMFs>>) emanating from radars and high … 
-- **Light and electron microscope studies of effects of 50 Hz electromagnetic fields on preincubated chick embryo.**
-  - `pubmed/PMID-17613036-light-and-electron-microscope-studies-of-effects-of-50-hz-el/info.md`
-  -  … 2026-05-10T09:39:35
-
-## Abstract
-
-We investigated the effects of an <<electromagnetic>> field (<<EMF>>) of 50 Hz, 1.33-7.32 mT on … 
 - **Low-level EMFs are transduced like other stimuli.**
   - `pubmed/PMID-8994110-low-level-emfs-are-transduced-like-other-stimuli/info.md`
   -  … 2026-05-10T11:52:49
@@ -64,6 +57,13 @@ We investigated the effects of an <<electromagnetic>> field (<<EMF>>) of 50 Hz, 
 ## Abstract
 
 The aims of this study were to test the theory that transduction of low-level <<electromagnetic>> fields (<<EMFs>> … 
+- **Light and electron microscope studies of effects of 50 Hz electromagnetic fields on preincubated chick embryo.**
+  - `pubmed/PMID-17613036-light-and-electron-microscope-studies-of-effects-of-50-hz-el/info.md`
+  -  … 2026-05-10T09:39:35
+
+## Abstract
+
+We investigated the effects of an <<electromagnetic>> field (<<EMF>>) of 50 Hz, 1.33-7.32 mT on … 
 - **Sensory transduction of weak electromagnetic fields: role of glutamate neurotransmission mediated by NMDA receptors.**
   - `pubmed/PMID-24239718-sensory-transduction-of-weak-electromagnetic-fields-role-of/info.md`
   -  … 2026-05-10T11:25:54
@@ -136,10 +136,9 @@ The aim of this study was to show that low-strength <<electromagnetic>> fields (
 **Query**: `<<EMF>> OR <<electromagnetic>>`  ·  **Hits**: 35
 
 
-## pubmed (7)
+## pubmed (19)
 
-- **Low-frequency <<electromagnetic>> fields alter the replication cycle of MS2 bacteriophage.**
-  - `pubmed/PMID … 
+- **The effects of mobile-phone <<electromagnetic>> fields on brain electrical activity: a critical … 
 - **Andrew Marino**
   - `_intake/canon-profiles/marino-andrew.md`
   - # Andrew Marino
@@ -147,7 +146,7 @@ The aim of this study was to show that low-strength <<electromagnetic>> fields (
 **Slug**: `marino-andrew`  ·  **FTS query**: `Marino AND (<<electromagnetic>> OR <<EMF>> OR Becker)`  ·  **Hits**: 30
 
 
-## pubmed (4)
+## pubmed (14)
 
 - **Low-frequency <<electromagnetic>> fields alter the … 
 - **Per-Video References**
@@ -161,12 +160,13 @@ The aim of this study was to show that low-strength <<electromagnetic>> fields (
 **Citations**: 
 
 ## X5WCYlaPAwM-blue-light-<<emf>> … 
-- **bone-bioelectric-becker**
-  - `_intake/concept-digests/bone-bioelectric-becker.md`
-  -  … Co-authored ~40 papers
-with <<Becker>> on <<bone>> <<regeneration>>, <<EMF>> biology, electric currents in tissue … 
+- **schumann-cme**
+  - `_intake/concept-digests/schumann-cme.md`
+  -  … 1, intake:25, openalex-citers:5 … 
 - **<<emf>>-non-thermal**
-  - `_intake/concept-digests/<<emf>>-non-thermal … 
+  - `_intake/concept-digests/<<emf>>-non-thermal.md`
+  -  … <<electromagnetic>>>>>> spectrum is astounding as we laid … 
+- **<<bone … 
 - **EMF 5: What are the Biologic Effects of EMF?**
   - `_intake/kruse-blog-corpus/articles/emf-5-what-are-the-biologic-effects-of-emf.md`
   -  … WHO Conference on the Precautionary Principle, Rome, June 2001.
@@ -175,6 +175,13 @@ with <<Becker>> on <<bone>> <<regeneration>>, <<EMF>> biology, electric currents
 - **EMF 8: Quantum Bone**
   - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
   -  … From the Earth’ magnetic signal to visible light in the <<EMF>> spectrum, the filling in of the <<electromagnetic>> spectrum is astounding as we laid … 
+- **bone-bioelectric-becker**
+  - `_intake/concept-digests/bone-bioelectric-becker.md`
+  -  … Low-frequency <<<<electromagnetic>>>> fields alter the … 
+- **<<bone>>-<<bioelectric>>-<<becker>>**
+  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
+  -  … Andrew <<Marino>> PhD ON Dr … 
+- **<<emf>>-non-thermal … 
 - **Quantum Biology #1: The Zero Entropy System**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-1-the-zero-entropy-system.md`
   -  … of ‘man-made’ <<electromagnetic>> pollution in our modern environment,  what was the[ biologic effect on all life](https://jackkruse.com/<<emf>>-5-what-are … 
@@ -185,6 +192,9 @@ with <<Becker>> on <<bone>> <<regeneration>>, <<EMF>> biology, electric currents
 That quote was made about the epic NASA failures during the [
 
 ![<<EMF>>-Force](https://jackkruse.com/wp-content/uploads/2014/01/<<EMF>>-Force … 
+- **Energy and Epigenetics 3: Autoimmunity, Cancer, Autism**
+  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-3-autoimmunity-cancer-autism.md`
+  -  … The <<electromagnetic>> field can carry waves and particles. In this <<EMF>> field, the waves can act very unusual. When the <<electromagnetic>> frequency of these … 
 - **Robert O. Becker**
   - `_intake/canon-profiles/becker-robert-o.md`
   -  … bone>> <<regeneration>>, <<EMF>> biology, electric currents in tissue … 
@@ -196,9 +206,6 @@ That quote was made about the epic NASA failures during the [
 ## pubmed (4)
 
 - **Low-frequency <<<<electromagnetic>>>> fields alter … 
-- **Energy and Epigenetics 3: Autoimmunity, Cancer, Autism**
-  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-3-autoimmunity-cancer-autism.md`
-  -  … The <<electromagnetic>> field can carry waves and particles. In this <<EMF>> field, the waves can act very unusual. When the <<electromagnetic>> frequency of these … 
 - **EMF 6: Quantum Time**
   - `_intake/kruse-blog-corpus/articles/emf-6-quantum-time.md`
   -  … with <<EMF>> and EMR is that in most communities there is no non-exposed reference group because we live in homes with <<electromagnetic>> fields … 
@@ -210,6 +217,3 @@ That quote was made about the epic NASA failures during the [
   -  … DNA has already been shown to emit <<EMF>> signals. The signals it emits is different when it is hydrated.
 
 It is where <<electromagnetic>> field … 
-- **ORGANIZATION STRUCTURAL FAILURE 2:  MAGNETIC MEMORY**
-  - `_intake/kruse-blog-corpus/articles/organization-structural-failure-2-magnetism.md`
-  -  … The implications of  [<<EMF>> 2 ](https://jackkruse.com/<<emf>>-2-einstein-meet-leptin/)and [<<EMF>> 3](/<<emf>>-3-the-origin-of-life/) are massive … 

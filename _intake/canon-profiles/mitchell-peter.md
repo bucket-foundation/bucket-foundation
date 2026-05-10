@@ -3,7 +3,7 @@
 **Slug**: `mitchell-peter`  ·  **FTS query**: `Mitchell AND (chemiosmotic OR proton OR oxidative)`  ·  **Hits**: 30
 
 
-## pubmed (13)
+## pubmed (15)
 
 - **Chemiosmotic coupling in oxidative and photosynthetic phosphorylation. 1966.**
   - `pubmed/PMID-22082452-chemiosmotic-coupling-in-oxidative-and-photosynthetic-phosph/info.md`
@@ -79,6 +79,16 @@
 - **Captured**: 2026-05-09T09:22:00
 
 ## Abstract … 
+- **Foundations of vectorial metabolism and osmochemistry.**
+  - `pubmed/PMID-16134020-foundations-of-vectorial-metabolism-and-osmochemistry/info.md`
+  -  … Peter D <<Mitchell>>
+- **MeSH**: Biochemistry, Biological Transport, Biological Transport, Active, Catalysis, Chemistry, Diffusion, Electron Transport, Genetic Vectors, Ligands, Light
+- **URL**: https://pubmed.ncbi.nlm … 
+- **Acid-base titration across the membrane system of rat-liver mitochondria. Catalysis by uncouplers.**
+  - `pubmed/PMID-6048801-acid-base-titration-across-the-membrane-system-of-rat-liver/info.md`
+  -  … P <<Mitchell>>, J Moyle
+- **MeSH**: Animals, Dinitrophenols, Hydrogen-Ion Concentration, Hypoxia, In Vitro Techniques, Kinetics, Liver, Male, Membrane Potentials, Mitochondria
+- **URL**: https://pubmed.ncbi … 
 
 ## youtube (1)
 
@@ -89,7 +99,7 @@ in 1978 to English scientist Peter
 <<Mitchell>> for his <<chemiosmotic>> hypothesis
 to award a Nobel Prize for an as yet … 
 
-## intake (15)
+## intake (13)
 
 - **Peter Mitchell**
   - `_intake/canon-profiles/mitchell-peter.md`
@@ -98,7 +108,7 @@ to award a Nobel Prize for an as yet …
 **Slug**: `<<mitchell>>-peter`  ·  **FTS query**: `<<Mitchell>> AND (<<chemiosmotic>> OR <<proton>> OR <<oxidative>>)`  ·  **Hits**: 30
 
 
-## pubmed (15)
+## pubmed (13)
 
 - **<<Chemiosmotic>> coupling in <<oxidative>> and photosynthetic … 
 - **chemiosmotic-mitchell**
@@ -107,21 +117,18 @@ to award a Nobel Prize for an as yet …
   - `_intake/canon-profiles/<<mitchell>>-peter.md`
   - # Peter <<<<Mitchell>>>>
 
-**Slug**: `<<<<mitchell>>>>-peter`  ·  **FTS query**: `<<<<Mitchell>>>> AND (<<<<chemiosmotic>>>> OR <<proton>> OR <<oxidative>>)`  ·  **Hits**: 25 … 
+**Slug**: `<<<<mitchell>>>>-peter`  ·  **FTS query**: `<<<<Mitchell>>>> AND (<<<<chemiosmotic>>>> OR <<proton>> OR <<oxidative>>)`  ·  **Hits**: 30 … 
 - **mitochondrial-redox**
   - `_intake/concept-digests/mitochondrial-redox.md`
-  -  … <<Mitchell>>**
-  - `_intake/canon-profiles/<<mitchell>>-peter.md`
-  -  … Nobel Prize, <<<<Oxidation>>>>-Reduction, Photophosphorylation, <<<<<<Proton>>>>>>-Motive Force
-- **URL**: https … 
-- **Strategy of research on the <<chemiosmotic>> mechanism … 
+  -  … and <<<<protons>>>> in animals. That is the <<redox>> couple in <<cytochrome>> 1 of <<mitochondria>>. These electrons are ferried to oxygen … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept … 
 - **Björn Nordenström**
   - `_intake/canon-profiles/nordenstrom-bjorn.md`
-  -  … imaging-of-the-lung … 
-- **Peter <<Mitchell>>**
-  - `_intake/canon-profiles/<<mitchell>>-peter.md`
-  -  … Nobel 1978 | <<<<Chemiosmotic>>>> theory papers, mitochondrial <<<<proton>>>> gradient | 05-biophysics | 4 |
-| `<<nordenstrom … 
+  -  … digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … peter`](<<<<mitchell>>>>-peter.md) — Peter <<<<Mitchell>>>> — 25 hits
+- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> … 
+- **<<Mitchell>> chemiosmosis / ETC / <<proton>> gradient … 
 - **EMF 3: The Origin of Life**
   - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
   -  … The <<oxidative>> chemicals would have been provided by the sun’s <<oxidative>> powers of the ocean at its surface. Even today, <<Mitchell>>’s version … 
@@ -142,14 +149,6 @@ institutional archive + Nobel materials
 
 1. Identify lowest-friction source (PD > OA > author-site > publisher).
 2. Pull primary materials … 
-- **photosynthesis-quantum**
-  - `_intake/concept-digests/photosynthesis-quantum.md`
-  -  … ANIMAL <<PHOTOSYNTHESIS>>](https://jackkruse.com/reality … 
-- **<<chemiosmotic>>-<<mitchell>>**
-  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … intake/kruse-references-mined/CURATED … 
-- **<<photosynthesis>>-<<quantum>>**
-  - `_intake/concept-digests … 
 - **Meta-Canon — what the bridges actually mean**
   - `_intake/connections/META-CANON.md`
   -  … also Walter Russell — different person, separate canon line.] |
@@ -159,28 +158,21 @@ institutional archive + Nobel materials
   - `_intake/concept-digests/INDEX.md`
   -  … 15)
 - [`mitochondrial-redox`](mitochondrial-redox.md) — 35 hits  (intake:35)
-- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 35 hits  (blog:1, intake:12, openalex-citers:6 … 
+- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 35 hits  (arxiv:1, blog:2, intake:15, openalex … 
 - **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
   - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
   -  … I’d have you remember that <<protons>> are positively charged and electrons are negatively charged. In the mitochondrial matrix, <<protons>> are stripped of most … 
-- **association-induction-ling**
-  - `_intake/concept-digests/association-induction-ling.md`
-  -  … need 5000 times more ATP than a <<cell>> … 
-- **<<chemiosmotic>>-<<mitchell>>**
-  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … 16, pubmed:12, youtube:2)
-- [`photoelectric … 
-- **<<association>>-<<induction … 
 - **Energy and Epigenetics 12:  Is Your Battery Charged?**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
   -  … When a cell is <<oxidized>>,  its pH is low, and pH is a measure of the strength of <<proton>> transfer to make ATP.  This … 
-- **schumann-cme**
-  - `_intake/concept-digests/schumann-cme.md`
-  -  … This is an foundational physical finding that … 
-- **<<chemiosmotic>>-<<mitchell>>**
-  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … The Origin of Life**
-  - `_intake/kruse-blog-corpus/articles … 
 - **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
   - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
   -  … This is why Wallace needs Pollack’s perspective and should not rely too much on Peter <<Mitchell>>’s perspective that the <<proton>> gradient is … 
+- **Mitchell chemiosmosis / ETC / proton gradient — concept canon-target intake**
+  - `_intake/concept-mitochondrial-chemiosmosis/README.md`
+  - # <<Mitchell>> chemiosmosis / ETC / <<proton>> gradient — concept canon-target intake
+
+- **Slug**: `concept-mitochondrial-chemiosmosis`
+- **Canon branch**: 05-biophysics
+- **Status**: queued (not yet researched)
+- **Initiated**: 2026 … 

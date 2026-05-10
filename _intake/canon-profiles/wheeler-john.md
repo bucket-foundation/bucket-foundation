@@ -5,10 +5,6 @@
 
 ## archive (2)
 
-- **(proto)Physics PhD Thesis: TOE - Quantum Cosmology**
-  - `archive/ThesisTOEdll/00- Quantum Cosmology : An Epistemological and Ontological Perspective on Quantum Cosmology and Levels of the Multiverse (rev0)_djvu.txt`
-  -  … In addition to the <<Wheeler>>—DeWitt equation, <<quantum>> cosmology also explores the 
-importance of boundary conditions for the universe. In classical cosmology, the initial … 
 - **Geons, black holes, and quantum foam : a life in physics**
   - `archive/geonsblackholesq00whee/info.md`
   - # Geons, black holes, and <<quantum>> foam : a life in physics
@@ -16,6 +12,10 @@ importance of boundary conditions for the universe. In classical cosmology, the 
 - **Archive identifier**: `geonsblackholesq00whee`
 - **URL**: https://archive.org/details/geonsblackholesq00whee
 - **Creator**: <<Wheeler>>, John Archibald, 1911 … 
+- **(proto)Physics PhD Thesis: TOE - Quantum Cosmology**
+  - `archive/ThesisTOEdll/00- Quantum Cosmology : An Epistemological and Ontological Perspective on Quantum Cosmology and Levels of the Multiverse (rev0)_djvu.txt`
+  -  … In addition to the <<Wheeler>>—DeWitt equation, <<quantum>> cosmology also explores the 
+importance of boundary conditions for the universe. In classical cosmology, the initial … 
 
 ## pubmed (2)
 
@@ -60,7 +60,7 @@ is a <<participatory>> universe
 okay <<information>> theoretic means the
 bits of <<information>> on the lowest … 
 
-## intake (15)
+## intake (13)
 
 - **John Archibald Wheeler**
   - `_intake/canon-profiles/wheeler-john.md`
@@ -96,53 +96,44 @@ bits of <<information>> on the lowest …
   -  … Experimental Researches in Electricity* | 02-physics | 2 |
 | `<<wheeler>>-john-archibald` | <<Wheeler>> | "<<Information>>, Physics, <<Quantum>>" (1989), <<delayed>>-choice | 06-cosmology | 3 |
 | `warburg-otto` | Otto Warburg … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … 6), <<<<Tesla>>>>(6 … 
+- **John Archibald <<Wheeler>>**
+  - `_intake/canon-profiles/<<wheeler>>-john.md`
+  -  … 2 |
+| `<<<<wheeler>>>>-john-archibald` | <<<<Wheeler>>>> | "<<<<Information>>>>, Physics … 
+- **Nikola <<Tesla>>**
+  - `_intake/canon-profiles … 
 - **Michael Faraday**
   - `_intake/canon-profiles/faraday-michael.md`
-  -  … <<wheeler>>-john.md`
-  -  … <<Faraday>>**
-  - `_intake/canon-profiles/<<faraday>>-michael.md`
-  -  … michael` | <<<<Faraday>>>> | *<<<<Experimental>>>> Researches in <<<<Electricity>>>>* | 02-physics | 2 |
-| `<<<<wheeler>>>>-john-archibald` | <<<<Wheeler>>>> | "<<<<Information>> … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … kruse-is-shirtless-in-this-interview`
-- `KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-feynman-john-<<wheeler>>-<<quantum>>-r`
-- `KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick … 
+  -  … michael` | <<Faraday>> | *<<Experimental>> Researches in <<Electricity>>* | 02-physics | 2 |
+| `<<wheeler>>-john-archibald` | <<Wheeler>> | "<<Information>>, Physics … 
+- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
+  - `_intake/kruse … 
 - **Niels Bohr**
   - `_intake/canon-profiles/bohr-niels.md`
   -  … 1)
 
 - **The <<Quantum>> Labyrinth - Richard Feynman & John <<Wheeler>> - <<Quantum>> Reality & Time**
   - `yt/KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-feynman-john-<<wheeler>>-<<quantum>>-r/transcript.txt … 
-- **Nikola Tesla**
-  - `_intake/canon-profiles/tesla-nikola.md`
-  -  … Warburg … 
-- **Michael Faraday**
-  - `_intake/canon-profiles/faraday-michael.md`
-  -  … <<wheeler>>-john-archibald` | <<Wheeler>> | "<<Information>>, Physics … 
-- **Nikola <<Tesla>>**
-  - `_intake/canon-profiles/<<tesla>>-nikola.md`
-  -  … <<tesla … 
-- **Erwin Schrödinger**
-  - `_intake/canon-profiles/schrodinger-erwin.md`
-  -  … Feynman>> & John <<Wheeler>> - <<Quantum>> Reality & Time … 
-- **Erwin <<Schrödinger>>**
-  - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
-  -  … that … 
-- **The <<Quantum>> Labyrinth - Richard <<Feynman>> & John <<Wheeler>> … 
-- **Isaac Newton … 
 - **Richard Feynman**
   - `_intake/canon-profiles/feynman-richard.md`
-  -  … 25
+  -  … 30
 
 
-## archive (2)
+## archive (1)
 
 - **[Coursera] Exploring <<Quantum>> Physics**
   - `archive/academictorrents_f24122f15283757aa8a9bf9cb638db266273442d/info.md`
   -  … Richard <<<<Feynman>>>> once … 
 - **John Archibald <<Wheeler>>**
   - `_intake/canon-profiles/<<wheeler>>-john.md … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … kruse-is-shirtless-in-this-interview`
+- `KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-feynman-john-<<wheeler>>-<<quantum>>-r`
+- `KV-1dlqowKw-dr-jack-kruse-andrew-huberman-rick … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … WHO(33), <<Wheeler>>(20), Einstein(15), AGE(14), <<quantum>>(5), EPA(4), iron(1), AGEs(1), RAGE(1), electron(1), Wigner(1)
@@ -154,11 +145,3 @@ bits of <<information>> on the lowest …
   -  … mean**
   - `_intake/connections/META-CANON.md`
   -  … 019 | <<<<information>>>> (<<Shannon>>/Turing/Chaitin) · physics (<<Wheeler>> "it from bit", <<quantum>> measurement) · biophysics (DNA, signaling, neural codes) · cosmology … 
-- **walter-russell-cosmology**
-  - `_intake/concept-digests/walter-russell-cosmology.md`
-  -  … brain <<rhythms>>.  These waves … 
-- **John Archibald <<Wheeler>>**
-  - `_intake/canon-profiles/<<wheeler>>-john.md`
-  -  … amazing foundational work on <<<<quantum>>>> vortices in … 
-- **walter-<<russell>>-cosmology**
-  - `_intake … 

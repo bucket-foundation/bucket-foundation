@@ -29,7 +29,7 @@ its inception …
 theory a Danish physicist and wheeler
 had worked with Niels <<Bohr>> over in … 
 
-## intake (13)
+## intake (10)
 
 - **Niels Bohr**
   - `_intake/canon-profiles/bohr-niels.md`
@@ -41,53 +41,67 @@ had worked with Niels <<Bohr>> over in …
 ## archive (2)
 
 - **(proto)Physics PhD Thesis: TOE - <<Quantum>> … 
+- **John Archibald Wheeler**
+  - `_intake/canon-profiles/wheeler-john.md`
+  -  … https://archive.org/details/geonsblackholesq00whee
+- **Creator**: <<Wheeler>>, John Archibald, 1911 … 
+
+## pubmed (2)
+
+- **Delayed-choice test of <<quantum>> <<complementarity>> with interfering single photons.**
+  - `pubmed/PMID … 
 - **mendeleev-periodic**
   - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … stable <<periodic>> <<table>> of <<atoms>>. *The <<periodic>> <<table>> is no longer considered stable … 
+  -  … full <<periodic>> <<table>> papers … 
 - **Niels <<Bohr>>**
   - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … THE POWER MATRIX … 
+  -  … 25
+
+
+## archive (4)
+
+- **['Introduction To <<<<Quantum>>>> Mechanics', 'With Applications … 
+- **<<mendeleev>>-<<periodic>>**
+  - `_intake … 
 - **Richard Feynman**
   - `_intake/canon-profiles/feynman-richard.md`
-  -  … Niels <<Bohr>>**
-  - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … However, it turns out … 
-
-## youtube (6)
-
-- **The <<Quantum>> Labyrinth - Richard <<Feynman>> & John Wheeler - <<Quantum>> Reality & Time … 
+  -  … <<Quantum>> Labyrinth - Richard <<Feynman>> & John Wheeler - <<Quantum>> Reality & Time**
+  - `yt … 
 - **Erwin Schrödinger**
   - `_intake/canon-profiles/schrodinger-erwin.md`
-  -  … hits
-- [`<<bohr>>-niels`](<<bohr>>-niels.md) — Niels <<Bohr>> … 
-- **Richard Feynman**
-  - `_intake/canon-profiles/feynman-richard.md`
-  -  … Labyrinth - Richard <<Feynman>> & John Wheeler - <<Quantum>> Reality & Time … 
+  -  … niels`](<<bohr>>-niels.md) — Niels <<Bohr>> … 
+- **Erwin Schrödinger**
+  - `_intake/canon-profiles/schrodinger-erwin.md`
+  -  … <<Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … <<Bohr>>>>**
+  - `_intake/canon-profiles/<<<<bohr>>>>-niels.md`
+  -  … THE … 
+- **Erwin <<Schrödinger>>**
+  - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
+  -  … <<<<bohr>> … 
+- **quantum-biology**
+  - `_intake/concept-digests/quantum-biology.md`
+  -  … https://jackkruse.com/<<<<quantum>>>>-<<biology>>-12-do-we-need-dna-to-tell-time … 
+- **Niels <<Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … The <<<<<<Quantum>>>>>> Puzzle … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … on … 
+- **<<mendeleev>>-periodic**
+  - `_intake/concept … 
+- **Niels <<Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … <<Bohr>>>>’s version of <<<<quantum>>>> mechanics largely ignores … 
+- **Nikola <<Tesla>>**
+  - `_intake … 
 - **Quantum Biology 7: Sulfated Vitamin D3**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
   -  … <<atoms>> and accurately predict how groups of them would behave together.  With his imagination as his canvas, he created the foundation of <<quantum>> mechanics … 
 - **TENSEGRITY #10: THE POWER MATRIX**
   - `_intake/kruse-blog-corpus/articles/tensegrity-10.md`
   -  … As <<atomic>> physics and chemistry began to explain the periodic table with the help of the <<Bohr>> model of the <<atom>> in the early … 
-- **John Archibald Wheeler**
-  - `_intake/canon-profiles/wheeler-john.md`
-  -  … <<quantum>>>>-labyrinth-richard-feynman-john-<<wheeler>>-<<<<quantum>>>>-r … 
-- **Niels <<Bohr>>**
-  - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … However, it turns out … 
-
-## youtube (6)
-
-- **The <<<<Quantum>> … 
-- **Nikola Tesla**
-  - `_intake/canon-profiles/tesla-nikola.md`
-  -  … Niels <<Bohr>>**
-  - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … light to
-communicate because remember when
-<<<<quantum>>>> mechanics
-was innovated from <<Tesla>> to Niels <<<<Bohr>>>>
-no … 
 - **CPC #16: Quantum Breathing Effects**
   - `_intake/kruse-blog-corpus/articles/cpc-16-quantum-breathing-effects.md`
   -  … https://jackkruse.com/cpc-16-<<quantum>>-breathing-effects/
@@ -99,21 +113,3 @@ no …
 
 
 The <<Bohr>> effect hinges around the electromagnetic allosteric interactions between the … 
-- **quantum-biology**
-  - `_intake/concept-digests/quantum-biology.md`
-  -  … Jack Kruse #149**
-  - `yt/PH1MbzHXPsY-cancer-beyond-metabolism-bioelectricity-mitochondria-<<<<quantum>>>>/transcript.txt`
-  -  … that <<Becker>> found one trillionth of … 
-- **Niels <<Bohr>>**
-  - `_intake/canon-profiles … 
-- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
-  -  … They can create other possible <<quantum>> possibilities for protons and electrons within a mitochondria by creating something called an **“exotic <<atom>>”**. *This <<atom>> would … 
-- **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
-  -  … SUMMARY:**
-
-As <<atomic>> physics and chemistry began to explain the periodic table with the help of the <<Bohr>> model of the <<atom>> in the … 
-- **TIME # 25: HOW DO MONOPOLES MAKE TIME FOR CELLS?**
-  - `_intake/kruse-blog-corpus/articles/monopoles-make-time.md`
-  -  … thesis, for which he later won the Nobel Prize.  The problem for physics back then, was <<Bohr>>’s version of <<quantum>> mechanics largely ignores … 

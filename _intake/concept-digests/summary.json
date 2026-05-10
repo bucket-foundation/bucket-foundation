@@ -4,9 +4,9 @@
     "q": "deuterium AND water",
     "hits": 35,
     "by_source": {
-      "intake": 21,
+      "intake": 20,
       "pubmed": 6,
-      "youtube": 5,
+      "youtube": 6,
       "openalex-citers": 3
     }
   },
@@ -15,11 +15,11 @@
     "q": "exclusion AND zone",
     "hits": 35,
     "by_source": {
-      "intake": 8,
-      "pubmed": 16,
+      "intake": 6,
+      "pubmed": 17,
       "openalex-fanout": 3,
       "openalex": 1,
-      "openalex-citers": 7
+      "openalex-citers": 8
     }
   },
   {
@@ -39,9 +39,9 @@
     "q": "melanin AND (semiconductor OR conductor OR electron)",
     "hits": 35,
     "by_source": {
-      "intake": 17,
+      "intake": 18,
       "pubmed": 3,
-      "youtube": 15
+      "youtube": 14
     }
   },
   {
@@ -57,10 +57,10 @@
     "q": "chemiosmotic OR Mitchell",
     "hits": 35,
     "by_source": {
-      "intake": 15,
+      "intake": 14,
       "pubmed": 14,
       "youtube": 1,
-      "blog": 2,
+      "blog": 3,
       "arxiv": 1,
       "openalex-fanout": 2
     }
@@ -70,7 +70,8 @@
     "q": "photoelectric AND (biology OR cell OR body)",
     "hits": 35,
     "by_source": {
-      "intake": 35
+      "intake": 34,
+      "youtube": 1
     }
   },
   {
@@ -78,9 +79,9 @@
     "q": "quantum AND biology",
     "hits": 35,
     "by_source": {
-      "intake": 20,
+      "intake": 21,
       "openalex-fanout": 5,
-      "pubmed": 3,
+      "pubmed": 2,
       "openalex-citers": 6,
       "arxiv": 1
     }
@@ -150,10 +151,10 @@
     "q": "\"methylene blue\"",
     "hits": 35,
     "by_source": {
-      "intake": 16,
+      "intake": 15,
       "pubmed": 11,
       "openalex-citers": 1,
-      "youtube": 7
+      "youtube": 8
     }
   },
   {
@@ -161,11 +162,11 @@
     "q": "infrared OR \"near IR\" OR \"near-infrared\"",
     "hits": 35,
     "by_source": {
-      "intake": 9,
+      "intake": 5,
       "arxiv": 2,
-      "pubmed": 14,
+      "pubmed": 15,
       "openalex-citers": 6,
-      "openalex-fanout": 4
+      "openalex-fanout": 7
     }
   },
   {
@@ -173,9 +174,9 @@
     "q": "UV OR UVA OR UVB OR ultraviolet",
     "hits": 35,
     "by_source": {
-      "intake": 21,
+      "intake": 23,
       "pubmed": 8,
-      "youtube": 6
+      "youtube": 4
     }
   },
   {
@@ -193,9 +194,9 @@
     "hits": 35,
     "by_source": {
       "openalex-fanout": 2,
-      "intake": 5,
-      "pubmed": 4,
-      "openalex-citers": 24
+      "intake": 4,
+      "pubmed": 6,
+      "openalex-citers": 23
     }
   },
   {
@@ -203,10 +204,10 @@
     "q": "Pollack AND water",
     "hits": 35,
     "by_source": {
-      "intake": 22,
+      "intake": 18,
       "openalex": 1,
       "openalex-fanout": 5,
-      "pubmed": 6,
+      "pubmed": 10,
       "openalex-citers": 1
     }
   },
@@ -215,10 +216,12 @@
     "q": "Schumann OR CME OR geomagnetic",
     "hits": 35,
     "by_source": {
-      "intake": 25,
+      "intake": 22,
       "openalex-citers": 6,
       "openalex-fanout": 3,
-      "pubmed": 1
+      "pubmed": 1,
+      "archive": 1,
+      "youtube": 2
     }
   },
   {
@@ -226,12 +229,11 @@
     "q": "(\"AGEs\" OR glycation OR RAGE)",
     "hits": 35,
     "by_source": {
-      "intake": 18,
-      "blog": 13,
-      "openalex-citers": 1,
-      "gutenberg": 1,
-      "openalex-fanout": 1,
-      "pubmed": 1
+      "intake": 17,
+      "pubmed": 10,
+      "blog": 6,
+      "youtube": 1,
+      "openalex-citers": 1
     }
   },
   {
@@ -239,12 +241,12 @@
     "q": "iron AND (heme OR redox)",
     "hits": 35,
     "by_source": {
-      "intake": 25,
+      "intake": 26,
       "openalex-citers": 2,
       "pubmed": 1,
       "youtube": 1,
       "openalex-fanout": 3,
-      "blog": 3
+      "blog": 2
     }
   },
   {
@@ -264,13 +266,14 @@
     "q": "Russell AND (universal OR octave OR rhythm)",
     "hits": 35,
     "by_source": {
-      "intake": 11,
-      "archive": 2,
-      "openalex": 3,
-      "blog": 13,
+      "intake": 9,
+      "archive": 3,
+      "openalex": 4,
+      "youtube": 2,
       "openalex-citers": 2,
-      "openalex-fanout": 3,
-      "wikisource": 1
+      "blog": 12,
+      "wikisource": 1,
+      "openalex-fanout": 2
     }
   },
   {
@@ -278,10 +281,10 @@
     "q": "Mendeleev OR periodic AND table",
     "hits": 35,
     "by_source": {
-      "intake": 17,
+      "intake": 22,
       "blog": 2,
-      "archive": 3,
-      "openalex-citers": 11,
+      "openalex-citers": 7,
+      "archive": 2,
       "openalex-fanout": 2
     }
   }

@@ -3,7 +3,7 @@
 **Slug**: `penrose-roger`  ·  **FTS query**: `Penrose AND (consciousness OR microtubule OR objective)`  ·  **Hits**: 30
 
 
-## pubmed (12)
+## pubmed (13)
 
 - **How quantum brain biology can rescue conscious free will.**
   - `pubmed/PMID-23091452-how-quantum-brain-biology-can-rescue-conscious-free-will/info.md`
@@ -54,6 +54,10 @@ What …
 ## Abstract
 
 The <<Penrose>>-Hameroff orchestrated <<objective>> reduction (orch. OR) model assigns a cognitive role to quantum computations in <<microtubules>> … 
+- **Quantum walks in brain microtubules--a biomolecular basis for quantum cognition?**
+  - `pubmed/PMID-24259348-quantum-walks-in-brain-microtubules-a-biomolecular-basis-for/info.md`
+  -  … a Feynman chessboard are conceptually identical to 'topological qubits' in brain neuronal <<microtubules>>, as described in the <<Penrose>>-Hameroff 'Orch OR' theory of <<consciousness>>.
+
 
 ## youtube (2)
 
@@ -72,7 +76,7 @@ as a two-dimensional <<object>> wrapped in a
 cylinder,
 but the walls of that cylinder … 
 
-## intake (3)
+## intake (2)
 
 - **Roger Penrose**
   - `_intake/canon-profiles/penrose-roger.md`
@@ -81,17 +85,12 @@ but the walls of that cylinder …
 **Slug**: `<<penrose>>-roger`  ·  **FTS query**: `<<Penrose>> AND (<<consciousness>> OR <<microtubule>> OR <<objective>>)`  ·  **Hits**: 30
 
 
-## archive (1)
+## pubmed (12)
 
-- **<<Consciousness>> and Imagination - Quantum and Biochemical … 
+- **How quantum brain biology can rescue … 
 - **Stuart Hameroff**
   - `_intake/canon-profiles/hameroff-stuart.md`
   -  … <<Penrose>>**
   - `_intake/canon-profiles/<<penrose>>-roger.md`
   -  … <<<<microtubules>>>>>> and is specifically predicted by the Orchestrated <<<<Objective>>>> Reduction theory of <<<<Penrose>>>> and <<Hameroff>> … 
 - **<<<<Consciousness>>>> in … 
-- **Alan Turing**
-  - `_intake/canon-profiles/turing-alan.md`
-  -  … Collapsing a theory of quantum <<consciousness>>? Part 2 (248)**
-  - `yt/OoDi856wLPM-sir-roger-<<penrose>>-stuart-hameroff-collapsing-a-theory-of-qua/transcript.txt`
-  -  … I … 

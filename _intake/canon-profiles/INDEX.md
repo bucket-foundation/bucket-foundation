@@ -11,7 +11,7 @@
 - [`marino-andrew`](marino-andrew.md) — Andrew Marino — 30 hits
 - [`frohlich-herbert`](frohlich-herbert.md) — Herbert Fröhlich — 30 hits
 - [`popp-fritz-albert`](popp-fritz-albert.md) — Fritz-Albert Popp — 30 hits
-- [`mendeleev-dmitri`](mendeleev-dmitri.md) — Dmitri Mendeleev — 24 hits
+- [`mendeleev-dmitri`](mendeleev-dmitri.md) — Dmitri Mendeleev — 30 hits
 - [`einstein-albert`](einstein-albert.md) — Albert Einstein — 30 hits
 - [`maxwell-james-clerk`](maxwell-james-clerk.md) — James Clerk Maxwell — 30 hits
 - [`newton-isaac`](newton-isaac.md) — Isaac Newton — 30 hits

@@ -68,9 +68,6 @@
 - **Journal**: Biochemical Society transactions  ·  **Year**: 1976
 - **Authors**: P <<Mitchell>>
 - **MeSH … 
-- **Contrasting approaches to a biological problem: paul boyer, peter mitchell and the mechanism of the ATP synthase, 1961-1985.**
-  - `pubmed/PMID-23104597-contrasting-approaches-to-a-biological-problem-paul-boyer-pe/info.md`
-  -  … During the 1960s and 1970s evidence began to accumulate which rendered Peter <<Mitchell>>'s <<chemiosmotic>> hypothesis, the novel part of which was the proton … 
 - **Strategy of research on the chemiosmotic mechanism of cytochrome oxidase.**
   - `pubmed/PMID-2834228-strategy-of-research-on-the-chemiosmotic-mechanism-of-cytoch/info.md`
   -  … <<chemiosmotic>> mechanism of cytochrome oxidase.
@@ -80,6 +77,9 @@
 - **PMCID**:  
 - **Journal**: FEBS letters  ·  **Year**: 1988
 - **Authors**: P <<Mitchell>> … 
+- **Contrasting approaches to a biological problem: paul boyer, peter mitchell and the mechanism of the ATP synthase, 1961-1985.**
+  - `pubmed/PMID-23104597-contrasting-approaches-to-a-biological-problem-paul-boyer-pe/info.md`
+  -  … During the 1960s and 1970s evidence began to accumulate which rendered Peter <<Mitchell>>'s <<chemiosmotic>> hypothesis, the novel part of which was the proton … 
 - **Acidic lipids, H(+)-ATPases, and mechanism of oxidative phosphorylation. Physico-chemical ideas 30 years after P. Mitchell's Nobel Prize award.**
   - `pubmed/PMID-19049812-acidic-lipids-h-atpases-and-mechanism-of-oxidative-phosphory/info.md`
   -  … <<Mitchell>>, who was awarded the Nobel Prize in Chemistry 30 years ago, in 1978, formulated the <<chemiosmotic>> theory of oxidative phosphorylation. This review initially … 
@@ -123,7 +123,7 @@ in 1978 to English scientist Peter
 <<Mitchell>> for his <<chemiosmotic>> hypothesis
 to award a Nobel Prize for an as yet … 
 
-## intake (15)
+## intake (14)
 
 - **chemiosmotic-mitchell**
   - `_intake/concept-digests/chemiosmotic-mitchell.md`
@@ -143,16 +143,9 @@ to award a Nobel Prize for an as yet …
 **Slug**: `<<mitchell>>-peter`  ·  **FTS query**: `<<Mitchell>> AND (<<chemiosmotic>> OR proton OR oxidative)`  ·  **Hits**: 30
 
 
-## pubmed (15)
+## pubmed (13)
 
 - **<<Chemiosmotic>> coupling in oxidative and photosynthetic … 
-- **Björn Nordenström**
-  - `_intake/canon-profiles/nordenstrom-bjorn.md`
-  -  … EMF) · math (vector fields, manifolds … 
-- **<<chemiosmotic>>-<<mitchell>>**
-  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … peter`](<<<<mitchell>>>>-peter.md) — Peter <<<<Mitchell>>>> — 25 hits
-- [`<<nordenstrom>>-bjorn`](<<nordenstrom … 
 - **Peter Mitchell — canon-target intake**
   - `_intake/mitchell-peter/README.md`
   -  … <<Mitchell>> P <<chemiosmotic>>
@@ -165,44 +158,26 @@ institutional archive + Nobel materials
 
 1. Identify lowest-friction source (PD > OA > author-site > publisher).
 2. Pull primary materials … 
-- **photosynthesis-quantum**
-  - `_intake/concept-digests/photosynthesis-quantum.md`
-  -  … ANIMAL <<PHOTOSYNTHESIS>>](https://jackkruse.com/reality … 
-- **<<chemiosmotic>>-<<mitchell>>**
+- **Björn Nordenström**
+  - `_intake/canon-profiles/nordenstrom-bjorn.md`
+  -  … <<chemiosmotic>>-<<mitchell>>**
   - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … intake/kruse-references-mined/CURATED … 
-- **<<photosynthesis>>-<<quantum>>**
-  - `_intake/concept-digests … 
+  -  … peter`](<<<<mitchell>>>>-peter.md) — Peter <<<<Mitchell>>>> — 25 hits
+- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> … 
+- **<<Mitchell>> … 
 - **mitochondrial-redox**
   - `_intake/concept-digests/mitochondrial-redox.md`
-  -  … Ling … 
+  -  … These electrons are ferried to oxygen … 
 - **<<chemiosmotic>>-<<mitchell>>**
   - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
   -  … Pull primary materials … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … 14)
-- [`mitochondrial-<<redox>>`](mitochondrial-<<redox … 
+- **mitochondrial-<<redox>>**
+  - `_intake/concept-digests/mitochondrial-<<redox … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
   -  … 15)
 - [`mitochondrial-redox`](mitochondrial-redox.md) — 35 hits  (intake:35)
-- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 35 hits  (blog:1, intake:12, openalex-citers:6 … 
-- **association-induction-ling**
-  - `_intake/concept-digests/association-induction-ling.md`
-  -  … need 5000 times more ATP than a <<cell>> … 
-- **<<chemiosmotic>>-<<mitchell>>**
-  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … 16, pubmed:12, youtube:2)
-- [`photoelectric … 
-- **<<association>>-<<induction … 
-- **schumann-cme**
-  - `_intake/concept-digests/schumann-cme.md`
-  -  … This is an foundational physical finding that … 
-- **<<chemiosmotic>>-<<mitchell>>**
-  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
-  -  … The Origin of Life**
-  - `_intake/kruse-blog-corpus/articles … 
+- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 35 hits  (arxiv:1, blog:2, intake:15, openalex … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … 1962), Association-Induction Hypothesis | 05-biophysics | 5 |
@@ -212,6 +187,20 @@ institutional archive + Nobel materials
   -  … also Walter Russell — different person, separate canon line.] |
 | **<<Mitchell>>** | 93 | biophysics (<<chemiosmotic>> theory, Nobel 1978) ↔ chemistry (proton gradients) ↔ physics (membrane thermodynamics). |
 | **Penrose** | 91 | physics … 
+- **Robert O. Becker**
+  - `_intake/canon-profiles/becker-robert-o.md`
+  -  … biophysics (<<Becker>> <<bioelectricity>>, <<Nordenström>> <<BCEC>>, <<Marino>> EMF) · math (vector fields, manifolds … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests … 
+- **Energy and Epigenetics 9: Quantum Sleep**
+  - `_intake/kruse … 
+- **Andrew Marino**
+  - `_intake/canon-profiles/marino-andrew.md`
+  -  … biophysics (<<Becker>> bioelectricity, <<Nordenström>> <<BCEC>>, <<Marino>> <<EMF>>) · math (vector fields, manifolds … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests … 
+- **EMF 8: Quantum Bone**
+  - `_intake/kruse-blog-corpus … 
 - **EMF 3: The Origin of Life**
   - `_intake/kruse-blog-corpus/articles/emf-3-the-origin-of-life.md`
   -  … floor.  It was the merger of the Schumann resonance with <<Mitchell>>’s <<chemiosmotic>> coupling and water’s quantum coherence that allowed life to reconstitute … 

@@ -3,8 +3,13 @@
 **Query**: `"vitamin D"`  ·  **Hits**: 35
 
 
-## pubmed (4)
+## pubmed (6)
 
+- **25-Hydroxyvitamin D levels in prevalent Australian dialysis patients.**
+  - `pubmed/PMID-19619182-25-hydroxyvitamin-d-levels-in-prevalent-australian-dialysis/info.md`
+  -  … Aged, Female, Humans, Male, Middle Aged, Peritoneal Dialysis, Renal Dialysis, <<Vitamin D>>, <<Vitamin D>> Deficiency
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19619182/
+- **Captured … 
 - **The link between vitamin D metabolism and sleep medicine.**
   - `pubmed/PMID-24075129-the-link-between-vitamin-d-metabolism-and-sleep-medicine/info.md`
   - # The link between <<vitamin D>> metabolism and sleep medicine.
@@ -21,6 +26,13 @@
 - **DOI**: 10.1038/nature15393
 - **PMCID**: PMC4750478 (full-text saved)
 - **Journal … 
+- **Association between serum vitamin D metabolite levels and disease activity in patients with early inflammatory polyarthritis.**
+  - `pubmed/PMID-17599737-association-between-serum-vitamin-d-metabolite-levels-and-di/info.md`
+  - # Association between serum <<vitamin D>> metabolite levels and disease activity in patients with early inflammatory polyarthritis.
+
+- **PMID**: 17599737
+- **DOI**: 10.1002/art.22722
+- **PMCID … 
 - **Vitamin D, race, and excessive daytime sleepiness.**
   - `pubmed/PMID-23243403-vitamin-d-race-and-excessive-daytime-sleepiness/info.md`
   -  … 2026-05-10T11:25:01
@@ -35,7 +47,7 @@ First, to determine whether serum <<vitamin D>> levels were correlated with exce
 - **PMID**: 41315334
 - **DOI**: 10.1038/ng … 
 
-## intake (5)
+## intake (4)
 
 - **vitamin-d-sunlight**
   - `_intake/concept-digests/vitamin-d-sunlight.md`
@@ -44,10 +56,10 @@ First, to determine whether serum <<vitamin D>> levels were correlated with exce
 **Query**: `"<<vitamin D>>"`  ·  **Hits**: 35
 
 
-## pubmed (2)
+## pubmed (4)
 
-- **Investigating <<Vitamin D>> Receptor Genetic Markers in a Cluster Headache Meta-Analysis.**
-  - `pubmed/PMID … 
+- **The link between <<vitamin D>> metabolism and sleep medicine.**
+  - `pubmed/PMID-24075129-the-link … 
 - **Vitamin D:  The Sunshine of Your Life?**
   - `_intake/kruse-blog-corpus/articles/the-sunshine-of-your-life.md`
   -  … Why? In order for circulating <<vitamin D>> to perform its functions, it must first activate the <<vitamin D>> receptor (VDR). The gut is broken … 
@@ -69,6 +81,3 @@ First, to determine whether serum <<vitamin D>> levels were correlated with exce
 - How does <<Vitamin D>> fit into our quantized existence?
 
 - How should you look at your own level of <<Vitamin>> … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … WHO(21), AGE(12), blue light(11), <<vitamin D>>(3), EMF(2), AGEs(2), melatonin(1), photosynthesis(1), red light(1), melanin(1), electromagnetic … 

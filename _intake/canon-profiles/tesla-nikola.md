@@ -3,7 +3,19 @@
 **Slug**: `tesla-nikola`  ·  **FTS query**: `Tesla`  ·  **Hits**: 30
 
 
-## youtube (3)
+## pubmed (3)
+
+- **Paramagnetic dysprosium oxide nanoparticles and dysprosium hydroxide nanorods as T₂ MRI contrast agents.**
+  - `pubmed/PMID-22277624-paramagnetic-dysprosium-oxide-nanoparticles-and-dysprosium-h/info.md`
+  -  … These include hydrodynamic diameters, magnetic properties, MR relaxivities, cytotoxicities, and 3 <<tesla>> in vivo T(2) MR images. Here, MR imaging properties of dysprosium … 
+- **Synthesis, Magnetic Properties, Map Images, and Water Proton Relaxivities of D-Glucuronic Acid Coated Ln2O3 Nanoparticles (Ln = Ho and Er).**
+  - `pubmed/PMID-26716328-synthesis-magnetic-properties-map-images-and-water-proton-re/info.md`
+  -  … They showed decent magnetic moments at room temperature and as a result, appreciable transverse water proton relaxivities (r2s) at 1.5 <<tesla>> MR field … 
+- **Surface coated Eu(OH)3 nanorods: a facile synthesis, characterization, MR relaxivities and in vitro cytotoxicity.**
+  - `pubmed/PMID-24245232-surface-coated-eu-oh-3-nanorods-a-facile-synthesis-character/info.md`
+  -  … However, a very tiny magnetization of approximately 1.2 emu/g at room temperature and at an applied field of 5 <<tesla>> was observed … 
+
+## youtube (1)
 
 - **Disconnecting one side of Dr. Becker's regenerative circuit.**
   - `yt/7LHwUIv5zOo-disconnecting-one-side-of-dr-becker-s-regenerative-circuit/transcript.txt`
@@ -12,20 +24,8 @@ tell people that earthing is the
 simplest <<Tesla>> circuit his his single
 wire circuit that he made himself you
 know … 
-- **Boosting Neurotransmitters?**
-  - `yt/1GuVfh_KX94-boosting-neurotransmitters/transcript.txt`
-  -  … So say you have
-a <<Tesla>> factory and you're trying to
-turn out more and more cars, but there's
-a slowdown on … 
-- **Jack Kruse: Sunlight is KEY for health**
-  - `yt/9-P8Qzvdkl8-jack-kruse-sunlight-is-key-for-health/transcript.txt`
-  -  … native EMF
-that is not from the Sun it's from <<Tesla>>
-Edison and math mom's man's mana
-creations like these three … 
 
-## intake (18)
+## intake (17)
 
 - **Nikola Tesla**
   - `_intake/canon-profiles/tesla-nikola.md`
@@ -34,20 +34,17 @@ creations like these three …
 **Slug**: `<<tesla>>-nikola`  ·  **FTS query**: `<<Tesla>>`  ·  **Hits**: 30
 
 
-## youtube (2)
+## youtube (3)
 
 - **Disconnecting one side of Dr. Becker's regenerative circuit.**
   - `yt/7LHwUIv5zOo-disconnecting … 
-- **Isaac Newton**
-  - `_intake/canon-profiles/newton-isaac.md`
-  -  … Public domain. |
-| `maxwell … 
+- **Michael Faraday**
+  - `_intake/canon-profiles/faraday-michael.md`
+  -  … 02-physics | 2 |
+| `<<wheeler>>-john-archibald … 
 - **Nikola <<Tesla>>**
   - `_intake/canon-profiles/<<tesla>>-nikola.md`
-  -  … faraday-michael` | Faraday | *Experimental … 
-- **Isaac <<Newton>>**
-  - `_intake/canon-profiles/<<newton>>-isaac.md`
-  -  … physics … 
+  -  … <<tesla>>>>-nikola` | <<<<Tesla>>>> | Patents, papers on resonance | 02-physics | 4 … 
 - **Nikola Tesla — canon-target intake**
   - `_intake/tesla-nikola/README.md`
   - # Nikola <<Tesla>> — canon-target intake
@@ -57,12 +54,23 @@ creations like these three …
 - **Status**: queued (not yet ingested)
 - **Initiated**: 2026-05-08
 - **Source signal**: mentioned … 
-- **Michael Faraday**
-  - `_intake/canon-profiles/faraday-michael.md`
-  -  … other experiments, we’ve learned life … 
+- **Isaac Newton**
+  - `_intake/canon-profiles/newton-isaac.md`
+  -  … original Latin + Cohen-Whitman translation
+- cambridge.org: <<Newton>> … 
 - **Nikola <<Tesla>>**
   - `_intake/canon-profiles/<<tesla>>-nikola.md`
-  -  … <<tesla>>>>-nikola` | <<<<Tesla>>>> | Patents, papers on resonance | 02-physics | 4 … 
+  -  … Penrose-Hawking singularity, Sandage, Sagan, Lemaître |
+| 02-physics … 
+- **John Archibald Wheeler**
+  - `_intake/canon-profiles/wheeler-john.md`
+  -  … <<Tesla>>**
+  - `_intake/canon-profiles/<<tesla>>-nikola.md`
+  -  … Warburg … 
+- **Michael Faraday**
+  - `_intake/canon-profiles/faraday-michael.md`
+  -  … <<wheeler>>-john-archibald` | <<Wheeler>> | "<<Information>>, Physics … 
+- **Nikola <<<<Tesla>> … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
   -  … michael`](faraday-michael.md) — Michael Faraday — 30 hits
@@ -70,47 +78,53 @@ creations like these three …
 - [`warburg-otto`](warburg-otto.md) — Otto Warburg … 
 - **mendeleev-periodic**
   - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … intake:23, youtube:2)
+  -  … <<tesla>>-nikola.md`
+  -  … <<Mendeleev>>**
+  - `_intake/canon-profiles/<<mendeleev>>-dmitri.md`
+  -  … Newton**
+  - `_intake/canon-profiles/newton-isaac.md`
+  -  … 02-physics | 10 |
+| `<<<<tesla>>>>-nikola` | <<<<Tesla>>>> | Patents … 
+- **AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … 35 hits  (blog:8, gutenberg:3, intake:22 … 
 - **Nikola <<Tesla>>**
   - `_intake/canon-profiles/<<tesla>>-nikola.md`
-  -  … 02-physics | 10 |
-| `<<<<tesla>>>>-nikola` | <<<<Tesla>>>> | Patents, papers on … 
-- **<<mendeleev>>-periodic**
-  - `_intake … 
+  -  … Patents, papers on resonance | 02-physics | 4 … 
+- **<<AGEs … 
 - **Dmitri Mendeleev**
   - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … the mathematical principles … 
+  -  … 35
+
+
+## archive (3)
+
+- **A Modern Handbook Of Physics**
+  - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook … 
 - **Nikola <<Tesla>>**
   - `_intake/canon-profiles/<<tesla>>-nikola.md`
-  -  … 02-physics | 10 |
-| `<<<<tesla>>>>-nikola` | <<<<Tesla>>>> | Patents, papers on … 
-- **<<mendeleev>>-periodic**
-  - `_intake/concept … 
+  -  … <<Mendeleev … 
 - **Niels Bohr**
   - `_intake/canon-profiles/bohr-niels.md`
-  -  … Bohr>>’s version of <<quantum>> mechanics largely ignores … 
+  -  … However, it turns out … 
+
+## youtube (6)
+
+- **The <<<<Quantum>> … 
 - **Nikola <<Tesla>>**
   - `_intake/canon-profiles/<<tesla>>-nikola.md`
   -  … Niels <<Bohr>>**
   - `_intake/canon-profiles/<<bohr>>-niels.md … 
-- **AGEs-RAGE-glycation**
-  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
-  -  … Nikola <<Tesla>>**
-  - `_intake/canon-profiles/<<tesla>>-nikola.md`
-  -  … kruse-references-mined/PER-VIDEO.md`
-  -  … <<AGE>>(11), electron(9), WHO(6), Becker(6), <<<<Tesla>>>>(6 … 
-- **John Archibald Wheeler**
-  - `_intake/canon-profiles/wheeler-john.md`
-  -  … 2 |
-| `<<wheeler>>-john-archibald` | <<Wheeler>> | "<<Information>>, Physics … 
-- **Nikola <<Tesla>>**
-  - `_intake/canon-profiles/<<tesla>>-nikola.md`
-  -  … <<tesla>> … 
-- **Richard Feynman**
-  - `_intake/canon-profiles/feynman-richard.md … 
 - **REDOX Rx 2:  BIOHACKING YOUR MRI**
   - `_intake/kruse-blog-corpus/articles/redox-rx-2-biohacking-mri.md`
   -  … It turns out the difference of a 1.5 <<tesla>> and 1.0 <<tesla>> magnetic field is seen in only ***50 protons*** per 1 … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … photoelectric>> energy loss in <<cells>>.  It really causes … 
+- **Nikola <<Tesla>>**
+  - `_intake/canon-profiles/<<tesla>>-nikola.md`
+  -  … intake/concept-digests/<<mendeleev>>-<<periodic>>.md … 
+- **<<photoelectric>>-<<biology … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … physics | 14 |
@@ -127,38 +141,24 @@ creations like these three …
 
 **Citations**: 
 
-## 1_eCsTz1sRw-revolution-in-farming-god-s-laws-for-land-animals … 
+## 1V-s0wod48E-the-psyche-telepathy-morphic-resonance-with-dr-rupert-sheldr … 
 - **TIME #13:  SPACE TIME IS NOT EARTH TIME**
   - `_intake/kruse-blog-corpus/articles/time-13-space-time-not-earth-time.md`
   -  … Westinghouse and <<Tesla>> won the World’s Fair contract with their AC current, but did our species win this battle 135 years later? In … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … biology** — 77
-- **biophoton** — 74
-- **photoelectric effect** — 74
-- **collagen** — 70
-- **copper** — 69
-- **<<Tesla>>** — 62
-- **autoimmune** — 53
-- **UVB** — 52
-- **Faraday** — 49
-- **ketosis** — 47
-- **fourth phase of … 
 - **Bucket Canon — Branch Coverage Audit (2026-05-09)**
   - `_intake/BRANCH-COVERAGE-AUDIT.md`
   -  … Hawking, Hoyle, Penrose-Hawking singularity, Sandage, Sagan, Lemaître |
 | 02-physics     | 317 | ✓ medium | Newton (Principia + Opticks), Maxwell (Treatise + Papers), Faraday (3 vols), Einstein, <<Tesla>>, Planck … 
-- **photoelectric-biology**
-  - `_intake/concept-digests/photoelectric-biology.md`
-  -  … 66
-- **quantum <<biology>>** — 64
-- **copper** — 61
-- **biophoton** — 58
-- **<<photoelectric>> effect** — 54
-- **<<Tesla>>** — 53
-- **Faraday … 
-- **CPC #6: Pseudotumor Cerebri**
-  - `_intake/kruse-blog-corpus/articles/cpc … 
-- **CPC #13:   HYPERFERRITIN CATARACT SYNDROME**
-  - `_intake/kruse-blog-corpus/articles/cpc-13-hyperferritin-cataract-syndrome.md`
-  -  … the basic tools needed for wireless communication? <<Tesla>> did when he built his first <<Tesla>> coil. <<Tesla>> used induction coils and capacitors, a device … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … quantum biology** — 80
+- **biophoton** — 74
+- **collagen** — 70
+- **copper** — 69
+- **Maxwell** — 65
+- **<<Tesla>>** — 63
+- **Faraday** — 60
+- **autoimmune** — 57
+- **UVB** — 52
+- **ketosis** — 47
+- **fourth phase of … 

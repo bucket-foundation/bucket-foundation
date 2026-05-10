@@ -3,7 +3,7 @@
 **Query**: `infrared OR "near IR" OR "near-infrared"`  ·  **Hits**: 35
 
 
-## pubmed (14)
+## pubmed (15)
 
 - **Near-infrared photobiomodulation can alleviate chemotherapy-induced peripheral neuropathy-associated sensory abnormalities.**
   - `pubmed/PMID-41807896-near-infrared-photobiomodulation-can-alleviate-chemotherapy/info.md`
@@ -41,6 +41,14 @@
 
 - **PMID**: 41403260
 - **DOI**: 10.1002 … 
+- **Hyperuniform disordered waveguides and devices for near infrared silicon photonics.**
+  - `pubmed/PMID-31889165-hyperuniform-disordered-waveguides-and-devices-for-near-infr/info.md`
+  - # Hyperuniform disordered waveguides and devices for <<near infrared>> silicon photonics.
+
+- **PMID**: 31889165
+- **DOI**: 10.1364/OE.16.005218
+- **PMCID**: PMC6937303 (full-text saved)
+- **Journal … 
 - **Optimizing Brain Biology Through Near-Infrared-Induced Mitochondrial Melatonin Synthesis: A Hypothesis Paper.**
   - `pubmed/PMID-41994801-optimizing-brain-biology-through-near-infrared-induced-mitoc/info.md`
   - # Optimizing Brain Biology Through <<Near-Infrared>>-Induced Mitochondrial Melatonin Synthesis: A Hypothesis Paper.
@@ -66,15 +74,15 @@
 - **Source-Specific Photobiomodulation Regulates Mitochondrial Bioenergetics, Redox Signaling, and Functional Outputs in C2C12 Myoblasts Across Replicative Aging.**
   - `pubmed/PMID-41977188-source-specific-photobiomodulation-regulates-mitochondrial-b/info.md`
   -  … Here, we investigated source-specific PBM responses in C2C12 myoblasts using a 660 nm light-emitting diode (LED) and an 830 nm <<near-infrared>> … 
+- **Optical properties of poly-HCN and their astronomical applications.**
+  - `pubmed/PMID-11540502-optical-properties-of-poly-hcn-and-their-astronomical-applic/info.md`
+  -  … the haze of the Saturnian moon, Titan, in the visible and <<near-infrared>> derived from astronomical observations and standard models of the Titan atmosphere … 
 - **Mitochondria-Targeted Biophysical Priming of Autologous Biologics for Skin Regeneration and Wound Repair.**
   - `pubmed/PMID-41828428-mitochondria-targeted-biophysical-priming-of-autologous-biol/info.md`
   -  … Concurrently, biophysical modalities such as red/<<near-infrared>> photobiomodulation (PBM), low-intensity pulsed ultrasound, mechanical stimulation, and nanoengineered cues can modulate mitochondrial function in … 
 - **What to Look for in Red Light Therapy: A Product Guide Backed by Science.**
   - `pubmed/PMID-42005232-what-to-look-for-in-red-light-therapy-a-product-guide-backed/info.md`
   -  … modality for skin rejuvenation that utilizes specific wavelengths of red and <<near-infrared>> (NIR) light to enhance mitochondrial function and promote cellular repair. The … 
-- **Human high intelligence is involved in spectral redshift of biophotonic activities in the brain.**
-  - `pubmed/PMID-27432962-human-high-intelligence-is-involved-in-spectral-redshift-of/info.md`
-  -  … mouse, chicken, pig, and monkey) to humans, even up to a <<near-infrared>> wavelength (∼865 nm) in the human brain. This brain property may … 
 
 ## arxiv (2)
 
@@ -89,7 +97,7 @@
 
 We describe the Dark Energy Survey (DES), a proposed optical-<<near infrared>> survey of 5000 sq. deg of … 
 
-## intake (9)
+## intake (5)
 
 - **infrared-near-ir**
   - `_intake/concept-digests/infrared-near-ir.md`
@@ -98,71 +106,38 @@ We describe the Dark Energy Survey (DES), a proposed optical-<<near infrared>> s
 **Query**: `<<infrared>> OR "<<near IR>>" OR "<<near-infrared>>"`  ·  **Hits**: 35
 
 
-## pubmed (19)
+## pubmed (14)
 
 - **<<Near-infrared>> photobiomodulation can alleviate chemotherapy-induced peripheral neuropathy … 
-- **AGEs-RAGE-glycation**
-  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
-  -  … The hydroxyl radical can damage virtually all … 
-- **<<infrared>>-<<near-ir>>**
-  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … BY <<BIOPHOTON>> EMISSION?**
-  - `_intake … 
-- **<<AGEs>>-<<RAGE>>-<<glycation … 
-- **Gerald Pollack**
-  - `_intake/canon-profiles/pollack-gerald.md`
-  -  … water>>>>-<<<<pollack>>>>.md … 
-- **<<association>>-<<induction>>-<<ling … 
-- **<<infrared>>-<<near-ir>>**
-  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … <<near-ir>>>>.md`
-  -  … Gerald <<<<Pollack>>>>| <<<<EZ>>>> <<<<Water>>>>, What … 
 - **Fritz-Albert Popp**
   - `_intake/canon-profiles/popp-fritz-albert.md`
-  -  … arxiv:1, intake:19, pubmed:10)
-- [`circadian … 
+  -  … biophoton>>>>-<<<<popp>>>>.md … 
+- **<<methylene-blue>>**
+  - `_intake/concept … 
 - **<<infrared>>-<<near-ir>>**
   - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … md`
-  -  … pineal melatonin … 
-- **<<uv>>-<<uva>>-<<uvb>>**
+  -  … and Engine of … 
+- **<<fourth-phase … 
+- **<<biophoton>>-<<popp … 
+- **ez-water-pollack**
+  - `_intake/concept-digests/ez-water-pollack.md`
+  -  … photoelectric>>-<<biology>>.md`
+  -  … phase-<<<<water>>>>**
+  - `_intake/concept … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … 9, youtube:11 … 
+- **ez-<<water>>-<<pollack>>**
   - `_intake … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … intake:15, openalex-citers:1, pubmed:11, youtube:8)
-- [`<<infrared>>-<<near-ir>>`](<<infrared>>-<<near-ir>>.md) — 35 hits  (arxiv:2, intake:5, openalex-citers … 
-- **ez-water-pollack**
-  - `_intake/concept-digests/ez-water-pollack.md`
-  -  … flow-nutr/transcript.txt`
-  -  … dozens of peer … 
-- **<<infrared>>-<<near-ir>>**
-  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … The … 
-- **<<Water>>: The Matrix and Engine of … 
-- **biophoton-popp**
-  - `_intake/concept-digests/biophoton-popp.md`
-  -  … intake/concept-digests/<<biophoton>>-popp.md`
-  -  … 11 … 
-- **<<infrared>>-<<near-ir>>**
-  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … IS TIME TOLD BY <<BIOPHOTON>> EMISSION?**
-  - `_intake … 
-- **uv-uva-uvb**
-  - `_intake/concept-digests/uv-uva-uvb.md`
-  -  … 30
-
-
-## pubmed (2)
-
-- **Imaging of ultraweak photon emission for evaluating the oxidative … 
-- **<<infrared>>-<<near-ir>>**
-  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … Fourth Phase … 
+  -  … intake:16, openalex-citers:1, pubmed:11, youtube:7)
+- [`<<infrared>>-<<near-ir>>`](<<infrared>>-<<near-ir>>.md) — 35 hits  (arxiv:2, intake:9, openalex-citers … 
 - **fourth-phase-water**
   - `_intake/concept-digests/fourth-phase-water.md`
-  -  … queued (not yet … 
+  -  … fourth phase>>" |
+| `szent-gyorgyi-albert` | **Albert Szent … 
 - **<<infrared>>-<<near-ir>>**
   - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … Do you know why?
-This is what we talked … 
-- **Gerald Pollack … 
+  -  … The Matrix and Engine of … 
+- **<<fourth-phase … 

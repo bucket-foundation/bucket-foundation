@@ -27,9 +27,10 @@ out that <<blue>> …
 **Query**: `"<<blue light>>"`  ·  **Hits**: 35
 
 
-## youtube (1)
+## youtube (2)
 
-- **Toxic Screens: How to Protect Eyes from <<Blue Light>> with Dr. Jack Kruse and … 
+- **Dr. Jack Kruse Explains How Sunlight Controls Metabolism Through Melanin, Leptin & Mitochondria**
+  - `yt/pjy1dMHX2Kw … 
 - **QT #10: Why daytime indoor blue light is toxic**
   - `_intake/kruse-blog-corpus/articles/qt-10-why-daytime-indoor-blue-light-is-toxic.md`
   -  … Why daytime indoor <<blue light>> is toxic
@@ -98,19 +99,6 @@ Several …
 - **REALITY #3:  WAKE ME UP WHEN SEPTEMBER 2016 ENDS**
   - `_intake/kruse-blog-corpus/articles/reality-3-wake-september-2016-ends.md`
   -  … Further evidence underpinning a link between <<blue light>> and UM comes from neonatal <<blue light>> therapy studies. <<Blue light>> therapy is an essential tool … 
-- **TIME # 3 : CAN A CHART TELL YOU SOMETHING ABOUT TIME?**
-  - `_intake/kruse-blog-corpus/articles/time-what-can-a-chart-tell-you.md`
-  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
-
-
-
-
-
-
-
-
-
-						[](https://jackkruse.com … 
 - **How the Eye Controls Metabolic Rate**
   - `_intake/kruse-blog-corpus/articles/how-the-eye-controls-metabolic-rate.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
@@ -124,8 +112,8 @@ Several …
 
 
 						[](https://jackkruse.com … 
-- **TIME #1:  IS OUR RETINA OUR METRONOME?**
-  - `_intake/kruse-blog-corpus/articles/time-1-is-our-retina-our-metronome.md`
+- **TIME # 3 : CAN A CHART TELL YOU SOMETHING ABOUT TIME?**
+  - `_intake/kruse-blog-corpus/articles/time-what-can-a-chart-tell-you.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
 
 
@@ -139,6 +127,19 @@ Several …
 						[](https://jackkruse.com … 
 - **January 2017: The Bazan Effect**
   - `_intake/kruse-blog-corpus/articles/january-2017-the-bazan-effect.md`
+  -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
+
+
+
+
+
+
+
+
+
+						[](https://jackkruse.com … 
+- **TIME #1:  IS OUR RETINA OUR METRONOME?**
+  - `_intake/kruse-blog-corpus/articles/time-1-is-our-retina-our-metronome.md`
   -  … <<BLUE LIGHT>> CAUSES IRREVERSIBLE HYPOXIA IN ALL CELLS](https://jackkruse.com/hypoxia-15-<<blue-light>>-causes-irreversible-hypoxia-in-all-cells/)
 
 

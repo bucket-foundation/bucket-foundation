@@ -63,7 +63,16 @@ MOON,  the  <<motions>>  of  the  nodes  and  the  inequalities  of  its  <<moti
 the  optical  properties  was  given  by  <<Newton>>  in  the  <<Principia>>,  Book  i.,  prop.  97, 
 by  the  law  of  the  sines;  and … 
 
-## intake (10)
+## youtube (1)
+
+- **New Horizons in Music: Polyrhythms | Loop**
+  - `yt/JiNKlhspdKg-new-horizons-in-music-polyrhythms-loop/transcript.txt`
+  -  … Isaac <<Newton>>.
+Excuse me.
+Isaac <<Newton>> wrote the definitive book on color science, known as... is titled:
+<<Opticks>>, in 1704. And in <<Opticks>>, which … 
+
+## intake (7)
 
 - **Isaac Newton**
   - `_intake/canon-profiles/newton-isaac.md`
@@ -72,7 +81,7 @@ by  the  law  of  the  sines;  and …
 **Slug**: `<<newton>>-isaac`  ·  **FTS query**: `<<Newton>> AND (<<Principia>> OR <<opticks>> OR <<motion>> OR <<gravity>>)`  ·  **Hits**: 30
 
 
-## archive (9)
+## archive (7)
 
 - **The science of mechanics … 
 - **Isaac Newton — canon-target intake**
@@ -87,36 +96,11 @@ by  the  law  of  the  sines;  and …
   - `_intake/canon-profiles/tesla-nikola.md`
   -  … Penrose-Hawking singularity, Sandage, Sagan, Lemaître |
 | 02-physics     | 317 | ✓ medium | <<Newton>> (<<Principia>> + <<Opticks>>), Maxwell (Treatise + Papers), Faraday (3 vols), Einstein, <<Tesla>>, Planck … 
-- **CPC #13 … 
+- **photoelectric-biology … 
 - **Bucket Canon — Branch Coverage Audit (2026-05-09)**
   - `_intake/BRANCH-COVERAGE-AUDIT.md`
   -  … Hawking, Hoyle, Penrose-Hawking singularity, Sandage, Sagan, Lemaître |
 | 02-physics     | 317 | ✓ medium | <<Newton>> (<<Principia>> + <<Opticks>>), Maxwell (Treatise + Papers), Faraday (3 vols), Einstein, Tesla, Planck … 
-- **Alan Turing**
-  - `_intake/canon-profiles/turing-alan.md`
-  -  … Public domain. |
-| `maxwell … 
-- **Alan <<Turing>>**
-  - `_intake/canon-profiles/<<turing>>-alan.md`
-  -  … After 
-these runs were completed, the <<<<computer>>>> generated a random … 
-- **<<<<Newton>>>>'s <<<<Principia>> … 
-- **Dmitri Mendeleev**
-  - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … <<newton>>-isaac.md`
-  -  … gradient.  Temperature gradients favor protons <<<<motions>>>> in cells.   This … 
-- **<<mendeleev>>-periodic**
-  - `_intake/concept-digests/<<mendeleev>>-periodic.md`
-  -  … eng … 
-- **<<<<Newton>>>>'s <<<<Principia>> … 
-- **mendeleev-periodic**
-  - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … <<newton>>-isaac.md`
-  -  … Temperature gradients favor protons <<<<motions>>>> in cells.   This … 
-- **<<mendeleev>>-<<periodic>>**
-  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
-  -  … eng … 
-- **<<<<Newton>>>>'s <<<<Principia>>>> : the … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … Foundational physics (canon, branch 02-physics)

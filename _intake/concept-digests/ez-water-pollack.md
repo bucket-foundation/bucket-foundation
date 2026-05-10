@@ -3,7 +3,7 @@
 **Query**: `Pollack AND water`  ·  **Hits**: 35
 
 
-## pubmed (6)
+## pubmed (10)
 
 - **Effect of radiant energy on near-surface water.**
   - `pubmed/PMID-19827846-effect-of-radiant-energy-on-near-surface-water/info.md`
@@ -53,8 +53,42 @@ Flow of electrical current through <<water>> is …
 - **Journal**: The journal of physical chemistry. B  ·  **Year**: 2013
 - **Authors**: G H <<Pollack>>
 - **MeSH … 
+- **WATER, ENERGY AND LIFE: FRESH VIEWS FROM THE WATER'S EDGE.**
+  - `pubmed/PMID-22977460-water-energy-and-life-fresh-views-from-the-water-s-edge/info.md`
+  -  … FRESH VIEWS FROM THE <<WATER>>'S EDGE.
 
-## intake (22)
+- **PMID**: 22977460
+- **DOI**: 10.2495/DNE-V5-N1-27-29
+- **PMCID**: PMC1348694 (full-text saved)
+- **Journal**: International … 
+- **High electrical permittivity of ultrapure water at the water-platinum interface.**
+  - `pubmed/PMID-25258452-high-electrical-permittivity-of-ultrapure-water-at-the-water/info.md`
+  - # High electrical permittivity of ultrapure <<water>> at the <<water>>-platinum interface.
+
+- **PMID**: 25258452
+- **DOI**: 10.7251/COM1201001C
+- **PMCID**: PMC3692373 (full-text saved)
+- **Journal**: Chemical … 
+- **Influence of water on the work function of certain metals.**
+  - `pubmed/PMID-22639466-influence-of-water-on-the-work-function-of-certain-metals/info.md`
+  - # Influence of <<water>> on the work function of certain metals.
+
+- **PMID**: 22639466
+- **DOI**: 10.1016/j.cplett.2012.03.094
+- **PMCID**: PMC2843558 (full-text … 
+- **The Fourth Phase of Water: a role in fascia?**
+  - `pubmed/PMID-24139011-the-fourth-phase-of-water-a-role-in-fascia/info.md`
+  -  … G H <<Pollack>>
+- **MeSH**: Fascia, Humans, <<Water>>
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24139011/
+- **Captured**: 2026-05-10T10:40:16
+
+## Abstract
+
+
+
+
+## intake (18)
 
 - **ez-water-pollack**
   - `_intake/concept-digests/ez-water-pollack.md`
@@ -63,10 +97,10 @@ Flow of electrical current through <<water>> is …
 **Query**: `<<Pollack>> AND <<water>>`  ·  **Hits**: 35
 
 
-## pubmed (4)
+## pubmed (6)
 
-- **Why Hydrogels Don't Dribble <<Water>>.**
-  - `pubmed/PMID-30920538-why-hydrogels-don-t … 
+- **Effect of radiant energy on near-surface <<water>>.**
+  - `pubmed/PMID-19827846-effect-of … 
 - **Gerald Pollack**
   - `_intake/canon-profiles/pollack-gerald.md`
   - # Gerald <<Pollack>>
@@ -74,59 +108,84 @@ Flow of electrical current through <<water>> is …
 **Slug**: `<<pollack>>-gerald`  ·  **FTS query**: `<<Pollack>> AND (<<water>> OR exclusion OR EZ)`  ·  **Hits**: 30
 
 
-## pubmed (7)
+## pubmed (10)
 
 - **Healthy fats and exclusion-zone size … 
 - **fourth-phase-water**
   - `_intake/concept-digests/fourth-phase-water.md`
-  -  … Why the <<Water>> in Your Body is Central to Health with Dr. <<Pollack>>**
-  - `yt/5p2H9aTJTfg-11-the-fourth-phase-of-<<water>>-why-the-<<water>> … 
+  -  … Gerald … 
+- **Gerald <<Pollack>>**
+  - `_intake/canon-profiles/<<pollack>>-gerald.md`
+  -  … <<fourth-phase>>>>-<<<<water>>>>**
+  - `_intake/concept-digests/<<<<fourth-phase>>>>-<<<<water>>>> … 
+- **deuterium-depleted-<<water>>**
+  - `_intake/concept-digests … 
 - **association-induction-ling**
   - `_intake/concept-digests/association-induction-ling.md`
   -  … <<Water>> & Rethinking Cell Biology | Ricci Flow Nutrition Podcast**
   - `yt/iK4gG7TBgNM-gerald-<<pollack>>-<<water>>-rethinking-cell-biology-ricci-flow-nutr/transcript.txt`
   -  … dozens of peer … 
-- **exclusion-zone-water**
-  - `_intake/concept-digests/exclusion-zone-water.md`
-  -  … 25
-
-
-## pubmed (6)
-
-- **Healthy fats and <<exclusion>>-<<zone>> size … 
-- **ez-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … 25
-
-
-## pubmed (6)
-
-- **Healthy fats … 
 - **Gilbert Ling**
   - `_intake/canon-profiles/ling-gilbert.md`
-  -  … <<Water>> & Rethinking Cell Biology | Ricci Flow Nutrition Podcast**
-  - `yt/iK4gG7TBgNM-gerald-<<pollack>>-<<water>>-rethinking-cell-biology-ricci-flow-nutr/transcript.txt`
-  -  … is no high … 
+  -  … 35
+
+
+## pubmed (6)
+
+- **A quantitative theory of solute distribution in … 
+- **Gerald <<Pollack>>**
+  - `_intake/canon-profiles/<<pollack>>-gerald.md`
+  -  … ez>>-<<<<<<water>>>>>>-<<<<<<pollack>>>>>>.md … 
+- **<<<<association>>>>-induction … 
 - **deuterium-depleted-water**
   - `_intake/concept-digests/deuterium-depleted-water.md`
   -  … Why the <<Water>> in Your Body is Central to Health with Dr. <<Pollack>>**
   - `yt/5p2H9aTJTfg-11-the-fourth-phase-of-<<water>>-why-the-<<water>> … 
-- **schumann-cme**
-  - `_intake/concept-digests/schumann-cme.md`
-  -  … 05-biophysics | 1+1+1 … 
+- **exclusion-zone-water**
+  - `_intake/concept-digests/exclusion-zone-water.md`
+  -  … 35
+
+
+## pubmed (6)
+
+- **Magnetic fields induce <<exclusion>> <<zones>> in <<water>>.**
+  - `pubmed/PMID-35622780-magnetic-fields-induce … 
+- **Gerald <<Pollack>>**
+  - `_intake/canon-profiles/<<pollack>>-gerald.md … 
+- **Albert Szent-Györgyi**
+  - `_intake/canon-profiles/szent-gyorgyi-albert.md`
+  -  … albert.md`
+  -  … THE MITOCHONDRIAL … 
+- **<<exclusion>>-<<zone>>-<<water>>**
+  - `_intake … 
 - **ez-<<water>>-<<pollack>>**
   - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … <<pollack>>>>-<<<<water>>>>-rethinking-<<cell … 
-- **<<schumann>>-<<cme>>**
-  - `_intake/concept-digests … 
+  -  … hits  (intake:29, pubmed:1)
+- [`schumann … 
+- **infrared-near-ir**
+  - `_intake/concept-digests/infrared-near-ir.md`
+  -  … BIOPHOTON>> EMISSION?**
+  - `_intake … 
+- **<<AGEs>>-<<RAGE>>-<<glycation … 
+- **Gerald <<Pollack>>**
+  - `_intake/canon-profiles/<<pollack>>-gerald.md`
+  -  … <<water>>>>>>-<<<<<<pollack>>>>>>.md … 
+- **<<association>>-<<induction>>-<<ling … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake … 
 - **Richard Feynman**
   - `_intake/canon-profiles/feynman-richard.md`
-  -  … from The character of … 
+  -  … claude.md) — Claude Shannon … 
 - **ez-<<water>>-<<pollack>>**
   - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … 107 <<<<Pollack>>>>’s <<<<water>>>> book is the … 
-- **Richard <<Feynman>>**
-  - `_intake … 
+  -  … 2013), exclusion-zone <<<<water>>>> papers | 05-biophysics | 4 … 
+- **Richard <<Feynman … 
+- **schumann-cme**
+  - `_intake/concept-digests/schumann-cme.md`
+  -  … <<water>>-<<pollack>>**
+  - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
+  -  … The Matrix and Engine of Life - Pioneer in <<<<Water>>>> Research Jerry <<<<Pollack>>>>**
+  - `yt/YrwbDsTx0Uw-<<<<water>> … 
 - **Gerald Pollack — canon-target intake**
   - `_intake/pollack-gerald/README.md`
   -  … of <<Water>> (2013); ~150 papers on EZ <<water>> at U Washington
@@ -135,65 +194,18 @@ Flow of electrical current through <<water>> is …
 
 - pollacklab.org: full publication list
 - PubMed: <<Pollack>> GH … 
-- **Dmitri Mendeleev**
-  - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … digests/<<<<mendeleev>>>>-<<periodic … 
-- **ez-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … infrared(29), AGE(16), EZ <<<<water>>>>(14 … 
-- **Dmitri <<Mendeleev>>**
-  - `_intake/canon … 
-- **Albert Szent-Györgyi**
-  - `_intake/canon-profiles/szent-gyorgyi-albert.md`
-  -  … <<pollack>>-gerald`](<<pollack>>-gerald.md) — Gerald <<Pollack>> — 25 hits
-- [`<<szent-gyorgyi>>-albert`](<<szent-gyorgyi>>-albert.md) — Albert <<Szent-Györgyi>> — 25 hits … 
-- **fourth-phase-<<water>> … 
-- **Kruse References Mined**
-  - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … the-secrets-of-life-the-4th-phase-of-<<water>>-with-g`
-- `47FzeZNCYL0-gerald-<<pollack>>-ez-<<water>>-what-is-it-why-do-i-need-it … 
-- **AGEs-RAGE-glycation**
-  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
-  -  … ez-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … <<AGEs>>-<<RAGE>>-<<glycation>>**
-  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … ez-<<<<water>>>>-<<<<pollack>>>>**
-  - `_intake … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … papers | 05-biophysics | 42 |
 | `<<pollack>>-gerald` | **Gerald <<Pollack>>**, U Washington Seattle | *The Fourth Phase of <<Water>>* (2013), exclusion-zone <<water>> papers | 05-biophysics | 4 … 
-- **mendeleev-periodic**
-  - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … official <<tables>>, atomic … 
-- **ez-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … infrared(29), AGE(16), EZ <<<<water>>>>(14 … 
-- **Dmitri <<Mendeleev>>**
-  - `_intake/canon … 
+- **Kruse References Mined**
+  - `_intake/kruse-references-mined/REFERENCES.md`
+  -  … the-secrets-of-life-the-4th-phase-of-<<water>>-with-g`
+- `47FzeZNCYL0-gerald-<<pollack>>-ez-<<water>>-what-is-it-why-do-i-need-it … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … openalex-citers:24, openalex-fanout:2, pubmed:2)
-- [`ez-<<water>>-<<pollack>>`](ez-<<water>>-<<pollack>>.md) — 35 hits  (intake:20, openalex:1, openalex-citers:3 … 
-- **photoelectric-biology**
-  - `_intake/concept-digests/photoelectric-biology.md`
-  -  … a … 
-- **ez-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … <<water>>>> … 
-- **<<photoelectric>>-<<biology>>**
-  - `_intake/concept-digests/<<photoelectric>>-<<biology>>.md`
-  -  … phase-<<<<water>>>>**
-  - `_intake/concept … 
-- **infrared-near-ir**
-  - `_intake/concept-digests/infrared-near-ir.md`
-  -  … 9, youtube:11 … 
-- **ez-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … fourth-phase-of-<<<<water>>>>-gerald-<<<<pollack>>>>-phd … 
-- **<<infrared>>-<<near-ir>>**
-  - `_intake … 
+  -  … openalex-citers:24, openalex-fanout:2, pubmed:4)
+- [`ez-<<water>>-<<pollack>>`](ez-<<water>>-<<pollack>>.md) — 35 hits  (intake:22, openalex:1, openalex-citers:1 … 
 - **Meta-Canon — what the bridges actually mean**
   - `_intake/connections/META-CANON.md`
   -  … it matters |

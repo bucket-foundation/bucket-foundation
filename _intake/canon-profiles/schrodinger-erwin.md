@@ -17,7 +17,7 @@
 - **Language**: English
 - **License … 
 
-## pubmed (4)
+## pubmed (5)
 
 - **Answering Schrödinger's "What Is Life?".**
   - `pubmed/PMID-33286586-answering-schr-dinger-s-what-is-life/info.md`
@@ -38,6 +38,9 @@
 - **DOI**: 10.1016/j.plrev.2017.09.001
 - **PMCID**: PMC2755113 (full-text saved)
 - **Journal … 
+- **Quantum nonlocality does not exist.**
+  - `pubmed/PMID-25015084-quantum-nonlocality-does-not-exist/info.md`
+  -  … This view allows the Born interpretation to be derived directly from the <<Schrödinger>> equation, by applying the <<Schrödinger>> equation to both the observed and … 
 - **Sustainable systems as organisms?**
   - `pubmed/PMID-15985324-sustainable-systems-as-organisms/info.md`
   -  … 2026-05-10T10:53:54
@@ -46,7 +49,7 @@
 
 <<Schrödinger>> [<<Schrödinger>>, E., 1944. What is Life? Cambridge University Press, Cambridge] marvelled at how the organism is able … 
 
-## intake (5)
+## intake (6)
 
 - **Erwin Schrödinger**
   - `_intake/canon-profiles/schrodinger-erwin.md`
@@ -64,27 +67,35 @@
   -  … stuart`](hameroff-stuart.md) — Stuart Hameroff — 30 hits
 - [`<<schrodinger>>-erwin`](<<schrodinger>>-erwin.md) — Erwin <<Schrödinger>> — 30 hits
 - [`bohr-niels`](bohr-niels.md) — Niels Bohr … 
-- **Richard Feynman**
-  - `_intake/canon-profiles/feynman-richard.md`
-  -  … Heisenberg | 1 |
-| Martín Heidegger | Carl Gustav … 
-- **Erwin <<Schrödinger>>**
-  - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
-  -  … The <<<<Schrodinger>>>> Wave Equation … 
-- **The Oxford book of modern science … 
 - **Stuart Hameroff**
   - `_intake/canon-profiles/hameroff-stuart.md`
   -  … a review of the '<<Orch>> … 
 - **Erwin <<Schrödinger>>**
   - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
-  -  … Stuart <<Hameroff>>: <<CONSCIOUSNESS>> AND THE PHYSICS OF THE BRAIN**
-  - `yt/xGbgDf4HCHU … 
-- **Niels Bohr**
-  - `_intake/canon-profiles/bohr-niels.md`
-  -  … Bohr>>**
-  - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … THE … 
+  -  … <<Hameroff>>**
+  - `_intake/canon-profiles/<<hameroff>>-stuart.md`
+  -  … a review of the … 
+- **Richard Feynman**
+  - `_intake/canon-profiles/feynman-richard.md`
+  -  … Richard <<Feynman>> & John Wheeler - Quantum Reality & Time**
+  - `yt … 
 - **Erwin <<Schrödinger>>**
   - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
-  -  … <<bohr>>-niels`](<<bohr>>-niels.md) — Niels <<Bohr>> … 
-- **Energy … 
+  -  … niels`](bohr-niels.md) — Niels Bohr … 
+- **Richard <<Feynman … 
+- **John Archibald Wheeler**
+  - `_intake/canon-profiles/wheeler-john.md`
+  -  … tesla … 
+- **Erwin <<Schrödinger>>**
+  - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
+  -  … Feynman>> & John <<Wheeler>> - <<Quantum>> Reality & Time … 
+- **Erwin <<<<Schrödinger>>>>**
+  - `_intake/canon-profiles/<<<<schrodinger>>>>-erwin.md`
+  -  … that … 
+- **Niels Bohr**
+  - `_intake/canon-profiles/bohr-niels.md`
+  -  … Labyrinth - Richard <<Feynman>> & John Wheeler - <<Quantum>> Reality & Time … 
+- **Erwin <<Schrödinger>>**
+  - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
+  -  … hits
+- [`<<bohr>>-niels`](<<bohr>>-niels.md) — Niels <<Bohr … 

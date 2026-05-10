@@ -22,11 +22,6 @@
 
 
 
-- **The extraordinary dielectric properties of biological materials and the action of enzymes.**
-  - `pubmed/PMID-1060101-the-extraordinary-dielectric-properties-of-biological-materi/info.md`
-  -  … H <<Fröhlich>>
-- **MeSH**: Chemical Phenomena, Chemistry, Physical, Electromagnetic Phenomena, Enzymes, Models, Biological, Proteins, Structure-Activity Relationship
-- **URL**: https://pubmed.ncbi.nlm.nih.gov/1060101 … 
 - **Long range coherence and the action of enzymes.**
   - `pubmed/PMID-5483165-long-range-coherence-and-the-action-of-enzymes/info.md`
   - # Long range <<coherence>> and the action of enzymes.
@@ -37,6 +32,11 @@
 - **Journal**: Nature  ·  **Year**: 1970
 - **Authors**: H <<Fröhlich>>
 - **MeSH**: Energy … 
+- **The extraordinary dielectric properties of biological materials and the action of enzymes.**
+  - `pubmed/PMID-1060101-the-extraordinary-dielectric-properties-of-biological-materi/info.md`
+  -  … H <<Fröhlich>>
+- **MeSH**: Chemical Phenomena, Chemistry, Physical, Electromagnetic Phenomena, Enzymes, Models, Biological, Proteins, Structure-Activity Relationship
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1060101 … 
 - **Spontaneous and light-induced photon emission from intact brains of chick embryos.**
   - `pubmed/PMID-18726298-spontaneous-and-light-induced-photon-emission-from-intact-br/info.md`
   -  … According to the hypothesis of biophoton emission originating from a delocalized <<coherent>> electromagnetic field and <<Frohlich>>' s idea of <<coherent>> long-range interactions in … 
@@ -50,7 +50,7 @@
 **Slug**: `<<frohlich>>-herbert`  ·  **FTS query**: `<<Fröhlich>> OR <<Frohlich>> AND (<<coherent>> OR <<vibration>>)`  ·  **Hits**: 30
 
 
-## pubmed (3)
+## pubmed (5)
 
 - **Biological effects of microwaves and the … 
 - **Herbert Fröhlich — canon-target intake**
@@ -77,6 +77,16 @@
   -  … ray-peat.org has full corpus. |
 | `<<frohlich>>-<<coherent>>-1968` | Herbert <<Fröhlich>> — <<coherent>> <<vibrations>> in biological systems papers | Underlies Kruse's quantum biology framing. |
 | `mcclare … 
+- **Fritz-Albert Popp**
+  - `_intake/canon-profiles/popp-fritz-albert.md`
+  -  … <<Fröhlich>>**
+  - `_intake/canon-profiles/<<frohlich>>-herbert.md`
+  -  … review papers … 
+- **<<biophoton>>-<<popp>>**
+  - `_intake/concept-digests/<<biophoton>>-<<popp>>.md`
+  -  … it cannot do it … 
+- **Herbert <<<<Fröhlich>>>>**
+  - `_intake … 
 - **Energy and Epigenetics 6: Quantum Cell Theory, Life as a Collective Phenomena**
   - `_intake/kruse-blog-corpus/articles/ee-6-quantum-cell-theory-life-collective-phenomena.md`
   -  … How this system actually works, in my opinion, has absorbed many of <<Frohlich>>’s ideas on biologic <<coherence>>. I then innovated the ideas of … 
@@ -87,12 +97,6 @@
 - <<Frohlich>>, H. Long range <<coherence>> and the action of enzymes. Nature 1970, doi:10.1038/2281093a0.
 
 - <<Frohlich>>,H.The biological effects of … 
-- **Andrew Marino**
-  - `_intake/canon-profiles/marino-andrew.md`
-  -  … It is where <<electromagnetic>> field … 
-- **Herbert <<Fröhlich>>**
-  - `_intake/canon-profiles/<<frohlich>>-herbert.md`
-  -  … <<coherent>>>> <<electromagnetic>> field and <<<<Frohlich>>>>' s idea of <<<<coherent>>>> long-range … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
   -  … andrew`](marino-andrew.md) — Andrew Marino — 30 hits

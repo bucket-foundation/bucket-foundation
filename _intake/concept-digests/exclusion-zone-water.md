@@ -3,7 +3,7 @@
 **Query**: `exclusion AND zone`  ·  **Hits**: 35
 
 
-## pubmed (16)
+## pubmed (17)
 
 - **Solute-free interfacial zones in polar liquids.**
   - `pubmed/PMID-20369860-solute-free-interfacial-zones-in-polar-liquids/info.md`
@@ -55,9 +55,6 @@ Solute-free <<zones>>, termed "<<exclusion>> <<zones>>" are routinely seen next 
 - **Effect of radiant energy on near-surface water.**
   - `pubmed/PMID-19827846-effect-of-radiant-energy-on-near-surface-water/info.md`
   -  … Studies of these aqueous "<<exclusion>> <<zones>>" reveal a more ordered phase than bulk water, with local charge separation between the <<exclusion>> <<zones>> and the … 
-- **Spectroscopic studies of solutes in aqueous solution.**
-  - `pubmed/PMID-18298105-spectroscopic-studies-of-solutes-in-aqueous-solution/info.md`
-  -  … Motivation stemmed from unanticipated absorption spectral and fluorescence features of the "<<exclusion>> <<zone>>" seen adjacent to various hydrophilic surfaces. Those features implied a structure … 
 - **Effect of Health-Promoting Agents on Exclusion-Zone Size.**
   - `pubmed/PMID-30202249-effect-of-health-promoting-agents-on-exclusion-zone-size/info.md`
   - # Effect of Health-Promoting Agents on <<Exclusion>>-<<Zone>> Size.
@@ -66,6 +63,9 @@ Solute-free <<zones>>, termed "<<exclusion>> <<zones>>" are routinely seen next 
 - **DOI**: 10.1177/1559325818796937
 - **PMCID**: PMC4824373 (full-text saved)
 - **Journal**: Dose-response : a … 
+- **Spectroscopic studies of solutes in aqueous solution.**
+  - `pubmed/PMID-18298105-spectroscopic-studies-of-solutes-in-aqueous-solution/info.md`
+  -  … Motivation stemmed from unanticipated absorption spectral and fluorescence features of the "<<exclusion>> <<zone>>" seen adjacent to various hydrophilic surfaces. Those features implied a structure … 
 - **EFFECT OF PARTICLE DIAMETER ON EXCLUSION-ZONE SIZE.**
   - `pubmed/PMID-22389653-effect-of-particle-diameter-on-exclusion-zone-size/info.md`
   - # EFFECT OF PARTICLE DIAMETER ON <<EXCLUSION>>-<<ZONE>> SIZE.
@@ -84,6 +84,13 @@ Solute-free <<zones>>, termed "<<exclusion>> <<zones>>" are routinely seen next 
 - **PMID**: 19185312
 - **DOI**: 10.1016/j.jcis.2009.01.010
 - **PMCID**: PMC2677409 … 
+- **Europe-Wide Atmospheric Radionuclide Dispersion by Unprecedented Wildfires in the Chernobyl Exclusion Zone, April 2020.**
+  - `pubmed/PMID-34585576-europe-wide-atmospheric-radionuclide-dispersion-by-unprecede/info.md`
+  - # Europe-Wide Atmospheric Radionuclide Dispersion by Unprecedented Wildfires in the Chernobyl <<Exclusion>> <<Zone>>, April 2020.
+
+- **PMID**: 34585576
+- **DOI**: 10.1021/acs.est.1c03314
+- **PMCID … 
 - **WATER, ENERGY AND LIFE: FRESH VIEWS FROM THE WATER'S EDGE.**
   - `pubmed/PMID-22977460-water-energy-and-life-fresh-views-from-the-water-s-edge/info.md`
   -  … the presence of wide interfacial <<zone>> that excludes solutes. The <<exclusion>> <<zone>> is charged, while the water beyond is oppositely charged, yielding a battery … 
@@ -98,7 +105,7 @@ Solute-free <<zones>>, termed "<<exclusion>> <<zones>>" are routinely seen next 
   - `pubmed/PMID-19719272-role-of-proton-gradients-in-the-mechanism-of-osmosis/info.md`
   -  … Visual examination with microsphere markers revealed extensive <<exclusion>> <<zones>> adjacent to both types of membrane. As these <<zones>> routinely generate protons in the water … 
 
-## intake (8)
+## intake (6)
 
 - **exclusion-zone-water**
   - `_intake/concept-digests/exclusion-zone-water.md`
@@ -107,10 +114,10 @@ Solute-free <<zones>>, termed "<<exclusion>> <<zones>>" are routinely seen next 
 **Query**: `<<exclusion>> AND <<zone>>`  ·  **Hits**: 35
 
 
-## pubmed (6)
+## pubmed (16)
 
-- **Magnetic fields induce <<exclusion>> <<zones>> in water.**
-  - `pubmed/PMID-35622780-magnetic-fields-induce … 
+- **Solute-free interfacial <<zones>> in polar liquids.**
+  - `pubmed/PMID-20369860-solute-free-interfacial … 
 - **Gerald Pollack**
   - `_intake/canon-profiles/pollack-gerald.md`
   - # Gerald Pollack
@@ -118,59 +125,40 @@ Solute-free <<zones>>, termed "<<exclusion>> <<zones>>" are routinely seen next 
 **Slug**: `pollack-gerald`  ·  **FTS query**: `Pollack AND (water OR <<exclusion>> OR EZ)`  ·  **Hits**: 30
 
 
+## pubmed (10)
+
+- **Healthy fats and <<exclusion>>-<<zone>> size … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … We tested the hypothesis that anesthetics diminish the … 
+- **<<Exclusion>>-<<zone>> water inside and outside of plant xylem vessels.**
+  - `pubmed/PMID-38802675-<<exclusion>>-<<zone>>-water … 
+- **AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … methylene-blue.md`
+  -  … 81
+- **<<exclusion>> <<zone>>** — 77
+- **<<redox … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
+  -  … <<exclusion>> <<zone>>(8), <<<<<<RAGE>>>>>>(7), EPA … 
+- **Albert Szent-Györgyi**
+  - `_intake/canon-profiles/szent-gyorgyi-albert.md`
+  -  … gyorgyi>>>>-albert` | **Albert <<<<Szent>>>> … 
+- **EZ … 
+- **<<exclusion>>-<<zone>>-water**
+  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
+  -  … digests/<<<<exclusion>>>>-<<<<zone>>>>-water.md`
+  -  … queued (not yet … 
+- **Albert … 
+- **ez-water-pollack**
+  - `_intake/concept-digests/ez-water-pollack.md`
+  -  … 30
+
+
 ## pubmed (7)
 
 - **Healthy fats and <<exclusion>>-<<zone>> size … 
 - **fourth-phase-water**
   - `_intake/concept-digests/fourth-phase-water.md`
-  -  … Salient features include <<exclusion>> … 
-- **<<Exclusion>>-<<zone>> water inside and outside of plant xylem vessels.**
-  - `pubmed/PMID-38802675-<<exclusion>>-<<zone>>-water-inside-and-outside-of … 
-- **ez-water-pollack**
-  - `_intake/concept-digests/ez-water-pollack.md`
-  -  … 25
-
-
-## pubmed (6)
-
-- **Healthy fats and <<exclusion>>-<<zone>> size … 
-- **Gilbert Ling**
-  - `_intake/canon-profiles/ling-gilbert.md`
-  -  … The Matrix and Engine of Life - Pioneer … 
-- **deuterium-depleted-water**
-  - `_intake/concept-digests/deuterium-depleted-water.md`
-  -  … intake/concept-digests/<<iron>>-<<heme>>-<<redox>>.md`
-  -  … <<<<deuterium>> … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
-  -  … phase … 
-- **<<deuterium>>-depleted-<<water>>**
-  - `_intake/concept … 
-- **Albert Szent-Györgyi**
-  - `_intake/canon-profiles/szent-gyorgyi-albert.md`
-  -  … Albert <<<<Szent>>>> … 
-- **EZ … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
-  -  … <<exclusion>>>>-<<<<zone>>>>-water.md`
-  -  … mined/REFERENCES … 
-- **<<<<exclusion>>>>-<<<<zone>>>> … 
-- **Albert <<Szent-Györgyi … 
-- **Fritz-Albert Popp**
-  - `_intake/canon-profiles/popp-fritz-albert.md`
-  -  … International Institute of Biophysics archive
-- PubMed: <<Popp>> FA
-- archive … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
-  -  … and-outside-of … 
-- **<<biophoton>>-<<popp … 
-- **Dmitri Mendeleev**
-  - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … Pauling … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake/concept-digests/<<exclusion>>-<<zone>>-water.md`
-  -  … Fritz-Albert Popp**
-  - `_intake/canon-profiles/popp-fritz-albert.md`
-  -  … 8 |
-| `<<mendeleev>>-dmitri … 
+  -  … Why the <<Water>> in Your … 

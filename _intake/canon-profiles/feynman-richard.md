@@ -48,7 +48,7 @@
 
 
 
-## intake (8)
+## intake (9)
 
 - **Richard Feynman**
   - `_intake/canon-profiles/feynman-richard.md`
@@ -62,50 +62,68 @@
 - **[Coursera] Exploring Quantum Physics**
   - `archive/academictorrents_f24122f15283757aa8a9bf9cb638db266273442d/info.md`
   -  … Richard <<<<Feynman>>>> once … 
-- **John Archibald Wheeler**
-  - `_intake/canon-profiles/wheeler-john.md`
-  -  … The well-known problems in <<quantum>> cosmology disappear in the resulting … 
-
-## youtube (5)
-
-- **The Quantum Labyrinth - Richard <<Feynman>> & John Wheeler - Quantum Reality & Time**
-  - `yt … 
-- **Erwin Schrödinger**
-  - `_intake/canon-profiles/schrodinger-erwin.md`
-  -  … niels`](bohr-niels.md) — Niels Bohr … 
-- **Richard <<Feynman>>**
-  - `_intake/canon-profiles/<<feynman>>-richard.md`
-  -  … Labyrinth - Richard <<<<Feynman>>>> & John Wheeler - Quantum Reality & Time … 
-- **Erwin <<Schrödinger … 
 - **Niels Bohr**
   - `_intake/canon-profiles/bohr-niels.md`
-  -  … <<Feynman>>**
+  -  … niels`](<<bohr>>-niels.md) — Niels <<Bohr>> … 
+- **Richard <<Feynman>>**
   - `_intake/canon-profiles/<<feynman>>-richard.md`
-  -  … <<Quantum>> Labyrinth - Richard <<<<Feynman>>>> & John Wheeler - <<Quantum>> Reality & Time**
-  - `yt/KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-<<<<feynman>>>>-john … 
-- **Canon-author co-citation / collaboration matrix**
-  - `_intake/connections/COAUTHOR-MATRIX.md`
-  -  … Karl Friston | Anil K. Seth | 6 |
-| Murray Gell‐Mann | Richard P. <<Feynman>> | 5 |
-| Charles S. Peirce | Hilary Putnam | 5 |
-| Friedrich Wilhelm Joseph von Schelling … 
+  -  … Labyrinth - Richard <<<<Feynman>>>> & John Wheeler - <<Quantum>> Reality & Time … 
+- **Quantum Biology … 
+- **John Archibald Wheeler**
+  - `_intake/canon-profiles/wheeler-john.md`
+  -  … Science (New York, N.Y.)  ·  **Year … 
+
+## youtube (3)
+
+- **The Quantum Labyrinth - Richard <<Feynman>> & John Wheeler - Quantum Reality & Time**
+  - `yt/KCcX03Q6Lkw-the-quantum-labyrinth-richard … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
   -  … niels`](bohr-niels.md) — Niels Bohr — 30 hits
 - [`<<feynman>>-richard`](<<feynman>>-richard.md) — Richard <<Feynman>> — 30 hits
 - [`shannon-claude`](shannon-claude.md) — Claude Shannon … 
+- **Gerald Pollack**
+  - `_intake/canon-profiles/pollack-gerald.md`
+  -  … 16), <<EZ>> <<<<water>>>>(14 … 
+- **Dmitri <<Mendeleev>>**
+  - `_intake … 
+- **Richard <<Feynman>>**
+  - `_intake/canon-profiles/<<feynman>>-richard.md`
+  -  … <<Feynman>>>>, from The character of … 
+- **<<ez>>-<<water>>-<<pollack>>**
+  - `_intake … 
+- **Erwin Schrödinger**
+  - `_intake/canon-profiles/schrodinger-erwin.md`
+  -  … hits
+- [`bohr-niels`](bohr-niels.md) — Niels Bohr … 
+- **Richard <<Feynman>>**
+  - `_intake/canon-profiles/<<feynman>>-richard.md`
+  -  … Heisenberg | 1 |
+| Martín Heidegger | Carl Gustav … 
+- **Erwin <<Schrödinger … 
 - **ez-water-pollack**
   - `_intake/concept-digests/ez-water-pollack.md`
-  -  … 2013), exclusion-zone <<water>> papers | 05-biophysics | 4 … 
+  -  … water>>>>-rethinking-<<cell … 
+- **<<schumann>>-<<cme>>**
+  - `_intake/concept-digests … 
 - **Richard <<Feynman>>**
   - `_intake/canon-profiles/<<feynman>>-richard.md`
-  -  … <<POLLACK>> | Being Human**
-  - `yt/xT8Qtt8LCV0-253-the-fourth … 
-- **fourth-phase-water**
-  - `_intake/concept-digests/fourth-phase-water.md`
-  -  … 30 hits  (intake:24, youtube:6)
-- [`melanin-semiconductor … 
+  -  … from The character of … 
+- **ez-<<water>>-<<pollack>>**
+  - `_intake … 
+- **Canon-author co-citation / collaboration matrix**
+  - `_intake/connections/COAUTHOR-MATRIX.md`
+  -  … 6 |
+| Steven Pinker | Ray Jackendoff | 5 |
+| Murray Gell‐Mann | Richard P. <<Feynman>> | 5 |
+| Charles Darwin | Alfred Russel Wallace | 5 |
+| Carol L. Krumhansl | Jamshed J … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … Tesla>>**
+  - `_intake/canon-profiles/<<tesla>>-nikola.md`
+  -  … <<tesla>> … 
 - **Richard <<Feynman>>**
-  - `_intake/canon-profiles/<<feynman>>-richard.md`
-  -  … POLLACK | Being Human**
-  - `yt/xT8Qtt8LCV0-253-the-<<fourth … 
+  - `_intake/canon-profiles/<<feynman>>-richard.md … 
+- **REDOX Rx 2:  BIOHACKING YOUR MRI**
+  - `_intake/kruse … 

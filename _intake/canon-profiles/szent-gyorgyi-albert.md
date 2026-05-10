@@ -3,7 +3,7 @@
 **Slug**: `szent-gyorgyi-albert`  ·  **FTS query**: `"Szent-Györgyi" OR "Szent Gyorgyi" OR Szent`  ·  **Hits**: 30
 
 
-## pubmed (15)
+## pubmed (17)
 
 - **On the nature of the cross-striation of body muscle.**
   - `pubmed/PMID-14378160-on-the-nature-of-the-cross-striation-of-body-muscle/info.md`
@@ -141,8 +141,30 @@
 
 
 
+- **Attacks on Muscle.**
+  - `pubmed/PMID-17843493-attacks-on-muscle/info.md`
+  -  … A <<Szent-Györgyi>>
+- **MeSH**: Humans, Muscles, Social Behavior
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17843493/
+- **Captured**: 2026-05-10T11:09:27
 
-## intake (12)
+## Abstract
+
+
+
+- **Thermodynamic theory of the contraction of actomyosin.**
+  - `pubmed/PMID-18887894-thermodynamic-theory-of-the-contraction-of-actomyosin/info.md`
+  -  … A <<SZENT-GYORGYI>>
+- **MeSH**: Actin Cytoskeleton, Actomyosin, Thermodynamics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18887894/
+- **Captured**: 2026-05-10T11:10:29
+
+## Abstract
+
+
+
+
+## intake (10)
 
 - **Albert Szent-Györgyi**
   - `_intake/canon-profiles/szent-gyorgyi-albert.md`
@@ -151,10 +173,9 @@
 **Slug**: `<<szent-gyorgyi>>-albert`  ·  **FTS query**: `"<<Szent-Györgyi>>" OR "<<Szent Gyorgyi>>" OR <<Szent>>`  ·  **Hits**: 30
 
 
-## archive (1)
+## pubmed (15)
 
-- **Bioenergetics**
-  - `archive/bioenergetics00szen/info … 
+- **On the nature of … 
 - **Albert Szent-Györgyi — canon-target intake**
   - `_intake/szent-gyorgyi-albert/README.md`
   - # Albert <<Szent-Györgyi>> — canon-target intake
@@ -175,62 +196,46 @@
   -  … Becker — 30 hits
 - [`pollack-gerald`](pollack-gerald.md) — Gerald Pollack — 30 hits
 - [`<<szent-gyorgyi>>-albert`](<<szent-gyorgyi>>-albert.md) — Albert <<Szent-Györgyi>> — 30 hits … 
-- **fourth-phase-water**
-  - `_intake/concept-digests/fourth-phase-water.md`
-  -  … SNC 2018**
-  - `yt/NnRMRGsAHfA-gerald-pollack-the-<<fourth>> … 
-- **Albert <<Szent-Györgyi>>**
-  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
-  -  … THE MITOCHONDRIAL … 
-- **exclusion-zone-water**
-  - `_intake … 
-- **Canon-author co-citation / collaboration matrix**
-  - `_intake/connections/COAUTHOR-MATRIX.md`
-  -  … Feyerabend | Imre Lakatos | 2 |
-| Linus Pauling | Albert <<Szent‐Györgyi>> | 2 |
-| Hilary Putnam | Richard Rorty | 2 |
-| Andrew Strominger | Cumrun Vafa | 2 |
-| Cumrun Vafa | Brian Greene … 
-- **Gerald Pollack**
-  - `_intake/canon-profiles/pollack-gerald.md`
-  -  … Albert <<Szent-Györgyi>>**
-  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
-  -  … phase-<<water>>.md`
-  -  … zone <<water>> papers | 05-biophysics | 4+ via "<<fourth phase>>" |
-| `<<<<szent-gyorgyi>> … 
-- **photosynthesis-quantum**
-  - `_intake/concept-digests/photosynthesis-quantum.md`
-  -  … food because of how <<<<photosynthesis>>>> creates … 
-- **Concept Digests … 
-- **Albert <<Szent-Györgyi>>**
-  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
-  -  … 07/Nobel_prize_1280x720 … 
-- **<<photosynthesis>>-<<quantum … 
-- **deuterium-depleted-water**
-  - `_intake/concept-digests/deuterium-depleted-water.md`
-  -  … Albert <<Szent-Györgyi>>**
-  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
-  -  … <<water>> papers | 05-biophysics | 4+ via "<<fourth phase>>" |
-| `<<<<szent-gyorgyi>>>>-albert` | **Albert <<<<Szent>>>> … 
-- **EZ … 
-- **exclusion-zone-water**
-  - `_intake/concept-digests/exclusion-zone-water.md`
-  -  … digests/<<exclusion>>-<<zone>>-water.md`
-  -  … queued (not yet … 
-- **Albert <<Szent-Györgyi>>**
-  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
-  -  … THE MITOCHONDRIAL … 
-- **<<exclusion>>-<<zone>>-water**
-  - `_intake … 
 - **ez-water-pollack**
   - `_intake/concept-digests/ez-water-pollack.md`
-  -  … hits  (intake:29, pubmed:1)
-- [`schumann-cme`](schumann … 
+  -  … Albert <<Szent-Györgyi>>**
+  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
+  -  … <<pollack>>-gerald`](<<pollack>>-gerald.md) — Gerald <<Pollack>> — 25 hits
+- [`<<<<szent-gyorgyi>>>>-albert`](<<<<szent-gyorgyi>> … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … Deuterium>>, <<<<4th phase>>>> of … 
 - **Albert <<Szent-Györgyi>>**
   - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
-  -  … THE MITOCHONDRIAL … 
-- **exclusion-zone-<<water>>**
-  - `_intake … 
+  -  … gyorgyi>>-albert.md) — Albert <<<<Szent-Györgyi>>>> — 25 hits … 
+- **<<fourth-phase … 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  -  … queued (not yet researched … 
+- **Albert <<Szent-Györgyi>>**
+  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
+  -  … quantum … 
+- **<<deuterium>>-depleted-<<water>>**
+  - `_intake/concept-digests/<<deuterium>>-depleted-<<water … 
+- **exclusion-zone-water**
+  - `_intake/concept-digests/exclusion-zone-water.md`
+  -  … deuterium>>-depleted-<<water>>**
+  - `_intake/concept … 
+- **Albert <<Szent-Györgyi>>**
+  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
+  -  … Albert <<<<<<Szent>>>>>> … 
+- **EZ … 
+- **<<exclusion>>-<<zone>>-water**
+  - `_intake/concept-digests … 
+- **melanin-semiconductor**
+  - `_intake/concept-digests/melanin-semiconductor.md`
+  -  … semiconductor>>.md`
+  -  … Deuterium, 4th phase of WATER, & cellular … 
+- **Albert <<Szent-Györgyi>>**
+  - `_intake/canon-profiles/<<szent-gyorgyi>>-albert.md`
+  -  … Michael … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests … 
 - **REALITY #1:   HOLES IN REALITY MAKE TIME**
   - `_intake/kruse-blog-corpus/articles/reality-1-holes-reality-make-time.md`
   -  … 3-15

@@ -24,16 +24,16 @@ We sought direct evidence that acute exposure to environmental-strength <<electr
   -  … Simona Carrubba, Andrew A <<Marino>>
 - **MeSH**: Action Potentials, Animals, Brain, Electricity, <<Electromagnetic>> Fields, Environmental Exposure, Evoked Potentials, Somatosensory, Humans, Models, Neurological
 - **URL**: https://pubmed … 
-- **The effects of mobile-phone electromagnetic fields on brain electrical activity: a critical analysis of the literature.**
-  - `pubmed/PMID-20001702-the-effects-of-mobile-phone-electromagnetic-fields-on-brain/info.md`
-  -  … Andrew A <<Marino>>, Simona Carrubba
-- **MeSH**: Brain, Cell Phone, Electric Conductivity, <<Electromagnetic>> Fields, Environmental Exposure, Humans, Radio Waves
-- **URL**: https://pubmed.ncbi.nlm.nih … 
 - **Frequency-specific responses in the human brain caused by electromagnetic fields.**
   - `pubmed/PMID-8064317-frequency-specific-responses-in-the-human-brain-caused-by-el/info.md`
   -  … G B Bell, A A <<Marino>>, A L Chesson
 - **MeSH**: Adult, Brain, Electroencephalography, <<Electromagnetic>> Fields, Female, Fourier Analysis, Humans, Male, Mathematics, Models, Theoretical
 - **URL … 
+- **The effects of mobile-phone electromagnetic fields on brain electrical activity: a critical analysis of the literature.**
+  - `pubmed/PMID-20001702-the-effects-of-mobile-phone-electromagnetic-fields-on-brain/info.md`
+  -  … Andrew A <<Marino>>, Simona Carrubba
+- **MeSH**: Brain, Cell Phone, Electric Conductivity, <<Electromagnetic>> Fields, Environmental Exposure, Humans, Radio Waves
+- **URL**: https://pubmed.ncbi.nlm.nih … 
 - **Time-dependent hematological changes in workers exposed to electromagnetic fields.**
   - `pubmed/PMID-7856519-time-dependent-hematological-changes-in-workers-exposed-to-e/info.md`
   -  … A A <<Marino>>
@@ -112,20 +112,16 @@ fields that could …
 **Slug**: `<<marino>>-andrew`  ·  **FTS query**: `<<Marino>> AND (<<electromagnetic>> OR <<EMF>> OR <<Becker>>)`  ·  **Hits**: 30
 
 
-## pubmed (4)
+## pubmed (14)
 
 - **Low-frequency <<electromagnetic>> fields alter the … 
-- **bone-bioelectric-becker**
-  - `_intake/concept-digests/bone-bioelectric-becker.md`
-  -  … Andrew <<Marino>> PhD ON Dr. Robert O <<Becker>> & <<Electromagnetism>> and Life (ENGLISH PODACAST )**
-  - `yt/lfkqB1BONMI-dr-andrew-<<marino>>-phd-on-dr-robert-o-<<becker>> … 
 - **emf-non-thermal**
   - `_intake/concept-digests/emf-non-thermal.md`
   -  … Andrew <<Marino>>**
   - `_intake/canon-profiles/<<marino>>-andrew.md`
   - # Andrew <<Marino>>
 
-**Slug**: `<<marino>>-andrew`  ·  **FTS query**: `<<Marino>> AND (<<<<electromagnetic>>>> OR <<<<EMF>>>> OR <<Becker>>)`  ·  **Hits**: 25 … 
+**Slug**: `<<marino>>-andrew`  ·  **FTS query**: `<<Marino>> AND (<<<<electromagnetic>>>> OR <<<<EMF>>>> OR <<Becker>>)`  ·  **Hits**: 30 … 
 - **Robert O. Becker**
   - `_intake/canon-profiles/becker-robert-o.md`
   -  … <<Becker>>>> on <<bone>> <<regeneration>>, <<EMF>> biology, electric currents in tissue … 
@@ -137,6 +133,13 @@ fields that could …
 ## pubmed (4)
 
 - **Low-frequency <<<<electromagnetic>> … 
+- **bone-bioelectric-becker**
+  - `_intake/concept-digests/bone-bioelectric-becker.md`
+  -  … Low-frequency <<<<electromagnetic>>>> fields alter the … 
+- **<<bone>>-<<bioelectric>>-<<<<becker>>>>**
+  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<<<becker>>>>.md`
+  -  … Andrew <<<<Marino>>>> PhD ON Dr … 
+- **<<emf>>-non-thermal … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … andrew-<<marino>>
@@ -161,12 +164,6 @@ fields that could …
   -  … healthcare-exposed-dr-jack-kruse`
 - `lfkqB1BONMI-dr-andrew-<<marino>>-phd-on-dr-robert-o-<<becker>>-<<electromagnetism>>-`
 - `lhxca0ANvIk-bitcoin-and-humanity-s-decentralized-revolution-with … 
-- **Björn Nordenström**
-  - `_intake/canon-profiles/nordenstrom-bjorn.md`
-  -  … is most loaded. |
-| **field** | 461 | physics (EM, gauge) · biophysics (<<Becker>> bioelectricity, <<Nordenström>> <<BCEC>>, <<Marino>> <<EMF>>) · math (vector fields, manifolds … 
-- **chemiosmotic-mitchell**
-  - `_intake/concept-digests … 
 - **EMF 8: Quantum Bone**
   - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
   -  … From the Earth’ magnetic signal to visible light in the <<EMF>> spectrum, the filling in of the <<electromagnetic>> spectrum is astounding as we laid … 
@@ -175,3 +172,9 @@ fields that could …
   -  … The *most-spanning living scientist* in the corpus. |
 | **<<Marino>>** | 79 | biophysics (<<EMF>> + bioelectricity, <<Becker>> collaborator) ↔ physics ↔ medicine. Carries the <<Becker>> line forward. |
 | **Wheeler** | 45 … 
+- **Björn Nordenström**
+  - `_intake/canon-profiles/nordenstrom-bjorn.md`
+  -  … is most loaded. |
+| **field** | 461 | physics (EM, gauge) · biophysics (<<Becker>> bioelectricity, <<Nordenström>> <<BCEC>>, <<Marino>> <<EMF>>) · math (vector fields, manifolds … 
+- **chemiosmotic-mitchell**
+  - `_intake/concept-digests … 

@@ -21,7 +21,7 @@
 structures, and arches and arcades is presented. Circumferential 
 structures are described as partly caused by … 
 
-## pubmed (15)
+## pubmed (13)
 
 - **The paradigm of biologically closed electric circuits (BCEC) and the formation of an International Association (IABC) for BCEC systems.**
   - `pubmed/PMID-7531025-the-paradigm-of-biologically-closed-electric-circuits-bcec-a/info.md`
@@ -113,20 +113,8 @@ structures are described as partly caused by …
 - **MeSH**: Blood Circulation, Blood Circulation Time, Lung, Pulmonary Circulation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/13158124/
 - **Captured**: 2026-05-10T11:01 … 
-- **[Puncture biopsy of the mediastinum].**
-  - `pubmed/PMID-5380741-puncture-biopsy-of-the-mediastinum/info.md`
-  -  … B <<Nordenström>>
-- **MeSH**: Aged, Biopsy, Female, Humans, Lung Neoplasms, Mediastinum, Methods, Punctures
-- **URL**: https://pubmed.ncbi.nlm.nih.gov/5380741/
-- **Captured**: 2026-05-10T11 … 
-- **Roentgendensometric recording of hepatic and portal circulation.**
-  - `pubmed/PMID-14387790-roentgendensometric-recording-of-hepatic-and-portal-circulat/info.md`
-  -  … G TORNVALL, B <<NORDENSTROM>>
-- **MeSH**: Kymography, Liver, Portal System, Radiography
-- **URL**: https://pubmed.ncbi.nlm.nih.gov/14387790/
-- **Captured**: 2026-05-10T11:03:21 … 
 
-## intake (8)
+## intake (10)
 
 - **Björn Nordenström**
   - `_intake/canon-profiles/nordenstrom-bjorn.md`
@@ -151,6 +139,20 @@ structures are described as partly caused by …
 ## License / copyright
 
 book copyrighted … 
+- **Robert O. Becker**
+  - `_intake/canon-profiles/becker-robert-o.md`
+  -  … fanout … 
+- **Björn <<Nordenström>>**
+  - `_intake/canon-profiles/<<nordenstrom>>-bjorn.md`
+  -  … is most loaded. |
+| **field** | 461 | physics (EM, gauge) · biophysics (<<Becker>> <<bioelectricity>>, <<<<Nordenström>>>> <<<<BCEC>>>>, <<Marino>> EMF … 
+- **Andrew Marino**
+  - `_intake/canon-profiles/marino-andrew.md`
+  -  … with … 
+- **Björn <<Nordenström>>**
+  - `_intake/canon-profiles/<<nordenstrom>>-bjorn.md`
+  -  … is most loaded. |
+| **field** | 461 | physics (EM, gauge) · biophysics (<<Becker>> bioelectricity, <<<<Nordenström>>>> <<<<BCEC>>>>, <<Marino>> <<EMF … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … PubMed / OA-backfill. |
@@ -163,9 +165,16 @@ book copyrighted …
 | **field** | 461 | physics (EM, gauge) · biophysics (Becker bioelectricity, <<Nordenström>> <<BCEC>>, Marino EMF) · math (vector fields, manifolds … 
 - **chemiosmotic-mitchell**
   - `_intake/concept-digests/chemiosmotic-mitchell.md`
-  -  … peter`](<<mitchell>>-peter.md) — Peter <<Mitchell>> — 25 hits
-- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> … 
-- **Mitchell chemiosmosis / ETC / proton gradient — concept canon-target intake … 
+  -  … 30
+
+
+## pubmed (15)
+
+- **<<Chemiosmotic>> coupling in oxidative and photosynthetic … 
+- **Björn <<Nordenström>>**
+  - `_intake/canon-profiles/<<nordenstrom>>-bjorn.md`
+  -  … EMF) · math (vector fields, manifolds … 
+- **<<chemiosmotic>>-<<mitchell … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
   -  … peter`](mitchell-peter.md) — Peter Mitchell — 30 hits
@@ -173,13 +182,13 @@ book copyrighted …
 - [`russell-walter`](russell-walter.md) — Walter Russell … 
 - **Peter Mitchell**
   - `_intake/canon-profiles/mitchell-peter.md`
-  -  … of most … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX … 
+  -  … https … 
+- **Strategy of research on the <<chemiosmotic>> mechanism … 
 - **Björn <<Nordenström>>**
   - `_intake/canon-profiles/<<nordenstrom>>-bjorn.md`
-  -  … Peter <<Mitchell>>**
-  - `_intake/canon-profiles/<<mitchell>>-peter.md … 
+  -  … imaging-of-the-lung … 
+- **Peter <<Mitchell>>**
+  - `_intake/canon … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … 1978 | Chemiosmotic theory papers, mitochondrial proton gradient | 05-biophysics | 4 |

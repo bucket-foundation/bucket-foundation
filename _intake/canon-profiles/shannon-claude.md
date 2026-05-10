@@ -3,12 +3,6 @@
 **Slug**: `shannon-claude`  ·  **FTS query**: `Shannon AND (information OR communication OR entropy)`  ·  **Hits**: 30
 
 
-## archive (1)
-
-- **The Oxford book of modern science writing**
-  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
-  -  … <<Shannon>> and Warren Weaver, from The mathematical theory of <<communication>> -- Alan Turing, from Computing machinery and intelligence -- Albert Einstein, from 'What is the theory … 
-
 ## pubmed (4)
 
 - **How multiplicity determines entropy and the derivation of the maximum entropy principle for complex systems.**
@@ -19,6 +13,9 @@
 - **A Free Energy Principle for Biological Systems.**
   - `pubmed/PMID-23204829-a-free-energy-principle-for-biological-systems/info.md`
   -  … other words, the measure of its (random) attracting set, or the <<Shannon>> <<entropy>> of the external states is small. We motivate a solution using … 
+- **Diverse and highly active diazotrophic assemblages inhabit ephemerally wetted soils of the Antarctic Dry Valleys.**
+  - `pubmed/PMID-22500944-diverse-and-highly-active-diazotrophic-assemblages-inhabit-e/info.md`
+  -  … Comparisons with proximal dry soils also suggested that these <<communities>> are not ubiquitously distributed, and conditions unrelated to moisture content may define the composition … 
 - **Mitochondrial hyperoxidation contributes to warm ischemia-reperfusion injury in rat and pig livers.**
   - `pubmed/PMID-41922695-mitochondrial-hyperoxidation-contributes-to-warm-ischemia-re/info.md`
   -  … PMID**: 41922695
@@ -26,11 +23,8 @@
 - **PMCID**:  
 - **Journal**: <<Communications>> medicine  ·  **Year**: 2026
 - **Authors**: Khanh T Nguyen, O Sila Ozgur, Rohil Jain … 
-- **Dynamical independence: Discovering emergent macroscopic processes in complex dynamical systems.**
-  - `pubmed/PMID-37583178-dynamical-independence-discovering-emergent-macroscopic-proc/info.md`
-  -  … We quantify (departure from) dynamical independence by a transformation-invariant <<Shannon>> <<information>>-based measure of dynamical dependence. We emphasize the data-driven discovery of … 
 
-## arxiv (4)
+## arxiv (5)
 
 - **Information theory and Thermodynamics**
   - `arxiv/cs_0602023-information-theory-and-thermodynamics/info.md`
@@ -41,6 +35,13 @@
 
 - **arXiv ID**: `1702.01591`
 - **URL**: https://arxiv.org/abs/1702 … 
+- **Shannon information and integrated information: message and meaning**
+  - `arxiv/2412.10626-shannon-information-and-integrated-information-message-and-m/info.md`
+  -  … 2026-05-10T13:50:24
+
+## Abstract
+
+<<Information>> theory, introduced by <<Shannon>>, has been extremely successful and influential as a mathematical theory of <<communication>>. <<Shannon>> … 
 - **On Finite-Time Mutual Information**
   - `arxiv/2204.11254-on-finite-time-mutual-information/info.md`
   -  … However, the calculation of finite-time mutual <<information>>, which remains unknown, is essential for guiding the design of practical <<communication>> systems. In this paper … 
@@ -52,7 +53,7 @@
 
 Kaniadakis <<entropy>> is a one-parameter deformation of the classical Boltzmann-Gibbs-<<Shannon>> <<entropy>>, arising from a self … 
 
-## youtube (4)
+## youtube (6)
 
 - **Find Out Why Dr. Jack Kruse is Shirtless in This Interview!**
   - `yt/JW_EHdoToZo-find-out-why-dr-jack-kruse-is-shirtless-in-this-interview/transcript.txt`
@@ -68,21 +69,33 @@ without <<shannon>> …
 is a guy who's the ba he's the basis of
 <<information>> theory. And basically what
 he came up with was in … 
+- **Mindscape 87 | Karl Friston on Brains, Predictions, and Free Energy**
+  - `yt/TcFLQvz5uEg-mindscape-87-karl-friston-on-brains-predictions-and-free-ene/transcript.txt`
+  -  … about things in terms of <<information>>
+theory and uncertainty well
+mathematically expected surprise
+expected self <<information>> is <<entropy>>
+<<entropy>> is one way of describing … 
+- **The Mathematical Boundary Between You And The Universe | Karl Friston On The Free Energy Principle**
+  - `yt/kbs2ozkXGjI-the-mathematical-boundary-between-you-and-the-universe-karl-/transcript.txt`
+  -  … in a sort of <<Shannon>> <<information>>
+sense um <<information>> means sort of uh
+lots of <<information>> is also high <<entropy>>
+like a noisy picture … 
 - **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
   - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
   -  … meanings really right there's
 the <<entropy>> of physics and the <<entropy>>
 of <<communications>> Theory or <<information>>
 Theory I would tell you they're … 
-- **Bitcoin and Humanity's Decentralized Revolution with Dr. Jack Kruse Ep. 3 (WiM546)**
-  - `yt/lhxca0ANvIk-bitcoin-and-humanity-s-decentralized-revolution-with-dr-jack/transcript.txt`
-  -  … and I believe this is the
-reason why <<entropy>> from Claude <<Shannon>>'s
-work and <<entropy>> from from uh our
-thermodynamic
-friends um they … 
+- **Karl Friston's Unfalsifiable Free Energy Principle**
+  - `yt/jZ1fsXQz7M4-karl-friston-s-unfalsifiable-free-energy-principle/transcript.txt`
+  -  … I'd use self-<<information>>
+because immediately they know that they
+expect self-<<information>> is <<entropy>> of a
+<<Shannon>> of a shell and sword … 
 
-## intake (6)
+## intake (4)
 
 - **Claude Shannon**
   - `_intake/canon-profiles/shannon-claude.md`
@@ -106,18 +119,11 @@ friends um they …
 | Slug | Source | Notes |
 |---|---|---|
 | `<<shannon>>-1948-mathematical-theory` | <<Shannon>> — "A Mathematical Theory of <<Communication>>" (BSTJ 1948) | The … 
-- **Alan Turing**
-  - `_intake/canon-profiles/turing-alan.md`
-  -  … science writing**
-  - `archive/oxfordbookofmode0000unse_a2g6/info.md`
-  -  … <<Shannon>> and Warren Weaver, from The mathematical theory of <<communication>> -- Alan <<Turing>>, from <<Computing>> machinery and intelligence … 
-- **Dmitri Mendeleev**
-  - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … Branch Coverage Audit (2026-05-09)**
-  - `_intake/BRANCH-COVERAGE-AUDIT.md`
-  -  … <<Shannon>> 1948, Turing 1936, Chaitin, Kolmogorov, Solomonoff, Wolfram |
-| 03-chemistry   | 437 | ✓ medium | <<Mendeleev … 
-- **Bucket Canon — Branch Coverage Audit (2026-05-09)**
-  - `_intake/BRANCH-COVERAGE-AUDIT.md`
-  -  … 100+ podcast transcripts, 195 PubMed papers |
-| 04-<<information>> | 584 | ⚠️ noisy | Mostly cross-mention noise. **Missing primary**: <<Shannon>> 1948, Turing 1936, Chaitin, Kolmogorov, Solomonoff, Wolfram … 
+- **John Archibald Wheeler**
+  - `_intake/canon-profiles/wheeler-john.md`
+  -  … Meritus … 
+- **Claude <<Shannon>>**
+  - `_intake/canon-profiles/<<shannon>>-claude.md`
+  -  … mean**
+  - `_intake/connections/META-CANON.md`
+  -  … 019 | <<<<<<information>>>>>> (<<<<Shannon>>>>/Turing/Chaitin) · physics (<<Wheeler>> "it from … 

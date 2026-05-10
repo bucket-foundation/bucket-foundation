@@ -3,7 +3,7 @@
 **Slug**: `hameroff-stuart`  ·  **FTS query**: `Hameroff AND (microtubule OR consciousness OR Orch)`  ·  **Hits**: 30
 
 
-## pubmed (13)
+## pubmed (14)
 
 - **How quantum brain biology can rescue conscious free will.**
   - `pubmed/PMID-23091452-how-quantum-brain-biology-can-rescue-conscious-free-will/info.md`
@@ -61,8 +61,11 @@
 - **`Funda-Mentality': is the conscious mind subtly linked to a basic level of the universe?**
   - `pubmed/PMID-21227102-funda-mentality-is-the-conscious-mind-subtly-linked-to-a-ba/info.md`
   -  … In the Penrose-<<Hameroff>> model of `orchestrated objective reduction' (<<Orch>> OR), OR quantum computation occurs in cytoskeletal <<microtubules>> within the brain's neurons. The … 
+- **Integration of intracellular signaling: Biological analogues of wires, processors and memories organized by a centrosome 3D reference system.**
+  - `pubmed/PMID-30142359-integration-of-intracellular-signaling-biological-analogues/info.md`
+  -  … Theoretical analysis presented here refers to (i) the Penrose-<<Hameroff>> theory of <<consciousness>> (Orchestrated Objective Reduction; <<Orch>> OR), (ii) the description of the centrosome … 
 
-## intake (3)
+## intake (2)
 
 - **Stuart Hameroff**
   - `_intake/canon-profiles/hameroff-stuart.md`
@@ -71,18 +74,11 @@
 **Slug**: `<<hameroff>>-stuart`  ·  **FTS query**: `<<Hameroff>> AND (<<microtubule>> OR <<consciousness>> OR <<Orch>>)`  ·  **Hits**: 30
 
 
-## pubmed (8)
+## pubmed (13)
 
 - **How quantum brain biology can rescue … 
 - **Roger Penrose**
   - `_intake/canon-profiles/penrose-roger.md`
-  -  … <<microtubules>>>> and is specifically predicted by the Orchestrated <<Objective>> Reduction theory of <<Penrose>> and <<Hameroff>> … 
-- **<<Consciousness>> in the universe: a review of the '<<Orch>> … 
-- **Erwin Schrödinger**
-  - `_intake/canon-profiles/schrodinger-erwin.md`
-  -  … <<Hameroff>>**
-  - `_intake/canon-profiles/<<hameroff>>-stuart.md`
-  -  … a review of the '<<<<Orch>>>> … 
-- **Erwin <<Schrödinger>>**
-  - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
-  -  … Stuart <<<<Hameroff>>>>: <<<<CONSCIOUSNESS>>>> AND … 
+  -  … The <<Penrose>>-<<Hameroff>> '<<Orch>> OR' model of <<<<consciousness>>>> is reviewed … 
+- **Quantum computation in brain <<microtubules>>: decoherence and biological feasibility.**
+  - `pubmed/PMID-12188753-quantum-computation … 
