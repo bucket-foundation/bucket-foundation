@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Sound, Music -- Acoustics and physics, Music -- Physiological aspects
-- **Captured**: 2026-05-09T09:47:08
+- **Captured**: 2026-05-10T14:25:03
 
 ## Description
 

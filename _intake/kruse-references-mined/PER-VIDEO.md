@@ -11,6 +11,16 @@
 
 **Citations**: 
 
+## -i1SskhaLik-2023-10-26-bernardo-kastrup-michael-james-analytic-idealism-
+
+**Concepts**: WHO(56), AGE(45), EPA(21), iron(5), quantum(4), AGEs(2), NIR(1), heme(1), RAGE(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 0IjUzKzfIbI-blue-light-kills-the-fit-people-dr-jack-kruse-ep-15
 
 **Concepts**: mitochondria(38), WHO(26), electron(23), blue light(19), iron(18), UV(13), red light(13), AGE(12), mitochondrial(10), NAD(10), DHA(10), infrared(8), EMF(8), photosynthesis(7), electromagnetic(6), proton(6), biophoton(4), melatonin(4), dopamine(4), UVA(4)
@@ -178,6 +188,16 @@ Crawford(1)
 
 **Citations**: 
 
+## 4E6irMB2ANs-what-s-the-best-argument-against-analytic-idealism-bernardo-
+
+**Concepts**: WHO(49), AGE(38), Newton(13), EPA(8), RAGE(6), electromagnetic(4), quantum(3), electron(2), iron(1), NAD(1), AGEs(1), NIH(1), Tesla(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 4QQCOugnQL4-jack-kruse-wim-hof-freezer-ice-bath-36degrees-6mins-6-3-19
 
 **Concepts**: WHO(1)
@@ -208,6 +228,16 @@ Cruz(1)
 
 
 **Citations**: 
+
+## 57Oguwg7omc-are-we-dissociated-alters-of-a-universal-mind-understanding-
+
+**Concepts**: WHO(38), quantum(30), AGE(26), EPA(15), iron(8), AGEs(8), Newton(3), Penrose(2), photoelectric effect(1), photoelectric(1), infrared(1), heme(1), NAD(1), RAGE(1), electron(1), Einstein(1), Feynman(1), Russell(1)
+
+
+**Titled**: 
+
+
+**Citations**: Germany 2015(1), Italy 2010(1)
 
 ## 5A8K0kbkmBk-how-morphic-resonance-affects-our-memories-families-rituals-
 
@@ -419,12 +449,32 @@ Cruz(1)
 
 **Citations**: 
 
+## BG31Oz0VWmI-eastern-and-western-lenses-to-analytic-idealism-with-bernard
+
+**Concepts**: AGE(54), WHO(21), EPA(8), AGEs(7), quantum(5), DHA(2), UV(1), NIR(1), NAD(1), electron(1), NIH(1), Einstein(1), Newton(1)
+
+
+**Titled**: Bernardo Castro(1)
+
+
+**Citations**: 
+
 ## BO4mhs0qlLg-can-creatine-help-your-brain
 
 **Concepts**: AGE(13), WHO(9), ATP(3), RAGE(3), iron(1), AGEs(1)
 
 
 **Titled**: John Cruz(1)
+
+
+**Citations**: 
+
+## BPUGIsJe0Cs-unlocking-the-mind-with-anil-seth-and-christof-koch-on-consc
+
+**Concepts**: quantum(25), WHO(23), AGE(21), EPA(11), RAGE(3), Newton(3), photosynthesis(2), UV(1), NAD(1), quantum biology(1), AGEs(1), quantum tunneling(1), NIH(1), Einstein(1), Penrose(1)
+
+
+**Titled**: Anil(1), Kristof Koke Chief(1)
 
 
 **Citations**: 
@@ -510,6 +560,16 @@ Becker(1)
 
 **Citations**: 
 
+## DrMEL20o5KE-why-materialism-is-complete-nonsense-bernardo-kastrup
+
+**Concepts**: WHO(32), quantum(29), AGE(28), EPA(18), electron(17), proton(5), electromagnetic(3), Newton(3), blue light(1), AGEs(1), RAGE(1), NIH(1), Einstein(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## EMrMf_jkaWo-a-discussion-on-general-relativity-by-students-of-john-wheel
 
 **Concepts**: WHO(33), Wheeler(20), Einstein(15), AGE(14), quantum(5), EPA(4), iron(1), AGEs(1), RAGE(1), electron(1), Wigner(1)
@@ -539,6 +599,16 @@ Becker(1)
 
 
 **Citations**: October 1964(1)
+
+## GDKLt5MA5M4-sam-harris-2018-our-perception-as-a-controlled-hallucination
+
+**Concepts**: WHO(49), AGE(39), EPA(7), iron(5), AGEs(4), heme(3), RAGE(2), UV(1), Helmholtz(1), Wheeler(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## GEw0ePZUMHA-joe-rogan-experience-1216-sir-roger-penrose
 
@@ -570,6 +640,16 @@ Georgie(1), Leven(1), Marino(1)
 
 
 **Citations**: University 1939(1)
+
+## Hf1q-bZMEo4-what-are-traces-of-consciousness-a-new-breakthrough-unifying
+
+**Concepts**: WHO(73), AGE(58), quantum(56), Einstein(22), Wheeler(7), RAGE(6), Maxwell(4), NAD(3), EPA(3), Newton(3), AGEs(2), electron(2), heme(1), DHA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## HrXoKhkKFDU-011-dr-jack-kruse-part-1-the-inner-turning-point-inside-the-
 
@@ -612,6 +692,26 @@ Monette(1), Allison Monette(1), Zack Bush(1), Who(1)
 
 
 **Citations**: Prize 2016(1)
+
+## J--0hk89hmU-breakthrough-how-consciousness-creates-the-simulation-dr-don
+
+**Concepts**: AGE(46), WHO(39), quantum(37), Einstein(16), AGEs(9), Wheeler(9), RAGE(5), EPA(3), electromagnetic(1), DHA(1), electron(1), proton(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: Steiner 2017(1)
+
+## JAnmObVELUE-simulation-680-dr-donald-hoffman-conscious-agent-theory
+
+**Concepts**: AGE(65), WHO(44), Einstein(14), quantum(13), AGEs(6), electromagnetic(3), cortisol(3), iron(3), magnetic field(2), NAD(2), RAGE(2), NIH(2), photosynthesis(1), infrared(1), EPA(1), electron(1), Feynman(1), Wheeler(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## JRicmld6AkU-andrw-a-marino-interviewed-by-dr-kamau-kokayi
 
@@ -756,6 +856,16 @@ Cruz(2), Cruz(1), Jack Cruz(1), Doug Wallace(1), Wallace(1), Andrew Marino(1)
 
 **Citations**: 
 
+## Mar2X6bvid4-bernardo-kastrup-the-case-for-idealism-full-lecture-part-1
+
+**Concepts**: AGE(41), WHO(34), EPA(17), AGEs(3), iron(2), electromagnetic(1), NAD(1)
+
+
+**Titled**: 
+
+
+**Citations**: Shannon 1948(1)
+
 ## Mb8lQtKduVI-how-our-gut-health-is-linkd-with-the-sun-by-dr-jack-kruse-he
 
 **Concepts**: WHO(23), quantum(13), mitochondria(12), blue light(12), red light(12), UV(11), electron(11), cytochrome(9), iron(8), melatonin(7), NAD(7), dopamine(6), vitamin D(5), infrared(4), EMF(4), ATP(4), Einstein(4), photoelectric effect(3), photoelectric(3), hemoglobin(3)
@@ -800,6 +910,16 @@ Kruse(1)
 
 
 **Citations**: Vermont 2018(1), York 1960(1)
+
+## NgMoP95gUlI-psw-2442-quantum-gravity-carlo-rovelli
+
+**Concepts**: quantum(206), WHO(37), AGE(15), Einstein(14), electromagnetic(10), Newton(9), iron(7), electron(6), Planck(6), EPA(5), NAD(4), magnetic field(3), AGEs(3), RAGE(3), proton(3), Maxwell(3), Schrodinger(2), heme(1), quantum coherence(1), FDA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
 
 ## NnRMRGsAHfA-gerald-pollack-the-fourth-phase-of-water-snc-2018
 
@@ -947,6 +1067,16 @@ Hameroff(1), Brian Keating(1)
 
 **Citations**: 
 
+## Pw1mnPzHR-0-anil-seth-bcbt-2017-lecture
+
+**Concepts**: AGE(25), WHO(22), iron(4), AGEs(4), heme(3), EPA(3), electromagnetic(1), RAGE(1), Helmholtz(1)
+
+
+**Titled**: 
+
+
+**Citations**: Sussex 1989(1)
+
 ## Q6zAWQo9ioU-quantum-health-and-crypto-with-dr-jack-kruse
 
 **Concepts**: WHO(16), AGE(9), leptin(5), circadian(4), mitochondria(2), mitochondrial(2), quantum(2), Rockefeller(2), UV(1), NAD(1)
@@ -968,9 +1098,39 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 **Citations**: Rockfell 1983(1)
 
+## QfP5BgOz97U-quantum-consciousness-and-the-illusion-of-reality-federico-f
+
+**Concepts**: quantum(110), electron(31), EPA(29), WHO(25), AGE(12), iron(6), proton(2), Einstein(2), NIR(1), electromagnetic(1)
+
+
+**Titled**: Dariano(1)
+
+
+**Citations**: 
+
+## Rz5b4dPhzIQ-the-neuroscience-of-consciousness-anil-seth
+
+**Concepts**: AGE(62), WHO(30), EPA(8), AGEs(7), iron(6), electromagnetic(4), blue light(2), RAGE(2), magnetic field(1), Helmholtz(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## SIs7wcGR0zY-dr-jack-kruse-ketosis-fails-with-circadian-mismatches-quantu
 
 **Concepts**: WHO(32), iron(31), mitochondria(21), blue light(15), electron(15), AGE(11), cytochrome(10), NAD(10), quantum(10), EMF(7), ketosis(7), photosynthesis(6), mitochondrial(6), DHA(6), circadian(4), red light(3), copper(2), NADH(2), quantum biology(2), seafood(2)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## SR3uwW_SX0o-scientific-realism-lecture-by-prof-carlo-rovelli
+
+**Concepts**: quantum(53), AGE(30), WHO(29), iron(7), RAGE(3), EPA(2), AGEs(2), Einstein(2), UV(1), electromagnetic(1), electron(1), Schrodinger(1), Maxwell(1)
 
 
 **Titled**: 
@@ -991,6 +1151,16 @@ Cruz(1), Bowden(1), William Mackis(1)
 ## T-CfRMJhV5g-the-mystery-of-the-observer-effect-john-wheeler
 
 **Concepts**: quantum(23), AGE(16), EPA(12), WHO(11), Wheeler(10), iron(6), RAGE(5), AGEs(2), electron(2), heme(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## T2axJ_XCewc-carlo-rovelli-current-quantum-gravity-theories-experimental-
+
+**Concepts**: quantum(68), Planck(17), Newton(14), EPA(9), AGE(8), WHO(8), Penrose(3), magnetic field(2), electromagnetic(2), Russell(2), AGEs(1), RAGE(1), electron(1), quantum tunneling(1), Schrodinger(1), Maxwell(1), Wheeler(1)
 
 
 **Titled**: 
@@ -1088,6 +1258,16 @@ Cruz(1), Bowden(1), William Mackis(1)
 
 **Citations**: Turing 1951(1), States 2024(1)
 
+## W0vTZrZny6A-top-psychologist-donald-hoffman-seeing-true-reality-would-ki
+
+**Concepts**: WHO(70), AGE(27), AGEs(6), Einstein(5), iron(4), NAD(3), quantum(3), DHA(3), EPA(3), RAGE(3), electron(1)
+
+
+**Titled**: Donald Hoffman(2)
+
+
+**Citations**: January 2020(1)
+
 ## W5w0WainlMM-dr-jack-kruse-deuterium-4th-phase-of-water-cellular-redox-re
 
 **Concepts**: WHO(64), mitochondria(58), electron(40), deuterium(31), quantum(24), redox(24), iron(22), mitochondrial(17), melanin(12), EPA(12), AGE(10), proton(9), photosynthesis(8), UV(8), electromagnetic(7), dopamine(6), semiconductor(5), circadian(5), NAD(5), cytochrome(4)
@@ -1122,6 +1302,16 @@ Camellia(1), Sean(1), Who(1)
 ## YCN-kgAH2hM-dr-kruse-patient-interview
 
 **Concepts**: WHO(2), vitamin D(1), DHA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## YRIrf7XzEnA-federico-faggin-bernardo-kastrup-quantum-physics-spiritualit
+
+**Concepts**: quantum(154), WHO(25), AGE(20), EPA(13), NAD(4), electron(3), AGEs(2), Wigner(2), quantum biology(1), Einstein(1)
 
 
 **Titled**: 
@@ -1221,6 +1411,16 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 **Citations**: 
 
+## cCyapf0E5ns-consciousness-neuroscience-perception-and-hallucination-prof
+
+**Concepts**: AGE(56), WHO(32), EPA(10), AGEs(6), electromagnetic(3), circadian(1), blue light(1), NAD(1), RAGE(1), Helmholtz(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: Gombrich 1960(1)
+
 ## cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i
 
 **Concepts**: WHO(52), melanin(41), mitochondria(29), quantum(22), electron(19), UV(18), AGE(18), mitochondrial(14), deuterium(12), semiconductor(10), iron(10), ATP(10), photosynthesis(9), redox(9), electromagnetic(6), proton(6), red light(5), EMF(5), Einstein(5), dopamine(4)
@@ -1230,6 +1430,16 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 
 **Citations**: 
+
+## d6NHRB5V1eE-top-physicist-science-spirituality-merge-in-this-new-theory-
+
+**Concepts**: quantum(71), WHO(55), EPA(23), AGE(22), RAGE(13), electron(8), NAD(2), heme(1), iron(1)
+
+
+**Titled**: 
+
+
+**Citations**: Shannon 1948(1)
 
 ## dLXKFA33SSM-karl-friston-free-energy-and-active-inference-rovereto-novem
 
@@ -1373,6 +1583,16 @@ Sherman(1), Kurt(1), Kur(1)
 
 **Citations**: Forum 2025(1), Katrina 2005(1), Egypt 1967(1)
 
+## ib9jDiHIsC4-kastrup-responds-to-my-criticisms-of-analytic-idealism
+
+**Concepts**: AGE(53), WHO(13), iron(10), quantum(8), AGEs(8), EPA(6), Wigner(4), ATP(2), RAGE(2), electron(2), UV(1), heme(1), Russell(1), Faraday(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## jZ1fsXQz7M4-karl-friston-s-unfalsifiable-free-energy-principle
 
 **Concepts**: iron(37), WHO(25), AGE(22), EPA(15), quantum(11), RAGE(9), Schrodinger(3), Einstein(2), Feynman(2), dopamine(1), UV(1), heme(1), electron(1)
@@ -1390,6 +1610,16 @@ Sherman(1), Kurt(1), Kur(1)
 
 **Titled**: Cruz(4), Jack Kruse(1), Jack(1), Jack
 Kruse(1)
+
+
+**Citations**: 
+
+## kCRy4m_W-LI-qlk21-lam-rovelli-valentini-round-table-on-space-time-and-qu
+
+**Concepts**: quantum(248), AGE(51), WHO(22), EPA(13), iron(11), Newton(9), Schrodinger(7), Bohm(6), AGEs(5), electron(4), Einstein(4), magnetic field(3), RAGE(3), Wheeler(2), Wigner(2), UV(1), UVA(1), heme(1), Maxwell(1), Pauli(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -1608,6 +1838,16 @@ Platner(1)
 
 **Citations**: Prize 1963(1)
 
+## qNo-oWS8VUo-user-interface-theory-explained-don-hoffman-phd-29
+
+**Concepts**: AGE(43), WHO(30), quantum(24), Einstein(18), AGEs(9), Newton(8), EPA(7), electron(6), magnetic field(2), DHA(1), proton(1)
+
+
+**Titled**: Donald Hoffman(1)
+
+
+**Citations**: 
+
 ## qPY6FBkjqwA-functional-medicine-mistakes-emf-sunlight-and-your-mitochond
 
 **Concepts**: iron(41), mitochondria(38), electron(38), UV(27), WHO(27), vitamin D(19), ATP(17), AGE(15), cytochrome(14), blue light(13), EMF(9), leptin(8), mitochondrial(6), DHA(6), photosynthesis(5), cytochrome c oxidase(5), red light(5), ketosis(5), infrared(4), magnetic field(4)
@@ -1696,6 +1936,16 @@ Cruz(1), Fouchy(1), Jeff(1)
 ## sjg8IUmbqSY-power-of-light-in-cancer-healing-sp-mini-ft-dr-jack-kruse
 
 **Concepts**: UV(6), mitochondria(5), mitochondrial(3), melatonin(2), red light(2), WHO(2), infrared(1), melanin(1), iron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## tTjtAWu_yOY-bernardo-kastrup-on-sean-carroll-illusionism-more
+
+**Concepts**: WHO(76), AGE(44), quantum(24), iron(15), EPA(15), AGEs(8), RAGE(3), NIH(2), Einstein(2), Russell(2), NAD(1), Maxwell(1), Faraday(1), Newton(1)
 
 
 **Titled**: 
@@ -1840,6 +2090,26 @@ Cruz(1), Cruz Jack(1)
 
 
 **Titled**: Gerald Pollock(1)
+
+
+**Citations**: 
+
+## xaeafKPfs1M-the-greatest-discovery-about-reality-the-consciousness-behin
+
+**Concepts**: WHO(84), quantum(32), Einstein(30), AGE(29), EPA(9), Wheeler(7), RAGE(6), Newton(5), red light(3), AGEs(3), infrared(2), electromagnetic(2), electron(2), circadian(1), heme(1), EMF(1), NAD(1), DHA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## xsy8p435DqM-conscious-agents-vs-cognitive-agents-with-donald-hoffman-and
+
+**Concepts**: AGE(107), WHO(48), quantum(18), Einstein(9), AGEs(7), proton(7), EPA(4), magnetic field(2), UV(1), iron(1), NAD(1), electron(1), Planck(1), Newton(1)
+
+
+**Titled**: Levin(3), Hoffman(2), Lavin(1)
 
 
 **Citations**: 
