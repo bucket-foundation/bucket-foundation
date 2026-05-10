@@ -1,0 +1,2304 @@
+{
+  "id": "https://openalex.org/W2082704080",
+  "doi": "https://doi.org/10.1371/journal.pmed.1001779",
+  "title": "UK Biobank: An Open Access Resource for Identifying the Causes of a Wide Range of Complex Diseases of Middle and Old Age",
+  "display_name": "UK Biobank: An Open Access Resource for Identifying the Causes of a Wide Range of Complex Diseases of Middle and Old Age",
+  "publication_year": 2015,
+  "publication_date": "2015-03-31",
+  "ids": {
+    "openalex": "https://openalex.org/W2082704080",
+    "doi": "https://doi.org/10.1371/journal.pmed.1001779",
+    "mag": "2082704080",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/25826379"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1371/journal.pmed.1001779",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1371/journal.pmed.1001779",
+    "pdf_url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001779&type=printable",
+    "source": {
+      "id": "https://openalex.org/S197939330",
+      "display_name": "PLoS Medicine",
+      "issn_l": "1549-1277",
+      "issn": [
+        "1549-1277",
+        "1549-1676"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315706",
+      "host_organization_name": "Public Library of Science",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315706"
+      ],
+      "host_organization_lineage_names": [
+        "Public Library of Science"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "PLOS Medicine",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "gold",
+    "oa_url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001779&type=printable",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5081850154",
+        "display_name": "Cathie Sudlow",
+        "orcid": "https://orcid.org/0000-0002-7725-7520"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I98677209",
+          "display_name": "University of Edinburgh",
+          "ror": "https://ror.org/01nrxwf90",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I98677209"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210117583",
+          "display_name": "UK Biobank",
+          "ror": "https://ror.org/02frzq211",
+          "country_code": "GB",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210117583"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Cathie Sudlow",
+      "raw_affiliation_strings": [
+        "University of Edinburgh, Edinburgh, United Kingdom; UK Biobank, Stockport, United Kingdom",
+        "University of Edinburgh, Edinburgh, United Kingdom",
+        "UK Biobank, Stockport, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Edinburgh, Edinburgh, United Kingdom; UK Biobank, Stockport, United Kingdom",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "University of Edinburgh, Edinburgh, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I98677209"
+          ]
+        },
+        {
+          "raw_affiliation_string": "UK Biobank, Stockport, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I4210117583"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5060591968",
+        "display_name": "John Gallacher",
+        "orcid": "https://orcid.org/0000-0002-2394-5299"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I79510175",
+          "display_name": "Cardiff University",
+          "ror": "https://ror.org/03kk7td41",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I79510175"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "John Gallacher",
+      "raw_affiliation_strings": [
+        "University of Cardiff, Cardiff, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Cardiff, Cardiff, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I79510175"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5073405229",
+        "display_name": "Naomi E. Allen",
+        "orcid": "https://orcid.org/0000-0003-1938-5038"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210117583",
+          "display_name": "UK Biobank",
+          "ror": "https://ror.org/02frzq211",
+          "country_code": "GB",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210117583"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Naomi Allen",
+      "raw_affiliation_strings": [
+        "UK Biobank, Stockport, United Kingdom; University of Oxford, Oxford, United Kingdom",
+        "University of Oxford, Oxford, United Kingdom",
+        "UK Biobank, Stockport, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "UK Biobank, Stockport, United Kingdom; University of Oxford, Oxford, United Kingdom",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "University of Oxford, Oxford, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "raw_affiliation_string": "UK Biobank, Stockport, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I4210117583"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5053516882",
+        "display_name": "Valerie Beral",
+        "orcid": "https://orcid.org/0000-0002-3581-9361"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Valerie Beral",
+      "raw_affiliation_strings": [
+        "University of Oxford, Oxford, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Oxford, Oxford, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5001775749",
+        "display_name": "Paul R. Burton",
+        "orcid": "https://orcid.org/0000-0001-5799-9634"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I36234482",
+          "display_name": "University of Bristol",
+          "ror": "https://ror.org/0524sp257",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I36234482"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Paul Burton",
+      "raw_affiliation_strings": [
+        "University of Bristol, Bristol, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Bristol, Bristol, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I36234482"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5033502820",
+        "display_name": "John Danesh",
+        "orcid": "https://orcid.org/0000-0003-1158-6791"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "John Danesh",
+      "raw_affiliation_strings": [
+        "University of Cambridge, Cambridge, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Cambridge, Cambridge, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5010394384",
+        "display_name": "Paul Downey",
+        "orcid": "https://orcid.org/0000-0002-9890-4678"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I47508984",
+          "display_name": "Imperial College London",
+          "ror": "https://ror.org/041kmwe10",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I47508984"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Paul Downey",
+      "raw_affiliation_strings": [
+        "Imperial College, London, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Imperial College, London, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I47508984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5034710571",
+        "display_name": "Paul Elliott",
+        "orcid": "https://orcid.org/0000-0002-7511-5684"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I47508984",
+          "display_name": "Imperial College London",
+          "ror": "https://ror.org/041kmwe10",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I47508984"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Paul Elliott",
+      "raw_affiliation_strings": [
+        "Imperial College, London, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Imperial College, London, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I47508984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5101773952",
+        "display_name": "Jane Green",
+        "orcid": "https://orcid.org/0000-0002-0858-0500"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jane Green",
+      "raw_affiliation_strings": [
+        "University of Oxford, Oxford, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Oxford, Oxford, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5079926383",
+        "display_name": "Martin Landray",
+        "orcid": "https://orcid.org/0000-0001-6646-827X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Martin Landray",
+      "raw_affiliation_strings": [
+        "University of Oxford, Oxford, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Oxford, Oxford, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5016466948",
+        "display_name": "Bette Liu",
+        "orcid": "https://orcid.org/0000-0002-0787-5825"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I31746571",
+          "display_name": "UNSW Sydney",
+          "ror": "https://ror.org/03r8z3t63",
+          "country_code": "AU",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I31746571"
+          ]
+        }
+      ],
+      "countries": [
+        "AU"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Bette Liu",
+      "raw_affiliation_strings": [
+        "University of New South Wales, Sydney, Australia"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of New South Wales, Sydney, Australia",
+          "institution_ids": [
+            "https://openalex.org/I31746571"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5070529061",
+        "display_name": "Paul M. Matthews",
+        "orcid": "https://orcid.org/0000-0002-1619-8328"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I47508984",
+          "display_name": "Imperial College London",
+          "ror": "https://ror.org/041kmwe10",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I47508984"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Paul Matthews",
+      "raw_affiliation_strings": [
+        "Imperial College, London, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Imperial College, London, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I47508984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5008036659",
+        "display_name": "Giok Ong",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I39555362",
+          "display_name": "University of Warwick",
+          "ror": "https://ror.org/01a77tt86",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I39555362"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Giok Ong",
+      "raw_affiliation_strings": [
+        "University of Warwick, Warwick, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Warwick, Warwick, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I39555362"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5051770579",
+        "display_name": "Jill P. Pell",
+        "orcid": "https://orcid.org/0000-0002-8898-7035"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I7882870",
+          "display_name": "University of Glasgow",
+          "ror": "https://ror.org/00vtgdb53",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I7882870"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jill Pell",
+      "raw_affiliation_strings": [
+        "University of Glasgow, Glasgow, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Glasgow, Glasgow, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I7882870"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5018096937",
+        "display_name": "Alan J. Silman",
+        "orcid": "https://orcid.org/0000-0001-8426-8925"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I28407311",
+          "display_name": "University of Manchester",
+          "ror": "https://ror.org/027m9bs27",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I28407311"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Alan Silman",
+      "raw_affiliation_strings": [
+        "University of Manchester, Manchester, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Manchester, Manchester, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I28407311"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5018185682",
+        "display_name": "A. P. Young",
+        "orcid": "https://orcid.org/0000-0001-5129-4924"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Alan Young",
+      "raw_affiliation_strings": [
+        "University of Oxford, Oxford, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Oxford, Oxford, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5064422397",
+        "display_name": "Tim Sprosen",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Tim Sprosen",
+      "raw_affiliation_strings": [
+        "University of Oxford, Oxford, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Oxford, Oxford, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5046297577",
+        "display_name": "Tim Peakman",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210117583",
+          "display_name": "UK Biobank",
+          "ror": "https://ror.org/02frzq211",
+          "country_code": "GB",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210117583"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Tim Peakman",
+      "raw_affiliation_strings": [
+        "UK Biobank, Stockport, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "UK Biobank, Stockport, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I4210117583"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5090621185",
+        "display_name": "Rory Collins",
+        "orcid": "https://orcid.org/0000-0001-8288-8602"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I40120149",
+          "display_name": "University of Oxford",
+          "ror": "https://ror.org/052gg0110",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210117583",
+          "display_name": "UK Biobank",
+          "ror": "https://ror.org/02frzq211",
+          "country_code": "GB",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210117583"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Rory Collins",
+      "raw_affiliation_strings": [
+        "UK Biobank, Stockport, United Kingdom; University of Oxford, Oxford, United Kingdom",
+        "University of Oxford, Oxford, United Kingdom",
+        "UK Biobank, Stockport, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "UK Biobank, Stockport, United Kingdom; University of Oxford, Oxford, United Kingdom",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "University of Oxford, Oxford, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I40120149"
+          ]
+        },
+        {
+          "raw_affiliation_string": "UK Biobank, Stockport, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I4210117583"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 19,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5090621185"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I40120149",
+    "https://openalex.org/I4210117583"
+  ],
+  "apc_list": {
+    "value": 5300,
+    "currency": "USD",
+    "value_usd": 5300
+  },
+  "apc_paid": {
+    "value": 5300,
+    "currency": "USD",
+    "value_usd": 5300
+  },
+  "fwci": 202.2872,
+  "has_fulltext": true,
+  "cited_by_count": 13050,
+  "citation_normalized_percentile": {
+    "value": 0.99990918,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 90,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "12",
+    "issue": "3",
+    "first_page": "e1001779",
+    "last_page": "e1001779"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10261",
+    "display_name": "Genetic Associations and Epidemiology",
+    "score": 0.9927999973297119,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1311",
+      "display_name": "Genetics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10261",
+      "display_name": "Genetic Associations and Epidemiology",
+      "score": 0.9927999973297119,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1311",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13984",
+      "display_name": "Nutrition, Genetics, and Disease",
+      "score": 0.9902999997138977,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1311",
+        "display_name": "Genetics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14393",
+      "display_name": "Health, Environment, Cognitive Aging",
+      "score": 0.9843000173568726,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2307",
+        "display_name": "Health, Toxicology and Mutagenesis"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/biobank",
+      "display_name": "Biobank",
+      "score": 0.9797893166542053
+    },
+    {
+      "id": "https://openalex.org/keywords/biorepository",
+      "display_name": "Biorepository",
+      "score": 0.7053919434547424
+    },
+    {
+      "id": "https://openalex.org/keywords/medicine",
+      "display_name": "Medicine",
+      "score": 0.5043171644210815
+    },
+    {
+      "id": "https://openalex.org/keywords/population",
+      "display_name": "Population",
+      "score": 0.4748801589012146
+    },
+    {
+      "id": "https://openalex.org/keywords/gerontology",
+      "display_name": "Gerontology",
+      "score": 0.3707532286643982
+    },
+    {
+      "id": "https://openalex.org/keywords/demography",
+      "display_name": "Demography",
+      "score": 0.3343521058559418
+    },
+    {
+      "id": "https://openalex.org/keywords/environmental-health",
+      "display_name": "Environmental health",
+      "score": 0.28965145349502563
+    },
+    {
+      "id": "https://openalex.org/keywords/bioinformatics",
+      "display_name": "Bioinformatics",
+      "score": 0.2793335020542145
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.20503506064414978
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C116567970",
+      "wikidata": "https://www.wikidata.org/wiki/Q864217",
+      "display_name": "Biobank",
+      "level": 2,
+      "score": 0.9797893166542053
+    },
+    {
+      "id": "https://openalex.org/C2780932742",
+      "wikidata": "https://www.wikidata.org/wiki/Q4915239",
+      "display_name": "Biorepository",
+      "level": 3,
+      "score": 0.7053919434547424
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.5043171644210815
+    },
+    {
+      "id": "https://openalex.org/C2908647359",
+      "wikidata": "https://www.wikidata.org/wiki/Q2625603",
+      "display_name": "Population",
+      "level": 2,
+      "score": 0.4748801589012146
+    },
+    {
+      "id": "https://openalex.org/C74909509",
+      "wikidata": "https://www.wikidata.org/wiki/Q10387",
+      "display_name": "Gerontology",
+      "level": 1,
+      "score": 0.3707532286643982
+    },
+    {
+      "id": "https://openalex.org/C149923435",
+      "wikidata": "https://www.wikidata.org/wiki/Q37732",
+      "display_name": "Demography",
+      "level": 1,
+      "score": 0.3343521058559418
+    },
+    {
+      "id": "https://openalex.org/C99454951",
+      "wikidata": "https://www.wikidata.org/wiki/Q932068",
+      "display_name": "Environmental health",
+      "level": 1,
+      "score": 0.28965145349502563
+    },
+    {
+      "id": "https://openalex.org/C60644358",
+      "wikidata": "https://www.wikidata.org/wiki/Q128570",
+      "display_name": "Bioinformatics",
+      "level": 1,
+      "score": 0.2793335020542145
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.20503506064414978
+    },
+    {
+      "id": "https://openalex.org/C144024400",
+      "wikidata": "https://www.wikidata.org/wiki/Q21201",
+      "display_name": "Sociology",
+      "level": 0,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000328",
+      "descriptor_name": "Adult",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000328",
+      "descriptor_name": "Adult",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000328",
+      "descriptor_name": "Adult",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000328",
+      "descriptor_name": "Adult",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000328",
+      "descriptor_name": "Adult",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000368",
+      "descriptor_name": "Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000368",
+      "descriptor_name": "Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000368",
+      "descriptor_name": "Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000368",
+      "descriptor_name": "Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000368",
+      "descriptor_name": "Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000375",
+      "descriptor_name": "Aging",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000375",
+      "descriptor_name": "Aging",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000375",
+      "descriptor_name": "Aging",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000375",
+      "descriptor_name": "Aging",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000375",
+      "descriptor_name": "Aging",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005838",
+      "descriptor_name": "Genotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005838",
+      "descriptor_name": "Genotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005838",
+      "descriptor_name": "Genotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005838",
+      "descriptor_name": "Genotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005838",
+      "descriptor_name": "Genotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006113",
+      "descriptor_name": "United Kingdom",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006113",
+      "descriptor_name": "United Kingdom",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006113",
+      "descriptor_name": "United Kingdom",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006113",
+      "descriptor_name": "United Kingdom",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006113",
+      "descriptor_name": "United Kingdom",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008875",
+      "descriptor_name": "Middle Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008875",
+      "descriptor_name": "Middle Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008875",
+      "descriptor_name": "Middle Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008875",
+      "descriptor_name": "Middle Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008875",
+      "descriptor_name": "Middle Aged",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009369",
+      "descriptor_name": "Neoplasms",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009369",
+      "descriptor_name": "Neoplasms",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009369",
+      "descriptor_name": "Neoplasms",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009369",
+      "descriptor_name": "Neoplasms",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009369",
+      "descriptor_name": "Neoplasms",
+      "qualifier_ui": "Q000209",
+      "qualifier_name": "etiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010641",
+      "descriptor_name": "Phenotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010641",
+      "descriptor_name": "Phenotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010641",
+      "descriptor_name": "Phenotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010641",
+      "descriptor_name": "Phenotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010641",
+      "descriptor_name": "Phenotype",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011446",
+      "descriptor_name": "Prospective Studies",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011446",
+      "descriptor_name": "Prospective Studies",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011446",
+      "descriptor_name": "Prospective Studies",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011446",
+      "descriptor_name": "Prospective Studies",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011446",
+      "descriptor_name": "Prospective Studies",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012106",
+      "descriptor_name": "Research",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D012106",
+      "descriptor_name": "Research",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D012106",
+      "descriptor_name": "Research",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D012106",
+      "descriptor_name": "Research",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D012106",
+      "descriptor_name": "Research",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016208",
+      "descriptor_name": "Databases, Factual",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016208",
+      "descriptor_name": "Databases, Factual",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016208",
+      "descriptor_name": "Databases, Factual",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016208",
+      "descriptor_name": "Databases, Factual",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016208",
+      "descriptor_name": "Databases, Factual",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D018070",
+      "descriptor_name": "Biological Specimen Banks",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D018070",
+      "descriptor_name": "Biological Specimen Banks",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D018070",
+      "descriptor_name": "Biological Specimen Banks",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D018070",
+      "descriptor_name": "Biological Specimen Banks",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D018070",
+      "descriptor_name": "Biological Specimen Banks",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D022126",
+      "descriptor_name": "Access to Information",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D022126",
+      "descriptor_name": "Access to Information",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D022126",
+      "descriptor_name": "Access to Information",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D022126",
+      "descriptor_name": "Access to Information",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D022126",
+      "descriptor_name": "Access to Information",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    }
+  ],
+  "locations_count": 14,
+  "locations": [
+    {
+      "id": "doi:10.1371/journal.pmed.1001779",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1371/journal.pmed.1001779",
+      "pdf_url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001779&type=printable",
+      "source": {
+        "id": "https://openalex.org/S197939330",
+        "display_name": "PLoS Medicine",
+        "issn_l": "1549-1277",
+        "issn": [
+          "1549-1277",
+          "1549-1676"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315706",
+        "host_organization_name": "Public Library of Science",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315706"
+        ],
+        "host_organization_lineage_names": [
+          "Public Library of Science"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "PLOS Medicine",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:25826379",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/25826379",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "PLoS medicine",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:pure.ed.ac.uk:publications/3c295402-89f1-42d3-8931-3380963743a9",
+      "is_oa": true,
+      "landing_page_url": "https://www.research.ed.ac.uk/en/publications/3c295402-89f1-42d3-8931-3380963743a9",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400321",
+        "display_name": "Edinburgh Research Explorer (University of Edinburgh)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I98677209",
+        "host_organization_name": "University of Edinburgh",
+        "host_organization_lineage": [
+          "https://openalex.org/I98677209"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Sudlow, C, Gallacher, J, Allen, N, Beral, V, Burton, P, Danesh, J, Downey, P, Elliott, P, Green, J, Landray, M, Liu, B, Matthews, P, Ong, G, Pell, J, Silman, A, Young, A, Sprosen, T, Peakman, T & Collins, R 2015, 'UK biobank: an open access resource for identifying the causes of a wide range of complex diseases of middle and old age', PLoS Medicine, vol. 12, no. 3, e1001779. https://doi.org/10.1371/journal.pmed.1001779",
+      "raw_type": "info:eu-repo/semantics/publishedVersion"
+    },
+    {
+      "id": "pmh:oai:eprints.gla.ac.uk:168213",
+      "is_oa": false,
+      "landing_page_url": null,
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4210235606",
+        "display_name": "ENLIGHTEN (Jurnal Bimbingan dan Konseling Islam)",
+        "issn_l": "2622-8912",
+        "issn": [
+          "2622-8912",
+          "2622-8920"
+        ],
+        "is_oa": false,
+        "is_in_doaj": true,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "acceptedVersion",
+      "is_accepted": true,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Articles"
+    },
+    {
+      "id": "pmh:oai:pure.ed.ac.uk:publications/3c295402-89f1-42d3-8931-3380963743a9",
+      "is_oa": true,
+      "landing_page_url": "https://hdl.handle.net/20.500.11820/3c295402-89f1-42d3-8931-3380963743a9",
+      "pdf_url": "https://www.research.ed.ac.uk/en/publications/3c295402-89f1-42d3-8931-3380963743a9",
+      "source": {
+        "id": "https://openalex.org/S4306400321",
+        "display_name": "Edinburgh Research Explorer (University of Edinburgh)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I98677209",
+        "host_organization_name": "University of Edinburgh",
+        "host_organization_lineage": [
+          "https://openalex.org/I98677209"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": ""
+    },
+    {
+      "id": "pmh:oai:unsworks.unsw.edu.au:1959.4/unsworks_38707",
+      "is_oa": true,
+      "landing_page_url": "http://handle.unsw.edu.au/1959.4/unsworks_38707",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196481",
+        "display_name": "UNSWorks (UNSW Sydney)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I31746571",
+        "host_organization_name": "UNSW Sydney",
+        "host_organization_lineage": [
+          "https://openalex.org/I31746571"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-nc-nd",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:RePEc:plo:pmed00:1001779",
+      "is_oa": false,
+      "landing_page_url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1001779",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401271",
+        "display_name": "RePEc: Research Papers in Economics",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I77793887",
+        "host_organization_name": "Federal Reserve Bank of St. Louis",
+        "host_organization_lineage": [
+          "https://openalex.org/I77793887"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "article"
+    },
+    {
+      "id": "pmh:oai:doaj.org/article:c2a625d7ee1c47e2895de5cb79fcf5f2",
+      "is_oa": true,
+      "landing_page_url": "https://doaj.org/article/c2a625d7ee1c47e2895de5cb79fcf5f2",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401280",
+        "display_name": "DOAJ (DOAJ: Directory of Open Access Journals)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-sa",
+      "license_id": "https://openalex.org/licenses/cc-by-sa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "PLoS Medicine, Vol 12, Iss 3, p e1001779 (2015)",
+      "raw_type": "article"
+    },
+    {
+      "id": "pmh:oai:europepmc.org:3355834",
+      "is_oa": true,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4380465",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400806",
+        "display_name": "Europe PMC (PubMed Central)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1303153112",
+        "host_organization_name": "European Bioinformatics Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/I1303153112"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "Text"
+    },
+    {
+      "id": "pmh:oai:figshare.com:article/1363288",
+      "is_oa": true,
+      "landing_page_url": "https://figshare.com/articles/dataset/_UK_Biobank_An_Open_Access_Resource_for_Identifying_the_Causes_of_a_Wide_Range_of_Complex_Diseases_of_Middle_and_Old_Age_/1363288",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196282",
+        "display_name": "Figshare",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I4210132348",
+        "host_organization_name": "Figshare (United Kingdom)",
+        "host_organization_lineage": [
+          "https://openalex.org/I4210132348"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Dataset"
+    },
+    {
+      "id": "pmh:oai:research-information.bris.ac.uk:openaire_cris_publications/4da885cf-1686-4932-ab77-96597c2bc13d",
+      "is_oa": false,
+      "landing_page_url": "https://research-information.bris.ac.uk/en/publications/4da885cf-1686-4932-ab77-96597c2bc13d",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400895",
+        "display_name": "Bristol Research (University of Bristol)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I36234482",
+        "host_organization_name": "University of Bristol",
+        "host_organization_lineage": [
+          "https://openalex.org/I36234482"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Sudlow , C , Gallacher , J , Allen , N , Beral , V , Burton , P , Danesh , J , Downey , P , Elliott , P , Green , J , Landray , M , Liu , B , Matthews , P , Ong , G , Pell , J , Silman , A , Young , A , Sprosen , T , Peakman , T &amp; Collins , R 2015 , ' UK biobank : an open access resource for identifying the causes of a wide range of complex diseases of middle and old age ' , PLoS Medicine , vol. 12 , no. 3 , pp. e1001779 . https://doi.org/10.1371/journal.pmed.1001779",
+      "raw_type": "article"
+    },
+    {
+      "id": "pmh:oai:research-information.bris.ac.uk:publications/4da885cf-1686-4932-ab77-96597c2bc13d",
+      "is_oa": false,
+      "landing_page_url": "https://hdl.handle.net/1983/4da885cf-1686-4932-ab77-96597c2bc13d",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S7407055359",
+        "display_name": "Explore Bristol Research",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Sudlow, C, Gallacher, J, Allen, N, Beral, V, Burton, P, Danesh, J, Downey, P, Elliott, P, Green, J, Landray, M, Liu, B, Matthews, P, Ong, G, Pell, J, Silman, A, Young, A, Sprosen, T, Peakman, T & Collins, R 2015, 'UK biobank : an open access resource for identifying the causes of a wide range of complex diseases of middle and old age', PLOS Medicine, vol. 12, no. 3, pp. e1001779. https://doi.org/10.1371/journal.pmed.1001779",
+      "raw_type": "info:eu-repo/semantics/publishedVersion"
+    },
+    {
+      "id": "pmh:oai:spiral.imperial.ac.uk:10044/1/28694",
+      "is_oa": false,
+      "landing_page_url": "http://hdl.handle.net/10044/1/28694",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401396",
+        "display_name": "Spiral (Imperial College London)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I47508984",
+        "host_organization_name": "Imperial College London",
+        "host_organization_lineage": [
+          "https://openalex.org/I47508984"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Journal Article"
+    },
+    {
+      "id": "pmh:oai:unsworks.library.unsw.edu.au:1959.4/unsworks_38707",
+      "is_oa": true,
+      "landing_page_url": "http://hdl.handle.net/1959.4/unsworks_38707",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401737",
+        "display_name": "UNSWorks (University of New South Wales, Sydney, Australia)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I40053085",
+        "host_organization_name": "Australian Defence Force Academy",
+        "host_organization_lineage": [
+          "https://openalex.org/I40053085"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-nc-nd",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Plos Medicine, 12, 3, e1001779",
+      "raw_type": "http://purl.org/coar/resource_type/c_6501"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1371/journal.pmed.1001779",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1371/journal.pmed.1001779",
+    "pdf_url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1001779&type=printable",
+    "source": {
+      "id": "https://openalex.org/S197939330",
+      "display_name": "PLoS Medicine",
+      "issn_l": "1549-1277",
+      "issn": [
+        "1549-1277",
+        "1549-1676"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315706",
+      "host_organization_name": "Public Library of Science",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315706"
+      ],
+      "host_organization_lineage_names": [
+        "Public Library of Science"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "PLOS Medicine",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "awards": [
+    {
+      "id": "https://openalex.org/G1072871761",
+      "display_name": null,
+      "funder_award_id": "MR/L023784/2",
+      "funder_id": "https://openalex.org/F4320334626",
+      "funder_display_name": "Medical Research Council"
+    },
+    {
+      "id": "https://openalex.org/G1661107840",
+      "display_name": null,
+      "funder_award_id": "MR/L016265/1",
+      "funder_id": "https://openalex.org/F4320334626",
+      "funder_display_name": "Medical Research Council"
+    },
+    {
+      "id": "https://openalex.org/G2505405130",
+      "display_name": null,
+      "funder_award_id": "MR/K02700X/1",
+      "funder_id": "https://openalex.org/F4320334626",
+      "funder_display_name": "Medical Research Council"
+    },
+    {
+      "id": "https://openalex.org/G3841306388",
+      "display_name": null,
+      "funder_award_id": "MR/L01341X/1",
+      "funder_id": "https://openalex.org/F4320334626",
+      "funder_display_name": "Medical Research Council"
+    },
+    {
+      "id": "https://openalex.org/G4211044638",
+      "display_name": null,
+      "funder_award_id": "MR/L003120/1",
+      "funder_id": "https://openalex.org/F4320334626",
+      "funder_display_name": "Medical Research Council"
+    },
+    {
+      "id": "https://openalex.org/G6590591483",
+      "display_name": null,
+      "funder_award_id": "MR/K006525/1",
+      "funder_id": "https://openalex.org/F4320334626",
+      "funder_display_name": "Medical Research Council"
+    },
+    {
+      "id": "https://openalex.org/G830675604",
+      "display_name": null,
+      "funder_award_id": "MR/K007017/1",
+      "funder_id": "https://openalex.org/F4320334626",
+      "funder_display_name": "Medical Research Council"
+    }
+  ],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320307765",
+      "display_name": "Pfizer",
+      "ror": "https://ror.org/01xdqrp08"
+    },
+    {
+      "id": "https://openalex.org/F4320307773",
+      "display_name": "GlaxoSmithKline",
+      "ror": "https://ror.org/01xsqw823"
+    },
+    {
+      "id": "https://openalex.org/F4320310960",
+      "display_name": "NHS Blood and Transplant",
+      "ror": "https://ror.org/0227qpa16"
+    },
+    {
+      "id": "https://openalex.org/F4320311904",
+      "display_name": "Wellcome Trust",
+      "ror": "https://ror.org/029chgv08"
+    },
+    {
+      "id": "https://openalex.org/F4320319990",
+      "display_name": "National Institute for Health and Care Research",
+      "ror": "https://ror.org/0187kwz08"
+    },
+    {
+      "id": "https://openalex.org/F4320319992",
+      "display_name": "British Heart Foundation",
+      "ror": "https://ror.org/02wdwnk04"
+    },
+    {
+      "id": "https://openalex.org/F4320320059",
+      "display_name": "Bupa Foundation",
+      "ror": "https://ror.org/04fskt963"
+    },
+    {
+      "id": "https://openalex.org/F4320320065",
+      "display_name": "Diabetes UK",
+      "ror": "https://ror.org/050rgn017"
+    },
+    {
+      "id": "https://openalex.org/F4320320300",
+      "display_name": "European Commission",
+      "ror": "https://ror.org/00k4n6c32"
+    },
+    {
+      "id": "https://openalex.org/F4320322431",
+      "display_name": "Northwest Regional Development Agency",
+      "ror": "https://ror.org/01ka4j351"
+    },
+    {
+      "id": "https://openalex.org/F4320322512",
+      "display_name": "Evelyn Trust",
+      "ror": "https://ror.org/047fzcc28"
+    },
+    {
+      "id": "https://openalex.org/F4320334626",
+      "display_name": "Medical Research Council",
+      "ror": "https://ror.org/03x94j517"
+    },
+    {
+      "id": "https://openalex.org/F4320337356",
+      "display_name": "Fogarty International Center",
+      "ror": "https://ror.org/02xey9a22"
+    }
+  ],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2082704080.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2082704080.grobid-xml"
+  },
+  "referenced_works_count": 20,
+  "referenced_works": [
+    "https://openalex.org/W1964754236",
+    "https://openalex.org/W1975196484",
+    "https://openalex.org/W1987608603",
+    "https://openalex.org/W1994518954",
+    "https://openalex.org/W2033033020",
+    "https://openalex.org/W2064902891",
+    "https://openalex.org/W2066187800",
+    "https://openalex.org/W2070185923",
+    "https://openalex.org/W2096841400",
+    "https://openalex.org/W2124916392",
+    "https://openalex.org/W2127167918",
+    "https://openalex.org/W2128463395",
+    "https://openalex.org/W2143322087",
+    "https://openalex.org/W2155132537",
+    "https://openalex.org/W2162085688",
+    "https://openalex.org/W2166179928",
+    "https://openalex.org/W3048485586",
+    "https://openalex.org/W4210574767",
+    "https://openalex.org/W4292230194",
+    "https://openalex.org/W6643929851"
+  ],
+  "related_works": [
+    "https://openalex.org/W2564501837",
+    "https://openalex.org/W2400586671",
+    "https://openalex.org/W2153448167",
+    "https://openalex.org/W4247865788",
+    "https://openalex.org/W2006320202",
+    "https://openalex.org/W2556546522",
+    "https://openalex.org/W4239172512",
+    "https://openalex.org/W2557805005",
+    "https://openalex.org/W2328005876",
+    "https://openalex.org/W4286497134"
+  ],
+  "abstract_inverted_index": {
+    "Cathie": [
+      0
+    ],
+    "Sudlow": [
+      1
+    ],
+    "and": [
+      2,
+      20,
+      28
+    ],
+    "colleagues": [
+      3
+    ],
+    "describe": [
+      4
+    ],
+    "the": [
+      5,
+      18,
+      24
+    ],
+    "UK": [
+      6
+    ],
+    "Biobank,": [
+      7
+    ],
+    "a": [
+      8
+    ],
+    "large": [
+      9
+    ],
+    "population-based": [
+      10
+    ],
+    "prospective": [
+      11
+    ],
+    "study,": [
+      12
+    ],
+    "established": [
+      13
+    ],
+    "to": [
+      14
+    ],
+    "allow": [
+      15
+    ],
+    "investigation": [
+      16
+    ],
+    "of": [
+      17,
+      23,
+      26
+    ],
+    "genetic": [
+      19
+    ],
+    "non-genetic": [
+      21
+    ],
+    "determinants": [
+      22
+    ],
+    "diseases": [
+      25
+    ],
+    "middle": [
+      27
+    ],
+    "old": [
+      29
+    ],
+    "age.": [
+      30
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 808
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 2422
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 2538
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 1889
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 1628
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 1314
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 949
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 667
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 450
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 243
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 105
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 26
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 1
+    }
+  ],
+  "updated_date": "2026-05-10T08:33:47.465468",
+  "created_date": "2025-10-10T00:00:00"
+}

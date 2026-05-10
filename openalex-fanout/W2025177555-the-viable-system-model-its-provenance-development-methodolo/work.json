@@ -1,0 +1,798 @@
+{
+  "id": "https://openalex.org/W2025177555",
+  "doi": "https://doi.org/10.1057/jors.1984.2",
+  "title": "The Viable System Model: Its Provenance, Development, Methodology and Pathology",
+  "display_name": "The Viable System Model: Its Provenance, Development, Methodology and Pathology",
+  "publication_year": 1984,
+  "publication_date": "1984-01-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2025177555",
+    "doi": "https://doi.org/10.1057/jors.1984.2",
+    "mag": "2025177555"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1057/jors.1984.2",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1057/jors.1984.2",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S169988927",
+      "display_name": "Journal of the Operational Research Society",
+      "issn_l": "0160-5682",
+      "issn": [
+        "0160-5682",
+        "1476-9360"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319703",
+      "host_organization_name": "Palgrave Macmillan",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319703",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Palgrave Macmillan",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Journal of the Operational Research Society",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5111715641",
+        "display_name": "Stafford Beer",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": true,
+      "raw_author_name": "Stafford Beer",
+      "raw_affiliation_strings": [],
+      "affiliations": []
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 0,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5111715641"
+  ],
+  "corresponding_institution_ids": [],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 2.6427,
+  "has_fulltext": false,
+  "cited_by_count": 688,
+  "citation_normalized_percentile": {
+    "value": 0.89819376,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": false
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "35",
+    "issue": "1",
+    "first_page": "7",
+    "last_page": "25"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11810",
+    "display_name": "Complex Systems and Decision Making",
+    "score": 0.9948999881744385,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1803",
+      "display_name": "Management Science and Operations Research"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/18",
+      "display_name": "Decision Sciences"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/2",
+      "display_name": "Social Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11810",
+      "display_name": "Complex Systems and Decision Making",
+      "score": 0.9948999881744385,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1803",
+        "display_name": "Management Science and Operations Research"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.5512502789497375
+    },
+    {
+      "id": "https://openalex.org/keywords/order",
+      "display_name": "Order (exchange)",
+      "score": 0.4818755090236664
+    },
+    {
+      "id": "https://openalex.org/keywords/task",
+      "display_name": "Task (project management)",
+      "score": 0.47528353333473206
+    },
+    {
+      "id": "https://openalex.org/keywords/management-science",
+      "display_name": "Management science",
+      "score": 0.44105905294418335
+    },
+    {
+      "id": "https://openalex.org/keywords/epistemology",
+      "display_name": "Epistemology",
+      "score": 0.43068206310272217
+    },
+    {
+      "id": "https://openalex.org/keywords/engineering-ethics",
+      "display_name": "Engineering ethics",
+      "score": 0.4005773663520813
+    },
+    {
+      "id": "https://openalex.org/keywords/sociology",
+      "display_name": "Sociology",
+      "score": 0.3693079948425293
+    },
+    {
+      "id": "https://openalex.org/keywords/data-science",
+      "display_name": "Data science",
+      "score": 0.3593483567237854
+    },
+    {
+      "id": "https://openalex.org/keywords/operations-research",
+      "display_name": "Operations research",
+      "score": 0.35597798228263855
+    },
+    {
+      "id": "https://openalex.org/keywords/management",
+      "display_name": "Management",
+      "score": 0.18060657382011414
+    },
+    {
+      "id": "https://openalex.org/keywords/business",
+      "display_name": "Business",
+      "score": 0.1617611050605774
+    },
+    {
+      "id": "https://openalex.org/keywords/philosophy",
+      "display_name": "Philosophy",
+      "score": 0.14106711745262146
+    },
+    {
+      "id": "https://openalex.org/keywords/economics",
+      "display_name": "Economics",
+      "score": 0.11822810769081116
+    },
+    {
+      "id": "https://openalex.org/keywords/engineering",
+      "display_name": "Engineering",
+      "score": 0.11810371279716492
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.5512502789497375
+    },
+    {
+      "id": "https://openalex.org/C182306322",
+      "wikidata": "https://www.wikidata.org/wiki/Q1779371",
+      "display_name": "Order (exchange)",
+      "level": 2,
+      "score": 0.4818755090236664
+    },
+    {
+      "id": "https://openalex.org/C2780451532",
+      "wikidata": "https://www.wikidata.org/wiki/Q759676",
+      "display_name": "Task (project management)",
+      "level": 2,
+      "score": 0.47528353333473206
+    },
+    {
+      "id": "https://openalex.org/C539667460",
+      "wikidata": "https://www.wikidata.org/wiki/Q2414942",
+      "display_name": "Management science",
+      "level": 1,
+      "score": 0.44105905294418335
+    },
+    {
+      "id": "https://openalex.org/C111472728",
+      "wikidata": "https://www.wikidata.org/wiki/Q9471",
+      "display_name": "Epistemology",
+      "level": 1,
+      "score": 0.43068206310272217
+    },
+    {
+      "id": "https://openalex.org/C55587333",
+      "wikidata": "https://www.wikidata.org/wiki/Q1133029",
+      "display_name": "Engineering ethics",
+      "level": 1,
+      "score": 0.4005773663520813
+    },
+    {
+      "id": "https://openalex.org/C144024400",
+      "wikidata": "https://www.wikidata.org/wiki/Q21201",
+      "display_name": "Sociology",
+      "level": 0,
+      "score": 0.3693079948425293
+    },
+    {
+      "id": "https://openalex.org/C2522767166",
+      "wikidata": "https://www.wikidata.org/wiki/Q2374463",
+      "display_name": "Data science",
+      "level": 1,
+      "score": 0.3593483567237854
+    },
+    {
+      "id": "https://openalex.org/C42475967",
+      "wikidata": "https://www.wikidata.org/wiki/Q194292",
+      "display_name": "Operations research",
+      "level": 1,
+      "score": 0.35597798228263855
+    },
+    {
+      "id": "https://openalex.org/C187736073",
+      "wikidata": "https://www.wikidata.org/wiki/Q2920921",
+      "display_name": "Management",
+      "level": 1,
+      "score": 0.18060657382011414
+    },
+    {
+      "id": "https://openalex.org/C144133560",
+      "wikidata": "https://www.wikidata.org/wiki/Q4830453",
+      "display_name": "Business",
+      "level": 0,
+      "score": 0.1617611050605774
+    },
+    {
+      "id": "https://openalex.org/C138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "level": 0,
+      "score": 0.14106711745262146
+    },
+    {
+      "id": "https://openalex.org/C162324750",
+      "wikidata": "https://www.wikidata.org/wiki/Q8134",
+      "display_name": "Economics",
+      "level": 0,
+      "score": 0.11822810769081116
+    },
+    {
+      "id": "https://openalex.org/C127413603",
+      "wikidata": "https://www.wikidata.org/wiki/Q11023",
+      "display_name": "Engineering",
+      "level": 0,
+      "score": 0.11810371279716492
+    },
+    {
+      "id": "https://openalex.org/C10138342",
+      "wikidata": "https://www.wikidata.org/wiki/Q43015",
+      "display_name": "Finance",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1057/jors.1984.2",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1057/jors.1984.2",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S169988927",
+        "display_name": "Journal of the Operational Research Society",
+        "issn_l": "0160-5682",
+        "issn": [
+          "0160-5682",
+          "1476-9360"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319703",
+        "host_organization_name": "Palgrave Macmillan",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319703",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Palgrave Macmillan",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Journal of the Operational Research Society",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [
+    {
+      "display_name": "Peace, Justice and strong institutions",
+      "score": 0.6299999952316284,
+      "id": "https://metadata.un.org/sdg/16"
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 13,
+  "referenced_works": [
+    "https://openalex.org/W581502299",
+    "https://openalex.org/W1566478880",
+    "https://openalex.org/W2013140629",
+    "https://openalex.org/W2041404167",
+    "https://openalex.org/W2041905826",
+    "https://openalex.org/W2051514829",
+    "https://openalex.org/W2059019427",
+    "https://openalex.org/W2111030512",
+    "https://openalex.org/W2123755784",
+    "https://openalex.org/W2492572670",
+    "https://openalex.org/W2802703918",
+    "https://openalex.org/W2993383518",
+    "https://openalex.org/W3128202457"
+  ],
+  "related_works": [
+    "https://openalex.org/W4389443772",
+    "https://openalex.org/W2548721895",
+    "https://openalex.org/W2373456246",
+    "https://openalex.org/W3214346900",
+    "https://openalex.org/W2413419736",
+    "https://openalex.org/W4238809000",
+    "https://openalex.org/W2786646446",
+    "https://openalex.org/W2312871963",
+    "https://openalex.org/W2013265273",
+    "https://openalex.org/W2331739042"
+  ],
+  "abstract_inverted_index": {
+    "It": [
+      0,
+      110
+    ],
+    "took": [
+      1
+    ],
+    "the": [
+      2,
+      8,
+      30,
+      38,
+      58,
+      86,
+      93,
+      101,
+      117,
+      127
+    ],
+    "author": [
+      3
+    ],
+    "30": [
+      4
+    ],
+    "years": [
+      5
+    ],
+    "to": [
+      6,
+      15,
+      28,
+      36,
+      64,
+      99,
+      106
+    ],
+    "develop": [
+      7
+    ],
+    "Viable": [
+      9
+    ],
+    "System": [
+      10
+    ],
+    "Model,": [
+      11
+    ],
+    "which": [
+      12
+    ],
+    "sets": [
+      13
+    ],
+    "out": [
+      14
+    ],
+    "explain": [
+      16
+    ],
+    "how": [
+      17
+    ],
+    "systems": [
+      18
+    ],
+    "are": [
+      19
+    ],
+    "viable-that": [
+      20
+    ],
+    "is,": [
+      21
+    ],
+    "capable": [
+      22
+    ],
+    "of": [
+      23,
+      32,
+      47,
+      92
+    ],
+    "independent": [
+      24
+    ],
+    "existence.": [
+      25
+    ],
+    "He": [
+      26
+    ],
+    "wanted": [
+      27
+    ],
+    "elucidate": [
+      29
+    ],
+    "laws": [
+      31
+    ],
+    "viability": [
+      33
+    ],
+    "in": [
+      34,
+      44,
+      103
+    ],
+    "order": [
+      35
+    ],
+    "facilitate": [
+      37
+    ],
+    "management": [
+      39
+    ],
+    "task,": [
+      40
+    ],
+    "and": [
+      41,
+      49,
+      60,
+      89,
+      119,
+      129
+    ],
+    "did": [
+      42
+    ],
+    "so": [
+      43
+    ],
+    "a": [
+      45,
+      114
+    ],
+    "stream": [
+      46
+    ],
+    "papers": [
+      48
+    ],
+    "two": [
+      50
+    ],
+    "(of": [
+      51
+    ],
+    "his": [
+      52
+    ],
+    "seven)": [
+      53
+    ],
+    "books.": [
+      54
+    ],
+    "Much": [
+      55
+    ],
+    "misunderstanding": [
+      56
+    ],
+    "about": [
+      57,
+      125
+    ],
+    "V.S.M.": [
+      59
+    ],
+    "its": [
+      61,
+      67,
+      75,
+      108
+    ],
+    "use": [
+      62
+    ],
+    "seems": [
+      63
+    ],
+    "exist;": [
+      65
+    ],
+    "especially": [
+      66
+    ],
+    "methodological": [
+      68
+    ],
+    "foundations": [
+      69
+    ],
+    "have": [
+      70,
+      78
+    ],
+    "been": [
+      71,
+      80
+    ],
+    "largely": [
+      72
+    ],
+    "forgotten,": [
+      73
+    ],
+    "while": [
+      74
+    ],
+    "major": [
+      76
+    ],
+    "results": [
+      77
+    ],
+    "hardly": [
+      79
+    ],
+    "noted.": [
+      81
+    ],
+    "This": [
+      82
+    ],
+    "paper": [
+      83
+    ],
+    "reflects": [
+      84
+    ],
+    "on": [
+      85
+    ],
+    "history,": [
+      87
+    ],
+    "nature": [
+      88
+    ],
+    "present": [
+      90,
+      116
+    ],
+    "status": [
+      91
+    ],
+    "V.S.M.,": [
+      94
+    ],
+    "without": [
+      95
+    ],
+    "seeking": [
+      96
+    ],
+    "once": [
+      97
+    ],
+    "again": [
+      98
+    ],
+    "expound": [
+      100
+    ],
+    "model": [
+      102
+    ],
+    "detail": [
+      104
+    ],
+    "or": [
+      105
+    ],
+    "demonstrate": [
+      107
+    ],
+    "validity.": [
+      109
+    ],
+    "does,": [
+      111
+    ],
+    "however,": [
+      112
+    ],
+    "provide": [
+      113
+    ],
+    "synopsis,": [
+      115
+    ],
+    "methodology": [
+      118
+    ],
+    "confront": [
+      120
+    ],
+    "some": [
+      121
+    ],
+    "highly": [
+      122
+    ],
+    "contentious": [
+      123
+    ],
+    "issues": [
+      124
+    ],
+    "both": [
+      126
+    ],
+    "managerial": [
+      128
+    ],
+    "scientific": [
+      130
+    ],
+    "paradigms.": [
+      131
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 35
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 35
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 29
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 32
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 32
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 39
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 44
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 41
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 29
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 28
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 41
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 28
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 26
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 34
+    }
+  ],
+  "updated_date": "2026-04-23T09:07:50.710637",
+  "created_date": "2025-10-10T00:00:00"
+}
