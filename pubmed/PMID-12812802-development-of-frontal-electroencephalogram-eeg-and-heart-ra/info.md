@@ -1,0 +1,14 @@
+# Development of frontal electroencephalogram (EEG) and heart rate (ECG) responses to affective musical stimuli during the first 12 months of post-natal life.
+
+- **PMID**: 12812802
+- **DOI**: 10.1016/s0278-2626(03)00006-x
+- **PMCID**:  
+- **Journal**: Brain and cognition  ·  **Year**: 2003
+- **Authors**: Louis A Schmidt, Laurel J Trainor, Diane L Santesso
+- **MeSH**: Acoustic Stimulation, Affect, Electrocardiography, Electroencephalography, Female, Frontal Lobe, Heart Rate, Humans, Infant, Infant, Newborn
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12812802/
+- **Captured**: 2026-05-10T15:52:13
+
+## Abstract
+
+We examined the development of infants' regional electrocortical (EEG) and heart rate (ECG) responses to affective musical stimuli during the first 12 months of post-natal life. Separate groups of infants were seen at 3 (n=33), 6 (n=42), 9 (n=52), and 12 (n=40) months of age at which time regional EEG and ECG responses were continuously recorded during a baseline condition and during the presentation of three orchestral pieces that were known to vary in affective valence and intensity (happy, sad, fear). Overall, there were two important findings. First, we found that although the overall amount of EEG 4-8 Hz power increased between 3 and 12 months, the distribution of EEG power changed across age, with the younger infants (3- and 6-month-olds) showing no difference between frontal and parietal regions, but the older infants (9- and 12-month-olds) showing relatively more activation at frontal than at parietal sites. This development likely reflects the maturation of frontal lobe function. Second, we found that the presentation of affective music significantly increased brain activity at 3 months of age, had seemingly little effect at 6 and 9 months, and significantly attenuated brain activity at 12 months. Findings suggest that there is a clear developmental change in the effect of music on brain activity in the first year, with music having a "calming" influence on infants by the end of the first year of life.

@@ -1,0 +1,14 @@
+# Watching social interactions produces dorsomedial prefrontal and medial parietal BOLD fMRI signal increases compared to a resting baseline.
+
+- **PMID**: 15006683
+- **DOI**: 10.1016/j.neuroimage.2003.11.013
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2004
+- **Authors**: Marco Iacoboni, Matthew D Lieberman, Barbara J Knowlton, Istvan Molnar-Szakacs, Mark Moritz, C Jason Throop, Alan Page Fiske
+- **MeSH**: Adult, Data Interpretation, Statistical, Female, Humans, Image Processing, Computer-Assisted, Interpersonal Relations, Magnetic Resonance Imaging, Male, Oxygen, Parietal Lobe
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15006683/
+- **Captured**: 2026-05-10T15:54:15
+
+## Abstract
+
+Some human brain areas are tonically active in a resting state when subjects are not engaged in any overt task. The activity of these areas decreases when subjects are engaged in a wide variety of laboratory tasks designed to study cognitive operations. It has been suggested that these areas, among them the medial parietal (precyneus) and the dorsomedial prefrontal cortices, may support a "default state" of the human brain. Passive visual observation of laboratory stimuli typically yields no change in activity in these default areas compared to rest. Here we report functional magnetic resonance imaging (fMRI) data on normal subjects watching realistic movie clips depicting everyday social interactions. In contrast with previous findings on default state brain areas, the observation of the relational segment of the movie clip, during which two persons interact, yielded increased activity in the medial parietal (precuneus) and dorsomedial prefrontal cortices, compared to rest and to observation of the segment of the movie clip depicting a single individual engaged in everyday activities. To the best of our knowledge, this is the first report of joint increased activity in medial parietal and dorsomedial prefrontal cortices. We suggest that the default state areas may participate in the processing of social relations in concert with regions previously identified as critical for social cognition that were also activated by our stimuli, including the inferior frontal cortex, the superior temporal cortex, and the fusiform gyrus.

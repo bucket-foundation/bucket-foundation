@@ -1,0 +1,14 @@
+# Sleep and wakefulness modulate gene expression in Drosophila.
+
+- **PMID**: 16001966
+- **DOI**: 10.1111/j.1471-4159.2005.03291.x
+- **PMCID**:  
+- **Journal**: Journal of neurochemistry  ·  **Year**: 2005
+- **Authors**: Chiara Cirelli, Timothy M LaVaute, Giulio Tononi
+- **MeSH**: Animals, Behavior, Animal, Circadian Rhythm, Drosophila, Drosophila Proteins, Female, Gene Expression, Head, Oligonucleotide Array Sequence Analysis, Polymerase Chain Reaction
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16001966/
+- **Captured**: 2026-05-10T15:55:24
+
+## Abstract
+
+In the mammalian brain, sleep and wakefulness are associated with widespread changes in gene expression. Sleep in fruit flies shares many features with mammalian sleep, but it is currently unknown to what extent behavioral states affect gene expression in Drosophila. To find out, we performed a comprehensive microarray analysis of gene expression in spontaneously awake, sleep-deprived and sleeping flies. Fly heads were collected at 4 am, after 8 h of spontaneous sleep or sleep deprivation, and at 4 pm, after 8 h of spontaneous wakefulness. As in rats, we found that behavioral state and time of day affect Drosophila gene expression to a comparable extent. As in rats, transcripts with higher expression in wakefulness and in sleep belong to different functional categories, and in several cases these groups overlap with those previously identified in rats. Wakefulness-related genes code for transcription factors and for proteins involved in the stress response, immune response, glutamatergic transmission, and carbohydrate metabolism. Sleep-related transcripts include the glial gene anachronism and several genes involved in lipid metabolism. Finally, the expression of many wakefulness-related and sleep-related Drosophila transcripts is also modulated by the time of day, suggesting an interaction at the molecular level between circadian and homeostatic mechanism of sleep regulation.

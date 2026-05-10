@@ -1,0 +1,14 @@
+# Developmental consequences of childhood frontal lobe damage.
+
+- **PMID**: 1497505
+- **DOI**: 10.1001/archneur.1992.00530310112021
+- **PMCID**:  
+- **Journal**: Archives of neurology  ·  **Year**: 1992
+- **Authors**: P J Eslinger, L M Grattan, H Damasio, A R Damasio
+- **MeSH**: Adult, Brain Injuries, Female, Frontal Lobe, Humans, Magnetic Resonance Imaging, Mental Disorders, Neuropsychological Tests, Personality Disorders, Tomography, Emission-Computed
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1497505/
+- **Captured**: 2026-05-10T15:54:12
+
+## Abstract
+
+A 33-year-old woman underwent neurologic and neuropsychological studies 26 years after she sustained damage to the frontal lobe. The findings of the neurologic examination were normal, and magnetic resonance imaging revealed a lesion in left prefrontal cortex and deep white matter. Cerebral blood flow studies showed an abnormal pattern in both left and right frontal regions. The patient exhibited striking neuropsychological defects in higher cognition, most notably in self-regulation of emotion and affect and in social behavior. Analysis of her behavioral development failed to yield a pattern of abrupt onset of defect immediately after the lesion occurred. On the contrary, there was a delayed onset of defects, followed by a period of seeming progression, and finally an arrest of development in adolescence. We suggest that this peculiar pattern is the natural consequence of the varied changes that occurred in brain development and social cognition during the patient's formative years. While certain long-term neuropsychological deficits in our case are similar to those following frontal damage in adults, the delayed onset and progression of deficits are different.

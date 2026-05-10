@@ -1,0 +1,14 @@
+# Dynamics of population rate codes in ensembles of neocortical neurons.
+
+- **PMID**: 14762148
+- **DOI**: 10.1152/jn.00415.2003
+- **PMCID**:  
+- **Journal**: Journal of neurophysiology  ·  **Year**: 2004
+- **Authors**: G Silberberg, M Bethge, H Markram, K Pawelzik, M Tsodyks
+- **MeSH**: Models, Neurological, Neocortex, Neurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14762148/
+- **Captured**: 2026-05-10T15:53:59
+
+## Abstract
+
+Information processing in neocortex can be very fast, indicating that neuronal ensembles faithfully transmit rapidly changing signals to each other. Apart from signal-to-noise issues, population codes are fundamentally constrained by the neuronal dynamics. In particular, the biophysical properties of individual neurons and collective phenomena may substantially limit the speed at which a graded signal can be represented by the activity of an ensemble. These implications of the neuronal dynamics are rarely studied experimentally. Here, we combine theoretical analysis and whole cell recordings to show that encoding signals in the variance of uncorrelated synaptic inputs to a neocortical ensemble enables faithful transmission of graded signals with high temporal resolution. In contrast, the encoding of signals in the mean current is subject to low-pass filtering.

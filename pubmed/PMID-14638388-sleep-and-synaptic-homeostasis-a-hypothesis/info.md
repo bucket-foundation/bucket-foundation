@@ -1,0 +1,14 @@
+# Sleep and synaptic homeostasis: a hypothesis.
+
+- **PMID**: 14638388
+- **DOI**: 10.1016/j.brainresbull.2003.09.004
+- **PMCID**:  
+- **Journal**: Brain research bulletin  ·  **Year**: 2003
+- **Authors**: Giulio Tononi, Chiara Cirelli
+- **MeSH**: Animals, Brain, Electroencephalography, Homeostasis, Humans, Long-Term Potentiation, Sleep, Synapses
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14638388/
+- **Captured**: 2026-05-10T15:53:48
+
+## Abstract
+
+During much of sleep, the cerebral cortex is rippled by slow waves, which appear in the electroencephalogram as oscillations between 0.5 and 4.5 Hz. Slow waves are regulated as a function of previous wakefulness, being maximal at the beginning of sleep and then progressively returning to a baseline level. This paper discusses a hypothesis about the significance of slow-wave activity and its homeostatic regulation. The hypothesis is as follows: 1. Wakefulness is associated with synaptic potentiation in several cortical circuits; 2. Synaptic potentiation is tied to the homeostatic regulation of slow-wave activity; 3. Slow-wave activity is associated with synaptic downscaling; 4. Synaptic downscaling is tied to the beneficial effects of sleep on performance. The hypothesized link between sleep and synaptic homeostasis is supported by several lines of evidence and leads to testable predictions.

@@ -1,0 +1,14 @@
+# NMDA receptors and L-type voltage-gated calcium channels contribute to long-term potentiation and different components of fear memory formation in the lateral amygdala.
+
+- **PMID**: 12077219
+- **DOI**: 10.1523/JNEUROSCI.22-12-05239.2002
+- **PMCID**: PMC6784952 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2002
+- **Authors**: Elizabeth P Bauer, Glenn E Schafe, Joseph E LeDoux
+- **MeSH**: Afferent Pathways, Amygdala, Animals, Calcium Channel Blockers, Calcium Channels, L-Type, Cells, Cultured, Conditioning, Psychological, Fear, Kinetics, Long-Term Potentiation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12077219/
+- **Captured**: 2026-05-10T15:51:20
+
+## Abstract
+
+Long-term potentiation (LTP) at sensory input synapses to the lateral amygdala (LA) is a candidate mechanism for memory storage during fear conditioning. We evaluated the effect of L-type voltage-gated calcium channel (VGCC) and NMDA receptor (NMDAR) blockade in LA on LTP at thalamic input synapses induced by two different protocols in vitro and on fear memory in vivo. When induced in vitro by pairing weak presynaptic stimulation with strong (spike eliciting) postsynaptic depolarization, LTP was dependent on VGCCs and not on NMDARs, but, when induced by a form of tetanic stimulation that produced prolonged postsynaptic depolarization (but not spikes), LTP was dependent on NMDARs and not on VGCCs. In behavioral studies, bilateral infusions of NMDAR antagonists into the LA impaired both short-term and long-term memory of fear conditioning, whereas VGCC blockade selectively impaired long-term memory formation. Collectively, the results suggest that two pharmacologically distinct forms of LTP can be isolated in the LA in vitro and that a combination of both contribute to the formation of fear memories in vivo at the cellular level.

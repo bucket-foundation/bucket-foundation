@@ -1,0 +1,14 @@
+# Synapses as dynamic memory buffers.
+
+- **PMID**: 12022505
+- **DOI**: 10.1016/s0893-6080(01)00144-7
+- **PMCID**:  
+- **Journal**: Neural networks : the official journal of the International Neural Network Society  ·  **Year**: 2002
+- **Authors**: Wolfgang Maass, Henry Markram
+- **MeSH**: Computer Simulation, Memory, Models, Neurological, Synapses
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12022505/
+- **Captured**: 2026-05-10T15:51:15
+
+## Abstract
+
+This article throws new light on the possible role of synapses in information transmission through theoretical analysis and computer simulations. We show that the internal dynamic state of a synapse may serve as a transient memory buffer that stores information about the most recent segment of the spike train that was previously sent to this synapse. This information is transmitted to the postsynaptic neuron through the amplitudes of the postsynaptic response for the next few spikes. In fact, we show that most of this information about the preceding spike train is already contained in the postsynaptic response for just two additional spikes. It is demonstrated that the postsynaptic neuron receives simultaneously information about the specific type of synapse which has transmitted these pulses. In view of recent findings by Gupta et al. [Science, 287 (2000) 273] that different types of synapses are characteristic for specific types of presynaptic neurons, the postsynaptic neuron receives in this way partial knowledge about the identity of the presynaptic neuron from which it has received information. Our simulations are based on recent data about the dynamics of GABAergic synapses. We show that the relatively large number of synaptic release sites that make up a GABAergic synaptic connection makes these connections suitable for such complex information transmission processes.

@@ -1,0 +1,14 @@
+# Modeling sleep and wakefulness in the thalamocortical system.
+
+- **PMID**: 15537811
+- **DOI**: 10.1152/jn.00915.2004
+- **PMCID**:  
+- **Journal**: Journal of neurophysiology  ·  **Year**: 2005
+- **Authors**: Sean Hill, Giulio Tononi
+- **MeSH**: Afferent Pathways, Cerebral Cortex, Computer Simulation, Electroencephalography, Evoked Potentials, Feedback, Humans, Models, Biological, Models, Neurological, Neural Inhibition
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15537811/
+- **Captured**: 2026-05-10T15:54:56
+
+## Abstract
+
+When the brain goes from wakefulness to sleep, cortical neurons begin to undergo slow oscillations in their membrane potential that are synchronized by thalamocortical circuits and reflected in EEG slow waves. To provide a self-consistent account of the transition from wakefulness to sleep and of the generation of sleep slow waves, we have constructed a large-scale computer model that encompasses portions of two visual areas and associated thalamic and reticular thalamic nuclei. Thousands of model neurons, incorporating several intrinsic currents, are interconnected with millions of thalamocortical, corticothalamic, and both intra- and interareal corticocortical connections. In the waking mode, the model exhibits irregular spontaneous firing and selective responses to visual stimuli. In the sleep mode, neuromodulatory changes lead to slow oscillations that closely resemble those observed in vivo and in vitro. A systematic exploration of the effects of intrinsic currents and network parameters on the initiation, maintenance, and termination of slow oscillations shows the following. 1) An increase in potassium leak conductances is sufficient to trigger the transition from wakefulness to sleep. 2) The activation of persistent sodium currents is sufficient to initiate the up-state of the slow oscillation. 3) A combination of intrinsic and synaptic currents is sufficient to maintain the up-state. 4) Depolarization-activated potassium currents and synaptic depression terminate the up-state. 5) Corticocortical connections synchronize the slow oscillation. The model is the first to integrate intrinsic neuronal properties with detailed thalamocortical anatomy and reproduce neural activity patterns in both wakefulness and sleep, thereby providing a powerful tool to investigate the role of sleep in information transmission and plasticity.

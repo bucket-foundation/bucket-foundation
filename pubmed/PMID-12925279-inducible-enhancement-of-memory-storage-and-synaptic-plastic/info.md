@@ -1,0 +1,14 @@
+# Inducible enhancement of memory storage and synaptic plasticity in transgenic mice expressing an inhibitor of ATF4 (CREB-2) and C/EBP proteins.
+
+- **PMID**: 12925279
+- **DOI**: 10.1016/s0896-6273(03)00501-4
+- **PMCID**:  
+- **Journal**: Neuron  ·  **Year**: 2003
+- **Authors**: Amy Chen, Isabel A Muzzio, Gaël Malleret, Dusan Bartsch, Miguel Verbitsky, Paul Pavlidis, Amanda L Yonan, Svetlana Vronskaya, Michael B Grody, Ivan Cepeda, T Conrad Gilliam, Eric R Kandel
+- **MeSH**: Activating Transcription Factor 4, Animals, Blotting, Western, CCAAT-Enhancer-Binding Proteins, Electrophysiology, Gene Expression Regulation, Hippocampus, Immunohistochemistry, In Situ Hybridization, Long-Term Potentiation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12925279/
+- **Captured**: 2026-05-10T15:52:34
+
+## Abstract
+
+To examine the role of C/EBP-related transcription factors in long-term synaptic plasticity and memory storage, we have used the tetracycline-regulated system and expressed in the forebrain of mice a broad dominant-negative inhibitor of C/EBP (EGFP-AZIP), which preferentially interacts with several inhibiting isoforms of C/EBP. EGFP-AZIP also reduces the expression of ATF4, a distant member of the C/EBP family of transcription factors that is homologous to the Aplysia memory suppressor gene ApCREB-2. Consistent with the removal of inhibitory constraints on transcription, we find an increase in the pattern of gene transcripts in the hippocampus of EGFP-AZIP transgenic mice and both a reversibly enhanced hippocampal-based spatial memory and LTP. These results suggest that several proteins within the C/EBP family including ATF4 (CREB-2) act to constrain long-term synaptic changes and memory formation. Relief of this inhibition lowers the threshold for hippocampal-dependent long-term synaptic potentiation and memory storage in mice.

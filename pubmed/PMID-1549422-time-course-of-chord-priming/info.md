@@ -1,0 +1,14 @@
+# Time course of chord priming.
+
+- **PMID**: 1549422
+- **DOI**: 10.3758/bf03205071
+- **PMCID**:  
+- **Journal**: Perception & psychophysics  ·  **Year**: 1992
+- **Authors**: H G Tekman, J J Bharucha
+- **MeSH**: Adult, Arousal, Attention, Humans, Music, Perceptual Masking, Pitch Discrimination, Psychoacoustics, Reaction Time, Time Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1549422/
+- **Captured**: 2026-05-10T15:54:51
+
+## Abstract
+
+The time course of chord priming was explored in four experiments. In chord priming, a chord (a typical combination of simultaneously sounded tones) primes other chords that are musically related. In the present study, the prime duration and the stimulus onset asynchrony (SOA) between the prime chord and the chord to be judged were varied. Priming occurred at an SOA and prime duration as short as 50 msec, the shortest tested. When the prime duration was held constant at 50 msec, priming occurred at an SOA as long as 2,500 msec, the longest tested, and the magnitude of the priming effect did not diminish. To eliminate a possible role of sensory memory in maintaining the priming effect during the silence following the prime, a 250-msec noise mask was presented immediately following the 50-msec prime. The interpolated noise mask did not eliminate priming, thereby supporting the view that chord priming is the consequence of associative activation.

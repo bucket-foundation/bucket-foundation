@@ -1,0 +1,14 @@
+# Reentry and the problem of integrating multiple cortical areas: simulation of dynamic integration in the visual system.
+
+- **PMID**: 1422090
+- **DOI**: 10.1093/cercor/2.4.310
+- **PMCID**:  
+- **Journal**: Cerebral cortex (New York, N.Y. : 1991)  ·  **Year**: 1992
+- **Authors**: G Tononi, O Sporns, G M Edelman
+- **MeSH**: Animals, Behavior, Animal, Cerebral Cortex, Color Perception, Conditioning, Psychological, Form Perception, Macaca mulatta, Models, Neurological, Motion Perception, Neural Networks, Computer
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1422090/
+- **Captured**: 2026-05-10T15:53:39
+
+## Abstract
+
+Studies of the cerebral cortex, particularly those of the visual system, demonstrate the existence of multiple, anatomically segregated and functionally specialized cortical areas. There is no evidence that these areas, which are linked by a network of reciprocal connections, are coordinated by a higher-order center. The visual image that we perceive, however, seems to be unified and coherent. In this article, we address the problem of integration posed by these observations. In an extension of our previous work, we develop a dynamic model of reentry. Reentry is a process of parallel and recursive signaling along ordered anatomical connections that achieves integration by giving rise to constructive and correlative properties within and among maps. We present and test a computer model simulating nine functionally segregated visual areas organized into three streams for form, color, and motion. The model receives visual input consisting of camera images of objects of different shapes and colors. We show the specialized response properties of the areas in the three streams. A computational strategy involving a phase variable is introduced to represent explicitly the dynamics of short-term temporal correlations among thousands of units distributed across different areas. We then illustrate constructive and correlative consequences of reentry within a system of reciprocal intra- and interareal connections by two examples taken from psychophysics: generation of form from motion and motion capture. The model solves the so-called "binding problem" through short-term correlations, which serve to link similar object features within a simulated cortical area and to bind multiple attributes of one or more objects across several areas, including a nontopographic one. Integration emerges from cooperative effects within and among the specialized areas. These effects lead to a simple output, a simulated foveation response, that is used as a basis for conditioning. Reward is mediated by the activation of a saliency system that is modeled on diffuse projection systems in the brain. As a result, the visual cortical model carries out foveation responses to input stimuli that require the dynamic conjunction and discrimination of form, color, and location for successful performance.

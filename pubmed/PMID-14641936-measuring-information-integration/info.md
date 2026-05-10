@@ -1,0 +1,14 @@
+# Measuring information integration.
+
+- **PMID**: 14641936
+- **DOI**: 10.1016/S0028-3932(98)00096-7
+- **PMCID**: PMC24570 (full-text saved)
+- **Journal**: BMC neuroscience  ·  **Year**: 2003
+- **Authors**: Giulio Tononi, Olaf Sporns
+- **MeSH**: Brain, Information Theory, Models, Neurological, Nerve Net, Neural Networks, Computer, Normal Distribution, Stochastic Processes, Synaptic Transmission
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14641936/
+- **Captured**: 2026-05-10T15:53:50
+
+## Abstract
+
+To understand the functioning of distributed networks such as the brain, it is important to characterize their ability to integrate information. The paper considers a measure based on effective information, a quantity capturing all causal interactions that can occur between two parts of a system. The capacity to integrate information, or Phi, is given by the minimum amount of effective information that can be exchanged between two complementary parts of a subset. It is shown that this measure can be used to identify the subsets of a system that can integrate information, or complexes. The analysis is applied to idealized neural systems that differ in the organization of their connections. The results indicate that Phi is maximized by having each element develop a different connection pattern with the rest of the complex (functional specialization) while ensuring that a large amount of information can be exchanged across any bipartition of the network (functional integration). Based on this analysis, the connectional organization of certain neural architectures, such as the thalamocortical system, are well suited to information integration, while that of others, such as the cerebellum, are not, with significant functional consequences. The proposed analysis of information integration should be applicable to other systems and networks.

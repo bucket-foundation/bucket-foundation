@@ -1,0 +1,14 @@
+# A neuroscientific grasp of concepts: from control to representation.
+
+- **PMID**: 12880530
+- **DOI**: 10.1098/rstb.2003.1315
+- **PMCID**: PMC1693221 (full-text saved)
+- **Journal**: Philosophical transactions of the Royal Society of London. Series B, Biological sciences  ·  **Year**: 2003
+- **Authors**: Vittorio Gallese
+- **MeSH**: Animals, Biological Evolution, Brain, Cognition, Concept Formation, Humans, Language, Macaca mulatta, Neurosciences
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12880530/
+- **Captured**: 2026-05-10T15:52:31
+
+## Abstract
+
+Abstraction denotes the cognitive process by means of which general concepts are formed. The dominant view of abstraction considers it not only as a complex and sophisticated cognitive activity, but also as a distinctive hallmark of mankind. The distinctiveness of abstract thought has indeed been closely related to another feature peculiar to our species: language. Following this perspective, the possibility to entertain conceptual representations is thus precluded to animals devoid of full-blown language. I challenge this view and propose that the representational dynamic of the brain is conceivable as a type of self-organization, in which action plays a crucial part. My aim will be to investigate whether, and to what extent, conceptual knowledge can be attributed to non-linguistic animal species, with particular emphasis on nonhuman primates. I therefore introduce the notion of semantic content as a type of 'relational specification'. A review of recent neurophysiological data on the neural underpinnings of action end-states in the macaque monkey brain is presented. On the basis of this evidence, I propose that conceptual representations can be conceived as the expression of a coherent internal world model. This model decomposes the 'outer' space inhabited by things in a meaningful way only to the extent that it accords to biologically constrained, embodied invariance. Finally, I discuss how the 'comparative' neuroscientific approach to abstraction proposed here may shed some light on its nature and its evolutionary origin.

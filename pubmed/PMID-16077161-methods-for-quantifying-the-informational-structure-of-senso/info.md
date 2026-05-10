@@ -1,0 +1,14 @@
+# Methods for quantifying the informational structure of sensory and motor data.
+
+- **PMID**: 16077161
+- **DOI**: 10.1385/NI:3:3:243
+- **PMCID**:  
+- **Journal**: Neuroinformatics  ·  **Year**: 2005
+- **Authors**: Max Lungarella, Teresa Pegors, Daniel Bulwinkle, Olaf Sporns
+- **MeSH**: Animals, Humans, Motor Activity, Nerve Net, Neural Networks, Computer, Psychomotor Performance, Psychoneuroimmunology, Robotics, Sensation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16077161/
+- **Captured**: 2026-05-10T15:55:25
+
+## Abstract
+
+Embodied agents (organisms and robots) are situated in specific environments sampled by their sensors and within which they carry out motor activity. Their control architectures or nervous systems attend to and process streams of sensory stimulation, and ultimately generate sequences of motor actions, which in turn affect the selection of information. Thus, sensory input and motor activity are continuously and dynamically coupled with the surrounding environment. In this article, we propose that the ability of embodied agents to actively structure their sensory input and to generate statistical regularities represents a major functional rationale for the dynamic coupling between sensory and motor systems. Statistical regularities in the multimodal sensory data relayed to the brain are critical for enabling appropriate developmental processes, perceptual categorization, adaptation, and learning. To characterize the informational structure of sensory and motor data, we introduce and illustrate a set of univariate and multivariate statistical measures (available in an accompanying Matlab toolbox). We show how such measures can be used to quantify the information structure in sensory and motor channels of a robot capable of saliency-based attentional behavior, and discuss their potential importance for understanding sensorimotor coordination in organisms and for robot design.

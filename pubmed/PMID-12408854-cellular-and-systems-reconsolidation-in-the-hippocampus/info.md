@@ -1,0 +1,14 @@
+# Cellular and systems reconsolidation in the hippocampus.
+
+- **PMID**: 12408854
+- **DOI**: 10.1016/s0896-6273(02)01001-2
+- **PMCID**:  
+- **Journal**: Neuron  ·  **Year**: 2002
+- **Authors**: Jacek Debiec, Joseph E LeDoux, Karim Nader
+- **MeSH**: Amnesia, Retrograde, Animals, Anisomycin, Conditioning, Psychological, Fear, Hippocampus, Male, Memory, Memory Disorders, Memory, Short-Term
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12408854/
+- **Captured**: 2026-05-10T15:51:28
+
+## Abstract
+
+Cellular theories of memory consolidation posit that new memories require new protein synthesis in order to be stored. Systems consolidation theories posit that the hippocampus has a time-limited role in memory storage, after which the memory is independent of the hippocampus. Here, we show that intra-hippocampal infusions of the protein synthesis inhibitor anisomycin caused amnesia for a consolidated hippocampal-dependent contextual fear memory, but only if the memory was reactivated prior to infusion. The effect occurred even if reactivation was delayed for 45 days after training, a time when contextual memory is independent of the hippocampus. Indeed, reactivation of a hippocampus-independent memory caused the trace to again become hippocampus dependent, but only for 2 days rather than for weeks. Thus, hippocampal memories can undergo reconsolidation at both the cellular and systems levels.

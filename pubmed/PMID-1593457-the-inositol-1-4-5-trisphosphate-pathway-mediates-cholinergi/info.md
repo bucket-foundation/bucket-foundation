@@ -1,0 +1,14 @@
+# The inositol 1,4,5-trisphosphate pathway mediates cholinergic potentiation of rat hippocampal neuronal responses to NMDA.
+
+- **PMID**: 1593457
+- **DOI**: 10.1113/jphysiol.1992.sp019015
+- **PMCID**: PMC1176049 (full-text saved)
+- **Journal**: The Journal of physiology  ·  **Year**: 1992
+- **Authors**: H Markram, M Segal
+- **MeSH**: Acetylcholine, Animals, Calcium, Dose-Response Relationship, Drug, Drug Synergism, Evoked Potentials, GTP-Binding Proteins, Hippocampus, Inositol 1,4,5-Trisphosphate, Membrane Potentials
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1593457/
+- **Captured**: 2026-05-10T15:55:21
+
+## Abstract
+
+1. The cellular mechanism by which acetylcholine (ACh) potentiates neuronal responses to N-methyl-D-aspartate (NMDA) was investigated in CA1 neurones of hippocampal slices using current- and voltage-clamp techniques. 2. Loading cells with 5'-guanylylimidodiphosphate (GppNHp) caused a gradual increase in response to NMDA. Pulses of ACh accelerated this increase. Guanosine 5'-O-(2-thiodiphosphate) (GDP beta S) blocked the potentiating effect of ACh on responses to NMDA. 3. Acute LiCl caused a gradual decrease in the potentiating effect of ACh, while the potentiation was completely prevented by 3 day chronic 6 mequiv/kg (I.P.) LiCl treatment and restored by acute treatment with 10 mM-inositol. 4. Loading cells with a general protein kinase inhibitor, H-7, enhanced the potentiating effect of ACh on responses to NMDA and blocked the effect of ACh on the after-hyperpolarization (AHP). 5. Ultraviolet irradiation of cells loaded with a photolabile inositol 1,4,5-trisphosphate (InsP3) caused a transient increase in responses to NMDA, while penetrating cells with active InsP3-containing pipettes caused a gradual BAPTA-sensitive increase in responses to NMDA. 6. Reducing the rate of InsP3 metabolism, with 2,3-diphosphoglyceric acid (DPG), caused an increase and prolongation of the potentiating effect of ACh, while blocking the InsP3 receptor with heparin prevented the cholinergic potentiation. 7. NMDA, by itself, potentiated subsequent responses to NMDA, an effect that was blocked when [Ca2+]i was chelated with BAPTA. NMDA and ACh were also found to compete in potentiating responses to NMDA. Finally, the cholinergic potentiation was blocked when cells were loaded with BAPTA. 8. We propose that activation of the InsP3 branch of the phosphoinositide pathway potentiated responses to NMDA and that InsP3 exerted this effect by elevating [Ca2+]i.

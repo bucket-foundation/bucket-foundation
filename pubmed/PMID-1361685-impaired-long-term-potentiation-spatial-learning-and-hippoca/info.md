@@ -1,0 +1,14 @@
+# Impaired long-term potentiation, spatial learning, and hippocampal development in fyn mutant mice.
+
+- **PMID**: 1361685
+- **DOI**: 10.1126/science.1361685
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 1992
+- **Authors**: S G Grant, T J O'Dell, K A Karl, P L Stein, P Soriano, E R Kandel
+- **MeSH**: 2-Amino-5-phosphonovalerate, Acetylcholinesterase, Animals, Brain, Cerebral Cortex, Electric Stimulation, Genes, abl, Genes, src, Hippocampus, In Vitro Techniques
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1361685/
+- **Captured**: 2026-05-10T15:53:18
+
+## Abstract
+
+Mice with mutations in four nonreceptor tyrosine kinase genes, fyn, src, yes, and abl, were used to study the role of these kinases in long-term potentiation (LTP) and in the relation of LTP to spatial learning and memory. All four kinases were expressed in the hippocampus. Mutations in src, yes, and abl did not interfere with either the induction or the maintenance of LTP. However, in fyn mutants, LTP was blunted even though synaptic transmission and two short-term forms of synaptic plasticity, paired-pulse facilitation and post-tetanic potentiation, were normal. In parallel with the blunting of LTP, fyn mutants showed impaired spatial learning, consistent with a functional link between LTP and learning. Although fyn is expressed at mature synapses, its lack of expression during development resulted in an increased number of granule cells in the dentate gyrus and of pyramidal cells in the CA3 region. Thus, a common tyrosine kinase pathway may regulate the growth of neurons in the developing hippocampus and the strength of synaptic plasticity in the mature hippocampus.

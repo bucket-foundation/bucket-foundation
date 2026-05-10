@@ -1,0 +1,14 @@
+# Ventral medial prefrontal cortex and emotional perseveration: the memory for prior extinction training.
+
+- **PMID**: 14643465
+- **DOI**: 10.1016/j.bbr.2003.09.021
+- **PMCID**:  
+- **Journal**: Behavioural brain research  ·  **Year**: 2003
+- **Authors**: Maria A Morgan, Jay Schulkin, Joseph E LeDoux
+- **MeSH**: Acoustic Stimulation, Animals, Avoidance Learning, Behavior, Animal, Conditioning, Classical, Electroshock, Emotions, Extinction, Psychological, Male, Memory
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14643465/
+- **Captured**: 2026-05-10T15:53:52
+
+## Abstract
+
+Several years ago, we found that lesions of ventral medial prefrontal cortex (mPFCv) disrupted performance during the extinction component of a classical fear conditioning task without affecting acquisition performance. We called this emotional perseveration, hypothesizing that mPFCv may normally act to inhibit fear responses to a conditioned stimulus (CS) when the CS no longer signals danger. Subsequent studies have supported this hypothesis, showing that mPFCv is crucial for the memory of prior extinction training. The present study examined the effects of mPFCv lesions made after training. Such lesions resulted in reduced freezing to contextual stimuli and normal responding to the CS presented alone during a retention test. Rats were then subjected to extinction trials (CS without US) over multiple days. In contrast to pre-training lesions, post-training lesions had little effect on extinction rate. All rats were given additional training. Lesioned rats expressed greater fear reactions than controls, indicating that prior extinction was less effective in them. Lesioned rats also showed resistance to extinction during reextinction trials, confirming our earlier finding that lesions made before training weaken the effectiveness of extinction trials. These results suggest three conclusions. First, an intact mPFCv during acquisition may protect the animal from prolonged responding during extinction trials following brain insult. Second, changes in mPFCv may predispose subjects toward enhanced fear reactions that are difficult to extinguish when reexposed to fearful stimuli, due to a diminished capacity to benefit from the fear-reducing impact of prior extinction experience. Third, contextual cues processed by mPFCv may influence extinction performance.

@@ -1,0 +1,14 @@
+# Electron microscopic study of Bacillus subtilis protoplast fusion.
+
+- **PMID**: 108247
+- **DOI**: 10.1128/jb.137.3.1354-1361.1979
+- **PMCID**: PMC218320 (full-text saved)
+- **Journal**: Journal of bacteriology  ·  **Year**: 1979
+- **Authors**: C Frehel, A M Lheritier, C Sanchez-Rivas, P Schaeffer
+- **MeSH**: Bacillus subtilis, Microscopy, Electron, Polyethylene Glycols, Protoplasts, Recombination, Genetic, Spores, Bacterial
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/108247/
+- **Captured**: 2026-05-10T15:51:08
+
+## Abstract
+
+When protoplasts derived from sporulating cells of Bacillus subtilis were fused by exposure to polyethylene glycol (PEG) and fixed immediately thereafter, protoplasts with two enclosed prespores could be seen by electron microscope. The number of fusion events was greatly increased, and multiply fused protoplasts appeared, when the PEG-treated suspension was diluted in hypertonic broth and reincubated before fixation. This post-PEG incubation effect is taken to indicate a fusion mechanism of two steps: a short, PEG-dependent step of membrane activation, followed by a slow, metabolism-requiring step completing fusion. When prespore-bearing protoplasts from two genetically different strains were mixed and fused, the extent of fusion could also be followed by counting clones of recombinant bacteria. Maximal from the start, their number (1% of each parent type protoplast present) was unaffected by post-PEG incubation. Fusion in this case is apparently completed after plating on the wall-regeneration medium. After optimal post-PEG incubation, the majority of the protoplasts were seen to participate in fusion, and the cytological fusion observed, corrected for wall-regeneration frequency, accounted quantitatively for the prototrophic bacteria eventually recovered. These results are in good agreement with those obtained independently by Sanchez-Rivas and Garro (J. Bacteriol. 137:1340--1345, 1979).

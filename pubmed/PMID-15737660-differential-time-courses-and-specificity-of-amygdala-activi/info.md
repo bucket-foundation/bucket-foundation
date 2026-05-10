@@ -1,0 +1,14 @@
+# Differential time courses and specificity of amygdala activity in posttraumatic stress disorder subjects and normal control subjects.
+
+- **PMID**: 15737660
+- **DOI**: 10.1016/j.biopsych.2004.12.026
+- **PMCID**:  
+- **Journal**: Biological psychiatry  ·  **Year**: 2005
+- **Authors**: Xenia Protopopescu, Hong Pan, Oliver Tuescher, Marylene Cloitre, Martin Goldstein, Wolfgang Engelien, Jane Epstein, Yihong Yang, Jack Gorman, Joseph LeDoux, David Silbersweig, Emily Stern
+- **MeSH**: Adolescent, Adult, Amygdala, Brain Mapping, Case-Control Studies, Emotions, Female, Functional Laterality, Humans, Image Processing, Computer-Assisted
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15737660/
+- **Captured**: 2026-05-10T15:55:06
+
+## Abstract
+
+Previous neuroimaging studies have demonstrated exaggerated amygdala responses to negative stimuli in posttraumatic stress disorder (PTSD). The time course of this amygdala response is largely unstudied and is relevant to questions of habituation and sensitization in PTSD exposure therapy. We applied blood oxygen level dependent functional magnetic resonance imaging and statistical parametric mapping to study amygdala responses to trauma-related and nontrauma-related emotional words in sexual/physical abuse PTSD and normal control subjects. We examined the time course of this response by separate analysis of early and late epochs. PTSD versus normal control subjects have a relatively increased initial amygdala response to trauma-related negative, but not nontrauma-related negative, versus neutral stimuli. Patients also fail to show the normal patterns of sensitization and habituation to different categories of negative stimuli. These findings correlate with measured PTSD symptom severity. Our results demonstrate differential time courses and specificity of amygdala response to emotional and control stimuli in PTSD and normal control subjects. This has implications for pathophysiologic models of PTSD and treatment response. The results also extend previous neuroimaging studies demonstrating relatively increased amygdala response in PTSD and expand these results to a largely female patient population probed with emotionally valenced words.

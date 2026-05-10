@@ -1,0 +1,14 @@
+# The line-motion illusion can be reversed by motion signals after the line disappears.
+
+- **PMID**: 14580142
+- **DOI**: 10.1068/p3314a
+- **PMCID**: PMC2928888 (full-text saved)
+- **Journal**: Perception  ·  **Year**: 2003
+- **Authors**: David M Eagleman, Terrence J Sejnowski
+- **MeSH**: Attention, Color Perception, Cues, Humans, Illusions, Light, Models, Psychological, Motion Perception, Neurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14580142/
+- **Captured**: 2026-05-10T15:53:45
+
+## Abstract
+
+In the line-motion illusion, a briefly flashed line appears to propagate from the locus of attention, despite being physically presented on the screen all at once. It has been proposed that the illusion reflects low-level visual information processing that occurs faster at the locus of attention (Hikosaka et al 1993 Vision Research 33 1219-1240; Perception 22 517-526). Such an explanation implicitly embeds the assumption that speeding or slowing of neural signals will map directly onto perceptual timing. This 'online' hypothesis presupposes that signals which arrive first are perceived first. However, other evidence suggests that events in a window of time after the disappearance of a visual stimulus can influence the brain's interpretation of that stimulus (Eagleman and Sejnowski 2000 Science 287 2036-2038; 289 1107a; 290 1051a; 2002 Trends in Neuroscience 25 293). If the online hypothesis were true, we should expect that events occurring after the flashing of the line would not change the illusion. Consistent with our hypothesis that awareness is an a posteriori reconstruction, we demonstrate that the perceived direction of illusory line-motion can be reversed by manipulating stimuli after the line has disappeared.

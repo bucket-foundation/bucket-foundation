@@ -1,0 +1,14 @@
+# Theoretical neuroanatomy and the connectivity of the cerebral cortex.
+
+- **PMID**: 12356436
+- **DOI**: 10.1016/s0166-4328(02)00157-2
+- **PMCID**:  
+- **Journal**: Behavioural brain research  ·  **Year**: 2002
+- **Authors**: O Sporns, G Tononi, G M Edelman
+- **MeSH**: Animals, Cerebral Cortex, Entropy, Macaca, Models, Neurological, Nerve Net, Visual Cortex
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12356436/
+- **Captured**: 2026-05-10T15:51:26
+
+## Abstract
+
+Over recent years, a wealth of neuroanatomical information on the pattern of interconnections between segregated areas of the cerebral cortex has become available. Here, we describe a set of structural measures, based on graph theory, which can be used to analyze these anatomical patterns. We describe relationships between these structural measures and measures based on patterns of functional connectivity, i.e. patterns of correlations in neural activity. We find that networks capable of producing highly complex functional dynamics share common structural motifs. These motifs are also found in cortical connection matrices, which are characterized by the existence of densely linked groups of areas, low potential wiring length, and a high abundance of reciprocal connections and short cycles. An analysis of cortical functional connectivity demonstrates the existence of functional clusters of highly interactive areas, producing highly complex dynamics. The combined structural and functional analysis outlined in this chapter provides insight into the large-scale functional organization of distributed cortical systems.

@@ -1,0 +1,14 @@
+# The selective serotonin reuptake inhibitor citalopram increases fear after acute treatment but reduces fear with chronic treatment: a comparison with tianeptine.
+
+- **PMID**: 15184036
+- **DOI**: 10.1016/j.biopsych.2004.02.029
+- **PMCID**:  
+- **Journal**: Biological psychiatry  ·  **Year**: 2004
+- **Authors**: Nesha S Burghardt, Gregory M Sullivan, Bruce S McEwen, Jack M Gorman, Joseph E LeDoux
+- **MeSH**: Acoustic Stimulation, Animals, Antidepressive Agents, Antidepressive Agents, Second-Generation, Citalopram, Conditioning, Psychological, Fear, Habituation, Psychophysiologic, Male, Rats
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15184036/
+- **Captured**: 2026-05-10T15:54:27
+
+## Abstract
+
+Selective serotonin reuptake inhibitors (SSRIs) are efficacious in the treatment of a variety of fear or anxiety disorders. Although they inhibit the reuptake of serotonin within hours of administration, therapeutic improvement only occurs after several weeks. In this study, we used fear conditioning to begin to understand how acute and chronic SSRI treatment might differentially affect well-characterized fear circuits. We evaluated the effects of acute and chronic treatment with the SSRI citalopram on the acquisition of auditory fear conditioning. To further understand the role of serotonin in modulating fear circuits, we compared these effects with those of acute and chronic administration of the antidepressant tianeptine, a purported serotonin reuptake enhancer. We found that acute administration of the SSRI citalopram enhanced acquisition, whereas chronic treatment reduced the acquisition of auditory fear conditioning. In comparison, treatment with tianeptine had no effect acutely but also reduced the acquisition of tone conditioning when administered chronically. Our findings with citalopram are consistent with the clinical effects of SSRI treatment seen in patients with anxiety disorders, in which anxiety is often increased during early stages of treatment and decreased after several weeks of treatment. The findings also indicate that auditory fear conditioning can be a useful tool in understanding differences in the effects of short-term and long-term antidepressant treatment with serotonergic medications.

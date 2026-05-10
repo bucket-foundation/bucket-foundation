@@ -1,0 +1,14 @@
+# Electrophysiological correlates of reward prediction error recorded in the human prefrontal cortex.
+
+- **PMID**: 15928095
+- **DOI**: 10.1073/pnas.0500899102
+- **PMCID**: PMC6793407 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2005
+- **Authors**: Hiroyuki Oya, Ralph Adolphs, Hiroto Kawasaki, Antoine Bechara, Antonio Damasio, Matthew A Howard
+- **MeSH**: Choice Behavior, Electrophysiology, Epilepsy, Evoked Potentials, Gambling, Humans, Learning, Male, Middle Aged, Prefrontal Cortex
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15928095/
+- **Captured**: 2026-05-10T15:55:16
+
+## Abstract
+
+Lesion and functional imaging studies have shown that the ventromedial prefrontal cortex is critically involved in the avoidance of risky choices. However, detailed descriptions of the mechanisms that underlie the establishment of such behaviors remain elusive, due in part to the spatial and temporal limitations of available research techniques. We investigated this issue by recording directly from prefrontal depth electrodes in a rare neurosurgical patient while he performed the Iowa Gambling Task, and we concurrently measured behavioral, autonomic, and electrophysiological responses. We found a robust alpha-band component of event-related potentials that reflected the mismatch between expected outcomes and actual outcomes in the task, correlating closely with the reward-related error obtained from a reinforcement learning model of the patient's choice behavior. The finding implicates this brain region in the acquisition of choice bias by means of a continuous updating of expectations about reward and punishment.

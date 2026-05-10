@@ -1,0 +1,14 @@
+# Cross-cultural music cognition: cognitive methodology applied to North Sami yoiks.
+
+- **PMID**: 10822042
+- **DOI**: 10.1016/s0010-0277(00)00068-8
+- **PMCID**:  
+- **Journal**: Cognition  ·  **Year**: 2000
+- **Authors**: C L Krumhansl, P Toivanen, T Eerola, P Toiviainen, T Järvinen, J Louhivuori
+- **MeSH**: Adult, Cognition, Cross-Cultural Comparison, Culture, Female, Finland, Humans, Male, Music
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10822042/
+- **Captured**: 2026-05-10T15:51:06
+
+## Abstract
+
+This article is a study of melodic expectancy in North Sami yoiks, a style of music quite distinct from Western tonal music. Three different approaches were taken. The first approach was a statistical style analysis of tones in a representative corpus of 18 yoiks. The analysis determined the relative frequencies of tone onsets and two- and three-tone transitions. It also identified style characteristics, such as pentatonic orientation, the presence of two reference pitches, the frequency of large consonant intervals, and a relatively large set of possible melodic continuations. The second approach was a behavioral experiment in which listeners made judgments about melodic continuations. Three groups of listeners participated. One group was from the Sami culture, the second group consisted of Finnish music students who had learned some yoiks, and the third group consisted of Western musicians unfamiliar with yoiks. Expertise was associated with stronger veridical expectations (for the correct next tone) than schematic expectations (based on general style characteristics). Familiarity with the particular yoiks was found to compensate for lack of experience with the musical culture. The third approach simulated melodic expectancy with neural network models of the self-organizing map (SOM) type (Kohonen, T. (1997). Self-organizing maps (2nd ed.). Berlin: Springer). One model was trained on the excerpts of yoiks used in the behavioral experiment including the correct continuation tone, while another was trained with a set of Finnish folk songs and Lutheran hymns. The convergence of the three approaches showed that both listeners and the SOM model are influenced by the statistical distributions of tones and tone sequences. The listeners and SOM models also provided evidence supporting a core set of psychological principles underlying melody formation whose relative weights appear to differ across musical styles.
