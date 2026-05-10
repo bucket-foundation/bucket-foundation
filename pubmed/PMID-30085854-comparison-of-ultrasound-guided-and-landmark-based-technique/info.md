@@ -1,0 +1,14 @@
+# Comparison of ultrasound-guided and landmark-based techniques for central venous catheterization via the external jugular vein in healthy anesthetized dogs.
+
+- **PMID**: 30085854
+- **DOI**: 10.2460/ajvr.79.6.628
+- **PMCID**:  
+- **Journal**: American journal of veterinary research  ·  **Year**: 2018
+- **Authors**: Danielle M Hundley, Aimee C Brooks, Elizabeth J Thomovsky, Paula A Johnson, Lynetta J Freeman, Ryan M Schafbuch, Hock Gan Heng, George E Moore
+- **MeSH**: Animals, Catheterization, Central Venous, Catheters, Critical Care, Dogs, Female, Fluoroscopy, Humans, Jugular Veins, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30085854/
+- **Captured**: 2026-05-10T12:03:36
+
+## Abstract
+
+OBJECTIVE To compare time to achieve vascular access (TTVA) between an ultrasound-guided technique (UST) and landmark-based technique (LMT) for central venous catheter (CVC) placement in healthy anesthetized dogs. ANIMALS 39 purpose-bred hounds. PROCEDURES Anesthetized dogs that were hemodynamically stable following completion of a terminal surgical exercise were enrolled in the study during 2 phases, with a 45-day intermission between phases. For each dog, a UST and LMT were used for CVC placement via each external jugular vein by 2 operators (criticalist and resident). The TTVA and number of venipuncture attempts and catheter redirections were recorded for each catheterization. Placement of the CVC was confirmed by contrast fluoroscopy. After euthanasia, a gross dissection was performed during which a hematoma score was assigned to the catheter insertion site. For each phase, nonlinear least squares estimation was used for learning curve analysis of the UST. RESULTS Median TTVA, number of venipuncture attempts and catheter redirections, and hematoma score did not differ significantly between the 2 operators for either technique. Median TTVA for the UST (45 seconds) was significantly longer than that for the LMT (7 seconds). Learning curve analysis indicated that 8 and 7 UST catheterizations were required to achieve performance stability in phases 1 and 2, respectively. CONCLUSIONS AND CLINICAL RELEVANCE Results indicated that the UST was comparable to the LMT for CVC placement in healthy dogs. The extra time required to perform the UST was not clinically relevant. Additional studies evaluating the UST for CVC placement in clinically ill dogs are warranted.

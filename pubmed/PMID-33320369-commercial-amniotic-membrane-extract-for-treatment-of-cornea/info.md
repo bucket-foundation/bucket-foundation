@@ -1,0 +1,14 @@
+# Commercial amniotic membrane extract for treatment of corneal ulcers in adult horses.
+
+- **PMID**: 33320369
+- **DOI**: 10.1111/evj.13399
+- **PMCID**:  
+- **Journal**: Equine veterinary journal  ·  **Year**: 2021
+- **Authors**: Victoria N Lyons, Wendy M Townsend, George E Moore, Siqi Liang
+- **MeSH**: Amnion, Animals, Cornea, Corneal Ulcer, Horse Diseases, Horses, Plant Extracts, Wound Healing
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/33320369/
+- **Captured**: 2026-05-10T12:04:00
+
+## Abstract
+
+Amniotic membrane extract enhances the rate of epithelialisation after corneal ulceration in several species but has not been studied in the equine cornea. To evaluate the effect of amniotic membrane extract on re-epithelialisation of equine corneal ulcers compared with ulcers treated with antibiotic, antifungal and mydriatic medical therapy alone, and to evaluate equine corneal healing after experimentally induced superficial ulceration. Masked, randomised, controlled experimental trial. Superficial, 8 mm corneal ulcers were created bilaterally in each horse. One eye was treated with amniotic membrane extract and the opposite was control. Both eyes were treated with medical therapy. Treatment eyes received amniotic membrane extract, and control eyes received the amniotic membrane extract vehicle. Ulcers were stained with fluorescein and photographed in 12-hour increments until completely healed. Ulcer surface area was determined by analysing photographs with ImageJ. A mixed linear model was used to compare ulcer surface area and hours until healing between treatment groups. A regression model was also used to calculate corneal re-epithelialisation rate over time. Regardless of therapy, healing occurred in two phases: an initial rapid phase of 0.88 mm Results achieved experimental studies may differ from outcomes in the clinical setting. There was no significant difference in healing rate with addition of amniotic membrane extract to medical therapy for equine superficial corneal ulcers. A biphasic corneal healing process was observed, with an initial rapid phase followed by a slow phase. Further study will be needed to determine whether amniotic membrane extract will be helpful for infected or malacic equine corneal ulcers.

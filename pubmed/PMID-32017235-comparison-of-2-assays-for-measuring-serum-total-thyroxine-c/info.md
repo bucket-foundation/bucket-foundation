@@ -1,0 +1,14 @@
+# Comparison of 2 assays for measuring serum total thyroxine concentration in dogs and cats.
+
+- **PMID**: 32017235
+- **DOI**: 10.1111/jvim.15703
+- **PMCID**: PMC11129217 (full-text saved)
+- **Journal**: Journal of veterinary internal medicine  ·  **Year**: 2020
+- **Authors**: Ewan D S Wolff, Graham Bilbrough, George Moore, Lynn Guptill, J Catharine Scott-Moncrieff
+- **MeSH**: Animals, Biological Assay, Cat Diseases, Cats, Dog Diseases, Dogs, Hyperthyroidism, Hypothyroidism, Thyroid Function Tests, Thyroxine
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32017235/
+- **Captured**: 2026-05-10T12:03:46
+
+## Abstract
+
+No gold standard assay for serum total thyroxine (TT4) concentration in small animals exists. The Microgenics DRI TT4 (MTT4) assay is used by most reference laboratories. IDEXX Catalyst Total T4 (CTT4) and Immulite 2000 TT4 (ITT4) results will agree with MTT4 results. Residual small animal sera were randomized before reanalysis (dogs, CTT4 versus MTT4: n = 176, ITT4 versus MTT4: n = 74; cats, CTT4 versus MTT4: n = 319, ITT4 versus MTT4: n = 79). Validation and method comparison study. Serum TT4 concentration was measured on all analyzers. Pairwise Pearson correlation, cumulative sum linearity test, regression, and Bland-Altman method were performed. CTT4 versus MTT4 in dogs: constant bias (y-intercept) was 0.10 μg/dL (95% confidence interval [CI], 0.05-0.15), proportional bias (slope) was 0.86 μg/dL (95% CI, 0.83-0.89); in cats, constant bias was 0.13 μg/dL (95% CI, 0.08-0.20) and proportional bias was 1.01 μg/dL (95% CI, 0.98-1.03), but the test for linearity failed. Bland-Altman plots identified increasing disagreement with increasing serum TT4 concentrations. ITT4 versus MTT4 in dogs, constant bias was 0.14 μg/dL (95% CI, 0.04-0.22) and 0.22 μg/dL (95% CI, 0.09-0.33) for cats; proportional bias was 0.76 (95% CI, 0.72-0.80) for dogs and 0.71 (95% CI, 0.69-0.74) for cats. Differences in CTT4 and MTT4 results affect interpretation at higher serum TT4 concentrations. The ITT4 proportional bias will underestimate serum TT4 concentrations in dogs and cats, compared to MTT4. Serial TT4 measurements should be done using the same assay.

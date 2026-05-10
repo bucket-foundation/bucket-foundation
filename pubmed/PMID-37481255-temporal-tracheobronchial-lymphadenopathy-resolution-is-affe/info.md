@@ -1,0 +1,14 @@
+# Temporal tracheobronchial lymphadenopathy resolution is affected by initial severity and poorly correlated to serologic antibody testing in dogs with pulmonary coccidioidomycosis.
+
+- **PMID**: 37481255
+- **DOI**: 10.2460/javma.23.04.0220
+- **PMCID**:  
+- **Journal**: Journal of the American Veterinary Medical Association  ·  **Year**: 2023
+- **Authors**: Rebecca Urion, Jared A Jaffey, Eric T Hostnik, Andrew S Hanzlicek, George E Moore
+- **MeSH**: Humans, Dogs, Animals, Coccidioidomycosis, Fluconazole, Prospective Studies, Coccidioides, Lymphadenopathy, Dog Diseases
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37481255/
+- **Captured**: 2026-05-10T12:04:26
+
+## Abstract
+
+To determine associations between antibody serologic tests and tracheobronchial lymphadenopathy (TBL) in dogs with pulmonary coccidioidomycosis and identify variables associated with time to resolution of TBL. 32 client owned dogs with newly diagnosed pulmonary coccidioidomycosis from October 2020 to February 2021. Prospective cohort study. Thoracic radiographs and anti-Coccidioides spp antibody serology were performed at baseline and once every 3 months until remission or for a maximum of 12 months. Radiographic tracheobronchial lymph node height, length, and area were measured and recorded as ratios via comparison with the length of the T4 vertebral body (LT4) and length of the manubrium. Severity of TBL was also subjectively categorized as mild, moderate, or severe. Tracheobronchial lymphadenopathy was identified in 81% (26/32; 95% CI, 64% to 93%) of dogs. There was no relevant association between TBL presence or severity and antibody serology results. Tracheobronchial lymphadenopathy resolved in 72% (n = 18) of dogs at the 3-month evaluation. The median time to resolution of TBL after initiation of fluconazole was 96 days (range, 72 to 386 days). Univariate analysis identified increasing TBL severity (hazard ratio, 0.40; 95% CI, 0.19 to 0.84; P = .02) and length:LT4 ratio (hazard ratio, 0.41; 95% CI, 0.20 to 0.82; P = .01) as variables associated with reduced probability of resolution of TBL. Antibody serologic test results are not clinically useful to predict TBL presence or severity in dogs with pulmonary coccidioidomycosis, and larger tracheobronchial lymph nodes are more likely to take longer to resolve. Resolution of TBL occurs in most dogs within 3 to 6 months after fluconazole administration.

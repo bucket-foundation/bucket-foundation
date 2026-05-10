@@ -1,0 +1,14 @@
+# Influence of Interlocking Horizontal Mattress Epitendinous Suture Placement on Tendinous Biomechanical Properties in a Canine Common Calcaneal Laceration Model.
+
+- **PMID**: 32232813
+- **DOI**: 10.1055/s-0040-1702141
+- **PMCID**:  
+- **Journal**: Veterinary and comparative orthopaedics and traumatology : V.C.O.T  ·  **Year**: 2020
+- **Authors**: Christina J Cocca, Daniel J Duffy, Mariana E Kersh, George E Moore
+- **MeSH**: Achilles Tendon, Animals, Biomechanical Phenomena, Cadaver, Dogs, Suture Techniques, Tendon Injuries, Tensile Strength
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32232813/
+- **Captured**: 2026-05-10T12:03:49
+
+## Abstract
+
+ This article evaluates the effect of an interlocking horizontal mattress epitendinous suture (IHMES) in addition to a three-loop pulley (3LP) core suture for canine tendon repair.  Twenty-eight cadaveric common calcaneal tendons were randomized, sharply transected and repaired with either a 3LP or 3LP + IHMES. Tensile loads required to create a 1- and 3-mm gap, yield, peak and failure loads, and mode of failure were analysed. Significance was set at   Mean ± standard deviation yield and failure force for 3LP + IHMES was 178.0 ± 45.3 N and 242.1 ± 47.8 N, respectively, which was significantly greater compared with 3LP alone, 97.9 ± 36.2 N and 119.3 ± 35.6 N (  Addition of an epitendinous suture pattern significantly reduced gap formation between tendon ends and significantly increased loads at yield (1.8 × ), peak (2.0 × ) and failure (2.0 × ) force of repairs. Use of an epitendinous suture should be considered to significantly increase biomechanical strength of repairs; however, further 

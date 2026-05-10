@@ -1,0 +1,14 @@
+# Vaccination and Seasonality as Risk Factors for Development of Meningoencephalitis of Unknown Origin in 172 Dogs.
+
+- **PMID**: 40035184
+- **DOI**: 10.1371/journal.pone.0112755
+- **PMCID**: PMC4231098 (full-text saved)
+- **Journal**: Journal of veterinary internal medicine  ·  **Year**: 2025
+- **Authors**: Maria K Johnson, Rebecca C Windsor, Jessica L Schmidt, David J Raczek, George E Moore
+- **MeSH**: Animals, Dogs, Dog Diseases, Meningoencephalitis, Seasons, Risk Factors, Male, Female, Vaccination, Prospective Studies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40035184/
+- **Captured**: 2026-05-10T12:04:37
+
+## Abstract
+
+Meningoencephalitis of unknown origin (MUO) is a neuroinflammatory disease that is suspected to be immune-mediated. Vaccination and season inconsistently have been reported as risk factors for development of MUO in dogs, but limited prospectively collected data is available to evaluate these potential risk factors. Prospectively evaluate the association between vaccination and season and the development of MUO in dogs. A total of 172 client-owned dogs diagnosed with MUO. Dogs were enrolled prospectively from August 2021 through July 2023. Signalment, body weight, vaccination history, and season of onset of neurologic signs were recorded. The incidence rate ratio (IRR) of MUO within various post-vaccination windows was statistically compared to a referent window of 451-560 days post-vaccination. The incidence rate (IR) of MUO in each season was compared statistically. Of dogs vaccinated within the previous 450 days, MUO IRR was highest in the first 0-45 days (IRR = 9.14; confidence interval [CI] = 4.04-20.71), followed by 46-90 days (IRR = 4.86; CI = 2.01-11.71) and 91-180 days (IRR = 4.86; CI = 2.15-10.96) post-vaccination compared to the 451-560 day post-vaccination referent window. The MUO IR was slightly more common in the spring (28.5%) and least common in the summer (19.8%). No significant difference in IR between seasons was identified. In dogs with potential vaccine-associated MUO, the highest risk to develop MUO may be in the first 45 days post-vaccination. A slowly developing immune response to vaccination over 3-6 months may occur in some dogs. There is no apparent association between season and the development of MUO.

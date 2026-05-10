@@ -1,0 +1,14 @@
+# Influence of closure technique on leakage pressures in an ex vivo canine typhlectomy model.
+
+- **PMID**: 32255202
+- **DOI**: 10.1111/vsu.13405
+- **PMCID**:  
+- **Journal**: Veterinary surgery : VS  ·  **Year**: 2020
+- **Authors**: Daniel J Duffy, Yi-Jen Chang, George E Moore
+- **MeSH**: Anastomotic Leak, Animals, Cadaver, Cecum, Colorectal Surgery, Dogs, Models, Animal, Wound Closure Techniques
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32255202/
+- **Captured**: 2026-05-10T12:03:50
+
+## Abstract
+
+To determine the influence of three closure techniques on leakage pressures of canine typhlectomies. Experimental, ex vivo. Grossly normal cecal segments from 24 adult canine cadavers. Typhlectomies were assigned to one of three closure techniques: simple continuous closure with a Parker-Kerr pattern with 4-0 polydioxanone (group 1), closure with a 60-mm gastrointestinal stapler loaded with a 3.8-mm staple cartridge (group 2), and placement of a Cushing suture to augment the stapled closure (group 3). The median (range) of initial leakage pressure (ILP) and maximum leakage pressure (MLP) was compared between groups along with leakage location. Typhlectomies in group 3 leaked at higher ILP (310 mm Hg; 188-310) than those in groups 1 (43 mm Hg; 31-80) and 2 (109.5 mm Hg; 68-173; P < .0001). Maximum leakage pressure were greater in group 3 than in other groups (P < .0001). Leakage was detected in 20 of 24 (83%) typhlectomies, located at the incisional line in 13 of 24 (54%) specimens and from suture holes in seven of 24 (29%) specimens. Placement of a Cushing suture pattern to augment stapled incisions improved the ability of typhlectomies to sustain pressure compared with sutured or stapled cadaveric specimens alone. These results provide evidence to support placement of a Cushing suture pattern to augment the staple line for typhlectomies in dogs, although in vivo studies are required to determine the clinical significance of these findings.

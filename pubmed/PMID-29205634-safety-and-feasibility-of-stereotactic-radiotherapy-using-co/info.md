@@ -1,0 +1,14 @@
+# Safety and feasibility of stereotactic radiotherapy using computed portal radiography for canine intracranial tumors.
+
+- **PMID**: 29205634
+- **DOI**: 10.1111/vru.12579
+- **PMCID**:  
+- **Journal**: Veterinary radiology & ultrasound : the official journal of the American College of Veterinary Radiology and the International Veterinary Radiology Association  ·  **Year**: 2018
+- **Authors**: Nicholas J Rancilio, R Timothy Bentley, Jeannie Poulson Plantenga, Magdalena M Parys, Beatriz G Crespo, George E Moore
+- **MeSH**: Animals, Brain Neoplasms, Dog Diseases, Dogs, Pilot Projects, Radiography, Radiotherapy, Intensity-Modulated, Retrospective Studies, Stereotaxic Techniques
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29205634/
+- **Captured**: 2026-05-10T12:03:31
+
+## Abstract
+
+Stereotactic radiotherapy is a highly conformal treatment option for intracranial and extracranial malignancies. Stereotactic radiotherapy utilizes specialized equipment specifically designed to avoid normal tissue while delivering ablative treatments with submillimeter precision and accuracy. Linear accelerator based stereotactic radiotherapy incorporates on-board image guidance utilizing cone beam computed tomography (CT). Many institutions lack the ability to provide image guidance with cone beam CT but delivery of highly conformal treatments with submillimeter precision and accuracy is still feasible. The purpose of this retrospective, pilot study was to describe clinical outcomes for a group of dogs with neurological disease that were treated with an stereotactic radiotherapy technique utilizing intensity modulated radiation therapy, megavoltage computed portal radiography, a bite plate, thermoplastic mold, and mask based positioning system. Twelve dogs with neurological clinical signs were included. The diagnosis of intracranial tumor was made based on advanced imaging (12/12) and confirmed via histopathology (3/12). Twelve courses of stereotactic radiotherapy, utilizing three fractions of 8.0 Gy, were delivered on alternating days. Self-resolving neurological deterioration was observed in two patients during stereotactic radiotherapy. Neurological progression free interval and median survival time were 273 days (range: 16-692 days) and 361 days (range: 25-862 days). Stereotactic radiotherapy using computed portal radiography may be a safe treatment option for dogs with intracranial tumors.

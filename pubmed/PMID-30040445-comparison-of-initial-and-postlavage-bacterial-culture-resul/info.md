@@ -1,0 +1,14 @@
+# Comparison of Initial and Postlavage Bacterial Culture Results of Septic Peritonitis in Dogs and Cats.
+
+- **PMID**: 30040445
+- **DOI**: 10.5326/JAAHA-MS-6651
+- **PMCID**:  
+- **Journal**: Journal of the American Animal Hospital Association  ·  **Year**: 2018
+- **Authors**: Sarah Ruth Kalafut, Pamela Schwartz, Rachael Leigh Currao, Andrew Scott Levien, George E Moore
+- **MeSH**: Animals, Anti-Bacterial Agents, Bacteria, Bacteriological Techniques, Cat Diseases, Cats, Dog Diseases, Dogs, Drug Resistance, Bacterial, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30040445/
+- **Captured**: 2026-05-10T12:03:36
+
+## Abstract
+
+Septic peritonitis is a common, life-threatening condition encountered in dogs and cats. Efficacy of peritoneal lavage has not been proven in veterinary studies. Our objective was to evaluate differences in bacterial identity and susceptibility in samples obtained pre- and postlavage in animals who underwent laparotomy for treatment of septic peritonitis and to assess the effect of empirical antimicrobial selection on survival. Culture samples were collected from the peritoneal surface pre- and postlavage from dogs and cats treated surgically for septic peritonitis. Culture results were compared for each patient with regard to bacterial isolates and bacterial susceptibility profiles. Survival to discharge was evaluated. Microbial growth occurred in at least one culture in 88.6% of patients. There was no significant difference in bacterial isolates or susceptibility profiles pre- versus postlavage. Positive culture pre- or postlavage and appropriate antimicrobial selection did not significantly affect survival. For individual animals, culture results differed between pre- and postlavage samples, although no definitive effect of peritoneal lavage was seen for the population as a whole. Antimicrobials most commonly effective against isolates were Cefotaxime, Ceftazidime, and Imipenem. If prompt surgical source control is employed, antibiotic choice may not affect clinical outcome.

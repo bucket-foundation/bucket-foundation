@@ -1,0 +1,14 @@
+# Breed, smaller weight, and multiple injections are associated with increased adverse event reports within three days following canine vaccine administration.
+
+- **PMID**: 37451674
+- **DOI**: 10.2460/javma.23.03.0181
+- **PMCID**:  
+- **Journal**: Journal of the American Veterinary Medical Association  ·  **Year**: 2023
+- **Authors**: George E Moore, JoAnn Morrison, Emi K Saito, Nathaniel Spofford, Mike Yang
+- **MeSH**: Humans, Dogs, Animals, Vaccination, Vaccines, Risk Factors, Drug-Related Side Effects and Adverse Reactions, Dog Diseases
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37451674/
+- **Captured**: 2026-05-10T12:04:26
+
+## Abstract
+
+To evaluate patient and vaccine factors associated with adverse events (AEs) recorded within 3 days of vaccine administration in a large cohort of dogs. 4,654,187 dogs vaccinated in 16,087,455 office visits in a 5-year period at 1,119 hospitals of a corporate practice. Electronic medical records of dogs vaccinated between January 1, 2016, and December 31, 2020, were searched for diagnoses of possible AEs recorded within 3 days of administration of vaccines without concurrent injectable heartworm preventative. Patient risk factors (age, sex, breed, and weight) and number and type of vaccine were extracted from records. ORs (and 95% CIs) for risk factors were estimated via multivariable logistic regression mixed models with patient as a random effect. AEs were recorded following 31,197 vaccination visits (0.19%, or 19.4/10,000 visits). Reported AE rates increased from 1 to 4 vaccines administered and among individual vaccines were greatest for rabies vaccine. AE rate was generally inversely related to body weight, with largest rates in dogs ≤ 5 kg. The largest AE rates were noted in French Bulldogs and Dachshunds (ORs > 4 compared to mixed-breed dogs). Risk factor information can be used to update vaccination protocols and client communication. Breed differences may indicate genetics as the primary risk factor for adverse vaccine reactions following vaccinations.

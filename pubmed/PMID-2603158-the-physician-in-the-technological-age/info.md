@@ -1,0 +1,14 @@
+# The physician in the technological age.
+
+- **PMID**: 2603158
+- **DOI**: 10.1007/BF00489443
+- **PMCID**:  
+- **Journal**: Theoretical medicine  ·  **Year**: 1989
+- **Authors**: K Jaspers
+- **MeSH**: Communication, Existentialism, Humanism, Humans, Medical Laboratory Science, Philosophy, Medical
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2603158/
+- **Captured**: 2026-05-10T12:03:14
+
+## Abstract
+
+Translator's summary and notes: Karl Jaspers (1883-1969) argues that modern advances in the natural sciences and in technology have exerted transforming influence on the art of clinical medicine and on its ancient Hippocratic ideal, even though Plato's classical argument about slave physicians and free physicians retains essential relevance for the physician of today. Medicine should be rooted not only in science and technology, but in the humanity of the physician as well. Jaspers thus shows how, within the mind of every medical person, the researcher contests with the physician and the technician with the humanist. Jaspers therefore opposes all modern tendencies that regard men as abstractions. As a creative existentialist influenced by Kierkegaard, Nietzsche, and Husserl, he reasons that clinical medicine should always treat patients as irreducable individuals, and his thinking on psychotherapy argues for a realm of interiority, freedom, intelligibility, and existential communication that transcends the reach of the causal thinking of natural science. This essay, written in 1959, reflects Jaspers' lifelong preoccupation with the philosophical meaning of medicine (he received his MD degree in 1909) and the totality of the human person. It should significantly enhance our own comprehension of medical power, dangers, reasoning, and accomplishments.

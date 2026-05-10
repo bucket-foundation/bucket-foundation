@@ -1,0 +1,14 @@
+# Spatial and spatio-temporal clustering of overall and serovar-specific Leptospira microscopic agglutination test (MAT) seropositivity among dogs in the United States from 2000 through 2007.
+
+- **PMID**: 20580454
+- **DOI**: 10.1016/j.prevetmed.2010.05.017
+- **PMCID**:  
+- **Journal**: Preventive veterinary medicine  ·  **Year**: 2010
+- **Authors**: Raju Gautam, Lynn F Guptill, Ching Ching Wu, Adam Potter, George E Moore
+- **MeSH**: Agglutination Tests, Animals, Antibodies, Bacterial, Dog Diseases, Dogs, Female, Leptospira interrogans, Leptospirosis, Male, Retrospective Studies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20580454/
+- **Captured**: 2026-05-10T12:02:47
+
+## Abstract
+
+Leptospirosis is a re-emerging disease of dogs in the United States (U.S.). This paper reports the findings of a retrospective study conducted to determine if seroreactivity to Leptospira microscopic agglutination test (MAT) among dogs in the U.S. clustered in space and time. The study utilized canine sera submitted to a commercial laboratory for leptospiral MAT from January 2000 through December 2007. There were 31,869 serum samples submitted by veterinarians from 3156 zip code locations across the U.S. Results of MAT were considered positive at titers of > or = 1:1600. Spatial and spatial-temporal scan statistics were used to identify statistically significant clusters of seroreactivity to Leptospira (overall and individual serovars) using recorded test request dates and locations of the centroid of the zip code reported for each serum sample. There were 2469 positive MAT results with a titer > or = 1:1600 to at least one of seven Leptospira serovars. Two relevant spatial clusters of 26.3 and 246.5 km radius were identified (P=0.001). The primary cluster was located in the northeastern part of Illinois including Chicago and surrounding areas (232 [14.4%] of 1612 MAT positive; RR=1.95). The secondary cluster covered the central part of Texas (292 [12.62%] of 2314 MAT positive; RR=1.71). Eight space-time clusters of overall MAT positivity were identified (29-335 km radius; P=0.001-0.048 and RR=3.98-24.69) that covered different geographic locations for different time points. Spatial and space-time clusters for individual serovars were also identified for six serovars: eight each of Grippotyphosa and Pomona, seven of Bratislava, five of Autumnalis, and three each of Icterohaemorrhagiae and Canicola. In conclusion Leptospira seropositivity in dogs tended to have distinctive clusters in space and space-time. Most of the space-time clusters of overall Leptospira MAT seropositivity were associated with cluster events for individual serovars. Further investigation is warranted to explain individual serovar clusters detected in this study, as a complex interaction of incidental host, environment and reservoir host may be responsible for the occurrence of these serovar clusters.

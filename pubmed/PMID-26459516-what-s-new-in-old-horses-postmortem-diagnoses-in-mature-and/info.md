@@ -1,0 +1,14 @@
+# What's New in Old Horses? Postmortem Diagnoses in Mature and Aged Equids.
+
+- **PMID**: 26459516
+- **DOI**: 10.1177/0300985815608674
+- **PMCID**:  
+- **Journal**: Veterinary pathology  ·  **Year**: 2016
+- **Authors**: M A Miller, G E Moore, F R Bertin, J E Kritchevsky
+- **MeSH**: Age Factors, Aging, Animals, Cause of Death, Diagnosis, Digestive System Diseases, Endocrine System Diseases, Female, Geriatrics, Horse Diseases
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26459516/
+- **Captured**: 2026-05-10T12:03:19
+
+## Abstract
+
+Postmortem findings in 241 equids admitted to a teaching hospital that were at least 15 years old at autopsy were reviewed (1) to determine disease prevalence, (2) to compare the cause of death (or euthanasia) in equids 15 to 19 years of age (n = 116) with that in equids ≥20 years of age (n = 125), and (3) to catalog coexisting lesions in equids with pituitary pars intermedia dysfunction (PPID). Breed and sex were evenly distributed between the age groups. Death or euthanasia was attributed to disease of the digestive system (41.5%), pituitary gland (12.9%), locomotor system (10.0%), nervous system (7.9%), cardiovascular system (4.6%), urinary system (4.6%), reproductive system (4.2%), respiratory system (4.2%), integumentary system (4.2%), lymphoid system (2.5%), liver (2.5%), or systemic neoplasia (1.2%). Nervous system disease was more common in the 15- to 19-year group; urinary tract disease was more common in the ≥20-year group. Neoplastic disease, regardless of systemic location, was the basis for death or euthanasia in 18.7% of all equids. Squamous cell carcinoma, lymphoma, and melanoma were the most common malignant neoplasms. PPID was the most common specific diagnosis, based on the postmortem presence of hyperplasia or adenoma, and was the reason for euthanasia in 47.7% of 65 equids with PPID. The most common nonpituitary causes for death or euthanasia in equids with PPID were colic, lameness, cancer, and spinal cord disease. Coexisting conditions in equids with PPID that were not considered the basis for euthanasia included neoplasms, infections, lameness, and recurrent airway obstruction.

@@ -1,0 +1,14 @@
+# Variability in non-core vaccination rates of dogs and cats in veterinary clinics across the United States.
+
+- **PMID**: 35034833
+- **DOI**: 10.1016/j.vaccine.2022.01.003
+- **PMCID**:  
+- **Journal**: Vaccine  ·  **Year**: 2022
+- **Authors**: Kyle B Malter, Mara E Tugel, Maria Gil-Rodriguez, Guillermo de la Guardia, Sally W Jackson, William G Ryan, George E Moore
+- **MeSH**: Animals, Cat Diseases, Cats, Dog Diseases, Dogs, Female, Hospitals, Animal, Humans, Rabies Vaccines, United States
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35034833/
+- **Captured**: 2026-05-10T12:04:09
+
+## Abstract
+
+Vaccination guidelines for dogs and cats indicate that core vaccines (for dogs, rabies, distemper, adenovirus, parvovirus; for cats, feline parvovirus, herpes virus-1, calicivirus) are essential to maintain health, and that non-core vaccines be administered according to a clinician's assessment of a pet's risk of exposure and susceptibility to infection. A reliance on individual risk assessment introduces the potential for between-practice inconsistencies in non-core vaccine recommendations. A study was initiated to determine non-core vaccination rates of dogs (Leptospira, Borrelia burgdorferi, Bordetella bronchiseptica, canine influenza virus) and cats (feline leukemia virus) in patients current for core vaccines in veterinary practices across the United States. Transactional data for 5,531,866 dogs (1,670 practices) and 1,914,373 cats (1,661 practices) were retrieved from practice management systems for the period November 1, 2016 through January 1, 2020, deidentified and normalized. Non-core vaccination status was evaluated in 2,798,875 dogs and 788,772 cats that were core-vaccine current. Nationally, median clinic vaccination rates for dogs were highest for leptospirosis (70.5%) and B. bronchiseptica (68.7%), and much lower for canine influenza (4.8%). In Lyme-endemic states, the median clinic borreliosis vaccination rate was 51.8%. Feline leukemia median clinic vaccination rates were low for adult cats (34.6%) and for kittens and 1-year old cats (36.8%). Individual clinic vaccination rates ranged from 0 to 100% for leptospirosis, B. bronchiseptica and feline leukemia, 0-96% for canine influenza, and 0-94% for borreliosis. Wide variation in non-core vaccination rates between clinics in similar geographies indicates that factors other than disease risk are driving the use of non-core vaccines in pet dogs and cats, highlighting a need for veterinary practices to address gaps in patient protection. Failure to implement effective non-core vaccination strategies leaves susceptible dogs and cats unprotected against vaccine-preventable diseases.

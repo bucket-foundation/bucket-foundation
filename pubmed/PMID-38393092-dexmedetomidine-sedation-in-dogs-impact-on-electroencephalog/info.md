@@ -1,0 +1,14 @@
+# Dexmedetomidine Sedation in Dogs: Impact on Electroencephalography, Behavior, Analgesia, and Antagonism with Atipamezole.
+
+- **PMID**: 38393092
+- **DOI**: 10.2460/ajvr.80.5.455
+- **PMCID**: PMC9951736 (full-text saved)
+- **Journal**: Veterinary sciences  ·  **Year**: 2024
+- **Authors**: Jeff C Ko, Carla Murillo, Ann B Weil, Matthia Kreuzer, George E Moore
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38393092/
+- **Captured**: 2026-05-10T12:04:31
+
+## Abstract
+
+This study aimed to assess the impact of dexmedetomidine constant rate infusion (CRI) on key parameters in dogs. Six dogs received a 60 µg/kg/h dexmedetomidine infusion over 10 min, followed by three 15 min decremental CRIs (3, 2, and 1 µg/kg/h). A subsequent reversal phase employed 600 µg/kg/h atipamezole over 5 min. Continuous electroencephalogram (EEG) assessment, and cardiorespiratory and analgesia monitoring (every 3 min) were conducted, including analgesia evaluation through responses to electric stimulation. Dexmedetomidine induced profound sedation, evidenced by lateral recumbency and immobility. Patient State Index (PSI) decreased from awake (90.4 ± 4.3) to Phase 1 (50.9 ± 30.7), maintaining sedation (29.0 ± 18.1 to 33.1 ± 19.1 in Phases 2-4). Bradycardia (37.8 ± 3.5 bpm, lowest at Phase 3) and hypertension (133.7 ± 17.0 mmHg, highest at Phase 1) were observed, with minimal analgesia. Atipamezole promptly reversed sedation, restoring cognitive function (tail wagging behavior), and normalizing cardiovascular parameters. During atipamezole CRI, the EEG exhibited a transition from delta waves to alpha and low beta waves. This transition was observed alongside gradual increases in PSI and electromyographic activities. Additionally, spindle activities disappeared during this process. This study's results suggest potential clinical utility for EEG-guided dexmedetomidine sedation with reversal using atipamezole, warranting further investigation.

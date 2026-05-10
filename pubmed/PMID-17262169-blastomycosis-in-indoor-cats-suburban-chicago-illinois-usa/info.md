@@ -1,0 +1,14 @@
+# Blastomycosis in indoor cats: suburban Chicago, Illinois, USA.
+
+- **PMID**: 17262169
+- **DOI**: 10.1007/s11046-006-0090-1
+- **PMCID**:  
+- **Journal**: Mycopathologia  ·  **Year**: 2007
+- **Authors**: Nancy Blondin, Dennis J Baumgardner, George E Moore, Lawrence T Glickman
+- **MeSH**: Animals, Blastomyces, Blastomycosis, Cat Diseases, Cats, Chicago, Disease Outbreaks, Incidence
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17262169/
+- **Captured**: 2026-05-10T12:02:31
+
+## Abstract
+
+Blastomyces dermatitidis, the etiologic agent of blastomycosis, a potentially life-threatening systemic mycosis of humans and animals, is acquired from a yet incompletely defined environmental niche. There is controversy regarding the potential for contact with the fungus in or near one's home, particularly in urban areas. We investigated an outbreak of blastomycosis among five urban, indoor cats diagnosed at three veterinary clinics March 3-July 13, 2005, in suburban Chicago, Illinois, by owner interviews, site visits, environmental cultures for B. dermatitidis, GIS analysis, and analysis of local weather data. There were no environmental exposures common to the five cats that lived a median of 300 m from nearest body of water, in homes on a loam soil. Closest and farthest case home sites were 3.4 and 26.1 km, respectively. All cats were confined indoors except one cat that averaged 15 min/week in his backyard and was exposed to excavation. B. dermatitidis was not isolated from any of 60 environmental samples. The annualized incidence rate March through July 2005 among 6,761 cats in these practices was 178/100,000, compared to none in the previous 4 years, and 0.14/100,000 cat visits from a nationwide animal hospital registry. Precipitation January through June 2005 was 9.30 versus period mean of 14.05 +/- 1.69 inches the previous 4 years (P = 0.01). Circumstantial evidence suggests acquisition of B. dermatitidis from the home site environment in five cats. Relative drought may have contributed to an apparent outbreak of blastomycosis in this urban locale.

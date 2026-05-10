@@ -1,0 +1,14 @@
+# Influence of oversewing the transverse staple line during functional end-to-end stapled intestinal anastomoses in dogs.
+
+- **PMID**: 32502297
+- **DOI**: 10.1111/vsu.13451
+- **PMCID**:  
+- **Journal**: Veterinary surgery : VS  ·  **Year**: 2020
+- **Authors**: Daniel J Duffy, George E Moore
+- **MeSH**: Anastomosis, Surgical, Anastomotic Leak, Animals, Dogs, Jejunum, Sutures
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32502297/
+- **Captured**: 2026-05-10T12:03:53
+
+## Abstract
+
+To determine the effect of oversewing the transverse staple line after functional end-to-end stapled intestinal anastomoses (FEESA) on canine jejunal leakage pressures. Experimental, ex vivo, randomized study. Jejunal segments from three adult canine cadavers. Jejunal segments were harvested within 2 hours of euthanasia and anastomosed (24 jejunal segments per group, consisting of two segments per construct with n = 12/ group). Constructs were then randomly assigned to receive FEESA alone, FEESA + Cushing oversew, or FEESA + simple-continuous oversew of the transverse staple line with 3-0 polydioxanone. Results for initial leakage pressure (ILP) and maximal leakage pressure (MLP) and initial leakage location (LL) were compared between groups. Mean ILP was 1.8-fold higher for FEESA + Cushing oversew (62.4 ± 7.8 mm Hg) compared with FEESA alone and FEESA + simple-continuous oversew (P < .001). Mean MLP were higher for both oversewn techniques compared with FEESA alone (P < .001). Oversewing the transverse staple line with either pattern increased mean MLP by 1.4-fold compared with FEESA alone. Leakage occurred at the level of the transverse staple line in nonoversewn constructs (P < .001). Oversewing the transverse staple line after FEESA increased MLP and decreased the occurrence of leakage at this location. Oversewing with a Cushing pattern increased ILP compared with oversew with a simple-continuous pattern. Our results provide evidence to support oversewing the transverse staple line after FEESA. Doing so may reduce the occurrence of postoperative dehiscence. These findings warrant additional focused investigation in vivo through a prospective randomized clinical trial.

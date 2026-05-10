@@ -1,0 +1,14 @@
+# Effect of needle size and type, reuse of needles, insertion speed, and removal of hair on contamination of joints with tissue debris and hair after arthrocentesis.
+
+- **PMID**: 20345539
+- **DOI**: 10.1111/j.1532-950X.2010.00649.x
+- **PMCID**:  
+- **Journal**: Veterinary surgery : VS  ·  **Year**: 2010
+- **Authors**: Stephen B Adams, George E Moore, Mohammed Elrashidy, Ahmed Mohamed, Paul W Snyder
+- **MeSH**: Animals, Asepsis, Cadaver, Debridement, Hair, Horses, Joints, Needles, Paracentesis, Punctures
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20345539/
+- **Captured**: 2026-05-10T12:02:45
+
+## Abstract
+
+To assess joint contamination with tissue and hair after arthrocentesis of equine fetlock joints. Experimental. Limb specimens from 8 equine cadavers. Soft tissues including the joint capsule were harvested from the dorsal aspect of the fetlock joints and mounted on a wooden frame. Needles inserted through the joint tissue preparation were flushed into tissue culture plates that were examined for tissue and hair debris. Variables evaluated were gauge and type of needle (16, 18, 20, and 22 G sharp disposable needles and 20 G disposable spinal needles with stylet), number of times each needle was used (1, 2, 3, 4), length of hair (unclipped, clipped, shaved with razor), and needle insertion speed (fast, slow). Descriptive and statistical evaluations were performed. Tissue contamination was identified in 1145 of 1260 wells and hair contamination was identified in 384 of 1260 wells. Twenty gauge needles inserted through unclipped hair resulted in the least amount of hair contamination. Compared with 20 G needles with fast insertion 1 time through unclipped hair the odds ratios for contamination with hair were significantly greater for 16 G sharp disposable needles, 20 G spinal needles, clipped hair, shaved hair, and reuse of the needles. Spinal needles inserted through unclipped hair transferred many long hairs into the joint space. Reuse of needles for arthrocentesis should be avoided. Removal of hair is not indicated for arthrocentesis with sharp injection needles but is recommended when using spinal needles with stylets. Joint contamination with hair and tissue debris will be decreased by specific needle insertion techniques. Decreased contamination of joints may reduce the frequency of joint infections after arthrocentesis.

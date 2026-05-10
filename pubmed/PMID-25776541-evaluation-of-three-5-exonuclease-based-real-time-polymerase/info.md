@@ -1,0 +1,14 @@
+# Evaluation of three 5' exonuclease-based real-time polymerase chain reaction assays for detection of pathogenic Leptospira species in canine urine.
+
+- **PMID**: 25776541
+- **DOI**: 10.1177/1040638715571360
+- **PMCID**:  
+- **Journal**: Journal of veterinary diagnostic investigation : official publication of the American Association of Veterinary Laboratory Diagnosticians, Inc  ·  **Year**: 2015
+- **Authors**: Jamie M Fink, George E Moore, Ruth Landau, Ramesh Vemulapalli
+- **MeSH**: Animals, Dog Diseases, Dogs, Leptospira, Leptospirosis, Nucleic Acid Amplification Techniques, RNA, Ribosomal, 16S, Real-Time Polymerase Chain Reaction, Sensitivity and Specificity
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25776541/
+- **Captured**: 2026-05-10T12:03:13
+
+## Abstract
+
+Leptospirosis is caused by several pathogenic Leptospira species, and is an important infectious disease of dogs. Early detection of infection is crucial for an effective antibiotic treatment of the disease. Though different polymerase chain reaction (PCR) assays have been developed for detection of pathogenic Leptospira spp., thorough evaluation of the performance of these assays using dog urine samples has not been carried out. In the current study, the performance of 3 real-time PCR (qPCR) assays was assessed, 1 targeting the 16S ribosomal RNA (rRNA) gene and the other 2 targeting the lipL32 gene, a gene for the LipL32 outer membrane protein. With DNA extracted from laboratory-cultured pathogenic Leptospira spp., all 3 qPCR assays showed 100% specificity and had identical lower limits of detection. Compared to a conventional, gel-based PCR assay, all 3 qPCR assays were 100-fold more sensitive. There was a 100% agreement in the results of the 3 assays when tested on urine samples collected aseptically from 30 dogs suspected for leptospirosis. However, when tested on 30 urine samples that were collected by the free-catch method, the 16S rRNA-based assay falsely detected 13.3% of the samples as positive for pathogenic Leptospira spp. Nucleotide sequence analysis of the amplified DNA fragments showed that the assay resulted in false positives because of unrelated bacteria. All urine samples collected from 100 apparently healthy dogs at a local animal shelter tested negative for pathogenic Leptospira spp. These results highlight the importance of sample-specific validation of PCR-based diagnostic assays and the application of appropriately validated assays for more reliable pathogen detection.

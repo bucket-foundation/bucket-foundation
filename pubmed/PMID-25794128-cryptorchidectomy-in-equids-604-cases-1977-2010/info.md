@@ -1,0 +1,14 @@
+# Cryptorchidectomy in equids: 604 cases (1977-2010).
+
+- **PMID**: 25794128
+- **DOI**: 10.2460/javma.246.7.777
+- **PMCID**:  
+- **Journal**: Journal of the American Veterinary Medical Association  ·  **Year**: 2015
+- **Authors**: Richard Hartman, Jan F Hawkins, Stephen B Adams, George E Moore, John F Fessler
+- **MeSH**: Animals, Cryptorchidism, Horse Diseases, Horses, Laparoscopy, Male, Orchiectomy, Postoperative Complications, Retrospective Studies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25794128/
+- **Captured**: 2026-05-10T12:03:13
+
+## Abstract
+
+To evaluate the management of equids undergoing cryptorchidectomy at a referral hospital. Retrospective case series. 604 client-owned equids. Medical records of all equids undergoing surgical treatment of cryptorchidism from 1977 to 2010 were retrospectively reviewed. Analyses of breed, location of retained testes, accuracy of palpation per rectum for determining the location of retained testes, surgical technique, and postoperative complications were performed. The most frequently affected breed was the Quarter Horse (282/604 [47%]), which was significantly overrepresented. Of the 604 equids, 90 (15%) had undergone previous surgical attempts at castration. Preoperative palpation per rectum was performed in 395/604 (65.4%) patients, and was accurate in predicting the location of the retained testes in 354/395 (89.6%). Surgeons were significantly more likely to be incorrect in determining the location of the retained testis by means of palpation per rectum in patients that had undergone a prior attempt at castration. For equids with abdominal cryptorchidism (360/604 [59.6%]), the most common surgical technique was noninvasive cryptorchidectomy (298/360 [82.8%]). In unilateral cryptorchids (521/604 [86.3%]), the 2 most common sites were left abdominal (184/521 [35.3%]) and right inguinal (148/521 [28.4%]). For bilateral retention (80/604 [13.2%]), abdominal cryptorchidism was most common (48/80 [60%]). Fever was present in 138/324 (43%) equids on the first day after surgery. Postoperative fever was not significantly associated with any variables evaluated. Including postoperative (≤ 24 hours) fever, 150 of 604 (25%) patients developed postoperative complications. Excluding postoperative fever, 18 of 604 (3%) patients developed major postoperative complications; complications in 10 of 604 patients were deemed surgically related, and 3 of 604 patients died. Results indicated that cryptorchidectomy in equids performed with a variety of surgical approaches was associated with minimal postoperative complications. A history of previous attempts at castration decreased the ability to accurately predict the location of the retained testis.

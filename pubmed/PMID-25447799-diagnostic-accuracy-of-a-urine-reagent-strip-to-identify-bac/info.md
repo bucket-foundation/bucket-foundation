@@ -1,0 +1,14 @@
+# Diagnostic accuracy of a urine reagent strip to identify bacterial peritonitis in dogs with ascites.
+
+- **PMID**: 25447799
+- **DOI**: 10.1016/j.tvjl.2014.09.020
+- **PMCID**:  
+- **Journal**: Veterinary journal (London, England : 1997)  ·  **Year**: 2014
+- **Authors**: E J Thomovsky, P A Johnson, G E Moore
+- **MeSH**: Animals, Ascites, Carboxylic Ester Hydrolases, Clinical Enzyme Tests, Dog Diseases, Dogs, Peritonitis, Reagent Strips, Sensitivity and Specificity, Urinalysis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25447799/
+- **Captured**: 2026-05-10T12:03:12
+
+## Abstract
+
+The leukocyte esterase test pad on a urine dipstick has been used as a preliminary test for bacterial peritonitis in humans but has not previously been evaluated in dogs. Here, free abdominal fluid from 60 dogs was tested on the leukocyte esterase test pad and results were compared with culture and microscopic analysis. Depending on the 'gold standard' comparator, the dipstick had sensitivity of ~60-75%, specificity of ~91-92%, positive predictive value of ~69%, and negative predictive value of ~87-94%. Based on these data, it appears that the leukocyte esterase test pad is most useful for tentative identification of cases in which bacterial infection is unlikely. Therefore a negative test may aid in re-directing clinician attention to alternative diagnoses in dogs with free abdominal effusion, whereas a positive result implies the necessity for further diagnostic tests.

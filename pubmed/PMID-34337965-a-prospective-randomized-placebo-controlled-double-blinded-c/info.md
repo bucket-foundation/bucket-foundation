@@ -1,0 +1,14 @@
+# A prospective, randomized, placebo-controlled, double-blinded clinical trial comparing the incidence and severity of gastrointestinal adverse events in dogs with cancer treated with piroxicam alone or in combination with omeprazole or famotidine.
+
+- **PMID**: 34337965
+- **DOI**: 10.2460/javma.259.4.385
+- **PMCID**:  
+- **Journal**: Journal of the American Veterinary Medical Association  ·  **Year**: 2021
+- **Authors**: Marejka H Shaevitz, George E Moore, Christopher M Fulkerson
+- **MeSH**: Animals, Dog Diseases, Dogs, Famotidine, Incidence, Neoplasms, Omeprazole, Piroxicam, Prospective Studies
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34337965/
+- **Captured**: 2026-05-10T12:04:05
+
+## Abstract
+
+To assess the impact of prophylactic omeprazole and famotidine on the incidence and severity of gastrointestinal (GI) adverse events (AEs) in dogs with cancer treated with single agent piroxicam. 39 dogs with a cytologic or histologic diagnosis of cancer with no history of GI disease and received piroxicam. A prospective, randomized, placebo-controlled, double-blinded clinical trial was performed. All dogs received piroxicam (0.3 mg/kg [0.14 mg/lb], PO, q 24 h) and either omeprazole (1 mg/kg [0.45 mg/lb], PO, q 12 h), famotidine (1 mg/kg, PO, q 12 h), or placebo (lactose; PO, q 12 h). Monthly assessments of GI AEs were performed and scored by using the Veterinary Comparative Oncology Group's Common Terminology Criteria for Adverse Events (version 1.1). Compared with dogs in the placebo group, more dogs in the omeprazole group (84.6% vs 36.4%) and famotidine group (80.0% vs 36.4%) experienced GI AEs by day 56. The severity of GI AEs was higher in the omeprazole group, compared with the placebo group. Omeprazole was not helpful in reducing the frequency or severity of GI AEs and was associated with more frequent and severer GI AEs in dogs with cancer treated with single agent piroxicam. Proton-pump inhibitors and H2-receptor antagonists should not be prescribed as prophylaxis with NSAIDs for dogs with cancer.

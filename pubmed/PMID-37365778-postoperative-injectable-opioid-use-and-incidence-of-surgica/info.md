@@ -1,0 +1,14 @@
+# Postoperative injectable opioid use and incidence of surgical site complications after use of liposomal bupivacaine in canine gastrointestinal foreign body surgery.
+
+- **PMID**: 37365778
+- **DOI**: 10.1111/vsu.13976
+- **PMCID**:  
+- **Journal**: Veterinary surgery : VS  ·  **Year**: 2023
+- **Authors**: Alexander P Rahn, George E Moore, Marije Risselada
+- **MeSH**: Humans, Dogs, Animals, Bupivacaine, Anesthetics, Local, Postoperative Pain, Analgesics, Opioid, Retrospective Studies, Incidence, Analgesics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37365778/
+- **Captured**: 2026-05-10T12:04:25
+
+## Abstract
+
+To compare postoperative analgesic use and postoperative complications between dogs that received liposomal bupivacaine (LB) during surgical gastrointestinal foreign body (GIFB) removal and those that did not. Retrospective study. Two hundred five dogs. Medical records for all dogs with GIFB removal at the Purdue University Veterinary Hospital between May 2017 and August 2021 were searched. Incomplete records and dogs with less than 2 weeks' veterinary follow up were excluded. Data collected included: patient information, time until surgery, intraoperative findings, surgical data (including perforation at time of surgery, linear vs. solid, enterotomy vs. enterectomy), use of LB (including time and manner of administration), time to extubation after surgery, in-hospital postoperative analgesic use and duration, and postoperative complications. Fentanyl was noted as used/not used, quantified as mean hourly rate over 12 h intervals. All analyses were performed using commercial statistical software with p < .05 as the significance level. Dogs that received LB were heavier (n = 65, median 28.5 kg) than those that did not (n = 140, median 24.4 kg) (p = .005). Postoperative fentanyl use (p < .05 between 13 and 72 h) and hourly rates (p < .05 between 13 and 48 h) were less, and postoperative time in the intensive care unit (ICU) (p < .001) and hospital were shorter (p < .001) in dogs receiving LB. Postoperative wound complications were seen in 7/65 dogs (10.8%, 95% CI = 4.4-21.0%) with LB and 4/140 (2.9%, 95% CI = 0.8-7.2%) without LB (p = .039). Use of LB was associated with reduced postoperative analgesic use, and shortened ICU and hospital stay but also with wound complications. Caution should be used when using LB in (clean) contaminated surgeries.

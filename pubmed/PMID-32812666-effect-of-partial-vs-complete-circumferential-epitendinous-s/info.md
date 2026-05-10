@@ -1,0 +1,14 @@
+# Effect of partial vs complete circumferential epitendinous suture placement on the biomechanical properties and gap formation of canine cadaveric tendons.
+
+- **PMID**: 32812666
+- **DOI**: 10.1111/vsu.13494
+- **PMCID**:  
+- **Journal**: Veterinary surgery : VS  ·  **Year**: 2020
+- **Authors**: Daniel J Duffy, Yi-Jen Chang, Matthew B Fisher, George E Moore
+- **MeSH**: Animals, Biomechanical Phenomena, Cadaver, Dogs, Plastic Surgery Procedures, Suture Techniques, Sutures, Tendon Injuries, Tendons, Tensile Strength
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32812666/
+- **Captured**: 2026-05-10T12:03:54
+
+## Abstract
+
+To determine the effect of partial vs complete circumferential epitendinous suture (ES) placement in addition to a core suture on the biomechanical strength and gapping characteristics of repaired canine tendinous constructs. Ex vivo, biomechanical study. Thirty-six canine superficial digital flexor tendons. Superficial digital flexor tendons were randomly assigned to three groups (n = 12), sharply transected and repaired with a core locking-loop suture with Group 1 a partial circumferential ES, 180° on the palmar side; Group 2 a complete circumferential ES, 360° and double knotting technique; or Group 3 a complete circumferential ES, 360° and single knotting technique. After preloading, constructs were distracted to monotonic failure. Failure mode, gap formation, yield, peak, and failure forces were analyzed. Mean yield (group 1 = 68.6 N, group 2 = 106.5 N, group 3 = 114 N, P < .013), peak (group 1 = 92.8 N, group 2 = 134.6 N, group 3 = 147.3 N; P < .001), and failure (group 1 = 88.7 N, group 2 = 133.0 N, group 3 = 145.5 N, P < .001) loads differed between groups. No difference in yield (P = .874), peak (P = .434), or failure load (P = .434) was detected between complete circumferential ES groups. Force to create 1-mm (P < .001) and 3-mm (P < .038) gap formation was greater in specimens with complete vs partial circumferential ES placement. Complete circumferential ES repairs failed primarily by suture pull-through compared with suture breakage in most partial circumferential ES constructs. Addition of a complete circumferential ES with a single or double knotting technique increased the biomechanical strength of normal tendon repairs while reducing gap formation compared with partial ES placement alone. Complete circumferential ES is recommended over partial ES placement.

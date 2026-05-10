@@ -1,0 +1,14 @@
+# Association between chronic azotemic kidney disease and the severity of periodontal disease in dogs.
+
+- **PMID**: 21345505
+- **DOI**: 10.1016/j.prevetmed.2011.01.011
+- **PMCID**:  
+- **Journal**: Preventive veterinary medicine  ·  **Year**: 2011
+- **Authors**: Lawrence T Glickman, Nita W Glickman, George E Moore, Elizabeth M Lund, Gary C Lantz, Barrak M Pressler
+- **MeSH**: Animals, Azotemia, Case-Control Studies, Cohort Studies, Comorbidity, Dog Diseases, Dogs, Female, Kidney Failure, Chronic, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21345505/
+- **Captured**: 2026-05-10T12:02:53
+
+## Abstract
+
+Naturally occurring periodontal disease affects >75% of dogs and has been associated with cardiac lesions and presumptive endocarditis. However, the relationships between periodontal disease and chronic kidney disease (CKD) in dogs have not been studied. In a retrospective longitudinal study the incidence of azotemic CKD was compared between a cohort of 164,706 dogs with periodontal disease and a cohort of age-matched dogs with no periodontal disease from a national primary care practice. These dogs contributed 415,971 dog-years of follow-up from 2002 to 2008. Hazard ratios and 95% confidence intervals from Cox regression were used to compare the incidence of azotemic CKD in dogs with stage 1, 2, or 3/4 periodontal disease to dogs with no periodontal disease. The hazard ratio for azotemic CKD increased with increasing severity of periodontal disease (stage 1 hazard ratio=1.8, 95% confidence interval: 1.6, 2.1; stage 2 hazard ratio=2.0, 95% confidence interval: 1.7, 2.3; stage 3/4 hazard ratio=2.7, 95% confidence interval: 2.3, 3.0; P(trend)=<0.0001) after adjustment for age, gender, neuter status, breed, body weight, number of hospital visits, and dental procedures. Increasing severity of periodontal disease was also associated with serum creatinine >1.4 mg/dl and blood urea nitrogen >36 mg/dl, independent of a veterinarian's clinical diagnosis of CKD.

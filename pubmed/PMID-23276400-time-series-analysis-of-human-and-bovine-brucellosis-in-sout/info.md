@@ -1,0 +1,14 @@
+# Time series analysis of human and bovine brucellosis in South Korea from 2005 to 2010.
+
+- **PMID**: 23276400
+- **DOI**: 10.1016/j.prevetmed.2012.12.003
+- **PMCID**:  
+- **Journal**: Preventive veterinary medicine  ·  **Year**: 2013
+- **Authors**: Hu Suk Lee, Moon Her, Michael Levine, George E Moore
+- **MeSH**: Animals, Binomial Distribution, Brucellosis, Brucellosis, Bovine, Cattle, Humans, Regression Analysis, Republic of Korea, Retrospective Studies, Time Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23276400/
+- **Captured**: 2026-05-10T12:02:59
+
+## Abstract
+
+Brucellosis is considered to be one of the most important zoonotic diseases in the world, affecting underdeveloped and developing countries. The primary purpose of brucellosis control is to prevent the spread of disease from animals (typically ruminants) to humans. The main objective of this study was to retrospectively develop an appropriate time series model for cattle-to-human transmission in South Korea using data from independent national surveillance systems. Monthly case counts for cattle and people as well as national population data were available for 2005-2010. The temporal relationship was evaluated using an autoregressive integrated moving average with exogenous input (ARIMAX) model [notated as ARIMA(p, d, q)-AR(p)] and a negative binomial regression (NBR) model. Human incidence rate was highly correlated to cattle incidence rate in the same month and the previous month (both r=0.82). In the final models, ARIMA (0, 1, 1)-AR (0, 1) was determined as the best fit with 191.5% error in the validation phase, whereas the best NBR model including lags (0, 1 months) for the cattle incidence rate yielded a 131.9% error in the validation phase. Error (MAPE) rates were high due to small absolute human case numbers (typically less than 10 per month in the validation phase). The NBR model however was able to demonstrate a marked reduction in human case immediately following a hypothetical marked reduction in cattle cases, and may be better for public health decision making.

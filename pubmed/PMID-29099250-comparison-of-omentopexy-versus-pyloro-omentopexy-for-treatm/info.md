@@ -1,0 +1,14 @@
+# Comparison of omentopexy versus pyloro-omentopexy for treatment of left abomasal displacement in dairy cows: 87 cases (2001-2005).
+
+- **PMID**: 29099250
+- **DOI**: 10.2460/javma.251.10.1182
+- **PMCID**:  
+- **Journal**: Journal of the American Veterinary Medical Association  ·  **Year**: 2017
+- **Authors**: Aubrey N Baird, Ahmed Mohamed, George E Moore, Jan F Hawkins
+- **MeSH**: Abomasum, Animals, Cattle, Cattle Diseases, Digestive System Surgical Procedures, Female, Postoperative Complications, Retrospective Studies, Stomach Diseases, Treatment Outcome
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29099250/
+- **Captured**: 2026-05-10T12:03:30
+
+## Abstract
+
+OBJECTIVE To evaluate reproductive performance and productive longevity of dairy cows treated for left displaced abomasum (LDA) with 1 of 2 surgical techniques (omentopexy vs pyloro-omentopexy). DESIGN Retrospective case series. ANIMALS 87 Holstein cows that underwent omentopexy or pyloro-omentopexy for LDA during a 5-year period. PROCEDURES For each cow with LDA, the most recent date of calving, age at time of surgery, and surgical procedure were recorded. Dairy records of cows treated for LDA in the 5-year period were reviewed to determine their reproductive performance. Records available for up to 4 years after the last surgery (ie, when all treated cows had left the herd) were reviewed to determine cull dates and reasons for treated and untreated cows in the herd. RESULTS Of the 87 cows with LDA, 58 underwent pyloro-omentopexy and 29 underwent omentopexy. Cows in the 2 treatment groups did not significantly differ in age. Fifty-six cows completed > 1 subsequent lactation cycle after surgery. The median time that cows with LDA remained in the herd was 566 days (range, 24 to 1,838 days); the times for the 2 treatment groups did not significantly differ. For treated and untreated cows, cull rates for reproductive failure or other problems were similar. Four (14%) omentopexy-treated cows and no pyloro-omentopexy-treated cows had a reoccurrence of LDA. CONCLUSIONS AND CLINICAL RELEVANCE Results indicated that cows with LDA that underwent omentopexy or pyloro-omentopexy had similar cull rates and reasons as unaffected herd mates over their productive time in the herd. Between the 2 treatment groups, only the LDA reoccurrence rate differed.

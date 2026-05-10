@@ -1,0 +1,14 @@
+# Comparison of initial leak pressures after single- and double-layer cystotomy closure with barbed and nonbarbed monofilament suture material in an ex vivo ovine model.
+
+- **PMID**: 30635932
+- **DOI**: 10.1111/vsu.13160
+- **PMCID**:  
+- **Journal**: Veterinary surgery : VS  ·  **Year**: 2019
+- **Authors**: Daniel J Duffy, Cameron G Kindra, George E Moore
+- **MeSH**: Animals, Cadaver, Cystotomy, Pressure, Sheep, Suture Techniques, Sutures, Urinary Bladder
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30635932/
+- **Captured**: 2026-05-10T12:03:41
+
+## Abstract
+
+To compare initial leakage pressure after double-layer inverting and single-layer appositional closures with unidirectional barbed suture or an analogous monofilament absorbable suture in an ex vivo ovine model. Experimental study. Ovine cadaveric bladders (n = 48). A 4-cm ventral cystotomy was performed in each bladder. Bladders were randomly divided into 4 groups (n = 12 each group) and sutured in an open setting with a single-layer appositional or a double-layer inverting pattern of unidirectional 2-0 barbed or an analogous monofilament suture. Intraluminal pressure at initial leakage and leakage location were recorded. Analysis of variance was used to compare initial leak pressure between the 4 groups (P < .05). Ovine urinary bladders closed with double-layer inverting closures leaked at intraluminal pressures about twofold greater than bladders closed with single-layer appositional closures (P < .0001) whether barbed or nonbarbed suture was used (P ≥ .987). Bladders most commonly leaked at the suture hole after single-layer closure. Bladders that had been repaired with a double-layer closure leaked at the knot in nonbarbed closures or at the preconstructed end loop in barbed closures. Double-layer closure increased leakage pressures compared with single-layer closures, irrespective of the suture type used. This study provides evidence to support double-layer rather than single-layer closure of cystotomies in clinical cases. The use of barbed suture may be suitable for cystorrhaphy in sheep.

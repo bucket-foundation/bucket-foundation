@@ -1,0 +1,14 @@
+# Absorption of Transdermal Fluoxetine Compounded in a Lipoderm Base Compared to Oral Fluoxetine in Client-owned Cats.
+
+- **PMID**: 28557786
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: International journal of pharmaceutical compounding  ·  **Year**: 2017
+- **Authors**: Lauren R Eichstadt, Lorraine A Corriveau, George E Moore, Gregory T Knipp, Bruce R Cooper, Wilson E Gwin
+- **MeSH**: Administration, Cutaneous, Administration, Oral, Animals, Cats, Fluoxetine, Tablets
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28557786/
+- **Captured**: 2026-05-10T12:03:27
+
+## Abstract
+
+The objective of this study was to compare serum concentrations of transdermal fluoxetine compounded in Lipoderm base versus commercially available oral fluoxetine tablets. Sixteen clinically healthy, client-owned cats that were at least one year of age were enrolled. Cats weighed between three and seven kilograms, had no comorbidities, and were behavior medication naïve. Cats were recruited from January 2016 through April 2016. Eight cats were assigned to each medication group based on owner preference. The cats received either oral (1 mg/kg) or transdermal (5 mg/kg; maximum 25 mg daily) fluoxetine compounded in a transdermal base (PCCA Lipoderm), administered daily for 60 days. Serum levels of fluoxetine and norfluoxetine were assessed as a surrogate for relative efficacy. Serum was collected and analyzed by high-performance liquid chromatography-mass spectrometry/mass spectrometry at baseline and days 5, 10, 30, 45, and 60 post-drug start. Adverse effects were monitored during physical exams, speaking with owners, and laboratory analysis of liver function tests at baseline and days 5, 30, and 60 post-drug start. Serum fluoxetine concentrations significantly differed between the treatment groups at days 45 and 60 post-drug start. Norfluoxetine concentrations significantly differed at days 30, 45, and 60 post-drug start. Blood concentrations of fluoxetine and norfluoxetine significantly differed between oral and transdermal routes after 30 days of treatment. Oral fluoxetine concentrations were consistently higher. Transdermal fluoxetine appeared to be well-tolerated, but a lack of knowledge regarding effective blood levels makes it unclear if a clinical effective response would be obtained at the blood concentrations achieved.

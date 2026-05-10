@@ -1,0 +1,14 @@
+# High expression of obesity-linked phosphatase SHIP2 in invasive breast cancer correlates with reduced disease-free survival.
+
+- **PMID**: 19065064
+- **DOI**: 10.1159/000172970
+- **PMCID**:  
+- **Journal**: Tumour biology : the journal of the International Society for Oncodevelopmental Biology and Medicine  ·  **Year**: 2008
+- **Authors**: Nagendra K Prasad, Manish Tandon, Anant Handa, George E Moore, Charles F Babbs, Paul W Snyder, Shikha Bose
+- **MeSH**: Adult, Aged, Aged, 80 and over, Biomarkers, Tumor, Blotting, Western, Breast Neoplasms, Carcinoma, Ductal, Breast, Carcinoma, Intraductal, Noninfiltrating, Case-Control Studies, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19065064/
+- **Captured**: 2026-05-10T12:02:41
+
+## Abstract
+
+SH2-containing 5'-inositol phosphatase (SHIP2) is a known regulator of insulin function. Genetic knockout of SHIP2 in mice causes mild insulin hypersensitivity and prevents high-fat-diet-induced obesity. SHIP2 also regulates actin remodeling and epidermal growth factor receptor (EGFR) turnover and supports breast cancer; and metastatic growth. To determine the clinical significance of SHIP2 expression in breast cancer and its relationship to relevant oncogenic molecules, SHIP2 expression was determined immunohistochemically in 285 primary breast cancers; 140 ductal carcinomas in situ (DCIS) and 145 invasive carcinomas. Forty-five percent of the specimens showed high SHIP2 levels in cancer cells while only 15% of adjacent normal cells expressed high SHIP2 levels (p < 0.0001). In cancer cells, the risk of SHIP2 overexpression is elevated (a) in women aged < or =50 years (relative risk, RR = 4.13; 95% confidence interval, CI, 2.5-6.9) compared to women aged >50 years (RR = 2.37; 95% CI 1.6-3.5; p = 0.0003), and (b) in invasive carcinomas (RR = 3.52; 95% CI 2.3-5.5) compared with DCIS (RR = 2.22; 95% CI 1.5-3.5; p = 0.0009). Patients with higher SHIP2 levels in invasive carcinomas had significantly reduced disease-free (p = 0.0025) and overall survival periods (p = 0.0228). In invasive carcinomas, SHIP2 correlated with estrogen receptor absence (p = 0.003) and EGFR presence (p = 0.0147). In conclusion, SHIP2 is an important biomarker for breast cancer.

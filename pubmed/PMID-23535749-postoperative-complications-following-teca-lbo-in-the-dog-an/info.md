@@ -1,0 +1,14 @@
+# Postoperative complications following TECA-LBO in the dog and cat.
+
+- **PMID**: 23535749
+- **DOI**: 10.5326/JAAHA-MS-5738
+- **PMCID**:  
+- **Journal**: Journal of the American Animal Hospital Association  ·  **Year**: 2013
+- **Authors**: Rebecca E Spivack, A Derrell Elkins, George E Moore, Gary C Lantz
+- **MeSH**: Animals, Cat Diseases, Cats, Dog Diseases, Dogs, Ear Diseases, Facial Paralysis, Female, Horner Syndrome, Incidence
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23535749/
+- **Captured**: 2026-05-10T12:03:02
+
+## Abstract
+
+The medical records for 133 total ear canal ablations combined with lateral bulla osteotomies (TECA-LBOs) performed on 82 dogs (121 ears) and 11 cats (12 ears) between 2004 and 2010 were reviewed to determine if the duration of preoperative clinical signs was associated with the incidence of postoperative facial nerve injury and Horner's syndrome. Other perioperative complications, such as a head tilt, nystagmus, incisional drainage, draining tracts, hearing loss, as well as bacterial culture results, were noted. Postoperative facial nerve paresis occurred in 36 of 133 ears (27.1%), and paralysis occurred in 29 of 133 ears (21.8%), with no significant difference between species. Thus, postoperative facial nerve deficits occurred in 48.9% of ears. The median duration of clinically evident temporary facial nerve deficits was 2 wk for dogs and 4 wk for cats. Dogs had a significantly longer duration of preoperative clinical signs and were less likely than cats to have a mass in the ear canal. Dogs were less likely to have residual (> 1 yr) postoperative facial nerve deficits. The incidence of postoperative Horner's syndrome was significantly higher in cats than dogs. The duration of preoperative clinical signs of ear disease was not associated with postoperative facial nerve deficits.

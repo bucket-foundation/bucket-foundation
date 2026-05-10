@@ -1,0 +1,14 @@
+# Evidence of acrolein in synovial fluid of dogs with osteoarthritis as a potential inflammatory biomarker.
+
+- **PMID**: 34670524
+- **DOI**: 10.1016/j.resp.2010.08.019
+- **PMCID**: PMC2991541 (full-text saved)
+- **Journal**: BMC musculoskeletal disorders  ·  **Year**: 2021
+- **Authors**: Seth A Herr, Sarah Malek, Mark C Rochat, George E Moore, Jeff C Ko, Riyi Shi
+- **MeSH**: Acrolein, Animals, Biomarkers, Dogs, Matrix Metalloproteinase 2, Osteoarthritis, Synovial Fluid
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34670524/
+- **Captured**: 2026-05-10T12:04:07
+
+## Abstract
+
+Acrolein is a known pro-inflammatory toxic aldehyde, propagating cellular damage and tissue inflammation in humans and animal models of various diseases. Osteoarthritis (OA) has a significant inflammatory component; however, presence of acrolein in synovial fluid of joints with OA has not been previously reported. The first aim of this study was to evaluate evidence of acrolein in the synovial fluid of dogs with OA as well as in Control joints. The second aim was to determine if evidence of acrolein can be detected in synovial fluid samples that have been in a frozen state for long periods of time. In this pilot clinical study, synovial fluid samples were prospectively collected (i.e., New samples) from a single joint of both clinically healthy (New Control, n = 5) and dogs with OA (New OA, n = 16) and frozen until the time of analysis. Additionally, frozen synovial fluid samples from a biobank (i.e., Old samples) were used to evaluate ability to detect evidence of acrolein in long-term stored samples (median of 4.89 years) in Old Control (n = 5) and Old OA (n = 5) samples. Measurements of acrolein in all synovial fluid samples was based on detection of its major protein adduct, N ε - (3-formyl-3, 4-dehydropiperidino)lysine (FDP-lysine), using the western blot method. Synovial fluid matrix metalloproteinase 2 (MMP2) was measured in all samples using the western blot method as a positive control of OA inflammation. Acrolein-lysine adduct was detected in both Control (n = 10) and OA (n = 21) groups in both Old and New samples. Acrolein-lysine adduct and MMP2 were detectable at a lower level in the Old compared to New synovial fluid samples; however, the differences were not statistically significant (p > 0.1). The measured MMP2 levels were significantly higher in the OA compared to Control group samples (p = 0.033), but not for acrolein-lysine adduct (p = 0.30). This study confirmed evidence of acrolein in canine synovial fluid of both OA and Control groups. Freezing of synovial fluid for up to 5 years does not appear to significantly affect the ability to detect acrolein-lysine adduct and MMP2 in these samples.

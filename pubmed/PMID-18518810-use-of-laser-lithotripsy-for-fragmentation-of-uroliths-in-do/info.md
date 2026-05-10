@@ -1,0 +1,14 @@
+# Use of laser lithotripsy for fragmentation of uroliths in dogs: 73 cases (2005-2006).
+
+- **PMID**: 18518810
+- **DOI**: 10.2460/javma.232.11.1680
+- **PMCID**:  
+- **Journal**: Journal of the American Veterinary Medical Association  ·  **Year**: 2008
+- **Authors**: Larry G Adams, Allyson C Berent, George E Moore, Demetrius H Bagley
+- **MeSH**: Animals, Dog Diseases, Dogs, Female, Lithotripsy, Laser, Male, Postoperative Complications, Retrospective Studies, Sex Factors, Treatment Outcome
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18518810/
+- **Captured**: 2026-05-10T12:02:38
+
+## Abstract
+
+To describe use of transurethral cystoscope-guided laser lithotripsy for fragmentation of cystic and urethral uroliths and determine procedure duration and short-term and long-term outcome in dogs. Retrospective case series. 73 dogs with naturally occurring uroliths in the urinary bladder, urethra, or both. Transurethral cystoscope-guided laser lithotripsy was performed in all dogs, and medical records were reviewed for short-term and long-term outcome and complications. Laser lithotripsy resulted in complete fragmentation of all uroliths in all 28 female dogs and a majority of male dogs (39/45 [86.7%]). Dogs with urethroliths had shorter median laser time than dogs with cystic uroliths. Basket extraction and voiding urohydro-propulsion were successful for removal of the urolith fragments following laser lithotripsy. Complications related to cystoscope-guided laser lithotripsy occurred in 5 of 28 (17.9%) female dogs and 6 of 45 (13.3%) male dogs. Transurethral cystoscope-guided laser lithotripsy was successful in female dogs and most male dogs for fragmentation of cystic and urethral uroliths. Short-term complications were most commonly related to urethral swelling and resolved with placement of an indwelling urinary catheter. There were no long-term complications.

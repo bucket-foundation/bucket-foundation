@@ -1,0 +1,14 @@
+# Electroencephalographic and Cardiovascular Changes Associated with Propofol Constant Rate of Infusion Anesthesia in Young Healthy Dogs.
+
+- **PMID**: 36830451
+- **DOI**: 10.1186/s12917-020-02532-y
+- **PMCID**: PMC7489203 (full-text saved)
+- **Journal**: Animals : an open access journal from MDPI  ·  **Year**: 2023
+- **Authors**: Carla Murillo, Ann B Weil, George E Moore, Matthias Kreuzer, Jeff C Ko
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36830451/
+- **Captured**: 2026-05-10T12:04:21
+
+## Abstract
+
+This study aimed to evaluate electroencephalography (EEG) and cardiovascular changes associated with propofol constant rate of infusion (CRI) anesthesia in dogs. Six dogs were each given propofol CRI to induce different anesthetic phases including induction (1 mg/kg/min for 10 min), and decremental maintenance doses of 2.4 mg per kg per min, 1.6 mg per kg per min, and 0.8 mg per kg per minute over 45 min. Processed EEG indices including patient state index (PSI), (burst) suppression ratio (SR), and spectral edge frequency (95%) were obtained continuously until the dogs recovered to sternal recumbency. The dogs were intubated and ventilated. Cardiovascular and EEG index values were compared between anesthetic phases. The PSI, SR, mean arterial blood pressure, and subjective anesthetic depth scores were highly correlated throughout anesthetic depth changes. The PSI decreased from 85.0 ± 17.3 at awake to 66.0 ± 29.0 at induction, and then sharply reduced to 19.7 ± 23.6 during maintenance and returned to 61.5 ± 19.2 at extubation. The SR increased from 15.4 ± 30.9% at induction to 70.9 ± 39.8% during maintenance and decreased to 3.4 ± 8.9% at extubation. We concluded that EEG indices can be used to aid in tracking ongoing brain state changes during propofol anesthesia in dogs.
