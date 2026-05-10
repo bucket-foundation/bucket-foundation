@@ -1,0 +1,14 @@
+# Disparities in healthcare utilisation rates for Aboriginal and non-Aboriginal Albertan residents, 1997-2006: a population database study.
+
+- **PMID**: 23152770
+- **DOI**: 10.1371/journal.pone.0048355
+- **PMCID**: PMC2219712 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2012
+- **Authors**: Helen Chung, Ming Ye, Chris Hanson, Oluwaseun Oladokun, Michael J Campbell, Gordon Kramer, Ordan J Lehmann
+- **MeSH**: Adolescent, Adult, Age Factors, Aged, Aged, 80 and over, Alberta, Child, Child, Preschool, Databases, Factual, Healthcare Disparities
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23152770/
+- **Captured**: 2026-05-10T13:19:54
+
+## Abstract
+
+It is widely recognised that significant discrepancies exist between the health of indigenous and non-indigenous populations. Whilst the reasons are incompletely defined, one potential cause is that indigenous communities do not access healthcare to the same extent. We investigated healthcare utilisation rates in the Canadian Aboriginal population to elucidate the contribution of this fundamental social determinant for health to such disparities. Healthcare utilisation data over a nine-year period were analysed for a cohort of nearly two million individuals to determine the rates at which Aboriginal and non-Aboriginal populations utilised two specialties (Cardiology and Ophthalmology) in Alberta, Canada. Unadjusted and adjusted healthcare utilisation rates obtained by mixed linear and Poisson regressions, respectively, were compared amongst three population groups - federally registered Aboriginals, individuals receiving welfare, and other Albertans. Healthcare utilisation rates for Aboriginals were substantially lower than those of non-Aboriginals and welfare recipients at each time point and subspecialty studied [e.g. During 2005/06, unadjusted Cardiology utilisation rates were 0.28% (Aboriginal, n = 97,080), 0.93% (non-Aboriginal, n = 1,720,041) and 1.37% (Welfare, n = 52,514), p = <0.001]. The age distribution of the Aboriginal population was markedly different [2.7%≥65 years of age, non-Aboriginal 10.7%], and comparable utilisation rates were obtained after adjustment for fiscal year and estimated life expectancy [Cardiology: Incidence Rate Ratio 0.66, Ophthalmology: IRR 0.85]. The analysis revealed that Aboriginal people utilised subspecialty healthcare at a consistently lower rate than either comparatively economically disadvantaged groups or the general population. Notably, the differences were relatively invariant between the major provincial centres and over a nine year period. Addressing the causes of these discrepancies is essential for reducing marked health disparities, and so improving the health of Aboriginal people.

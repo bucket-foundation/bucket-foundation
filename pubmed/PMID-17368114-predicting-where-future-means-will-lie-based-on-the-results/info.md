@@ -1,0 +1,14 @@
+# Predicting where future means will lie based on the results of the current trial.
+
+- **PMID**: 17368114
+- **DOI**: 10.1016/j.cct.2007.01.010
+- **PMCID**:  
+- **Journal**: Contemporary clinical trials  ·  **Year**: 2007
+- **Authors**: Steven A Julious, Michael J Campbell, Stephen J Walters
+- **MeSH**: Blood Pressure, Clinical Trials as Topic, Confidence Intervals, Forecasting, Humans, Reproducibility of Results, Sample Size, Statistical Distributions
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17368114/
+- **Captured**: 2026-05-10T13:18:25
+
+## Abstract
+
+We show that the proportion of estimates of mean effects in future trials that would be expected to fall within the 95% confidence interval of a current trial is 83.4% for a large sample size--assuming that the sample size for a future trial is the same as for the current trial. Using the results from this paper you can predict the results for future trials from those observed in the current trial.

@@ -1,0 +1,14 @@
+# [Two cases of episodic angioedema associated with eosinophilia].
+
+- **PMID**: 11218318
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: Nihon Jinzo Gakkai shi  ·  **Year**: 2001
+- **Authors**: M Toyoda, D Suzuki, G Uehara, T Umezono, T Horiki, M Yagame, M Endoh, K Kurokawa, H Sakai
+- **MeSH**: Adult, Angioedema, Eosinophilia, Female, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11218318/
+- **Captured**: 2026-05-10T13:15:56
+
+## Abstract
+
+We experienced two cases of limb edema of unknown pathogenesis. No evidence was found concerning involvement of the kidneys, heart of other visceral organs. Case 1 was 22-year-old woman. Her white blood cell count increased to 13,100/microliter with 65.0% eosinophils. Case 2 was a 27-year-old woman. Her white blood cell count increased to 23,300/microliter with 67.0% eosinophils. In these cases, extensive diagnostic evaluations revealed no evidence of atopy, neoplasms, collagen-vascular disease, or parasitic infestation. We diagnosed these cases as episodic angioedema with eosinophilia. In both cases, the angioedema improved gradually in parallel with a decrease in the white blood cell count. This disorder is very rare, but it is very important to consider it in differential diagnosis especially for nephrologists.

@@ -1,0 +1,14 @@
+# An investigation into the interaction between taste masking fatty acid microspheres and alkaline buffer using thermal and spectroscopic analysis.
+
+- **PMID**: 16552746
+- **DOI**: 10.1002/jps.20596
+- **PMCID**:  
+- **Journal**: Journal of pharmaceutical sciences  ·  **Year**: 2006
+- **Authors**: Sheng Qi, David Deutsch, Duncan Q M Craig
+- **MeSH**: Alkalies, Buffers, Calorimetry, Differential Scanning, Fatty Acids, Hydrogen-Ion Concentration, Microspheres, Palmitic Acid, Soaps, Stearic Acids, Taste
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16552746/
+- **Captured**: 2026-05-10T13:17:53
+
+## Abstract
+
+Fatty acid-based microspheres may be used for the controlled delivery and taste masking of therapeutic agents, although the mechanisms involved in the release process are poorly understood. In this investigation, microspheres composed of high purity stearic and palmitic acid were prepared using a spray-chilling protocol. In addition, samples of binary fatty acid systems, fatty acid salts and acid-soaps were prepared to allow comparison with the microspheres. The interaction with alkaline buffer, into which release is known to be rapid, was studied using DSC and powder XRD with a view to examining the physicochemical changes undergone by the microspheres as a result of exposure to this medium. New species were identified for the postimmersion microsphere systems; similarities between the thermal and spectroscopic properties of these materials and the acid-soap references indicated the formation of acid-soaps during the exposure to the medium. The data indicate that simple exposure to buffer may result in the formation of acid soaps. This in turn has implications for understanding not only the release of drugs from the microspheres but also the biological fate of fatty acids on ingestion.

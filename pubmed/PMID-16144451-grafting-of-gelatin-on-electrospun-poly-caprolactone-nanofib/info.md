@@ -1,0 +1,14 @@
+# Grafting of gelatin on electrospun poly(caprolactone) nanofibers to improve endothelial cell spreading and proliferation and to control cell Orientation.
+
+- **PMID**: 16144451
+- **DOI**: 10.1089/ten.2005.11.1149
+- **PMCID**:  
+- **Journal**: Tissue engineering  ·  **Year**: 2005
+- **Authors**: Zuwei Ma, Wei He, Thomas Yong, S Ramakrishna
+- **MeSH**: Cell Culture Techniques, Cell Movement, Cell Polarity, Cell Proliferation, Cells, Cultured, Coated Materials, Biocompatible, Electrochemistry, Endothelial Cells, Gelatin, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/16144451/
+- **Captured**: 2026-05-10T13:17:45
+
+## Abstract
+
+We modified the surface of electrospun poly(caprolactone) (PCL) nanofibers to improve their compatibility with endothelial cells (ECs) and to show the potential application of PCL nanofibers as a blood vessel tissue-engineering scaffold. Nonwoven PCL nanofibers (PCL NF) and aligned PCL nanofibers (APCL NF) were fabricated by electrospinning technology. To graft gelatin on the nanofiber surface, PCL nanofibers were first treated with air plasma to introduce -COOH groups on the surface, followed by covalent grafting of gelatin molecules, using water-soluble carbodiimide as the coupling agent. The chemical change in the material surface during surface modification was confirmed by X-ray photoelectron spectroscopy and quantified by colorimetric methods. ECs were cultured to evaluate the cytocompatibility of surface-modified PCL NF and APCL NF. Gelatin grafting can obviously enhance EC spreading and proliferation compared with the original material. Moreover, gelatin-grafted APCL NF readily orients ECs along the fibers whereas unmodified APCL NF does not. Immunostaining micrographs showed that ECs cultured on gelatin-grafted PCL NF were able to maintain the expression of three characteristic markers: platelet-endothelial cell adhesion molecule 1 (PECAM-1), intercellular adhesion molecule 1 (ICAM-1), and vascular cell adhesion molecule 1 (VCAM-1). The surface-modified PCL nanofibrous material is a potential candidate material in blood vessel tissue engineering.

@@ -1,0 +1,14 @@
+# Applications of polymer nanofibers in biomedicine and biotechnology.
+
+- **PMID**: 15917579
+- **DOI**: 10.1385/abab:125:3:147
+- **PMCID**:  
+- **Journal**: Applied biochemistry and biotechnology  ·  **Year**: 2005
+- **Authors**: J Venugopal, S Ramakrishna
+- **MeSH**: Biocompatible Materials, Biomedical Engineering, Biotechnology, Cell Culture Techniques, Drug Delivery Systems, Nanostructures, Particle Size, Polymers, Tissue Engineering
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15917579/
+- **Captured**: 2026-05-10T13:17:41
+
+## Abstract
+
+Recent advancements in the electrospinning method enable the production of ultrafine solid and continuous fibers with diameters ranging from a few nanometers to a few hundred nanometers with controlled surface and internal molecular structures. A wide range of biodegradable biopolymers can be electrospun into mats with specific fiber arrangement and structural integrity. Through secondary processing, the nanofiber surface can be functionalized to display specific biochemical characteristics. It is hypothesized that the large surface area of nanofibers with specific surface chemistry facilitates attachment of cells and control of their cellular functions. These features of nanofiber mats are morphologically and chemically similar to the extracellular matrix of natural tissue, which is characterized by a wide range of pore diameter distribution, high porosity, effective mechanical properties, and specific biochemical properties. The current emphasis of research is on exploiting such properties and focusing on determining appropriate conditions for electrospinning various polymers and biopolymers for eventual applications including multifunctional membranes, biomedical structural elements (scaffolds used in tissue engineering, wound dressing, drug delivery, artificial organs, vascular grafts), protective shields in specialty fabrics, and filter media for submicron particles in the separation industry. This has resulted in the recent applications for polymer nanofibers in the field of biomedicine and biotechnology.

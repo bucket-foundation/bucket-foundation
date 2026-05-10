@@ -1,0 +1,14 @@
+# GTP hydrolysis mechanisms in ras p21 and in the ras-GAP complex studied by fluorescence measurements on tryptophan mutants.
+
+- **PMID**: 1883817
+- **DOI**: 10.1021/bi00098a002
+- **PMCID**:  
+- **Journal**: Biochemistry  ·  **Year**: 1991
+- **Authors**: B Antonny, P Chardin, M Roux, M Chabre
+- **MeSH**: Amino Acid Sequence, Animals, Base Sequence, Fungal Proteins, GTP Phosphohydrolases, GTP-Binding Proteins, GTPase-Activating Proteins, Guanosine Diphosphate, Guanosine Triphosphate, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1883817/
+- **Captured**: 2026-05-10T13:18:56
+
+## Abstract
+
+We have substituted leucine 56 or tyrosine 64 of p21 ras with a tryptophan. The intrinsic fluorescence of this tryptophan was used as an internal conformational probe for time-resolved biochemical studies of the ras protein. The slow intrinsic GTPase, GDP/GTP exchange induced by the SDC25 "exchange factor", and the fast GTP hydrolysis induced by GAP were studied. Tryptophan fluorescence of mutated ras is very sensitive to magnesium binding, GDP/GTP exchange, and GTP hydrolysis (changes in tyrosine fluorescence of wild-type ras are also observed but with a lower sensitivity). Nucleotide affinities, exchange kinetics, and intrinsic GTPase rates of the mutated ras could be measured by this method and were found to be close to those of wild-type ras. The SDC25 gene product enhances GDP/GTP exchange in both mutants. In both mutants, a slow fluorescence change follows the binding of GTP gamma S; its kinetics are close to those of the intrinsic GTPase, suggesting that a slow conformational change precedes the GTPase and is the rate-limiting step, as proposed by Neal et al. (1990) (Proc. Natl. Acad. Sci. U.S.A. 87, 3562-3565). GAP interacts with both mutant ras proteins and accelerates the GTPase of (L56W)ras but not that of (Y64W)ras, suggesting a role for tyrosine 64 in GAP-induced GTP hydrolysis. However, GAP does not accelerate the slow conformational change following GTP gamma S binding in either of the mutated ras proteins. This suggests that the fast GAP-induced catalysis of GTP hydrolysis that is observed with (L56W)ras bypasses the slow conformational change associated with the intrinsic GTPase and therefore might proceed by a different mechanism.

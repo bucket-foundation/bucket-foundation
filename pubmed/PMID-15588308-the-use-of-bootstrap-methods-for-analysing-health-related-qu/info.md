@@ -1,0 +1,14 @@
+# The use of bootstrap methods for analysing Health-Related Quality of Life outcomes (particularly the SF-36).
+
+- **PMID**: 15588308
+- **DOI**: 10.1002/sim.1433
+- **PMCID**: PMC28546 (full-text saved)
+- **Journal**: Health and quality of life outcomes  ·  **Year**: 2004
+- **Authors**: Stephen J Walters, Michael J Campbell
+- **MeSH**: Arthritis, Rheumatoid, Computer Simulation, Confidence Intervals, Data Interpretation, Statistical, Humans, Leg Ulcer, Longitudinal Studies, Observation, Odds Ratio, Osteoarthritis, Knee
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15588308/
+- **Captured**: 2026-05-10T13:17:35
+
+## Abstract
+
+Health-Related Quality of Life (HRQoL) measures are becoming increasingly used in clinical trials as primary outcome measures. Investigators are now asking statisticians for advice on how to analyse studies that have used HRQoL outcomes.HRQoL outcomes, like the SF-36, are usually measured on an ordinal scale. However, most investigators assume that there exists an underlying continuous latent variable that measures HRQoL, and that the actual measured outcomes (the ordered categories), reflect contiguous intervals along this continuum. The ordinal scaling of HRQoL measures means they tend to generate data that have discrete, bounded and skewed distributions. Thus, standard methods of analysis such as the t-test and linear regression that assume Normality and constant variance may not be appropriate. For this reason, conventional statistical advice would suggest that non-parametric methods be used to analyse HRQoL data. The bootstrap is one such computer intensive non-parametric method for analysing data. We used the bootstrap for hypothesis testing and the estimation of standard errors and confidence intervals for parameters, in four datasets (which illustrate the different aspects of study design). We then compared and contrasted the bootstrap with standard methods of analysing HRQoL outcomes. The standard methods included t-tests, linear regression, summary measures and General Linear Models.Overall, in the datasets we studied, using the SF-36 outcome, bootstrap methods produce results similar to conventional statistical methods. This is likely because the t-test and linear regression are robust to the violations of assumptions that HRQoL data are likely to cause (i.e. non-Normality). While particular to our datasets, these findings are likely to generalise to other HRQoL outcomes, which have discrete, bounded and skewed distributions. Future research with other HRQoL outcome measures, interventions and populations, is required to confirm this conclusion.

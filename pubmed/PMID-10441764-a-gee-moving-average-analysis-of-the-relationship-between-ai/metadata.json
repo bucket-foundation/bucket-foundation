@@ -1,0 +1,32 @@
+{
+  "pmid": "10441764",
+  "title": "A GEE moving average analysis of the relationship between air pollution and mortality for asthma in Barcelona, Spain.",
+  "abstract": "Several studies have assessed the association between air pollution and hospital admissions or emergency room visits for asthma. Because of both the presence of missing data and the small number of observations, the relationship between air pollution and mortality for respiratory causes has been rarely analysed, and when it has, the results are very inconclusive or even inconsistent. The objective of this study is to assess the relation between levels of air pollutants (black smoke, sulphur dioxide, nitrogen dioxide and ozone), meteorological variables (24th average temperature and relative humidity) and daily mortality for asthma (ICD-9 493, 2 to 45 years old) in Barcelona, Spain, during the period 1986-1989. Since the range of daily mortality for asthma (2 to 45 years old) during the period 1986-1989 was 0-1), we have preferred to consider this variable as dichotomous. First, the relationship between air pollutants, meteorological variables and daily mortality (controlled for the occurrence of asthma epidemics) was estimated using logistic regression models. As was expected, the residuals from this regression were autocorrelated, showing a complex moving average (MA) structure. If covariates were not time dependent the so-called generalized linear mixed models, could be applied. In our case the covariates vary. As a consequence the likelihood is numerically intractable because it involves the evaluation of n-fold integral. An alternative method that avoids these numerical problems is the generalized estimating equations method (GEE). It is a multivariate analogue of quasi-likelihood estimation. In the absence of a likelihood function the parameters can be estimated by solving a multivariate analogue of the quasi score function. We have modified the GEE method in this paper, allowing for a different structure in the error covariance matrix (MA). Both air pollutants and meteorological variables are related with the occurrence of a death for asthma. In this sense, nitrogen dioxide, NO(2) (ss=0.037, p<0. 05), ozone, O(3) (ss=0.021, p<0.06) and high temperature (the ss's were in the range (0.098-0.182), p<0.05) increased the probability of dying for asthma in Barcelona during the period 1986-1989.",
+  "authors": [
+    "M Saez",
+    "A Tobias",
+    "P Muñoz",
+    "M J Campbell"
+  ],
+  "journal": "Statistics in medicine",
+  "year": "1999",
+  "doi": "10.1002/(sici)1097-0258(19990830)18:16<2077::aid-sim185>3.0.co;2-t",
+  "pmcid": "",
+  "mesh": [
+    "Adolescent",
+    "Adult",
+    "Air Pollutants",
+    "Air Pollution",
+    "Asthma",
+    "Child",
+    "Child, Preschool",
+    "Humans",
+    "Humidity",
+    "Middle Aged",
+    "Models, Statistical",
+    "Multivariate Analysis",
+    "Seasons",
+    "Spain",
+    "Temperature"
+  ]
+}

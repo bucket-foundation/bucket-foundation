@@ -1,0 +1,14 @@
+# Precipitation of nanohydroxyapatite on PLLA/PBLG/Collagen nanofibrous structures for the differentiation of adipose derived stem cells to osteogenic lineage.
+
+- **PMID**: 22048006
+- **DOI**: 10.1016/j.biomaterials.2011.10.030
+- **PMCID**:  
+- **Journal**: Biomaterials  ·  **Year**: 2012
+- **Authors**: Rajeswari Ravichandran, Jayarama Reddy Venugopal, Subramanian Sundarrajan, Shayanti Mukherjee, Seeram Ramakrishna
+- **MeSH**: Adipose Tissue, Animals, Cell Differentiation, Cell Proliferation, Cells, Cultured, Collagen, Durapatite, Immunohistochemistry, Lactic Acid, Microscopy, Electron, Scanning
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22048006/
+- **Captured**: 2026-05-10T13:19:36
+
+## Abstract
+
+Tissue engineering and nanotechnology have enabled engineering of nanostructured materials to meet the current challenges in bone treatment owing to rising occurrence of bone diseases, accidental damages and defects. Poly(L-lactic acid)/Poly-benzyl-L-glutamate/Collagen (PLLA/PBLG/Col) scaffolds were fabricated by electrospinning and nanohydroxyapatite (n-HA) was deposited by calcium-phosphate dipping method for bone tissue engineering (BTE). The abundance and accessibility of adipose derived stem cells (ADSC) may prove to be novel cell therapeutics for bone repair and regeneration. ADSCs were cultured on these scaffolds and were induced to undergo osteogenic differentiation in the presence of PBLG/n-HA for BTE. The cell-biomaterial interactions were analyzed using cell proliferation, SEM and CMFDA dye extraction techniques. Osteogenic differentiation of ADSC was confirmed using alkaline phosphatase activity (ALP), mineralization (ARS) and dual immunofluorescent staining using both ADSC marker protein and Osteocalcin, which is a bone specific protein. The utmost significance of this study is the bioactive PBLG/n-HA biomolecule introduced on the polymeric nanofibers to regulate and improve specific biological functions like adhesion, proliferation and differentiation of ADSC into osteogenic lineage. This was evident from the immunostaining and CMFDA images of ADSCs showing cuboidal morphology, characteristic of osteogenic lineage. The observed results proved that the PLLA/PBLG/Col/n-HA scaffolds promoted greater osteogenic differentiation of ADSC as evident from the enzyme activity and mineralization profiles for bone tissue engineering.

@@ -1,0 +1,14 @@
+# Nanostructured biocomposite substrates by electrospinning and electrospraying for the mineralization of osteoblasts.
+
+- **PMID**: 19167752
+- **DOI**: 10.1016/j.biomaterials.2008.12.079
+- **PMCID**:  
+- **Journal**: Biomaterials  ·  **Year**: 2009
+- **Authors**: Deepika Gupta, J Venugopal, S Mitra, V R Giri Dev, S Ramakrishna
+- **MeSH**: Biocompatible Materials, Cell Line, Cell Proliferation, Durapatite, Gelatin, Humans, Osteoblasts, Polyesters, Tissue Engineering, Tissue Scaffolds
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19167752/
+- **Captured**: 2026-05-10T13:18:58
+
+## Abstract
+
+Nanotechnology has enabled the engineering of nanostructured materials to meet current challenges in bone replacement therapies. Biocomposite nanofibrous scaffolds of poly(l-lactic acid)-co-poly(epsilon-caprolactone), gelatin and hydroxyapatite (HA) were fabricated by combining the electrospinning and electrospraying techniques in order to create a better osteophilic environment for the growth and mineralization of osteoblasts. Electrospraying of HA nanoparticles on electrospun nanofibers helped to attain rough surface morphology ideal for cell attachment and proliferation and also achieve improved mechanical properties than HA blended nanofibers. Nanofibrous scaffolds showed high pore size and porosity up to 90% with fiber diameter in the range of 200-700 nm. Nanofibrous scaffolds were characterized for their functional groups and chemical structure by FTIR and XRD analysis. Studies on cell-scaffold interaction were carried out by culturing human fetal osteoblast cells (hFOB) on both HA blended and sprayed PLACL/Gel scaffolds and assessing their growth, proliferation, mineralization and enzyme activity. The results of MTS, ALP, SEM and ARS studies confirmed, not only did HA sprayed biocomposite scaffolds showed better cell proliferation but also enhanced mineralization and alkaline phosphatase activity (ALP) proving that electrospraying in combination with electrospinning produced superior and more suitable biocomposite nanofibrous scaffolds for bone tissue regeneration.

@@ -1,0 +1,14 @@
+# The heliocentric evolution of cometary infrared spectra: results from an organic grain model.
+
+- **PMID**: 11542163
+- **DOI**: 10.1016/0019-1035(89)90083-3
+- **PMCID**:  
+- **Journal**: Icarus  ·  **Year**: 1989
+- **Authors**: C F Chyba, C Sagan, M J Mumma
+- **MeSH**: Cosmic Dust, Fluorescence, Hydrocarbons, Ice, Meteoroids, Models, Theoretical, Particle Size, Spacecraft, Spectrophotometry, Infrared
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11542163/
+- **Captured**: 2026-05-10T13:16:18
+
+## Abstract
+
+Observations of Comets Halley and Wilson reveal an emission feature peaking near 3.4 micrometers, characteristic of C-H stretching in hydrocarbons. We have previously (Chyba and Sagan 1987a, Nature (London) 330, 350-353) fit this feature with a simple two-component thermal emission model for dust in the cometary coma (one component corresponding to large, cool, optically thick particles, the other due to smaller, hotter, organic grains) by employing laboratory spectra of the organic residue produced by the irradiation of carbon-bearing ices. This procedure yields optical depths in agreement with limits from spacecraft data. One remarkable result of such modeling is that at approximately 1 AU emission features at wavelengths longer than 3.4 micrometers are largely overwhelmed (or "diluted") by continuum emission. The large particle optical depth is approximately 10(2) times that of the emitting organics, so that, relative to the continuum, only near the continuum minimum can the emitting organics make a significant contribution. At approximately 1 AU, the 3.4-micrometers feature is the sole feature near that minimum, lying at the intersection of the curves for particle thermal emission and scattered sunlight. Thus, since as a comet moves away from perihelion the intersection of the scattered solar spectrum and the comet's thermal emission spectrum will move to longer wavelengths, we predicted (Chyba and Sagan 1987a) that the 3.4-micrometers feature is diluted while those at longer wavelengths are progressively revealed--so long as the comet retains its coma. We now quantitatively develop this model and find agreement with observational data for Comet Halley for certain plausible values of optical constants. Thus the observed heliocentric evolution of the 3.4-micrometers feature provides information on the composition, and perhaps structure, of the organic grains in Comet Halley. In addition, we argue that the heliocentric evolution of organic features will differ in the cases of thermal emission from small grains and gas-phase fluorescence. Therefore observations of cometary spectral evolution can in principle distinguish between solid or gas-phase origins for these features.

@@ -1,0 +1,14 @@
+# The surface of Mars: the view from the viking 2 lander.
+
+- **PMID**: 17797083
+- **DOI**: 10.1126/science.194.4271.1277
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 1976
+- **Authors**: T A Mutch, S U Grenander, K L Jones, W Patterson, R E Arvidson, E A Guinness, P Avrin, C E Carlston, A B Binder, C Sagan, E W Dunham, P L Fox, D C Pieri, F O Huck, C W Rowland, G R Taylor, S D Wall, R Kahn, E C Levinthal, S Liebes, R B Tucker, E C Morris, J B Pollack, R S Saunders, M R Wolf
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17797083/
+- **Captured**: 2026-05-10T13:18:41
+
+## Abstract
+
+Viking 2 lander began imaging the surface of Mars at Utopia Planitia on 3 September 1976. The surface is a boulder-strewn reddish desert cut by troughs that probably form a polygonal network. A plateau can be seen to the east of the spacecraft, which for the most probable lander location is approximately the direction of a tongue of ejecta from the crater Mie. Boulders at the lander 2 site are generally more vesicular than those near lander i. Fines at both lander sites appear to be very fine-grained and to be bound in a duricrust. The pinkish color of the sky, similar to that observed at the lander I site, indicates suspension of surface material. However, the atmospheric optical depth is less than that at the lander I site. After dissipation of a cloud of dust stirred during landing, no changes other than those stemming from sampling activities have been detected in the landscape. No signs of large organisms are apparent at either landing site.

@@ -1,0 +1,14 @@
+# Aligned and random nanofibrous substrate for the in vitro culture of Schwann cells for neural tissue engineering.
+
+- **PMID**: 19269270
+- **DOI**: 10.1016/j.actbio.2009.01.039
+- **PMCID**:  
+- **Journal**: Acta biomaterialia  ·  **Year**: 2009
+- **Authors**: Deepika Gupta, J Venugopal, Molamma P Prabhakaran, V R Giri Dev, Sharon Low, Aw Tar Choon, S Ramakrishna
+- **MeSH**: Absorption, Animals, Biocompatible Materials, Biomimetic Materials, Cell Adhesion, Cell Culture Techniques, Cell Line, Cell Proliferation, Cell Survival, Crystallization
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19269270/
+- **Captured**: 2026-05-10T13:18:59
+
+## Abstract
+
+The current challenge in peripheral nerve tissue engineering is to produce an implantable scaffold capable of bridging long nerve gaps that will produce results similar to autograft without requiring the harvest of autologous donor tissue. Aligned and random polycaprolactone/gelatin (PCL/gelatin) nanofibrous scaffolds were fabricated for the in vitro culture of Schwann cells that assist in directing the growth of regenerating axons in nerve tissue engineering. The average fiber diameter attained by electrospinning of polymer blend (PCL/gelatin) ranged from 232+/-194 to 160+/-86nm with high porosity (90%). Blending PCL with gelatin resulted in increased hydrophilicity of nanofibrous scaffolds and yielded better mechanical properties, approaching those of PCL nanofibers. The biocompatibility of fabricated nanofibers was assessed for culturing and proliferation of Schwann cells by MTS assay. The results of the MTS assay and scanning electron microscopy confirmed that aligned and random PCL/gelatin nanofibrous scaffolds are suitable substrates for Schwann cell growth as compared to PCL nanofibrous scaffolds for neural tissue engineering.

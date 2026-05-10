@@ -1,0 +1,14 @@
+# Polycyclic aromatic hydrocarbons in the atmospheres of Titan and Jupiter.
+
+- **PMID**: 11539501
+- **DOI**: 10.1086/173086
+- **PMCID**:  
+- **Journal**: The Astrophysical journal  ·  **Year**: 1993
+- **Authors**: C Sagan, B N Khare, W R Thompson, G D McDonald, M R Wing, J L Bada, T Vo-Dinh, E T Arakawa
+- **MeSH**: Ammonia, Atmosphere, Extraterrestrial Environment, Gas Chromatography-Mass Spectrometry, Jupiter, Mass Spectrometry, Methane, Polycyclic Aromatic Hydrocarbons, Polymers, Saturn
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11539501/
+- **Captured**: 2026-05-10T13:16:12
+
+## Abstract
+
+Polycyclic aromatic hydrocarbons (PAHs) are important components of the interstellar medium and carbonaceous chondrites, but have never been identified in the reducing atmospheres of the outer solar system. Incompletely characterized complex organic solids (tholins) produced by irradiating simulated Titan atmospheres reproduce well the observed UV/visible/IR optical constants of the Titan stratospheric haze. Titan tholin and a tholin generated in a crude simulation of the atmosphere of Jupiter are examined by two-step laser desorption/multiphoton ionization mass spectrometry. A range of two- to four-ring PAHs, some with one to four alkylation sites are identified, with net abundance approximately 10(-4) g g-1 (grams per gram) of tholins produced. Synchronous fluorescence techniques confirm this detection. Titan tholins have proportionately more one- and two-ring PAHs than do Jupiter tholins, which in turn have more four-ring and larger PAHs. The four-ringed PAH chrysene, prominent in some discussions of interstellar grains, is found in Jupiter tholins. Solid state 13C NMR spectroscopy suggests approximately equal to 25% of the total C in both tholins is tied up in aromatic and/or aliphatic alkenes. IR spectra indicate an upper limit in both tholins of approximately equal to 6% by mass in benzenes, heterocyclics, and PAHs with more than four rings. Condensed PAHs may contribute at most approximately 10% to the observed detached limb haze layers on Titan. As with interstellar PAHs, the synthesis route of planetary PAHs is likely to be via acetylene addition reactions.

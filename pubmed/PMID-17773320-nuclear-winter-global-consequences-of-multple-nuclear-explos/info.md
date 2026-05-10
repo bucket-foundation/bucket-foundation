@@ -1,0 +1,14 @@
+# Nuclear winter: global consequences of multple nuclear explosions.
+
+- **PMID**: 17773320
+- **DOI**: 10.1126/science.222.4630.1283
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 1983
+- **Authors**: R P Turco, O B Toon, T P Ackerman, J B Pollack, C Sagan
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17773320/
+- **Captured**: 2026-05-10T13:18:36
+
+## Abstract
+
+The potential global atmospheric and climatic consequences of nuclear war are investigated using models previously developed to study the effects of volcanic eruptions. Although the results are necessarily imprecise due to wide range of possible scenaros and uncertainty in physical parameters, the most probable first-order effects are serious. Significant hemispherical attenuation of the solar radiation flux and subfreezing land temperatures may be caused by fine dust raised in high-yield nuclear surface bursts and by smoke from city and forest fires ignited by airbursts of all yields. For many simulated exchanges of several thousand megatons, in which dust and smoke are generated and encircle the earth within 1 to 2 weeks, average light levels can be reduced to a few percent of ambient and land temperatures can reach -15 degrees to -25 degrees C. The yield threshold for major optical and climatic consequences may be very low: only about 100 megatons detonated over major urban centers can create average hemispheric smoke optical depths greater than 2 for weeks and, even in summer, subfreezing land temperatures for months. In a 5000-megaton war, at northern mid-latitude sites remote from targets, radioactive fallout on time scales of days to weeks can lead to chronic mean doses of up to 50 rads from external whole-body gamma-ray exposure, with a likely equal or greater internal dose from biologically active radionuclides. Large horizontal and vertical temperature gradients caused by absorption of sunlight in smoke and dust clouds may greatly accelerate transport of particles and radioactivity from the Northern Hemisphere to the Southern Hemisphere. When combined with the prompt destruction from nuclear blast, fires, and fallout and the later enhancement of solar ultraviolet radiation due to ozone depletion, long-term exposure to cold, dark, and radioactivity could pose a serious threat to human survivors and to other species.

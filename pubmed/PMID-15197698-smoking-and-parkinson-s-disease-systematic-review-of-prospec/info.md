@@ -1,0 +1,14 @@
+# Smoking and Parkinson's disease: systematic review of prospective studies.
+
+- **PMID**: 15197698
+- **DOI**: 10.1002/mds.20029
+- **PMCID**:  
+- **Journal**: Movement disorders : official journal of the Movement Disorder Society  ·  **Year**: 2004
+- **Authors**: Mohamed Farouk Allam, Michael J Campbell, Albert Hofman, Amparo Serrano Del Castillo, Rafael Fernández-Crehuet Navajas
+- **MeSH**: Adult, Aged, Female, Humans, Male, Middle Aged, Parkinson Disease, Risk, Smoking
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15197698/
+- **Captured**: 2026-05-10T13:17:29
+
+## Abstract
+
+We estimated the pooled risk of tobacco smoking for Parkinson's disease (PD). Inclusion criteria included systematic searches of MedLine, PsycLIT, Embase, Current Contents, previously published reviews, examination of cited reference sources, and personal contact and discussion with several investigators expert in the field. Published prospective studies on PD and cigarette smoking. When two or more studies were based on an identical study, the study that principally investigated the relationship or the study that was published last was used. Seven prospective studies were carried out between 1959 and 1997, of which six reported risk estimates. Four cohorts were based on standardised mortality rates, which were exclusively of male. Only one study included risk estimates for both males and females separately. The risk of ever smoker was 0.51 (95% confidence interval, 0.43 to 0.61). There was an obvious protective effect of current smoking in the pooled estimate (relative risk, 0.35; 95% CI, 0.26-0.47). Former smokers had lower risk compared with never smokers (relative risk, 0.66; 95% CI, 0.49-0.88). Although our pooled estimates show that smoking is inversely associated with the risk of PD, the four prospective studies that were based on follow-up of mortality of smokers had many limitations. Further studies evaluating the association between smoking and PD in women are strongly needed.

@@ -1,0 +1,14 @@
+# Application of conductive polymers, scaffolds and electrical stimulation for nerve tissue engineering.
+
+- **PMID**: 21413155
+- **DOI**: 10.1002/term.383
+- **PMCID**:  
+- **Journal**: Journal of tissue engineering and regenerative medicine  ·  **Year**: 2011
+- **Authors**: Laleh Ghasemi-Mobarakeh, Molamma P Prabhakaran, Mohammad Morshed, Mohammad Hossein Nasr-Esfahani, Hossein Baharvand, Sahar Kiani, Salem S Al-Deyab, Seeram Ramakrishna
+- **MeSH**: Animals, Electric Conductivity, Electric Stimulation, Humans, Nerve Tissue, Polymers, Tissue Engineering, Tissue Scaffolds
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21413155/
+- **Captured**: 2026-05-10T13:19:24
+
+## Abstract
+
+Among the numerous attempts to integrate tissue engineering concepts into strategies to repair nearly all parts of the body, neuronal repair stands out. This is partially due to the complexity of the nervous anatomical system, its functioning and the inefficiency of conventional repair approaches, which are based on single components of either biomaterials or cells alone. Electrical stimulation has been shown to enhance the nerve regeneration process and this consequently makes the use of electrically conductive polymers very attractive for the construction of scaffolds for nerve tissue engineering. In this review, by taking into consideration the electrical properties of nerve cells and the effect of electrical stimulation on nerve cells, we discuss the most commonly utilized conductive polymers, polypyrrole (PPy) and polyaniline (PANI), along with their design and modifications, thus making them suitable scaffolds for nerve tissue engineering. Other electrospun, composite, conductive scaffolds, such as PANI/gelatin and PPy/poly(ε-caprolactone), with or without electrical stimulation, are also discussed. Different procedures of electrical stimulation which have been used in tissue engineering, with examples on their specific applications in tissue engineering, are also discussed.

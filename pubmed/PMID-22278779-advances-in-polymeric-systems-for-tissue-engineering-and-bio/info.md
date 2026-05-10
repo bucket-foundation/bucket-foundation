@@ -1,0 +1,14 @@
+# Advances in polymeric systems for tissue engineering and biomedical applications.
+
+- **PMID**: 22278779
+- **DOI**: 10.1002/mabi.201100325
+- **PMCID**:  
+- **Journal**: Macromolecular bioscience  ·  **Year**: 2012
+- **Authors**: Rajeswari Ravichandran, Subramanian Sundarrajan, Jayarama Reddy Venugopal, Shayanti Mukherjee, Seeram Ramakrishna
+- **MeSH**: Biocompatible Materials, Cell Adhesion, Delayed-Action Preparations, Glucose, Humans, Hydrogen-Ion Concentration, Intercellular Signaling Peptides and Proteins, Photochemical Processes, Polymers, Stem Cells
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22278779/
+- **Captured**: 2026-05-10T13:19:39
+
+## Abstract
+
+The characteristics of tissue engineered scaffolds are major concerns in the quest to fabricate ideal scaffolds for tissue engineering applications. The polymer scaffolds employed for tissue engineering applications should possess multifunctional properties such as biocompatibility, biodegradability and favorable mechanical properties as it comes in direct contact with the body fluids in vivo. Additionally, the polymer system should also possess biomimetic architecture and should support stem cell adhesion, proliferation and differentiation. As the progress in polymer technology continues, polymeric biomaterials have taken characteristics more closely related to that desired for tissue engineering and clinical needs. Stimuli responsive polymers also termed as smart biomaterials respond to stimuli such as pH, temperature, enzyme, antigen, glucose and electrical stimuli that are inherently present in living systems. This review highlights the exciting advancements in these polymeric systems that relate to biological and tissue engineering applications. Additionally, several aspects of technology namely scaffold fabrication methods and surface modifications to confer biological functionality to the polymers have also been discussed. The ultimate objective is to emphasize on these underutilized adaptive behaviors of the polymers so that novel applications and new generations of smart polymeric materials can be realized for biomedical and tissue engineering applications.

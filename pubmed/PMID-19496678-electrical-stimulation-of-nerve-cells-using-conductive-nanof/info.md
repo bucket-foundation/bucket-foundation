@@ -1,0 +1,14 @@
+# Electrical stimulation of nerve cells using conductive nanofibrous scaffolds for nerve tissue engineering.
+
+- **PMID**: 19496678
+- **DOI**: 10.1089/ten.TEA.2008.0689
+- **PMCID**:  
+- **Journal**: Tissue engineering. Part A  ·  **Year**: 2009
+- **Authors**: Laleh Ghasemi-Mobarakeh, Molamma P Prabhakaran, Mohammad Morshed, Mohammad Hossein Nasr-Esfahani, Seeram Ramakrishna
+- **MeSH**: Cell Proliferation, Cell Survival, Cells, Cultured, Electric Conductivity, Electric Stimulation, Equipment Failure Analysis, Guided Tissue Regeneration, Humans, Nanostructures, Nerve Regeneration
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19496678/
+- **Captured**: 2026-05-10T13:19:03
+
+## Abstract
+
+Fabrication of scaffolds with suitable chemical, mechanical, and electrical properties is critical for the success of nerve tissue engineering. Electrical stimulation was directly applied to electrospun conductive nanofibrous scaffolds to enhance the nerve regeneration process. In the present study, electrospun conductive nanofibers were prepared by mixing 10 and 15 wt% doped polyaniline (PANI) with poly (epsilon-caprolactone)/gelatin (PG) (70:30) solution (PANI/PG) by electrospinning. The fiber diameter, pore size, hydrophilicity, tensile properties, conductivity, Fourier transform infrared (FTIR), and X-ray photoelectron spectroscopy spectra of nanofibers were determined, and the in vitro biodegradability of the different nanofibrous scaffolds was also evaluated. Nanofibrous scaffolds containing 15% PANI was found to exhibit the most balanced properties to meet all the required specifications for electrical stimulation for its enhanced conductivity and is used for in vitro culture and electrical stimulation of nerve stem cells. 3-(4,5-dimethylthiazol-2-yl)-5-(3-carboxymethoxyphenyl)-2-(4-sulfophenyl)-2H-tetrazolium (MTS) assay and scanning electron microscopy results showed that conductive nanofibrous scaffolds are suitable substrates for the attachment and proliferation of nerve stem cells. Electrical stimulation through conductive nanofibrous PANI/PG scaffolds showed enhanced cell proliferation and neurite outgrowth compared to the PANI/PG scaffolds that were not subjected to electrical stimulation.

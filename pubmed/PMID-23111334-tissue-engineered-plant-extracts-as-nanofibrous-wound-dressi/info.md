@@ -1,0 +1,14 @@
+# Tissue engineered plant extracts as nanofibrous wound dressing.
+
+- **PMID**: 23111334
+- **DOI**: 10.1016/j.biomaterials.2012.10.026
+- **PMCID**:  
+- **Journal**: Biomaterials  ·  **Year**: 2013
+- **Authors**: Guorui Jin, Molamma P Prabhakaran, Dan Kai, Sathesh Kumar Annamalai, Kantha D Arunachalam, Seeram Ramakrishna
+- **MeSH**: Actins, Adipose Tissue, Azadirachta, Biocompatible Materials, Cell Differentiation, Cell Line, Cell Proliferation, Collagen, Epidermal Cells, Fibroblasts
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23111334/
+- **Captured**: 2026-05-10T13:19:50
+
+## Abstract
+
+Use of plant extracts for treatment of burns and wound is a common practice followed over the decades and it is an important aspect of health management. Many medicinal plants have a long history of curative properties in wound healing. Electrospun nanofibers provide high porosity with large surface area-to-volume ratio and are more appropriate for cell accommodation, nutrition infiltration, gas exchange and waste excretion. Electrospinning makes it possible to combine the advantages of utilizing these plant extracts in the form of nanofibrous mats to serve as skin graft substitutes. In this study, we investigated the potential of electrospinning four different plant extracts, namely Indigofera aspalathoides, Azadirachta indica, Memecylon edule (ME) and Myristica andamanica along with a biodegradable polymer, polycaprolactone (PCL) for skin tissue engineering. The ability of human dermal fibroblasts (HDF) to proliferate on the electrospun nanofibrous scaffolds was evaluated via cell proliferation assay. HDF proliferation on PCL/ME nanofibers was found the highest among all the other electrospun nanofibrous scaffolds and it was 31% higher than the proliferation on PCL nanofibers after 9 days of cell culture. The interaction of HDF with the electrospun scaffold was studied by F-actin and collagen staining studies. The results confirmed that PCL/ME had the least cytotoxicity among the different plant extract containing scaffolds studied here. Therefore we performed the epidermal differentiation of adipose derived stem cells on PCL/ME scaffolds and obtained early and intermediate stages of epidermal differentiation. Our studies demonstrate the potential of electrospun PCL/ME nanofibers as substrates for skin tissue engineering.

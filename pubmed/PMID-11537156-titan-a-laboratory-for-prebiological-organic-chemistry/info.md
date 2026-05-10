@@ -1,0 +1,14 @@
+# Titan: a laboratory for prebiological organic chemistry.
+
+- **PMID**: 11537156
+- **DOI**: 10.1021/ar00019a003
+- **PMCID**:  
+- **Journal**: Accounts of chemical research  ·  **Year**: 1992
+- **Authors**: C Sagan, W R Thompson, B N Khare
+- **MeSH**: Amino Acids, Atmosphere, Carbon Dioxide, Chemistry, Organic, Extraterrestrial Environment, Hydrocarbons, Models, Chemical, Nitrogen, Organic Chemistry Phenomena, Origin of Life
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11537156/
+- **Captured**: 2026-05-10T13:16:00
+
+## Abstract
+
+When we examine the atmospheres of the Jovian planets (Jupiter, Saturn, Uranus, and Neptune), the satellites in the outer solar system, comets, and even--through microwave and infrared spectroscopy--the cold dilute gas and grains between the stars, we find a rich organic chemistry, presumably abiological, not only in most of the solar system but throughout the Milky Way galaxy. In part because the composition and surface pressure of the Earth's atmosphere 4 x 10(9) years ago are unknown, laboratory experiments on prebiological organic chemistry are at best suggestive; but we can test our understanding by looking more closely at the observed extraterrestrial organic chemistry. The present Account is restricted to atmospheric organic chemistry, primarily on the large moon of Saturn. Titan is a test of our understanding of the organic chemistry of planetary atmospheres. Its atmospheric bulk composition (N2/CH4) is intermediate between the highly reducing (H2/He/CH4/NH3/H2O) atmospheres of the Jovian planets and the more oxidized (N2/CO2/H2O) atmospheres of the terrestrial planets Mars and Venus. It has long been recognized that Titan's organic chemistry may have some relevance to the events that led to the origin of life on Earth. But with Titan surface temperatures approximately equal to 94 K and pressures approximately equal to 1.6 bar, the oceans of the early Earth have no ready analogue on Titan. Nevertheless, tectonic events in the water ice-rich interior or impact melting and slow re-freezing may lead to an episodic availability of liquid water. Indeed, the latter process is the equivalent of a approximately 10(3)-year-duration shallow aqueous sea over the entire surface of Titan.

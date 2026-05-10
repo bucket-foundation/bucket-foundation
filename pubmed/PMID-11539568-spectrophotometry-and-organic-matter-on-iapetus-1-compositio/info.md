@@ -1,0 +1,14 @@
+# Spectrophotometry and organic matter on Iapetus. 1. Composition models.
+
+- **PMID**: 11539568
+- **DOI**: 10.1029/94je03364
+- **PMCID**:  
+- **Journal**: Journal of geophysical research  ·  **Year**: 1995
+- **Authors**: P D Wilson, C Sagan
+- **MeSH**: Astronomy, Extraterrestrial Environment, Geologic Sediments, Hydrogen Cyanide, Ice, Models, Theoretical, Polymers, Saturn, Scattering, Radiation, Spectrophotometry
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11539568/
+- **Captured**: 2026-05-10T13:16:13
+
+## Abstract
+
+Iapetus shows a greater hemispheric albedo asymmetry than any other body in the solar system. Hapke scattering theory and optical constants measured in the laboratory are used to identify possible compositions for the dark material on the leading hemisphere of Iapetus. The materials considered are poly-HCN, kerogen, Murchison organic residue, Titan tholin, ice tholin, and water ice. Three-component mixtures of these materials are modeled in intraparticle, particle, and areal mixtures. In a computer grid search of approximately 2 x 10(7) models, an intraparticle mixture of 25% poly-HCN, 10% Murchison residue, and 65% water ice is found to best fit the spectrum, albedo, and phase behavior of the dark material. The Murchison residue and/or water ice can be replaced by kerogen and ice tholin, respectively, and still produce very good fits. Areal and particle mixtures of poly-HCN, Titan tholin, and either ice tholin or Murchison residue are also possible models. Poly-HCN is a necessary component in almost all good models. The presence of poly-HCN can be further tested by high-resolution observations near 4.5 micrometers.

@@ -1,0 +1,14 @@
+# Electrospun nanofiber fabrication as synthetic extracellular matrix and its potential for vascular tissue engineering.
+
+- **PMID**: 15363172
+- **DOI**: 10.1089/ten.2004.10.1160
+- **PMCID**:  
+- **Journal**: Tissue engineering  ·  **Year**: 2004
+- **Authors**: Chengyu Xu, Ryuji Inai, Masaya Kotaki, Seeram Ramakrishna
+- **MeSH**: Biocompatible Materials, Biomimetic Materials, Blood Vessel Prosthesis, Cell Culture Techniques, Cell Proliferation, Cell Size, Cells, Cultured, Electrochemistry, Endothelial Cells, Extracellular Matrix
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15363172/
+- **Captured**: 2026-05-10T13:17:29
+
+## Abstract
+
+Substantial effort is being invested by the bioengineering community to develop biodegradable polymer scaffolds suitable for tissue-engineering applications. An ideal scaffold should mimic the structural and purposeful profile of materials found in the natural extracellular matrix (ECM) architecture. To accomplish this goal, poly (L-lactide-co-epsilon-caprolactone) [P(LLA-CL)] (75:25) copolymer with a novel architecture produced by an electrospinning process has been developed for tissue-engineering applications. The diameter of this electrospun P(LLA-CL) fiber ranges from 400 to 800 nm, which mimicks the nanoscale dimension of native ECM. The mechanical properties of this structure are comparable to those of human coronary artery. To evaluate the feasibility of using this nanofibrous scaffold as a synthetic extracellular matrix for culturing human smooth muscle cells and endothelial cells, these two types of cells were seeded on the scaffold for 7 days. The data from scanning electron microscopy, immunohistochemical examination, laser scanning confocal microscopy, and a cell proliferation assay suggested that this electrospun nanofibrous scaffold is capable of supporting cell attachment and proliferation. Smooth muscle cells and endothelial cells seeded on this scaffold tend to maintain their phenotypic shape. They were also found to integrate with the nanofibers to form a three-dimensional cellular network. These results indicate a favorable interaction between this synthetic nanofibrous scaffold with the two types of cells and suggest its potential application in tissue engineering a blood vessel substitute.

@@ -1,0 +1,14 @@
+# Electrospinning of nano/micro scale poly(L-lactic acid) aligned fibers and their potential in neural tissue engineering.
+
+- **PMID**: 15585263
+- **DOI**: 10.1016/j.biomaterials.2004.06.051
+- **PMCID**:  
+- **Journal**: Biomaterials  ·  **Year**: 2005
+- **Authors**: F Yang, R Murugan, S Wang, S Ramakrishna
+- **MeSH**: Animals, Animals, Newborn, Biocompatible Materials, Cell Culture Techniques, Cell Differentiation, Cell Size, Electrochemistry, Feasibility Studies, Lactic Acid, Materials Testing
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/15585263/
+- **Captured**: 2026-05-10T13:17:34
+
+## Abstract
+
+Efficacy of aligned poly(l-lactic acid) (PLLA) nano/micro fibrous scaffolds for neural tissue engineering is described and their performance with random PLLA scaffolds is compared as well in this study. Perfectly aligned PLLA fibrous scaffolds were fabricated by an electrospinning technique under optimum condition and the diameter of the electrospun fibers can easily be tailored by adjusting the concentration of polymer solution. As the structure of PLLA scaffold was intended for neural tissue engineering, its suitability was evaluated in vitro using neural stem cells (NSCs) as a model cell line. Cell morphology, differentiation and neurite outgrowth were studied by various microscopic techniques. The results show that the direction of NSC elongation and its neurite outgrowth is parallel to the direction of PLLA fibers for aligned scaffolds. No significant changes were observed on the cell orientation with respect to the fiber diameters. However, the rate of NSC differentiation was higher for PLLA nanofibers than that of micro fibers and it was independent of the fiber alignment. Based on the experimental results, the aligned nanofibrous PLLA scaffold could be used as a potential cell carrier in neural tissue engineering.

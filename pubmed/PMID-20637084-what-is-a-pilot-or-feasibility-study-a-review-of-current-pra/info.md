@@ -1,0 +1,14 @@
+# What is a pilot or feasibility study? A review of current practice and editorial policy.
+
+- **PMID**: 20637084
+- **DOI**: 10.1371/journal.pmed.0020124
+- **PMCID**: PMC1182327 (full-text saved)
+- **Journal**: BMC medical research methodology  ·  **Year**: 2010
+- **Authors**: Mubashir Arain, Michael J Campbell, Cindy L Cooper, Gillian A Lancaster
+- **MeSH**: Data Interpretation, Statistical, Editorial Policies, Feasibility Studies, Humans, Methods, Pilot Projects
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20637084/
+- **Captured**: 2026-05-10T13:19:12
+
+## Abstract
+
+In 2004, a review of pilot studies published in seven major medical journals during 2000-01 recommended that the statistical analysis of such studies should be either mainly descriptive or focus on sample size estimation, while results from hypothesis testing must be interpreted with caution. We revisited these journals to see whether the subsequent recommendations have changed the practice of reporting pilot studies. We also conducted a survey to identify the methodological components in registered research studies which are described as 'pilot' or 'feasibility' studies. We extended this survey to grant-awarding bodies and editors of medical journals to discover their policies regarding the function and reporting of pilot studies. Papers from 2007-08 in seven medical journals were screened to retrieve published pilot studies. Reports of registered and completed studies on the UK Clinical Research Network (UKCRN) Portfolio database were retrieved and scrutinized. Guidance on the conduct and reporting of pilot studies was retrieved from the websites of three grant giving bodies and seven journal editors were canvassed. 54 pilot or feasibility studies published in 2007-8 were found, of which 26 (48%) were pilot studies of interventions and the remainder feasibility studies. The majority incorporated hypothesis-testing (81%), a control arm (69%) and a randomization procedure (62%). Most (81%) pointed towards the need for further research. Only 8 out of 90 pilot studies identified by the earlier review led to subsequent main studies. Twelve studies which were interventional pilot/feasibility studies and which included testing of some component of the research process were identified through the UKCRN Portfolio database. There was no clear distinction in use of the terms 'pilot' and 'feasibility'. Five journal editors replied to our entreaty. In general they were loathe to publish studies described as 'pilot'. Pilot studies are still poorly reported, with inappropriate emphasis on hypothesis-testing. Authors should be aware of the different requirements of pilot studies, feasibility studies and main studies and report them appropriately. Authors should be explicit as to the purpose of a pilot study. The definitions of feasibility and pilot studies vary and we make proposals here to clarify terminology.
