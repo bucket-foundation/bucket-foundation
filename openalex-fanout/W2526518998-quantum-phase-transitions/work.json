@@ -1,0 +1,646 @@
+{
+  "id": "https://openalex.org/W2526518998",
+  "doi": "https://doi.org/10.1088/2058-7058/12/4/23",
+  "title": "Quantum phase transitions",
+  "display_name": "Quantum phase transitions",
+  "publication_year": 1999,
+  "publication_date": "1999-04-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2526518998",
+    "doi": "https://doi.org/10.1088/2058-7058/12/4/23",
+    "mag": "2526518998"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1088/2058-7058/12/4/23",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1088/2058-7058/12/4/23",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S9810779",
+      "display_name": "Physics World",
+      "issn_l": "0953-8585",
+      "issn": [
+        "0953-8585",
+        "2058-7058"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320083",
+      "host_organization_name": "IOP Publishing",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320083",
+        "https://openalex.org/P4310311669"
+      ],
+      "host_organization_lineage_names": [
+        "IOP Publishing",
+        "Institute of Physics"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Physics World",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5041649350",
+        "display_name": "Subir Sachdev",
+        "orcid": "https://orcid.org/0000-0002-2432-7070"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I32971472",
+          "display_name": "Yale University",
+          "ror": "https://ror.org/03v76x132",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I32971472"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Subir Sachdev",
+      "raw_affiliation_strings": [
+        "the Department of Physics, Yale University, PO Box 208120, New Haven, CT 06520-8120, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "the Department of Physics, Yale University, PO Box 208120, New Haven, CT 06520-8120, USA",
+          "institution_ids": [
+            "https://openalex.org/I32971472"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5041649350"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I32971472"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 57.7859,
+  "has_fulltext": false,
+  "cited_by_count": 2091,
+  "citation_normalized_percentile": {
+    "value": 0.99940449,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "12",
+    "issue": "4",
+    "first_page": "33",
+    "last_page": "38"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T13650",
+    "display_name": "Computational Physics and Python Applications",
+    "score": 0.06549999862909317,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1702",
+      "display_name": "Artificial Intelligence"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/17",
+      "display_name": "Computer Science"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T13650",
+      "display_name": "Computational Physics and Python Applications",
+      "score": 0.06549999862909317,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13126",
+      "display_name": "Scientific Research and Discoveries",
+      "score": 0.06430000066757202,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3109",
+        "display_name": "Statistical and Nonlinear Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12250",
+      "display_name": "Experimental and Theoretical Physics Studies",
+      "score": 0.0625,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3109",
+        "display_name": "Statistical and Nonlinear Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/phase-transition",
+      "display_name": "Phase transition",
+      "score": 0.7050168514251709
+    },
+    {
+      "id": "https://openalex.org/keywords/superfluidity",
+      "display_name": "Superfluidity",
+      "score": 0.6850340962409973
+    },
+    {
+      "id": "https://openalex.org/keywords/phase",
+      "display_name": "Phase (matter)",
+      "score": 0.6267874240875244
+    },
+    {
+      "id": "https://openalex.org/keywords/boiling",
+      "display_name": "Boiling",
+      "score": 0.5595079660415649
+    },
+    {
+      "id": "https://openalex.org/keywords/superconductivity",
+      "display_name": "Superconductivity",
+      "score": 0.5181542634963989
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.4968898594379425
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-phase-transition",
+      "display_name": "Quantum phase transition",
+      "score": 0.49466177821159363
+    },
+    {
+      "id": "https://openalex.org/keywords/universe",
+      "display_name": "Universe",
+      "score": 0.4941759407520294
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum",
+      "display_name": "Quantum",
+      "score": 0.4368991255760193
+    },
+    {
+      "id": "https://openalex.org/keywords/condensed-matter-physics",
+      "display_name": "Condensed matter physics",
+      "score": 0.41340845823287964
+    },
+    {
+      "id": "https://openalex.org/keywords/theoretical-physics",
+      "display_name": "Theoretical physics",
+      "score": 0.3551939129829407
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.20872226357460022
+    },
+    {
+      "id": "https://openalex.org/keywords/thermodynamics",
+      "display_name": "Thermodynamics",
+      "score": 0.10429111123085022
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C149288129",
+      "wikidata": "https://www.wikidata.org/wiki/Q185357",
+      "display_name": "Phase transition",
+      "level": 2,
+      "score": 0.7050168514251709
+    },
+    {
+      "id": "https://openalex.org/C25536358",
+      "wikidata": "https://www.wikidata.org/wiki/Q106667",
+      "display_name": "Superfluidity",
+      "level": 2,
+      "score": 0.6850340962409973
+    },
+    {
+      "id": "https://openalex.org/C44280652",
+      "wikidata": "https://www.wikidata.org/wiki/Q104837",
+      "display_name": "Phase (matter)",
+      "level": 2,
+      "score": 0.6267874240875244
+    },
+    {
+      "id": "https://openalex.org/C157777378",
+      "wikidata": "https://www.wikidata.org/wiki/Q41716",
+      "display_name": "Boiling",
+      "level": 2,
+      "score": 0.5595079660415649
+    },
+    {
+      "id": "https://openalex.org/C54101563",
+      "wikidata": "https://www.wikidata.org/wiki/Q124131",
+      "display_name": "Superconductivity",
+      "level": 2,
+      "score": 0.5181542634963989
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.4968898594379425
+    },
+    {
+      "id": "https://openalex.org/C72190298",
+      "wikidata": "https://www.wikidata.org/wiki/Q2118253",
+      "display_name": "Quantum phase transition",
+      "level": 3,
+      "score": 0.49466177821159363
+    },
+    {
+      "id": "https://openalex.org/C84999194",
+      "wikidata": "https://www.wikidata.org/wiki/Q1",
+      "display_name": "Universe",
+      "level": 2,
+      "score": 0.4941759407520294
+    },
+    {
+      "id": "https://openalex.org/C84114770",
+      "wikidata": "https://www.wikidata.org/wiki/Q46344",
+      "display_name": "Quantum",
+      "level": 2,
+      "score": 0.4368991255760193
+    },
+    {
+      "id": "https://openalex.org/C26873012",
+      "wikidata": "https://www.wikidata.org/wiki/Q214781",
+      "display_name": "Condensed matter physics",
+      "level": 1,
+      "score": 0.41340845823287964
+    },
+    {
+      "id": "https://openalex.org/C33332235",
+      "wikidata": "https://www.wikidata.org/wiki/Q18362",
+      "display_name": "Theoretical physics",
+      "level": 1,
+      "score": 0.3551939129829407
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.20872226357460022
+    },
+    {
+      "id": "https://openalex.org/C97355855",
+      "wikidata": "https://www.wikidata.org/wiki/Q11473",
+      "display_name": "Thermodynamics",
+      "level": 1,
+      "score": 0.10429111123085022
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1088/2058-7058/12/4/23",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1088/2058-7058/12/4/23",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S9810779",
+        "display_name": "Physics World",
+        "issn_l": "0953-8585",
+        "issn": [
+          "0953-8585",
+          "2058-7058"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320083",
+        "host_organization_name": "IOP Publishing",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320083",
+          "https://openalex.org/P4310311669"
+        ],
+        "host_organization_lineage_names": [
+          "IOP Publishing",
+          "Institute of Physics"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physics World",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [
+    {
+      "display_name": "Clean water and sanitation",
+      "score": 0.7400000095367432,
+      "id": "https://metadata.un.org/sdg/6"
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 0,
+  "referenced_works": [],
+  "related_works": [
+    "https://openalex.org/W2610903309",
+    "https://openalex.org/W1967726292",
+    "https://openalex.org/W833340787",
+    "https://openalex.org/W6490578",
+    "https://openalex.org/W1989553485",
+    "https://openalex.org/W3016245739",
+    "https://openalex.org/W2072484446",
+    "https://openalex.org/W1764594819",
+    "https://openalex.org/W62631013",
+    "https://openalex.org/W2081527344"
+  ],
+  "abstract_inverted_index": {
+    "Nature": [
+      0
+    ],
+    "abounds": [
+      1
+    ],
+    "with": [
+      2
+    ],
+    "phase": [
+      3,
+      15,
+      37
+    ],
+    "transitions.": [
+      4
+    ],
+    "The": [
+      5,
+      27
+    ],
+    "boiling": [
+      6
+    ],
+    "and": [
+      7,
+      25
+    ],
+    "freezing": [
+      8
+    ],
+    "of": [
+      9,
+      14
+    ],
+    "water": [
+      10
+    ],
+    "are": [
+      11,
+      18
+    ],
+    "everyday": [
+      12
+    ],
+    "examples": [
+      13
+    ],
+    "transitions,": [
+      16
+    ],
+    "as": [
+      17,
+      23,
+      39,
+      53
+    ],
+    "more": [
+      19
+    ],
+    "exotic": [
+      20
+    ],
+    "processes": [
+      21
+    ],
+    "such": [
+      22
+    ],
+    "superconductivity": [
+      24
+    ],
+    "superfluidity.": [
+      26
+    ],
+    "universe": [
+      28
+    ],
+    "itself": [
+      29
+    ],
+    "is": [
+      30
+    ],
+    "thought": [
+      31
+    ],
+    "to": [
+      32,
+      49
+    ],
+    "have": [
+      33
+    ],
+    "passed": [
+      34
+    ],
+    "through": [
+      35
+    ],
+    "several": [
+      36
+    ],
+    "transitions": [
+      38
+    ],
+    "the": [
+      40,
+      45,
+      51
+    ],
+    "high-temperature": [
+      41
+    ],
+    "plasma": [
+      42
+    ],
+    "formed": [
+      43
+    ],
+    "by": [
+      44
+    ],
+    "big": [
+      46
+    ],
+    "bang": [
+      47
+    ],
+    "cooled": [
+      48
+    ],
+    "form": [
+      50
+    ],
+    "world": [
+      52
+    ],
+    "we": [
+      54
+    ],
+    "know": [
+      55
+    ],
+    "it": [
+      56
+    ],
+    "today.": [
+      57
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 58
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 47
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 42
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 19
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 53
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 53
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 49
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 35
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 60
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 68
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 55
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 85
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 57
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 88
+    }
+  ],
+  "updated_date": "2026-05-07T13:39:58.223016",
+  "created_date": "2025-10-10T00:00:00"
+}
