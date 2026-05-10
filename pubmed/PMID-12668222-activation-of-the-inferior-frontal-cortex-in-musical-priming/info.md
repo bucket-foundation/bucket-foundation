@@ -1,0 +1,14 @@
+# Activation of the inferior frontal cortex in musical priming.
+
+- **PMID**: 12668222
+- **DOI**: 10.1016/s0926-6410(02)00245-8
+- **PMCID**:  
+- **Journal**: Brain research. Cognitive brain research  ·  **Year**: 2003
+- **Authors**: Barbara Tillmann, Petr Janata, Jamshed J Bharucha
+- **MeSH**: Adolescent, Adult, Brain Mapping, Data Interpretation, Statistical, Female, Functional Laterality, Humans, Magnetic Resonance Imaging, Male, Music
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/12668222/
+- **Captured**: 2026-05-10T14:56:58
+
+## Abstract
+
+Behavioral studies have provided evidence that the processing of a musical target is faster and more accurate when it is harmonically related to the preceding prime context. We investigated the neural correlates of processing related and unrelated musical targets that were presented at the end of musical sequences. Participants were scanned with functional magnetic resonance imaging (fMRI) while performing speeded intonation judgments (consonant versus dissonant) on the target chords. Behavioral results acquired in the scanner replicated the facilitation effect of related over unrelated consonant targets. The overall activation pattern associated with target processing showed commonalities with networks previously described for target detection and novelty processing. The blood oxygen level-dependent (BOLD) signal linked to target processing revealed activation of bilateral inferior frontal regions (i.e. inferior frontal gyrus, frontal operculum, insula) that was stronger for unrelated than for related targets. We discuss our results with regard to the role of these areas in the processing and integration of temporal information.

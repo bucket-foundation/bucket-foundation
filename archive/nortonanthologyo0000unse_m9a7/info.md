@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Musical analysis -- Music collections, Music appreciation -- Music collections, Music appreciation, Musical analysis
-- **Captured**: 2026-05-10T14:49:15
+- **Captured**: 2026-05-10T14:59:57
 
 ## Description
 

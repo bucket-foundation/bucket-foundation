@@ -1,0 +1,14 @@
+# Probing Beat Perception with Event-Related Potentials (ERPs) in Human Adults, Newborns, and Nonhuman Primates.
+
+- **PMID**: 38918355
+- **DOI**: 10.3389/fnins.2018.00095
+- **PMCID**: 5845906 (full-text saved)
+- **Journal**: Advances in experimental medicine and biology  ·  **Year**: 2024
+- **Authors**: Fleur L Bouwer, Gábor P Háden, Henkjan Honing
+- **MeSH**: Humans, Animals, Auditory Perception, Infant, Newborn, Adult, Primates, Music, Evoked Potentials, Auditory, Acoustic Stimulation, Evoked Potentials
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38918355/
+- **Captured**: 2026-05-10T14:57:12
+
+## Abstract
+
+The aim of this chapter is to give an overview of how the perception of rhythmic temporal regularity such as a regular beat in music can be studied in human adults, human newborns, and nonhuman primates using event-related brain potentials (ERPs). First, we discuss different aspects of temporal structure in general, and musical rhythm in particular, and we discuss the possible mechanisms underlying the perception of regularity (e.g., a beat) in rhythm. Additionally, we highlight the importance of dissociating beat perception from the perception of other types of structure in rhythm, such as predictable sequences of temporal intervals, ordinal structure, and rhythmic grouping. In the second section of the chapter, we start with a discussion of auditory ERPs elicited by infrequent and frequent sounds: ERP responses to regularity violations, such as mismatch negativity (MMN), N2b, and P3, as well as early sensory responses to sounds, such as P1 and N1, have been shown to be instrumental in probing beat perception. Subsequently, we discuss how beat perception can be probed by comparing ERP responses to sounds in regular and irregular sequences, and by comparing ERP responses to sounds in different metrical positions in a rhythm, such as on and off the beat or on strong and weak beats. Finally, we will discuss previous research that has used the aforementioned ERPs and paradigms to study beat perception in human adults, human newborns, and nonhuman primates. In doing so, we consider the possible pitfalls and prospects of the technique, as well as future perspectives.
