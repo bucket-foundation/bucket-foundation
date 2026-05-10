@@ -1,0 +1,14 @@
+# End-Stage Kidney Disease Due to Fibrillary Glomerulonephritis and Immunotactoid Glomerulopathy - Outcomes in 66 Consecutive ANZDATA Registry Cases.
+
+- **PMID**: 26418732
+- **DOI**: 10.1159/000440815
+- **PMCID**:  
+- **Journal**: American journal of nephrology  ·  **Year**: 2015
+- **Authors**: Andrew Mallett, Wen Tang, Gareth Hart, Stephen P McDonald, Carmel M Hawley, Sunil V Badve, Neil Boudville, Fiona G Brown, Scott B Campbell, Philip A Clayton, David W Johnson
+- **MeSH**: Adult, Aged, Australia, Cohort Studies, Female, Glomerulonephritis, Humans, Kidney Failure, Chronic, Kidney Transplantation, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26418732/
+- **Captured**: 2026-05-10T14:06:43
+
+## Abstract
+
+Fibrillary glomerulonephritis (FGN) and immunotactoid glomerulopathy (IG) are uncommon and characterised by non-amyloid fibrillary glomerular deposits. The aim of this study was to investigate characteristics and outcomes of patients undergoing renal replacement therapy (RRT) for end-stage kidney disease (ESKD) secondary to FGN and IG. All ESKD patients who commenced RRT in Australia and New Zealand 1 January 1990 to 31 December 2010 were included. Outcomes were assessed by Kaplan-Meier, multivariate logistic-regression analysis and multivariable Cox proportional-hazards survival analysis. Of 45,216 individuals with ESKD, 55 (0.12%) had FGN and 11 (0.02%) had IG. The median survival of FGN patients on dialysis (5.63 years, 95% CI 3.31-7.96) was not significantly different from patients with other ESKD causes (median 4.01 years, 95% CI 4.34-4.47; log-rank 1.32, p = 0.25), but was significantly longer than that of IG patients (median 2.93 years, 95% CI 0.00-6.17; log-rank 4.8, p = 0.03). Thirteen (24%) FGN patients received 13 renal-allografts, 4 (36%) IG patients received 4 renal-allografts and 11,528 (26%) other ESKD patients received 12,278 renal-allografts. FGN patients experienced comparable outcomes to other ESKD patients for both 10-year patient survival (100 vs. 84%, p = 0.93) and renal-allograft survival (67 vs. 76%, p = 0.06). For IG, the median follow-up was 3.66 years with 75% patient survival and 100% renal-allograft survival. One (8%) FGN patient and 1 (25%) IG patient experienced recurrent FGN and IG respectively in their allograft. Patients with FGN have comparable dialysis and renal transplant outcomes to patients with other causes of ESKD. IG patients have inferior survival on dialysis, although renal transplant outcomes are acceptable. Disease recurrence in renal-allografts was low for both FGN and IG.

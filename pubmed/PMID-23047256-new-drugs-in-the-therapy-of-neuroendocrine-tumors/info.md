@@ -1,0 +1,14 @@
+# New drugs in the therapy of neuroendocrine tumors.
+
+- **PMID**: 23047256
+- **DOI**: 10.3275/8651
+- **PMCID**:  
+- **Journal**: Journal of endocrinological investigation  ·  **Year**: 2012
+- **Authors**: S Grozinsky-Glasberg, D J Gross
+- **MeSH**: Antineoplastic Agents, Humans, Molecular Targeted Therapy, Neuroendocrine Tumors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23047256/
+- **Captured**: 2026-05-10T14:05:26
+
+## Abstract
+
+Neuroendocrine tumors (NET) are a rare and heterogeneous group of neoplasms of a relatively indolent nature whose incidence and prevalence are increasing. Despite the advances made in the field of NET over the past years, these tumors eventually progress to metastatic disease in most of the patients, with a fatal outcome in the majority. Traditional cytotoxic agents remain of limited efficacy; however, recently, a better understanding of molecular pathways has provided clues to potential molecular targets for new therapeutic strategies. Somatostatin analogs are well known to be useful for the control of symptoms in functioning tumors, and it was recently demonstrated that they can inhibit tumor progression in certain disease settings. Moreover, the recently published randomized trials with the multi-TKI sunitinib and with the mTOR-inhibitor everolimus have demonstrated, for the first time, their ability to positively impact the natural history of pancreatic NET (PNET). In this short review, we will discuss available data on newer molecular targeted agents for the treatment of advanced well-differentiated gastro-entero- pancreatic NET (GEP-NET). A possible algorithm for the use of these treatments in the context of the extreme heterogeneity of GEP-NET presentation will be proposed.

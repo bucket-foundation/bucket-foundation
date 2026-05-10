@@ -1,0 +1,14 @@
+# Précis of Unified theories of cognition.
+
+- **PMID**: 24924001
+- **DOI**: 10.1017/S0140525X00069478
+- **PMCID**:  
+- **Journal**: The Behavioral and brain sciences  ·  **Year**: 1992
+- **Authors**: A Newell
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24924001/
+- **Captured**: 2026-05-10T14:06:15
+
+## Abstract
+
+The book presents the case that cognitive science should turn its attention to developing theories of human cognition that cover the full range of human perceptual, cognitive, and action phenomena. Cognitive science has now produced a massive number of high-quality regularities with many microtheories that reveal important mechanisms. The need for integration is pressing and will continue to increase. Equally important, cognitive science now has the theoretical concepts and tools to support serious attempts at unified theories. The argument is made entirely by presenting an exemplar unified theory of cognition both to show what a real unified theory would be like and to provide convincing evidence that such theories are feasible. The exemplar is SOAR, a cognitive architecture, which is realized as a software system. After a detailed discussion of the architecture and its properties, with its relation to the constraints on cognition in the real world and to existing ideas in cognitive science, SOAR is used as theory for a wide range of cognitive phenomena: immediate responses (stimulus-response compatibility and the Sternberg phenomena); discrete motor skills (transcription typing); memory and learning (episodic memory and the acquisition of skill through practice); problem solving (cryptarithmetic puzzles and syllogistic reasoning); language (sentence verification and taking instructions); and development (transitions in the balance beam task). The treatments vary in depth and adequacy, but they clearly reveal a single, highly specific, operational theory that works over the entire range of human cognition, SOAR is presented as an exemplar unified theory, not as the sole candidate. Cognitive science is not ready yet for a single theory - there must be multiple attempts. But cognitive science must begin to work toward such unified theories.

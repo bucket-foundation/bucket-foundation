@@ -1,0 +1,14 @@
+# Long-Term Outcomes after Acute Rejection in Kidney Transplant Recipients: An ANZDATA Analysis.
+
+- **PMID**: 31308074
+- **DOI**: 10.1681/ASN.2018111101
+- **PMCID**: PMC5944964 (full-text saved)
+- **Journal**: Journal of the American Society of Nephrology : JASN  ·  **Year**: 2019
+- **Authors**: Philip A Clayton, Stephen P McDonald, Graeme R Russ, Steven J Chadban
+- **MeSH**: Acute Disease, Adult, Australia, Cardiovascular Diseases, Female, Graft Rejection, Graft Survival, Humans, Kidney Transplantation, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31308074/
+- **Captured**: 2026-05-10T14:08:40
+
+## Abstract
+
+Declining rates of acute rejection (AR) and the high rate of 1-year graft survival among patients with AR have prompted re-examination of AR as an outcome in the clinic and in trials. Yet AR and its treatment may directly or indirectly affect longer-term outcomes for kidney transplant recipients. To understand the long-term effect of AR on outcomes, we analyzed data from the Australia and New Zealand Dialysis and Transplant Registry, including 13,614 recipients of a primary kidney-only transplant between 1997 and 2017 with at least 6 months of graft function. The associations between AR within 6 months post-transplant and subsequent cause-specific graft loss and death were determined using Cox models adjusted for baseline donor, recipient, and transplant characteristics. AR occurred in 2906 recipients (21.4%) and was associated with graft loss attributed to chronic allograft nephropathy (hazard ratio [HR], 1.39; 95% confidence interval [95% CI], 1.23 to 1.56) and recurrent AR beyond month 6 (HR, 1.85; 95% CI, 1.39 to 2.46). Early AR was also associated with death with a functioning graft (HR, 1.22; 95% CI, 1.08 to 1.36), and with death due to cardiovascular disease (HR, 1.30; 95% CI, 1.11 to 1.53) and cancer (HR, 1.35; 95% CI, 1.12 to 1.64). Sensitivity analyses restricted to subgroups with either biopsy-proven, antibody-mediated, or vascular rejection, or stratified by treatment response produced similar results. AR is associated with increased risks of longer-term graft failure and death, particularly death from cardiovascular disease and cancer. The results suggest AR remains an important short-term outcome to monitor in kidney transplantation and clinical trials.

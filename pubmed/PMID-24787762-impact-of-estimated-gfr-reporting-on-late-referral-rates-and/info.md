@@ -1,0 +1,14 @@
+# Impact of estimated GFR reporting on late referral rates and practice patterns for end-stage kidney disease patients: a multilevel logistic regression analysis using the Australia and New Zealand Dialysis and Transplant Registry (ANZDATA).
+
+- **PMID**: 24787762
+- **DOI**: 10.1053/j.ajkd.2014.02.023
+- **PMCID**:  
+- **Journal**: American journal of kidney diseases : the official journal of the National Kidney Foundation  ·  **Year**: 2014
+- **Authors**: Celine Foote, Philip A Clayton, David W Johnson, Meg Jardine, Paul Snelling, Alan Cass
+- **MeSH**: Aged, Australia, Cohort Studies, Delayed Diagnosis, Female, Glomerular Filtration Rate, Humans, Kidney Failure, Chronic, Logistic Models, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24787762/
+- **Captured**: 2026-05-10T14:06:13
+
+## Abstract
+
+Late referral for renal replacement therapy (RRT) leads to worse outcomes. In 2005, estimated glomerular filtration rate (eGFR) reporting began in Australasia, with an aim of substantially increasing earlier disease detection. Observational cohort study using the Australia and New Zealand Dialysis and Transplant Registry (ANZDATA) data. All patients commencing RRT in Australasia between January 1, 1999, and December 31, 2010. We excluded the period between December 31, 2004, and January 1, 2007, to allow for practice change. Introduction of eGFR reporting. Primary outcome was late referral defined as commencing RRT within 3 months of nephrology referral. Secondary outcomes included initial RRT modality and prepared access at hemodialysis therapy initiation. Late referral rates per era were determined and multilevel logistic regression was used to identify late referral predictors. We included 25,009 patients. Overall, 3,433 (25.3%) patients were referred late in the pre-eGFR era compared with 2,464 (21.6%) in the post-eGFR era, for an absolute reduction of 3.7% (95% CI, 2.7%-4.8%; P<0.001). After adjustments for age, body mass index, race, comorbid conditions, and primary kidney disease, adjusted late referral rates were 25.8% (95% CI, 23.3%-28.3%) and 21.8% (95% CI, 19.2%-24.4%) in the pre- and post-eGFR eras, respectively, for a difference of 4.0% (95% CI, 1.2%-6.8%; P=0.005). Late referral risk was attenuated significantly post-eGFR reporting (OR, 1.30; 95% CI, 1.12-1.51) compared to pre-eGFR reporting (OR, 2.15; 95% CI, 1.88-2.46) for indigenous patients. Late referral rates decreased for older patients but increased slightly for younger patients (P=0.001 for interaction between age and era). There was no impact on initial RRT modality or prepared access rates at hemodialysis therapy initiation between eras. Residual confounding could not be excluded. eGFR reporting was associated with small reductions in late referral, but more than 1 in 5 patients are still referred late. Other initiatives to increase timely referral warrant investigation.

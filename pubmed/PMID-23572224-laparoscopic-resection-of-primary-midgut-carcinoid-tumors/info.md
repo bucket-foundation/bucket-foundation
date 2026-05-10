@@ -1,0 +1,14 @@
+# Laparoscopic resection of primary midgut carcinoid tumors.
+
+- **PMID**: 23572224
+- **DOI**: 10.1007/s00464-013-2944-1
+- **PMCID**:  
+- **Journal**: Surgical endoscopy  ·  **Year**: 2013
+- **Authors**: Petachia Reissman, Shmail Shmailov, Simona Grozinsky-Glasberg, David J Gross
+- **MeSH**: Adult, Aged, Aged, 80 and over, Carcinoid Tumor, Cholecystectomy, Laparoscopic, Female, Hand-Assisted Laparoscopy, Humans, Ileal Neoplasms, Jejunal Neoplasms
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23572224/
+- **Captured**: 2026-05-10T14:05:44
+
+## Abstract
+
+Laparoscopic intestinal surgery is the preferable technique for the majority of intestinal surgical disorders. However, no series on laparoscopic resection of intestinal midgut carcinoid tumors (MCTs) has been reported to date. This is related to the rarity of these tumors as well as the technical difficulties resecting the large mesenteric root lymph node mass commonly found with these tumors and the occasional difficulty identifying the primary MCT, which may be small and undetected on preoperative imaging studies. This is the first series to report the results for laparoscopic resection of MCT. All consecutive patients with MCT (excluding appendiceal carcinoid tumor) between 2002 and 2012 underwent laparoscopic resection. The patient's clinical data, preoperative endocrine workup, imaging studies, operative data, final histology, and outcome were recorded and analyzed. During the study period, 35 patients underwent surgery for primary intestinal carcinoid tumor. Of the 35 patients, 20 (12 women and 8 men ages 26-86 years) had surgery for primary MCT, and the remainder had a colorectal carcinoid tumor. In the MCT group, ten patients had liver metastases at the time of surgery. In three patients, multiple synchronous MCTs were detected intraoperatively. All the patients underwent a laparoscopic resection with en bloc resection of the corresponding mesenteric root mass. No conversion to open surgery was needed, and no major morbidity occurred. Two patients (10 %) each experienced minor morbidity with wound infection and prolonged ileus. The median hospital length of stay was 6 days (range 4-9 days). During a follow-up period of 3-96 months, no patients experienced local or regional recurrence. No distant metastases were detected during the follow-up period in any patients who had surgery with intent to cure. Although technically difficult, laparoscopic resection of primary MCTs is feasible and safe, with the additional known significant advantages of laparoscopic surgery in general. Similar to the large-scale prospective studies that proved the oncologic safety of laparoscopic surgery for colorectal cancer, this small series showed that the laparoscopic technique also may be oncologically safe for these rare tumors.

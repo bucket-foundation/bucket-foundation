@@ -1,0 +1,14 @@
+# What Learning Systems do Intelligent Agents Need? Complementary Learning Systems Theory Updated.
+
+- **PMID**: 27315762
+- **DOI**: 10.1016/j.tics.2016.05.004
+- **PMCID**:  
+- **Journal**: Trends in cognitive sciences  ·  **Year**: 2016
+- **Authors**: Dharshan Kumaran, Demis Hassabis, James L McClelland
+- **MeSH**: Animals, Hippocampus, Humans, Intelligence, Learning, Memory, Models, Neurological, Neocortex, Neural Pathways, Systems Theory
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27315762/
+- **Captured**: 2026-05-10T14:07:04
+
+## Abstract
+
+We update complementary learning systems (CLS) theory, which holds that intelligent agents must possess two learning systems, instantiated in mammalians in neocortex and hippocampus. The first gradually acquires structured knowledge representations while the second quickly learns the specifics of individual experiences. We broaden the role of replay of hippocampal memories in the theory, noting that replay allows goal-dependent weighting of experience statistics. We also address recent challenges to the theory and extend it by showing that recurrent activation of hippocampal traces can support some forms of generalization and that neocortical learning can be rapid for information that is consistent with known structure. Finally, we note the relevance of the theory to the design of artificial intelligent agents, highlighting connections between neuroscience and machine learning.

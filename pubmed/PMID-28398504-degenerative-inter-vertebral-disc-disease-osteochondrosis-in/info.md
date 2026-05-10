@@ -1,0 +1,14 @@
+# Degenerative inter-vertebral disc disease osteochondrosis intervertebralis in Europe: prevalence, geographic variation and radiological correlates in men and women aged 50 and over.
+
+- **PMID**: 28398504
+- **DOI**: 10.1093/rheumatology/kex040
+- **PMCID**: PMC1753132 (full-text saved)
+- **Journal**: Rheumatology (Oxford, England)  ·  **Year**: 2017
+- **Authors**: Gabriele Armbrecht, Dieter Felsenberg, Melanie Ganswindt, Mark Lunt, Stephen K Kaptoge, Klaus Abendroth, Antonio Aroso Dias, Ashok K Bhalla, Jorge Cannata Andia, Jan Dequeker, Richard Eastell, Krzysztof Hoszowski, George Lyritis, Pavol Masaryk, Joyce van Meurs, Tomasz Miazgowski, Ranuccio Nuti, Gyula Poór, Inga Redlund-Johnell, David M Reid, Helmut Schatz, Christopher J Todd, Anthony D Woolf, Fernando Rivadeneira, Muhammad K Javaid, Cyrus Cooper, Alan J Silman, Terence W O'Neill, Jonathan Reeve
+- **MeSH**: Age Distribution, Aged, Bone Density, Cohort Studies, Europe, Female, Humans, Intervertebral Disc Degeneration, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28398504/
+- **Captured**: 2026-05-10T14:07:27
+
+## Abstract
+
+To assess the prevalences across Europe of radiological indices of degenerative inter-vertebral disc disease (DDD); and to quantify their associations with, age, sex, physical anthropometry, areal BMD (aBMD) and change in aBMD with time. In the population-based European Prospective Osteoporosis Study, 27 age-stratified samples of men and women from across the continent aged 50+ years had standardized lateral radiographs of the lumbar and thoracic spine to evaluate the severity of DDD, using the Kellgren-Lawrence (KL) scale. Measurements of anterior, mid-body and posterior vertebral heights on all assessed vertebrae from T4 to L4 were used to generate indices of end-plate curvature. Images from 10 132 participants (56% female, mean age 63.9 years) passed quality checks. Overall, 47% of men and women had DDD grade 3 or more in the lumbar spine and 36% in both thoracic and lumbar spine. Risk ratios for DDD grades 3 and 4, adjusted for age and anthropometric determinants, varied across a three-fold range between centres, yet prevalences were highly correlated in men and women. DDD was associated with flattened, non-ovoid inter-vertebral disc spaces. KL grade 4 and loss of inter-vertebral disc space were associated with higher spine aBMD. KL grades 3 and 4 are often used clinically to categorize radiological DDD. Highly variable European prevalences of radiologically defined DDD grades 3+ along with the large effects of age may have growing and geographically unequal health and economic impacts as the population ages. These data encourage further studies of potential genetic and environmental causes.

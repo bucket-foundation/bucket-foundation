@@ -1,0 +1,14 @@
+# Maimonides' ladder: States of mutual knowledge and the perception of charitability.
+
+- **PMID**: 30335447
+- **DOI**: 10.1037/xge0000507
+- **PMCID**:  
+- **Journal**: Journal of experimental psychology. General  ·  **Year**: 2019
+- **Authors**: Julian De Freitas, Peter DeScioli, Kyle A Thomas, Steven Pinker
+- **MeSH**: Adult, Altruism, Charities, Choice Behavior, Humans, Social Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30335447/
+- **Captured**: 2026-05-10T14:08:17
+
+## Abstract
+
+Why do people esteem anonymous charitable giving? We connect normative theories of charitability (captured in Maimonides' Ladder of Charity) with evolutionary theories of partner choice to test predictions on how attributions of charitability are affected by states of knowledge: whether the identity of the donor or of the beneficiary is revealed to the other. Consistent with the theories, in Experiments 1-2 participants judged a double-blind gift as more charitable than one to a revealed beneficiary, which in turn was judged as more charitable than one from a revealed donor. We also found one exception: Participants judged a donor who revealed only himself as slightly less, rather than more, charitable than one who revealed both identities. Experiment 3 explains the exception as a reaction to the donor's perceived sense of superiority and disinterest in a social relationship. Experiment 4 found that donors were judged as more charitable when the gift was shared knowledge (each aware of the other's identity, but unsure of the other's awareness) than when it was common knowledge (awareness of awareness). Experiment 5, which titrated anonymity against donation size, found that not even a hundredfold larger gift could compensate for the disapproval elicited by a donor revealing his identity. Experiment 6 showed that participants' judgments of charitability flip depending on whose perspective they take: Observers disapprove of donations that they would prefer as beneficiaries. Together, these experiments provide insight into why people care about how a donor gives, not just how much. (PsycINFO Database Record (c) 2018 APA, all rights reserved).

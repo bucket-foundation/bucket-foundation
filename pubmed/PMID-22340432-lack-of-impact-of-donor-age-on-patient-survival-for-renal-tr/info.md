@@ -1,0 +1,14 @@
+# Lack of impact of donor age on patient survival for renal transplant recipients ≥60years.
+
+- **PMID**: 22340432
+- **DOI**: 10.1111/j.1432-2277.2012.01429.x
+- **PMCID**:  
+- **Journal**: Transplant international : official journal of the European Society for Organ Transplantation  ·  **Year**: 2012
+- **Authors**: Wai H Lim, Gursharan Dogra, Steve J Chadban, Scott B Campbell, Philip Clayton, Solomon Cohney, Graeme R Russ, Stephen P McDonald
+- **MeSH**: Adult, Age Factors, Australia, Female, Graft Survival, Humans, Kidney Failure, Chronic, Kidney Transplantation, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22340432/
+- **Captured**: 2026-05-10T14:05:07
+
+## Abstract
+
+There has been an increase in the number of older patients on the transplant waiting list and acceptance of older donor kidneys. Although kidneys from older donors have been associated with poorer graft outcomes, whether there is a differential impact of donor age on outcomes in older recipients remains unclear. The aim of this study was to evaluate the effect of donor age on graft and patient survival in renal transplant (RT) recipients ≥60years. Using the Australia and New Zealand Dialysis and Transplant Registry, outcomes of 1,037 RT recipients ≥60years between 1995 and 2009 were analyzed. Donor age groups were categorized into 0-20, >20-40, >40-60, and >60years. Compared with recipients receiving donor kidneys >60years, those receiving donor kidneys >20-40years had lower risk of acute rejection (odds ratio 0.46, 95% CI 0.27, 0.79; P<0.01) and death-censored graft failure (HR 0.37, 95% CI 0.19, 0.72; P<0.01). There was no association between donor age groups and death. With a corresponding growth in the availability of older donor kidneys and the observed lack of association between donor age and patient survival in RT recipients ≥60years, preferential allocation of older donor kidneys to RT recipients ≥60years may not disadvantage the life expectancy of these patients.

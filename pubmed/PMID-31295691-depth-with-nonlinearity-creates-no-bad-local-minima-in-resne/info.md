@@ -1,0 +1,14 @@
+# Depth with nonlinearity creates no bad local minima in ResNets.
+
+- **PMID**: 31295691
+- **DOI**: 10.1016/j.neunet.2019.06.009
+- **PMCID**:  
+- **Journal**: Neural networks : the official journal of the International Neural Network Society  ·  **Year**: 2019
+- **Authors**: Kenji Kawaguchi, Yoshua Bengio
+- **MeSH**: Deep Learning, Machine Learning, Neural Networks, Computer, Nonlinear Dynamics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31295691/
+- **Captured**: 2026-05-10T14:08:39
+
+## Abstract
+
+In this paper, we prove that depth with nonlinearity creates no bad local minima in a type of arbitrarily deep ResNets with arbitrary nonlinear activation functions, in the sense that the values of all local minima are no worse than the global minimum value of corresponding classical machine-learning models, and are guaranteed to further improve via residual representations. As a result, this paper provides an affirmative answer to an open question stated in a paper in the conference on Neural Information Processing Systems 2018. This paper advances the optimization theory of deep learning only for ResNets and not for other network architectures.

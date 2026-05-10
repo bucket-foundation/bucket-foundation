@@ -1,0 +1,14 @@
+# Comparison of serum testosterone and estradiol measurements in 3174 European men using platform immunoassay and mass spectrometry; relevance for the diagnostics in aging men.
+
+- **PMID**: 22423144
+- **DOI**: 10.1530/EJE-11-1051
+- **PMCID**:  
+- **Journal**: European journal of endocrinology  ·  **Year**: 2012
+- **Authors**: Ilpo T Huhtaniemi, Abdelouahid Tajar, David M Lee, Terence W O'Neill, Joseph D Finn, György Bartfai, Steven Boonen, Felipe F Casanueva, Aleksander Giwercman, Thang S Han, Krzysztof Kula, Fernand Labrie, Michael E J Lean, Neil Pendleton, Margus Punab, Alan J Silman, Dirk Vanderschueren, Gianni Forti, Frederick C W Wu
+- **MeSH**: Adult, Aged, Aging, Cohort Studies, Electrochemistry, Estradiol, Europe, Gas Chromatography-Mass Spectrometry, Humans, Hypogonadism
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22423144/
+- **Captured**: 2026-05-10T14:05:09
+
+## Abstract
+
+The limitations of serum testosterone and estradiol (E(2)) measurements using non-extraction platform immunoassays (IAs) are widely recognized. Switching to more specific mass spectrometry (MS)-based methods has been advocated, but directly comparative data on the two methods are scarce. We compared serum testosterone and E(2) measurements in a large sample of middle-aged/elderly men using a common platform IA and a gas chromatography (GC)-MS method, in order to assess their limitations and advantages, and to diagnose male hypogonadism. Of subjects from the European Male Aging Study (n=3174; age 40-79 years), peripheral serum testosterone and E(2) were analyzed using established commercial platform IAs (Roche Diagnostics E170) and in-house GC-MS methods. Over a broad concentration range, serum testosterone concentration measured by IA and MS showed high correlation (R=0.93, P<0.001), which was less robust in the hypogonadal range (<11 nmol/l; R=0.72, P<0.001). The IA/MS correlation was weaker in E(2) measurements (R=0.32, P<0.001, at E(2) <40.8 pmol/l, and R=0.74, P<0.001, at E(2) >40.8 pmol/l). Using MS as the comparator method, IA ascertained low testosterone compatible with hypogonadism (<11 nmol/l), with 75% sensitivity and 96.3% specificity. The same parameters with IA for the detection of low E(2) (<40.7 pmol/l) were 13.3 and 99.3%, and for high E(2) (>120 pmol/l) 88.4 and 88.6%. A validated platform IA is sufficient to detect subnormal testosterone concentrations in the diagnosis of male hypogonadism. The IA used for E(2) measurements showed poor correlation with MS and may only be suitable for the detection of high E(2) in men.

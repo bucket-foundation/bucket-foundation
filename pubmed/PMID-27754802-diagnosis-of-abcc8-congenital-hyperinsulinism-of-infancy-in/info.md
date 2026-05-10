@@ -1,0 +1,14 @@
+# Diagnosis of ABCC8 Congenital Hyperinsulinism of Infancy in a 20-Year-Old Man Evaluated for Factitious Hypoglycemia.
+
+- **PMID**: 27754802
+- **DOI**: 10.1210/jc.2016-3254
+- **PMCID**:  
+- **Journal**: The Journal of clinical endocrinology and metabolism  ·  **Year**: 2017
+- **Authors**: Amichai Gutgold, David J Gross, Benjamin Glaser, Auryan Szalat
+- **MeSH**: Congenital Hyperinsulinism, Diagnosis, Differential, Genetic Predisposition to Disease, Humans, Hypoglycemia, Male, Mutation, Pedigree, Recurrence, Sulfonylurea Receptors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27754802/
+- **Captured**: 2026-05-10T14:07:13
+
+## Abstract
+
+Hypoglycemia is a rare event in healthy adults, and the differential diagnosis includes many diseases, some of which are rare and easily missed. A 20-year-old male military paramedic was referred to our emergency department for investigation of recurrent hypoglycemia episodes during the previous months. Factitious hypoglycemia was excluded, and organic hyperinsulinemic hypoglycemia was diagnosed by the findings from a prolonged fast. The findings from endoscopic ultrasonography and triple-phase computed tomography were normal. Before additional diagnostic tests or exploratory surgery were performed, a deeper interrogation of the patient and his family revealed events compatible with episodes of hypoglycemia since childhood. Moreover, a single event of hypoglycemia during childhood was documented in 1 brother, suggesting the possibility of an inborn, inherited metabolic disease. Because the patient was Ashkenazi Jewish, we suspected the presence of 1 of 2 common founder mutations in the ABCC8 gene, which codes for 1 subunit of the β-cell adenosine triphosphate-sensitive potassium channel, known to cause congenital hyperinsulinism of infancy. Direct sequencing revealed homozygosity for the ABCC8 gene mutation 3989-9 G>A. The differential diagnosis of hyperinsulinemic hypoglycemia in a young healthy adult should include genetic disorders of glucose homeostasis. In the Ashkenazi population, rapid and inexpensive screening for 2 founder mutations can confirm the diagnosis, avoiding expensive, invasive, and potentially dangerous diagnostic procedures.

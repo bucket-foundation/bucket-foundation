@@ -1,0 +1,14 @@
+# Endoscopic Ultrasound-Guided Radiofrequency Ablation: A New Therapeutic Approach for Pancreatic Neuroendocrine Tumors.
+
+- **PMID**: 31102458
+- **DOI**: 10.1210/jc.2019-00282
+- **PMCID**:  
+- **Journal**: The Journal of clinical endocrinology and metabolism  ·  **Year**: 2019
+- **Authors**: Kira Oleinikov, Alain Dancour, Julia Epshtein, Ariel Benson, Haggi Mazeh, Ilanit Tal, Shay Matalon, Carlos A Benbassat, Dan M Livovsky, Eran Goldin, David J Gross, Harold Jacob, Simona Grozinsky-Glasberg
+- **MeSH**: Aged, Blood Glucose, Catheter Ablation, Endosonography, Feasibility Studies, Female, Follow-Up Studies, Humans, Insulinoma, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31102458/
+- **Captured**: 2026-05-10T14:08:29
+
+## Abstract
+
+Endoscopic ultrasound-guided radiofrequency ablation (EUS-RFA) is rapidly emerging as feasible therapy for patients with pancreatic neuroendocrine tumors (pNETs) in selected cases, as a result of its favorable safety profile. To assess the feasibility, safety, and efficacy of EUS-RFA in a cohort of patients with functional and nonfunctional pNETs (NF-pNETs). Data on pNET patients treated with EUS-RFA between March 2017 and October 2018 at two tertiary centers was retrospectively analyzed. The cohort included 18 adults (eight women, 10 men), aged 60.4 ± 14.4 years (mean ± SD), seven insulinoma patients, and 11 patients with NF-pNETs. Twenty-seven lesions with a mean diameter of 14.3 ± 7.3 mm (range 4.5 to 30) were treated. Technical success defined as typical postablative changes on a surveillance imaging was achieved in 26 out of 27 lesions. Clinical response with normalization of glucose levels was observed in all (seven of seven) insulinoma cases within 24 hours of treatment. Overall, there were no major complications 48 hours postprocedure. No clinically significant recurrences were observed during mean follow-up of 8.7 ± 4.6 months (range 2 to 21 months). EUS-guided RFA of pNETs is a minimally invasive, safe, and technically feasible procedure for selected patients.

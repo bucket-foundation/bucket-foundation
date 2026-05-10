@@ -1,0 +1,14 @@
+# Evidence for the extraterrestrial origin of a natural quasicrystal.
+
+- **PMID**: 22215583
+- **DOI**: 10.1073/pnas.1111115109
+- **PMCID**: PMC3277151 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2012
+- **Authors**: Luca Bindi, John M Eiler, Yunbin Guan, Lincoln S Hollister, Glenn MacPherson, Paul J Steinhardt, Nan Yao
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22215583/
+- **Captured**: 2026-05-10T14:05:02
+
+## Abstract
+
+We present evidence that a rock sample found in the Koryak Mountains in Russia and containing icosahedrite, an icosahedral quasicrystalline phase with composition Al(63)Cu(24)Fe(13), is part of a meteorite, likely formed in the early solar system about 4.5 Gya. The quasicrystal grains are intergrown with diopside, forsterite, stishovite, and additional metallic phases [khatyrkite (CuAl(2)), cupalite (CuAl), and β-phase (AlCuFe)]. This assemblage, in turn, is enclosed in a white rind consisting of diopside, hedenbergite, spinel (MgAl(2)O(4)), nepheline, and forsterite. Particularly notable is a grain of stishovite (from the interior), a tetragonal polymorph of silica that only occurs at ultrahigh pressures (≥ 10 Gpa), that contains an inclusion of quasicrystal. An extraterrestrial origin is inferred from secondary ion mass spectrometry (18)O/(16)O and (17)O/(16)O measurements of the pyroxene and olivine intergrown with the metal that show them to have isotopic compositions unlike any terrestrial minerals and instead overlap those of anhydrous phases in carbonaceous chondrite meteorites. The spinel from the white rind has an isotopic composition suggesting that it was part of a calcium-aluminum-rich inclusion similar to those found in CV3 chondrites. The mechanism that produced this exotic assemblage is not yet understood. The assemblage (metallic copper-aluminum alloy) is extremely reduced, and the close association of aluminum (high temperature refractory lithophile) with copper (low temperature chalcophile) is unexpected. Nevertheless, our evidence indicates that quasicrystals can form naturally under astrophysical conditions and remain stable over cosmic timescales, giving unique insights on their existence in nature and stability.

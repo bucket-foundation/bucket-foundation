@@ -1,0 +1,14 @@
+# Efficacy of everolimus plus octreotide LAR in patients with advanced neuroendocrine tumor and carcinoid syndrome: final overall survival from the randomized, placebo-controlled phase 3 RADIANT-2 study.
+
+- **PMID**: 28444114
+- **DOI**: 10.1093/annonc/mdx193
+- **PMCID**: PMC6063317 (full-text saved)
+- **Journal**: Annals of oncology : official journal of the European Society for Medical Oncology  ·  **Year**: 2017
+- **Authors**: M E Pavel, E Baudin, K E Öberg, J D Hainsworth, M Voi, N Rouyrre, M Peeters, D J Gross, J C Yao
+- **MeSH**: Administration, Oral, Antineoplastic Combined Chemotherapy Protocols, Carcinoma, Neuroendocrine, Disease Progression, Disease-Free Survival, Double-Blind Method, Drug Administration Schedule, Everolimus, Humans, Injections, Intramuscular
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28444114/
+- **Captured**: 2026-05-10T14:07:28
+
+## Abstract
+
+In the phase 3 RADIANT-2 study, everolimus plus octreotide long-acting repeatable (LAR) showed improvement of 5.1 months in median progression-free survival versus placebo plus octreotide LAR among patients with advanced neuroendocrine tumors associated with carcinoid syndrome. The progression-free survival P-value was marginally above the prespecified threshold for statistical significance. Here, we report final overall survival (OS) and key safety update from RADIANT-2. The RADIANT-2 trial compared everolimus (10 mg/day, orally; n = 216) versus placebo (n = 213), both in conjunction with octreotide LAR (30 mg, intramuscularly, every 28 days). Patients, unblinded at the time of progression or after end of double-blind core phase following primary analysis, were offered open-label everolimus with octreotide LAR (open-label phase). In the open-label phase, patients had similar safety and efficacy assessments as those in the core phase. For OS, hazard ratios (HRs) with 95% CIs using unadjusted Cox model and a Cox model adjusted for prespecified baseline covariates were calculated. A total of 170 patients received open-label everolimus (143 crossed over from the placebo arm; 27 in the everolimus arm continued to receive the same treatment after unblinding). The median OS (95% CI) after 271 events was 29.2 months (23.8-35.9) for the everolimus arm and 35.2 months (30.0-44.7) for the placebo arm (HR, 1.17; 95% CI, 0.92-1.49). HR adjusted for baseline covariates was 1.08 (95% CI, 0.84-1.38). The most frequent drug-related grade 3 or 4 AEs reported during the open-label phase were diarrhea (5.3%), fatigue (4.7%), and stomatitis (4.1%). Deaths related to pulmonary or cardiac failure were observed more frequently in the everolimus arm. No significant difference in OS was observed for the everolimus plus octreotide LAR and placebo plus octreotide LAR arms of the RADIANT-2 study, even after adjusting for imbalances in the baseline covariates. NCT00412061, www.clinicaltrials.gov.

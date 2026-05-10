@@ -1,0 +1,14 @@
+# Peritoneal dialysis outcomes after temporary haemodialysis transfer for peritonitis.
+
+- **PMID**: 24596083
+- **DOI**: 10.1093/ndt/gfu050
+- **PMCID**:  
+- **Journal**: Nephrology, dialysis, transplantation : official publication of the European Dialysis and Transplant Association - European Renal Association  ·  **Year**: 2014
+- **Authors**: Yeoungjee Cho, Sunil V Badve, Carmel M Hawley, Stephen P McDonald, Fiona G Brown, Neil Boudville, Philip Clayton, David W Johnson
+- **MeSH**: Aged, Australia, Case-Control Studies, Female, Hospitalization, Humans, Male, Middle Aged, Peritoneal Dialysis, Peritonitis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24596083/
+- **Captured**: 2026-05-10T14:06:11
+
+## Abstract
+
+There has not been a comprehensive examination to date of peritoneal dialysis (PD) outcomes after temporary haemodialysis (HD) transfer for peritonitis. The study included all incident Australian patients who experienced peritonitis between 1 October 2003, and 31 December 2011, using Australia and New Zealand Dialysis and Transplant Registry data. Patients were grouped into three categories: Interim HD, Permanent HD and Never HD based on HD transfer status after the first peritonitis. The independent predictors of HD transfer and subsequent return to PD were determined by multivariable, multilevel mixed-effects logistic regression analysis. Matched case-control analyses were performed to compare clinical outcomes (e.g. patient survival) between groups. Of the 3305 patients who experienced peritonitis during the study period, 553 episodes (16.7%) resulted in transfer to HD and 101 patients subsequently returned to PD. HD transfer was significantly and independently predicted by inpatient treatment of peritonitis [odds ratio (OR) 11.45, 95% confidence interval (CI) 7.14-18.36] and the recovered microbiologic profile of organisms recognized to be associated with moderate (20-40%) to high (>40%) rates of catheter removal (moderate: OR 2.45, 95% CI 1.89-3.17; high: OR 8.63, 95% CI 6.44-11.57). Matched case-control analyses yielded comparable results among Interim, Permanent and Never HD groups in terms of patient survival (P = 0.28), death-censored technique survival [hazard ratio (HR) 0.87, 95% CI 0.59-1.28; P = 0.48] and peritonitis-free survival (HR 0.84, 95% CI 0.50-1.39, P = 0.49). In an observational registry study of first peritonitis episodes, temporary HD transfer was not associated with inferior patient-level clinical outcomes when compared with others who either never required HD transfer or remained on HD permanently if all patient-level and peritonitis-related factors were considered equal. Therefore, return to PD after a temporary HD due to peritonitis should not be discouraged in appropriate PD patients.

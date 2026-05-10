@@ -1,0 +1,14 @@
+# Semantic representations in the temporal pole predict false memories.
+
+- **PMID**: 27551087
+- **DOI**: 10.1073/pnas.1610686113
+- **PMCID**: PMC3701683 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2016
+- **Authors**: Martin J Chadwick, Raeesa S Anjum, Dharshan Kumaran, Daniel L Schacter, Hugo J Spiers, Demis Hassabis
+- **MeSH**: Adolescent, Adult, Brain Mapping, Female, Hippocampus, Humans, Magnetic Resonance Imaging, Male, Mental Recall, Perceptual Distortion
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27551087/
+- **Captured**: 2026-05-10T14:07:11
+
+## Abstract
+
+Recent advances in neuroscience have given us unprecedented insight into the neural mechanisms of false memory, showing that artificial memories can be inserted into the memory cells of the hippocampus in a way that is indistinguishable from true memories. However, this alone is not enough to explain how false memories can arise naturally in the course of our daily lives. Cognitive psychology has demonstrated that many instances of false memory, both in the laboratory and the real world, can be attributed to semantic interference. Whereas previous studies have found that a diverse set of regions show some involvement in semantic false memory, none have revealed the nature of the semantic representations underpinning the phenomenon. Here we use fMRI with representational similarity analysis to search for a neural code consistent with semantic false memory. We find clear evidence that false memories emerge from a similarity-based neural code in the temporal pole, a region that has been called the "semantic hub" of the brain. We further show that each individual has a partially unique semantic code within the temporal pole, and this unique code can predict idiosyncratic patterns of memory errors. Finally, we show that the same neural code can also predict variation in true-memory performance, consistent with an adaptive perspective on false memory. Taken together, our findings reveal the underlying structure of neural representations of semantic knowledge, and how this semantic structure can both enhance and distort our memories.

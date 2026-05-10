@@ -1,0 +1,14 @@
+# Carcinoid Heart Disease: From Pathophysiology to Treatment--'Something in the Way It Moves'.
+
+- **PMID**: 25871411
+- **DOI**: 10.1159/000381930
+- **PMCID**:  
+- **Journal**: Neuroendocrinology  ·  **Year**: 2015
+- **Authors**: Simona Grozinsky-Glasberg, Ashley B Grossman, David J Gross
+- **MeSH**: Animals, Carcinoid Heart Disease, Humans, Neuroendocrine Tumors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25871411/
+- **Captured**: 2026-05-10T14:06:35
+
+## Abstract
+
+Carcinoid heart disease (CHD) is a rare cardiac manifestation occurring in patients with advanced neuroendocrine tumours and the carcinoid syndrome, usually involving the right-sided heart valves and eventually leading to right heart failure. The pathophysiology of CHD is still obscure and believed to be multifactorial, as a variety of vasoactive substances secreted by the tumour appear to be involved. The management of patients with CHD is complex, as both the systemic malignant disease and the heart involvement have to be addressed. Timely diagnosis and early surgical treatment in appropriately selected patients are of outmost importance, as CHD is associated with increased morbidity and mortality. Valve replacement surgery alleviates right heart failure and may also contribute to improved survival. In the present study we have comprehensively reviewed the existing literature to date, mainly focusing on the pathophysiology of CHD. Other aspects of CHD (such as the clinical presentation, diagnostic tools and therapeutic approach) are addressed in brief.

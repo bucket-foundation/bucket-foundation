@@ -1,0 +1,14 @@
+# Highly favourable outcomes with peptide receptor radionuclide therapy (PRRT) for metastatic rectal neuroendocrine neoplasia (NEN).
+
+- **PMID**: 30343432
+- **DOI**: 10.1007/s00259-018-4196-8
+- **PMCID**:  
+- **Journal**: European journal of nuclear medicine and molecular imaging  ·  **Year**: 2019
+- **Authors**: Grace Kong, Simona Grozinsky-Glasberg, Michael S Hofman, Tim Akhurst, Amichay Meirovitz, Ofra Maimon, Yodphat Krausz, Jeremy Godefroy, Michael Michael, David J Gross, Rodney J Hicks
+- **MeSH**: Adult, Aged, Aged, 80 and over, Disease-Free Survival, Female, Humans, Male, Middle Aged, Neoplasm Metastasis, Neuroendocrine Tumors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30343432/
+- **Captured**: 2026-05-10T14:08:18
+
+## Abstract
+
+Rectal neuroendocrine neoplasia (NEN) is more common than other NEN origins, but is less commonly metastatic. However, when present, distant disease carries a particularly poor prognosis. Evidence guiding optimal treatment of such patients is lacking. We assessed PRRT outcomes in patients with somatostatin receptor (SSTR) positive metastatic rectal NEN from two referral centres. Patients treated with PRRT were retrospectively reviewed. Morphologic (RECIST 1.1), SSTR imaging responses and toxicity were assessed 3 months post-PRRT. Kaplan-Meier estimate was used to determine progression-free survival (PFS) and overall survival (OS) from start of PRRT. Twenty-seven consecutive patients (M = 20, age 31-81 years) were reviewed. The majority (70%) had ENETs grade 2 disease (19 patients), three had Grade 3, one Grade 1, and four not documented. Overall, 63% (10/16 patients with available FDG PET/CT) had FDG avid disease. Twenty-six patients were treated for disease progression. Most had  Our results indicate high efficacy and morphologic responses with minimal toxicity and very encouraging survival from PRRT in patients with metastatic rectal NEN despite the adverse prognostic features of this cohort. Further prospective PRRT trials are warranted in this subgroup.

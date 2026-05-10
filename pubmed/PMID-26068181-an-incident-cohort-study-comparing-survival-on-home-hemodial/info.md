@@ -1,0 +1,14 @@
+# An Incident Cohort Study Comparing Survival on Home Hemodialysis and Peritoneal Dialysis (Australia and New Zealand Dialysis and Transplantation Registry).
+
+- **PMID**: 26068181
+- **DOI**: 10.1038/ki.2015.68
+- **PMCID**: PMC3529546 (full-text saved)
+- **Journal**: Clinical journal of the American Society of Nephrology : CJASN  ·  **Year**: 2015
+- **Authors**: Annie-Claire Nadeau-Fredette, Carmel M Hawley, Elaine M Pascoe, Christopher T Chan, Philip A Clayton, Kevan R Polkinghorne, Neil Boudville, Martine Leblanc, David W Johnson
+- **MeSH**: Adult, Aged, Australia, Equipment Failure, Female, Hemodialysis, Home, Humans, Incidence, Kaplan-Meier Estimate, Kidney Diseases
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26068181/
+- **Captured**: 2026-05-10T14:06:40
+
+## Abstract
+
+Home dialysis is often recognized as a first-choice therapy for patients initiating dialysis. However, studies comparing clinical outcomes between peritoneal dialysis and home hemodialysis have been very limited. This Australia and New Zealand Dialysis and Transplantation Registry study assessed all Australian and New Zealand adult patients receiving home dialysis on day 90 after initiation of RRT between 2000 and 2012. The primary outcome was overall survival. The secondary outcomes were on-treatment survival, patient and technique survival, and death-censored technique survival. All results were adjusted with three prespecified models: multivariable Cox proportional hazards model (main model), propensity score quintile-stratified model, and propensity score-matched model. The study included 10,710 patients on incident peritoneal dialysis and 706 patients on incident home hemodialysis. Treatment with home hemodialysis was associated with better patient survival than treatment with peritoneal dialysis (5-year survival: 85% versus 44%, respectively; log-rank P<0.001). Using multivariable Cox proportional hazards analysis, home hemodialysis was associated with superior patient survival (hazard ratio for overall death, 0.47; 95% confidence interval, 0.38 to 0.59) as well as better on-treatment survival (hazard ratio for on-treatment death, 0.34; 95% confidence interval, 0.26 to 0.45), composite patient and technique survival (hazard ratio for death or technique failure, 0.34; 95% confidence interval, 0.29 to 0.40), and death-censored technique survival (hazard ratio for technique failure, 0.34; 95% confidence interval, 0.28 to 0.41). Similar results were obtained with the propensity score models as well as sensitivity analyses using competing risks models and different definitions for technique failure and lag period after modality switch, during which events were attributed to the initial modality. Home hemodialysis was associated with superior patient and technique survival compared with peritoneal dialysis.

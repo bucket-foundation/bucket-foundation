@@ -1,0 +1,14 @@
+# Long-term outcomes of end-stage kidney disease for patients with lupus nephritis.
+
+- **PMID**: 27165824
+- **DOI**: 10.1016/j.kint.2016.02.014
+- **PMCID**:  
+- **Journal**: Kidney international  ·  **Year**: 2016
+- **Authors**: Lei Zhang, Gavin Lee, Xusheng Liu, Elaine M Pascoe, Sunil V Badve, Neil C Boudville, Philip A Clayton, Carmel M Hawley, John Kanellis, Stephen P McDonald, Chen Au Peh, Kevan R Polkinghorne, David W Johnson
+- **MeSH**: Adult, Australia, Female, Follow-Up Studies, Graft Survival, Humans, Kidney Failure, Chronic, Kidney Transplantation, Lupus Nephritis, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27165824/
+- **Captured**: 2026-05-10T14:06:58
+
+## Abstract
+
+Patient outcomes in end-stage kidney disease (ESKD) secondary to lupus nephritis have not been well described. To help define this we compared dialysis and transplant outcomes of patients with ESKD due to lupus nephritis to all other causes. All patients diagnosed with ESKD who commenced renal replacement therapy in Australia and New Zealand (1963-2012) were included. Clinical outcomes were evaluated in both a contemporary cohort (1998-2012) and the entire 50-year cohort. Of 64,160 included patients, 744 had lupus nephritis as the primary renal disease. For the contemporary cohort of 425 patients with lupus nephritis, the 5-year dialysis patient survival rate was 69%. Of 176 contemporary patients with lupus nephritis who received their first renal allograft, the 5-year patient, overall renal allograft, and death-censored renal allograft survival rates were 95%, 88%, and 93%, respectively. Patients with lupus nephritis had worse dialysis patient survival (adjusted hazard ratio 1.33, 95% confidence interval 1.12-1.58) and renal transplant patient survival (adjusted hazard ratio 1.87, 95% confidence interval 1.18-2.98), but comparable overall renal allograft survival (adjusted hazard ratio 1.19, 95% confidence interval 0.84-1.68) and death-censored renal allograft survival (adjusted hazard ratio 1.05, 95% confidence interval 0.68-1.62) compared with ESKD controls. Similar results were found in the entire cohort and when using competing-risks analysis. Thus, the ESKD of lupus nephritis was associated with worse dialysis and transplant patient survival but comparable renal allograft survival compared with other causes of ESKD.

@@ -1,0 +1,14 @@
+# Obesity and the risk of cardiovascular and all-cause mortality in chronic kidney disease: a systematic review and meta-analysis.
+
+- **PMID**: 27190330
+- **DOI**: 10.1093/ndt/gfw075
+- **PMCID**:  
+- **Journal**: Nephrology, dialysis, transplantation : official publication of the European Dialysis and Transplant Association - European Renal Association  ·  **Year**: 2017
+- **Authors**: Maleeka Ladhani, Jonathan C Craig, Michelle Irving, Philip A Clayton, Germaine Wong
+- **MeSH**: Body Mass Index, Cardiovascular Diseases, Cause of Death, Cohort Studies, Humans, Kidney Transplantation, Mortality, Obesity, Obesity, Morbid, Proportional Hazards Models
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27190330/
+- **Captured**: 2026-05-10T14:06:59
+
+## Abstract
+
+Obesity is a risk factor for cardiovascular disease and death in people without chronic kidney disease (CKD), but the effect of obesity in people with CKD is uncertain. Medline and Embase (from inception to January 2015) were searched for cohort studies measuring obesity by body mass index (BMI), waist:hip ratio (WHR) and/or waist circumference (WC) and all-cause and cardiovascular mortality or events in patients with any stage of CKD. Data were summarized using random effects models. Meta-regression was conducted to assess sources of heterogeneity. Of 4065 potentially eligible citations, 165 studies ( n = 1 534 845 participants) were analyzed. In studies that found a nonlinear relationship, underweight people with CKD (3-5) on hemodialysis experienced an increased risk of death compared with those with normal weight. In transplant recipients, excess risk was observed at levels of morbid obesity (>35 kg/m 2 ). Of studies that found the relationship to be linear, a 1 kg/m 2 increase in BMI was associated with a 3 and 4% reduction in all-cause and cardiovascular mortality in patients on hemodialysis, respectively {adjusted hazard ratio [HR] 0.97 [95% confidence interval (CI) 0.96-0.98] and adjusted HR 0.96 (95% CI 0.92-1.00)}. In CKD Stages 3-5, for every 1 kg/m 2 increase in BMI there was a 1% reduction in all-cause mortality [HR 0.99 (95% CI 0.0.97-1.00)]. There was no apparent association between obesity and mortality in transplanted patients or those on peritoneal dialysis. Sparse data for WHR and WC did not allow further analyses. Being obese may be protective for all-cause mortality in the predialysis and hemodialysis populations, while being underweight suggests increased risk, but not in transplant recipients.

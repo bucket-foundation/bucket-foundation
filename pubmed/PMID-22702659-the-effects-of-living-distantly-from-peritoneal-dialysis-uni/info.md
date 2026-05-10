@@ -1,0 +1,14 @@
+# The effects of living distantly from peritoneal dialysis units on peritonitis risk, microbiology, treatment and outcomes: a multi-centre registry study.
+
+- **PMID**: 22702659
+- **DOI**: 10.3747/pdi.2011.00057
+- **PMCID**: PMC3359536 (full-text saved)
+- **Journal**: BMC nephrology  ·  **Year**: 2012
+- **Authors**: Yeoungjee Cho, Sunil V Badve, Carmel M Hawley, Stephen P McDonald, Fiona G Brown, Neil Boudville M, Kathryn J Wiggins, Kym M Bannister, Philip Clayton, David W Johnson
+- **MeSH**: Adult, Aged, Anti-Bacterial Agents, Australia, Drug Therapy, Combination, Female, Health Services Accessibility, Humans, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22702659/
+- **Captured**: 2026-05-10T14:05:19
+
+## Abstract
+
+The aim of the study was to determine whether distance between residence and peritoneal dialysis (PD) unit influenced peritonitis occurrence, microbiology, treatment and outcomes. The study included all patients receiving PD between 1/10/2003 and 31/12/2008, using ANZDATA Registry data. 365 (6%) patients lived ≥100 km from their nearest PD unit (distant group), while 6183 (94%) lived <100 km (local group). Median time to first peritonitis in distant patients (1.34 years, 95% CI 1.07-1.61) was significantly shorter than in local patients (1.68 years, 95% CI 1.59-1.77, p = 0.001), whilst overall peritonitis rates were higher in distant patients (incidence rate ratio 1.32, 95% CI 1.20-1.46). Living ≥100 km away from a PD unit was independently associated with a higher risk of S. aureus peritonitis (adjusted odds ratio [OR] 1.64, 95% CI 1.09-2.47). Distant patients with first peritonitis episodes were less likely to be hospitalised (64% vs 73%, p = 0.008) and receive antifungal prophylaxis (4% vs 10%, p = 0.01), but more likely to receive vancomycin-based antibiotic regimens (52% vs 42%, p < 0.001). Using multivariable logistic regression analysis of peritonitis outcomes, distant patients were more likely to be cured with antibiotics alone (OR 1.55, 95% CI 1.03-2.24). All other outcomes were comparable between the two groups. Living ≥100 km away from a PD unit was associated with increased risk of S. aureus peritonitis, modified approaches to peritonitis treatment and peritonitis outcomes that were comparable to, or better than patients living closer to a PD unit. Staphylococcal decolonisation should receive particular consideration in remote living patients.

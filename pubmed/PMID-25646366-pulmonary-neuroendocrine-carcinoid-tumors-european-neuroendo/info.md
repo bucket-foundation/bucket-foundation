@@ -1,0 +1,14 @@
+# Pulmonary neuroendocrine (carcinoid) tumors: European Neuroendocrine Tumor Society expert consensus and recommendations for best practice for typical and atypical pulmonary carcinoids.
+
+- **PMID**: 25646366
+- **DOI**: 10.1093/annonc/mdv041
+- **PMCID**:  
+- **Journal**: Annals of oncology : official journal of the European Society for Medical Oncology  ·  **Year**: 2015
+- **Authors**: M E Caplin, E Baudin, P Ferolla, P Filosso, M Garcia-Yuste, E Lim, K Oberg, G Pelosi, A Perren, R E Rossi, W D Travis
+- **MeSH**: Antineoplastic Combined Chemotherapy Protocols, Bronchoscopy, Carboplatin, Carcinoid Heart Disease, Carcinoid Tumor, Cisplatin, Dacarbazine, Etoposide, Europe, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25646366/
+- **Captured**: 2026-05-10T14:06:30
+
+## Abstract
+
+Pulmonary carcinoids (PCs) are rare tumors. As there is a paucity of randomized studies, this expert consensus document represents an initiative by the European Neuroendocrine Tumor Society to provide guidance on their management. Bibliographical searches were carried out in PubMed for the terms 'pulmonary neuroendocrine tumors', 'bronchial neuroendocrine tumors', 'bronchial carcinoid tumors', 'pulmonary carcinoid', 'pulmonary typical/atypical carcinoid', and 'pulmonary carcinoid and diagnosis/treatment/epidemiology/prognosis'. A systematic review of the relevant literature was carried out, followed by expert review. PCs are well-differentiated neuroendocrine tumors and include low- and intermediate-grade malignant tumors, i.e. typical (TC) and atypical carcinoid (AC), respectively. Contrast CT scan is the diagnostic gold standard for PCs, but pathology examination is mandatory for their correct classification. Somatostatin receptor imaging may visualize nearly 80% of the primary tumors and is most sensitive for metastatic disease. Plasma chromogranin A can be increased in PCs. Surgery is the treatment of choice for PCs with the aim of removing the tumor and preserving as much lung tissue as possible. Resection of metastases should be considered whenever possible with curative intent. Somatostatin analogs are the first-line treatment of carcinoid syndrome and may be considered as first-line systemic antiproliferative treatment in unresectable PCs, particularly of low-grade TC and AC. Locoregional or radiotargeted therapies should be considered for metastatic disease. Systemic chemotherapy is used for progressive PCs, although cytotoxic regimens have demonstrated limited effects with etoposide and platinum combination the most commonly used, however, temozolomide has shown most clinical benefit. PCs are complex tumors which require a multidisciplinary approach and long-term follow-up.

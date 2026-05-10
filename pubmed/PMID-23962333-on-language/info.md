@@ -1,0 +1,14 @@
+# On language.
+
+- **PMID**: 23962333
+- **DOI**: 10.1162/jocn.1994.6.1.92
+- **PMCID**:  
+- **Journal**: Journal of cognitive neuroscience  ·  **Year**: 1994
+- **Authors**: S Pinker
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23962333/
+- **Captured**: 2026-05-10T14:05:58
+
+## Abstract
+
+Abstract Steven Pinker is a professor in the Department of Brain and Cognitive Sciences at MIT, and in 1994 will become director of its McDonnell-Pew Center for Cognitive Neuroscience. He received his B.K from McGill University in 1976 and his Ph.D. from Harvard University in 1979, both in experimental psychology, and taught at Harvard and Stanford before joining the faculty of MIT in 1982. He has done research in visual cognition and the psychology of language, and is the author of Language Learnability and Language Development (1984) and Learnability and Cognition (1989) and the editor of Visual Cognition (1985), Connections and Symbol (1988, with Jacques Mehler), and Lexical and Conceptual Semantics (1992, with Beth Levin). He was the recipient of the Early Career Award in 1984 and the Boyd McCandless Award in 1986 from the American Psychological Association, a Graduate Teaching Award from MIT in 1986, and the Troland Research Award from the National Academy of Sciences in 1993. His newest book, The Language Instinct, will be published by William Morrow & Company in January 1994.

@@ -1,0 +1,14 @@
+# The impact of progressive chronic kidney disease on health-related quality-of-life: a 12-year community cohort study.
+
+- **PMID**: 30937731
+- **DOI**: 10.1007/s11136-019-02173-1
+- **PMCID**:  
+- **Journal**: Quality of life research : an international journal of quality of life aspects of treatment, care and rehabilitation  ·  **Year**: 2019
+- **Authors**: Melanie L R Wyld, Rachael L Morton, Phil Clayton, Muh Geot Wong, Meg Jardine, Kevan Polkinghorne, Steve Chadban
+- **MeSH**: Adult, Aged, Australia, Cohort Studies, Diabetes Mellitus, Disease Progression, Female, Health Status, Humans, Kidney Failure, Chronic
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30937731/
+- **Captured**: 2026-05-10T14:08:28
+
+## Abstract
+
+Quality-of-life is poor in end-stage kidney disease; however, the relationships between earlier stages of chronic kidney disease (CKD) and are poorly understood. This study explored longitudinal quality-of-life changes in a community-based CKD cohort and assessed associations between CKD and quality-of-life over time, and between baseline quality-of-life and CKD outcomes. We used the Australian diabetes, obesity and lifestyle study-a nationally representative, prospective cohort with data collected at baseline, year 5 and year 12-to examine the relationships between CKD stage, quality-of-life and outcomes. Linear mixed regression, cox proportional hazards, Kaplan-Meier and competing risks analyses were used. Of 1112 participants with CKD and baseline quality-of-life data, the physical component summary (PCS) score was significantly lower than for the general population (p = 0.01 age and sex adjusted), while the mental component summary (MCS) score was no different (p = 0.9 age and sex adjusted). In our unadjusted mixed effects model, more advanced kidney disease was associated with lower PCS and higher MCS at baseline (p < 0.001 and p < 0.01, respectively); however, this effect was no longer significant after adjustment for demographic and clinical variables. The rate of decline in PCS over the period of follow-up was greatest for those with more advanced kidney disease (p < 0.001 in unadjusted model, p = 0.007 in adjusted model). There was no association between change in MCS over the period of follow-up and severity of kidney disease in either the unadjusted or adjusted model (p = 0.7 and p = 0.1, respectively). Lower PCS, but not MCS, was associated with increased cardiovascular and increased all-cause mortality even after adjustment for key demographic and clinical variables (p < 0.001). Physical, but not mental, quality-of-life is significantly impaired in CKD, and continues to decline with disease progression.

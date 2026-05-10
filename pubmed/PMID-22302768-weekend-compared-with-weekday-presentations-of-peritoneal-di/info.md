@@ -1,0 +1,14 @@
+# Weekend compared with weekday presentations of peritoneal dialysis-associated peritonitis.
+
+- **PMID**: 22302768
+- **DOI**: 10.3747/pdi.2011.00169
+- **PMCID**: PMC2676190 (full-text saved)
+- **Journal**: Peritoneal dialysis international : journal of the International Society for Peritoneal Dialysis  ·  **Year**: 2012
+- **Authors**: David W Johnson, Philip Clayton, Yeoungjee Cho, Sunil V Badve, Carmel M Hawley, Stephen McDonald, Neil Boudville, Kathryn J Wiggins, Kym Bannister, Fiona Brown
+- **MeSH**: After-Hours Care, Anti-Bacterial Agents, Australia, Female, Hospitalization, Humans, Logistic Models, Male, Middle Aged, New Zealand
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22302768/
+- **Captured**: 2026-05-10T14:05:05
+
+## Abstract
+
+Management of peritoneal dialysis (PD)-associated peritonitis requires timely intervention by experienced staff, which may not be uniformly available throughout the week. The aim of the present study was to examine the effects of weekend compared with weekday presentation on peritonitis outcomes. The study, which used data from the Australia and New Zealand Dialysis and Transplant Registry, included all Australian patients receiving PD between 1 October 2003 and 31 December 2008. The independent predictors of weekend presentation and subsequent peritonitis outcomes were assessed by multivariate logistic regression. Peritonitis presentation rates were significantly lower on Saturdays [0.46 episodes per year; 95% confidence interval (CI): 0.42 to 0.49 episodes per year] and on Sundays (0.43 episodes per year; 95% CI: 0.40 to 0.47 episodes per year) than all other weekdays; they peaked on Mondays (0.76 episodes per year; 95% CI: 0.72 to 0.81 episodes per year). Weekend presentation with a first episode of peritonitis was independently associated with lower body mass index and residence less than 100 km away from the nearest PD unit. Patients presenting with peritonitis on the weekend were significantly more likely to be hospitalized [adjusted odds ratio (OR): 2.32; 95% CI: 1.85 to 2.90], although microbial profiles and empiric antimicrobial treatments were comparable between the weekend and weekday groups. Antimicrobial cure rates were also comparable (79% vs 79%, p = 0.9), with the exception of cure rates for culture-negative peritonitis, which were lower on the weekend (80% vs 88%, p = 0.047). Antifungal prophylaxis was less likely to be co-prescribed for first peritonitis episodes presenting on weekdays (OR: 0.68; 95% CI: 0.05 to 0.89). Patients on PD are less likely to present with peritonitis on the weekend. Nevertheless, the microbiology, treatment, and outcomes of weekend and weekday PD peritonitis presentations are remarkably similar. Exceptions include the associations of weekend presentation with a higher hospitalization rate and a lower cure rate in culture-negative infection.

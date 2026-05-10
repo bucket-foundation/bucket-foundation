@@ -1,0 +1,14 @@
+# Evolution of Glycemic Control and Variability After Kidney Transplant.
+
+- **PMID**: 29494418
+- **DOI**: 10.1097/TP.0000000000002155
+- **PMCID**:  
+- **Journal**: Transplantation  ·  **Year**: 2018
+- **Authors**: Leyla J Aouad, Philip Clayton, Kate R Wyburn, David M Gracey, Steven J Chadban
+- **MeSH**: Adult, Biomarkers, Blood Glucose, Blood Glucose Self-Monitoring, Circadian Rhythm, Diabetes Mellitus, Female, Glucose Tolerance Test, Humans, Kidney Transplantation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29494418/
+- **Captured**: 2026-05-10T14:07:59
+
+## Abstract
+
+The evolution of glycemic changes after kidney transplantation has not been described. We prospectively examined glycemic control and variability over time from transplantation using continuous glucose monitoring (CGM). Continuous glucose monitoring devices were fitted for 3 to 5 days at time of transplant, month 3, and month 6 posttransplant. Indices of glucose control (mean glucose, percent time in hyperglycemic range, and Glycemic Risk Assessment Diabetes Equation score) and variability were calculated. An oral glucose tolerance test was performed at month 3. Twenty-eight patients (mean age, 45 ± 15 years) were enrolled, 64% male, 75% white, receiving tacrolimus, mycophenolate, and prednisolone (93%). Of 24 patients with complete CGM data at month 0, 3 had prior diabetes and 6 (25%) developed new-onset diabetes after transplant (NODAT). Hyperglycemia (>11.1 mM) was evident in 79% during days 0 to 3 posttransplant, particularly between 1 and 9 PM. Compared with recipients without diabetes, recipients with prior diabetes had higher mean glucose (7.8 mM; 95% confidence interval [CI], 7.4-8.2 vs 9.9 mM; 95% CI, 8.9-10.8; P < 0.001), Glycemic Risk Assessment Diabetes Equation (GRADE) score (4.5; 95% CI, 3.7-5.4 vs 7.8; 95% CI, 5.6-10.4; P = 0.003) and percent time with hyperglycemia. Glycemic control was also inferior in those that subsequently developed NODAT (mean glucose, 8.8 mM; 95% CI, 8.2-9.4; P = 0.004, GRADE: 6.2, 95% CI, 5.2-7.7; P = 0.04 vs no diabetes). Glucose variability was increased in patients with prior diabetes (glucose standard deviation, 1.99; 95% CI, 1.72-2.27 vs 2.97; 95% CI, 2.27-3.67; P = 0.006) but not in NODAT. All measures of glucose control and variability significantly improved over time after transplantation (P < 0.001). Dysglycemia is very common after renal transplantation, exhibiting a distinct diurnal pattern of afternoon and evening hyperglycemia. The magnitude of hyperglycemia and variability are maximal in recipients with preexisting diabetes and significant in those who go on to develop NODAT. Dysglycemia improves with time.

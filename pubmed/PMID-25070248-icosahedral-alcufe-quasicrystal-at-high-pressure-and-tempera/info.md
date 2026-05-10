@@ -1,0 +1,14 @@
+# Icosahedral AlCuFe quasicrystal at high pressure and temperature and its implications for the stability of icosahedrite.
+
+- **PMID**: 25070248
+- **DOI**: 10.1038/ncomms5040
+- **PMCID**: PMC1890468 (full-text saved)
+- **Journal**: Scientific reports  ·  **Year**: 2014
+- **Authors**: Vincenzo Stagno, Luca Bindi, Yuki Shibazaki, Yoshinori Tange, Yuji Higo, H-K Mao, Paul J Steinhardt, Yingwei Fei
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25070248/
+- **Captured**: 2026-05-10T14:06:20
+
+## Abstract
+
+The first natural-occurring quasicrystal, icosahedrite, was recently discovered in the Khatyrka meteorite, a new CV3 carbonaceous chondrite. Its finding raised fundamental questions regarding the effects of pressure and temperature on the kinetic and thermodynamic stability of the quasicrystal structure relative to possible isochemical crystalline or amorphous phases. Although several studies showed the stability at ambient temperature of synthetic icosahedral AlCuFe up to ~35 GPa, the simultaneous effect of temperature and pressure relevant for the formation of icosahedrite has been never investigated so far. Here we present in situ synchrotron X-ray diffraction experiments on synthetic icosahedral AlCuFe using multianvil device to explore possible temperature-induced phase transformations at pressures of 5 GPa and temperature up to 1773 K. Results show the structural stability of i-AlCuFe phase with a negligible effect of pressure on the volumetric thermal expansion properties. In addition, the structural analysis of the recovered sample excludes the transformation of AlCuFe quasicrystalline phase to possible approximant phases, which is in contrast with previous predictions at ambient pressure. Results from this study extend our knowledge on the stability of icosahedral AlCuFe at higher temperature and pressure than previously examined, and provide a new constraint on the stability of icosahedrite.

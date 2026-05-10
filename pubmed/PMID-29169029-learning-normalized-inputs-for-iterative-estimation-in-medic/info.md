@@ -1,0 +1,14 @@
+# Learning normalized inputs for iterative estimation in medical image segmentation.
+
+- **PMID**: 29169029
+- **DOI**: 10.1016/j.media.2017.11.005
+- **PMCID**:  
+- **Journal**: Medical image analysis  ·  **Year**: 2018
+- **Authors**: Michal Drozdzal, Gabriel Chartrand, Eugene Vorontsov, Mahsa Shakeri, Lisa Di Jorio, An Tang, Adriana Romero, Yoshua Bengio, Chris Pal, Samuel Kadoury
+- **MeSH**: Algorithms, Humans, Image Processing, Computer-Assisted, Imaging, Three-Dimensional, Liver Neoplasms, Lumbar Vertebrae, Magnetic Resonance Imaging, Male, Neural Networks, Computer, Prostatic Diseases
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29169029/
+- **Captured**: 2026-05-10T14:07:44
+
+## Abstract
+
+In this paper, we introduce a simple, yet powerful pipeline for medical image segmentation that combines Fully Convolutional Networks (FCNs) with Fully Convolutional Residual Networks (FC-ResNets). We propose and examine a design that takes particular advantage of recent advances in the understanding of both Convolutional Neural Networks as well as ResNets. Our approach focuses upon the importance of a trainable pre-processing when using FC-ResNets and we show that a low-capacity FCN model can serve as a pre-processor to normalize medical input data. In our image segmentation pipeline, we use FCNs to obtain normalized images, which are then iteratively refined by means of a FC-ResNet to generate a segmentation prediction. As in other fully convolutional approaches, our pipeline can be used off-the-shelf on different image modalities. We show that using this pipeline, we exhibit state-of-the-art performance on the challenging Electron Microscopy benchmark, when compared to other 2D methods. We improve segmentation results on CT images of liver lesions, when contrasting with standard FCN methods. Moreover, when applying our 2D pipeline on a challenging 3D MRI prostate segmentation challenge we reach results that are competitive even when compared to 3D methods. The obtained results illustrate the strong potential and versatility of the pipeline by achieving accurate segmentations on a variety of image modalities and different anatomical regions.

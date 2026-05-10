@@ -1,0 +1,14 @@
+# Gingival resistance to probing forces. I. Determination of optimal probe diameter.
+
+- **PMID**: 2724029
+- **DOI**: 10.1902/jop.1989.60.4.167
+- **PMCID**:  
+- **Journal**: Journal of periodontology  ·  **Year**: 1989
+- **Authors**: J G Keagle, J J Garnick, J R Searle, G E King, P K Morse
+- **MeSH**: Animals, Dogs, Electronics, Medical, Equipment Design, Gingiva, Gingival Pocket, Gingivitis, Male, Microcomputers, Periodontal Index
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2724029/
+- **Captured**: 2026-05-10T14:07:01
+
+## Abstract
+
+This paper presents the results of a study designed to determine (1) if advancement of a periodontal probe under a given force against healthy gingiva differed from its advancement under a similar force, against inflamed gingiva, and (2) to select the diameter which best distinguishes healthy gingiva from that which is inflamed to varying degrees. The teeth of eight beagle dogs were cleaned three times per week for two months until a Gingival Index (GI) of 0 and gingival fluid flow (GFF) of 9 or less, as measured by the Periotron, were obtained. Probes of diameters 0.4, 0.6, 0.7, and 0.8 mm were advanced perpendicularly against the attached gingiva in the incisor, premolar, and molar regions by an electromechanical device which simultaneously plotted force versus displacement following initial contact of the probe tip with the gingiva. These forces ranged from 0.1 to 0.9N. This process was repeated in the same animals following cessation of plaque control measures when the GI reached a value of 1 and GFF reached levels of 10 to 19. It was repeated again following placement of an irritating ligature when GI reached 2 and GFF greater than 20. An analysis of covariance showed significant differences between all three levels of health and disease for all probe diameters. F values for the 0.6 mm probe were highest at all probing forces indicating that this diameter most consistently discriminated variation of gingival health status.

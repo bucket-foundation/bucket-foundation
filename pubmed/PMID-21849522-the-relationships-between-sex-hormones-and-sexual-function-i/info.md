@@ -1,0 +1,14 @@
+# The relationships between sex hormones and sexual function in middle-aged and older European men.
+
+- **PMID**: 21849522
+- **DOI**: 10.1210/jc.2010-2216
+- **PMCID**:  
+- **Journal**: The Journal of clinical endocrinology and metabolism  ·  **Year**: 2011
+- **Authors**: Daryl B O'Connor, David M Lee, Giovanni Corona, Gianni Forti, Abdelouahid Tajar, Terence W O'Neill, Neil Pendleton, Gyorgy Bartfai, Steven Boonen, Felipe F Casanueva, Joseph D Finn, Aleksander Giwercman, Thang S Han, Ilpo T Huhtaniemi, Krzysztof Kula, Fernand Labrie, Michael E J Lean, Margus Punab, Alan J Silman, Dirk Vanderschueren, Frederick C W Wu
+- **MeSH**: Adult, Age Factors, Aged, Aging, Dihydrotestosterone, Erectile Dysfunction, Estradiol, Europe, Gas Chromatography-Mass Spectrometry, Gonadal Steroid Hormones
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21849522/
+- **Captured**: 2026-05-10T14:04:50
+
+## Abstract
+
+Limited data are available exploring the associations between sex hormones, multiple domains of sexual functioning, and sexual function-related distress in nonpatient samples in Europe. The aim of the study was to investigate the relationships between serum testosterone (T), estradiol (E2), and dihydrotestosterone (DHT) and sexual function in a multicenter population-based study of aging in men. Using stratified random sampling, 2838 men aged 40-79 yr completed the European Male Ageing Study-Sexual Function Questionnaire and provided a blood sample for hormone measurements. T, E2, and DHT were measured using gas chromatography-mass spectrometry. We conducted a community-based population survey in eight European centers. Self-reported sexual function (overall sexual function, sexual function-related distress, erectile dysfunction, masturbation) was measured. Total and free T, but not E2 or DHT, was associated with overall sexual function in middle-aged and older men. E2 was the only hormone associated with sexual function-related distress such that higher levels were related to greater distress. Free T levels were associated with masturbation frequency and erectile dysfunction in the fully adjusted models, such that higher T was associated with less dysfunction and greater frequency. Moreover, there was a T threshold for the relationship between total T, sexual function, and erectile dysfunction. At T concentrations of 8 nmol/liter or less, T was associated with worse sexual functioning, whereas at T levels over 8 nmol/liter, the relationship came to a plateau. These findings suggest that different hormonal mechanisms may regulate sexual functioning (T) vs. the psychological aspects (E2) of male sexual behavior. Moreover, there was a T threshold for overall sexual function such that at levels greater than 8 nmol/liter the relationship between T and sexual function did not become stronger.

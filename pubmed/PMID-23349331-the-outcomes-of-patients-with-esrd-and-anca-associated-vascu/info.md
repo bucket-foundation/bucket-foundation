@@ -1,0 +1,14 @@
+# The outcomes of patients with ESRD and ANCA-associated vasculitis in Australia and New Zealand.
+
+- **PMID**: 23349331
+- **DOI**: 10.2215/CJN.08770812
+- **PMCID**: PMC2778281 (full-text saved)
+- **Journal**: Clinical journal of the American Society of Nephrology : CJASN  ·  **Year**: 2013
+- **Authors**: Wen Tang, Bhadran Bose, Stephen P McDonald, Carmel M Hawley, Sunil V Badve, Neil Boudville, Fiona G Brown, Philip A Clayton, Scott B Campbell, Chen Au Peh, David W Johnson
+- **MeSH**: Adolescent, Adult, Aged, Aged, 80 and over, Anti-Neutrophil Cytoplasmic Antibody-Associated Vasculitis, Australia, Child, Female, Graft Survival, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23349331/
+- **Captured**: 2026-05-10T14:05:40
+
+## Abstract
+
+This study aimed to evaluate dialysis and transplant outcomes of patients with ESRD secondary to ANCA-associated vasculitis (AAV). All ESRD patients who commenced renal replacement therapy in Australia and New Zealand between 1996 and 2010 were included. Outcomes were assessed by Kaplan-Meier, multivariable Cox regression, and competing-risks regression survival analyses. Of 36,884 ESRD patients, 228 had microscopic polyangiitis (MPA) and 221 had granulomatosis with polyangiitis (GPA). Using competing-risks regression, compared with other causes of ESRD, MPA patients (hazard ratio [HR], 0.89; 95% confidence interval [95% CI], 0.73-1.08; P=0.24) and GPA patients (HR, 0.94; 95% CI, 0.74-1.19; P=0.62) experienced comparable survival on dialysis. Forty-six MPA patients (21%) and 47 GPA (20%) patients received 98 renal allografts. Respective 10-year first graft survival rates in MPA, GPA, and non-AAV patients were 50%, 62%, 70%, whereas patient survival rates were 68%, 85% and 83%, respectively. Compared with non-AAV patients, MPA transplant recipients had higher risks of graft failure (HR, 1.87; 95% CI, 1.07-3.25; P=0.03) and death (HR, 1.94; 95% CI, 1.02-3.69; P=0.04), whereas GPA transplant recipients experienced comparable renal allograft survival (HR, 0.91; 95% CI, 0.43-1.93; P=0.81) and patient survival (HR, 0.58; 95% CI, 0.23-2.27; P=0.58). AAV recurrence was observed in two renal allografts (2%). Compared with ESRD patients without AAV, those with GPA have comparable renal replacement therapy outcomes, whereas MPA patients have comparable dialysis survival but poorer renal transplant allograft and patient survival rates.

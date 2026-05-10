@@ -1,0 +1,14 @@
+# Cancer-Specific and All-Cause Mortality in Kidney Transplant Recipients With and Without Previous Cancer.
+
+- **PMID**: 26102612
+- **DOI**: 10.1097/TP.0000000000000760
+- **PMCID**:  
+- **Journal**: Transplantation  ·  **Year**: 2015
+- **Authors**: Andrea K Viecelli, Wai H Lim, Petra Macaskill, Jeremy R Chapman, Jonathan C Craig, Philip Clayton, Solomon Cohney, Robert Carroll, Germaine Wong
+- **MeSH**: Adult, Australia, Cause of Death, Female, Humans, Kidney Failure, Chronic, Kidney Transplantation, Male, Middle Aged, Neoplasms
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26102612/
+- **Captured**: 2026-05-10T14:06:41
+
+## Abstract
+
+For dialysis patients with a cancer history, a period of surveillance is generally recommended before listing for transplantation. However, the outcomes of patients with cancer recurrence and/or a second primary cancer after transplantation are unknown. To determine the prognosis of kidney transplant recipients who developed cancer after transplantation and whether this varied with cancer types (first cancer, recurrence, second primary cancer). Using data from the Australian and New Zealand Dialysis and Transplant Registry, we compared the cancer-specific and all-cause mortality among recipients with different cancer types using adjusted Cox proportional hazard models. Of the 21,415 recipients transplanted between 1965 and 2012, 3% (651 of 21,415) had a previous cancer history. A total of 2840 (13%) recipients developed cancer after the first transplant, of whom 2760 (97.2%) developed a first cancer, 23 (0.8%) experienced cancer recurrence, and 57 (2%) developed a second primary cancer. There were no significant differences in the risks of cancer-specific and all-cause mortality between recipients who developed their first cancer after transplant, those with cancer recurrence (adjusted hazard ratios [aHRs], 0.79; 95% confidence interval [95% CI], 0.38-1.67; P = 0.54 and aHRs, 0.86; 95% CI, 0.45-1.66; P = 0.66, respectively) and recipients who developed a second primary cancer after transplantation (aHRs, 1.01; 95%CI, 0.63-1.62; P = 0.95 and aHRs, 1.16; 95% CI, 0.79-1.69; P = 0.45, respectively). Among patients with a previous history of malignancy, recurrent and second primary cancers are infrequent after renal transplantation. A history of previous malignancy does not have an additive effect on the cancer-specific and overall survival of kidney transplant recipients who develop cancer.

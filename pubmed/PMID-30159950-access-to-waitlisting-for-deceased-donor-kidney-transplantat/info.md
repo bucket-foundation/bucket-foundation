@@ -1,0 +1,14 @@
+# Access to waitlisting for deceased donor kidney transplantation in Australia.
+
+- **PMID**: 30159950
+- **DOI**: 10.1111/nep.13484
+- **PMCID**:  
+- **Journal**: Nephrology (Carlton, Vic.)  ·  **Year**: 2019
+- **Authors**: Matthew P Sypek, Philip A Clayton, Wai Lim, Peter Hughes, John Kanellis, Jenni Wright, Jeremy Chapman, Stephen P McDonald
+- **MeSH**: Adolescent, Adult, Age Factors, Aged, Aged, 80 and over, Australia, Cohort Studies, Female, Humans, Kidney Transplantation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30159950/
+- **Captured**: 2026-05-10T14:08:13
+
+## Abstract
+
+A detailed analysis of waitlisting for deceased donor kidney transplantation in Australia has not previously been reported. We aimed to determine if patient characteristics associated with waitlisting identify areas of potential inequality in access to transplantation in Australia. A competing risk time-to-event model was used to determine predictors of waitlisting for all adult incident renal replacement therapy patients in Australia between 2006 and 2015. Secondary analysis was performed to determine predictors of overall access to transplantation (using a combined outcome of waitlisting and living donor transplantation). The cohort consisted of 21 231 patients with a median age of 63 years. Overall, 4361 (20.5%) were waitlisted and 1239 (5.8%) received a living donor transplant without being previously waitlisted. Primary analysis revealed that medical comorbidities, older age, smoking status and body mass index were all significant predictors of waitlisting and that and there was variation in waitlisting practice across states Despite adjustment for the above factors, demographic characteristics, including Indigenous ethnicity (subdistribution hazard ratios (SHR) 0.46 (95% confidence interval (CI) 0.38-0.55)), female gender (SHR 0.85 (95% CI 0.80, 0.91)) and residence in a regional area (SHR 0.88 (95% CI 0.81-0.95)) were also associated with a lower likelihood of waitlisting. Secondary analysis showed younger age and higher socio-economic advantage were additional predictors of overall access to transplantation, driven by higher rates of living donor transplantation. Demographic as well as clinical characteristics are associated with reduced likelihood of waitlisting for kidney transplantation in Australia. Further analysis and auditing should be considered to determine if this reflects other unmeasured factors or highlights a need to address inequality.

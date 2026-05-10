@@ -1,0 +1,14 @@
+# The biological basis of language: insight from developmental grammatical impairments.
+
+- **PMID**: 25172525
+- **DOI**: 10.1016/j.tics.2014.07.001
+- **PMCID**:  
+- **Journal**: Trends in cognitive sciences  ·  **Year**: 2014
+- **Authors**: Heather K J van der Lely, Steven Pinker
+- **MeSH**: Child, Child Development, Child Language, Humans, Language, Language Development Disorders, Phonetics, Psycholinguistics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25172525/
+- **Captured**: 2026-05-10T14:06:25
+
+## Abstract
+
+Specific language impairment (SLI), a genetic developmental disorder, offers insights into the neurobiological and computational organization of language. A subtype, Grammatical-SLI (G-SLI), involves greater impairments in 'extended' grammatical representations, which are nonlocal, hierarchical, abstract, and composed, than in 'basic' ones, which are local, linear, semantic, and holistic. This distinction is seen in syntax, morphology, and phonology, and may be tied to abnormalities in the left hemisphere and basal ganglia, consistent with new models of the neurobiology of language which distinguish dorsal and ventral processing streams. Delineating neurolinguistic phenotypes promises a better understanding of the effects of genes on the brain circuitry underlying normal and impaired language abilities.

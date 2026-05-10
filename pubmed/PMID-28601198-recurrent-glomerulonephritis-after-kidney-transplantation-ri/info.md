@@ -1,0 +1,14 @@
+# Recurrent glomerulonephritis after kidney transplantation: risk factors and allograft outcomes.
+
+- **PMID**: 28601198
+- **DOI**: 10.1016/j.kint.2017.03.015
+- **PMCID**:  
+- **Journal**: Kidney international  ·  **Year**: 2017
+- **Authors**: Penelope J Allen, Steve J Chadban, Jonathan C Craig, Wai H Lim, Richard D M Allen, Philip A Clayton, Armando Teixeira-Pinto, Germaine Wong
+- **MeSH**: Adolescent, Adult, Aged, Australia, Child, Cohort Studies, Female, Glomerulonephritis, Graft Survival, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28601198/
+- **Captured**: 2026-05-10T14:07:33
+
+## Abstract
+
+Recurrent glomerulonephritis after kidney transplantation is a feared complication because it is unpredictable and may have a negative impact on graft outcomes. To better understand this we collected data from the Australia and New Zealand Dialysis and Transplant (ANZDATA) Registry accumulated over 30 years. The incidence, risk factors, and outcomes of recurrent glomerulonephritis in transplant recipients were determined using adjusted Cox proportional hazard and competing risk modeling. A total of 6,597 recipients with biopsy-proven glomerulonephritis as the primary cause of end-stage kidney disease were followed for 51,871 person-years (median duration 7.7 years). The four most common types of glomerulonephritis were IgA nephropathy in 2501 patients, focal segmental glomerulosclerosis (FSGS) in 1403, membranous in 376, and membranoproliferative (MPGN) nephropathy in 357 patients. Among these four types, recurrence was reported in 479 of 4637 patients, and of these, 212 lost their allograft due to recurrence. Older age at transplantation (adjusted hazard ratio [per year increase] 0.96 [95% confidence interval 0.95 - 0.97]) was associated with a lower risk of recurrence. Significantly, the five-year graft survival was 30% for recipients with recurrent MPGN and 57-59% for recipients with FSGS, IgA, and membranous nephropathy. Transplant recipients with recurrent disease were twice as likely to lose their allografts compared to those without recurrence (adjusted hazard ratio 2.04 [1.81-2.31]). Thus, recurrent glomerulonephritis remains a significant cause of graft loss in transplant recipients.

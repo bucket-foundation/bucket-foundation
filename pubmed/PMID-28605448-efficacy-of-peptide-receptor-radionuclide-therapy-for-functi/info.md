@@ -1,0 +1,14 @@
+# Efficacy of Peptide Receptor Radionuclide Therapy for Functional Metastatic Paraganglioma and Pheochromocytoma.
+
+- **PMID**: 28605448
+- **DOI**: 10.1210/jc.2017-00816
+- **PMCID**:  
+- **Journal**: The Journal of clinical endocrinology and metabolism  ·  **Year**: 2017
+- **Authors**: Grace Kong, Simona Grozinsky-Glasberg, Michael S Hofman, Jason Callahan, Amichay Meirovitz, Ofra Maimon, David A Pattison, David J Gross, Rodney J Hicks
+- **MeSH**: Adrenal Gland Neoplasms, Adult, Aged, Biopsy, Needle, Cohort Studies, Coordination Complexes, Disease-Free Survival, Dose-Response Relationship, Radiation, Female, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28605448/
+- **Captured**: 2026-05-10T14:07:34
+
+## Abstract
+
+Treatment options for unresectable paraganglioma (PGL)/pheochromocytoma (PCC), especially with uncontrolled secondary hypertension (HTN), are limited. Preliminary studies with peptide receptor radionuclide therapy (PRRT) suggest efficacy, but data on HTN control and survival are lacking. We assessed PRRT outcomes in such patients from two referral centers. Twenty consecutive patients (13 men; age range, 21 to 77 years) with high somatostatin receptor (SSTR) expression treated with 177Lu-DOTA-octreotate, nine with radiosensitizing chemotherapy, were retrospectively reviewed. Median cumulative activity was 22 GBq (median 4 cycles). Fourteen patients were treated for uncontrolled HTN and six for progressive or symptomatic metastatic disease or local recurrence. Three months after PRRT, 8 of 14 patients treated for HTN required reduced medication doses, 5 had no change in anti-HTN doses, and 1 was lost to follow-up. Eighty-six percent had serum chromogranin-A reduction. Of the entire cohort, 36% had disease regression (29% partial and 7% minor response) on computed tomography, with stable findings in 50%. Three other patients had bony disease evaluable only on SSTR imaging (2 partial response and 1 stable). Median progression-free survival was 39 months; median overall survival was not reached (5 deaths; median follow-up, 28 months). Four patients had grade 3 lymphopenia; 2 had grade 3 thrombocytopenia. Renal impairment in 2 patients was attributed to underlying disease processes. PRRT achieves worthwhile clinical and biochemical responses with low toxicity and encouraging survival in PGL/PCC. Because PRRT has logistic and radiation-safety advantages compared to 131I-MIBG therapy, further prospective evaluation is warranted.

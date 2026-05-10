@@ -1,0 +1,14 @@
+# Combining chloroquine with RAD001 inhibits tumor growth in a NEN mouse model.
+
+- **PMID**: 29636368
+- **DOI**: 10.1530/ERC-18-0121
+- **PMCID**:  
+- **Journal**: Endocrine-related cancer  ·  **Year**: 2018
+- **Authors**: Shani Avniel-Polak, Gil Leibowitz, Victoria Doviner, David J Gross, Simona Grozinsky-Glasberg
+- **MeSH**: Animals, Antineoplastic Agents, Antineoplastic Combined Chemotherapy Protocols, Autophagy, Cell Line, Tumor, Chloroquine, Everolimus, Humans, Immunosuppressive Agents, Mechanistic Target of Rapamycin Complex 1
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29636368/
+- **Captured**: 2026-05-10T14:08:03
+
+## Abstract
+
+Patients with neuroendocrine neoplasms (NENs) often require systemic treatment, which is frequently limited by the emergence of drug resistance. mTOR inhibitors (mTORi), such as RAD001 (everolimus), have been shown to inhibit neoplasm progression. mTORi stimulates autophagy, a degradation pathway that might promote the survival of neoplasm cells that are exposed to anti-cancer therapy. Chloroquine (CQ), a well-known anti-malarial and anti-rheumatic drug, suppresses autophagy. Based on our previous results, we hypothesized that CQ may enhance the anti-tumorigenic effects of mTORi by inhibiting autophagy and we aimed to examine the anti-tumorigenic effect of CQ, alone or in combination with RAD001. We established a NEN subcutaneous xenograft mouse model and evaluated the effect of the drugs on tumor growth, mTOR pathway, autophagy and apoptosis. CQ alone and in combination with RAD001 significantly decreased neoplasm volume. Histopathological analysis revealed that the combination of CQ and RAD001 markedly inhibited mTOR activity and neoplasm cell growth, along with accumulation of autophagosomes and increased apoptosis. In conclusion, CQ enhances the anti-tumorigenic effect of RAD001 

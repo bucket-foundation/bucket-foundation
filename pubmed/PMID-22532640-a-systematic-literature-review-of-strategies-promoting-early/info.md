@@ -1,0 +1,14 @@
+# A systematic literature review of strategies promoting early referral and reducing delays in the diagnosis and management of inflammatory arthritis.
+
+- **PMID**: 22532640
+- **DOI**: 10.1136/annrheumdis-2011-201063
+- **PMCID**:  
+- **Journal**: Annals of the rheumatic diseases  ·  **Year**: 2013
+- **Authors**: Edith Villeneuve, Jackie L Nam, Mary J Bell, Christopher M Deighton, David T Felson, Johanna M Hazes, Iain B McInnes, Alan J Silman, Daniel H Solomon, Andrew E Thompson, Patience H P White, Vivian P Bykerk, Paul Emery
+- **MeSH**: Arthritis, Rheumatoid, Early Diagnosis, Humans, Referral and Consultation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22532640/
+- **Captured**: 2026-05-10T14:05:15
+
+## Abstract
+
+Despite the importance of timely management of patients with inflammatory arthritis (IA), delays exist in its diagnosis and treatment. To perform a systematic literature review to identify strategies addressing these delays to inform an American College of Rheumatology (ACR)/European League Against Rheumatism (EULAR) taskforce. The authors searched literature published between January 1985 and November 2010, and ACR and EULAR abstracts between 2007-2010. Additional information was obtained through a grey literature search, a survey conducted through ACR and EULAR, and a hand search of the literature. (1) From symptom onset to primary care, community case-finding strategies, including the use of a questionnaire and autoantibody testing, have been designed to identify patients with early IA. Several websites provided information on IA but were of varying quality and insufficient to aid early referral. (2) At a primary care level, education programmes and patient self-administered questionnaires identified patients with potential IA for referral to rheumatology. Many guidelines emphasised the need for early referral with one providing specific referral criteria. (3) Once referred, early arthritis clinics provided a point of early access for rheumatology assessment. Triage systems, including triage clinics, helped prioritise clinic appointments for patients with IA. Use of referral forms standardised information required, further optimising the triage process. Wait times for patients with acute IA were also reduced with development of rapid access systems. This review identified three main areas of delay to care for patients with IA and potential solutions for each. A co-ordinated effort will be required by the rheumatology and primary care community to address these effectively.

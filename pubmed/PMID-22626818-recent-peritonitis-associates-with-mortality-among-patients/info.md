@@ -1,0 +1,14 @@
+# Recent peritonitis associates with mortality among patients treated with peritoneal dialysis.
+
+- **PMID**: 22626818
+- **DOI**: 10.1681/ASN.2011121135
+- **PMCID**: PMC1188107 (full-text saved)
+- **Journal**: Journal of the American Society of Nephrology : JASN  ·  **Year**: 2012
+- **Authors**: Neil Boudville, Anna Kemp, Philip Clayton, Wai Lim, Sunil V Badve, Carmel M Hawley, Stephen P McDonald, Kathryn J Wiggins, Kym M Bannister, Fiona G Brown, David W Johnson
+- **MeSH**: Aged, Aged, 80 and over, Australia, Female, Humans, Logistic Models, Male, Middle Aged, New Zealand, Peritoneal Dialysis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22626818/
+- **Captured**: 2026-05-10T14:05:16
+
+## Abstract
+
+Peritonitis is a major complication of peritoneal dialysis, but the relationship between peritonitis and mortality among these patients is not well understood. In this case-crossover study, we included the 1316 patients who received peritoneal dialysis in Australia and New Zealand from May 2004 through December 2009 and either died on peritoneal dialysis or within 30 days of transfer to hemodialysis. Each patient served as his or her own control. The mean age was 70 years, and the mean time receiving peritoneal dialysis was 3 years. In total, there were 1446 reported episodes of peritonitis with 27% of patients having ≥ 2 episodes. Compared with the rest of the year, there were significantly increased odds of peritonitis during the 120 days before death, although the magnitude of this association was much greater during the 30 days before death. Compared with a 30-day window 6 months before death, the odds for peritonitis was six-fold higher during the 30 days immediately before death (odds ratio, 6.2; 95% confidence interval, 4.4-8.7). In conclusion, peritonitis significantly associates with mortality in peritoneal dialysis patients. The increased odds extend up to 120 days after an episode of peritonitis but the magnitude is greater during the initial 30 days.

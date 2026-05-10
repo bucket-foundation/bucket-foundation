@@ -1,0 +1,14 @@
+# Long-term outcomes of end-stage kidney disease for patients with IgA nephropathy: A multi-centre registry study.
+
+- **PMID**: 26393772
+- **DOI**: 10.1111/nep.12629
+- **PMCID**:  
+- **Journal**: Nephrology (Carlton, Vic.)  ·  **Year**: 2016
+- **Authors**: Lei Zhang, Xusheng Liu, Elaine M Pascoe, Sunil V Badve, Neil C Boudville, Philip A Clayton, Janak De Zoysa, Carmel M Hawley, John Kanellis, Stephen P McDonald, Chen Au Peh, Kevan R Polkinghorne, David W Johnson
+- **MeSH**: Australia, Chi-Square Distribution, Disease Progression, Glomerulonephritis, IGA, Graft Survival, Humans, IgA Vasculitis, Incidence, Kaplan-Meier Estimate, Kidney Failure, Chronic
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26393772/
+- **Captured**: 2026-05-10T14:06:43
+
+## Abstract
+
+Clinical outcomes of patients with end-stage kidney disease (ESKD) receiving renal replacement therapy (RRT) secondary to IgA nephropathy (IgAN) have not been well described. To investigate the characteristics, treatments and outcomes of ESKD because of kidney-limited IgAN and Henoch-Schönlein purpura nephritis (HSPN) in the Australian and New Zealand RRT populations. All ESKD patients who commenced RRT in Australia and New Zealand between 1971 and 2012 were included. Dialysis and transplant outcomes were evaluated in both a contemporary cohort (1998-2012) and the entire cohort (1971-2012). Of 63 297 ESKD patients, 3721 had kidney-limited IgAN, and 131 had HSPN. For the contemporary cohort of IgAN patients on dialysis (n = 2194), 10-year patient survival was 65%. Of 1368 contemporary IgAN patients who received their first renal allograft, 10-year patient, overall renal allograft and death-censored renal allograft survival were 93%, 82% and 88%, respectively. Using multivariable Cox regression analysis, patients with IgAN had favourable dialysis patient survival (adjusted hazard ratio (HR) 0.63, 95% confidence interval (CI) 0.57-0.69), overall renal allograft survival (HR 0.67, 95% CI 0.57-0.79) and renal transplant patient survival (HR 0.58, 95% CI 0.45-0.74) compared with ESKD controls. Similar results were found in the entire cohort and when using competing-risks models. Compared with kidney-limited IgAN patients, those with HSPN had worse dialysis patient survival (HR 1.94, 95% CI 1.02-3.69), overall renal allograft survival (HR 3.40, 95% CI 1.00-11.55) and renal transplant patient survival (HR 3.50, 95% CI 1.03-11.92). IgAN ESKD was associated with better dialysis and renal transplant outcomes compared with other forms of ESKD. The survival outcomes of ESKD patients with HSPN were worse than kidney-limited IgAN.

@@ -1,0 +1,14 @@
+# Predictive value of spot versus 24-hour measures of proteinuria for death, end-stage kidney disease or chronic kidney disease progression.
+
+- **PMID**: 29514605
+- **DOI**: 10.1136/bmj.316.7130.504
+- **PMCID**: PMC2665663 (full-text saved)
+- **Journal**: BMC nephrology  ·  **Year**: 2018
+- **Authors**: Tracey Ying, Philip Clayton, Chetana Naresh, Steven Chadban
+- **MeSH**: Adult, Aged, Disease Progression, Female, Follow-Up Studies, Humans, Kidney Failure, Chronic, Longitudinal Studies, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29514605/
+- **Captured**: 2026-05-10T14:08:01
+
+## Abstract
+
+Proteinuria is well recognised as a marker of chronic kidney disease (CKD), as a risk factor for progression of CKD among those with known CKD, and as a risk factor for cardiovascular events and death among both the general and CKD populations. Which measure of proteinuria is most predictive of renal events remains uncertain. We conducted a prospective study with 144 proteinuric CKD and kidney transplant recipients attending an outpatient clinic of a tertiary care hospital in Australia. We concurrently collected morning spot urine protein-to-creatinine ratio (UPCR), albumin-to-creatinine ratio (UACR) and 24-h urinary protein excretion (24-UPE) from each participant at baseline. The primary outcome was a composite of death, ESKD or > 30% decline in eGFR over 5-years. Secondary outcomes were each component of the composite outcome. For each proteinuria measure, we performed a Cox Proportional Hazards model and calculated the Harrell's C-statistic and Akaike's Information Criterion (AIC). After a mean follow-up of 5 years (range 4.4-6), 85 (59%) patients met the primary composite outcome including 23 deaths (16%). The multivariable analysis showed strong evidence of an association between each log-transformed proteinuria measurement and the primary composite outcome. [Log-UPCR 1.31 (95% CI 1.18-1.63), log-UACR 1.27 (1.11-1.45) and log-24-UPE 1.43 (1.20-1.71)]. The C-Statistic were similar for all three measures of proteinuria [UPCR: 0.74 (95% CI: 0.69-0.80), UACR: 0.75 (0.69-0.81), 24-UPE: 0.75 (0.69-0.81)] as were the models' AIC (671, 668 and 665 respectively). For secondary outcomes, no proteinuria measure was significantly associated with death alone ([log-UPCR = 1.18 (0.96-1.84), log-UACR = 1.19 (1.00-1.55), log-24-UPE = 1.19 (0.83-1.71)], whilst UACR and 24-UPE demonstrated marginally better association with ESKD and > 30% decline in eGFR respectively. [For ESKD, adj log-UACR HR = 1.33 (1.07-1.66). For > 30% decline in eGFR, log-24-UPE adj HR = 1.54 (1.13-2.09)]. In patients with stable, non-nephrotic CKD, all three measures of proteinuria were similarly predictive of hard clinical endpoints, defined as a composite of death, ESKD and > 30% decline in eGFR. However, which measure best predicted the outcomes individually is less certain.

@@ -1,0 +1,14 @@
+# Comparison between Frame-Constrained Fix-Pixel-Value and Frame-Free Spiking-Dynamic-Pixel ConvNets for Visual Processing.
+
+- **PMID**: 22518097
+- **DOI**: 10.1109/TCSI.2011.2151070
+- **PMCID**: PMC2211529 (full-text saved)
+- **Journal**: Frontiers in neuroscience  ·  **Year**: 2012
+- **Authors**: Clément Farabet, Rafael Paz, Jose Pérez-Carrasco, Carlos Zamarreño-Ramos, Alejandro Linares-Barranco, Yann Lecun, Eugenio Culurciello, Teresa Serrano-Gotarredona, Bernabe Linares-Barranco
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22518097/
+- **Captured**: 2026-05-10T14:05:14
+
+## Abstract
+
+Most scene segmentation and categorization architectures for the extraction of features in images and patches make exhaustive use of 2D convolution operations for template matching, template search, and denoising. Convolutional Neural Networks (ConvNets) are one example of such architectures that can implement general-purpose bio-inspired vision systems. In standard digital computers 2D convolutions are usually expensive in terms of resource consumption and impose severe limitations for efficient real-time applications. Nevertheless, neuro-cortex inspired solutions, like dedicated Frame-Based or Frame-Free Spiking ConvNet Convolution Processors, are advancing real-time visual processing. These two approaches share the neural inspiration, but each of them solves the problem in different ways. Frame-Based ConvNets process frame by frame video information in a very robust and fast way that requires to use and share the available hardware resources (such as: multipliers, adders). Hardware resources are fixed- and time-multiplexed by fetching data in and out. Thus memory bandwidth and size is important for good performance. On the other hand, spike-based convolution processors are a frame-free alternative that is able to perform convolution of a spike-based source of visual information with very low latency, which makes ideal for very high-speed applications. However, hardware resources need to be available all the time and cannot be time-multiplexed. Thus, hardware should be modular, reconfigurable, and expansible. Hardware implementations in both VLSI custom integrated circuits (digital and analog) and FPGA have been already used to demonstrate the performance of these systems. In this paper we present a comparison study of these two neuro-inspired solutions. A brief description of both systems is presented and also discussions about their differences, pros and cons.

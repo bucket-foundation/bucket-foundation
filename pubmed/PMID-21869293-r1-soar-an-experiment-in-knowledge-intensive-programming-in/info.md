@@ -1,0 +1,14 @@
+# R1-soar: an experiment in knowledge-intensive programming in a problem-solving architecture.
+
+- **PMID**: 21869293
+- **DOI**: 10.1109/tpami.1985.4767703
+- **PMCID**:  
+- **Journal**: IEEE transactions on pattern analysis and machine intelligence  ·  **Year**: 1985
+- **Authors**: P S Rosenbloom, J E Laird, J McDermott, A Newell, E Orciuch
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21869293/
+- **Captured**: 2026-05-10T14:04:53
+
+## Abstract
+
+This paper presents an experiment in knowledge-intensive programming within a general problem-solving production-system architecture called Soar. In Soar, knowledge is encoded within a set of problem spaces, which yields a system capable of reasoning from first principles. Expertise consists of additional rules that guide complex problem-space searches and substitute for expensive problem-space operators. The resulting system uses both knowledge and search when relevant. Expertise knowledge is acquired either by having it programmed, or by a chunking mechanism that automatically learns new rules reflecting the results implicit in the knowledge of the problem spaces. The approach is demonstrated on the computer-system configuration task, the task performed by the expert system R1.

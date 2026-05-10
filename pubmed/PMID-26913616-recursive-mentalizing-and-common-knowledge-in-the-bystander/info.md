@@ -1,0 +1,14 @@
+# Recursive mentalizing and common knowledge in the bystander effect.
+
+- **PMID**: 26913616
+- **DOI**: 10.1037/xge0000153
+- **PMCID**:  
+- **Journal**: Journal of experimental psychology. General  ·  **Year**: 2016
+- **Authors**: Kyle A Thomas, Julian De Freitas, Peter DeScioli, Steven Pinker
+- **MeSH**: Adult, Bystander Effect, Emotions, Female, Humans, Male, Social Behavior, Theory of Mind
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26913616/
+- **Captured**: 2026-05-10T14:06:55
+
+## Abstract
+
+The more potential helpers there are, the less likely any individual is to help. A traditional explanation for this bystander effect is that responsibility diffuses across the multiple bystanders, diluting the responsibility of each. We investigate an alternative, which combines the volunteer's dilemma (each bystander is best off if another responds) with recursive theory of mind (each infers what the others know about what he knows) to predict that actors will strategically shirk when they think others feel compelled to help. In 3 experiments, participants responded to a (fictional) person who needed help from at least 1 volunteer. Participants were in groups of 2 or 5 and had varying information about whether other group members knew that help was needed. As predicted, people's decision to help zigzagged with the depth of their asymmetric, recursive knowledge (e.g., "John knows that Michael knows that John knows help is needed"), and replicated the classic bystander effect when they had common knowledge (everyone knowing what everyone knows). The results demonstrate that the bystander effect may result not from a mere diffusion of responsibility but specifically from actors' strategic computations.
