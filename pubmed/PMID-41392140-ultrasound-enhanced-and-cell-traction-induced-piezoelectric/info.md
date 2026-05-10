@@ -1,0 +1,14 @@
+# Ultrasound-enhanced and cell-traction-induced piezoelectric scaffolds for repairing bone defects.
+
+- **PMID**: 41392140
+- **DOI**: 10.1002/adma.202415814
+- **PMCID**: PMC5040991 (full-text saved)
+- **Journal**: Journal of nanobiotechnology  ·  **Year**: 2025
+- **Authors**: Xing Zhang, Meifei Lian, Juncen Zhou, Ruida Xu, Zhiguang Qiao, Jinwu Wang
+- **MeSH**: Tissue Scaffolds, Tissue Engineering, Animals, Bone Regeneration, Bone and Bones, Ultrasonic Waves, Electric Stimulation, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41392140/
+- **Captured**: 2026-05-10T09:14:57
+
+## Abstract
+
+The global increase in traumatic accidents and aging population has brought bone tissue injury and disease to the forefront of global health concerns. Traditional treatment methods face significant challenges, emphasizing the urgent need for advanced bone tissue repair techniques. The bioelectric phenomenon in natural bones is essential for bone development and fracture healing. Therefore, developing innovative repair strategies that replicate or enhance this electric field is expected to promote bone tissue repair and integration. Developing new electroactive tissue engineering scaffolds based on electromechanical interactions between cells and the extracellular matrix is essential. This article introduces a piezoelectric scaffold, initially fabricated using melt electro-writing, and then coated with a surface piezoelectric coating using electrospraying (ES) technology. The scaffold exhibits suitable stiffness similar to the extracellular matrix, and the piezoelectric coating can provide necessary electrical stimulation under cell traction. Furthermore, ultrasound technology was utilized to effectively replicate the electrical microenvironment of natural bone repair. The synergy of cell traction-induced electrical stimulation and ultrasound-enhanced scaffold piezoelectricity can substantially enhance bone tissue regeneration and repair. This study introduces a novel method for developing electroactive tissue engineering scaffolds, providing a promising solution for non-load-bearing areas' bone defects via electrical stimulation.

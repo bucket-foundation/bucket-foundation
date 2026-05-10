@@ -1,0 +1,14 @@
+# CASK mediates methylglyoxal-induced mitochondria-associated cell death in retinal Müller cells through modulating the ROS-p38-SOCE signalling pathway and antioxidant enzymes.
+
+- **PMID**: 42105690
+- **DOI**: 10.1016/j.biopha.2026.119489
+- **PMCID**:  
+- **Journal**: Biomedicine & pharmacotherapy = Biomedecine & pharmacotherapie  ·  **Year**: 2026
+- **Authors**: Chuin Shung Yeoh, Duen-Yi Huang, Wan-Chen Huang, Liang Huan Wu, Chieh-Ying Chen, Ponarulselvam Sekar, Chi-Ming Chan, Wan-Wan Lin
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42105690/
+- **Captured**: 2026-05-10T09:12:23
+
+## Abstract
+
+Diabetic retinopathy (DR), a major cause of blindness, is partly driven by methylglyoxal (MGO), a glycolytic byproduct with cytotoxic properties. Retinal Müller cells (MCs), which preserve retinal integrity and function, are highly susceptible to MGO-induced damage. Calcium/calmodulin-dependent serine protein kinase (CASK), a scaffold protein widely expressed in the retina, has an unidentified role in MCs and DR progression. In murine rMC1 cells, CASK was detected in both the nucleus and cytosol, with strong mitochondrial localization. Knockdown of CASK markedly reduced MGO-induced apoptosis, mitochondrial reactive oxygen species (mtROS) accumulation, mitochondrial membrane potential collapse, and impairment of oxidative phosphorylation. The cytotoxic effects were abolished by the ROS scavengers NAC and MitoTEMPO. Notably, silencing CASK also elevated basal antioxidant proteins, including SOD2, GPX4, and catalase. Furthermore, CASK depletion prevented MGO-induced increases in cytosolic and mitochondrial Ca²⁺, as well as Ca²⁺ influx through ER Ca²⁺ store depletion. Pharmacological inhibition of store-operated Ca²⁺ entry (SOCE), the mitochondrial calcium uniporter (MCU), or CASK kinase activity suppressed MGO-induced Ca

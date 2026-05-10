@@ -1,0 +1,14 @@
+# Circadian rhythms remain temperature compensated during a Q neuron-induced hibernation-like state in mice.
+
+- **PMID**: 41984972
+- **DOI**: 10.1016/j.xpro.2023.102321
+- **PMCID**: PMC10244883 (full-text saved)
+- **Journal**: PLoS biology  ·  **Year**: 2026
+- **Authors**: Arisa Hirano, Tohru M Takahashi, Hiroto Ashitomi, Kazumasa Z Tanaka, Takeshi Sakurai
+- **MeSH**: Animals, Circadian Rhythm, Hibernation, Neurons, Suprachiasmatic Nucleus, Mice, Period Circadian Proteins, Male, Body Temperature, Mice, Inbred C57BL
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41984972/
+- **Captured**: 2026-05-10T09:13:36
+
+## Abstract
+
+The circadian clock is an internal timekeeping system that enables organisms to adapt to daily environmental changes. A defining property of this clock is temperature compensation, whereby the circadian period remains relatively constant despite fluctuations in temperature. Although this phenomenon has been extensively studied in cultured cells and tissues, how the mammalian circadian clock responds to hypothermia in vivo remains largely unknown. Here, we examined circadian dynamics in a hibernation-like state in mice, termed Q neuron-induced hypometabolic and hypothermic state (QIH), which lowers core and brain temperatures to approximately 25 °C for extended periods. We found that free-running behavioral and body temperature rhythms were preserved after QIH, exhibiting only minor phase changes. In vivo recordings further revealed that neuronal firing rhythms in the suprachiasmatic nucleus (SCN) and molecular rhythms of PER2::Luc bioluminescence in peripheral tissues persisted during QIH with dampened amplitudes but largely unaltered circadian periods. In contrast, SCN and kidney slice cultures maintained at the same temperature displayed strongly attenuated or reset PER2::Luc oscillations. Together, these findings demonstrate that the circadian period is robustly temperature compensated in vivo, likely supported by systemic regulatory mechanisms beyond cell-autonomous clockwork. Our results provide new insight into the fundamental biology of circadian robustness and establish a framework for understanding clock function during hibernation and potential medical hypothermia.

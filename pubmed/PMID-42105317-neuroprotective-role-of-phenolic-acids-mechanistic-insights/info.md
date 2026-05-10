@@ -1,0 +1,14 @@
+# Neuroprotective role of phenolic acids: mechanistic insights into cognitive decline and neurodegenerative disorder.
+
+- **PMID**: 42105317
+- **DOI**: 10.1080/1028415X.2026.2669234
+- **PMCID**:  
+- **Journal**: Nutritional neuroscience  ·  **Year**: 2026
+- **Authors**: Kunal Balwant Patil, Sinoy Sugunan, Anirudh Padiyar, Ashwini Kumar Mishra, Smita Jain
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42105317/
+- **Captured**: 2026-05-10T09:13:42
+
+## Abstract
+
+Age-associated cognitive deterioration and neurodegenerative conditions, including Alzheimer's disease (AD) and Parkinson's disease (PD), are predominantly influenced by oxidative stress, neuroinflammation, mitochondrial dysfunction, and abnormal protein aggregation. Dietary phenolic acids, prevalent in plant-based foods, have demonstrated potential neuroprotective and cognitive-enhancing effects in recent studies. This review seeks to thoroughly assess the neuroprotective mechanisms of phenolic acids and to consolidate existing evidence from human and preclinical studies concerning their potential efficacy in alleviating cognitive impairment and neurodegeneration. Narrative and evidence-based literature review. Recent experimental, clinical, and epidemiological studies examining significant phenolic acids - such as caffeic, chlorogenic, ferulic, gallic, rosmarinic, sinapic, ellagic, protocatechuic, p-coumaric, and tannic acids - in relation to AD, PD, and cognitive functions were retrieved from electronic databases. We put together the most important information about molecular mechanisms and treatment. Preclinical studies show that phenolic acids have antioxidant, anti-inflammatory, anti-apoptotic, and anti-aggregation effects by changing important signaling pathways like Nrf2/HO-1, NF-κB, and PI3 K/Akt. These actions protect dopaminergic neurons, lower the toxicity of amyloid-beta and α-synuclein, and make behavior better in disease models. Human studies suggest that increased dietary consumption of phenolic acids, especially hydroxycinnamic acids such as caffeic and chlorogenic acid, is associated with enhanced cognitive performance and a diminished risk of cognitive decline, although results are not uniform. Phenolic acids are secure, readily accessible neuroprotective compounds that can alter various pathological pathways associated with cognitive decline and the progression of neurodegenerative diseases.

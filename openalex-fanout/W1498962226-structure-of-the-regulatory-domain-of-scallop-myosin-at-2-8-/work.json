@@ -1,0 +1,1381 @@
+{
+  "id": "https://openalex.org/W1498962226",
+  "doi": "https://doi.org/10.1038/368306a0",
+  "title": "Structure of the regulatory domain of scallop myosin at 2.8 Ä resolution",
+  "display_name": "Structure of the regulatory domain of scallop myosin at 2.8 Ä resolution",
+  "publication_year": 1994,
+  "publication_date": "1994-03-01",
+  "ids": {
+    "openalex": "https://openalex.org/W1498962226",
+    "doi": "https://doi.org/10.1038/368306a0",
+    "mag": "1498962226",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/8127365"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1038/368306a0",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1038/368306a0",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S137773608",
+      "display_name": "Nature",
+      "issn_l": "0028-0836",
+      "issn": [
+        "0028-0836",
+        "1476-4687"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319908",
+      "host_organization_name": "Nature Portfolio",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319908",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Nature Portfolio",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Nature",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5027272944",
+        "display_name": "Xin Xie",
+        "orcid": "https://orcid.org/0000-0002-6784-4860"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I6902469",
+          "display_name": "Brandeis University",
+          "ror": "https://ror.org/05abbep66",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "X. Xie",
+      "raw_affiliation_strings": [
+        "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, Massachusetts 02254-9110",
+        "§ Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, Massachusetts 02254-9110"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, Massachusetts 02254-9110",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        },
+        {
+          "raw_affiliation_string": "§ Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, Massachusetts 02254-9110",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5109076355",
+        "display_name": "David H. T. Harrison",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I6902469",
+          "display_name": "Brandeis University",
+          "ror": "https://ror.org/05abbep66",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. H. Harrison",
+      "raw_affiliation_strings": [
+        "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, Massachusetts, 02254-9110, USA",
+        "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, USA"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, Massachusetts, 02254-9110, USA",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, USA",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5066630519",
+        "display_name": "Ilme Schlichting",
+        "orcid": "https://orcid.org/0000-0002-0936-7496"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210087042",
+          "display_name": "Max Planck Institute for Medical Research",
+          "ror": "https://ror.org/000bxzc63",
+          "country_code": "DE",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I149899117",
+            "https://openalex.org/I4210087042"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I149899117",
+          "display_name": "Max Planck Society",
+          "ror": "https://ror.org/01hhn8329",
+          "country_code": "DE",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I149899117"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "I. Schlichting",
+      "raw_affiliation_strings": [
+        "Max Planck Institut für Medizinische Forschung, D-6900, Heidelberg, Germany",
+        "Max‐Planck‐Institut für medizinische Forschung, Heidelberg, Germany"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Max Planck Institut für Medizinische Forschung, D-6900, Heidelberg, Germany",
+          "institution_ids": [
+            "https://openalex.org/I4210087042"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Max‐Planck‐Institut für medizinische Forschung, Heidelberg, Germany",
+          "institution_ids": [
+            "https://openalex.org/I149899117"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5037245932",
+        "display_name": "Robert M. Sweet",
+        "orcid": "https://orcid.org/0000-0001-6087-5376"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I200870766",
+          "display_name": "Brookhaven National Laboratory",
+          "ror": "https://ror.org/02ex6cf31",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1330989302",
+            "https://openalex.org/I200870766",
+            "https://openalex.org/I39565521",
+            "https://openalex.org/I4210142672"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. M. Sweet",
+      "raw_affiliation_strings": [
+        "Biology Department, Brookhaven National Laboratory, Upton, New York, 11973, USA",
+        "Biology Department, ’Brookhaven National Laboratory, Upton, USA"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Biology Department, Brookhaven National Laboratory, Upton, New York, 11973, USA",
+          "institution_ids": [
+            "https://openalex.org/I200870766"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Biology Department, ’Brookhaven National Laboratory, Upton, USA",
+          "institution_ids": [
+            "https://openalex.org/I200870766"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5053191314",
+        "display_name": "Vassilios N. Kalabokis",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I6902469",
+          "display_name": "Brandeis University",
+          "ror": "https://ror.org/05abbep66",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "V. N. Kalabokis",
+      "raw_affiliation_strings": [
+        "Department of Biology, Brandeis University, Waltham, Massachusetts, 02254-9110, USA",
+        "Department of Biology, Brandeis University, Waltham, USA"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Biology, Brandeis University, Waltham, Massachusetts, 02254-9110, USA",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Biology, Brandeis University, Waltham, USA",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5109521432",
+        "display_name": "Albert Szent‐Györgyi",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I6902469",
+          "display_name": "Brandeis University",
+          "ror": "https://ror.org/05abbep66",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. G. Szent-Györgyi",
+      "raw_affiliation_strings": [
+        "Department of Biology, Brandeis University, Waltham, Massachusetts, 02254-9110, USA",
+        "Department of Biology, Brandeis University, Waltham, USA"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Biology, Brandeis University, Waltham, Massachusetts, 02254-9110, USA",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Biology, Brandeis University, Waltham, USA",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5110333618",
+        "display_name": "Carolyn Cohen",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I6902469",
+          "display_name": "Brandeis University",
+          "ror": "https://ror.org/05abbep66",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. Cohen",
+      "raw_affiliation_strings": [
+        "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, Massachusetts, 02254-9110, USA",
+        "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, USA"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, Massachusetts, 02254-9110, USA",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Rosenstiel Basic Medical Sciences Research Center, Brandeis University, Waltham, USA",
+          "institution_ids": [
+            "https://openalex.org/I6902469"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 7,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5027272944"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I6902469"
+  ],
+  "apc_list": {
+    "value": 9750,
+    "currency": "EUR",
+    "value_usd": 11690
+  },
+  "apc_paid": null,
+  "fwci": 28.7347,
+  "has_fulltext": false,
+  "cited_by_count": 297,
+  "citation_normalized_percentile": {
+    "value": 0.99887489,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 89,
+    "max": 99
+  },
+  "biblio": {
+    "volume": "368",
+    "issue": "6469",
+    "first_page": "306",
+    "last_page": "312"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10882",
+    "display_name": "Cardiomyopathy and Myosin Studies",
+    "score": 0.9998999834060669,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2705",
+      "display_name": "Cardiology and Cardiovascular Medicine"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/27",
+      "display_name": "Medicine"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/4",
+      "display_name": "Health Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10882",
+      "display_name": "Cardiomyopathy and Myosin Studies",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2705",
+        "display_name": "Cardiology and Cardiovascular Medicine"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10441",
+      "display_name": "Muscle Physiology and Disorders",
+      "score": 0.9884999990463257,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10604",
+      "display_name": "RNA Research and Splicing",
+      "score": 0.9605000019073486,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/myosin",
+      "display_name": "Myosin",
+      "score": 0.7944187521934509
+    },
+    {
+      "id": "https://openalex.org/keywords/immunoglobulin-light-chain",
+      "display_name": "Immunoglobulin light chain",
+      "score": 0.7899908423423767
+    },
+    {
+      "id": "https://openalex.org/keywords/myosin-light-chain-kinase",
+      "display_name": "Myosin light-chain kinase",
+      "score": 0.704387903213501
+    },
+    {
+      "id": "https://openalex.org/keywords/scallop",
+      "display_name": "Scallop",
+      "score": 0.6272113919258118
+    },
+    {
+      "id": "https://openalex.org/keywords/heavy-chain",
+      "display_name": "Heavy chain",
+      "score": 0.5598912239074707
+    },
+    {
+      "id": "https://openalex.org/keywords/biophysics",
+      "display_name": "Biophysics",
+      "score": 0.49791765213012695
+    },
+    {
+      "id": "https://openalex.org/keywords/chemistry",
+      "display_name": "Chemistry",
+      "score": 0.46646153926849365
+    },
+    {
+      "id": "https://openalex.org/keywords/motif",
+      "display_name": "Motif (music)",
+      "score": 0.4379439353942871
+    },
+    {
+      "id": "https://openalex.org/keywords/sequence-motif",
+      "display_name": "Sequence motif",
+      "score": 0.43145644664764404
+    },
+    {
+      "id": "https://openalex.org/keywords/myosin-head",
+      "display_name": "Myosin head",
+      "score": 0.42772725224494934
+    },
+    {
+      "id": "https://openalex.org/keywords/binding-site",
+      "display_name": "Binding site",
+      "score": 0.42292913794517517
+    },
+    {
+      "id": "https://openalex.org/keywords/tandem",
+      "display_name": "Tandem",
+      "score": 0.4187442660331726
+    },
+    {
+      "id": "https://openalex.org/keywords/computational-biology",
+      "display_name": "Computational biology",
+      "score": 0.38016706705093384
+    },
+    {
+      "id": "https://openalex.org/keywords/cell-biology",
+      "display_name": "Cell biology",
+      "score": 0.35275596380233765
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.28051647543907166
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.26532185077667236
+    },
+    {
+      "id": "https://openalex.org/keywords/biochemistry",
+      "display_name": "Biochemistry",
+      "score": 0.2599533200263977
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.1883598268032074
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.125043123960495
+    },
+    {
+      "id": "https://openalex.org/keywords/materials-science",
+      "display_name": "Materials science",
+      "score": 0.06867179274559021
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C6997183",
+      "wikidata": "https://www.wikidata.org/wiki/Q271727",
+      "display_name": "Myosin",
+      "level": 2,
+      "score": 0.7944187521934509
+    },
+    {
+      "id": "https://openalex.org/C36394416",
+      "wikidata": "https://www.wikidata.org/wiki/Q949267",
+      "display_name": "Immunoglobulin light chain",
+      "level": 3,
+      "score": 0.7899908423423767
+    },
+    {
+      "id": "https://openalex.org/C8035138",
+      "wikidata": "https://www.wikidata.org/wiki/Q6017854",
+      "display_name": "Myosin light-chain kinase",
+      "level": 3,
+      "score": 0.704387903213501
+    },
+    {
+      "id": "https://openalex.org/C2778502483",
+      "wikidata": "https://www.wikidata.org/wiki/Q1311395",
+      "display_name": "Scallop",
+      "level": 2,
+      "score": 0.6272113919258118
+    },
+    {
+      "id": "https://openalex.org/C84613547",
+      "wikidata": "https://www.wikidata.org/wiki/Q17037912",
+      "display_name": "Heavy chain",
+      "level": 3,
+      "score": 0.5598912239074707
+    },
+    {
+      "id": "https://openalex.org/C12554922",
+      "wikidata": "https://www.wikidata.org/wiki/Q7100",
+      "display_name": "Biophysics",
+      "level": 1,
+      "score": 0.49791765213012695
+    },
+    {
+      "id": "https://openalex.org/C185592680",
+      "wikidata": "https://www.wikidata.org/wiki/Q2329",
+      "display_name": "Chemistry",
+      "level": 0,
+      "score": 0.46646153926849365
+    },
+    {
+      "id": "https://openalex.org/C32276052",
+      "wikidata": "https://www.wikidata.org/wiki/Q908349",
+      "display_name": "Motif (music)",
+      "level": 2,
+      "score": 0.4379439353942871
+    },
+    {
+      "id": "https://openalex.org/C117745874",
+      "wikidata": "https://www.wikidata.org/wiki/Q901612",
+      "display_name": "Sequence motif",
+      "level": 3,
+      "score": 0.43145644664764404
+    },
+    {
+      "id": "https://openalex.org/C15954220",
+      "wikidata": "https://www.wikidata.org/wiki/Q24780076",
+      "display_name": "Myosin head",
+      "level": 4,
+      "score": 0.42772725224494934
+    },
+    {
+      "id": "https://openalex.org/C107824862",
+      "wikidata": "https://www.wikidata.org/wiki/Q616005",
+      "display_name": "Binding site",
+      "level": 2,
+      "score": 0.42292913794517517
+    },
+    {
+      "id": "https://openalex.org/C2777814067",
+      "wikidata": "https://www.wikidata.org/wiki/Q1752317",
+      "display_name": "Tandem",
+      "level": 2,
+      "score": 0.4187442660331726
+    },
+    {
+      "id": "https://openalex.org/C70721500",
+      "wikidata": "https://www.wikidata.org/wiki/Q177005",
+      "display_name": "Computational biology",
+      "level": 1,
+      "score": 0.38016706705093384
+    },
+    {
+      "id": "https://openalex.org/C95444343",
+      "wikidata": "https://www.wikidata.org/wiki/Q7141",
+      "display_name": "Cell biology",
+      "level": 1,
+      "score": 0.35275596380233765
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.28051647543907166
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.26532185077667236
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 0.2599533200263977
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.1883598268032074
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.125043123960495
+    },
+    {
+      "id": "https://openalex.org/C192562407",
+      "wikidata": "https://www.wikidata.org/wiki/Q228736",
+      "display_name": "Materials science",
+      "level": 0,
+      "score": 0.06867179274559021
+    },
+    {
+      "id": "https://openalex.org/C18903297",
+      "wikidata": "https://www.wikidata.org/wiki/Q7150",
+      "display_name": "Ecology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C24890656",
+      "wikidata": "https://www.wikidata.org/wiki/Q82811",
+      "display_name": "Acoustics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C159985019",
+      "wikidata": "https://www.wikidata.org/wiki/Q181790",
+      "display_name": "Composite material",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C159654299",
+      "wikidata": "https://www.wikidata.org/wiki/Q79460",
+      "display_name": "Antibody",
+      "level": 2,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000595",
+      "descriptor_name": "Amino Acid Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000595",
+      "descriptor_name": "Amino Acid Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000595",
+      "descriptor_name": "Amino Acid Sequence",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001665",
+      "descriptor_name": "Binding Sites",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001665",
+      "descriptor_name": "Binding Sites",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D001665",
+      "descriptor_name": "Binding Sites",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002118",
+      "descriptor_name": "Calcium",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003196",
+      "descriptor_name": "Computer Graphics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003196",
+      "descriptor_name": "Computer Graphics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D003196",
+      "descriptor_name": "Computer Graphics",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008969",
+      "descriptor_name": "Molecular Sequence Data",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008969",
+      "descriptor_name": "Molecular Sequence Data",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008969",
+      "descriptor_name": "Molecular Sequence Data",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008974",
+      "descriptor_name": "Mollusca",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008974",
+      "descriptor_name": "Mollusca",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008974",
+      "descriptor_name": "Mollusca",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009218",
+      "descriptor_name": "Myosins",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010446",
+      "descriptor_name": "Peptide Fragments",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010446",
+      "descriptor_name": "Peptide Fragments",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010446",
+      "descriptor_name": "Peptide Fragments",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010446",
+      "descriptor_name": "Peptide Fragments",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010446",
+      "descriptor_name": "Peptide Fragments",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D010446",
+      "descriptor_name": "Peptide Fragments",
+      "qualifier_ui": "Q000737",
+      "qualifier_name": "chemistry",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011487",
+      "descriptor_name": "Protein Conformation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011487",
+      "descriptor_name": "Protein Conformation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011487",
+      "descriptor_name": "Protein Conformation",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018360",
+      "descriptor_name": "Crystallography, X-Ray",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018360",
+      "descriptor_name": "Crystallography, X-Ray",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D018360",
+      "descriptor_name": "Crystallography, X-Ray",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 7,
+  "locations": [
+    {
+      "id": "doi:10.1038/368306a0",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1038/368306a0",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S137773608",
+        "display_name": "Nature",
+        "issn_l": "0028-0836",
+        "issn": [
+          "0028-0836",
+          "1476-4687"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319908",
+        "host_organization_name": "Nature Portfolio",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319908",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Nature Portfolio",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:8127365",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/8127365",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:edoc.mpg.de:565587",
+      "is_oa": false,
+      "landing_page_url": "http://edoc.mpg.de/565587",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4406922265",
+        "display_name": "Max Planck Institute for Plasma Physics",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Nature, v.368, 306-312 (1994)",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:edoc.mpg.de:567730",
+      "is_oa": false,
+      "landing_page_url": "http://edoc.mpg.de/567730",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4406922265",
+        "display_name": "Max Planck Institute for Plasma Physics",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Nature, v.368, 306-312 (1994)",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:edoc.mpg.de:568066",
+      "is_oa": false,
+      "landing_page_url": "http://edoc.mpg.de/568066",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4406922265",
+        "display_name": "Max Planck Institute for Plasma Physics",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Nature, v.368, 306-312 (1994)",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:edoc.mpg.de:568425",
+      "is_oa": false,
+      "landing_page_url": "http://edoc.mpg.de/568425",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4406922265",
+        "display_name": "Max Planck Institute for Plasma Physics",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Nature, v.368, 306-312 (1994)",
+      "raw_type": "Article"
+    },
+    {
+      "id": "pmh:oai:pure.mpg.de:item_1998690",
+      "is_oa": false,
+      "landing_page_url": "http://hdl.handle.net/11858/00-001M-0000-0019-A930-5",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400654",
+        "display_name": "MPG.PuRe (Max Planck Society)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I149899117",
+        "host_organization_name": "Max Planck Society",
+        "host_organization_lineage": [
+          "https://openalex.org/I149899117"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Nature",
+      "raw_type": "info:eu-repo/semantics/article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [
+    {
+      "display_name": "Zero hunger",
+      "id": "https://metadata.un.org/sdg/2",
+      "score": 0.5699999928474426
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 36,
+  "referenced_works": [
+    "https://openalex.org/W1168548619",
+    "https://openalex.org/W1533853543",
+    "https://openalex.org/W1557525759",
+    "https://openalex.org/W1571243084",
+    "https://openalex.org/W1731598977",
+    "https://openalex.org/W1952676054",
+    "https://openalex.org/W1966424667",
+    "https://openalex.org/W1969222043",
+    "https://openalex.org/W1983468648",
+    "https://openalex.org/W1987159249",
+    "https://openalex.org/W1999416734",
+    "https://openalex.org/W1999614987",
+    "https://openalex.org/W2000810192",
+    "https://openalex.org/W2001662138",
+    "https://openalex.org/W2003879700",
+    "https://openalex.org/W2013083986",
+    "https://openalex.org/W2019809957",
+    "https://openalex.org/W2024142216",
+    "https://openalex.org/W2024484334",
+    "https://openalex.org/W2024782877",
+    "https://openalex.org/W2028231353",
+    "https://openalex.org/W2028669039",
+    "https://openalex.org/W2044629144",
+    "https://openalex.org/W2048927326",
+    "https://openalex.org/W2055086478",
+    "https://openalex.org/W2057331517",
+    "https://openalex.org/W2057976520",
+    "https://openalex.org/W2060141710",
+    "https://openalex.org/W2069953906",
+    "https://openalex.org/W2074533205",
+    "https://openalex.org/W2084988598",
+    "https://openalex.org/W2105207027",
+    "https://openalex.org/W2140040046",
+    "https://openalex.org/W2346635566",
+    "https://openalex.org/W4229913877",
+    "https://openalex.org/W4243089431"
+  ],
+  "related_works": [
+    "https://openalex.org/W2047905688",
+    "https://openalex.org/W2347661405",
+    "https://openalex.org/W2768373385",
+    "https://openalex.org/W2176481193",
+    "https://openalex.org/W2136519897",
+    "https://openalex.org/W1966497118",
+    "https://openalex.org/W1968555063",
+    "https://openalex.org/W1546918094",
+    "https://openalex.org/W1980148334",
+    "https://openalex.org/W2059866935"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2025,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 2
+    }
+  ],
+  "updated_date": "2026-04-05T17:49:38.594831",
+  "created_date": "2025-10-10T00:00:00"
+}

@@ -1,0 +1,14 @@
+# Lysosomal function, resistance to oxidative stress and repair are compromised by expression of the Alexander disease GFAP R239C mutant.
+
+- **PMID**: 42103165
+- **DOI**: 10.1016/j.freeradbiomed.2026.05.280
+- **PMCID**:  
+- **Journal**: Free radical biology & medicine  ·  **Year**: 2026
+- **Authors**: Elena Hernández-Gerez, Nuria Goya-Iglesias, Álvaro Viedma-Poyatos, María A Pajares, Dolores Pérez-Sala
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42103165/
+- **Captured**: 2026-05-10T09:13:46
+
+## Abstract
+
+Intermediate filaments are critical regulators of cell responses and organizers of cellular structures. Glial fibrillary acidic protein (GFAP) is an intermediate filament protein that provides structural and functional support to astrocytes. GFAP is a key target of oxidative stress and its expression and assembly are altered in brain disease and injury. Moreover, GFAP mutations can provoke protein aggregation and proteostasis defects, astrocytic damage and ultimately neurodegeneration causing the leukodystrophy known as Alexander disease (AxD). We previously showed mitochondrial alterations and oxidative stress in astrocytes expressing GFAP AxD mutants. Here, we address the impact of GFAP AxD mutants on the lysosomal degradation pathway, using an astrocytoma cell model. Lysosomes in cells expressing GFAP R239C, a variant associated with severe AxD, displayed abnormal distribution, defective activity and impaired intraluminal acidification. Lysosomes are primary sites of oxidative damage. Expression of GFAP R239C increased their susceptibility to oxidative stress, provoking a greater loss of lysosomal "mass" and compromised membrane integrity, revealed by increased intraluminal galectin recruitment, compared to cells expressing GFAP wt. Notably, lysosomes in GFAP R239C expressing cells were also more vulnerable to chemically-induced rupture. Interestingly, whereas lysosomes of cells expressing GFAP wt rapidly recovered after removal of the damaging agent, recovery of acidic vesicles was severely impaired in cells expressing GFAP R239C, suggesting a defect in lysosomal repair. Together, our results show that expression of the GFAP R239C AxD mutant is sufficient to deeply perturb lysosomal distribution, function and repair. These alterations could contribute to proteostasis defects and cellular toxicity in AxD.

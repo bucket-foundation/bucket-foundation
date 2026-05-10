@@ -1,0 +1,14 @@
+# Phosphate mitigates iron and zinc toxicity in Saccharomyces cerevisiae by modulating metal bioavailability and intracellular defense mechanisms.
+
+- **PMID**: 42105604
+- **DOI**: 10.1016/j.ecoenv.2026.120221
+- **PMCID**:  
+- **Journal**: Ecotoxicology and environmental safety  ·  **Year**: 2026
+- **Authors**: Supinda Tatip Luangkamchorn, Atidtaya Kitchotsakul, Tham Udomkanarat, Thanarat Saenrit, Kyosuke Hono, Kittikhun Kerdsomboon, Choowong Auesukaree
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42105604/
+- **Captured**: 2026-05-10T09:12:51
+
+## Abstract
+
+Phosphate is an essential nutrient that plays critical roles in cellular metabolism; however, its role in metal detoxification remains incompletely understood. Here, we investigated the protective roles of extracellular and intracellular phosphate against iron and zinc overload in the eukaryotic model Saccharomyces cerevisiae. Phosphate supplementation markedly improved yeast growth under iron and zinc stress in a dose-dependent manner. However, this protective effect did not result from a significant reduction in total intracellular metal accumulation. Instead, phosphate-replete conditions substantially suppressed metal-induced reactive oxygen species (ROS) generation, which in turn led to decreased activities of antioxidant enzymes, particularly Mn-superoxide dismutase. These findings suggest the role of phosphate in alleviating intracellular oxidative stress rather than simply limiting metal uptake. Gene expression analyses further demonstrated that phosphate availability attenuated the transcriptional induction of genes involved in metal sequestration (especially CCC1, ZRC1, and YCF1) under metal overload. Using phosphate transporter-defective mutants (e.g., Δpho84Δpho87Δpho90), we showed that intracellular phosphate is also crucial for tolerance to iron and zinc stress. Fourier transform infrared spectroscopy provided evidence that both extracellular and intracellular phosphate, likely in the form of pyrophosphate or polyphosphate, interact with iron and zinc to form metal-phosphate complexes. Consistently, elevated VTC4 expression under phosphate-deficient conditions suggests a potential contribution of polyphosphate to intracellular metal chelation. Altogether, our findings reveal that phosphate mitigates iron and zinc toxicity through coordinated extracellular and intracellular mechanisms by modulating metal bioavailability and oxidative stress, underscoring its role in maintaining cellular metal homeostasis.

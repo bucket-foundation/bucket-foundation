@@ -1,0 +1,14 @@
+# Fecal melatonin as a biomarker of emerging circadian maturity and gut microbiota in infancy.
+
+- **PMID**: 42050171
+- **DOI**: 10.1371/journal.pcbi.1009442
+- **PMCID**: PMC8714082 (full-text saved)
+- **Journal**: Npj biological timing and sleep  ·  **Year**: 2026
+- **Authors**: Mohammed Al-Andoli, Petra Zimmermann, Sarah Schoch, Andjela Markovic, Christophe Mühlematter, Matthieu Beaugrand, Oskar G Jenni, Rabia Liamlahi, Jean-Claude Walser, Dennis Nielsen, Salome Kurth
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42050171/
+- **Captured**: 2026-05-10T09:12:01
+
+## Abstract
+
+Melatonin plays a key role in circadian regulation, and its interaction with the gut microbiota may be critical for early-life development. Beyond its circadian function, melatonin dysregulation is implicated in inflammatory, metabolic, psychiatric, and neurological disorders. While the gastrointestinal tract produces melatonin at levels far exceeding the pineal gland, its role in gut microbiota dynamics and circadian maturation remains unclear. This observational study investigates the association between fecal melatonin levels and microbial diversity, specific bacterial taxa (ZOTUs), actimetry-based sleep metrics, and various time-dependent factors (including stool timing and intervals since the last stool, sleep, and meal) in infants at 3, 6, and 12 months of age. Key findings include: (1) fecal melatonin levels increase with age but show high inter-individual variability; (2) fecal melatonin is associated with time factors, such as stool timing and time since last stool; (3) higher fecal melatonin levels are linked with reduced gut microbial richness and diversity; (4) the number of bacterial taxa associated with fecal melatonin decline over time; (5) melatonin is associated with age-dependent shifts in both bacterial phyla and genera, notably increasing phyla Actinobacteriota and Bacteroidota, and genera Bifidobacterium, and Veillonella, while reducing the phylum Firmicutes and the genus Streptococcus; (6) fecal melatonin is linked to circadian maturation; and (7) finally, stool timing variability and fasting time affect fecal melatonin stability. These findings identify intestinal melatonin as a promising biomarker for gut microbiota development and circadian rhythm establishment. In addition, these insights highlight melatonin in infant stool as a biomarker and potential modulator bridging systems of intestinal microbiota and behavioral sleep-wake organization.

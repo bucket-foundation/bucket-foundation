@@ -1,0 +1,14 @@
+# Mitochondria-Targeted Liposomes Boost Thermogenesis for Adipose Tissue Regulation.
+
+- **PMID**: 41964318
+- **DOI**: 10.1002/adhm.202505925
+- **PMCID**:  
+- **Journal**: Advanced healthcare materials  ·  **Year**: 2026
+- **Authors**: Shibo Tian, Hailong Xie, Qin Zhong, Chenglu Sun, Peng Yuan, Funeng Xu, Lu Lu, Jiaxue Cao, Mingzhou Li, Haohuan Li
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41964318/
+- **Captured**: 2026-05-10T09:13:09
+
+## Abstract
+
+Mitochondria act as central organelles regulating energy metabolism and lipogenesis in adipocytes. Mitochondrial dysfunction and oxidative stress are closely implicated in the pathogenesis of obesity. Therefore, targeting adipose mitochondrial function to reduce mitochondrial reactive oxygen (mROS) levels can enhance mitochondrial activity and promote thermogenesis, presenting a promising therapeutic strategy for obesity. In this study, we developed cationic liposomes (AE@PEP-Lip) specifically designed for adipose mitochondrial targeting. These liposomes can effectively accumulate in white adipose tissue due to their highly positively charged surface, and subsequently localize to mitochondria via the mitochondrial-targeting peptide SS-31. The SS-31 peptide efficiently scavenges mROS and synergizes with empagliflozin in AE@PEP-Lip to inhibit mitochondrial fragmentation, thereby enhancing mitochondrial respiration and thermogenic capacity. Furthermore, allicin, which is loaded into AE@PEP-Lip and released into the cytoplasm, activates the AMPK signaling pathway and upregulates uncoupling proteins, further promoting mitochondrial thermogenesis. In obese mice, treatment with AE@PEP-Lip improved mitochondrial morphology and function and induced browning characteristics. Moreover, we demonstrated the clinical application potential of AE@PEP-Lip in reducing localized fat deposition using a porcine model. Taken together, this study presents a novel and promising therapeutic platform for obesity by modulating adipose mitochondrial function.

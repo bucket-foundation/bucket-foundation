@@ -7,7 +7,7 @@
 - **Updated**: 2015-08-25T16:31:51Z
 - **Primary category**: gr-qc
 - **All categories**: gr-qc, astro-ph.CO, quant-ph
-- **Captured**: 2026-05-09T21:54:11
+- **Captured**: 2026-05-10T09:14:01
 
 ## Abstract
 

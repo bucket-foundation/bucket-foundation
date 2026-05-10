@@ -1,0 +1,14 @@
+# When Red Blood Cells Meet Carbon Monoxide: Yin and Yang in Medicines and Pharmaceuticals.
+
+- **PMID**: 42075889
+- **DOI**: 10.3390/ijms26167825
+- **PMCID**: PMC12386388 (full-text saved)
+- **Journal**: Pharmaceuticals (Basel, Switzerland)  ·  **Year**: 2026
+- **Authors**: Taisei Nagasaki, Victor Tuan Giam Chuang, Masaki Otagiri, Kazuaki Taguchi
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42075889/
+- **Captured**: 2026-05-10T09:13:54
+
+## Abstract
+
+Carbon monoxide (CO) is a poisonous gas because it disrupts functional oxygen transport of red blood cell (RBC) by binding heme of hemoglobin with high affinity. Contrarily, endogenous CO, which is constantly generated in the process of heme degradation by heme oxygenase, functions as a gaseous mediator necessary for maintaining physiological homeostasis. This toxicological (Yin) and physiological (Yang) duality presents a distinctive problem in medical and pharmaceutical applications, prompting the central question of this review: How can strict control over CO's exposure dynamics, magnitude, kinetics, and tissue context be achieved to enable its safe therapeutic use? Here, we integrate the Yin and Yang of CO through an innovative exposure-engineering framework, leveraging the inherent RBC characteristics to offer a novel conceptualization for therapeutic development. We highlight the role of native RBCs as a biologically grounded platform that can convert hemoglobin binding-classically viewed as the basis of CO toxicity-into a measurable and controllable buffering mechanism. Then, reconciling the Yin and Yang of CO based on RBCs enables medical and pharmaceutical modulation that is attractive for clinical situations, therapeutics and diagnostics. Finally, we discuss key translational challenges-local concentration control, patient-specific risk stratification, manufacturability and critical quality attributes, and regulatory positioning-and outline how quantifiable exposure control can enable the safe clinical development of RBC-based CO therapy.

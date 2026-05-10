@@ -7,7 +7,7 @@
 - **Authors**: Masaki Kobayashi, Torai Iwasa, Mika Tada
 - **MeSH**: Humans, Photons
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/27082276/
-- **Captured**: 2026-05-09T09:42:21
+- **Captured**: 2026-05-10T09:14:48
 
 ## Abstract
 

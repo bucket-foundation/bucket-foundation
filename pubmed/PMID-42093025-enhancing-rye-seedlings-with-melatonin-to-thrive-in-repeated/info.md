@@ -1,0 +1,14 @@
+# Enhancing rye seedlings with melatonin to thrive in repeated freeze-thaw cycles and aluminum chloride stress.
+
+- **PMID**: 42093025
+- **DOI**: 10.1071/FP24279
+- **PMCID**:  
+- **Journal**: Functional plant biology : FPB  ·  **Year**: 2025
+- **Authors**: K Bashir, G Z Bao, S Ali, W W Chen, Y Q Jiang, C X Fan, G M Li
+- **MeSH**: Melatonin, Seedlings, Secale, Aluminum Chloride, Antioxidants, Freezing, Stress, Physiological, Reactive Oxygen Species, Photosynthesis, Malondialdehyde
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42093025/
+- **Captured**: 2026-05-10T09:12:54
+
+## Abstract
+
+Freeze-thaw (FT) events and aluminum (Al) toxicity pose serious threats to agricultural productivity, risks that are further intensified by global warming. Melatonin (MT), a plant growth regulator, has been shown to enhance stress tolerance in plants; however, its role in rye under combined FT and Al stress remains poorly understood. We investigated the influence of MT on osmotic adjustment, antioxidant defense, membrane stability, and photosynthetic performance in rye seedlings exposed to both stresses. Under combined FT and Al stress, malondialdehyde (MDA), soluble protein (SP), superoxide dismutase (SOD), catalase (CAT), and peroxidase (POD) increased by 37.20%, 12.76%, 21.64%, 37.58%, and 35.51%, respectively, while net photosynthesis (Pn) and transpiration rate (Tr) declined by 31.12% and 22.35%, respectively. MT application significantly mitigated these effects, reducing MDA by 22.64% and enhancing Pn and Tr by 32.57% and 32.29%, respectively. These improvements were associated with lower reactive oxygen species (ROS) accumulation, stronger antioxidant activity, and stabilized membranes. Overall, MT alleviated stress-induced growth inhibition, offering a promising strategy to improve future crop resilience in extreme, harsh, and contaminated environments.

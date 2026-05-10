@@ -1,0 +1,1643 @@
+{
+  "id": "https://openalex.org/W1970113884",
+  "doi": "https://doi.org/10.1523/jneurosci.6693-10.2011",
+  "title": "Biophysical Mechanisms of Multistability in Resting-State Cortical Rhythms",
+  "display_name": "Biophysical Mechanisms of Multistability in Resting-State Cortical Rhythms",
+  "publication_year": 2011,
+  "publication_date": "2011-04-27",
+  "ids": {
+    "openalex": "https://openalex.org/W1970113884",
+    "doi": "https://doi.org/10.1523/jneurosci.6693-10.2011",
+    "mag": "1970113884",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/21525275"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1523/jneurosci.6693-10.2011",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1523/jneurosci.6693-10.2011",
+    "pdf_url": "https://www.jneurosci.org/content/jneuro/31/17/6353.full.pdf",
+    "source": {
+      "id": "https://openalex.org/S5555990",
+      "display_name": "Journal of Neuroscience",
+      "issn_l": "0270-6474",
+      "issn": [
+        "0270-6474",
+        "1529-2401"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319739",
+      "host_organization_name": "Society for Neuroscience",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319739"
+      ],
+      "host_organization_lineage_names": [
+        "Society for Neuroscience"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "The Journal of Neuroscience",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "bronze",
+    "oa_url": "https://www.jneurosci.org/content/jneuro/31/17/6353.full.pdf",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5065464874",
+        "display_name": "Frank Freyer",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210152641",
+          "display_name": "Bernstein Center for Computational Neuroscience Berlin",
+          "ror": "https://ror.org/05ewdps05",
+          "country_code": "DE",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210092532",
+            "https://openalex.org/I4210152641"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Frank Freyer",
+      "raw_affiliation_strings": [
+        "Bernstein Focus State Dependencies of Learning and Bernstein Center for Computational Neuroscience, 10115 Berlin, Germany"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Bernstein Focus State Dependencies of Learning and Bernstein Center for Computational Neuroscience, 10115 Berlin, Germany",
+          "institution_ids": [
+            "https://openalex.org/I4210152641"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5082531068",
+        "display_name": "James A. Roberts",
+        "orcid": "https://orcid.org/0000-0003-1626-6551"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I217937681",
+          "display_name": "QIMR Berghofer Medical Research Institute",
+          "ror": "https://ror.org/004y8wk30",
+          "country_code": "AU",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I217937681"
+          ]
+        }
+      ],
+      "countries": [
+        "AU"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "James A. Roberts",
+      "raw_affiliation_strings": [
+        "Division of Mental Health Research, Queensland Institute of Medical Research, Brisbane, Queensland 4006, Australia,"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Division of Mental Health Research, Queensland Institute of Medical Research, Brisbane, Queensland 4006, Australia,",
+          "institution_ids": [
+            "https://openalex.org/I217937681"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5014616472",
+        "display_name": "Robert Becker",
+        "orcid": "https://orcid.org/0000-0001-7615-9390"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210152641",
+          "display_name": "Bernstein Center for Computational Neuroscience Berlin",
+          "ror": "https://ror.org/05ewdps05",
+          "country_code": "DE",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I4210092532",
+            "https://openalex.org/I4210152641"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I7877124",
+          "display_name": "Charité - Universitätsmedizin Berlin",
+          "ror": "https://ror.org/001w7jn25",
+          "country_code": "DE",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I7877124"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Robert Becker",
+      "raw_affiliation_strings": [
+        "Bernstein Focus State Dependencies of Learning and Bernstein Center for Computational Neuroscience, 10115 Berlin, Germany,",
+        "Department of Neurology, Charite -University Medicine, 10117 Berlin, Germany,",
+        "Department of Neurology, Charite ´-University Medicine, 10117 Berlin, Germany,"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Bernstein Focus State Dependencies of Learning and Bernstein Center for Computational Neuroscience, 10115 Berlin, Germany,",
+          "institution_ids": [
+            "https://openalex.org/I4210152641"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Neurology, Charite -University Medicine, 10117 Berlin, Germany,",
+          "institution_ids": [
+            "https://openalex.org/I7877124"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Neurology, Charite ´-University Medicine, 10117 Berlin, Germany,",
+          "institution_ids": [
+            "https://openalex.org/I7877124"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5091022473",
+        "display_name": "P. A. Robinson",
+        "orcid": "https://orcid.org/0000-0002-5050-9804"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I129604602",
+          "display_name": "The University of Sydney",
+          "ror": "https://ror.org/0384j8v12",
+          "country_code": "AU",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I129604602"
+          ]
+        }
+      ],
+      "countries": [
+        "AU"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Peter A. Robinson",
+      "raw_affiliation_strings": [
+        "Center for Interdisciplinary Research and Understanding of Sleep, Glebe, New South Wales 2037, Australia,",
+        "School of Physics, University of Sydney, Sydney, New South Wales 2006, Australia,",
+        "Brain Dynamics Center, Sydney Medical School-Western, University of Sydney, New South Wales 2145, Australia,"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Center for Interdisciplinary Research and Understanding of Sleep, Glebe, New South Wales 2037, Australia,",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "School of Physics, University of Sydney, Sydney, New South Wales 2006, Australia,",
+          "institution_ids": [
+            "https://openalex.org/I129604602"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Brain Dynamics Center, Sydney Medical School-Western, University of Sydney, New South Wales 2145, Australia,",
+          "institution_ids": [
+            "https://openalex.org/I129604602"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5067145255",
+        "display_name": "Petra Ritter",
+        "orcid": "https://orcid.org/0000-0002-4643-4782"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I149899117",
+          "display_name": "Max Planck Society",
+          "ror": "https://ror.org/01hhn8329",
+          "country_code": "DE",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I149899117"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210130445",
+          "display_name": "Max Planck Institute for Human Cognitive and Brain Sciences",
+          "ror": "https://ror.org/0387jng26",
+          "country_code": "DE",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I149899117",
+            "https://openalex.org/I4210130445"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Petra Ritter",
+      "raw_affiliation_strings": [
+        "Department Neurology, MPI for Human Cognitive and Brain Sciences, Max Planck Society"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department Neurology, MPI for Human Cognitive and Brain Sciences, Max Planck Society",
+          "institution_ids": [
+            "https://openalex.org/I4210130445",
+            "https://openalex.org/I149899117"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5064885281",
+        "display_name": "Michael Breakspear",
+        "orcid": "https://orcid.org/0000-0003-4943-3969"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I16667517",
+          "display_name": "Black Dog Institute",
+          "ror": "https://ror.org/04rfr1008",
+          "country_code": "AU",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I16667517"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I217937681",
+          "display_name": "QIMR Berghofer Medical Research Institute",
+          "ror": "https://ror.org/004y8wk30",
+          "country_code": "AU",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I217937681"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2799393793",
+          "display_name": "Royal Brisbane and Women's Hospital",
+          "ror": "https://ror.org/05p52kj31",
+          "country_code": "AU",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1302211766",
+            "https://openalex.org/I2799393793",
+            "https://openalex.org/I2801244131"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I31746571",
+          "display_name": "UNSW Sydney",
+          "ror": "https://ror.org/03r8z3t63",
+          "country_code": "AU",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I31746571"
+          ]
+        }
+      ],
+      "countries": [
+        "AU"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Michael Breakspear",
+      "raw_affiliation_strings": [
+        "The Royal Brisbane and Women's Hospital, Brisbane, Queensland 4029, Australia",
+        "Division of Mental Health Research, Queensland Institute of Medical Research, Brisbane, Queensland 4006, Australia,",
+        "School of Psychiatry, University of New South Wales and The Black Dog Institute, Sydney, New South Wales 2031, Australia, and"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "The Royal Brisbane and Women's Hospital, Brisbane, Queensland 4029, Australia",
+          "institution_ids": [
+            "https://openalex.org/I2799393793"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Division of Mental Health Research, Queensland Institute of Medical Research, Brisbane, Queensland 4006, Australia,",
+          "institution_ids": [
+            "https://openalex.org/I217937681"
+          ]
+        },
+        {
+          "raw_affiliation_string": "School of Psychiatry, University of New South Wales and The Black Dog Institute, Sydney, New South Wales 2031, Australia, and",
+          "institution_ids": [
+            "https://openalex.org/I16667517",
+            "https://openalex.org/I31746571"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 6,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5064885281"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I16667517",
+    "https://openalex.org/I217937681",
+    "https://openalex.org/I2799393793",
+    "https://openalex.org/I31746571"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 9.3034,
+  "has_fulltext": true,
+  "cited_by_count": 323,
+  "citation_normalized_percentile": {
+    "value": 0.98600348,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "31",
+    "issue": "17",
+    "first_page": "6353",
+    "last_page": "6361"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10581",
+    "display_name": "Neural dynamics and brain function",
+    "score": 0.9998999834060669,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2805",
+      "display_name": "Cognitive Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10581",
+      "display_name": "Neural dynamics and brain function",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11513",
+      "display_name": "stochastic dynamics and bifurcation",
+      "score": 0.9980000257492065,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3109",
+        "display_name": "Statistical and Nonlinear Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11187",
+      "display_name": "Nonlinear Dynamics and Pattern Formation",
+      "score": 0.9922000169754028,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1705",
+        "display_name": "Computer Networks and Communications"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/multistability",
+      "display_name": "Multistability",
+      "score": 0.8466265201568604
+    },
+    {
+      "id": "https://openalex.org/keywords/neuroscience",
+      "display_name": "Neuroscience",
+      "score": 0.6676449179649353
+    },
+    {
+      "id": "https://openalex.org/keywords/resting-state-fmri",
+      "display_name": "Resting state fMRI",
+      "score": 0.6412288546562195
+    },
+    {
+      "id": "https://openalex.org/keywords/rhythm",
+      "display_name": "Rhythm",
+      "score": 0.5624140501022339
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.47180643677711487
+    },
+    {
+      "id": "https://openalex.org/keywords/psychology",
+      "display_name": "Psychology",
+      "score": 0.2799493968486786
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2776966350",
+      "wikidata": "https://www.wikidata.org/wiki/Q6935096",
+      "display_name": "Multistability",
+      "level": 3,
+      "score": 0.8466265201568604
+    },
+    {
+      "id": "https://openalex.org/C169760540",
+      "wikidata": "https://www.wikidata.org/wiki/Q207011",
+      "display_name": "Neuroscience",
+      "level": 1,
+      "score": 0.6676449179649353
+    },
+    {
+      "id": "https://openalex.org/C66324658",
+      "wikidata": "https://www.wikidata.org/wiki/Q7316120",
+      "display_name": "Resting state fMRI",
+      "level": 2,
+      "score": 0.6412288546562195
+    },
+    {
+      "id": "https://openalex.org/C135343436",
+      "wikidata": "https://www.wikidata.org/wiki/Q170406",
+      "display_name": "Rhythm",
+      "level": 2,
+      "score": 0.5624140501022339
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.47180643677711487
+    },
+    {
+      "id": "https://openalex.org/C15744967",
+      "wikidata": "https://www.wikidata.org/wiki/Q9418",
+      "display_name": "Psychology",
+      "level": 0,
+      "score": 0.2799493968486786
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C158622935",
+      "wikidata": "https://www.wikidata.org/wiki/Q660848",
+      "display_name": "Nonlinear system",
+      "level": 2,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C24890656",
+      "wikidata": "https://www.wikidata.org/wiki/Q82811",
+      "display_name": "Acoustics",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D000513",
+      "descriptor_name": "Alpha Rhythm",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000513",
+      "descriptor_name": "Alpha Rhythm",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D000513",
+      "descriptor_name": "Alpha Rhythm",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D002540",
+      "descriptor_name": "Cerebral Cortex",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004569",
+      "descriptor_name": "Electroencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004569",
+      "descriptor_name": "Electroencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D004569",
+      "descriptor_name": "Electroencephalography",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D008959",
+      "descriptor_name": "Models, Neurological",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009434",
+      "descriptor_name": "Neural Pathways",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009434",
+      "descriptor_name": "Neural Pathways",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009434",
+      "descriptor_name": "Neural Pathways",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D009474",
+      "descriptor_name": "Neurons",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011336",
+      "descriptor_name": "Probability",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011336",
+      "descriptor_name": "Probability",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011336",
+      "descriptor_name": "Probability",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012146",
+      "descriptor_name": "Rest",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012146",
+      "descriptor_name": "Rest",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D012146",
+      "descriptor_name": "Rest",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013788",
+      "descriptor_name": "Thalamus",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013788",
+      "descriptor_name": "Thalamus",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013788",
+      "descriptor_name": "Thalamus",
+      "qualifier_ui": "Q000166",
+      "qualifier_name": "cytology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013788",
+      "descriptor_name": "Thalamus",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013788",
+      "descriptor_name": "Thalamus",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013788",
+      "descriptor_name": "Thalamus",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013997",
+      "descriptor_name": "Time Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013997",
+      "descriptor_name": "Time Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D013997",
+      "descriptor_name": "Time Factors",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D055592",
+      "descriptor_name": "Biophysical Phenomena",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D055592",
+      "descriptor_name": "Biophysical Phenomena",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D055592",
+      "descriptor_name": "Biophysical Phenomena",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology",
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1523/jneurosci.6693-10.2011",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1523/jneurosci.6693-10.2011",
+      "pdf_url": "https://www.jneurosci.org/content/jneuro/31/17/6353.full.pdf",
+      "source": {
+        "id": "https://openalex.org/S5555990",
+        "display_name": "Journal of Neuroscience",
+        "issn_l": "0270-6474",
+        "issn": [
+          "0270-6474",
+          "1529-2401"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319739",
+        "host_organization_name": "Society for Neuroscience",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319739"
+        ],
+        "host_organization_lineage_names": [
+          "Society for Neuroscience"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "The Journal of Neuroscience",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:21525275",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/21525275",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "The Journal of neuroscience : the official journal of the Society for Neuroscience",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:escidoc.org:escidoc:1101574",
+      "is_oa": false,
+      "landing_page_url": "http://hdl.handle.net/11858/00-001M-0000-0012-1AFE-D",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S7407052962",
+        "display_name": "Max Planck Digital Library",
+        "issn_l": null,
+        "issn": [],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "info:eu-repo/semantics/article"
+    },
+    {
+      "id": "pmh:oai:pubmedcentral.nih.gov:6622680",
+      "is_oa": true,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6622680",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S2764455111",
+        "display_name": "PubMed Central",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "J Neurosci",
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1523/jneurosci.6693-10.2011",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1523/jneurosci.6693-10.2011",
+    "pdf_url": "https://www.jneurosci.org/content/jneuro/31/17/6353.full.pdf",
+    "source": {
+      "id": "https://openalex.org/S5555990",
+      "display_name": "Journal of Neuroscience",
+      "issn_l": "0270-6474",
+      "issn": [
+        "0270-6474",
+        "1529-2401"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319739",
+      "host_organization_name": "Society for Neuroscience",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319739"
+      ],
+      "host_organization_lineage_names": [
+        "Society for Neuroscience"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "The Journal of Neuroscience",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W1970113884.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W1970113884.grobid-xml"
+  },
+  "referenced_works_count": 52,
+  "referenced_works": [
+    "https://openalex.org/W1955923252",
+    "https://openalex.org/W1956636948",
+    "https://openalex.org/W1968605879",
+    "https://openalex.org/W1985983039",
+    "https://openalex.org/W1989699593",
+    "https://openalex.org/W1990942318",
+    "https://openalex.org/W1997290576",
+    "https://openalex.org/W1998420666",
+    "https://openalex.org/W2007020702",
+    "https://openalex.org/W2007052121",
+    "https://openalex.org/W2008462638",
+    "https://openalex.org/W2008518032",
+    "https://openalex.org/W2012183985",
+    "https://openalex.org/W2012993788",
+    "https://openalex.org/W2015173963",
+    "https://openalex.org/W2016354087",
+    "https://openalex.org/W2017957151",
+    "https://openalex.org/W2018136689",
+    "https://openalex.org/W2022535346",
+    "https://openalex.org/W2025054170",
+    "https://openalex.org/W2025867113",
+    "https://openalex.org/W2027037510",
+    "https://openalex.org/W2028311911",
+    "https://openalex.org/W2029030701",
+    "https://openalex.org/W2029674061",
+    "https://openalex.org/W2030381387",
+    "https://openalex.org/W2035482871",
+    "https://openalex.org/W2036956268",
+    "https://openalex.org/W2039128518",
+    "https://openalex.org/W2041318616",
+    "https://openalex.org/W2048017269",
+    "https://openalex.org/W2059004036",
+    "https://openalex.org/W2060524608",
+    "https://openalex.org/W2063962699",
+    "https://openalex.org/W2064361774",
+    "https://openalex.org/W2064965260",
+    "https://openalex.org/W2065809565",
+    "https://openalex.org/W2080955301",
+    "https://openalex.org/W2088294872",
+    "https://openalex.org/W2095978766",
+    "https://openalex.org/W2116647777",
+    "https://openalex.org/W2121942142",
+    "https://openalex.org/W2126545479",
+    "https://openalex.org/W2127958135",
+    "https://openalex.org/W2131215403",
+    "https://openalex.org/W2141178737",
+    "https://openalex.org/W2147336335",
+    "https://openalex.org/W2153204292",
+    "https://openalex.org/W2160184536",
+    "https://openalex.org/W2168815228",
+    "https://openalex.org/W2605543710",
+    "https://openalex.org/W2885529587"
+  ],
+  "related_works": [
+    "https://openalex.org/W4226329279",
+    "https://openalex.org/W1527571384",
+    "https://openalex.org/W2383189914",
+    "https://openalex.org/W4301445084",
+    "https://openalex.org/W2963840034",
+    "https://openalex.org/W2935759653",
+    "https://openalex.org/W1984975294",
+    "https://openalex.org/W3105167352",
+    "https://openalex.org/W54078636",
+    "https://openalex.org/W2954470139"
+  ],
+  "abstract_inverted_index": {
+    "The": [
+      0
+    ],
+    "human": [
+      1,
+      188
+    ],
+    "alpha": [
+      2,
+      33,
+      117
+    ],
+    "(8-12": [
+      3
+    ],
+    "Hz)": [
+      4
+    ],
+    "rhythm": [
+      5
+    ],
+    "is": [
+      6,
+      70,
+      122
+    ],
+    "one": [
+      7
+    ],
+    "of": [
+      8,
+      17,
+      41,
+      61,
+      65,
+      77,
+      89,
+      96,
+      127,
+      151,
+      155,
+      181,
+      187,
+      197
+    ],
+    "the": [
+      9,
+      23,
+      58,
+      74,
+      94,
+      120,
+      136,
+      149
+    ],
+    "most": [
+      10
+    ],
+    "prominent,": [
+      11
+    ],
+    "robust,": [
+      12
+    ],
+    "and": [
+      13,
+      30,
+      79,
+      93,
+      115,
+      177,
+      185,
+      191
+    ],
+    "widely": [
+      14
+    ],
+    "studied": [
+      15
+    ],
+    "attributes": [
+      16
+    ],
+    "ongoing": [
+      18
+    ],
+    "cortical": [
+      19,
+      54,
+      78,
+      147,
+      183
+    ],
+    "activity.": [
+      20,
+      42,
+      68
+    ],
+    "Contrary": [
+      21
+    ],
+    "to": [
+      22,
+      161
+    ],
+    "prevalent": [
+      24
+    ],
+    "notion": [
+      25
+    ],
+    "that": [
+      26,
+      103
+    ],
+    "it": [
+      27
+    ],
+    "simply": [
+      28
+    ],
+    "\"waxes": [
+      29
+    ],
+    "wanes,\"": [
+      31
+    ],
+    "spontaneous": [
+      32,
+      111
+    ],
+    "activity": [
+      34,
+      76,
+      184
+    ],
+    "bursts": [
+      35,
+      112
+    ],
+    "erratically": [
+      36
+    ],
+    "between": [
+      37,
+      113
+    ],
+    "two": [
+      38
+    ],
+    "distinct": [
+      39
+    ],
+    "modes": [
+      40,
+      157
+    ],
+    "We": [
+      43,
+      100
+    ],
+    "now": [
+      44
+    ],
+    "establish": [
+      45
+    ],
+    "a": [
+      46,
+      62,
+      87,
+      124,
+      131,
+      194
+    ],
+    "mechanism": [
+      47
+    ],
+    "for": [
+      48
+    ],
+    "this": [
+      49,
+      84
+    ],
+    "multistable": [
+      50
+    ],
+    "phenomenon": [
+      51
+    ],
+    "in": [
+      52,
+      83,
+      159
+    ],
+    "resting-state": [
+      53,
+      182
+    ],
+    "recordings": [
+      55
+    ],
+    "by": [
+      56,
+      72,
+      146
+    ],
+    "characterizing": [
+      57
+    ],
+    "complex": [
+      59
+    ],
+    "dynamics": [
+      60
+    ],
+    "biophysical": [
+      63
+    ],
+    "model": [
+      64,
+      85,
+      173
+    ],
+    "macroscopic": [
+      66
+    ],
+    "corticothalamic": [
+      67,
+      172
+    ],
+    "This": [
+      69
+    ],
+    "achieved": [
+      71
+    ],
+    "studying": [
+      73
+    ],
+    "predicted": [
+      75
+    ],
+    "thalamic": [
+      80,
+      108
+    ],
+    "neuronal": [
+      81
+    ],
+    "populations": [
+      82
+    ],
+    "as": [
+      86
+    ],
+    "function": [
+      88
+    ],
+    "its": [
+      90
+    ],
+    "dynamic": [
+      91
+    ],
+    "stability": [
+      92
+    ],
+    "role": [
+      95
+    ],
+    "nonspecific": [
+      97
+    ],
+    "synaptic": [
+      98
+    ],
+    "noise.": [
+      99
+    ],
+    "hence": [
+      101,
+      174
+    ],
+    "find": [
+      102
+    ],
+    "fluctuating": [
+      104
+    ],
+    "noisy": [
+      105,
+      142
+    ],
+    "inputs": [
+      106,
+      143
+    ],
+    "into": [
+      107
+    ],
+    "neurons": [
+      109
+    ],
+    "elicit": [
+      110
+    ],
+    "low-": [
+      114
+    ],
+    "high-amplitude": [
+      116
+    ],
+    "oscillations": [
+      118
+    ],
+    "when": [
+      119
+    ],
+    "system": [
+      121
+    ],
+    "near": [
+      123
+    ],
+    "particular": [
+      125
+    ],
+    "type": [
+      126
+    ],
+    "dynamical": [
+      128
+    ],
+    "instability,": [
+      129
+    ],
+    "namely": [
+      130
+    ],
+    "subcritical": [
+      132
+    ],
+    "Hopf": [
+      133
+    ],
+    "bifurcation.": [
+      134
+    ],
+    "When": [
+      135
+    ],
+    "postsynaptic": [
+      137
+    ],
+    "potentials": [
+      138
+    ],
+    "associated": [
+      139
+    ],
+    "with": [
+      140,
+      167
+    ],
+    "these": [
+      141,
+      156,
+      198
+    ],
+    "are": [
+      144
+    ],
+    "modulated": [
+      145
+    ],
+    "feedback,": [
+      148
+    ],
+    "SD": [
+      150
+    ],
+    "power": [
+      152
+    ],
+    "within": [
+      153
+    ],
+    "each": [
+      154
+    ],
+    "scale": [
+      158
+    ],
+    "proportion": [
+      160
+    ],
+    "their": [
+      162
+    ],
+    "mean,": [
+      163
+    ],
+    "showing": [
+      164
+    ],
+    "remarkable": [
+      165
+    ],
+    "concordance": [
+      166
+    ],
+    "empirical": [
+      168
+    ],
+    "data.": [
+      169
+    ],
+    "Our": [
+      170
+    ],
+    "state-dependent": [
+      171
+    ],
+    "exhibits": [
+      175
+    ],
+    "multistability": [
+      176
+    ],
+    "scale-invariant": [
+      178
+    ],
+    "fluctuations-key": [
+      179
+    ],
+    "features": [
+      180
+    ],
+    "indeed,": [
+      186
+    ],
+    "perception,": [
+      189
+    ],
+    "cognition,": [
+      190
+    ],
+    "behavior-thus": [
+      192
+    ],
+    "providing": [
+      193
+    ],
+    "unified": [
+      195
+    ],
+    "account": [
+      196
+    ],
+    "apparently": [
+      199
+    ],
+    "divergent": [
+      200
+    ],
+    "phenomena.": [
+      201
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 27
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 25
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 26
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 39
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 24
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 25
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 20
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 22
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 19
+    }
+  ],
+  "updated_date": "2026-04-21T08:09:41.155169",
+  "created_date": "2025-10-10T00:00:00"
+}

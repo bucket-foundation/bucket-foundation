@@ -1,0 +1,14 @@
+# Biological Roles of Melanin and Natural Product-Derived Approaches for Its Modulation.
+
+- **PMID**: 41596305
+- **DOI**: 10.3389/fphys.2020.586843
+- **PMCID**: PMC7672191 (full-text saved)
+- **Journal**: International journal of molecular sciences  ·  **Year**: 2026
+- **Authors**: Sunghyun Hong, Hanbin Lim, Do-Hee Kim
+- **MeSH**: Melanins, Humans, Biological Products, Animals, Signal Transduction, Melanocytes
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41596305/
+- **Captured**: 2026-05-10T09:14:43
+
+## Abstract
+
+Melanin produced in melanocytes contributes to photoprotection, oxidative stress reduction, immune regulation, and epidermal homeostasis, while its dysregulation underlies diverse pigmentary disorders. Natural products modulate melanogenesis by regulating tyrosinase activity, intracellular signaling pathways such as extracellular signal-regulated kinase/mitogen-activated protein kinase (ERK/MAPK) and cyclicAMP/protein kinase A/cAMP response element-binding protein (cAMP/PKA/CREB), and cellular redox balance. Anti-melanogenic effects have been reported for various fruit-derived phytochemicals, ginseng-based metabolites, and plant polyphenols, which act through direct enzymatic inhibition, suppression of melanoenic signaling, modulation of melanosome dynamics, and antioxidant or anti-inflammatory activities. Advances in delivery systems, including nano- and microencapsulation platforms, further enhance the stability and topical bioavailability of these compounds. In contrast, certain methoxylated flavonoids and phenolic constituents can stimulate pigmentation by sustaining melanogenic signaling and promoting microphthalmia-associated transcription factor (MITF)-driven transcription, emphasizing the context-dependent and bidirectional influence of natural substances on pigmentation outcomes. Collectively, these findings highlight the therapeutic potential of natural product-based modulators of melanogenesis while underscoring the need for mechanistic clarification, safety evaluation, and translational studies to ensure effective and controlled pigmentation management. This review summarizes the biological functions of melanin and examines natural strategies for regulating pigmentation.

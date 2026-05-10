@@ -1,0 +1,14 @@
+# European Specificities of Albinism: Epidemiology, Clinical Features, and Management.
+
+- **PMID**: 42044741
+- **DOI**: 10.1016/j.lpm.2026.104343
+- **PMCID**:  
+- **Journal**: Presse medicale (Paris, France : 1983)  ·  **Year**: 2026
+- **Authors**: Ester Moreno-Artero, Jacob Mashiah, Fanny Morice-Picard, Smail Hadj-Rabia
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42044741/
+- **Captured**: 2026-05-10T09:14:24
+
+## Abstract
+
+Albinism is a genetically heterogeneous group of disorders characterized by reduced or absent melanin synthesis, leading to variable hypopigmentation of the skin, hair, and eyes, and associated ocular abnormalities such as foveal hypoplasia, nystagmus, and reduced visual acuity. Although considered rare, the prevalence of albinism varies widely across regions and is likely underestimated in Europe, particularly due to mild phenotypes in fair-skinned populations. In European people with albinism (PWA), reduced cutaneous pigmentation increases susceptibility to ultraviolet radiation-induced damage and skin cancer, although overall cancer prevalence remains lower than in equatorial regions. Diagnosis and surveillance are challenging because many lesions are amelanotic, phenotypic expression is highly variable, and photoprotection practices are often suboptimal. This review summarizes current knowledge on the epidemiology, clinical presentation, cancer risk, and management of albinism in Europe, with particular emphasis on diagnostic challenges, the role of dermoscopy in skin cancer detection, and tailored preventive strategies. A multidisciplinary approach involving dermatology, ophthalmology, genetics, and supportive care is essential to improve early diagnosis, optimize surveillance, and reduce morbidity in this population.

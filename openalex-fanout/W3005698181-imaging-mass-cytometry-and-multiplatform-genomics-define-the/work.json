@@ -1,0 +1,5792 @@
+{
+  "id": "https://openalex.org/W3005698181",
+  "doi": "https://doi.org/10.1038/s43018-020-0026-6",
+  "title": "Imaging mass cytometry and multiplatform genomics define the phenogenomic landscape of breast cancer",
+  "display_name": "Imaging mass cytometry and multiplatform genomics define the phenogenomic landscape of breast cancer",
+  "publication_year": 2020,
+  "publication_date": "2020-02-17",
+  "ids": {
+    "openalex": "https://openalex.org/W3005698181",
+    "doi": "https://doi.org/10.1038/s43018-020-0026-6",
+    "mag": "3005698181",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/35122013"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1038/s43018-020-0026-6",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1038/s43018-020-0026-6",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4210236562",
+      "display_name": "Nature Cancer",
+      "issn_l": "2662-1347",
+      "issn": [
+        "2662-1347"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319908",
+      "host_organization_name": "Nature Portfolio",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319908",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Nature Portfolio",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Nature Cancer",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "datacite",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "green",
+    "oa_url": "https://doi.org/10.17863/cam.50402",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5041163775",
+        "display_name": "H. Raza Ali",
+        "orcid": "https://orcid.org/0000-0001-7587-0906"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "H. Raza Ali",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5008801889",
+        "display_name": "Hartland W. Jackson",
+        "orcid": "https://orcid.org/0000-0001-6423-2415"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Hartland W. Jackson",
+      "raw_affiliation_strings": [
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0001-6423-2415",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5079311481",
+        "display_name": "Vito Riccardo Tomaso Zanotelli",
+        "orcid": "https://orcid.org/0000-0001-7268-311X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Vito R. T. Zanotelli",
+      "raw_affiliation_strings": [
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0001-7268-311X",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5039424527",
+        "display_name": "Esther Danenberg",
+        "orcid": "https://orcid.org/0000-0002-1799-4457"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Esther Danenberg",
+      "raw_affiliation_strings": [
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5070509871",
+        "display_name": "Jana Fischer",
+        "orcid": "https://orcid.org/0000-0001-9047-8400"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jana R. Fischer",
+      "raw_affiliation_strings": [
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5032579569",
+        "display_name": "Helen Bardwell",
+        "orcid": "https://orcid.org/0009-0000-7345-575X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Helen Bardwell",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5070311236",
+        "display_name": "Elena Provenzano",
+        "orcid": "https://orcid.org/0000-0003-3345-3965"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I2802466933",
+          "display_name": "Cambridge University Hospitals NHS Foundation Trust",
+          "ror": "https://ror.org/04v54gj93",
+          "country_code": "GB",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I2802466933"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210156194",
+          "display_name": "Addenbrooke's Hospital",
+          "ror": "https://ror.org/055vbxf86",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2802466933",
+            "https://openalex.org/I4210156194"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4389425352",
+          "display_name": "NIHR Cambridge Biomedical Research Centre",
+          "ror": "https://ror.org/05m8dr349",
+          "country_code": null,
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I241749",
+            "https://openalex.org/I2802466933",
+            "https://openalex.org/I34931013",
+            "https://openalex.org/I4389425352"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Elena Provenzano",
+      "raw_affiliation_strings": [
+        "Cambridge Breast Unit, Addenbrooke's Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Cambridge Breast Unit, Addenbrooke's Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I2802466933",
+            "https://openalex.org/I4210156194",
+            "https://openalex.org/I4389425352"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": null,
+        "display_name": "CRUK IMAXT Grand Challenge Team",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "CRUK IMAXT Grand Challenge Team",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5041163775",
+        "display_name": "H. Raza Ali",
+        "orcid": "https://orcid.org/0000-0001-7587-0906"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "H. Raza Ali",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland",
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5048735198",
+        "display_name": "M. Al Sa’d",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Al Sa’d",
+      "raw_affiliation_strings": [
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5103034989",
+        "display_name": "Shahar Alon",
+        "orcid": "https://orcid.org/0000-0002-7458-3478"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Alon",
+      "raw_affiliation_strings": [
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+        "Molecular Oncology, British Columbia Cancer Research Centre, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Molecular Oncology, British Columbia Cancer Research Centre, Vancouver, British Columbia, Canada",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5074271128",
+        "display_name": "Samuel Aparício",
+        "orcid": "https://orcid.org/0000-0002-0487-9599"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Samuel Aparicio",
+      "raw_affiliation_strings": [
+        "Molecular Oncology, British Columbia Cancer Research Centre, Vancouver, British Columbia, Canada",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Molecular Oncology, British Columbia Cancer Research Centre, Vancouver, British Columbia, Canada",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5022061338",
+        "display_name": "Giorgia Battistoni",
+        "orcid": "https://orcid.org/0000-0003-1257-9120"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "G. Battistoni",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5040551102",
+        "display_name": "Shankar Balasubramanian",
+        "orcid": "https://orcid.org/0000-0002-0281-5815"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Balasubramanian",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Department of Chemistry, University of Cambridge, Cambridge, UK",
+        "Súil Interactive, Dublin, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Chemistry, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5014616472",
+        "display_name": "Robert Becker",
+        "orcid": "https://orcid.org/0000-0001-7615-9390"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. Becker",
+      "raw_affiliation_strings": [
+        "Súil Interactive, Dublin, UK",
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": null,
+        "display_name": "Bernd Bodenmiller",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210111868",
+          "display_name": "Zurich University of Teacher Education",
+          "ror": "https://ror.org/01awgk221",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210111868"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Bernd Bodenmiller",
+      "raw_affiliation_strings": [
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland. bernd.bodenmiller@imls.uzh.ch",
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland. bernd.bodenmiller@imls.uzh.ch",
+          "institution_ids": [
+            "https://openalex.org/I4210111868"
+          ]
+        },
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5031667878",
+        "display_name": "E. S. Boyden",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "E. S. Boyden",
+      "raw_affiliation_strings": [
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5055100111",
+        "display_name": "Dario Bressan",
+        "orcid": "https://orcid.org/0000-0003-3592-699X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Bressan",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5071581968",
+        "display_name": "Alejandra Bruna",
+        "orcid": "https://orcid.org/0000-0003-1214-9665"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Bruna",
+      "raw_affiliation_strings": [
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5092187975",
+        "display_name": "B. Marcel",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2802466933",
+          "display_name": "Cambridge University Hospitals NHS Foundation Trust",
+          "ror": "https://ror.org/04v54gj93",
+          "country_code": "GB",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I2802466933"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210156194",
+          "display_name": "Addenbrooke's Hospital",
+          "ror": "https://ror.org/055vbxf86",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I2802466933",
+            "https://openalex.org/I4210156194"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4389425352",
+          "display_name": "NIHR Cambridge Biomedical Research Centre",
+          "ror": "https://ror.org/05m8dr349",
+          "country_code": null,
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I241749",
+            "https://openalex.org/I2802466933",
+            "https://openalex.org/I34931013",
+            "https://openalex.org/I4389425352"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "B. Marcel",
+      "raw_affiliation_strings": [
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+        "Cambridge Breast Unit, Addenbrooke's Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cambridge Breast Unit, Addenbrooke's Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I2802466933",
+            "https://openalex.org/I4210156194",
+            "https://openalex.org/I4389425352"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5089060804",
+        "display_name": "Carlos Caldas",
+        "orcid": "https://orcid.org/0000-0003-3547-1489"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2802466933",
+          "display_name": "Cambridge University Hospitals NHS Foundation Trust",
+          "ror": "https://ror.org/04v54gj93",
+          "country_code": "GB",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I2802466933"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Carlos Caldas",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK. carlos.caldas@cruk.cam.ac.uk",
+        "Cambridge Breast Unit, Addenbrooke's Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK. carlos.caldas@cruk.cam.ac.uk",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK. carlos.caldas@cruk.cam.ac.uk",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cambridge Breast Unit, Addenbrooke's Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK. carlos.caldas@cruk.cam.ac.uk",
+          "institution_ids": [
+            "https://openalex.org/I2802466933"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5040640445",
+        "display_name": "Maurizio Callari",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Callari",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5046736072",
+        "display_name": "Ian G. Cannell",
+        "orcid": "https://orcid.org/0000-0001-5832-9210"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "I. G. Cannell",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5112313623",
+        "display_name": "Helen Casbolt",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "H. Casbolt",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5009600438",
+        "display_name": "N. Chornay",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "N. Chornay",
+      "raw_affiliation_strings": [
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5101735096",
+        "display_name": "Yi Cui",
+        "orcid": "https://orcid.org/0000-0002-8597-0174"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Y. Cui",
+      "raw_affiliation_strings": [
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5112605134",
+        "display_name": "A. Dariush",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210150094",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/05qdwtz81",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Dariush",
+      "raw_affiliation_strings": [
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+        "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210150094",
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5113039953",
+        "display_name": "K. Dinh",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210150094",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/05qdwtz81",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "K. Dinh",
+      "raw_affiliation_strings": [
+        "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210150094",
+            "https://openalex.org/I78577930"
+          ]
+        },
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5072294953",
+        "display_name": "A. Emenari",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Emenari",
+      "raw_affiliation_strings": [
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5043713345",
+        "display_name": "Y. Eyal-Lubling",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Y. Eyal-Lubling",
+      "raw_affiliation_strings": [
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5033929431",
+        "display_name": "Jean Fan",
+        "orcid": "https://orcid.org/0000-0002-0212-5451"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Fan",
+      "raw_affiliation_strings": [
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5088448170",
+        "display_name": "Edward A. Fisher",
+        "orcid": "https://orcid.org/0000-0001-9802-143X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "E. Fisher",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5103886783",
+        "display_name": "E. A. González-Solares",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "E. A. González-Solares",
+      "raw_affiliation_strings": [
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5056485068",
+        "display_name": "C. Gónzalez-Fernández",
+        "orcid": "https://orcid.org/0000-0003-2612-0118"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. González-Fernández",
+      "raw_affiliation_strings": [
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5039142645",
+        "display_name": "Daniel Goodwin",
+        "orcid": "https://orcid.org/0000-0002-1311-5232"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Goodwin",
+      "raw_affiliation_strings": [
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5000849731",
+        "display_name": "Wendy Greenwood",
+        "orcid": "https://orcid.org/0000-0002-2509-8695"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "W. Greenwood",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Súil Interactive, Dublin, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5006522103",
+        "display_name": "Francesco Grimaldi",
+        "orcid": "https://orcid.org/0000-0003-4365-9406"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "F. Grimaldi",
+      "raw_affiliation_strings": [
+        "Súil Interactive, Dublin, UK",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5047070448",
+        "display_name": "Gregory J. Hannon",
+        "orcid": "https://orcid.org/0000-0003-4021-3898"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "G. J. Hannon",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Súil Interactive, Dublin, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5045444753",
+        "display_name": "Opusunju Boma Harris",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": false,
+      "raw_author_name": "O. Harris",
+      "raw_affiliation_strings": [
+        "Súil Interactive, Dublin, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5060409191",
+        "display_name": "Shelley Harris",
+        "orcid": "https://orcid.org/0000-0003-2894-1278"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Harris",
+      "raw_affiliation_strings": [
+        "Súil Interactive, Dublin, UK",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5057707376",
+        "display_name": "Cristina Jauset",
+        "orcid": "https://orcid.org/0000-0003-1408-026X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210117758",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/02cn3rm21",
+          "country_code": "CH",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210117758",
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I97565354",
+          "display_name": "University of Lausanne",
+          "ror": "https://ror.org/019whta54",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. Jauset",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Department of Oncology and Ludwig Institute for Cancer Research, University of Lausanne, Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Oncology and Ludwig Institute for Cancer Research, University of Lausanne, Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I4210117758",
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5009785954",
+        "display_name": "Johanna A. Joyce",
+        "orcid": "https://orcid.org/0000-0002-6332-2598"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210117758",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/02cn3rm21",
+          "country_code": "CH",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210117758",
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I97565354",
+          "display_name": "University of Lausanne",
+          "ror": "https://ror.org/019whta54",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. A. Joyce",
+      "raw_affiliation_strings": [
+        "Department of Oncology and Ludwig Institute for Cancer Research, University of Lausanne, Lausanne, Switzerland",
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Oncology and Ludwig Institute for Cancer Research, University of Lausanne, Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I4210117758",
+            "https://openalex.org/I97565354"
+          ]
+        },
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5022677116",
+        "display_name": "Emmanouil D. Karagiannis",
+        "orcid": "https://orcid.org/0000-0003-0131-6552"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "E. D. Karagiannis",
+      "raw_affiliation_strings": [
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5022266481",
+        "display_name": "Tatjana Kovačević",
+        "orcid": "https://orcid.org/0000-0001-8731-2426"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "T. Kovačević",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5061106802",
+        "display_name": "Laura Kuett",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210150094",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/05qdwtz81",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. Kuett",
+      "raw_affiliation_strings": [
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+        "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210150094",
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5020574854",
+        "display_name": "Russell Kunes",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210150094",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/05qdwtz81",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. Kunes",
+      "raw_affiliation_strings": [
+        "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210150094",
+            "https://openalex.org/I78577930"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5090627267",
+        "display_name": "A. Yoldaş",
+        "orcid": "https://orcid.org/0000-0001-6191-5069"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Küpcü Yoldaş",
+      "raw_affiliation_strings": [
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5065599368",
+        "display_name": "Dongbing Lai",
+        "orcid": "https://orcid.org/0000-0001-7803-580X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Lai",
+      "raw_affiliation_strings": [
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+        "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5050525456",
+        "display_name": "Emma Laks",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "E. Laks",
+      "raw_affiliation_strings": [
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+        "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5007857979",
+        "display_name": "Hsuan Lee",
+        "orcid": "https://orcid.org/0000-0001-6818-3243"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "H. Lee",
+      "raw_affiliation_strings": [
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5057438339",
+        "display_name": "M. Lee",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Lee",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Department of Chemistry, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Chemistry, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5037327303",
+        "display_name": "Giulia Lerda",
+        "orcid": "https://orcid.org/0009-0003-8851-6932"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "G. Lerda",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5086029879",
+        "display_name": "Y. Li",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Y. Li",
+      "raw_affiliation_strings": [
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5050657151",
+        "display_name": "Andrew McPherson",
+        "orcid": "https://orcid.org/0000-0002-5654-5101"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1334819555",
+          "display_name": "Memorial Sloan Kettering Cancer Center",
+          "ror": "https://ror.org/02yrq0923",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1334819555"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. McPherson",
+      "raw_affiliation_strings": [
+        "Computational Oncology, Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, NY, USA",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+        "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Computational Oncology, Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I1334819555"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5054429085",
+        "display_name": "Neal L. Millar",
+        "orcid": "https://orcid.org/0000-0001-9251-9907"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "N. Millar",
+      "raw_affiliation_strings": [
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5026646873",
+        "display_name": "Claire M. Mulvey",
+        "orcid": "https://orcid.org/0000-0002-2989-2052"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. M. Mulvey",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5078108473",
+        "display_name": "Fiona Nugent",
+        "orcid": "https://orcid.org/0000-0001-8148-0867"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "F. Nugent",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5022170125",
+        "display_name": "Ciara H. O’Flanagan",
+        "orcid": "https://orcid.org/0000-0001-9467-1291"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. H. O’Flanagan",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5031195844",
+        "display_name": "Marta Pàez‐Ribes",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "M. Paez-Ribes",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5007344385",
+        "display_name": "I. Pearsall",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "I. Pearsall",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5028385548",
+        "display_name": "Fatime Qosaj",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "F. Qosaj",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5066899464",
+        "display_name": "Andrew Roth",
+        "orcid": "https://orcid.org/0000-0003-3422-8823"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. J. Roth",
+      "raw_affiliation_strings": [
+        "Department of Computer Science, University of British Columbia, Vancouver, British Columbia, Canada",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+        "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Computer Science, University of British Columbia, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5000532226",
+        "display_name": "Oscar M. Rueda",
+        "orcid": "https://orcid.org/0000-0003-0008-4884"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Oscar M. Rueda",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5081346412",
+        "display_name": "Tamara Ruiz",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "T. Ruiz",
+      "raw_affiliation_strings": [
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5027011192",
+        "display_name": "Kirsty Sawicka",
+        "orcid": "https://orcid.org/0000-0003-4195-6327"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "K. Sawicka",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5070286385",
+        "display_name": "Leonardo A. Sepúlveda",
+        "orcid": "https://orcid.org/0000-0003-3602-1009"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. A. Sepúlveda",
+      "raw_affiliation_strings": [
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5033441782",
+        "display_name": "Sohrab P. Shah",
+        "orcid": "https://orcid.org/0000-0001-6402-523X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1334819555",
+          "display_name": "Memorial Sloan Kettering Cancer Center",
+          "ror": "https://ror.org/02yrq0923",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1334819555"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. P. Shah",
+      "raw_affiliation_strings": [
+        "Computational Oncology, Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, NY, USA",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+        "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Computational Oncology, Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I1334819555"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5015058776",
+        "display_name": "Abigail Shea",
+        "orcid": "https://orcid.org/0000-0001-7029-1745"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Shea",
+      "raw_affiliation_strings": [
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5007930912",
+        "display_name": "Anubhav Sinha",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Sinha",
+      "raw_affiliation_strings": [
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5016729281",
+        "display_name": "Adrian L. Smith",
+        "orcid": "https://orcid.org/0000-0002-0505-0344"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I156965999",
+          "display_name": "Provincial Health Services Authority",
+          "ror": "https://ror.org/01jvd8304",
+          "country_code": "CA",
+          "type": "government",
+          "lineage": [
+            "https://openalex.org/I1308729876",
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210150094",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/05qdwtz81",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Smith",
+      "raw_affiliation_strings": [
+        "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+        "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Molecular Oncology, BC Cancer, part of the Provincial Health Services Authority, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I156965999"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210150094",
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5058999096",
+        "display_name": "Simon Tavaré",
+        "orcid": "https://orcid.org/0000-0002-3716-4952"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210150094",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/05qdwtz81",
+          "country_code": "US",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210151462",
+          "display_name": "New York Genome Center",
+          "ror": "https://ror.org/05wf2ga96",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I4210151462"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I78577930",
+          "display_name": "Columbia University",
+          "ror": "https://ror.org/00hj8s172",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I78577930"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Tavaré",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+        "New York Genome Center, New York, NY, USA",
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Herbert and Florence Irving Institute for Cancer Dynamics, Columbia University, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210150094",
+            "https://openalex.org/I78577930"
+          ]
+        },
+        {
+          "raw_affiliation_string": "New York Genome Center, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I4210151462"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5073045394",
+        "display_name": "Sandra Tietscher",
+        "orcid": "https://orcid.org/0000-0001-9613-2224"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1334819555",
+          "display_name": "Memorial Sloan Kettering Cancer Center",
+          "ror": "https://ror.org/02yrq0923",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1334819555"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. Tietscher",
+      "raw_affiliation_strings": [
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+        "Computational Oncology, Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, NY, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Computational Oncology, Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I1334819555"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5046081802",
+        "display_name": "Ignacio Vázquez-Garćıa",
+        "orcid": "https://orcid.org/0000-0003-0427-2639"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1334819555",
+          "display_name": "Memorial Sloan Kettering Cancer Center",
+          "ror": "https://ror.org/02yrq0923",
+          "country_code": "US",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1334819555"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "I. Vázquez-García",
+      "raw_affiliation_strings": [
+        "Computational Oncology, Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, NY, USA",
+        "Súil Interactive, Dublin, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Computational Oncology, Department of Epidemiology and Biostatistics, Memorial Sloan Kettering Cancer Center, New York, NY, USA",
+          "institution_ids": [
+            "https://openalex.org/I1334819555"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5031415315",
+        "display_name": "Siegfried Vogl",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. L. Vogl",
+      "raw_affiliation_strings": [
+        "Súil Interactive, Dublin, UK",
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Súil Interactive, Dublin, UK",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5065346852",
+        "display_name": "N. A. Walton",
+        "orcid": "https://orcid.org/0000-0003-3983-8778"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "N. A. Walton",
+      "raw_affiliation_strings": [
+        "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Astronomy, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5089880023",
+        "display_name": "Asmamaw T. Wassie",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I144112489",
+          "display_name": "McGovern Institute for Brain Research",
+          "ror": "https://ror.org/05ymca674",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210117758",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/02cn3rm21",
+          "country_code": "CH",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210117758",
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I97565354",
+          "display_name": "University of Lausanne",
+          "ror": "https://ror.org/019whta54",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. T. Wassie",
+      "raw_affiliation_strings": [
+        "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+        "Department of Oncology and Ludwig Institute for Cancer Research, University of Lausanne, Lausanne, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "McGovern Institute, Departments of Biological Engineering and of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I144112489",
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Oncology and Ludwig Institute for Cancer Research, University of Lausanne, Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I4210117758",
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5084319641",
+        "display_name": "Spencer S. Watson",
+        "orcid": "https://orcid.org/0000-0002-5583-1544"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210117758",
+          "display_name": "Ludwig Cancer Research",
+          "ror": "https://ror.org/02cn3rm21",
+          "country_code": "CH",
+          "type": "nonprofit",
+          "lineage": [
+            "https://openalex.org/I4210117758",
+            "https://openalex.org/I4210150094"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I97565354",
+          "display_name": "University of Lausanne",
+          "ror": "https://ror.org/019whta54",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97565354"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. S. Watson",
+      "raw_affiliation_strings": [
+        "Department of Oncology and Ludwig Institute for Cancer Research, University of Lausanne, Lausanne, Switzerland",
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Oncology and Ludwig Institute for Cancer Research, University of Lausanne, Lausanne, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I4210117758",
+            "https://openalex.org/I97565354"
+          ]
+        },
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5041908130",
+        "display_name": "Sonja Wild",
+        "orcid": "https://orcid.org/0000-0002-5904-0096"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "S. A. Wild",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5057693512",
+        "display_name": "Elena Williams",
+        "orcid": "https://orcid.org/0000-0001-5765-6738"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "E. Williams",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, Li Ka Shing Centre, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5065666199",
+        "display_name": "Jonas Windhager",
+        "orcid": "https://orcid.org/0000-0002-2111-5291"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Windhager",
+      "raw_affiliation_strings": [
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5020182799",
+        "display_name": "C. Xia",
+        "orcid": "https://orcid.org/0000-0002-1859-6979"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. Xia",
+      "raw_affiliation_strings": [
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5024702542",
+        "display_name": "Ping Zheng",
+        "orcid": "https://orcid.org/0000-0001-9434-9892"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "P. Zheng",
+      "raw_affiliation_strings": [
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5087959577",
+        "display_name": "Xiaowei Zhuang",
+        "orcid": "https://orcid.org/0000-0002-6034-7853"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1344073410",
+          "display_name": "Howard Hughes Medical Institute",
+          "ror": "https://ror.org/006w34k90",
+          "country_code": "US",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I1344073410"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I136199984",
+          "display_name": "Harvard University",
+          "ror": "https://ror.org/03vek6s52",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "X. Zhuang",
+      "raw_affiliation_strings": [
+        "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Howard Hughes Medical Institute, Department of Physics and of Chemistry and Chemical Biology, Harvard University, Cambridge, MA, USA",
+          "institution_ids": [
+            "https://openalex.org/I1344073410",
+            "https://openalex.org/I136199984"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5000532226",
+        "display_name": "Oscar M. Rueda",
+        "orcid": "https://orcid.org/0000-0003-0008-4884"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Oscar M. Rueda",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0003-0008-4884",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5021109473",
+        "display_name": "Suet‐Feung Chin",
+        "orcid": "https://orcid.org/0000-0001-5697-1082"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I141945490",
+          "display_name": "University of British Columbia",
+          "ror": "https://ror.org/03rmrcq20",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I141945490"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "CA",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Suet-Feung Chin",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+        "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0001-5697-1082",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Pathology and Laboratory Medicine, University of British Columbia, Vancouver, British Columbia, Canada",
+          "institution_ids": [
+            "https://openalex.org/I141945490"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5074271128",
+        "display_name": "Samuel Aparício",
+        "orcid": "https://orcid.org/0000-0002-0487-9599"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Samuel Aparicio",
+      "raw_affiliation_strings": [
+        "Molecular Oncology, British Columbia Cancer Research Centre, Vancouver, British Columbia, Canada",
+        "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0002-0487-9599",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Molecular Oncology, British Columbia Cancer Research Centre, Vancouver, British Columbia, Canada",
+          "institution_ids": []
+        },
+        {
+          "raw_affiliation_string": "Department of Oncology and CRUK Cambridge Institute, University of Cambridge, Cambridge, UK",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5089060804",
+        "display_name": "Carlos Caldas",
+        "orcid": "https://orcid.org/0000-0003-3547-1489"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I202697423",
+          "display_name": "University of Zurich",
+          "ror": "https://ror.org/02crff812",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I202697423"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I241749",
+          "display_name": "University of Cambridge",
+          "ror": "https://ror.org/013meh722",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2802466933",
+          "display_name": "Cambridge University Hospitals NHS Foundation Trust",
+          "ror": "https://ror.org/04v54gj93",
+          "country_code": "GB",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I2802466933"
+          ]
+        }
+      ],
+      "countries": [
+        "CH",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Carlos Caldas",
+      "raw_affiliation_strings": [
+        "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK. carlos.caldas@cruk.cam.ac.uk",
+        "Cambridge Breast Unit, Addenbrooke's Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK. carlos.caldas@cruk.cam.ac.uk",
+        "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0003-3547-1489",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "CRUK Cambridge Institute, University of Cambridge, Cambridge, UK. carlos.caldas@cruk.cam.ac.uk",
+          "institution_ids": [
+            "https://openalex.org/I241749"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Cambridge Breast Unit, Addenbrooke's Hospital, Cambridge University Hospital NHS Foundation Trust and NIHR Cambridge Biomedical Research Centre, Cambridge, UK. carlos.caldas@cruk.cam.ac.uk",
+          "institution_ids": [
+            "https://openalex.org/I2802466933"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Institute of Molecular Life Sciences, University of Zurich, Zurich, Switzerland",
+          "institution_ids": [
+            "https://openalex.org/I202697423"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": null,
+        "display_name": "Bernd Bodenmiller",
+        "orcid": "https://orcid.org/0000-0002-6325-7861"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210111868",
+          "display_name": "Zurich University of Teacher Education",
+          "ror": "https://ror.org/01awgk221",
+          "country_code": "CH",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210111868"
+          ]
+        }
+      ],
+      "countries": [
+        "CH"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Bernd Bodenmiller",
+      "raw_affiliation_strings": [
+        "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland. bernd.bodenmiller@imls.uzh.ch"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0002-6325-7861",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Quantitative Biomedicine, University of Zurich, Zurich, Switzerland. bernd.bodenmiller@imls.uzh.ch",
+          "institution_ids": [
+            "https://openalex.org/I4210111868"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 4,
+  "institutions_distinct_count": 88,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5041163775"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I202697423",
+    "https://openalex.org/I241749"
+  ],
+  "apc_list": {
+    "value": 9750,
+    "currency": "EUR",
+    "value_usd": 11690
+  },
+  "apc_paid": null,
+  "fwci": 18.0898,
+  "has_fulltext": false,
+  "cited_by_count": 329,
+  "citation_normalized_percentile": {
+    "value": 0.99642581,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "1",
+    "issue": "2",
+    "first_page": "163",
+    "last_page": "175"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11289",
+    "display_name": "Single-cell and spatial transcriptomics",
+    "score": 0.9998999834060669,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1312",
+      "display_name": "Molecular Biology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11289",
+      "display_name": "Single-cell and spatial transcriptomics",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11287",
+      "display_name": "Cancer Genomics and Diagnostics",
+      "score": 0.9995999932289124,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1306",
+        "display_name": "Cancer Research"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12859",
+      "display_name": "Cell Image Analysis Techniques",
+      "score": 0.9973999857902527,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1304",
+        "display_name": "Biophysics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/phenotype",
+      "display_name": "Phenotype",
+      "score": 0.6923174262046814
+    },
+    {
+      "id": "https://openalex.org/keywords/breast-cancer",
+      "display_name": "Breast cancer",
+      "score": 0.687599241733551
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.650733470916748
+    },
+    {
+      "id": "https://openalex.org/keywords/mass-cytometry",
+      "display_name": "Mass cytometry",
+      "score": 0.6226728558540344
+    },
+    {
+      "id": "https://openalex.org/keywords/context",
+      "display_name": "Context (archaeology)",
+      "score": 0.5789506435394287
+    },
+    {
+      "id": "https://openalex.org/keywords/genomics",
+      "display_name": "Genomics",
+      "score": 0.49984097480773926
+    },
+    {
+      "id": "https://openalex.org/keywords/computational-biology",
+      "display_name": "Computational biology",
+      "score": 0.4929187297821045
+    },
+    {
+      "id": "https://openalex.org/keywords/cancer",
+      "display_name": "Cancer",
+      "score": 0.48428410291671753
+    },
+    {
+      "id": "https://openalex.org/keywords/cell",
+      "display_name": "Cell",
+      "score": 0.4353291988372803
+    },
+    {
+      "id": "https://openalex.org/keywords/transcriptome",
+      "display_name": "Transcriptome",
+      "score": 0.431085467338562
+    },
+    {
+      "id": "https://openalex.org/keywords/stromal-cell",
+      "display_name": "Stromal cell",
+      "score": 0.429823637008667
+    },
+    {
+      "id": "https://openalex.org/keywords/cancer-research",
+      "display_name": "Cancer research",
+      "score": 0.3139728903770447
+    },
+    {
+      "id": "https://openalex.org/keywords/genome",
+      "display_name": "Genome",
+      "score": 0.29859620332717896
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.27354103326797485
+    },
+    {
+      "id": "https://openalex.org/keywords/gene-expression",
+      "display_name": "Gene expression",
+      "score": 0.14448556303977966
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.1355818510055542
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C127716648",
+      "wikidata": "https://www.wikidata.org/wiki/Q104053",
+      "display_name": "Phenotype",
+      "level": 3,
+      "score": 0.6923174262046814
+    },
+    {
+      "id": "https://openalex.org/C530470458",
+      "wikidata": "https://www.wikidata.org/wiki/Q128581",
+      "display_name": "Breast cancer",
+      "level": 3,
+      "score": 0.687599241733551
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.650733470916748
+    },
+    {
+      "id": "https://openalex.org/C2778015335",
+      "wikidata": "https://www.wikidata.org/wiki/Q17051163",
+      "display_name": "Mass cytometry",
+      "level": 4,
+      "score": 0.6226728558540344
+    },
+    {
+      "id": "https://openalex.org/C2779343474",
+      "wikidata": "https://www.wikidata.org/wiki/Q3109175",
+      "display_name": "Context (archaeology)",
+      "level": 2,
+      "score": 0.5789506435394287
+    },
+    {
+      "id": "https://openalex.org/C189206191",
+      "wikidata": "https://www.wikidata.org/wiki/Q222046",
+      "display_name": "Genomics",
+      "level": 4,
+      "score": 0.49984097480773926
+    },
+    {
+      "id": "https://openalex.org/C70721500",
+      "wikidata": "https://www.wikidata.org/wiki/Q177005",
+      "display_name": "Computational biology",
+      "level": 1,
+      "score": 0.4929187297821045
+    },
+    {
+      "id": "https://openalex.org/C121608353",
+      "wikidata": "https://www.wikidata.org/wiki/Q12078",
+      "display_name": "Cancer",
+      "level": 2,
+      "score": 0.48428410291671753
+    },
+    {
+      "id": "https://openalex.org/C1491633281",
+      "wikidata": "https://www.wikidata.org/wiki/Q7868",
+      "display_name": "Cell",
+      "level": 2,
+      "score": 0.4353291988372803
+    },
+    {
+      "id": "https://openalex.org/C162317418",
+      "wikidata": "https://www.wikidata.org/wiki/Q252857",
+      "display_name": "Transcriptome",
+      "level": 4,
+      "score": 0.431085467338562
+    },
+    {
+      "id": "https://openalex.org/C16930146",
+      "wikidata": "https://www.wikidata.org/wiki/Q4381253",
+      "display_name": "Stromal cell",
+      "level": 2,
+      "score": 0.429823637008667
+    },
+    {
+      "id": "https://openalex.org/C502942594",
+      "wikidata": "https://www.wikidata.org/wiki/Q3421914",
+      "display_name": "Cancer research",
+      "level": 1,
+      "score": 0.3139728903770447
+    },
+    {
+      "id": "https://openalex.org/C141231307",
+      "wikidata": "https://www.wikidata.org/wiki/Q7020",
+      "display_name": "Genome",
+      "level": 3,
+      "score": 0.29859620332717896
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.27354103326797485
+    },
+    {
+      "id": "https://openalex.org/C150194340",
+      "wikidata": "https://www.wikidata.org/wiki/Q26972",
+      "display_name": "Gene expression",
+      "level": 3,
+      "score": 0.14448556303977966
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.1355818510055542
+    },
+    {
+      "id": "https://openalex.org/C151730666",
+      "wikidata": "https://www.wikidata.org/wiki/Q7205",
+      "display_name": "Paleontology",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000175",
+      "qualifier_name": "diagnosis",
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000175",
+      "qualifier_name": "diagnosis",
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000175",
+      "qualifier_name": "diagnosis",
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000175",
+      "qualifier_name": "diagnosis",
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D001943",
+      "descriptor_name": "Breast Neoplasms",
+      "qualifier_ui": "Q000175",
+      "qualifier_name": "diagnosis",
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D005260",
+      "descriptor_name": "Female",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005260",
+      "descriptor_name": "Female",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005260",
+      "descriptor_name": "Female",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005260",
+      "descriptor_name": "Female",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D005260",
+      "descriptor_name": "Female",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011379",
+      "descriptor_name": "Prognosis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011379",
+      "descriptor_name": "Prognosis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011379",
+      "descriptor_name": "Prognosis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011379",
+      "descriptor_name": "Prognosis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D011379",
+      "descriptor_name": "Prognosis",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017753",
+      "descriptor_name": "Ecosystem",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017753",
+      "descriptor_name": "Ecosystem",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017753",
+      "descriptor_name": "Ecosystem",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017753",
+      "descriptor_name": "Ecosystem",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D017753",
+      "descriptor_name": "Ecosystem",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019044",
+      "descriptor_name": "Image Cytometry",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019044",
+      "descriptor_name": "Image Cytometry",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019044",
+      "descriptor_name": "Image Cytometry",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019044",
+      "descriptor_name": "Image Cytometry",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D019044",
+      "descriptor_name": "Image Cytometry",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D023281",
+      "descriptor_name": "Genomics",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D023281",
+      "descriptor_name": "Genomics",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D023281",
+      "descriptor_name": "Genomics",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D023281",
+      "descriptor_name": "Genomics",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D023281",
+      "descriptor_name": "Genomics",
+      "qualifier_ui": "Q000379",
+      "qualifier_name": "methods",
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1038/s43018-020-0026-6",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1038/s43018-020-0026-6",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4210236562",
+        "display_name": "Nature Cancer",
+        "issn_l": "2662-1347",
+        "issn": [
+          "2662-1347"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319908",
+        "host_organization_name": "Nature Portfolio",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319908",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Nature Portfolio",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature Cancer",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:35122013",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/35122013",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nature cancer",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:www.repository.cam.ac.uk:1810/303323",
+      "is_oa": false,
+      "landing_page_url": "https://www.repository.cam.ac.uk/handle/1810/303323",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401777",
+        "display_name": "Apollo (University of Cambridge)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I241749",
+        "host_organization_name": "University of Cambridge",
+        "host_organization_lineage": [
+          "https://openalex.org/I241749"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "Article"
+    },
+    {
+      "id": "doi:10.17863/cam.50402",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.17863/cam.50402",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S7407050737",
+        "display_name": "Apollo",
+        "issn_l": null,
+        "issn": [],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": null,
+      "is_accepted": false,
+      "is_published": null,
+      "raw_source_name": null,
+      "raw_type": "article-journal"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.17863/cam.50402",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.17863/cam.50402",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S7407050737",
+      "display_name": "Apollo",
+      "issn_l": null,
+      "issn": [],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": null,
+      "host_organization_name": null,
+      "host_organization_lineage": [],
+      "host_organization_lineage_names": [],
+      "type": "repository"
+    },
+    "license": null,
+    "license_id": null,
+    "version": null,
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": null,
+    "raw_type": "article-journal"
+  },
+  "sustainable_development_goals": [
+    {
+      "score": 0.5699999928474426,
+      "display_name": "Life in Land",
+      "id": "https://metadata.un.org/sdg/15"
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 64,
+  "referenced_works": [
+    "https://openalex.org/W1549519327",
+    "https://openalex.org/W1631320694",
+    "https://openalex.org/W1968667083",
+    "https://openalex.org/W1968930595",
+    "https://openalex.org/W1993835819",
+    "https://openalex.org/W1996912024",
+    "https://openalex.org/W2001024793",
+    "https://openalex.org/W2005895632",
+    "https://openalex.org/W2006288875",
+    "https://openalex.org/W2012276721",
+    "https://openalex.org/W2013223495",
+    "https://openalex.org/W2028433016",
+    "https://openalex.org/W2035618305",
+    "https://openalex.org/W2044702943",
+    "https://openalex.org/W2053129129",
+    "https://openalex.org/W2057559260",
+    "https://openalex.org/W2062809449",
+    "https://openalex.org/W2082326948",
+    "https://openalex.org/W2084773521",
+    "https://openalex.org/W2087810003",
+    "https://openalex.org/W2088110734",
+    "https://openalex.org/W2089048280",
+    "https://openalex.org/W2094720383",
+    "https://openalex.org/W2095156669",
+    "https://openalex.org/W2097255042",
+    "https://openalex.org/W2097360283",
+    "https://openalex.org/W2099139312",
+    "https://openalex.org/W2103560672",
+    "https://openalex.org/W2105642898",
+    "https://openalex.org/W2107554012",
+    "https://openalex.org/W2108643617",
+    "https://openalex.org/W2110065044",
+    "https://openalex.org/W2112648444",
+    "https://openalex.org/W2121651329",
+    "https://openalex.org/W2132619562",
+    "https://openalex.org/W2142644858",
+    "https://openalex.org/W2155826575",
+    "https://openalex.org/W2172557341",
+    "https://openalex.org/W2259802687",
+    "https://openalex.org/W2344591493",
+    "https://openalex.org/W2344657883",
+    "https://openalex.org/W2375577403",
+    "https://openalex.org/W2460271701",
+    "https://openalex.org/W2460779035",
+    "https://openalex.org/W2567668099",
+    "https://openalex.org/W2743344672",
+    "https://openalex.org/W2765417948",
+    "https://openalex.org/W2769542288",
+    "https://openalex.org/W2778357085",
+    "https://openalex.org/W2786031287",
+    "https://openalex.org/W2793956875",
+    "https://openalex.org/W2883066454",
+    "https://openalex.org/W2890156321",
+    "https://openalex.org/W2894573839",
+    "https://openalex.org/W2897815318",
+    "https://openalex.org/W2913671661",
+    "https://openalex.org/W2920863604",
+    "https://openalex.org/W2939093246",
+    "https://openalex.org/W4231356616",
+    "https://openalex.org/W4294541781",
+    "https://openalex.org/W6642289008",
+    "https://openalex.org/W6650714063",
+    "https://openalex.org/W6674625389",
+    "https://openalex.org/W7075607254"
+  ],
+  "related_works": [
+    "https://openalex.org/W2766989726",
+    "https://openalex.org/W2952723901",
+    "https://openalex.org/W2053129129",
+    "https://openalex.org/W4251194061",
+    "https://openalex.org/W2738798767",
+    "https://openalex.org/W4386301123",
+    "https://openalex.org/W2342330592",
+    "https://openalex.org/W4200474388",
+    "https://openalex.org/W2342183549",
+    "https://openalex.org/W2139497337"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 9
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 48
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 57
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 72
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 52
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 73
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 18
+    }
+  ],
+  "updated_date": "2026-05-05T08:41:31.759640",
+  "created_date": "2025-10-10T00:00:00"
+}

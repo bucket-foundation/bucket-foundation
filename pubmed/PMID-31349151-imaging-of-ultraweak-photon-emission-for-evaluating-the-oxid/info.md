@@ -7,7 +7,7 @@
 - **Authors**: Katsuhiko Tsuchida, Torai Iwasa, Masaki Kobayashi
 - **MeSH**: Antioxidants, Humans, Light, Male, Oxidative Stress, Photography, Photons, Reactive Oxygen Species, Skin, Ultraviolet Rays
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/31349151/
-- **Captured**: 2026-05-09T09:42:17
+- **Captured**: 2026-05-10T09:14:47
 
 ## Abstract
 

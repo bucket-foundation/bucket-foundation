@@ -1,0 +1,14 @@
+# Retinal ganglion cell degeneration in glaucoma disrupts HPA axis temporal organization and dampens corticosterone production.
+
+- **PMID**: 42029480
+- **DOI**: 10.1111/jne.70182
+- **PMCID**: PMC11899833 (full-text saved)
+- **Journal**: Journal of neuroendocrinology  ·  **Year**: 2026
+- **Authors**: Pietra Souza Barsanele, Juliano Jefferson da Silva, Bryan Fellipe da Silva Cortes, Eliz Maria de Oliveira Furtado, José Cipolla-Neto, Leonardo Vinícius Monteiro de Assis, Maristela Oliveira Poletini, Maria Nathália Moraes
+- **MeSH**: Animals, Corticosterone, Hypothalamo-Hypophyseal System, Pituitary-Adrenal System, Glaucoma, Mice, Male, Circadian Rhythm, Retinal Degeneration, Mice, Inbred C57BL
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/42029480/
+- **Captured**: 2026-05-10T09:13:31
+
+## Abstract
+
+Glaucoma is a chronic optic neuropathy characterized by progressive vision loss. A previous study from our group showed that glaucoma-induced retinal degeneration disrupts photic signaling to the suprachiasmatic nucleus (SCN), altering the molecular components of the central circadian clock. Through its hypothalamic projections, the SCN entrains the hypothalamic-pituitary-adrenal (HPA) axis and drives the rhythmic secretion of corticosterone. In this study, we investigated whether central circadian clock disruption in glaucoma impacts the HPA axis and its downstream physiological rhythms. We analyzed the temporal profiles of key genes controlling the HPA axis in mice with glaucoma. The Crh gene expression was reduced in the paraventricular nucleus, while Crh-r1 exhibited a 10-h phase delay in the pituitary in response to glaucoma. Additionally, Pomc in the pituitary and Mc2r in the adrenal lost rhythmicity. The modulation of the daily rhythms of these key genes was associated with alterations in the diurnal rhythms of clock genes in the PVN, pituitary and adrenal gland. Glaucoma-induced phase shifts and amplitude alterations in the rhythmic expression of Per1, Per2, Nr1d1, and Bmal1 in the pituitary and adrenal gland, resulted in a temporal misalignment between the pituitary and adrenal rhythms. These molecular changes were associated with reduced corticosterone amplitude, suggesting impaired communication between central and peripheral clocks. Together, these findings demonstrate that glaucoma alters the temporal coordination of the HPA axis, highlighting how retinal dysfunction can propagate beyond the visual system to disturb systemic circadian and neuroendocrine regulation.

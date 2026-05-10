@@ -1,0 +1,23 @@
+{
+  "pmid": "41536061",
+  "title": "Thermal fluctuations expose hidden mechanical couplings in proteins.",
+  "abstract": "Protein function emerges from the dynamic interplay between structural organization, environmental factors, and thermal fluctuations. This complex choreography governs essential biological processes from enzymatic catalysis to signal transduction. Extracting the underlying mechanics from atomistic simulations, however, remains a central challenge. Current computational approaches face a fundamental trade-off: variance-based methods like principal component analysis identify high-amplitude motions but do not resolve the governing forces, whereas mechanics-based elastic network models are interpretable but neglect crucial environmental effects from solvent and cofactors. Here, we present a framework that bridges this divide by offering a \"stiffness-oriented\" perspective on molecular dynamics trajectories. Our method reconstructs an effective backbone Hessian by inverting the covariance matrix derived from equilibrium thermal fluctuations, yielding environment-dependent force constants. This enables the quantitative mapping of how solvent, ligands, and cofactors modulate a protein's mechanical network-information fundamentally inaccessible to topology-based approaches. We demonstrate our framework using human hemoglobin, the archetypal allosteric protein. Our analysis reveals how explicit water molecules and heme cofactors collectively shape the protein's mechanical landscape, identifying critical, environment-mediated mechanical softening at regulatory interfaces that correlates with cooperative oxygen binding-a feature classical models inherently miss. As a parameter-free method that works directly with standard simulation trajectories, our framework provides a versatile tool for investigating environment-dependent mechanics across diverse systems, offering new insights into how cellular environments tune the properties that underlie biological function.",
+  "authors": [
+    "Yann Chalopin",
+    "Malcolm Buckle"
+  ],
+  "journal": "Biophysical journal",
+  "year": "2026",
+  "doi": "10.1016/j.bpj.2026.01.006",
+  "pmcid": "",
+  "mesh": [
+    "Molecular Dynamics Simulation",
+    "Humans",
+    "Temperature",
+    "Hemoglobins",
+    "Biomechanical Phenomena",
+    "Mechanical Phenomena",
+    "Heme",
+    "Water"
+  ]
+}

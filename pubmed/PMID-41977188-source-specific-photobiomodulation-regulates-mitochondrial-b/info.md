@@ -1,0 +1,14 @@
+# Source-Specific Photobiomodulation Regulates Mitochondrial Bioenergetics, Redox Signaling, and Functional Outputs in C2C12 Myoblasts Across Replicative Aging.
+
+- **PMID**: 41977188
+- **DOI**: 10.3390/jcm9061724
+- **PMCID**: PMC7356229 (full-text saved)
+- **Journal**: International journal of molecular sciences  ·  **Year**: 2026
+- **Authors**: Ana Elena Aviña, Nguyen Le Thanh Hang, Che-Yi Chang, Yi-Fan Chen, Yun Yen, Xavier Pei-Chun Wong, Aline Yen Ling Wang, Cheng-Jen Chang, Tzu-Sen Yang
+- **MeSH**: Animals, Mice, Myoblasts, Oxidation-Reduction, Energy Metabolism, Mitochondria, Signal Transduction, Cellular Senescence, Cell Line, Low-Level Light Therapy
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41977188/
+- **Captured**: 2026-05-10T09:11:13
+
+## Abstract
+
+Age-related muscle decline is associated with impaired mitochondrial bioenergetics, altered redox signaling, and reduced myogenic capacity, yet how photobiomodulation (PBM) source characteristics shape these processes under replicative aging remains unclear. Here, we investigated source-specific PBM responses in C2C12 myoblasts using a 660 nm light-emitting diode (LED) and an 830 nm near-infrared (NIR) laser across fluence ranges and replicative stages. Single-cell screening performed at passage 25 identified 5 J/cm
