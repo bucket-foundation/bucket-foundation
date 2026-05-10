@@ -1,0 +1,939 @@
+{
+  "id": "https://openalex.org/W2105291362",
+  "doi": "https://doi.org/10.1093/oso/9780195079517.001.0001",
+  "title": "The Origins of Order",
+  "display_name": "The Origins of Order",
+  "publication_year": 1993,
+  "publication_date": "1993-06-10",
+  "ids": {
+    "openalex": "https://openalex.org/W2105291362",
+    "doi": "https://doi.org/10.1093/oso/9780195079517.001.0001",
+    "mag": "2105291362"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1093/oso/9780195079517.001.0001",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1093/oso/9780195079517.001.0001",
+    "pdf_url": null,
+    "source": null,
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": null,
+    "raw_type": "edited-book"
+  },
+  "type": "book",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5079464744",
+        "display_name": "Stuart Kauffman",
+        "orcid": "https://orcid.org/0000-0001-7094-4312"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1308548392",
+          "display_name": "Santa Fe Institute",
+          "ror": "https://ror.org/01arysc35",
+          "country_code": "US",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I1308548392"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Stuart A Kauffman",
+      "raw_affiliation_strings": [
+        "University of Pennsylvania and The Santa Fe Institute"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "University of Pennsylvania and The Santa Fe Institute",
+          "institution_ids": [
+            "https://openalex.org/I1308548392"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5079464744"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I1308548392"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 69.0353,
+  "has_fulltext": false,
+  "cited_by_count": 2740,
+  "citation_normalized_percentile": {
+    "value": 1.0,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 96,
+    "max": 100
+  },
+  "biblio": {
+    "volume": null,
+    "issue": null,
+    "first_page": null,
+    "last_page": null
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11445",
+    "display_name": "Origins and Evolution of Life",
+    "score": 0.5015000104904175,
+    "subfield": {
+      "id": "https://openalex.org/subfields/3103",
+      "display_name": "Astronomy and Astrophysics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/31",
+      "display_name": "Physics and Astronomy"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11445",
+      "display_name": "Origins and Evolution of Life",
+      "score": 0.5015000104904175,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3103",
+        "display_name": "Astronomy and Astrophysics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12469",
+      "display_name": "Chaos, Complexity, and Education",
+      "score": 0.056299999356269836,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1703",
+        "display_name": "Computational Theory and Mathematics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T14299",
+      "display_name": "Complex Systems and Dynamics",
+      "score": 0.023600000888109207,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3109",
+        "display_name": "Statistical and Nonlinear Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/order",
+      "display_name": "Order (exchange)",
+      "score": 0.5652832984924316
+    },
+    {
+      "id": "https://openalex.org/keywords/business",
+      "display_name": "Business",
+      "score": 0.1363164186477661
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C182306322",
+      "wikidata": "https://www.wikidata.org/wiki/Q1779371",
+      "display_name": "Order (exchange)",
+      "level": 2,
+      "score": 0.5652832984924316
+    },
+    {
+      "id": "https://openalex.org/C144133560",
+      "wikidata": "https://www.wikidata.org/wiki/Q4830453",
+      "display_name": "Business",
+      "level": 0,
+      "score": 0.1363164186477661
+    },
+    {
+      "id": "https://openalex.org/C10138342",
+      "wikidata": "https://www.wikidata.org/wiki/Q43015",
+      "display_name": "Finance",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1093/oso/9780195079517.001.0001",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1093/oso/9780195079517.001.0001",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": null,
+      "raw_type": "edited-book"
+    },
+    {
+      "id": "mag:2105291362",
+      "is_oa": false,
+      "landing_page_url": "https://katalog.ub.uni-heidelberg.de/cgi-bin/titel.cgi?katkey=3645806",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306463708",
+        "display_name": "Oxford University Press eBooks",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/P4310311648",
+        "host_organization_name": "Oxford University Press",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310311648",
+          "https://openalex.org/P4310311647"
+        ],
+        "host_organization_lineage_names": [
+          "Oxford University Press",
+          "University of Oxford"
+        ],
+        "type": "ebook platform"
+      },
+      "license": null,
+      "license_id": null,
+      "version": null,
+      "is_accepted": false,
+      "is_published": null,
+      "raw_source_name": "Oxford University Press eBooks",
+      "raw_type": null
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 0,
+  "referenced_works": [],
+  "related_works": [
+    "https://openalex.org/W2624262714",
+    "https://openalex.org/W2160117959",
+    "https://openalex.org/W2137358449",
+    "https://openalex.org/W2124637492",
+    "https://openalex.org/W2112090702",
+    "https://openalex.org/W2108020239",
+    "https://openalex.org/W2091579301",
+    "https://openalex.org/W2087895317",
+    "https://openalex.org/W2065178468",
+    "https://openalex.org/W2045391589",
+    "https://openalex.org/W2040525210",
+    "https://openalex.org/W2020454825",
+    "https://openalex.org/W2008620264",
+    "https://openalex.org/W2004778468",
+    "https://openalex.org/W1986904066",
+    "https://openalex.org/W1971224531",
+    "https://openalex.org/W1969857637",
+    "https://openalex.org/W1648570772",
+    "https://openalex.org/W1588942736",
+    "https://openalex.org/W1497256448"
+  ],
+  "abstract_inverted_index": {
+    "Abstract": [
+      0
+    ],
+    "Stuart": [
+      1
+    ],
+    "Kauffman": [
+      2,
+      77
+    ],
+    "here": [
+      3,
+      226
+    ],
+    "presents": [
+      4
+    ],
+    "a": [
+      5
+    ],
+    "brilliant": [
+      6
+    ],
+    "new": [
+      7,
+      179,
+      191,
+      207,
+      232
+    ],
+    "paradigm": [
+      8
+    ],
+    "for": [
+      9,
+      166,
+      189,
+      245
+    ],
+    "evolutionary": [
+      10,
+      108
+    ],
+    "biology,": [
+      11,
+      31
+    ],
+    "one": [
+      12
+    ],
+    "that": [
+      13,
+      71,
+      79
+    ],
+    "extends": [
+      14
+    ],
+    "the": [
+      15,
+      28,
+      40,
+      43,
+      47,
+      62,
+      66,
+      86,
+      103,
+      124,
+      168,
+      178,
+      195,
+      210,
+      223,
+      231,
+      250,
+      256
+    ],
+    "basic": [
+      16
+    ],
+    "concepts": [
+      17
+    ],
+    "of": [
+      18,
+      30,
+      42,
+      49,
+      53,
+      64,
+      69,
+      89,
+      105,
+      156,
+      172,
+      181,
+      213,
+      253
+    ],
+    "Darwinian": [
+      19,
+      87
+    ],
+    "evolution": [
+      20
+    ],
+    "to": [
+      21,
+      39,
+      101,
+      117,
+      126,
+      134,
+      149,
+      229
+    ],
+    "accommodate": [
+      22
+    ],
+    "recent": [
+      23
+    ],
+    "findings": [
+      24
+    ],
+    "and": [
+      25,
+      34,
+      51,
+      158,
+      170,
+      193,
+      199,
+      218
+    ],
+    "perspectives": [
+      26
+    ],
+    "from": [
+      27
+    ],
+    "fields": [
+      29
+    ],
+    "physics,": [
+      32
+    ],
+    "chemistry": [
+      33
+    ],
+    "mathematics.": [
+      35
+    ],
+    "The": [
+      36,
+      110,
+      241
+    ],
+    "book": [
+      37,
+      139
+    ],
+    "drives": [
+      38
+    ],
+    "heart": [
+      41
+    ],
+    "exciting": [
+      44
+    ],
+    "debate": [
+      45
+    ],
+    "on": [
+      46,
+      61,
+      174
+    ],
+    "origins": [
+      48
+    ],
+    "life": [
+      50,
+      173,
+      257
+    ],
+    "maintenance": [
+      52
+    ],
+    "order": [
+      54,
+      70,
+      198
+    ],
+    "in": [
+      55,
+      85,
+      162,
+      202,
+      216,
+      249,
+      255
+    ],
+    "complex": [
+      56,
+      115,
+      146
+    ],
+    "biological": [
+      57,
+      236
+    ],
+    "systems.": [
+      58
+    ],
+    "It": [
+      59,
+      143
+    ],
+    "focuses": [
+      60
+    ],
+    "concept": [
+      63,
+      104
+    ],
+    "self-organization:": [
+      65
+    ],
+    "spontaneous": [
+      67
+    ],
+    "emergence": [
+      68,
+      169
+    ],
+    "is": [
+      72,
+      123,
+      164,
+      243
+    ],
+    "widely": [
+      73
+    ],
+    "observed": [
+      74,
+      201
+    ],
+    "throughout": [
+      75
+    ],
+    "nature": [
+      76
+    ],
+    "argues": [
+      78
+    ],
+    "self-organization": [
+      80,
+      106
+    ],
+    "plays": [
+      81
+    ],
+    "an": [
+      82
+    ],
+    "important": [
+      83,
+      187
+    ],
+    "role": [
+      84
+    ],
+    "process": [
+      88
+    ],
+    "natural": [
+      90
+    ],
+    "selection.": [
+      91
+    ],
+    "Yet": [
+      92
+    ],
+    "until": [
+      93
+    ],
+    "now": [
+      94
+    ],
+    "no": [
+      95
+    ],
+    "systematic": [
+      96
+    ],
+    "effort": [
+      97
+    ],
+    "has": [
+      98
+    ],
+    "been": [
+      99
+    ],
+    "made": [
+      100
+    ],
+    "incorporate": [
+      102
+    ],
+    "into": [
+      107
+    ],
+    "theory.": [
+      109
+    ],
+    "construction": [
+      111
+    ],
+    "requirements": [
+      112
+    ],
+    "which": [
+      113,
+      127,
+      235
+    ],
+    "permit": [
+      114
+    ],
+    "systems": [
+      116,
+      132
+    ],
+    "adapt": [
+      118,
+      135
+    ],
+    "are": [
+      119
+    ],
+    "poorly": [
+      120
+    ],
+    "understood,": [
+      121
+    ],
+    "as": [
+      122
+    ],
+    "extent": [
+      125
+    ],
+    "selection": [
+      128
+    ],
+    "itself": [
+      129,
+      238
+    ],
+    "can": [
+      130,
+      151
+    ],
+    "yield": [
+      131
+    ],
+    "able": [
+      133
+    ],
+    "more": [
+      136
+    ],
+    "successfully.": [
+      137
+    ],
+    "This": [
+      138
+    ],
+    "explores": [
+      140
+    ],
+    "these": [
+      141
+    ],
+    "themes.": [
+      142
+    ],
+    "shows": [
+      144
+    ],
+    "how": [
+      145,
+      159
+    ],
+    "systems,": [
+      147
+    ],
+    "contrary": [
+      148
+    ],
+    "expectations,": [
+      150
+    ],
+    "spontaneously": [
+      152
+    ],
+    "exhibit": [
+      153
+    ],
+    "stunning": [
+      154
+    ],
+    "degrees": [
+      155
+    ],
+    "order,": [
+      157,
+      161
+    ],
+    "this": [
+      160
+    ],
+    "turn,": [
+      163
+    ],
+    "essential": [
+      165
+    ],
+    "understanding": [
+      167
+    ],
+    "development": [
+      171
+    ],
+    "Earth.": [
+      175
+    ],
+    "Topics": [
+      176
+    ],
+    "include": [
+      177
+    ],
+    "biotechnology": [
+      180
+    ],
+    "applied": [
+      182
+    ],
+    "molecular": [
+      183
+    ],
+    "evolution,": [
+      184
+    ],
+    "with": [
+      185
+    ],
+    "its": [
+      186
+    ],
+    "implications": [
+      188
+    ],
+    "developing": [
+      190
+    ],
+    "drugs": [
+      192
+    ],
+    "vaccines;": [
+      194
+    ],
+    "balance": [
+      196
+    ],
+    "between": [
+      197
+    ],
+    "chaos": [
+      200
+    ],
+    "many": [
+      203
+    ],
+    "naturally": [
+      204
+    ],
+    "occurring": [
+      205
+    ],
+    "systems;": [
+      206
+    ],
+    "insights": [
+      208
+    ],
+    "concerning": [
+      209
+    ],
+    "predictive": [
+      211
+    ],
+    "power": [
+      212
+    ],
+    "statistical": [
+      214
+    ],
+    "mechanics": [
+      215
+    ],
+    "biology;": [
+      217
+    ],
+    "other": [
+      219
+    ],
+    "major": [
+      220
+    ],
+    "issues.": [
+      221
+    ],
+    "Indeed,": [
+      222
+    ],
+    "approaches": [
+      224
+    ],
+    "investigated": [
+      225
+    ],
+    "may": [
+      227
+    ],
+    "prove": [
+      228
+    ],
+    "be": [
+      230
+    ],
+    "center": [
+      233
+    ],
+    "around": [
+      234
+    ],
+    "science": [
+      237
+    ],
+    "will": [
+      239
+    ],
+    "evolve.": [
+      240
+    ],
+    "work": [
+      242
+    ],
+    "written": [
+      244
+    ],
+    "all": [
+      246
+    ],
+    "those": [
+      247
+    ],
+    "interested": [
+      248
+    ],
+    "cutting": [
+      251
+    ],
+    "edge": [
+      252
+    ],
+    "research": [
+      254
+    ],
+    "sciences.": [
+      258
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2022,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 28
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 29
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 38
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 44
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 44
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 61
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 80
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 106
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 131
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 127
+    }
+  ],
+  "updated_date": "2026-05-05T08:41:31.759640",
+  "created_date": "2025-10-10T00:00:00"
+}

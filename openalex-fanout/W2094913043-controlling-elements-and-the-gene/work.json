@@ -1,0 +1,583 @@
+{
+  "id": "https://openalex.org/W2094913043",
+  "doi": "https://doi.org/10.1101/sqb.1956.021.01.017",
+  "title": "Controlling Elements and the Gene",
+  "display_name": "Controlling Elements and the Gene",
+  "publication_year": 1956,
+  "publication_date": "1956-01-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2094913043",
+    "doi": "https://doi.org/10.1101/sqb.1956.021.01.017",
+    "mag": "2094913043",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/13433592"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1101/sqb.1956.021.01.017",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1101/sqb.1956.021.01.017",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S78756772",
+      "display_name": "Cold Spring Harbor Symposia on Quantitative Biology",
+      "issn_l": "0091-7451",
+      "issn": [
+        "0091-7451",
+        "1943-4456"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310315909",
+      "host_organization_name": "Cold Spring Harbor Laboratory Press",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310315909"
+      ],
+      "host_organization_lineage_names": [
+        "Cold Spring Harbor Laboratory Press"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cold Spring Harbor Symposia on Quantitative Biology",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5029209905",
+        "display_name": "Barbara McClintock",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I196817621",
+          "display_name": "Carnegie Institution for Science",
+          "ror": "https://ror.org/04jr01610",
+          "country_code": "US",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I196817621"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "B. McClintock",
+      "raw_affiliation_strings": [
+        "Department of Genetics, Carnegie Institution of Washington, Cold Spring Harbor, New York"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Genetics, Carnegie Institution of Washington, Cold Spring Harbor, New York",
+          "institution_ids": [
+            "https://openalex.org/I196817621"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5029209905"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I196817621"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": null,
+  "has_fulltext": false,
+  "cited_by_count": 854,
+  "citation_normalized_percentile": null,
+  "cited_by_percentile_year": null,
+  "biblio": {
+    "volume": "21",
+    "issue": "0",
+    "first_page": "197",
+    "last_page": "216"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T12828",
+    "display_name": "Plant Genetic and Mutation Studies",
+    "score": 0.4984999895095825,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1110",
+      "display_name": "Plant Science"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/11",
+      "display_name": "Agricultural and Biological Sciences"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T12828",
+      "display_name": "Plant Genetic and Mutation Studies",
+      "score": 0.4984999895095825,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1110",
+        "display_name": "Plant Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/11",
+        "display_name": "Agricultural and Biological Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10171",
+      "display_name": "Biofuel production and bioconversion",
+      "score": 0.446399986743927,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2204",
+        "display_name": "Biomedical Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11418",
+      "display_name": "Plant Micronutrient Interactions and Effects",
+      "score": 0.4018999934196472,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1110",
+        "display_name": "Plant Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/11",
+        "display_name": "Agricultural and Biological Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/locus",
+      "display_name": "Locus (genetics)",
+      "score": 0.7582157850265503
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.7537178993225098
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.6986361742019653
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.6473415493965149
+    },
+    {
+      "id": "https://openalex.org/keywords/chromosome",
+      "display_name": "Chromosome",
+      "score": 0.43820497393608093
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C84597430",
+      "wikidata": "https://www.wikidata.org/wiki/Q106227",
+      "display_name": "Locus (genetics)",
+      "level": 3,
+      "score": 0.7582157850265503
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.7537178993225098
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.6986361742019653
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.6473415493965149
+    },
+    {
+      "id": "https://openalex.org/C30481170",
+      "wikidata": "https://www.wikidata.org/wiki/Q37748",
+      "display_name": "Chromosome",
+      "level": 3,
+      "score": 0.43820497393608093
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D002875",
+      "descriptor_name": "Chromosomes",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D002875",
+      "descriptor_name": "Chromosomes",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D002875",
+      "descriptor_name": "Chromosomes",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    },
+    {
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": false
+    }
+  ],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1101/sqb.1956.021.01.017",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1101/sqb.1956.021.01.017",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S78756772",
+        "display_name": "Cold Spring Harbor Symposia on Quantitative Biology",
+        "issn_l": "0091-7451",
+        "issn": [
+          "0091-7451",
+          "1943-4456"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310315909",
+        "host_organization_name": "Cold Spring Harbor Laboratory Press",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310315909"
+        ],
+        "host_organization_lineage_names": [
+          "Cold Spring Harbor Laboratory Press"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Cold Spring Harbor Symposia on Quantitative Biology",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:13433592",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/13433592",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Cold Spring Harbor symposia on quantitative biology",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:repository.cshl.edu:34619",
+      "is_oa": false,
+      "landing_page_url": null,
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402288",
+        "display_name": "Cold Spring Harbor Laboratory Institutional Repository (Cold Spring Harbor Laboratory)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I2750212522",
+        "host_organization_name": "Cold Spring Harbor Laboratory",
+        "host_organization_lineage": [
+          "https://openalex.org/I2750212522"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "acceptedVersion",
+      "is_accepted": true,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "PeerReviewed"
+    },
+    {
+      "id": "pmh:oai:profiles.nlm.nih.gov:LLBBBK",
+      "is_oa": false,
+      "landing_page_url": "https://profiles.nlm.nih.gov/ps/retrieve/ResourceMetadata/LLBBBK",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "McClintock, Barbara. \"Controlling Elements and the Gene.\" Cold Spring Harbor Symposia on Quantitative Biology 21, (1956): 197-216. Article. 20 Images.",
+      "raw_type": "Articles"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 10,
+  "referenced_works": [
+    "https://openalex.org/W1705376011",
+    "https://openalex.org/W1940363612",
+    "https://openalex.org/W1985677235",
+    "https://openalex.org/W2026043771",
+    "https://openalex.org/W2082709673",
+    "https://openalex.org/W2084153448",
+    "https://openalex.org/W2093201854",
+    "https://openalex.org/W2406778859",
+    "https://openalex.org/W2407315883",
+    "https://openalex.org/W2468409036"
+  ],
+  "related_works": [
+    "https://openalex.org/W2115675860",
+    "https://openalex.org/W2133790197",
+    "https://openalex.org/W2124724808",
+    "https://openalex.org/W2589149327",
+    "https://openalex.org/W2182810250",
+    "https://openalex.org/W2147212144",
+    "https://openalex.org/W2056064843",
+    "https://openalex.org/W2052173596",
+    "https://openalex.org/W1886625688",
+    "https://openalex.org/W2028554823"
+  ],
+  "abstract_inverted_index": {
+    "This": [
+      0
+    ],
+    "paper": [
+      1
+    ],
+    "presented": [
+      2
+    ],
+    "at": [
+      3
+    ],
+    "the": [
+      4
+    ],
+    "1956": [
+      5
+    ],
+    "Cold": [
+      6
+    ],
+    "Spring": [
+      7
+    ],
+    "Harbor": [
+      8
+    ],
+    "Symposium": [
+      9
+    ],
+    "provides": [
+      10
+    ],
+    "a": [
+      11
+    ],
+    "brief": [
+      12
+    ],
+    "overview": [
+      13
+    ],
+    "of": [
+      14
+    ],
+    "McClintock's": [
+      15
+    ],
+    "thoughts": [
+      16
+    ],
+    "on": [
+      17
+    ],
+    "controlling": [
+      18
+    ],
+    "elements,": [
+      19
+    ],
+    "including": [
+      20
+    ],
+    "suppressor-mutator,": [
+      21
+    ],
+    "or": [
+      22
+    ],
+    "Spm.": [
+      23
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 33
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 30
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 20
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 25
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 24
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 18
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 22
+    }
+  ],
+  "updated_date": "2026-05-05T08:41:31.759640",
+  "created_date": "2025-10-10T00:00:00"
+}

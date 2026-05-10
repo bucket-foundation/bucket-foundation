@@ -1,0 +1,975 @@
+{
+  "id": "https://openalex.org/W2017156903",
+  "doi": "https://doi.org/10.1119/1.16243",
+  "title": "Bell’s theorem without inequalities",
+  "display_name": "Bell’s theorem without inequalities",
+  "publication_year": 1990,
+  "publication_date": "1990-12-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2017156903",
+    "doi": "https://doi.org/10.1119/1.16243",
+    "mag": "2017156903"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1119/1.16243",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1119/1.16243",
+    "pdf_url": "https://pubs.aip.org/aapt/ajp/article-pdf/58/12/1131/11479397/1131_1_online.pdf",
+    "source": {
+      "id": "https://openalex.org/S38866342",
+      "display_name": "American Journal of Physics",
+      "issn_l": "0002-9505",
+      "issn": [
+        "0002-9505",
+        "1943-2909"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320257",
+      "host_organization_name": "American Institute of Physics",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320257"
+      ],
+      "host_organization_lineage_names": [
+        "American Institute of Physics"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "American Journal of Physics",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "bronze",
+    "oa_url": "https://pubs.aip.org/aapt/ajp/article-pdf/58/12/1131/11479397/1131_1_online.pdf",
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5072498937",
+        "display_name": "Daniel M. Greenberger",
+        "orcid": "https://orcid.org/0000-0002-7462-4567"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I125687163",
+          "display_name": "City College of New York",
+          "ror": "https://ror.org/00wmhkr98",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I125687163"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Daniel M. Greenberger",
+      "raw_affiliation_strings": [
+        "Department of Physics, City College of the City University of New York, New York, New York 10031"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Physics, City College of the City University of New York, New York, New York 10031",
+          "institution_ids": [
+            "https://openalex.org/I125687163"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111780015",
+        "display_name": "Michael Horne",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I80335173",
+          "display_name": "Stonehill College",
+          "ror": "https://ror.org/023288525",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I80335173"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Michael A. Horne",
+      "raw_affiliation_strings": [
+        "Department of Physics, Stonehill College, North Easton, Massachusetts 02357"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Physics, Stonehill College, North Easton, Massachusetts 02357",
+          "institution_ids": [
+            "https://openalex.org/I80335173"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5016297360",
+        "display_name": "Abner Shimony",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I111088046",
+          "display_name": "Boston University",
+          "ror": "https://ror.org/05qwgg493",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I111088046"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Abner Shimony",
+      "raw_affiliation_strings": [
+        "Departments of Philosophy and Physics, Boston University, Boston, Massachusetts 02215"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Departments of Philosophy and Physics, Boston University, Boston, Massachusetts 02215",
+          "institution_ids": [
+            "https://openalex.org/I111088046"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5001105113",
+        "display_name": "Anton Zeilinger",
+        "orcid": "https://orcid.org/0000-0002-6778-0887"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210135192",
+          "display_name": "Universities Austria",
+          "ror": "https://ror.org/04r45q768",
+          "country_code": "AT",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210135192"
+          ]
+        }
+      ],
+      "countries": [
+        "AT"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Anton Zeilinger",
+      "raw_affiliation_strings": [
+        "Atominstitut der Österreichischen Universitäten, Schüttelstrasse 115, A-1020 Vienna, Austria"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Atominstitut der Österreichischen Universitäten, Schüttelstrasse 115, A-1020 Vienna, Austria",
+          "institution_ids": [
+            "https://openalex.org/I4210135192"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 4,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5072498937"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I125687163"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 13.4765,
+  "has_fulltext": false,
+  "cited_by_count": 2423,
+  "citation_normalized_percentile": {
+    "value": 0.9950946,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "58",
+    "issue": "12",
+    "first_page": "1131",
+    "last_page": "1143"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10622",
+    "display_name": "Quantum Mechanics and Applications",
+    "score": 0.980400025844574,
+    "subfield": {
+      "id": "https://openalex.org/subfields/3107",
+      "display_name": "Atomic and Molecular Physics, and Optics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/31",
+      "display_name": "Physics and Astronomy"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10622",
+      "display_name": "Quantum Mechanics and Applications",
+      "score": 0.980400025844574,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3107",
+        "display_name": "Atomic and Molecular Physics, and Optics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10020",
+      "display_name": "Quantum Information and Cryptography",
+      "score": 0.9451000094413757,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11177",
+      "display_name": "Spectroscopy and Quantum Chemical Studies",
+      "score": 0.9272000193595886,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3107",
+        "display_name": "Atomic and Molecular Physics, and Optics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.8005453944206238
+    },
+    {
+      "id": "https://openalex.org/keywords/epr-paradox",
+      "display_name": "EPR paradox",
+      "score": 0.7772508263587952
+    },
+    {
+      "id": "https://openalex.org/keywords/bell-test-experiments",
+      "display_name": "Bell test experiments",
+      "score": 0.5957915782928467
+    },
+    {
+      "id": "https://openalex.org/keywords/bells-theorem",
+      "display_name": "Bell's theorem",
+      "score": 0.5793815851211548
+    },
+    {
+      "id": "https://openalex.org/keywords/theoretical-physics",
+      "display_name": "Theoretical physics",
+      "score": 0.5663434267044067
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.5116360783576965
+    },
+    {
+      "id": "https://openalex.org/keywords/local-hidden-variable-theory",
+      "display_name": "Local hidden variable theory",
+      "score": 0.5066174268722534
+    },
+    {
+      "id": "https://openalex.org/keywords/spin",
+      "display_name": "Spin (aerodynamics)",
+      "score": 0.4770638048648834
+    },
+    {
+      "id": "https://openalex.org/keywords/contradiction",
+      "display_name": "Contradiction",
+      "score": 0.4593536853790283
+    },
+    {
+      "id": "https://openalex.org/keywords/classical-mechanics",
+      "display_name": "Classical mechanics",
+      "score": 0.4265595078468323
+    },
+    {
+      "id": "https://openalex.org/keywords/einstein",
+      "display_name": "Einstein",
+      "score": 0.42201468348503113
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum",
+      "display_name": "Quantum",
+      "score": 0.41787034273147583
+    },
+    {
+      "id": "https://openalex.org/keywords/statistical-physics",
+      "display_name": "Statistical physics",
+      "score": 0.32707905769348145
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-entanglement",
+      "display_name": "Quantum entanglement",
+      "score": 0.1752803921699524
+    },
+    {
+      "id": "https://openalex.org/keywords/philosophy",
+      "display_name": "Philosophy",
+      "score": 0.1256301999092102
+    },
+    {
+      "id": "https://openalex.org/keywords/epistemology",
+      "display_name": "Epistemology",
+      "score": 0.10693767666816711
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.8005453944206238
+    },
+    {
+      "id": "https://openalex.org/C171811987",
+      "wikidata": "https://www.wikidata.org/wiki/Q214975",
+      "display_name": "EPR paradox",
+      "level": 4,
+      "score": 0.7772508263587952
+    },
+    {
+      "id": "https://openalex.org/C11511207",
+      "wikidata": "https://www.wikidata.org/wiki/Q1054240",
+      "display_name": "Bell test experiments",
+      "level": 5,
+      "score": 0.5957915782928467
+    },
+    {
+      "id": "https://openalex.org/C128108043",
+      "wikidata": "https://www.wikidata.org/wiki/Q388525",
+      "display_name": "Bell's theorem",
+      "level": 4,
+      "score": 0.5793815851211548
+    },
+    {
+      "id": "https://openalex.org/C33332235",
+      "wikidata": "https://www.wikidata.org/wiki/Q18362",
+      "display_name": "Theoretical physics",
+      "level": 1,
+      "score": 0.5663434267044067
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.5116360783576965
+    },
+    {
+      "id": "https://openalex.org/C36494176",
+      "wikidata": "https://www.wikidata.org/wiki/Q17098572",
+      "display_name": "Local hidden variable theory",
+      "level": 5,
+      "score": 0.5066174268722534
+    },
+    {
+      "id": "https://openalex.org/C42704618",
+      "wikidata": "https://www.wikidata.org/wiki/Q910917",
+      "display_name": "Spin (aerodynamics)",
+      "level": 2,
+      "score": 0.4770638048648834
+    },
+    {
+      "id": "https://openalex.org/C2776728590",
+      "wikidata": "https://www.wikidata.org/wiki/Q363948",
+      "display_name": "Contradiction",
+      "level": 2,
+      "score": 0.4593536853790283
+    },
+    {
+      "id": "https://openalex.org/C74650414",
+      "wikidata": "https://www.wikidata.org/wiki/Q11397",
+      "display_name": "Classical mechanics",
+      "level": 1,
+      "score": 0.4265595078468323
+    },
+    {
+      "id": "https://openalex.org/C146846114",
+      "wikidata": "https://www.wikidata.org/wiki/Q901448",
+      "display_name": "Einstein",
+      "level": 2,
+      "score": 0.42201468348503113
+    },
+    {
+      "id": "https://openalex.org/C84114770",
+      "wikidata": "https://www.wikidata.org/wiki/Q46344",
+      "display_name": "Quantum",
+      "level": 2,
+      "score": 0.41787034273147583
+    },
+    {
+      "id": "https://openalex.org/C121864883",
+      "wikidata": "https://www.wikidata.org/wiki/Q677916",
+      "display_name": "Statistical physics",
+      "level": 1,
+      "score": 0.32707905769348145
+    },
+    {
+      "id": "https://openalex.org/C121040770",
+      "wikidata": "https://www.wikidata.org/wiki/Q215675",
+      "display_name": "Quantum entanglement",
+      "level": 3,
+      "score": 0.1752803921699524
+    },
+    {
+      "id": "https://openalex.org/C138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "level": 0,
+      "score": 0.1256301999092102
+    },
+    {
+      "id": "https://openalex.org/C111472728",
+      "wikidata": "https://www.wikidata.org/wiki/Q9471",
+      "display_name": "Epistemology",
+      "level": 1,
+      "score": 0.10693767666816711
+    },
+    {
+      "id": "https://openalex.org/C97355855",
+      "wikidata": "https://www.wikidata.org/wiki/Q11473",
+      "display_name": "Thermodynamics",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1119/1.16243",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1119/1.16243",
+      "pdf_url": "https://pubs.aip.org/aapt/ajp/article-pdf/58/12/1131/11479397/1131_1_online.pdf",
+      "source": {
+        "id": "https://openalex.org/S38866342",
+        "display_name": "American Journal of Physics",
+        "issn_l": "0002-9505",
+        "issn": [
+          "0002-9505",
+          "1943-2909"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320257",
+        "host_organization_name": "American Institute of Physics",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320257"
+        ],
+        "host_organization_lineage_names": [
+          "American Institute of Physics"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "American Journal of Physics",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1119/1.16243",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1119/1.16243",
+    "pdf_url": "https://pubs.aip.org/aapt/ajp/article-pdf/58/12/1131/11479397/1131_1_online.pdf",
+    "source": {
+      "id": "https://openalex.org/S38866342",
+      "display_name": "American Journal of Physics",
+      "issn_l": "0002-9505",
+      "issn": [
+        "0002-9505",
+        "1943-2909"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320257",
+      "host_organization_name": "American Institute of Physics",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320257"
+      ],
+      "host_organization_lineage_names": [
+        "American Institute of Physics"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "American Journal of Physics",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/10",
+      "score": 0.6499999761581421,
+      "display_name": "Reduced inequalities"
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": true,
+    "pdf": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W2017156903.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W2017156903.grobid-xml"
+  },
+  "referenced_works_count": 0,
+  "referenced_works": [],
+  "related_works": [
+    "https://openalex.org/W2553524804",
+    "https://openalex.org/W1992171007",
+    "https://openalex.org/W2023234152",
+    "https://openalex.org/W4241100296",
+    "https://openalex.org/W1965318843",
+    "https://openalex.org/W3156436363",
+    "https://openalex.org/W2057149732",
+    "https://openalex.org/W4298135609",
+    "https://openalex.org/W2747453448",
+    "https://openalex.org/W2951602995"
+  ],
+  "abstract_inverted_index": {
+    "It": [
+      0
+    ],
+    "is": [
+      1,
+      43,
+      78
+    ],
+    "demonstrated": [
+      2
+    ],
+    "that": [
+      3,
+      26
+    ],
+    "the": [
+      4,
+      7,
+      27,
+      35,
+      48,
+      51,
+      62,
+      67,
+      71,
+      81,
+      96,
+      117,
+      121
+    ],
+    "premisses": [
+      5
+    ],
+    "of": [
+      6,
+      18,
+      37,
+      50,
+      64,
+      70,
+      98,
+      109
+    ],
+    "Einstein–Podolsky–Rosen": [
+      8
+    ],
+    "paper": [
+      9
+    ],
+    "are": [
+      10,
+      107
+    ],
+    "inconsistent": [
+      11
+    ],
+    "when": [
+      12
+    ],
+    "applied": [
+      13
+    ],
+    "to": [
+      14
+    ],
+    "quantum": [
+      15,
+      31,
+      76
+    ],
+    "systems": [
+      16,
+      87
+    ],
+    "consisting": [
+      17
+    ],
+    "at": [
+      19,
+      95,
+      116,
+      120
+    ],
+    "least": [
+      20
+    ],
+    "three": [
+      21
+    ],
+    "particles.": [
+      22
+    ],
+    "The": [
+      23
+    ],
+    "demonstration": [
+      24
+    ],
+    "reveals": [
+      25
+    ],
+    "EPR": [
+      28
+    ],
+    "program": [
+      29
+    ],
+    "contradicts": [
+      30
+    ],
+    "mechanics": [
+      32,
+      77
+    ],
+    "even": [
+      33
+    ],
+    "for": [
+      34,
+      85
+    ],
+    "cases": [
+      36
+    ],
+    "perfect": [
+      38,
+      41,
+      99
+    ],
+    "correlations.": [
+      39,
+      100
+    ],
+    "By": [
+      40
+    ],
+    "correlations": [
+      42
+    ],
+    "meant": [
+      44
+    ],
+    "arrangements": [
+      45
+    ],
+    "by": [
+      46,
+      88
+    ],
+    "which": [
+      47
+    ],
+    "result": [
+      49
+    ],
+    "measurement": [
+      52
+    ],
+    "on": [
+      53,
+      66
+    ],
+    "one": [
+      54,
+      82
+    ],
+    "particle": [
+      55
+    ],
+    "can": [
+      56
+    ],
+    "be": [
+      57
+    ],
+    "predicted": [
+      58
+    ],
+    "with": [
+      59,
+      75
+    ],
+    "certainty": [
+      60
+    ],
+    "given": [
+      61,
+      108
+    ],
+    "outcomes": [
+      63
+    ],
+    "measurements": [
+      65
+    ],
+    "other": [
+      68
+    ],
+    "particles": [
+      69
+    ],
+    "system.": [
+      72
+    ],
+    "This": [
+      73
+    ],
+    "incompatibility": [
+      74
+    ],
+    "stronger": [
+      79
+    ],
+    "than": [
+      80
+    ],
+    "previously": [
+      83
+    ],
+    "revealed": [
+      84
+    ],
+    "two-particle": [
+      86
+    ],
+    "Bell’s": [
+      89
+    ],
+    "inequality,": [
+      90
+    ],
+    "where": [
+      91
+    ],
+    "no": [
+      92
+    ],
+    "contradiction": [
+      93
+    ],
+    "arises": [
+      94
+    ],
+    "level": [
+      97
+    ],
+    "Both": [
+      101
+    ],
+    "spin-correlation": [
+      102
+    ],
+    "and": [
+      103,
+      112,
+      119
+    ],
+    "multiparticle": [
+      104
+    ],
+    "interferometry": [
+      105
+    ],
+    "examples": [
+      106
+    ],
+    "suitable": [
+      110
+    ],
+    "three-": [
+      111
+    ],
+    "four-particle": [
+      113
+    ],
+    "arrangements,": [
+      114
+    ],
+    "both": [
+      115
+    ],
+    "gedanken": [
+      118
+    ],
+    "real": [
+      122
+    ],
+    "experiment": [
+      123
+    ],
+    "level.": [
+      124
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 23
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 88
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 80
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 127
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 62
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 86
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 59
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 100
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 67
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 79
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 106
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 72
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 87
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 69
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 105
+    }
+  ],
+  "updated_date": "2026-05-09T13:55:54.758798",
+  "created_date": "2025-10-10T00:00:00"
+}
