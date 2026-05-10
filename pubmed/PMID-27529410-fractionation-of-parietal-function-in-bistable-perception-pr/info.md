@@ -1,0 +1,14 @@
+# Fractionation of parietal function in bistable perception probed with concurrent TMS-EEG.
+
+- **PMID**: 27529410
+- **DOI**: 10.5061/dryad.1nr07
+- **PMCID**: PMC6869880 (full-text saved)
+- **Journal**: Scientific data  ·  **Year**: 2016
+- **Authors**: Georg Schauer, Acer Chang, David Schwartzman, Charlotte L Rae, Heather Iriye, Anil K Seth, Ryota Kanai
+- **MeSH**: Brain Mapping, Electroencephalography, Humans, Magnetic Resonance Imaging, Parietal Lobe, Transcranial Magnetic Stimulation, Visual Perception
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27529410/
+- **Captured**: 2026-05-10T11:28:14
+
+## Abstract
+
+When visual input has conflicting interpretations, conscious perception can alternate spontaneously between these possible interpretations. This is called bistable perception. Previous neuroimaging studies have indicated the involvement of two right parietal areas in resolving perceptual ambiguity (ant-SPLr and post-SPLr). Transcranial magnetic stimulation (TMS) studies that selectively interfered with the normal function of these regions suggest that they play opposing roles in this type of perceptual switch. In the present study, we investigated this fractionation of parietal function by use of combined TMS with electroencephalography (EEG). Specifically, while participants viewed either a bistable stimulus, a replay stimulus, or resting-state fixation, we applied single pulse TMS to either location independently while simultaneously recording EEG. Combined with participant's individual structural magnetic resonance imaging (MRI) scans, this dataset allows for complex analyses of the effect of TMS on neural time series data, which may further elucidate the causal role of the parietal cortex in ambiguous perception.

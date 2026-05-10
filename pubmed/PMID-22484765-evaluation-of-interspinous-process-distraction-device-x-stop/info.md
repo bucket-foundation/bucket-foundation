@@ -1,0 +1,14 @@
+# Evaluation of interspinous process distraction device (X-STOP) in a representative patient cohort.
+
+- **PMID**: 22484765
+- **DOI**: 10.1016/j.wneu.2012.03.034
+- **PMCID**:  
+- **Journal**: World neurosurgery  ·  **Year**: 2013
+- **Authors**: Shashikant Patil, Matthew Burton, Christopher Storey, Chad Glenn, Andrew Marino, Anil Nanda
+- **MeSH**: Aged, Cohort Studies, Equipment and Supplies, Female, Follow-Up Studies, Humans, Intermittent Claudication, Male, Middle Aged, Neurosurgical Procedures
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22484765/
+- **Captured**: 2026-05-10T11:24:26
+
+## Abstract
+
+To test the hypothesis that the level of clinical efficacy reported in the investigational device exemption (IDE) study of the X-STOP device that led to its approval by the U.S. Food and Drug Administration could also be achieved in patients who are representative of the population approved for treatment, irrespective of whether they met all the stringent requirements of the IDE study. A retrospective analysis was conducted of a consecutive series of 31 patients who received the X-STOP interspinous process distraction device as treatment for neurogenic intermittent claudication. Outcome was assessed at an average of 2 years after surgery by use of the Zurich Claudication Questionnaire (ZCQ), which used the definition of clinical success used in the IDE study. On the basis of the ZCQ, clinically significant improvement occurred in 38% of the evaluable patients (21 patients), compared with 48.4% in the IDE study; at the sites other than those of the device's inventors, the improvement level was 37%. Four patients needed additional surgery, which was a rate comparable with that reported in the IDE study. The success level in the controlled IDE study that established the safety and efficacy of the X-STOP device was achieved in a representative patient cohort that did not necessarily meet all the strict requirements of the IDE plan. Nevertheless, the overall results were not good, suggesting that the ZCQ definition of success might not have captured the true outcome of surgical treatment with the X-STOP device.

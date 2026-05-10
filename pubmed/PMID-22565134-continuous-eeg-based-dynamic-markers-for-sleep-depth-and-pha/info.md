@@ -1,0 +1,14 @@
+# Continuous EEG-based dynamic markers for sleep depth and phasic events.
+
+- **PMID**: 22565134
+- **DOI**: 10.1016/j.jneumeth.2012.04.018
+- **PMCID**:  
+- **Journal**: Journal of neuroscience methods  ·  **Year**: 2012
+- **Authors**: Simona Carrubba, Paul Young Kim, David E McCarty, Andrew L Chesson, Clifton Frilot, Andrew A Marino
+- **MeSH**: Adolescent, Adult, Aged, Algorithms, Arousal, Brain, Electroencephalography, Female, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22565134/
+- **Captured**: 2026-05-10T11:24:27
+
+## Abstract
+
+Sleep architecture is characterized by classifying polysomnographic epochs into mutually exclusive stages. Notwithstanding the clinical importance of staging, it has the drawback of representing sleep as a discrete process. Metrics based on the electroencephalogram (EEG) are needed to supplement conventional sleep staging by allowing a description of sleep in terms of unitary, continuous markers. Traditional linear and nonlinear techniques for achieving this goal have not proved sufficient. Employing recurrence analysis, we developed a method for capturing and quantifying the dynamical states of the brain during sleep. The method yields markers for continuously determining sleep depth, for detecting sleep-specific phasic events, and for objectively defining potentially useful sleep markers and indices. Recurrence markers captured the coarse- and fine-grained temporal activity of the sleep EEG, thereby permitting continuous quantitation of brain electrical activity on any desired time scale. The markers were validated with respect to the tonic behavior (time scale of seconds) of the sleep EEG by establishing that they disambiguated the stages of sleep that are defined solely on the basis of EEG activity. Validation of the markers over time scales of milliseconds was achieved by showing that common types of sleep-EEG phasic events could be detected by recurrence analysis. The method was also used to define a generalized EEG arousal index that quantified previously unrecognized sleep-stage-dependent deterministic properties of brain electrical activity. Using nonlinear analysis that quantified the recurrence properties of the EEG, we described a novel method for producing dynamic markers of brain states during sleep.

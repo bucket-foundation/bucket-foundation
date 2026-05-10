@@ -1,0 +1,14 @@
+# Demonstration by NMR of folding domains in lysozyme.
+
+- **PMID**: 2000138
+- **DOI**: 10.1038/349633a0
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 1991
+- **Authors**: A Miranker, S E Radford, M Karplus, C M Dobson
+- **MeSH**: Animals, Chickens, Hydrogen Bonding, Magnetic Resonance Spectroscopy, Models, Molecular, Muramidase, Protein Conformation, Protein Denaturation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2000138/
+- **Captured**: 2026-05-10T11:22:41
+
+## Abstract
+
+Although there has been much speculation on the pathways of protein folding, only recently have experimental data on the topic been available. The study of proteins under conditions where species intermediate between the fully folded and unfolded states are stable has provided important information, for example about the disulphide intermediates in BPTI, cis/trans proline isomers of RNase A3 and the molten globule state of alpha-lactalbumin. An alternative approach to investigating folding pathways has involved detection and characterization of transient conformers in refolding studies using stopped-flow methods coupled with NMR measurements of hydrogen exchange. The formation of intermediate structures has been detected in the early stages of folding of cytochrome c, RNaseA and barnase. For alpha-lactalbumin, hydrogen exchange kinetics monitored by NMR proved to be crucial for identifying native-like structural features in the stable molten globule state. An analogous partially folded protein stable under equilibrium conditions has not been observed for the structurally homologous protein hen egg-white lysozyme, although there is evidence that a similar but transient state is formed during refolding. Here we describe NMR experiments based on competition between hydrogen exchange and the refolding process which not only support the existence of such a transient species for lysozyme, but enable its structural characteristics to be defined. The results indicate that the two structural domains of lysozyme are distinct folding domains, in that they differ significantly in the extent to which compact, probably native-like, structure is present in the early stages of folding.

@@ -1,0 +1,14 @@
+# Quinacrine treatment trial for sporadic Creutzfeldt-Jakob disease.
+
+- **PMID**: 24122181
+- **DOI**: 10.1212/WNL.0b013e3182a9f3b4
+- **PMCID**: PMC2848070 (full-text saved)
+- **Journal**: Neurology  ·  **Year**: 2013
+- **Authors**: Michael D Geschwind, Amy L Kuo, Katherine S Wong, Aissa Haman, Gillian Devereux, Benjamin J Raudabaugh, David Y Johnson, Charles C Torres-Chae, Ron Finley, Paul Garcia, Julie N Thai, Hugo Q Cheng, John M Neuhaus, Sven A Forner, Jacque L Duncan, Katherine L Possin, Stephen J Dearmond, Stanley B Prusiner, Bruce L Miller
+- **MeSH**: Administration, Oral, Adult, Aged, Aged, 80 and over, Creutzfeldt-Jakob Syndrome, Double-Blind Method, Female, Follow-Up Studies, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24122181/
+- **Captured**: 2026-05-10T11:25:43
+
+## Abstract
+
+To determine whether oral quinacrine increases survival in sporadic Creutzfeldt-Jakob disease (sCJD). This NIH/National Institute on Aging-funded, double-blinded, placebo-controlled, stratified randomization treatment trial was conducted at the University of California, San Francisco from February 2005 through May 2009 (ClinicalTrials.gov, NCT00183092). Subjects were randomized (50:50) to quinacrine (300 mg daily) or placebo with inpatient evaluations at baseline, and planned for months 2, 6, and 12. Subjects returning for their month-2 visit were offered open-label quinacrine. The primary outcome was survival from randomization to month 2. Of 425 patients referred, 69 subjects enrolled, 54 subjects were randomized to active drug or placebo, and 51 subjects with sCJD were included in survival analyses. Survival for the randomized portion of the trial (first 2 months) showed no significant difference between the 2 groups (log-rank statistic, p = 0.43; Cox proportional relative hazard = 1.43, quinacrine compared with placebo, 95% confidence interval = 0.58, 3.53). The quinacrine-treated group, however, declined less on 2 of 3 functional scales, the modified Rankin and Clinical Dementia Rating, than the placebo group during the first 2 months. This interventional study provides Class I evidence that oral quinacrine at 300 mg per day does not improve 2-month survival of patients with sCJD, compared with placebo. Importantly, this study shows that double-blinded, placebo-controlled, randomized treatment trials are possible in prion disease. Furthermore, the quantitative data collected on the course of sCJD will be useful for future trials. This study provides Class I evidence that quinacrine does not improve survival for people with sCJD when given orally at a dose of 300 mg per day for 2 months.

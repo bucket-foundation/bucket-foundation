@@ -1,0 +1,14 @@
+# Two-group classification of patients with obstructive sleep apnea based on analysis of brain recurrence.
+
+- **PMID**: 24290851
+- **DOI**: 10.1016/j.clinph.2013.11.002
+- **PMCID**:  
+- **Journal**: Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology  ·  **Year**: 2014
+- **Authors**: Paul Y Kim, David E McCarty, Lei Wang, Clifton Frilot, Andrew L Chesson, Andrew A Marino
+- **MeSH**: Algorithms, Area Under Curve, Cohort Studies, Electroencephalography, Female, Humans, Male, Middle Aged, Polysomnography, ROC Curve
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24290851/
+- **Captured**: 2026-05-10T11:25:57
+
+## Abstract
+
+To demonstrate that the severity of obstructive sleep apnea (OSA) could be predicted algorithmically by means of recurrence analysis of the sleep-staged electroencephalogram (EEG). A randomly selected cohort of 20 sleep-staged patients with OSA (apnea-hypopnea index (AHI) 5-30) was divided into mild and moderate sub-cohorts (AHI 5-15, 16-30, respectively), and the sleep EEG (C3) was analyzed using analysis of brain recurrence (ABR) (LSU cohort). Twenty distinct but related markers for sleep depth and fragmentation were computed from four ABR variables, and a marker function capable of classifying each patient into one of the two sub-cohorts was determined by linear discriminant analysis. Classification accuracy of individual patients was evaluated using area under the receiver operator characteristics curve (AUROC). As a control procedure, 20 additional sleep-staged patients with OSA whose polysomnographic data was obtained from an independent database were also evaluated (SHHS cohort). On average, markers for sleep depth were reduced and those for sleep fragmentation were increased in the patients with moderate OSA, as expected. All patients in both cohorts were correctly classified using as few as 5-6 markers. The degree of severity of OSA was reflected in objective changes in the sleep EEG. Recurrence analysis of the EEG potentially has uses beyond identification of the degree of OSA.

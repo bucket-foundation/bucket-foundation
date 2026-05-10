@@ -1,0 +1,14 @@
+# Propagation of prions causing synucleinopathies in cultured cells.
+
+- **PMID**: 26286986
+- **DOI**: 10.1073/pnas.1513426112
+- **PMCID**: PMC3390876 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2015
+- **Authors**: Amanda L Woerman, Jan Stöhr, Atsushi Aoyagi, Ryan Rampersaud, Zuzana Krejciova, Joel C Watts, Takao Ohyama, Smita Patel, Kartika Widjaja, Abby Oehler, David W Sanders, Marc I Diamond, William W Seeley, Lefkos T Middleton, Steve M Gentleman, Daniel A Mordes, Thomas C Südhof, Kurt Giles, Stanley B Prusiner
+- **MeSH**: Animals, HEK293 Cells, Humans, Mice, Neurodegenerative Diseases, Prions, alpha-Synuclein
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26286986/
+- **Captured**: 2026-05-10T11:27:27
+
+## Abstract
+
+Increasingly, evidence argues that many neurodegenerative diseases, including progressive supranuclear palsy (PSP), are caused by prions, which are alternatively folded proteins undergoing self-propagation. In earlier studies, PSP prions were detected by infecting human embryonic kidney (HEK) cells expressing a tau fragment [TauRD(LM)] fused to yellow fluorescent protein (YFP). Here, we report on an improved bioassay using selective precipitation of tau prions from human PSP brain homogenates before infection of the HEK cells. Tau prions were measured by counting the number of cells with TauRD(LM)-YFP aggregates using confocal fluorescence microscopy. In parallel studies, we fused α-synuclein to YFP to bioassay α-synuclein prions in the brains of patients who died of multiple system atrophy (MSA). Previously, MSA prion detection required ∼120 d for transmission into transgenic mice, whereas our cultured cell assay needed only 4 d. Variation in MSA prion levels in four different brain regions from three patients provided evidence for three different MSA prion strains. Attempts to demonstrate α-synuclein prions in brain homogenates from Parkinson's disease patients were unsuccessful, identifying an important biological difference between the two synucleinopathies. Partial purification of tau and α-synuclein prions facilitated measuring the levels of these protein pathogens in human brains. Our studies should facilitate investigations of the pathogenesis of both tau and α-synuclein prion disorders as well as help decipher the basic biology of those prions that attack the CNS.

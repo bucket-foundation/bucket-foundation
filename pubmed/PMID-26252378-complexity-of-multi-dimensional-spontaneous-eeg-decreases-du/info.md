@@ -1,0 +1,14 @@
+# Complexity of Multi-Dimensional Spontaneous EEG Decreases during Propofol Induced General Anaesthesia.
+
+- **PMID**: 26252378
+- **DOI**: 10.1007/s12559-009-9007-x
+- **PMCID**: PMC4199497 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2015
+- **Authors**: Michael Schartner, Anil Seth, Quentin Noirhomme, Melanie Boly, Marie-Aurelie Bruno, Steven Laureys, Adam Barrett
+- **MeSH**: Anesthesia, General, Area Under Curve, Cerebral Cortex, Computer Simulation, Electrodes, Electroencephalography, Entropy, Humans, Models, Theoretical, Propofol
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26252378/
+- **Captured**: 2026-05-10T11:27:25
+
+## Abstract
+
+Emerging neural theories of consciousness suggest a correlation between a specific type of neural dynamical complexity and the level of consciousness: When awake and aware, causal interactions between brain regions are both integrated (all regions are to a certain extent connected) and differentiated (there is inhomogeneity and variety in the interactions). In support of this, recent work by Casali et al (2013) has shown that Lempel-Ziv complexity correlates strongly with conscious level, when computed on the EEG response to transcranial magnetic stimulation. Here we investigated complexity of spontaneous high-density EEG data during propofol-induced general anaesthesia. We consider three distinct measures: (i) Lempel-Ziv complexity, which is derived from how compressible the data are; (ii) amplitude coalition entropy, which measures the variability in the constitution of the set of active channels; and (iii) the novel synchrony coalition entropy (SCE), which measures the variability in the constitution of the set of synchronous channels. After some simulations on Kuramoto oscillator models which demonstrate that these measures capture distinct 'flavours' of complexity, we show that there is a robustly measurable decrease in the complexity of spontaneous EEG during general anaesthesia.

@@ -1,0 +1,14 @@
+# Perceptions as hypotheses: saccades as experiments.
+
+- **PMID**: 22654776
+- **DOI**: 10.1016/j.tics.2006.05.002
+- **PMCID**: PMC3070860 (full-text saved)
+- **Journal**: Frontiers in psychology  ·  **Year**: 2012
+- **Authors**: Karl Friston, Rick A Adams, Laurent Perrinet, Michael Breakspear
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22654776/
+- **Captured**: 2026-05-10T11:24:34
+
+## Abstract
+
+If perception corresponds to hypothesis testing (Gregory, 1980); then visual searches might be construed as experiments that generate sensory data. In this work, we explore the idea that saccadic eye movements are optimal experiments, in which data are gathered to test hypotheses or beliefs about how those data are caused. This provides a plausible model of visual search that can be motivated from the basic principles of self-organized behavior: namely, the imperative to minimize the entropy of hidden states of the world and their sensory consequences. This imperative is met if agents sample hidden states of the world efficiently. This efficient sampling of salient information can be derived in a fairly straightforward way, using approximate Bayesian inference and variational free-energy minimization. Simulations of the resulting active inference scheme reproduce sequential eye movements that are reminiscent of empirically observed saccades and provide some counterintuitive insights into the way that sensory evidence is accumulated or assimilated into beliefs about the world.

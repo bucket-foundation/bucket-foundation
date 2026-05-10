@@ -1,0 +1,14 @@
+# Structure of the triosephosphate isomerase-phosphoglycolohydroxamate complex: an analogue of the intermediate on the reaction pathway.
+
+- **PMID**: 2043623
+- **DOI**: 10.1021/bi00238a002
+- **PMCID**:  
+- **Journal**: Biochemistry  ·  **Year**: 1991
+- **Authors**: R C Davenport, P A Bash, B A Seaton, M Karplus, G A Petsko, D Ringe
+- **MeSH**: Amino Acid Sequence, Binding Sites, Histidine, Hydroxamic Acids, Models, Molecular, Molecular Conformation, Molecular Structure, Protein Conformation, Saccharomyces cerevisiae, Triose-Phosphate Isomerase
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2043623/
+- **Captured**: 2026-05-10T11:22:54
+
+## Abstract
+
+The glycolytic enzyme triosephosphate isomerase (TIM) catalyzes the interconversion of the three-carbon sugars dihydroxyacetone phosphate (DHAP) and D-glyceraldehyde 3-phosphate (GAP) at a rate limited by the diffusion of substrate to the enzyme. We have solved the three-dimensional structure of TIM complexed with a reactive intermediate analogue, phosphoglycolohydroxamate (PGH), at 1.9-A resolution and have refined the structure to an R-factor of 18%. Analysis of the refined structure reveals the geometry of the active-site residues and the interactions they make with the inhibitor and, by analogy, the substrates. The structure is consistent with an acid-base mechanism in which the carboxylate of Glu-165 abstracts a proton from carbon while His-95 donates a proton to oxygen to form an enediol (or enediolate) intermediate. The conformation of the bound substrate stereoelectronically favors proton transfer from substrate carbon to the syn orbital of Glu-165. The crystal structure suggests that His-95 is neutral rather than cationic in the ground state and therefore would have to function as an imidazole acid instead of the usual imidazolium. Lys-12 is oriented so as to polarize the substrate oxygens by hydrogen bonding and/or electrostatic interaction, providing stabilization for the charged transition state. Asn-10 may play a similar role.

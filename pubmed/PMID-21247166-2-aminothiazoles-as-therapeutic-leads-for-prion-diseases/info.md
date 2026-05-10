@@ -1,0 +1,14 @@
+# 2-Aminothiazoles as therapeutic leads for prion diseases.
+
+- **PMID**: 21247166
+- **DOI**: 10.1021/jm101250y
+- **PMCID**: PMC2720052 (full-text saved)
+- **Journal**: Journal of medicinal chemistry  ·  **Year**: 2011
+- **Authors**: Alejandra Gallardo-Godoy, Joel Gever, Kimberly L Fife, B Michael Silber, Stanley B Prusiner, Adam R Renslo
+- **MeSH**: Animals, Biological Assay, Brain, Cell Line, Tumor, Cell Survival, Magnetic Resonance Spectroscopy, Mice, PrPSc Proteins, Prion Diseases, Spectrometry, Mass, Electrospray Ionization
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21247166/
+- **Captured**: 2026-05-10T11:23:09
+
+## Abstract
+
+2-Aminothiazoles are a new class of small molecules with antiprion activity in prion-infected neuroblastoma cell lines (J. Virol. 2010, 84, 3408). We report here structure-activity studies undertaken to improve the potency and physiochemical properties of 2-aminothiazoles, with a particular emphasis on achieving and sustaining high drug concentrations in the brain. The results of this effort include the generation of informative structure-activity relationships (SAR) and the identification of lead compounds that are orally absorbed and achieve high brain concentrations in animals. The new aminothiazole analogue (5-methylpyridin-2-yl)-[4-(3-phenylisoxazol-5-yl)-thiazol-2-yl]-amine (27), for example, exhibited an EC(50) of 0.94 μM in prion-infected neuroblastoma cells (ScN2a-cl3) and reached a concentration of ∼25 μM in the brains of mice following three days of oral administration in a rodent liquid diet. The studies described herein suggest 2-aminothiazoles as promising new leads in the search for effective therapeutics for prion diseases.

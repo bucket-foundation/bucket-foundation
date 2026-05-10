@@ -1,0 +1,14 @@
+# The zinc dyshomeostasis hypothesis of Alzheimer's disease.
+
+- **PMID**: 22457776
+- **DOI**: 10.1371/journal.pone.0033552
+- **PMCID**: PMC549057 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2012
+- **Authors**: Travis J A Craddock, Jack A Tuszynski, Deepak Chopra, Noel Casey, Lee E Goldstein, Stuart R Hameroff, Rudolph E Tanzi
+- **MeSH**: Aged, Alzheimer Disease, Amyloid beta-Peptides, Binding Sites, Homeostasis, Humans, Microtubule-Associated Proteins, Models, Molecular, Neurofibrillary Tangles, Zinc
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22457776/
+- **Captured**: 2026-05-10T11:24:25
+
+## Abstract
+
+Alzheimer's disease (AD) is the most common form of dementia in the elderly. Hallmark AD neuropathology includes extracellular amyloid plaques composed largely of the amyloid-β protein (Aβ), intracellular neurofibrillary tangles (NFTs) composed of hyper-phosphorylated microtubule-associated protein tau (MAP-tau), and microtubule destabilization. Early-onset autosomal dominant AD genes are associated with excessive Aβ accumulation, however cognitive impairment best correlates with NFTs and disrupted microtubules. The mechanisms linking Aβ and NFT pathologies in AD are unknown. Here, we propose that sequestration of zinc by Aβ-amyloid deposits (Aβ oligomers and plaques) not only drives Aβ aggregation, but also disrupts zinc homeostasis in zinc-enriched brain regions important for memory and vulnerable to AD pathology, resulting in intra-neuronal zinc levels, which are either too low, or excessively high. To evaluate this hypothesis, we 1) used molecular modeling of zinc binding to the microtubule component protein tubulin, identifying specific, high-affinity zinc binding sites that influence side-to-side tubulin interaction, the sensitive link in microtubule polymerization and stability. We also 2) performed kinetic modeling showing zinc distribution in extra-neuronal Aβ deposits can reduce intra-neuronal zinc binding to microtubules, destabilizing microtubules. Finally, we 3) used metallomic imaging mass spectrometry (MIMS) to show anatomically-localized and age-dependent zinc dyshomeostasis in specific brain regions of Tg2576 transgenic, mice, a model for AD. We found excess zinc in brain regions associated with memory processing and NFT pathology. Overall, we present a theoretical framework and support for a new theory of AD linking extra-neuronal Aβ amyloid to intra-neuronal NFTs and cognitive dysfunction. The connection, we propose, is based on β-amyloid-induced alterations in zinc ion concentration inside neurons affecting stability of polymerized microtubules, their binding to MAP-tau, and molecular dynamics involved in cognition. Further, our theory supports novel AD therapeutic strategies targeting intra-neuronal zinc homeostasis and microtubule dynamics to prevent neurodegeneration and cognitive decline.

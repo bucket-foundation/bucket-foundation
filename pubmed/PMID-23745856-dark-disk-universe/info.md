@@ -1,0 +1,14 @@
+# Dark-disk universe.
+
+- **PMID**: 23745856
+- **DOI**: 10.1103/PhysRevLett.110.211302
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2013
+- **Authors**: JiJi Fan, Andrey Katz, Lisa Randall, Matthew Reece
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23745856/
+- **Captured**: 2026-05-10T11:25:26
+
+## Abstract
+
+We point out that current constraints on dark matter imply only that the majority of dark matter is cold and collisionless. A subdominant fraction of dark matter could have much stronger interactions. In particular, it could interact in a manner that dissipates energy, thereby cooling into a rotationally supported disk, much as baryons do. We call this proposed new dark matter component double-disk dark matter (DDDM). We argue that DDDM could constitute a fraction of all matter roughly as large as the fraction in baryons, and that it could be detected through its gravitational effects on the motion of stars in galaxies, for example. Furthermore, if DDDM can annihilate to gamma rays, it would give rise to an indirect detection signal distributed across the sky that differs dramatically from that predicted for ordinary dark matter. DDDM and more general partially interacting dark matter scenarios provide a large unexplored space of testable new physics ideas.

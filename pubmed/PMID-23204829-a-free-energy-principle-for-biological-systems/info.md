@@ -1,0 +1,14 @@
+# A Free Energy Principle for Biological Systems.
+
+- **PMID**: 23204829
+- **DOI**: 10.3390/e14112100
+- **PMCID**: PMC1172247 (full-text saved)
+- **Journal**: Entropy (Basel, Switzerland)  ·  **Year**: 2012
+- **Authors**: Friston Karl
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23204829/
+- **Captured**: 2026-05-10T11:24:58
+
+## Abstract
+
+This paper describes a free energy principle that tries to explain the ability of biological systems to resist a natural tendency to disorder. It appeals to circular causality of the sort found in synergetic formulations of self-organization (e.g., the slaving principle) and models of coupled dynamical systems, using nonlinear Fokker Planck equations. Here, circular causality is induced by separating the states of a random dynamical system into external and internal states, where external states are subject to random fluctuations and internal states are not. This reduces the problem to finding some (deterministic) dynamics of the internal states that ensure the system visits a limited number of external states; in other words, the measure of its (random) attracting set, or the Shannon entropy of the external states is small. We motivate a solution using a principle of least action based on variational free energy (from statistical physics) and establish the conditions under which it is formally equivalent to the information bottleneck method. This approach has proved useful in understanding the functional architecture of the brain. The generality of variational free energy minimisation and corresponding information theoretic formulations may speak to interesting applications beyond the neurosciences; e.g., in molecular or evolutionary biology.

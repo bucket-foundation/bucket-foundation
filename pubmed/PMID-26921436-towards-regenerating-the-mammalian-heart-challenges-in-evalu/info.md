@@ -1,0 +1,14 @@
+# Towards regenerating the mammalian heart: challenges in evaluating experimentally induced adult mammalian cardiomyocyte proliferation.
+
+- **PMID**: 26921436
+- **DOI**: 10.1152/ajpheart.00697.2015
+- **PMCID**:  
+- **Journal**: American journal of physiology. Heart and circulatory physiology  ·  **Year**: 2016
+- **Authors**: David C Zebrowski, Robert Becker, Felix B Engel
+- **MeSH**: Animals, Cell Cycle, Cell Cycle Proteins, Cell Proliferation, Heart Diseases, Humans, Models, Animal, Myocytes, Cardiac, Recovery of Function, Regeneration
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26921436/
+- **Captured**: 2026-05-10T11:27:54
+
+## Abstract
+
+In recent years, there has been a dramatic increase in research aimed at regenerating the mammalian heart by promoting endogenous cardiomyocyte proliferation. Despite many encouraging successes, it remains unclear if we are any closer to achieving levels of mammalian cardiomyocyte proliferation for regeneration as seen during zebrafish regeneration. Furthermore, current cardiac regenerative approaches do not clarify whether the induced cardiomyocyte proliferation is an epiphenomena or responsible for the observed improvement in cardiac function. Moreover, due to the lack of standardized protocols to determine cardiomyocyte proliferation in vivo, it remains unclear if one mammalian regenerative factor is more effective than another. Here, we discuss current methods to identify and evaluate factors for the induction of cardiomyocyte proliferation and challenges therein. Addressing challenges in evaluating adult cardiomyocyte proliferation will assist in determining 1) which regenerative factors should be pursued in large animal studies; 2) if a particular level of cell cycle regulation presents a better therapeutic target than another (e.g., mitogenic receptors vs. cyclins); and 3) which combinatorial approaches offer the greatest likelihood of success. As more and more regenerative studies come to pass, progress will require a system that not only can evaluate efficacy in an objective manner but can also consolidate observations in a meaningful way.

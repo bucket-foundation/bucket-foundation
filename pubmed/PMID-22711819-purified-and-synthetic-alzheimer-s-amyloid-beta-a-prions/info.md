@@ -1,0 +1,14 @@
+# Purified and synthetic Alzheimer's amyloid beta (Aβ) prions.
+
+- **PMID**: 22711819
+- **DOI**: 10.1016/j.neurobiolaging.2011.06.022
+- **PMCID**: PMC3233904 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2012
+- **Authors**: Jan Stöhr, Joel C Watts, Zachary L Mensinger, Abby Oehler, Sunny K Grillo, Stephen J DeArmond, Stanley B Prusiner, Kurt Giles
+- **MeSH**: Aging, Alzheimer Disease, Amyloid beta-Peptides, Amyloidosis, Animals, Brain, Disease Models, Animal, Female, Glial Fibrillary Acidic Protein, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22711819/
+- **Captured**: 2026-05-10T11:24:40
+
+## Abstract
+
+The aggregation and deposition of amyloid-β (Aβ) peptides are believed to be central events in the pathogenesis of Alzheimer's disease (AD). Inoculation of brain homogenates containing Aβ aggregates into susceptible transgenic mice accelerated Aβ deposition, suggesting that Aβ aggregates are capable of self-propagation and hence might be prions. Recently, we demonstrated that Aβ deposition can be monitored in live mice using bioluminescence imaging (BLI). Here, we use BLI to probe the ability of Aβ aggregates to self-propagate following inoculation into bigenic mice. We report compelling evidence that Aβ aggregates are prions by demonstrating widespread cerebral β-amyloidosis induced by inoculation of either purified Aβ aggregates derived from brain or aggregates composed of synthetic Aβ. Although synthetic Aβ aggregates were sufficient to induce Aβ deposition in vivo, they exhibited lower specific biological activity compared with brain-derived Aβ aggregates. Our results create an experimental paradigm that should lead to identification of self-propagating Aβ conformations, which could represent novel targets for interrupting the spread of Aβ deposition in AD patients.

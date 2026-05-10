@@ -1,0 +1,14 @@
+# Autism, oxytocin and interoception.
+
+- **PMID**: 25277283
+- **DOI**: 10.1016/j.neubiorev.2014.09.012
+- **PMCID**: PMC3544832 (full-text saved)
+- **Journal**: Neuroscience and biobehavioral reviews  ·  **Year**: 2014
+- **Authors**: E Quattrocki, Karl Friston
+- **MeSH**: Autistic Disorder, Brain, Humans, Interoception, Oxytocin, Social Behavior
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25277283/
+- **Captured**: 2026-05-10T11:26:45
+
+## Abstract
+
+Autism is a pervasive developmental disorder characterized by profound social and verbal communication deficits, stereotypical motor behaviors, restricted interests, and cognitive abnormalities. Autism affects approximately 1% of children in developing countries. Given this prevalence, identifying risk factors and therapeutic interventions are pressing objectives—objectives that rest on neurobiologically grounded and psychologically informed theories about the underlying pathophysiology. In this article, we review the evidence that autism could result from a dysfunctional oxytocin system early in life. As a mediator of successful procreation, not only in the reproductive system, but also in the brain, oxytocin plays a crucial role in sculpting socio-sexual behavior. Formulated within a (Bayesian) predictive coding framework, we propose that oxytocin encodes the saliency or precision of interoceptive signals and enables the neuronal plasticity necessary for acquiring a generative model of the emotional and social 'self.' An aberrant oxytocin system in infancy could therefore help explain the marked deficits in language and social communication—as well as the sensory, autonomic, motor, behavioral, and cognitive abnormalities—seen in autism.

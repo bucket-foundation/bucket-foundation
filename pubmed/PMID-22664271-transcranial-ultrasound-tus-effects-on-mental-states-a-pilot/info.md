@@ -1,0 +1,14 @@
+# Transcranial ultrasound (TUS) effects on mental states: a pilot study.
+
+- **PMID**: 22664271
+- **DOI**: 10.1016/j.brs.2012.05.002
+- **PMCID**:  
+- **Journal**: Brain stimulation  ·  **Year**: 2013
+- **Authors**: Stuart Hameroff, Michael Trakas, Chris Duffield, Emil Annabi, M Bagambhrini Gerace, Patrick Boyle, Anthony Lucas, Quinlan Amos, Annemarie Buadu, John J Badal
+- **MeSH**: Adult, Affect, Aged, Aged, 80 and over, Brain, Chronic Pain, Cross-Over Studies, Double-Blind Method, Female, Functional Laterality
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22664271/
+- **Captured**: 2026-05-10T11:24:35
+
+## Abstract
+
+Transcranial ultrasound (TUS) can modulate brain function. To assess possible TUS modulation of mental states, we investigated effects on subjective reports of pain and mood of sub-thermal TUS versus placebo applied to frontal scalp and brain of chronic pain patient volunteers. With IRB approval and informed consent, subjects with chronic pain completed two visual analog scales for pain (NRS) and mood (VAMS/Global Affect), and their vital signs were recorded 10 min prior to, and 10 min and 40 min following exposure to either subthermal TUS (8 MHz) or placebo (in a double blind crossover study) using the 12L-RS probe of a LOGIQe ultrasound imaging machine (General Electric, USA). A physician, also blinded for TUS versus placebo, applied the probe (with gel) to scalp over posterior frontal cortex, contralateral to maximal pain, for 15 seconds. A second investigator operated the ultrasound machine, randomizing TUS versus placebo. The process was then repeated, applying the opposite modality (TUS or placebo). Subjective reports of Mood/Global Affect were improved 10 min (P = 0.03) and 40 min (P = 0.04) following TUS compared with placebo. NRS pain reports slightly improved following TUS (P = 0.07) at 40 min. We found improvement in subjective mood 10 min and 40 min after TUS compared to placebo. TUS can have safe neurophysiological effects on brain function, and is a promising noninvasive therapy for modulating conscious and unconscious mental states and disorders. We suggest TUS acts via intra-neuronal microtubules, which apparently resonate in TUS megahertz range.

@@ -1,0 +1,14 @@
+# Diagnosing synaesthesia with online colour pickers: maximising sensitivity and specificity.
+
+- **PMID**: 23458658
+- **DOI**: 10.1016/j.jneumeth.2013.02.009
+- **PMCID**:  
+- **Journal**: Journal of neuroscience methods  ·  **Year**: 2013
+- **Authors**: Nicolas Rothen, Anil K Seth, Christoph Witzel, Jamie Ward
+- **MeSH**: Adolescent, Adult, Algorithms, Area Under Curve, Child, Preschool, Color, Color Perception, Female, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23458658/
+- **Captured**: 2026-05-10T11:25:10
+
+## Abstract
+
+The most commonly used method for formally assessing grapheme-colour synaesthesia (i.e., experiencing colours in response to letter and/or number stimuli) involves selecting colours from a large colour palette on several occasions and measuring consistency of the colours selected. However, the ability to diagnose synaesthesia using this method depends on several factors that have not been directly contrasted. These include the type of colour space used (e.g., RGB, HSV, CIELUV, CIELAB) and different measures of consistency (e.g., city block and Euclidean distance in colour space). This study aims to find the most reliable way of diagnosing grapheme-colour synaesthesia based on maximising sensitivity (i.e., ability of a test to identify true synaesthetes) and specificity (i.e., ability of a test to identify true non-synaesthetes). We show, applying ROC (receiver operating characteristics) to binary classification of a large sample of self-declared synaesthetes and non-synaesthetes, that the consistency criterion (i.e., cut-off value) for diagnosing synaesthesia is considerably higher than the current standard in the field. We also show that methods based on perceptual CIELUV and CIELAB colour models (rather than RGB and HSV colour representations) and Euclidean distances offer an even greater sensitivity and specificity than most currently used measures. Together, these findings offer improved heuristics for the behavioural assessment of grapheme-colour synaesthesia.

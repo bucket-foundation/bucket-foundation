@@ -1,0 +1,14 @@
+# Spatial harmonics and pattern specification in early Drosophila development. Part I. Bifurcation sequences and gene expression.
+
+- **PMID**: 2395374
+- **DOI**: 10.1016/s0022-5193(05)80078-5
+- **PMCID**:  
+- **Journal**: Journal of theoretical biology  ·  **Year**: 1990
+- **Authors**: B C Goodwin, S A Kauffman
+- **MeSH**: Animals, Drosophila, Gene Expression, Models, Genetic, Phenotype
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2395374/
+- **Captured**: 2026-05-10T11:25:34
+
+## Abstract
+
+Molecular probes have now provided an unprecedented wealth of detail revealing the changing spatial patterns of gene products in early Drosophila development. This is examined for dynamic properties which might provide insights into the underlying behaviour of the patterning process. What emerges is that transcripts and protein products of members of the major categories of zygotically active genes involved in segmentation pass through transient spatial patterns that are suggestive of harmonic sequences arising from spatial frequency-doubling bifurcations. That is to say, these patterns are typically periodic in space and show a doubling in the number of domains of spatial expression as development proceeds. One of these patterns reflects the primary functional role of the gene in the establishment of the spatial pattern. The different categories of segmentation gene pass through these transients at different rates, those with the longest functional wavelength progressing most slowly. Each gene in a category has its own unique phase relationship to other members, as well as particular variations on the harmonic sequence theme. The result is that the developing embryo experiences a spatial hierarchy of phase-shifted patterning influences that span the range from the whole embryo to single segments, providing progressively more spatial resolution in the patterning process. The characteristic transients and the dynamic relationships between genes of the different categories suggest that gene products expressed in longer-wavelength patterns act as bifurcation parameters on the dynamic system generating the next shorter wavelength category. Such parametric influences are known to result in frequency-doubling bifurcations in Turing reaction-diffusion systems. A general model is proposed of a hierarchically-nested set of quasi-autonomous dynamic systems involving gene activities that can generate the progressively finer spatial order that emerges during embryogenesis. This model has implications for the general stability properties of evolving epigenetic systems.

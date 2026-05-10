@@ -1,0 +1,14 @@
+# Incorporating Network Built-in Priors in Weakly-Supervised Semantic Segmentation.
+
+- **PMID**: 28613162
+- **DOI**: 10.1109/TPAMI.2017.2713785
+- **PMCID**:  
+- **Journal**: IEEE transactions on pattern analysis and machine intelligence  ·  **Year**: 2018
+- **Authors**: Fatemeh Sadat Saleh, Mohammad Sadegh Aliakbarian, Mathieu Salzmann, Lars Petersson, Jose M Alvarez, Stephen Gould
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28613162/
+- **Captured**: 2026-05-10T11:29:02
+
+## Abstract
+
+Pixel-level annotations are expensive and time consuming to obtain. Hence, weak supervision using only image tags could have a significant impact in semantic segmentation. Recently, CNN-based methods have proposed to fine-tune pre-trained networks using image tags. Without additional information, this leads to poor localization accuracy. This problem, however, was alleviated by making use of objectness priors to generate foreground/background masks. Unfortunately these priors either require pixel-level annotations/bounding boxes, or still yield inaccurate object boundaries. Here, we propose a novel method to extract accurate masks from networks pre-trained for the task of object recognition, thus forgoing external objectness modules. We first show how foreground/background masks can be obtained from the activations of higher-level convolutional layers of a network. We then show how to obtain multi-class masks by the fusion of foreground/background ones with information extracted from a weakly-supervised localization network. Our experiments evidence that exploiting these masks in conjunction with a weakly-supervised training loss yields state-of-the-art tag-based weakly-supervised semantic segmentation results.

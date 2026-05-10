@@ -1,0 +1,14 @@
+# Isolation of the regulatory domain of scallop myosin: role of the essential light chain in calcium binding.
+
+- **PMID**: 2352947
+- **DOI**: 10.1073/pnas.87.12.4771
+- **PMCID**: PMC54199 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1990
+- **Authors**: H Kwon, E B Goodwin, L Nyitray, E Berliner, E O'Neall-Hennessey, F D Melandri, A G Szent-Györgyi
+- **MeSH**: Animals, Binding Sites, Calcium, Electrophoresis, Polyacrylamide Gel, Kinetics, Mollusca, Muscles, Myosins, Protein Denaturation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2352947/
+- **Captured**: 2026-05-10T11:25:12
+
+## Abstract
+
+The regulatory domain of scallop myosin, consisting of a regulatory light chain (R-LC), an essential light chain (E-LC), and a portion of heavy chain, occupies the neck region of myosin. This domain is directly involved in the regulation of molluscan muscle contraction, which is triggered by direct Ca2+ binding to myosin. We have isolated a soluble functional complex (regulatory complex) comprised of R-LC, E-LC, and a 10-kDa heavy chain fragment in a 1:1:1 stoichiometry by clostripain digestion of the myosin head (papain subfragment 1). N termini of the heavy chain fragments were either leucine-812 or valine-817. The isolated complex retained the specific Ca2(+)-binding site and bound Ca2+ with a similar affinity and selectivity as myosin. The individual components of the regulatory complex were isolated after complete denaturation with guanidine hydrochloride. The regulatory complex was reconstituted from isolated light chains and the heavy chain fragment. The renatured complex regained Ca2+ binding quantitatively. To elucidate the function of the E-LC in Ca2+ binding, we constructed hybrid regulatory complexes. The hybrid complexes reconstituted with molluscan E-LC and R-LC regained the specific Ca2(+)-binding site, whereas the hybrid complex formed with rabbit skeletal E-LC [alkali LC 2 (A2-LC)] and scallop R-LC did not. The results demonstrate that E-LCs from myosins regulated by direct Ca2+ binding are required for the specific Ca2+ binding in the molluscan muscle.

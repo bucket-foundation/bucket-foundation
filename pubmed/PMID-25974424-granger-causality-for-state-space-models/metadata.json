@@ -1,0 +1,14 @@
+{
+  "pmid": "25974424",
+  "title": "Granger causality for state-space models.",
+  "abstract": "Granger causality has long been a prominent method for inferring causal interactions between stochastic variables for a broad range of complex physical systems. However, it has been recognized that a moving average (MA) component in the data presents a serious confound to Granger causal analysis, as routinely performed via autoregressive (AR) modeling. We solve this problem by demonstrating that Granger causality may be calculated simply and efficiently from the parameters of a state-space (SS) model. Since SS models are equivalent to autoregressive moving average models, Granger causality estimated in this fashion is not degraded by the presence of a MA component. This is of particular significance when the data has been filtered, downsampled, observed with noise, or is a subprocess of a higher dimensional process, since all of these operations-commonplace in application domains as diverse as climate science, econometrics, and the neurosciences-induce a MA component. We show how Granger causality, conditional and unconditional, in both time and frequency domains, may be calculated directly from SS model parameters via solution of a discrete algebraic Riccati equation. Numerical simulations demonstrate that Granger causality estimators thus derived have greater statistical power and smaller bias than AR estimators. We also discuss how the SS approach facilitates relaxation of the assumptions of linearity, stationarity, and homoscedasticity underlying current AR methods, thus opening up potentially significant new areas of research in Granger causal analysis.",
+  "authors": [
+    "Lionel Barnett",
+    "Anil K Seth"
+  ],
+  "journal": "Physical review. E, Statistical, nonlinear, and soft matter physics",
+  "year": "2015",
+  "doi": "10.1103/PhysRevE.91.040101",
+  "pmcid": "",
+  "mesh": []
+}

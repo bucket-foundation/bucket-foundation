@@ -1,0 +1,14 @@
+# Structural heterogeneity and intersubject variability of Aβ in familial and sporadic Alzheimer's disease.
+
+- **PMID**: 29311311
+- **DOI**: 10.1073/pnas.1714966115
+- **PMCID**: PMC218780 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2018
+- **Authors**: Carlo Condello, Thomas Lemmin, Jan Stöhr, Mimi Nick, Yibing Wu, Alison M Maxwell, Joel C Watts, Christoffer D Caro, Abby Oehler, C Dirk Keene, Thomas D Bird, Sjoerd G van Duinen, Lars Lannfelt, Martin Ingelsson, Caroline Graff, Kurt Giles, William F DeGrado, Stanley B Prusiner
+- **MeSH**: Alzheimer Disease, Amyloid beta-Peptides, Animals, Mice, Transgenic, Point Mutation, Protein Conformation, Protein Folding
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29311311/
+- **Captured**: 2026-05-10T11:29:25
+
+## Abstract
+
+Point mutations in the amyloid-β (Aβ) coding region produce a combination of mutant and WT Aβ isoforms that yield unique clinicopathologies in familial Alzheimer's disease (fAD) and cerebral amyloid angiopathy (fCAA) patients. Here, we report a method to investigate the structural variability of amyloid deposits found in fAD, fCAA, and sporadic AD (sAD). Using this approach, we demonstrate that mutant Aβ determines WT Aβ conformation through prion template-directed misfolding. Using principal component analysis of multiple structure-sensitive fluorescent amyloid-binding dyes, we assessed the conformational variability of Aβ deposits in fAD, fCAA, and sAD patients. Comparing many deposits from a given patient with the overall population, we found that intrapatient variability is much lower than interpatient variability for both disease types. In a given brain, we observed one or two structurally distinct forms. When two forms coexist, they segregate between the parenchyma and cerebrovasculature, particularly in fAD patients. Compared with sAD samples, deposits from fAD patients show less intersubject variability, and little overlap exists between fAD and sAD deposits. Finally, we examined whether E22G (Arctic) or E22Q (Dutch) mutants direct the misfolding of WT Aβ, leading to fAD-like plaques in vivo. Intracerebrally injecting mutant Aβ40 fibrils into transgenic mice expressing only WT Aβ induced the deposition of plaques with many biochemical hallmarks of fAD. Thus, mutant Aβ40 prions induce a conformation of WT Aβ similar to that found in fAD deposits. These findings indicate that diverse AD phenotypes likely arise from one or more initial Aβ prion conformations, which kinetically dominate the spread of prions in the brain.

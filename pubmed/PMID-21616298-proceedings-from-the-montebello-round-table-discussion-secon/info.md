@@ -1,0 +1,14 @@
+# Proceedings from the Montebello Round Table Discussion. Second annual conference on Complexity and Variability discusses research that brings innovation to the bedside.
+
+- **PMID**: 21616298
+- **DOI**: 10.1016/j.jcrc.2011.04.002
+- **PMCID**:  
+- **Journal**: Journal of critical care  ·  **Year**: 2011
+- **Authors**: Andrew J E Seely, Stuart A Kauffman, Jason H T Bates, Peter T Macklem, Béla Suki, John C Marshall, Andriy I Batchinsky, Jose Luis Perez-Velazquez, Adam Seiver, Carolyn McGregor, Geoffrey Maksym, Markad V Kamath, Thomas Similowski, Timothy G Buchman, Christophe Letellier, Marcel Filoche, Martin G Frasch, Christian Straus, Leon Glass, Paul J Godin, John A Morris, Daby Sow, Vera Nenadovic, Ryan C Arnold, Patrick Norris, J Randall Moorman
+- **MeSH**: Biomedical Research, Critical Care, Diffusion of Innovation, Humans, Point-of-Care Systems, Quebec
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21616298/
+- **Captured**: 2026-05-10T11:23:28
+
+## Abstract
+
+

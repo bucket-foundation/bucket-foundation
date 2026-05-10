@@ -1,0 +1,14 @@
+# THE BIOGEOGRAPHIC EVIDENCE SUPPORTING THE PLEISTOCENE FOREST REFUGE HYPOTHESIS.
+
+- **PMID**: 28564118
+- **DOI**: 10.1111/j.1558-5646.1986.tb05717.x
+- **PMCID**:  
+- **Journal**: Evolution; international journal of organic evolution  ·  **Year**: 1986
+- **Authors**: Ernst Mayr, Robert J O'Hara
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28564118/
+- **Captured**: 2026-05-10T11:28:58
+
+## Abstract
+
+The prevailing explanation for the observed distributional patterns and areas of endemism of tropical forest organisms is the Pleistocene refuge hypothesis, which proposes that wide-ranging ancestral taxa were isolated into forest refuges during certain glacial periods, and that this isolation provided them with the opportunity to speciate. John Endler has recently argued that two predictions of the refuge hypothesis-that contact zones between vicars should be between refuges and that contact zones of rapidly reproducing butterflies should be wider than those of more slowly reproducing birds-are not borne out by the evidence. Endler therefore rejects the refuge hypothesis. We show that the data available are far too imprecise to permit any conclusions regarding contact zone widths and that, according to our reanalysis of the African bird data used by Endler, all the contact zones between vicars do indeed occur between refuges, exactly where they are expected. Additional strong support for the refuge hypothesis comes from the existence of many taxa endemic to the particular forest areas which have been postulated as refuges and from fragmented taxa which are still allopatric, never having come into secondary contact.

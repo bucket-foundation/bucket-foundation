@@ -1,0 +1,14 @@
+# Conformational sampling using high-temperature molecular dynamics.
+
+- **PMID**: 2207289
+- **DOI**: 10.1002/bip.360291415
+- **PMCID**:  
+- **Journal**: Biopolymers  ·  **Year**: 1990
+- **Authors**: R E Bruccoleri, M Karplus
+- **MeSH**: Amino Acid Sequence, Binding Sites, Computer Simulation, Immunoglobulin Fab Fragments, Models, Molecular, Molecular Sequence Data, Phosphorylcholine, Protein Conformation, Temperature, Thermodynamics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2207289/
+- **Captured**: 2026-05-10T11:23:55
+
+## Abstract
+
+High-temperature molecular dynamics as a method for conformational search was explored on the antigen combining site of McPC 603, a phosphorylcholine binding immunoglobulin. Simulations at temperatures of 500, 800, and 1500 K were run for 111.5, 101.7, and 76.3 ps, respectively. The effectiveness of the search was assessed using a variety of methods. For the shorter hypervariable loops, molecular dynamics explored an appreciable fraction of the conformational space as evidenced by a comparison to a simple theoretical model of the size of the conformational space. However, for the longer loops and the antigen combining site as a whole, the simulation times were too short for a complete search. The simulations at 500 and 800 K both generated conformations that minimized to energies 200 kcal/mole lower than the crystal structure. However, the 1500 K simulation produced higher energy structures, even after minimization; in addition, this highest temperature run had many cis-trans peptide isomerizations. This suggests that 1500 K is too high a temperature for unconstrained conformational sampling. Comparison of the results of high temperature molecular dynamics with a direct conformational search method, [R. E. Bruccoleri & M. Karplus (1987) Biopolymers 26, 137-168]. showed that the two methods did not overlap much in conformational space. Simple geometric measures of the conformational space indicated that the direct method covered more space than molecular dynamics at the lower temperature, but not at 1500 K. The results suggest that high-temperature molecular dynamics can aid in conformational searches.

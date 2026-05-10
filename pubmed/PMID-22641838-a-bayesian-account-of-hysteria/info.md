@@ -1,0 +1,14 @@
+# A Bayesian account of 'hysteria'.
+
+- **PMID**: 22641838
+- **DOI**: 10.1093/brain/aws129
+- **PMCID**: PMC2859149 (full-text saved)
+- **Journal**: Brain : a journal of neurology  ·  **Year**: 2012
+- **Authors**: Mark J Edwards, Rick A Adams, Harriet Brown, Isabel Pareés, Karl J Friston
+- **MeSH**: Bayes Theorem, Brain, Humans, Hysteria, Models, Biological, Models, Psychological, Psychological Theory
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22641838/
+- **Captured**: 2026-05-10T11:24:32
+
+## Abstract
+
+This article provides a neurobiological account of symptoms that have been called 'hysterical', 'psychogenic' or 'medically unexplained', which we will call functional motor and sensory symptoms. We use a neurobiologically informed model of hierarchical Bayesian inference in the brain to explain functional motor and sensory symptoms in terms of perception and action arising from inference based on prior beliefs and sensory information. This explanation exploits the key balance between prior beliefs and sensory evidence that is mediated by (body focused) attention, symptom expectations, physical and emotional experiences and beliefs about illness. Crucially, this furnishes an explanation at three different levels: (i) underlying neuromodulatory (synaptic) mechanisms; (ii) cognitive and experiential processes (attention and attribution of agency); and (iii) formal computations that underlie perceptual inference (representation of uncertainty or precision). Our explanation involves primary and secondary failures of inference; the primary failure is the (autonomous) emergence of a percept or belief that is held with undue certainty (precision) following top-down attentional modulation of synaptic gain. This belief can constitute a sensory percept (or its absence) or induce movement (or its absence). The secondary failure of inference is when the ensuing percept (and any somatosensory consequences) is falsely inferred to be a symptom to explain why its content was not predicted by the source of attentional modulation. This account accommodates several fundamental observations about functional motor and sensory symptoms, including: (i) their induction and maintenance by attention; (ii) their modification by expectation, prior experience and cultural beliefs and (iii) their involuntary and symptomatic nature.

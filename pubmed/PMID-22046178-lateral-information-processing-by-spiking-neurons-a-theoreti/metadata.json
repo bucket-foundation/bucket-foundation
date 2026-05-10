@@ -1,0 +1,26 @@
+{
+  "pmid": "22046178",
+  "title": "Lateral information processing by spiking neurons: a theoretical model of the neural correlate of consciousness.",
+  "abstract": "Cognitive brain functions, for example, sensory perception, motor control and learning, are understood as computation by axonal-dendritic chemical synapses in networks of integrate-and-fire neurons. Cognitive brain functions may occur either consciously or nonconsciously (on \"autopilot\"). Conscious cognition is marked by gamma synchrony EEG, mediated largely by dendritic-dendritic gap junctions, sideways connections in input/integration layers. Gap-junction-connected neurons define a sub-network within a larger neural network. A theoretical model (the \"conscious pilot\") suggests that as gap junctions open and close, a gamma-synchronized subnetwork, or zone moves through the brain as an executive agent, converting nonconscious \"auto-pilot\" cognition to consciousness, and enhancing computation by coherent processing and collective integration. In this study we implemented sideways \"gap junctions\" in a single-layer artificial neural network to perform figure/ground separation. The set of neurons connected through gap junctions form a reconfigurable resistive grid or sub-network zone. In the model, outgoing spikes are temporally integrated and spatially averaged using the fixed resistive grid set up by neurons of similar function which are connected through gap-junctions. This spatial average, essentially a feedback signal from the neuron's output, determines whether particular gap junctions between neurons will open or close. Neurons connected through open gap junctions synchronize their output spikes. We have tested our gap-junction-defined sub-network in a one-layer neural network on artificial retinal inputs using real-world images. Our system is able to perform figure/ground separation where the laterally connected sub-network of neurons represents a perceived object. Even though we only show results for visual stimuli, our approach should generalize to other modalities. The system demonstrates a moving sub-network zone of synchrony, within which the contents of perception are represented and contained. This mobile zone can be viewed as a model of the neural correlate of consciousness in the brain.",
+  "authors": [
+    "Marc Ebner",
+    "Stuart Hameroff"
+  ],
+  "journal": "Computational intelligence and neuroscience",
+  "year": "2011",
+  "doi": "10.1155/2011/247879",
+  "pmcid": "PMC6724920",
+  "mesh": [
+    "Action Potentials",
+    "Algorithms",
+    "Animals",
+    "Brain",
+    "Consciousness",
+    "Gap Junctions",
+    "Humans",
+    "Models, Neurological",
+    "Models, Theoretical",
+    "Neural Networks, Computer",
+    "Neurons"
+  ]
+}

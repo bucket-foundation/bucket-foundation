@@ -1,0 +1,14 @@
+# The Uniformity Illusion.
+
+- **PMID**: 28078975
+- **DOI**: 10.1177/0956797616672270
+- **PMCID**:  
+- **Journal**: Psychological science  ·  **Year**: 2017
+- **Authors**: Marte Otten, Yair Pinto, Chris L E Paffen, Anil K Seth, Ryota Kanai
+- **MeSH**: Adult, Female, Fovea Centralis, Humans, Illusions, Male, Motion, Motion Perception, Orientation, Pattern Recognition, Visual
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28078975/
+- **Captured**: 2026-05-10T11:28:36
+
+## Abstract
+
+Vision in the fovea, the center of the visual field, is much more accurate and detailed than vision in the periphery. This is not in line with the rich phenomenology of peripheral vision. Here, we investigated a visual illusion that shows that detailed peripheral visual experience is partially based on a reconstruction of reality. Participants fixated on the center of a visual display in which central stimuli differed from peripheral stimuli. Over time, participants perceived that the peripheral stimuli changed to match the central stimuli, so that the display seemed uniform. We showed that a wide range of visual features, including shape, orientation, motion, luminance, pattern, and identity, are susceptible to this uniformity illusion. We argue that the uniformity illusion is the result of a reconstruction of sparse visual information (from the periphery) based on more readily available detailed visual information (from the fovea), which gives rise to a rich, but illusory, experience of peripheral vision.

@@ -1,0 +1,14 @@
+# The evolutionary transition from RNA to DNA in early cells.
+
+- **PMID**: 2464698
+- **DOI**: 10.1007/BF02101189
+- **PMCID**:  
+- **Journal**: Journal of molecular evolution  ·  **Year**: 1988
+- **Authors**: A Lazcano, R Guerrero, L Margulis, J Oró
+- **MeSH**: Biological Evolution, DNA, Drug Stability, Models, Genetic, RNA, Selection, Genetic
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2464698/
+- **Captured**: 2026-05-10T11:26:11
+
+## Abstract
+
+The evolution of genetic material can be divided into at least three major phases: first, genomes of "nucleic acid-like" molecules; secondly, genomes of RNA; and finally, double-stranded DNA genomes such as those present in all contemporary cells. Using properties of nucleic acid molecules, we attempt to explain the evolutionary transition from RNA alone as a cellular informational macromolecule prior to the evolution of cell systems based on double-stranded DNA. The idea that ribonucleic acid-based cellular genomes preceded DNA is based on the following: (1) protein synthesis can occur in the absence of DNA but not of RNA; (2) RNA molecules have some catalytic properties; (3) the ubiquity of purine and pyridine nucleotide coenzymes as well as other similar ribonucleotide cofactors in metabolic pathways; and (4) the fact that the biosynthesis of deoxyribonucleotides always proceeds via the enzymatic reduction of ribonucleotides. The "RNA prior to DNA" hypothesis can be further developed by understanding the selective pressures that led to the biosynthesis of deoxyribose, thymine, and proofreading DNA polymerases. Taken together these observations suggest to us that DNA was selected as an informational molecule in cells to stabilize earlier RNA-protein replicating systems.(ABSTRACT TRUNCATED AT 250 WORDS)

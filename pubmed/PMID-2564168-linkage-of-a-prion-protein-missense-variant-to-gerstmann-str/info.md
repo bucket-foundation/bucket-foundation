@@ -1,0 +1,14 @@
+# Linkage of a prion protein missense variant to Gerstmann-Sträussler syndrome.
+
+- **PMID**: 2564168
+- **DOI**: 10.1038/338342a0
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 1989
+- **Authors**: K Hsiao, H F Baker, T J Crow, M Poulter, F Owen, J D Terwilliger, D Westaway, J Ott, S B Prusiner
+- **MeSH**: Chromosome Mapping, Chromosomes, Human, Pair 20, Female, Humans, Male, Mutation, Pedigree, PrP 27-30 Protein, Prions, Restriction Mapping
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2564168/
+- **Captured**: 2026-05-10T11:27:05
+
+## Abstract
+
+Gerstmann-Sträussler syndrome is a rare familial neurodegenerative condition that is vertically transmitted, in an apparently autosomal dominant way. It can also be horizontally transmitted to non-human primates and rodents through intracerebral inoculation of brain homogenates from patients with the disease. The exact incidence of the syndrome is unknown but is estimated to be between one and ten per hundred million. Patients initially suffer from ataxia or dementia and deteriorate until they die, in one to ten years. Protease-resistant prion protein (PrP) and PrP-immunoreactive amyloid plaques with characteristic morphology accumulate in the brains of these patients. Current diagnostic criteria for Gerstmann-Sträussler syndrome incorporate clinical and neuropathological features, as animal transmission studies can be unreliable. PrP is implicated in the pathogenesis and transmission of the condition and in scrapie, an equivalent animal disease. It was discovered by enriching scrapie-infected hamster brain fractions for infectivity. Because there is compelling evidence that the scrapie isoform of PrP is a necessary component of the infectious particle, it seemed possible that the PrP gene on the short arm of human chromosome 20 in Gerstmann-Sträussler syndrome might be abnormal. We show here that PrP codon 102 is linked to the putative gene for the syndrome in two pedigrees, providing the best evidence to date that this familial condition is inherited despite also being infectious, and that substitution of leucine for proline at PrP codon 102 may lead to the development of Gerstmann-Sträussler syndrome.

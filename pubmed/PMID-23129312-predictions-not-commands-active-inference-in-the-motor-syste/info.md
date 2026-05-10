@@ -1,0 +1,14 @@
+# Predictions not commands: active inference in the motor system.
+
+- **PMID**: 23129312
+- **DOI**: 10.1007/s00429-012-0475-5
+- **PMCID**: PMC1167457 (full-text saved)
+- **Journal**: Brain structure & function  ·  **Year**: 2013
+- **Authors**: Rick A Adams, Stewart Shipp, Karl J Friston
+- **MeSH**: Animals, Brain Mapping, Cerebral Cortex, Humans, Models, Neurological, Motor Activity, Nerve Net, Neural Pathways, Neurons, Predictive Value of Tests
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23129312/
+- **Captured**: 2026-05-10T11:24:53
+
+## Abstract
+
+The descending projections from motor cortex share many features with top-down or backward connections in visual cortex; for example, corticospinal projections originate in infragranular layers, are highly divergent and (along with descending cortico-cortical projections) target cells expressing NMDA receptors. This is somewhat paradoxical because backward modulatory characteristics would not be expected of driving motor command signals. We resolve this apparent paradox using a functional characterisation of the motor system based on Helmholtz's ideas about perception; namely, that perception is inference on the causes of visual sensations. We explain behaviour in terms of inference on the causes of proprioceptive sensations. This explanation appeals to active inference, in which higher cortical levels send descending proprioceptive predictions, rather than motor commands. This process mirrors perceptual inference in sensory cortex, where descending connections convey predictions, while ascending connections convey prediction errors. The anatomical substrate of this recurrent message passing is a hierarchical system consisting of functionally asymmetric driving (ascending) and modulatory (descending) connections: an arrangement that we show is almost exactly recapitulated in the motor system, in terms of its laminar, topographic and physiological characteristics. This perspective casts classical motor reflexes as minimising prediction errors and may provide a principled explanation for why motor cortex is agranular.

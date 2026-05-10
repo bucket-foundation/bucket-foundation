@@ -1,0 +1,14 @@
+# Identification, expression, and immuno-reactivity of Sol i 2 & Sol i 4 venom proteins of queen red imported fire ants, Solenopsis invicta Buren (Hymenoptera: Formicidae).
+
+- **PMID**: 22683679
+- **DOI**: 10.1016/j.toxicon.2012.05.011
+- **PMCID**:  
+- **Journal**: Toxicon : official journal of the International Society on Toxinology  ·  **Year**: 2012
+- **Authors**: Stephanie A Lockwood, Jilla Haghipour-Peasley, Donald R Hoffman, Richard J Deslippe
+- **MeSH**: Amino Acid Sequence, Animals, Ant Venoms, Ants, Base Sequence, Escherichia coli, Genetic Vectors, Immune Sera, Immunoglobulin E, Insect Proteins
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22683679/
+- **Captured**: 2026-05-10T11:24:36
+
+## Abstract
+
+We report on two low-molecular weight proteins that are stored in the venom of queen red imported fire ants (Solenopsis invicta). Translated amino acid sequences identified one protein to have 74.8% identity with the Sol i 2w worker allergen, and the other protein was found to have 96/97% identity with Sol i 4.01w/4.02w worker allergens. Both Sol i 2 and Sol i 4 queen and worker proteins were expressed using pEXP1-DEST vector in SHuffle™ T7 Express lysY Escherichia coli. Proteins were expressed at significant concentrations, as opposed to the μg/ml amounts by our previous expression methods, enabling further study of these proteins. Sol i 2q protein bound weakly to human IgE, sera pooled from allergic patients, whereas Sol i 2w, Sol i 4.01w, and Sol i 4q proteins bound strongly. Despite Sol i 2w and Sol i 2q proteins having 74.8% identity, the queen protein is less immuno-reactive than the worker allergen. This finding is consistent with allergic individuals being less sensitive to queen than worker venom.

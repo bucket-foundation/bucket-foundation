@@ -1,0 +1,14 @@
+# Fear from the heart: sensitivity to fear stimuli depends on individual heartbeats.
+
+- **PMID**: 24806682
+- **DOI**: 10.1016/S0006-8993(98)00268-6
+- **PMCID**: PMC2886906 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2014
+- **Authors**: Sarah N Garfinkel, Ludovico Minati, Marcus A Gray, Anil K Seth, Raymond J Dolan, Hugo D Critchley
+- **MeSH**: Adult, Aging, Amygdala, Anxiety, Attention, Awareness, Blinking, Diastole, Emotions, Face
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24806682/
+- **Captured**: 2026-05-10T11:26:24
+
+## Abstract
+
+Cognitions and emotions can be influenced by bodily physiology. Here, we investigated whether the processing of brief fear stimuli is selectively gated by their timing in relation to individual heartbeats. Emotional and neutral faces were presented to human volunteers at cardiac systole, when ejection of blood from the heart causes arterial baroreceptors to signal centrally the strength and timing of each heartbeat, and at diastole, the period between heartbeats when baroreceptors are quiescent. Participants performed behavioral and neuroimaging tasks to determine whether these interoceptive signals influence the detection of emotional stimuli at the threshold of conscious awareness and alter judgments of emotionality of fearful and neutral faces. Our results show that fearful faces were detected more easily and were rated as more intense at systole than at diastole. Correspondingly, amygdala responses were greater to fearful faces presented at systole relative to diastole. These novel findings highlight a major channel by which short-term interoceptive fluctuations enhance perceptual and evaluative processes specifically related to the processing of fear and threat and counter the view that baroreceptor afferent signaling is always inhibitory to sensory perception.

@@ -1,0 +1,14 @@
+# Natural selection drives the evolution of ant life cycles.
+
+- **PMID**: 25114217
+- **DOI**: 10.1073/pnas.1405550111
+- **PMCID**: PMC3864293 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2014
+- **Authors**: Edward O Wilson, Martin A Nowak
+- **MeSH**: Animals, Ants, Biological Evolution, Female, Genetic Fitness, Male, Selection, Genetic, Sexual Behavior, Animal, Social Behavior, Sociobiology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25114217/
+- **Captured**: 2026-05-10T11:26:40
+
+## Abstract
+
+The genetic origin of advanced social organization has long been one of the outstanding problems of evolutionary biology. Here we present an analysis of the major steps in ant evolution, based for the first time, to our knowledge, on combined recent advances in paleontology, phylogeny, and the study of contemporary life histories. We provide evidence of the causal forces of natural selection shaping several key phenomena: (i) the relative lateness and rarity in geological time of the emergence of eusociality in ants and other animal phylads; (ii) the prevalence of monogamy at the time of evolutionary origin; and (iii) the female-biased sex allocation observed in many ant species. We argue that a clear understanding of the evolution of social insects can emerge if, in addition to relatedness-based arguments, we take into account key factors of natural history and study how natural selection acts on alleles that modify social behavior.

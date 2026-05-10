@@ -1,0 +1,14 @@
+# Electrochemical treatment of cancer. I: Variable response to anodic and cathodic fields.
+
+- **PMID**: 2556014
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: American journal of clinical oncology  ·  **Year**: 1989
+- **Authors**: B E Nordenström
+- **MeSH**: Aged, Carcinoma, Intraductal, Noninfiltrating, Electric Stimulation Therapy, Electrodes, Female, Humans, Leiomyosarcoma, Lung Neoplasms, Male, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2556014/
+- **Captured**: 2026-05-10T11:27:00
+
+## Abstract
+
+Percutaneous placement of an intraneoplasmic electrode in pulmonary metastases of three patients with extrathoracic primary cancers permitted electrochemical treatment of these lesions. These reacted variably to anodic and cathodic electrodes. One breast cancer metastasis disappeared after treatment with the anodic field. A small metastasis from a cancer of the urinary bladder was found to be resistant to both anodic and cathodic fields despite large doses of current. Two large metastases of about equal size from the leiomyosarcoma of the uterus showed progression of the cranial anodic neoplasm but regression of the caudal cathodic neoplasm. At reversed polarity the cathodic neoplasm showed a tendency to regress and the caudal neoplasm continued to disappear. It appears that different neoplasms may show a variable response to anodic or cathodic fields or may show poor sensitivity to both fields.

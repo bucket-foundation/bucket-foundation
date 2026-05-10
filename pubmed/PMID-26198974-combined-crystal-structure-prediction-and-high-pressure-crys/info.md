@@ -1,0 +1,14 @@
+# Combined crystal structure prediction and high-pressure crystallization in rational pharmaceutical polymorph screening.
+
+- **PMID**: 26198974
+- **DOI**: 10.1038/ncomms8793
+- **PMCID**: PMC3222142 (full-text saved)
+- **Journal**: Nature communications  ·  **Year**: 2015
+- **Authors**: M A Neumann, J van de Streek, F P A Fabbiani, P Hidber, O Grassmann
+- **MeSH**: Amides, Computer Simulation, Crystallization, Esters, Models, Chemical, Pressure, Sulfhydryl Compounds
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26198974/
+- **Captured**: 2026-05-10T11:27:24
+
+## Abstract
+
+Organic molecules, such as pharmaceuticals, agro-chemicals and pigments, frequently form several crystal polymorphs with different physicochemical properties. Finding polymorphs has long been a purely experimental game of trial-and-error. Here we utilize in silico polymorph screening in combination with rationally planned crystallization experiments to study the polymorphism of the pharmaceutical compound Dalcetrapib, with 10 torsional degrees of freedom one of the most flexible molecules ever studied computationally. The experimental crystal polymorphs are found at the bottom of the calculated lattice energy landscape, and two predicted structures are identified as candidates for a missing, thermodynamically more stable polymorph. Pressure-dependent stability calculations suggested high pressure as a means to bring these polymorphs into existence. Subsequently, one of them could indeed be crystallized in the 0.02 to 0.50 GPa pressure range and was found to be metastable at ambient pressure, effectively derisking the appearance of a more stable polymorph during late-stage development of Dalcetrapib.

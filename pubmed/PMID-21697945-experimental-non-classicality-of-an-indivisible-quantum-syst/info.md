@@ -1,0 +1,14 @@
+# Experimental non-classicality of an indivisible quantum system.
+
+- **PMID**: 21697945
+- **DOI**: 10.1038/nature10119
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 2011
+- **Authors**: Radek Lapkiewicz, Peizhe Li, Christoph Schaeff, Nathan K Langford, Sven Ramelow, Marcin Wieśniak, Anton Zeilinger
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21697945/
+- **Captured**: 2026-05-10T11:23:33
+
+## Abstract
+
+In contrast to classical physics, quantum theory demands that not all properties can be simultaneously well defined; the Heisenberg uncertainty principle is a manifestation of this fact. Alternatives have been explored--notably theories relying on joint probability distributions or non-contextual hidden-variable models, in which the properties of a system are defined independently of their own measurement and any other measurements that are made. Various deep theoretical results imply that such theories are in conflict with quantum mechanics. Simpler cases demonstrating this conflict have been found and tested experimentally with pairs of quantum bits (qubits). Recently, an inequality satisfied by non-contextual hidden-variable models and violated by quantum mechanics for all states of two qubits was introduced and tested experimentally. A single three-state system (a qutrit) is the simplest system in which such a contradiction is possible; moreover, the contradiction cannot result from entanglement between subsystems, because such a three-state system is indivisible. Here we report an experiment with single photonic qutrits which provides evidence that no joint probability distribution describing the outcomes of all possible measurements--and, therefore, no non-contextual theory--can exist. Specifically, we observe a violation of the Bell-type inequality found by Klyachko, Can, Binicioğlu and Shumovsky. Our results illustrate a deep incompatibility between quantum mechanics and classical physics that cannot in any way result from entanglement.

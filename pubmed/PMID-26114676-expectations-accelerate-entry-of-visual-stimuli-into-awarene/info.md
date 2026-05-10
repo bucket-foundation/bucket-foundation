@@ -1,0 +1,14 @@
+# Expectations accelerate entry of visual stimuli into awareness.
+
+- **PMID**: 26114676
+- **DOI**: 10.1167/15.8.13
+- **PMCID**:  
+- **Journal**: Journal of vision  ·  **Year**: 2015
+- **Authors**: Yair Pinto, Simon van Gaal, Floris P de Lange, Victor A F Lamme, Anil K Seth
+- **MeSH**: Adolescent, Adult, Attention, Awareness, Consciousness, Cues, Female, Humans, Male, Memory, Short-Term
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26114676/
+- **Captured**: 2026-05-10T11:27:20
+
+## Abstract
+
+How do expectations influence transitions between unconscious and conscious perceptual processing? According to the influential predictive processing framework, perceptual content is determined by predictive models of the causes of sensory signals. On one interpretation, conscious contents arise when predictive models are verified by matching sensory input (minimizing prediction error). On another, conscious contents arise when surprising events falsify current perceptual predictions. Finally, the cognitive impenetrability account posits that conscious perception is not affected by such higher level factors. To discriminate these positions, we combined predictive cueing with continuous flash suppression (CFS) in which the relative contrast of a target image gradually increases over time. In four experiments we established that expected stimuli enter consciousness faster than neutral or unexpected stimuli. These effects are difficult to account for in terms of response priming, pre-existing stimulus associations, or the attentional mechanisms that cause asynchronous temporal order judgments (of simultaneously presented stimuli). Our results further suggest that top-down expectations play a larger role when bottom-up input is ambiguous, in line with predictive processing accounts of perception. Taken together, our findings support the hypothesis that conscious access depends on verification of perceptual predictions.

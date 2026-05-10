@@ -1,0 +1,14 @@
+# Loss of consciousness is related to hyper-correlated gamma-band activity in anesthetized macaques and sleeping humans.
+
+- **PMID**: 29162522
+- **DOI**: 10.1016/j.neuroimage.2017.11.030
+- **PMCID**:  
+- **Journal**: NeuroImage  ·  **Year**: 2018
+- **Authors**: Michał Bola, Adam B Barrett, Andrea Pigorini, Lino Nobili, Anil K Seth, Artur Marchewka
+- **MeSH**: Adult, Anesthesia, Anesthetics, General, Animals, Consciousness, Electrocorticography, Electroencephalography Phase Synchronization, Gamma Rhythm, Humans, Ketamine
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29162522/
+- **Captured**: 2026-05-10T11:29:17
+
+## Abstract
+
+Loss of consciousness can result from a wide range of causes, including natural sleep and pharmacologically induced anesthesia. Important insights might thus come from identifying neuronal mechanisms of loss and re-emergence of consciousness independent of a specific manipulation. Therefore, to seek neuronal signatures of loss of consciousness common to sleep and anesthesia we analyzed spontaneous electrophysiological activity recorded in two experiments. First, electrocorticography (ECoG) acquired from 4 macaque monkeys anesthetized with different anesthetic agents (ketamine, medetomidine, propofol) and, second, stereo-electroencephalography (sEEG) from 10 epilepsy patients in different wake-sleep stages (wakefulness, NREM, REM). Specifically, we investigated co-activation patterns among brain areas, defined as correlations between local amplitudes of gamma-band activity. We found that resting wakefulness was associated with intermediate levels of gamma-band coupling, indicating neither complete dependence, nor full independence among brain regions. In contrast, loss of consciousness during NREM sleep and propofol anesthesia was associated with excessively correlated brain activity, as indicated by a robust increase of number and strength of positive correlations. However, such excessively correlated brain signals were not observed during REM sleep, and were present only to a limited extent during ketamine anesthesia. This might be related to the fact that, despite suppression of behavioral responsiveness, REM sleep and ketamine anesthesia often involve presence of dream-like conscious experiences. We conclude that hyper-correlated gamma-band activity might be a signature of loss of consciousness common across various manipulations and independent of behavioral responsiveness.

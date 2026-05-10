@@ -1,0 +1,14 @@
+# Diversity of oligosaccharide structures linked to asparagines of the scrapie prion protein.
+
+- **PMID**: 2574992
+- **DOI**: 10.1021/bi00447a017
+- **PMCID**:  
+- **Journal**: Biochemistry  ·  **Year**: 1989
+- **Authors**: T Endo, D Groth, S B Prusiner, A Kobata
+- **MeSH**: Acetylation, Animals, Asparagine, Carbohydrate Sequence, Chemistry, Organic, Chromatography, Ion Exchange, Cricetinae, Methylation, Molecular Sequence Data, Neuraminidase
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2574992/
+- **Captured**: 2026-05-10T11:27:10
+
+## Abstract
+
+Prion proteins from humans and rodents contain two consensus sites for asparagine-linked glycosylation near their C-termini. The asparagine-linked oligosaccharides of the scrapie isoform of the hamster prion protein (PrP 27-30) were released quantitatively from the purified molecule by hydrazinolysis followed by N-acetylation and NaB3H4 reduction. The radioactive oligosaccharides were fractionated into one neutral and three acidic oligosaccharide fractions by anion-exchange column chromatography. All oligosaccharides in the acidic fractions could be converted to neutral oligosaccharides by sialidase digestion. Structural studies on these oligosaccharides including sequential exoglycosidase digestion in combination with methylation analysis revealed that PrP 27-30 contains a mixture of bi-, tri-, and tetraantennary complex-type sugar chains with Man alpha 1----6(GlcNAc beta 1----4)(Man alpha 1----3)Man beta 1----4GlcNAc beta 1----4-(Fuc alpha 1----6)GlcNAc as their core. Variation is produced by the different combination of the oligosaccharides Gal beta 1----4GlcNAc beta 1----, Gal beta 1----4(Fuc alpha 1----3)GlcNAc beta 1----, GlcNAc beta 1----, Sia alpha 2----3Gal beta 1----4GlcNAc beta 1----, and Sia alpha 2----6Gal beta 1----4GlcNAc beta 1---- in their outer chain moieties. When both asparagine-linked consensus sites are glycosylated, the diversity of oligosaccharide structures yields over 400 different forms of the scrapie prion protein. Whether these diverse asparagine-linked oligosaccharides participate in scrapie prion infectivity or modify the function of the cellular prion protein remains to be established.

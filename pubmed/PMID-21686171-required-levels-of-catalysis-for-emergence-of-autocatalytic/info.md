@@ -1,0 +1,14 @@
+# Required levels of catalysis for emergence of autocatalytic sets in models of chemical reaction systems.
+
+- **PMID**: 21686171
+- **DOI**: 10.1186/gb-2008-9-3-r51.
+- **PMCID**: PMC516543 (full-text saved)
+- **Journal**: International journal of molecular sciences  ·  **Year**: 2011
+- **Authors**: Wim Hordijk, Stuart A Kauffman, Mike Steel
+- **MeSH**: Algorithms, Biocatalysis, Computer Simulation, Metabolic Networks and Pathways, Models, Chemical, Models, Theoretical, Origin of Life
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21686171/
+- **Captured**: 2026-05-10T11:23:32
+
+## Abstract
+
+The formation of a self-sustaining autocatalytic chemical network is a necessary but not sufficient condition for the origin of life. The question of whether such a network could form "by chance" within a sufficiently complex suite of molecules and reactions is one that we have investigated for a simple chemical reaction model based on polymer ligation and cleavage. In this paper, we extend this work in several further directions. In particular, we investigate in more detail the levels of catalysis required for a self-sustaining autocatalytic network to form. We study the size of chemical networks within which we might expect to find such an autocatalytic subset, and we extend the theoretical and computational analyses to models in which catalysis requires template matching.

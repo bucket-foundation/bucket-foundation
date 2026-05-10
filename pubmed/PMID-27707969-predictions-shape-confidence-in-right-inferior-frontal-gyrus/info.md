@@ -1,0 +1,14 @@
+# Predictions Shape Confidence in Right Inferior Frontal Gyrus.
+
+- **PMID**: 27707969
+- **DOI**: 10.3389/fnint.2012.00079
+- **PMCID**: PMC3448113 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2016
+- **Authors**: Maxine T Sherman, Anil K Seth, Ryota Kanai
+- **MeSH**: Adult, Attention, Brain Mapping, Decision Making, Female, Form Perception, Frontal Lobe, Humans, Magnetic Resonance Imaging, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27707969/
+- **Captured**: 2026-05-10T11:28:20
+
+## Abstract
+
+It is clear that prior expectations shape perceptual decision-making, yet their contribution to the construction of subjective decision confidence remains largely unexplored. We recorded fMRI data while participants made perceptual decisions and confidence judgments, manipulating perceptual prior expectations while controlling for potential confounds of attention. Results show that subjective confidence increases as expectations increasingly support the decision, and that this relationship is associated with BOLD activity in right inferior frontal gyrus (rIFG). Specifically, rIFG is sensitive to the discrepancy between expectation and decision (mismatch), and higher mismatch responses are associated with lower decision confidence. Connectivity analyses revealed expectancy information to be represented in bilateral orbitofrontal cortex and sensory signals to be represented in intracalcarine sulcus. Together, our results indicate that predictive information is integrated into subjective confidence in rIFG, and reveal an occipital-frontal network that constructs confidence from top-down and bottom-up signals. This interpretation was further supported by exploratory findings that the white matter density of right orbitofrontal cortex negatively predicted its respective contribution to the construction of confidence. Our findings advance our understanding of the neural basis of subjective perceptual processes by revealing an occipitofrontal functional network that integrates prior beliefs into the construction of confidence. Perceptual decision-making is typically conceived as an integration of bottom-up and top-down influences. However, perceptual decisions are accompanied by a sense of confidence. Confidence is an important facet of perceptual consciousness yet remains poorly understood. Here we implicate right inferior frontal gyrus in constructing confidence from the discrepancy between perceptual judgment and its prior probability. Furthermore, we place right inferior frontal gyrus within an occipitofrontal network, consisting of orbitofrontal cortex and intracalcarine sulcus, which represents and communicates relevant top-down and bottom-up signals. Together, our data reveal a role of frontal regions in the top-down processes enabling perceptual decisions to become available for conscious report.

@@ -1,0 +1,14 @@
+# Field test of quantum key distribution in the Tokyo QKD Network.
+
+- **PMID**: 21643295
+- **DOI**: 10.1364/OE.19.010387
+- **PMCID**:  
+- **Journal**: Optics express  ·  **Year**: 2011
+- **Authors**: M Sasaki, M Fujiwara, H Ishizuka, W Klaus, K Wakui, M Takeoka, S Miki, T Yamashita, Z Wang, A Tanaka, K Yoshino, Y Nambu, S Takahashi, A Tajima, A Tomita, T Domeki, T Hasegawa, Y Sakai, H Kobayashi, T Asai, K Shimizu, T Tokura, T Tsurumaru, M Matsui, T Honjo, K Tamaki, H Takesue, Y Tokura, J F Dynes, A R Dixon, A W Sharpe, Z L Yuan, A J Shields, S Uchikoga, M Legré, S Robyr, P Trinkler, L Monat, J-B Page, G Ribordy, A Poppe, A Allacher, O Maurhart, T Länger, M Peev, A Zeilinger
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21643295/
+- **Captured**: 2026-05-10T11:23:29
+
+## Abstract
+
+A secure communication network with quantum key distribution in a metropolitan area is reported. Six different QKD systems are integrated into a mesh-type network. GHz-clocked QKD links enable us to demonstrate the world-first secure TV conferencing over a distance of 45km. The network includes a commercial QKD product for long-term stable operation, and application interface to secure mobile phones. Detection of an eavesdropper, rerouting into a secure path, and key relay via trusted nodes are demonstrated in this network.

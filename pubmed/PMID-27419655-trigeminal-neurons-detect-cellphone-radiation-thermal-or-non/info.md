@@ -1,0 +1,14 @@
+# Trigeminal neurons detect cellphone radiation: Thermal or nonthermal is not the question.
+
+- **PMID**: 27419655
+- **DOI**: 10.1080/15368378.2016.1194294
+- **PMCID**:  
+- **Journal**: Electromagnetic biology and medicine  ·  **Year**: 2017
+- **Authors**: Andrew A Marino, Paul Y Kim, Clifton Frilot Ii
+- **MeSH**: Adult, Cell Phone, Electromagnetic Radiation, Electrophysiological Phenomena, Female, Humans, Male, Middle Aged, Neurons, Temperature
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27419655/
+- **Captured**: 2026-05-10T11:28:10
+
+## Abstract
+
+Cellphone electromagnetic radiation produces temperature alterations in facial skin. We hypothesized that the radiation-induced heat was transduced by warmth-sensing trigeminal neurons, as evidenced by changes in cognitive processing of the afferent signals. Ten human volunteers were exposed on the right side of the face to 1 GHz radiation in the absence of acoustic, tactile, and low-frequency electromagnetic stimuli produced by cellphones. Cognitive processing manifested in the electroencephalogram (EEG) was quantitated by analysis of brain recurrence (a nonlinear technique). The theoretical temperature sensitivity of warmth-sensing neurons was estimated by comparing changes in membrane voltage expected as a result of heat transduction with membrane-voltage variance caused by thermal noise. Each participant underwent sixty 12-s trials. The recurrence variable r ("percent recurrence") was computed second by second for the ∆ band of EEGs from two bilaterally symmetric derivations (decussated and nondecussated). Percent recurrence during radiation exposure (first 4 s of each trial) was reduced in the decussated afferent signal compared with the control (last four seconds of each trial); mean difference, r = 1.1 ± 0.5%, p < 0.005. Mean relative ∆ power did not differ between the exposed and control intervals, as expected. Trigeminal neurons were capable of detecting temperature changes far below skin temperature increases caused by cellphone radiation. Simulated cellphone radiation affected brain electrical activity associated with nonlinear cognitive processing of radiation-induced thermal afferent signals. Radiation standards for cellphones based on a thermal/nonthermal binary distinction do not prevent neurophysiological consequences of cellphone radiation.

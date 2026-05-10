@@ -1,0 +1,14 @@
+# Uncertainty and stress: Why it causes diseases and how it is mastered by the brain.
+
+- **PMID**: 28576664
+- **DOI**: 10.1016/j.pneurobio.2017.05.004
+- **PMCID**:  
+- **Journal**: Progress in neurobiology  ·  **Year**: 2017
+- **Authors**: Achim Peters, Bruce S McEwen, Karl Friston
+- **MeSH**: Animals, Atherosclerosis, Brain, Diabetes Mellitus, Humans, Memory Disorders, Stress, Psychological, Uncertainty
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28576664/
+- **Captured**: 2026-05-10T11:28:59
+
+## Abstract
+
+The term 'stress' - coined in 1936 - has many definitions, but until now has lacked a theoretical foundation. Here we present an information-theoretic approach - based on the 'free energy principle' - defining the essence of stress; namely, uncertainty. We address three questions: What is uncertainty? What does it do to us? What are our resources to master it? Mathematically speaking, uncertainty is entropy or 'expected surprise'. The 'free energy principle' rests upon the fact that self-organizing biological agents resist a tendency to disorder and must therefore minimize the entropy of their sensory states. Applied to our everyday life, this means that we feel uncertain, when we anticipate that outcomes will turn out to be something other than expected - and that we are unable to avoid surprise. As all cognitive systems strive to reduce their uncertainty about future outcomes, they face a critical constraint: Reducing uncertainty requires cerebral energy. The characteristic of the vertebrate brain to prioritize its own high energy is captured by the notion of the 'selfish brain'. Accordingly, in times of uncertainty, the selfish brain demands extra energy from the body. If, despite all this, the brain cannot reduce uncertainty, a persistent cerebral energy crisis may develop, burdening the individual by 'allostatic load' that contributes to systemic and brain malfunction (impaired memory, atherogenesis, diabetes and subsequent cardio- and cerebrovascular events). Based on the basic tenet that stress originates from uncertainty, we discuss the strategies our brain uses to avoid surprise and thereby resolve uncertainty.

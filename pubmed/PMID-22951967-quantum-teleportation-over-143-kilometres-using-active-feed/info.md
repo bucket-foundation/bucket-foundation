@@ -1,0 +1,14 @@
+# Quantum teleportation over 143 kilometres using active feed-forward.
+
+- **PMID**: 22951967
+- **DOI**: 10.1038/nature11472
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 2012
+- **Authors**: Xiao-Song Ma, Thomas Herbst, Thomas Scheidl, Daqing Wang, Sebastian Kropatschek, William Naylor, Bernhard Wittmann, Alexandra Mech, Johannes Kofler, Elena Anisimova, Vadim Makarov, Thomas Jennewein, Rupert Ursin, Anton Zeilinger
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22951967/
+- **Captured**: 2026-05-10T11:24:46
+
+## Abstract
+
+The quantum internet is predicted to be the next-generation information processing platform, promising secure communication and an exponential speed-up in distributed computation. The distribution of single qubits over large distances via quantum teleportation is a key ingredient for realizing such a global platform. By using quantum teleportation, unknown quantum states can be transferred over arbitrary distances to a party whose location is unknown. Since the first experimental demonstrations of quantum teleportation of independent external qubits, an internal qubit and squeezed states, researchers have progressively extended the communication distance. Usually this occurs without active feed-forward of the classical Bell-state measurement result, which is an essential ingredient in future applications such as communication between quantum computers. The benchmark for a global quantum internet is quantum teleportation of independent qubits over a free-space link whose attenuation corresponds to the path between a satellite and a ground station. Here we report such an experiment, using active feed-forward in real time. The experiment uses two free-space optical links, quantum and classical, over 143 kilometres between the two Canary Islands of La Palma and Tenerife. To achieve this, we combine advanced techniques involving a frequency-uncorrelated polarization-entangled photon pair source, ultra-low-noise single-photon detectors and entanglement-assisted clock synchronization. The average teleported state fidelity is well beyond the classical limit of two-thirds. Furthermore, we confirm the quality of the quantum teleportation procedure without feed-forward by complete quantum process tomography. Our experiment verifies the maturity and applicability of such technologies in real-world scenarios, in particular for future satellite-based quantum teleportation.

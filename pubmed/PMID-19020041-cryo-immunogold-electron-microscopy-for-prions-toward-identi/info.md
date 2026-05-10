@@ -1,0 +1,14 @@
+# Cryo-immunogold electron microscopy for prions: toward identification of a conversion site.
+
+- **PMID**: 19020041
+- **DOI**: 10.1523/JNEUROSCI.4474-08.2008
+- **PMCID**: PMC110372 (full-text saved)
+- **Journal**: The Journal of neuroscience : the official journal of the Society for Neuroscience  ·  **Year**: 2008
+- **Authors**: Susan F Godsave, Holger Wille, Pekka Kujala, Diane Latawiec, Stephen J DeArmond, Ana Serban, Stanley B Prusiner, Peter J Peters
+- **MeSH**: Animals, Cryoelectron Microscopy, Dendrites, Disease Models, Animal, Hippocampus, Mice, Mice, Knockout, Neurons, Neuropil, PrPC Proteins
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19020041/
+- **Captured**: 2026-05-10T11:22:28
+
+## Abstract
+
+Prion diseases are caused by accumulation of an abnormally folded isoform (PrP(Sc)) of the cellular prion protein (PrP(C)). The subcellular distribution of PrP(Sc) and the site of its formation in brain are still unclear. We performed quantitative cryo-immunogold electron microscopy on hippocampal sections from mice infected with the Rocky Mountain Laboratory strain of prions. Two antibodies were used: R2, which recognizes both PrP(C) and PrP(Sc); and F4-31, which only detects PrP(C) in undenatured sections. At a late subclinical stage of prion infection, both PrP(C) and PrP(Sc) were detected principally on neuronal plasma membranes and on vesicles resembling early endocytic or recycling vesicles in the neuropil. The R2 labeling was approximately six times higher in the infected than the uninfected hippocampus and gold clusters were only evident in infected tissue. The biggest increase in labeling density (24-fold) was found on the early/recycling endosome-like vesicles of small-diameter neurites, suggesting these as possible sites of conversion. Trypsin digestion of infected hippocampal sections resulted in a reduction in R2 labeling of >85%, which suggests that a high proportion of PrP(Sc) may be oligomeric, protease-sensitive PrP(Sc).

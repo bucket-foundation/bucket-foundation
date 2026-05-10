@@ -1,0 +1,14 @@
+# Conserved sequence and structural elements in the HIV-1 principal neutralizing determinant.
+
+- **PMID**: 2392685
+- **DOI**: 10.1126/science.2392685
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 1990
+- **Authors**: G J LaRosa, J P Davide, K Weinhold, J A Waterbury, A T Profy, J A Lewis, A J Langlois, G R Dreesman, R N Boswell, P Shadduck
+- **MeSH**: Amino Acid Sequence, Genetic Variation, HIV Envelope Protein gp120, HIV Seropositivity, HIV-1, Humans, Military Personnel, Molecular Sequence Data, Protein Conformation, United States
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2392685/
+- **Captured**: 2026-05-10T11:25:33
+
+## Abstract
+
+The principal neutralizing determinant (PND) of human immunodeficiency virus HIV-1 is part of a disulfide bridged loop in the third variable region of the external envelope protein, gp120. Analysis of the amino acid sequences of this domain from 245 different HIV-1 isolates revealed that the PND is less variable than thought originally. Conservation to better than 80 percent of the amino acids in 9 out of 14 positions in the central portion of the PND and the occurrence of particular oligopeptide sequences in a majority of the isolates suggest that there are constraints on PND variability. One constraining influence may be the structural motif (beta strand--type II beta turn--beta strand--alpha helix) predicted for the consensus PND sequence by a neural network approach. Isolates with a PND similar to the commonly investigated human T cell lymphoma virus IIIB (HTLV-IIIB) and LAV-1 (BRU) strains were rare, and only 14 percent of sera from 86 randomly selected HIV-1 seropositive donors contained antibodies that recognized the PND of these virus isolates. In contrast, over 65 percent of these sera reacted with peptides containing more common PND sequences. These results suggest that HIV vaccine immunogens chosen because of their similarity to the consensus PND sequence and structure are likely to induce antibodies that neutralize a majority of HIV-1 isolates.

@@ -1,0 +1,14 @@
+# Active inference and learning.
+
+- **PMID**: 27375276
+- **DOI**: 10.1016/j.neubiorev.2016.06.022
+- **PMCID**: PMC1693452 (full-text saved)
+- **Journal**: Neuroscience and biobehavioral reviews  ·  **Year**: 2016
+- **Authors**: Karl Friston, Thomas FitzGerald, Francesco Rigoli, Philipp Schwartenbeck, John O Doherty, Giovanni Pezzulo
+- **MeSH**: Choice Behavior, Dopamine, Habits, Learning, Reward
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27375276/
+- **Captured**: 2026-05-10T11:28:06
+
+## Abstract
+
+This paper offers an active inference account of choice behaviour and learning. It focuses on the distinction between goal-directed and habitual behaviour and how they contextualise each other. We show that habits emerge naturally (and autodidactically) from sequential policy optimisation when agents are equipped with state-action policies. In active inference, behaviour has explorative (epistemic) and exploitative (pragmatic) aspects that are sensitive to ambiguity and risk respectively, where epistemic (ambiguity-resolving) behaviour enables pragmatic (reward-seeking) behaviour and the subsequent emergence of habits. Although goal-directed and habitual policies are usually associated with model-based and model-free schemes, we find the more important distinction is between belief-free and belief-based schemes. The underlying (variational) belief updating provides a comprehensive (if metaphorical) process theory for several phenomena, including the transfer of dopamine responses, reversal learning, habit formation and devaluation. Finally, we show that active inference reduces to a classical (Bellman) scheme, in the absence of ambiguity.

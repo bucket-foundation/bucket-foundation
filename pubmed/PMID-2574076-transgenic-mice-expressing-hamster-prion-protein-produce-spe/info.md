@@ -1,0 +1,14 @@
+# Transgenic mice expressing hamster prion protein produce species-specific scrapie infectivity and amyloid plaques.
+
+- **PMID**: 2574076
+- **DOI**: 10.1016/0092-8674(89)90608-9
+- **PMCID**:  
+- **Journal**: Cell  ·  **Year**: 1989
+- **Authors**: M Scott, D Foster, C Mirenda, D Serban, F Coufal, M Wälchli, M Torchia, D Groth, G Carlson, S J DeArmond, D Westaway, S B Prusiner
+- **MeSH**: Amyloid, Animals, Base Sequence, Brain, Cloning, Molecular, Cosmids, Cricetinae, Genes, Viral, Mesocricetus, Mice
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2574076/
+- **Captured**: 2026-05-10T11:27:09
+
+## Abstract
+
+Three transgenic mouse lines designated Tg 69, 71, and 81 were produced harboring a Syrian hamster (Ha) prion protein (PrP) gene; all expressed the cellular HaPrP isoform in their brains. Inoculation of Tg 81 mice or hamsters with Ha prions caused scrapie in integral of 75 days; nontransgenic control mice failed to develop scrapie after greater than 500 days. Tg 71 mice inoculated with Ha prions developed scrapie in integral of 170 days. Both Tg 71 and Tg 81 mice exhibited spongiform degeneration and reactive astrocytic gliosis, and they produced the scrapie HaPrP isoform in their brains. Tg 81 brains also showed HaPrP amyloid plaques characteristic of Ha scrapie and contained integral of 10(9) ID50 units of Ha prions based on Ha bioassays. Our findings argue that the PrP gene modulates scrapie susceptibility, incubation times, and neuropathology; furthermore, they demonstrate synthesis of infectious scrapie prions programmed by a recombinant DNA molecule.

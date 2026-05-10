@@ -1,0 +1,14 @@
+# Quantum criticality and black holes.
+
+- **PMID**: 21825396
+- **DOI**: 10.1088/0953-8984/21/16/164216
+- **PMCID**:  
+- **Journal**: Journal of physics. Condensed matter : an Institute of Physics journal  ·  **Year**: 2009
+- **Authors**: Subir Sachdev, Markus Müller
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21825396/
+- **Captured**: 2026-05-10T11:23:41
+
+## Abstract
+
+Many condensed matter experiments explore the finite temperature dynamics of systems near quantum critical points. Often, there are no well-defined quasiparticle excitations, and so quantum kinetic equations do not describe the transport properties completely. The theory shows that the transport coefficients are not proportional to a mean free scattering time (as is the case in the Boltzmann theory of quasiparticles), but are completely determined by the absolute temperature and by equilibrium thermodynamic observables. Recently, explicit solutions of this quantum critical dynamics have become possible via the anti-de Sitter/conformal field theory duality discovered in string theory. This shows that the quantum critical theory provides a holographic description of the quantum theory of black holes in a negatively curved anti-de Sitter space, and relates its transport coefficients to properties of the Hawking radiation from the black hole. We review how insights from this connection have led to new results for experimental systems: (i) the vicinity of the superfluid-insulator transition in the presence of an applied magnetic field, and its possible application to measurements of the Nernst effect in the cuprates, (ii) the magnetohydrodynamics of the plasma of Dirac electrons in graphene and the prediction of a hydrodynamic cyclotron resonance.

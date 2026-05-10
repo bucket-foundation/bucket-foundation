@@ -1,0 +1,14 @@
+# Systematic drug perturbations on cancer cells reveal diverse exit paths from proliferative state.
+
+- **PMID**: 26871731
+- **DOI**: 10.18632/oncotarget.7294
+- **PMCID**: PMC1239896 (full-text saved)
+- **Journal**: Oncotarget  ·  **Year**: 2016
+- **Authors**: Joseph X Zhou, Zerrin Isik, Caide Xiao, Irit Rubin, Stuart A Kauffman, Michael Schroeder, Sui Huang
+- **MeSH**: Antineoplastic Agents, Breast Neoplasms, Cell Differentiation, Cell Proliferation, Computational Biology, Female, Gene Expression Profiling, Gene Expression Regulation, Neoplastic, Gene Regulatory Networks, High-Throughput Screening Assays
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26871731/
+- **Captured**: 2026-05-10T11:27:52
+
+## Abstract
+
+During a cell state transition, cells travel along trajectories in a gene expression state space. This dynamical systems framework complements the traditional concept of molecular pathways that drive cell phenotype switching. To expose the structure that hinders cancer cells from exiting robust proliferative state, we assessed the perturbation capacity of a drug library and identified 16 non-cytotoxic compounds that stimulate MCF7 breast cancer cells to exit from proliferative state to differentiated state. The transcriptome trajectories triggered by these drugs diverged, then converged. Chemical structures and drug targets of these compounds overlapped minimally. However, a network analysis of targeted pathways identified a core signaling pathway--indicating common stress-response and down-regulation of STAT1 before differentiation. This multi-trajectory analysis explores the cells' state transition with a multitude of perturbations in combination with traditional pathway analysis, leading to an encompassing picture of the dynamics of a therapeutically desired cell-state switching.

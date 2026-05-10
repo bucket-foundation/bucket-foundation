@@ -1,0 +1,14 @@
+# Quantum chaos on a critical Fermi surface.
+
+- **PMID**: 28174270
+- **DOI**: 10.1073/pnas.1618185114
+- **PMCID**: PMC5448191 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2017
+- **Authors**: Aavishkar A Patel, Subir Sachdev
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28174270/
+- **Captured**: 2026-05-10T11:28:42
+
+## Abstract
+
+We compute parameters characterizing many-body quantum chaos for a critical Fermi surface without quasiparticle excitations. We examine a theory of [Formula: see text] species of fermions at nonzero density coupled to a [Formula: see text] gauge field in two spatial dimensions and determine the Lyapunov rate and the butterfly velocity in an extended random-phase approximation. The thermal diffusivity is found to be universally related to these chaos parameters; i.e., the relationship is independent of [Formula: see text], the gauge-coupling constant, the Fermi velocity, the Fermi surface curvature, and high-energy details.

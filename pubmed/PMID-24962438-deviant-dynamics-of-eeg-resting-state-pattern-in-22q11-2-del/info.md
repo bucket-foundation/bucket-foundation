@@ -1,0 +1,14 @@
+# Deviant dynamics of EEG resting state pattern in 22q11.2 deletion syndrome adolescents: A vulnerability marker of schizophrenia?
+
+- **PMID**: 24962438
+- **DOI**: 10.1016/j.schres.2014.05.036
+- **PMCID**:  
+- **Journal**: Schizophrenia research  ·  **Year**: 2014
+- **Authors**: Miralena I Tomescu, Tonia A Rihs, Robert Becker, Juliane Britz, Anna Custo, Frédéric Grouiller, Maude Schneider, Martin Debbané, Stephan Eliez, Christoph M Michel
+- **MeSH**: Adolescent, Biomarkers, Brain, Child, DiGeorge Syndrome, Electroencephalography, Endophenotypes, Female, Hallucinations, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24962438/
+- **Captured**: 2026-05-10T11:26:29
+
+## Abstract
+
+Previous studies have repeatedly found altered temporal characteristics of EEG microstates in schizophrenia. The aim of the present study was to investigate whether adolescents affected by the 22q11.2 deletion syndrome (22q11DS), known to have a 30 fold increased risk to develop schizophrenia, already show deviant EEG microstates. If this is the case, temporal alterations of EEG microstates in 22q11DS individuals could be considered as potential biomarkers for schizophrenia. We used high-density (204 channel) EEG to explore between-group microstate differences in 30 adolescents with 22q11DS and 28 age-matched controls. We found an increased presence of one microstate class (class C) in the 22q11DS adolescents with respect to controls that was associated with positive prodromal symptoms (hallucinations). A previous across-age study showed that the class C microstate was more present during adolescence and a combined EEG-fMRI study associated the class C microstate with the salience resting state network, a network known to be dysfunctional in schizophrenia. Therefore, the increased class C microstates could be indexing the increased risk of 22q11DS individuals to develop schizophrenia if confirmed by our ongoing longitudinal study comparing both the adult 22q11DS individuals with and without schizophrenia, as well as schizophrenic individuals with and without 22q11DS.

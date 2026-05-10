@@ -1,0 +1,27 @@
+{
+  "pmid": "2632988",
+  "title": "The NK model of rugged fitness landscapes and its application to maturation of the immune response.",
+  "abstract": "Adaptive evolution is, to a large extent, a complex combinatorial optimization process. Such processes can be characterized as \"uphill walks on rugged fitness landscapes\". Concrete examples of fitness landscapes include the distribution of any specific functional property such as the capacity to catalyze a specific reaction, or bind a specific ligand, in \"protein space\". In particular, the property might be the affinity of all possible antibody molecules for a specific antigenic determinant. That affinity landscape presumably plays a critical role in maturation of the immune response. In this process, hypermutation and clonal selection act to select antibody V region mutant variants with successively higher affinity for the immunizing antigen. The actual statistical structure of affinity landscapes, although knowable, is currently unknown. Here, we analyze a class of mathematical models we call NK models. We show that these models capture significant features of the maturation of the immune response, which is currently thought to share features with general protein evolution. The NK models have the important property that, as the parameter K increases, the \"ruggedness\" of the NK landscape varies from a single peaked \"Fujiyama\" landscape to a multi-peaked \"badlands\" landscape. Walks to local optima on such landscapes become shorter as K increases. This fact allows us to choose a value of K that corresponds to the experimentally observed number of mutational \"steps\", 6-8, taken as an antibody sequence matures. If the mature antibody is taken to correspond to a local optimum in the model, tuning the model requires that K be about 40, implying that the functional contribution of each amino acid in the V region is affected by about 40 others. Given this value of K, the model then predicts several features of \"antibody space\" that are in qualitative agreement with experiment: (1) The fraction of fitter variants of an initial \"roughed in\" germ line antibody amplified by clonal selection is about 1-2%. (2) Mutations at some sites of the mature antibody hardly affect antibody function at all, but mutations at other sites dramatically decrease function. (3) The same \"roughed in\" antibody sequence can \"walk\" to many mature antibody sequences. (4) Many adaptive walks can end on the same local optimum. (5) Comparison of different mature sequences derived from the same initial V region shows evolutionary hot spots and parallel mutations. All these predictions are open to detailed testing by obtaining monoclonal antibodies early in the immune response and carrying out in vitro mutagenesis and adaptive hill climbing with respect to affinity for the immunizing antigen.",
+  "authors": [
+    "S A Kauffman",
+    "E D Weinberger"
+  ],
+  "journal": "Journal of theoretical biology",
+  "year": "1989",
+  "doi": "10.1016/s0022-5193(89)80019-0",
+  "pmcid": "",
+  "mesh": [
+    "Amino Acid Sequence",
+    "Animals",
+    "Antigens",
+    "Immunity",
+    "Immunoglobulin Constant Regions",
+    "Immunoglobulin Variable Region",
+    "Killer Cells, Natural",
+    "Lymphocyte Activation",
+    "Models, Theoretical",
+    "Molecular Sequence Data",
+    "Mutation",
+    "Selection, Genetic"
+  ]
+}

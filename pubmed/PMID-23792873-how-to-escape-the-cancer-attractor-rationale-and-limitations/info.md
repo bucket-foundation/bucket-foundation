@@ -1,0 +1,14 @@
+# How to escape the cancer attractor: rationale and limitations of multi-target drugs.
+
+- **PMID**: 23792873
+- **DOI**: 10.1016/j.semcancer.2013.06.003
+- **PMCID**:  
+- **Journal**: Seminars in cancer biology  ·  **Year**: 2013
+- **Authors**: Sui Huang, Stuart Kauffman
+- **MeSH**: Antineoplastic Combined Chemotherapy Protocols, Cell Survival, Humans, Models, Biological, Molecular Targeted Therapy, Neoplasms, Signal Transduction
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23792873/
+- **Captured**: 2026-05-10T11:25:28
+
+## Abstract
+
+The increasingly evident limitations of target-selective cancer therapy has stimulated a flurry of ideas for overcoming the development of resistance and recurrence - the near universal reason for therapy failure from which target-selective drugs are not exempt. A widely proposed approach to conquer therapy resistance is to depart from the myopic focus on individual causal pathways and instead target multiple nodes in the cancer cell's gene regulatory network. However, most ideas rely on a simplistic conceptualization of networks: utilizing solely their topology and treating it as a display of causal interactions, while ignoring the integrated dynamics in state space. Here, we review the more encompassing formal framework of global network dynamics in which cancer cells, like normal cell types, are high-dimensional attractor states. Then therapy is represented by the network perturbation that will promote the exit from such cancer attractors and reentering a normal attractor. We show in this qualitative and accessible discussion how the idea of a quasi-potential landscape and the theory of least-action-path offer a new formal understanding for computing the set of network nodes (molecular targets) that need to be targeted in concert in order to exit the cancer attractor. But targeting cancer cells based on the network configuration of an "average" cancer cell, however precise, may not suffice to eradicate all tumor cells because of the dynamic non-genetic heterogeneity of cancer cell populations that makes them moving targets and drives the replenishment of the cancer attractor with surviving, non-responsive cells from neighboring abnormal attractors.

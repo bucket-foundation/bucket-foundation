@@ -1,0 +1,14 @@
+# Allostatic Self-efficacy: A Metacognitive Theory of Dyshomeostasis-Induced Fatigue and Depression.
+
+- **PMID**: 27895566
+- **DOI**: 10.1371/journal.pone.0109392
+- **PMCID**: PMC4190082 (full-text saved)
+- **Journal**: Frontiers in human neuroscience  ·  **Year**: 2016
+- **Authors**: Klaas E Stephan, Zina M Manjaly, Christoph D Mathys, Lilian A E Weber, Saee Paliwal, Tim Gard, Marc Tittgemeyer, Stephen M Fleming, Helene Haker, Anil K Seth, Frederike H Petzschner
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27895566/
+- **Captured**: 2026-05-10T11:28:27
+
+## Abstract
+
+This paper outlines a hierarchical Bayesian framework for interoception, homeostatic/allostatic control, and meta-cognition that connects fatigue and depression to the experience of chronic dyshomeostasis. Specifically, viewing interoception as the inversion of a generative model of viscerosensory inputs allows for a formal definition of dyshomeostasis (as chronically enhanced surprise about bodily signals, or, equivalently, low evidence for the brain's model of bodily states) and allostasis (as a change in prior beliefs or predictions which define setpoints for homeostatic reflex arcs). Critically, we propose that the performance of interoceptive-allostatic circuitry is monitored by a metacognitive layer that updates beliefs about the brain's capacity to successfully regulate bodily states (allostatic self-efficacy). In this framework, fatigue and depression can be understood as sequential responses to the interoceptive experience of dyshomeostasis and the ensuing metacognitive diagnosis of low allostatic self-efficacy. While fatigue might represent an early response with adaptive value (cf. sickness behavior), the experience of chronic dyshomeostasis may trigger a generalized belief of low self-efficacy and lack of control (cf. learned helplessness), resulting in depression. This perspective implies alternative pathophysiological mechanisms that are reflected by differential abnormalities in the effective connectivity of circuits for interoception and allostasis. We discuss suitably extended models of effective connectivity that could distinguish these connectivity patterns in individual patients and may help inform differential diagnosis of fatigue and depression in the future.

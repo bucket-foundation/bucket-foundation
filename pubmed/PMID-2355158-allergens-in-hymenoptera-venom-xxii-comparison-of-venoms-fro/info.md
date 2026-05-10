@@ -1,0 +1,14 @@
+# Allergens in Hymenoptera venom. XXII. Comparison of venoms from two species of imported fire ants, Solenopsis invicta and richteri.
+
+- **PMID**: 2355158
+- **DOI**: 10.1016/0091-6749(90)90042-3
+- **PMCID**:  
+- **Journal**: The Journal of allergy and clinical immunology  ·  **Year**: 1990
+- **Authors**: D R Hoffman, A M Smith, M Schmidt, J E Moffitt, M Guralnick
+- **MeSH**: Allergens, Amino Acid Sequence, Antibody Specificity, Arthropod Venoms, Electrophoresis, Polyacrylamide Gel, Humans, Immunoblotting, Molecular Sequence Data, Radioallergosorbent Test, Species Specificity
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2355158/
+- **Captured**: 2026-05-10T11:25:14
+
+## Abstract
+
+Venoms were collected by electrical stimulation from the two major species of imported fire ants found in the United States, Solenopsis invicta (Sol i) and S. richteri (Sol r). Antigens similar to three of the four known Sol i venom proteins (I, II, III, and IV) were isolated from Sol r. The N-terminal amino acid sequences for the antigens III were identical; but those for the antigens II demonstrated only nine of 20 residues to be identical. Two monoclonal antibodies raised against Sol i II did not react to Sol r. No protein IV could be detected in Sol r by molecular weight, charge, or immunologically with either polyclonal mouse antibodies or five monoclonal antibodies. Both venoms were compared with a panel of 60 sera from Sol i-allergic individuals; mean bindings were similar with an r = 0.94 for linear regression. RAST inhibition was performed with 17 individual sera representing a variety of Sol i allergen specificities. Four sera were tested from patients resident in the Sol r endemic area and five sera from patients who experienced reactions to S. xyloni stings. All sera reacted comparably to both imported fire ant venoms. The two venoms appear to be allergenically similar, although antigen IV is absent from Sol r and the antigens II have significant sequence variation. Sol i venom appears to be sufficient for diagnostic purposes.

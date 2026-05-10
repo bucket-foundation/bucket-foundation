@@ -1,0 +1,14 @@
+# Multi-Target Tracking With Time-Varying Clutter Rate and Detection Profile: Application to Time-Lapse Cell Microscopy Sequences.
+
+- **PMID**: 25594963
+- **DOI**: 10.1109/TMI.2015.2390647
+- **PMCID**:  
+- **Journal**: IEEE transactions on medical imaging  ·  **Year**: 2015
+- **Authors**: Seyed Hamid Rezatofighi, Stephen Gould, Ba Tuong Vo, Ba-Ngu Vo, Katarina Mele, Richard Hartley
+- **MeSH**: Algorithms, Bayes Theorem, Cluster Analysis, Cytological Techniques, Image Processing, Computer-Assisted, Microscopy, Fluorescence, Models, Biological, Time-Lapse Imaging
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25594963/
+- **Captured**: 2026-05-10T11:27:02
+
+## Abstract
+
+Quantitative analysis of the dynamics of tiny cellular and sub-cellular structures, known as particles, in time-lapse cell microscopy sequences requires the development of a reliable multi-target tracking method capable of tracking numerous similar targets in the presence of high levels of noise, high target density, complex motion patterns and intricate interactions. In this paper, we propose a framework for tracking these structures based on the random finite set Bayesian filtering framework. We focus on challenging biological applications where image characteristics such as noise and background intensity change during the acquisition process. Under these conditions, detection methods usually fail to detect all particles and are often followed by missed detections and many spurious measurements with unknown and time-varying rates. To deal with this, we propose a bootstrap filter composed of an estimator and a tracker. The estimator adaptively estimates the required meta parameters for the tracker such as clutter rate and the detection probability of the targets, while the tracker estimates the state of the targets. Our results show that the proposed approach can outperform state-of-the-art particle trackers on both synthetic and real data in this regime.

@@ -1,0 +1,14 @@
+# Spontaneous generation of anchorless prions in transgenic mice.
+
+- **PMID**: 22160704
+- **DOI**: 10.1073/pnas.1117827108
+- **PMCID**: PMC2809756 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2011
+- **Authors**: Jan Stöhr, Joel C Watts, Giuseppe Legname, Abby Oehler, Azucena Lemus, Hoang-Oanh B Nguyen, Joshua Sussman, Holger Wille, Stephen J DeArmond, Stanley B Prusiner, Kurt Giles
+- **MeSH**: Amyloid, Animals, Blotting, Western, Disease Models, Animal, Electrophoresis, Polyacrylamide Gel, Epitope Mapping, Gerstmann-Straussler-Scheinker Disease, Glycosylphosphatidylinositols, Histological Techniques, Mice
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22160704/
+- **Captured**: 2026-05-10T11:24:00
+
+## Abstract
+
+Some prion protein mutations create anchorless molecules that cause Gerstmann-Sträussler-Scheinker (GSS) disease. To model GSS, we generated transgenic mice expressing cellular prion protein (PrP(C)) lacking the glycosylphosphatidyl inositol (GPI) anchor, denoted PrP(ΔGPI). Mice overexpressing PrP(ΔGPI) developed a late-onset, spontaneous neurologic dysfunction characterized by widespread amyloid deposition in the brain and the presence of a short protease-resistant PrP fragment similar to those found in GSS patients. In Tg(PrP,ΔGPI) mice, disease onset could be accelerated either by inoculation with brain homogenate prepared from spontaneously ill animals or by coexpression of membrane-anchored, full-length PrP(C). In contrast, coexpression of N-terminally truncated PrP(Δ23-88) did not affect disease progression. Remarkably, disease from ill Tg(PrP,ΔGPI) mice transmitted to mice expressing wild-type PrP(C), indicating the spontaneous generation of prions.

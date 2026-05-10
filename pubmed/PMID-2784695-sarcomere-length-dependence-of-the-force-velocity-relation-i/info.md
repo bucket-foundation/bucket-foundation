@@ -1,0 +1,14 @@
+# Sarcomere length dependence of the force-velocity relation in single frog muscle fibers.
+
+- **PMID**: 2784695
+- **DOI**: 10.1016/S0006-3495(89)82843-7
+- **PMCID**: PMC1330503 (full-text saved)
+- **Journal**: Biophysical journal  ·  **Year**: 1989
+- **Authors**: H L Granzier, D H Burns, G H Pollack
+- **MeSH**: Animals, Caffeine, Elasticity, In Vitro Techniques, Muscle Contraction, Muscles, Myofibrils, Rana temporaria, Sarcomeres, Stress, Mechanical
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2784695/
+- **Captured**: 2026-05-10T11:28:24
+
+## Abstract
+
+The force-velocity relation of single frog fibers was measured at sarcomere lengths of 2.15, 2.65, and 3.15 microns. Sarcomere length was obtained on-line with a system that measures the distance between two markers attached to the surface of the fiber, approximately 800 microns apart. Maximal shortening velocity, determined by extrapolating the Hill equation, was similar at the three sarcomere lengths: 6.5, 6.0, and 5.7 microns/s at sarcomere lengths of 2.15, 2.65, and 3.15 microns, respectively. For loads not close to zero the shortening velocity decreased with increasing sarcomere length. This was the case when force was expressed as a percentage of the maximal force at optimal fiber length or as a percentage of the sarcomere-isometric force at the respective sarcomere lengths. The force-velocity relation was discontinuous around zero velocity: load clamps above the level that kept sarcomeres isometric resulted in stretch that was much slower than when the load was decreased below isometric by a similar amount. We fitted the force-velocity relation for slow shortening (less than 600 nm/s) and for slow stretch (less than 200 nm/s) with linear regression lines. At a sarcomere length of 2.15 microns the slopes of these lines was 8.6 times higher for shortening than for stretch. At 2.65 and 3.15 microns the values were 21.8 and 14.1, respectively. At a sarcomere length of 2.15 microm, the velocity of stretch abruptly increased at loads that were 160-170% of the sarcomere isometric load, i.e., the muscle yielded. However, at a sarcomere length of 2.65 and 3.15 microm yield was absent at such loads. Even the highest loads tested (260%) resulted in only slow stretch. It is concluded that properties of the force generators change with sarcomere length. This is not anticipated by the cross-bridge model of muscle contraction.

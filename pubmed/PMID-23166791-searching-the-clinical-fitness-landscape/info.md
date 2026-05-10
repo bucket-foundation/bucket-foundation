@@ -1,0 +1,14 @@
+# Searching the clinical fitness landscape.
+
+- **PMID**: 23166791
+- **DOI**: 10.1136/bmj.e813
+- **PMCID**: PMC3063072 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2012
+- **Authors**: Margaret J Eppstein, Jeffrey D Horbar, Jeffrey S Buzas, Stuart A Kauffman
+- **MeSH**: Computer Simulation, Controlled Clinical Trials as Topic, Cooperative Behavior, Humans, Information Dissemination, Models, Theoretical, Practice Patterns, Physicians', Quality Improvement
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23166791/
+- **Captured**: 2026-05-10T11:24:56
+
+## Abstract
+
+Widespread unexplained variations in clinical practices and patient outcomes suggest major opportunities for improving the quality and safety of medical care. However, there is little consensus regarding how to best identify and disseminate healthcare improvements and a dearth of theory to guide the debate. Many consider multicenter randomized controlled trials to be the gold standard of evidence-based medicine, although results are often inconclusive or may not be generally applicable due to differences in the contexts within which care is provided. Increasingly, others advocate the use "quality improvement collaboratives", in which multi-institutional teams share information to identify potentially better practices that are subsequently evaluated in the local contexts of specific institutions, but there is concern that such collaborative learning approaches lack the statistical rigor of randomized trials. Using an agent-based model, we show how and why a collaborative learning approach almost invariably leads to greater improvements in expected patient outcomes than more traditional approaches in searching simulated clinical fitness landscapes. This is due to a combination of greater statistical power and more context-dependent evaluation of treatments, especially in complex terrains where some combinations of practices may interact in affecting outcomes. The results of our simulations are consistent with observed limitations of randomized controlled trials and provide important insights into probable reasons for effectiveness of quality improvement collaboratives in the complex socio-technical environments of healthcare institutions. Our approach illustrates how modeling the evolution of medical practice as search on a clinical fitness landscape can aid in identifying and understanding strategies for improving the quality and safety of medical care.

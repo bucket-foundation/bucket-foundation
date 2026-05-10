@@ -1,0 +1,14 @@
+# Dark matter as a trigger for periodic comet impacts.
+
+- **PMID**: 24815633
+- **DOI**: 10.1103/PhysRevLett.112.161301
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2014
+- **Authors**: Lisa Randall, Matthew Reece
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24815633/
+- **Captured**: 2026-05-10T11:26:25
+
+## Abstract
+
+Although statistical evidence is not overwhelming, possible support for an approximately 35×106  yr periodicity in the crater record on Earth could indicate a nonrandom underlying enhancement of meteorite impacts at regular intervals. A proposed explanation in terms of tidal effects on Oort cloud comet perturbations as the Solar System passes through the galactic midplane is hampered by lack of an underlying cause for sufficiently enhanced gravitational effects over a sufficiently short time interval and by the time frame between such possible enhancements. We show that a smooth dark disk in the galactic midplane would address both these issues and create a periodic enhancement of the sort that has potentially been observed. Such a disk is motivated by a novel dark matter component with dissipative cooling that we considered in earlier work. We show how to evaluate the statistical evidence for periodicity by input of appropriate measured priors from the galactic model, justifying or ruling out periodic cratering with more confidence than by evaluating the data without an underlying model. We find that, marginalizing over astrophysical uncertainties, the likelihood ratio for such a model relative to one with a constant cratering rate is 3.0, which moderately favors the dark disk model. Our analysis furthermore yields a posterior distribution that, based on current crater data, singles out a dark matter disk surface density of approximately 10M⊙/pc2. The geological record thereby motivates a particular model of dark matter that will be probed in the near future.

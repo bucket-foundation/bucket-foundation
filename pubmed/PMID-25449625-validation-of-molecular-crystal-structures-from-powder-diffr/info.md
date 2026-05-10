@@ -1,0 +1,14 @@
+# Validation of molecular crystal structures from powder diffraction data with dispersion-corrected density functional theory (DFT-D).
+
+- **PMID**: 25449625
+- **DOI**: 10.1107/S2052520614022902
+- **PMCID**: PMC2940256 (full-text saved)
+- **Journal**: Acta crystallographica Section B, Structural science, crystal engineering and materials  ·  **Year**: 2014
+- **Authors**: Jacco van de Streek, Marcus A Neumann
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25449625/
+- **Captured**: 2026-05-10T11:26:55
+
+## Abstract
+
+In 2010 we energy-minimized 225 high-quality single-crystal (SX) structures with dispersion-corrected density functional theory (DFT-D) to establish a quantitative benchmark. For the current paper, 215 organic crystal structures determined from X-ray powder diffraction (XRPD) data and published in an IUCr journal were energy-minimized with DFT-D and compared to the SX benchmark. The on average slightly less accurate atomic coordinates of XRPD structures do lead to systematically higher root mean square Cartesian displacement (RMSCD) values upon energy minimization than for SX structures, but the RMSCD value is still a good indicator for the detection of structures that deserve a closer look. The upper RMSCD limit for a correct structure must be increased from 0.25 Å for SX structures to 0.35 Å for XRPD structures; the grey area must be extended from 0.30 to 0.40 Å. Based on the energy minimizations, three structures are re-refined to give more precise atomic coordinates. For six structures our calculations provide the missing positions for the H atoms, for five structures they provide corrected positions for some H atoms. Seven crystal structures showed a minor error for a non-H atom. For five structures the energy minimizations suggest a higher space-group symmetry. For the 225 SX structures, the only deviations observed upon energy minimization were three minor H-atom related issues. Preferred orientation is the most important cause of problems. A preferred-orientation correction is the only correction where the experimental data are modified to fit the model. We conclude that molecular crystal structures determined from powder diffraction data that are published in IUCr journals are of high quality, with less than 4% containing an error in a non-H atom.

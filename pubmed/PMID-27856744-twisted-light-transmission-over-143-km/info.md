@@ -1,0 +1,14 @@
+# Twisted light transmission over 143 km.
+
+- **PMID**: 27856744
+- **DOI**: 10.1073/pnas.1612023113
+- **PMCID**: PMC3665961 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2016
+- **Authors**: Mario Krenn, Johannes Handsteiner, Matthias Fink, Robert Fickler, Rupert Ursin, Mehul Malik, Anton Zeilinger
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27856744/
+- **Captured**: 2026-05-10T11:28:26
+
+## Abstract
+
+Spatial modes of light can potentially carry a vast amount of information, making them promising candidates for both classical and quantum communication. However, the distribution of such modes over large distances remains difficult. Intermodal coupling complicates their use with common fibers, whereas free-space transmission is thought to be strongly influenced by atmospheric turbulence. Here, we show the transmission of orbital angular momentum modes of light over a distance of 143 km between two Canary Islands, which is 50× greater than the maximum distance achieved previously. As a demonstration of the transmission quality, we use superpositions of these modes to encode a short message. At the receiver, an artificial neural network is used for distinguishing between the different twisted light superpositions. The algorithm is able to identify different mode superpositions with an accuracy of more than 80% up to the third mode order and decode the transmitted message with an error rate of 8.33%. Using our data, we estimate that the distribution of orbital angular momentum entanglement over more than 100 km of free space is feasible. Moreover, the quality of our free-space link can be further improved by the use of state-of-the-art adaptive optics systems.
