@@ -5,8 +5,8 @@
 - **Channel**: Unchained — https://www.youtube.com/channel/UCTkCLH1VSjWakXyF6z-mjtA
 - **Uploaded**: 20241119
 - **Duration**: 1:06:13 (3973s)
-- **Views**: 18794  ·  **Likes**: 554
-- **Captured**: 2026-05-09T09:28:51
+- **Views**: 18795  ·  **Likes**: 554
+- **Captured**: 2026-05-10T17:34:47
 
 ## Description
 
