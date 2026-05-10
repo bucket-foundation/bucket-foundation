@@ -3,91 +3,97 @@
 **Query**: `("AGEs" OR glycation OR RAGE)`  ·  **Hits**: 35
 
 
-## intake (22)
+## pubmed (1)
+
+- **Biological classification: toward a synthesis of opposing methodologies.**
+  - `pubmed/PMID-17838387-biological-classification-toward-a-synthesis-of-opposing-met/info.md`
+  -  … 2026-05-10T11:19:55
+
+## Abstract
+
+Currently a controversy is <<raging>> as to which of three competing methodologies of biological classification is the best … 
+
+## intake (18)
 
 - **AGEs-RAGE-glycation**
   - `_intake/concept-digests/AGEs-RAGE-glycation.md`
   - # <<AGEs>>-<<RAGE>>-<<glycation>>
 
-**Query**: `("<<AGEs>>" OR <<glycation>> OR <<RAGE>>)`  ·  **Hits**: 30
+**Query**: `("<<AGEs>>" OR <<glycation>> OR <<RAGE>>)`  ·  **Hits**: 35
 
 
-## intake (30)
+## intake (22)
 
 - **<<AGEs>>-<<RAGE>>-<<glycation>>**
   - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
   - # <<<<AGEs>> … 
+- **methylene-blue**
+  - `_intake/concept-digests/methylene-blue.md`
+  -  … 81
+- **exclusion zone** — 77
+- **<<redox … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
+  -  … exclusion zone(8), <<<<<<RAGE>>>>>>(7), EPA(5 … 
+- **<<methylene-blue … 
+- **iron-heme-redox**
+  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … concept-digests/<<iron>>-<<heme>>-<<redox>> … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
+  -  … md`
+  -  … electromagnetic(22), <<<<<<AGE>>>>>>(13), Becker(13), <<iron>> … 
+- **<<iron … 
+- **exclusion-zone-water**
+  - `_intake/concept-digests/exclusion-zone-water.md`
+  -  … queued (not yet … 
+- **methylene-blue**
+  - `_intake/concept-digests/methylene-blue.md`
+  -  … UVA** — 62
+- **heme** — 58
+- **biophoton … 
+- **<<<<AGEs>>>>-<<<<RAGE>>>>-<<<<glycation>> … 
+- **<<exclusion>>-<<zone>>-water**
+  - `_intake/concept … 
 - **schumann-cme**
   - `_intake/concept-digests/schumann-cme.md`
   -  … queued (not yet … 
 - **<<AGEs>>-<<RAGE>>-<<glycation>>**
   - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … 113
-- **<<<<<<RAGE>>>>>>** — 107
-- **cytochrome** — 98
-- **NAD** — 95 … 
-- **<<schumann>>-<<cme>>**
-  - `_intake/concept … 
-- **ez-water-pollack**
-  - `_intake/concept-digests/ez-water-pollack.md`
-  -  … <<AGEs>>-<<RAGE>>-<<glycation>>**
-  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … ez-<<water>>-<<pollack>>**
-  - `_intake/concept-digests/ez-<<water>>-<<pollack>>.md`
-  -  … <<<<AGEs>>>>-<<<<RAGE>>>>-<<<<glycation>>>>**
-  - `_intake … 
-- **biophoton-popp**
-  - `_intake/concept-digests/biophoton-popp.md`
-  -  … biophoton>>>> emission rates when a … 
-- **walter-<<russell … 
+  -  … <<glycation>>>>.md`
+  -  … 2), <<<<geomagnetic>>>>(2), UV(1), <<<<<<AGEs>>>>>>(1)
+
+
+**Titled … 
+- **<<methylene … 
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
+  -  … Ben has a different <<redox>> state in his <<mitochondria>> … 
 - **<<AGEs>>-<<RAGE>>-<<glycation>>**
   - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … The CIA DON’T Want You To … 
-- **Fritz-Albert Popp**
-  - `_intake/canon-profiles/popp-fritz-albert.md`
-  -  … a … 
-- **walter-<<russell … 
-- **<<AGEs>>-<<RAGE>>-<<glycation>>**
-  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … in the brain due to <<<<glycation>>>> [(<<<<AGE>>>>’s … 
-- **<<biophoton>>-<<popp>>**
-  - `_intake … 
-- **deuterium-depleted-water**
-  - `_intake/concept-digests/deuterium-depleted-water.md`
-  -  … phase-of-<<<<water>>>>-cellular-redox-re/transcript … 
-- **<<AGEs>>-<<RAGE>>-<<glycation>>**
-  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … 28, youtube:2)
-- [`iron-heme … 
-- **<<deuterium>>-depleted … 
+  -  … <<redox>>.md`
+  -  … the <<<<mitochondria>>>> continue … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … schumann-cme.md) — 30 hits  (intake:27, youtube:3)
-- [`<<AGEs>>-<<RAGE>>-<<glycation>>`](<<AGEs>>-<<RAGE>>-<<glycation>>.md) — 30 hits  (intake:30)
-- [`iron-heme-redox`](iron … 
-- **methylene-blue**
-  - `_intake/concept-digests/methylene-blue.md`
-  -  … is why all cytochromes use <<Iron>>- sulfur … 
+  -  … 25, openalex-citers:5, openalex-fanout:3, pubmed:1)
+- [`<<AGEs>>-<<RAGE>>-<<glycation>>`](<<AGEs>>-<<RAGE>>-<<glycation>>.md) — 35 hits  (blog:8, gutenberg:3, intake:22 … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … Patents, papers on resonance | 02-physics | 4 … 
 - **<<AGEs>>-<<RAGE>>-<<glycation>>**
   - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … The CIA DON’T Want You To … 
-- **iron-heme-redox**
-  - `_intake/concept-digests/iron-heme-redox.md`
+  -  … Nikola <<Tesla>>**
+  - `_intake/canon-profiles/<<tesla>>-nikola … 
+- **deuterium-depleted-water**
+  - `_intake/concept-digests/deuterium-depleted-water.md`
+  -  … 18, pubmed:5, youtube:7)
+- [`exclusion-zone … 
+- **<<AGEs>>-<<RAGE>>-<<glycation>>**
+  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
   -  … md`
-  -  … This lowers are <<<<redox>>>> power … 
-- **<<methylene … 
-- **<<AGEs>>-<<RAGE>>-<<glycation>>**
-  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … The hydroxyl radical can damage virtually all … 
-- **infrared-near-ir**
-  - `_intake/concept-digests/infrared-near-ir.md`
-  -  … BY <<BIOPHOTON>> EMISSION?**
+  -  … truth-about … 
+- **<<<<deuterium>>>>-depleted-<<<<water>>>>**
   - `_intake … 
-- **<<AGEs>>-<<RAGE>>-<<glycation>>**
-  - `_intake/concept-digests/<<AGEs>>-<<RAGE>>-<<glycation>>.md`
-  -  … For Energy _Heart Health _Memory & <<<<Ageing>>>>**
-  - `yt … 
-- **<<infrared>>-<<near-ir … 
 - **WHAT IS BIOLOGIC CONCRETE?**
   - `_intake/kruse-blog-corpus/articles/what-is-biologic-concrete.md`
   -  … What are the consequences if I ignore this biologic process?
@@ -102,37 +108,32 @@ We established in the Quilt what [<<glycation>>](/the-quilthow-to-beat-agin/#<<A
 - **WHY THE EPI-PALEO DIET IS STAT PAGING YOUR BRAIN?**
   - `_intake/kruse-blog-corpus/articles/why-the-epi-paleo-rx-is-stat-paging-your-brain.md`
   -  … This is a compensatory mechanism that the body is using to offset the depletion of cholesterol in the brain due to <<glycation>> [(<<AGE>>’s … 
-- **Nikola Tesla**
-  - `_intake/canon-profiles/tesla-nikola.md`
-  -  … kruse-references-mined/PER-VIDEO.md`
-  -  … <<AGE>>(11), electron(9), WHO(6), Becker(6), <<Tesla>>(6), <<RAGE>>(5), proton(3), iron(1), DHA(1 … 
+- **James Clerk Maxwell**
+  - `_intake/canon-profiles/maxwell-james-clerk.md`
+  -  … 65), <<AGE>>(35), NAD(20), Rockefeller(9), iron(5), <<AGEs>>(5), Einstein(3), <<Maxwell>>(3), blue light(2), <<electromagnetic>>(2), EPA(2), <<RAGE>> … 
+- **Energy … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … 14), iron(8), EPA(5), <<AGE>>(5), <<quantum>> coherence(4), <<RAGE>>(2), Einstein(2), <<photosynthesis>>(1), heme(1), <<AGEs>> … 
+- **REALITY #15:  ANIMAL PHOTOSYNTHESIS**
+  - `_intake … 
 - **Central Leptin Dominance: Part 3 – King of The Hill**
   - `_intake/kruse-blog-corpus/articles/central-leptin-dominance-part-3-king-of-hill.md`
   -  … The effect of neolithic diseases is directly proportional to <<aging>>. Neolithic disease increases as we <<age>> in all studies. So the diet we should … 
-- **Michael Faraday**
-  - `_intake/canon-profiles/faraday-michael.md`
-  -  … electromagnetic(22), <<AGE>>(14), iron(12), Becker(12), <<magnetic>> field(8), WHO(8), <<RAGE>> … 
-- **UBIQUITINATION 3:  THE RHYTHM IS GONNA GET YOU**
-  - `_intake/kruse … 
-- **mitochondrial-redox**
-  - `_intake/concept-digests/mitochondrial-redox.md`
-  -  … 24), <<redox>>(24), iron(22), mitochondrial(17), melanin(12), EPA(12), <<AGE>>(10), <<proton>>(9 … 
-- **ORGANIZATIONAL STRUCTURAL FAILURE #7  AUTOPHAGY FAILURE**
-  - `_intake/kruse-blog … 
 - **Kruse References Mined**
   - `_intake/kruse-references-mined/REFERENCES.md`
-  -  … 239
-- **DHA** — 234
-- **vitamin D** — 217
-- **NAD** — 214
-- **<<AGEs>>** — 213
-- **Rockefeller** — 193
-- **melatonin** — 184
-- **<<RAGE>>** — 184
-- **magnetic field** — 176
-- **cytochrome** — 157
-- **Wheeler** — 156
-- **hemoglobin … 
+  -  … 283
+- **deuterium** — 278
+- **melatonin** — 277
+- **NAD** — 261
+- **cytochrome** — 226
+- **<<AGEs>>** — 221
+- **Rockefeller** — 199
+- **<<RAGE>>** — 195
+- **magnetic field** — 184
+- **UVA** — 160
+- **Wheeler** — 160
+- **hemoglobin** — 159 … 
 - **THE TILTED QUILT:  RANDOM MUSING'S #5**
   - `_intake/kruse-blog-corpus/articles/tilted-quilt-random-musings-5.md`
   -  … In <<aging>> and diabetes, <<glycation>> of collagen molecules leads to the formation of cross-links that alter the surface charge on collagen fibrils, and … 
@@ -141,10 +142,3 @@ We established in the Quilt what [<<glycation>>](/the-quilthow-to-beat-agin/#<<A
   -  … But to my knowledge those cancers are associated with products of elevated <<glycation>>, most notably small dense LDL cholesterol.
 
 Cancer feeds on sugar. Cancer … 
-- **Cold Thermogenesis 13: The FAQ's**
-  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-13-the-faqs.md`
-  -  … What are the ranges you look for in the basic lab tests? (Please include differences for gender/<<age>>/menopause differences.) If we are tracking … 
-- **ORGANIZATIONAL STRUCTURAL FAILURE #6:  THE MITOCHONDRIAL Rx**
-  - `_intake/kruse-blog-corpus/articles/organizational-structural-failure-6-mitochondrial-rx.md`
-  -  … Notably, the phase of life extended was youth, not old <<age>>.
-The hydroxyl radical can damage virtually all types of macromolecules by energizing their … 

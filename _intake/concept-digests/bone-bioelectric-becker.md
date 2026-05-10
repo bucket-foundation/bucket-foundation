@@ -3,7 +3,53 @@
 **Query**: `Becker AND (bone OR regeneration OR bioelectric)`  ·  **Hits**: 35
 
 
-## youtube (12)
+## pubmed (7)
+
+- **Bioelectric effects in tissue.**
+  - `pubmed/PMID-5861096-bioelectric-effects-in-tissue/info.md`
+  -  … R O <<Becker>>, C H Bachman
+- **MeSH**: <<Bone>> and <<Bones>>, Electric Conductivity, Electrophysiology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/5861096/
+- **Captured**: 2026-05 … 
+- **Electrical osteogenesis--pro and con.**
+  - `pubmed/PMID-367538-electrical-osteogenesis-pro-and-con/info.md`
+  -  … R O <<Becker>>
+- **MeSH**: Animals, <<Bone>> <<Regeneration>>, Electric Stimulation, Electricity, Electrodes, Implanted, Electromagnetic Fields, Electrophysiology, Extremities, Fracture Fixation, Internal, Fractures, <<Bone>>
+- **URL**: https://pubmed … 
+- **The electrical control system regulating fracture healing in amphibians.**
+  - `pubmed/PMID-5479774-the-electrical-control-system-regulating-fracture-healing-in/info.md`
+  -  … R O <<Becker>>, D G Murray
+- **MeSH**: Amphibians, Animals, Anura, <<Bone>> <<Regeneration>>, Cell Differentiation, Electric Conductivity, Electric Stimulation, Erythrocytes, Evoked Potentials, Fractures, <<Bone>>
+- **URL … 
+- **Augmentation of regenerative healing in man. A possible alternative to prosthetic implantation.**
+  - `pubmed/PMID-5014820-augmentation-of-regenerative-healing-in-man-a-possible-alter/info.md`
+  -  … R O <<Becker>>
+- **MeSH**: Animals, <<Bone>> <<Regeneration>>, Cell Differentiation, DNA, Electric Stimulation, Electrophysiology, Erythrocytes, Evoked Potentials, Fractures, <<Bone>>, Humans
+- **URL**: https://pubmed.ncbi.nlm … 
+- **A method for producing cellular dedifferentiation by means of very small electrical currents.**
+  - `pubmed/PMID-5235589-a-method-for-producing-cellular-dedifferentiation-by-means-o/info.md`
+  -  … R O <<Becker>>, D G Murray
+- **MeSH**: Animals, Anura, <<Bone>> <<Regeneration>>, Electrophysiology, Erythrocytes, Fractures, <<Bone>>
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/5235589/
+- **Captured … 
+- **The bioelectric field pattern in the salamander and its simulation by an electronic analog.**
+  - `pubmed/PMID-13688481-the-bioelectric-field-pattern-in-the-salamander-and-its-simu/info.md`
+  - # The <<bioelectric>> field pattern in the salamander and its simulation by an electronic analog.
+
+- **PMID**: 13688481
+- **DOI**: 10.1109/iret-me.1960.5008048
+- **PMCID … 
+- **Sensitivity to change in electrical environment: a new bioelectric effect.**
+  - `pubmed/PMID-7435656-sensitivity-to-change-in-electrical-environment-a-new-bioele/info.md`
+  -  … a new <<bioelectric>> effect.
+
+- **PMID**: 7435656
+- **DOI**: 10.1152/ajpregu.1980.239.5.R424
+- **PMCID**:  
+- **Journal**: The American journal of physiology  ·  **Year**: 1980
+- **Authors … 
+
+## youtube (6)
 
 - **Dr. Robert Becker and the DC Electric Current (JACK KRUSE, HUBERMAN, RUBIN PODCAST)**
   - `yt/ouksSZxRtnc-dr-robert-becker-and-the-dc-electric-current-jack-kruse-hube/transcript.txt`
@@ -45,61 +91,19 @@ allows <<regeneration>> of <<bone>> uh and whole
 Limbs and animals only <<bone>> and humans
 just about the only
 tissue … 
-- **Dr. Andrew Marino PhD ON Dr. Robert O Becker & Electromagnetism and Life (ENGLISH PODACAST )**
-  - `yt/lfkqB1BONMI-dr-andrew-marino-phd-on-dr-robert-o-becker-electromagnetism-/transcript.txt`
-  -  … uh
-mechanism uh uh that allows <<regeneration>>
-of <<bone>> uh and whole Limbs and animals
-only <<bone>> and humans just about the only
-tissue … 
-- **Andrew A. Marino Interviewed Dr. Alexis Cowan**
-  - `yt/HPgVgjyZ7mM-andrew-a-marino-interviewed-dr-alexis-cowan/transcript.txt`
-  -  … mechanism uh uh that that
-allows <<regeneration>> of <<bone>> uh and whole
-Limbs and animals only <<bone>> and humans
-just about the only
-tissue … 
-- **Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kruse, MD DSci Pod 187**
-  - `yt/zrdRVDk66JE-beyond-dna-the-electromagnetic-blueprint-of-life-jack-kruse-/transcript.txt`
-  -  … my life
-that <<bone>> doesn't heal it actually
-<<regenerates>> and <<Becker>> was the one that
-proved that it <<regenerated>> explained
-exactly how it … 
-- **The Body Electric - Robert O. Becker**
-  - `yt/CZBLhELkF3U-the-body-electric-robert-o-becker/transcript.txt`
-  -  … he has seen the
-benefits of using electromagnetic
-magnetic energy to <<regenerate>> <<bones>> as
-well as helping other diseases so
-tonight we'll explore … 
-- **Robert O. Becker - Electromedicine (Hieronimus - September 16, 1990)**
-  - `yt/2M-Oap97_Tc-robert-o-becker-electromedicine-hieronimus-september-16-1990/transcript.txt`
-  -  … he has seen the
-benefits of using electromag magnetic
-energy to <<regenerate>> <<bones>> as well as
-helping other diseases so tonight we'll
-explore … 
-- **Dr. EnQi What is the Origin of BioElectricty? Dr. Sebi & Robert O Becker**
-  - `yt/s9vsbINyIWQ-dr-enqi-what-is-the-origin-of-bioelectricty-dr-sebi-robert-o/transcript.txt`
-  -  … conversation has everything to do with
-the <<bioelectricity>>
-thing right everything to do with with
-the <<bioelectricity>> and everything to do
-with our mantra … 
 
-## intake (18)
+## intake (17)
 
 - **bone-bioelectric-becker**
   - `_intake/concept-digests/bone-bioelectric-becker.md`
   - # <<bone>>-<<bioelectric>>-<<becker>>
 
-**Query**: `<<Becker>> AND (<<bone>> OR <<regeneration>> OR <<bioelectric>>)`  ·  **Hits**: 30
+**Query**: `<<Becker>> AND (<<bone>> OR <<regeneration>> OR <<bioelectric>>)`  ·  **Hits**: 35
 
 
-## youtube (13)
+## youtube (12)
 
-- **Cancer Beyond Metabolism: <<Bioelectricity>>, Mitochondria & Quantum Biology | Dr. Jack … 
+- **Dr. Robert <<Becker>> and the DC Electric Current (JACK … 
 - **Robert O. Becker**
   - `_intake/canon-profiles/becker-robert-o.md`
   -  … <<Becker>>**
@@ -112,14 +116,24 @@ with our mantra …
   -  … <<Becker>> on the
 Syracuse VA <<bioelectricity>> research (1960s–1980s). Co-authored ~40 papers
 with <<Becker>> on <<bone>> <<regeneration>>, EMF biology, electric currents in tissue … 
-- **emf-non-thermal**
-  - `_intake/concept-digests/emf-non-thermal.md`
-  -  … <<Becker>>**
-  - `_intake/canon-profiles/<<becker>>-robert-o.md`
-  -  … <<emf>>-non-thermal.md`
-  -  … resonance above the normal frequencies found on … 
-- **<<<<bone>>>>-<<<<bioelectric>>>>-<<<<becker>>>>**
-  - `_intake/concept … 
+- **photoelectric-biology**
+  - `_intake/concept-digests/photoelectric-biology.md`
+  -  … Quantum <<Cell>> Theory … 
+- **<<bone>>-<<bioelectric>>-<<becker>>**
+  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
+  -  … <<biology>>**
+  - `_intake/concept-digests/<<photoelectric>>-<<biology>>.md`
+  -  … does Einstein’s … 
+- **<<<<bone>> … 
+- **circadian-scn**
+  - `_intake/concept-digests/circadian-scn.md`
+  -  … Robert(1 … 
+- **<<bone>>-<<bioelectric>>-<<becker>>**
+  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
+  -  … What are the … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … <<circadian>>-<<scn … 
 - **Andrew Marino**
   - `_intake/canon-profiles/marino-andrew.md`
   -  … 25
@@ -131,25 +145,26 @@ with <<Becker>> on <<bone>> <<regeneration>>, EMF biology, electric currents in 
 - **<<bone>>-<<bioelectric>>-<<becker>>**
   - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
   -  … Andrew <<Marino>> PhD ON Dr … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … circadian-scn.md) — 30 hits  (arxiv:3, intake:27)
-- [`<<bone>>-<<bioelectric>>-<<becker>>`](<<bone>>-<<bioelectric>>-<<becker>>.md) — 30 hits  (intake:17, youtube:13)
-- [`association-induction … 
+- **emf-non-thermal**
+  - `_intake/concept-digests/emf-non-thermal.md`
+  -  … <<Becker>>**
+  - `_intake/canon-profiles/<<becker>>-robert-o.md`
+  -  … requires … 
+- **<<<<bone>>>>-<<<<bioelectric>>>>-<<<<becker>>>>**
+  - `_intake/concept … 
+- **<<emf>>-non-thermal**
+  - `_intake/concept-digests/<<emf>>-non-thermal.md … 
 - **quantum-biology**
   - `_intake/concept-digests/quantum-biology.md`
-  -  … WHO(188), AGE(39), <<Becker>>(36), blue light(28), electron … 
+  -  … Sulfated Vitamin D3**
+  - `_intake/kruse-blog-corpus/articles/<<quantum>>-<<biology>>-7-vitamin-d.md`
+  -  … physics of <<Einstein>>.  The theories of … 
 - **<<bone>>-<<bioelectric>>-<<becker>>**
-  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
-  -  … DARPA Mind Control, <<Quantum … 
-- **association-induction-ling**
-  - `_intake/concept-digests/association-induction-ling.md`
-  -  … 5000 times more ATP than a <<cell>> … 
-- **<<bone>>-<<bioelectric>>-<<becker>>**
-  - `_intake/concept-digests/<<bone>>-<<bioelectric>>-<<becker>>.md`
-  -  … The same … 
-- **<<association>>-<<induction>>-<<ling>>**
-  - `_intake/concept … 
+  - `_intake … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … md) — 35 hits  (arxiv:3, intake:26, pubmed:6)
+- [`<<bone>>-<<bioelectric>>-<<becker>>`](<<bone>>-<<bioelectric>>-<<becker>>.md) — 35 hits  (intake:18, openalex:2, openalex-fanout … 
 - **Robert O. Becker — canon-target intake**
   - `_intake/becker-robert-o/README.md`
   -  … search "body electric <<becker>>"
@@ -173,12 +188,12 @@ with <<Becker>> on <<bone>> <<regeneration>>, EMF biology, electric currents in 
 
 
 **suchTHE BLOG TAKE HOME:**  Since <<Becker>> established that human <<bone>> uses P/N junctions for semi conductive circuits that … 
-- **EMF 7: Quantum Prometheus**
-  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
-  -  … <<Becker>>’s work on how <<bone>> is <<regenerated>>.  Many people do not realize that <<Becker>> proved **<<bone>> can not heal.  It <<regenerates>> completely**.  Dr … 
 - **EMF 8: Quantum Bone**
   - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
   -  … <<Becker>> in the 1950’s and 60’s on <<bone>> <<regeneration>> and its piezoelectric current.  No one has bothered to look to use his … 
+- **EMF 7: Quantum Prometheus**
+  - `_intake/kruse-blog-corpus/articles/emf-7-quantum-prometheus.md`
+  -  … <<Becker>>’s work on how <<bone>> is <<regenerated>>.  Many people do not realize that <<Becker>> proved **<<bone>> can not heal.  It <<regenerates>> completely**.  Dr … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … <<Becker>> — light, water, plasma, <<bioelectricity>> (canon, branch 05-biophysics)
@@ -186,9 +201,3 @@ with <<Becker>> on <<bone>> <<regeneration>>, EMF biology, electric currents in 
 | Slug | Source | Notes |
 |---|---|---|
 | `<<becker>>-body-electric-1985` | <<Becker>> & Selden — *The Body Electric: Electromagnetism and the … 
-- **Energy and Epigenetics 3: Autoimmunity, Cancer, Autism**
-  - `_intake/kruse-blog-corpus/articles/energy-and-epigenetics-3-autoimmunity-cancer-autism.md`
-  -  … <<Becker>>’s work on the DC electric current of <<regeneration>> on salamander’s and human <<bone>> got him nominated twice for a Noble Prize … 
-- **UBIQUITINATION 8:  THE MAMMALIAN BATTERY**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-8-the-mammalian-battery.md`
-  -  … <<Becker>> found that human <<bone>> a direct photoelectric effect that was very sensitive to the current’s direction from nerves in periosteum. The same … 

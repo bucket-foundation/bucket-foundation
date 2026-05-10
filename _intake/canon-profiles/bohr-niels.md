@@ -29,60 +29,65 @@ its inception …
 theory a Danish physicist and wheeler
 had worked with Niels <<Bohr>> over in … 
 
-## intake (16)
+## intake (13)
 
 - **Niels Bohr**
   - `_intake/canon-profiles/bohr-niels.md`
   - # Niels <<Bohr>>
 
-**Slug**: `<<bohr>>-niels`  ·  **FTS query**: `<<Bohr>> AND (<<atom>> OR <<quantum>> OR <<complementarity>>)`  ·  **Hits**: 25
+**Slug**: `<<bohr>>-niels`  ·  **FTS query**: `<<Bohr>> AND (<<atom>> OR <<quantum>> OR <<complementarity>>)`  ·  **Hits**: 30
 
 
-## archive (4)
+## archive (2)
 
-- **['Introduction To <<Quantum>> Mechanics', 'With Applications … 
+- **(proto)Physics PhD Thesis: TOE - <<Quantum>> … 
 - **mendeleev-periodic**
   - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … One of the lesser-known <<periodic>> <<table>> <<quantum>> links between sulfur and molybdenum when coupled … 
+  -  … stable <<periodic>> <<table>> of <<atoms>>. *The <<periodic>> <<table>> is no longer considered stable … 
 - **Niels <<Bohr>>**
   - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … THE … 
-- **Erwin Schrödinger**
-  - `_intake/canon-profiles/schrodinger-erwin.md`
-  -  … <<bohr>>-niels`](<<bohr>>-niels.md) — Niels <<Bohr>> … 
-- **Energy and Epigenetics 10: The <<Quantum>> Puzzle**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-10-<<quantum>>-puzzle … 
-- **quantum-biology**
-  - `_intake/concept-digests/quantum-biology.md`
+  -  … THE POWER MATRIX … 
+- **Richard Feynman**
+  - `_intake/canon-profiles/feynman-richard.md`
   -  … Niels <<Bohr>>**
   - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … Sulfated Vitamin D3**
-  - `_intake/kruse-blog-corpus/articles/<<<<quantum>>>>-<<biology>>-7-vitamin-d.md`
-  -  … <<<<atoms>>>> and … 
+  -  … However, it turns out … 
+
+## youtube (6)
+
+- **The <<Quantum>> Labyrinth - Richard <<Feynman>> & John Wheeler - <<Quantum>> Reality & Time … 
+- **Erwin Schrödinger**
+  - `_intake/canon-profiles/schrodinger-erwin.md`
+  -  … hits
+- [`<<bohr>>-niels`](<<bohr>>-niels.md) — Niels <<Bohr>> … 
+- **Richard Feynman**
+  - `_intake/canon-profiles/feynman-richard.md`
+  -  … Labyrinth - Richard <<Feynman>> & John Wheeler - <<Quantum>> Reality & Time … 
 - **Quantum Biology 7: Sulfated Vitamin D3**
   - `_intake/kruse-blog-corpus/articles/quantum-biology-7-vitamin-d.md`
   -  … <<atoms>> and accurately predict how groups of them would behave together.  With his imagination as his canvas, he created the foundation of <<quantum>> mechanics … 
 - **TENSEGRITY #10: THE POWER MATRIX**
   - `_intake/kruse-blog-corpus/articles/tensegrity-10.md`
   -  … As <<atomic>> physics and chemistry began to explain the periodic table with the help of the <<Bohr>> model of the <<atom>> in the early … 
-- **Richard Feynman**
-  - `_intake/canon-profiles/feynman-richard.md`
-  -  … <<Quantum>> Labyrinth - Richard <<Feynman>> & John Wheeler - <<Quantum>> Reality & Time**
-  - `yt/KCcX03Q6Lkw-the-<<quantum>>-labyrinth-richard-<<feynman>>-john-wheeler-<<quantum>>-r/transcript.txt … 
-- **Niels <<Bohr>> … 
 - **John Archibald Wheeler**
   - `_intake/canon-profiles/wheeler-john.md`
-  -  … <<Bohr>>**
+  -  … <<quantum>>>>-labyrinth-richard-feynman-john-<<wheeler>>-<<<<quantum>>>>-r … 
+- **Niels <<Bohr>>**
   - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … The  second  step  of  the  history  of  chemistry  was  heralded  by 
-<<<<Bohr>>>> … 
+  -  … However, it turns out … 
 
 ## youtube (6)
 
-- **The <<<<Quantum>>>> Labyrinth … 
-- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
-  -  … They can create other possible <<quantum>> possibilities for protons and electrons within a mitochondria by creating something called an **“exotic <<atom>>”**. *This <<atom>> would … 
+- **The <<<<Quantum>> … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … Niels <<Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … light to
+communicate because remember when
+<<<<quantum>>>> mechanics
+was innovated from <<Tesla>> to Niels <<<<Bohr>>>>
+no … 
 - **CPC #16: Quantum Breathing Effects**
   - `_intake/kruse-blog-corpus/articles/cpc-16-quantum-breathing-effects.md`
   -  … https://jackkruse.com/cpc-16-<<quantum>>-breathing-effects/
@@ -94,6 +99,16 @@ had worked with Niels <<Bohr>> over in …
 
 
 The <<Bohr>> effect hinges around the electromagnetic allosteric interactions between the … 
+- **quantum-biology**
+  - `_intake/concept-digests/quantum-biology.md`
+  -  … Jack Kruse #149**
+  - `yt/PH1MbzHXPsY-cancer-beyond-metabolism-bioelectricity-mitochondria-<<<<quantum>>>>/transcript.txt`
+  -  … that <<Becker>> found one trillionth of … 
+- **Niels <<Bohr>>**
+  - `_intake/canon-profiles … 
+- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
+  -  … They can create other possible <<quantum>> possibilities for protons and electrons within a mitochondria by creating something called an **“exotic <<atom>>”**. *This <<atom>> would … 
 - **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
   - `_intake/kruse-blog-corpus/articles/tensegrity-13-quantum-fidelity-sleep.md`
   -  … SUMMARY:**
@@ -102,37 +117,3 @@ As <<atomic>> physics and chemistry began to explain the periodic table with the
 - **TIME # 25: HOW DO MONOPOLES MAKE TIME FOR CELLS?**
   - `_intake/kruse-blog-corpus/articles/monopoles-make-time.md`
   -  … thesis, for which he later won the Nobel Prize.  The problem for physics back then, was <<Bohr>>’s version of <<quantum>> mechanics largely ignores … 
-- **Nikola Tesla**
-  - `_intake/canon-profiles/tesla-nikola.md`
-  -  … Niels <<Bohr>>**
-  - `_intake/canon-profiles/<<bohr>>-niels.md`
-  -  … light to
-communicate because remember when
-<<<<quantum>>>> mechanics
-was innovated from <<Tesla>> to Niels <<<<Bohr>>>>
-no … 
-- **ORGANIZATION STRUCTURAL FAILURE 2:  MAGNETIC MEMORY**
-  - `_intake/kruse-blog-corpus/articles/organization-structural-failure-2-magnetism.md`
-  -  … subatomic particle with a higher <<atomic>> mass, like a proton, you have to add more energy into the <<quantum>> cellular design to make things … 
-- **EMF 8: Quantum Bone**
-  - `_intake/kruse-blog-corpus/articles/emf-8-quantum-bone.md`
-  -  … https://jackkruse.com/emf-8-<<quantum>>-bone/
-
----
-
-](https://jackkruse.com/wp-content/uploads/2013/07/jk-brain-tablethumb.png)
-
-
-
-
-
-
-
-## EMF 8: <<Quantum>> Bone
-
-
-
-### Readers … 
-- **ORGANIZATIONAL STRUCTURAL FAILURE 3:  DARWIN WAS WRONG**
-  - `_intake/kruse-blog-corpus/articles/osf-3-darwin-was-wrong.md`
-  -  … <<Quantum>> evolution of DHA affects the chemical evolution of <<atoms>> in lipids and proteins to create proteins that reduce entropy in cells.  Here you … 

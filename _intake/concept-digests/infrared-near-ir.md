@@ -3,7 +3,7 @@
 **Query**: `infrared OR "near IR" OR "near-infrared"`  ·  **Hits**: 35
 
 
-## pubmed (19)
+## pubmed (14)
 
 - **Near-infrared photobiomodulation can alleviate chemotherapy-induced peripheral neuropathy-associated sensory abnormalities.**
   - `pubmed/PMID-41807896-near-infrared-photobiomodulation-can-alleviate-chemotherapy/info.md`
@@ -19,13 +19,6 @@
 
 - **PMID**: 42013903
 - **DOI**: 10.1088/1361-6560/ae62f3 … 
-- **Near-Infrared Stimulation in Psychiatry Disorders: A Systematic Review of Efficacy and Biological Mechanisms.**
-  - `pubmed/PMID-40137870-near-infrared-stimulation-in-psychiatry-disorders-a-systemat/info.md`
-  - # <<Near-Infrared>> Stimulation in Psychiatry Disorders: A Systematic Review of Efficacy and Biological Mechanisms.
-
-- **PMID**: 40137870
-- **DOI**: 10.1007/s10103-014-1669-2
-- **PMCID … 
 - **Near-Infrared Persistent Luminescence of CaTiO**
   - `pubmed/PMID-39368104-near-infrared-persistent-luminescence-of-catio/info.md`
   - # <<Near-Infrared>> Persistent Luminescence of CaTiO
@@ -35,6 +28,13 @@
 - **PMCID**:  
 - **Journal**: ACS applied materials & interfaces  ·  **Year**: 2024
 - **Authors**: Yicheng Xu … 
+- **Near-Infrared Stimulation in Psychiatry Disorders: A Systematic Review of Efficacy and Biological Mechanisms.**
+  - `pubmed/PMID-40137870-near-infrared-stimulation-in-psychiatry-disorders-a-systemat/info.md`
+  - # <<Near-Infrared>> Stimulation in Psychiatry Disorders: A Systematic Review of Efficacy and Biological Mechanisms.
+
+- **PMID**: 40137870
+- **DOI**: 10.1007/s10103-014-1669-2
+- **PMCID … 
 - **Synergistic Effects of Near-Infrared Photobiomodulation and Allogeneic Fibrin Serum on Osteogenic Differentiation of Human Dental Pulp Stem Cells.**
   - `pubmed/PMID-41403260-synergistic-effects-of-near-infrared-photobiomodulation-and/info.md`
   - # Synergistic Effects of <<Near-Infrared>> Photobiomodulation and Allogeneic Fibrin Serum on Osteogenic Differentiation of Human Dental Pulp Stem Cells.
@@ -75,25 +75,6 @@
 - **Human high intelligence is involved in spectral redshift of biophotonic activities in the brain.**
   - `pubmed/PMID-27432962-human-high-intelligence-is-involved-in-spectral-redshift-of/info.md`
   -  … mouse, chicken, pig, and monkey) to humans, even up to a <<near-infrared>> wavelength (∼865 nm) in the human brain. This brain property may … 
-- **Photobiomodulation Therapy on Brain: Pioneering an Innovative Approach to Revolutionize Cognitive Dynamics.**
-  - `pubmed/PMID-38891098-photobiomodulation-therapy-on-brain-pioneering-an-innovative/info.md`
-  -  … 2026-05-10T09:53:54
-
-## Abstract
-
-Photobiomodulation (PBM) therapy on the brain employs red to <<near-infrared>> (NIR) light to treat various neurological and … 
-- **A Narrative Review on Photobiomodulation-Guided Immunomodulation: Reprogramming Tumor-Associated Macrophages.**
-  - `pubmed/PMID-41574502-a-narrative-review-on-photobiomodulation-guided-immunomodula/info.md`
-  -  … Photobiomodulation (PBM), a non-invasive therapeutic modality utilizing low-intensity red to <<near-infrared>> light (600-1100 nm), has shown growing potential in immunomodulation … 
-- **Photobiomodulation in stroke prevention and treatment: neuroprotective mechanisms and therapeutic challenges.**
-  - `pubmed/PMID-41067675-photobiomodulation-in-stroke-prevention-and-treatment-neurop/info.md`
-  -  … It also highlights the therapeutic effects of red and <<near-infrared>> light, while considering water as a crucial chromophore that may enhance treatment efficacy … 
-- **Transcranial Photobiomodulation for Neuromodulation of Brain Disorders: A Perspective.**
-  - `pubmed/PMID-41642156-transcranial-photobiomodulation-for-neuromodulation-of-brain/info.md`
-  -  … Because red and <<near-infrared>> wavelengths penetrate the skin and skull, PBM can be applied transcranially (tPBM) to noninvasively modulate brain activity, offering therapeutic … 
-- **The Mitochondrial Blueprint of Skin Aging: From Damage Signals to Dermatologic Interventions.**
-  - `pubmed/PMID-41824483-the-mitochondrial-blueprint-of-skin-aging-from-damage-signal/info.md`
-  -  … Mitochondria-directed antioxidants such as melatonin and coenzyme Q10, NAD⁺ boosters and sirtuin activators, red and <<near-infrared>> photobiomodulation, and NRF2-based redox reprogramming … 
 
 ## arxiv (2)
 
@@ -108,51 +89,80 @@ Photobiomodulation (PBM) therapy on the brain employs red to <<near-infrared>> (
 
 We describe the Dark Energy Survey (DES), a proposed optical-<<near infrared>> survey of 5000 sq. deg of … 
 
-## youtube (1)
-
-- **Dr. Jack Kruse on How Light Controls Metabolism & Diabetes | Blue Light and Brain Damage | Bitcoin**
-  - `yt/tg9c6shuazI-dr-jack-kruse-on-how-light-controls-metabolism-diabetes-blue/transcript.txt`
-  -  … And what's the other interesting
-finding? The other part of sunlight,
-<<near infrared>> light, actually unbinds
-nitric oxide from cytochrome 4. So I … 
-
-## intake (5)
+## intake (9)
 
 - **infrared-near-ir**
   - `_intake/concept-digests/infrared-near-ir.md`
   - # <<infrared>>-<<near-ir>>
 
-**Query**: `<<infrared>> OR "<<near IR>>" OR "<<near-infrared>>"`  ·  **Hits**: 30
+**Query**: `<<infrared>> OR "<<near IR>>" OR "<<near-infrared>>"`  ·  **Hits**: 35
 
 
-## pubmed (9)
+## pubmed (19)
 
-- **Recent <<near-infrared>> approaches to cytochrome-c-oxidase monitoring … 
+- **<<Near-infrared>> photobiomodulation can alleviate chemotherapy-induced peripheral neuropathy … 
+- **AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … The hydroxyl radical can damage virtually all … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … BY <<BIOPHOTON>> EMISSION?**
+  - `_intake … 
+- **<<AGEs>>-<<RAGE>>-<<glycation … 
+- **Gerald Pollack**
+  - `_intake/canon-profiles/pollack-gerald.md`
+  -  … water>>>>-<<<<pollack>>>>.md … 
+- **<<association>>-<<induction>>-<<ling … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … <<near-ir>>>>.md`
+  -  … Gerald <<<<Pollack>>>>| <<<<EZ>>>> <<<<Water>>>>, What … 
+- **Fritz-Albert Popp**
+  - `_intake/canon-profiles/popp-fritz-albert.md`
+  -  … arxiv:1, intake:19, pubmed:10)
+- [`circadian … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … md`
+  -  … pineal melatonin … 
+- **<<uv>>-<<uva>>-<<uvb>>**
+  - `_intake … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … md) — 30 hits  (intake:14, pubmed:11, youtube:5)
-- [`<<infrared>>-<<near-ir>>`](<<infrared>>-<<near-ir>>.md) — 30 hits  (intake:10, pubmed:9, youtube:11 … 
+  -  … intake:15, openalex-citers:1, pubmed:11, youtube:8)
+- [`<<infrared>>-<<near-ir>>`](<<infrared>>-<<near-ir>>.md) — 35 hits  (arxiv:2, intake:5, openalex-citers … 
 - **ez-water-pollack**
   - `_intake/concept-digests/ez-water-pollack.md`
-  -  … fourth-phase-of-<<water>>-gerald-<<pollack>>-phd … 
+  -  … flow-nutr/transcript.txt`
+  -  … dozens of peer … 
 - **<<infrared>>-<<near-ir>>**
   - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
   -  … The … 
 - **<<Water>>: The Matrix and Engine of … 
-- **fourth-phase-water**
-  - `_intake/concept-digests/fourth-phase-water.md`
-  -  … 4+ via "<<<<fourth phase>>>>" |
-| `<<szent-gyorgyi>>-albert … 
-- **<<infrared>>-<<near-ir>>**
-  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
-  -  … The Matrix and Engine of … 
-- **<<fourth-phase … 
 - **biophoton-popp**
   - `_intake/concept-digests/biophoton-popp.md`
-  -  … popp**
-  - `_intake/concept-digests/<<biophoton>>-popp.md … 
+  -  … intake/concept-digests/<<biophoton>>-popp.md`
+  -  … 11 … 
 - **<<infrared>>-<<near-ir>>**
   - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
   -  … IS TIME TOLD BY <<BIOPHOTON>> EMISSION?**
   - `_intake … 
+- **uv-uva-uvb**
+  - `_intake/concept-digests/uv-uva-uvb.md`
+  -  … 30
+
+
+## pubmed (2)
+
+- **Imaging of ultraweak photon emission for evaluating the oxidative … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … Fourth Phase … 
+- **fourth-phase-water**
+  - `_intake/concept-digests/fourth-phase-water.md`
+  -  … queued (not yet … 
+- **<<infrared>>-<<near-ir>>**
+  - `_intake/concept-digests/<<infrared>>-<<near-ir>>.md`
+  -  … Do you know why?
+This is what we talked … 
+- **Gerald Pollack … 

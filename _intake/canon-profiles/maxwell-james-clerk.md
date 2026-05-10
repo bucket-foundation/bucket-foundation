@@ -14,6 +14,14 @@
 - **Creator**: <<Maxwell>>, James Clerk, 1831-1879
 - **Date**: 1873
 - **Publisher … 
+- **Tamm Fundamentals Of The Theory Of Electricity**
+  - `archive/TammElectricity/info.md`
+  -  … physics, science, electrodynamics, <<electromagnetism>>, <<maxwell>>' equations, <<electromagnetic>> induction, gauss law, dielectrics
+- **Captured**: 2026-05-10T10:09:46
+
+## Description
+
+<blockquote style="font-size:16px;font … 
 - **The principle of relativity : a collection of original memoirs on the special and general theory of relativity**
   - `archive/principleofrelat00lore_0/principleofrelat00lore_0_djvu.txt`
   -  … 214  GRAVITATION  AND  <<ELECTRICITY>> 
@@ -30,14 +38,6 @@ e …
   - `archive/scientificpapers01maxw/scientificpapers01maxw_djvu.txt`
   -  … The  origin  and  growth  of  <<Maxwell>>'s  ideas  and  conceptions  of  <<electrical>>  action,  cul- 
 minating in  his  <<treatise>>  where  all  these  ideas  are  arranged … 
-- **Tamm Fundamentals Of The Theory Of Electricity**
-  - `archive/TammElectricity/info.md`
-  -  … physics, science, electrodynamics, <<electromagnetism>>, <<maxwell>>' equations, <<electromagnetic>> induction, gauss law, dielectrics
-- **Captured**: 2026-05-10T10:09:46
-
-## Description
-
-<blockquote style="font-size:16px;font … 
 - **A Modern Handbook Of Physics**
   - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook-of-Physics-Mir-1982_djvu.txt`
   -  … <<Maxwell>>’s  theory  is  a  generalization  of  fundamental  laws  that 
@@ -57,29 +57,32 @@ include  the  Ostrogradsky-Gauss  theorem  (18.3.3 …
   - `_intake/canon-profiles/maxwell-james-clerk.md`
   - # James Clerk <<Maxwell>>
 
-**Slug**: `<<maxwell>>-james-clerk`  ·  **FTS query**: `<<Maxwell>> AND (<<treatise>> OR <<electromagnetic>> OR <<electric>>)`  ·  **Hits**: 25
+**Slug**: `<<maxwell>>-james-clerk`  ·  **FTS query**: `<<Maxwell>> AND (<<treatise>> OR <<electromagnetic>> OR <<electric>>)`  ·  **Hits**: 30
 
 
-## archive (5)
+## archive (6)
 
 - **A <<treatise>> on <<electricity>> … 
-- **Michael Faraday**
-  - `_intake/canon-profiles/faraday-michael.md`
-  -  … <<Maxwell>>**
-  - `_intake/canon-profiles/<<maxwell>>-james-clerk.md`
-  -  … 25
-
-
-## archive (4)
-
-- **A <<treatise>> on <<<<electricity>>>> and <<magnetism>>**
-  - `archive/electricandmagne01maxwrich/info.md`
-  - # A <<<<treatise>>>> on … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … Public domain. |
 | `<<maxwell>>-<<treatise>>-1873` | <<Maxwell>> — *A <<Treatise>> on <<Electricity>> and Magnetism* (1873) | The original equations + derivations. Public domain. |
 | `einstein-1905-papers` | Einstein's … 
+- **Michael Faraday**
+  - `_intake/canon-profiles/faraday-michael.md`
+  -  … <<maxwell>>-james-clerk.md`
+  -  … Einstein's … 
+- **Michael <<Faraday>>**
+  - `_intake/canon-profiles/<<faraday>>-michael.md`
+  -  … ON   <<<<Faraday>>>>'s   lines   of … 
+- **A <<<<treatise>>>> on <<<<<<electricity>>>>>> and … 
+- **Isaac Newton**
+  - `_intake/canon-profiles/newton-isaac.md`
+  -  … Patents, papers on … 
+- **James Clerk <<Maxwell>>**
+  - `_intake/canon-profiles/<<maxwell>>-james-clerk.md`
+  -  … clerk` | <<<<Maxwell>>>> | *<<<<Treatise>>>> on <<<<Electricity>>>> & Magnetism* (1873) | 02-physics | 14 |
+| `<<newton … 
 - **James Clerk Maxwell — canon-target intake**
   - `_intake/maxwell-james-clerk/README.md`
   -  … mentioned in Kruse × WiM podcasts (transcripts in `bucket-foundation/yt/`)
@@ -94,13 +97,6 @@ A <<Treatise>> on <<Electricity>> and Magnetism (1873); ~100 papers
   -  … <<MAXWELL>> James Clerk, “A Dynamical Theory of the <<Electromagnetic>> Field”, Royal Society Transactions 155 (1865) 459–515
 
 <<MAXWELL>> James Clerk, “A <<Treatise>> on <<Electricity>> … 
-- **Isaac Newton**
-  - `_intake/canon-profiles/newton-isaac.md`
-  -  … on  the  <<table … 
-- **James Clerk <<Maxwell>>**
-  - `_intake/canon-profiles/<<maxwell>>-james-clerk.md`
-  -  … clerk` | <<<<Maxwell>>>> | *<<<<Treatise>>>> on <<<<Electricity>>>> & Magnetism* (1873) | 02-physics | 14 |
-| `<<newton … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … photoelectric, Brownian, SR, E=mc²) | 02-physics | 20 |
@@ -109,18 +105,18 @@ A <<Treatise>> on <<Electricity>> and Magnetism (1873); ~100 papers
 - **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
   - `_intake/kruse-blog-corpus/articles/tensegrity-11-exotic-atoms-matrix.md`
   -  … ch/content/properties-monopole) was consistent with James <<Maxwell>>’s equations on <<electromagnetism>> only if <<electric>> charges are quantized. Magnetic monopoles are either  a … 
-- **Per-Video References**
-  - `_intake/kruse-references-mined/PER-VIDEO.md`
-  -  … WHO(65), AGE(35), NAD(20), Rockefeller(9), iron(5), AGEs(5), Einstein(3), <<Maxwell>>(3), blue light(2), <<electromagnetic>>(2), EPA(2), RAGE … 
 - **Energy and Epigenetics 9: Quantum Sleep**
   - `_intake/kruse-blog-corpus/articles/energy-epigenetics-9-quantum-sleep.md`
   -  … but he knew from <<Maxwell>>’s laws of <<electromagnetism>> that magnetic fields act at 90 degree angles to direct <<electric>> currents in the nerves … 
-- **Energy and Epigenetics 12:  Is Your Battery Charged?**
-  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
-  -  … from changes in the sun’s <<electromagnetic>> spectrum of energies and forces in our environment.  These <<electrical>> changes are measured in your redox potential … 
+- **Per-Video References**
+  - `_intake/kruse-references-mined/PER-VIDEO.md`
+  -  … WHO(65), AGE(35), NAD(20), Rockefeller(9), iron(5), AGEs(5), Einstein(3), <<Maxwell>>(3), blue light(2), <<electromagnetic>>(2), EPA(2), RAGE … 
 - **TENSEGRITY #10: THE POWER MATRIX**
   - `_intake/kruse-blog-corpus/articles/tensegrity-10.md`
   -  … constant <<electric>> or magnetic field wont change its behavior at all. The reason is tied to <<Maxwell>>’s classical equations on <<electromagnetic>> waves. It … 
+- **Energy and Epigenetics 12:  Is Your Battery Charged?**
+  - `_intake/kruse-blog-corpus/articles/energy-epigenetics-12-battery-charged.md`
+  -  … from changes in the sun’s <<electromagnetic>> spectrum of energies and forces in our environment.  These <<electrical>> changes are measured in your redox potential … 
 - **The Tilted Quilt: Random Musings 2**
   - `_intake/kruse-blog-corpus/articles/tilted-quilt-random-musings-2.md`
   -  … Power to move things <<electrically>> is the same power that can be used to warm things or to cool them.The <<electrical>> flow that … 

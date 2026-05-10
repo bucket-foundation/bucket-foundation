@@ -40,18 +40,18 @@ Understanding how multi-scale network structure influences <<circadian>> rhythms
   - `arxiv/1107.5137-how-coupling-determines-the-entrainment-of-circadian-clocks/info.md`
   -  … A network of coupled neurons, the <<suprachiasmatic>> nucleus (<<SCN>>), serves as a robust self-sustained <<circadian>> pacemaker. Synchronization of this timer to the environmental … 
 
-## intake (26)
+## intake (25)
 
 - **circadian-scn**
   - `_intake/concept-digests/circadian-scn.md`
   - # <<circadian>>-<<scn>>
 
-**Query**: `<<circadian>> OR <<SCN>> OR <<suprachiasmatic>>`  ·  **Hits**: 30
+**Query**: `<<circadian>> OR <<SCN>> OR <<suprachiasmatic>>`  ·  **Hits**: 35
 
 
-## arxiv (3)
+## pubmed (6)
 
-- **Robustness and size-dependence of <<circadian>> rhythms in multiscale <<suprachiasmatic>>-nucleus networks … 
+- **<<Circadian>> rhythms remain temperature compensated during a Q neuron-induced hibernation-like … 
 - **UBIQUITINATION #2:  GRAVITY BENDS LIGHT AND TIME AT YOUR SCN**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-2-gravity-bends-light-and-time-at-your-scn.md`
   -  … So how does gravity affect <<circadian>> signaling, using sunlight?
@@ -72,18 +72,6 @@ The <<suprachiasmatic>> nucleus (<<SCN>>) has few efferents neurons because this
 - **UBIQUITINATION 17: GEARS OF THE "EYE CLOCK"**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-17-gears-of-the-eye-clock.md`
   -  … their photopigment.  These cells send axonal projections directly to the <<suprachiasmatic>> nucleus (<<SCN>>).  Melanopsin forms a functional photopigment capable of catalyzing G-protein activation … 
-- **TENSEGRITY #5: YOUR MAGNETIC SENSE**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-5-magnetic-sense.md`
-  -  … Without DHA in our brains we can not properly receive the environments signals in our <<suprachiasmatic>> nucleus (<<SCN>>) and in our cell membranes.  The … 
-- **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
-  - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
-  -  … constriction and <<circadian>> rhythms. It is found in nerve cells that connect the retina to the body’s master clock, the <<suprachiasmatic>> nuclei of … 
-- **UBIQUITINATION 14:   ANTENNA FAILURE**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-14-electrosensitivity-is-antenna-failure.md`
-  -  … your <<SCN>>.  Within the <<SCN>> is a lot of DHA in the cell membranes.  It is surrounded by CSF in the <<suprachiasmatic>> cistern.   DHA … 
-- **UBIQUITINATION 3:  THE RHYTHM IS GONNA GET YOU**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-3-the-rhythm-is-gonna-get-you.md`
-  -  … do not seem to understand the science of how light and timing, fundamentally uncouple ubiquitination from <<circadian>> signals.  Disrupting the <<SCN>> causes <<circadian>> arrhythmia … 
 - **Circadian biology + SCN + light environment — concept canon-target intake**
   - `_intake/concept-circadian-light-environment/README.md`
   - # <<Circadian>> biology + <<SCN>> + light environment — concept canon-target intake
@@ -92,62 +80,59 @@ The <<suprachiasmatic>> nucleus (<<SCN>>) has few efferents neurons because this
 - **Canon branch**: 05-biophysics
 - **Status**: queued (not yet researched)
 - **Initiated … 
+- **UBIQUITINATION 3:  THE RHYTHM IS GONNA GET YOU**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-3-the-rhythm-is-gonna-get-you.md`
+  -  … do not seem to understand the science of how light and timing, fundamentally uncouple ubiquitination from <<circadian>> signals.  Disrupting the <<SCN>> causes <<circadian>> arrhythmia … 
+- **TENSEGRITY #5: YOUR MAGNETIC SENSE**
+  - `_intake/kruse-blog-corpus/articles/tensegrity-5-magnetic-sense.md`
+  -  … Without DHA in our brains we can not properly receive the environments signals in our <<suprachiasmatic>> nucleus (<<SCN>>) and in our cell membranes.  The … 
 - **UBIQUITINATION 16:  YOUR EYE AS A CLOCK AND NOT A CAMERA**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-16-your-eye-as-a-clock-and-not-a-camera.md`
   -  … Once your <<SCN>> timing mechanism goes haywire it is a matter of time before your <<circadian>> clock genes in tissues the <<SCN>> controls also … 
-- **schumann-cme**
-  - `_intake/concept-digests/schumann-cme.md`
-  -  … HOW DO PLANTS CONTROL THEIR GROWTH PROCESS … 
-- **<<circadian>>-<<scn>>**
-  - `_intake/concept-digests/<<circadian>>-<<scn>>.md`
-  -  … to reyoke the intestinal barriers <<<<circadian>>>> cellular clocks … 
-- **<<schumann … 
-- **EMF 2: Einstein, Meet Leptin**
-  - `_intake/kruse-blog-corpus/articles/emf-2-einstein-meet-leptin.md`
-  -  … This disruption also caused a “faulty timing mechanism” to develop in the <<circadian>> clock of my <<SCN>> in my hypothalamus! I realized this could … 
+- **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
+  - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
+  -  … constriction and <<circadian>> rhythms. It is found in nerve cells that connect the retina to the body’s master clock, the <<suprachiasmatic>> nuclei of … 
+- **UBIQUITINATION 14:   ANTENNA FAILURE**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-14-electrosensitivity-is-antenna-failure.md`
+  -  … your <<SCN>>.  Within the <<SCN>> is a lot of DHA in the cell membranes.  It is surrounded by CSF in the <<suprachiasmatic>> cistern.   DHA … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … popp.md) — 30 hits  (arxiv:1, intake:19, pubmed:10)
-- [`<<circadian>>-<<scn>>`](<<circadian>>-<<scn>>.md) — 30 hits  (arxiv:3, intake:27)
-- [`bone-bioelectric-becker … 
-- **TIME #17:  MELATONIN AND INSULIN ARE SOLAR METRONOMES**
-  - `_intake/kruse-blog-corpus/articles/time-17-melatonin-insulin-solar-metronomes.md`
-  -  … PFC prefrontal cortex, <<SCN>> <<suprachiasmatic>> nucleus, SPVZ subparaventricular zone, VLPO ventrolateral preoptic nucleus, PVN paraventricular nucleus of the hypothalamus, LH lateral hypothalamus, DMH dorsomedial … 
+  -  … openalex:1, openalex-citers:9, openalex-fanout:7, pubmed:10)
+- [`<<circadian>>-<<scn>>`](<<circadian>>-<<scn>>.md) — 35 hits  (arxiv:3, intake:26, pubmed:6)
+- [`bone … 
 - **UBIQUITINATION 20:  LINKING LIGHT TO PLANTS AND ANIMALS**
   - `_intake/kruse-blog-corpus/articles/ubiquitination-20-linking-light-to-plants-and-animals.md`
   -  … Non native EMF, outside of blue light, have the ability to speed up peripheral <<circadian>> clocks. This alters the relativity relationship between the <<SCN>> … 
-- **REALITY #7:   BLOOD AND CHLOROPHYLL TYPES AND FOOD**
-  - `_intake/kruse-blog-corpus/articles/reality-7-blood-chlorophyll-types-food.md`
-  -  … retina to the <<suprachiasmatic>> nucleus (<<SCN>>) which controls the <<circadian>> mechanism.  This tract continues on and connects the retina and <<SCN>> to the leptin … 
-- **Robert O. Becker**
-  - `_intake/canon-profiles/becker-robert-o.md`
-  -  … What are the … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … <<circadian>>-<<scn>>`](<<circadian>>-<<scn>>.md) — 30 hits  (intake:30)
-- [`<<bone>>-<<bioelectric>>-<<becker>>`](<<bone>>-<<bioelectric … 
-- **UBIQUITINATION 25:  UV LIGHT AND POOP PLANTS**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-25-uv-light-and-poop-plants.md`
-  -  … When this occurs, it can slow <<SCN>> speeds RELATIVELY to the speeds found in ETC in mitochondria or in the peripheral <<circadian>> clocks in … 
-- **TIME #2:  HOW IS TIME BUILT?**
-  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
-  -  … The <<SCN>> <<circadian>> clock has to run faster than the organ body clocks because of the warping effects of gravity, Delbruck scattering, and lowered … 
-- **Cold Thermogenesis 7:  ENVIRONMENT TRUMPS NUCLEAR GENOME**
-  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-7.md`
-  -  … responsible for most <<circadian>> behavior can be localized to the <<suprachiasmatic>> nucleus (<<SCN>>). Although previous studies suggest that each <<SCN>> neuron may be an … 
-- **EMF 4: Why Might You Need Carbs for Performance?**
-  - `_intake/kruse-blog-corpus/articles/emf-4-why-might-you-need-carbs-for-performance.md`
-  -  … our <<SCN>>, and the harmonic output is found in the alpha waves frequency of our brain waves. These waves control the <<circadian>> cycle and … 
+- **EMF 2: Einstein, Meet Leptin**
+  - `_intake/kruse-blog-corpus/articles/emf-2-einstein-meet-leptin.md`
+  -  … This disruption also caused a “faulty timing mechanism” to develop in the <<circadian>> clock of my <<SCN>> in my hypothalamus! I realized this could … 
 - **Per-Video References**
   - `_intake/kruse-references-mined/PER-VIDEO.md`
   -  … 7), red light(6), <<SCN>>(5), quantum biology(5), DHA(4), electron(4), Becker(4), dopamine(3), mitochondrial(3), <<circadian>>(3)
 
 
 **Titled**: Robert(1 … 
-- **bone-bioelectric-becker**
-  - `_intake/concept-digests/bone-bioelectric-becker.md`
-  -  … What are the … 
-- **Concept Digests**
-  - `_intake/concept-digests/INDEX.md`
-  -  … <<circadian>>-<<scn>>`](<<circadian>>-<<scn>>.md) — 30 hits  (intake:30)
-- [`<<bone>>-<<bioelectric>>-<<becker>>`](<<bone>>-<<bioelectric … 
+- **TIME #17:  MELATONIN AND INSULIN ARE SOLAR METRONOMES**
+  - `_intake/kruse-blog-corpus/articles/time-17-melatonin-insulin-solar-metronomes.md`
+  -  … PFC prefrontal cortex, <<SCN>> <<suprachiasmatic>> nucleus, SPVZ subparaventricular zone, VLPO ventrolateral preoptic nucleus, PVN paraventricular nucleus of the hypothalamus, LH lateral hypothalamus, DMH dorsomedial … 
+- **REALITY #7:   BLOOD AND CHLOROPHYLL TYPES AND FOOD**
+  - `_intake/kruse-blog-corpus/articles/reality-7-blood-chlorophyll-types-food.md`
+  -  … retina to the <<suprachiasmatic>> nucleus (<<SCN>>) which controls the <<circadian>> mechanism.  This tract continues on and connects the retina and <<SCN>> to the leptin … 
+- **UBIQUITINATION 25:  UV LIGHT AND POOP PLANTS**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-25-uv-light-and-poop-plants.md`
+  -  … When this occurs, it can slow <<SCN>> speeds RELATIVELY to the speeds found in ETC in mitochondria or in the peripheral <<circadian>> clocks in … 
+- **TIME #2:  HOW IS TIME BUILT?**
+  - `_intake/kruse-blog-corpus/articles/time-2-how-is-time-built.md`
+  -  … The <<SCN>> <<circadian>> clock has to run faster than the organ body clocks because of the warping effects of gravity, Delbruck scattering, and lowered … 
+- **EMF 4: Why Might You Need Carbs for Performance?**
+  - `_intake/kruse-blog-corpus/articles/emf-4-why-might-you-need-carbs-for-performance.md`
+  -  … our <<SCN>>, and the harmonic output is found in the alpha waves frequency of our brain waves. These waves control the <<circadian>> cycle and … 
+- **Cold Thermogenesis 7:  ENVIRONMENT TRUMPS NUCLEAR GENOME**
+  - `_intake/kruse-blog-corpus/articles/cold-thermogenesis-7.md`
+  -  … responsible for most <<circadian>> behavior can be localized to the <<suprachiasmatic>> nucleus (<<SCN>>). Although previous studies suggest that each <<SCN>> neuron may be an … 
+- **UBIQUITINATION 8:  THE MAMMALIAN BATTERY**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-8-the-mammalian-battery.md`
+  -  … Discharged batteries cannot run things well, like clocks.  Clocks that run on a bad battery run slower.  Your <<SCN>> in your eye is driven … 
+- **UBIQUITINATION 7:  PALEO's BITTER TRUTH**
+  - `_intake/kruse-blog-corpus/articles/ubiquitination-7-paleos-bitter-truth.md`
+  -  … in the retina entrains <<circadian>> cycles via the <<SCN>>………and you need DHA in your <<SCN>> to run your <<circadian>> clocks and to control … 

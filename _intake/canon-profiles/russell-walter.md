@@ -19,35 +19,26 @@ Ten <<octaves>> constitute one cycle …
 - **Archive identifier**: `the-<<universal>>-one-1926-walter-<<russell>>`
 - **URL**: https://archive.org/details/the-<<universal>>-one-1926-walter … 
 
-## youtube (1)
-
-- **Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)**
-  - `yt/mYMUiOMkKMM-optimize-your-health-in-the-modern-world-with-dr-jack-kruse-/transcript.txt`
-  -  … use a very small
-part of it in fact one <<octave>> of 73
-<<octaves>> that are present so if you think
-about light in … 
-
 ## intake (14)
 
 - **Walter Russell**
   - `_intake/canon-profiles/russell-walter.md`
   - # Walter <<Russell>>
 
-**Slug**: `<<russell>>-walter`  ·  **FTS query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<cosmology>> OR <<rhythm>>)`  ·  **Hits**: 25
+**Slug**: `<<russell>>-walter`  ·  **FTS query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<cosmology>> OR <<rhythm>>)`  ·  **Hits**: 30
 
 
-## archive (5)
+## archive (2)
 
 - **The <<Universal>> One 1926 … 
 - **walter-russell-cosmology**
   - `_intake/concept-digests/walter-russell-cosmology.md`
   - # walter-<<russell>>-<<cosmology>>
 
-**Query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<rhythm>>)`  ·  **Hits**: 30
+**Query**: `<<Russell>> AND (<<universal>> OR <<octave>> OR <<rhythm>>)`  ·  **Hits**: 35
 
 
-## archive (7)
+## archive (3)
 
 - **The <<Universal>> One 1926 Walter <<Russell>>**
   - `archive/the-<<universal>> … 
@@ -56,25 +47,31 @@ about light in …
   -  … of the <<Universe>>" (1953). <<Russell>>'s spiral/<<octave>> periodic table — alternate axiom set, hot-disputed. | Held as **lens material** (alternate <<cosmology>>), not canon. archive … 
 - **Dmitri Mendeleev**
   - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … the mathematical principles … 
+  -  … <<russell>>>>-<<<<cosmology>>>>.md`
+  -  … <<<<rhythms>>>>>> of genetically tweaked mice … 
+- **<<<<mendeleev>>>>-<<periodic>>**
+  - `_intake/concept-digests/<<<<mendeleev>>>>-<<periodic … 
 - **walter-<<russell>>-<<cosmology>>**
-  - `_intake/concept-digests/walter-<<russell>>-<<cosmology>>.md`
-  -  … 26
-
-
-## archive (5)
-
-- **The <<<<Universal>>>> One 1926 Walter <<<<Russell>>>>**
-  - `archive/the … 
+  - `_intake/concept-digests/walter-<<russell>>-<<cosmology>> … 
 - **mendeleev-periodic**
   - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … <<russell>>-<<cosmology>>**
+  -  … 30
+
+
+## archive (6 … 
+- **Walter <<Russell>>**
+  - `_intake/canon-profiles/<<russell>>-walter.md`
+  -  … <<mendeleev>>-<<periodic>>.md`
+  -  … <<<<russell>>>>-<<<<cosmology>>>>.md`
+  -  … <<<<rhythms>>>>>> of genetically tweaked mice … 
+- **<<<<mendeleev>>>>-<<<<periodic … 
+- **schumann-cme**
+  - `_intake/concept-digests/schumann-cme.md`
+  -  … That is what it can do as well … 
+- **walter-<<russell>>-<<cosmology>>**
   - `_intake/concept-digests/walter-<<russell>>-<<cosmology>>.md`
-  -  … Walter <<<<Russell>>>>**
-  - `archive/the-<<<<universal>>>> … 
-- **<<mendeleev>>-<<periodic>>**
-  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
-  -  … <<<<russell>>>>-<<cosmology>> … 
+  -  … The Origin of Life**
+  - `_intake/kruse … 
 - **Walter Russell — canon-target intake**
   - `_intake/russell-walter/README.md`
   - # Walter <<Russell>> — canon-target intake
@@ -92,38 +89,33 @@ about light in …
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … biophysics | mentioned via Becker |
 | `<<russell>>-walter` | **Walter <<Russell>>** (1871–1963) | *The <<Universal>> One* (1926), *A New Concept of the <<Universe>>* (1953), spiral periodic table … 
-- **John Archibald Wheeler**
-  - `_intake/canon-profiles/wheeler-john.md`
-  -  … amazing foundational work on <<quantum>> vortices in … 
-- **walter-<<russell>>-<<cosmology>>**
-  - `_intake/concept-digests/walter-<<russell>>-<<cosmology>>.md`
-  -  … The Curious Relation of Philosophy, Mathematics and … 
 - **Bucket Canon — Branch Coverage Audit (2026-05-09)**
   - `_intake/BRANCH-COVERAGE-AUDIT.md`
   -  … vols 1-2), <<Russell>> 1926, Pasteur, Lavoisier-adjacent. **Missing**: Pauling textbook, IUPAC modern, Seaborg actinide papers |
 | 06-<<cosmology>>   | 416 | ⚠️ noisy | "<<universe>>" hits mostly from … 
-- **schumann-cme**
-  - `_intake/concept-digests/schumann-cme.md`
-  -  … that pulsed EMF above the <<Schumann>> resonance … 
-- **walter-<<russell>>-<<cosmology>>**
-  - `_intake/concept-digests/walter-<<russell>>-<<cosmology>>.md`
-  -  … The Origin of Life**
-  - `_intake/kruse-blog … 
 - **TIME #9: THE "DARK KNIGHT" OF REGENERATION?**
   - `_intake/kruse-blog-corpus/articles/the-dark-knight.md`
   -  … <<Russell>> van Gelder, M.D., Ph.D., a professor of ophthalmology at the <<University>> of Washington, studied the circadian <<rhythms>> of genetically tweaked mice … 
 - **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
-  -  … 30 hits  (arxiv:1, intake:28, youtube:1)
-- [`walter-<<russell>>-<<cosmology>>`](walter-<<russell>>-<<cosmology>>.md) — 30 hits  (archive:7, intake:19, youtube:4)
-- [`mendeleev … 
+  -  … openalex:1, openalex-citers:1, openalex-fanout:1)
+- [`walter-<<russell>>-<<cosmology>>`](walter-<<russell>>-<<cosmology>>.md) — 35 hits  (archive:3, blog:10, gutenberg:2, intake … 
+- **AGEs-RAGE-glycation**
+  - `_intake/concept-digests/AGEs-RAGE-glycation.md`
+  -  … THE <<RHYTHM>> IS GONNA GET YOU**
+  - `_intake/kruse … 
+- **mitochondrial-redox**
+  - `_intake/concept-digests/mitochondrial-redox.md`
+  -  … 24), <<redox>>(24), iron(22), mitochondrial(17), melanin … 
 - **Canon Connections — bridges across branches**
   - `_intake/connections/BRIDGES.md`
-  -  … 955 |
-| 07-mind | 881 |
-| 05-biophysics | 858 |
-| 03-chemistry | 479 |
-| 06-<<cosmology>> | 408 |
-| 09-sacred-texts | 309 |
-| 01-mathematics | 280 |
-| 08-deep-history | 159 … 
+  -  … docs |
+|---|---:|
+| 04-information | 2925 |
+| 02-physics | 1946 |
+| 07-mind | 1937 |
+| 06-<<cosmology>> | 1122 |
+| 03-chemistry | 1082 |
+| 05-biophysics | 1078 |
+| 01-mathematics | 802 |
+| 09-sacred … 

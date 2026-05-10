@@ -3,7 +3,7 @@
 **Slug**: `frohlich-herbert`  ·  **FTS query**: `Fröhlich OR Frohlich AND (coherent OR vibration)`  ·  **Hits**: 30
 
 
-## pubmed (3)
+## pubmed (5)
 
 - **Biological effects of microwaves and the question of coherence.**
   - `pubmed/PMID-7167478-biological-effects-of-microwaves-and-the-question-of-coheren/info.md`
@@ -11,6 +11,22 @@
 - **MeSH**: Animals, Cells, Enzymes, Humans, Microwaves, Radiation Effects, <<Vibration>>
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/7167478/
 - **Captured**: 2026-05-09T09:22 … 
+- **HCl+ X vibrational states investigated from the HCl threshold photoelectron spectrum.**
+  - `pubmed/PMID-9906147-hcl-x-vibrational-states-investigated-from-the-hcl-threshold/info.md`
+  -  … H <<Frohlich>>, PM Guyon, M Glass-Maujean
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/9906147/
+- **Captured**: 2026-05-10T11:54:08
+
+## Abstract
+
+
+
+- **The extraordinary dielectric properties of biological materials and the action of enzymes.**
+  - `pubmed/PMID-1060101-the-extraordinary-dielectric-properties-of-biological-materi/info.md`
+  -  … H <<Fröhlich>>
+- **MeSH**: Chemical Phenomena, Chemistry, Physical, Electromagnetic Phenomena, Enzymes, Models, Biological, Proteins, Structure-Activity Relationship
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/1060101 … 
 - **Long range coherence and the action of enzymes.**
   - `pubmed/PMID-5483165-long-range-coherence-and-the-action-of-enzymes/info.md`
   - # Long range <<coherence>> and the action of enzymes.
@@ -25,16 +41,16 @@
   - `pubmed/PMID-18726298-spontaneous-and-light-induced-photon-emission-from-intact-br/info.md`
   -  … According to the hypothesis of biophoton emission originating from a delocalized <<coherent>> electromagnetic field and <<Frohlich>>' s idea of <<coherent>> long-range interactions in … 
 
-## intake (10)
+## intake (9)
 
 - **Herbert Fröhlich**
   - `_intake/canon-profiles/frohlich-herbert.md`
   - # Herbert <<Fröhlich>>
 
-**Slug**: `<<frohlich>>-herbert`  ·  **FTS query**: `<<Fröhlich>> OR <<Frohlich>> AND (<<coherent>> OR <<vibration>>)`  ·  **Hits**: 11
+**Slug**: `<<frohlich>>-herbert`  ·  **FTS query**: `<<Fröhlich>> OR <<Frohlich>> AND (<<coherent>> OR <<vibration>>)`  ·  **Hits**: 30
 
 
-## pubmed (4)
+## pubmed (3)
 
 - **Biological effects of microwaves and the … 
 - **Herbert Fröhlich — canon-target intake**
@@ -47,14 +63,6 @@
 
 - PubMed: <<Fröhlich>> H
 - archive.org: review papers … 
-- **biophoton-popp**
-  - `_intake/concept-digests/biophoton-popp.md`
-  -  … it cannot do it … 
-- **Herbert <<Fröhlich>>**
-  - `_intake/canon-profiles/<<frohlich>>-herbert.md`
-  -  … Nature 1970, doi:10.1038/2281093a0.
-
-- <<<<Frohlich>>>>,H.The biological effects of … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … Engineers*, semiconductor textbooks | 02-physics / 04-information | 4 |
@@ -79,16 +87,14 @@
 - <<Frohlich>>, H. Long range <<coherence>> and the action of enzymes. Nature 1970, doi:10.1038/2281093a0.
 
 - <<Frohlich>>,H.The biological effects of … 
-- **Fritz-Albert Popp**
-  - `_intake/canon-profiles/popp-fritz-albert.md`
-  -  … that studies light is … 
+- **Andrew Marino**
+  - `_intake/canon-profiles/marino-andrew.md`
+  -  … It is where <<electromagnetic>> field … 
 - **Herbert <<Fröhlich>>**
   - `_intake/canon-profiles/<<frohlich>>-herbert.md`
-  -  … Nature 1970, doi:10.1038/2281093a0.
-
-- <<<<Frohlich>>>>,H.The biological effects of … 
+  -  … <<coherent>>>> <<electromagnetic>> field and <<<<Frohlich>>>>' s idea of <<<<coherent>>>> long-range … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
-  -  … andrew`](marino-andrew.md) — Andrew Marino — 25 hits
-- [`<<frohlich>>-herbert`](<<frohlich>>-herbert.md) — Herbert <<Fröhlich>> — 11 hits
+  -  … andrew`](marino-andrew.md) — Andrew Marino — 30 hits
+- [`<<frohlich>>-herbert`](<<frohlich>>-herbert.md) — Herbert <<Fröhlich>> — 30 hits
 - [`popp-fritz-albert`](popp-fritz-albert.md … 

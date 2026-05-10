@@ -11,6 +11,17 @@
 
 **Citations**: 
 
+## 0IjUzKzfIbI-blue-light-kills-the-fit-people-dr-jack-kruse-ep-15
+
+**Concepts**: mitochondria(38), WHO(26), electron(23), blue light(19), iron(18), UV(13), red light(13), AGE(12), mitochondrial(10), NAD(10), DHA(10), infrared(8), EMF(8), photosynthesis(7), electromagnetic(6), proton(6), biophoton(4), melatonin(4), dopamine(4), UVA(4)
+
+
+**Titled**: Doug
+Wallace(1), Cruz(1), Steven Cain(1)
+
+
+**Citations**: Cruise 2023(1)
+
 ## 0MmyVoqjkwQ-dr-jack-kruse-magnetism-and-health
 
 **Concepts**: WHO(54), melanin(35), deuterium(32), ATP(18), dopamine(17), AGE(17), iron(16), magnetic field(14), Becker(14), NAD(10), mitochondria(8), circadian(6), proton(6), leptin(5), POMC(4), Rockefeller(4), mitochondrial(3), hemoglobin(3), Carrington(3), electromagnetic(2)
@@ -63,6 +74,16 @@ Spencer(1), Elaine Ingam(1)
 
 
 **Citations**: 
+
+## 2EqExGl4rQU-the-science-of-sunlight-and-cold-this-will-transform-your-he
+
+**Concepts**: WHO(50), AGE(34), blue light(22), iron(17), mitochondria(13), circadian(11), melanin(11), mitochondrial(10), red light(10), UV(8), leptin(8), vitamin D(7), EMF(6), melatonin(5), NAD(5), dopamine(4), autoimmune(3), UVA(2), UVB(2), quantum(2)
+
+
+**Titled**: Mike(1), Who(1)
+
+
+**Citations**: Talk 2011(1)
 
 ## 2M-Oap97_Tc-robert-o-becker-electromedicine-hieronimus-september-16-1990
 
@@ -238,6 +259,16 @@ Cruz(1)
 
 **Citations**: 
 
+## 9-P8Qzvdkl8-jack-kruse-sunlight-is-key-for-health
+
+**Concepts**: WHO(9), mitochondria(8), iron(7), blue light(6), electromagnetic(4), electron(4), UV(3), red light(3), NAD(3), photosynthesis(2), cytochrome(2), melatonin(1), mitochondrial(1), UVB(1), hemoglobin(1), EMF(1), NADH(1), ATP(1), quantum(1), EPA(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## 9r8qxEOjJsA-light-contains-all-the-energy-and-information-that-s-present
 
 **Concepts**: electromagnetic(4), AGE(3), quantum(2), semiconductor(1), mitochondria(1), circadian(1)
@@ -267,6 +298,36 @@ Cruz(1)
 
 
 **Citations**: Rockefellers 1969(1), Agenda 2030(1), November 2025(1)
+
+## AFLFYVgFI68-how-obesity-begins-in-the-eye-how-sunlight-is-the-driving-fa
+
+**Concepts**: WHO(41), mitochondria(37), leptin(33), DHA(23), mitochondrial(16), UV(16), AGE(12), blue light(11), circadian(9), quantum(9), iron(8), electron(7), vitamin A(6), ATP(6), cytochrome(5), vitamin D(5), seafood(5), redox(5), melatonin(4), infrared(4)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## AOLIbFIzPnI-dr-jack-kruse-the-false-belief-that-food-and-exercise-is-eve
+
+**Concepts**: cytochrome(4), biophoton(2), mitochondria(2), WHO(2), mitochondrial(1), blue light(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## B8VcGXbKR34-cancer-prevention-secret-sunlight-beats-food-dr-jack-kruse-i
+
+**Concepts**: WHO(24), mitochondria(21), melatonin(13), mitochondrial(12), UV(11), iron(8), red light(6), AGE(5), glutathione(4), NIH(4), biophoton(3), blue light(3), melanin(3), electromagnetic(3), EMF(3), FDA(3), proton(2), SCN(1), photosynthesis(1), infrared(1)
+
+
+**Titled**: Cruz(4), Jack Cruz(1), Jack(1), Who(1), Thomas(1), Russell Ryder(1)
+
+
+**Citations**: 
 
 ## BO4mhs0qlLg-can-creatine-help-your-brain
 
@@ -379,6 +440,16 @@ Becker(1)
 
 **Citations**: 
 
+## FtB3dDS7shQ-kruse-leadership-chat
+
+**Concepts**: WHO(30), AGE(12), EPA(11), RAGE(2), heme(1), iron(1), Newton(1)
+
+
+**Titled**: 
+
+
+**Citations**: October 1964(1)
+
 ## GEw0ePZUMHA-joe-rogan-experience-1216-sir-roger-penrose
 
 **Concepts**: WHO(47), quantum(46), Einstein(14), AGE(11), Schrodinger(7), EPA(6), AGEs(6), iron(5), heme(4), Hameroff(4), Planck(3), proton(1), Bohr(1), Maxwell(1), Newton(1), Wheeler(1)
@@ -459,6 +530,16 @@ Monette(1), Allison Monette(1), Zack Bush(1), Who(1)
 
 **Titled**: Becker(4), Andrew
 Marino(2), Marino(2), Kamal Kokai(1), Robert Becker(1)
+
+
+**Citations**: 
+
+## JW_EHdoToZo-find-out-why-dr-jack-kruse-is-shirtless-in-this-interview
+
+**Concepts**: DHA(27), WHO(20), mitochondria(18), Einstein(10), quantum(8), AGE(8), melatonin(7), photosynthesis(6), electromagnetic(6), UV(5), iron(5), photoelectric(4), mitochondrial(4), vitamin D(4), electron(4), Wheeler(4), photoelectric effect(3), red light(3), EPA(3), proton(3)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -545,6 +626,27 @@ Cruz(2), Cruz(1), Jack Cruz(1), Doug Wallace(1), Wallace(1), Andrew Marino(1)
 
 **Citations**: Vermont 2016(1), Vermont 2017(1), Vermont 2018(1), Sweden 2016(1)
 
+## MZJvDWKbV48-thoughts-on-jack-kruse-harryserpanos
+
+**Concepts**: deuterium(12), mitochondria(5), EPA(4), AGE(3), melatonin(2), ATP(2), WHO(2), cytochrome(1), blue light(1), collagen(1), electron(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## Mb8lQtKduVI-how-our-gut-health-is-linkd-with-the-sun-by-dr-jack-kruse-he
+
+**Concepts**: WHO(23), quantum(13), mitochondria(12), blue light(12), red light(12), UV(11), electron(11), cytochrome(9), iron(8), melatonin(7), NAD(7), dopamine(6), vitamin D(5), infrared(4), EMF(4), ATP(4), Einstein(4), photoelectric effect(3), photoelectric(3), hemoglobin(3)
+
+
+**Titled**: Cruz(2), Jack Cruz Jack(1), Jack
+Cruz(1)
+
+
+**Citations**: 
+
 ## MvrKwzXTtfw-ifs-podcast-1-decoding-the-science-of-ultimate-human-health-
 
 **Concepts**: electron(39), mitochondria(18), AGE(18), iron(17), DHA(17), leptin(10), quantum(9), proton(9), iodine(7), seafood(7), magnetic field(6), Einstein(6), EMF(5), ketosis(5), WHO(5), photoelectric(4), collagen(4), semiconductor(3), circadian(3), photoelectric effect(2)
@@ -552,6 +654,18 @@ Cruz(2), Cruz(1), Jack Cruz(1), Doug Wallace(1), Wallace(1), Andrew Marino(1)
 
 **Titled**: Jack Cruz(3), Jack
 Cruz(2), Robert(1), Becker When(1)
+
+
+**Citations**: 
+
+## N-_DTk9hYvI-nourish-vermont-2016-dr-jack-kruse-how-to-bio-hack-your-zip-
+
+**Concepts**: WHO(40), mitochondria(37), electron(30), UV(28), iron(28), quantum(25), blue light(24), DHA(16), AGE(15), melatonin(11), vitamin D(11), proton(10), leptin(9), ATP(8), circadian(7), photoelectric(6), photosynthesis(6), semiconductor(6), mitochondrial(6), exclusion zone(5)
+
+
+**Titled**: Cruz(2), Doug
+Wallace(1), Ted(1), Jack Cruz
+Facebook(1)
 
 
 **Citations**: 
@@ -794,6 +908,26 @@ Camellia(1), Sean(1), Who(1)
 
 **Citations**: Vermont 2018(1)
 
+## WwxOqw1kQeo-thc-clips-dr-jack-kruse-on-deuterium-depleted-water-water-ma
+
+**Concepts**: iron(6), AGE(6), WHO(3), photosynthesis(1), mitochondria(1), mitochondrial(1), electromagnetic(1), EMF(1), autoimmune(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
+## X5WCYlaPAwM-blue-light-emf-circadian-rhythm-mitochondria-and-quantum-bio
+
+**Concepts**: mitochondria(51), WHO(37), UV(27), vitamin D(22), mitochondrial(21), blue light(17), red light(17), deuterium(16), iron(15), DHA(15), AGE(13), electromagnetic(12), electron(12), quantum(11), ATP(9), proton(8), melatonin(6), photosynthesis(5), cytochrome(5), infrared(5)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## YCN-kgAH2hM-dr-kruse-patient-interview
 
 **Concepts**: WHO(2), vitamin D(1), DHA(1)
@@ -946,6 +1080,16 @@ Li(1), Cruz(1), Boris(1), Arturo(1)
 
 **Citations**: January 2021(1), April 2021(1)
 
+## g_rlcavhGLs-jack-kruse-on-how-light-sculpts-your-microbiome-implications
+
+**Concepts**: WHO(22), red light(14), mitochondria(13), blue light(12), quantum(12), UV(11), electron(11), cytochrome(9), vitamin D(8), iron(8), melatonin(7), NAD(7), dopamine(6), infrared(4), EMF(4), ATP(4), Einstein(4), photoelectric effect(3), photoelectric(3), hemoglobin(3)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## hOMTiBqhbQc-lars-edvinsson-s-opening-lecture-of-the-albert-szent-gy-rgyi
 
 **Concepts**: AGE(3), iron(1), ATP(1), EPA(1)
@@ -1007,6 +1151,16 @@ Kruse(1)
 
 
 **Citations**: Falls 1977(1), Ferrari 2015(1)
+
+## l9Ubguvfpys-dr-jack-kruse-water-non-native-emfs-mitochondrial-basis-of-d
+
+**Concepts**: mitochondria(60), WHO(26), mitochondrial(23), iron(21), AGE(17), electromagnetic(14), EMF(13), photosynthesis(10), cytochrome(8), red light(7), blue light(4), proton(4), infrared(3), melanin(3), EPA(3), electron(3), deuterium(2), ATP(2), photoelectric(1), semiconductor(1)
+
+
+**Titled**: Cruz(3), Max(1), Anthony(1), Jack Cruz(1), Jack(1), Wallace(1)
+
+
+**Citations**: 
 
 ## lQfAB_J390E-the-medical-tyranny-healthcare-exposed-dr-jack-kruse
 
@@ -1162,6 +1316,16 @@ Platner(1)
 
 **Citations**: Constitution 2023(1)
 
+## pjy1dMHX2Kw-dr-jack-kruse-explains-how-sunlight-controls-metabolism-thro
+
+**Concepts**: blue light(19), melanin(15), mitochondria(13), iron(12), cytochrome(11), WHO(10), mitochondrial(7), electron(7), vitamin D(6), AGE(6), copper(5), circadian(4), vitamin A(4), melatonin(3), semiconductor(3), leptin(3), photosynthesis(2), infrared(2), UV(2), UVA(2)
+
+
+**Titled**: 
+
+
+**Citations**: Prize 1992(1)
+
 ## qHnE8yfuT_E-who-the-heck-is-gilbert-ling
 
 **Concepts**: WHO(13), ATP(10), AGE(6), electron(5), iron(3), RAGE(2), proton(2), NIH(2), exclusion zone(1), mitochondria(1), heme(1), EPA(1), AGEs(1)
@@ -1195,6 +1359,16 @@ Malone(1)
 
 
 **Citations**: Fouchy 2006(2), Bitcoin 2024(1)
+
+## rKDl37lqEBg-dr-jack-kruse-sunlight-is-the-key-to-health-digestive-issues
+
+**Concepts**: WHO(58), iron(35), AGE(30), mitochondria(17), blue light(16), UV(13), dopamine(11), NAD(9), DHA(7), biophoton(6), electromagnetic(6), circadian(5), quantum(4), photosynthesis(3), heme(3), vitamin D(3), quantum biology(3), mitochondrial(2), UVB(2), melanin(2)
+
+
+**Titled**: 
+
+
+**Citations**: Vermont 2018(2), Vermont 2016(1)
 
 ## rTOXgqMAMeo-08-mitochondria-low-carb-advocates-metabolic-stress-gilbert-
 
@@ -1233,6 +1407,16 @@ Malone(1)
 
 **Titled**: Jack Cruz(3), Jac
 Cruz(1), Fouchy(1), Jeff(1)
+
+
+**Citations**: 
+
+## sjg8IUmbqSY-power-of-light-in-cancer-healing-sp-mini-ft-dr-jack-kruse
+
+**Concepts**: UV(6), mitochondria(5), mitochondrial(3), melatonin(2), red light(2), WHO(2), infrared(1), melanin(1), iron(1)
+
+
+**Titled**: 
 
 
 **Citations**: 
@@ -1389,6 +1573,26 @@ Cruz(1), Courtland(1), Jackekal(1), Corland(1)
 
 **Citations**: Back 1905(1)
 
+## yd1w-qilILY-why-you-need-more-sunlight-jack-kruse
+
+**Concepts**: WHO(44), mitochondria(20), electron(19), blue light(11), AGE(10), mitochondrial(9), circadian(8), iron(8), deuterium(7), UV(4), electromagnetic(4), melatonin(3), proton(3), photoelectric(2), photosynthesis(2), EMF(2), dopamine(1), photoelectric effect(1), melanin(1), schumann(1)
+
+
+**Titled**: Cruz(2), Jack(2)
+
+
+**Citations**: Prize 2017(1)
+
+## yo4h0B_JMQY-dr-jack-kruse-explains-how-sunlight-controls-leptin-melanin-
+
+**Concepts**: melanin(9), Einstein(9), UV(8), WHO(7), leptin(6), iron(6), mitochondria(5), circadian(5), blue light(4), EPA(4), photoelectric effect(3), photoelectric(3), UVA(2), NIR(2), quantum(2), Helmholtz(2), dopamine(1), cytochrome(1), mitochondrial(1), infrared(1)
+
+
+**Titled**: 
+
+
+**Citations**: 
+
 ## z8FVueTcz6E-buried-treasure-jesus-and-physicist-john-wheeler-agree-this-
 
 **Concepts**: WHO(21), Wheeler(14), DHA(6), AGE(4), AGEs(3), Einstein(2), quantum(1), Bohr(1), Feynman(1)
@@ -1398,6 +1602,17 @@ Cruz(1), Courtland(1), Jackekal(1), Corland(1)
 
 
 **Citations**: 
+
+## zGAACx89jMU-dr-jack-kruse-nourish-vermont-2017-on-circadian-biology-and-
+
+**Concepts**: UV(86), mitochondria(61), WHO(58), UVA(37), electron(30), blue light(25), infrared(23), melatonin(18), dopamine(17), quantum(15), AGE(14), leptin(13), vitamin A(13), mitochondrial(12), DHA(12), red light(11), iron(10), EMF(9), ATP(9), circadian(8)
+
+
+**Titled**: Doug
+Wallace(1)
+
+
+**Citations**: University 1929(1), Proparta 2000(1), Kahal 1891(1), Synthesized 1994(1), Georgie 1941(1)
 
 ## zYjCjKCcRsQ-my-tweet-that-set-jack-kruse-off
 

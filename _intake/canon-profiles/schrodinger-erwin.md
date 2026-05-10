@@ -17,56 +17,61 @@
 - **Language**: English
 - **License … 
 
-## arxiv (1)
+## pubmed (4)
 
-- **Variational Approach to Quantum Field Theory: Gaussian Approximation and the Perturbative Expansion around It**
-  - `arxiv/hep-th_9707234-variational-approach-to-quantum-field-theory-gaussian-approx/info.md`
-  -  … 2026-05-09T21:57:21
+- **Answering Schrödinger's "What Is Life?".**
+  - `pubmed/PMID-33286586-answering-schr-dinger-s-what-is-life/info.md`
+  - # Answering <<Schrödinger>>'s "What Is Life?".
+
+- **PMID**: 33286586
+- **DOI**: 10.1080/0969725X.2020.1754011
+- **PMCID**: PMC7517386 (full-text saved)
+- **Journal**: Entropy (Basel, Switzerland)  ·  **Year … 
+- **Physics, philosophy, and the nature of reality.**
+  - `pubmed/PMID-26335492-physics-philosophy-and-the-nature-of-reality/info.md`
+  -  … This lies at the root of the dissatisfaction with standard quantum theory expressed by Einstein, <<Schrödinger>>, and John Bell. As an example, close consideration … 
+- **Answering Schrödinger's question: A free-energy formulation.**
+  - `pubmed/PMID-29029962-answering-schr-dinger-s-question-a-free-energy-formulation/info.md`
+  - # Answering <<Schrödinger>>'s question: A free-energy formulation.
+
+- **PMID**: 29029962
+- **DOI**: 10.1016/j.plrev.2017.09.001
+- **PMCID**: PMC2755113 (full-text saved)
+- **Journal … 
+- **Sustainable systems as organisms?**
+  - `pubmed/PMID-15985324-sustainable-systems-as-organisms/info.md`
+  -  … 2026-05-10T10:53:54
 
 ## Abstract
 
-The functional <<Schrodinger>> picture formulation of quantum field theory and the variational Gaussian approximation method based on the … 
+<<Schrödinger>> [<<Schrödinger>>, E., 1944. What is Life? Cambridge University Press, Cambridge] marvelled at how the organism is able … 
 
-## intake (7)
+## intake (5)
 
 - **Erwin Schrödinger**
   - `_intake/canon-profiles/schrodinger-erwin.md`
   - # Erwin <<Schrödinger>>
 
-**Slug**: `<<schrodinger>>-erwin`  ·  **FTS query**: `<<Schrödinger>> OR <<Schrodinger>>`  ·  **Hits**: 25
+**Slug**: `<<schrodinger>>-erwin`  ·  **FTS query**: `<<Schrödinger>> OR <<Schrodinger>>`  ·  **Hits**: 30
 
 
-## archive (5)
+## archive (1)
 
 - **WHAT IS LIFE? - ERWIN <<SCHRODINGER>>**
   - `archive/WhatIsLife-EdwardSchrodinger/info.md … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
-  -  … stuart`](hameroff-stuart.md) — Stuart Hameroff — 22 hits
-- [`<<schrodinger>>-erwin`](<<schrodinger>>-erwin.md) — Erwin <<Schrödinger>> — 25 hits
+  -  … stuart`](hameroff-stuart.md) — Stuart Hameroff — 30 hits
+- [`<<schrodinger>>-erwin`](<<schrodinger>>-erwin.md) — Erwin <<Schrödinger>> — 30 hits
 - [`bohr-niels`](bohr-niels.md) — Niels Bohr … 
 - **Richard Feynman**
   - `_intake/canon-profiles/feynman-richard.md`
-  -  … Labyrinth - Richard <<Feynman>> & John Wheeler - Quantum Reality & Time … 
+  -  … Heisenberg | 1 |
+| Martín Heidegger | Carl Gustav … 
 - **Erwin <<Schrödinger>>**
   - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
-  -  … that … 
-- **The Quantum Labyrinth - Richard <<Feynman>> & John Wheeler … 
-- **Isaac Newton**
-  - `_intake/canon-profiles/newton-isaac.md`
-  -  … that of Sir Isaac <<Newton>> … 
-- **WHAT IS LIFE? - ERWIN <<SCHRODINGER>>**
-  - `archive/WhatIsLife-EdwardSchrodinger/whatislife-<<schrodinger>>_djvu.txt`
-  -  … These calculations do not 
-imply any statistics … 
-- **John Archibald Wheeler**
-  - `_intake/canon-profiles/wheeler-john.md`
-  -  … Faraday — canon-target intake**
-  - `_intake/faraday-michael/README … 
-- **Erwin <<Schrödinger>>**
-  - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
-  -  … that … 
-- **The <<Quantum>> Labyrinth - Richard Feynman & John <<Wheeler … 
+  -  … The <<<<Schrodinger>>>> Wave Equation … 
+- **The Oxford book of modern science … 
 - **Stuart Hameroff**
   - `_intake/canon-profiles/hameroff-stuart.md`
   -  … a review of the '<<Orch>> … 
@@ -74,10 +79,12 @@ imply any statistics …
   - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
   -  … Stuart <<Hameroff>>: <<CONSCIOUSNESS>> AND THE PHYSICS OF THE BRAIN**
   - `yt/xGbgDf4HCHU … 
-- **Roger Penrose**
-  - `_intake/canon-profiles/penrose-roger.md`
-  -  … on <<consciousness>> and <<microtubules>> and gamma coherence.  <<Penrose>> … 
+- **Niels Bohr**
+  - `_intake/canon-profiles/bohr-niels.md`
+  -  … Bohr>>**
+  - `_intake/canon-profiles/<<bohr>>-niels.md`
+  -  … THE … 
 - **Erwin <<Schrödinger>>**
   - `_intake/canon-profiles/<<schrodinger>>-erwin.md`
-  -  … <<CONSCIOUSNESS>> AND THE PHYSICS OF THE BRAIN**
-  - `yt … 
+  -  … <<bohr>>-niels`](<<bohr>>-niels.md) — Niels <<Bohr>> … 
+- **Energy … 

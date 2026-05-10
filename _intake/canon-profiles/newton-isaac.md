@@ -3,7 +3,7 @@
 **Slug**: `newton-isaac`  ·  **FTS query**: `Newton AND (Principia OR opticks OR motion OR gravity)`  ·  **Hits**: 30
 
 
-## archive (9)
+## archive (7)
 
 - **The science of mechanics; a critical and historical account of its development, by Ernst Mach: supplement to the 3rd English ed. containing the author's additions to the 7th German ed**
   - `archive/sciemechacritica00machrich/sciemechacritica00machrich_djvu.txt`
@@ -62,35 +62,19 @@ MOON,  the  <<motions>>  of  the  nodes  and  the  inequalities  of  its  <<moti
   -  … The  demonstration  of 
 the  optical  properties  was  given  by  <<Newton>>  in  the  <<Principia>>,  Book  i.,  prop.  97, 
 by  the  law  of  the  sines;  and … 
-- **A Modern Handbook Of Physics**
-  - `archive/yavorskydetlafamodernhandbookofphysicsmir1982/Yavorsky-Detlaf-A-Modern-Handbook-of-Physics-Mir-1982_djvu.txt`
-  -  … <<motion>>  of  a  free  ball  subject,  in  addition  to  all 
 
-
-38 
-
-
-<<NEWTON>>’S  LAWS  [2 
-
-
-the  active  forces  applied  to  it  (for  instance,  <<gravity>> … 
-- **The principle of relativity : a collection of original memoirs on the special and general theory of relativity**
-  - `archive/principleofrelat00lore_0/principleofrelat00lore_0_djvu.txt`
-  -  … harmonic  <<motions>>,  <<Newton>>’s  laws  of  <<motion>>,  Hooke’s  law,  the  simple  pendulum,  <<motion>>  of 
-a  particle  in  1  plane,  centers  of  <<gravity>>,  virtual … 
-
-## intake (12)
+## intake (10)
 
 - **Isaac Newton**
   - `_intake/canon-profiles/newton-isaac.md`
   - # Isaac <<Newton>>
 
-**Slug**: `<<newton>>-isaac`  ·  **FTS query**: `<<Newton>> AND (<<Principia>> OR <<opticks>> OR <<motion>> OR <<gravity>>)`  ·  **Hits**: 25
+**Slug**: `<<newton>>-isaac`  ·  **FTS query**: `<<Newton>> AND (<<Principia>> OR <<opticks>> OR <<motion>> OR <<gravity>>)`  ·  **Hits**: 30
 
 
-## archive (12)
+## archive (9)
 
-- **<<Newton>>'s <<Principia>> : the … 
+- **The science of mechanics … 
 - **Isaac Newton — canon-target intake**
   - `_intake/newton-isaac/README.md`
   -  … <<Principia>> Mathematica (1687) Latin + multiple English translations; <<Opticks>> (1704)
@@ -99,10 +83,40 @@ a  particle  in  1  plane,  centers  of  <<gravity>>,  virtual …
 
 - archive.org: original Latin + Cohen-Whitman translation
 - cambridge.org: <<Newton>> … 
+- **Nikola Tesla**
+  - `_intake/canon-profiles/tesla-nikola.md`
+  -  … Penrose-Hawking singularity, Sandage, Sagan, Lemaître |
+| 02-physics     | 317 | ✓ medium | <<Newton>> (<<Principia>> + <<Opticks>>), Maxwell (Treatise + Papers), Faraday (3 vols), Einstein, <<Tesla>>, Planck … 
+- **CPC #13 … 
 - **Bucket Canon — Branch Coverage Audit (2026-05-09)**
   - `_intake/BRANCH-COVERAGE-AUDIT.md`
   -  … Hawking, Hoyle, Penrose-Hawking singularity, Sandage, Sagan, Lemaître |
 | 02-physics     | 317 | ✓ medium | <<Newton>> (<<Principia>> + <<Opticks>>), Maxwell (Treatise + Papers), Faraday (3 vols), Einstein, Tesla, Planck … 
+- **Alan Turing**
+  - `_intake/canon-profiles/turing-alan.md`
+  -  … Public domain. |
+| `maxwell … 
+- **Alan <<Turing>>**
+  - `_intake/canon-profiles/<<turing>>-alan.md`
+  -  … After 
+these runs were completed, the <<<<computer>>>> generated a random … 
+- **<<<<Newton>>>>'s <<<<Principia>> … 
+- **Dmitri Mendeleev**
+  - `_intake/canon-profiles/mendeleev-dmitri.md`
+  -  … <<newton>>-isaac.md`
+  -  … gradient.  Temperature gradients favor protons <<<<motions>>>> in cells.   This … 
+- **<<mendeleev>>-periodic**
+  - `_intake/concept-digests/<<mendeleev>>-periodic.md`
+  -  … eng … 
+- **<<<<Newton>>>>'s <<<<Principia>> … 
+- **mendeleev-periodic**
+  - `_intake/concept-digests/mendeleev-periodic.md`
+  -  … <<newton>>-isaac.md`
+  -  … Temperature gradients favor protons <<<<motions>>>> in cells.   This … 
+- **<<mendeleev>>-<<periodic>>**
+  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
+  -  … eng … 
+- **<<<<Newton>>>>'s <<<<Principia>>>> : the … 
 - **Bucket Foundation — Research Mapping Queue**
   - `_intake/RESEARCH-MAPPING-QUEUE.md`
   -  … Foundational physics (canon, branch 02-physics)
@@ -111,52 +125,14 @@ a  particle  in  1  plane,  centers  of  <<gravity>>,  virtual …
 |---|---|---|
 | `<<newton>>-<<principia>>-1687` | <<Newton>> — *<<Principia>>* (1687) Latin + English | Foundation of classical mechanics. Public domain. |
 | `maxwell … 
-- **Nikola Tesla**
-  - `_intake/canon-profiles/tesla-nikola.md`
-  -  … faraday-michael` | Faraday | *Experimental … 
-- **Isaac <<Newton>>**
-  - `_intake/canon-profiles/<<newton>>-isaac.md`
-  -  … physics | 14 |
-| `<<<<newton>>>>-isaac` | <<<<Newton>>>> | *<<<<Principia>>>>* (1687) | 02-physics | 10 |
-| `<<tesla>>-nikola … 
-- **Alan Turing**
-  - `_intake/canon-profiles/turing-alan.md`
-  -  … After 
-these runs were completed, the <<computer>> generated a random … 
-- **<<Newton>>'s <<Principia>> : the mathematical principles of natural philosophy**
-  - `archive/newtonspmathema00newtrich/newtonspmathema00newtrich_djvu.txt … 
-- **Dmitri Mendeleev**
-  - `_intake/canon-profiles/mendeleev-dmitri.md`
-  -  … <<newton>>-isaac.md`
-  -  … 02-physics | 10 |
-| `tesla-nikola` | Tesla | Patents, papers on … 
-- **<<mendeleev>>-periodic**
-  - `_intake/concept-digests/<<mendeleev>>-periodic.md`
-  -  … eng … 
-- **<<<<Newton>>>>'s <<<<Principia>> … 
+- **James Clerk Maxwell**
+  - `_intake/canon-profiles/maxwell-james-clerk.md`
+  -  … clerk` | <<Maxwell>> | *<<Treatise>> on <<Electricity>> & Magnetism* (1873) | 02-physics | 14 |
+| `<<newton>>-isaac` | <<Newton>> | *<<Principia>> … 
+- **TENSEGRITY #11  EXOTIC ATOMS IN THE MATRIX**
+  - `_intake/kruse-blog … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … clerk` | Maxwell | *Treatise on Electricity & Magnetism* (1873) | 02-physics | 14 |
 | `<<newton>>-isaac` | <<Newton>> | *<<Principia>>* (1687) | 02-physics | 10 |
 | `tesla-nikola` | Tesla | Patents, papers on … 
-- **James Clerk Maxwell**
-  - `_intake/canon-profiles/maxwell-james-clerk.md`
-  -  … clerk` | <<Maxwell>> | *<<Treatise>> on <<Electricity>> & Magnetism* (1873) | 02-physics | 14 |
-| `<<newton>>-isaac` | <<Newton>> | *<<Principia>> … 
-- **TIME # 25: HOW DO MONOPOLES MAKE TIME FOR CELLS?**
-  - `_intake … 
-- **mendeleev-periodic**
-  - `_intake/concept-digests/mendeleev-periodic.md`
-  -  … <<newton>>-isaac.md`
-  -  … physics | 10 |
-| `tesla-nikola` | Tesla | Patents, papers on … 
-- **<<mendeleev>>-<<periodic>>**
-  - `_intake/concept-digests/<<mendeleev>>-<<periodic>>.md`
-  -  … eng … 
-- **<<<<Newton>>>>'s <<<<Principia>>>> : the … 
-- **TIME #18:  DIVORCING EINSTEIN USING TIME'S POINTED ARROW**
-  - `_intake/kruse-blog-corpus/articles/time-18-divorcing-einstein-using-times-pointed-arrow.md`
-  -  … Biology does not realize this occurs in water naturally when there is a small temperature gradient.  Temperature gradients favor protons <<motions>> in cells.   This … 
-- **TENSEGRITY #10: THE POWER MATRIX**
-  - `_intake/kruse-blog-corpus/articles/tensegrity-10.md`
-  -  … <<Newton>>’s physics can’t explain this because it’s ideas are based upon laws of <<motion>> and <<gravity>> alone.   Quantum Electrodynamic Dynamics does … 

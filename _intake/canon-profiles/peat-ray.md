@@ -9,10 +9,9 @@
   - `_intake/canon-profiles/peat-ray.md`
   - # Ray <<Peat>>
 
-**Slug**: `<<peat>>-ray`  ·  **FTS query**: `<<Peat>> AND (<<thyroid>> OR <<progesterone>> OR <<hormone>> OR <<PUFA>> OR <<estrogen>>)`  ·  **Hits**: 13
+**Slug**: `<<peat>>-ray`  ·  **FTS query**: `<<Peat>> AND (<<thyroid>> OR <<progesterone>> OR <<hormone>> OR <<PUFA>> OR <<estrogen>>)`  ·  **Hits**: 30
 
 
-## archive (2)
+## intake (1)
 
-- **Bioenergetics**
-  - `archive … 
+- **Ray <<Peat>> … 

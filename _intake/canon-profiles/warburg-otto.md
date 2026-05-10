@@ -3,24 +3,33 @@
 **Slug**: `warburg-otto`  ·  **FTS query**: `Warburg AND (metabolism OR cancer OR respiration)`  ·  **Hits**: 30
 
 
-## intake (6)
+## pubmed (1)
+
+- **[Catalase content, fermentation and respiration in cell culture after Dulbecco-Vogt trypsinization].**
+  - `pubmed/PMID-13604671-catalase-content-fermentation-and-respiration-in-cell-cultu/info.md`
+  -  … O <<WARBURG>>, K GAWEHN, A W GEISSLER
+- **MeSH**: Carbohydrate <<Metabolism>>, Carbohydrates, Catalase, Cell Culture Techniques, Cell <<Respiration>>, Fermentation, Kidney, Tissue Culture Techniques
+- **URL**: https … 
+
+## intake (5)
 
 - **Otto Warburg**
   - `_intake/canon-profiles/warburg-otto.md`
   - # Otto <<Warburg>>
 
-**Slug**: `<<warburg>>-otto`  ·  **FTS query**: `<<Warburg>> AND (<<metabolism>> OR <<cancer>> OR <<respiration>>)`  ·  **Hits**: 25
+**Slug**: `<<warburg>>-otto`  ·  **FTS query**: `<<Warburg>> AND (<<metabolism>> OR <<cancer>> OR <<respiration>>)`  ·  **Hits**: 30
 
 
-## pubmed (1)
+## intake (6)
 
-- **[EXPERIMENTS ON ANAEROBIOSIS OF <<CANCER>> CELLS … 
+- **Otto <<Warburg>>**
+  - `_intake/canon-profiles/<<warburg>> … 
 - **deuterium-depleted-water**
   - `_intake/concept-digests/deuterium-depleted-water.md`
-  -  … 30
+  -  … 35
 
 
-## pubmed (5)
+## pubmed (6)
 
 - **Explaining deuterium-depleted water as a <<cancer>> therapy: a narrative review.**
   - `pubmed/PMID-41347524-explaining-deuterium-depleted-water-as-a-<<cancer>> … 
@@ -35,6 +44,3 @@
   -  … CONSIDER <<CANCER>>**:
 
 The <<Warburg>> Hypothesis as it stands today is that tumors are actually obligate users of glycolysis rather than mitochondrial <<respiration>> when a … 
-- **UBIQUITINATION 6:  UNCOUPLED CYCLES UNCOUPLES KNOWLEDGE**
-  - `_intake/kruse-blog-corpus/articles/ubiquitination-6-uncoupled-cycles-uncouples-knowledge.md`
-  -  … <<Warburg>> hypothesized that <<cancer>> cells primarily rely on non-oxidative glycolysis instead of glucose oxidation to fuel <<cancer>> cell’s energy demands. This <<metabolic>> … 

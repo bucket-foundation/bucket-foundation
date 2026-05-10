@@ -104,6 +104,16 @@
 
 Thirty years after Peter <<Mitchell>> was awarded the Nobel Prize for the <<chemiosmotic>> hypothesis, which links the mitochondrial … 
 
+## arxiv (1)
+
+- **ATP Synthase: A Moonlighting Enzyme with Unprecedented Functions**
+  - `arxiv/2112.12874-atp-synthase-a-moonlighting-enzyme-with-unprecedented-functi/info.md`
+  -  … 2026-05-10T11:56:22
+
+## Abstract
+
+ATP synthase's intrinsic molecular electrostatic potential (MESP) adds constructively to, and hence reinforces, the <<chemiosmotic>> voltage. This … 
+
 ## youtube (1)
 
 - **Who the heck is Gilbert Ling?**
@@ -113,28 +123,36 @@ in 1978 to English scientist Peter
 <<Mitchell>> for his <<chemiosmotic>> hypothesis
 to award a Nobel Prize for an as yet … 
 
-## intake (12)
+## intake (15)
 
 - **chemiosmotic-mitchell**
   - `_intake/concept-digests/chemiosmotic-mitchell.md`
   - # <<chemiosmotic>>-<<mitchell>>
 
-**Query**: `<<chemiosmotic>> OR <<Mitchell>>`  ·  **Hits**: 30
+**Query**: `<<chemiosmotic>> OR <<Mitchell>>`  ·  **Hits**: 35
 
 
-## archive (1)
+## pubmed (14)
 
-- **CIA Reading Room cia-rdp96-00787r000500380004-4: PSYCHIC PROCESS, ENERGY TRANSFER, AND THINGS THAT … 
+- **<<Chemiosmotic>> coupling in oxidative and photosynthetic phosphorylation. 1966.**
+  - `pubmed/PMID-22082452-<<chemiosmotic>>-coupling-in … 
 - **Peter Mitchell**
   - `_intake/canon-profiles/mitchell-peter.md`
   - # Peter <<Mitchell>>
 
-**Slug**: `<<mitchell>>-peter`  ·  **FTS query**: `<<Mitchell>> AND (<<chemiosmotic>> OR proton OR oxidative)`  ·  **Hits**: 25
+**Slug**: `<<mitchell>>-peter`  ·  **FTS query**: `<<Mitchell>> AND (<<chemiosmotic>> OR proton OR oxidative)`  ·  **Hits**: 30
 
 
-## pubmed (11)
+## pubmed (15)
 
 - **<<Chemiosmotic>> coupling in oxidative and photosynthetic … 
+- **Björn Nordenström**
+  - `_intake/canon-profiles/nordenstrom-bjorn.md`
+  -  … EMF) · math (vector fields, manifolds … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … peter`](<<<<mitchell>>>>-peter.md) — Peter <<<<Mitchell>>>> — 25 hits
+- [`<<nordenstrom>>-bjorn`](<<nordenstrom … 
 - **Peter Mitchell — canon-target intake**
   - `_intake/mitchell-peter/README.md`
   -  … <<Mitchell>> P <<chemiosmotic>>
@@ -147,26 +165,44 @@ institutional archive + Nobel materials
 
 1. Identify lowest-friction source (PD > OA > author-site > publisher).
 2. Pull primary materials … 
+- **photosynthesis-quantum**
+  - `_intake/concept-digests/photosynthesis-quantum.md`
+  -  … ANIMAL <<PHOTOSYNTHESIS>>](https://jackkruse.com/reality … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … intake/kruse-references-mined/CURATED … 
+- **<<photosynthesis>>-<<quantum>>**
+  - `_intake/concept-digests … 
 - **mitochondrial-redox**
   - `_intake/concept-digests/mitochondrial-redox.md`
-  -  … absorb red light.  <<Cytochrome>> C in <<mitochondria>> is … 
+  -  … Ling … 
 - **<<chemiosmotic>>-<<mitchell>>**
   - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
   -  … Pull primary materials … 
 - **Concept Digests**
-  - `_intake/concept-digests … 
-- **Björn Nordenström**
-  - `_intake/canon-profiles/nordenstrom-bjorn.md`
-  -  … Peter <<Mitchell>>**
-  - `_intake/canon-profiles/<<mitchell>>-peter.md`
-  -  … Nobel 1978 | <<<<Chemiosmotic>>>> theory papers, mitochondrial <<proton>> gradient | 05-biophysics | 4 |
-| `<<nordenstrom>>-bjorn … 
-- **Peter <<Mitchell>> — canon … 
-- **Concept Digests**
   - `_intake/concept-digests/INDEX.md`
   -  … 14)
-- [`mitochondrial-redox`](mitochondrial-redox.md) — 30 hits  (intake:30)
-- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 30 hits  (archive:1, intake:16, pubmed:12, youtube … 
+- [`mitochondrial-<<redox>>`](mitochondrial-<<redox … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX.md`
+  -  … 15)
+- [`mitochondrial-redox`](mitochondrial-redox.md) — 35 hits  (intake:35)
+- [`<<chemiosmotic>>-<<mitchell>>`](<<chemiosmotic>>-<<mitchell>>.md) — 35 hits  (blog:1, intake:12, openalex-citers:6 … 
+- **association-induction-ling**
+  - `_intake/concept-digests/association-induction-ling.md`
+  -  … need 5000 times more ATP than a <<cell>> … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … 16, pubmed:12, youtube:2)
+- [`photoelectric … 
+- **<<association>>-<<induction … 
+- **schumann-cme**
+  - `_intake/concept-digests/schumann-cme.md`
+  -  … This is an foundational physical finding that … 
+- **<<chemiosmotic>>-<<mitchell>>**
+  - `_intake/concept-digests/<<chemiosmotic>>-<<mitchell>>.md`
+  -  … The Origin of Life**
+  - `_intake/kruse-blog-corpus/articles … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … 1962), Association-Induction Hypothesis | 05-biophysics | 5 |
@@ -184,8 +220,8 @@ institutional archive + Nobel materials
   -  … Peter <<Mitchell>> won a Nobel Prize in 1978 for something that can’t possibly work in our cells, based upon the energy required for … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
-  -  … gilbert`](ling-gilbert.md) — Gilbert Ling — 25 hits
-- [`<<mitchell>>-peter`](<<mitchell>>-peter.md) — Peter <<Mitchell>> — 25 hits
+  -  … gilbert`](ling-gilbert.md) — Gilbert Ling — 30 hits
+- [`<<mitchell>>-peter`](<<mitchell>>-peter.md) — Peter <<Mitchell>> — 30 hits
 - [`nordenstrom-bjorn`](nordenstrom-bjorn.md) — Björn Nordenström … 
 - **Mitchell chemiosmosis / ETC / proton gradient — concept canon-target intake**
   - `_intake/concept-mitochondrial-chemiosmosis/README.md`

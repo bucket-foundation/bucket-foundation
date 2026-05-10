@@ -21,7 +21,7 @@
 structures, and arches and arcades is presented. Circumferential 
 structures are described as partly caused by … 
 
-## pubmed (5)
+## pubmed (15)
 
 - **The paradigm of biologically closed electric circuits (BCEC) and the formation of an International Association (IABC) for BCEC systems.**
   - `pubmed/PMID-7531025-the-paradigm-of-biologically-closed-electric-circuits-bcec-a/info.md`
@@ -43,24 +43,96 @@ structures are described as partly caused by …
   - `pubmed/PMID-2055716-electric-modification-of-kidney-function-the-excretion-of-ra/info.md`
   -  … B E <<Nordenström>>, A C Kinn, J Elbarouni
 - **MeSH**: Animals, Contrast Media, Diatrizoate Meglumine, Doxorubicin, Electrophysiology, Injections, Intravenous, Iohexol, Ioxaglic Acid, Kidney, Osmolar Concentration … 
-- **Electrical pulses appear in the inferior vena cava and abdominal aorta at contraction of leg muscles.**
-  - `pubmed/PMID-1508989-electrical-pulses-appear-in-the-inferior-vena-cava-and-abdom/info.md`
-  -  … B E <<Nordenström>>
-- **MeSH**: Animals, Aorta, Abdominal, Extremities, Membrane Potentials, Models, Biological, Muscle Contraction, Muscle, Smooth, Vascular, Muscles, Neuromuscular Junction, Rats
-- **URL**: https://pubmed … 
-- **Fleischner lecture. Biokinetic impacts on structure and imaging of the lung: the concept of biologically closed electric circuits.**
-  - `pubmed/PMID-2992253-fleischner-lecture-biokinetic-impacts-on-structure-and-imagi/info.md`
-  -  … B E <<Nordenström>>
-- **MeSH**: Adenocarcinoma, Aged, Blood Vessels, Carcinoma, Small Cell, Carcinoma, Squamous Cell, Electrophysiology, Female, Hamartoma, Humans, Liposarcoma
-- **URL**: https://pubmed.ncbi.nlm … 
+- **[Transthoracic needle biopsy].**
+  - `pubmed/PMID-5695924-transthoracic-needle-biopsy/info.md`
+  -  … B <<Nordenström>>
+- **MeSH**: Biopsy, Humans, Lung Diseases, Methods, Radiography, Thoracic Diseases, Thoracic Neoplasms
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/5695924/
+- **Captured**: 2026-05 … 
+- **An electric pneumograph.**
+  - `pubmed/PMID-13381549-an-electric-pneumograph/info.md`
+  -  … B <<NORDENSTROM>>
+- **MeSH**: Breath Tests, Humans, Pulmonary Ventilation, Respiratory Function Tests
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/13381549/
+- **Captured**: 2026-05-10T11:01 … 
+- **[Early diagnosis of lung cancer].**
+  - `pubmed/PMID-895262-early-diagnosis-of-lung-cancer/info.md`
+  -  … B <<Nordenström>>, W N Sinner
+- **MeSH**: Humans, Lung, Lung Neoplasms, Radiography, Time Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/895262/
+- **Captured**: 2026-05 … 
+- **Bronchography with métras' catheters.**
+  - `pubmed/PMID-14837772-bronchography-with-m-tras-catheters/info.md`
+  -  … B E W <<NORDENSTROM>>, U A T NORLIN
+- **MeSH**: Bronchi, Bronchography, Catheters
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14837772/
+- **Captured**: 2026-05-10T11 … 
+- **Photometric determination of small amounts of piperidine.**
+  - `pubmed/PMID-14856759-photometric-determination-of-small-amounts-of-piperidine/info.md`
+  -  … B E W <<NORDENSTROM>>
+- **MeSH**: Photometry, Piperidines
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14856759/
+- **Captured**: 2026-05-10T11:03:57
 
-## intake (10)
+## Abstract
+
+
+
+- **Bronchography by the aspiration of contrast media.**
+  - `pubmed/PMID-13275324-bronchography-by-the-aspiration-of-contrast-media/info.md`
+  -  … B <<NORDENSTROM>>
+- **MeSH**: Bronchography, Contrast Media, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/13275324/
+- **Captured**: 2026-05-10T11:01:41
+
+## Abstract
+
+
+
+- **The Thebesian circulation in coronary angiography.**
+  - `pubmed/PMID-5838024-the-thebesian-circulation-in-coronary-angiography/info.md`
+  -  … B <<Nordenström>>
+- **MeSH**: Angiocardiography, Coronary Disease, Coronary Vessels, Electrocardiography, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/5838024/
+- **Captured**: 2026-05-10T11:48:04 … 
+- **Angiocardiography. Effect of increased intrabronchial pressure. I.**
+  - `pubmed/PMID-5945702-angiocardiography-effect-of-increased-intrabronchial-pressur/info.md`
+  -  … B <<Nordenstrom>>
+- **MeSH**: Angiocardiography, Animals, Dogs, Hyperbaric Oxygenation, Pulmonary Circulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/5945702/
+- **Captured**: 2026-05-10T11:48:20 … 
+- **Catheterization unit for fluoroscopy and roentgenography.**
+  - `pubmed/PMID-5995221-catheterization-unit-for-fluoroscopy-and-roentgenography/info.md`
+  -  … B <<Nordenström>>, G A Magni
+- **MeSH**: Cardiac Catheterization, Fluoroscopy, Humans, Radiography, Technology, Radiologic
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/5995221/
+- **Captured**: 2026-05 … 
+- **Pulmonary circulation time; a densometric study.**
+  - `pubmed/PMID-13158124-pulmonary-circulation-time-a-densometric-study/info.md`
+  -  … B <<NORDENSTROM>>
+- **MeSH**: Blood Circulation, Blood Circulation Time, Lung, Pulmonary Circulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/13158124/
+- **Captured**: 2026-05-10T11:01 … 
+- **[Puncture biopsy of the mediastinum].**
+  - `pubmed/PMID-5380741-puncture-biopsy-of-the-mediastinum/info.md`
+  -  … B <<Nordenström>>
+- **MeSH**: Aged, Biopsy, Female, Humans, Lung Neoplasms, Mediastinum, Methods, Punctures
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/5380741/
+- **Captured**: 2026-05-10T11 … 
+- **Roentgendensometric recording of hepatic and portal circulation.**
+  - `pubmed/PMID-14387790-roentgendensometric-recording-of-hepatic-and-portal-circulat/info.md`
+  -  … G TORNVALL, B <<NORDENSTROM>>
+- **MeSH**: Kymography, Liver, Portal System, Radiography
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/14387790/
+- **Captured**: 2026-05-10T11:03:21 … 
+
+## intake (8)
 
 - **Björn Nordenström**
   - `_intake/canon-profiles/nordenstrom-bjorn.md`
   - # Björn <<Nordenström>>
 
-**Slug**: `<<nordenstrom>>-bjorn`  ·  **FTS query**: `<<Nordenstrom>> OR <<Nordenström>> OR <<BCEC>>`  ·  **Hits**: 14
+**Slug**: `<<nordenstrom>>-bjorn`  ·  **FTS query**: `<<Nordenstrom>> OR <<Nordenström>> OR <<BCEC>>`  ·  **Hits**: 30
 
 
 ## archive (2)
@@ -93,31 +165,22 @@ book copyrighted …
   - `_intake/concept-digests/chemiosmotic-mitchell.md`
   -  … peter`](<<mitchell>>-peter.md) — Peter <<Mitchell>> — 25 hits
 - [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> … 
-- **EMF 7: Quantum Prometheus**
-  - `_intake/kruse-blog-corpus/articles … 
+- **Mitchell chemiosmosis / ETC / proton gradient — concept canon-target intake … 
 - **Canon Person Profiles**
   - `_intake/canon-profiles/INDEX.md`
-  -  … peter`](mitchell-peter.md) — Peter Mitchell — 25 hits
-- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> — 14 hits
+  -  … peter`](mitchell-peter.md) — Peter Mitchell — 30 hits
+- [`<<nordenstrom>>-bjorn`](<<nordenstrom>>-bjorn.md) — Björn <<Nordenström>> — 30 hits
 - [`russell-walter`](russell-walter.md) — Walter Russell … 
+- **Peter Mitchell**
+  - `_intake/canon-profiles/mitchell-peter.md`
+  -  … of most … 
+- **Concept Digests**
+  - `_intake/concept-digests/INDEX … 
+- **Björn <<Nordenström>>**
+  - `_intake/canon-profiles/<<nordenstrom>>-bjorn.md`
+  -  … Peter <<Mitchell>>**
+  - `_intake/canon-profiles/<<mitchell>>-peter.md … 
 - **Kruse Canon Targets — Curated from 3 Transcripts (12hr+)**
   - `_intake/kruse-references-mined/CURATED-TARGETS.md`
   -  … 1978 | Chemiosmotic theory papers, mitochondrial proton gradient | 05-biophysics | 4 |
 | `<<nordenstrom>>-bjorn` | **Björn <<Nordenström>>** (1919–2006), Karolinska radiologist | *Biologically Closed Electric Circuits* (1983) | 05 … 
-- **Alan Turing**
-  - `_intake/canon-profiles/turing-alan.md`
-  -  … Imaging of the Lung the Concept of Biologically Closed Electric Circuits - <<Nordenstrom>> AJR 1985**
-  - `archive/biokinetic-impacts-on-structure-and-imaging-of-the-lung … 
-- **Peter Mitchell**
-  - `_intake/canon-profiles/mitchell-peter.md`
-  -  … Nobel 1978 | <<Chemiosmotic>> theory papers, mitochondrial <<proton>> gradient | 05-biophysics | 4 |
-| `<<nordenstrom>>-bjorn … 
-- **TENSEGRITY # 13: QUANTUM NOISE AND FIDELITY OF LIFE**
-  - `_intake/kruse-blog … 
-- **Bucket Canon — Branch Coverage Audit (2026-05-09)**
-  - `_intake/BRANCH-COVERAGE-AUDIT.md`
-  -  … where we are
-
-| Branch | FTS hits | Status | Heavy / light |
-|---|---|---|---|
-| 05-biophysics  | 735 | ✅ rich | Becker, Pollack, Marino, Mitchell, Popp, <<Nordenström>>, Frohlich, Szent-Györgyi, Kruse 460 … 

@@ -9,8 +9,16 @@
   - `archive/oxfordbookofmode0000unse_a2g6/info.md`
   -  … <<Shannon>> and Warren Weaver, from The mathematical theory of <<communication>> -- Alan Turing, from Computing machinery and intelligence -- Albert Einstein, from 'What is the theory … 
 
-## pubmed (1)
+## pubmed (4)
 
+- **How multiplicity determines entropy and the derivation of the maximum entropy principle for complex systems.**
+  - `pubmed/PMID-24782541-how-multiplicity-determines-entropy-and-the-derivation-of-th/info.md`
+  -  … Ecosystem, <<Entropy>>, <<Information>> Theory, Models, Statistical, Physics, Systems Theory, Thermodynamics
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24782541/
+- **Captured**: 2026-05-10T11:26:22 … 
+- **A Free Energy Principle for Biological Systems.**
+  - `pubmed/PMID-23204829-a-free-energy-principle-for-biological-systems/info.md`
+  -  … other words, the measure of its (random) attracting set, or the <<Shannon>> <<entropy>> of the external states is small. We motivate a solution using … 
 - **Mitochondrial hyperoxidation contributes to warm ischemia-reperfusion injury in rat and pig livers.**
   - `pubmed/PMID-41922695-mitochondrial-hyperoxidation-contributes-to-warm-ischemia-re/info.md`
   -  … PMID**: 41922695
@@ -18,6 +26,9 @@
 - **PMCID**:  
 - **Journal**: <<Communications>> medicine  ·  **Year**: 2026
 - **Authors**: Khanh T Nguyen, O Sila Ozgur, Rohil Jain … 
+- **Dynamical independence: Discovering emergent macroscopic processes in complex dynamical systems.**
+  - `pubmed/PMID-37583178-dynamical-independence-discovering-emergent-macroscopic-proc/info.md`
+  -  … We quantify (departure from) dynamical independence by a transformation-invariant <<Shannon>> <<information>>-based measure of dynamical dependence. We emphasize the data-driven discovery of … 
 
 ## arxiv (4)
 
@@ -41,8 +52,16 @@
 
 Kaniadakis <<entropy>> is a one-parameter deformation of the classical Boltzmann-Gibbs-<<Shannon>> <<entropy>>, arising from a self … 
 
-## youtube (7)
+## youtube (4)
 
+- **Find Out Why Dr. Jack Kruse is Shirtless in This Interview!**
+  - `yt/JW_EHdoToZo-find-out-why-dr-jack-kruse-is-shirtless-in-this-interview/transcript.txt`
+  -  … <<information>> without
+<<shannon>>
+we don't have an internet without
+<<shannon>> we don't have software
+without <<shannon>> there's no bitcoin
+without <<shannon>> … 
 - **Dr Jack Kruse on The Biological Implications of Time - Cancer and the Timing Phenomenon**
   - `yt/Omug2kdB8VM-dr-jack-kruse-on-the-biological-implications-of-time-cancer-/transcript.txt`
   -  … <<Shannon>>
@@ -62,37 +81,14 @@ reason why <<entropy>> from Claude <<Shannon>>'s
 work and <<entropy>> from from uh our
 thermodynamic
 friends um they … 
-- **Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTOR _Inflammation _ Mitochondria & POMC!**
-  - `yt/cy8cByk8H00-dr-jack-kruse-anti-aging-scientists-wrong-truth-about-mtor-i/transcript.txt`
-  -  … part of the
-reason when I was part of the Paleo
-<<community>> <<community>> I went after Ron
-Rosedale who's an ENT surgeon who … 
-- **Dr. Jack Kruse: Silent Weapons for Silent Wars**
-  - `yt/fVUJyK_y3KY-dr-jack-kruse-silent-weapons-for-silent-wars/transcript.txt`
-  -  … Claude <<Shannon>>
-came up with an <<information>> theory in
-1948. He said basically for a message to
-be precise and powerful, it has to … 
-- **Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podcast) - PART 1**
-  - `yt/zs82rGFo6qg-jack-kruse-andrew-huberman-rick-rubin-tetragrammaton-podcast/transcript.txt`
-  -  … surgery version of Claude&nbsp;&nbsp;
-<<Shannon>> if you want to know the truth <<information>>&nbsp; <<information>> Theory is could we do simple&nbsp … 
-- **#13 - Jack Kruse**
-  - `yt/VO4JwdXuXXs-13-jack-kruse/transcript.txt`
-  -  … the second
-law and everybody got the idea of
-<<entropy>> you know and <<entropy>> is
-important but but what about enthalpy no
-one talks … 
 
-## intake (10)
+## intake (6)
 
 - **Claude Shannon**
   - `_intake/canon-profiles/shannon-claude.md`
   - # Claude <<Shannon>>
 
-**Slug**: `<<shannon>>-claude`  ·  **FTS query**: `<<Shannon>> AND (<<information>> OR <<communication>> OR <<entropy>>)`  ·  **Hits**: 18
+**Slug**: `<<shannon>>-claude`  ·  **FTS query**: `<<Shannon>> AND (<<information>> OR <<communication>> OR <<entropy>>)`  ·  **Hits**: 30
 
 
 ## archive (1)
@@ -115,34 +111,13 @@ one talks …
   -  … science writing**
   - `archive/oxfordbookofmode0000unse_a2g6/info.md`
   -  … <<Shannon>> and Warren Weaver, from The mathematical theory of <<communication>> -- Alan <<Turing>>, from <<Computing>> machinery and intelligence … 
+- **Dmitri Mendeleev**
+  - `_intake/canon-profiles/mendeleev-dmitri.md`
+  -  … Branch Coverage Audit (2026-05-09)**
+  - `_intake/BRANCH-COVERAGE-AUDIT.md`
+  -  … <<Shannon>> 1948, Turing 1936, Chaitin, Kolmogorov, Solomonoff, Wolfram |
+| 03-chemistry   | 437 | ✓ medium | <<Mendeleev … 
 - **Bucket Canon — Branch Coverage Audit (2026-05-09)**
   - `_intake/BRANCH-COVERAGE-AUDIT.md`
   -  … 100+ podcast transcripts, 195 PubMed papers |
 | 04-<<information>> | 584 | ⚠️ noisy | Mostly cross-mention noise. **Missing primary**: <<Shannon>> 1948, Turing 1936, Chaitin, Kolmogorov, Solomonoff, Wolfram … 
-- **Why is Oprah Still Obese? Leptin Part 3**
-  - `_intake/kruse-blog-corpus/articles/why-is-oprah-still-obese-leptin-part-3.md`
-  -  … starting a new project in a <<community>> in the same niche. Your blog provided us valuable <<information>> to work on. You have done a … 
-- **Dancing Between Purity and Pollution**
-  - `_intake/kruse-blog-corpus/articles/why-we-die-and-why-we-live.md`
-  -  … starting a new project in a <<community>> in the same niche. Your blog provided us valuable <<information>> to work on. You have done a … 
-- **The Leptin Rx: FAQs**
-  - `_intake/kruse-blog-corpus/articles/the-leptin-rx-faqs.md`
-  -  … What I wanted to say is, I know a thing or two about <<communicating>> and promoting concepts/ideas and <<information>> to medical professionals, and … 
-- **So You Completed The Leptin Rx? What's Next?**
-  - `_intake/kruse-blog-corpus/articles/so-you-completed-the-leptin-rx-what-is-next-2.md`
-  -  … Which is a long-winded way of saying thank you for the <<information>> you put out there and the <<community>> of support you’re … 
-- **My Leptin Prescription**
-  - `_intake/kruse-blog-corpus/articles/my-leptin-prescription.md`
-  -  … no eating from 6pm to 12pm?  Or should the high protein breakfast remain a staple?
-
-Thanks for your <<informative>> posts!
-
-
-
-
-
--
-
-
-
-![](https://secure.gravatar.com … 
