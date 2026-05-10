@@ -1,0 +1,14 @@
+# Acute Lymphoblastic Leukemia Detection Using Hypercomplex-Valued Convolutional Neural Networks
+
+- **arXiv ID**: `2205.13273`
+- **URL**: https://arxiv.org/abs/2205.13273
+- **Authors**: Guilherme Vieira, Marcos Eduardo Valle
+- **Published**: 2022-05-26T11:16:34Z
+- **Updated**: 2022-05-26T11:16:34Z
+- **Primary category**: cs.CV
+- **All categories**: cs.CV, cs.LG, cs.NE, eess.IV
+- **Captured**: 2026-05-10T13:50:13
+
+## Abstract
+
+This paper features convolutional neural networks defined on hypercomplex algebras applied to classify lymphocytes in blood smear digital microscopic images. Such classification is helpful for the diagnosis of acute lymphoblast leukemia (ALL), a type of blood cancer. We perform the classification task using eight hypercomplex-valued convolutional neural networks (HvCNNs) along with real-valued convolutional networks. Our results show that HvCNNs perform better than the real-valued model, showcasing higher accuracy with a much smaller number of parameters. Moreover, we found that HvCNNs based on Clifford algebras processing HSV-encoded images attained the highest observed accuracies. Precisely, our HvCNN yielded an average accuracy rate of 96.6% using the ALL-IDB2 dataset with a 50% train-test split, a value extremely close to the state-of-the-art models but using a much simpler architecture with significantly fewer parameters.

@@ -1,0 +1,14 @@
+# Hardware Beyond Backpropagation: a Photonic Co-Processor for Direct Feedback Alignment
+
+- **arXiv ID**: `2012.06373`
+- **URL**: https://arxiv.org/abs/2012.06373
+- **Authors**: Julien Launay, Iacopo Poli, Kilian Müller, Gustave Pariente, Igor Carron, Laurent Daudet, Florent Krzakala, Sylvain Gigan
+- **Published**: 2020-12-11T14:20:45Z
+- **Updated**: 2020-12-11T14:20:45Z
+- **Primary category**: cs.LG
+- **All categories**: cs.LG, cs.AI, cs.AR, cs.NE, stat.ML
+- **Captured**: 2026-05-10T13:50:11
+
+## Abstract
+
+The scaling hypothesis motivates the expansion of models past trillions of parameters as a path towards better performance. Recent significant developments, such as GPT-3, have been driven by this conjecture. However, as models scale-up, training them efficiently with backpropagation becomes difficult. Because model, pipeline, and data parallelism distribute parameters and gradients over compute nodes, communication is challenging to orchestrate: this is a bottleneck to further scaling. In this work, we argue that alternative training methods can mitigate these issues, and can inform the design of extreme-scale training hardware. Indeed, using a synaptically asymmetric method with a parallelizable backward pass, such as Direct Feedback Alignement, communication needs are drastically reduced. We present a photonic accelerator for Direct Feedback Alignment, able to compute random projections with trillions of parameters. We demonstrate our system on benchmark tasks, using both fully-connected and graph convolutional networks. Our hardware is the first architecture-agnostic photonic co-processor for training neural networks. This is a significant step towards building scalable hardware, able to go beyond backpropagation, and opening new avenues for deep learning.

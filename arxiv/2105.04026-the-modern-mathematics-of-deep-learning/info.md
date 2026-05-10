@@ -1,0 +1,14 @@
+# The Modern Mathematics of Deep Learning
+
+- **arXiv ID**: `2105.04026`
+- **URL**: https://arxiv.org/abs/2105.04026
+- **Authors**: Julius Berner, Philipp Grohs, Gitta Kutyniok, Philipp Petersen
+- **Published**: 2021-05-09T21:30:42Z
+- **Updated**: 2023-02-08T16:48:49Z
+- **Primary category**: cs.LG
+- **All categories**: cs.LG, stat.ML
+- **Captured**: 2026-05-10T13:50:15
+
+## Abstract
+
+We describe the new field of mathematical analysis of deep learning. This field emerged around a list of research questions that were not answered within the classical framework of learning theory. These questions concern: the outstanding generalization power of overparametrized neural networks, the role of depth in deep architectures, the apparent absence of the curse of dimensionality, the surprisingly successful optimization performance despite the non-convexity of the problem, understanding what features are learned, why deep architectures perform exceptionally well in physical problems, and which fine aspects of an architecture affect the behavior of a learning task in which way. We present an overview of modern approaches that yield partial answers to these questions. For selected approaches, we describe the main ideas in more detail.
