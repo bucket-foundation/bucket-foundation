@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: music history
-- **Captured**: 2026-05-10T14:28:28
+- **Captured**: 2026-05-10T14:45:16
 
 ## Description
 
