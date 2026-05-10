@@ -1,0 +1,9 @@
+# Septuagint
+
+- **URL**: https://www.sacred-texts.com/bib/sep/index.htm
+- **Captured**: 2026-05-10T10:48:08
+- **Site**: www.sacred-texts.com
+
+---
+
+Septuagint Index | Internet Sacred Text Archive Sacred Texts Bible Septuagint This is the main index for the Septuagint, the oldest Greek version of the Jewish Bible. To view this section properly, you need to have a Unicode font installed which has full polytonic Greek support. For more information, refer to this page . This electronic text is derived from a version posted here . This was converted into Unicode at sacred-texts using a custom C program. The numbering in this text in some cases has gaps between verses or chapters; this is so it will cross-reference correctly with modern versions. There is an automatically generated list of these gaps here . One issue to note is that lines from Proverbs 30 and 31 are merged so that they form a continuous sequence to match the other texts, instead of being split as they are in the traditional text. There are three major codices of the Septuagint, the Codex Alexandrinus (A), the Codex Vaticanus (B) and the Codex Sinaiticus (S). Each codex has a different set of books, and in some cases (marked by the appropriate letters), the version of the book varies between the codices. In addition, there are variants of Bel and the Dragon, Daniel, and Susanna, based on a translation by Theodotion (Th). Genesis Exodus Leviticus Numbers Deuteronomy Joshua B Joshua A Judges B Judges A Ruth 1 Samuel 2 Samuel 1 Kings 2 Kings 1 Chronicles 2 Chronicles 1 Esdras 2 Esdras Esther Judith Tobit BA Tobit S 1 Macabees 2 Macabees 3 Macabees 4 Macabees Psalms Odes Proverbs Ecclesiastes Song of Solomon Job Wisdom Sirach Psalms of Solomon Hosea Micah Amos Joel Jonah Obadiah Nahum Habakkuk Zephaniah Haggai Zechariah Malachi Isaiah Jeremiah Baruch Epistle of Jeremiah Lamentations Ezekiel Bel and the Dragon Bel and the Dragon Th Daniel Daniel Th Susanna Susanna Th

@@ -7,7 +7,7 @@
 - **Authors**: Abha Sharma, Gerald H Pollack
 - **MeSH**: Brain, Brain Chemistry, Fats, Hydrophobic and Hydrophilic Interactions, Temperature, Water
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/32066069/
-- **Captured**: 2026-05-09T09:30:36
+- **Captured**: 2026-05-10T10:40:38
 
 ## Abstract
 

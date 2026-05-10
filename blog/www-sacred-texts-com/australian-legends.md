@@ -1,0 +1,9 @@
+# Australian Legends
+
+- **URL**: https://www.sacred-texts.com/aus/peck/index.htm
+- **Captured**: 2026-05-10T10:47:30
+- **Site**: www.sacred-texts.com
+
+---
+
+Australian Legends Index | Internet Sacred Text Archive Sacred Texts Australia Australian Legends by C. W. Peck [1925] Contents Start Reading This is a collection of Aboriginal folklore, and stories about Aborigines, primarily from the New South Wales region of Australia, on the southeast coast. Unlike Parker , we know next to nothing about Peck other than the fact that he was a botanical enthusiast. It is fairly certain that at the time he wrote there were very few remaining native Australians in that region. So his framing story of an aboriginal 'princess' (the Aborigines have no such class distinctions) dropping by his 'tyre' shop seems a bit improbable. His writing ability was far inferior to Parker, and his obsession with the Watarah flower gets a bit tedious. However, the stories related here largely cross-check with other accounts, so folkloric aspects of this book are probably factual. Title Page Contents Prelude: A Princess A Royal Visit The First Waratah The First Gymea Or Gigantic Lily Why The Turtle Has No Tail The Flood How The Waratah Got Its Honey Why The Sun Sets What The Moon Is How The White Waratah Became Red How The Sky Was Lifted Up The First Kangaroo The Second Kangaroo Story The Struggle For Supremacy Between Birds And Animals The Dianella Berry How The Pistils of the Waratah Became Firm What Makes The Waves The First Bush Fire Why Leaves Fall At Low Tide The Bubbling Spring The Salt Lakes Shooting Stars Why The Petiole Of The Waratah Is Long Why The Waratah Is Firm The First Crayfish The Clinging Koala The Smilax A Star Legend A Bird Legend Two Waratah Legends Another Legend Mist And A Fringe Flower Mulgani The Legend of the Pleiades The Black Satin The End: The Aborigines

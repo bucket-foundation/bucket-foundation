@@ -1,0 +1,9 @@
+# The Works of Robert G. Ingersoll
+
+- **URL**: https://www.sacred-texts.com/aor/ing/vol02/index.htm
+- **Captured**: 2026-05-10T10:44:32
+- **Site**: www.sacred-texts.com
+
+---
+
+The Works of Ingersoll, Volume II index | Internet Sacred Text Archive Sacred Texts Age of Reason Ingersoll The Works of Robert G. Ingersoll Volume II (Lectures) [1900] Title Page Some Mistakes of Moses Preface I: He Who Endeavors To Control The Mind By Force Is A Tyrant, He Who Submits Is A Slave II: Free Schools III: The Politicians IV: Man and Woman V: The Pentateuch IX: Thursday X: He Made The Stars Also XII: Saturday XIII: Let Us Make Man XIV: Sunday XVI: The Garden XVII: The Fall XVIII: Dampness XIX: Bacchus And Babel XX: Faith In Filth XXI: The Hebrews XXII: The Plagues XXIII: The Flight XXIV: Confess And Avoid XXV: 'Inspired' Slavery XXVI: 'Inspired' Marriage XXVII: 'Inspired' War XXVIII: 'Inspired' Religious Liberty XXIX: Conclusion Some Reasons Why I II: Duties To God III: Inspiration IV: God's Experiment With The Jews V: Civilized Countries VI: A Comparison Of Books VII VIII: The New Testament IX: Christ's Mission X: Eternal Pain XI Orthodoxy Preface Orthodox Religion Dying Out Religious Deaths And Births The Religion Of Reciprocity The Blows That Have Shattered The Shield And Shivered The Lance Of Superstition The Destruction Of Art The Discovery Of America Special Providence Charles Darwin The Creeds The Latest Creed God As A Governor The Love Of God The Fall Of Man The Atonement The Second Birth Inspiration The Reign Of Truth And Love The Resurrection The Judgement-Day Pious Evasions! No Bible, No Civilization Miracles Of The New Testament More Miracles The Ascension Casting Out Devils Necessity Of Belief Eternal Punishment Some Who Are Damned Another Objection What I Believe Immortality A Fable Myth and Miracle I II III IV V VI VII VIII IX

@@ -7,7 +7,7 @@
 - **Authors**: Anqi Wang, Gerald H Pollack
 - **MeSH**: Xylem, Water, Hydrophobic and Hydrophilic Interactions
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/38802675/
-- **Captured**: 2026-05-10T09:52:11
+- **Captured**: 2026-05-10T10:40:43
 
 ## Abstract
 

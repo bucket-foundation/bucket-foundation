@@ -7,7 +7,7 @@
 - **Authors**: Ricardo Pedregal-Cortés, Guillermo Toriz, Ezequiel Delgado, Gerald H Pollack
 - **MeSH**: Animals, Biofouling, Bombyx, Sericins, Water
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/31468985/
-- **Captured**: 2026-05-10T10:06:05
+- **Captured**: 2026-05-10T10:40:34
 
 ## Abstract
 

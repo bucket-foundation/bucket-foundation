@@ -1,0 +1,14 @@
+# Charge-based forces at the Nafion-water interface.
+
+- **PMID**: 23311934
+- **DOI**: 10.1021/la304418p
+- **PMCID**: PMC2843558 (full-text saved)
+- **Journal**: Langmuir : the ACS journal of surfaces and colloids  ·  **Year**: 2013
+- **Authors**: Ronnie Das, Gerald H Pollack
+- **MeSH**: Fluorocarbon Polymers, Particle Size, Surface Properties, Water
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23311934/
+- **Captured**: 2026-05-10T10:40:13
+
+## Abstract
+
+Interfacial water lying next to hydrophilic surfaces has been shown to be spectroscopically, mechanically, and electrically distinct from bulk water. Interfacial water has also been shown to exclude negatively and positively charged microspheres and has thus become known as the "exclusion zone". Measurements have demonstrated that exclusion zones exhibit a negative electrical potential on the order of -100 mV relative to bulk water, with a corresponding distribution of positive protons in the bulk water region beyond the exclusion zone. This separation of charge is hypothesized to create an electrostatic force between the exclusion zone and the proton-enriched zone beyond. To test this hypothesis, a hydrophilic Nafion ring was attached to the tip of a deflectable ribbonlike force sensor. The sensor was designed to obstruct the flow of protons from one side of the lever to the other, so that any proton-based force would remain unilateral. pH-sensitive dye measurements confirmed that the protons were largely confined to one side. When the lever assembly was exposed to water, the sensor deflected toward the protons. Over a period of 20 min, deflection amounted to approximately 20 μm, corresponding to a force of approximately 22 μN. Hence, electrostatic forces are confirmed. If exclusion zones exist ubiquitously at hydrophilic surfaces, including biological surfaces, then the resulting electrostatic forces may play significant roles in many biological phenomena including adhesion and protein folding.

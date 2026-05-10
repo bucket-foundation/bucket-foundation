@@ -7,7 +7,7 @@
 - **Authors**: Valery Shalatonin, Gerald H Pollack
 - **MeSH**: Hydrophobic and Hydrophilic Interactions, Magnetic Fields, Microspheres, Polystyrenes, Water
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/35622780/
-- **Captured**: 2026-05-10T09:52:07
+- **Captured**: 2026-05-10T10:40:41
 
 ## Abstract
 

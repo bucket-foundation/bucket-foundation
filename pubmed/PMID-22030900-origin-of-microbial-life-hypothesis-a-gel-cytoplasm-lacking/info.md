@@ -7,7 +7,7 @@
 - **Authors**: J T Trevors, G H Pollack
 - **MeSH**: Energy Metabolism, Hydrogen, Infrared Rays, Lipid Bilayers, Origin of Life, Systems Biology, Water
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/22030900/
-- **Captured**: 2026-05-09T09:41:21
+- **Captured**: 2026-05-10T10:40:12
 
 ## Abstract
 

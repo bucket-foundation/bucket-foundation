@@ -1,0 +1,14 @@
+# Exclusion zone and heterogeneous water structure at ambient temperature.
+
+- **PMID**: 29668733
+- **DOI**: 10.1021/jp9021568
+- **PMCID**: PMC5754758 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2018
+- **Authors**: Seong G Hwang, Jun Ki Hong, Abha Sharma, Gerald H Pollack, GunWoong Bahng
+- **MeSH**: Hydrophobic and Hydrophilic Interactions, Ice, Oxidation-Reduction, Surface Properties, Temperature, Water
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29668733/
+- **Captured**: 2026-05-10T10:40:28
+
+## Abstract
+
+Earlier studies have reported the formation of an exclusion zone devoid of microspheres at the interface of water with a hydrophilic surface such as Nafion® or the hydrophilic ceramic powder. We now report the formation of a 'three-dimensional cell-like structured exclusion zone' in water prepared by two different methods. In the first, the hydrophilic powder was agitated with deionized water and allowed to rest (contact method). Subsequently, the 'powder-supernatant water' was collected and termed 'contact water'. In the second method, deionized water in a closed container was kept in the close vicinity of the hydrophilic powder for an extended time-period and it was termed 'non-contact water'. The two kinds of waters were tested by standard methods for various physical properties. In addition, we carried out cryogenic scanning-electron microscopy of frozen samples of the two kinds of water. The powder-supernatant water showed a cell-like heterogeneous ice structure with the high-density exclusion-zone water forming the walls of a cell-like structure. A similar cell-like ice structure was formed for water treated with the hydrophilic powder in a non-contact manner; the unit cell size depended on the 'degree of structure' in the water. When highly structured, the unit cell size was smaller with a concurrently enhanced dielectric constant and reduced redox potential. It was found that the electrical properties are more sensitive to the change in water structure compared to other physical properties such as surface tension, density, and specific heat. Based on our findings of an electric potential difference between the heterogeneous structured water and the ordinary water, we propose a new model to explain the relationship between heterogeneous, structured water and its electrical properties.

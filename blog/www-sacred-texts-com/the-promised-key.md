@@ -1,0 +1,9 @@
+# The Promised Key
+
+- **URL**: https://www.sacred-texts.com/afr/tpk/index.htm
+- **Captured**: 2026-05-10T10:44:02
+- **Site**: www.sacred-texts.com
+
+---
+
+The Promised Key Index | Internet Sacred Text Archive Sacred Texts Africa The Promised Key by G.G. Maragh (The Rt. Hon. Leonard Percival Howell) This is a proto-Rastafarian tract by Leonard Howell, a Jamaican preacher. Published around 1935, this is obviously an edited, much shorter, version of The Royal Parchment Scroll of Black Supremacy , without the stream-of-consciousness language, long opaque abbreviations, and repetition. Most significantly, the identities of 'King Alpha and Queen Omega' were transposed from Fitz Balintine Pettersburg and his wife as in the Royal Parchment Scroll , to Emperor Haile Selassie and Empress Menen Astaw. This was one of the key innovations of the Howellites, and is today an article of faith of Rastafarianism. In 1933, Howell started to preach that the Emperor Haile Selassie of Ethiopia (Ras Tafari) was the Messiah, that Black people were the chosen people, and would soon be repatriated to Ethiopia. He soon attracted the attention of the colonial authorities, and was arrested in December 1934 for sedition. In March of 1934 he was sentenced to two years imprisonment, during which he apparently wrote The Promised Key . After he was released in 1936, he published a newspaper called "The People's Voice". In 1954 his commune was raided and much literature, including copies of this book, were burned. Howell was found dead under suspicious circumstances in February 1981. Title Page The Mystery Country The False Religion The Promised Key Ethopia's Kingdom The Healing Balm Yard Royal Notice How to Fast Department Government Eternal Law Office Eve the Mother of Evil The Rapers Ethiopian Question The First and the Last Matrimonial Affidavit Black People Black People Arise and Shine Forward to the King of Kings

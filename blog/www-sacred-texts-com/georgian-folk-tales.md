@@ -1,0 +1,9 @@
+# Georgian Folk Tales
+
+- **URL**: https://www.sacred-texts.com/asia/geft/index.htm
+- **Captured**: 2026-05-10T10:46:36
+- **Site**: www.sacred-texts.com
+
+---
+
+Georgian Folk Tales Index | Internet Sacred Text Archive Sacred Texts Asia Georgian Folk Tales by Marjory Wardrop [1894] Contents Start Reading Page Index Text [Zipped] This is a short collection of folk tales from the nation of Georgia by Marjorie Wardrop. Wardrop also translated the Georgian author Rusthaveli's The Man in the Panther's Skin . Although many of the motifs of these stories are also found in European folklore, there are characters and plot elements which localize them in the central Asian area. Title Page Preface Contents Georgian Folk Tales I. Master and Pupil (or the Devil Outwitted) II. The Three Sisters and their Stepmother III. The Good-for-nothing IV. The Frog's Skin V. Fate VI Ghvthisavari (I am of God) VII. The Serpent and the Peasant VIII. Gulambara and Sulambara IX. The Two Brothers X. The Prince XI. Conkiajgharuna XII. Asphurtzela XIII. The Shepherd and the Child of Fortune XIV. The Two Thieves XV. The Fox and the King's Son XVI. The King and the Apple II. Mingrelian Tales I. The Three Precepts II. Kazha-ndii III. The Story of Geria, the Poor Man's Son IV. The Prince who befriended the Beasts V. The Cunning Old Man and the Demi VI. Sanartia VII. The Shepherd Judge VIII. The Priest's youngest Son Mingrelian Proverbs III. Gurian Folk Tales I. The Strong Man and the Dwarf II. The Grasshopper and the Ant III. The Countryman and the Merchant IV. The King and the Sage V. The King's Son VI. Teeth and No-Teeth VII. The Queen's Whim VIII. The Fool's good Fortune IX. Two Losses X. The Story of Dervish XI. The Father's Prophecy XII. The Hermit Philosopher XIII. The King's Counsellor XIV. A Witty Answer

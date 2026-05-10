@@ -1,0 +1,9 @@
+# BUDDHISM IN TIBET
+
+- **URL**: https://www.sacred-texts.com/bud/bit/index.htm
+- **Captured**: 2026-05-10T10:42:13
+- **Site**: www.sacred-texts.com
+
+---
+
+Buddhism in Tibet Index | Internet Sacred Text Archive Sacred Texts Buddhism BUDDHISM IN TIBET ILLUSTRATED BY LITERARY DOCUMENTS AND OBJECTS OF RELIGIOUS WORSHIP. WITH AN ACCOUNT OF THE BUDDHIST SYSTEMS PRECEDING IT IN INDIA. BY EMIL SCHLAGINTWEIT, LL.D. [1863] This mid-19th Century work is one of the few public domain descriptions of Tibetan Buddhism we have found. Desipte the sketchy knowledge of Buddhism in Europe at the time, this has a surprising level of detail about the subject, due to the pioneering field work of the authors' brothers. Some of the information in this book about sacred documents, divination methods, calendrical systems, as well as details of rituals and ritual objects is unique. Title Page Preface Alphabet Used For Transcription Contents Chapter I. Sketch of the Life of Sakyamuni, The Founder of Buddhism Chapter II. Gradual Rise and Present Area of the Buddhist Religion Chapter III. The Religious System of Sakyamuni Chapter IV. The Hinayana System Chapter V. The Mahayana System Chapter VI. The System of Mysticism Chapter VII. Historical Account of the Introduction of Buddhism into Tibet Chapter VIII. The Sacred Literature Chapter IX. Veiws on Metempsychosis Chapter X. Details Characteristic of the Religion of the People Chapter XI. Translation of an Address to the Buddhas of Confession Chapter XII. The Tibetan Priesthood Chapter XII. Religious Buildings and Monuments Chapter XIV. Representation of Buddhist Deities Chapter XV. Worship of the Deities, and Religious Ceremonies Chapter XVI. The Systems of Reckoning Time Chapter XVII. Description of Various Tables used for Astrological Purposes Appendix. Bibliography

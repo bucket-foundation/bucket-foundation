@@ -1,0 +1,9 @@
+# Origins of the Druze People and Religion
+
+- **URL**: https://www.sacred-texts.com/asia/odpr/index.htm
+- **Captured**: 2026-05-10T10:46:44
+- **Site**: www.sacred-texts.com
+
+---
+
+Origins of the Druze People and Religion Index | Internet Sacred Text Archive Sacred Texts Asia Origins of the Druze People and Religion by Philip K. Hitti [1928] Contents Start Reading The Druze, who primarily live in Lebanon, Syria and Israel, have a mysterious religion which has been the subject of much speculation over the centuries. In the 19th century manuscript copies of their religious literature were spirited away to collections in Europe and the United States, and scholars were finally able to access them. This monograph by the distinguished Arabist, Philip K. Hitti, written in the early 20th century, covers the literature on the origin and history of the Druze, and includes a few samples of their sacred literature. Title Page Plates Foreword Preface Table of Contents Chapter I. A Unique and Secret Sect Chapter II. Social and Historical Development Chapter III. Racial Origins Chapter IV. The Persian Origin of the Druzes Chapter V. Druze Theology and Its Sources Chapter VI. Dogmas and Precepts Chapter VII. Folklore Appendices: Druze Sacred Writings Appendix A. Covenant of Induction Into the Religion of the Ruler of the Age Appendix B. Al-Ḥākim's Ordinance Prohibiting the Use of Wine Appendix C: Excerpt From the Charter Found Posted on the Walls of the Mosques on the Occasion of the Disappearance of Our Lord Al-Imām Al-Ḥākim Appendix D. Excerpt From the Epistle Entitled Al-Qusṭanṭīniyyah Addressed by Bahā’-al-Dīn to the Byzantine Emperor Constantine Appendix E: Excerpt From Bahā’-al-Dīn's Epistle Entitled Christianity Appendix F. Exhortations And Prayers By Al-Sayyid ‘Abdullāh Al-Tanūkhi Index Map

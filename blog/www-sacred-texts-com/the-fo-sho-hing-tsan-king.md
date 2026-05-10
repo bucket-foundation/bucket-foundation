@@ -1,0 +1,9 @@
+# The Fo-Sho-Hing-Tsan-King:
+
+- **URL**: https://www.sacred-texts.com/bud/sbe19/index.htm
+- **Captured**: 2026-05-10T10:42:01
+- **Site**: www.sacred-texts.com
+
+---
+
+SBE 19 Index | Internet Sacred Text Archive Sacred Texts Buddhism The Fo-Sho-Hing-Tsan-King: A Life of Buddha by Asvaghosha Bodhisattva, translated from Sanskrit into Chinese by Dharmaraksha A.D. 420, and From Chinese into English by Samuel Beal Sacred Books of the East Vol. 19 [1883] Title Page Contents Introduction Kiouen I Varga 1. The Birth Varga 2. Living in the Palace Varga 3. Disgust at Sorrow Varga 4. Putting Away Desire Varga 5. Leaving the City Kiouen II Varga 6. The Return of K andaka Varga 7. Entering the Place (Wood) of Austerities Varga 8. The General Grief of the Palace Varga 9. The Mission to Seek the Prince Kiouen III Varga 10. Bimbasâra Râ g a Invites The Prince Varga 11. The Reply To Bimbasâra Râ g a Varga 12. Visit To Arâ d a Udrarâma Varga 13. Defeats Mâra Varga 14. O-Wei-San-Pou-Ti (Abhisambodhi) Varga 15. Turning The Law-Wheel Kiouen IV Varga 16. Bimbisâra Râ g a Becomes A Disciple Varga 17. The Great Disciple Becomes A Hermit Varga 18. Conversion of the 'Supporter of the Orphans and Destitute' Varga 19. Interview Between Father and Son Varga 20. Receiving the G etavana Vihâra Varga 21. Escaping the Drunken Elephant and Devadatta Varga 22. The Lady Âmrâ (Âmrapâlî) Sees Buddha Kiouen V Varga 23. By Spiritual Power Fixing His (Term of) Years Varga 24. The Differences of the Li k kh avis Varga 25. Parinirvâ n a Varga 26. Mahâparinirvâ n a Varga 27. Praising Nirvâ n a Varga 28. Division of the S arîras Notes Contents of Notes I. Comparative List of 17 Chapters of the Sanskrit and Chinese Copies of the Buddha k arita Note II. Example of the Style of the Expanded Sûtras, as Translated into Chinese Note III. The Same Title Given to Different Works Index

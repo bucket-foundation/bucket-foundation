@@ -1,0 +1,9 @@
+# Works of Charles Darwin | Internet Sacred Text Archive
+
+- **URL**: https://www.sacred-texts.com/aor/darwin/index.htm
+- **Captured**: 2026-05-10T10:44:11
+- **Site**: www.sacred-texts.com
+
+---
+
+Works of Charles Darwin | Internet Sacred Text Archive Topics Home Catalog African Age of Reason Darwin Paine Alchemy Americana Ancient Near East Astrology Asia Atlantis Australia Basque Baha'i Bible Book of Shadows Buddhism Celtic Christianity Classics Comparative Confucianism DNA Earth Mysteries Egyptian England Esoteric/Occult Evil Fortean Freemasonry Gothic Gnosticism Grimoires Hinduism I Ching Islam Icelandic Jainism Journals Judaism Legends/Sagas Legendary Creatures LGBT Miscellaneous Mormonism Mysticism Native American Necronomicon New Thought Neopaganism/Wicca Nostradamus Oahspe Pacific Paleolithic Parapsychology Philosophy Piri Re'is Map Prophecy Roma Sacred Books of the East Sacred Sexuality Shakespeare Shamanism Shinto Symbolism Sikhism Sub Rosa Swedenborg Tantra Taoism Tarot Thelema Theosophy Time Tolkien UFOs Utopia Women Wisdom of the East Zoroastrianism Sacred-texts home Age of Reason Buy CD-ROM Works of Charles Darwin Origin of Species [ 1872 ] The Descent of Man [ 1871 ] Voyage of the Beagle [ 1909 ] Hold the world's wisdom in the palm of your hand. Over 1700 books. Support the Archive. Buy it here! Sign up for sacred-texts updates by email On Twitter, follow ' sacredtexts .' Sacred-texts on Facebook search powered by Support the Archive. Buy a DVD or USB 1700+ books. Support this site. This is a quiet place in cyberspace devoted to religious tolerance and scholarship Non-public domain contents of this site not otherwise copyrighted are © copyright 2023, John Bruno Hare, All Rights Reserved. See Site copyrights , Terms of Service for more information. Index | FAQ | Contact | Search | Buy Disk Open Source for the Human Soul

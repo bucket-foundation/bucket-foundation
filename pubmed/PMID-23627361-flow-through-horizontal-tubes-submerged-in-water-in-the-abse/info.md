@@ -1,0 +1,14 @@
+# Flow through horizontal tubes submerged in water in the absence of a pressure gradient: mechanistic considerations.
+
+- **PMID**: 23627361
+- **DOI**: 10.1021/la4001945
+- **PMCID**:  
+- **Journal**: Langmuir : the ACS journal of surfaces and colloids  ·  **Year**: 2013
+- **Authors**: Mina Rohani, Gerald H Pollack
+- **MeSH**: Fluorocarbon Polymers, Hydrodynamics, Hydrophobic and Hydrophilic Interactions, Light, Photochemical Processes, Protons, Water
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23627361/
+- **Captured**: 2026-05-10T10:40:14
+
+## Abstract
+
+Self-driven flow was observed in Nafion and other hydrophilic tubes immersed in water. The intratubular flow was generated when water came in contact with the tube's hydrophilic surfaces. Flow characteristics were studied in tubes of varying size, exposed to light of different intensities and wavelengths. The results lead to the hypothesis that the flow is driven by a high concentration of protons accumulating inside the tube, creating an axial proton gradient between the inside and outside of the tube. We also demonstrate a faster flow under incident light, particularly at UV wavelengths, implying that proton generation may be driven by light.
