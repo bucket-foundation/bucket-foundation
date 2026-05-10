@@ -1,28 +1,28 @@
 # Bucket Foundation — Canon Ingestion Index
 
-*Updated 2026-05-10T15:50:21*
+*Updated 2026-05-10T17:53:19*
 
-**Total source documents**: 20,560  ·  **FTS searchable**: 20,614
+**Total source documents**: 23,366  ·  **FTS searchable**: 23,384
 
 ## Sources (12+ types)
 
 | Source | Count |
 |---|---:|
-| YouTube transcripts | 508 |
+| YouTube transcripts | 678 |
 | Archive.org books   | 156 |
-| PubMed papers       | 5,633 |
-| arXiv papers        | 151 |
+| PubMed papers       | 7,796 |
+| arXiv papers        | 166 |
 | Project Gutenberg   | 108 |
 | Wikisource          | 43 |
-| OpenAlex authors    | 291 |
-| OpenAlex fanout     | 1,285 |
-| OpenAlex citers     | 10,260 |
+| OpenAlex authors    | 365 |
+| OpenAlex fanout     | 1,500 |
+| OpenAlex citers     | 10,429 |
 | Blog scrapes        | 1,455 |
 | Kruse blog corpus   | 460 |
 | AARO archive        | 97 |
 | PURSUE Release 01   | 113/146 |
-| **Total source docs** | **20,560** |
-| **FTS searchable**    | **20,614** |
+| **Total source docs** | **23,366** |
+| **FTS searchable**    | **23,384** |
 
 ## Canon structure
 
@@ -39,10 +39,18 @@
 
 **6 secondary bridges**: water, quantum, field, consciousness, coherence, symmetry
 
-See:
-- [`CANON-MASTER.md`](CANON-MASTER.md) — read-this-first overview
-- [`bucket-canon/_bridges/INDEX.md`](../bucket-canon/_bridges/INDEX.md) — bridge structure
-- [`_intake/MUSIC-BRANCH-VS-BRIDGE-ANALYSIS.md`](_intake/MUSIC-BRANCH-VS-BRIDGE-ANALYSIS.md) — why music is a bridge
+## Canon network
+
+- 365+ author publication graphs (covering math, physics, chemistry, biology,
+  biophysics, neuroscience, AI, cybernetics, philosophy of mind, philosophy
+  of science, sociology, anthropology, linguistics, music theory + cognition,
+  Eastern philosophy, sacred contemplative traditions, postcolonial,
+  women in science, modern AI canon)
+- 1,500+ fanout works (top-cited from canon authors)
+- 10,400+ exploded citing-paper records
+- 494 direct collaboration pairs
+- 1,987 direct citation pairs
+- 53,000+ unique works indexed via citation graph
 
 ## Web routes (force-static SSG)
 
@@ -51,7 +59,7 @@ See:
 
 ## Tooling (org-wide via ~/bin → ~/agfarms/tools/)
 
-20+ canon-ingestion tools.
+20+ canon-ingestion + synthesis tools.
 
 ## Autonomous (systemd --user, linger=yes)
 
@@ -65,19 +73,24 @@ See:
 ## Session totals
 
 Started: 1,159 FTS docs.
-Now: **20,614 FTS docs (17.8x growth)**.
-Total source docs: 20,560.
+Now: **23,384 FTS docs (20.2x growth)**.
+Total source docs: 23,366.
 
-## What's in the corpus by topic area
+## Topic coverage (post final waves)
 
-- **Foundational physics** (Newton, Maxwell, Einstein, Bohr, Schrödinger, Feynman + ~50 modern physicists)
-- **Mathematics** (Euclid, Gauss, Riemann, Cantor, Gödel, Russell-Whitehead Principia, Hilbert, Witten)
-- **Biophysics** (Becker, Pollack, Marino, Mitchell chemiosmotic, Szent-Györgyi Bioenergetics, Ling)
-- **Modern AI** (Hinton, LeCun, Bengio, Sutskever + cybernetics: Wiener, McCulloch-Pitts, von Foerster)
-- **Cognitive science / philosophy of mind** (Penrose-Hameroff, Friston, Seth, Dennett, Chalmers, Tononi, William James)
-- **Eastern + Western philosophy** (Plato, Aristotle, Augustine, Aquinas, Hume, Kant, Bergson, Heidegger, Wittgenstein, Foucault, Husserl, Merleau-Ponty)
-- **Sacred texts** (KJV Bible, Quran, Vedas, Upanishads, Tao Te Ching, Bhagavad Gita, Confucius, Marcus Aurelius, Dhammapada, Sufi)
-- **Music canon** (Schoenberg, Schenker, Riemann theory; Plato/Augustine/Schopenhauer philosophy; Helmholtz acoustics; Patel/Krumhansl/Levitin cognition; world traditions: Indian/Persian/Arabic/African/Tibetan/Vedic/Sufi; jazz/classical/electronic/cymatics/Pythagoras)
-- **Deep history** (Herodotus, Thucydides, Plutarch, Tacitus, Gibbon, Burckhardt, Frazer)
-- **Art** (Vasari, Ruskin, Pater, Reynolds, Leonardo Treatise on Painting)
-- **Government UAP** (PURSUE Release 01, AARO archive, DNI 2022/23/24 reports)
+- Foundational physics + mathematics + chemistry
+- Modern AI + cybernetics + cognitive science + philosophy of mind
+- Eastern + Western philosophy + classical antiquity + medieval
+- Sacred texts + perennialist + transpersonal + Sufi + Vedic + Buddhist + Christian + Jewish + Tao
+- **MUSIC** (full bridge directory): theory + history + world traditions + cognition + philosophy + jazz + classical + electronic + cymatics + Pythagorean + sacred
+- Deep history + archaeology + classical historians
+- Art + aesthetics + literary criticism (Borges/Dostoevsky/Tolstoy/Shakespeare)
+- Government UAP records (PURSUE + AARO + DNI)
+- Cultural anthropology (Levi-Strauss, Bateson, Mead, Boas, Graeber)
+- Postcolonial canon (Fanon, Said, Achebe, Vandana Shiva, Mishra)
+- Women in canon (Hypatia, Hildegard, Noether, Curie, Lise Meitner, Vera Rubin)
+- Behavioral economics + decision theory (Kahneman, Tversky, Thaler)
+- Sociology (Weber, Durkheim, Bourdieu, Goffman, Mills)
+- Linguistics + semiotics (Saussure, Chomsky, Eco, Peirce, Jakobson)
+- Systems thinking (Wiener, McCulloch, Bateson, Bertalanffy, Laszlo)
+- Critical theory (Adorno, Horkheimer, Habermas, Foucault, Arendt)
