@@ -1,0 +1,14 @@
+# A novel ZIC1-BMP4 axis identified in photoaged dermal fibroblasts regulates melanogenesis.
+
+- **PMID**: 41864822
+- **DOI**: 10.1016/j.jdermsci.2026.03.003
+- **PMCID**:  
+- **Journal**: Journal of dermatological science  ·  **Year**: 2026
+- **Authors**: Mengting Ouyang, Feng Zhou, Lei Wen, Shen Lin, Amin Yao, Yu Zhang, Congxiu Ye, Qingfang Xu, Wei Lai
+- **MeSH**: Humans, Skin Aging, Bone Morphogenetic Protein 4, Transcription Factors, Fibroblasts, Melanocytes, Microphthalmia-Associated Transcription Factor, Ultraviolet Rays, Signal Transduction, Skin
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41864822/
+- **Captured**: 2026-05-10T10:06:41
+
+## Abstract
+
+Chronic ultraviolet exposure induces photoaging and pigmentation, contributing to disorders such as melasma. However, treatments for photoaging-related pigmentation still challenging, implying upstream regulators remain incompletely understood. To identify the key regulators involved in photoaging-related pigmentation. We integrated bulk RNA-seq data of sun-exposed and sun-protected human skin from GTEx dataset and validated with public single-cell RNA-seq data. More than 19,000 genes were screened for correlation with MITF, the key regulator of melanogenesis. Cell states and interactions were further characterized using pySCENIC, pseudotime trajectory analysis, and CellChat. Experimental analyses, including immunohistochemistry, immunofluorescence, ChIP-PCR, and ex vivo human skin culture, were performed to further characterize the biological relevance of the transcriptomic findings. ZIC1 was identified as a fibroblast-specific transcription factor upregulated in photoaged skin and strongly correlated with MITF. It was enriched in fibroblast subsets associated with inflammation and extracellular matrix remodeling, which displayed enhanced BMP4 signaling to melanocytes. Immunostaining confirmed ZIC1 upregulation in sun-exposed and melasma skin, with colocalization in vimentin-positive fibroblasts. Repeated UVA exposure upregulated both ZIC1 and BMP4 in dermal fibroblasts. Gain- and loss-of-function studies, combined with in silico analysis and ChIP-PCR assay, support a positive regulatory link between ZIC1 and BMP4 during photoaging. Our transcriptomic analyses together with preliminary experimental verification suggest a previously unrecognized ZIC-BMP4 axis through which dermal fibroblasts implicated in melanogenesis in photoaged skin, providing new insights into dermal-epidermal crosstalk and highlighting a potential therapeutic target.

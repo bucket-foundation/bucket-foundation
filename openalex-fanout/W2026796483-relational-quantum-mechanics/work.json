@@ -1,0 +1,701 @@
+{
+  "id": "https://openalex.org/W2026796483",
+  "doi": "https://doi.org/10.1007/bf02302261",
+  "title": "Relational quantum mechanics",
+  "display_name": "Relational quantum mechanics",
+  "publication_year": 1996,
+  "publication_date": "1996-08-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2026796483",
+    "doi": "https://doi.org/10.1007/bf02302261",
+    "mag": "2026796483"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1007/bf02302261",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1007/bf02302261",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S194044894",
+      "display_name": "International Journal of Theoretical Physics",
+      "issn_l": "0020-7748",
+      "issn": [
+        "0020-7748",
+        "1572-9575"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319900",
+      "host_organization_name": "Springer Science+Business Media",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319900",
+        "https://openalex.org/P4310319965"
+      ],
+      "host_organization_lineage_names": [
+        "Springer Science+Business Media",
+        "Springer Nature"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "International Journal of Theoretical Physics",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "arxiv",
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "green",
+    "oa_url": "https://arxiv.org/pdf/quant-ph/9609002",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5050105545",
+        "display_name": "Carlo Rovelli",
+        "orcid": "https://orcid.org/0000-0003-1724-9737"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I170201317",
+          "display_name": "University of Pittsburgh",
+          "ror": "https://ror.org/01an3r305",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I170201317"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Carlo Rovelli",
+      "raw_affiliation_strings": [
+        "Department of Physics and Astronomy, University of Pittsburgh, 15260, Pittsburgh, Pennsylvania",
+        "Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh,"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Physics and Astronomy, University of Pittsburgh, 15260, Pittsburgh, Pennsylvania",
+          "institution_ids": [
+            "https://openalex.org/I170201317"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Physics and Astronomy, University of Pittsburgh, Pittsburgh,",
+          "institution_ids": [
+            "https://openalex.org/I170201317"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5050105545"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I170201317"
+  ],
+  "apc_list": {
+    "value": 2390,
+    "currency": "EUR",
+    "value_usd": 2990
+  },
+  "apc_paid": null,
+  "fwci": 3.3694,
+  "has_fulltext": false,
+  "cited_by_count": 1319,
+  "citation_normalized_percentile": {
+    "value": 0.9249197,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "35",
+    "issue": "8",
+    "first_page": "1637",
+    "last_page": "1678"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10622",
+    "display_name": "Quantum Mechanics and Applications",
+    "score": 0.9998000264167786,
+    "subfield": {
+      "id": "https://openalex.org/subfields/3107",
+      "display_name": "Atomic and Molecular Physics, and Optics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/31",
+      "display_name": "Physics and Astronomy"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10622",
+      "display_name": "Quantum Mechanics and Applications",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3107",
+        "display_name": "Atomic and Molecular Physics, and Optics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10778",
+      "display_name": "Philosophy and History of Science",
+      "score": 0.9955000281333923,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1207",
+        "display_name": "History and Philosophy of Science"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/12",
+        "display_name": "Arts and Humanities"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12261",
+      "display_name": "Statistical Mechanics and Entropy",
+      "score": 0.986299991607666,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3109",
+        "display_name": "Statistical and Nonlinear Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/relational-quantum-mechanics",
+      "display_name": "Relational quantum mechanics",
+      "score": 0.7945266962051392
+    },
+    {
+      "id": "https://openalex.org/keywords/observer",
+      "display_name": "Observer (physics)",
+      "score": 0.6615234613418579
+    },
+    {
+      "id": "https://openalex.org/keywords/consistent-histories",
+      "display_name": "Consistent histories",
+      "score": 0.5934503078460693
+    },
+    {
+      "id": "https://openalex.org/keywords/minority-interpretations-of-quantum-mechanics",
+      "display_name": "Minority interpretations of quantum mechanics",
+      "score": 0.5773864388465881
+    },
+    {
+      "id": "https://openalex.org/keywords/interpretations-of-quantum-mechanics",
+      "display_name": "Interpretations of quantum mechanics",
+      "score": 0.5235528349876404
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.5079219937324524
+    },
+    {
+      "id": "https://openalex.org/keywords/measurement-problem",
+      "display_name": "Measurement problem",
+      "score": 0.49295830726623535
+    },
+    {
+      "id": "https://openalex.org/keywords/theoretical-physics",
+      "display_name": "Theoretical physics",
+      "score": 0.47874850034713745
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-probability",
+      "display_name": "Quantum probability",
+      "score": 0.41142722964286804
+    },
+    {
+      "id": "https://openalex.org/keywords/physical-system",
+      "display_name": "Physical system",
+      "score": 0.4111122786998749
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-process",
+      "display_name": "Quantum process",
+      "score": 0.38909512758255005
+    },
+    {
+      "id": "https://openalex.org/keywords/classical-mechanics",
+      "display_name": "Classical mechanics",
+      "score": 0.38519781827926636
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.3701266646385193
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.3250753581523895
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum",
+      "display_name": "Quantum",
+      "score": 0.3011765480041504
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-dynamics",
+      "display_name": "Quantum dynamics",
+      "score": 0.22698187828063965
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C138797146",
+      "wikidata": "https://www.wikidata.org/wiki/Q17105475",
+      "display_name": "Relational quantum mechanics",
+      "level": 5,
+      "score": 0.7945266962051392
+    },
+    {
+      "id": "https://openalex.org/C2780704645",
+      "wikidata": "https://www.wikidata.org/wiki/Q9251458",
+      "display_name": "Observer (physics)",
+      "level": 2,
+      "score": 0.6615234613418579
+    },
+    {
+      "id": "https://openalex.org/C179153249",
+      "wikidata": "https://www.wikidata.org/wiki/Q5163228",
+      "display_name": "Consistent histories",
+      "level": 5,
+      "score": 0.5934503078460693
+    },
+    {
+      "id": "https://openalex.org/C79369538",
+      "wikidata": "https://www.wikidata.org/wiki/Q6869251",
+      "display_name": "Minority interpretations of quantum mechanics",
+      "level": 5,
+      "score": 0.5773864388465881
+    },
+    {
+      "id": "https://openalex.org/C207046469",
+      "wikidata": "https://www.wikidata.org/wiki/Q899137",
+      "display_name": "Interpretations of quantum mechanics",
+      "level": 5,
+      "score": 0.5235528349876404
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.5079219937324524
+    },
+    {
+      "id": "https://openalex.org/C169402740",
+      "wikidata": "https://www.wikidata.org/wiki/Q2590381",
+      "display_name": "Measurement problem",
+      "level": 3,
+      "score": 0.49295830726623535
+    },
+    {
+      "id": "https://openalex.org/C33332235",
+      "wikidata": "https://www.wikidata.org/wiki/Q18362",
+      "display_name": "Theoretical physics",
+      "level": 1,
+      "score": 0.47874850034713745
+    },
+    {
+      "id": "https://openalex.org/C165973109",
+      "wikidata": "https://www.wikidata.org/wiki/Q894014",
+      "display_name": "Quantum probability",
+      "level": 5,
+      "score": 0.41142722964286804
+    },
+    {
+      "id": "https://openalex.org/C116672817",
+      "wikidata": "https://www.wikidata.org/wiki/Q1454986",
+      "display_name": "Physical system",
+      "level": 2,
+      "score": 0.4111122786998749
+    },
+    {
+      "id": "https://openalex.org/C11255438",
+      "wikidata": "https://www.wikidata.org/wiki/Q7269085",
+      "display_name": "Quantum process",
+      "level": 4,
+      "score": 0.38909512758255005
+    },
+    {
+      "id": "https://openalex.org/C74650414",
+      "wikidata": "https://www.wikidata.org/wiki/Q11397",
+      "display_name": "Classical mechanics",
+      "level": 1,
+      "score": 0.38519781827926636
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.3701266646385193
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.3250753581523895
+    },
+    {
+      "id": "https://openalex.org/C84114770",
+      "wikidata": "https://www.wikidata.org/wiki/Q46344",
+      "display_name": "Quantum",
+      "level": 2,
+      "score": 0.3011765480041504
+    },
+    {
+      "id": "https://openalex.org/C15184713",
+      "wikidata": "https://www.wikidata.org/wiki/Q7269042",
+      "display_name": "Quantum dynamics",
+      "level": 3,
+      "score": 0.22698187828063965
+    }
+  ],
+  "mesh": [],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1007/bf02302261",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1007/bf02302261",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S194044894",
+        "display_name": "International Journal of Theoretical Physics",
+        "issn_l": "0020-7748",
+        "issn": [
+          "0020-7748",
+          "1572-9575"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319900",
+        "host_organization_name": "Springer Science+Business Media",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319900",
+          "https://openalex.org/P4310319965"
+        ],
+        "host_organization_lineage_names": [
+          "Springer Science+Business Media",
+          "Springer Nature"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "International Journal of Theoretical Physics",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmh:oai:arXiv.org:quant-ph/9609002",
+      "is_oa": true,
+      "landing_page_url": "http://arxiv.org/abs/quant-ph/9609002",
+      "pdf_url": "https://arxiv.org/pdf/quant-ph/9609002",
+      "source": {
+        "id": "https://openalex.org/S4306400194",
+        "display_name": "arXiv (Cornell University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I205783295",
+        "host_organization_name": "Cornell University",
+        "host_organization_lineage": [
+          "https://openalex.org/I205783295"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:CiteSeerX.psu:10.1.1.267.7525",
+      "is_oa": false,
+      "landing_page_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.267.7525",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "http://arxiv.org/pdf/hep-th/9403015v1.pdf",
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:cds.cern.ch:309837",
+      "is_oa": false,
+      "landing_page_url": "http://cds.cern.ch/record/309837",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306402194",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I67311998",
+        "host_organization_name": "European Organization for Nuclear Research",
+        "host_organization_lineage": [
+          "https://openalex.org/I67311998"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": ""
+    }
+  ],
+  "best_oa_location": {
+    "id": "pmh:oai:arXiv.org:quant-ph/9609002",
+    "is_oa": true,
+    "landing_page_url": "http://arxiv.org/abs/quant-ph/9609002",
+    "pdf_url": "https://arxiv.org/pdf/quant-ph/9609002",
+    "source": {
+      "id": "https://openalex.org/S4306400194",
+      "display_name": "arXiv (Cornell University)",
+      "issn_l": null,
+      "issn": null,
+      "is_oa": true,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/I205783295",
+      "host_organization_name": "Cornell University",
+      "host_organization_lineage": [
+        "https://openalex.org/I205783295"
+      ],
+      "host_organization_lineage_names": [],
+      "type": "repository"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "submittedVersion",
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": null,
+    "raw_type": "text"
+  },
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 63,
+  "referenced_works": [
+    "https://openalex.org/W180111340",
+    "https://openalex.org/W246464013",
+    "https://openalex.org/W648026461",
+    "https://openalex.org/W1498924426",
+    "https://openalex.org/W1504779208",
+    "https://openalex.org/W1589313316",
+    "https://openalex.org/W1689480685",
+    "https://openalex.org/W1916207017",
+    "https://openalex.org/W1965075382",
+    "https://openalex.org/W1965682166",
+    "https://openalex.org/W1967479370",
+    "https://openalex.org/W1971031102",
+    "https://openalex.org/W1977610941",
+    "https://openalex.org/W1977787437",
+    "https://openalex.org/W1983511345",
+    "https://openalex.org/W1986407511",
+    "https://openalex.org/W1987630316",
+    "https://openalex.org/W1989868128",
+    "https://openalex.org/W1995875735",
+    "https://openalex.org/W1996686235",
+    "https://openalex.org/W2001372556",
+    "https://openalex.org/W2008657432",
+    "https://openalex.org/W2032207635",
+    "https://openalex.org/W2040760363",
+    "https://openalex.org/W2042137662",
+    "https://openalex.org/W2053589237",
+    "https://openalex.org/W2055993996",
+    "https://openalex.org/W2066381579",
+    "https://openalex.org/W2070481624",
+    "https://openalex.org/W2073384645",
+    "https://openalex.org/W2080576550",
+    "https://openalex.org/W2082739523",
+    "https://openalex.org/W2086166831",
+    "https://openalex.org/W2089610453",
+    "https://openalex.org/W2090099030",
+    "https://openalex.org/W2090726775",
+    "https://openalex.org/W2093896185",
+    "https://openalex.org/W2095485131",
+    "https://openalex.org/W2107080718",
+    "https://openalex.org/W2126746347",
+    "https://openalex.org/W2131872505",
+    "https://openalex.org/W2151399494",
+    "https://openalex.org/W2155174096",
+    "https://openalex.org/W2296615904",
+    "https://openalex.org/W2329600386",
+    "https://openalex.org/W2475239926",
+    "https://openalex.org/W2493894436",
+    "https://openalex.org/W2495362145",
+    "https://openalex.org/W2561321055",
+    "https://openalex.org/W2744930110",
+    "https://openalex.org/W2798456356",
+    "https://openalex.org/W2799058868",
+    "https://openalex.org/W2914679068",
+    "https://openalex.org/W3105681266",
+    "https://openalex.org/W3158823752",
+    "https://openalex.org/W4229979503",
+    "https://openalex.org/W4233283946",
+    "https://openalex.org/W4235442031",
+    "https://openalex.org/W4249637202",
+    "https://openalex.org/W4255721438",
+    "https://openalex.org/W4255724322",
+    "https://openalex.org/W4299417585",
+    "https://openalex.org/W4306715474"
+  ],
+  "related_works": [
+    "https://openalex.org/W4237132672",
+    "https://openalex.org/W2016241722",
+    "https://openalex.org/W2500558362",
+    "https://openalex.org/W1986147951",
+    "https://openalex.org/W1967662750",
+    "https://openalex.org/W1620303290",
+    "https://openalex.org/W1485446706",
+    "https://openalex.org/W1899478111",
+    "https://openalex.org/W2086962720",
+    "https://openalex.org/W2508616629"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 63
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 126
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 69
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 137
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 94
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 97
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 67
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 113
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 59
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 46
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 50
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 43
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 39
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 25
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 32
+    }
+  ],
+  "updated_date": "2026-05-07T13:39:58.223016",
+  "created_date": "2025-10-10T00:00:00"
+}

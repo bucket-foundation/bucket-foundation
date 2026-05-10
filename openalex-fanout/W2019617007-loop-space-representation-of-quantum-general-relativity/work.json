@@ -1,0 +1,643 @@
+{
+  "id": "https://openalex.org/W2019617007",
+  "doi": "https://doi.org/10.1016/0550-3213(90)90019-a",
+  "title": "Loop space representation of quantum general relativity",
+  "display_name": "Loop space representation of quantum general relativity",
+  "publication_year": 1990,
+  "publication_date": "1990-02-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2019617007",
+    "doi": "https://doi.org/10.1016/0550-3213(90)90019-a",
+    "mag": "2019617007"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1016/0550-3213(90)90019-a",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1016/0550-3213(90)90019-a",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4210194812",
+      "display_name": "Nuclear Physics B",
+      "issn_l": "0550-3213",
+      "issn": [
+        "0550-3213",
+        "1873-1562"
+      ],
+      "is_oa": false,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Nuclear Physics B",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5050105545",
+        "display_name": "Carlo Rovelli",
+        "orcid": "https://orcid.org/0000-0003-1724-9737"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210157426",
+          "display_name": "Istituto Nazionale di Fisica Nucleare, Sezione di Roma I",
+          "ror": "https://ror.org/05eva6s33",
+          "country_code": "IT",
+          "type": "facility",
+          "lineage": [
+            "https://openalex.org/I160013858",
+            "https://openalex.org/I4210157426"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I193223587",
+          "display_name": "University of Trento",
+          "ror": "https://ror.org/05trd4x28",
+          "country_code": "IT",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I193223587"
+          ]
+        }
+      ],
+      "countries": [
+        "IT"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Carlo Rovelli",
+      "raw_affiliation_strings": [
+        "Dipartimento di Fisica, Università di Trento, Trento, Italy",
+        "INFN Sezione di Roma, Università di Roma, Roma, Italy"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Dipartimento di Fisica, Università di Trento, Trento, Italy",
+          "institution_ids": [
+            "https://openalex.org/I193223587"
+          ]
+        },
+        {
+          "raw_affiliation_string": "INFN Sezione di Roma, Università di Roma, Roma, Italy",
+          "institution_ids": [
+            "https://openalex.org/I4210157426"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5033243912",
+        "display_name": "Lee Smolin",
+        "orcid": "https://orcid.org/0000-0003-1432-1473"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I32971472",
+          "display_name": "Yale University",
+          "ror": "https://ror.org/03v76x132",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I32971472"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I193223587",
+          "display_name": "University of Trento",
+          "ror": "https://ror.org/05trd4x28",
+          "country_code": "IT",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I193223587"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I70983195",
+          "display_name": "Syracuse University",
+          "ror": "https://ror.org/025r5qe02",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I70983195"
+          ]
+        }
+      ],
+      "countries": [
+        "IT",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Lee Smolin",
+      "raw_affiliation_strings": [
+        "Department of Physics, Syracuse University, Syracuse, NY 13210, USA",
+        "Department of Physics, Yale University, New Haven, CT 06511, USA",
+        "Dipartimento di Fisica, Università di Trento, Trento, Italy"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Physics, Syracuse University, Syracuse, NY 13210, USA",
+          "institution_ids": [
+            "https://openalex.org/I70983195"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Physics, Yale University, New Haven, CT 06511, USA",
+          "institution_ids": [
+            "https://openalex.org/I32971472"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Dipartimento di Fisica, Università di Trento, Trento, Italy",
+          "institution_ids": [
+            "https://openalex.org/I193223587"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 2,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5050105545"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I193223587",
+    "https://openalex.org/I4210157426"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 35.7128,
+  "has_fulltext": false,
+  "cited_by_count": 843,
+  "citation_normalized_percentile": {
+    "value": 0.99944372,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 98,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "331",
+    "issue": "1",
+    "first_page": "80",
+    "last_page": "152"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T11415",
+    "display_name": "Noncommutative and Quantum Gravity Theories",
+    "score": 0.9998000264167786,
+    "subfield": {
+      "id": "https://openalex.org/subfields/3109",
+      "display_name": "Statistical and Nonlinear Physics"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/31",
+      "display_name": "Physics and Astronomy"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T11415",
+      "display_name": "Noncommutative and Quantum Gravity Theories",
+      "score": 0.9998000264167786,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3109",
+        "display_name": "Statistical and Nonlinear Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10899",
+      "display_name": "Advanced Operator Algebra Research",
+      "score": 0.9997000098228455,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2610",
+        "display_name": "Mathematical Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10896",
+      "display_name": "Homotopy and Cohomology in Algebraic Topology",
+      "score": 0.9995999932289124,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2610",
+        "display_name": "Mathematical Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/diffeomorphism",
+      "display_name": "Diffeomorphism",
+      "score": 0.6650320887565613
+    },
+    {
+      "id": "https://openalex.org/keywords/hamiltonian-constraint",
+      "display_name": "Hamiltonian constraint",
+      "score": 0.5581969022750854
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.5576156973838806
+    },
+    {
+      "id": "https://openalex.org/keywords/observable",
+      "display_name": "Observable",
+      "score": 0.5404918789863586
+    },
+    {
+      "id": "https://openalex.org/keywords/general-relativity",
+      "display_name": "General relativity",
+      "score": 0.48533907532691956
+    },
+    {
+      "id": "https://openalex.org/keywords/loop-quantum-gravity",
+      "display_name": "Loop quantum gravity",
+      "score": 0.4552806615829468
+    },
+    {
+      "id": "https://openalex.org/keywords/poisson-bracket",
+      "display_name": "Poisson bracket",
+      "score": 0.42228570580482483
+    },
+    {
+      "id": "https://openalex.org/keywords/pure-mathematics",
+      "display_name": "Pure mathematics",
+      "score": 0.4154156744480133
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-gravity",
+      "display_name": "Quantum gravity",
+      "score": 0.39820578694343567
+    },
+    {
+      "id": "https://openalex.org/keywords/algebra-over-a-field",
+      "display_name": "Algebra over a field",
+      "score": 0.3631218373775482
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum",
+      "display_name": "Quantum",
+      "score": 0.2887921631336212
+    },
+    {
+      "id": "https://openalex.org/keywords/lie-algebra",
+      "display_name": "Lie algebra",
+      "score": 0.2714962959289551
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematical-physics",
+      "display_name": "Mathematical physics",
+      "score": 0.2443309724330902
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.22776424884796143
+    },
+    {
+      "id": "https://openalex.org/keywords/quantum-mechanics",
+      "display_name": "Quantum mechanics",
+      "score": 0.1581471562385559
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C47556283",
+      "wikidata": "https://www.wikidata.org/wiki/Q1058314",
+      "display_name": "Diffeomorphism",
+      "level": 2,
+      "score": 0.6650320887565613
+    },
+    {
+      "id": "https://openalex.org/C2778267785",
+      "wikidata": "https://www.wikidata.org/wiki/Q5645295",
+      "display_name": "Hamiltonian constraint",
+      "level": 5,
+      "score": 0.5581969022750854
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.5576156973838806
+    },
+    {
+      "id": "https://openalex.org/C32848918",
+      "wikidata": "https://www.wikidata.org/wiki/Q845789",
+      "display_name": "Observable",
+      "level": 2,
+      "score": 0.5404918789863586
+    },
+    {
+      "id": "https://openalex.org/C147452769",
+      "wikidata": "https://www.wikidata.org/wiki/Q11452",
+      "display_name": "General relativity",
+      "level": 2,
+      "score": 0.48533907532691956
+    },
+    {
+      "id": "https://openalex.org/C58801389",
+      "wikidata": "https://www.wikidata.org/wiki/Q739962",
+      "display_name": "Loop quantum gravity",
+      "level": 4,
+      "score": 0.4552806615829468
+    },
+    {
+      "id": "https://openalex.org/C188845816",
+      "wikidata": "https://www.wikidata.org/wiki/Q1052775",
+      "display_name": "Poisson bracket",
+      "level": 3,
+      "score": 0.42228570580482483
+    },
+    {
+      "id": "https://openalex.org/C202444582",
+      "wikidata": "https://www.wikidata.org/wiki/Q837863",
+      "display_name": "Pure mathematics",
+      "level": 1,
+      "score": 0.4154156744480133
+    },
+    {
+      "id": "https://openalex.org/C108568745",
+      "wikidata": "https://www.wikidata.org/wiki/Q234181",
+      "display_name": "Quantum gravity",
+      "level": 3,
+      "score": 0.39820578694343567
+    },
+    {
+      "id": "https://openalex.org/C136119220",
+      "wikidata": "https://www.wikidata.org/wiki/Q1000660",
+      "display_name": "Algebra over a field",
+      "level": 2,
+      "score": 0.3631218373775482
+    },
+    {
+      "id": "https://openalex.org/C84114770",
+      "wikidata": "https://www.wikidata.org/wiki/Q46344",
+      "display_name": "Quantum",
+      "level": 2,
+      "score": 0.2887921631336212
+    },
+    {
+      "id": "https://openalex.org/C51568863",
+      "wikidata": "https://www.wikidata.org/wiki/Q664495",
+      "display_name": "Lie algebra",
+      "level": 2,
+      "score": 0.2714962959289551
+    },
+    {
+      "id": "https://openalex.org/C37914503",
+      "wikidata": "https://www.wikidata.org/wiki/Q156495",
+      "display_name": "Mathematical physics",
+      "level": 1,
+      "score": 0.2443309724330902
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.22776424884796143
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.1581471562385559
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1016/0550-3213(90)90019-a",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1016/0550-3213(90)90019-a",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4210194812",
+        "display_name": "Nuclear Physics B",
+        "issn_l": "0550-3213",
+        "issn": [
+          "0550-3213",
+          "1873-1562"
+        ],
+        "is_oa": false,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Elsevier BV"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Nuclear Physics B",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 41,
+  "referenced_works": [
+    "https://openalex.org/W980282962",
+    "https://openalex.org/W1556750665",
+    "https://openalex.org/W1567812234",
+    "https://openalex.org/W1965075382",
+    "https://openalex.org/W1965866051",
+    "https://openalex.org/W1974624190",
+    "https://openalex.org/W1978652497",
+    "https://openalex.org/W1980876996",
+    "https://openalex.org/W1983691261",
+    "https://openalex.org/W1984795402",
+    "https://openalex.org/W1987066394",
+    "https://openalex.org/W1987278096",
+    "https://openalex.org/W1987751701",
+    "https://openalex.org/W1992761334",
+    "https://openalex.org/W1992830217",
+    "https://openalex.org/W1995822331",
+    "https://openalex.org/W1998014618",
+    "https://openalex.org/W2007185418",
+    "https://openalex.org/W2011830192",
+    "https://openalex.org/W2015411876",
+    "https://openalex.org/W2029568002",
+    "https://openalex.org/W2031411010",
+    "https://openalex.org/W2031521506",
+    "https://openalex.org/W2038365242",
+    "https://openalex.org/W2041584982",
+    "https://openalex.org/W2061809405",
+    "https://openalex.org/W2064185701",
+    "https://openalex.org/W2064868769",
+    "https://openalex.org/W2065783621",
+    "https://openalex.org/W2069421450",
+    "https://openalex.org/W2074760170",
+    "https://openalex.org/W2087643476",
+    "https://openalex.org/W2091919572",
+    "https://openalex.org/W2098989214",
+    "https://openalex.org/W2137459590",
+    "https://openalex.org/W2222863406",
+    "https://openalex.org/W2329600386",
+    "https://openalex.org/W2608208317",
+    "https://openalex.org/W4245236715",
+    "https://openalex.org/W4249609880",
+    "https://openalex.org/W6803200229"
+  ],
+  "related_works": [
+    "https://openalex.org/W1872542178",
+    "https://openalex.org/W2013344137",
+    "https://openalex.org/W2049681105",
+    "https://openalex.org/W2129237853",
+    "https://openalex.org/W3099034522",
+    "https://openalex.org/W2049085852",
+    "https://openalex.org/W2056369403",
+    "https://openalex.org/W2155841966",
+    "https://openalex.org/W2549143042",
+    "https://openalex.org/W2520178915"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 47
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 19
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 18
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 27
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 18
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 13
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 13
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 21
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 28
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 18
+    }
+  ],
+  "updated_date": "2026-05-06T08:25:59.206177",
+  "created_date": "2025-10-10T00:00:00"
+}

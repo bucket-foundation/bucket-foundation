@@ -1,0 +1,1134 @@
+{
+  "id": "https://openalex.org/W2079656335",
+  "doi": "https://doi.org/10.1103/physrevlett.103.238701",
+  "title": "Granger Causality and Transfer Entropy Are Equivalent for Gaussian Variables",
+  "display_name": "Granger Causality and Transfer Entropy Are Equivalent for Gaussian Variables",
+  "publication_year": 2009,
+  "publication_date": "2009-12-04",
+  "ids": {
+    "openalex": "https://openalex.org/W2079656335",
+    "doi": "https://doi.org/10.1103/physrevlett.103.238701",
+    "mag": "2079656335",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/20366183"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1103/physrevlett.103.238701",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1103/physrevlett.103.238701",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S24807848",
+      "display_name": "Physical Review Letters",
+      "issn_l": "0031-9007",
+      "issn": [
+        "0031-9007",
+        "1079-7114",
+        "1092-0145"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320261",
+      "host_organization_name": "American Physical Society",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320261"
+      ],
+      "host_organization_lineage_names": [
+        "American Physical Society"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Physical Review Letters",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "arxiv",
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "green",
+    "oa_url": "https://arxiv.org/pdf/0910.4514",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5028773395",
+        "display_name": "Lionel Barnett",
+        "orcid": "https://orcid.org/0000-0003-2329-9351"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I162608824",
+          "display_name": "University of Sussex",
+          "ror": "https://ror.org/00ayhx656",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I162608824"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Lionel Barnett",
+      "raw_affiliation_strings": [
+        "Centre for Computational Neuroscience and Robotics, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom. L.C.Barnett@sussex.ac.uk",
+        "Centre for Computational Neuroscience and Robotics, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Centre for Computational Neuroscience and Robotics, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom. L.C.Barnett@sussex.ac.uk",
+          "institution_ids": [
+            "https://openalex.org/I162608824"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Centre for Computational Neuroscience and Robotics, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I162608824"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5012720030",
+        "display_name": "Adam B. Barrett",
+        "orcid": "https://orcid.org/0000-0003-4174-7779"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I162608824",
+          "display_name": "University of Sussex",
+          "ror": "https://ror.org/00ayhx656",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I162608824"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Adam B. Barrett",
+      "raw_affiliation_strings": [
+        "Centre for Computational Neuroscience and Robotics, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom",
+        "Sackler Centre for Consciousness Science, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Centre for Computational Neuroscience and Robotics, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I162608824"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Sackler Centre for Consciousness Science, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I162608824"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5084274787",
+        "display_name": "Anil K. Seth",
+        "orcid": "https://orcid.org/0000-0002-1421-6051"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I162608824",
+          "display_name": "University of Sussex",
+          "ror": "https://ror.org/00ayhx656",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I162608824"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Anil K. Seth",
+      "raw_affiliation_strings": [
+        "Centre for Computational Neuroscience and Robotics, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom",
+        "Sackler Centre for Consciousness Science, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Centre for Computational Neuroscience and Robotics, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I162608824"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Sackler Centre for Consciousness Science, School of Informatics, University of Sussex, Brighton BN1 9QJ, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I162608824"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 3,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5028773395"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I162608824"
+  ],
+  "apc_list": {
+    "value": 3750,
+    "currency": "USD",
+    "value_usd": 3750
+  },
+  "apc_paid": null,
+  "fwci": 9.5719,
+  "has_fulltext": false,
+  "cited_by_count": 1133,
+  "citation_normalized_percentile": {
+    "value": 0.98767923,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "103",
+    "issue": "23",
+    "first_page": "238701",
+    "last_page": "238701"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10581",
+    "display_name": "Neural dynamics and brain function",
+    "score": 0.9934999942779541,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2805",
+      "display_name": "Cognitive Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10581",
+      "display_name": "Neural dynamics and brain function",
+      "score": 0.9934999942779541,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10241",
+      "display_name": "Functional Brain Connectivity Studies",
+      "score": 0.9732000231742859,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12261",
+      "display_name": "Statistical Mechanics and Entropy",
+      "score": 0.9624000191688538,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3109",
+        "display_name": "Statistical and Nonlinear Physics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/31",
+        "display_name": "Physics and Astronomy"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/transfer-entropy",
+      "display_name": "Transfer entropy",
+      "score": 0.8678650856018066
+    },
+    {
+      "id": "https://openalex.org/keywords/granger-causality",
+      "display_name": "Granger causality",
+      "score": 0.8102012872695923
+    },
+    {
+      "id": "https://openalex.org/keywords/autoregressive-model",
+      "display_name": "Autoregressive model",
+      "score": 0.6944340467453003
+    },
+    {
+      "id": "https://openalex.org/keywords/causality",
+      "display_name": "Causality (physics)",
+      "score": 0.5711642503738403
+    },
+    {
+      "id": "https://openalex.org/keywords/gaussian",
+      "display_name": "Gaussian",
+      "score": 0.5661199688911438
+    },
+    {
+      "id": "https://openalex.org/keywords/econometrics",
+      "display_name": "Econometrics",
+      "score": 0.5399847030639648
+    },
+    {
+      "id": "https://openalex.org/keywords/statistical-physics",
+      "display_name": "Statistical physics",
+      "score": 0.5095868110656738
+    },
+    {
+      "id": "https://openalex.org/keywords/entropy",
+      "display_name": "Entropy (arrow of time)",
+      "score": 0.5037049651145935
+    },
+    {
+      "id": "https://openalex.org/keywords/vector-autoregression",
+      "display_name": "Vector autoregression",
+      "score": 0.48730719089508057
+    },
+    {
+      "id": "https://openalex.org/keywords/causal-inference",
+      "display_name": "Causal inference",
+      "score": 0.4625195264816284
+    },
+    {
+      "id": "https://openalex.org/keywords/information-theory",
+      "display_name": "Information theory",
+      "score": 0.432798832654953
+    },
+    {
+      "id": "https://openalex.org/keywords/inference",
+      "display_name": "Inference",
+      "score": 0.4266635775566101
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.38516438007354736
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.36750680208206177
+    },
+    {
+      "id": "https://openalex.org/keywords/principle-of-maximum-entropy",
+      "display_name": "Principle of maximum entropy",
+      "score": 0.3058777153491974
+    },
+    {
+      "id": "https://openalex.org/keywords/statistics",
+      "display_name": "Statistics",
+      "score": 0.19137459993362427
+    },
+    {
+      "id": "https://openalex.org/keywords/artificial-intelligence",
+      "display_name": "Artificial intelligence",
+      "score": 0.1892225444316864
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.16892307996749878
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C182049051",
+      "wikidata": "https://www.wikidata.org/wiki/Q17147155",
+      "display_name": "Transfer entropy",
+      "level": 3,
+      "score": 0.8678650856018066
+    },
+    {
+      "id": "https://openalex.org/C129824826",
+      "wikidata": "https://www.wikidata.org/wiki/Q2630107",
+      "display_name": "Granger causality",
+      "level": 2,
+      "score": 0.8102012872695923
+    },
+    {
+      "id": "https://openalex.org/C159877910",
+      "wikidata": "https://www.wikidata.org/wiki/Q2202883",
+      "display_name": "Autoregressive model",
+      "level": 2,
+      "score": 0.6944340467453003
+    },
+    {
+      "id": "https://openalex.org/C64357122",
+      "wikidata": "https://www.wikidata.org/wiki/Q1149766",
+      "display_name": "Causality (physics)",
+      "level": 2,
+      "score": 0.5711642503738403
+    },
+    {
+      "id": "https://openalex.org/C163716315",
+      "wikidata": "https://www.wikidata.org/wiki/Q901177",
+      "display_name": "Gaussian",
+      "level": 2,
+      "score": 0.5661199688911438
+    },
+    {
+      "id": "https://openalex.org/C149782125",
+      "wikidata": "https://www.wikidata.org/wiki/Q160039",
+      "display_name": "Econometrics",
+      "level": 1,
+      "score": 0.5399847030639648
+    },
+    {
+      "id": "https://openalex.org/C121864883",
+      "wikidata": "https://www.wikidata.org/wiki/Q677916",
+      "display_name": "Statistical physics",
+      "level": 1,
+      "score": 0.5095868110656738
+    },
+    {
+      "id": "https://openalex.org/C106301342",
+      "wikidata": "https://www.wikidata.org/wiki/Q4117933",
+      "display_name": "Entropy (arrow of time)",
+      "level": 2,
+      "score": 0.5037049651145935
+    },
+    {
+      "id": "https://openalex.org/C133029050",
+      "wikidata": "https://www.wikidata.org/wiki/Q385593",
+      "display_name": "Vector autoregression",
+      "level": 2,
+      "score": 0.48730719089508057
+    },
+    {
+      "id": "https://openalex.org/C158600405",
+      "wikidata": "https://www.wikidata.org/wiki/Q5054566",
+      "display_name": "Causal inference",
+      "level": 2,
+      "score": 0.4625195264816284
+    },
+    {
+      "id": "https://openalex.org/C52622258",
+      "wikidata": "https://www.wikidata.org/wiki/Q131222",
+      "display_name": "Information theory",
+      "level": 2,
+      "score": 0.432798832654953
+    },
+    {
+      "id": "https://openalex.org/C2776214188",
+      "wikidata": "https://www.wikidata.org/wiki/Q408386",
+      "display_name": "Inference",
+      "level": 2,
+      "score": 0.4266635775566101
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.38516438007354736
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.36750680208206177
+    },
+    {
+      "id": "https://openalex.org/C9679016",
+      "wikidata": "https://www.wikidata.org/wiki/Q1417473",
+      "display_name": "Principle of maximum entropy",
+      "level": 2,
+      "score": 0.3058777153491974
+    },
+    {
+      "id": "https://openalex.org/C105795698",
+      "wikidata": "https://www.wikidata.org/wiki/Q12483",
+      "display_name": "Statistics",
+      "level": 1,
+      "score": 0.19137459993362427
+    },
+    {
+      "id": "https://openalex.org/C154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "level": 1,
+      "score": 0.1892225444316864
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.16892307996749878
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [
+    {
+      "descriptor_ui": "D016011",
+      "descriptor_name": "Normal Distribution",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016011",
+      "descriptor_name": "Normal Distribution",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D016011",
+      "descriptor_name": "Normal Distribution",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D019277",
+      "descriptor_name": "Entropy",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D019277",
+      "descriptor_name": "Entropy",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    },
+    {
+      "descriptor_ui": "D019277",
+      "descriptor_name": "Entropy",
+      "qualifier_ui": null,
+      "qualifier_name": null,
+      "is_major_topic": true
+    }
+  ],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1103/physrevlett.103.238701",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1103/physrevlett.103.238701",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S24807848",
+        "display_name": "Physical Review Letters",
+        "issn_l": "0031-9007",
+        "issn": [
+          "0031-9007",
+          "1079-7114",
+          "1092-0145"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320261",
+        "host_organization_name": "American Physical Society",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320261"
+        ],
+        "host_organization_lineage_names": [
+          "American Physical Society"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physical Review Letters",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmid:20366183",
+      "is_oa": false,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/20366183",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "display_name": "PubMed",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Physical review letters",
+      "raw_type": null
+    },
+    {
+      "id": "pmh:oai:arXiv.org:0910.4514",
+      "is_oa": true,
+      "landing_page_url": "http://arxiv.org/abs/0910.4514",
+      "pdf_url": "https://arxiv.org/pdf/0910.4514",
+      "source": {
+        "id": "https://openalex.org/S4306400194",
+        "display_name": "arXiv (Cornell University)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I205783295",
+        "host_organization_name": "Cornell University",
+        "host_organization_lineage": [
+          "https://openalex.org/I205783295"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:figshare.com:article/23337236",
+      "is_oa": true,
+      "landing_page_url": "https://figshare.com/articles/journal_contribution/Granger_causality_and_transfer_entropy_are_equivalent_for_Gaussian_variables/23337236",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4377196282",
+        "display_name": "Figshare",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I4210132348",
+        "host_organization_name": "Figshare (United Kingdom)",
+        "host_organization_lineage": [
+          "https://openalex.org/I4210132348"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "",
+      "raw_type": "Text"
+    }
+  ],
+  "best_oa_location": {
+    "id": "pmh:oai:arXiv.org:0910.4514",
+    "is_oa": true,
+    "landing_page_url": "http://arxiv.org/abs/0910.4514",
+    "pdf_url": "https://arxiv.org/pdf/0910.4514",
+    "source": {
+      "id": "https://openalex.org/S4306400194",
+      "display_name": "arXiv (Cornell University)",
+      "issn_l": null,
+      "issn": null,
+      "is_oa": true,
+      "is_in_doaj": false,
+      "is_core": false,
+      "host_organization": "https://openalex.org/I205783295",
+      "host_organization_name": "Cornell University",
+      "host_organization_lineage": [
+        "https://openalex.org/I205783295"
+      ],
+      "host_organization_lineage_names": [],
+      "type": "repository"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "submittedVersion",
+    "is_accepted": false,
+    "is_published": false,
+    "raw_source_name": null,
+    "raw_type": "text"
+  },
+  "sustainable_development_goals": [
+    {
+      "display_name": "Reduced inequalities",
+      "id": "https://metadata.un.org/sdg/10",
+      "score": 0.44999998807907104
+    }
+  ],
+  "awards": [
+    {
+      "id": "https://openalex.org/G2151405025",
+      "display_name": null,
+      "funder_award_id": "EP/G007543/1",
+      "funder_id": "https://openalex.org/F4320334627",
+      "funder_display_name": "Engineering and Physical Sciences Research Council"
+    }
+  ],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320334627",
+      "display_name": "Engineering and Physical Sciences Research Council",
+      "ror": "https://ror.org/0439y7842"
+    }
+  ],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 30,
+  "referenced_works": [
+    "https://openalex.org/W391578156",
+    "https://openalex.org/W1667165204",
+    "https://openalex.org/W1970626830",
+    "https://openalex.org/W1976590851",
+    "https://openalex.org/W2027607571",
+    "https://openalex.org/W2041782669",
+    "https://openalex.org/W2054444429",
+    "https://openalex.org/W2061824367",
+    "https://openalex.org/W2067348345",
+    "https://openalex.org/W2071489416",
+    "https://openalex.org/W2076927242",
+    "https://openalex.org/W2091492183",
+    "https://openalex.org/W2092939357",
+    "https://openalex.org/W2096023955",
+    "https://openalex.org/W2129905273",
+    "https://openalex.org/W2130535167",
+    "https://openalex.org/W2131913316",
+    "https://openalex.org/W2143891888",
+    "https://openalex.org/W2178225550",
+    "https://openalex.org/W2482198018",
+    "https://openalex.org/W2610857016",
+    "https://openalex.org/W2611591252",
+    "https://openalex.org/W2904241843",
+    "https://openalex.org/W2942228371",
+    "https://openalex.org/W3133236490",
+    "https://openalex.org/W4231726431",
+    "https://openalex.org/W4233014035",
+    "https://openalex.org/W4247761930",
+    "https://openalex.org/W4301253858",
+    "https://openalex.org/W4372144402"
+  ],
+  "related_works": [
+    "https://openalex.org/W3105581519",
+    "https://openalex.org/W3032013634",
+    "https://openalex.org/W2492100837",
+    "https://openalex.org/W1595266364",
+    "https://openalex.org/W2388154903",
+    "https://openalex.org/W2518518020",
+    "https://openalex.org/W2075237332",
+    "https://openalex.org/W1972053074",
+    "https://openalex.org/W4224256769",
+    "https://openalex.org/W348369544"
+  ],
+  "abstract_inverted_index": {
+    "Granger": [
+      0,
+      86
+    ],
+    "causality": [
+      1,
+      87
+    ],
+    "is": [
+      2
+    ],
+    "a": [
+      3,
+      28,
+      53
+    ],
+    "statistical": [
+      4
+    ],
+    "notion": [
+      5
+    ],
+    "of": [
+      6,
+      20,
+      41
+    ],
+    "causal": [
+      7,
+      102
+    ],
+    "influence": [
+      8
+    ],
+    "based": [
+      9
+    ],
+    "on": [
+      10
+    ],
+    "prediction": [
+      11
+    ],
+    "via": [
+      12
+    ],
+    "vector": [
+      13
+    ],
+    "autoregression.": [
+      14
+    ],
+    "Developed": [
+      15
+    ],
+    "originally": [
+      16
+    ],
+    "in": [
+      17,
+      27,
+      32,
+      52
+    ],
+    "the": [
+      18,
+      63,
+      69
+    ],
+    "field": [
+      19
+    ],
+    "econometrics,": [
+      21
+    ],
+    "it": [
+      22,
+      58
+    ],
+    "has": [
+      23,
+      49,
+      59,
+      72
+    ],
+    "since": [
+      24
+    ],
+    "found": [
+      25
+    ],
+    "application": [
+      26
+    ],
+    "broader": [
+      29
+    ],
+    "arena,": [
+      30
+    ],
+    "particularly": [
+      31
+    ],
+    "neuroscience.": [
+      33
+    ],
+    "More": [
+      34
+    ],
+    "recently": [
+      35
+    ],
+    "transfer": [
+      36,
+      44,
+      89
+    ],
+    "entropy,": [
+      37
+    ],
+    "an": [
+      38
+    ],
+    "information-theoretic": [
+      39,
+      98
+    ],
+    "measure": [
+      40
+    ],
+    "time-directed": [
+      42
+    ],
+    "information": [
+      43
+    ],
+    "between": [
+      45
+    ],
+    "jointly": [
+      46
+    ],
+    "dependent": [
+      47
+    ],
+    "processes,": [
+      48
+    ],
+    "gained": [
+      50
+    ],
+    "traction": [
+      51
+    ],
+    "similarly": [
+      54
+    ],
+    "wide": [
+      55
+    ],
+    "field.": [
+      56
+    ],
+    "While": [
+      57
+    ],
+    "been": [
+      60,
+      76
+    ],
+    "recognized": [
+      61
+    ],
+    "that": [
+      62,
+      82
+    ],
+    "two": [
+      64
+    ],
+    "concepts": [
+      65
+    ],
+    "must": [
+      66
+    ],
+    "be": [
+      67
+    ],
+    "related,": [
+      68
+    ],
+    "exact": [
+      70
+    ],
+    "relationship": [
+      71
+    ],
+    "until": [
+      73
+    ],
+    "now": [
+      74
+    ],
+    "not": [
+      75
+    ],
+    "formally": [
+      77
+    ],
+    "described.": [
+      78
+    ],
+    "Here": [
+      79
+    ],
+    "we": [
+      80
+    ],
+    "show": [
+      81
+    ],
+    "for": [
+      83
+    ],
+    "Gaussian": [
+      84
+    ],
+    "variables,": [
+      85
+    ],
+    "and": [
+      88,
+      97
+    ],
+    "entropy": [
+      90
+    ],
+    "are": [
+      91
+    ],
+    "entirely": [
+      92
+    ],
+    "equivalent,": [
+      93
+    ],
+    "thus": [
+      94
+    ],
+    "bridging": [
+      95
+    ],
+    "autoregressive": [
+      96
+    ],
+    "approaches": [
+      99
+    ],
+    "to": [
+      100
+    ],
+    "data-driven": [
+      101
+    ],
+    "inference.": [
+      103
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 33
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 93
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 87
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 93
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 98
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 110
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 90
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 103
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 73
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 67
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 51
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 61
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 62
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 45
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 36
+    }
+  ],
+  "updated_date": "2026-05-07T13:39:58.223016",
+  "created_date": "2025-10-10T00:00:00"
+}

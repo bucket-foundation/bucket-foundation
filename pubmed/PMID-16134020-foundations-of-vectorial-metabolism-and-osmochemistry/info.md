@@ -7,7 +7,7 @@
 - **Authors**: Peter D Mitchell
 - **MeSH**: Biochemistry, Biological Transport, Biological Transport, Active, Catalysis, Chemistry, Diffusion, Electron Transport, Genetic Vectors, Ligands, Light
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16134020/
-- **Captured**: 2026-05-09T09:21:59
+- **Captured**: 2026-05-10T10:07:27
 
 ## Abstract
 

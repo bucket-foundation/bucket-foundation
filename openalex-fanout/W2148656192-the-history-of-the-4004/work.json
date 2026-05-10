@@ -1,0 +1,776 @@
+{
+  "id": "https://openalex.org/W2148656192",
+  "doi": "https://doi.org/10.1109/40.546561",
+  "title": "The history of the 4004",
+  "display_name": "The history of the 4004",
+  "publication_year": 1996,
+  "publication_date": "1996-01-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2148656192",
+    "doi": "https://doi.org/10.1109/40.546561",
+    "mag": "2148656192"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1109/40.546561",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1109/40.546561",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S59697426",
+      "display_name": "IEEE Micro",
+      "issn_l": "0272-1732",
+      "issn": [
+        "0272-1732",
+        "1937-4143"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310319808",
+      "host_organization_name": "Institute of Electrical and Electronics Engineers",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310319808"
+      ],
+      "host_organization_lineage_names": [
+        "Institute of Electrical and Electronics Engineers"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "IEEE Micro",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5078325825",
+        "display_name": "Federico Faggin",
+        "orcid": "https://orcid.org/0000-0001-6604-6325"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210088951",
+          "display_name": "Synopsys (United States)",
+          "ror": "https://ror.org/013by2m91",
+          "country_code": "US",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210088951"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "F. Faggin",
+      "raw_affiliation_strings": [
+        "Synopsys, Inc., USA"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Synopsys, Inc., USA",
+          "institution_ids": [
+            "https://openalex.org/I4210088951"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5027041049",
+        "display_name": "Marcian E. Hoff",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": false,
+      "raw_author_name": "M.E. Hoff",
+      "raw_affiliation_strings": [],
+      "affiliations": []
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5016939981",
+        "display_name": "Stanley Mazor",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": false,
+      "raw_author_name": "S. Mazor",
+      "raw_affiliation_strings": [
+        "BEA Systems, Inc., USA"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "BEA Systems, Inc., USA",
+          "institution_ids": []
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5110133913",
+        "display_name": "Masatoshi Shima",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "is_corresponding": false,
+      "raw_author_name": "M. Shima",
+      "raw_affiliation_strings": [
+        "VM Technology, Inc., USA"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "VM Technology, Inc., USA",
+          "institution_ids": []
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 4,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5078325825"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I4210088951"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 1.5946,
+  "has_fulltext": false,
+  "cited_by_count": 63,
+  "citation_normalized_percentile": {
+    "value": 0.86323389,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": false
+  },
+  "cited_by_percentile_year": {
+    "min": 90,
+    "max": 98
+  },
+  "biblio": {
+    "volume": "16",
+    "issue": "6",
+    "first_page": "10",
+    "last_page": "20"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10715",
+    "display_name": "Distributed and Parallel Computing Systems",
+    "score": 0.7348999977111816,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1705",
+      "display_name": "Computer Networks and Communications"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/17",
+      "display_name": "Computer Science"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10715",
+      "display_name": "Distributed and Parallel Computing Systems",
+      "score": 0.7348999977111816,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1705",
+        "display_name": "Computer Networks and Communications"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10904",
+      "display_name": "Embedded Systems Design Techniques",
+      "score": 0.7214000225067139,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1708",
+        "display_name": "Hardware and Architecture"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11159",
+      "display_name": "Manufacturing Process and Optimization",
+      "score": 0.7175999879837036,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2209",
+        "display_name": "Industrial and Manufacturing Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.7134848237037659
+    },
+    {
+      "id": "https://openalex.org/keywords/microprocessor",
+      "display_name": "Microprocessor",
+      "score": 0.7045743465423584
+    },
+    {
+      "id": "https://openalex.org/keywords/history-of-computing",
+      "display_name": "History of computing",
+      "score": 0.6254240274429321
+    },
+    {
+      "id": "https://openalex.org/keywords/corporation",
+      "display_name": "Corporation",
+      "score": 0.6206314563751221
+    },
+    {
+      "id": "https://openalex.org/keywords/liberian-dollar",
+      "display_name": "Liberian dollar",
+      "score": 0.5898870825767517
+    },
+    {
+      "id": "https://openalex.org/keywords/electronics",
+      "display_name": "Electronics",
+      "score": 0.42762428522109985
+    },
+    {
+      "id": "https://openalex.org/keywords/telecommunications",
+      "display_name": "Telecommunications",
+      "score": 0.3522647023200989
+    },
+    {
+      "id": "https://openalex.org/keywords/world-wide-web",
+      "display_name": "World Wide Web",
+      "score": 0.34466224908828735
+    },
+    {
+      "id": "https://openalex.org/keywords/software-engineering",
+      "display_name": "Software engineering",
+      "score": 0.3233461081981659
+    },
+    {
+      "id": "https://openalex.org/keywords/embedded-system",
+      "display_name": "Embedded system",
+      "score": 0.2265220284461975
+    },
+    {
+      "id": "https://openalex.org/keywords/electrical-engineering",
+      "display_name": "Electrical engineering",
+      "score": 0.16730207204818726
+    },
+    {
+      "id": "https://openalex.org/keywords/engineering",
+      "display_name": "Engineering",
+      "score": 0.14209333062171936
+    },
+    {
+      "id": "https://openalex.org/keywords/business",
+      "display_name": "Business",
+      "score": 0.1075901985168457
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.7134848237037659
+    },
+    {
+      "id": "https://openalex.org/C2780728072",
+      "wikidata": "https://www.wikidata.org/wiki/Q5297",
+      "display_name": "Microprocessor",
+      "level": 2,
+      "score": 0.7045743465423584
+    },
+    {
+      "id": "https://openalex.org/C2778653333",
+      "wikidata": "https://www.wikidata.org/wiki/Q2735691",
+      "display_name": "History of computing",
+      "level": 2,
+      "score": 0.6254240274429321
+    },
+    {
+      "id": "https://openalex.org/C2778348171",
+      "wikidata": "https://www.wikidata.org/wiki/Q167037",
+      "display_name": "Corporation",
+      "level": 2,
+      "score": 0.6206314563751221
+    },
+    {
+      "id": "https://openalex.org/C109168655",
+      "wikidata": "https://www.wikidata.org/wiki/Q242988",
+      "display_name": "Liberian dollar",
+      "level": 2,
+      "score": 0.5898870825767517
+    },
+    {
+      "id": "https://openalex.org/C138331895",
+      "wikidata": "https://www.wikidata.org/wiki/Q11650",
+      "display_name": "Electronics",
+      "level": 2,
+      "score": 0.42762428522109985
+    },
+    {
+      "id": "https://openalex.org/C76155785",
+      "wikidata": "https://www.wikidata.org/wiki/Q418",
+      "display_name": "Telecommunications",
+      "level": 1,
+      "score": 0.3522647023200989
+    },
+    {
+      "id": "https://openalex.org/C136764020",
+      "wikidata": "https://www.wikidata.org/wiki/Q466",
+      "display_name": "World Wide Web",
+      "level": 1,
+      "score": 0.34466224908828735
+    },
+    {
+      "id": "https://openalex.org/C115903868",
+      "wikidata": "https://www.wikidata.org/wiki/Q80993",
+      "display_name": "Software engineering",
+      "level": 1,
+      "score": 0.3233461081981659
+    },
+    {
+      "id": "https://openalex.org/C149635348",
+      "wikidata": "https://www.wikidata.org/wiki/Q193040",
+      "display_name": "Embedded system",
+      "level": 1,
+      "score": 0.2265220284461975
+    },
+    {
+      "id": "https://openalex.org/C119599485",
+      "wikidata": "https://www.wikidata.org/wiki/Q43035",
+      "display_name": "Electrical engineering",
+      "level": 1,
+      "score": 0.16730207204818726
+    },
+    {
+      "id": "https://openalex.org/C127413603",
+      "wikidata": "https://www.wikidata.org/wiki/Q11023",
+      "display_name": "Engineering",
+      "level": 0,
+      "score": 0.14209333062171936
+    },
+    {
+      "id": "https://openalex.org/C144133560",
+      "wikidata": "https://www.wikidata.org/wiki/Q4830453",
+      "display_name": "Business",
+      "level": 0,
+      "score": 0.1075901985168457
+    },
+    {
+      "id": "https://openalex.org/C10138342",
+      "wikidata": "https://www.wikidata.org/wiki/Q43015",
+      "display_name": "Finance",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C11413529",
+      "wikidata": "https://www.wikidata.org/wiki/Q8366",
+      "display_name": "Algorithm",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1109/40.546561",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1109/40.546561",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S59697426",
+        "display_name": "IEEE Micro",
+        "issn_l": "0272-1732",
+        "issn": [
+          "0272-1732",
+          "1937-4143"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310319808",
+        "host_organization_name": "Institute of Electrical and Electronics Engineers",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310319808"
+        ],
+        "host_organization_lineage_names": [
+          "Institute of Electrical and Electronics Engineers"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "IEEE Micro",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [
+    {
+      "score": 0.5,
+      "id": "https://metadata.un.org/sdg/9",
+      "display_name": "Industry, innovation and infrastructure"
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 9,
+  "referenced_works": [
+    "https://openalex.org/W1937807485",
+    "https://openalex.org/W2025451968",
+    "https://openalex.org/W2102025228",
+    "https://openalex.org/W2109012962",
+    "https://openalex.org/W2120318205",
+    "https://openalex.org/W2231768663",
+    "https://openalex.org/W2997607014",
+    "https://openalex.org/W4256225059",
+    "https://openalex.org/W6772676992"
+  ],
+  "related_works": [
+    "https://openalex.org/W2347674884",
+    "https://openalex.org/W39373273",
+    "https://openalex.org/W1995891224",
+    "https://openalex.org/W4362520165",
+    "https://openalex.org/W2347523850",
+    "https://openalex.org/W2376288354",
+    "https://openalex.org/W2387973599",
+    "https://openalex.org/W2377378201",
+    "https://openalex.org/W2392209542",
+    "https://openalex.org/W2098026815"
+  ],
+  "abstract_inverted_index": {
+    "Twenty-five": [
+      0
+    ],
+    "years": [
+      1,
+      40
+    ],
+    "ago,": [
+      2
+    ],
+    "in": [
+      3,
+      9,
+      16,
+      65
+    ],
+    "November": [
+      4
+    ],
+    "1971,": [
+      5
+    ],
+    "an": [
+      6
+    ],
+    "advertisement": [
+      7
+    ],
+    "appeared": [
+      8
+    ],
+    "Electronic": [
+      10
+    ],
+    "News:": [
+      11
+    ],
+    "\"Announcing": [
+      12
+    ],
+    "a": [
+      13,
+      19,
+      23,
+      54,
+      61
+    ],
+    "new": [
+      14
+    ],
+    "era": [
+      15
+    ],
+    "integrated": [
+      17
+    ],
+    "electronics,": [
+      18
+    ],
+    "microprogrammable": [
+      20
+    ],
+    "computer": [
+      21
+    ],
+    "on": [
+      22
+    ],
+    "chip\".": [
+      24
+    ],
+    "The": [
+      25,
+      70
+    ],
+    "ad": [
+      26
+    ],
+    "was": [
+      27
+    ],
+    "placed": [
+      28
+    ],
+    "by": [
+      29
+    ],
+    "Intel": [
+      30,
+      58
+    ],
+    "Corporation": [
+      31
+    ],
+    "of": [
+      32,
+      78
+    ],
+    "Santa": [
+      33
+    ],
+    "Clara,": [
+      34
+    ],
+    "California,": [
+      35
+    ],
+    "then": [
+      36
+    ],
+    "just": [
+      37
+    ],
+    "over": [
+      38
+    ],
+    "three": [
+      39
+    ],
+    "old.": [
+      41
+    ],
+    "From": [
+      42
+    ],
+    "that": [
+      43
+    ],
+    "modest": [
+      44
+    ],
+    "but": [
+      45
+    ],
+    "prophetic": [
+      46
+    ],
+    "beginning,": [
+      47
+    ],
+    "the": [
+      48,
+      74,
+      79
+    ],
+    "microprocessor": [
+      49
+    ],
+    "market": [
+      50
+    ],
+    "has": [
+      51,
+      59
+    ],
+    "grown": [
+      52
+    ],
+    "into": [
+      53
+    ],
+    "multibillion-dollar": [
+      55
+    ],
+    "business,": [
+      56
+    ],
+    "and": [
+      57,
+      76
+    ],
+    "maintained": [
+      60
+    ],
+    "leadership": [
+      62
+    ],
+    "position,": [
+      63
+    ],
+    "particularly": [
+      64
+    ],
+    "microprocessors": [
+      66
+    ],
+    "for": [
+      67
+    ],
+    "personal": [
+      68
+    ],
+    "computers.": [
+      69
+    ],
+    "authors": [
+      71
+    ],
+    "look": [
+      72
+    ],
+    "at": [
+      73
+    ],
+    "design": [
+      75
+    ],
+    "development": [
+      77
+    ],
+    "4004.": [
+      80
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2025,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 5
+    }
+  ],
+  "updated_date": "2025-11-06T03:46:38.306776",
+  "created_date": "2025-10-10T00:00:00"
+}

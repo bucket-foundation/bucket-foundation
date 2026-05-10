@@ -1,0 +1,903 @@
+{
+  "id": "https://openalex.org/W2131176628",
+  "doi": "https://doi.org/10.1109/fpga.1999.803671",
+  "title": "ConCISe: a compiler-driven CPLD-based instruction set accelerator",
+  "display_name": "ConCISe: a compiler-driven CPLD-based instruction set accelerator",
+  "publication_year": 2003,
+  "publication_date": "2003-01-20",
+  "ids": {
+    "openalex": "https://openalex.org/W2131176628",
+    "doi": "https://doi.org/10.1109/fpga.1999.803671",
+    "mag": "2131176628"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1109/fpga.1999.803671",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1109/fpga.1999.803671",
+    "pdf_url": null,
+    "source": null,
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Seventh Annual IEEE Symposium on Field-Programmable Custom Computing Machines (Cat. No.PR00375)",
+    "raw_type": "proceedings-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5046285851",
+        "display_name": "Bernardo Kastrup",
+        "orcid": "https://orcid.org/0000-0002-1953-1755"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210122849",
+          "display_name": "Philips (Netherlands)",
+          "ror": "https://ror.org/02p2bgp27",
+          "country_code": "NL",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210122849"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1329325741",
+          "display_name": "Philips (Finland)",
+          "ror": "https://ror.org/01g4jev56",
+          "country_code": "FI",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1329325741",
+            "https://openalex.org/I4210122849"
+          ]
+        }
+      ],
+      "countries": [
+        "FI",
+        "NL"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "B. Kastrup",
+      "raw_affiliation_strings": [
+        "Philips Research Laboratories, Eindhoven, Netherlands",
+        "Philips' Research Laboratories, Eindhoven-Netherlands"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Philips Research Laboratories, Eindhoven, Netherlands",
+          "institution_ids": [
+            "https://openalex.org/I4210122849"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Philips' Research Laboratories, Eindhoven-Netherlands",
+          "institution_ids": [
+            "https://openalex.org/I1329325741"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5003326334",
+        "display_name": "Arjan Bink",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1329325741",
+          "display_name": "Philips (Finland)",
+          "ror": "https://ror.org/01g4jev56",
+          "country_code": "FI",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1329325741",
+            "https://openalex.org/I4210122849"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210122849",
+          "display_name": "Philips (Netherlands)",
+          "ror": "https://ror.org/02p2bgp27",
+          "country_code": "NL",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210122849"
+          ]
+        }
+      ],
+      "countries": [
+        "FI",
+        "NL"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. Bink",
+      "raw_affiliation_strings": [
+        "Philips Research Laboratories, Eindhoven, Netherlands",
+        "Philips' Research Laboratories, Eindhoven-Netherlands"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Philips Research Laboratories, Eindhoven, Netherlands",
+          "institution_ids": [
+            "https://openalex.org/I4210122849"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Philips' Research Laboratories, Eindhoven-Netherlands",
+          "institution_ids": [
+            "https://openalex.org/I1329325741"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5068815663",
+        "display_name": "Jan Hoogerbrugge",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210122849",
+          "display_name": "Philips (Netherlands)",
+          "ror": "https://ror.org/02p2bgp27",
+          "country_code": "NL",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I4210122849"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1329325741",
+          "display_name": "Philips (Finland)",
+          "ror": "https://ror.org/01g4jev56",
+          "country_code": "FI",
+          "type": "company",
+          "lineage": [
+            "https://openalex.org/I1329325741",
+            "https://openalex.org/I4210122849"
+          ]
+        }
+      ],
+      "countries": [
+        "FI",
+        "NL"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J. Hoogerbrugge",
+      "raw_affiliation_strings": [
+        "Philips Research Laboratories, Eindhoven, Netherlands",
+        "Philips' Research Laboratories, Eindhoven-Netherlands"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Philips Research Laboratories, Eindhoven, Netherlands",
+          "institution_ids": [
+            "https://openalex.org/I4210122849"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Philips' Research Laboratories, Eindhoven-Netherlands",
+          "institution_ids": [
+            "https://openalex.org/I1329325741"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 3,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5046285851"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I1329325741",
+    "https://openalex.org/I4210122849"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 9.0556,
+  "has_fulltext": false,
+  "cited_by_count": 92,
+  "citation_normalized_percentile": {
+    "value": 0.98324403,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 89,
+    "max": 97
+  },
+  "biblio": {
+    "volume": null,
+    "issue": null,
+    "first_page": "92",
+    "last_page": "101"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10054",
+    "display_name": "Parallel Computing and Optimization Techniques",
+    "score": 0.9998999834060669,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1708",
+      "display_name": "Hardware and Architecture"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/17",
+      "display_name": "Computer Science"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10054",
+      "display_name": "Parallel Computing and Optimization Techniques",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1708",
+        "display_name": "Hardware and Architecture"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10904",
+      "display_name": "Embedded Systems Design Techniques",
+      "score": 0.9998999834060669,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1708",
+        "display_name": "Hardware and Architecture"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10829",
+      "display_name": "Interconnection Networks and Systems",
+      "score": 0.9994999766349792,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1705",
+        "display_name": "Computer Networks and Communications"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/compiler",
+      "display_name": "Compiler",
+      "score": 0.8617186546325684
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.7801957130432129
+    },
+    {
+      "id": "https://openalex.org/keywords/set",
+      "display_name": "Set (abstract data type)",
+      "score": 0.5267364978790283
+    },
+    {
+      "id": "https://openalex.org/keywords/programming-language",
+      "display_name": "Programming language",
+      "score": 0.509103000164032
+    },
+    {
+      "id": "https://openalex.org/keywords/complex-programmable-logic-device",
+      "display_name": "Complex programmable logic device",
+      "score": 0.491551011800766
+    },
+    {
+      "id": "https://openalex.org/keywords/compiler-construction",
+      "display_name": "Compiler construction",
+      "score": 0.4569542407989502
+    },
+    {
+      "id": "https://openalex.org/keywords/instruction-set",
+      "display_name": "Instruction set",
+      "score": 0.45331454277038574
+    },
+    {
+      "id": "https://openalex.org/keywords/compiler-correctness",
+      "display_name": "Compiler correctness",
+      "score": 0.41730812191963196
+    },
+    {
+      "id": "https://openalex.org/keywords/parallel-computing",
+      "display_name": "Parallel computing",
+      "score": 0.368707537651062
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-architecture",
+      "display_name": "Computer architecture",
+      "score": 0.3426097631454468
+    },
+    {
+      "id": "https://openalex.org/keywords/embedded-system",
+      "display_name": "Embedded system",
+      "score": 0.2873413562774658
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C169590947",
+      "wikidata": "https://www.wikidata.org/wiki/Q47506",
+      "display_name": "Compiler",
+      "level": 2,
+      "score": 0.8617186546325684
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.7801957130432129
+    },
+    {
+      "id": "https://openalex.org/C177264268",
+      "wikidata": "https://www.wikidata.org/wiki/Q1514741",
+      "display_name": "Set (abstract data type)",
+      "level": 2,
+      "score": 0.5267364978790283
+    },
+    {
+      "id": "https://openalex.org/C199360897",
+      "wikidata": "https://www.wikidata.org/wiki/Q9143",
+      "display_name": "Programming language",
+      "level": 1,
+      "score": 0.509103000164032
+    },
+    {
+      "id": "https://openalex.org/C128315158",
+      "wikidata": "https://www.wikidata.org/wiki/Q1063858",
+      "display_name": "Complex programmable logic device",
+      "level": 2,
+      "score": 0.491551011800766
+    },
+    {
+      "id": "https://openalex.org/C9957790",
+      "wikidata": "https://www.wikidata.org/wiki/Q47506",
+      "display_name": "Compiler construction",
+      "level": 3,
+      "score": 0.4569542407989502
+    },
+    {
+      "id": "https://openalex.org/C202491316",
+      "wikidata": "https://www.wikidata.org/wiki/Q272683",
+      "display_name": "Instruction set",
+      "level": 2,
+      "score": 0.45331454277038574
+    },
+    {
+      "id": "https://openalex.org/C68366613",
+      "wikidata": "https://www.wikidata.org/wiki/Q5156378",
+      "display_name": "Compiler correctness",
+      "level": 3,
+      "score": 0.41730812191963196
+    },
+    {
+      "id": "https://openalex.org/C173608175",
+      "wikidata": "https://www.wikidata.org/wiki/Q232661",
+      "display_name": "Parallel computing",
+      "level": 1,
+      "score": 0.368707537651062
+    },
+    {
+      "id": "https://openalex.org/C118524514",
+      "wikidata": "https://www.wikidata.org/wiki/Q173212",
+      "display_name": "Computer architecture",
+      "level": 1,
+      "score": 0.3426097631454468
+    },
+    {
+      "id": "https://openalex.org/C149635348",
+      "wikidata": "https://www.wikidata.org/wiki/Q193040",
+      "display_name": "Embedded system",
+      "level": 1,
+      "score": 0.2873413562774658
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1109/fpga.1999.803671",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1109/fpga.1999.803671",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Seventh Annual IEEE Symposium on Field-Programmable Custom Computing Machines (Cat. No.PR00375)",
+      "raw_type": "proceedings-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/9",
+      "display_name": "Industry, innovation and infrastructure",
+      "score": 0.41999998688697815
+    }
+  ],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 30,
+  "referenced_works": [
+    "https://openalex.org/W64760530",
+    "https://openalex.org/W73093023",
+    "https://openalex.org/W1489259481",
+    "https://openalex.org/W1497869708",
+    "https://openalex.org/W1538592187",
+    "https://openalex.org/W1585620241",
+    "https://openalex.org/W1887556625",
+    "https://openalex.org/W1891709150",
+    "https://openalex.org/W2024415338",
+    "https://openalex.org/W2028511033",
+    "https://openalex.org/W2028922196",
+    "https://openalex.org/W2048586388",
+    "https://openalex.org/W2098129944",
+    "https://openalex.org/W2115598251",
+    "https://openalex.org/W2122992089",
+    "https://openalex.org/W2134706293",
+    "https://openalex.org/W2142490124",
+    "https://openalex.org/W2148911285",
+    "https://openalex.org/W2165099691",
+    "https://openalex.org/W2166709631",
+    "https://openalex.org/W2168569016",
+    "https://openalex.org/W2725179571",
+    "https://openalex.org/W3143533263",
+    "https://openalex.org/W3146150975",
+    "https://openalex.org/W4252466729",
+    "https://openalex.org/W6602976633",
+    "https://openalex.org/W6639711652",
+    "https://openalex.org/W6662502150",
+    "https://openalex.org/W6675486324",
+    "https://openalex.org/W6680239399"
+  ],
+  "related_works": [
+    "https://openalex.org/W1977285665",
+    "https://openalex.org/W3031951370",
+    "https://openalex.org/W2369288331",
+    "https://openalex.org/W2004605222",
+    "https://openalex.org/W1583465708",
+    "https://openalex.org/W2027184717",
+    "https://openalex.org/W2007728761",
+    "https://openalex.org/W1970657608",
+    "https://openalex.org/W2467097043",
+    "https://openalex.org/W2382501300"
+  ],
+  "abstract_inverted_index": {
+    "We": [
+      0,
+      31,
+      108
+    ],
+    "propose": [
+      1
+    ],
+    "a": [
+      2,
+      15,
+      34,
+      39,
+      69
+    ],
+    "smart": [
+      3,
+      55
+    ],
+    "compilation": [
+      4
+    ],
+    "chain": [
+      5
+    ],
+    "in": [
+      6,
+      28,
+      68
+    ],
+    "which": [
+      7,
+      45,
+      125
+    ],
+    "the": [
+      8,
+      61,
+      74,
+      85,
+      90,
+      99,
+      104,
+      110,
+      114,
+      144
+    ],
+    "compiler": [
+      9,
+      48,
+      56
+    ],
+    "is": [
+      10,
+      60,
+      80,
+      101
+    ],
+    "no": [
+      11
+    ],
+    "longer": [
+      12
+    ],
+    "limited": [
+      13
+    ],
+    "by": [
+      14,
+      38
+    ],
+    "pre-defined": [
+      16
+    ],
+    "instruction": [
+      17
+    ],
+    "set,": [
+      18
+    ],
+    "but": [
+      19
+    ],
+    "can": [
+      20,
+      131
+    ],
+    "generate": [
+      21
+    ],
+    "application-specific": [
+      22
+    ],
+    "custom": [
+      23,
+      66
+    ],
+    "instructions": [
+      24,
+      67
+    ],
+    "and": [
+      25,
+      57,
+      88
+    ],
+    "synthesise": [
+      26
+    ],
+    "them": [
+      27
+    ],
+    "Field-Programmable": [
+      29
+    ],
+    "Logic.": [
+      30
+    ],
+    "also": [
+      32,
+      123
+    ],
+    "present": [
+      33
+    ],
+    "RISC": [
+      35
+    ],
+    "micro-architecture": [
+      36
+    ],
+    "enhanced": [
+      37
+    ],
+    "CPLD-based": [
+      40
+    ],
+    "Reconfigurable": [
+      41
+    ],
+    "Functional": [
+      42
+    ],
+    "Unit": [
+      43
+    ],
+    "(RFU)": [
+      44
+    ],
+    "supports": [
+      46
+    ],
+    "our": [
+      47,
+      54,
+      128
+    ],
+    "approach.": [
+      49
+    ],
+    "The": [
+      50,
+      78,
+      94
+    ],
+    "main": [
+      51
+    ],
+    "difference": [
+      52
+    ],
+    "between": [
+      53
+    ],
+    "similar": [
+      58
+    ],
+    "methods": [
+      59
+    ],
+    "ability": [
+      62
+    ],
+    "to": [
+      63,
+      81,
+      143
+    ],
+    "encode": [
+      64
+    ],
+    "multiple": [
+      65
+    ],
+    "single": [
+      70
+    ],
+    "RFU": [
+      71,
+      100
+    ],
+    "configuration,": [
+      72
+    ],
+    "cross-minimising": [
+      73
+    ],
+    "logic": [
+      75
+    ],
+    "among": [
+      76
+    ],
+    "them.": [
+      77
+    ],
+    "objective": [
+      79
+    ],
+    "reduce": [
+      82
+    ],
+    "(or": [
+      83
+    ],
+    "eliminate)": [
+      84
+    ],
+    "reconfiguration": [
+      86
+    ],
+    "overhead": [
+      87
+    ],
+    "optimise": [
+      89
+    ],
+    "utilisation": [
+      91
+    ],
+    "of": [
+      92,
+      112,
+      117,
+      134
+    ],
+    "resources.": [
+      93
+    ],
+    "CPLD": [
+      95
+    ],
+    "core": [
+      96,
+      147
+    ],
+    "that": [
+      97,
+      127
+    ],
+    "implements": [
+      98
+    ],
+    "based": [
+      102
+    ],
+    "on": [
+      103
+    ],
+    "Philips": [
+      105
+    ],
+    "XPLA2": [
+      106,
+      115
+    ],
+    "architecture.": [
+      107
+    ],
+    "discuss": [
+      109
+    ],
+    "advantages": [
+      111
+    ],
+    "using": [
+      113
+    ],
+    "instead": [
+      116
+    ],
+    "conventional": [
+      118
+    ],
+    "FPGAs.": [
+      119
+    ],
+    "Application": [
+      120
+    ],
+    "examples": [
+      121
+    ],
+    "are": [
+      122
+    ],
+    "presented,": [
+      124
+    ],
+    "show": [
+      126
+    ],
+    "RFU-extended": [
+      129
+    ],
+    "CPU": [
+      130,
+      146
+    ],
+    "achieve": [
+      132
+    ],
+    "speed-ups": [
+      133
+    ],
+    "more": [
+      135
+    ],
+    "than": [
+      136
+    ],
+    "40%": [
+      137
+    ],
+    "for": [
+      138
+    ],
+    "encryption": [
+      139
+    ],
+    "algorithms,": [
+      140
+    ],
+    "when": [
+      141
+    ],
+    "compared": [
+      142
+    ],
+    "standard": [
+      145
+    ],
+    "alone.": [
+      148
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2019,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 2
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 3
+    }
+  ],
+  "updated_date": "2025-11-06T03:46:38.306776",
+  "created_date": "2025-10-10T00:00:00"
+}

@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: physics, handbook, motion, mechanics, statistical physics, thermodynamics, quantum physics, relativity, solid state physics, nuclear physics
-- **Captured**: 2026-05-09T09:49:04
+- **Captured**: 2026-05-10T10:05:32
 
 ## Description
 

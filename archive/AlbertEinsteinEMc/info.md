@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: movies
 - **Subjects**: Albert Einstein; E = Mc²; Vonsmersh; E=Mc²; E=MC2; Einstein; Quantum Mechanics; Physics
-- **Captured**: 2026-05-09T09:45:51
+- **Captured**: 2026-05-10T10:06:01
 
 ## Description
 

@@ -1,0 +1,647 @@
+{
+  "id": "https://openalex.org/W1999673948",
+  "doi": "https://doi.org/10.1016/s0022-2836(59)80045-0",
+  "title": "The genetic control and cytoplasmic expression of “Inducibility” in the synthesis of β-galactosidase by E. coli",
+  "display_name": "The genetic control and cytoplasmic expression of “Inducibility” in the synthesis of β-galactosidase by E. coli",
+  "publication_year": 1959,
+  "publication_date": "1959-06-01",
+  "ids": {
+    "openalex": "https://openalex.org/W1999673948",
+    "doi": "https://doi.org/10.1016/s0022-2836(59)80045-0",
+    "mag": "1999673948"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1016/s0022-2836(59)80045-0",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1016/s0022-2836(59)80045-0",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S46058472",
+      "display_name": "Journal of Molecular Biology",
+      "issn_l": "0022-2836",
+      "issn": [
+        "0022-2836",
+        "1089-8638"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Journal of Molecular Biology",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5002769265",
+        "display_name": "Arthur B. Pardee",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I157536573",
+          "display_name": "Institut Pasteur",
+          "ror": "https://ror.org/0495fxg12",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I157536573"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I95457486",
+          "display_name": "University of California, Berkeley",
+          "ror": "https://ror.org/01an7q238",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I95457486"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Arthur B. Pardee",
+      "raw_affiliation_strings": [
+        "Institut Pasteur, Paris, France",
+        "University of California, Berkeley, California, U.S.A"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut Pasteur, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I157536573"
+          ]
+        },
+        {
+          "raw_affiliation_string": "University of California, Berkeley, California, U.S.A",
+          "institution_ids": [
+            "https://openalex.org/I95457486"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5108348962",
+        "display_name": "François Jacob",
+        "orcid": "https://orcid.org/0000-0002-1006-4871"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I157536573",
+          "display_name": "Institut Pasteur",
+          "ror": "https://ror.org/0495fxg12",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I157536573"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I95457486",
+          "display_name": "University of California, Berkeley",
+          "ror": "https://ror.org/01an7q238",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I95457486"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "François Jacob",
+      "raw_affiliation_strings": [
+        "Institut Pasteur, Paris, France",
+        "University of California, Berkeley, California, U.S.A"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut Pasteur, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I157536573"
+          ]
+        },
+        {
+          "raw_affiliation_string": "University of California, Berkeley, California, U.S.A",
+          "institution_ids": [
+            "https://openalex.org/I95457486"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5057454601",
+        "display_name": "Jacques Monod",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I95457486",
+          "display_name": "University of California, Berkeley",
+          "ror": "https://ror.org/01an7q238",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I95457486"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I157536573",
+          "display_name": "Institut Pasteur",
+          "ror": "https://ror.org/0495fxg12",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I157536573"
+          ]
+        }
+      ],
+      "countries": [
+        "FR",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jacques Monod",
+      "raw_affiliation_strings": [
+        "Institut Pasteur, Paris, France",
+        "University of California, Berkeley, California, U.S.A"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Institut Pasteur, Paris, France",
+          "institution_ids": [
+            "https://openalex.org/I157536573"
+          ]
+        },
+        {
+          "raw_affiliation_string": "University of California, Berkeley, California, U.S.A",
+          "institution_ids": [
+            "https://openalex.org/I95457486"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 3,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5002769265"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I157536573",
+    "https://openalex.org/I95457486"
+  ],
+  "apc_list": {
+    "value": 4250,
+    "currency": "USD",
+    "value_usd": 4250
+  },
+  "apc_paid": null,
+  "fwci": 31.1243,
+  "has_fulltext": false,
+  "cited_by_count": 1121,
+  "citation_normalized_percentile": {
+    "value": 0.99926753,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 98,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "1",
+    "issue": "2",
+    "first_page": "165",
+    "last_page": "178"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10404",
+    "display_name": "Enzyme Catalysis and Immobilization",
+    "score": 0.9927999973297119,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1312",
+      "display_name": "Molecular Biology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/13",
+      "display_name": "Biochemistry, Genetics and Molecular Biology"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10404",
+      "display_name": "Enzyme Catalysis and Immobilization",
+      "score": 0.9927999973297119,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1312",
+        "display_name": "Molecular Biology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11617",
+      "display_name": "Enzyme Production and Characterization",
+      "score": 0.9896000027656555,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1305",
+        "display_name": "Biotechnology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11162",
+      "display_name": "Enzyme Structure and Function",
+      "score": 0.9855999946594238,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2505",
+        "display_name": "Materials Chemistry"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/25",
+        "display_name": "Materials Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/cistron",
+      "display_name": "Cistron",
+      "score": 0.8586064577102661
+    },
+    {
+      "id": "https://openalex.org/keywords/repressor",
+      "display_name": "Repressor",
+      "score": 0.7498239278793335
+    },
+    {
+      "id": "https://openalex.org/keywords/biology",
+      "display_name": "Biology",
+      "score": 0.6152955293655396
+    },
+    {
+      "id": "https://openalex.org/keywords/gene",
+      "display_name": "Gene",
+      "score": 0.5862616896629333
+    },
+    {
+      "id": "https://openalex.org/keywords/beta-galactosidase",
+      "display_name": "Beta-galactosidase",
+      "score": 0.5601248145103455
+    },
+    {
+      "id": "https://openalex.org/keywords/mutation",
+      "display_name": "Mutation",
+      "score": 0.5600538849830627
+    },
+    {
+      "id": "https://openalex.org/keywords/genetics",
+      "display_name": "Genetics",
+      "score": 0.49747732281684875
+    },
+    {
+      "id": "https://openalex.org/keywords/molecular-biology",
+      "display_name": "Molecular biology",
+      "score": 0.4956706762313843
+    },
+    {
+      "id": "https://openalex.org/keywords/allele",
+      "display_name": "Allele",
+      "score": 0.48909908533096313
+    },
+    {
+      "id": "https://openalex.org/keywords/escherichia-coli",
+      "display_name": "Escherichia coli",
+      "score": 0.47646260261535645
+    },
+    {
+      "id": "https://openalex.org/keywords/enzyme",
+      "display_name": "Enzyme",
+      "score": 0.46318742632865906
+    },
+    {
+      "id": "https://openalex.org/keywords/psychological-repression",
+      "display_name": "Psychological repression",
+      "score": 0.4292071759700775
+    },
+    {
+      "id": "https://openalex.org/keywords/gene-expression",
+      "display_name": "Gene expression",
+      "score": 0.3418961763381958
+    },
+    {
+      "id": "https://openalex.org/keywords/biochemistry",
+      "display_name": "Biochemistry",
+      "score": 0.24360063672065735
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C199083928",
+      "wikidata": "https://www.wikidata.org/wiki/Q7060602",
+      "display_name": "Cistron",
+      "level": 4,
+      "score": 0.8586064577102661
+    },
+    {
+      "id": "https://openalex.org/C158448853",
+      "wikidata": "https://www.wikidata.org/wiki/Q425218",
+      "display_name": "Repressor",
+      "level": 4,
+      "score": 0.7498239278793335
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.6152955293655396
+    },
+    {
+      "id": "https://openalex.org/C104317684",
+      "wikidata": "https://www.wikidata.org/wiki/Q7187",
+      "display_name": "Gene",
+      "level": 2,
+      "score": 0.5862616896629333
+    },
+    {
+      "id": "https://openalex.org/C43053761",
+      "wikidata": "https://www.wikidata.org/wiki/Q286379",
+      "display_name": "Beta-galactosidase",
+      "level": 4,
+      "score": 0.5601248145103455
+    },
+    {
+      "id": "https://openalex.org/C501734568",
+      "wikidata": "https://www.wikidata.org/wiki/Q42918",
+      "display_name": "Mutation",
+      "level": 3,
+      "score": 0.5600538849830627
+    },
+    {
+      "id": "https://openalex.org/C54355233",
+      "wikidata": "https://www.wikidata.org/wiki/Q7162",
+      "display_name": "Genetics",
+      "level": 1,
+      "score": 0.49747732281684875
+    },
+    {
+      "id": "https://openalex.org/C153911025",
+      "wikidata": "https://www.wikidata.org/wiki/Q7202",
+      "display_name": "Molecular biology",
+      "level": 1,
+      "score": 0.4956706762313843
+    },
+    {
+      "id": "https://openalex.org/C180754005",
+      "wikidata": "https://www.wikidata.org/wiki/Q80726",
+      "display_name": "Allele",
+      "level": 3,
+      "score": 0.48909908533096313
+    },
+    {
+      "id": "https://openalex.org/C547475151",
+      "wikidata": "https://www.wikidata.org/wiki/Q25419",
+      "display_name": "Escherichia coli",
+      "level": 3,
+      "score": 0.47646260261535645
+    },
+    {
+      "id": "https://openalex.org/C181199279",
+      "wikidata": "https://www.wikidata.org/wiki/Q8047",
+      "display_name": "Enzyme",
+      "level": 2,
+      "score": 0.46318742632865906
+    },
+    {
+      "id": "https://openalex.org/C186310378",
+      "wikidata": "https://www.wikidata.org/wiki/Q941796",
+      "display_name": "Psychological repression",
+      "level": 4,
+      "score": 0.4292071759700775
+    },
+    {
+      "id": "https://openalex.org/C150194340",
+      "wikidata": "https://www.wikidata.org/wiki/Q26972",
+      "display_name": "Gene expression",
+      "level": 3,
+      "score": 0.3418961763381958
+    },
+    {
+      "id": "https://openalex.org/C55493867",
+      "wikidata": "https://www.wikidata.org/wiki/Q7094",
+      "display_name": "Biochemistry",
+      "level": 1,
+      "score": 0.24360063672065735
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1016/s0022-2836(59)80045-0",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1016/s0022-2836(59)80045-0",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S46058472",
+        "display_name": "Journal of Molecular Biology",
+        "issn_l": "0022-2836",
+        "issn": [
+          "0022-2836",
+          "1089-8638"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Elsevier BV"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Journal of Molecular Biology",
+      "raw_type": "journal-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 19,
+  "referenced_works": [
+    "https://openalex.org/W51791299",
+    "https://openalex.org/W305610813",
+    "https://openalex.org/W317557232",
+    "https://openalex.org/W1514044411",
+    "https://openalex.org/W1859429672",
+    "https://openalex.org/W1945200907",
+    "https://openalex.org/W1971186883",
+    "https://openalex.org/W1971758075",
+    "https://openalex.org/W2012608927",
+    "https://openalex.org/W2016936514",
+    "https://openalex.org/W2073166012",
+    "https://openalex.org/W2074565373",
+    "https://openalex.org/W2152469255",
+    "https://openalex.org/W2316974384",
+    "https://openalex.org/W2319493931",
+    "https://openalex.org/W2319839873",
+    "https://openalex.org/W2613645997",
+    "https://openalex.org/W4211181282",
+    "https://openalex.org/W6737337424"
+  ],
+  "related_works": [
+    "https://openalex.org/W2121322585",
+    "https://openalex.org/W2022959303",
+    "https://openalex.org/W456191",
+    "https://openalex.org/W1837413175",
+    "https://openalex.org/W4302763046",
+    "https://openalex.org/W1975202485",
+    "https://openalex.org/W1585396644",
+    "https://openalex.org/W2080156012",
+    "https://openalex.org/W2005919386",
+    "https://openalex.org/W1926561214"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 11
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 7
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 13
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 9
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 9
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 17
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 10
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 13
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 12
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 9
+    }
+  ],
+  "updated_date": "2026-04-17T18:11:37.981687",
+  "created_date": "2025-10-10T00:00:00"
+}

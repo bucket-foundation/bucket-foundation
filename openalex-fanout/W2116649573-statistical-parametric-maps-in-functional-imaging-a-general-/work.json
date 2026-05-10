@@ -1,0 +1,1456 @@
+{
+  "id": "https://openalex.org/W2116649573",
+  "doi": "https://doi.org/10.1002/hbm.460020402",
+  "title": "Statistical parametric maps in functional imaging: A general linear approach",
+  "display_name": "Statistical parametric maps in functional imaging: A general linear approach",
+  "publication_year": 1994,
+  "publication_date": "1994-01-01",
+  "ids": {
+    "openalex": "https://openalex.org/W2116649573",
+    "doi": "https://doi.org/10.1002/hbm.460020402",
+    "mag": "2116649573"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1002/hbm.460020402",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1002/hbm.460020402",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S121666818",
+      "display_name": "Human Brain Mapping",
+      "issn_l": "1065-9471",
+      "issn": [
+        "1065-9471",
+        "1097-0193"
+      ],
+      "is_oa": false,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320595",
+      "host_organization_name": "Wiley",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320595"
+      ],
+      "host_organization_lineage_names": [
+        "Wiley"
+      ],
+      "type": "journal"
+    },
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Human Brain Mapping",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5086852785",
+        "display_name": "Karl Friston",
+        "orcid": "https://orcid.org/0000-0001-7984-8909"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I45129253",
+          "display_name": "University College London",
+          "ror": "https://ror.org/02jx3x895",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I124357947",
+            "https://openalex.org/I45129253"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I4210151618",
+          "display_name": "National Hospital for Neurology and Neurosurgery",
+          "ror": "https://ror.org/048b34d51",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1340918713",
+            "https://openalex.org/I4210151618"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2801748203",
+          "display_name": "Hammersmith Hospital",
+          "ror": "https://ror.org/05jg8yp15",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I153355300",
+            "https://openalex.org/I2801748203"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "K. J. Friston",
+      "raw_affiliation_strings": [
+        "The Wellcome Department of Cognitive Neurology, Institute of Neurology, Queen Square WC1N 3BG and the MRC Cyclotron Unit, Hammersmith Hospital, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "The Wellcome Department of Cognitive Neurology, Institute of Neurology, Queen Square WC1N 3BG and the MRC Cyclotron Unit, Hammersmith Hospital, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I4210151618",
+            "https://openalex.org/I2801748203",
+            "https://openalex.org/I45129253"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5005046951",
+        "display_name": "Andrew P. Holmes",
+        "orcid": "https://orcid.org/0000-0001-9270-9401"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I7882870",
+          "display_name": "University of Glasgow",
+          "ror": "https://ror.org/00vtgdb53",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I7882870"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "A. P. Holmes",
+      "raw_affiliation_strings": [
+        "Department of Statistics, Glasgow University, Glasgow, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Statistics, Glasgow University, Glasgow, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I7882870"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5059430290",
+        "display_name": "Keith J. Worsley",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I5023651",
+          "display_name": "McGill University",
+          "ror": "https://ror.org/01pxwe438",
+          "country_code": "CA",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I5023651"
+          ]
+        }
+      ],
+      "countries": [
+        "CA"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "K. J. Worsley",
+      "raw_affiliation_strings": [
+        "Department of Mathematics and Statistics, McGill University, Montreal H3A 2K6 Canada"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Mathematics and Statistics, McGill University, Montreal H3A 2K6 Canada",
+          "institution_ids": [
+            "https://openalex.org/I5023651"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5103546004",
+        "display_name": "J.‐P. Poline",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210151618",
+          "display_name": "National Hospital for Neurology and Neurosurgery",
+          "ror": "https://ror.org/048b34d51",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1340918713",
+            "https://openalex.org/I4210151618"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2801748203",
+          "display_name": "Hammersmith Hospital",
+          "ror": "https://ror.org/05jg8yp15",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I153355300",
+            "https://openalex.org/I2801748203"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I45129253",
+          "display_name": "University College London",
+          "ror": "https://ror.org/02jx3x895",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I124357947",
+            "https://openalex.org/I45129253"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "J.‐P. Poline",
+      "raw_affiliation_strings": [
+        "The Wellcome Department of Cognitive Neurology, Institute of Neurology, Queen Square WC1N 3BG and the MRC Cyclotron Unit, Hammersmith Hospital, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "The Wellcome Department of Cognitive Neurology, Institute of Neurology, Queen Square WC1N 3BG and the MRC Cyclotron Unit, Hammersmith Hospital, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I4210151618",
+            "https://openalex.org/I2801748203",
+            "https://openalex.org/I45129253"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5023888505",
+        "display_name": "Chris Frith",
+        "orcid": "https://orcid.org/0000-0002-8665-0690"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210151618",
+          "display_name": "National Hospital for Neurology and Neurosurgery",
+          "ror": "https://ror.org/048b34d51",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1340918713",
+            "https://openalex.org/I4210151618"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I45129253",
+          "display_name": "University College London",
+          "ror": "https://ror.org/02jx3x895",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I124357947",
+            "https://openalex.org/I45129253"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2801748203",
+          "display_name": "Hammersmith Hospital",
+          "ror": "https://ror.org/05jg8yp15",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I153355300",
+            "https://openalex.org/I2801748203"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "C. D. Frith",
+      "raw_affiliation_strings": [
+        "The Wellcome Department of Cognitive Neurology, Institute of Neurology, Queen Square WC1N 3BG and the MRC Cyclotron Unit, Hammersmith Hospital, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "The Wellcome Department of Cognitive Neurology, Institute of Neurology, Queen Square WC1N 3BG and the MRC Cyclotron Unit, Hammersmith Hospital, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I4210151618",
+            "https://openalex.org/I2801748203",
+            "https://openalex.org/I45129253"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5039652993",
+        "display_name": "R. S. J. Frackowiak",
+        "orcid": "https://orcid.org/0000-0002-3151-822X"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210151618",
+          "display_name": "National Hospital for Neurology and Neurosurgery",
+          "ror": "https://ror.org/048b34d51",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I1340918713",
+            "https://openalex.org/I4210151618"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I2801748203",
+          "display_name": "Hammersmith Hospital",
+          "ror": "https://ror.org/05jg8yp15",
+          "country_code": "GB",
+          "type": "healthcare",
+          "lineage": [
+            "https://openalex.org/I153355300",
+            "https://openalex.org/I2801748203"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I45129253",
+          "display_name": "University College London",
+          "ror": "https://ror.org/02jx3x895",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I124357947",
+            "https://openalex.org/I45129253"
+          ]
+        }
+      ],
+      "countries": [
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "R. S. J. Frackowiak",
+      "raw_affiliation_strings": [
+        "The Wellcome Department of Cognitive Neurology, Institute of Neurology, Queen Square WC1N 3BG and the MRC Cyclotron Unit, Hammersmith Hospital, United Kingdom"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "The Wellcome Department of Cognitive Neurology, Institute of Neurology, Queen Square WC1N 3BG and the MRC Cyclotron Unit, Hammersmith Hospital, United Kingdom",
+          "institution_ids": [
+            "https://openalex.org/I4210151618",
+            "https://openalex.org/I2801748203",
+            "https://openalex.org/I45129253"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 6,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5086852785"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I2801748203",
+    "https://openalex.org/I4210151618",
+    "https://openalex.org/I45129253"
+  ],
+  "apc_list": {
+    "value": 3200,
+    "currency": "USD",
+    "value_usd": 3200
+  },
+  "apc_paid": null,
+  "fwci": 31.5923,
+  "has_fulltext": false,
+  "cited_by_count": 9788,
+  "citation_normalized_percentile": {
+    "value": 0.99920231,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 99,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "2",
+    "issue": "4",
+    "first_page": "189",
+    "last_page": "210"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10241",
+    "display_name": "Functional Brain Connectivity Studies",
+    "score": 0.9926999807357788,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2805",
+      "display_name": "Cognitive Neuroscience"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/28",
+      "display_name": "Neuroscience"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/1",
+      "display_name": "Life Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10241",
+      "display_name": "Functional Brain Connectivity Studies",
+      "score": 0.9926999807357788,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10427",
+      "display_name": "Visual perception and processing mechanisms",
+      "score": 0.9700000286102295,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2805",
+        "display_name": "Cognitive Neuroscience"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/28",
+        "display_name": "Neuroscience"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12417",
+      "display_name": "Morphological variations and asymmetry",
+      "score": 0.9550999999046326,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2608",
+        "display_name": "Geometry and Topology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/generality",
+      "display_name": "Generality",
+      "score": 0.6675029397010803
+    },
+    {
+      "id": "https://openalex.org/keywords/parametric-statistics",
+      "display_name": "Parametric statistics",
+      "score": 0.6416322588920593
+    },
+    {
+      "id": "https://openalex.org/keywords/general-linear-model",
+      "display_name": "General linear model",
+      "score": 0.6154276132583618
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.5537729859352112
+    },
+    {
+      "id": "https://openalex.org/keywords/linear-model",
+      "display_name": "Linear model",
+      "score": 0.5476493239402771
+    },
+    {
+      "id": "https://openalex.org/keywords/statistical-parametric-mapping",
+      "display_name": "Statistical parametric mapping",
+      "score": 0.5182480812072754
+    },
+    {
+      "id": "https://openalex.org/keywords/statistical-hypothesis-testing",
+      "display_name": "Statistical hypothesis testing",
+      "score": 0.487263560295105
+    },
+    {
+      "id": "https://openalex.org/keywords/gaussian",
+      "display_name": "Gaussian",
+      "score": 0.4862350523471832
+    },
+    {
+      "id": "https://openalex.org/keywords/simple",
+      "display_name": "Simple (philosophy)",
+      "score": 0.47939610481262207
+    },
+    {
+      "id": "https://openalex.org/keywords/statistical-model",
+      "display_name": "Statistical model",
+      "score": 0.44018465280532837
+    },
+    {
+      "id": "https://openalex.org/keywords/generalized-linear-model",
+      "display_name": "Generalized linear model",
+      "score": 0.41738465428352356
+    },
+    {
+      "id": "https://openalex.org/keywords/applied-mathematics",
+      "display_name": "Applied mathematics",
+      "score": 0.3959167003631592
+    },
+    {
+      "id": "https://openalex.org/keywords/algorithm",
+      "display_name": "Algorithm",
+      "score": 0.3708598017692566
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.34527385234832764
+    },
+    {
+      "id": "https://openalex.org/keywords/artificial-intelligence",
+      "display_name": "Artificial intelligence",
+      "score": 0.33790111541748047
+    },
+    {
+      "id": "https://openalex.org/keywords/statistics",
+      "display_name": "Statistics",
+      "score": 0.27646365761756897
+    },
+    {
+      "id": "https://openalex.org/keywords/machine-learning",
+      "display_name": "Machine learning",
+      "score": 0.2602166533470154
+    },
+    {
+      "id": "https://openalex.org/keywords/psychology",
+      "display_name": "Psychology",
+      "score": 0.1609460413455963
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2780767217",
+      "wikidata": "https://www.wikidata.org/wiki/Q5532421",
+      "display_name": "Generality",
+      "level": 2,
+      "score": 0.6675029397010803
+    },
+    {
+      "id": "https://openalex.org/C117251300",
+      "wikidata": "https://www.wikidata.org/wiki/Q1849855",
+      "display_name": "Parametric statistics",
+      "level": 2,
+      "score": 0.6416322588920593
+    },
+    {
+      "id": "https://openalex.org/C188321436",
+      "wikidata": "https://www.wikidata.org/wiki/Q1826488",
+      "display_name": "General linear model",
+      "level": 3,
+      "score": 0.6154276132583618
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.5537729859352112
+    },
+    {
+      "id": "https://openalex.org/C163175372",
+      "wikidata": "https://www.wikidata.org/wiki/Q3339222",
+      "display_name": "Linear model",
+      "level": 2,
+      "score": 0.5476493239402771
+    },
+    {
+      "id": "https://openalex.org/C39313694",
+      "wikidata": "https://www.wikidata.org/wiki/Q2940624",
+      "display_name": "Statistical parametric mapping",
+      "level": 3,
+      "score": 0.5182480812072754
+    },
+    {
+      "id": "https://openalex.org/C87007009",
+      "wikidata": "https://www.wikidata.org/wiki/Q210832",
+      "display_name": "Statistical hypothesis testing",
+      "level": 2,
+      "score": 0.487263560295105
+    },
+    {
+      "id": "https://openalex.org/C163716315",
+      "wikidata": "https://www.wikidata.org/wiki/Q901177",
+      "display_name": "Gaussian",
+      "level": 2,
+      "score": 0.4862350523471832
+    },
+    {
+      "id": "https://openalex.org/C2780586882",
+      "wikidata": "https://www.wikidata.org/wiki/Q7520643",
+      "display_name": "Simple (philosophy)",
+      "level": 2,
+      "score": 0.47939610481262207
+    },
+    {
+      "id": "https://openalex.org/C114289077",
+      "wikidata": "https://www.wikidata.org/wiki/Q3284399",
+      "display_name": "Statistical model",
+      "level": 2,
+      "score": 0.44018465280532837
+    },
+    {
+      "id": "https://openalex.org/C41587187",
+      "wikidata": "https://www.wikidata.org/wiki/Q1501882",
+      "display_name": "Generalized linear model",
+      "level": 2,
+      "score": 0.41738465428352356
+    },
+    {
+      "id": "https://openalex.org/C28826006",
+      "wikidata": "https://www.wikidata.org/wiki/Q33521",
+      "display_name": "Applied mathematics",
+      "level": 1,
+      "score": 0.3959167003631592
+    },
+    {
+      "id": "https://openalex.org/C11413529",
+      "wikidata": "https://www.wikidata.org/wiki/Q8366",
+      "display_name": "Algorithm",
+      "level": 1,
+      "score": 0.3708598017692566
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.34527385234832764
+    },
+    {
+      "id": "https://openalex.org/C154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "level": 1,
+      "score": 0.33790111541748047
+    },
+    {
+      "id": "https://openalex.org/C105795698",
+      "wikidata": "https://www.wikidata.org/wiki/Q12483",
+      "display_name": "Statistics",
+      "level": 1,
+      "score": 0.27646365761756897
+    },
+    {
+      "id": "https://openalex.org/C119857082",
+      "wikidata": "https://www.wikidata.org/wiki/Q2539",
+      "display_name": "Machine learning",
+      "level": 1,
+      "score": 0.2602166533470154
+    },
+    {
+      "id": "https://openalex.org/C15744967",
+      "wikidata": "https://www.wikidata.org/wiki/Q9418",
+      "display_name": "Psychology",
+      "level": 0,
+      "score": 0.1609460413455963
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C143409427",
+      "wikidata": "https://www.wikidata.org/wiki/Q161238",
+      "display_name": "Magnetic resonance imaging",
+      "level": 2,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C111472728",
+      "wikidata": "https://www.wikidata.org/wiki/Q9471",
+      "display_name": "Epistemology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C126838900",
+      "wikidata": "https://www.wikidata.org/wiki/Q77604",
+      "display_name": "Radiology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C542102704",
+      "wikidata": "https://www.wikidata.org/wiki/Q183257",
+      "display_name": "Psychotherapist",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1002/hbm.460020402",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1002/hbm.460020402",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S121666818",
+        "display_name": "Human Brain Mapping",
+        "issn_l": "1065-9471",
+        "issn": [
+          "1065-9471",
+          "1097-0193"
+        ],
+        "is_oa": false,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320595",
+        "host_organization_name": "Wiley",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320595"
+        ],
+        "host_organization_lineage_names": [
+          "Wiley"
+        ],
+        "type": "journal"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Human Brain Mapping",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmh:oai:eprints.ucl.ac.uk.OAI2:1537759",
+      "is_oa": false,
+      "landing_page_url": "http://discovery.ucl.ac.uk/1537759/",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400024",
+        "display_name": "UCL Discovery (University College London)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I45129253",
+        "host_organization_name": "University College London",
+        "host_organization_lineage": [
+          "https://openalex.org/I45129253"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "   Human Brain Mapping , 2  (4)   pp. 189-210.   (1994)      ",
+      "raw_type": "Article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320311904",
+      "display_name": "Wellcome Trust",
+      "ror": "https://ror.org/029chgv08"
+    },
+    {
+      "id": "https://openalex.org/F4320334626",
+      "display_name": "Medical Research Council",
+      "ror": "https://ror.org/03x94j517"
+    }
+  ],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 37,
+  "referenced_works": [
+    "https://openalex.org/W1966123432",
+    "https://openalex.org/W1979097935",
+    "https://openalex.org/W1988707814",
+    "https://openalex.org/W1989314580",
+    "https://openalex.org/W2013128811",
+    "https://openalex.org/W2014364180",
+    "https://openalex.org/W2019598372",
+    "https://openalex.org/W2021142183",
+    "https://openalex.org/W2025283285",
+    "https://openalex.org/W2037579499",
+    "https://openalex.org/W2048209332",
+    "https://openalex.org/W2049489255",
+    "https://openalex.org/W2051691068",
+    "https://openalex.org/W2057468044",
+    "https://openalex.org/W2058470552",
+    "https://openalex.org/W2060899536",
+    "https://openalex.org/W2063237661",
+    "https://openalex.org/W2072192835",
+    "https://openalex.org/W2089390439",
+    "https://openalex.org/W2098971073",
+    "https://openalex.org/W2113525305",
+    "https://openalex.org/W2120482011",
+    "https://openalex.org/W2124365503",
+    "https://openalex.org/W2138106380",
+    "https://openalex.org/W2155199877",
+    "https://openalex.org/W2163918328",
+    "https://openalex.org/W2169428430",
+    "https://openalex.org/W2314858779",
+    "https://openalex.org/W2319937903",
+    "https://openalex.org/W2324873529",
+    "https://openalex.org/W2325410206",
+    "https://openalex.org/W2579190672",
+    "https://openalex.org/W2983836991",
+    "https://openalex.org/W3083591227",
+    "https://openalex.org/W4237546126",
+    "https://openalex.org/W4238054270",
+    "https://openalex.org/W4240888070"
+  ],
+  "related_works": [
+    "https://openalex.org/W596304944",
+    "https://openalex.org/W1984050705",
+    "https://openalex.org/W4386783521",
+    "https://openalex.org/W4242077822",
+    "https://openalex.org/W49891529",
+    "https://openalex.org/W1556631438",
+    "https://openalex.org/W1606822092",
+    "https://openalex.org/W4242914513",
+    "https://openalex.org/W2899366751",
+    "https://openalex.org/W1560119256"
+  ],
+  "abstract_inverted_index": {
+    "Abstract": [
+      0
+    ],
+    "Statistical": [
+      1
+    ],
+    "parametric": [
+      2,
+      28
+    ],
+    "maps": [
+      3,
+      29
+    ],
+    "are": [
+      4,
+      10,
+      51,
+      70
+    ],
+    "spatially": [
+      5
+    ],
+    "extended": [
+      6
+    ],
+    "statistical": [
+      7,
+      27,
+      188
+    ],
+    "processes": [
+      8
+    ],
+    "that": [
+      9,
+      67,
+      99,
+      167
+    ],
+    "used": [
+      11,
+      176
+    ],
+    "to": [
+      12,
+      83,
+      141
+    ],
+    "test": [
+      13
+    ],
+    "hypotheses": [
+      14
+    ],
+    "about": [
+      15
+    ],
+    "regionally": [
+      16
+    ],
+    "specific": [
+      17
+    ],
+    "effects": [
+      18,
+      113
+    ],
+    "in": [
+      19,
+      166,
+      201
+    ],
+    "neuroimaging": [
+      20
+    ],
+    "data.": [
+      21,
+      153
+    ],
+    "The": [
+      22,
+      154
+    ],
+    "most": [
+      23,
+      101
+    ],
+    "established": [
+      24,
+      127
+    ],
+    "sorts": [
+      25
+    ],
+    "of": [
+      26,
+      74,
+      103,
+      119,
+      129,
+      138,
+      151,
+      156,
+      172,
+      178,
+      181,
+      186,
+      194
+    ],
+    "(e.g.,": [
+      30
+    ],
+    "Friston": [
+      31
+    ],
+    "et": [
+      32,
+      42
+    ],
+    "al.": [
+      33,
+      43
+    ],
+    "[1991]:": [
+      34
+    ],
+    "J": [
+      35,
+      45
+    ],
+    "Cereb": [
+      36,
+      46
+    ],
+    "Blood": [
+      37,
+      47
+    ],
+    "Flow": [
+      38,
+      48
+    ],
+    "Metab": [
+      39,
+      49
+    ],
+    "11:690–699;": [
+      40
+    ],
+    "Worsley": [
+      41
+    ],
+    "[1992]:": [
+      44
+    ],
+    "12:900–918)": [
+      50
+    ],
+    "based": [
+      52
+    ],
+    "on": [
+      53
+    ],
+    "linear": [
+      54,
+      77,
+      133
+    ],
+    "models,": [
+      55
+    ],
+    "for": [
+      56,
+      114,
+      148,
+      198
+    ],
+    "example": [
+      57
+    ],
+    "ANCOVA,": [
+      58
+    ],
+    "correlation": [
+      59
+    ],
+    "coefficients": [
+      60
+    ],
+    "and": [
+      61,
+      106,
+      117,
+      135,
+      145,
+      163,
+      190,
+      204
+    ],
+    "t": [
+      62
+    ],
+    "tests.": [
+      63
+    ],
+    "In": [
+      64
+    ],
+    "the": [
+      65,
+      75,
+      136,
+      149,
+      168,
+      179,
+      182,
+      187,
+      192,
+      195
+    ],
+    "sense": [
+      66
+    ],
+    "these": [
+      68
+    ],
+    "examples": [
+      69
+    ],
+    "all": [
+      71
+    ],
+    "special": [
+      72
+    ],
+    "cases": [
+      73
+    ],
+    "general": [
+      76,
+      97,
+      132
+    ],
+    "model": [
+      78,
+      134,
+      189
+    ],
+    "it": [
+      79
+    ],
+    "should": [
+      80
+    ],
+    "be": [
+      81
+    ],
+    "possible": [
+      82
+    ],
+    "implement": [
+      84
+    ],
+    "them": [
+      85
+    ],
+    "(and": [
+      86
+    ],
+    "many": [
+      87
+    ],
+    "others)": [
+      88
+    ],
+    "within": [
+      89
+    ],
+    "a": [
+      90,
+      96,
+      143
+    ],
+    "unified": [
+      91
+    ],
+    "framework.": [
+      92
+    ],
+    "We": [
+      93
+    ],
+    "present": [
+      94
+    ],
+    "here": [
+      95
+    ],
+    "approach": [
+      98,
+      122
+    ],
+    "accomodates": [
+      100
+    ],
+    "forms": [
+      102
+    ],
+    "experimental": [
+      104,
+      202
+    ],
+    "layout": [
+      105
+    ],
+    "ensuing": [
+      107
+    ],
+    "analysis": [
+      108,
+      150
+    ],
+    "(designed": [
+      109
+    ],
+    "experiments": [
+      110
+    ],
+    "with": [
+      111
+    ],
+    "fixed": [
+      112
+    ],
+    "factors,": [
+      115
+    ],
+    "covariates": [
+      116
+    ],
+    "interaction": [
+      118
+    ],
+    "factors).": [
+      120
+    ],
+    "This": [
+      121
+    ],
+    "brings": [
+      123
+    ],
+    "together": [
+      124
+    ],
+    "two": [
+      125
+    ],
+    "well": [
+      126
+    ],
+    "bodies": [
+      128
+    ],
+    "theory": [
+      130,
+      137
+    ],
+    "(the": [
+      131
+    ],
+    "Gaussian": [
+      139
+    ],
+    "fields)": [
+      140
+    ],
+    "provide": [
+      142
+    ],
+    "complete": [
+      144
+    ],
+    "simple": [
+      146
+    ],
+    "framework": [
+      147,
+      158,
+      196
+    ],
+    "imaging": [
+      152
+    ],
+    "importance": [
+      155
+    ],
+    "this": [
+      157
+    ],
+    "is": [
+      159,
+      175
+    ],
+    "twofold:": [
+      160
+    ],
+    "(i)": [
+      161
+    ],
+    "Conceptual": [
+      162
+    ],
+    "mathematical": [
+      164
+    ],
+    "simplicity,": [
+      165
+    ],
+    "same": [
+      169
+    ],
+    "small": [
+      170
+    ],
+    "number": [
+      171
+    ],
+    "operational": [
+      173
+    ],
+    "equations": [
+      174
+    ],
+    "irrespective": [
+      177
+    ],
+    "complexity": [
+      180
+    ],
+    "experiment": [
+      183
+    ],
+    "or": [
+      184
+    ],
+    "nature": [
+      185
+    ],
+    "(ii)": [
+      191
+    ],
+    "generality": [
+      193
+    ],
+    "provides": [
+      197
+    ],
+    "great": [
+      199
+    ],
+    "latitude": [
+      200
+    ],
+    "design": [
+      203
+    ],
+    "analysis.": [
+      205
+    ],
+    "©": [
+      206
+    ],
+    "1995": [
+      207
+    ],
+    "Wiley‐Liss,": [
+      208
+    ],
+    "Inc.": [
+      209
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 76
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 209
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 211
+    },
+    {
+      "year": 2023,
+      "cited_by_count": 195
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 225
+    },
+    {
+      "year": 2021,
+      "cited_by_count": 300
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 265
+    },
+    {
+      "year": 2019,
+      "cited_by_count": 314
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 308
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 277
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 311
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 324
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 325
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 349
+    },
+    {
+      "year": 2012,
+      "cited_by_count": 352
+    }
+  ],
+  "updated_date": "2026-05-08T15:41:06.802602",
+  "created_date": "2025-10-10T00:00:00"
+}

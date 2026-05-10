@@ -1,0 +1,14 @@
+# Effect of Health-Promoting Agents on Exclusion-Zone Size.
+
+- **PMID**: 30202249
+- **DOI**: 10.1177/1559325818796937
+- **PMCID**: PMC4824373 (full-text saved)
+- **Journal**: Dose-response : a publication of International Hormesis Society  ·  **Year**: 2018
+- **Authors**: Abha Sharma, Colby Adams, Benjamin D Cashdollar, Zheng Li, Nam V Nguyen, Himasri Sai, Jiachun Shi, Gautham Velchuru, Kevin Z Zhu, Gerald H Pollack
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30202249/
+- **Captured**: 2026-05-10T10:06:09
+
+## Abstract
+
+It is now well-confirmed that hydrophilic surfaces including those within the cell generate structural changes in water. This interfacial water is ordered and acquires features different from the bulk. Amongst those features is the exclusion of colloidal and molecular solutes from extensive regions next to the hydrophilic surface, thereby earning it the label of "exclusion zone" (EZ) water. The transition of ordered EZ water to bulk serves as an important trigger of many cellular physiological functions, and in turn cellular health. We tested physiological doses of half a dozen agents generally identified to restore or build health on the extent to which they build EZs. All agents known to enhance biological function resulted in EZ expansion. On the other hand, the weed killer, glyphosate, considerably diminished EZ size. While the expansion effect of the health-promoting agents was observed over a wide range of concentrations, excessive doses ultimately reduced EZ size. We hypothesize that EZ buildup may be a mechanistic feature underlying many health-promoting agents, while agents that impair health may act by diminishing the amount of EZ water.

@@ -7,7 +7,7 @@
 - **Authors**: Peter Mitchell
 - **MeSH**: Adenosine Triphosphate, Biochemistry, Electron Transport, History, 20th Century, Humans, Intracellular Membranes, Nobel Prize, Oxidation-Reduction, Photophosphorylation, Proton-Motive Force
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/22082452/
-- **Captured**: 2026-05-09T09:41:11
+- **Captured**: 2026-05-10T10:07:23
 
 ## Abstract
 
