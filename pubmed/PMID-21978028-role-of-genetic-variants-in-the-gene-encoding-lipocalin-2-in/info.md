@@ -1,0 +1,14 @@
+# Role of genetic variants in the gene encoding lipocalin-2 in the development of elevated blood pressure.
+
+- **PMID**: 21978028
+- **DOI**: 10.3109/10641963.2010.549276
+- **PMCID**:  
+- **Journal**: Clinical and experimental hypertension (New York, N.Y. : 1993)  ·  **Year**: 2011
+- **Authors**: Kwok-Leung Ong, Annette W K Tso, Stacey S Cherny, Pak-Chung Sham, Tai-Hing Lam, Karen S L Lam, Bernard M Y Cheung
+- **MeSH**: Acute-Phase Proteins, Adult, Aged, Asian People, Blood Pressure, Cohort Studies, Female, Follow-Up Studies, Haplotypes, Hong Kong
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21978028/
+- **Captured**: 2026-05-10T18:12:24
+
+## Abstract
+
+Lipocalin-2 is recently recognized as a biomarker of obesity and inflammation, which are both risk factors for hypertension. We therefore investigated the association of common single nucleotide polymorphisms (SNPs) in the gene encoding lipocalin-2 (LCN2) with elevated blood pressure (BP) in Hong Kong Chinese. Five tagging SNPs were genotyped in 1936 subjects from the Hong Kong Cardiovascular Risk Factor Prevalence Study-2 (CRISPS-2) with a median follow-up time of 6.4 years. Elevated BP was defined as ≥130/85 mmHg or taking anti-hypertensive medication. Haplotype GGTCC was associated with elevated BP at follow-up after adjusting for age and sex (odds ratio (OR) [95% confidence interval (CI)] = 1.17 [1.01-1.36], P = 0.031). Haplotype GGTCC was also an associated plasma CRP level 11.7% (95% CI: 2.6-25.9%) higher among subjects with elevated BP after adjusting for age and sex (P = 0.036). Among 1381 subjects without elevated BP at baseline, 321 subjects developed elevated BP at follow-up. Haplotype GGTCC was associated with the development of elevated BP at follow-up after adjusting for baseline age, sex, systolic blood pressure (SBP), and follow-up duration (OR [95% CI] = 1.30 [1.06-1.58], P = 0.011). Among subjects not taking anti-hypertensive medication, carriers of the haplotype GGTCC had higher SBP than noncarriers (119.7 ± 16.4 mmHg vs. 117.9 ± 17.3 mmHg, P = 0.043). Our findings suggest, for the first time, that genetic variants in LCN2 may affect BP. Further studies on the role of lipocalin-2 in BP regulation are warranted.

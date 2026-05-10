@@ -1,0 +1,14 @@
+# Gamma-glutamyl transferase level predicts the development of hypertension in Hong Kong Chinese.
+
+- **PMID**: 21466796
+- **DOI**: 10.1016/j.cca.2011.03.030
+- **PMCID**:  
+- **Journal**: Clinica chimica acta; international journal of clinical chemistry  ·  **Year**: 2011
+- **Authors**: Bernard M Y Cheung, Kwok-Leung Ong, Annette W K Tso, Stacey S Cherny, Pak-Chung Sham, Tai-Hing Lam, Karen S L Lam
+- **MeSH**: Asian People, Biomarkers, Blood Pressure, Female, Hong Kong, Humans, Hypertension, Male, Middle Aged, Predictive Value of Tests
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21466796/
+- **Captured**: 2026-05-10T18:13:26
+
+## Abstract
+
+Plasma activities of alkaline phosphatase, alanine aminotransferase (ALT), aspartate aminotransferase, and γ-glutamyl transferase (GGT) are often increased in cardiometabolic diseases. We investigated if hypertension is associated with increased activities of these plasma markers. We included 235 hypertensive and 708 normotensive subjects (mean age 47.3±9.6 and 58.0±10.2 years respectively) from the Hong Kong Cardiovascular Risk Factor Prevalence Study-2 (CRISPS-2) in 2000-2004 who had drank <1/week. In the follow-up study in 2005-2008 (CRISPS-3), 126 out of the 708 subjects had developed hypertension. Raised plasma ALT (OR=1.22 per SD of log-transformed level, P=0.045) and GGT (OR=1.38 per SD of log-transformed level, P=0.001) levels were associated with hypertension at baseline in CRISPS-2 after adjusting for covariates. Among subjects not on anti-hypertensive medications, plasma ALP, ALT and GGT were related to blood pressure (P<0.01). In subjects normotensive at CRISPS-2, plasma GGT, but not ALP, ALT and AST, was an independent predictor of new-onset hypertension at CRISPS-3 (OR=1.38 per SD of log-transformed level, P=0.020 and OR=2.68 for 3rd tertile vs. 1st tertile, P=0.004) after adjusting for covariates. Among the 4 plasma markers, increased GGT activity is the strongest predictor for existing and new-onset hypertension in Hong Kong Chinese.

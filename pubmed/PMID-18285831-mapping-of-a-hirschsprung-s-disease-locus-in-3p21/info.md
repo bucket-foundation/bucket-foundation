@@ -7,7 +7,7 @@
 - **Authors**: Maria-Mercè Garcia-Barceló, Pui-yee Fong, Clara S Tang, Xiao-ping Miao, Man-ting So, Zhen-wei Yuan, Long Li, Wei-hong Guo, Lei Liu, Bin Wang, Xiao-Bing Sun, Liu-Ming Huang, Jin-Fa Tou, Kenneth Kak-Yuen Wong, Elly Sau-Wai Ngan, Vincent Chi-hang Lui, Stacey S Cherny, Pak-chung Sham, Paul Kwong-hang Tam
 - **MeSH**: Asian People, Case-Control Studies, Chromosome Mapping, Chromosomes, Human, Pair 3, Family, Female, Genetic Markers, Genetic Predisposition to Disease, Haplotypes, Hirschsprung Disease
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/18285831/
-- **Captured**: 2026-05-10T18:11:42
+- **Captured**: 2026-05-10T18:12:51
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: G R Abecasis, S S Cherny, W O Cookson, L R Cardon
 - **MeSH**: Alleles, Computational Biology, Computer Graphics, Databases, Genetic, Genetic Linkage, Genetics, Medical, Genotype, Humans
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11524377/
-- **Captured**: 2026-05-10T18:11:21
+- **Captured**: 2026-05-10T18:12:15
 
 ## Abstract
 

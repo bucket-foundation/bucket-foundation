@@ -1,0 +1,14 @@
+# European bone mineral density loci are also associated with BMD in East-Asian populations.
+
+- **PMID**: 20949110
+- **DOI**: 10.1371/journal.pone.0013217
+- **PMCID**: PMC1636472 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2010
+- **Authors**: Unnur Styrkarsdottir, Bjarni V Halldorsson, Daniel F Gudbjartsson, Nelson L S Tang, Jung-Min Koh, Su-mei Xiao, Timothy C Y Kwok, Ghi Su Kim, Juliana C N Chan, Stacey Cherny, Seung Hun Lee, Anthony Kwok, Suzanne Ho, Solveig Gretarsdottir, Jelena Pop Kostic, Stefan Th Palsson, Gunnar Sigurdsson, Pak C Sham, Beom-Jun Kim, Annie W C Kung, Shin-Yoon Kim, Jean Woo, Ping-C Leung, Augustine Kong, Unnur Thorsteinsdottir, Kari Stefansson
+- **MeSH**: Aged, Asian People, Bone Density, Chromosome Mapping, Female, Genome-Wide Association Study, Hip, Humans, Male, Polymorphism, Single Nucleotide
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20949110/
+- **Captured**: 2026-05-10T18:12:02
+
+## Abstract
+
+Most genome-wide association (GWA) studies have focused on populations of European ancestry with limited assessment of the influence of the sequence variants on populations of other ethnicities. To determine whether markers that we have recently shown to associate with Bone Mineral Density (BMD) in Europeans also associate with BMD in East-Asians we analysed 50 markers from 23 genomic loci in samples from Korea (n = 1,397) and two Chinese Hong Kong sample sets (n = 3,869 and n = 785). Through this effort we identified fourteen loci that associated with BMD in East-Asian samples using a false discovery rate (FDR) of 0.05; 1p36 (ZBTB40, P = 4.3×10(-9)), 1p31 (GPR177, P = 0.00012), 3p22 (CTNNB1, P = 0.00013), 4q22 (MEPE, P = 0.0026), 5q14 (MEF2C, P = 1.3×10(-5)), 6q25 (ESR1, P = 0.0011), 7p14 (STARD3NL, P = 0.00025), 7q21 (FLJ42280, P = 0.00017), 8q24 (TNFRSF11B, P = 3.4×10(-5)), 11p15 (SOX6, P = 0.00033), 11q13 (LRP5, P = 0.0033), 13q14 (TNFSF11, P = 7.5×10(-5)), 16q24 (FOXL1, P = 0.0010) and 17q21 (SOST, P = 0.015). Our study marks an early effort towards the challenge of cataloguing bone density variants shared by many ethnicities by testing BMD variants that have been established in Europeans, in East-Asians.

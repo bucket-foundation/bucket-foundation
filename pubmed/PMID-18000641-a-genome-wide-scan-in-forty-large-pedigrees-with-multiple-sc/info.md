@@ -7,7 +7,7 @@
 - **Authors**: Cristen J Willer, David A Dyment, Stacey Cherny, Sreeram V Ramagopalan, Blanca M Herrera, Katie M E Morrison, A Dessa Sadovnick, Neil J Risch, George C Ebers
 - **MeSH**: Family Health, Genetic Linkage, Genetic Predisposition to Disease, Genome, Human, Genomics, HLA-DR Antigens, HLA-DRB1 Chains, Humans, Linkage Disequilibrium, Lod Score
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/18000641/
-- **Captured**: 2026-05-10T18:11:39
+- **Captured**: 2026-05-10T18:12:48
 
 ## Abstract
 

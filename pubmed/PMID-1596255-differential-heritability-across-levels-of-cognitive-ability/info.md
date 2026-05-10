@@ -7,7 +7,7 @@
 - **Authors**: S S Cherny, L R Cardon, D W Fulker, J C DeFries
 - **MeSH**: Aptitude, Child, Preschool, Female, Humans, Infant, Intelligence, Male, Models, Genetic, Social Environment, Twins, Dizygotic
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/1596255/
-- **Captured**: 2026-05-10T18:11:31
+- **Captured**: 2026-05-10T18:12:27
 
 ## Abstract
 

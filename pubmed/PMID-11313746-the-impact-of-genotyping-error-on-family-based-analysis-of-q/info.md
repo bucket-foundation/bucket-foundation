@@ -7,7 +7,7 @@
 - **Authors**: G R Abecasis, S S Cherny, L R Cardon
 - **MeSH**: Alleles, Chromosome Mapping, Computer Simulation, Gene Frequency, Genetic Linkage, Genotype, Humans, Lod Score, Logistic Models, Matched-Pair Analysis
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11313746/
-- **Captured**: 2026-05-10T18:11:19
+- **Captured**: 2026-05-10T18:12:10
 
 ## Abstract
 

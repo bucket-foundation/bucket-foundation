@@ -1,0 +1,14 @@
+# A germline mutation (A339V) in thyroid transcription factor-1 (TITF-1/NKX2.1) in patients with multinodular goiter and papillary thyroid carcinoma.
+
+- **PMID**: 19176457
+- **DOI**: 10.1093/jnci/djn471
+- **PMCID**:  
+- **Journal**: Journal of the National Cancer Institute  ·  **Year**: 2009
+- **Authors**: Elly S W Ngan, Brian H H Lang, Tingting Liu, Cathy K Y Shum, Man-Ting So, Danny K C Lau, Thomas Y Y Leon, Stacey S Cherny, Sophia Y Tsai, Chung-Yau Lo, Ui-Soon Khoo, Paul K H Tam, Maria-Mercè Garcia-Barceló
+- **MeSH**: Adolescent, Adult, Aged, Aged, 80 and over, Alanine, Animals, Carcinoma, Papillary, Case-Control Studies, Cell Proliferation, Cell Transformation, Neoplastic
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19176457/
+- **Captured**: 2026-05-10T18:13:03
+
+## Abstract
+
+The genetic factors that determine the risk of papillary thyroid carcinoma (PTC) among patients with multinodular goiter (MNG) remain undefined. Because thyroid transcription factor-1 (TTF-1) is important to thyroid development, we evaluated whether the gene that encodes it, TITF-1/NKX2.1, is a genetic determinant of MNG/PTC predisposition. Twenty unrelated PTC patients with a history of MNG (MNG/PTC), 284 PTC patients without a history of MNG (PTC), and 349 healthy control subjects were screened for germline mutation(s) in TITF-1/NKX2.1 by sequencing of amplified DNA from blood. The effects of the mutation on the growth and differentiation of thyroid cells were demonstrated by ectopic expression of wild-type (WT) and mutant proteins in PCCL3 normal rat thyroid cells, followed by tests of cell proliferation, activation of cell growth pathways, and transcription of TTF-1 target genes. All statistical tests were two-sided. A missense mutation (1016C>T) was identified in TITF-1/NKX2.1 that led to a mutant TTF-1 protein (A339V) in four of the 20 MNG/PTC patients (20%). These patients developed substantially more advanced tumors than MNG/PTC or PTC patients without the mutation (P = .022, Fisher exact test). Notably, this germline mutation was dominantly inherited in two families, with some members bearing the mutation affected with MNG, associated with either PTC or colon cancer. The mutation encoding the A339V substitution was not found among the 349 healthy control subjects nor among the 284 PTC patients who had no history of MNG. Overexpression of A339V TTF-1 in PCCL3 cells, as compared with overexpression of WT TTF-1, was associated with increased cell proliferation including thyrotropin-independent growth (average A339V proliferation rate = 134.27%, WT rate = 104.43%, difference = 34.3%, 95% confidence interval = 12.0% to 47.7%, P = .010), enhanced STAT3 activation, and impaired transcription of the thyroid-specific genes Tg, TSH-R, and Pax-8. This is the first germline mutation identified in MNG/PTC patients. It could contribute to predisposition for MNG and/or PTC and to the pathogenesis of PTC.

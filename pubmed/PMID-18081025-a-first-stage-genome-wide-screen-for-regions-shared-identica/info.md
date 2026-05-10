@@ -7,7 +7,7 @@
 - **Authors**: David Alexandre Dyment, M Zameel Cader, Anita Datta, S John Broxholme, Stacey S Cherny, Cristen J Willer, Sreeram Ramagopalan, Blanca M Herrera, Sarah Orton, Michael Chao, A Dessa Sadovnick, Mary Hader, Walter Hader, George C Ebers
 - **MeSH**: Canada, DNA Mutational Analysis, Family Health, Founder Effect, Genes, MHC Class II, Genome, Human, Genomics, Genotype, HLA-DR Antigens, HLA-DRB1 Chains
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/18081025/
-- **Captured**: 2026-05-10T18:11:41
+- **Captured**: 2026-05-10T18:12:50
 
 ## Abstract
 

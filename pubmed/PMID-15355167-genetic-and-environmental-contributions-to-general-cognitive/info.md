@@ -7,7 +7,7 @@
 - **Authors**: Stephen A Petrill, Paul A Lipton, John K Hewitt, Robert Plomin, Stacey S Cherny, Robin Corley, John C DeFries
 - **MeSH**: Adolescent, Adoption, Age Factors, Aptitude, Child, Child Development, Child, Preschool, Colorado, Female, Humans
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/15355167/
-- **Captured**: 2026-05-10T18:11:30
+- **Captured**: 2026-05-10T18:12:23
 
 ## Abstract
 

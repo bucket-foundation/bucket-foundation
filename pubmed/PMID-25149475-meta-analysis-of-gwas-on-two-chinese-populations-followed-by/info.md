@@ -1,0 +1,14 @@
+# Meta-analysis of GWAS on two Chinese populations followed by replication identifies novel genetic variants on the X chromosome associated with systemic lupus erythematosus.
+
+- **PMID**: 25149475
+- **DOI**: 10.1093/hmg/ddu429
+- **PMCID**:  
+- **Journal**: Human molecular genetics  ·  **Year**: 2015
+- **Authors**: Yan Zhang, Jing Zhang, Jing Yang, Yongfei Wang, Lu Zhang, Xianbo Zuo, Liangdan Sun, Hai-Feng Pan, Nattiya Hirankarn, Tingyou Wang, Ruoyan Chen, Dingge Ying, Shuai Zeng, Jiangshan Jane Shen, Tsz Leung Lee, Chak Sing Lau, Tak Mao Chan, Alexander Moon Ho Leung, Chi Chiu Mok, Sik Nin Wong, Ka Wing Lee, Marco Hok Kung Ho, Pamela Pui Wah Lee, Brian Hon-Yin Chung, Chun Yin Chong, Raymond Woon Sing Wong, Mo Yin Mok, Wilfred Hing Sang Wong, Kwok Lung Tong, Niko Kei Chiu Tse, Xiang-Pei Li, Yingyos Avihingsanon, Pornpimol Rianthavorn, Thavatchai Deekajorndej, Kanya Suphapeetiporn, Vorasuk Shotelersuk, Shirley King Yee Ying, Samuel Ka Shun Fung, Wai Ming Lai, Chun-Ming Wong, Irene Oi Lin Ng, Maria-Merce Garcia-Barcelo, Stacey S Cherny, Paul Kwong-Hang Tam, Pak Chung Sham, Sen Yang, Dong Qing Ye, Yong Cui, Xue-Jun Zhang, Yu Lung Lau, Wanling Yang
+- **MeSH**: Asian People, China, Chromosomes, Human, X, Female, Genes, X-Linked, Genome-Wide Association Study, Humans, Lupus Erythematosus, Systemic, Male, Polymorphism, Single Nucleotide
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25149475/
+- **Captured**: 2026-05-10T18:14:03
+
+## Abstract
+
+Systemic lupus erythematosus (SLE) is a prototypic autoimmune disease that affects mainly females. What role the X chromosome plays in the disease has always been an intriguing question. In this study, we examined the genetic variants on the X chromosome through meta-analysis of two genome-wide association studies (GWAS) on SLE on Chinese Han populations. Prominent association signals from the meta-analysis were replicated in 4 additional Asian cohorts, with a total of 5373 cases and 9166 matched controls. We identified a novel variant in PRPS2 on Xp22.3 as associated with SLE with genome-wide significance (rs7062536, OR = 0.84, P = 1.00E-08). Association of the L1CAM-MECP2 region with SLE was reported previously. In this study, we identified independent contributors in this region in NAA10 (rs2071128, OR = 0.81, P = 2.19E-13) and TMEM187 (rs17422, OR = 0.75, P = 1.47E-15), in addition to replicating the association from IRAK1-MECP2 region (rs1059702, OR = 0.71, P = 2.40E-18) in Asian cohorts. The X-linked susceptibility variants showed higher effect size in males than that in females, similar to results from a genome-wide survey of associated SNPs on the autosomes. These results suggest that susceptibility genes identified on the X chromosome, while contributing to disease predisposition, might not contribute significantly to the female predominance of this prototype autoimmune disease.

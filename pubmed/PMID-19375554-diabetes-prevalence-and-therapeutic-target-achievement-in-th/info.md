@@ -1,0 +1,14 @@
+# Diabetes prevalence and therapeutic target achievement in the United States, 1999 to 2006.
+
+- **PMID**: 19375554
+- **DOI**: 10.1016/j.amjmed.2008.09.047
+- **PMCID**:  
+- **Journal**: The American journal of medicine  ·  **Year**: 2009
+- **Authors**: Bernard M Y Cheung, Kwok Leung Ong, Stacey S Cherny, Pak-Chung Sham, Annette W K Tso, Karen S L Lam
+- **MeSH**: Adult, Age Distribution, Blood Glucose, Diabetes Mellitus, Female, Glycated Hemoglobin, Humans, Hypoglycemic Agents, Insulin, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19375554/
+- **Captured**: 2026-05-10T18:13:09
+
+## Abstract
+
+Changes in the prevalence, treatment, and management of diabetes in the United States from 1999 to 2006 were studied using data from the National Health and Nutrition Examination Survey. Data on 17,306 participants aged 20 years or more were analyzed. Glycemic, blood pressure, and cholesterol targets were glycosylated hemoglobin less than 7.0%, blood pressure less than 130/80 mm Hg, and low-density lipoprotein (LDL) cholesterol less than 100 mg/dL, respectively. The prevalence of diagnosed diabetes was 6.5% from 1999 to 2002 and 7.8% from 2003 to 2006 (P < .05) and increased significantly in women, non-Hispanic whites, and obese people. Although there were no significant changes in the pattern of antidiabetic treatment, the age-adjusted percentage of people with diagnosed diabetes achieving glycemic and LDL targets increased from 43.1% to 57.1% (P < .05) and from 36.1% to 46.5% (P < .05), respectively. Glycosylated hemoglobin decreased from 7.62% to 7.15% during this period (P < .05). The age-adjusted percentage achieving all 3 targets increased insignificantly from 7.0% to 12.2%. The prevalence of diagnosed diabetes increased significantly from 1999 to 2006. The proportion of people with diagnosed diabetes achieving glycemic and LDL targets also increased. However, there is a need to achieve glycemic, blood pressure, and LDL targets simultaneously.

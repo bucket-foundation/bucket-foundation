@@ -1,0 +1,3252 @@
+hello everyone welcome to the mindscape
+podcast I'm your host Sean Carroll and
+we're very excited these days uh here at
+mindscape World International
+headquarters for book publication week
+as some of you know on Tuesday I guess
+May 14th here in the United States
+anyway we're going to have the
+publication of quanta and Fields this is
+volume two in the biggest ideas in the
+universe series the series will be a
+three-part series that aims to explain
+modern physics the part of modern
+physics that we know not the speculative
+stuff we're not going to be talking
+about the Multiverse or quantum gravity
+or anything like that the kinds that
+ideas in modern physics that we think
+will last for a very very long time and
+the gimmick is we're explaining them in
+a way that involves the equations so
+we're going to show you the equations
+and that means it's not for everybody
+but it's very much for some people if
+you've ever read descriptions of physics
+where you thought that there was
+something going on but there's a bunch
+of metaphors and stories and analogies
+and you weren't quite sure why things
+were working out the way they were
+working out these are the books for you
+uh in the biggest ideas you'll really
+get to see why for example the higs
+mechanism gives Mass to particles and
+things like that you don't need to just
+wave your hands in any way and the
+general theme of the book is quanta and
+Fields that's the name of the book as
+opposed to the first volume called
+SpaceTime and motion which was really
+classical physics this book is about
+quantum physics the third book on
+complexity and emergence um both is a
+collection of the things that didn't fit
+into the first two books but also is
+about larger scale things right uh
+thermodynamics complex systems stuff
+like that and it's kind of a appetizer
+main course dessert kind of thing this
+book volume two Quant and Fields is book
+I've been wanting to write for decades
+this is a book that I really have
+thought for a very long time uh would be
+super duper useful for a lot of people
+because Quantum field theory in
+particular is a part of modern physics
+that is absolutely Central and gets very
+very little airtime in popular
+discussions we talk about quantum
+mechanics a lot we talk about
+entanglement in the measurement problem
+and all these weird things uh Bell
+inequalities and so forth and then we
+skip to speculative stuff about String
+Theory or quantum gravity or the
+Multiverse or inflation but the actual
+physicists doing their jobs are thinking
+about Quantum field Theory all the time
+and you rarely get a very full
+discussion of that in popular media we
+recently did talk to Matt strassler uh
+who wrote a wonderful book waves in an
+impossible sea that talks about Quantum
+field Theory but it is the opposite
+level of um mathematical explicitness
+it's all about trying to explain in
+words as as carefully as you can how
+Quantum Fields work whereas Quant and
+Fields the book that I've written uh is
+a short action-packed introduction to
+both quantum mechanics and to its
+specific implementation in the context
+of field Theory which is where Modern
+physics lives that's what we're really
+thinking about so we need to understand
+why in the world you could take a field
+quantize it and have it look like
+particles that's the big mystery of
+quantum field Theory but that one you
+know historically was figured out
+relatively early on and it opens the
+floodgates once you understand that once
+you understand that you can quantize
+fields and get particles out of them
+without putting particles in explicitly
+there's a whole bunch of things that can
+happen ways that Fields can interact
+with each other and influence each other
+that leads to interactions that we
+measure with Fineman diagrams I should
+say that we predict using finan diagam
+that we measure in experiments of course
+all sorts of conceptual questions with
+Infinities and renormalization but also
+new phenomena that can happen like gauge
+symmetries giving rise to forces
+breaking those symmetries with the higs
+mechanism confining things inside um
+nucleons and violating parody
+conservation and things like that so
+it's a whole wonderful zoo of things
+that we've spent the whole 20th century
+and beyond trying to understand so
+there's a lot to discuss in a short solo
+podcast uh I'm not going to cover it all
+sorry about that uh you can read the
+book I did do the audio book version of
+the book it's about 10 hours of me
+talking if if you don't get enough from
+the podcast you can download that and I
+just read the book and I try to explain
+what's in the pictures and the equations
+and everything like that um so here I'm
+just going to hit some highlights I
+really do want to focus on that idea of
+why Quantum Fields how you get particles
+out of that and the door that it opens
+to other things so it'll be very
+explicit about where the particles come
+from be a little bit more handwavy and
+gestural about where all these other
+symmetries and how they um get involved
+but it's important stuff it'll give you
+I think a feeling for the kind of thing
+that we're going to be talking about in
+the book If you are so inclined to go
+more deeply so with that let's go
+[Music]
+I think it's useful to get one thing
+straight right away sometimes you will
+hear quantum mechanics came first and
+then we invented Quantum field Theory
+it's fine to say that because these are
+words that we make up definitions of
+right you know you're always allowed to
+define the words however you want it's
+not the best way of thinking about
+things quantum mechanics is a broad
+framework that includes Quantum field
+Theory as part of it it is literally the
+quantum theory of fields quantum
+mechanics applied to Fields that's what
+it is and it's a very simple statement
+obviously but I remember literally
+taking Quantum field theory in graduate
+school and it took me a while to figure
+out you know oh it's just quantum
+mechanics it's the same quantum
+mechanics we had before just applied to
+a different system it's a subset of
+quantum mechanics the thing that we
+usually call quantum mechanics is the
+quantum mechanics of particles and
+Quantum field theor is the quantum
+mechanics of fields so the very first
+thing we need to understand to wrap our
+brains around the idea of quantum field
+theory is the word of now this does this
+isn't some sort of Bill clintones
+parsing of language at a very deep level
+uh we're really trying to understand you
+know what do you mean when you say you
+have a quantum theory of some thing like
+particles or Fields or for that matter
+strings or Loops or or what whatever
+what does it mean to have a Quantum the
+theory of
+some and the answer to that is that when
+we do quantum mechanics whether it's
+particles or fields or whatever the
+usual way we start not always but
+usually we start with a classical Theory
+and then we have a cookbook we have a
+set of procedures for converting a
+classical Theory into a quantum theory
+we call this quantization surprisingly
+enough and there's a lot hidden in that
+word quantization or to quantize we
+don't really have a well-defined map
+from the space of all classical theories
+to quantum theories so think of it as a
+way to find quantum mechanical theories
+starting from a classical Theory okay
+and usually we start from particles
+that's what we do um when we first learn
+quantum mechanics and it makes sense
+when we developed quantum mechanics in
+the early 1900s people were more focused
+on the particles the fields were always
+there they were thinking about them but
+they wanted to get the particles right
+first so when you say you have a
+classical theory of something you know
+the vague idea of classical physics
+Allah Isaac Newton you have some
+particles and they have positions and
+they have velocities or equally well if
+the mass of the particle is a fixed
+number you can talk about the momentum
+of the particle momentum is just mass
+times velocity for technical reasons uh
+that Professor Hamilton figured out it's
+actually better to think about momentum
+than velocity but it really doesn't
+matter they're completely convertible
+back and forth and the point is that for
+any one particle once you know those two
+things position and momentum you can
+figure out what's going to happen to it
+right you can plug into Newton's laws of
+motion or Hamilton's equations or L gr's
+equations there's many different
+mathematically equivalent ways to do
+classical physics these are all
+explained in volume one of the biggest
+ideas space time and motion and the
+thing that is the same in all these
+different ways of thinking about
+classical physics is the amount of
+information you need to say what's going
+to happen next if you were lassus demon
+if you were able to predict exactly what
+was implied by the laws of physics the
+data you need to be given is the
+position and momenta of all the
+particles and then it's deterministic
+right the wonderful thing about
+classical mechanics is it says what's
+going to happen it's not ambiguous about
+it so quantum mechanics says okay think
+about this one particle just to start we
+have position and momentum throw away
+the momentum forget about the momentum
+just for a minute okay and Quantum
+mechanic says instead of having a
+position we now describe the particle by
+having a wave function s of x if x were
+the position s the Greek letter s is the
+wave function which assigns a number to
+every possible position that's the wave
+function and usually that number will be
+zero or very very close to zero almost
+everywhere and then in some little blob
+like region of space that number will
+not be zero that's the wave function for
+any possible place you might see the
+particle were you to look for it there's
+going to be a number a complex number in
+particular and what the wave function
+tells you is the probability of
+observing the particle to have that
+position so in particular you calculate
+the probability by squaring the wave
+function or since it's a complex number
+you take the modulus squared of the wave
+function and in the new book Quant and
+fields we go through quantum mechanics
+really quickly first three chapters we
+do it wave functions measurement
+entanglement and then we're moving on
+and devoting most of the book to Quantum
+field Theory because that's a very rich
+and very complicated uh set of
+ideas so where did momentum go is one
+obvious question and the answer is you
+know when I said that the wave function
+varies with space how fast it's varying
+how fast the wave function is wiggling
+up and down basically tells you the
+momentum or more accurately you can turn
+it into a prediction for measuring the
+momentum to have any particular value in
+exactly the same way wave function
+squared kind of procedure so the point
+is the the thing I don't want to get
+lost the thing you need to understand
+for the rest of the discussion is when
+you go from classical mechanics to
+Quantum Mechanics you start with some
+object with a definite State position
+and momentum and you switch to a wave
+function that will tell you the
+probability of getting different
+observational outcomes that's the
+evolution or the transformation from a
+classical Theory to a quantum theory and
+in that case we were talking about
+particles and it's natural to talk about
+particles because if you think about the
+development of quantum mechanics what
+were they thinking about we often
+attribute the birth of quantum mechanics
+to plon and Einstein in 1900 plun
+understood black body radiation in terms
+of chunks of energy being given off by
+vibrating electrons and atoms in 1905
+Einstein really said you know all
+electromagnetic radiation can be thought
+of as coming out in these particle like
+quanta which we now call photons but
+subsequent to that the work by people
+like Neil's bore and Louie de Bry and
+verer Heisenberg Etc was more focused on
+particles in particular on the electrons
+orbiting atoms so they were trying to
+understand the structure of atoms uh how
+atoms would give off radiation things
+like that so was the particles that were
+really front and center and then
+therefore it makes sense when you're in
+under graduate physics student uh you
+learn about the quantum mechanics of
+particles I should say Visa the book
+that is coming out the reason why I can
+pack a whole discussion of both quantum
+mechanics and Quantum field Theory into
+a relatively short book even though I do
+include all the equations is because
+you're not trying to solve the equations
+you're not going to come out of reading
+this book being able to calculate the
+scattering probability of two particles
+or the Decay rate of the higs BOS on or
+anything like that you will understand
+what those words mean and you will have
+an idea what the equations are behind
+them but I'm not training you to be a
+practicing physicist and that philosophy
+is remarkably liberating so you know
+just to be super clear
+here very a very small percentage of
+people who get bachelor's degrees in
+physics ever learn Quantum field theory
+in fact plenty of people get phds in
+physics without ever learning Quantum
+field Theory just like in volume one we
+did Einstein's equation for general
+relativity that's a still a classical
+Theory Einstein's theory of gravity many
+many people get a physics education and
+do not learn general relativity so part
+of the reason why I'm writing these
+books is because I want more people to
+be able to uh grasp these ideas even
+physics Majors plenty of physics Majors
+don't get to learn about these things
+and they're not that inaccessible
+honestly you can learn them I promise
+like you'll get you'll get a feeling for
+here in the podcast okay so um so I'm
+going to keep referring back to you know
+what we study as physics students even
+though I I don't expect you to grow up
+to be necessarily a physics student or a
+working physicist that's the idea okay
+so the first thing we would learn if we
+were an undergraduate sometime in your
+sophomore year or your junior year maybe
+uh sometimes the universities will split
+it up so you'll sort of get like a
+little hint even in your very first year
+about quantum mechanics and you'll do it
+seriously later on in your junior or uh
+sophomore years and you'll be mostly
+taught the quantum theory of particles
+so you're imagining that the system
+you're studying is an electron or
+something like that okay orbiting in an
+atom and you have this wave function and
+you have an equation that tells you how
+the wave function behaves and that's the
+shorting GE equation there's different
+again mathematically equivalent ways of
+thinking about it but that's the basic
+idea and from that you can predict
+things like the spectrum of radiation
+being absorbed or emitted from the atoms
+so the general idea is as we said start
+with particles make wave functions and
+then give you a set of rules for how the
+wave functions behave they evolve
+according to the shinger equation when
+you're not measuring them when you are
+measuring them they collapse and you get
+a probability of observing something
+then you discovered that there's this
+thing called entanglement to be very
+honest you could possibly take an entire
+one semester intro to Quantum course as
+an undergraduate and never hear about
+entanglement I know that's weird because
+if you if you hear the popular level
+discussions they'll talk about
+entanglement all the time but you can
+easily spend a semester just solving the
+shinger equation for you know different
+kinds of potential energies that the
+electron could be moving in so let me
+tell you taking that undergraduate
+course is not necess necessarily as sexy
+as you might imagine that it is if you
+just heard popular level discussions of
+quantum mechanics and all the stuff you
+learn about the particles about the wave
+functions about the shortener equation
+it gives you a wonderfully precise
+quantitative and experimentally
+testable understanding of what happens
+in atoms of the ways that there are
+different energy levels different
+orbitals and so forth and how they show
+up experimentally and let me emphasize
+that bit about different energy levels
+because this is AB absolutely crucial to
+the essence of quantum mechanics in a
+way that I think is misunderstood by a
+lot of people who don't study it
+professionally which is the word Quantum
+is a little
+bit misleading I would say what does
+quantum mean before you knew about
+quantum mechanics the word Quantum was
+still around it meant a discrete amount
+of something one chunk of something
+right the idea of a quanta sorry a
+Quantum or many Quant would be the
+plural is rather than having a smooth
+distribution of things you have
+individual pieces discrete elements okay
+those are the Quant so particulate
+particle like pixelated or whatever you
+want to call it okay that's the sort of
+philosophy behind the word quanta or
+Quantum and calling this theory that
+we're discussing quantum mechanics or
+Quantum field Theory makes you think
+informally that maybe the world
+is divided up into chunks right into
+pieces into discrete bits that the world
+is not fundamentally smooth but rather
+fundamentally
+discreet maybe this inspires you to
+think that once you include gravity in
+the game Space and maybe space time will
+be divided up into chunks into make a
+little lattice it'll be little pixels or
+something like that this is a
+fundamental deep terrible awful no good
+understanding of what quantum mechanics
+actually says because if you think about
+what I just said if we take the idea of
+a particle replace it by the idea of a
+wave function and that wave function
+obeys the shinger equation nowhere there
+is the idea of chunks of anything
+nowhere there is the idea that the world
+is broken up into discrete bits of
+matter or energy it's as smooth as it
+could possibly be everything is
+continuous and smooth the wave function
+is a function it spreads out all over
+the place the shinger equation smoothly
+evolves that wave function right where
+does this idea of quanta come from and
+the answer is that well it's exactly
+analogous to the very well-known analogy
+that we use of plucking a guitar string
+so if you have a guitar string that is
+tied down at two ends and you pluck it
+there's a fundamental wavelength at
+which it vibrates which leads to a
+fundamental frequency of sound being
+given off but there are also harmonics
+right if you imagine if you can
+visualize in your head I know it's an
+audio podcast but visualize in your head
+a string being held down at both ends
+and vibrating sort of uniformly smoothly
+up and down except at the ends so in the
+middle it's vibrating up and down tied
+down at the end so the amplitude of the
+vibration kind of goes down to zero at
+both ends where it's tied down that is
+the fun m al frequency at which is
+vibrating and then the first harmonic
+frequency is it looks kind of like an up
+and down wav like shape so it starts at
+one tied down end goes up halfway
+through the string it comes back down to
+zero again and in the other half of the
+string it's going down on the right hand
+side where as it was going up on the
+left hand side and so the wavelength is
+half of what it was and therefore the
+frequency is twice what it was and these
+are two different things that can happen
+to the same string and then of course
+you have even higher harmonics where the
+wave goes up down up again and vice and
+all the way up for higher and higher um
+frequencies shorter and shorter wave
+lengths the reason why I'm talking about
+this guitar string analogy and if you're
+a talented guitar player you can
+actually play the harmonics get them to
+come out of your guitar even without
+getting the fundamental note to come out
+of your guitar but that's a different
+podcast discussion entirely the point is
+the string that you're plucking has
+nothing discreet about it it's not that
+the string is only allowed to do certain
+things the string could have any shape
+that it wants to as long as it's tied
+down at both ends right but it naturally
+has a set of ways of vibrating that are
+sort of easiest to make it vibrate at
+that are very natural and direct in fact
+at the technical level we would say
+these are the ones that have a definite
+energy in their vibrations and so the
+discreetness comes not because the
+string itself is discret but because its
+Behavior falls into a discrete set of
+possibilities the fundamental frequency
+the first harmonic second harmonic Etc
+and you can calculate exactly what the
+frequencies are and so forth so there's
+kind of an emergent nature to the
+discreetness the discreetness is not
+built into the system it is a feature of
+the solutions to the equations that
+govern the system in some high level way
+but you can just see it pictorially you
+can tell why you can understand that it
+makes sense that there is you know the
+lowest note a little bit higher note a
+little bit higher note than that and so
+forth that
+phenomenon is exactly why in quantum
+mechanics we see discrete behavior for
+things like the energy of radiation
+being given off by one of these atoms so
+instead of thinking of the guitar string
+being tied down at both ends think of
+the wave function of an electron in an
+atom let's make our lives easy let's
+make it a hydrogen atom so there's only
+one electron and there's only one
+particle in the nucleus a single proton
+okay well the electron wave function is
+not tied down it can extend very
+gradually out to Infinity right but the
+wave function has to go to zero at
+Infinity as it gets very very very far
+away from the uh proton it's going to go
+to zero because there's only you can
+only have a finite amount of wave
+function the wave function can't spread
+uniformly over all of space it has to be
+sort of concentrated somewhere and we're
+imagining that it's concentrated near
+the proton in the atom so even though
+the electron's wave function is not
+literally tied down effectively it is it
+goes to zero as you get far away from
+the atom
+and you can play exactly the same game
+with the electron wave function that you
+play with the plucked guitar string
+there are technical differences because
+the energy is a little bit different and
+also because it's a three-dimensional
+thing the electron wave function rather
+than the single one-dimensional guitar
+string but the essence of the issue is
+the same there will be a lowest energy
+state of the electron which is analogous
+to the fundamental frequency of the
+guitar string and that's the lowest
+energy that the electron can have in a
+hydrogen atom and then there is a next
+highest energy level state that has some
+discrete extra amount of energy it is
+not it is not the case that the electron
+wave function can't do anything it wants
+it can vibrate in whatever way it wants
+but there's a natural set of ways that
+it can vibrate or ways that it can sort
+of arrange itself around the proton and
+these are the ways that have definite
+Energies
+and these are the natural places for the
+electron to settle down into and what we
+actually observe so the
+discreetness of the energy levels of an
+electron which by the way you learn
+about in chemistry class you learn about
+the orbitals of an electron around an
+atom that's exactly what's going on
+these are not because you've put in any
+fundamental discreetness into the nature
+of the reality that you're talking about
+the reality is a smooth function obeying
+a smooth equation it's the behavior of
+the solutions to that equation that has
+a discrete character and I'm really sort
+of dwelling on this and emphasizing it
+because it's going to become super duper
+important when we get to Quantum field
+Theory so the lesson here is you start
+with a completely smooth continuous
+arbitrarily varying thing the wave
+function of the electron and then you
+examine Its Behavior under very certain
+special circumstances namely it's
+sitting there glued to a proton in a
+hydrogen atom and you find that the
+possible places you could find the
+possible States you could find the
+electron wave function in come in a
+discrete set so again that discreetness
+is emergent because it's a property of
+the different solutions to the equation
+in this case the shinger equation rather
+than the equation for a string in a
+guitar
+so that's where quanta come from it's
+not because you pick to the universe
+it's because you've solved an equation
+and the solutions come in a discrete set
+okay and historically this was all done
+in the 191s and 20s and we figured this
+out quantum mechanics was great success
+great but we always knew even back in
+the 20s that the world was not simply
+made of particles right as we said the
+very first glimmers of quantum mechanics
+came from thinking about Fields not
+about particles in the 19th century we
+had figured out that electricity and
+magnetism were two sets of phenomena
+that were unified in a description that
+involved two different fields the
+electric field and the magnetic field
+and in fact once Einstein and Bowski
+came along with special relativity we
+realized that the electric field the
+magnetic field were literally two
+different aspects of the same underlying
+field so at some point we just call it
+the electromagnetic field and a field is
+a very different thing than a particle a
+particle classically let's just think
+classically now we haven't quantized
+anything yet a particle has a location
+as we said it has a position it has a
+velocity that's what the particle is
+basically whereas a field is everywhere
+okay and I I need to I'm going to be
+very very careful here as careful as I
+can be to distinguish the different
+conceptual things that sound very very
+similar to each other in this case a
+classical field is very very different
+from a Quantum wave function okay they
+seem similar because a classical field
+has a value at every point in Space the
+electric field has a value at every
+point in space it's a little Vector
+because the electric field is not just a
+number it's a little arrow with a
+direction and a magnitude at every point
+in space you can't see it it's invisible
+it's all around you the magnetic field
+likewise you know you can detect it if
+you put iron filings on a piece of paper
+near a magnet they will line up with the
+magnetic field showing the influence of
+the magnetic field around you a compass
+that you can carry around will Point
+toward the North Pole for exactly that
+same reason and you can detect the
+electric field likewise but they're
+there they're around you at every point
+in space around you right now including
+inside you for that matter and also you
+know out in interstellar space every
+point in space has a value for the
+electric field and the magnetic field
+that's what field is a field is a an
+entity that takes a value at every point
+in space you're very tempted to say well
+what are the fields made of that would
+be a bad question to ask I mean you're
+welcome to ask it but the answer is
+there isn't anything that the fields are
+made of the world is going to be made of
+the fields okay the fields are the
+bottom layer of reality according to
+Quantum field Theory now Quantum field
+Theory might not be the final answer
+I'll even gesture at the very end toward
+the idea that it's not the final answer
+but according to Quantum field Theory
+the rules are that we start with fields
+and we build everything else out of them
+now that idea that there is a number a
+quantity something like that at every
+point in SpaceTime sounds very similar
+to the wave function of an electron
+right I told you that the wave function
+of electron assigns a complex number to
+every point in space and that number
+squared will give you the probability of
+observing the electron there but what if
+you had two electrons right you do know
+that there is this thing that we talk
+about in Chapter 3 of the new book
+called entanglement and entanglement
+says that when you have two electrons
+and let's say if you were actually even
+better let's make it more clear because
+electrons are identical particles and
+that's going to get in the way of of
+being correct sometimes here uh let's
+say we have an electron and a proton so
+two particles but very distinguishable
+you know which is the electron which is
+the proton and call the position that
+you might observe the electron at X X1
+and the position you might observe the
+proton at X2 you know if you looked for
+these particles whether you found the
+electron or proton they're very
+different looking
+particles then the phenomenon of
+entanglement tells you that the combined
+state of both particles is not a wave
+function for the electron and a wave
+function for the proton it is a single
+wave function for the system that is
+made of the electron and the proton in
+other words there is only one wave
+function ultimately it will be called
+the wave function of the universe
+because it actually includes the whole
+universe not just these two particles
+but for right now it is a wave function
+of these two particles and it is a
+function of X1 and X2 for every possible
+position you could find the electron at
+and position you can find the proton at
+there will be a complex number and you
+ask the question where are these two
+particles
+simultaneously and the wave function
+tells you a complex number that you
+square to get the probability of seeing
+those two particles at that place so
+this seems like a little detail that
+might not be very important but it's ABS
+actually super duper crucial here namely
+that the wave function doesn't depend on
+space in this case in the case of the
+electron and the proton the wave
+function depends on two copies of space
+one copy saying where is the electron
+one copy saying where is the proton so
+in a very real sense even though it
+sounds like a technicality the wave
+function is not a field the wave
+function of the universe the wave
+function of the real world the wave
+function we care about when we do
+quantum mechanics is not a field in the
+same sense that the electric field or
+the magnetic field is the magnetic field
+doesn't care how many particles you have
+it still has a value at every point in
+Space the wave function of a two
+particle system doesn't have a unique
+value at some point in space
+it the thing it depends on is the
+configuration space of all the particles
+and for that matter as we will see all
+the fields in the universe so it's a
+different kind of thing there is sort of
+an accidental coincidental
+resemblance of the wave function of one
+particle to a field but the idea the
+conceptual notion of a wave function is
+a very different kind of thing than a
+classical field okay classical Fields
+really literally honestly are things
+that have values at each point in Space
+the electric field the magnetic field
+also the gravitational potential field
+and other such kinds of fields gravity
+was always thought to be a little bit
+trickier even before general relativity
+came along so most of the attention in
+the early 20th century was being focused
+on the electromagnetic field so there
+was this vague idea near the turn of
+that Century that matter was made of
+particles electrons protons we
+eventually discovered neutrons and other
+things like that whereas forces were
+being carried by Fields because we knew
+about gravity we knew about
+electromagnetism Etc so we thought
+roughly speaking even though it was not
+completely laid down explicitly that the
+world was going to consist of these two
+kinds of things particles and Fields
+matter and forces right um matter from
+the particles forces from the fields and
+so once quantum mechanics came along in
+its more robust form in the 1920s and
+you understood the quantum mechanics of
+particles it was very very natural to
+say okay now we will turn to the quantum
+mechanics of fields and that's what the
+word of means this is where we started
+this digression understanding the word
+of the word of means we're starting with
+a classical theory of something
+particles to start now fields and we're
+going to construct a Quantum the of it
+what does that mean it means take the
+classical Theory take the thing that
+plays the role of a position for a
+particle right for a field Fields don't
+have a position fields are everywhere
+you can't just say what the position of
+a field is but the role of position is
+basically played by the value of the
+field at every point in space and then
+you're saying well okay what's the
+what's the role of the momentum or the
+velocity well it is the rate of change
+it's the time deriv derivative of the
+field at every point in space but again
+happily we don't need to think about
+that too deeply because what happens
+when you quantize a particle is you
+temporarily forget about the momentum
+and just focus on position when we
+quantize a field we're going to start by
+thinking hard about the space of all
+possible profiles of the field that is
+to say at every point in space we
+imagine the field has a
+value and conceptually we can add ask
+you know so what is the space what is
+the set of all possible values that can
+have it all all at
+once so I'm not asking you know what is
+the value at this point x and this point
+Y and this point Z etc etc I'm saying
+all throughout space all at once the
+field sort of has a shape right the
+field has an individual value at every
+point so an infinite number of values
+one value at every point that is a
+profile of the field okay that is a
+possible answer to the question if I
+could imagine measuring the field
+instantaneously all throughout the
+Universe what would it look like that is
+a profile of the field and that is the
+idea that plays the analogous role to
+the position of a single particle so you
+can see that you know mathematically
+conceptually this is a little bit more
+intimidating than particles for a
+particle you just had a position you had
+a location here it is I give you three
+numbers XYZ that's where it is for the
+field you have to tell me what it's
+doing at every Point throughout an
+infinitely big universe that seems much
+harder to do but Fields existed so we
+have to uh try to deal with them in fact
+I should also mention that be beyond the
+existence of the electromagnetic field
+um there is also the phenomenon of
+radioactivity okay there was the
+experimental discovery that particles
+could turn into other kinds of particles
+particles could Decay and give off
+particles particles could be created and
+destroyed right even at the level of
+particles and the reason why I'm
+mentioning this is because if you take
+the Schrodinger equation for a system of
+one electron or two electrons or three
+electrons or whatever the number of
+electrons never changes according to the
+shinger equation if you just do particle
+quantum mechanics you're going to be
+stuck with the same number of particles
+that you always had you need to sort of
+generalize it a little bit give it you
+can do this you can sort of say all
+right I'm going to imagine ways that the
+number of particles can change but as
+we'll see or as we'll as we'll become
+natural at some point um basically what
+you're doing is inventing field Theory
+when you do that field theory is a very
+natural way of accounting for the fact
+that the number of particles in a system
+can change over time okay that was just
+an aside I want to get back to the
+electromagnetic field just for a second
+so we knew about the electromagnetic
+field we knew that we would have to
+incorporated into quantum mechanics at
+some point and people tried to do it
+very early on in the development of
+quantum mechanics people like Paul dur
+Heisenberg and others tried to quantize
+the electromagnetic field people like
+enrio fmy wrote down theories where
+numbers of particles could change using
+the idea of fields so the question
+became you know what does it mean to
+take something that is already a field
+like the electromagnetic field and to
+quantize it to give it a wave function
+of some sort so I can tell you the
+answer and it's the correct answer it's
+just sort of presented in a way that
+doesn't seem very helpful to every
+possible profile of the field that is to
+say to every possible configuration of
+the field all throughout space we will
+attach a number a complex number that is
+the wave function of the field
+and were we to imagine observing the
+field everywhere throughout space
+simultaneously all at once we would take
+that wave function and square it to get
+the probability we would observe the
+field to be in that
+configuration so I hope that that made a
+little bit of sense but I also hope that
+it's a little intimidating and a little
+baffling as to how we would actually
+make any progress at a practical level
+with that it was relatively easy to
+handle the idea of a wave function of a
+particle but the wave function of a
+field just seems like uh
+completely you know impossible to
+wrestle mathematical Beast right to
+every possible field configuration we
+assign a number that just seems
+impractical to write it down what would
+that wave function really ever look like
+and indeed were you to take a Quantum
+field Theory class at a university
+somewhere or pick up a real Quantum
+field Theory textbook they almost never
+do this this thing that I just told you
+assigning a complex number to every
+possible field configuration that is a
+perfectly valid way of thinking about
+Quantum field Theory but it's not really
+the practical way uh and so that's the
+reason why I could take a Quantum field
+Theory course as a graduate student and
+have it remain hidden to me for a long
+time that really what we were doing was
+just quantum mechanics because it's
+presented in a very different way using
+very different mathematical tools but I
+think that it's conceptually easier if
+we try to stick as close as possible to
+the same notion of quantis ation and
+converting a classical Theory into a
+quantum theory in the field context that
+we usually use in the particle context
+so the continuity of the ideas remains
+as as uh explicit as it can be so what
+are we supposed to do with the fact that
+we're imagining profiles of fields
+stretching all throughout space and
+attaching complex numbers to every
+possible profile squaring those complex
+numbers to get the probability that we
+would observe ve the field to look like
+that the answer is forier transforms
+that's honestly the answer if you look
+online if you look at the web page that
+I have for Quant and Fields you look at
+the um table of contents that I publish
+there you will see a an appendix there's
+like 12 chapters plus an appendix and
+the chapters all have Punchy titles like
+atoms and interactions and um itive
+field Theory and matter whatever so
+there's a lot of you know you know basic
+ideas that are pretty um pretty big
+pretty obviously big important ideas and
+then the appendix is forier transforms
+which seems like a little bit of a of an
+ugly duckling in the collection right
+like some specific matthy sounding idea
+that hopefully I didn't have anything to
+do with um indeed I tell the story that
+when I was an undergraduate myself and I
+first learned 48 transforms I literally
+was thinking like this is a
+quintessential example of a mathematical
+technique I will never actually use in
+real life and then you discover once you
+take Quantum field Theory as well as
+other parts of physics the fora
+transforms are the single most important
+thing in lots of areas of theoretical
+physics so what is a fora transform it's
+just another way of thinking about the
+value of a field okay we said a value of
+the value of field the profile the
+configuration of a field whatever you
+want to call it is basically a function
+of space or a function of space time
+let's just think space let's we don't
+need to worry about Evolution right now
+although we can we will evolve through
+time at some point so at every point in
+space there's a value of the field
+that's the field profile okay so to give
+you the
+information about what the field profile
+is requires in principle an infinite
+amount of data right I have to list
+every point in space that's an infinite
+number of points and at each point I
+tell you what the field is doing now
+realistically for fields that we might
+care about maybe there's some simple
+ways of compressing all that information
+into a compact notation or whatever but
+in principle that's what I have to give
+you the idea of a fora transform is I
+can represent that information in a much
+more convenient way the information
+about what is the field doing at every
+point in space think of a simple kind of
+field configuration namely a pure wave a
+pure s function or cosine function a
+sinusoidal wave that is just a fancy
+wave saying a wave that literally just
+goes up and down with an absolutely
+fixed wavelength and an absolutely fixed
+amplitude Okay the typical idea of a
+wave a plane wave that stretches all
+throughout space that you might see in a
+picture you know a very wavelike thing
+not complicated Ripples and going in
+different directions just a very smooth
+regular wave stretching all throughout
+out space that's an example of a simple
+wave a wave that uh a configuration of
+the field waves are just configurations
+of fields by the way don't don't the the
+there's almost no difference between the
+word wave and the word field except
+sadly we have attached the word wave to
+wave functions which are different kinds
+of things I know that's very annoying
+sorry about that I I wasn't to blame for
+that anyway uh this particular kind of
+simple wave a sinusoidal wave a wave
+with a definite wavelength that remains
+absolutely constant all throughout
+infinitely big space that is a plane
+wave it is something we can represent
+mathematically using signs and cosiness
+okay if you know a little bit about your
+trigonometry functions and we call a
+wave of a definite wavelength a mode of
+the field and of course most field
+configurations aren't going to be that
+simple right they are going to be more
+predictable as you go from place to
+place but we're choosing just for a
+moment to focus on very very simple very
+very regular configurations of the
+fields one that ones that look like
+absolutely uniform sine waves all
+throughout space so back in I don't know
+but I think it was the 1800s um
+Professor Fier noticed that if I took
+different waves that is to say waves of
+different
+wavelengths right so waves of each wave
+has a definite wavelength I'm imagining
+a mode is what we call it a mode is a
+wave of definite wavelength so I'm
+imagining different modes and he says if
+I add them together I can get something
+that is not a mode right because if I
+add two waves together with different
+wavelengths I will not get a simple S
+Wave I'll get something looks more
+complicated than that and if I add three
+or 100 billion waves together then I can
+get things that look more complicated
+than just a simple sine wave
+and I don't know what his actual thought
+process was it was probably a little bit
+more systematic than that but forier
+asked himself is it possible that if I
+add an infinite number of waves together
+I can get any shape of the field I want
+and the answer is yes otherwise we
+wouldn't be going through this right the
+answer is I can express any field I want
+any configuration of the field any any
+increase and decrease and change in
+direction of a field all throughout
+space you give that to me I'm going to
+express it as a sum of these nice simple
+modes modes with a definite wavelength I
+add up different wavelengths together I
+get something that doesn't look like it
+has a wavelength at all it's an
+arbitrary mess literally any profile of
+the field can be written as a sum of
+modes and the point is that's the 48
+transform rather than giving you the
+information about what the field value
+is at every point in space I give you
+how much of each mode contributes to the
+field I guess I should to be super duper
+careful here say not
+only can you take any profile any
+configuration of the field you want and
+express it as a sum of modes of fixed
+wavelength but that expression is unique
+that is to say given a profile there is
+one and only one way of expressing it as
+a sum of modes of fixed wavelength
+that's what the 4A transform does it
+tells you what that way is that way of
+expressing some wildly varying function
+as a sum of nice sine waves and cosiness
+okay and the information is now been
+transformed the information that used to
+be at every point in space I tell you
+the value of the field now the
+information is I tell you how much of a
+contribution the field gets from each
+mode from each sine wave with a
+different with a definite wavelength you
+know some of them some wavelengths might
+be very important so there's a big
+contribution so there's a big number
+times the sine wave in the sum of all
+this infinite number of them some might
+not be that important and this fact is
+kind of amazing you know this fact is
+not at all intuitive right uh you take a
+bunch of perfectly regular up and down
+waves and in principle you can add them
+together to get any Behavior you want
+you might not have guessed that you
+could do that but you can mathem
+atically show that it's true so in some
+sense that's nice it's cute right it's a
+mathematical fact but have we really
+learned anything useful by doing this
+the 4A transform is a way of saying I
+can start with whatever field profile I
+want I can turn it into an infinite sum
+over waves of different definite
+wavelengths well yes it turns out to be
+super duper important for the following
+reasons if I think about the energy of a
+field okay the very thing the very first
+thing we're going to think about when we
+quantize our Fields is think about what
+energy the the field has and we're going
+to look at Solutions of definite energy
+right so what is the essence of the
+energy of a field a particle has two
+kinds of energy it has kinetic energy so
+a particle has an energy that depends on
+its velocity squared 1 12 MV squar uh in
+terms of the mass and the velocity the
+particle and it might also have a
+potential energy so if the particle's
+moving in an electric field or something
+like that the value of the electric
+field and the charge of the particle
+will contribute to the potential energy
+of the field sorry the potential energy
+of the particle will get a contribution
+from the electric field um the field
+itself has three kinds of energy it has
+a kinetic energy just like a particle
+does but it means something different we
+call it a kinetic energy but it's not
+the field is moving is that at each
+point the field is changing its value
+okay the field has a value at each point
+if that field is just constant then the
+kinetic constant with time then the
+kinetic energy of the field is zero at
+that point but if it's sort of vibrating
+up and down for example then it has a
+non-zero kinetic energy a field can also
+have a potential energy but it means a
+slightly different thing because for the
+particle the the potential energy means
+how it's sort of moving through space
+and feeling different values of the
+electric field or the gravitational
+field or whatever for a field what we
+call the potential energy I know it's
+very annoying we use exactly the same
+words to mean different things but
+mathematically they look the same that's
+why it's useful to look at the equations
+for the field we think about the field
+interacting with itself so an electron
+gets a potential energy from interacting
+with the gravitational field or the
+electric field or the magnetic field the
+fields get potential energy from inter
+acting with themselves and different
+fields will interact with themselves in
+different ways but all that matters for
+that is the value of the field so the
+kinetic energy depends on the derivative
+the time rate of change of the field
+whereas the potential energy only
+matters only depends on the value of the
+field it does not matter how things how
+fast things are
+changing and you might guess what the
+third kind of energy is first kind was
+kinetic second time was potential
+there's something that is new for fields
+that doesn't exist for particles which
+is the gradient energy the idea is that
+not only can the value at each point in
+space of the field change with time but
+as you go to a nearby point in space
+there can be differences in the values
+of the fields like the fields can be
+stretched a little bit or distorted a
+little bit from point to point if the
+field was exactly constant through space
+then there wouldn't be any stretching or
+Distortion energy what we call the
+gradient energy but usually the field is
+Chang in from place to place that will
+contribute to the energy of the field
+indeed those of you who have read volume
+one space time and motion know about
+relativity and you know that the
+difference between space and time will
+change depending on your point of view
+and therefore you will not be surprised
+to learn that for fields which I didn't
+say this explicitly yet but these fields
+are deeply embedded in the uh context of
+Relativity okay so there's a
+relationship between the kinetic energy
+the rate of change with respect to time
+and the gradient energy the rate of
+change with respect to space because
+space and time are related to each other
+so we have three kinds of energy okay
+kinetic energy gradient energy potential
+energy and to solve the equations for
+what the field does you need to know all
+of these so you need to know what the
+field is doing at every point in space
+because what it's doing at a nearby
+point in space will affect what the
+field does at one point in space so just
+a simple very basic dirty technical
+level it's kind of annoying to have
+these different kinds of energy floating
+around now remember the question we're
+trying to answer here why do we bother
+thinking about 4A transforms why do we
+bother thinking about the profile of the
+field as a sum of plane wave modes
+rather than as just values at each
+individual point in space well think
+about those energies think about the
+kinetic energy the potential energy the
+gradient energy
+if you write the field as modes if you
+take its 4A
+transform it still has a kinetic energy
+it's the same kind of thing still has a
+potential energy same kind of thing but
+the gradient energy is a different kind
+of thing now because by telling you that
+we're looking we're focusing in on one
+particular mode one
+particular wave with fixed wavelength
+stretching throughout all of space I've
+told you how the wave changes from place
+to place because it has a fixed
+wavelength right I've given you that
+information I don't need to separately
+give you that information at every point
+if I'm just looking at one mode of the
+field then I I have the gradient energy
+sust I know what it is I don't need to
+give you that extra information over and
+over again okay so it turns out then
+when we're solving the equations for the
+behavior of a field it's it's much
+easier to write down the solutions if we
+look at a mode of the field or if we
+look at modes of the field one at a time
+rather than looking at positions in
+space and values of the fields at
+positions in space okay so that may or
+may not have been a convincing
+explanation you know in this audio
+podcast I cannot show you the equations
+but the equations make it super duper
+clear I promise you and it is possible
+to follow them do not get in intimidated
+by the equations it's just an in
+language you can learn it and once you
+learn it you have a good warm feeling of
+accomplishment so it's worth doing so
+the lesson the upshot of all this
+digression is take a particular kind of
+field
+configuration one with a absolutely
+fixed wavelength I happen to know that I
+can write any field configuration as a
+sum of many such things but let's keep
+that in the back of your mind and focus
+on one of them pick a mode pick a wave
+that has a wavelength a definite very
+very specific frequency it's vibrating
+at ask what it is doing so in other
+words when I quantize this instead of
+assigning a complex number complex
+valued wave function to every field
+configuration let me focus in on this
+one mode of the field and assign a
+complex number to every possible value
+of the mode what does it mean value of
+the mode the wavelength is fixed but the
+amplitude is not so it might be a wave
+of a certain wavelength that is very
+gently vibrating just very slightly up
+and down or it could be vibrating by a
+lot right those are different ways that
+this mode could be vibrating and to each
+different amplitude to each different
+height of the wave that it goes up and
+down I will assign a complex number that
+is the wave function of this particular
+mode okay and you can kind of see how
+this would be easier to make make sense
+of you know modes that are vibrating by
+a lot right modes that are have again
+the wavelength is fixed so through space
+we imagine you know from point A to
+point B it goes up and down with a
+certain wavelength but the amount by
+which it goes up and down in between
+where it's zero one wavelength away the
+amount by which it goes up and down is
+arbitrary and there's more energy when
+it goes up by a lot than when it goes up
+by just a little bit and here's where
+the miracle occurs
+okay you might have thought this is a
+little bit dry and Technical and why are
+we bothering with this but a miracle is
+about to occur I promise you uh we're
+thinking of the wave function of a
+single mode of a vibrating Quantum field
+and the the mode itself that we're
+assigning a wave function to is now now
+that we've told you its wavelength it's
+just car characterized by a single
+number the height call it h okay the
+height of the wave the that is vibrating
+up and down so instead of s of X for a
+particle being a wave function we're
+going to have s of H the wave function
+of the height of the vibrating mode and
+the exact thing that happened to the
+electron in the hydrogen atom where we
+said the wave function is have to taper
+off at zero and you're going to get a
+set of discrete Solutions on the inside
+that look like orbitals and explain the
+different energy levels of atoms that
+exact same thing is going to happen to
+our mode of the quantum field at very
+very large height functions very very
+large amplitudes of the wave shaking up
+and down the wave function is going to
+have to go to zero because it can only
+be sort of localized in some particular
+set of values and therefore when we
+solve the equation we will get a
+discrete set of
+solutions a discrete set of possible
+wave functions for this one mode of this
+one field there will be a lowest energy
+wave function and there will be a simple
+separate next highest energy wave
+function and there will be one higher
+than that and there'll be a discrete
+Tower of wave functions for this one
+particular wave with one particular
+wavelength why do you care about that
+okay I mean maybe maybe you're with me
+this far and you say okay I've taken my
+wave I've decided Ed to think about my
+wave as a sum of modes of fixed
+wavelength I've focused in on one
+particular mode I have assigned a wave
+function to it and I found that the wave
+function of that mode has a discrete set
+of solutions well we're going to poke
+around and this is something it's going
+to be hard to I can't explain it really
+over words but you can you can check out
+the book but I'm going to tell you some
+facts and you can choose to believe me
+or not so look at that lowest energy
+wave function it's energy we're going to
+we're going to say it's the vacuum as we
+call it okay there's sort of nothing
+there and then there's the next highest
+energy uh wave function um it has an
+energy let's call it m the letter M and
+it turns out that it's not unique the
+the vacuum the lowest energy mode the
+lowest energy wave function is unique
+there's only one such thing but there's
+an infinite collection of next highest
+energy modes which basically correspond
+to looking at the same kind of beh
+Behavior but in different reference
+frames with different velocities if you
+like and you can calculate the energy of
+all of these different modes basically
+the same sorry of all of these different
+wave functions basically the same kind
+of wave functions just looked at from
+different reference frames and they get
+more and more energy the more velocity
+you have with respect to the rest frame
+okay and then you look at the next
+highest energy wave functions and it if
+the first first one had a lowest energy
+of 2 m so you have a a vacuum state with
+Energy Zero a next highest one with
+energy M or higher depending on if you
+have velocity with respect to it and the
+one after that has a v has a an energy 2
+* m so what's going on there going to be
+one with 3 * m four * m Etc it's
+absolutely um uniform growth of energies
+of these different particular wave
+functions well I'm not going to keep you
+in suspense much longer
+the vacuum state is what we what we
+interpret as a Quantum state with no
+particles it's empty space that first
+excited state as we call it with energy
+M I should say yeah I'm sorry I should
+this is back in my mind and certainly
+will be in your mind if you're reading
+the book but I didn't say it out loud we
+always in particle physics use units
+where the speed of light is set equal to
+one so C the speed of light equals 1 to
+me and so when I say it has energy M
+what I really mean is it has energy mc^
+s what is that where have we ever heard
+that before the energy of something is
+MC squ ah that is the energy of a single
+particle with mass m in its rest frame
+if you move to another rest frame the
+energy will go up because it will also
+have a little bit of kinetic energy as
+well as the rest energy what about this
+wave function that has an energy of 2 *
+m well that's really 2 * m c^ 2 what is
+that the energy of it's the energy of
+two particles with mass m and then you
+have a set of other related wave
+functions where the particles are moving
+with respect to each other and then you
+have a a vibrational wave function with
+energy 3 times mc^ s Etc and they are
+all related to each other by exactly the
+ways that you would expect a set of
+particles and their energies to be
+related to each
+other that was a lot and you know in the
+book I go through this super explicitly
+and I know that the actual manipulations
+are kind of boring and tedious right but
+the
+result is is so important it's one of
+the most important things literally in
+all of human knowledge this particular
+result because the result that we got
+here through talking about 4 transforms
+and thinking about Quantum fields in
+terms of modes with different um
+wavelengths and then the different ways
+that you could get a wave function for
+that mode the the result we got here is
+saying that when you take a field which
+by itself is continuous and smooth and
+nothing discreet about it and you assign
+a wave function to the field which is
+also by itself continuous and smooth and
+nothing discreet about it the solutions
+to the equation
+the different kinds of behavior that
+that wave function of the field can
+exhibit come in a discrete
+set they look like particles and you can
+go much further than this in ex uh
+explicating the fact that they behave
+like
+particles these are what particles are
+according to Quantum field Theory
+according to Quantum field Theory the
+world is not made of particles the world
+is not made of discrete lumps of energy
+the world is made of fields that have
+wave functions if you want to you can
+just say the world is made of the wave
+function of the fields that's a that's a
+foundations of physics question that
+we're not going to get into right now
+but the point is there's nothing discret
+or lumpy about what the world is made of
+the discreetness comes in how the world
+behaves and it comes because we have
+quantized our
+Fields this is a slightly more
+mathematically careful and sophisticated
+way of saying something you may have
+heard me say before in other contexts
+particles are vibrations in Quantum
+Fields that's what particles are when
+you apply the rules of quantum mechanics
+to Fields you get a set of solutions
+that look like particles in exactly the
+same way that when you solve the shener
+equation for an electron in an atom you
+get a set of discrete orbitals with
+discrete energies or for that matter
+when you pluck a guitar string you get a
+set of discrete frequencies at which
+it's VI vibrates all of the discreetness
+is emergent that's where particles come
+from out of quantum field Theory and you
+get literally everything that you expect
+from particles many different particles
+will have different energies going in
+exactly the same way
+Etc good so I hope that was convincing I
+hope that you see a little bit now when
+you start with Fields they can look like
+particles and you know this means two
+things it means that you know it putting
+yourself in the mindset of a physicist
+in the 1920s when quantum mechanics was
+being invented okay one is I can take
+the electromagnetic field which I know
+and love since the time of Maxwell in
+the 1800s and I can quantize it I can do
+all this I can treat it in terms of
+modes and I can assign wave functions
+and I can get lumps of energy which I uh
+which I interpret as particles which we
+will call photons that's what photons
+are the other thing is that these other
+things we had lying around the electrons
+the protons Etc the things we T thought
+of as
+particles we can now say well maybe
+those are vibrations in Quantum Fields
+so secretly without even trying very
+hard we have stumbled on an enormously
+powerful
+unification of different kinds of
+physics in the late 1800s we might have
+thought that the universe is made of
+fields and particles particles being the
+matter in the universe and Fields being
+the forces but now we're getting a
+glimpse of the idea thanks to quantum
+mechanics that it's actually all just
+fields and the fields show up both as
+big classical Fields under the right
+circumstances and also as discrete
+individual particles on others under
+other circumstances and so one challenge
+that we're faced with right away is why
+do electrons and photons seem to behave
+so differently from each other and the
+answer basically comes down to symmetry
+the idea of symmetry as I say in the
+book it's very helpful in classical
+physics super helpful in relativ in
+sorry particle-based quantum mechanics
+but it becomes absolutely Central in
+Quantum field Theory so much so there's
+a whole chapter in the book devoted to
+symmetry where I teach you group Theory
+you will learn what su2 and su3 and all
+those things are this is one of the
+chapters that I actually wrote a lot
+more than appears in the book I wrote a
+lot and then I'm trying to you know even
+though we're doing the equations I don't
+want it to be overwhelming so I paired
+it down there was a lot that I had put
+in the original version of the chapter
+that was a little bit more than you need
+to just do um Quantum field Theory but
+the specific symmetries we're talking
+about right now are space-time
+symmetries so there's two different
+kinds of symmetries you can get in
+Quantum field Theory there are
+symmetries of SpaceTime itself you know
+there is translation invariance it
+doesn't matter where you do the
+experiment there's time translation
+invariance doesn't matter when you do
+the experiment rotational invariance
+boost invariance doesn't matter how fast
+you're moving in space but then there's
+also what do we call what we call
+internal symmetries where you don't
+change where you are or how you're
+oriented in SpaceTime you just rotate
+Fields into each other and and both of
+those are going to be very important but
+for the question at hand right now the
+difference between photons and electrons
+um one of the differences comes down to
+how these fields change when you do a
+rotation in space we're dealing here
+with relativistic Quantum field Theory
+that's sort of implicit when we say
+Quantum field Theory but you know it's
+not necessarily that you need to be
+relativistic that you need to be
+thinking about relativity when you do
+field Theory relativity in this case in
+this sense means that it's everything is
+relative including the velocity of two
+different objects with respect to each
+other right there's no such thing as the
+velocity of an object there's just the
+relative velocity of two different kinds
+of objects now you can have
+circumstances where it's appropriate to
+do non-relativistic field Theory so if
+you're a condensed matter physicist so
+you're not a particle physicist thinking
+about smashing two particles together in
+otherwise empty space but you have a
+chunk of material here and maybe there's
+some vibrational modes of the material
+right we were talking about modes before
+ways that a field can vibrate with a
+definite wavelength well when you have a
+crystal or a metal or something like
+that there are ways that the material
+can vibrate and you can separate that
+into modes and you can quantize them and
+you're basically dealing with a
+non-relativistic Quantum field Theory
+because there is a rest frame that is
+well defined in that case the rest frame
+of the material that you're looking at
+but anyway we're not doing that we are
+doing relativistic Quantum field Theory
+but for this question we really care
+about rotations in space how do Fields
+change as you rotate in space and really
+we're dealing with the wave function of
+a field as we said and that makes things
+a wee bit more complicated but I'm going
+to again try to distill it down to the
+basic essences
+imagine you have some wave function for
+some field uh in fact imagine that the
+state of the field is such that it looks
+like there's one particle there remember
+we said that there are quantum states of
+the field and an arbitrary Quantum state
+of a field is basically a
+superposition of different kinds of
+particles different numbers of particles
+there is a particular wave function the
+field that could could have representing
+zero particles and different other ones
+representing one or two or more in
+general you could be a superposition of
+all sorts of different kinds that's
+Quantum Mechanics for you right that's
+what let that is what lets Quantum field
+Theory describe changes between the
+number of particles because a single
+wave function for a single field
+implicitly includes zero particle States
+one particle States two particle States
+and so on upward so let's zoom in on a
+wave function representing a single
+particle so I want to I want to
+emphasize this even though what is
+really going on is a Quantum field there
+are certain circumstances in which it's
+perfectly sensible to think of a single
+particle that is a kind of excitation of
+a single Quantum field so it's not
+incompatible we're not cheating when we
+say let's think of one particle within
+the context of quantum field Theory you
+can talk about what an electron is doing
+in the context of quantum field Theory
+so let's do that let's talk about a
+single electron
+and let's ask what happens when you
+rotate your frame of reference in that
+for that wave function of a single
+electron in fact let's not rotate by
+like 90° let's rotate all the way around
+360° 2 pi radians we scientists would
+say well your naive expectation is that
+if you just do a whole Rotation by 360
+Degrees the wave function is going to
+come back to where it started right
+that's a reflection of the symmetry of
+rotation
+but if you think about it a little bit
+more carefully there's another
+possibility what if the wave function
+gets multiplied by minus1 when you
+rotate by
+360° that's interesting because it
+leaves all of the predictions unchanged
+because the predictions in quantum
+mechanics Quantum field Theory included
+come from squaring the wave function now
+there's a philosophical question that
+arises here is it true that all we care
+about are the observation outcomes or
+should we care about other things good
+go ahead and contemplate those things
+but for these books for this book series
+we're not dwelling on those
+philosophical questions we're thinking
+like hard-nose physicists and the
+physicist will just say look I care
+about the observations it's just as good
+if a wave function picks up a minus sign
+when I rotate by 360° as it is if it
+remains completely
+unchanged and this in fact there's more
+subtle things you can say what what
+happened s when you do rotate by 180° or
+by 90°
+Etc and long story short you get all
+different possible kinds of fields every
+individual kind of field will give rise
+to a single kind of particle that has a
+definite property when it's rotated in
+space and the properties might be that
+the wave function Remains the Same under
+360° or that it picks up a minus one and
+that corresponds to what we call call
+the spin of the particle this actually
+this this fact that the transformation
+properties of wave functions under
+rotations is related to the spin of the
+particle is the quantum mechanical
+version of a statement that we know in
+classical physics from nerder theorem
+nerder theorem says that conserved
+quantities arise from symmetries of the
+theory and one such symmetry is rotation
+In classical mechanics and the conserved
+quantity that arises from that is
+angular momentum of which spin is one
+kind so the quantum version of this is
+that the transformation of the wave
+functions under rotations tells us the
+spin of the particle and basically again
+very long Stories being made very short
+here the kinds of particles that arise
+from fields in such a way that their
+wave function is unchanged under a
+rotation by
+360° have spin that are an integer value
+0 1 2 3 Etc secretly just like we set
+the speed of light equal to one before
+now we're setting Plank's constant equal
+to one Plank's constant H is the
+fundamental unit of uh quantum mechanics
+and it it turns out to have the same
+units as angular momentum so the spin of
+a particle is actually measured in units
+of har bar but we said H bar equal to
+one so rather than saying spin zero spin
+H bar Spin 2 har bar we just say spin
+zero spin one spin two those are all
+different kinds of particles that come
+back their wave function comes back to
+the same value when you do a 360°
+rotation if it picks up a minus one then
+it turns out that the spin is a half
+integer value so it's spin one half spin
+three halves spin five halves Etc
+there's a long mathematically intricate
+conversation to have about
+representations of the Symmetry groups
+of SpaceTime on Quantum fields and the
+mathematical object that tells us uh
+that that lets us describe these spin
+one2 three half particles are called
+Spinners s p i n o r s they're uh it's a
+um coinage that comes from tensors which
+are uh other kinds of objects so
+Spinners are these uh spin one half spin
+three have Fields so keep that in mind
+okay there are kinds of particles like
+electrons like neutrinos like quarks
+lots of different particles that have a
+wave function that picks up a minus sign
+when we rotate by
+360° now think about something that is
+highly analogous to that but different
+instead of thinking of one particle and
+what happens when we rotate it by
+360° think about two particles in fact
+think about two identical
+particles as a footnote here I will
+mention you might have heard of this
+story that John Wheeler and Richard
+Fineman were talking about why do all
+electrons have the same mass and the
+same charge maybe because they're all
+the same electron because an electron
+going backward in time is kind of like a
+positron and maybe there's only one
+electron that just bounces forever and
+ever backward and forward in time that
+is false that did not did not work it
+was a nice idea but it and it led F to
+think about fman diagrams and things
+like that but it it was it's just a
+pretty Story the actual reason why all
+electrons have the same mass and charge
+is because they are all vibrations in
+the same underlying electron field so
+what that means is that two electrons
+are absolutely identical to each other
+and this is a technical term in Quantum
+field Theory they are identical
+particles okay so if I have a state of
+two electrons and there is a position of
+one particle of one electron X1 and the
+position of the other electron X2 again
+they're not they don't have definite
+positions they have positions we could
+observe them to be at but there's no
+difference between X1 and X2 there's a
+symmetry there uh there's no way you can
+say oh it's this electron who I name
+Alice who is at position X1 and electron
+Bob is at X2 all you know is that
+there's one electron at one position and
+one electron at the other so we can ask
+what happens when we take two identical
+particles that is to say the wave
+function corresponding to a Quantum
+state repres representing two identical
+particles and we interchange them okay
+so we're not rotating we're not changing
+our um physical coordinate system or
+anything like that we're physically
+taking these two particles and
+exchanging one for the other by moving
+them through space but again they're
+identical particles so you might think
+well if I exchange one for the other the
+wave function doesn't change but by
+exactly the same argument the wave
+function could also pick up a minus sign
+overall and guess what both
+possibilities are realized in the real
+world um there are particles who when
+they get interchanged identical
+particles when they get interchanged
+their W function is unchanged and we
+call those bons and there are other
+particles whose wave functions when we
+interchange them pick up a minus sign
+and we call those
+fermion and the physical behavior of
+these kinds of particles is very
+different think about Fons because
+that's the really interesting case here
+uh a feron set of perion part particles
+have the property that when you take
+these two particles and you interchange
+them then the overall wave function
+picks up a minus sign okay so what
+happens if you try to take two Fons and
+put them in the same exact Quantum state
+right you could imagine trying to do
+that two electrons with exactly the same
+wave function just overlapping each
+other but then interchanging them
+doesn't do anything they literally
+already in the same state you didn't do
+anything to it when you interchange them
+but we have a rule that says the wave
+function has to pick up a minus sign how
+is it possible for a wave function to
+pick up a minus sign when you didn't
+change the wave function at all and the
+answer is it's not that wave function
+would have to be strictly zero so these
+firion these particles that pick up a
+minus sign under interchange of
+identical particles have a property that
+they cannot be in the same Quantum state
+for any Quantum State there can only be
+one firmon in it at a time
+or more informally Fons take up space
+bosons are the opposite bosons if you
+have two identical particles in the same
+Quantum State that's great because when
+you interchange them nothing happens and
+indeed if they're already in the same
+Quantum State nothing would happen so
+physically this corresponds to very
+different Behavior the fact that that
+Fons cannot be in the same Quantum state
+is the PO Exclusion Principle which po
+actually Meed before we really
+understood Fons and bosons but it's why
+atoms are interesting it's why matter
+has the shapes and configurations that
+it does because you can't put electrons
+over and over in the same Quantum State
+orbiting an atom electrons have spins
+they can be spin up and spin down so in
+any one
+spatially uh definite wave function you
+can put two different electrons in there
+because their spins can be oppositely
+aligned but then that's all you can do
+then you got to go into more complicated
+looking spatial wave functions and that
+is the origin of all of chemistry
+so the the P Exclusion Principle which
+can be derived in Quantum field Theory
+from the properties of identical
+particles that get a minus sign under
+their
+interchange um is really really super
+duper important whereas for bons they
+like to pile up on top of each other
+right they actually prefer it so bons
+like photons for example very naturally
+pile on top of each other and that
+that's what gives rise to classical
+looking force fields that's why the
+electric field the magnetic field the
+gravitational field these are all fields
+that we absolutely come into contact
+with in the ordinary classical
+macroscopic World why because they are
+Bon excitations that have piled on top
+of each other by a huge amount until
+they look classical that's perfectly
+allowed whereas Fons take up space
+that's why matter is solid that's why
+the table in front of me right now
+doesn't collapse because the electrons
+have definite shapes the wave functions
+of the
+electrons I won't go into it right now
+but one thing I rant about at a brief uh
+period in the book is this idea that
+that atoms are mostly empty space no
+they're not atoms are mostly wave
+function and those wave function takes
+up space and that fact is not merely
+philosophical it's crucially important
+it's why matter is solid don't listen to
+people who tell you that atoms are
+mostly empty space anyway you might have
+noticed if you hang around in the wrong
+street corners and know a little bit
+about particle physics in Quantum field
+theory that I defined the firon boson
+distinction as what happens Under The
+Interchange of two particles and I
+defined the spin distinction the
+distinction between particles of spin 0
+1 2 Etc versus particles with spin one
+half three Hales Etc as what happens
+under the rotation of a single particle
+now you might be confused because you
+might be remembering that people told
+you that bons are particles of spin 0 1
+two Fons are particles of spin one half
+three halves five halves Etc why did
+that connection not get made the answer
+is that connection exists but it's not a
+definition it's a theorem that you can
+prove you can relate using techniques
+from relativistic Quantum field Theory
+the transformation properties of a
+single wave particle wave function under
+rotation to the transformation
+properties of a two particle wave
+function under interchange and those
+minus signs that we talked about in both
+cases cancel each other out so there's a
+theorem the spin statistics theorem that
+says that the particles that pick up a
+minus sign under a 360 degree rotation
+are exactly identical are the same as
+the particles who pick up a minus sign
+Under The Interchange of two particles
+in the wave function so therefore you
+can prove that Fons which are defined as
+particles that can't be in the same
+Quantum State particles that take up
+space must have half integer spins one
+half three Hales Etc electrons are Fons
+neutrinos quarks Etc bosons the
+particles whose wave function are
+unchanged under a rotation are exactly
+nope sorry I said that exactly wrong
+didn't I bons the particles who whose
+wave function are unchanged Under The
+Interchange of two identical particles
+coincide exactly with those particles um
+who pick up whose wave functions are
+unchanged we do a 360 degree rotation
+that's the spin statistics theorem we
+didn't just prove it right there in fact
+there's like controversy in the
+literature about who really has proven
+the spin statistics theorem because
+there's a lot of handwavy arguments that
+kind of sound like a proof but really
+don't rely on relativistic Quantum field
+Theory and therefore they can't be right
+because the theorem itself actually does
+rely on relativistic Quantum field
+Theory but what we're trying to do here
+is give you a feeling for why there is
+this relationship between Spin and
+statistics statistics being being the uh
+question about whether or not the field
+particle excitations act like Fons or
+bosons okay so that's an example of how
+you start from this single unified idea
+everything is Fields subject to the
+rules of quantum mechanics and you ask
+yourself okay so what kinds of fields
+could there be and the answer are you
+know Fields whose wave functions change
+in different ways under rotations and
+you invent bosons and Fons it naturally
+comes out of the combination of
+Relativity with Quantum field Theory
+which is really quite fun now of course
+the real fun comes when you let these
+particles
+or these fields interact with each other
+okay and that's where you get into
+findan diagrams and renormalization and
+infinity and effective field Theory and
+the whole bit if you want to know what a
+virtual particle really is read the book
+it's a way of talking about the behavior
+of quantum Fields virtual particles are
+not real particles but they are useful
+ways of talking about the behavior of
+quantum Fields when other particles
+scatter off of each other now I will
+confess
+when I um was thinking about this solo
+podcast to advertise the book I uh you
+know I was overwhelmed with a number of
+things I could possibly talk about and
+really the thing that I think is the
+most important thing that I talk about
+in the book is the idea of effective
+field Theory and effective field Theory
+comes from thinking about the fact that
+when you scatter particles off of each
+other and you use findan diagrams to
+calculate the likelihood of that
+scattering event happening very
+frequently the answer is infinity right
+the famous Infinities of quantum field
+Theory and Fineman and schwinger and
+tominaga and others figured out ways to
+subtract off the Infinities and get
+finite answers and it all works very
+very well but it was never very
+satisfying so effective field theory is
+an idea that came along in the 60s and
+70s and is the way that modern
+physicists think and you were never told
+this and this is very frustrating to me
+that the popular discussions of quantum
+field Theory never me this Central
+organizing principle of the field the
+effective field Theory Paradigm and
+basically Ken Wilson said look the
+reason why you get Infinities when you
+scatter these particles off of each
+other is because you're summing up
+contributions from virtual particles
+with arbitrarily High energies and in
+Quantum field Theory high energy means
+short wavelength okay there's a
+relationship shorter the wavelength the
+higher the energy same thing is true in
+ordinary light right uh a photon with a
+short wavelength corresponds to a higher
+energy particle and Wilson says you
+don't know what's going on at these
+short distances and high energies so you
+should just be honest you should admit
+you don't know it and he figured out a
+mathematical procedure for putting on a
+cut off on your theory and saying here
+is the energy below which I think I
+understand physics and above which I
+don't understand physics so I can use my
+Quantum field Theory knowledge to write
+down a theory that only is supposed to
+apply in those re regimes with energies
+below the cut off that is to say only in
+the regime I understand I'm ignoring
+things that go on at higher energies
+that I don't understand except for the
+effects that they have on lower energy
+longer wavelength particles and Fields
+that's the effective field Theory
+Paradigm it works super well it's the
+most important thing but I will confess
+so I did uh you know I want to give the
+people what they want you know me I'm
+here to serve and so I went onto patreon
+where um I'm the mindscape podcast has a
+patreon page with wonderful supporters
+and so you could be a supporter by the
+way patreon.com shanm Caroll and I asked
+I said like what are the things in
+Quantum field Theory you most want to
+hear about in the solo podcast effective
+field Theory did not get a lot of votes
+I got to say the votes were for you know
+where do particles come from symmetries
+things like that so that's what we're
+here talking about if you want more on
+the beauty and elegance and power of
+effective field Theory read the book I
+promise you that it is there a lot is
+hiding at Short distances and high
+energies but we know how to deal with it
+so giving the people what they want uh
+let's instead turn to the completing
+this picture of what kinds of fields are
+there I said there are bosons and Fons
+these are two different kinds of fields
+they're related to the spins of the
+particles that you get when you look at
+the quantum wave functions okay but we
+know that there's more to it than that
+um we know that photons and other Force
+carrying particles have special
+properties they're bons they're spin one
+bons except for the graviton which is
+spin two but they're you know a little
+bit different there's something going on
+there what is going on there and the
+answer is once again a question of
+symmetry but now it's an internal
+symmetry question rather than A
+Spacetime SYM syry question so SpaceTime
+symmetry is like I said rotations
+translations in space boosts changing
+the velocity and so forth but we can
+also in Quantum field Theory there's a
+new thing that can happen we have a set
+of fields and rather than rotating in
+space we simply rotate the fields into
+each other at each point in space okay
+so imagine I have two fields fi1 and f 2
+the Greek letter fi is the simplest
+thing that we use for uh spin zero
+scalar bosonic field in Quantum field
+Theory we always call it fi ever since I
+don't know ever since the day and so if
+we have two Fields with exactly the same
+masses and the same interactions F1 and
+5 2 we could transform them into each
+other we could exchange F1 for 5 2 or we
+could even think of 51 and 52 as
+defining a little two-dimensional Vector
+space and rotating them by some
+arbitrary angle into each other and if
+they're truly identical if they're truly
+the same kind of field we would have no
+way of knowing that we had done that
+rotation it would be a symmetry of the
+theory that's really what a symmetry is
+a symmetry is just a way of saying
+there's something we can do that doesn't
+matter that has no physical effects when
+we were talking about rotations or
+spatial translations we said it doesn't
+matter how you rotate your experiment
+time translations say doesn't matter
+when you do your experiment spatial
+translations say it doesn't matter where
+you do your experiment boosts say it
+doesn't matter how fast you're moving
+when you do your experiment right so
+these internal symmetries are saying it
+doesn't matter how we rotate these
+fields into each other so naturally this
+is something that could happen it turns
+out it does happen it's going to happen
+a lot in Quantum field Theory and so we
+need to think carefully about the
+mathematics of the Symmetry
+Transformations and so group Theory is
+the mathematical structure for thinking
+about that and we talk in the whole
+chapter on symmetries a lot about group
+Theory but let's simplify it here down
+to the Bare Bones let's imagine we have
+three Fields let's say three fields that
+are more or less identical to each other
+okay uh but we can rotate them into each
+other so what is the set of possible
+ways to rotate three Fields into each
+other it's just like space like space is
+threedimensional we have X Y and Z axes
+we can rotate those together
+and the set of all possible
+transformations in a three-dimensional
+space rotating things and not doing
+anything else so not stretching them
+just rotating them into each other is
+called
+S3 the special orthogonal group in three
+dimensions if you had eight fields that
+were identical to each other but there
+were eight different ones and you could
+rotate them into each other you would
+say they had an S8 symmetry and so forth
+it's just a number of fields that
+matters more often in Quantum field
+Theory you will come across the group
+su3 or su2 or su8 or whatever and that
+change from s so to Su reflects the fact
+that very often our Quantum fields are
+complex valued Fields so each field is
+not a number at each point in space but
+a complex number at each point in space
+so this is all to say don't be
+intimidated
+when you hear people say the standard
+model of particle physics has a gauge
+group S3 cross su2 cross U1 that's just
+a way of saying there are three fields
+that are complex valued that get rotated
+into each other there's a separate set
+of two fields that are also complex
+value that get rotated into each other
+that's
+su2 and then you can have a single
+complex valued field that can still in
+some sense rotate into itself because a
+complex valued field has a real part and
+an imaginary part there is something
+called the complex plane where we have a
+complex number we write the real value
+of the number on the horizontal axis the
+imaginary value on the vertical axis
+well you can rotate the complex plane
+and that rotation is called U1 so these
+are all just fancy ways of talking about
+rotating Fields into each other okay and
+it doesn't matter it doesn't matter what
+rotation you do the same physical
+predictions will be made that's what
+makes it a symmetry indeed this idea of
+having three fields that we rotate into
+each other is a very simple example they
+are called quarks okay you may have
+heard that quarks come in three colors
+there are red quarks green quarks and
+blue quarks that's not quite right like
+so many things that you've been told uh
+you've been told something that is not
+quite right but good enough and now
+you're ready for the real stuff the real
+stuff is not that there are three
+different quarks but there is a
+three-dimensional space of quarks so the
+subtle difference I'm pointing to here
+is it's not that there are red quarks
+green quarks and blue quarks there are
+quarks that every Quark I should say
+should be thought of as a combination of
+a bit of red a bit of green and a bit of
+blue and you can choose you can rotate
+your axes so you define what you mean by
+red green or blue there's no actual
+reality to it has nothing to do with the
+real colors okay you're not looking at a
+blue quark and it looks blue or anything
+like that this is just a label RG and B
+are completely equivalent to each other
+this three-dimensional Vector space of
+Quark colors and the real statement is
+not there are three different colors of
+quarks but that quarks every Quark field
+is an element at every point in space of
+this three-dimensional three complex
+dimensional I should say Vector space so
+there is an suu three symmetry rotating
+the red green and blue axes into each
+other three different kinds of quarks we
+can eventually label them by color
+there's a symmetry where we can rotate
+them into each other su3 very very nice
+and then we'll talk about in the book
+what that means su3 etc etc how to
+implement it great so what what
+difference does that make really well
+you you instantly know there is a
+conserved quantity because there is a
+symmetry in neer's theorem tells you
+there's always a conserved quantity when
+there's a symmetry so that's nice but it
+isn't quite the punchline the punch line
+comes from this let's imagine we have an
+even better symmetry so we have these
+three fields we can rotate into each
+other call that rotation su3 that's nice
+but what if I want to rotate the axes of
+my red green blue space in one way at
+some point and in a completely different
+way at some other point I didn't say
+that I could do that I'm just asking
+whether it would be possible so there is
+something called a global symmetry
+transformation where we take what we've
+defined to be red green and blue and
+we've we rotate them everywhere all at
+once in some particular way so we do a
+global transformation of what we mean by
+red green and blue that's fine no one
+really um is bothered by that but if you
+want if you have the aspiration of
+saying I would like to separately Define
+what I mean by red green and blue
+independently at every point in space
+can I do that that would be an
+enormously bigger symmetry right because
+I'm separately able to Define what I
+mean by red green and blue all
+throughout space that's a lot going on
+and the answer is you can do that but
+you have to sort of figure you have to
+make sure that you're allowed to that
+it's a well-defined thing because
+whether we call a at any one point in
+space a quark field whether we call it
+red green or blue or some combination
+thereof that's completely arbitrary
+right that makes no physical difference
+but if we have a two different points in
+space we have the same Quark field
+remember the Quark field will take
+values at every point in space and let's
+ask the following question at these two
+different points in space does the Quark
+field have the same color or does it
+have some different color is it rotated
+by 90° or whatever whatever that should
+be a well- defined question right is it
+the same color or a different color well
+if I'm allowed to rotate my axes
+separately at every point in space it
+seems like I can't answer that question
+because I could have some Quark field
+that I am just simply defining to be red
+at one point in Space by appropriately
+rotating my little red green blue axes
+and again these axes are completely
+imaginary like not imaginary in the
+imaginary number sense but conceptual
+they're not axes of literal space
+they're in Quark space okay there's
+three different directions the Quark
+field can be vibrating the red Direction
+the green Direction the blue Direction
+and likewise okay so I have a red Quark
+at one point in space and I I rotate my
+Axis so that at some other point in
+space it's also a red Quark but is that
+legit I mean I could have rotated it so
+it was a blue quark and there's a
+physical difference there so what I'm
+getting at is if you want to be able to
+have this Mega symmetry that lets you
+rotate in red green blue space
+independently at every point in space
+you also need some way to
+compare you need some way to answer the
+question what is the value let's put it
+this way how does the value of the color
+of the Quark change as I travel along
+some path okay I can connect these two
+points in space with some path and I can
+ask how the axes that Define red green
+and blue are changing as I move down the
+path
+so I need some information that lets me
+answer that question how do these axes
+change as I go down the path how does
+the definition of red green and blue
+change it's not a rigid structure like
+it would have been if I just had that
+Global symmetry now I'm able to change
+what I mean by red green and blue
+independently everywhere something needs
+to absorb the information of how I did
+that what would do that what would carry
+that information about how I defined red
+green and blue at every point in Space
+the answer is a field I need another
+kind of field I already have the Quark
+field in fact I have this sort of three
+different kinds of Quark field the red
+green and blue three different
+directions in which the Quark can rotate
+but now I need an entirely new kind of
+field to carry the information that
+tells me how to relate the red green and
+blue axes at different points in space
+and the mathematicians know how to do
+this this is called a connection field
+and the mathematical subject that
+studies these things is called fiber
+bundles it's a form of it's a a subject
+within differential geometry you can
+read all about it again we're not going
+to go into all those details but the
+point and this is a big point and it's
+another one of those miraculous points
+that that is very very important is that
+you can do these independent symmetry
+Transformations at different points but
+only if you introduce a new field that
+lets you keep track of the information
+relating what's going on at different
+points so these
+symmetries that can happen independently
+at every different point are called
+gauge symmetries or simply local
+symmetries in contrast with the global
+symmetries that we were talking about to
+start gauge symmetries unlike unlike
+Global symmetries come along with the
+new field the gauge field AKA The
+Connection those are the same thing the
+gauge field the connection field the
+field that keeps track of how your axes
+are changing from point to point in
+space okay it's much like in SpaceTime
+if you go back to book one of the
+biggest ideas in SpaceTime just to
+compare the the question what direction
+is a vector pointing in you need to be
+able to parallel transport vectors from
+one point to another and you need a
+connection field to be able to do that
+that connection depends on the metric in
+general relativity here in gauge
+theories of particle physics there's no
+metric there just is the connection
+that's a field shows up as the gauge
+field and so what does that field do
+what are its Dynamics how does it behave
+how does it interact with other fields
+there's a whole bunch of questions
+you're going to read the book so you're
+going to know the answer to these
+questions but the punchline is that
+field that connection field you need to
+implement the gauge symmetry is the
+force field it is the electromagnetic
+field for electromagnetism or the
+gravitational field for gravity and it
+gives rise to particles photons for
+electromagnetism gravitons for gravity
+and there's also the nuclear forces the
+strong and weak nuclear
+forces mathematically they are boson
+fields and you can derive that and their
+interactions with other fields the way
+that the force carrying Fields interact
+with the non-force carrying Fields the
+electrons neutrinos and quarks and so
+forth is entirely determined by the
+demands of this symmetry okay given the
+fact that you want this symmetry to
+exist not only do you need this gauge
+field but you know how the gauge field
+interacts with other fields and you know
+more than that the Symmetry is super
+powerful this is why physicists sort of
+start jumping up and down when they talk
+about symmetry they get very excited
+because it really is a very powerful
+concept you can derive features of the
+Dynamics of the gauge Fields all by
+itself so in particular there's one very
+very important feature that kind of
+puzzled people for a long time let me
+let me back up to just mention the idea
+of a gauge field was kind of understood
+by Maxwell you know he understood that
+his electric field and magnetic field
+could be derived from a more fundamental
+single thing that we would Now call the
+gauge field it wasn't until the
+1950s that Yang and Mills suggested
+generalizing this idea of the
+electromagnetic gauge field to more
+complicated gauge Fields su2 su3 Etc and
+it took a while took until the 70s
+really for us to figure out how to make
+that happen Okay but it turns out that
+that symmetry this su2 or su3 symmetry
+or whatever it is has a very direct
+implication for the particles that arise
+from these gauge fields and the the
+implication is the particles have to
+have zero mass and again this is
+something where you will be delighted
+when you read the book because you will
+see why that's true because it right it
+comes right out from of the equations
+given what you mean by mass mass is a
+particular kind of potential energy that
+the fields can have and there's no way
+to have that kind of potential energy
+and respect the Symmetry at the same
+time so there's a direct line from
+saying there's a gauge symmetry to
+saying and there's a massless particle
+and that's beautiful and lovely because
+we have the photon which is a massless
+particle we have the graviton which is a
+massless particle I know we haven't
+detected gravitons yet and people get
+fussy about it but if you believe the
+basic features of general relativity and
+quantum mechanics gravitons will exist
+they're just too weakly interacting to
+ever be detected I would not have any
+skepticism that they really
+exist the problem is that those are the
+only two massless gauge bons that we
+know about the photon and the graviton
+right at least that we knew about back
+in the day so when we were thinking
+about this back in the 50s and 60s
+people were like wait a minute this is a
+problem uh we would love it if this
+beautiful mathematical structure of
+gauge Symmetry and the associated Fields
+could somehow help us understand not
+only electromagnetism and gravity but
+also this the nuclear forces there are
+two nuclear forces the weak nuclear
+force and the strong nuclear force not
+the most romantic names I know but
+that's what we're stuck with okay the
+weak force and the strong force both of
+them are short range forces that's why
+you don't notice them in our everyday
+lives in our everyday lives we really
+only notice electricity magnetism or
+gravity as far as bosonic force fields
+are
+concerned so if Yang and Mills have this
+idea about gauge symmetries but gauge
+symmetries imply that that the force
+carrying particles are massless and
+there's this little mathematical trick
+you can do to show that massless
+particles always give rise to long range
+forces which it seems that you can then
+we're stuck right because the things
+that we want to explain experimentally
+are short range forces and it seems like
+the idea doesn't work of course
+physicists are not uh as easily as
+easily um dissuaded by as that they will
+keep trying because and they should keep
+trying and you know this is also true
+for modern theories where we're thinking
+about the Multiverse or string theory or
+Loop quantum gravity or whatever you
+will very often say okay if my theory
+Works in a certain way I predict X X is
+not true right but you don't give up you
+say well maybe I didn't think hard
+enough about about what my theory really
+predicts that's absolutely the situation
+they were in in the 50s and 60s thinking
+about gauge symmetries the idea was so
+incredibly attractive they wanted to
+make it work even though it predicted
+massless bosons that were not observed
+so what is going
+on well it turns out there are several
+different ways to get rid of these
+massless bons and nature uses all of
+them well there's two very very
+straightforward ways and nature uses
+both of them let's put it that way so we
+can think about this in terms of phases
+of our gauge symmetry just like water
+can be in the liquid solid or gas phase
+a gauge field can appear in different
+phases not really depending on
+temperature although that's also true
+but it really depends on other
+fundamental variables fundamental
+properties of the underlying physical
+equations of motion so one phase is the
+so-called kolom phase km's law is just
+the electromagnetic version of Newton's
+inverse Square law for Gravity so you
+could call it the Newton phase if you
+wanted to the kulum phase is the phase
+where the gauge Bon are
+massless and can easily travel
+throughout the Universe photons and
+gravitons both qualify for that and in
+that case you have long range forces
+with an inverse Square law and indeed
+for both electricity magnetism and
+gravity you have long range forces with
+an inverse Square law it's fun and and
+amusing to see the fact that kul's law
+and Newton's law of gravity are both
+inverse Square laws coming out of an
+underlying gauge symmetry for the forces
+that give rise to
+them but there are other phases these
+gauge symmetries can be in so one phase
+happens when you have the Symmetry okay
+you have this symmetry um this gauge
+symmetry that would give you that does
+would and does give rise to gauge bons
+but the symmet is broken spontaneously
+what does that mean spontaneous breaking
+of a symmetry means when the Symmetry is
+broken not because the fundamental deep
+down equations of motion violate the
+Symmetry but because the specific
+configuration of the world violates the
+Symmetry for example rotations in
+three-dimensional space are a a symmetry
+of the laws of physics but here on Earth
+there's a difference between up and down
+right there's an arrow of space in a
+very very direct kind of way and that is
+not surprising to us no one thinks
+that's because of the fundamental laws
+of physics I mean maybe Aristotle did
+but now we know better we know it's
+because we have the Earth underneath our
+feet the actual configuration of matter
+is breaking the Symmetry between up and
+down even though the laws of physics do
+not now strictly speaking that's not a
+great example of what we're calling
+spontaneous symmetry breaking because
+spontaneous symmetry break breaking in
+Quantum field Theory happens again
+because the configuration of the world
+breaks the Symmetry but even in the
+vacuum that's the new thing so the Earth
+is not the vacuum the Earth is a big you
+know pile of energy pile of of matter
+and particles and so forth so that can
+break the Symmetry but what if empty
+space itself could break a symmetry that
+would be a whole different kind of thing
+and this was uh studied I I forget
+whether it's a 50s or 60s where they
+started studying it but uh yoshiro nambo
+uh my former colleague at the University
+of Chicago and Jeffrey Goldstone and
+others studied how you could break a
+symmetry and the idea is actually quite
+simple you have yet another field right
+and guess what this is going to grow up
+into what we now call the higs field so
+the higs field is an example of this
+kind of field but we'll get there in a
+second if you have another field not a
+firon not like a quark or an electron or
+something like that but a scalar field a
+bosonic field that transforms under the
+Symmetry okay so so let's say you have
+an su2 symmetry because you kind of do
+in the weak interactions which is what
+we're going to get to so you have an su2
+symmetry so for this scalar field uh you
+have two directions in which the scalar
+field can vibrate and there's an su2
+rotation that rotates them into each
+other okay but if the value of the field
+in empty space were zero then Not only
+would the fields plural be invariant
+under the Symmetry but the configuration
+of these fields in the vacuum would be
+invariant under the Symmetry because the
+configuration would be centered around
+zero and if you rotate a plane around
+the origin nothing seems to happen but
+what if in empty space the field was at
+a nonzero value what if the energy of
+the field were lower when it had some
+nonzero value than when it were at zero
+when it was at zero you could do that
+you can easily write down equations that
+make that happen if you want to look up
+the details it's the Mexican hat
+potential that you might have seen under
+under discussions of spontaneous
+symmetry breaking and when that happens
+the specific value that the field takes
+in empty space is not invariant under
+the symmetry so the equations are
+invariant but the value the field has is
+not invariant that is what is called
+spontaneous symmetry breaking because it
+kind of doesn't matter what direction
+the field is pointing in it's pointing
+in some direction even in empty space
+and so now there's a an answer to the
+question when some other thing like a
+quark or an electron vibrates you can
+ask the question is it vibrating in the
+same direction as the scalar field
+that's breaking the Symmetry or
+perpendicularly to it or whatever the
+symmetry has been broken in a way that
+it wasn't before okay
+sadly this has not immediately solve the
+problems because Goldstone proved a
+theorem goldstone's theorem that says
+that when you have spontaneous symmetry
+breaking you will have a new kind of
+massless particle the scalar field will
+turn into a massless particle and again
+those particles were not observed and so
+people were still a little
+flumix uh but what they soon realized is
+that there's a big important difference
+between the global symmetries that we
+talked about originally where the
+symmetry has to be done everywhere
+uniformly versus the gauge symmetries
+where you have this connection field
+that keeps track of what direction
+you're pointing in the gold Stone's
+theorem analysis that that predicted the
+existence of a new kind of massless
+particle was only for Global symmetries
+when you do the same thing for gauge
+symmetries you do not get a massless
+particle not only is the scalar field
+not giving you an extra massless
+particle but your gauge Fields like the
+photon or the equivalent of the photon
+get heavy they go from being massless to
+being massive and in every single
+Quantum field Theory textbook in the
+world what you're told is that the gauge
+bosons eat the scaler bosons the higs
+bosons and they become massive by doing
+that so you go from a theory with a lot
+of massless particles to a the with no
+massless particles through spontaneous
+breaking of a gauge symmetry
+and that is the origin in the standard
+model of particle physics of the w and z
+bosons you have the higs Bon which is a
+spin zero boson that um is is as we say
+charged under the su2 Symmetry it is it
+rotates under the su2 Symmetry and so do
+all the other particles of the standard
+model the electrons and the quarks Etc
+but that higs boson gets an expectation
+value that is not zero in empty space
+and that gives Mass to the gauge bons
+which we observe at the end of the day
+as the w and z bosons and they are
+indeed massive and it is because those
+particles are massive that the force
+they give rise to is a short range Force
+rather than a long range Force so that
+is one way that we can have our cake and
+Eed to that we can have massless
+particles because of the gauge symmetry
+but they don't appear to us at the end
+of the day because they have gained Mass
+because of spontaneous symmetry breaking
+there turns out to be a whole another
+way to hide the massless particles from
+us and nature takes advantage of that
+way in the su3 part of the standard
+model su3 is the gauge group the group
+of symmetries for the quarks the red
+green and blue quarks the three
+dimensions of Quark space that get
+rotated into each other by this su3
+Symmetry and because those are colors we
+call this Quantum Chromo dnamic Amic or
+qcd in analogy with QED coinage from
+Murray gilmon so qcd is a theory of the
+gauge symmetry in the associated force
+that comes from invariance under
+rotations in red green blue internal
+space that the quarks live in and there
+there's no spontaneous symmetry breaking
+the su3 Symmetry is unbroken in um empty
+space so the
+gluons which are the gauge bow on of
+that Force what we call the strong force
+are massless gluons are still massless
+why then do they not give rise to a long
+range 1/ R 2 Force the answer is because
+of the difference between su3 and U1 and
+again some details we're Gliding Over
+the buzzwords are aelon versus
+non-abelian these are different kinds of
+symmetry groups that you can have and
+the su3 symmetry group is just more
+complicated than the U1 symmetry group
+electromagnetism has a very simple
+symmetry group U1 it's just rotations in
+a complex plane the su3 Symmetry group
+has more things going on and at the
+level of the fields that has a crucially
+important implication namely the fields
+the gluon fields interact with each
+other directly in a way that photons
+don't interact with each other photons
+are the particles of of the U1 gauge
+symmetry gluons are the particles of the
+su3 gauge symmetry but photons interact
+with charged particles like electrons
+and quarks they don't directly interact
+with other photons IND indirectly they
+can do because of electrons at Center
+but not directly whereas the gluons can
+interact directly with other gluons
+because gluons also carry color in a way
+that photons do not carry electric
+charge and what that means it is it
+opens up a possibility that nature in
+fact takes advantage of which is what we
+call
+confinement you might think that since
+the gluons are massless like electrical
+fields around an electron they should
+spread out in an inverse Square kind of
+potential but in fact the gluons keep
+interacting with each other they acquire
+energy by their Mutual interaction with
+other gluons as well as with the quarks
+and that energy dramatically changes the
+way that the gluon field arranges itself
+around individual quarks it is not an
+inverse Square law the force between two
+gluons or between two quarks mediated by
+gluons grows with distance rather than
+decreasing with distance as 1 over R
+squar so if you take two quarks and
+they're pulled together by gluons if you
+try to pull them apart it takes more and
+more and more energy to get the quarks
+to pull apart and so much energy that at
+some point it makes more sense just to
+make more quarks or a quark anti- Quark
+pair to be a little bit more precise so
+you just snap the string if you like
+that is connecting the flux tube as we
+call it that is connecting the two
+quarks to each other because of this you
+can never see one Quark all by itself
+every Quark is connected to other quarks
+held together by these gluons and that's
+why the particles we see are protons
+neutrons mesons things like that not the
+individual
+quarks as I am recording this and after
+I wrote my book there has been a claim
+uh an experimental claim that we've
+experimentally detected what are called
+glue balls which are particle like um
+excitations made of nothing but gluons
+no quarks at all so that's very exciting
+it's too bad for me cuz I said in the
+book that we haven't detected glue on
+glue balls yet but apparently we have
+anyway this is why the strong force is
+short ranged not because of spontaneous
+symmetry breaking but because of
+confinement because the gluons interact
+with each other so strongly that you
+can't separate individual particles from
+each other and they completely distort
+the shape of the gluon field away from
+being a long range 1/ R 2
+Force so there's a lot going on this is
+why when you take general relativity as
+a graduate student in physics you know
+different people react differently to
+different courses but general relativity
+is beautiful you know when you take that
+one semester course you start from you
+know simple geometric postulates and you
+derive the equation of Einstein and then
+you derive all these consequences black
+holes and everything and it's so
+pristine and logical and lovely then
+when you take your Quantum field Theory
+course not only is it at least two
+semesters often three or four semesters
+of quantum field Theory but it's not
+beautiful really not in the same way
+it's a mess there's a lot going on with
+all these different forces all these
+different
+symmetries um and the field itself is
+just complicated you know you can easily
+take Quantum field Theory courses again
+and again hopefully from different
+instructors with different textbooks and
+learn more and more every time no one
+would ever take general relativity more
+than once if they learned it correctly
+the first time there's so much we didn't
+even get to talk about parody violation
+is very very important in the standard
+model of particle physics
+there are uh families of particles right
+um there are different ways that
+neutrinos and electrons hook up with
+each other versus how quarks hook up
+with each other um there's let me just
+let me hint at one kind of thing that I
+haven't been able to tell you
+about this gauge group of um the strong
+force su3 right like I said it's more
+complex not it's not super duper complex
+but it's a little bit more um going on
+there a little more structure than the
+U1 um gauge symmetry of electromagnetism
+the su2 is much like su3 they're very
+similar but because su2 is spontaneously
+broken it's a different conversation
+that we have about it su3 is not
+spontaneously broken um but it's
+confined and one of the things that can
+happen because su3 is a slightly
+different gauge group than U1 is that
+you can have different vacuum
+configurations of the gauge Fields what
+do I mean by that a vacuum configuration
+of the fields is a a configuration that
+has zero energy right but when I say a
+field configuration you now know since
+you've listened to this podcast you now
+know that a field configuration is a
+specific arrangement of the field at
+every point in space but you also know
+that there is a symmetry the gauge
+symmetry I can rotate what I mean by red
+green and blue of su3 separately at each
+point in space so really what I mean by
+the vacuum configuration of the field is
+one particular reference configuration
+of the field plus any gauge
+transformation I want to do on it a
+gauge transformation is a symmetry it
+doesn't really change the actual field
+right okay so that's just a it sounds
+like a mathematical detail that I don't
+need to think too hard I should just be
+careful when I say what I mean by a
+field configuration to say really what I
+mean is a field configuration up to a
+possible symmetry transformation that
+you might want to do but it turns out
+that in su3 in the strong interactions
+there are what we call small gauge
+Transformations and large gauge
+Transformations and what does that mean
+what does small and large mean it means
+that there is a topology to the possible
+gauge Transformations we can do it's
+exactly once again this is an example of
+of an underlying smooth thing the gauge
+fields of su3 quantum chromodynamics but
+having a discrete set of possible
+Arrangements of those fields so it's
+kind of like wrapping a circle around
+another Circle it's actually very
+analogous to that if I have one Circle
+if I think like a topologist now and I'm
+going to map a different Circle to my
+first Circle I can just take the first
+Circle and I can map it the whole thing
+to a point or I could wrap it once
+around the other Circle or I could wrap
+it once around the other way or I could
+wrap it twice around Etc right even
+though the circles themselves are smooth
+manifolds there's a discrete set of ways
+that I can wrap one circle around
+another one these are called the winding
+numbers of these different Maps turns
+out and again you don't need to
+understand this because this is just
+like hinting at some fascinating work
+that happened in Quantum field theory in
+the course of the
+1970s um turns out that there are
+topologically non-trivial gauge
+transformations in su3 that wrap the
+gauge field around itself and they're
+associated with a winding number okay so
+you know once again you say all right
+they're still all it's all empty space
+just empty space and increasingly
+complicated configurations because
+they're all equivalent to each other
+under the Symmetry
+transformation but it turns out the
+field can dynamically flip from one top
+logical configuration to another and
+that is not just the vacuum that is it
+can sort of pop out of the vacuum for a
+second as it winds around itself and
+then settle down into a different
+winding number so you start with empty
+space the vacuum you end with empty
+space the vacuum but through some
+Quantum fluctuation called an instanton
+you change dynamically the winding
+number of the field and this is all you
+know this is a whole conversation that
+could only be had cuz we're doing
+Quantum field Theory right because the
+fields are what the universe is made of
+they have these mathematical properties
+things can happen and the kicker is that
+these instantons that are quantum
+transitions that change the winding
+numbers of the gauge Fields have a
+physical effect they give rise to masses
+for different mesons in different ways
+and this is called the Ada problem in
+qcd that is solved by thinking carefully
+about the structure of the vacuum and
+the existence of topologically
+non-trivial gauge Transformations all of
+which that I I hope that everything
+before the last five minutes was
+completely crystal clear and you
+understood everything the last five
+minutes was just to make you sort of
+intrigued there not enough detail to
+possibly be completely understandable
+the point is there's a lot going on in
+the standard model of particle physics
+it is an amazing structure that I didn't
+even mention but of course the the real
+punchline is it fits the data it fits so
+much data you know when we turned on the
+Large Hadron Collider of course
+eventually you we turned it on like 2006
+blew up fixed it turned it on in 2008
+Again by 2012 we discovered the higs bow
+on right but before we discovered the
+higs bow on WE rediscovered the entire
+rest of the standard model you know all
+the other particles that had been
+discovered before all the different
+quarks and the W and the Z bosons and so
+forth
+the LHC sees them and exactly where they
+should be doing exactly the things they
+should do there's no more rich and
+quantitatively accurate theory in the
+history of physics than the standard
+model of particle physics so it's very
+messy it's very um it does a little bit
+of everything it's not like one
+beautiful principle just continues on as
+a line that gives you the entire Theory
+many many ideas come in from seemingly
+different corners of physics and
+Mathematics Etc and combine to give us
+the standard model and it works
+beautifully explains all the data that
+we have so far good news bad news
+situation of course for reasons that we
+get into in other podcast conversations
+and the final thing to say is and it's
+probably not the final answer right I
+mean the standard model of particle
+physics even if you include gravity um
+you can include gravity in the standard
+model as long as the gravitational
+fields are weak and we call that the
+core Theory dubbed by Frank wilchek um
+but we don't understand a whole bunch of
+things we don't understand the Big Bang
+or black holes right we don't understand
+conditions where black where gravity is
+strong uh we don't know what the dark
+matter is that's some other kind of
+energy that is apparently not there in
+the standard model and there's things
+about the standard model that are just
+puzzling um there's both sort of mildly
+puzzling things and deeply puzzling
+things there are numerical unnatural
+numbers right the cosmal constant of
+course is a famous unnatural number the
+mass of the higs boson even though we
+can measure it Etc it's very different
+from what we would expect it to be
+according to the logic of effective
+field theory that we mentioned earlier
+so these are apparent fine-tunings in
+the standard model there's also the fact
+that that U1 part of the standard model
+right the standard model is su3 cross U2
+cross U1 the su3 Symmetry is quantum
+chromodynamics iics the su2 and U1 parts
+are the electro week unified theory the
+part the theory that gives us both
+electromagnetism and the weak Force but
+the U1 part is really not well behaved
+at high energies there's something
+called a landow pole that we're not
+going to get into here but the U1 part
+of the standard model apparently doesn't
+make sense at arbitrarily high energy
+scales it shouldn't this doesn't bother
+people because gravity is going to be
+important at ultra high energy scales at
+at low energies where you and I live
+gravity is a very weak Force but at high
+energies it should become important so
+there are gaps there are things the
+standard model is not up to the task of
+accounting for even if they're mostly
+kind of conceptual things rather than
+experimental things so not only the
+standard model itself but probably even
+Quantum field Theory as an overall
+picture is probably not up to the task
+of being the final complete Theory of
+Everything in physics so the reason why
+I've been wanting to write this book for
+20 years and I'm very excited to finally
+have done it is both to impress upon you
+how wonderful Quantum field theory is
+how amazing it is that it fits all the
+data uh in so many intricate and weird
+and fun ways but also to prepare you for
+the fact that it we might do better
+someday whether it's emergent SpaceTime
+or string theory or whatever it happens
+to be physics isn't done yet we're still
+moving on we understand a lot we don't
+understand everything we have to accept
+and celebrate both of those features of
+our knowledge and try to increase the
+amount that we understand let's get back
+to work then thanks
+[Music]
+w
+[Music]

@@ -7,7 +7,7 @@
 - **Authors**: Gonçalo R Abecasis, Stacey S Cherny, William O Cookson, Lon R Cardon
 - **MeSH**: Algorithms, Female, Genetic Linkage, Genotype, Haplotypes, Humans, Likelihood Functions, Male, Meiosis, Pedigree
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11731797/
-- **Captured**: 2026-05-10T18:11:22
+- **Captured**: 2026-05-10T18:12:17
 
 ## Abstract
 

@@ -7,7 +7,7 @@
 - **Authors**: D Posthuma, S S Cherny, D I Boomsma
 - **MeSH**: Genetic Linkage, Genetics, Behavioral, Humans
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/16341906/
-- **Captured**: 2026-05-10T18:11:32
+- **Captured**: 2026-05-10T18:12:29
 
 ## Abstract
 

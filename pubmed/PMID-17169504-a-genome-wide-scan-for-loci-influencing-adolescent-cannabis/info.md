@@ -7,7 +7,7 @@
 - **Authors**: Christian J Hopfer, Jeffrey M Lessem, Christie A Hartman, Michael C Stallings, Stacey S Cherny, Robin P Corley, John K Hewitt, Kenneth S Krauter, Susan K Mikulich-Gilbertson, Soo Hyun Rhee, Andrew Smolen, Susan E Young, Thomas J Crowley
 - **MeSH**: Adolescent, Antisocial Personality Disorder, Chromosomes, Human, Pair 3, Chromosomes, Human, Pair 9, Diseases in Twins, Female, Genetic Linkage, Genetic Markers, Genome, Genotype
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/17169504/
-- **Captured**: 2026-05-10T18:11:35
+- **Captured**: 2026-05-10T18:12:40
 
 ## Abstract
 

@@ -1,0 +1,14 @@
+# Actionable secondary findings from whole-genome sequencing of 954 East Asians.
+
+- **PMID**: 29128982
+- **DOI**: 10.1007/s00439-017-1852-1
+- **PMCID**:  
+- **Journal**: Human genetics  ·  **Year**: 2018
+- **Authors**: Clara Sze-Man Tang, Saloni Dattani, Man-Ting So, Stacey S Cherny, Paul K H Tam, Pak C Sham, Maria-Mercè Garcia-Barcelo
+- **MeSH**: Asian People, Genetic Testing, Genetic Variation, Genome, Human, Humans, Molecular Sequence Annotation, Mutation, Missense, RNA Splicing, Sequence Analysis, DNA, Whole Genome Sequencing
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29128982/
+- **Captured**: 2026-05-10T18:14:42
+
+## Abstract
+
+Recently, the American College of Medical Genetics (ACMG) recommended the return of actionable secondary findings detected from clinical sequencing. The reported frequency of secondary findings in Asian populations were highly variable and it is unclear whether the uniformity in coverage offered by whole-genome sequencing (WGS) may impact the estimate. In this analysis, we aimed to refine the rate of secondary findings on East Asians through a large-scale WGS study. We classified 1256 protein-altering or splicing variants of the 59 actionable genes detected from WGS of 954 East Asians in strict accordance with the ACMG and the Association for Molecular Pathology guidelines. A total of 21 pathogenic or likely pathogenic variants were detected in 24 of the 954 East Asian genomes with an estimate of 2.5% of East Asians carrying actionable variants. Although the overall estimate of secondary findings was consistent with those reported for non-East Asian ethnicities, genetic and allelic heterogeneity was observed. WGS offers a wider breadth of coverage over WES, which highlights the need to further investigate the variable sensitivity of WES and WGS in the detection of secondary findings. Identifying secondary findings in populations underrepresented in previous genetic literature might improve variant interpretation and has a profound impact on local decision-making with regard to the cost-effectiveness of returning the secondary findings from clinical sequencing.

@@ -1,0 +1,14 @@
+# Meta-analysis followed by replication identifies loci in or near CDKN1B, TET3, CD80, DRAM1, and ARID5B as associated with systemic lupus erythematosus in Asians.
+
+- **PMID**: 23273568
+- **DOI**: 10.1016/j.ajhg.2012.11.018
+- **PMCID**: PMC2747300 (full-text saved)
+- **Journal**: American journal of human genetics  ·  **Year**: 2013
+- **Authors**: Wanling Yang, Huayang Tang, Yan Zhang, Xianfa Tang, Jing Zhang, Liangdan Sun, Jing Yang, Yong Cui, Lu Zhang, Nattiya Hirankarn, Hui Cheng, Hai-Feng Pan, Jinping Gao, Tsz Leung Lee, Yujun Sheng, Chak Sing Lau, Yang Li, Tak Mao Chan, Xianyong Yin, Dingge Ying, Qianjin Lu, Alexander Moon Ho Leung, Xianbo Zuo, Xiang Chen, Kwok Lung Tong, Fusheng Zhou, Qingchun Diao, Niko Kei Chiu Tse, Hongfu Xie, Chi Chiu Mok, Fei Hao, Sik Nin Wong, Bingjun Shi, Ka Wing Lee, Yan Hui, Marco Hok Kung Ho, Bo Liang, Pamela Pui Wah Lee, Hongzhou Cui, Qing Guo, Brian Hon-Yin Chung, Xiongming Pu, Qiji Liu, Xiaoguang Zhang, Change Zhang, Chun Yin Chong, Hong Fang, Raymond Woon Sing Wong, Yonghu Sun, Mo Yin Mok, Xiang-Pei Li, Yingyos Avihingsanon, Zhifang Zhai, Pornpimol Rianthavorn, Thavatchai Deekajorndej, Kanya Suphapeetiporn, Fei Gao, Vorasuk Shotelersuk, Xiaojing Kang, Shirley King Yee Ying, Lijuan Zhang, Wilfred Hing Sang Wong, Dingxian Zhu, Samuel Ka Shun Fung, Fanqin Zeng, Wai Ming Lai, Chun-Ming Wong, Irene Oi Lin Ng, Maria-Mercè Garcia-Barceló, Stacey S Cherny, Nan Shen, Paul Kwong-Hang Tam, Pak Chung Sham, Dong-Qing Ye, Sen Yang, Xuejun Zhang, Yu Lung Lau
+- **MeSH**: Asian People, B7-1 Antigen, Cyclin-Dependent Kinase Inhibitor p27, DNA-Binding Proteins, Dioxygenases, Genetic Predisposition to Disease, Genome-Wide Association Study, Humans, Lupus Erythematosus, Systemic, Membrane Proteins
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23273568/
+- **Captured**: 2026-05-10T18:13:43
+
+## Abstract
+
+Systemic lupus erythematosus (SLE) is a prototype autoimmune disease with a strong genetic involvement and ethnic differences. Susceptibility genes identified so far only explain a small portion of the genetic heritability of SLE, suggesting that many more loci are yet to be uncovered for this disease. In this study, we performed a meta-analysis of genome-wide association studies on SLE in Chinese Han populations and followed up the findings by replication in four additional Asian cohorts with a total of 5,365 cases and 10,054 corresponding controls. We identified genetic variants in or near CDKN1B, TET3, CD80, DRAM1, and ARID5B as associated with the disease. These findings point to potential roles of cell-cycle regulation, autophagy, and DNA demethylation in SLE pathogenesis. For the region involving TET3 and that involving CDKN1B, multiple independent SNPs were identified, highlighting a phenomenon that might partially explain the missing heritability of complex diseases.

@@ -7,7 +7,7 @@
 - **Authors**: C J Talbot, A Nicod, S S Cherny, D W Fulker, A C Collins, J Flint
 - **MeSH**: Animals, Behavior, Animal, Breeding, Chromosome Mapping, Chromosomes, Artificial, Yeast, Genetic Markers, Haplotypes, Linkage Disequilibrium, Mice, Mice, Inbred BALB C
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/10080185/
-- **Captured**: 2026-05-10T18:11:17
+- **Captured**: 2026-05-10T18:12:07
 
 ## Abstract
 

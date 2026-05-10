@@ -1,0 +1,14 @@
+# Whole exome sequencing coupled with unbiased functional analysis reveals new Hirschsprung disease genes.
+
+- **PMID**: 28274275
+- **DOI**: 10.1006/meth.2001.1262
+- **PMCID**: PMC4589495 (full-text saved)
+- **Journal**: Genome biology  ·  **Year**: 2017
+- **Authors**: Hongsheng Gui, Duco Schriemer, William W Cheng, Rajendra K Chauhan, Guillermo Antiňolo, Courtney Berrios, Marta Bleda, Alice S Brooks, Rutger W W Brouwer, Alan J Burns, Stacey S Cherny, Joaquin Dopazo, Bart J L Eggen, Paola Griseri, Binta Jalloh, Thuy-Linh Le, Vincent C H Lui, Berta Luzón-Toro, Ivana Matera, Elly S W Ngan, Anna Pelet, Macarena Ruiz-Ferrer, Pak C Sham, Iain T Shepherd, Man-Ting So, Yunia Sribudiani, Clara S M Tang, Mirjam C G N van den Hout, Herma C van der Linde, Tjakko J van Ham, Wilfred F J van IJcken, Joke B G M Verheij, Jeanne Amiel, Salud Borrego, Isabella Ceccherini, Aravinda Chakravarti, Stanislas Lyonnet, Paul K H Tam, Maria-Mercè Garcia-Barceló, Robert M W Hofstra
+- **MeSH**: Alleles, Animals, Case-Control Studies, Computational Biology, DNA Mutational Analysis, Disease Models, Animal, Exome, Gene Knockout Techniques, Genetic Predisposition to Disease, Genome-Wide Association Study
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28274275/
+- **Captured**: 2026-05-10T18:14:35
+
+## Abstract
+
+Hirschsprung disease (HSCR), which is congenital obstruction of the bowel, results from a failure of enteric nervous system (ENS) progenitors to migrate, proliferate, differentiate, or survive within the distal intestine. Previous studies that have searched for genes underlying HSCR have focused on ENS-related pathways and genes not fitting the current knowledge have thus often been ignored. We identify and validate novel HSCR genes using whole exome sequencing (WES), burden tests, in silico prediction, unbiased in vivo analyses of the mutated genes in zebrafish, and expression analyses in zebrafish, mouse, and human. We performed de novo mutation (DNM) screening on 24 HSCR trios. We identify 28 DNMs in 21 different genes. Eight of the DNMs we identified occur in RET, the main HSCR gene, and the remaining 20 DNMs reside in genes not reported in the ENS. Knockdown of all 12 genes with missense or loss-of-function DNMs showed that the orthologs of four genes (DENND3, NCLN, NUP98, and TBATA) are indispensable for ENS development in zebrafish, and these results were confirmed by CRISPR knockout. These genes are also expressed in human and mouse gut and/or ENS progenitors. Importantly, the encoded proteins are linked to neuronal processes shared by the central nervous system and the ENS. Our data open new fields of investigation into HSCR pathology and provide novel insights into the development of the ENS. Moreover, the study demonstrates that functional analyses of genes carrying DNMs are warranted to delineate the full genetic architecture of rare complex diseases.

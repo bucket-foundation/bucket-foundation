@@ -1,0 +1,9 @@
+# Dedication of Altar and Athame
+
+- **URL**: https://www.sacred-texts.com/bos/bos031.htm
+- **Captured**: 2026-05-10T18:21:24
+- **Site**: www.sacred-texts.com
+
+---
+
+Internet Book of Shadows: Dedication Of Altar And Athame ... | Internet Sacred Text Archive Sacred Texts Index Previous Next Sponsored Links: Internet Book of Shadows , (Various Authors), [1999], at sacred-texts.com Dedication of Altar and Athame Durwydd MacTara (1990) Altar This Altar in the circle's center, A focal point that only good may enter. Erected to God and Goddess in strength, Circular, it has neither breadth nor length. Focal point in A Circle of Power, A mighty lens for every Tower! Sacred to Lord, Maiden, Lady and Crone, The foundation of many a powerful Cone! Resting Place of Magick and its implements, Let veneration and Love be our only sentiments! A tool of will, powerful and free, As it is willed, So Mote it Be! Athame Mighty Deities, Gracious Lady and Mighty Lord, As I perform this ritual, Pray hearken to my word. This tool, conceived in Mind of Air, ( point east ) Forged and formed in Fire of the South, ( point south ) Power tool for those who dare, I CLAIM thee with my mouth! ( kiss blade ) Tempered with Water for Strength, ( point west ) Also dedicated to the Earth,in Power. ( point north ) Blessed be, entire in length, ( kiss pommel ) As it partakes of every Tower! By the Power of Cosmos, As above, ( point up ) The Expression of Cosmos, is below. ( point down ) Upon this instrument of Will and Love, My Sacred Tie I bestow! ( 1 drop of blood on each side and hilt ) This tool is dedicated to my service of Lady and Lord, Please find this work beneficial and good. Bound to thee by homage, decimation, effort and word, Bound to me by words, will and blood. By the powers of earth, sky, star and sea; Such is my will, So mote it be! Next: Beltane: Its History and Modern Celebration in Wicca in America

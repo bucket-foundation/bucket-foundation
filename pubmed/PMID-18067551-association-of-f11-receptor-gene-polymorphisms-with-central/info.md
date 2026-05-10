@@ -7,7 +7,7 @@
 - **Authors**: K L Ong, R Y H Leung, L Y F Wong, S S Cherny, P C Sham, T H Lam, K S L Lam, B M Y Cheung
 - **MeSH**: Adult, Aged, Asian People, Case-Control Studies, Cell Adhesion Molecules, Cohort Studies, Female, Hong Kong, Humans, Hypertension
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/18067551/
-- **Captured**: 2026-05-10T18:11:40
+- **Captured**: 2026-05-10T18:12:49
 
 ## Abstract
 

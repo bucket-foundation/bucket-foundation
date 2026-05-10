@@ -1,0 +1,14 @@
+# Genome-wide association study in a Chinese population identifies a susceptibility locus for type 2 diabetes at 7q32 near PAX4.
+
+- **PMID**: 23532257
+- **DOI**: 10.1111/j.1464-5491.2010.03126.x
+- **PMCID**: PMC1183463 (full-text saved)
+- **Journal**: Diabetologia  ·  **Year**: 2013
+- **Authors**: R C W Ma, C Hu, C H Tam, R Zhang, P Kwan, T F Leung, G N Thomas, M J Go, K Hara, X Sim, J S K Ho, C Wang, H Li, L Lu, Y Wang, J W Li, Y Wang, V K L Lam, J Wang, W Yu, Y J Kim, D P Ng, H Fujita, K Panoutsopoulou, A G Day-Williams, H M Lee, A C W Ng, Y-J Fang, A P S Kong, F Jiang, X Ma, X Hou, S Tang, J Lu, T Yamauchi, S K W Tsui, J Woo, P C Leung, X Zhang, N L S Tang, H Y Sy, J Liu, T Y Wong, J Y Lee, S Maeda, G Xu, S S Cherny, T F Chan, M C Y Ng, K Xiang, A P Morris, S Keildson, R Hu, L Ji, X Lin, Y S Cho, T Kadowaki, E S Tai, E Zeggini, M I McCarthy, K L Hon, L Baum, B Tomlinson, W Y So, Y Bao, J C N Chan, W Jia
+- **MeSH**: Adult, Aged, Asian People, China, Chromosomes, Human, Pair 7, Diabetes Mellitus, Type 2, Female, Genetic Markers, Genetic Predisposition to Disease, Genetic Variation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23532257/
+- **Captured**: 2026-05-10T18:13:48
+
+## Abstract
+
+Most genetic variants identified for type 2 diabetes have been discovered in European populations. We performed genome-wide association studies (GWAS) in a Chinese population with the aim of identifying novel variants for type 2 diabetes in Asians. We performed a meta-analysis of three GWAS comprising 684 patients with type 2 diabetes and 955 controls of Southern Han Chinese descent. We followed up the top signals in two independent Southern Han Chinese cohorts (totalling 10,383 cases and 6,974 controls), and performed in silico replication in multiple populations. We identified CDKN2A/B and four novel type 2 diabetes association signals with p < 1 × 10(-5) from the meta-analysis. Thirteen variants within these four loci were followed up in two independent Chinese cohorts, and rs10229583 at 7q32 was found to be associated with type 2 diabetes in a combined analysis of 11,067 cases and 7,929 controls (p meta = 2.6 × 10(-8); OR [95% CI] 1.18 [1.11, 1.25]). In silico replication revealed consistent associations across multiethnic groups, including five East Asian populations (p meta = 2.3 × 10(-10)) and a population of European descent (p = 8.6 × 10(-3)). The rs10229583 risk variant was associated with elevated fasting plasma glucose, impaired beta cell function in controls, and an earlier age at diagnosis for the cases. The novel variant lies within an islet-selective cluster of open regulatory elements. There was significant heterogeneity of effect between Han Chinese and individuals of European descent, Malaysians and Indians. Our study identifies rs10229583 near PAX4 as a novel locus for type 2 diabetes in Chinese and other populations and provides new insights into the pathogenesis of type 2 diabetes.

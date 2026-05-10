@@ -1,0 +1,14 @@
+# Comparisons of seven algorithms for pathway analysis using the WTCCC Crohn's Disease dataset.
+
+- **PMID**: 21981765
+- **DOI**: 10.1002/sim.3962
+- **PMCID**: PMC2922970 (full-text saved)
+- **Journal**: BMC research notes  ·  **Year**: 2011
+- **Authors**: Hongsheng Gui, Miaoxin Li, Pak C Sham, Stacey S Cherny
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21981765/
+- **Captured**: 2026-05-10T18:12:28
+
+## Abstract
+
+Though rooted in genomic expression studies, pathway analysis for genome-wide association studies (GWAS) has gained increasing popularity, since it has the potential to discover hidden disease pathogenic mechanisms by combining statistical methods with biological knowledge. Generally, algorithms or programs proposed recently can be categorized by different types of input data, null hypothesis or counts of analysis stages. Due to complexity caused by SNP, gene and pathway relationships, re-sampling strategies like permutation are always utilized to derive an empirical distribution for test statistics for evaluating the significance of candidate pathways. However, evaluation of these algorithms on real GWAS datasets and real biological pathway databases needs to be addressed before we apply them widely with confidence. Two algorithms which use summary statistics from GWAS as input were implemented in KGG, a novel and user-friendly software tool for GWAS pathway analysis. Comparisons of these two algorithms as well as the other five selected algorithms were conducted by analyzing the WTCCC Crohn's Disease dataset utilizing the MsigDB canonical pathways. As a result of using permutation to obtain empirical p-value, most of these methods could control Type I error rate well, although some are conservative. However, the methods varied greatly in terms of power and running time, with the PLINK truncated set-based test being the most powerful and KGG being the fastest. Raw data-based algorithms, such as those implemented in PLINK, are preferable for GWAS pathway analysis as long as computational capacity is available. It may be worthwhile to apply two or more pathway analysis algorithms on the same GWAS dataset, since the methods differ greatly in their outputs and might provide complementary findings for the studied complex disease.

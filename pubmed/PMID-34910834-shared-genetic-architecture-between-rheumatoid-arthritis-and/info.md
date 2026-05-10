@@ -1,0 +1,14 @@
+# Shared Genetic Architecture Between Rheumatoid Arthritis and Varying Osteoporotic Phenotypes.
+
+- **PMID**: 34910834
+- **DOI**: 10.1002/jbmr.4491
+- **PMCID**:  
+- **Journal**: Journal of bone and mineral research : the official journal of the American Society for Bone and Mineral Research  ·  **Year**: 2022
+- **Authors**: Melody Kasher, Maxim B Freidin, Frances Mk Williams, Stacey S Cherny, Ida Malkin, Gregory Livshits
+- **MeSH**: Arthritis, Rheumatoid, Bone Density, Humans, Osteoporosis, Osteoporotic Fractures, Phenotype
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34910834/
+- **Captured**: 2026-05-10T18:15:05
+
+## Abstract
+
+Rheumatoid arthritis (RA) and low bone mineral density (BMD), an indicator of osteoporosis (OP), appear epidemiologically associated. Shared genetic factors may explain this association. This study aimed to investigate the presence of pleiotropy to clarify the potential genetic association between RA and OP. We examined BMDs at varying skeletal sites reported in UK Biobank as well as OP fracture acquired from the Genetic Factors for Osteoporosis (GEFOS) Consortium and the TwinsUK study. PRSice-2 was used to assess the potential shared genetic overlap between RA and OP. The presence of pleiotropy was examined using colocalization analysis. PRSice-2 revealed that RA was significantly associated with OP fracture (β = 351.6 ± 83.9, p value = 2.76E-05), total BMD (β = -1763.5 ± 612.8, p = 4.00E-03), spine BMD (β = -919.8 ± 264.6, p value = 5.09E-04), and forearm BMD (β = -66.09 ± 31.40, p value = 3.53E-02). Through colocalization analysis, the same causal genetic variants, associated with both RA and OP, were apparent in 12 genes: PLCL1, BOLL, AC011997.1, TNFAIP3, RP11-158I9.1, CDK6, CHCHD4P2, RP11-505C13.1, PHF19, TRAF1, C5, and C11orf49 with moderate posterior probabilities (>50%). Pleiotropy is involved in the association between RA and OP phenotypes. These findings contribute to the understanding of disease mechanisms and provide insight into possible therapeutic advancements and enhanced screening measures. © 2021 American Society for Bone and Mineral Research (ASBMR).

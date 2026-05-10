@@ -1,0 +1,14 @@
+# Insights into the pleiotropic relationships between chronic back pain and inflammation-related musculoskeletal conditions: rheumatoid arthritis and osteoporotic abnormalities.
+
+- **PMID**: 36017880
+- **DOI**: 10.1007/978-3-030-23022-7_6
+- **PMCID**:  
+- **Journal**: Pain  ·  **Year**: 2023
+- **Authors**: Melody Kasher, Frances M K Williams, Maxim B Freidin, Stacey S Cherny, Ida Malkin, Gregory Livshits
+- **MeSH**: Humans, Bayes Theorem, Cross-Sectional Studies, Arthritis, Rheumatoid, Osteoporosis, Back Pain, Inflammation, Musculoskeletal Diseases, C-Reactive Protein, Mendelian Randomization Analysis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36017880/
+- **Captured**: 2026-05-10T18:15:20
+
+## Abstract
+
+The ageing process includes the development of debilitating musculoskeletal (MSK) conditions, including chronic back pain (CBP), rheumatoid arthritis (RA), and osteoporosis (OP). The mechanisms involved in the genetic-epidemiological relationships between these MSK phenotypes are controversial and limited and thus require clarification, in particular, between CBP and the other MSK phenotypes. A cross-sectional statistical analysis was conducted using Europeans from the UK Biobank data collection, including 73,794 CBP, 4883 RA, and 7153 OP cases as well as 242,216 calcaneus bone mineral density scores. C-reactive protein (CRP) was measured for 402,165 subjects in this sample. Genetic correlations were assessed to evaluate shared genetic background between traits. Mendelian randomization was performed to assess a causal relationship between CBP and RA and OP along with other risk factors, such as CRP. Colocalization analysis was conducted to identify shared pleiotropic regions between the examined traits. Bayesian modelling was performed to determine a potential pathway that may explain the interrelationships among these traits. Mendelian randomization analyses revealed that CRP causally predicts CBP only (β = 0.183, 95% CI = 0.077-0.290, P -value = 0.001). Horizontally pleiotropy appeared to explain the relationship between CBP and RA and OP. Through colocalization analysis, several genomic regions emerged describing common genetic influences between CBP and its proposed risk factors, including HLA-DQA1/HLA-DQB1, APOE , SOX5, and MYH7B as well as Histone 1 genes. We speculate that among other factors, CBP and its MSK comorbidities may arise from common inflammatory mechanisms. Colocalized identified genes may aid in advancing or improving the mode of treatment in patients with CBP.

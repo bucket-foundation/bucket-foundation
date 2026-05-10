@@ -7,7 +7,7 @@
 - **Authors**: K J Saudino, S S Cherny, R Plomin
 - **MeSH**: Analysis of Variance, Attitude, Child, Preschool, Colorado, Female, Genetic Variation, Humans, Infant, Likelihood Functions, Longitudinal Studies
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11463143/
-- **Captured**: 2026-05-10T18:11:20
+- **Captured**: 2026-05-10T18:12:12
 
 ## Abstract
 

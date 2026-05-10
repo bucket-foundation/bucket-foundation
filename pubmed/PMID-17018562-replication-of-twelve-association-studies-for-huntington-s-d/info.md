@@ -7,7 +7,7 @@
 - **Authors**: J M Andresen, J Gayán, S S Cherny, D Brocklebank, G Alkorta-Aranburu, E A Addis, L R Cardon, D E Housman, N S Wexler
 - **MeSH**: Age of Onset, Apolipoproteins E, Deoxyribonucleases, Gene Frequency, Humans, Huntingtin Protein, Huntington Disease, Microsatellite Repeats, Nerve Tissue Proteins, Nuclear Proteins
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/17018562/
-- **Captured**: 2026-05-10T18:11:34
+- **Captured**: 2026-05-10T18:12:38
 
 ## Abstract
 

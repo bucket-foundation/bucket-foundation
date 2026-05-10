@@ -7,7 +7,7 @@
 - **Authors**: Pak C Sham, Shaun Purcell, Stacey S Cherny, Gonçalo R Abecasis
 - **MeSH**: Chromosome Mapping, Computer Simulation, Female, Humans, Male, Pedigree, Quantitative Trait, Heritable, Regression Analysis, Software Design, Statistics, Nonparametric
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/12111667/
-- **Captured**: 2026-05-10T18:11:26
+- **Captured**: 2026-05-10T18:12:19
 
 ## Abstract
 

@@ -1,0 +1,14 @@
+# Mutations in the NRG1 gene are associated with Hirschsprung disease.
+
+- **PMID**: 21706185
+- **DOI**: 10.1007/s00439-011-1035-4
+- **PMCID**:  
+- **Journal**: Human genetics  ·  **Year**: 2012
+- **Authors**: Clara Sze-Man Tang, Elly Sau-Wai Ngan, Wai-Kiu Tang, Man-Ting So, Guo Cheng, Xiao-Ping Miao, Thomas Yuk-Yu Leon, Brian Man-Chun Leung, Kenneth-Jeremy W S Hui, Vincent Hang-Chai Lui, Yan Chen, Ivy Hau-Yee Chan, Patrick Ho-Yu Chung, Xue-Lai Liu, Kenneth Kak-Yuen Wong, Pak-Chung Sham, Stacey S Cherny, Paul Kwong-Hang Tam, Maria-Mercè Garcia-Barcelo
+- **MeSH**: Animals, COS Cells, Case-Control Studies, Chlorocebus aethiops, DNA Mutational Analysis, Female, Genome-Wide Association Study, Genotype, Hirschsprung Disease, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21706185/
+- **Captured**: 2026-05-10T18:13:30
+
+## Abstract
+
+Hirschsprung disease (HSCR, congenital colon aganglionosis) is a relatively common complex genetic condition caused by abnormal development of the enteric nervous system (ENS). Through a recent genome-wide association study conducted on Chinese HSCR patients, we identified a new HSCR contributing locus, neuregulin 1 (NRG1; 8p12), a gene known to be involved in the development of the ENS. As genes in which disease-associated common variants are found are to be considered as candidates for the search of deleterious rare variants (RVs) in the coding sequences, we sequenced the NRG1 exons of 358 sporadic HSCR patients and 333 controls. We identified a total of 13 different heterozygous RVs including 8 non-synonymous (A28G, E134K, V266L, H347Y, P356L, V486M, A511T, P608A) and 3 synonymous amino acid substitutions (P24P, T169T, L483L), a frameshift (E239fsX10), and a c.503-4insT insertion. Functional analysis of the most conserved non-synonymous substitutions, H347Y and P356L, showed uneven intracellular distribution and aberrant expression of the mutant proteins. Except for T169T and V486M, all variants were exclusive to HSCR patients. Overall, there was a statistically significant over-representation of NRG1 RVs in HSCR patients (p = 0.008). We show here that not only common, but also rare variants of the NRG1 gene contribute to HSCR. This strengthens the role of NRG1.

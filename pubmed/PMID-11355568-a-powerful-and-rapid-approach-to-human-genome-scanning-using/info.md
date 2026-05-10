@@ -7,7 +7,7 @@
 - **Authors**: M Beekman, N Lakenberg, S S Cherny, P de Knijff, C C Kluft, G J van Ommen, G P Vogler, R R Frants, D I Boomsma, P E Slagboom
 - **MeSH**: Alleles, Chromosome Mapping, DNA, Electrophoresis, Polyacrylamide Gel, Genetic Markers, Genome, Genotype, Humans, Phenotype, Polymerase Chain Reaction
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11355568/
-- **Captured**: 2026-05-10T18:11:19
+- **Captured**: 2026-05-10T18:12:11
 
 ## Abstract
 

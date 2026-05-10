@@ -1,0 +1,14 @@
+# Genome-wide mega-analysis identifies 16 loci and highlights diverse biological mechanisms in the common epilepsies.
+
+- **PMID**: 30531953
+- **DOI**: 10.1093/bioinformatics/btw613
+- **PMCID**: PMC5542030 (full-text saved)
+- **Journal**: Nature communications  ·  **Year**: 2018
+- **Authors**: 
+- **MeSH**: Case-Control Studies, Chromosome Mapping, Epilepsy, Gene Expression Regulation, Gene Frequency, Genetic Predisposition to Disease, Genome-Wide Association Study, Genotype, Humans, Linkage Disequilibrium
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30531953/
+- **Captured**: 2026-05-10T18:14:54
+
+## Abstract
+
+The epilepsies affect around 65 million people worldwide and have a substantial missing heritability component. We report a genome-wide mega-analysis involving 15,212 individuals with epilepsy and 29,677 controls, which reveals 16 genome-wide significant loci, of which 11 are novel. Using various prioritization criteria, we pinpoint the 21 most likely epilepsy genes at these loci, with the majority in genetic generalized epilepsies. These genes have diverse biological functions, including coding for ion-channel subunits, transcription factors and a vitamin-B6 metabolism enzyme. Converging evidence shows that the common variants associated with epilepsy play a role in epigenetic regulation of gene expression in the brain. The results show an enrichment for monogenic epilepsy genes as well as known targets of antiepileptic drugs. Using SNP-based heritability analyses we disentangle both the unique and overlapping genetic basis to seven different epilepsy subtypes. Together, these findings provide leads for epilepsy therapies based on underlying pathophysiology.

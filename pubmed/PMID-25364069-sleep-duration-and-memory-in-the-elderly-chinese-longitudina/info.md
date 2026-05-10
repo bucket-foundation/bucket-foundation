@@ -1,0 +1,14 @@
+# Sleep duration and memory in the elderly Chinese: longitudinal analysis of the Guangzhou Biobank Cohort Study.
+
+- **PMID**: 25364069
+- **DOI**: 10.5665/sleep.4162
+- **PMCID**: PMC2785092 (full-text saved)
+- **Journal**: Sleep  ·  **Year**: 2014
+- **Authors**: Lin Xu, Chao Qiang Jiang, Tai Hing Lam, Wei Sen Zhang, Stacey Shawn Cherny, G Neil Thomas, Kar Keung Cheng
+- **MeSH**: Aged, Aged, 80 and over, Asian People, Biological Specimen Banks, Female, Humans, Language, Longitudinal Studies, Male, Memory Disorders
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25364069/
+- **Captured**: 2026-05-10T18:14:04
+
+## Abstract
+
+Previous cross-sectional studies showed that short or long sleep duration was associated with memory impairment (MI), but longitudinal studies are scarce. We examined whether sleep duration was associated with memory decline or development of MI. We conducted a prospective analysis based on the Guangzhou Biobank Cohort Study on 13,888 participants aged 50+ years without MI at baseline and with a follow-up for a mean of 4.1 years. Memory decline was assessed using the Delayed 10-Word Recall Test (DWRT), and in a subset (n = 6,020) with the Mini-Mental State Examination (MMSE). Short and long sleep duration was defined as ≤ 5 hours/day and ≥ 9 hours/day, respectively. Data were analyzed both continuously for memory decline and dichotomously for MI (independently defined as DWRT, < 4; MMSE, < 25). After adjusting for multiple potential confounders, both short and long sleep durations were associated with memory decline using DWRT or MMSE score changes (all P < 0.001). Seven percent (n = 980) developed DWRT-defined MI and 4.0% (n = 194) MMSE-defined MI during the follow-up. Only those with a short (≤ 5 h/day) sleep duration had a significantly increased risk of DWRT-defined MI (odds ratio = 1.53 (95% confidence interval; 1.21-1.93); P < 0.001) relative to normal sleepers (7 h/day). The association remained significant after excluding those with poor self-reported health. No associations were observed with MMSE-defined MI for both long and short sleep durations. This is the largest study to date addressing the association between extremes of sleep duration and memory decline. The observed adverse relationships provide support for an intervention study to examine the potential benefits of normalizing sleep duration in attenuating memory decline.

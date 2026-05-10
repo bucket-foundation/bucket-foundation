@@ -7,7 +7,7 @@
 - **Authors**: P C Sham, J H Zhao, S S Cherny, J K Hewitt
 - **MeSH**: Analysis of Variance, Computer Simulation, Genetic Linkage, Quantitative Trait, Heritable
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11055366/
-- **Captured**: 2026-05-10T18:11:18
+- **Captured**: 2026-05-10T18:12:08
 
 ## Abstract
 

@@ -1,0 +1,14 @@
+# Longitudinal heritability of childhood aggression.
+
+- **PMID**: 26786601
+- **DOI**: 10.1002/ajmg.b.32420
+- **PMCID**:  
+- **Journal**: American journal of medical genetics. Part B, Neuropsychiatric genetics : the official publication of the International Society of Psychiatric Genetics  ·  **Year**: 2016
+- **Authors**: Robert M Porsch, Christel M Middeldorp, Stacey S Cherny, Eva Krapohl, Catharina E M van Beijsterveldt, Anu Loukola, Tellervo Korhonen, Lea Pulkkinen, Robin Corley, Soo Rhee, Jaakko Kaprio, Richard R Rose, John K Hewitt, Pak Sham, Robert Plomin, Dorret I Boomsma, Meike Bartels
+- **MeSH**: Adolescent, Age Factors, Aggression, Child, Diseases in Twins, Environment, Female, Gene-Environment Interaction, Genetic Association Studies, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26786601/
+- **Captured**: 2026-05-10T18:14:25
+
+## Abstract
+
+The genetic and environmental contributions to the variation and longitudinal stability in childhood aggressive behavior were assessed in two large twin cohorts, the Netherlands Twin Register (NTR), and the Twins Early Development Study (TEDS; United Kingdom). In NTR, maternal ratings on aggression from the Child Behavior Checklist (CBCL) were available for 10,765 twin pairs at age 7, for 8,557 twin pairs at age 9/10, and for 7,176 twin pairs at age 12. In TEDS, parental ratings of conduct disorder from the Strength and Difficulty Questionnaire (SDQ) were available for 6,897 twin pairs at age 7, for 3,028 twin pairs at age 9 and for 5,716 twin pairs at age 12. In both studies, stability and heritability of aggressive behavioral problems was high. Heritability was on average somewhat, but significantly, lower in TEDS (around 60%) than in NTR (between 50% and 80%) and sex differences were slightly larger in the NTR sample. In both studies, the influence of shared environment was similar: in boys shared environment explained around 20% of the variation in aggression across all ages while in girls its influence was absent around age 7 and only came into play at later ages. Longitudinal genetic correlations were the main reason for stability of aggressive behavior. Individual differences in CBCL-Aggressive Behavior and SDQ-Conduct disorder throughout childhood are driven by a comparable but significantly different genetic architecture. © 2016 Wiley Periodicals, Inc.

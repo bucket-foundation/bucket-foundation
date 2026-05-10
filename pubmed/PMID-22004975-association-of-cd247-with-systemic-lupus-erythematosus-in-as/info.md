@@ -1,0 +1,14 @@
+# Association of CD247 with systemic lupus erythematosus in Asian populations.
+
+- **PMID**: 22004975
+- **DOI**: 10.1177/0961203311422724
+- **PMCID**:  
+- **Journal**: Lupus  ·  **Year**: 2012
+- **Authors**: R Li, W Yang, J Zhang, N Hirankarn, H-F Pan, C C Mok, T M Chan, R W S Wong, M Y Mok, K W Lee, S N Wong, A M H Leung, X-P Li, Y Avihingsanon, T L Lee, M H K Ho, P P W Lee, W H S Wong, C-M Wong, I O L Ng, J Yang, P H Li, Y Zhang, L Zhang, W Li, L Baum, P Kwan, P Rianthavorn, T Deekajorndej, K Suphapeetiporn, V Shotelersuk, M-M Garcia-Barceló, S S Cherny, P K-H Tam, P C Sham, C S Lau, N Shen, Y l Lau, D-Q Ye
+- **MeSH**: Adult, Asian People, CD3 Complex, China, Genetic Predisposition to Disease, Genome-Wide Association Study, Genotype, Hong Kong, Humans, Linkage Disequilibrium
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/22004975/
+- **Captured**: 2026-05-10T18:13:33
+
+## Abstract
+
+Systemic lupus erythematosus (SLE) is a prototypic autoimmune disease with complex genetic inheritance. CD247 (CD3Z, TCRZ) plays a vital role in antigen recognition and signal transduction in antigen-specific immune responses, and is known to be involved in SLE pathogenesis. Weak disease association was reported for genetic variants in this gene in Caucasian studies for SLE, Crohn's disease and systemic sclerosis, but its role as a genetic risk factor was never firmly established. In this study, using a collection of 612 SLE patients and 2193 controls of Chinese ethnicity living in Hong Kong in a genome-wide study, single nucleotide polymorphisms (SNPs) in and around CD247 were identified as being associated with SLE. The two most significant SNPs in this locus were selected for further replication using TaqMan genotyping assay in 3339 Asian patients from Hong Kong, Mainland China, and Thailand, as well as 4737 ethnically and geographically matched controls. The association of CD247 with SLE in Asian populations was confirmed (rs704853: odds ratio [OR] = 0. 81, p = 2.47 × 10(-7); rs858543: OR = 1.10, p = 0.0048). Patient-only analysis suggested that rs704853 is also linked to oral ulcers, hematologic disorders and anti-double-stranded DNA (dsDNA) antibody production. A significant association between variants in CD247 and SLE was demonstrated in Asian populations. Understanding the involvement of CD247 in SLE may shed new light on disease mechanisms and development of new treatment paradigms.

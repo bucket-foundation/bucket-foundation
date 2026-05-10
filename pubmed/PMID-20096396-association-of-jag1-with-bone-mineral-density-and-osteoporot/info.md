@@ -1,0 +1,14 @@
+# Association of JAG1 with bone mineral density and osteoporotic fractures: a genome-wide association study and follow-up replication studies.
+
+- **PMID**: 20096396
+- **DOI**: 10.1016/j.ajhg.2009.12.014
+- **PMCID**: PMC2783489 (full-text saved)
+- **Journal**: American journal of human genetics  ·  **Year**: 2010
+- **Authors**: Annie W C Kung, Su-Mei Xiao, Stacey Cherny, Gloria H Y Li, Yi Gao, Gloria Tso, Kam S Lau, Keith D K Luk, Jian-min Liu, Bin Cui, Min-Jia Zhang, Zhen-lin Zhang, Jin-wei He, Hua Yue, Wia-bo Xia, Lian-mei Luo, Shu-li He, Douglas P Kiel, David Karasik, Yi-Hsiang Hsu, L Adrienne Cupples, Serkalem Demissie, Unnur Styrkarsdottir, Bjarni V Halldorsson, Gunnar Sigurdsson, Unnur Thorsteinsdottir, Kari Stefansson, J Brent Richards, Guangju Zhai, Nicole Soranzo, Ana Valdes, Tim D Spector, Pak C Sham
+- **MeSH**: Aged, Alleles, Bone Density, Calcium-Binding Proteins, Cohort Studies, Electrophoretic Mobility Shift Assay, Female, Follow-Up Studies, Fractures, Bone, Gene Expression Regulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20096396/
+- **Captured**: 2026-05-10T18:13:12
+
+## Abstract
+
+Bone mineral density (BMD), a diagnostic parameter for osteoporosis and a clinical predictor of fracture, is a polygenic trait with high heritability. To identify genetic variants that influence BMD in different ethnic groups, we performed a genome-wide association study (GWAS) on 800 unrelated Southern Chinese women with extreme BMD and carried out follow-up replication studies in six independent study populations of European descent and Asian populations including 18,098 subjects. In the meta-analysis, rs2273061 of the Jagged1 (JAG1) gene was associated with high BMD (p = 5.27 x 10(-8) for lumbar spine [LS] and p = 4.15 x 10(-5) for femoral neck [FN], n = 18,898). This SNP was further found to be associated with the low risk of osteoporotic fracture (p = 0.009, OR = 0.7, 95% CI 0.57-0.93, n = 1881). Region-wide and haplotype analysis showed that the strongest association evidence was from the linkage disequilibrium block 5, which included rs2273061 of the JAG1 gene (p = 8.52 x 10(-9) for LS and 3.47 x 10(-5) at FN). To assess the function of identified variants, an electrophoretic mobility shift assay demonstrated the binding of c-Myc to the "G" but not "A" allele of rs2273061. A mRNA expression study in both human bone-derived cells and peripheral blood mononuclear cells confirmed association of the high BMD-related allele G of rs2273061 with higher JAG1 expression. Our results identify the JAG1 gene as a candidate for BMD regulation in different ethnic groups, and it is a potential key factor for fracture pathogenesis.

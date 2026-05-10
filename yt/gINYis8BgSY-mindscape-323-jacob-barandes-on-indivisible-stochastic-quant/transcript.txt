@@ -1,0 +1,4879 @@
+Hello everyone. Welcome to the Mindscape
+podcast. I'm your host Sean Carroll.
+Quantum mechanics, one of our favorite
+topics here at Mindscape, continues to
+be in this weird situation where it's a
+wonderful theory that fits all the data.
+Uh we can do spectacularly good
+calculations,
+compare them against experiment, achieve
+agreement to many significant figures,
+and yet it is very very easy to ask
+questions about quantum mechanics that
+we don't know the answer to. Not just
+what would happen questions, but what
+does the theory say questions. And so we
+have the whole subdiscipline of
+foundations of quantum mechanics trying
+to figure out what the true theory is
+behind the successful quantum mechanical
+predictions. And as many of you know
+there are different approaches here.
+Ordinarily in quantum mechanics you have
+a wave function. And then the first
+question you ask is does the wave
+function represent reality or is it
+merely epistemic? Is it merely something
+about our ability to make predictions
+about things? But then if you do think
+that the wave function represents
+reality, then you still have choices. Is
+it the sole representative of reality or
+are there hidden variables or something
+like that? And if it is the sole
+representative of reality, does it
+always obey the famous Schroinger
+equation in which case you get the many
+worlds theory or does it sometimes
+change stochastically uh at different
+moments depending on what model you
+have? Then you have objective collapse
+models of various sorts. And all of
+these theories are truly different
+theories. They're not different
+interpretations of quantum mechanics.
+They potentially have different
+experimental consequences. In some
+cases, we know clearly what those
+different experimental predictions are.
+In other cases, we're less sure. But
+still, we don't have a consensus that
+one of these approaches is on the right
+track. And therefore, it's useful, very,
+very important, in fact, I would say, to
+develop entirely new alternatives to
+these famous models of quantum mechanics
+because who knows, maybe we just need to
+be shaken out of our dogmatic slumbers
+and then we'll find the right answer.
+Today's guest, Jacob Barandis, is a
+physicist and philosopher at Harvard
+University and he has a proposal for a
+brand new way of thinking about quantum
+mechanics. When I say brand new, it's,
+you know, brand new is always a
+questionable thing in science or
+academia because everyone always has
+predecessors. So, Jacob's idea of
+quantum mechanics lives in a tradition
+of what is called stochastic models of
+quantum mechanics. There have been some
+stochastic models of quantum mechanics,
+but he has a different one. Okay? So,
+his particular approach is distinct from
+anything that's been tried before. And
+I'll tell you the basic idea of it now
+because spoiler alert, this podcast is
+very long. It takes us a while to get to
+what Jacob is actually proposing in his
+new theory because we spent a lot of
+time preparing groundwork for
+understanding the issues in quantum
+mechanics more generally. So I'm going
+to tell you the basic idea and then
+you'll see it fleshed out in the
+discussion. The basic idea is that you
+don't have a wave function. That's the
+biggest thing about um this particular
+approach which is known as indivisible
+stochastic quantum mechanics. you really
+just do have if for electrons for
+example you have point particles and
+they have locations but rather than
+following some deterministic
+trajectories those point particles move
+stochastically according to some rules
+okay and so all you can do is predict a
+probability of seeing them the rules are
+complicated I don't think we really told
+you exactly what the rules were or even
+I don't know if it the it's known what
+the rules are supposed to be in the most
+general cases but um one cru crucial
+feature of the rules is that they don't
+depend just on the state of the particle
+at any one time. This is in
+contradiction to the entire leloian
+paradigm that has ruled all of physics
+since the time of Isaac Newton. The idea
+that you know the state of the world at
+one moment in time, you can predict what
+happens next. In quantum mechanics, you
+can predict what happens next with a
+certain probability if what you're
+predicting are measurement outcomes. But
+still the state at one moment in time is
+enough to predict what that probability
+is. Here in Jacob's approach, it is not
+enough. You need to know something about
+the past history of what the particles
+were doing. This is where it gets a
+little vague to me and you can judge for
+yourself from the discussion whether
+it's compelling or not. But I'm all in
+favor of trying new wild things because
+you know that's where you make a
+breakthrough by even if every individual
+new wild thing is very very unlikely to
+be true if you try enough of them you
+really might make a breakthrough and
+that'll be very important. Despite the
+length of the podcast we didn't get to
+talk about everything. Uh one thing
+after finishing Jacob emailed me and
+said you know we really should mention
+Bell's theorem Bell inequalities. You
+know, John Bell proved these famous
+inequalities that are purported to show
+that a local theory cannot reproduce
+successfully the predictions of quantum
+mechanics. Um, therefore, you need
+something in a hidden variable approach.
+You would need something like uh bomb
+theory, de Bruy bomb theory, which has
+non-local interactions between the
+particles and therefore can completely
+um recover the ordinary predictions of
+quantum mechanics. Jacob's theory is
+local in space. But this non-Marovian
+property, the idea that uh the past is
+required to tell you what is going to
+happen in the future is a kind of
+non-locality in time. Anyway, long story
+short, Bell's theorem is fine. Bell's
+theorem is completely uh if you believe
+the setup at all, completely satisfied
+by this approach. Indeed, as far as
+Jacob can tell, um there is no
+prediction of conventional quantum
+mechanics that is different in his
+approach. is just a different underlying
+ontology. Again, which I'm all in favor
+of. I don't care if you make all the
+same predictions because by proposing a
+different underlying ontology, um you
+open up new ways to move forward into
+better understandings of the world
+because we have a lot of open questions.
+Now, you know, again, full disclosure, I
+am entirely unconvinced by this
+approach. I think that the many worlds
+approach is fine. So, one of the things
+we're going to do in the conversation is
+Jacob will have a chance to explain why
+he doesn't think Many Worlds is fine.
+And as usual, in the best mindscape
+tradition, you, the audience members,
+get to decide what you think is fine and
+not. With that, let's go.
+[Music]
+Jacob Arendis, welcome to the Mindscape
+podcast.
+&gt;&gt; It's wonderful to be here. Real
+privilege.
+&gt;&gt; You say that now, but we disagree about
+quantum mechanics. This is a a big deal.
+But I think that, you know, I've had
+people on here before that I disagree
+with about quantum mechanics. I think
+I've had more people talking about
+quantum mechanics, who I've disagreed
+with, than people I've agreed with. So,
+you're walking in a very welltrodd path.
+So, but we're going to pretend for the
+moment that the listeners have not
+listened to me and David Albert and Tim
+Mlin, engineer Ismael talk about quantum
+mechanics at great length. What is the
+big deal about quantum mechanics? Why is
+it that physicists and philosophers
+don't just understand it? Isn't it been
+around for hundred years?
+&gt;&gt; Uh, well, that's a really good question.
+So, I guess before I start, I I want to
+gush a little bit about you in
+particular. So, I I think uh you know,
+your listeners by this point, you know,
+they've they've listened to your amazing
+interviews with brilliant, interesting,
+creative people. Um and they've, I
+think, also, you know, listened to your
+uh Ask Me Anything Things. They've
+they've seen your solo they've listened
+to your solo um uh podcast episodes. So
+they know that in addition to being an
+incredible communicator of science um
+that you're also a fantastic scientist
+and um and and I can say just a couple
+of anecdotes before we get started with
+the rest of of the discussion. Um so you
+know this but uh I use your textbook on
+general relativity for my graduate level
+general relativity class. Uh and it is a
+masterwork of textbooks. There are a lot
+of textbooks now on on the market for
+general relativity. Um but but I still
+think it's the best. And um and also I
+had the incredible good fortune of
+working with you recently um on a thesis
+committee for an astronomy PhD student,
+the brilliant and amazing Chris Shaloo.
+&gt;&gt; Um and just getting a chance to see you
+up close in action doing science was
+amazing. So, I I just I think it's
+important that everybody who listens to
+this podcast knows that when they when
+they listen to you, they're not just
+listening to somebody who's fantastic at
+communicating science, but they're
+listening to like a fantastic scientist.
+&gt;&gt; Thank you very much, Jacob. That's very
+nice. And the the listeners do get
+tickled when I have guests who are fans
+of the podcast. They like, you know,
+they're like, "Oh, so they're we're all
+in the same club, you know, we're all,
+you know, we're all just thinking about
+these big ideas." So, that's great to
+hear.
+&gt;&gt; Yeah. So, now to get back to get back to
+quantum mechanics. Um here here is how I
+I would I would answer your question.
+Uh the the origin of of quantum
+mechanics is a little bit hard to pin
+down. A lot of people um uh pick the
+year 1900 when uh Planck introduced his
+quantum hypothesis. At the time Planck
+was trying to understand how to combine
+uh two theories electromagnetism. This
+is uh our our you know classical theory
+of electric fields and charges and
+electric forces and magnetic fields bar
+magnets you know that whole whole story
+electromagnets
+um with uh thermodynamics which was um
+thermodynamics at the time this is a
+theory of um uh work and energy useful
+work entropy
+um uh heat engines refrigerators
+basically the science of how we take uh
+heat around us and convert it into
+useful energy and the limitations we run
+into when we try to do that. Um by this
+point um you know various important
+people like Boltzman and uh Maxwell uh
+had begun to uh construct what we call
+an inter theoretic reduction an
+explanation of thermodynamics in terms
+of more basic ingredients the
+statistical behavior of more fundamental
+things. When sorry when you say we call
+it that, you mean philosophers call it
+that because
+&gt;&gt; philosophers. Yes.
+&gt;&gt; Put in both camps. I know
+&gt;&gt; that's fine. Um I think of you Sean as
+as a scientist and a philosopher. Um
+&gt;&gt; absolutely.
+&gt;&gt; So yes, I I include you in the
+&gt;&gt; You and I are two of the very few people
+who are kind of literally have
+appointments in both physics and
+philosophy departments.
+&gt;&gt; That's that's right. Yeah. Yeah. So um
+but you know uh uh Plunk ran into some
+problems. um he he uh had had trouble
+getting his theoretical predictions to
+fit with experimental data. Um there was
+experimental data about a certain kind
+of a plot, a graph um that showed uh how
+bright or how intense radiation was
+coming out of these heated systems um as
+a function of uh the color or frequency
+of the radiation coming out of them. uh
+and there were experiments people had
+experimentally determined what this
+looked like and he was trying to explain
+it theoretically from first principles
+and he was having a lot of trouble. Um,
+and to make a long story short, um, he
+was able to get a theoretical, uh,
+prediction that matched the experimental
+results, uh, by hypothesizing
+that you could only activate or excite,
+uh, a given frequency of radiation in
+certain discrete chunks, uh, quantized
+chunks. And these became the quanta of
+his quantum hypothesis. And this is uh
+where quantum theory gets its name and
+initiates um the story of quantum
+theory. This is 1900. Um and then over a
+period of time from 1900 uh into the
+1920s
+physicists and and philosophers and
+honestly physicists who were also
+philosophers because uh at that time uh
+people were thoroughly trained in both.
+I encourage um listeners who are
+interested in learning more about that
+to read an article by Don Howard um uh
+called Einstein's philosophy. I believe
+that's what it's called about how
+Einstein was thoroughly trained in
+philosophy. He read Kant's three
+critiques by the time he was 16. There
+was mandatory coursework at the
+university where he where he became a
+physicist. Everybody had to learn uh
+philosophy. Um he ran a philosophy uh
+study group uh reading reading club um
+and he was uh deeply versed in many of
+the the philosophical thinkers um both
+before his time and of his time as were
+many of his colleagues. Many of the
+people who gave us quantum theory and
+general relativity um were were
+thoroughly trained in philosophy
+alongside physics and you could see this
+in their dialogues.
+Uh you know but so in this in this
+period physicists and philosophers were
+trying to uh put together um a picture
+of the world and a set of laws that
+would give an empirically adequate
+meaning um capable of of accounting for
+and making the right experimental
+predictions. um and they ran into a lot
+of trouble. This period from 1900 to
+early 1920s is is often called by
+historians of physics the time of the
+old quantum theory. Um old quantum in
+theory all capital O capital Q capital
+T. Uh and in in this period people had
+this idea that that the world picture
+was basically classical looking. You had
+particles, you had fields. um and they
+were trying to come up with rules with
+laws that you could combine with this
+roughly classical looking picture to get
+the right predictions. And so you have
+something like you know in the in the
+teens the 19s you had the bore model of
+the atom. And this is the the model that
+um people often still think of when they
+think of of the atom with particles,
+electrons, charged particles going
+around the center of the of the atom
+around the positively charged nucleus in
+something like circular orbits. Uh but
+of course we know that when you know
+electrons transition from one orbit to
+another they emit radiation in these
+discrete amounts. Uh again in quantized
+amounts they they emit quantized
+radiation. Um, and so the picture that
+he had that that people worked with and
+that I think some people still think of
+is that you have these nice orbits. Uh,
+but there's some kind of rule that
+particles can only jump between these
+orbits in discrete amounts. Um, that
+picture worked reasonably well for
+making uh predictions about the pattern
+of radiation we get from hydrogen atoms,
+but it didn't work so well for other
+kinds of atoms. And people did try to
+improve the model. They tried to
+introduce other kinds of orbit shapes,
+but it this just didn't work very well.
+Um there were a lot of other confounding
+examples. So by the beginning of the
+20s, you have this collection of
+huristic formulas, approximate rules, um
+and
+no real consistent coherent theory. Um
+by the early 1920 this is like 1923 24
+people like Wulf gang pi pi of the pi
+exclusion principle right this famous
+idea that certain kinds of particles
+firmians of which electrons are example
+cannot be in the same quantum state this
+is responsible for the stability of
+matter for the solidity of matter very
+important wolf king powi and of course
+he did many other important theoretical
+things um bore was already beginning to
+toy with with similar thoughts um a as
+famously was Heisenberg They began to
+question whether uh you should begin
+from a classical picture of the world or
+really any picture of the world at all.
+&gt;&gt; Maybe we should abandon classical
+physical pictures. Um in in philosophy
+sometimes we refer to the the physical
+picture of what the world really is as
+the ontology, right? This is the
+ontology of the theory. Basically
+abandon the ontology. And if you read
+one of the most famous papers in the
+history of physics, Heisenberg's 1925
+paper introducing what shortly
+thereafter was called matrix mechanics.
+This paper was a breakthrough paper. It
+presented in some ways the first modern
+version of quantum theory. And the paper
+begins with a set of statements that any
+philosopher of science would regard as
+initiating a philosophical shift in
+paradigm paradigm shift where he just
+says explicitly we should abandon trying
+to think of these pictures and we should
+develop a mathematical formalism that
+just connects things we observe with
+other things we observe. So this is a
+very deliberate move that he makes and
+it opens the door to our modern theory
+of quantum theory. A theory of extremely
+abstract mathematics. The mathematics in
+general terms is not extremely advanced.
+Um a college student um you know doing a
+math major certainly well before the
+graduate level would be able to
+understand the mathematics that we use
+in quantum theory. It's just that the
+mathematics is very abstract and the
+connection to things that are physical
+the connection to ontology is murky or
+not there at all. Um
+so this this was an important shift. The
+idea was to give up classical ontology
+and embrace a purely
+new radical paradigm for how to think
+about laws and and and and pictures. Um
+Heisenberg didn't really present an
+ontology in this paper but shortly after
+Schroinger came along um and introduced
+another way to get the same predictions.
+Originally Shortinger called this
+undulatory mechanics like undulations
+like waves going up and down. I think
+it's a fantastic game. We should go
+back. It's great. Um but eventually it
+became known as wave mechanics.
+Shortinger introduced his wave function
+which was not present in Heisenberg's
+work. Uh and the wave function satisfied
+differential equations which physicists
+really like as a way to formulate laws.
+Um and then what developed after that
+was a picture an ontology in which you
+have like a wave function an abstract
+mathematical thing that undulates or
+oscillates um and it's got laws
+dynamical rules that it obeys and all of
+these look distinctly non-class.
+Shortly after that, Max Bourne uh came
+along and introduced his famous Bourne
+rule, which was a formula for taking
+wave functions and computing
+probabilities of getting certain
+measurement outcomes. Um, and this rule
+does not look like it comes out of
+ordinary classical probability theory.
+We have to take these abstract
+mathematical ingredients and then we
+push them through this very abstract
+formula and out comes a probability of
+getting a certain kind of a measurement
+outcome. But it's not, you know, in when
+chocoliers make chocolate, you know,
+sometimes they'll say that they make it
+from beans to bars, right? From getting
+them off the tree. This is not classical
+probability from beans to bars. this
+this is some other distinct kind of way
+of getting probability that seems to be
+non-class and then probability comes
+out.
+&gt;&gt; So what you get out of this
+&gt;&gt; let me just let me just poke at that
+because the phrase classical probability
+I'm never quite sure what that means. I
+mean we have
+professor Cole Mogorov gave us some
+rules for what probabilities are the
+numbers between zero and one they add up
+to one etc etc is are those not obeyed
+by quantum probabilities? Uh good
+question. I just as an interesting
+historical note, Kaggorov published his
+treatis aximatizing probability in 1933
+which is after all the textbooks came
+out by Dak and Vonoyman establishing.
+Interestingly, probability theory is is
+uh less classical than quantum mechanics
+in the sense that it was formalized
+after qu. Okay. So, what I mean by this
+is uh classical probability I mean
+ordinary probability in the sense that
+we uh attach probabilities to um uh to
+events to propositions and then we um
+manipulate probabilities using a set of
+rules. Uh and these rules it kind of
+depends on exactly what formalism of
+probability you're using. If you're a
+frequentist, if you're a basian, but
+roughly speaking, if you want to take a
+basian point of view, we have a
+formalism for taking uh probabilities we
+assign to propositions and uh plugging
+them into formulas and then getting new
+probabilities for propositions. And so
+this is sort of this is what I mean when
+I talk about the ordinary classical
+probability formalism. And in quantum
+theory, we we can't do that. we at some
+point we have to introduce these
+abstract mathematical ingredients in
+between or at various places that don't
+look like ordinary probability. I can
+give an even more concrete example of
+this. In ordinary classical probability
+um we imagine we have some collection of
+propositions.
+&gt;&gt; Mhm.
+&gt;&gt; Which is just a set of possible
+statements. And when we assign
+probabilities to them, we're generally
+assuming that those statements are
+mutually exclusive. One of them is true,
+the others are not. And collectively
+they exhaust all the possibilities. Once
+you assign probabilities to all of them
+and add up all the probabilities you get
+100%. Um and then we take that set of
+possibilities that's called a sample
+space. And then all of the propositions
+the more general coarse grained higher
+level approximate things we might want
+to say about it are all rooted in this
+set of more fine grained mutually
+exclusive exhaustive possibilities.
+And all that stuff is going to give you
+in fancy language we say a commutive
+algebra of random variables. We have a
+bunch of quantities that you can add
+together. You can multiply them. They
+obey the usual rules of addition and
+multiplication. Um and in quantum theory
+we just don't have that. Famously in
+quantum theory if you ask a certain
+question about a system like is the
+system spin up or spin down and then you
+interact with the system in such a way
+that you get an answer we call that a
+measurement
+and then you ask a different question
+about a system like is it spinning left
+or right and you interact with the
+system and get that answer and measure
+it you might think okay I now have two
+answers but if you go back and try to
+measure the first property again you
+might get a totally different answer.
+There's a certain non-commutativity of
+certain kinds of observable questions. I
+know in that example you might say,
+well, of course, I mean, if the thing is
+up and down, it couldn't be left and
+right. And maybe what I did was I messed
+it up in some way. But there are certain
+observables that you might think you
+can, you know, figure out one of them
+and then figure out the other and it
+shouldn't disturb the first. But in for
+every quantum system we know of, there
+are always obser observables, things we
+might want to know about it that fail to
+have this property, failed to have this
+ability to to ask the questions in any
+order. And that non-commutivity is an
+inherently non-class property.
+&gt;&gt; So I don't want to I don't want to dwell
+on this too much, but it's, you know,
+it's important to me and I know that
+we're going to get into the weeds later,
+but uh can't you just equally well say
+that these observable properties don't
+exist? They're not the things that you
+assign classical probabilities to. What
+what has changed is not the use of
+classical probability but what you
+assign probabilities too. I
+&gt;&gt; I agree with you. Uh in principle that's
+a way out of this. And when you start
+looking at um everian approaches to
+quantum theory, you begin to make moves
+like this where instead of attaching
+probabilities to uh uh physical
+processes happening out in the world, we
+attach probabilities to what we will
+see. what what our experience will be
+where we will be in some branching uh
+universe in some branching universal
+wave function. So there is the
+possibility you could shift the story
+and bring back something that looks more
+like ordinary probability theory in in
+some ways the kind of probability that
+that's used in many worlds or everian
+type quantum theory are are are kind of
+bringing back the old way of thinking
+about probability but just assigning
+them to different kinds of things. But
+this was not how people were thinking
+about quantum theory in the 1920s and
+30s. They just saw a complete break from
+the way we usually do probability theory
+in some fundamental ways. So maybe the
+right thing to say um again I want to
+get back to you still haven't answered
+the very first question I asked because
+I haven't given you a chance to but okay
+um there's a whole bunch of things that
+sort of come together to have a package
+of how we think about physics and what
+you're saying is something has to go and
+you know one way of saying what has to
+go is your notion of probability theory
+and maybe other things as well but what
+we all agree on is something has to
+radically shift from the classical view
+to the quantum view.
+&gt;&gt; That's right. That's right. Um, in the
+1900s up until the early 20s, as I said,
+physicists could not find uh a way to
+get the right experimental predictions
+with the kinds of thinking that they
+were used to from classical physics.
+Something had to give.
+&gt;&gt; Now, you can think of a physical theory
+in very broad terms as having three
+components. One component is uh the
+stuff the moving parts the more or less
+physical ingredients.
+&gt;&gt; Um in philosophy speak we might roughly
+call this the ontology. What we're
+saying is there according to the theory
+in physics speak we call that the
+kinematics. Kinematics is the
+description of the moving parts the
+basic ingredients. The next component is
+the rules for those ingredients. How
+those ingredients are supposed to
+change. what what could happen to them
+and how to make predictions about what
+they'll do. We call those in in in
+philosophy that's the nomological part
+the nomology but in physics we call that
+the dynamics or the laws the dynamical
+laws the basic rules for how these
+ingredients move around. Um and then the
+third component is how we assign
+probabilities to things in theory. Uh
+the probabilistic side. Now in a
+deterministic theory where you know
+exactly how things begin. You might not
+need probabilities but in a way you kind
+of do cuz zeros and probability of zero
+and one is like saying things definitely
+happen or definitely don't happen. So
+you can think of those as all as as as
+as uh subsumed into this larger idea of
+thinking about probability theory. And
+the probability side you could think of
+as broadly speaking you know what we
+know about the system our belief uh our
+credence you know our belief about
+whether certain things about things are
+true um and maybe also a part that's the
+chancy side or things just happening in
+some uh chancy way. Philosophers like to
+call this aliatory probabilities as
+compared with credence or subjective
+probability. But in some way we have
+probabilities also in our theory. Um,
+and we have a classical way we think
+about those three ingredients.
+Classically,
+the kinematics, the moving parts are
+going to be arrangements of things in
+something like physical space. They'll
+be particle arrangements or they'll be
+patterns of fields in space or something
+like that. Um
+on the dynamical side in classical
+physics usually we imagine we have
+something like an equation that takes
+the uh arrangement or configuration or
+state suitably defined and then we can
+use this to project forward to figure
+out what the system is going to do. or
+in broader terms we can uh put
+constraints in some uh larger sense on
+on how the system can behave. Um and uh
+and often those rules take the form of
+equations that take us from any one
+moment to sort of the next infinitely
+next moment. Uh and in calculus speak we
+call that a differential equation. Um
+and and then the third component
+probability is ordinary probability. As
+I've as I've explained, we have a set of
+possibilities. We assign probability
+numbers to it. And then we use
+probability formulas to update our
+probabilities. So those are the three
+ingredients. And by the end of uh by the
+beginning of the 1920s and certainly
+after 1925, 1926, I think there was just
+a consensus that we had to give up all
+three of those things. All three of
+those things had to be thrown out. You
+went from the classical world to the
+quantum world. Uh and and and that's it.
+um quantum the the idea of those three
+things didn't get thrown out but what we
+were using in classical physics for each
+of them had to be replaced by a quantum
+thing.
+&gt;&gt; Correct. More precisely more precisely
+said. Excellent. Yes. We didn't get rid
+of the idea we had these three things
+but we replaced them with uh with with
+um uh quantum versions of those things.
+We couldn't think about those three
+things using the classical paradigm
+anymore. Um and I already mentioned you
+know these innovations right? So on the
+ontology side to the extent we had one
+it was wave functions it was some kind
+of mathematical thing a wave function uh
+a quantum state in some broad sense um
+in some abstract kind of mathematical
+space uh and today that space usually we
+call it Hbert space um on the dynamical
+side we replaced the uh equations that
+we we were familiar with classical
+physics Newton's second law force equals
+mass time acceleration the Maxwell
+equations
+um that that describe how electric and
+magnetic fields change with time. We
+replace those with um a dynamical rule
+called unitary time evolution which in
+in the simplest cases is an equation
+named after Shortinger called the
+Shortinger equation which just tells us
+if you know the quantum state at one
+time this equation will tell you moment
+to moment what it will look like at
+later times. That's the Shortinger
+equation. Um and then the probability
+side is given by the measurement axioms
+and the borne rule and these complicated
+rules for how we take these abstract
+ingredients and generate probabilities.
+So this just seemed like a radical
+departure from how we thought about
+kinematics, dynamics and probability
+from before the beginning of modern
+quantum theory. This is formalized by
+1930 in Paul Dak's book um principles of
+quantum mechanics. Uh I won't tell you
+how old he was when he wrote that book
+because it would make everybody really
+really depressed. He was very very very
+young. Um and then John Vonoyman
+followed up two years later um with in
+the English translation mathematical
+foundations of quantum mechanics. But
+they basically told the same story. John
+vonan told it in a much more
+mathematically rigorous way. Um they
+unified the matrix mechanics of
+Heisenberg with the wave mechanics of
+Shortinger. Both of those were seen to
+be manifestations of a deeper structure.
+There is an abstract kind of space. It's
+not like physical space. It's called
+Hilbert space. Quantum states are these
+mathematical
+uh things that live in this abstract
+Hilbert space. These mathematical
+quantum states change with time
+according to unitary evolution or the
+Shinger equation. And then there's a
+prescription, a set of rules, the
+measurement axioms for taking those
+mathematical ingredients and generating
+predictions of what we will see when we
+do measurements. In particular, they
+tell us probabilities for measurement
+outcomes. And so by 1932, you're
+basically done. And again, remarkably,
+this is a year before Kaggorov publishes
+his aximization of classical probability
+theory. So it's kind of an amazing um
+circumstance. Um and and then you know,
+but this picture was so radically
+different from what people had thought
+about before. Uh and and not only was
+the picture radically different at the
+level of ontology, like are we saying
+that what physically exists is a quantum
+state in an abstract Hilbert space? Um
+but also the the measurement axioms
+were difficult to I mean you just took
+them on as axioms.
+&gt;&gt; Yeah,
+&gt;&gt; they worked really well, extremely well.
+Um those axioms
+basically underly how we calculate
+things in the standard model of particle
+physics today. The standard model the
+our best theory of um uh the
+interactions of elementary particles and
+fields today. Uh and they give
+predictions that are correct to gosh
+Sean what's the latest what's the
+longest number of decimal places that we
+have predictions?
+&gt;&gt; It's double digits right like you know
+it's it's more than 10 dec decimal
+places. So, it's very good.
+&gt;&gt; In the high energy theory area here at
+Harvard, there's a glass uh door that
+has um I believe if I'm remembering
+correctly, it's the gyroagnetic ratio of
+the electron. It's the theoretical
+prediction and the experimental
+prediction and they agree to many many
+decimal places. Um so, you look at that
+and you just say what else could we
+possibly need? We have this theory. It
+makes all the predictions. This is
+fantastic.
+There are other historical reasons why
+people shifted toward a more pragmatic
+attitude, a more practical-minded
+attitude toward quantum theory. Um, you
+know, around the end of of World War II,
+the center of gravity of physics moves
+from uh Europe to the United States. Um,
+there's a lot more money that goes into
+physics or the amount of funding
+increases dramatically. Um, there's a
+real emphasis on getting concrete
+results and there's also just rapid
+progress. I mean, the amount of progress
+that was made in uh all areas of
+physics, but but including what you
+might call high energy physics, short
+distance physics, I'm a little nervous
+of calling it fundamental physics
+because I don't want to offend anybody
+who thinks that that that other kinds of
+physics are also fundamental, but a
+certain kind of physics um um makes a
+tremendous amount of progress. We're
+discovering particles left and right. Uh
+and Nobel prizes are being handed out
+all the time.
+And uh and I just think there was this
+attitude that spending time trying to go
+back and re-evaluate the foundations of
+this theory
+um was was a waste of time. It was a
+waste of time. It was misguided. And
+that evolved from thinking it was a
+waste of time to actually becoming a
+serious um threat to one's career.
+Um, the history of 20th century physics
+uh tells a pretty sad story of people
+making very important contributions
+to physics to applications of physics
+often motivated by trying to probe the
+foundations of quantum theory and
+suffering significant career
+ramifications.
+Um, so people talk about uh, EPR. We
+people have heard of Einstein, Podilski,
+and Rosen and Entanglement and all that
+stuff. And and and Einstein certainly
+did fine career-wise. We're not worried
+about Einstein's career. His career was
+great.
+&gt;&gt; Um, but but other people began to
+revisit some of those questions in the
+years that followed. uh the first I I
+think really significant I mean there a
+lot of smaller examples but the first I
+think really significant example after
+uh the days of entanglement and the
+debates between Einstein and Shortinger
+is David Bow. So David Bow uh was at
+Princeton and he was a theoretical
+physicist.
+He wrote a book called Quantum theory.
+It's a book that's available now. Dover
+produces an edition of it. He he
+published it in 1951. Uh and most of it
+is a a very nice but relatively
+conventional treatment of quantum theory
+as was understood at that time.
+But near the end of the book, he decides
+to do something that you're not supposed
+to do. He decides he he wants to present
+a a better, more complete, more
+transparent analysis of the measurement
+process rather than just treat it as a
+bunch of axioms.
+when you do a measurement I don't know
+what a measurement is then this magical
+thing happens probabilities come out the
+quantum state suddenly you know
+collapses to lock in the results what's
+really going on there he wanted to pres
+present a pedagogical more foundational
+picture of what was going on and again
+this was frowned upon but he did it um
+and he laid out the process he he put in
+a a a quantum system an object that was
+to be measured he put in a device that
+was to measure it. And then he studied
+how they interacted according to the
+other rules of quantum theory, not the
+measurement axioms, but the more
+fundamental rules, the Hilbert space
+rules, Schroinger evolution to see what
+would happen. And he got these weird
+entangled quantum states. And then he
+had this amazing uh um approach. He
+called it, this is section 22.8, the
+destruction of interference in the
+process of measurement. Mhm.
+&gt;&gt; And he he he he showed that you got
+these branches that came out at the end
+of this interaction between a measuring
+device and the system. You went from a
+weird superp position of the system to
+be measured and a measuring device
+before the measurement. They combined.
+They evolved. And now you got these
+branches. In one branch, the measuring
+device obtained one result. And the
+system in some sense had a quantum state
+that corresponded to just that result.
+And then there was another branch. On
+this next branch, the measuring device
+had a different result and the system it
+was studying was in a quantum state
+corresponding to that result. And then
+there was a third branch and a fourth
+branch. They were branches and at each
+branch you had what looked like a story,
+a definite almost classical looking
+story for how the measurement should
+have unfolded. But you had all these
+branches. And what he was able to show
+was that the branches stopped talking to
+each other. Once you get a big measuring
+device involved, there wasn't any
+interference between the branches. They
+began behaving a lot like distinct
+classical realities. And this is in uh
+that book. I recommend uh that if
+viewers are interested that you you buy
+a copy of it. Yeah.
+&gt;&gt; Um uh it's it's a beautiful um
+exposition. Um and
+today we call this destruction of
+interference and this emergence of
+branches uh when a big enough system
+gets involved in the story we call that
+decoherence.
+Um and decoherence was later developed
+by a number of other people. Uh deator Z
+did further work on it in the 70s. Uh
+and more people did work on it going
+into the 70s ' 80s and '90s. Um but uh
+you know far from getting uh accolades
+for introducing this pivotal idea um
+Bow's career took some rather
+unfortunate turns. He found himself
+exiled uh to Brazil and unable to return
+to the United States. Um now there were
+other reasons for this. There were also
+political reasons that I'm not going to
+get into but but certainly you know he
+he wasn't handed a Nobel Prize for
+discovering you know for laying out the
+story of decoherence. And this is a huge
+shame. Decoherence is a pivotal idea in
+how we make sense of quantum theory
+today. Not just philosophically or
+foundationally, but you can't pick up a
+research article from an atomic physics
+laboratory or a quantum computing uh
+research group or quantum information or
+high energy theory or condensed matter.
+any area of physics that deals
+extensively with quantum theory without
+reading about decoherence decoherence
+time scales shielding our systems from
+decoherence um people you know worry why
+can't we make a quantum computer today
+one of the problems is it's very
+difficult to protect your systems from
+this decoherence process
+um I I think in some sense this means
+that all of these uh um practicing you
+know contemporary physicists should be
+paying royalties to poor bone B or at
+least to the field of foundations and
+philosophy of physics. Now
+I think some people would look at Bow
+and say well no this counts as physics.
+He was a physicist
+but he was doing physics in a mode that
+is instantly recognizable to people who
+work in philosophy of physics. He was
+taking um
+theories. He was probing their
+structure. He was trying to improve the
+way we made sense of them and in so
+doing he made a major contribution to
+how we think about physics.
+&gt;&gt; Do you know if that part of Bow's book
+was any influence on Hugh Everett?
+Um, to my knowledge,
+no. I don't think I'm not sure that it
+was.
+&gt;&gt; Who was also at Princeton at
+approximately the same time?
+&gt;&gt; He he was I mean the book was 51. Uh,
+Everett was at Princeton in the mid-50s.
+55 I think is when he started there. I
+don't know if Bone was still there at
+the time.
+&gt;&gt; But yeah,
+&gt;&gt; he well did he because his he published
+his dissertation in 57. He was certainly
+working on the unpublished version.
+&gt;&gt; Yeah. Okay. There's some overlap. You're
+probably right. Yeah. Um I I'm I'm not a
+historian and I don't know the detailed
+history here. I don't know what um what
+to what degree they over overlapped. Um
+but uh that's an excellent question and
+one that that uh uh I'll definitely go
+and look at. We should we should look
+&gt;&gt; because certainly the story does sound
+familiar to an Everettian. Right. But
+then B ends up going in a very different
+direction because Einstein nudged him.
+&gt;&gt; Correct. Yeah. Yeah. So, so Bow was very
+pleased with this and he explained this
+to Einstein uh who was obviously still
+in Princeton at the time. Um Einstein
+lived until 1955. So Einstein was there.
+Um and Bow came away from that
+conversation with Einstein um no longer
+convinced he had solved the problem.
+Uh and and the next year Bow introduced
+his hidden variables approach to quantum
+theory where the quantum state was a
+pilot wave that guided the particles
+around. But I should say that
+decoherence didn't go away.
+&gt;&gt; Sure.
+&gt;&gt; Um Bow published two papers. Um the
+first of which laid out the the outline
+of this new approach and the second
+paper went deep into the measurement
+process. And to get the measurement
+process to work in bow mechanics, you
+still need decoherence.
+Um now the argument I would make to
+anyone who says
+all we need to explain quantum theory
+and solve the measurement problem is
+decoherence is just look at boom.
+Arguably Bow understood decoherence. I
+think it's safe to say being the person
+who came up with the idea and laid it
+out so beautifully. You can again read
+his his book. Um I I I I would wager a
+guess. I mean sure not everyone who
+discovers something fully understands
+it. That's true. Historically we have
+examples. It doesn't always happen. But
+but in this case he seemed to have a
+very good understanding of what was
+going on and he didn't think it was
+enough to resolve the measurement
+problem. And I think that's telling.
+&gt;&gt; So I I do worry that we're not going to
+get to the juicy stuff. So, I want to
+accelerate our velocity here. Could you
+could you just give us a brief overview
+because we've already mentioned Bow and
+Everett and these are two of the leading
+contenders for a true theory of the
+foundations of quantum mechanics. Could
+you explain why they're different?
+&gt;&gt; Um, right. Right. So, in in Everett's,
+so in in in Bow's approach, uh, we we
+have the quantum state. It does this
+funny branching, but in addition to the
+wave function, there are uh particles.
+There are localized particles moving
+around in space and they're guided by
+the wave function. Um, and they're
+guided so that they arrive at uh
+destinations
+uh according to the rules and
+predictions and probabilities from
+quantum theory. This sounds very
+gerrymandered like he he just kind of
+carefully like engineered his pilot wave
+to do this but it actually comes out
+rather beautifully when you're working
+with systems of fixed numbers of
+finitely many non-relativistic
+particles. You take the shortinger
+equation you sort of decompose it into
+into parts and the parts tell a very
+natural story in a language that's very
+similar to what's called the Hamilton
+Jacobe formulation of classical physics
+which he knew. Um and in that story you
+see what looks like a pilot wave guiding
+things around. So it's actually a really
+um at least for these this limited class
+of systems a really elegant picture.
+Uh essentially what Everett did was drop
+the particles just drop them. Uh and
+actually so although um so you asked
+about whether Everett knew about Bow's
+work on decoherence that I'm not sure
+about but Everett certainly knew about
+Bow's work because in um Everett's
+unpublished long form dissertation which
+uh he he finished in 1956 you could find
+it uh online just Google 1956 Everett uh
+long form dissertation um which by the
+way is 137 pages
+&gt;&gt; 137 very important number physics.
+&gt;&gt; My cookie.
+&gt;&gt; Um, when I teach my philosophy of
+quantum mechanics class, it's it's it's
+course number 137. That's an homage both
+to Everett and also to the inverse fine
+structure constant.
+Um, Everett talks about Bow's theory in
+detail uh in that um in that thesis
+comparing and contrasting with his
+approach. I don't think he talks about
+Bow's analysis of decoherence though.
+That's where I'm not 100% sure. But he
+certainly knew of Bow's work. That's
+that's true.
+Um so Everett drops the particles uh in
+in a an attempt to simplify the theory,
+simplify the axioms, make very clear
+when I say simple simplify simplify the
+axioms, make the assumptions simpler uh
+and just try to build a sensible uh
+formulation of quantum theory that is
+empirically adequate, makes the right
+predictions, agrees with the
+experimental predictions that we're
+making um uh but is doesn't have these
+extra ingredients in the axioms um that
+that Bow's theory did.
+&gt;&gt; And you don't believe either one of
+them.
+&gt;&gt; That's right. At least not now. Not now.
+Yeah.
+&gt;&gt; Sure.
+&gt;&gt; Um believes I went through I went
+through uh um a bomb phase when I first
+read Bow's papers. They are very
+compelling and very beautiful. you can
+see why Bow was uh you know thought he
+discovered something so important. Um I
+think the papers are a little bit
+difficult to appreciate um for for
+people who haven't yet learned about the
+Hamilton Jacobe formulation of classical
+physics which is you know
+&gt;&gt; many many it goes back to the 1800s I
+mean it's it's it's but it's something
+that people knew. Shortinger used it to
+build uh the Schroinger equation. It was
+well known to physicists uh back then.
+We don't teach it at the elementary
+level so much to physicists anymore,
+although some physics students will
+learn it if they take an advanced course
+in classical mechanics. Um, so when you
+read that paper and you're familiar with
+this formalism, it seems incredibly
+natural. It just looks like it just
+looks like someone took the Hamilton
+Jacobe formulation and just added an
+extra force in it and now you've got
+quantum mechanics and it just seems like
+oh my gosh, this is such a beautiful
+picture. Um,
+and so of course my next question was
+great. Let's see how this applies to
+more general kinds of quantum systems.
+Let's see if it applies to discrete
+quantum systems. Uh, systems where the
+moving parts are like discrete things.
+We use these kinds of quantum systems to
+model what goes on inside of a quantum
+computer. Um, or in a ferroagnet, you
+know, like a permanent magnet, like a
+bar magnet. How does it apply to quantum
+fields? So field theory, this is where
+we imagine uh moving parts that are
+spread out over all of space where
+there's roughly speaking a different
+moving part at every point in space. Um
+and you also have to contend in those
+theories with the rules of special
+relativity from Einstein and that makes
+things much more complicated. And so I
+just jumped in and I'm like great, let's
+see how this works. And I I could not
+see how to make it work. I couldn't see
+how to make it work.
+&gt;&gt; It's not just you
+&gt;&gt; and it's not just me. And so I began
+reading the literature on this. And let
+me just say that although I don't agree
+with um some of the other approaches to
+quantum foundations that exist, you
+can't read the work of these people and
+not be blown away by their creativity,
+their intellect, their ingenuity. Um I
+am in awe of the work that they've done.
+And I think you just have to read their
+work to see. and and even though I don't
+necessarily agree with the conclusions
+they draw, there's a lot that you can
+take from their analyses, you know, and
+this is really the the the beauty of
+what I call philosophical physics, which
+is doing physics using the tools of
+analytic philosophy. Um, sometimes these
+tools let us make progress in a very
+direct way on physical problems and
+sometimes you get physical results as
+spin-offs.
+&gt;&gt; And so the spin-offs of a lot of this
+stuff, I think, is is really remarkable.
+But so people worked on trying to make
+versions of bowi mechanics that would um
+give a good elegant description of
+systems where you had to follow the
+rules of relativity systems with fields
+in them. And here uh I I'm thinking of
+um uh uh people like uh Ward Stroa um
+Shelley Goldstein
+um uh and and a collection of people who
+who've worked on on bone bone theories
+um um since then. There's like a lot of
+people and I don't want to miss names.
+I'm afraid if I don't mention names,
+people are going to feel like I'm
+leaving them out. But but but once you
+you like look up those names, you you'll
+learn about people like Nino Zangi and
+Rody Tamula and Debt Left Dur. Um and uh
+so I'm I'm I'm going to leave out names
+here, but but I I I assure you it's not
+because of any disrespect. Um so I I I
+read their papers because I couldn't
+figure out how to do it. And I read
+their papers and and I you know the
+models they constructed were really
+really really complicated. they were
+really complicated. Um uh I guess Bell
+also worked on um uh on this as well. Uh
+beables for quantum field theory I think
+was was the paper where he tried to
+contend with this. This is John Stewart
+Bell the Bell of the Bell Bell's theorem
+who played a very important role in in
+quantum foundations as well. Um, and you
+know, you could get some things that
+sort of looked like they kind of worked
+for very simple quantum field theories
+in some situations,
+but I couldn't see how to get them to
+work for interacting quantum field
+theories, quantum field theories that
+had uh firmians in them. These are the
+quantum fields that underly electrons.
+They're very weird, these quantum
+fields. Um
+and in the end you got these sort of
+complicated ad mixtures of pilot wave
+dynamics and stochastic dynamics which
+we'll come back to. So the beautiful
+deterministic picture of the bomb
+approach gave way to a prediction where
+the laws were chancy now. Um, and the
+rules seemed now kind of gerrymandered,
+kind of ad hoc, like we knew the
+predictions we needed and now we were
+just going to reverse engineer the rules
+of these bombian generalizations of
+quantum theory um to agree with those
+rules. I keep saying bone by the way but
+de Bruy Louis de Bruy
+&gt;&gt; yes
+&gt;&gt; had
+&gt;&gt; introduced um a primordial version of
+this pilot wave approach and b did bow
+didn't know it initially but but
+eventually after bone published papers
+they connected and so some people call
+this the de bruy bomb formulation
+instead of bow's theory or bowing
+mechanics
+&gt;&gt; so these pilot wave theories these
+hidden variable theories they work very
+well if you have a bunch of spinless
+particles moving non-relativistically
+once you try to include modern physics
+relativistic quantum field theory they
+both get a lot uglier and it's not even
+clear that they work at all. So, one
+recognizes why you might be skeptical.
+But why in the world would you be
+skeptical of ever which is just so
+obviously the truth?
+&gt;&gt; I should also just mention that um on
+that point of can these models work at
+all. Uh David Wallace who is a
+philosopher of physics
+&gt;&gt; at Pittsburgh.
+&gt;&gt; Yeah. Yeah. Um, and uh, I mean, when
+when I talk to physicists about what
+philosophers of physics uh, can do and
+and how extraordinary they can be, I I
+often point them to David Wallace
+because he's just incredible. Um, he
+wrote a paper and gave a bunch of talks
+called the sky is blue, why quantum
+theory um, the interpretation of quantum
+theory is not underdetermined. uh you
+know in which he argues basically your
+point that it's not merely that the
+bombian models the de bow models haven't
+worked very well or very inelegant but
+that they they don't succeed at
+um important but relatively elementary
+tasks like explaining why the sky is
+blue that comes from scattering it's a
+relativistic interaction between uh uh
+light and charged particles in the
+atmosphere and you know his attitude is
+it's been
+you could argue 100 years since De
+Bruyne first introduced the hidden
+variables pilot wave approach 70 years
+set more than 70 years since Bome did
+and the fact that this approach has not
+yet been able to accommodate um this
+very important kind of of of problem uh
+is is a serious issue. So so yeah, I
+think it's more than just a question of
+elegance. I think there's a practical
+problem here. Now, I'm not going to rule
+out that it's possible at all. Uh people
+are ingenious and maybe someone will
+listen to this or not listen to this,
+but come along and come up with a way to
+get bombing mechanics to work. Um and if
+that happens, that would be very
+exciting. U but but let me just say that
+by the end of my uh foray into bow
+mechanics, I just felt like it just it
+was too hard and it wasn't working. Um
+and I I wanted to try something else.
+And then I became an Everettian.
+&gt;&gt; Did you? Okay, good.
+&gt;&gt; Yes. I I spent a period of time as
+neverian and I had the exact same
+experience. I
+&gt;&gt; You're very ecumenical.
+&gt;&gt; Yes. Well, I I I I I I hope it's it's an
+aspiration we you know but um whether
+whether any of us has achieved it is is
+a different question. Um
+but but so I I encountered uh Everett in
+quantum theory. Um I read Everett's uh
+paper. I mean I was reading all these
+papers. Boom's paper. I was reading it
+while I was in grad school pretending to
+be a physicist.
+But really I was interested in in in
+philosophy and in the foundations of
+physics, foundations of quantum
+mechanics. So I I read um Everett's
+original uh published version of his
+dissertation. I didn't encounter the
+long form unpublished version until many
+years later and I feel very bad about
+that because it is one of the most
+brilliant uh pieces of work in physics
+and in philosophy of science. Uh it is
+an extraordinary phil philosophical work
+filled with amazing ideas and arguments.
+um and I wish I'd seen it earlier. Uh so
+I encountered um Everett's uh approach.
+Of course, like anyone interested in
+science, I had heard of the many worlds
+interpretation. Um there's a cartoon
+version of the many worlds
+interpretation. Oh, that's the
+interpretation where every time you make
+a decision, the world splits into a
+world where it happens this way and a
+world where happens that way.
+&gt;&gt; Oh, yeah.
+&gt;&gt; You know, there's a cartoon version that
+is not very much like the the actual
+version. Um but I so I had this cartoon
+version in my head. I I you know seen
+people mention it a few times as I was
+coming up in physics but I began to
+engage with literature and um I found
+Everett's uh thesis very compelling the
+published version very compelling. He
+tells this anecdote um that shows up a
+lot in um in treatments of Everett's
+work. this anecdote about about
+Capernacus and about whether the sun
+goes around Earth or whether it's Earth
+turning. Um he he he and when this is
+brought up, it's it's to get across the
+idea. Yes, I know it looks like the
+sun's going around the Earth,
+but what would it look like if Earth
+were in fact turning? Wouldn't it look
+the same? Yeah. You know, and so if you
+have a problem with worlds splitting, if
+you think that somehow is not how things
+look, his response is, well, what would
+it look like if worlds were splitting,
+you know, would it really look any
+different? Um, he and so this is in in
+that in that published version. He it's
+also in a letter that he wrote in
+correspondence with Bryce Dit, a
+theoretical physicist
+&gt;&gt; who was quite skeptical of the Everett
+approach. This letter, his
+correspondence is 1957. Bryce Ditright
+right wrote him a letter saying, "I I
+sir, I simply don't split." And Everett
+responded, "Well, how would you know if
+you did, right? What would the world
+look like if you did?" And eventually
+Bryce Dit went from being a skeptic to
+being one of the strongest proponents of
+the interpretation. And by 1970, he
+wrote an article in Physics Today, the
+trade magazine for physics uh in which
+he uh presented this interpretation to
+the wider physics community. So um
+Everett certainly won one uh a very
+important convert to the cause.
+Um, yeah. So, I I found the whole thing
+very compelling for a variety of reasons
+and and and I think I was an Everettian
+longer than I was a Bomian. Um, and I
+got into arguments with people about why
+Everettian quantum theory was correct
+and why all you needed was decoherence.
+Um,
+and and you know, I got push back from
+people. I had arguments with people. I
+was still pretty new to to to thinking
+philosophically about science and I was
+learning how to construct uh rigorous
+philosophical arguments which by the way
+they don't teach you in physics grad
+school.
+&gt;&gt; Um that's a very important skill that
+takes a lot of time to hone and
+definitely still a work in progress for
+me but it's it's one thing you have to
+to work on if you want to do philosophy.
+&gt;&gt; So I began to to try to hone this this
+uh this this picture
+and I had a couple of pivotal moments.
+Um Ned Hall, another guest I know that
+was on your on your podcast, is a
+professor here in philosophy at Harvard.
+Um and we had uh um some arguments about
+the foundations of quantum theory. And
+he invited me to give a guest lecture in
+his philosophy of quantum theory class.
+And so I was forced to sit down and do
+the thing that we're always that we
+philosophers of physics are always
+asking physicists to do. Oh, quantum
+theory is fine. It's got no problems.
+well, sit down and write out a detailed
+argument filling in all the gaps to
+explain exactly how this works. And so I
+was forced to do this exercise. Um, and
+I found it very difficult. And when I
+went into his class, the students had
+very tough questions for me that I had
+difficulty answering. Um,
+so you know, there's that. There's other
+interactions I had. Uh, um, Neimar Khani
+Hamemed taught a class at Harvard. um uh
+I guess this was second year in grad
+school for me was on quantum mechanics
+and spacetime and he presented a certain
+kind of argument that was motiv
+motivated by Sydney Coleman's lecture
+quantum mechanics in your face about how
+to get um quantum mechanics to work with
+a sort of everian picture.
+&gt;&gt; Um and you know I spent months trying to
+make that fit together and I couldn't
+make the lecture work. I spoke to Nema
+not long ago and he doesn't remember
+this and and and you know maybe I
+misinterpreted what he was saying. it's
+entirely possible. It's certainly not
+his view now. Um, but at the time, for
+whatever reason, I thought this was his
+his view of how quantum theory worked. I
+couldn't make it work. Um, and so I had
+to grapple with the Ever approach and I
+began reading more papers. I went from
+Everett's papers to more modern papers
+on on Everett and quantum theory. Um, I
+read the work of people like David
+Wallace. Um I read uh um papers um I
+read books uh arguments for and against
+the ever approach and I started to have
+doubts. Um so I remember I I had some
+difficulty with David Deutsche's paper
+from 1999 um on decision theoretic
+derivations of the Borne rule in quantum
+theory. Um these sorts of arguments were
+expanded later uh by David Wallace uh in
+some papers and eventually in his
+textbook the emergent multiverse which
+was published in 2012
+and you know by this point I was getting
+a little worried because the arguments
+were getting longer and longer and more
+and more technical. Uh David so Hugh
+Hugh Everett his argument for
+probability in many worlds is basically
+one page. David Deutsche's argument is
+15 pages and the mathematics is much
+more intricate. Uh and David Wallace's
+is 83 pages and and the ma and although
+I'm not sure I mean it depends exactly
+on where you put the initial point and
+the final point. It's arguable that it
+actually starts earlier in the book but
+I'm trying to be like when he actually
+said I'm going to start proving the
+theorem. Um and the mathematics is very
+very complicated. Um, for anyone who's
+curious about what the mathematics of
+that proof looks like, um, go out and
+buy his book. You should buy it because
+like Everett's long- form dissertation,
+it is also one of the most incredible
+works of philosophy of science and
+physics that I think has ever been
+written. Um, when you read the book, you
+are immediately struck by how brilliant
+David Wallace is. I mean, it's just an
+incredible book. anytime a student comes
+to me and says they want to work on
+quantum foundations, I always recommend
+that they buy his book and that they
+read it. Uh and and so far, you know,
+they they buy it. So, you know, I'm
+sending uh revenue David's way, I guess,
+but for very good reason. Um but I
+recommend that that people actually buy
+the book and try to get through the
+argument. You'll see it is very very
+very complicated and this makes me
+extremely nervous. Um, the concern that
+people expressed about trying to get
+probability out of the many worlds
+picture is that it runs into logical
+circularity where you're trying to
+derive something that we should see
+probabilities come out without assuming
+the thing to be derived at the
+beginning. That's cheating. Now, I know
+that one could argue what one person
+calls logical circularity, another
+person calls beautiful uh
+self-consistency.
+&gt;&gt; Consistency, of course. Right.
+&gt;&gt; Exactly. Exactly. But um but at least
+for me, I was very nervous because if
+you make a proof very long and very
+complicated, the odds increase that
+you're somewhere going to slip in an
+assumption that you're trying to prove
+at the end. So what what these proofs
+are trying to get is the Bourne rule, a
+specific formula for how you take the
+quantum state and how you take certain
+mathematical ingredients called
+operators and you put them together and
+then you apply a certain mathematical
+operation to them and what comes out is
+the probability that a measurement will
+have a certain kind of value. That's the
+Borne rule. Um
+you don't want to assume anything.
+You want to be very careful about your
+assumptions as you go, right? You don't
+want to assume the born rule when you
+begin. You don't want to make certain
+assumptions. They're difficult to
+justify. You want to start with
+assumptions. We call these premises um
+in your argument that are reasonable
+and that ultimately produce this
+results. That's how a theorem works. You
+begin with certain premises and you get
+some conclusion.
+Uh, and I just got really nervous
+reading reading that proof and I I went
+I went through it and what also struck
+me was
+that although
+one of the selling points of the Ever
+approach going back to Everett's
+original uh dissertation is that it is
+axiomatically so simple whatever it says
+in his dissertation is he just wants to
+keep the quantum state and Shortinger
+evolution and then stop and not anything
+else. What struck me is that you do have
+to add a lot of other axioms and
+premises to get the theorem to work. And
+I made a list of these. I went through
+the book and this is another um uh task
+I give to students who are interested in
+uh quantum foundations is to read um any
+of the proofs the Deutsch proof David
+Wallace's proof and keep a running list
+of every extra assumption every premise
+the richness axioms the rationality
+axioms assumptions about the connection
+that an individual should have to many
+copies of themselves um assumptions
+about how freewilled agents are allowed
+to make uh to to apply operations in an
+agential way. Um uh certain assumptions
+about the structure of the Hilbert
+space. Um
+you know there's a whole list of these
+things. I'm not even listing all of
+them. And
+and also that and this is one that Tim
+Odlin uh has brought up the idea that
+distinct possibilities should correspond
+to orthogonal or perpendicular uh
+directions in Hilbert space to begin
+with. Tim Mollin's like, "Well, why
+can't you why can't you, you know, uh,
+consider a blend of those two things as
+a distinct possibility?" Tim Mlin in his
+review of, I think it was of David
+Wallace's book asked, "If someone says,
+do you want to go the left path or the
+right path?"
+And if you were to say, "Well, I could
+choose either of them. Could I choose to
+sort of take both paths?" And if the
+person says, "Sure, you could do that,
+too." You might consider that a distinct
+possibility. If someone said, you know,
+you have to pay $5 to take the left path
+or $7 to take the right path, and you
+said, well, how much would it cost me to
+take both? And the person said, $20.
+Right? That seems to be a distinct thing
+you could choose to do. Um, and there
+there are further assumptions that that
+in the years since, I've realized
+they're sort of implicit behind this.
+And I began to develop this sense that
+it it falls prey to a what I now call
+the stone soup problem. I can make a
+fantastic soup. The story goes, "All I
+need is stones and water." This is based
+on an old folktale. You know, really,
+you can? Yeah. Yeah, I can do it. And,
+you know, I'll start making the soup.
+I'll make the soup. Oh, it's it it
+already tastes delicious. But, you know,
+if I had just a little bit of seasoning,
+it would be even better. Okay, great.
+Oh, actually, if I had some carrots,
+just just a few carrots. Oh, even
+better. You know, it's practically done,
+but you know, if I had some meat, it
+would be even better. And and so on and
+so on and so on. And by the end, people
+like, "Wow, can you believe it? This
+amazing soup and and only from water and
+stones." You just get this sense by the
+end that this is what is what you have
+and the extra assumptions you need. It's
+not that I have any problem in principle
+with making assumptions or having
+premises or um or or even assumptions
+that are you know metaphysical in
+nature. I mean we need metaphysics to
+get out of bed in the morning. I mean
+you you need something um it's just that
+when you have to make a lot of them
+and a lot of them are difficult to
+justify if you don't already believe
+them. For example,
+you have to believe that if I uh don't
+have a unique future version of myself,
+but instead in the future there are an
+uncountable number of copies of myself,
+then I should value their experiences
+the way I would value the experiences of
+one copy of myself. You know, David
+Wallace says this explicitly in the
+book. It's one of the assumptions he
+takes. I don't know how to justify that.
+You either believe it or you don't. And
+you have to stack so many of these I
+call them speculative metaphysical
+hypotheses SMH's on top of each other
+and each one reduces my basian credence
+my my my belief in the theory that by
+the end I just felt like
+this was a problem and I should say this
+was initially what got me worried about
+the effort approach there were other
+things too and since then I now have I
+think not negative arguments but more
+positive arguments for why I think that
+there are issues there and the final
+thing I'll just say is that I developed
+a different approach to quantum theory.
+&gt;&gt; Oh, very good way there. That's what I
+was
+&gt;&gt; The best thing to do. Yeah, exactly. Is
+do something new.
+&gt;&gt; Put your money where your mouth is.
+Absolutely. And so, uh, I I I want you
+to explain your new approach. My
+impression is that, uh, it's it's not
+just a tweak. It's a pretty radical
+different starting point. Like, you
+don't even believe in wave functions.
+&gt;&gt; Right. That's right. That's right.
+&gt;&gt; Oh my goodness.
+&gt;&gt; Oh my goodness. Yes. Heresy. I'm a
+renegade. Call me renegade if you want.
+Yeah,
+&gt;&gt; I'm a rebel. Um yeah. Um Yeah. So
+&gt;&gt; why don't why don't we why don't we like
+&gt;&gt; do the very short version of what the
+theory says and then we'll back up and
+sort of say okay why is it that way etc.
+&gt;&gt; Exactly.
+When we look around the world we see
+objects and the objects do things they
+behave in various ways.
+uh and that behavior sometimes looks
+very predictable. We can say exactly
+where things end up and sometimes the
+behavior looks less predictable, looks
+more chancy. We see coins flipping in a
+way that looks kind of chancy. Weather
+looks chancy. We see objects doing
+things out in the world separate from
+us.
+And the natural question is can we
+extend in broad outlines that picture
+down to the micro scale? Is there a
+sensible way to extend it down to the
+micro scale and still have an
+empirically adequate description of
+quantum theory?
+That's one way to think about this.
+Another way to think about this is go
+back to 1923-24
+and suggest that the people working on
+the development of quantum theory were
+maybe thinking too narrowly about what
+laws could be like. Maybe if they
+imagined a more general kind of law,
+they could retain the classical
+kinematics, the classical looking
+picture of reality of the stuff, not of,
+you know, the physical objects. Um maybe
+particles, maybe fields, maybe something
+else, but something that's that, you
+know, arrangements of things and
+classical notions of probability, but
+they just needed um a new set of laws, a
+new kind of laws that were unknown at
+the time. Um, and so one way to view
+this project is while there's been a lot
+of time since then, people have gone in
+many different directions about what
+laws could be like, there are now
+available to us the kinds of laws that
+when married to classical kinematics and
+classical probability appear to give you
+an empirically adequate description. So
+maybe we were hasty in throwing away the
+classical looking ontology. Um,
+&gt;&gt; so the con a quantum person would say
+what ex you know well a realist about
+quantum theory we're not even going to
+bother with the epistemic people but
+right uh they would say okay what exists
+is the wave function of the electron but
+when you measure it
+&gt;&gt; you see just an electron and there
+that's the fundamental mystery here and
+you're saying no what exists is the
+electron but it behaves differently than
+you think
+&gt;&gt; that's exactly right yeah so notice I've
+in the story I've gone back to 2324
+192324 this is before shortinger
+introduced the wave function
+So the argument here is that you could
+have bypassed the introduction of the
+wave function and developed an
+empirically adequate description here.
+There is no wave function in any
+fundamental sense. There's just stuff
+the moving parts whatever it may be. We
+don't know what it is. Maybe we have to
+wait to find a fundamental theory of
+nature, a unified theory or something
+like that. I'm not I'm going to be very
+modest here and not claim I know what
+the true fundamental ontology is. But um
+we have some moving parts and the laws
+these more general laws
+act directly on those moving parts and
+carry them to the places where
+experiments say they're supposed to go
+with the right probabilities. That's it.
+With no fundamental role played by the
+wave function as a middle manager.
+&gt;&gt; So what are these laws? How do they do
+all this magic that uh convinced us to
+introduce wave functions back in the
+day?
+&gt;&gt; Yeah. So by the 20s there was already a
+theory of stochcastic processes. So the
+word stochcastic.
+So stochcastic is a is a subcategory of
+probability. We use probability for many
+things. Stochastic is a a more narrow
+notion of probability. We use the word
+stochastic when we're talking about um I
+mentioned aliatory probabilities.
+Probabilities of chancy things happening
+rolling a dieice throwing a coin. Um uh
+it we we apply them to dynamical
+things that change but they change in a
+way that we assign probabilities to
+throwing uh um darts at a dart board for
+example shooting arrows and and shooting
+arrows is where the word stocastic comes
+from. Stokose I think is arrow in in in
+Greek. Um
+so we call these stochastic things and
+there were already some theories where
+the laws were stocastic. famously one of
+Einstein's greatest discoveries
+uh um you know one of his his greatest
+breakthroughs was uh using brownie in
+motion to give um uh strong empirical
+evidence for the existence and nature of
+atoms um and brownie in motion is an
+example of a stochastic process
+particular kind of stochastic process a
+very simple kind of stochastic process
+um it's a stochcastic process where the
+probabilities you assign to a chancy
+thing happening depend only on the state
+or configuration of the system in the
+present. You know the state in the
+present and then you can predict what is
+going to happen. In this case, not
+determinately,
+not deterministically, not definitively,
+but probabilistically. And this mirrors
+the way that our fundamental laws of
+physics up until that point had been
+phrased. Newton's second law, F= ma, you
+know the position and velocity of your
+particle. you can predict where it's
+going to go. It doesn't matter where it
+was. As long as you know the position
+and velocity at one time, you can
+predict the future. The Maxwell
+equations, the equations that describe
+electric and magnetic fields, have a
+similar property. General relativity is
+actually an interesting interesting
+case. It's it's not 100% clear that in
+all circumstances for all kinds of
+spaceimes, we have um uh a theory quite
+like that. uh for some some very nice
+spacetimes we can phrase uh Einstein's
+theory of general relativity the basic
+equations as describing that kind of uh
+evolution. It's actually not entirely
+clear that that is always the way to
+think about Einstein's theory and I'll
+come back to that because that actually
+may be important but for many of the
+theories we had up until up until then
+and certainly we didn't have general
+relativity in 1905 when Einstein was
+doing brown motion the idea was this is
+how laws worked you specify what's
+happening in the present the laws tell
+you what happens next this is called the
+marov assumption marov m a r k ov named
+after the Russian mathematician marov
+uh And
+it's baked into how we think about laws
+of physics. It gives very simple laws
+usually. Um and we've been very spoiled
+because the marov assumption has served
+us incredibly well for centuries.
+Um it's telling that whether you think
+of Brownie in motion or you think about
+the rules of textbook orthodox standard
+quantum mechanics we got from uh Paul
+Drack and Vonoyman John Vonoyman that
+those rules are also marovian. The
+shortinger equation is marovian. You
+give me the quantum state at one time
+and it tells you what it'll be in the
+future. The measurement predictions the
+borne rule is marovian. tell me
+information about the present and then I
+can generate the probability predictions
+from that. Um
+now it's not that we have never
+encountered physical systems whose
+behavior is not marovian.
+We have although a detailed analysis of
+that came much much later. It's just
+that fundamental laws appeared to be
+marov. That was the the paradigm we were
+working in.
+Um,
+and
+so by the time Everett is writing his
+long- form dissertation, this is in
+1956,
+he's already aware of efforts
+uh at the time by Fritzbop and Imray
+Fenes. He doesn't mention Fenes, he
+mentions Bop. Um,
+there's apparently also there's also a
+Fritzbop who's a physicist today who's
+not the Fritzbop from from that time. So
+if you look up Fritz Bop and you're
+like, "Wow, he's still alive after a
+hundred years." It's a different
+Fritzbop. Um
+but uh but the bop of the 1940s, as
+Everett describes, was already working
+on on trying to marry a more or less
+classic looking picture of particles
+with stochastic probabilistic laws
+directly acting on them. And Everett
+actually says this is an interesting
+program. He says he wonders where it's
+going to go. He says he thinks it's
+still more complicated than than his
+approach, the theory of the universal
+wave function, what we now call the
+Everett or many worlds approach. Um he
+says it's more complicated, but he says
+he says, you know, but there's no
+fundamental reason to to prefer a
+deterministic picture like Everett's
+ever saying this over a probabilistic
+picture. He says what his objection is
+is the standard picture where sometimes
+you have a deterministic picture when no
+one's looking at the system and
+sometimes you have this observer
+dependent probabilistic picture. He says
+that is untenable to him. You should
+find a way to do it one way or the
+other. Everett chose the deterministic
+way and he just pointed out that Bob had
+was trying this other way. Everett
+called it the stochastic process
+interpretation of quantum theory in his
+thesis. So Everett was aware of this
+approach.
+Um people worked on these kinds of
+approaches for decades
+from BOP and then Fenes. You then have
+the most famous uh version of this
+approach uh by Edward Nelson from the
+1960s to the 1980s. And so this approach
+is now broadly called Nelsonian
+stochcastic mechanics.
+&gt;&gt; So sorry the the approach combines the
+idea that there is no wave function.
+There's an electron and it moves around,
+but it moves around in an intrinsically
+stochastic way.
+&gt;&gt; Correct.
+&gt;&gt; With the idea that the way it moves
+around is not simply determined by its
+current state, but by in principle its
+entire past history.
+&gt;&gt; Oh. Oh. So, let me get clear. All of
+these approaches assume the Marov
+assumption. Okay, that's what I'm trying
+to get clear.
+&gt;&gt; All of them assume the Marco assumption.
+They all talked about the moving parts,
+the particles moving around according to
+laws that just take the present state of
+the system and then tell you
+probabilistically what it's going to do.
+Um, so that was the structure of these
+rules. They were all built on things
+like Brownie in motion. Physicists are
+very familiar with Brownian motion. If
+you talk to some physicists like me when
+I was first learning about stochastic
+processes and you'd mention a
+stochcastic process, I would immediately
+go to, oh, you mean something like
+Brownie in motion or a marov chain as we
+call a discrete version of, you know,
+marov evolution, a marov system to the
+point of which I almost regarded
+stochastic and marov as synonymous as I
+think some people maybe also do. So
+these approaches that had existed up
+through the 1980s were based on trying
+to uh get the moving parts to behave in
+the empirically correct way
+by using laws that were marovian. Um and
+when you say that there was no wave
+function, this is actually a little bit
+of a subtle question.
+You have to actually solve the
+shortinger equation for these things and
+then take the shortinger equation and
+then plug it into a second set of
+stochastic differential equations. these
+very complicated equations and these
+equations are are um they've got forward
+in time evolving parts and backward in
+time evolving parts. Uh they're very
+complicated and difficult to justify on
+first principles. It kind of looks like
+someone took the predictions of standard
+quantum mechanics and again reverse
+engineered some set of differential
+equations
+that would give you the same results. So
+it has the same kind of feeling that I
+ran into when I was thinking about
+bowing mechanics. Um trying to apply
+bulian mechanics to more general kinds
+of systems that it just felt like you
+were starting with the answer and
+working backward and ending up with very
+very complicated rules that seem
+difficult to justify on their own
+merits.
+Now I should be clear. I didn't know
+about any of this. I didn't know about
+BOP or Fenes or Nelson. I I I was not
+familiar with stochastic approaches to
+quantum in any detail. I think I'd heard
+of Nelson's name. He was the one person
+I heard of, but I I had not carefully
+assessed his work before.
+Um and certainly I I I didn't think that
+there was any possibility that an
+approach like that could be viable. um
+certainly for the time I was in
+undergrad and for grad school and even
+when I began thinking about quantum
+foundations. Yeah, I had basically
+arrived at a place where I thought maybe
+there was just no way to find a picture
+that worked in quantum theory that maybe
+this was a case where rather than so we
+talk about how given any inevitably
+finite amount of experimental data there
+are always infinitely many theories that
+will fit it. This is called the
+underdetermination of theory by data.
+And so you need to appeal to some other
+kinds of criteria like which theory is
+the simplest, which one is the most
+predictive and so forth. You have to
+apply to other things in order to in
+order to to pin it down. And then once
+you've specified a theory, arguably you
+could have an underdetermination of
+interpretation by theory. So one theory
+may have many ways to interpret it. My
+worry was that we had here a case where
+the theory overdetermined the
+interpretation. The theory was so
+intricate, the quantum theory, textbook
+quantum theory was so complicated and
+intricate and so difficult that there
+was no interpretation that would fully
+work at all. And I found this
+distressing as someone who has realist
+inclinations. I believe there's a real
+world out there.
+Um I mean at some basic level if
+measuring A
+and then B and then A again can change
+the result you got for A.
+&gt;&gt; Mhm. And wouldn't have changed the
+result if you had not measured B that
+really makes you feel like there's
+something out there you're pushing on.
+There's some world out there somehow. So
+it I but I I basically you know felt
+like maybe there was just something that
+would work. I I tried a variety of
+proposals for a while. While I worked on
+the modal interpretations which are not
+widely known um although in some sense
+they're being rediscovered I think in
+the high energy theory community
+um I I got interested in uh sea star
+algebraic approaches to quantum theory
+and maybe they could provide a window in
+how to think about the foundations of
+quantum theory but to be honest I wasn't
+very satisfied with any of these
+approaches I regarded them more as
+exploratory exercises and not something
+I would I would uh uh you know put real
+credence in being okay. This is I think
+the direction that that really we need
+to go. Um so this the story is fast
+forward to 2022. I'm trying to prepare
+for a class. And by the way, I should
+say that um in my opinion, teaching is
+to doing research what standup is to
+being a comedian,
+&gt;&gt; right? You you really need to be
+reformulating your ideas and presenting
+them to to new eyes over and over again
+uh in order to keep fresh and to keep
+connected and and to be creative. So I
+think teaching is incredibly valuable.
+Many of um my research ideas have their
+roots in classes I was trying to teach.
+Um I think David Hilbert, the famous
+mathematician, always taught a new class
+every semester on a new topic and this
+was how he kept I mean you can do that
+if you're David Hilbert. Maybe that
+could do that but but this is this is
+his trick to to you know mastering so
+many different fields. Um, so I was
+trying to teach a class and I was trying
+to find a better way to explain quantum
+theory to students and I ended up
+stumbling into a stochastic approach to
+quantum theory. That's the short story.
+Uh, and I was trying to formulate
+uh a way to represent stochastic
+processes, classical stoastic processes,
+in a way that would make them look more
+like quantum theory.
+And my my my plan was to just bring the
+two theories close enough together so
+that I could
+more or less justify most of the
+ingredients of quantum theory
+and then pinpoint more precisely for the
+students what assumption we need to give
+up or modify to get quantum theory. So
+wouldn't seem quite as ad hoc as just
+listing the austere direct funs.
+And then remarkably what happened was I
+just got quantum theory. there was no
+gap and I didn't understand what had
+happened. How could quantum theory be a
+stochcastic process, especially one that
+was as simple as the one I was working
+with? I didn't need to jerrymander all
+the laws. Um, and
+after some effort to understand what had
+happened, I discovered that I'd
+inadvertently given up the Marov
+assumption.
+&gt;&gt; And then I immediately plumbed the
+research literature. Surely someone else
+tried to do this. Someone else said,
+"Let's try non-Marovian laws. See if we
+can get quantum theory out of them." And
+it was basically metaphorically speaking
+at least crickets. There was basically
+no serious effort to try to formulate
+quantum theory
+um with a more or less classical
+uh notion of probability and classical
+notion of of of physical ingredients of
+the ontology of the kinematics but with
+laws that were not marovian.
+&gt;&gt; To be to be very clear uh that's a huge
+giving up, right? I mean, you're saying
+that what the particle does next is not
+predictable even probabilistically from
+what its current state is. You need to
+know everything in its past for maybe 14
+billion years.
+&gt;&gt; Um, so that's a good a good a good
+question. How much about the past do you
+have to know? Um, these non-marovian
+processes are somewhat new.
+So one view about a non-Marovian
+process, I'm going to simplify things as
+much as I can here is
+you want to predict what the system is
+going to do. So you need to know
+something about its past. But if you
+want to make a better prediction, you
+have to know more details about its past
+at more past moments. And if you want to
+make an even better prediction, you need
+to know even more details about its
+past. And in principle to make an
+idealized prediction you need to know
+every detail about its entire past like
+from just just at the present all the
+way to the arbitrary past.
+&gt;&gt; Um and you could you could look at
+something like this and say this is
+going to be nonpredictive.
+Right? In quantum field theory, we have
+models where we call them
+non-normalizable theories where for a
+long time people thought, well, these
+are theories where you have to know an
+infinite amount of information about the
+laws to make any predictions, so they're
+just not useful.
+But there was a really important
+development. People realized
+uh that you actually didn't need to know
+all of those details. You could make
+systematically better and better
+predictions without knowing all the
+details. And this is this is part of
+what led rise to what we now call
+effective field theory. Treating quantum
+field theories as as tools for making
+predictions that don't have to be
+perfect. Um that's not quite what
+happened here. Um but you you could look
+at a a non-Marovian physical theory
+nonovian laws and say these are not
+predictive. I need to know an infinite
+amount of information about everything.
+The laws are infinitely complicated. How
+could I predict anything? Um, I either
+should either assume the laws are
+fundamentally marov and I don't need to
+know the past at all or maybe they're a
+little bit non-marovian. I need to know
+like maybe the infinitismly next
+previous moment. And in some sense,
+Newtonian mechanics is like this. You
+have to know position and velocity.
+That's equivalent to knowing position
+now and position like infinitely in the
+past. And then with those two uh data
+points, you can figure out the future.
+But that's not so bad. We as I said we
+can reformulate that as what basically
+looks like a marov process by just
+taking the velocity and including it in
+what we call the state of the system. So
+you could you could think of uh um you
+all of these as as ways of getting
+around this problem. the laws are
+fundamentally marovian or they're a
+little bit non-Marovian or maybe they're
+just not marovian
+but then let's approximate them as
+marovian because we can't possibly uh
+write down laws so complicated and you
+know when you deal with non-fundamental
+systems
+uh I'm nervous but use the word
+fundamental again but let's just call it
+systems where there's some notion of
+emergence going on so systems in biology
+systems in neuroscience psychology um
+social sciences uh um environmental
+systems.
+We imagine that these systems are
+non-Marovian effectively that there are
+details in the present that we can't
+capture because we can't fine grain or
+or zoom into the present so accurately
+that we can figure out everything going
+on. There's some details written into
+the fine details of the present moment
+that are recording the past. And because
+we can't see those, we have to treat the
+past like it matters. Um, and so in
+principle, if we can't know exactly what
+the present is, we should be keeping
+track of the past in some way to make
+predictions.
+Um, and you know, when people use these
+models, they often make approximations.
+&gt;&gt; Sure,
+&gt;&gt; they assume, let's just pretend it's
+marov. Let's pretend we could ignore the
+past. This doesn't always work. I cannot
+treat your brain as a as a marov
+process. your memory does matter.
+Although I guess we're all becoming more
+Marovian as time goes by, sadly
+um but
+uh in the sense that we're aging, not in
+the sense that we have less memory, but
+that's what I meant, right? Uh we do
+have more memory as we get older, but
+eventually eventually we start to lose
+our memory. Um
+so those are basically approaches that
+were available.
+What I happened upon in 2022 was a
+different way to formulate the laws of a
+non-Marovian system.
+It turns out that you can in fact
+specify just a few simple rules
+and it doesn't pin down a fully realized
+exact
+complete historybased
+non-Marovian process.
+It defines a collection of distinct such
+non-Marovian processes each one of which
+to borrow language from my colleague
+Alex Mihan University of Wisconsin
+philosophy calls realizers
+given a single
+one of these new processes that that I
+stumbled on in 2022
+there are many ways to realize it to
+fill in all the details assign detailed
+laws to all the detailed histories
+any such way to assign laws to all the
+deal histories is called one
+non-marovian realizer.
+And the model that introduced didn't
+single out one of them. It's what we
+would call an equivalence class of
+realizers. Each realizer is infinitely
+complicated, but the laws that define
+one of my models, those laws are very
+simple.
+Um, and I guess you know this there's a
+spirit of this idea that one finds
+throughout physics, right? Right? When
+we talk about uh a thermodynamic system
+and we assign it a macro state, a coarse
+grained state, we assign it a few simple
+properties and we know that we're really
+describing a very large number of
+different mic microates, different
+fundamental possibilities
+in some spiritual way. This is a little
+bit like that. You specify a couple of
+simple rules and then you have all these
+different ways in principle could be
+realized. A model where you're
+specifying just a few of these simple
+rules
+turns out to fail to have a certain kind
+of property that we take for granted in
+other physical theories.
+This is the property that if I want to
+describe how a system will evolve in
+time from an initial time to a final
+time, my laws are sufficiently rich that
+I can describe how the system will
+evolve from the initial time to any
+choice of intermediate time in between.
+And then I can ask you know my model I
+can I can ask okay my model says the
+state will be such and such and then I
+can take that state and then my laws are
+rich enough that they can tell me how to
+how the system will evolve from that
+intermediate state to the final state.
+In other words I can take any interval
+of time from an initial to a final time
+and I can divide it up I can divide it
+into smaller intervals of time and my
+laws will be rich enough they'll tell me
+how to get from any one moment to any
+other. That property is lost in these
+models. So these models are indivisible
+and that is what I called them. And then
+I looked in the literature
+not just for non-marovian approaches to
+quantum theory but also had anyone
+played around with indivisible
+stochcastic models and it turned out
+that
+the term did show up in the literature.
+In a pre-print article by Simon Mills
+and Kevin Modi who work in quantum
+information
+they have a beautiful review article.
+It's open access. It's PRX physical
+review X. people can go and they can
+it's either PRX or PRX quantum I don't
+remember which it is but you can look it
+up Simon Mills MLZ and Kevin Modi MODI
+uh and they have an a wonderful uh um
+review paper a review article on
+stochastic processes in classical
+physics and stochcastic processes in
+quantum physics they mean something a
+little different by stochastic processes
+in quantum physics they mean assume the
+whole Hilbert space all the mathematics
+and then just kind of use kind of
+analogies with the classical case but
+apply them to the Hilbert space
+ingredients. That is not what I was
+doing. I was trying to get quantum
+theory out of applying stochastic
+processes to classical ingredients.
+But in their in the first part of their
+review where they're going over how
+classical stoastic processes work in
+like figure six in a throwaway remark,
+they say you could imagine having an
+indivisible stochastic process. It would
+fail to have this divisibility property.
+And they used the capital Greek letter
+gamma, which is also the symbol I had
+been using. So my immediate impulse was,
+"Oh my gosh, I've been scooped. They're
+using the same symbol. They're using the
+same name for exactly the same kind of
+property." And so I I eventually reached
+out to both of them after I had, you
+know, probed this work and and um did
+some work to show that you you are able
+to get an empirically adequate
+description of quantum theory from these
+systems. I I contacted them. Um and it
+was lovely speaking to them. They're
+lovely people. They hadn't thought about
+using a process like this applied to
+classical probability, classical
+ingredients, and getting quantum theory
+out. They just they just sort of
+mentioned it. They didn't really push it
+to see how far it would go. Um, but
+that's what I mean when I say that these
+laws weren't available in the 1920s.
+&gt;&gt; Sure.
+&gt;&gt; Right. Um I did independently develop
+the idea but but you know I was also
+thinking about stochastic processes a
+lot and you know I'd read a lot of you
+know papers on them by this point and so
+clearly the idea was the ideas were now
+available in a way that they just
+weren't in the 1920s. We didn't really
+have a you know a comprehensive theory
+of classical stoastic processes I think
+until the 1960s something like that.
+This is decades after quantum theory is
+is calcified. So there's a good reason
+to think that this couldn't have been
+done back then. Although it would be
+interesting to wonder if there had been
+if someone if if Simon Mills and Cavin
+Mod had lived in 1910 how the history of
+quantum theory would have gone.
+&gt;&gt; So I'm trying to understand the ontology
+of your theory. Is there an actual
+definite although impossible to
+deterministically predict trajectory of
+the electron over time at every moment
+of time? Uh uh well there's not a
+trajectory at a moment but across
+moments yes
+&gt;&gt; at every moment of time there is
+&gt;&gt; in other words yes if you ask is the
+electron somewhere some specific place
+at every moment in time the answer is
+yes and the totality of all those
+locations is a trajectory
+&gt;&gt; yes
+&gt;&gt; and from knowing where and it's
+configurations not momenta
+&gt;&gt; correct so we make a distinction in in
+physics um I know you you know this Sean
+but but for everyone listening um by
+configurations we mean the most
+rudimentary way to talk about
+arrangements of a system. So for
+particles, that's just where they're
+located. For fields, it's just how
+intense they are, which way they're
+pointing. Um, when you include
+velocities as well or momenta as well.
+You talk about both the position and the
+velocity of a particle. Now, you're not
+talking about configurations anymore.
+You're talking about we use the word
+state for them. States's a little bit
+ambiguous. Sometimes we use the word
+phase, space, point, or something like
+that. But here, I mean the most
+rudimentary thing, just the locations of
+the particles. But I want to make clear
+I don't know the particles are
+fundamental. I don't know what the
+fundamental ontology is. So if you're
+modeling particles yes then on the the
+on a theory where you're modeling
+particles then the theory says that each
+particle has a location at every moment.
+&gt;&gt; Are the trajectories smooth?
+&gt;&gt; Uh no in general they are not smooth.
+&gt;&gt; Are they continuous?
+&gt;&gt; In general they're nowhere continuous.
+No.
+&gt;&gt; Okay. So they can literally the electron
+does not necessarily travel in between
+point A and B in time even if those
+events are as close together in time as
+you want.
+&gt;&gt; Uh that's correct. Yes. Um now it's not
+that we have no control over what's
+going on. There are laws for an
+indivisible schastic process. They're
+very very simple. Um, what you get out
+of the theory is an ability to to say
+what is the probability at any moment in
+time of what configuration your system
+is in. Not the probability of what
+measurement you'll get. That's later on.
+That's empirical. That's a prediction of
+the theory and that's what textbook
+quantum theory gives you.
+this new approach, this indivisible
+approach to quantum theory, the
+indivisible theory, indivisible quantum
+theory, whatever you want to call it.
+Um, it says you can talk about the
+probability that the system is in some
+configuration. If you're talking about
+particles, the probability they are in a
+particular arrangement at every moment
+in time and they are in only one of
+those arrangements at any given moment
+in time. You can also
+uh uh talk about the probability
+for the particles to be in other
+arrangements
+given what arrangement that they were in
+at particular moments in time.
+&gt;&gt; Um these are called conditional
+probabilities and the theory gives a
+rudimentary set of conditional
+probabilities. So you do have some laws,
+but that's basically all you have.
+And so that's not enough to give you
+trajectories that are guaranteed to be
+everywhere continuous.
+Um, for particles that is a little
+weird. For fields, it's a little bit
+less weird. The idea that a particle can
+jump from one place to another is a
+little weird. But the idea that fields
+like isolated, we call them degrees of
+freedom, but isolated intensities at
+various points could be fluctuating in
+some way, it doesn't quite seem as weird
+to me. And maybe this picture is a
+little more amendable to a field view,
+but only, you know, because of our
+intuitions. I don't think there's any
+fundamental reason you couldn't think of
+particles this way. But so there is some
+structure. Not everything is possible,
+but yes, for elementary particles, you'd
+expect to see that sort of jumping
+behavior. Importantly, as systems get
+bigger and bigger in a sense of putting
+together more and more and more
+particles, the weird discontinuous
+behavior of the particles begins to look
+on larger scales like continuous motion.
+Um, and eventually you get into the
+regime of meoscopic, middle scale, and
+eventually macroscopic, more or less
+human scale physics in which you have
+what we call collective degrees of
+freedom. So you've taken all the
+individual like moving parts and you're
+thinking of them now as sort of holes as
+big you know systems people rocks
+mountains uh coins dice stars planets
+and at that scale those objects will
+move along more or less continuous
+trajectories in some cases probabilistic
+and you can show that when they're
+probabilistic they they'll now
+essentially be marovian apart from you
+know the usual approximations we you
+know If you know if you're doing the
+brain you know it's not going to look
+marovian but at some you know at some
+level you begin to get back the kinds of
+stocastic processes we're familiar with
+in classical physics and in the simplest
+cases you get deterministic behavior
+like Newton's laws. So if I know the
+state of the particle as a point in
+configuration space, a point in uh in
+ordinary threedimensional space right
+now,
+&gt;&gt; but my dynamics are non marovian. Uh is
+it true that in principle I would need
+to know its entire past trajectory to
+predict what's going to do next?
+&gt;&gt; Oh, that's a very good question. If you
+know the location of the particle,
+uh that's an interesting Well, so when
+you ask when if you know, what do you
+mean? Do you mean that you have done
+some kind of measurement to determine
+where it is or you have like a god's eye
+view of the world and you can just know
+where the particle is?
+&gt;&gt; Let's be God for the moment.
+&gt;&gt; Okay. Yeah. Well, it's a bit
+blasphemous, but okay. Let's let's play
+the game.
+&gt;&gt; I haven't been struck down yet.
+&gt;&gt; Exactly. Yeah. Um, so if you have a a
+God's eye view, then yes, you would have
+to know something about the past of the
+particle. The question is how much would
+you have to know about the past um in
+order to predict? Okay, then the
+question is what are you predicting? if
+you want to. So, so I need to step back
+for a second. Um, in this picture, you
+can presume that the particle in fact
+has some trajectory that we don't know,
+but maybe God knows. God, from a God's
+eye view, there's some particular
+trajectory. Now, from God's God's eye
+view, there's no need for laws at all.
+God just looks down at the fabric of
+space and time and all the particles or
+fields or whatever in it and just see,
+okay, as God, I can just see the whole
+trajectory. I don't need quantum theory.
+I don't need uh laws of physics. I don't
+need probabilities. I don't need any of
+that stuff.
+Uh
+so this is why it's tricky to talk about
+about the god's eye view because now
+we're assuming that we have like a
+demigod who doesn't know the whole
+trajectory but nonetheless can know
+where it is at one moment but no more in
+a way that we regular humans can't. Um I
+guess if you're a demigod in this sense,
+you have some access to this secret
+information but not the whole
+trajectory. um then uh in order to
+predict what it's going to do um you
+have to incorporate information about
+the last so-called division event. So
+what is a division event? Um when
+uh when you model an indivisible
+process,
+you begin with some time. You call it
+the initial time and you get a bunch of
+conditional probabilities
+of the form given that the system is in
+this configuration at the initial time.
+Here is the probability it will be in
+that configuration at some other time
+that you can choose. And the time you
+choose, the target time is completely
+adjustable. There's no discreetness of
+time. Time is continuous. Um, and if you
+want to think in cosmic scales, you
+could take the initial time, I guess, to
+be the beginning of the universe or
+something. I don't know. I'm not sure if
+the universe had to begin with one of
+these things. Who knows? As systems
+interact with other systems, though,
+as uh measuring devices come in, but you
+don't need measuring devices. Even
+relatively simple systems could come and
+interact with your system or an
+environment or whatever. As systems
+interact with each other, what you find
+is that um when you treat the
+probabilistic behavior of these systems
+using ordinary probability theory,
+and you allow the system in question,
+the particle in this case,
+to uh interact with some other system,
+call it the environment or doesn't have
+to be a big environment, could be even
+just an individual particle, it's fine.
+um in such a way that the other system
+gets a reading develops a dependence on
+the configuration of the system it was
+looking at and then you classically
+marginalize classical marginalization
+is just ordinary probability speak for
+summing over the possibilities of the
+other system. What you find is the
+system you had the the subject system
+the system you were looking at the
+system that that was you were studying
+develops a new conditioning event a new
+point at which you can condition. Um at
+these moments the indivisible evolution
+the laws that cannot be divided over
+time at that at moments like those they
+can be divided. You can evolve the
+system to such a moment division event
+you can stop the evolution there the
+system has revealed its configuration in
+some way to the rest of the universe
+even to one other small system in the
+universe.
+And then the laws of your system are
+rich enough to tell you how to condition
+from that moment to the future.
+&gt;&gt; Is it basically a measurement as we
+think of it casually?
+&gt;&gt; Um, it's decoherence.
+&gt;&gt; Decoherence. Okay.
+&gt;&gt; You can show that what looks like
+decoherence in the usual Hilbert space
+picture is just the generation of a
+division event in this picture. But of
+course, the metaphysics is very
+different. We're not making branches.
+But you can literally map the
+mathematics of decoherence directly to
+the mathematics of the generation of a
+division event. But the answer to the
+question, what do I need to know given
+the current state of the particle to be
+able to predict what its future will be
+is the entire trajectory between now and
+the last division event.
+&gt;&gt; You need to know its configuration of
+the last division event.
+&gt;&gt; You don't need to know the trajectory in
+between.
+&gt;&gt; You don't need to know the detailed
+trajectory. Yes. If you want to predict,
+okay, if you want to predict, okay, now
+let me let me back up. If your goal is
+to predict what you will see in an
+experiment, if you were to measure the
+location of the particle in the future,
+then you only need to know what it was
+doing at its last division event. But
+actually, even then,
+you could actually get away with knowing
+less. And I can tell you a little bit
+what that means, but but certainly one
+one view is certainly if you knew what
+its configuration was at at a previous
+division event or at the initial event,
+then you would have the resources. The
+theory would have laws that would tell
+you what you would see like what what
+probabilities you assign to experiments
+done in the future. Now if your question
+is what information do we need to be
+able to assign a probability to it
+simply being in a particular
+configuration actually that's that's
+still the same. Um the way the theory
+works is if you know its configuration
+at the last division event and you know
+the laws which are given to you by the
+theory then you can say what the
+probability what what probability it
+will have of being in any particular
+configuration at any other time at any
+later time. what you're not what you
+don't have is uh probabilities for the
+detailed trajectory. For that, you would
+need to pick one of the infinitely many
+different realizers. Um in other words,
+there's some things that this theory
+will predict.
+If you're a demigod and you know the
+configuration of the particle uh I'm
+sorry if you've done a measurement and
+you know
+if there's a division event and the
+configuration of the system is specified
+at that last division event then the
+laws of the theory are rich enough to
+tell you the probabilities with which it
+will be in whatever configuration you
+ask about at other times. If you want to
+know the detailed path it will take or
+you want to assign detailed
+probabilities to the detailed paths it
+could take then you're asking for more
+laws than the indivisible process gives
+you.
+&gt;&gt; That's okay. I don't want to
+&gt;&gt; and those additional laws would
+correspond to some particular
+non-marovian realizer of the process.
+&gt;&gt; How objectively well- definfined are
+division events?
+&gt;&gt; Uh division events are as objectively
+well- definfined as decoherent branches.
+So, not vary.
+&gt;&gt; Um, well, it depends on the system. For
+a small system in contact with a pretty
+big environment, you're going to get
+really sharply defined division events,
+but there will be some error. And this
+means that all the laws that you the
+effective laws you would use to describe
+the system are going to have error terms
+in them.
+&gt;&gt; But you have to pick out a divi a
+separation or factorization of system
+and environment. For example,
+&gt;&gt; uh that's that's true. Yeah. So the idea
+is that you know you want to model let's
+say five particles you've got five
+particles sub apparatus
+you would pick uh obviously one system
+is the five particles um if the
+particles are interacting with the atoms
+in the room you take your environment of
+the atoms in the room if you wanted to
+pick only half the atoms in the room you
+could do that that would give you
+basically the same answer um you know
+they're going to be tiny tiny
+discrepancies between those choices that
+means that all the laws you use will
+have extreme extremely small
+discrepancies in them. But you know
+given how incredibly sharp decoherence
+is, I mean the the degree to which you
+so one way to characterize how sharp a
+division event is and now this is going
+to get a little bit in the weeds but um
+when we write down a quantum state and
+the quantum state evolves into some
+blend or superposition,
+[Music]
+there's not a unique way to represent
+that superposition. But if you decided
+to
+single out some particular feature of
+the system like it's position let's say
+you want to focus on position then once
+you fixed position is the thing you want
+to single out you can talk about what
+that superp position looks like as a
+superposition of different possible
+positions roughly speaking
+then you can talk about the degree to
+which the terms and that superposition
+interfere with each other these are
+called coherences there's also a way to
+formulate this in terms of off diagonal
+entries of density matrices, but I'm not
+going to talk about that. We have a
+precise way to calculate
+how significant the sizes of those
+interference or those coherence
+coherences are. And when a system
+undergoes decoherence by an appreciably
+big environment and it doesn't need to
+be that big. I mean the cosmic microwave
+background is significant enough for you
+know uh uh particles of dust in in the
+in you know floating in nearly empty
+space. Um when there's a a significant
+enough environment
+again going back to you know the early
+days of decoherence those coherences uh
+reduce to an extremely small number.
+they become exponentially small in time
+and also exponentially small in the
+number of moving parts of degrees of
+freedom of the environment. Um, and so
+you get within
+tiny fractions of a second. I mean, for
+a dust particle floating in the
+universe, it's like 10 to the negative
+40 seconds, some incredibly small amount
+of time. I may be somewhat off, but but
+they're numbers of that scale. Those
+those coherences are suppressed almost
+to zero. They're basically in
+undetectable.
+Uh,
+and that's how precisely defined a
+division event is. So if I have a single
+spin that is in a superp position of
+spin up and spin down. Yeah.
+&gt;&gt; If I entangle it with one more spin,
+&gt;&gt; is that a division event?
+&gt;&gt; Um spin is a little bit of a tricky
+thing. Spin is a little bit of a tricky
+thing.
+&gt;&gt; Replace it with a position of a
+particle. I mean a two.
+&gt;&gt; Yeah. Yeah. We I can come back to why
+spin is tricky in a little bit if you'd
+like. Um because this gets into a
+distinction between beables and
+emergables which we can talk about. But
+yeah, we can pick something else. You
+said position. So one particle
+interacting with another particle's
+position,
+&gt;&gt; one particle that is in a superp
+position of two different positions,
+&gt;&gt; right, and interacts with with another
+particle
+&gt;&gt; becomes entangled with another two-state
+system.
+&gt;&gt; Yeah. Yeah. So um no, I think it in I
+have to I mean I haven't done every
+conceivable calculation one could do,
+but in this particular case, I'm pretty
+sure that you don't get a robust
+division event in this circumstance. You
+need more than just one particle.
+&gt;&gt; If there were 12 particles, what about
+that?
+&gt;&gt; Um the more particles you have, the
+better you get. Well, actually, no,
+actually, no, let me take that back. I
+did this calculation. I forgot I
+actually did this calculation. Um, so
+here's a concrete realization of your
+question. Let's do the double slit
+experiment. This is a concrete
+realization of exactly this question.
+Suppose that we uh send a particle
+toward a wall with two small holes in
+it.
+We imagine some of the time the particle
+will not succeed in getting to the
+holes, but but every once in a while
+maybe it goes to the holes. Um, and then
+far away on the other side of this wall,
+there is a detection screen where
+particles can land. And when they land,
+they they stick or they set off a light
+or they get registered in some memory
+system or something like that. They they
+they leave a mark in some sense.
+And we imagine sending particles in one
+at a time, one particle after another,
+many many particles, always one at a
+time. And over time, um, we're going to
+get some distribution or pattern of
+dots, a histogram of dots on the
+detection screen.
+Uh, now the question is, can we predict
+what that distribution of dots will look
+like? If we're sending small pebbles
+through the screen,
+the prediction is that we'll get
+we'll get a distribution that's kind of
+centered in between or the part of the
+detection screen that's kind of in the
+middle of the detection screen, right?
+And then as you go sort of farther out
+from the middle of the detection screen,
+they get more and more sparse. There's
+some sense in which that distribution is
+a blend of two distributions. It's the
+distribution you would have got if you
+only had one hole
+blended with the distribution you would
+have got if you'd only had the other
+hole. Right. And and I I have your your
+your book by the way next to me.
+Something deeply hidden. I recommend it
+to everybody. If you haven't read Sean's
+book, it's absolutely amazing. Something
+deeply hidden. I strongly endorse it.
+&gt;&gt; Appreciate you here. So
+&gt;&gt; say what? Yeah. Sean, you should get
+your book. Um and you cover that. I I
+reread it before we had this discussion.
+But so um it's that good. Yes, I
+actually read it. It's that good. Um
+so you cover the double slit experiment
+in in in in the book.
+If you send
+quantum mechanical particles
+um photons or when this was actually
+experimentally done I think it wasn't
+even experimentally done until like the
+60s or 70s actual electrons and one at a
+time you do not get that classical
+distribution. you get a very funnyl
+looking distribution with kind of peaks
+and valleys. Certain places where there
+are lots of dots and certain places
+where there are very few or no dots. And
+when you do this experiment like 10,000
+times, you get this band structure. You
+get these bands, these sort of uh
+depending on how you've set up the
+experiment, it may look like a a line of
+bands. It may look like uh concentric
+circles, but it the Now, to be clear,
+you don't see the bands on any one run
+of the experiment. Every run of the
+experiment, you see one dot. It's just
+that over many many runs of the
+experiment the dots build up this
+particular pattern which is very
+&gt;&gt; very weird. Um although this particular
+experiment was not done with electrons
+until sometime after it it was
+understood well before what the
+theoretical prediction from quantum
+mechanics should be. Um for example
+Heisenberg talks about this in his book
+physics and philosophy.
+&gt;&gt; He talks specifically about this this
+experiment. Um,
+and uh, and this experiment is very
+weird because if you if you wonder,
+gosh, I wonder which hole the electron
+is going through. Maybe every time the
+electron goes through this experiment, I
+will simply look with my eyes and see
+which hole it's going through. Well,
+what does it mean to look with your
+eyes? You have to scatter some particle
+off the electron to do something in
+order to get something to get into your
+eyes. Or if you have some device, you
+have to somehow have the device interact
+with the electron. But whatever you try
+to interact the electron in the
+slightest,
+most sensitive, least disturbing way you
+could possibly imagine, just enough so
+you can figure out definitively which
+hole it goes through in every run of the
+experiment. And when you do this, the
+interference pattern marketkedly
+changes. It almost completely goes away.
+It turns out there's a little bit of a
+residual effect if the screen is very
+far away because after you've measured
+the electron, it will go back to being a
+little bit quantum mechanical on its way
+to the screen. And so you get a little
+bit of of weirdness, but not nearly as
+much as you did before. Um, and so you
+might go, okay, well, let me imagine
+doing this with the most rudimentary
+system I could imagine. Let me imagine
+not putting a person or a complicated
+measuring device,
+but just the simplest quantum mechanical
+system you could imagine, a single
+quantum bit or cubit
+right near the holes. And the cubit can
+either be on or off. It's a binary
+switch, a quantum binary switch. If you
+think of it classically, quantum
+mechanically can sort of be blends of
+those, but classically it's like on or
+off. And you program it so that it's
+definitely off and it stays off if the
+particle goes down through the lower
+slit, but it switches to on if it goes
+to the upper slit. So you might think
+this is
+the most you know rudimentary way you
+could possibly because then what you do
+is after the particle lands you go and
+you look at the the cubit and if it was
+off you know that the thing particle
+must have gone through the the lower
+hole and if if it's on it must have gone
+through the upper hole in each one of
+the experiment but this is enough to to
+ruin the interference pattern. This is
+enough to actually ruin the interference
+pattern. So um so decoherence has
+happened and it's happened through an
+interaction of the particle with the
+simplest possible kind of uh uh kind
+kind of cubit system. Now
+I think a natural question to ask is
+what could possibly be going on here?
+One view is that well this kind of looks
+like
+waves.
+I mean you don't see a wave in the
+experiment. What you see is dots, but
+the pattern of dots kind of looks like
+the pattern you might imagine
+if waves were going through the slits.
+There was an experiment done centuries
+ago by Thomas Young, the Young double
+slit experiment that was supposed to uh
+established that light was really a
+wave. And and there you're sending real
+waves of light or light rays or whatever
+to the slits. I guess they didn't know
+they were waves yet. The point was to
+show they were waves. But you you shine
+a light at these at these slits and the
+other side you just see bands, right?
+And you're not seeing dots, you see
+bands. And so you think that light
+really is a wave, a wave moving in 3D
+space, really moving through the holes.
+That sort of picture is a little weird
+in the quantum case. And the reason why
+you know it's weird immediately is
+because if you decided to send two
+particles into the experiment instead of
+one,
+the pattern you'd get would look very
+odd.
+Because the pattern you get actually
+looks like the projection down to 3D
+space of a wave pattern in
+six-dimensional space. And the reason is
+that when you send two particles in at a
+time to the extent that we use something
+like Schroinger's waves to describe the
+particles, the waves live not in
+physical space.
+The waves live in configuration space.
+This is distinct from Hilbert space.
+It's the space of possible classical
+arrangements of the particles. And for
+two particles, each of which has three
+position coordinates,
+this configuration space has six
+coordinates. So it's a sixdimensional
+space.
+And now this does not look like the
+young double slit experiment anymore.
+And if you send three particles or five
+or eight particles through the
+experiment, you really need to treat the
+wave as living in I guess in the eight
+particle case 24dimensional space. And
+then I don't really know where the holes
+are or what you know. So this is one
+view is that when you send one particle
+in the particles wave shortinger wave is
+like going through both holes but once
+you've got more than one particle in the
+system and the waves live in three
+ndimensional space if you've got n
+particles I don't even know that you can
+talk about the waves going through
+holes. I don't even know what that means
+anymore. So I just I think this picture
+is I mean we we we tell this picture to
+intro students. It's in the first
+chapter of volume three of Fman's
+lectures on quantum mechanics. But I
+think this picture is actually very
+misleading. You get an intuitive picture
+only in very simple cases and beyond
+that it's not intuitive at all at least
+to me. But coming back to your question,
+we do get decoherence even though we had
+only one cubit involved. And so one view
+of this is that there is a shortinger
+wave evolving in some sense and the
+cubit has produced decoherence
+uh in a many worlds view and then
+there's a world in which the particle
+goes through one slit and a world in
+which it goes to the other slit. In a
+bombian view uh the particle only goes
+through one slit but the pilot wave
+guiding the particle kind of goes
+through two. But this actually depends a
+little bit on whether you're the sort of
+bowman who thinks pilot waves are
+physical objects or whether you're the
+kind who think that they're just
+expression of laws. So it's a little bit
+murky. Uh textbook quantum theory says
+that the cubit um well it's still
+complicated. Textbook quantum theory
+says there's deherence but no
+measurement yet because the cubid
+doesn't count as an observer. The
+measurement only happens once the
+particle hits the detection screen and
+the decoherence has changed what kind of
+measurement will happen when it hits the
+detection screen. What does this look
+like in the indivisible stochastic
+approach?
+When you send your electrons in one at a
+time into this apparatus,
+you know the initial configuration of
+the electron as it was being sent. I
+mean do an experiment. To do a good
+experiment, you need to set up careful
+initial conditions. That's how we set up
+an experiment.
+Uh
+and then the electron does not get read
+by anything. It doesn't interact in in
+any way that mutually exchanges
+information. It doesn't reveal its
+configuration to any other systems
+through the experiment until it reaches
+the detection screen when it does.
+And what that means is that this is not
+a marov process. So if the idea is well
+let's just ask how the electron will
+evolve as it goes from its initial
+emission point to the walls
+and then once we get to the walls we can
+ask was it in the upper hole or was it
+in the lower hole. Suppose it suppose
+it's in the upper hole then we can we
+have laws that will tell us how it will
+evolve after that or suppose it was in
+the lower hole. We have laws that evolve
+it after that.
+If we do that, we get more or less the
+pattern you see in the classical case.
+No bands, no waves, no obvious
+interference. But notice this entails a
+division. The laws you're assuming
+divided at the walls. It entails
+something like a marov assumption.
+This marov assumption is not baked into
+the fundamental laws of probability
+theory. It's a physical dynamical
+assumption that the dynamical behavior
+of this process, the laws that govern
+how it will behave, have this feature
+that I can evolve the system from the
+initial time to an intermediate moment,
+any intermediate moment of my choosing.
+Ask okay well given it could be in this
+configuration or that one. And then
+given either of those two
+configurations, the laws will then tell
+me how it will evolve after that. That's
+a divisible process. At least it's
+divisible at the walls. If you do not
+assume the process is divisible, if you
+simply drop that assumption, you will
+generically get an interference pattern
+on the other side.
+This does the particle is always in one
+location. It's never in both holes.
+Uh but nonetheless, without making that
+division assumption, the generic
+prediction is there will be an
+interference pattern at the other side.
+And the simplest interference pattern
+looks a lot like the interference
+pattern we get in quantum mechanics. If
+you put a cubit near the holes and the
+cubit interacts with the electron as
+it's going through the holes, then you
+can just show that what look like
+decoherence in the standard quantum
+formalism looks in this picture with
+just classical probabilities. It looks
+like a division event and the behavior
+of the electron.
+uh the the laws describing the electron
+just look like the electron is um uh you
+know uh uh that you can evol the laws
+now give you laws that take you from the
+walls to the screen. Now you have a
+divisible process of the kind that would
+agree with the classical prediction.
+&gt;&gt; So it sounds like the division events
+play a crucial role in the formulation
+of your theory.
+&gt;&gt; Yeah, they play a crucial role. That's
+that's right. And I should say by the
+way that if the cubit is not perfect, if
+the cubit is imperfect, if the cubit
+kind of doesn't always
+deterministically, because here we're
+assuming the cubit very
+deterministically goes one way or the
+other. If we assume that the cubit is
+not perfect, you won't get a good
+division event. And the worse the cubit
+does, the less reliable it is, um
+eventually if it's really not reliable
+at all, you just don't get a division
+event at all.
+&gt;&gt; Yeah.
+&gt;&gt; So that that worries me. division of
+events are very important for the
+formulation of your theory but
+&gt;&gt; there can be a spectrum of possibilities
+in between having one and not having
+one.
+&gt;&gt; Yeah, I I agree completely with that. Um
+now the question is what are the uh
+ramifications of this imprecision? Um,
+one of the things that worried me about
+the ever approach, separate from the
+problem of probability was that the
+worlds in the Ever approach, the
+branches, um, had a similar kind of of
+of of
+fuzziness to them. The fuzziness argu
+arguably becomes negligibly small once
+the branches are macroscopic enough, uh,
+once the interference effects are small
+enough, but there's always some
+fuzziness. And this really really
+worried me. Um, in this picture, the
+fuzziness is only a fuzziness in the
+laws.
+It's not that the electron on a model
+where you're taking electrons to be
+fundamental, which of course may not be
+nature, but if your model is one in
+which the electrons are fundamental
+particles, what is not fuzzy is that the
+electron is always in one and only one
+place.
+Um, that's not fuzzy. What's a little
+bit fuzzy is the laws that we use to
+describe the electron. But having
+effective laws that are not exactly
+correct, that's as old as dirt in
+physics. Every effective field theory we
+use in physics is a theory where the
+laws are only so accurate. We don't
+assume the laws are exactly perfect. So,
+I'm willing to bite the bullet on that
+and say that the laws for a quantum
+system in this picture like an electron
+are um never going to be exactly
+precise, but they will be extremely
+sharp in many real world scenarios and
+we'll be able to make definitive
+predictions about the behavior. There
+does seem to be a difference between
+saying that laws are only approximately
+correct like Newtonian gravity in the
+solar system versus saying laws are not
+precisely defined which Newtonian
+gravity is. It's just not correct.
+&gt;&gt; Well, that's a bit tricky, right?
+Because if if you say for example that I
+want to describe the behavior of the
+planets in the solar system on Newtonian
+gravity, okay, let's not worry about
+general relativity. That makes things
+complicated. Um that's actually really
+hard to do because in principle I have
+to worry about all the other objects in
+the universe like realistically now they
+give tiny effects right I mean now again
+we we're assuming a very flatfooted
+Newtonian gravitational scheme in which
+there's no time delay of gravitational
+effects there's instantaneous action at
+a distance so you know the star betal
+juice is instantly affecting you know
+but but this is just for for sake of of
+of of argument in principle you need to
+know where Betal Juice is, you need to
+know where the stars in the farthest
+part of the galaxy are. Uh to get an
+exact set of laws for the behavior of
+Earth's motion around the sun.
+&gt;&gt; Oh, no. Sorry. That's I that's just not
+right. I have the exact laws. To get the
+exact prediction from those laws, I need
+to know the exact configuration of an
+amount of stuff.
+&gt;&gt; Ah, I see. Okay. So, you're making a
+principal distinction between what the
+law is. The law is of the form given two
+masses, Newtonian gravity specifies a
+law of the form G m1 m2 over r^2.
+&gt;&gt; And I just don't know all of the things
+contributing to that. Um yeah, I I
+completely bite that bullet. I mean my
+attitude about this is so you could
+think of it in in two ways. One way is
+to think about the law as a principle
+and the other is to think about the law
+as a specific set of dynamics for a
+certain system. If you're if you by law
+what you mean is the principle that
+Newtonian gravity is Newton's constant g
+* mass 1 * mass 2 r^ 2 I agree that's an
+exact law that's an exact law and it's
+just a question of applying it but if
+you consider earth as just some physical
+system in the world and you want to
+model that physical system earth alone
+you need to write down a differential
+equation for earth's behavior and that
+differential equation is inherently
+going to be imprecise because we can't
+take into account all of the effects
+what I'm describing cribing is somewhat
+like that. Um,
+one way to think about it is so so I I
+would say um what I'm describing is is a
+little bit like that but a little bit
+not like that. For maybe the whole
+universe the whole you know the whole
+universe there is some exact indivisible
+process that's unfolding
+uh and that's some exact law. Uh maybe
+there are some truly isolated systems
+floating in the universe, not dark
+matter, but dark dark matter that really
+is not interacting with anything and and
+you know maybe those systems are
+evolving according to some exact
+indivisible stoastic process that we
+don't know about. Um but realistic
+subsystems of the universe uh don't have
+precisely defined laws at like literally
+100% precision although their laws may
+be defined to some very very high degree
+of precision. What I will simply say to
+you though is
+I agree this is a very interesting
+property of laws.
+What about an everettian quantum theory?
+&gt;&gt; The shortinger equation is the only law
+that's as definite as I can get. But
+who's Schroinger equation?
+&gt;&gt; The Schroinger equation with the
+Hamiltonian of the universe.
+&gt;&gt; Of the universe. Good. So at the scale
+of the whole universe, I agree. Um the
+the claim here is that in place of
+saying we have the Schroinger equation
+for the whole universe evolving
+unitarily in some quantum state, some
+universal state vector, some universal
+wave function. Instead, the entire
+universe is some uh indivisible
+stochastic process. It's the universe is
+going through some sequence of
+configurations and those configurations
+are exactly described by one of these
+indivis indivisible stochastic
+processes. Once we start looking at
+subsystems of the universe and trying to
+figure out what their behavior is, what
+their laws are, we're going to start
+incurring approximations. And the same
+is true if we start trying to uh uh
+write down uh quantum mechanical
+dynamical laws for subsystems of an
+everian universe. I I don't quite
+understand that because if the system is
+the whole universe, there can't be any
+division events. It can't become
+entangled with anything.
+&gt;&gt; Oh, that's true. At the level of the
+whole universe, there will not be
+division events. That's right. Just like
+at the level of the whole universe in
+the Ever approach, um you're not getting
+environmental decoherence either.
+&gt;&gt; What is the data I need to predict what
+the universe is going to do? So in um
+evian quantum theory we need to begin
+with some initial quantum state and that
+initial quantum state evolves according
+to the shortage equation. In the
+indivisible approach we begin with some
+initial conditioning event and then from
+that initial conditioning event the
+universe evolves exactly according to
+indivisible process. Now that
+indivisible process is not going to be
+particularly prospicuous. it's not going
+to be particularly informative any more
+than the universal evolution of the
+universal wave function is until you
+start asking what are the subsystems of
+the universe and asking what are their
+effective laws. Um, I'm usually not
+interested in the unitary evolution of
+the entire universe and the effort
+approach. And the effort approach I'm
+still interested in understanding what a
+particular object on my desk is going to
+do, what what will happen a particular
+tabletop experiment, what a planet will
+do, what uh a quantum mechanical
+particle will do. Um and for that I'm
+using effective
+you know versions of you know I I'm I've
+done some kind of work to go from the
+exact shortinger evolution of the whole
+universe down to um these individual
+systems. I'll also push back a little
+bit um on the notion that we uh
+necessarily can be sure we have uh a
+universe described by unitary time
+evolution. Um our observable universe as
+as we all know is not a closed system.
+Uh
+you know stuff is you know we can only
+see so far into the universe but we
+think that that there's no boundary.
+Things can can you know can there are
+things we think that are outside of our
+universe and maybe things are entering
+or leaving. I don't know. Um, it's
+possible that there's some appropriately
+defined
+uh megaverse or maybe you could call it
+the universe, the the whole universe,
+not the observable universe, but
+everything that is some unitarily
+evolving quantum system. That's
+possible. Uh, it's also possible it's
+not true. I mean, there are a couple of
+reasons to be nervous about this. One is
+it would require a pretty wild
+extrapolation of the sortinger equation
+from where we know that it works. We
+have strong evidence of the sortinger
+equation for basically microscopic
+systems and some very carefully
+controlled messoscopic systems at low
+temperatures. Um but certainly systems
+that are not bigger than a person. And
+we're extrapolating that equation not
+just to the observable universe but to
+whatever
+larger total universe there is. And
+importantly we're also neglecting uh
+general relativity. We're neglecting
+gravity which we think is an important
+consideration when you're talking about
+cosmic scales. So I'm not 100% sure that
+there is a meaningful well- definfined
+universal wave function. And this was
+and this brings back this is was another
+concern I had about the effort approach.
+I I I worry that the ever approach
+depended sensitively on something that
+we can't possibly ever know or at least
+there's no good reason to think we'll
+ever know. So I have on one of my desks
+I have a Russian doll uh a nested doll.
+Um and and I think this is a nice
+metaphor. Uh you know nested doll is one
+of these dolls where it the doll opens
+up and then inside there's a smaller
+doll and then it opens up and inside
+there's a smaller doll and so on and so
+on. There's kind of a reverse open doll
+for our universe. We begin with tiny
+quantum mechanical systems that are in
+some cases easy to isolate from
+environmental effects and they evolve
+pretty much unarily although never
+perfectly but pretty much unarily as the
+systems get bigger and bigger and warmer
+and warmer. They deviate ever more from
+unitary evolution because of
+environmental interactions. They become
+what we call open systems. We have to
+use open quantum system dynamics to
+describe them. And these do not look
+like the shortinger equation. There's
+effective equations we use for these
+kinds of things. Um I won't go into the
+technical details but if people are
+interested you can look up the GKLS
+equation or Lindblottian evolution. Um
+which themselves entail lots of
+approximations as you consider bigger
+and bigger and bigger systems. Uh the
+systems get farther and farther from
+unitary evolution and they evolve well
+classically. I mean that classical
+physics is the world that we first
+encountered before quantum theory
+because that's the what the behavior of
+big systems looks like. Systems get uh
+more and more classical because they're
+just exposed to more environmental
+degrees of freedom. Uh and this as best
+I can tell just proceeds as you get to
+bigger and bigger scales. Once you start
+talking about regions of space the size
+of a galaxy, this thing has hopelessly
+many interactions with the environment
+uh and is hopelessly far away from
+anything like unitary evolution. So you
+imagine you just have this sort of
+concentric set of Russian dolls, right?
+They just keep getting uh you bigger and
+bigger sort of uh your scope increases
+in layers and layers as you consider
+more and more of the universe.
+And there's just this assumption.
+There's just this assumption that at
+some point this stops and suddenly
+everything is unitary again.
+And that would be when you reach the
+whole universe in some sense
+appropriately defined.
+And I'm just skeptical that we have good
+reason to think that that is true. Um uh
+certainly if you want to be a naive
+scientific
+inductioner, I'm not sure that you got
+to use naive scientific induction. would
+say yeah something like that um you
+would say you know the bigger I take my
+scope to be the farther and farther away
+from unitary evolution it is so my
+prediction is that
+you know you know in the limit in which
+the scope becomes infinitely big I'm
+just infinitely far away from unitary
+evolution to say that at the end of this
+suddenly things snap back into unitary
+evolution that makes me nervous and to
+the extent that you need that sort of
+assumption to get the effort approach to
+work
+Yeah, I'm I'm I'm I'm a little nervous
+about that. It could be and it also
+could be that you can formulate the ever
+approach where you don't need that
+assumption. I want to make very clear I
+don't necessarily think you need it,
+although I do think it would complicate
+what the ever approach looks like.
+&gt;&gt; Let me ask two questions to follow up,
+both of which are sort of in the general
+idea of making this kind of approach
+safe for quantum field theory. Yeah. uh
+you know one is and I I've had this sort
+of mild disagreement with bomians uh
+that that they have this idea going back
+to de Bruy that there are waves and
+particles and that's why quantum
+mechanics sometimes looks like waves
+sometimes look like particles and in the
+case of quantum electronamics
+in standard quantum theory which is not
+bombian you just take the electric field
+the electromagnetic field you quantize
+it and the particles pop out. You don't
+put extra particles in. You get fox
+base, you get photons, the the whole
+story. So the ontology is fields, but
+there's a well-defined set of things
+that say here's why it looks like
+particles in certain circumstances.
+What's your ontology going to be? Is it
+going to be fields or is it going to be
+particles? Because for electromagnetism,
+neither one of those seems to be quite
+the whole story.
+&gt;&gt; Uh that's a very good question. So I
+think um one view that one gets out of
+the ever approach is we've done it.
+We've found the fundamental ontology of
+nature. It's quantum states in Hilbert
+spaces and now we just need to you know
+figure out prospicuous meaning uh you
+know uh conceptually transparent ways of
+you know figuring out how to think about
+or or describe that fundamental
+ontology. Um, my view is, um, oh, I I
+don't want, well, I was going to say
+more modest, but I don't want to I don't
+want to make a a moral judgment about
+this, but but in some sense
+philosophically modest. I don't know
+what the fundamental is yet. I don't
+think we have a right to claim we know
+what it is at this point. Um, so the
+ontology you plug into your indivisible
+stochastic model uh depends on what kind
+of a system you're trying to model. Just
+like we would do it classically. If
+classically you want to model particles
+then particles you use the kinematics of
+particles and you find laws to describe
+the particles. If you want to describe
+uh if you want to model a system of
+scalar fields or the Maxwell
+electromagnetic fields um you you you
+you would take the model to have the
+kinematics appropriate to fields and you
+need laws appropriate to fields. There's
+not one particular ontology uh an uber
+ontology that is the ontology of
+everything because we don't know what it
+is yet. You have a model or a theory and
+on that theory it comes with some
+particular theory dependent choice of
+ontology, some particular theory
+dependent choice of how to make sense of
+probability and some theory dependent
+choice on how to make sense of uh of of
+laws and and more too. In a little while
+hopefully we'll talk about causation
+which I've been thinking a lot about and
+I think there's some some interesting
+things to say about that too. Um so uh
+if you ask what do I think vontology is?
+Is it particles or fields or something
+else? I I don't know.
+We pick a model. We pick a theory. We
+want the theory to be empirically
+adequate. We want to make the right
+predictions and we pick a theory that
+comes with a particular ontology so that
+together with that ontology and the laws
+and the probabilities we get as good a
+set of predictions as we can. If you
+want to make predictions that are of the
+kind we make with a standard model,
+predictions that are accurate to 12
+decimal places,
+the model you're going to want to use is
+a model in which if you were to do this
+with indivisible stochcastic process, it
+would be a model in which your ontology
+is fields and particles
+uh in that picture would be emergent
+features that show up. So, we didn't
+talk about emergables, but there are um
+features of an indivisible stocastic
+process that you can go out and measure
+and you're measuring something that's
+really there. If you're taking your
+ontology to be act if particles really
+are what you're taking your ontology to
+be on the given model you're working
+with, then when you measure where a
+particle is, you're revealing where it
+actually is. If you're taking for your
+model the ontology to be field
+configurations and you measure how
+intense a field is at a certain spot,
+you're really revealing what that
+intensity is or at least there's some
+direct connection between what the field
+is doing and what your your experiment
+is. And then there are other features
+you might want to measure. There are
+other properties you might want to
+measure about the system. And those
+properties might not be directly
+connected to those fundamental
+ingredients. There are theorems
+famously a theorem by Bell and Koshan
+and Specker in the 1960s. It's now
+called the Koshan Specker theorem or the
+Bell Koshian specker theorem that says
+it cannot be the case that every
+observable feature you want to measure
+is fundamentally there waiting to be
+revealed. At least some of them have to
+emerge in some sense through some
+interaction between the system being
+measured and the measuring device. And
+so particles
+on a model that when with the ontology
+is fields if on the model the ontology
+is fields particles are emergent
+features. If you want to measure how
+many particles there are you will do a
+particular kind of measurement and
+you'll get a particular number and that
+number will give you some quantized
+value. But that value is not revealing
+how many particles were there uh
+according to that model. It's just a
+probabilistic prediction that is
+ultimately rooted in the behavior of the
+fields.
+&gt;&gt; So I guess so in the conventional view I
+have an ontology of fields and I can be
+very specific about saying under certain
+circumstances I will observe discrete
+packets of energy which I interpret as
+particles. And are you saying that the
+same thing happens in your theory if you
+start with a field ontology?
+&gt;&gt; Um repeat your question again. In the
+ordinary way of doing things in quantum
+field theory, I start with a field
+ontology. I quantize it. There are
+certain very clearly definable
+experimental circumstances under which
+what I detect are individual packets of
+energy that I interpret as particles.
+Are you saying that in your theory if
+you start with a field ontology, you
+will also detect particle-like packets
+of energy under the right circumstances
+or is this a difference between your
+approach and the convention?
+&gt;&gt; Oh, no, no, no, no. uh you you the the
+the former statement you made is
+correct. It makes the same empirical
+prediction as standard quantum field
+theory. In fact, it's hard to come up
+with examples of how this picture makes
+any different predictions from standard
+quantum mechanics. Um
+&gt;&gt; I guess I just don't see where the
+particles are coming from if I start
+with a field ontology and I don't
+quantize.
+&gt;&gt; Um so
+your that point about quantize is an
+interesting statement. In standard
+quantum theory to quantize is to take
+some classical looking ontology and to
+replace the classical variables in some
+sense with abstract mathematical things
+called operators on a Hilbert space
+obeying certain kinds of rules called
+computation rel there's a whole there's
+a whole system of how we do this
+quantization recipe. Um and the
+quantization recipe is not a fundamental
+statement about what nature is doing.
+Nature isn't classical and then it just
+decides sometimes to quantize and become
+quantum mechanical. Presumably nature is
+quantum mechanical the whole way
+through. And we're just using
+quantization as a heruristic as a trial
+and error method for for starting with a
+classical description of some system
+which we know is only approximate and
+guessing the truer or more fundamental
+theory for the system. That guessing
+process of guessing the more fundamental
+version that's what you mean when you
+say quantization.
+um quantization in this indivisible
+picture is quite different. We start
+with a classical ontology and we don't
+make the ontology non-class. Instead, we
+just don't we just pick different
+dynamics. The dynamics are going to be
+of this new more non-marovian sort of
+indivisible form. One advantage here is
+this makes it a little easy to imagine
+describing hybrid classical quantum
+systems in a similar formalism. So it
+may make it easier for example to have
+some big system that we're pretending is
+classical interacting with some quantum
+system because now we can do it all in
+one formalism. We don't need the whole
+operator picture. The particle question
+though is um it's a it's a question of
+what we see when we do an experiment. If
+I take a quantum field
+and I model some kind of measuring
+device and I model the two of them as
+one giant quantum system.
+Uh and by quantum system here what I
+mean is now I model the whole thing with
+some set of indivisible stochastic laws
+and I allow this overall system to
+evolve according to those laws. What I
+will find is that the measuring device,
+if it was tuned to measure this thing we
+call particle number, will arrive at
+some integer value at the end.
+And if I repeat this experiment many
+times with many identically prepared
+setups, I'll find that the probability
+distribution of those integer values the
+measuring device finds is in accord with
+the same B rule type predictions I would
+have gotten from the quantum field
+theory. So in this picture, there aren't
+really particles.
+The particles are emergent things that
+show up on measuring devices.
+And I think that's not such a a striking
+thing. I mean, when I first learned
+quantum field theory, I was told that
+particles were emergent things. Now, now
+that we take quantum fields to be
+fundamental, you're not supposed to
+think of particles as really their own
+independent level of reality. They're
+emergent.
+That's kind of what I'm saying. Also,
+although I think that this is a somewhat
+more transparent way of saying it,
+arguably,
+&gt;&gt; I mean, it does seem like a little bit
+of a miracle to me that you get exactly
+the same predictions as conventional
+quantum theory.
+&gt;&gt; It is a miracle. It's amazing. Yeah,
+&gt;&gt; some people call it a miracle and some
+people call it beautiful
+self-consistency.
+&gt;&gt; Right. I'm not going to say whether
+that's a a compliment or a a hidden
+critique, but the So, the one last
+question then is I don't understand how
+you get the stability of matter In this
+theory, if I'm doing chemistry, y
+&gt;&gt; I take wave functions really seriously.
+Wave I have an electron. It's not
+located at a point. Its electric field
+is not spread around that electron at a
+point. Um, but I have a wave function. I
+solve for the value electric field I
+would measure. Everything works great. I
+can calculate energy levels. And you
+have particles. And how in the world are
+you going to get the orbitals to look
+just like ordinary non-realistic quantum
+mechanics if you really don't have
+waves, you have particles?
+&gt;&gt; Um, I mean the answer is that once
+systems start to get very complicated,
+&gt;&gt; not very complicated. I mean a hydrogen
+molecule.
+&gt;&gt; Oh. Oh, a single hydrogen molecule.
+Sure. Sure. Sure. Um so uh
+well and then you know for models that
+are as simple as a hydrogen molecule
+what happens is you you put the
+particles in you write down the
+appropriate indivisible stochastic laws.
+They're relatively simple to define. I
+can if I mean you can if you want to get
+into the technical weeds again I I'm not
+100% sure how how technical you'd like
+me to be here but there's a fairly not
+very okay. Well, let me just say that
+classically we have a procedure for how
+we do this. Um, classically we propose
+what's called a Hamiltonian. And the
+Hamiltonian we have it's a particular
+kind of a mathematical thing that
+contains the laws in it or we can use
+lrangeian but usually we use a
+Hamiltonian. And then there's this uh
+this set of rules where we go from this
+Hamiltonian function to the laws to the
+dynamical equations that say how the
+system is going to work. Um, and this is
+known as the Hamiltonian formulation of
+classical physics. The laws are called
+the Hamiltonian equations of motion. Um,
+you can look it up. They fit on a
+t-shirt. It's not so complicated.
+There's a similar um procedure. If you
+want to specify the laws of a quantum
+system,
+uh, in the traditional way, you specify
+a Hamiltonian. You evolve the system
+through shortinger evolution and then
+you have to use the measurement axioms.
+Or if you're an Everettian, you make
+some argument about the system branching
+or something like that. and then you you
+try to get probabilities out or
+whatever. Um in this approach you
+specify Hamiltonian and what the
+Hamiltonian does is it tells you what
+all of the indivisible stochastic laws
+are
+and the Hamiltonian you use is the same
+Hamiltonian you use in standard quantum
+mechanics. You just literally take the
+Hamiltonian you would have used and you
+just just plug it into this different
+like algorithm and out comes a set of
+indivisible schastic laws and then when
+you let those indivisible laws evolve
+the system the system will in every
+experimental way show the same behavior.
+It's just you get an empirically
+adequate picture of what happens. Now
+what's going on under the hood? If
+you're modeling the hydrogen atom as a
+as a fixed non-dnamical center, a
+proton, and you treat it as if it
+doesn't move, as we usually do in
+undergraduate textbooks, and you model
+the electron as, you know, point
+particle, then what you've got is a
+point particle moving around, and the
+precise way it moves around is going to
+be complicated, and the theory is not
+going to tell you definitively exactly
+which path it will take as it moves
+around. But the theory will give you the
+indivisible stochcastic laws will give
+you a set of laws that describe its
+behavior in somewhat sparse terms and
+those laws will be sufficient so that if
+you interact with the hydrogen atom or
+the hydrogen atom is interacting with
+other atoms or it's part of some bigger
+solid or something like that you'll just
+get the same observable behavior you
+would have gotten otherwise.
+&gt;&gt; But remember I'm not asking about the
+hydrogen atom. I'm asking about the
+hydrogen molecule.
+&gt;&gt; Oh the molecule. I'm sorry. Let me let
+me explain why I care. the hydrogen
+molecule I can do exactly what you said.
+I can treat you know protons as very
+heavy. I solve the Schroinger equation
+for two electrons moving in this
+background and I get an answer and the
+answer is stationary. It doesn't evolve
+over time, right? Because it's a wave
+that is settled down into its minimum
+configuration.
+&gt;&gt; You're telling me I actually have two
+electrons that are moving around.
+&gt;&gt; Yeah. and their electric fields are
+moving around, but real world be
+&gt;&gt; molecules don't jiggle.
+&gt;&gt; Yeah. So, you got to be a little careful
+here. There's a bit of a mixture going
+on between quantum and classical
+physics. So, um you can't pretend the
+electrons are quantum mechanical and
+then treat their electric fields
+classically and say, well, the electrons
+are moving around their electric fields
+are moving around. The whole thing is
+some giant quantum process. The question
+is
+&gt;&gt; um how will it behave? We can't just
+say, well, the electrons are jiggling
+around.
+&gt;&gt; I'm trying to talk your language.
+&gt;&gt; Yeah, of course. Of course, of course.
+Yeah.
+&gt;&gt; You have particles and electric fields.
+&gt;&gt; That that that's right. Yeah. So, what
+you end up having is, you know, from
+this this picture um so in standard
+quantum mechanics, you have the wave
+function. The wave function is some kind
+of stationary state, which means that it
+has a definite energy and it doesn't at
+the level of the quantum state appear to
+be changing except for trivial phases or
+whatever that don't matter. Um, in this
+picture, the wave function is not a
+physical object.
+Uh, the physical objects, if you're
+modeling particles, are the particles.
+The particles are zipping around and
+they're zipping around in dynamic
+equilibrium.
+And their dynamic equilibrium as an
+equilibrium looks effectively
+stationary.
+We can still, now I should make very
+clear here, and I I probably should say
+this at the beginning. I'm not saying
+don't use Hilbert spaces and wave
+functions,
+right? If you want to model a classical
+Newtonian system, you could use forces
+and write down all the masses and
+accelerations and velocities. But for a
+very complicated Newtonian system,
+you're probably going to want to use one
+of these analytical mechanical methods
+like Hamiltonian mechanics or maybe even
+Hamilton Jacobe theory. In Hamilton
+Jacobe theory, we have all these weird
+mathematical constructs evolving and
+moving around. found in Hamilton Kobe
+theory there's this function that obeys
+a partial differential equation which
+inspired both bow and shinger um to
+develop you know their particular
+formulations of quantum theory um but we
+don't think that the Hamilton Jacobe
+function is like a physical object even
+though sometimes it's very simple
+simpler than the moving around particles
+that um that we're trying to describe
+I'm saying that the wave functions and
+Hilbert space uh pertinances the
+mathematical ingredients that usually
+use in quantum theory play a similar
+kind of a role. They're often very
+convenient to use. If you want to make
+predictions as quickly and and easily as
+possible, you probably want to formulate
+things using wave functions. You
+probably want to treat observers as
+axiomatic primitives, not worry about
+the details of the measurement process.
+Just treat measurements as just these
+perfect events. Use basically the tools
+of standard quantum theory and make all
+your predictions and you can make them
+really fast that way. Trying to predict
+the behavior of a uh polyatomic molecule
+directly using indivisibleic laws is
+going to be a painful exercise.
+&gt;&gt; The the hydrogen molecule really
+&gt;&gt; for once well no for for two particles.
+No, I don't think it's it's going to be
+complicated for two particles. I mean um
+the dynamic I mean you'll be able to get
+you know dynamic equilibrium. You'll be
+able to predict what the wave function
+would look like if you decided to write
+it down. But once you start talking
+about very complicated quantum systems,
+I'm talking about tabletop condensed
+matter experiments where you've got
+arrays of large numbers of particles and
+you want to talk about, you know, the
+the appropriate way to describe, you
+know, at at some point you're going to
+want to just use standard quantum
+mechanics for stuff.
+&gt;&gt; That's fine, but I want to talk about
+the hydrogen molecule. Why doesn't it
+jiggle?
+&gt;&gt; So, the particles are jiggling.
+&gt;&gt; Yeah.
+&gt;&gt; Yeah. But what is that? I mean they're
+jiggling in a way that leads to a
+stationary probability distribution over
+time. So
+&gt;&gt; but physically they're jiggling. That
+that sounds different than being
+stationary. Why isn't it radiating?
+&gt;&gt; Okay, so the distribution of their
+behavior is stationary. Their precise
+individual motion is not knowable, not
+emphically accessible.
+&gt;&gt; It exists. Why it's not radiating? Well,
+why would it radiate, Sean?
+&gt;&gt; It's accelerated charges. I've taught
+that they radiate.
+&gt;&gt; According to what theory?
+&gt;&gt; You tell me. I'm asking about your
+theory. Why don't they radiate?
+&gt;&gt; Right. So, in classical electronamics
+where you have, you know, uh you can
+imagine you've got uh charged point-like
+particles following deter, you know,
+determinable trajectories. Well, they're
+going in some path. And you can you can
+write down what the path is. And if the
+path uh has acceleration and if if the
+path involves speeding up or slowing
+down or moving in curved paths or going
+in circles or whatever then the
+classical theory of Maxwell is going to
+predict that these things will emit
+radiation. Um electromagnetic radiation
+this is a prediction of the theory. you
+run into some uh subtleties with self
+forces and stuff in classical
+electromagnetism all these famous
+problems but more or less that's kind of
+the picture that you get from classical
+electronamics
+um if you want to start treating
+particles quantum mechanically you
+cannot help yourself to classical
+electronamics so the prediction that uh
+jiggling charged particles are going to
+radiate is simply not available if you
+want to ask whether they'll radiate now
+what you need to do is uh combine your
+um uh your two electron system, your
+hydrogen molecule with two electrons.
+You're going to want to combine it with
+um the quantized electromagnetic fields.
+The the you combine it with QED. You can
+imagine that in addition to these two
+particles there is uh a huge set of more
+or less localized
+variables degrees of freedom
+representing the intensity of the or the
+directions of the electric field at all
+points in space.
+And now you're going to want to ask okay
+uh once we've done this and we model the
+whole thing with the appropriate
+Hamiltonian or lrangeian for charged
+particles
+source charged particles coupled to the
+electromagnetic field treated as a
+field. Um will this combined model
+predict that
+measurements of energy are going to find
+distant measurements of energy are going
+to find that energy is being propagated
+out of the system. Uh and the answer is
+well we know what the answer is if you
+try to model this whole thing including
+QED including the the electromagnetic
+field um there's just equivalence
+between this model and the predictions
+you would get from standard quantum
+theory. Standard quantum theory says
+that you do not get uh electromagnetic
+waves in these sorts of pictures. So
+you're just going to get the same
+prediction out of this model. If you're
+careful to model the entire system and
+include all the ingredients,
+you're going to get there's just an
+isomeorphism. You're going to get the
+same predictions that you would have
+gotten from standard quantum mechanics.
+&gt;&gt; But in the conventional case, I have an
+intuition.
+&gt;&gt; There is a wave. I solve an equation for
+it. it settles into its minimum energy
+state.
+&gt;&gt; In your in your view, I I I'm missing
+the intuition. I'm hoping that you can
+provide it for us. You have a bunch of
+things jiggling around.
+&gt;&gt; Why does it look like it's not jiggling?
+&gt;&gt; So, Sean, I'm going to reveal something
+to you that I've revealed before.
+&gt;&gt; Uh I came into this world without a lot
+of intuition.
+And uh you can certainly ask my uh uh
+elementary school teachers or my parents
+about this or my siblings or really
+anyone who knew me. Um and this was a
+hindrance for a significant portion of
+my life. Um but once I started getting
+into uh physics and in particular
+foundations and philosophy of physics um
+I found that this lack of intuition is
+in some cases an asset.
+I think, you know, when we're trying to
+navigate around the social world of
+human beings, the social, economic,
+political world, having really good
+intuition is incredibly helpful. Take it
+from me as someone who's had to learn
+the hard way. Um, but when you're trying
+to contend with the behavior of
+elementary particles and quantum fields
+far removed from human experience,
+uh, I don't know that our intuitions are
+the best guide for how to think about
+these things. Sean, it's absolutely true
+that if I could come up with some
+picture of reality
+that uh agreed with the rules of quantum
+theory, that met the
+previously mentioned potential
+overdetermination problem, managed to be
+a world picture that was consistent with
+the rules of quantum theory. I'd love it
+if that picture were intuitive in every
+way.
+Um,
+I don't think we're going to get that
+intuitive picture. It's possible someone
+will come along and find one. It's been
+a hundred years since matrix mechanics.
+Um, by the way, do you know where the
+word matrix comes from?
+&gt;&gt; I don't.
+&gt;&gt; Okay. Interesting. So, I didn't know for
+a long time, but I was curious. The root
+word, the root of matrix, what's the
+root without the X?
+uh mother mater
+&gt;&gt; mother right what do matrices have to do
+with mothers so when James Joseph
+Sylvester introduced the term matrix in
+1850 1851
+he was trying to um find a convenient
+way to generate determinants
+determinants for the listener are used
+for many things in his particular case
+he was trying to find um he was using
+determinance to determine which kinds of
+equations could be solved uniquely. Had
+solutions, didn't have solutions, had
+unique solutions, didn't have unique
+solutions. And he realized that if you
+arranged a bunch of numbers that show up
+in those equations in an array,
+then there was a very simple procedure
+for getting the determinants out. And he
+says in the paper, it's like we're
+pulling the determinants out like we're
+pulling off offspring out of out of a
+womb.
+And so we called the he used the word
+matrix which is apparently Latin for
+womb.
+&gt;&gt; Okay.
+&gt;&gt; And and huge spoiler alert for anyone
+who has still not seen the matrix
+in in 26 years. But part of me wonders
+if the Wakowskis
+happened upon this etmology and this
+&gt;&gt; I'm happy to take the fact that they did
+not
+&gt;&gt; because it's a rather remarkable
+coincidence
+if you think about what happens in the
+movie which I won't reveal any more
+detail. Fair enough.
+&gt;&gt; Um so but the point is like we haven't
+developed an intuitive what I would
+regard as an intuitive picture. Boommy
+mechanics is very unintuitive. The many
+worlds picture whatever its strengths is
+not very intuitive. Um, and this picture
+is also not very intuitive. Um, but
+given the many difficulties I've had
+trying to make sense of the other
+approaches thus far, difficulties that
+might be improved, I don't know, but
+thus far haven't been improved. Um, this
+approach met my minimal list of
+requirements. The first was empirical
+adequacy. That is absolutely a
+requirement. It must get the
+predictions, the experimental
+predictions correct. The second is it
+shouldn't deliver ambiguous predictions
+in certain inprincipal situations. And
+Vner's friend is a good example.
+Viewers, listeners can can look up what
+Vigner's friend is, but it's it's an
+example where the textbook axioms kind
+of don't know what to do because you've
+got two observers. You're not sure
+whether one of them does a measurement
+or not. So, you shouldn't get ambiguous
+predictions. Um the third is that it
+should at least in schematic terms maybe
+not in all the gory details but in
+schematic terms it should be able to to
+let us tell a kind of picture of how the
+macroscopic world is emergent from a
+micro world. When we talk about fluid
+water being emergent from water
+molecules. This is kind of the paradigm
+for how this is supposed to work. At one
+level you see little water molecules if
+you want to model them more or less
+classically as little marbles or small
+rocks or something bouncing around. And
+then you zoom out, you zoom out and zoom
+out and their behavior begins to look
+more and more like a fluid and you can
+see the emergence as you sort of zoom
+out bigger and bigger scales. You can
+find YouTube videos where they show you
+this.
+Um there may be situations in which
+emergence is much harder to to model.
+But at least in broad schematic terms we
+can say that you know the behavior of a
+human being generated by our brains is
+emergent from the interactions of our
+neurons the behaviors of our neurons
+some story where there is some kind of
+physical substrate the the microscopic
+or underlying or whatever physical stuff
+there is and some broad outline for how
+macroscopic behavior or objects are
+supposed to arise from them. So uh the
+third requirement is that that we at
+least in schematic terms be able to to
+talk that way. Uh and then the final
+requirement is that we don't have an
+endless list of uh extra empirical you
+speculative metaphysical hypotheses
+extra empirical assumptions a stone soup
+problem. Basically an epic list of
+additional things we keep having to add
+in order to get the thing to work. Um
+empirical adequacy though is is the most
+important thing. And um this
+approach
+looks like so far it's hitting the
+empirical adequacy requirement which
+which I take to be a good thing. Bowing
+mechanics at this point doesn't meet it
+because it can't describe the kinds of
+real world systems that we use. Um some
+of the problems of the ever approach
+including the probability problem make
+me nervous about whether the ever
+approach is ultimately empirically
+adequate. Although I know there's work
+continuing on that. Um the ambiguity
+question is resolved on some approaches
+the ever approach uh and the bomb
+approach and basically approaches that
+do not propose a fundamental collapse of
+the wave function. You know they will
+tell you what will happen and my
+approach does that as well. So those all
+meet that mark whereas um traditional
+textbook approaches or the Copenhagen
+approach are a little bit ambiguous
+about those things.
+Being able to tell a story at least
+schematically about how the macroscopic
+world emerges is very important. Um the
+bomb theory in in principle sort of lets
+you do that at least in the models where
+it works. Uh Copenhagen does not. The
+Copenhagen interpretation does not and
+Hugh Everett was one of the most
+articulate explainers of why. He said
+the copenig interpretation assumes the
+classical world at the beginning and
+rules out on principle the idea we could
+derive what the classical world is like
+from the quantum world and he regarded
+that as a serious problem. I agree with
+effort on that. Um and then the final
+thing is avoiding a list of just a long
+list of speculative metaphysical
+hypotheses which um I'm trying to do. I
+I think my approach does it. Um the
+effort approach this is one other area
+where I get very worried about it. Now,
+there are other aesthetic considerations
+one could have, but I take these four to
+be dealreaker requirements. And if
+someone comes along with a more
+intuitive approach that hits those four
+um benchmarks, I would be the most
+thrilled person in the world, especially
+if it's me.
+But even if it's not, I would just like
+to know the answer.
+&gt;&gt; Is there uh for audience members who
+want to dive even deeper, is there
+something they should read?
+&gt;&gt; Uh not yet.
+&gt;&gt; Okay, we're getting there. here this
+well this work is showing up in
+journals. I mean it you know we just got
+it just got a publication um not not
+long ago
+&gt;&gt; um
+&gt;&gt; uh in a really beautiful journal run by
+David Wallace uh currently run by David
+Wallace called Philosophy of Physics.
+It's an open access journal that was
+created by the philosophy of physics
+community. Um and it's really just a
+remarkable project. I mean, uh, so many
+people in the community had their hands
+in building up this journal. It's only
+been in existence a few years, and it's
+really just just spectacular. And and I
+give credit to a lot of people involved,
+but especially David Wallace, who's, you
+know, it wasn't enough that he had to be
+like a great physicist and philosopher
+of physics. He also had to be like a
+really great leader and a great journal
+editor. Like,
+I'm sure he's bad at something. I I'll
+figure out what it is. maybe you know
+but
+um anyway so huge huge credit to the
+people who were responsible for that. So
+this this just showed up in a
+publication in that journal um and there
+are more publications on the way. There
+is not yet um because this is all still
+pretty new. I mean this project is just
+a couple years old.
+&gt;&gt; There's still a lot of work to be done.
+&gt;&gt; Um which is which is also good. I mean,
+it's not often that in a subject as old
+as quantum foundations, you open up a
+completely new leaf uh in in in our like
+notebook, right? A a brand new sheet of
+paper uh waiting to be filled in. Um
+this is a different approach from all
+the approaches that have existed before.
+What can we do with non-marovianity and
+indivisible processes in quantum
+physics, but also beyond? Because now
+you can read the approach the other way.
+You can say well if there's this
+correspondence between quantum systems
+and a large class of non-arovian systems
+um maybe this means that if I'm trying
+to handle some non-arovian system some
+real world not not microscopic
+macroscopic some ordinary everyday life
+I'm trying to model some complicated
+system there's no h bars this is not a
+quantum system in any real in any
+practical sense
+but if I can represent it using the
+tools of quantum theory then we can use
+all the mathematics we've developed over
+the past 100 plus years for quantum
+theory and apply them to these new kinds
+of systems. We can apply the
+reormalization group. We can apply
+effective field theory. We can apply uh
+you know all stationary phase all kinds
+of clever things to new kinds of
+systems. So there's a lot of work to be
+done. But also what this means is it's
+too new for there to be uh a a a
+readable accessible popular level
+description of this approach. You can go
+look up some of the other conversations
+I've had that are online. Um uh and I I
+give a big shout out to some people I've
+I've spoken to before. I did a whole
+bunch of uh interviews with Kurt J.
+Mungle. Um I know I think you were on
+Kurt J. Mongle's podcast also, right? Uh
+I remember that episode. Um uh so um
+anyway, so it and and just Google Google
+and you'll find all these these these
+these things, but no, there's not a an
+accessible readable reference yet. One
+of the one of my long-term projects is
+to follow in your footsteps, Sean,
+and and write uh a popular book. Um
+but you make it look much easier than it
+is.
+&gt;&gt; Oh, it is. Yeah, that's don't be fooled.
+Right now, I'm trying to finish one. So,
+yes, I'm I'm not feeling that it's easy.
+&gt;&gt; Yeah. Um, so there's a couple of other
+items. I don't know if there's any way
+to get them into into this conversation,
+but there are some So, in addition to
+hopefully making more sense of quantum
+theory and and hopefully generating new
+applications for things outside of
+quantum theory, um, I wanted to come
+back to this question about general
+relativity again. So general relativity
+in certain kinds of situations behaves
+like a marov process.
+If you have a very nice kind of universe
+where space and time join together into
+a certain kind of manifold. We call it
+globally hyperbolic but it's a manifold
+in which we can really think of the
+universe being slicable up into moments.
+and the moments moment to moment can be
+connected together to make the whole
+universe then in this situation we can
+formulate Einstein's equation the
+Einstein field equation as something
+like uh the kind of differential
+equations we've seen before where we can
+take initial information and we can
+predict what's going to happen but
+there's no guarantee there's no
+fundamental reason we know of at this
+point why spacetimes have to be nice in
+this way and in the general case the
+unseen field equation doesn't really
+operate like those other equations.
+And my suspicion is that this is
+connected with the difficulties in
+developing a theory of quantum gravity.
+Now, there are other difficulties as
+well. Um, and I don't have time to go
+into them all now, but my suspicion is
+that
+the reason we don't yet have a fully
+probabilistic version of general
+relativity.
+So not general relativity with small
+noisy you know tiny corrections but like
+a fully probabilistic generalization
+where we replace the nfield equation
+with genuinely probabilistic laws in in
+a fully general way. The reason we
+haven't done that is because um is
+because of this non-Marovianity.
+Um
+the kinds of probabilistic systems that
+we have a lot of experience with are
+marovian. And if general relativity is
+not like that, it's going to resist that
+kind of effort.
+My suspicion is that if we could develop
+something like a fully realized
+probabilistic generalization of general
+relativity, then although it might not
+be quantum gravity,
+but who knows, we don't have it yet, it
+might at least be a very important
+stepping stone to developing a theory of
+quantum gravity. And there are some
+people trying to generalize general
+relativity in a fully probabilistic way,
+but those efforts are at this point very
+rudimentary. And so I would just say is
+this project has sensitized me to the
+importance of taking problems one at a
+time. Before we jump to quantum gravity,
+maybe we should start with probability
+gravity and try to see if we can make
+gravity a probabilistic theory. Um, so
+these are all potential directions and
+and and future things I'm thinking
+about. The final thing I'll just say is
+there are philosophical consequences to
+all of this as well.
+This is a theory in which the laws take
+a new kind of form.
+And when you've got physical theories
+with new kinds of laws, you can go back
+and revisit old questions.
+One of the deepest questions in
+philosophy of science and metaphysics is
+what is causation? What are causal
+influences? Uh, I know you had Judea
+Pearl on your podcast um, a little while
+ago and
+&gt;&gt; we've developed we humans, scientists,
+not but but but scientists, the royal we
+&gt;&gt; scientists uh, and statistical modelers
+have developed a really amazing
+framework for characterizing and using
+statistical models with causal
+ingredients
+to describe
+real world uh systems, situations,
+scenarios. We use causal modeling in
+medical testing. We use causal modeling
+all over the place.
+Um but when Pearl was on your show and
+you asked him, so does this picture that
+has been developed, does this tell us
+what causation is fundamentally? Like
+what really is it? And his answer was he
+didn't think there was causation
+fundamentally. He thought it was just an
+emergent artifact.
+Um, and I think the example he gave was
+in F= ma, there's no directionality,
+right? Force equals mass. It the equal
+sign just goes in both directions.
+There's no sense in which one thing
+causes another so much as that things
+are simply connected by laws in a
+non-causal way.
+Well, that may be fine as far as it goes
+if your theory is Newtonian mechanics.
+But if you have a new theory, a theory
+in which the laws take a qualitatively
+different form,
+you can go back and revisit those kinds
+of questions. Now,
+one way that we cash out causal
+relationships and causal modeling is
+through conditional probabilities. Well,
+the laws in this indivisible approach to
+quantum theory are conditional
+probabilities.
+So, now you might ask
+maybe we can is it possible could we try
+to ground or develop a theory of
+microfysical causation rooted in the
+laws of a theory like this? And that's
+one of the more philosophical or
+metaphysical directions I'm also
+thinking a lot about these days.
+&gt;&gt; It's good to know that we're not running
+out of uh questions to ask or or things
+to worry about. So, Jacob Arendes,
+thanks so much for being on the
+Mindscape podcast. You've given us a lot
+to think about.
+&gt;&gt; It's really an absolute delight. And I
+guess the last thing about you, Sean,
+I'll say I want to say one more thing
+about you. So, um, it's possible that I
+I said this, now I'm forgetting it
+because it's been at the end of the
+interview, but, um,
+having someone like you
+who is a phenomenal scientist and also,
+by the way, a very good philosopher
+and an amazing communicator out there
+making the case for the work that
+we're doing in Foundations and
+Philosophy, and physics, the work that
+you're doing and the rest of us are
+doing that you're writing articles in
+the New York Times. By the way, I have
+my students in my philosophy of quantum
+theory class read your New York Times
+stuff, right? You know, the fact that
+you're out there making this case to to
+to the public to people with money who
+could in principle provide funding to
+for this work, which gets almost no
+funding comparatively speaking to
+anything else. Um, is and you're doing
+it so well. You know that I've told you
+this many times before. or every time I
+see you, I practically tell you this,
+but I my level of gratitude toward you,
+the gratitude that we should all have in
+this field toward you is bottomless. So,
+um, thank you so much for all that you
+do and I
+&gt;&gt; Well, thank you very much for those nice
+words. I mean, not everyone agrees that
+my, uh, uh, interventions in these
+fields are actually good things. So, I'm
+glad that some of us think that there
+should be more focus, uh, attention on
+these things and hopefully this podcast
+will be part of it. So, thanks very much
+for appearing. You're you're very
+welcome. Lovely to talk to you. Hope
+we'll talk soon.
+[Music]

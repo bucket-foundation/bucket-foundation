@@ -7,7 +7,7 @@
 - **Authors**: F V Rijsdijk, P C Sham, A Sterne, S Purcell, P McGuffin, A Farmer, D Goldberg, A Mann, S S Cherny, M Webster, D Ball, T C Eley, R Plomin
 - **MeSH**: Adult, Anxiety, Depression, Female, Humans, Life Change Events, Male, Middle Aged, Neurotic Disorders, Residence Characteristics
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11305848/
-- **Captured**: 2026-05-10T18:11:19
+- **Captured**: 2026-05-10T18:12:09
 
 ## Abstract
 

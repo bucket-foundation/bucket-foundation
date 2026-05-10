@@ -1,0 +1,14 @@
+# Exome sequencing reveals a high genetic heterogeneity on familial Hirschsprung disease.
+
+- **PMID**: 26559152
+- **DOI**: 10.1136/jmg.2007.053959
+- **PMCID**: PMC3964963 (full-text saved)
+- **Journal**: Scientific reports  ·  **Year**: 2015
+- **Authors**: Berta Luzón-Toro, Hongsheng Gui, Macarena Ruiz-Ferrer, Clara Sze-Man Tang, Raquel M Fernández, Pak-Chung Sham, Ana Torroglosa, Paul Kwong-Hang Tam, Laura Espino-Paisán, Stacey S Cherny, Marta Bleda, María Del Valle Enguix-Riego, Joaquín Dopazo, Guillermo Antiñolo, María-Mercé García-Barceló, Salud Borrego
+- **MeSH**: Alleles, Cadherins, Epidermal Growth Factor, Exome, Family, Female, Genetic Heterogeneity, Genome-Wide Association Study, High-Throughput Nucleotide Sequencing, Hirschsprung Disease
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26559152/
+- **Captured**: 2026-05-10T18:14:20
+
+## Abstract
+
+Hirschsprung disease (HSCR; OMIM 142623) is a developmental disorder characterized by aganglionosis along variable lengths of the distal gastrointestinal tract, which results in intestinal obstruction. Interactions among known HSCR genes and/or unknown disease susceptibility loci lead to variable severity of phenotype. Neither linkage nor genome-wide association studies have efficiently contributed to completely dissect the genetic pathways underlying this complex genetic disorder. We have performed whole exome sequencing of 16 HSCR patients from 8 unrelated families with SOLID platform. Variants shared by affected relatives were validated by Sanger sequencing. We searched for genes recurrently mutated across families. Only variations in the FAT3 gene were significantly enriched in five families. Within-family analysis identified compound heterozygotes for AHNAK and several genes (N = 23) with heterozygous variants that co-segregated with the phenotype. Network and pathway analyses facilitated the discovery of polygenic inheritance involving FAT3, HSCR known genes and their gene partners. Altogether, our approach has facilitated the detection of more than one damaging variant in biologically plausible genes that could jointly contribute to the phenotype. Our data may contribute to the understanding of the complex interactions that occur during enteric nervous system development and the etiopathology of familial HSCR.

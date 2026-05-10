@@ -7,7 +7,7 @@
 - **Authors**: Ellen L Goode, Stacey S Cherny, Joe C Christian, Gail P Jarvik, Mariza de Andrade
 - **MeSH**: Body Mass Index, Cholesterol, Cohort Studies, Humans, Lipids, Lipoproteins, Longitudinal Studies, Male, Middle Aged, Models, Statistical
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/17903110/
-- **Captured**: 2026-05-10T18:11:38
+- **Captured**: 2026-05-10T18:12:47
 
 ## Abstract
 

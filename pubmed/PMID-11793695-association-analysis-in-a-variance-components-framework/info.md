@@ -7,7 +7,7 @@
 - **Authors**: G R Abecasis, L R Cardon, W O Cookson, P C Sham, S S Cherny
 - **MeSH**: Chromosome Mapping, Chromosomes, Human, Pair 6, Chromosomes, Human, Pair 9, Genetic Variation, Genetics, Population, Humans, Lod Score, Models, Genetic, Phenotype, Polymorphism, Genetic
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/11793695/
-- **Captured**: 2026-05-10T18:11:24
+- **Captured**: 2026-05-10T18:12:17
 
 ## Abstract
 

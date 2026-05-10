@@ -7,7 +7,7 @@
 - **Authors**: W ARNOLD, J R OPPENHEIMER
 - **MeSH**: Chlorophyta, Eukaryota, Light, Photosynthesis
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/15410487/
-- **Captured**: 2026-05-10T18:11:31
+- **Captured**: 2026-05-10T18:12:25
 
 ## Abstract
 

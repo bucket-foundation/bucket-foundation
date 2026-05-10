@@ -1,0 +1,14 @@
+# Genetic overlap between epilepsy and schizophrenia: Evidence from cross phenotype analysis in Hong Kong Chinese population.
+
+- **PMID**: 29150900
+- **DOI**: 10.1002/ajmg.b.32607
+- **PMCID**:  
+- **Journal**: American journal of medical genetics. Part B, Neuropsychiatric genetics : the official publication of the International Society of Psychiatric Genetics  ·  **Year**: 2018
+- **Authors**: Hongsheng Gui, Miaoxin Li, Pak C Sham, Larry Baum, Patrick Kwan, Stacey S Cherny
+- **MeSH**: Adult, Asian People, Comorbidity, Epilepsy, Female, Genetic Predisposition to Disease, Genome-Wide Association Study, Hong Kong, Humans, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29150900/
+- **Captured**: 2026-05-10T18:14:43
+
+## Abstract
+
+Epilepsy and schizophrenia are common and typical neurological or mental illness respectively, and sometimes they comorbid in the same patients, however the underlying genetic relationship between the two brain diseases is still not fully understood. To investigate the possible genetic contribution to their comorbidity, we performed polygenic risk score (PRS) analyses and genetic correlation estimation so as to identify the overall genetic overlap between the two diseases. The global schizophrenia PRS is strongly associated with schizophrenia phenotype in Hong Kong population (odds ratio = 1.7, p = 2.26E-16), and focal epilepsy PRS is moderately associated with epilepsy phenotype in Hong Kong population (odds ratio = 1.14, p = 0.013). However the disease-specific PRS can only predict its own well-matched phenotype but not the other ones (p > 0.05). This pattern is further supported by non-significant pairwise genetic correlation and insufficient statistical power for PRS association from the cross-phenotype analyses. Our study reveals there's limited shared genetic aetiology between schizophrenia and epilepsy, and thus supports a model of shared environmental factors to explain the comorbidity between the two phenotypes.

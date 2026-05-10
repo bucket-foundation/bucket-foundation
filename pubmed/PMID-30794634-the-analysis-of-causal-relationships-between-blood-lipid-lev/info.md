@@ -1,0 +1,14 @@
+# The analysis of causal relationships between blood lipid levels and BMD.
+
+- **PMID**: 30794634
+- **DOI**: 10.1093/bioinformatics/btw613
+- **PMCID**: PMC5542030 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2019
+- **Authors**: Stacey S Cherny, Maxim B Freidin, Frances M K Williams, Gregory Livshits
+- **MeSH**: Androsterone, Bone Density, Cardiovascular Diseases, Causality, Genome-Wide Association Study, Humans, Lipids, Osteoporosis, Phenotype, Risk Factors
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30794634/
+- **Captured**: 2026-05-10T18:14:58
+
+## Abstract
+
+Bone mineral density (BMD) and lipid levels are two of the most extensively studied risk factors for common diseases of aging, such as cardiovascular disease (CVD) and osteoporosis (OP). These two risk factors are also correlated with each other, but little is known about the molecular mechanisms behind this correlation. Recent studies revealed that circulating levels of several metabolites involved in the biosynthesis of androsterone correlate significantly with BMD and have the capacity to affect cholesterol and lipids levels. A main aim of the present study was to investigate the hypothesis that androsterone-related metabolites could provide a link between CVD and OP, as a common cause of lipid levels and BMD. The present study employed data from the NIHR BRC TwinsUK BioResource, comprising 1909 and 1994 monozygotic and dizygotic twin pairs, respectively, to address the causal relationships among BMD and lipids, and their associated metabolites, using reciprocal causation twin modelling, as well as Mendelian randomization (MR) using large publicly-available GWAS datasets on lipids and BMD, in conjunction with TwinsUK metabolite data. While results involving the twin modelling and MR analyses with metabolites were unable to establish a causal link between metabolite levels and either lipids or BMD, MR analyses of BMD and lipids suggest that lipid levels have a causal impact on BMD, which is consistent with findings from clinical trials of lipid-lowering drugs, which have also increased BMD.

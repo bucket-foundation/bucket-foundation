@@ -1,0 +1,14 @@
+# Reciprocal causation models of cognitive vs volumetric cerebral intermediate phenotypes for schizophrenia in a pan-European twin cohort.
+
+- **PMID**: 25450228
+- **DOI**: 10.1038/mp.2014.152
+- **PMCID**:  
+- **Journal**: Molecular psychiatry  ·  **Year**: 2015
+- **Authors**: T Toulopoulou, N van Haren, X Zhang, P C Sham, S S Cherny, D D Campbell, M Picchioni, R Murray, D I Boomsma, H E Hulshoff Pol, R Brouwer, H Schnack, L Fañanás, H Sauer, I Nenadic, M Weisbrod, T D Cannon, R S Kahn
+- **MeSH**: Adult, Brain, Cognition Disorders, Cohort Studies, Europe, Female, Humans, Image Processing, Computer-Assisted, Magnetic Resonance Imaging, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25450228/
+- **Captured**: 2026-05-10T18:14:07
+
+## Abstract
+
+In aetiologically complex illnesses such as schizophrenia, there is no direct link between genotype and phenotype. Intermediate phenotypes could help clarify the underlying biology and assist in the hunt for genetic vulnerability variants. We have previously shown that cognition shares substantial genetic variance with schizophrenia; however, it is unknown if this reflects pleiotropic effects, direct causality or some shared third factor that links both, for example, brain volume (BV) changes. We quantified the degree of net genetic overlap and tested the direction of causation between schizophrenia liability, brain structure and cognition in a pan-European schizophrenia twin cohort consisting of 1243 members from 626 pairs. Cognitive deficits lie upstream of the liability for schizophrenia with about a quarter of the variance in liability to schizophrenia explained by variation in cognitive function. BV changes lay downstream of schizophrenia liability, with 4% of BV variation explained directly by variation in liability. However, our power to determine the nature of the relationship between BV deviation and schizophrenia liability was more limited. Thus, while there was strong evidence that cognitive impairment is causal to schizophrenia liability, we are not in a position to make a similar statement about the relationship between liability and BV. This is the first study to demonstrate that schizophrenia liability is expressed partially through cognitive deficits. One prediction of the finding that BV changes lie downstream of the disease liability is that the risk loci that influence schizophrenia liability will thereafter influence BV and to a lesser extent. By way of contrast, cognitive function lies upstream of schizophrenia, thus the relevant loci will actually have a larger effect size on cognitive function than on schizophrenia. These are testable predictions.

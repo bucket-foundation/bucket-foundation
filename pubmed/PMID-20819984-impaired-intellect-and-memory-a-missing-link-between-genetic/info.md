@@ -1,0 +1,14 @@
+# Impaired intellect and memory: a missing link between genetic risk and schizophrenia?
+
+- **PMID**: 20819984
+- **DOI**: 10.1001/archgenpsychiatry.2010.99
+- **PMCID**:  
+- **Journal**: Archives of general psychiatry  ·  **Year**: 2010
+- **Authors**: Timothea Toulopoulou, Terry E Goldberg, Irene Rebollo Mesa, Marco Picchioni, Fruhling Rijsdijk, Daniel Stahl, Stacey S Cherny, Pak Sham, Stephen V Faraone, Ming Tsuang, Daniel R Weinberger, Larry J Seidman, Robin M Murray
+- **MeSH**: Adult, Cognition Disorders, Diagnostic and Statistical Manual of Mental Disorders, Diseases in Twins, Family, Female, Genetic Predisposition to Disease, Humans, Intellectual Disability, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20819984/
+- **Captured**: 2026-05-10T18:13:17
+
+## Abstract
+
+The DSM-IV concept of schizophrenia offers diagnostic reliability but etiologic and pathologic heterogeneity, which probably contributes to the inconsistencies in genetic studies. One solution is to identify intermediate phenotypes, "narrower" constructs of liability, that hypothetically share genetic risk with the disorder. Although a variety of candidate intermediate phenotypes have emerged, few have explicitly quantified the extent of their genetic overlap with schizophrenia. To quantify the net-shared genetic effects between schizophrenia and specific cognitive candidate intermediate phenotypes. Twin and family design. Adult psychiatric research centers in the United States and the United Kingdom. A total of 2056 participants: 657 patients with schizophrenia, 674 first-degree relatives (including co-twins), and 725 controls. (1) Latent factors capturing the common variance between cognitive tasks, (2) separation of the latent factors into their genetic and environmental components, and (3) estimation of the net-shared genetic variance between the latent cognitive factors or intelligence and schizophrenia. Genetic factors contributed substantially to the total variance in cognition (immediate recall latent factor: 0.66; 95% confidence interval [CI], 0.62 to 0.85; delayed recall latent factor: 0.48; 0.42 to 0.55; and intelligence: 0.66; 0.62 to 0.71). The latent common factors for modality-specific immediate and delayed recall and intelligence showed similar levels of phenotypic covariance with schizophrenia (immediate recall: -0.35; delayed recall: -0.37; and intelligence: -0.38), with 72%, 86%, and 89%, respectively, due to shared genetic effects with schizophrenia. Environmental effects accounted for little phenotypic correlation between cognition and schizophrenia. Using the largest international familial schizophrenia cohort to date, we showed that a substantial portion of the phenotypic correlation between schizophrenia and cognition is caused by shared genetic effects. However, because the phenotypic and genetic correlations are far from unity, the genetics of schizophrenia are clearly not merely the genetics of cognition.

@@ -7,7 +7,7 @@
 - **Authors**: S Purcell, S S Cherny, P C Sham
 - **MeSH**: Chromosome Mapping, Gene Frequency, Genetic Linkage, Genetic Markers, Genetic Predisposition to Disease, Internet, Linkage Disequilibrium, Models, Genetic, Models, Statistical, Pedigree
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/12499305/
-- **Captured**: 2026-05-10T18:11:27
+- **Captured**: 2026-05-10T18:12:20
 
 ## Abstract
 

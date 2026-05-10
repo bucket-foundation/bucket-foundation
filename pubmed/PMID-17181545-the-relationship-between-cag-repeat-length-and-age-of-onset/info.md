@@ -7,7 +7,7 @@
 - **Authors**: J Michael Andresen, Javier Gayán, Luc Djoussé, Simone Roberts, Denise Brocklebank, Stacey S Cherny, Lon R Cardon, James F Gusella, Marcy E MacDonald, Richard H Myers, David E Housman, Nancy S Wexler
 - **MeSH**: Adult, Age of Onset, Australia, Child, Cohort Studies, Europe, Female, Humans, Huntington Disease, Male
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/17181545/
-- **Captured**: 2026-05-10T18:11:35
+- **Captured**: 2026-05-10T18:12:42
 
 ## Abstract
 
