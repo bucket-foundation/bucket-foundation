@@ -1,0 +1,1850 @@
+Hey everyone,
+thank you very much for coming. Maybe
+I'll start with simple questions.
+&gt;&gt; Can everyone hear me?
+&gt;&gt; Great. Okay, raise your hand if you ever
+use bull from Alpha and it helped to
+solve your problem.
+&gt;&gt; That's good.
+&gt;&gt; Amazing.
+Well, today you got a unique opportunity
+to say thank you to the person who made
+it possible. Our speaker today graduated
+and obtained also make art fellowship
+sometimes called as a as a scholarship
+for geniuses at the age 21 work on
+numerous theories and last and not least
+but not least he also is CEO and founder
+of wolf from Alpha without further ado
+Steve
+[applause]
+thank you well okay I I will talk a bit
+about science Maybe I'll talk a little
+bit about the story of how things like
+Wolf and Alpha came to be. Um, but
+there's quite a bit of science I wanted
+to talk about. I've I've had the kind of
+interesting life trajectory of having
+alternated between doing technology
+development and doing basic science so
+far about five times in my life. And
+it's kind of kind of nice because you do
+technology development, you build tools
+that let you do a bunch of science. you
+do science gives you ideas and
+discoveries that let you do more
+technology. So I could uh well let let
+me maybe I'll tell the little bit of the
+life story. So I grew up in England as
+you can perhaps still tell from my
+accent and uh in the in the 1960s the
+kind of the big thing that was exciting
+was space and spacecraft and things like
+that. So I was really interested in
+those when I was a younger kid. And then
+from that I got interested well how
+would you design spacecraft etc. And
+from that by about the time I was 11
+years old or so uh I got interested in
+uh physics and so I started reading
+books about physics and so on. Actually
+I could show you let me show you one
+example. I realize um the uh
+um I sort of discovered that you could
+um just uh read books and learn stuff.
+The web didn't exist obviously at that
+time. I realized that I have a picture
+of a particular book that I that I read
+which will which will come back later.
+This was a anybody I don't know if this
+book still exists but that was a college
+physics textbook that I I realized that
+I actually was very efficient to wrote
+my name in these things uh and the date
+and that was when I was 12 years old.
+Um, and uh, so I actually was very
+interested in the in kind of what the
+front cover of that book shows, which is
+something that is kind of a physics
+phenomenon of this collection of
+idealized gas molecules kind of start in
+a sort of ordered way on one side of the
+box and in the course of time they kind
+of get get more random. And I was really
+interested in why that happened. And uh
+uh I actually then
+uh happened to have access to a computer
+and I thought I will reproduce this
+picture that's on the cover of this this
+book. This is the computer that I had
+access to. Um it's a uh a pretty
+non-modern thing programmed with paper
+tape um and so on. So I I tried to write
+a program for this that would um would
+reproduce that picture. I failed to do
+that at the time although later on I
+realized that I'd actually discovered
+something more interesting but didn't
+know it yet. Anyway then mid 1970s
+um was a time when particle physics was
+really an exciting state stage kind of
+quantum field theory had just started to
+work for a bunch of purposes and lots
+and lots of things were getting
+discovered and the much younger me um
+was was into those kinds of things and
+started trying to figure things out
+about that. I kind of uh u and ended up
+starting to write papers and things
+about about particle physics. Uh later
+also cosmology which at the time was
+sort of a separate branch of physics
+from from particle physics. Anyway, so
+uh that got me sort of I got to do a
+bunch of particle physics. So been my
+kind of goal was to sort of be a
+physicist when I was growing up. So by
+the time I was about 20 years old, I was
+sort of a a young faculty member doing
+physics and um but the thing that had
+happened was I guess I had had sort of
+the secret weapon of using computers to
+figure out things in physics and
+particularly figuring out things like
+algebraic computation and uh I I never
+really understood why other people doing
+theoretical physics didn't use those
+tools. One of the sort of learnings from
+my life is always try to use the best
+tools you can because it will give you
+the most leverage and let you get the
+furthest. But in any case, at that time
+I was kind of building up my own tools
+using other people's tools and so on.
+And 1979 I kind of I think I was the
+world's largest user of things like
+computer algebra and so on and I kind of
+you know got exceeded what was what was
+possible with systems existed at the
+time. So then I decided, okay, I'm going
+to build my own system for doing
+mathematical computation. And so I I
+sort of took a uh took kind of a clue
+from what I had done in physics and
+said, okay, you're going to build this
+thing that's for doing computation. Let
+me understand kind of the the primitive
+elements of what what is involved in
+computation. At the time, I remember
+going to the I was at Caltech at that
+time, going to the Caltech bookstore and
+buying sort of all the books about
+computer science that existed at the
+time, which was maybe a foot and a half
+of of of books. But um uh the um so I
+kind of was was interested in sort of
+figuring out what was the essence of
+what one had to do in computation and
+building that into a system. I built
+system called SMP which um uh was sort
+of my first big effort in a large
+computer system that came out in 1981
+and then in sort of a different branch
+of my life I started my first company.
+Um then I went back to kind of doing
+doing basic science and um uh I was
+interested in sort of what seemed like a
+very straightforward basic science basic
+basic science question which is uh how
+does it come to be that there are
+complicated things in the world? How
+does how do complex things arise from
+natural processes? And I thought you
+know I know all this fancy mathematical
+physics. I'm trying to explain the shape
+of a snowflake or something. this will
+be straightforward. I thought it wasn't.
+So then I thought, well, what can I do
+that is sort of an alternative to using
+things like mathematical equations and
+trying to work out things with
+mathematical equations. And so I
+thought, well, what what is the
+foundational thing that one is doing
+when one makes a theory for things?
+One's basically specifying rules for how
+things should work and then one seeing
+the consequences of those rules. So I
+started thinking, well, what what kinds
+of rules? how can we make sort of
+general kinds of rules and the obvious
+thing is use the kinds of rules that are
+embodied in programs. So I started
+thinking well okay what can can we write
+programs that will reproduce what
+happens in the natural world and uh then
+the next question was well you know the
+programs we're used to writing are big
+complicated things that are set up for
+some particular purpose we have in mind
+but what about programs in the wild what
+about programs which are just sort of
+picked at random enumerated very simple
+programs what do such programs typically
+do and so that got me into asking that
+question and so I started looking at
+very simple programs. Here's an example
+of of one. This is a creature called the
+cellular automaton where the idea is
+there's a there's a line of cells. Each
+one is either black or white. And in a
+series of steps, you go down the page of
+figuring out the color of a new cell
+based on the color of the cell above it
+and to its left and right according to
+that little rule at the bottom there.
+So, you know, what happens here is
+something very straightforward. You have
+a a very simple rule. you have a pattern
+which starts off in one black cell and
+you get to uh very simple behavior. So
+you might think that's what's always
+going to happen. Okay, here's another
+example, slightly different rule,
+slightly more complicated pattern of
+behavior. Keep going a little while
+longer, you'll see something like this
+where you get a nice pattern that will
+keep going and make it make this whole
+nested pattern. But then the question
+is, well, is is that all that can
+happen? Well, then the thing to do is do
+a computer experiment. Just find out
+what happens with all possible rules of
+this type. So, that's an easy thing to
+do. Actually, I should I should just do
+it in well, let me just show it.
+Otherwise, I could just use Wolf from
+language and just type type it in and do
+it in real time. Maybe we'll do some of
+that later. Um, so anyway, this is this
+is what one finds. This is just looking
+at each each picture here is a different
+possible underlying rule. So they're in
+a sense different artificial physicses
+and the question is what do they all do?
+So many of them do very simple things
+but my all-time favorite science
+discovery is the one numbered 30 there
+rule 30 and if you look at what it does
+has a very simple uh kind of rule for
+how it's constructed but yet you started
+off in just one black cell it makes this
+pattern that seems kind of complicated.
+When I first saw this I kind of thought
+well if I run it long enough it will
+resolve. I can use some fancy method
+from statistics or or cryptography or
+reormalization group or whatever else to
+kind of show that this this pattern
+that's being made is really simple
+because after all it came from the
+simple rule. But actually that isn't
+really how it works. And there's the the
+longer version of that same pattern. You
+can see a certain amount of regularity
+over on the left. Um but something like
+the center column of cells here is for
+all practical purposes completely
+random. It's actually the random uh we
+we used it as a random sequence
+generator in Morphe language and
+Mathematica for for many years. But so
+what are we seeing here? It's kind of a
+a very for me at least it was a very
+intuitionbreaking
+thing to discover because even though
+the rule is simple, the behavior is very
+complicated. It's not what we're used to
+from something like engineering where we
+say we want to make a complicated thing,
+we have to kind of set things up with
+very complicated rules and so on. And
+sort of I I my kind of uh uh expectation
+was this is sort of the secret that
+nature ends up using over and over again
+to go from even very simple underlying
+rules to very complicated overall
+behavior. So you can kind of ask
+questions about um what what can you
+conclude from this? Why does this
+happen? What can you conclude from it?
+And so on you can keep looking around
+sort of the computational universe and
+you'll find all kinds of different
+complicated behavior uh that that
+arises. So one thing that's sort of a a
+fundamental feature of this kind of
+behavior is the following thing. So
+let's say you know in in doing
+traditional mathematical science a
+typical kind of thing to say is oh I got
+the equations for the two-body problem.
+Let's say okay given those equations I
+can work out what will happen with this
+two-body system at any point in the
+future. I just fill in the the value of
+my time parameter and I know the answer.
+And so you might think, well, you know,
+this is a this is some pattern that
+we're seeing produced here, but if I
+just was smart enough, I could figure
+out what's going to happen after a
+billion steps, let's say. Well, turns
+out that that's not something you can
+do. It turns out that although you can
+work out what will happen after a
+billion steps with this particular rule
+by just running a billion steps. Oops,
+the decoder is not receiving right. What
+do we do here?
+It's back. Okay. The um the uh
+um so you know you can you can figure
+out what's going to happen after a
+billion steps where it's running a
+billion steps and seeing what happens.
+The question is can you jump ahead? Can
+you find some clever technique that
+allows you to jump ahead and see what
+will happen without running all those
+steps? And the point is there's a
+phenomenon I call computational
+irreducibility that basically says in
+many of these cases in general you can't
+do that. The only way you can find out
+what's going to happen is to kind of
+just run all the steps explicitly and
+see what happens. Why is there any
+phenomenon like that? Well there's a
+there's another principle that uh I kind
+of realized which I call the principle
+of computational equivalence. So when
+you look at a picture like this or you
+think about some system in nature, you
+can think about it as performing a
+computation. You know, you've set up the
+underlying rules. Maybe there are rules
+that you just write down. Maybe they're
+rules that come from some piece of
+physics. But in any case, as the system
+behaves um it it um uh it is it is
+effectively doing a computation. it is
+it is is working out it's taking its
+initial conditions and it's running
+those rules doing a computation to
+figure out what the output will be. So
+you can ask the question how do
+different kinds of how do the
+computations that different kinds of
+systems do how do they compare? There
+are some systems like I don't know some
+something like this where it's it's
+obviously doing a very simple
+computation but what the principle of
+computational equivalence says is that
+above some very low threshold
+essentially all systems will be
+equivalent in the sophistication of the
+computations that they can do. So that
+idea has the following consequence. So
+if you if you say well that I've got
+this system it's doing its little
+computation but I with my brain or
+computer or mathematics or whatever uh
+you know I should be much more
+sophisticated but actually the principle
+of computational equivalence says that
+isn't how it works. Instead all these
+systems are equivalent in the
+sophistication of computations they can
+do. And so that means if we are trying
+to we're trying to out outthink a
+process like this, we're not going to be
+able to do that. We we will be stuck
+kind of just doing the same
+sophistication of computation as this
+does. And that's basically why this
+phenomenon of computational
+irreducibility shows up. So okay, that
+that's that's the underlying story of
+computational irreducibility. Um I will
+say the um uh turns out and it took
+about 50 years for me to sort of
+straighten this out that actually that
+original question that I had about the
+second law of thermodynamics is all
+about computational irreducibility in
+the end. So if if we take uh you know
+something gas molecules in the box
+bouncing around becoming more random, we
+can look at sort of a space-time picture
+of that, we can kind of simplify it a
+bit and we can end up with something
+that's just one of these cellar
+automaton systems where we just have a a
+grid of cells and we're just updating
+cells according to the values of of
+cells on the on the row above. So in
+this case what we're seeing is we're
+starting off from some uh kind of
+organized arrangement of cells and then
+as the thing progresses it becomes sort
+of it grinds that organized version of
+of of things down into this seemingly
+random mess. Well as you will know um in
+uh underlying rules of mechanics are
+reversible in time and so is the
+cellular automaton. So in fact, if we we
+can set it up so that we actually get
+that sort of very organized
+configuration um right in the in the
+middle there. And um uh the um uh and
+what we're seeing is as we evolve both
+forwards in time and backwards in time,
+we go from this sort of very simple uh
+configuration to something that looks
+like sort of random heat. Well, the uh
+um
+it's so why is it that um we end up
+getting something that looks to us
+random? Effectively what's going on is
+that the actual underlying dynamics of
+sort of the idealized molecules bouncing
+around is doing a computation that in
+some sense is encrypting the initial
+data that we had and turning it from
+something which we can readily see was
+was sort of a simple configuration to
+something which to us looks kind of
+random. What does it mean that it looks
+kind of random? Well, if we could
+immediately do the computation, reverse
+that computation and see, oh, it came
+from this very simple initial condition,
+then we would uh uh then we would not
+believe that it was random. So, you
+know, the the idea of entropy. Entropy
+is essentially the log of the number of
+states of a system that are consistent
+with what we know about the system. So
+in this particular case, what we could
+know about the system if we could do
+arbitrarily sophisticated computations
+is oh that was a thing that came from
+this simple initial condition. But
+because we are computationally bounded
+observers, we we there's a limit to the
+amount of computation that we can do
+that our measuring devices can do and so
+on the um uh we we can't conclude that.
+And so it what what we see what we say
+is oh it just looks random to us. it's
+consistent with being u any possible
+configuration of of molecules in this in
+this box. So the thing to understand
+here is that that essentially the second
+rule of thermodynamics ends up being
+something that you can derive
+from the sort of interplay between
+underlying computational irreducibility
+and our computational limitations as
+observers of things. And so that that
+ends up being that that pattern of
+there's computational irreducibility
+under inside. But when we're looking at
+things as the kind of observers that we
+are, we we end up concluding things
+about the system just from the fact that
+we are computationally bounded relative
+to the computational irreducibility of
+what's going on underneath. Now, I
+realized that somebody said this is the
+tagged as the Maxwell lecture, and that
+makes me um uh want to um want to show
+you something. Uh let's see. Um
+sorry. Um
+here we go. Uh
+um
+here we go.
+So, I'm now um uh let me see if I can
+find the right thing here. Oh, no.
+That's that's not Maxwell yet. That's
+that's William Thompson. I was going to
+show you because I once I when I figured
+out um how I think the second law works,
+I got curious why had people not figured
+this out before. And so, I tried to
+trace the history of the second law. And
+uh old Jamie Clerk Maxwell was a big
+figure in the history of the second law.
+And I really do would like to show you
+just a few things from his work. Let's
+see whether I can find these. Um,
+now that's a that's fun. That's from uh
+Kelvin from uh 1870s trying to figure
+out uh motion. Hold on a second. Let's
+see if I can find this. Sorry, I was not
+uh quite prepared for this. I think this
+is um is this Maxwell's? No, that's in
+German. That's clearly not Maxwell's.
+That's I think that may be Boltzman. Um
+who was uh uh Am I going to fail to find
+um find a nice Maxwell thing? That's
+Boltzman. All right. Let's see. Can I
+find something? No. Still Boltzman. Um
+All right. I think we have to let's see
+if I can um Yeah, those are the those
+were the the sort of key figures and the
+the origins of the second annex. And um
+uh
+is that oh yes that's from Maxwell
+that's um okay this is this is science
+history trivia but um um uh Maxwell
+wrote about many different kinds of
+things. He wrote famously a textbook of
+electronamics which led to Maxwell's
+equations. He worked on the second order
+of thermodynamics in the 1870s. He also
+he lived on a country estate in Scotland
+for some part of his life and uh he had
+a you know rolling hills there and he
+ended up writing a paper called on hills
+and dales which is a kind of an
+interesting piece of mathematics that
+talks about where functions have minima
+and maxima and so on that's a picture
+from that and I think I have another
+thing is that more from Maxwell yes that
+was Maxwell as poet um and uh I don't I
+don't guarantee quality in this Um um
+but it's uh um it was something. Okay.
+Another another piece of science trivia
+Kelvin um was uh uh
+Kelvin one of one of Kelvin's success
+stories was that when the transatlantic
+cable was being laid, they tried a
+couple of times. It was a big investment
+thing to lay a transatlantic cable. They
+tried a couple of times. They're in the
+middle of the Atlantic and the cable
+broke. And then what was then William
+Thompson um uh was sort of brought in as
+a consultant to try and listen with an
+electrometer to the to the cable as it
+was being laid and see how the
+resistivity was changing and so on and
+was saying go faster, go slower
+depending on what was what was happening
+in this cable. And then the first
+successful transatlantic cable was was
+laid. and um uh Kelvin started a company
+making doing consulting on on cable
+laying and so on and managed to buy
+himself a yacht and other such things.
+So that's a piece of trivia, but this is
+this is I think related to that. All
+right, back to back to the main um
+thrust of things. I thought I had to I I
+could probably find you some more um uh
+Maxwell material. But um for me the um
+uh this this kind of um uh this kind of
+understanding of computational
+irreducibility, simple rules, very
+complicated behavior, impossible to
+predict what will happen other than by
+just explicitly running the rules. and
+then seeing that that
+that that sort of how that interacts
+with us as kind of computationally
+limited observers of things leads to the
+second law. Well, okay. to tell a little
+bit more of the of the personal story. I
+um
+uh
+I was sort of started off studying
+cellular automter and um all these kinds
+of things back I mean this this picture
+I first saw in in 1984 and this whole
+idea of computational reducibility and
+so on comes from from that time. Um the
+uh then I ended up going back into
+technology development in 1988. We
+brought out Mathematica. Um and then few
+years after that I went back into doing
+basic science and ended up writing this
+big book called a new kind of science
+which is really about the study of
+simple programs and what they do and how
+that relates to uh studying things in
+the natural world and elsewhere. It's
+kind of the this this field of studying
+kind of simple programs and what they do
+I think is a very fundamental field of
+science uh doesn't really have it hasn't
+had a name. I've recently been calling
+it ruology the study of systems based on
+simple rules and it's something which is
+kind of underneath mathematics in some
+sense. It's something which gives one a
+lot more raw material for making models
+in in natural science. Actually, when I
+wrote that book, New Kind of Science,
+which came out in 2002, uh people were
+saying, "Oh, but you know, it's been 300
+years of of doing uh uh models and exact
+science using mathematical equations.
+You know, that's the way it will always
+be." Actually, that hasn't been the way
+it's always been. And in the last 20
+years or so, there's been sort of a a
+pretty complete transition from new
+models that get made being made in terms
+of mathematical equations to new models
+that get made get made in terms of rules
+that can be represented in programs. So
+that's been kind of a a um kind of an
+interesting thing to see. But anyway, I
+I I finished that book in 2002. U few
+years after that built Wolf Malpha. um
+kind of the the uh wolf from Alpha was
+sort of an interesting project because I
+had imagined I uh I've been interested
+since I was a kid in kind of organizing
+information and trying to make it kind
+of computable. Um and uh I had thought
+the only way to do that would be to
+build sort of a a complete brain-like
+AI. But then from this idea of principle
+of computational equivalence kind of
+gives one the philosophical poke that
+says there's no sort of bright line of
+the intelligent versus the merely
+computational. And so therefore I
+concluded it should be possible to build
+something just with computation that did
+these kind of uh that sort of made
+knowledge computable so to speak and um
+so we started doing that around 2006 and
+um uh somewhat surprisingly it turned
+out to work. the the the sort of the the
+key idea was to take sort of natural
+language kinds of inputs and to
+translate them into our symbolic
+language, our wolf from language
+symbolic language um where we can then
+compute answers from that. And that was
+kind of the thing in in the world of AI
+before that time. People had kind of
+tried to build question answering
+systems for probably 50 years and it
+always not worked. And the reason that
+we were able to be successful is because
+we already had this kind of very deep
+computational capability that we could
+plug into when we're dealing with kind
+of simple natural language inputs.
+Anyway, the um uh back to some science.
+So
+uh in um I'd been interested in so in in
+the book new kind of science I mostly
+talk about simple rules what they do
+applications of that to places in
+physics like like fluid turbulence
+places in biology like the growth of
+organisms and so on and I had one
+section about how these kinds of things
+might apply to fundamental physics and
+um the uh my my friends the physicists
+mostly hated that section. because that
+was a time when they thought we have it
+all straightened out. We're going to
+just do string theory and it's going to
+give us the sort of final theory of
+physics. Um so for a while I was like
+I'm not going to work on this because
+the the market namely physicists doesn't
+really want this. I'm going to work on
+other things. I worked on wolf and alpha
+and wolf language and and a bunch of
+other technology kinds of things. But
+then in 2018 I kind of made a little bit
+of a a technical minor breakthrough in
+thinking about how one could apply kind
+of computational ideas to fundamental
+physics. And then a couple of young
+physicists including one who was uh
+educated in Cambridge a chap called
+Jonathan Gorard um were telling me you
+know you you can't not continue you
+can't not kind of uh pursue these ideas
+about sort of computation as a as a
+foundation for um uh for for physics.
+And so I said okay help me do this and
+um we'll try and do it. Well turns out
+it worked much better than I could
+possibly have imagined. And by early
+2020, we had a pretty good idea of what
+I think this sort of machine code of
+physics is like. So let me try and tell
+you something about that. It turns out
+that the formalism that we developed for
+understanding kind of the machine code
+of physics also applies to a bunch of
+other things particularly foundations of
+mathematics uh foundations of machine
+learning and also biology. I'll try and
+talk about all of those things. So let's
+talk about physics first of all. So
+there's been this question that sort of
+existed since antiquity which is is the
+universe discrete or continuous? Is it
+made of a bunch of discrete atoms or
+does everything sort of flow like water
+or something? And uh that was something
+people didn't know for a long time. End
+of the 19th century finally got
+discovered yes matter is made of
+discrete things made of atoms and
+molecules and so on. And then a little
+bit later it was clear that you know you
+could think of light as being made of
+photons and so on. things seem to be
+made of discrete stuff. At the time,
+beginning of the 20th century, most
+physicists believed that space would
+turn out to be discreet as well. But
+nobody could figure out how to make that
+work, how to make it consistent with
+relativity and so on. And so by about
+1930, people kind of gave up and
+concluded that that space was just sort
+of this background where you just put
+things at different places in space. And
+some mathematicians got into the act and
+talked about, you know, space-time
+continuum manifolds and things like
+this. And it was kind of locked in that
+sort of space is just this background
+thing that can be represented as a as a
+continuous kind of uh kind of thing.
+Well, I don't think that's actually how
+it works. I think that instead space is
+is discreet. It's it has internal
+structure and in fact everything about
+the universe is just features of the
+structure of space. And so, you know,
+the electrons and quarks and whatever
+else, they're all just sort of features
+of the structure of space. It's a little
+bit like in a in a fluid, for example,
+you would have uh um you know, you could
+have a vortex in the fluid that's still
+made of those same molecules that every
+other part of the fluid is made of, but
+there's some definite thing that you can
+trace that is that vortex. And that's
+kind of the idea for how things like
+particles uh work in in the structure of
+physical space. But um the uh sort of
+the the the idea of what what is the
+universe made of? What is space made of?
+Kind of the notion is there are discrete
+points. One can think of them as kind of
+atoms of space. And the only thing one
+can say about those discrete points is
+how they're related to each other. So
+you can represent those relations by a
+graph or a little bit more elaborately
+by a hyperraph which allows you to to
+kind of uh connect not just the two ends
+of a of an edge in a graph but any
+number of any number of ends and you can
+think about these graphs and you can say
+well well these graphs can evolve in
+kind of a little bit like cellular
+automaton rules. You might have some
+rule that says whenever you see a piece
+of graph that looks like the thing on
+the left hand side, turn it into a piece
+of graph that looks like the thing on
+the right hand side, you start it off
+from some very small graph and will
+gradually grow this bigger and bigger
+graph. Well, so what happens as a result
+of that? In the case of uh let's say uh
+molecules in a gas we know that these
+molecules bouncing around underneath in
+in the gas on a large scale they make
+something which behaves like a fluid
+obeys the equations of fluid mechanics
+Navia Stokes equations or whatever um
+that's what happens with some molecules
+bouncing around the gas question is what
+happens with one of these uh hyperraphs
+and the rewriting of these hypographs
+you keep going for a long time and
+eventually you get this very big
+hypograph
+say about the structure of that
+hyperraph and and how it works. Well,
+what you seem to be able to say is that
+the thing can be approximated sort of
+has a continuum approximation which is
+the Einstein equations. So what in fluid
+dynamics would be what what in molecular
+dynamics would be limiting to the
+equations of fluid mechanics in the case
+of these hyperraphs is limiting to the
+equations that we know sort of apply to
+spaceime namely the Einstein equations.
+So it's all it's all a bit tricky
+because you know you can get depending
+on what rule you use you'll get very
+different behavior. Here's an example of
+a rule that um uh if you keep it going a
+while it will kind of knit this thing
+which is sort of obviously a
+two-dimensional object. You can have
+another rule here and it will knit this
+uh kind of thing which has a curved
+two-dimensional structure. Even knowing
+what effective dimension the space that
+emerges from this has is not quite so
+trivial. I mean you basically can say
+you can measure the sort of effective
+dimension by saying let's start at a
+node a point in the graph and let's go
+uh kind of graph distance one graph
+distance two and so on and let's ask as
+we as we build out this ball of of going
+out from a particular point in the graph
+how many nodes will we have enclosed in
+that um uh in in that ball and if the
+number of nodes in that ball grows like
+r to the d where r is the distance we've
+gone then we say well that's
+approximately d-dimensional like
+d-dimensional space and um uh turns out
+if you take that kind of formula the
+first correction term um from that which
+actually you might know if you know the
+formula for the area of a circle um area
+of a disc um on on the surface of a
+sphere the first correction term depends
+on the curvature of space so it's the
+richly scalar curvature is the thing
+that appears in the in the first
+correction term and conveniently if you
+happen to know the Einstein equations.
+The Einstein equations contain that
+exact same object, the Richie Richie
+scaler and the Richie tensor and so on.
+That's the beginning of how these things
+start to connect. In any case, the main
+main result is that from this underlying
+structure that is just this discrete
+thing of a hyperraph being rewritten uh
+you get in the large scale limit uh the
+Einstein equations for this for the
+structure of spaceime. an infinite
+number of footnotes to that statement
+and uh some uh elaborate kind of
+mathematical arguments and so on about
+why that works. Can talk more about it
+if people are interested. But any case
+that's the that's the first very
+exciting thing that you're starting from
+this this very simple discrete system
+and you're ending up with something
+which seems to have the structure of of
+uh of spaceime. Let me explain one an
+example of one thing that you can see
+two things you can see. So there are a
+bunch of physical effects that people
+know about which end up with very kind
+of mechanical explanations in these
+models. So for example, time dilation.
+So in relativity, a thing that's going
+fast, time seems to be running slower
+for it than something which is standing
+still relative to relative to the
+observer so to speak. And so how does
+one understand that in these models?
+Well, the if you have a thing like a
+particle that is made from a whole sort
+of tangle of pieces of this network,
+then that that thing can just progress
+through time. It'll keep on sort of
+getting rewritten as um uh as time
+progresses. But you can also say, well,
+how does it move? Well, in order to
+move, it has to be able to recreate
+itself at a different place in space.
+And that takes a bunch of computational
+effort as well. So the the what what
+happens is if it is going to move then
+it has to spend some of the some of its
+computational capability so to speak on
+recreating itself at a different place.
+So it has less computation left over to
+actually uh progress through time for
+itself and and that's sort of the
+mechanical explanation for time
+dilation. You're using some of your
+computation budget to move in space so
+you don't have as much to dedicate to
+kind of progressing through time.
+Well, okay. I could describe some other
+things like the origin of gravity and so
+on, but but um well, actually, let me
+show you here. Here's a um make this
+work. Oops. I'll try again.
+Uh
+it's not good. Let's try that. Maybe
+that will work. Yeah, maybe that works.
+So, this is just sort of a a simple
+example of um this network rewrite
+process. You can think of this as the
+very beginning of a a possible universe.
+And the fact that the only thing that
+matters here is what what is connected
+to what the wiggling around and the
+arrangement in in space is just for the
+sake of human viewers so to speak. It's
+not this not what is significant here.
+Well, you can go on and and uh sort of
+try and do this kind of discrete
+dynamics for something bigger. These are
+two sort of tiny black holes embedded in
+the structure of space. And uh what will
+happen is sort of the the the rewriting
+of this network keeps on kind of
+knitting together the structure of
+space. It also leads those two little
+black holes to merge and to produce kind
+of ripples of gravitational radiation
+that seems to agree pretty well with
+what you would expect from general
+relativity. So that's kind of
+encouraging and uh sort of a a a first
+clue to u uh to the idea that that there
+really is sort of a computational um uh
+machine code for for physics. Um the uh
+there are many kind of predictions that
+you get from this kind of setup. So for
+example, one prediction is there's no
+reason to think that the whole of the
+universe is precisely three-dimensional.
+Dimension is a sort of dynamical
+parameter. So there can be regions of
+the universe that might be 3.01
+dimensional or 2.99 dimensional and
+there are all kinds of interesting
+things you might try to do to detect
+that. Um it's mathematically difficult
+to deal with because if you've learned
+differential geometry or learn calculus,
+you've learned calculus of one variable,
+calculus of many variables, but you
+haven't probably learned calculus of 2.7
+variables because nobody's figured out
+how that works. And that's something one
+has to figure out to to be able to sort
+of construct the mathematical
+underpinnings for this. Well, okay. So,
+another um big I could Yeah. Well,
+another big um um feature of physics is
+quantum mechanics. And one of the things
+that happens in these models is that
+quantum mechanics necessarily emerges.
+It's not something that you have to
+wheel in from the outside. It's
+something which the structure of the
+model implies that one must have quantum
+mechanics and sort of the key idea of
+quantum mechanics I suppose is that
+instead of you know in classical physics
+you take an object you know you throw it
+it moves in a definite trajectory. In
+quantum mechanics the idea is there are
+many paths that get followed and we only
+get to kind of figure out the
+probabilities for different outcomes. So
+what happens in these models is when
+when these little rewrites happen,
+little piece of network that looks like
+this gets rewritten to one that looks
+like that. Um there are the point is
+there are many different places in the
+network where those rewrites could occur
+and that leads to sort of many different
+paths of history that can be followed by
+the system. So you can represent that
+call these multi-way graphs. you can
+represent that the many different
+possible paths that can be followed in
+the evolution of the system many
+different sort of threads of history and
+it turns out that um uh you can kind of
+analyze what happens in this multi-way
+graph of possible histories by take this
+simpler example of something which has
+many possible histories. You take kind
+of slices across this at a at a fixed
+level and you can then ask questions
+like how are the different how are these
+different branches of history how are
+they related? You can make what we call
+branchial graphs graphs that kind of a
+maps of entanglements between different
+branches of history. Well, you can take
+sort of a continuum limit of this. you
+can make kind of a space that is the
+this branchial space that is the space
+of sort of connections between these
+different uh these different branches
+that the the sort of story of what
+happens in branchial space is kind of
+the story of quantum mechanics. And um
+what uh what turns out to happen is in
+physical space the presence of energy
+momentum deflects the paths of things
+like particles. That's what gravity is.
+That's what general relativity says
+happens in quantum mechanics. The the
+the sort of core result of quantum
+mechanics is the path integral that
+tells you that also ends up telling you
+how the presence of energy momentum
+deflects things not now in physical
+space but now in branchial space.
+There's a whole bunch of math that we
+have not completely figured out about
+how this in detail works. But basically
+the picture is that what the Einstein
+equations in physical space turn out to
+be the path integral the core of quantum
+mechanics in branchial space. So in a
+sense, gravity and quantum mechanics are
+the same theory but played out in
+different kinds of space. And that's
+reflected in in a bunch of things done
+from the 1990s, the holographic
+principles and things which people
+hypothesize in the connection between
+between
+general relativity between structure of
+spaceime and field theories. This kind
+of gives you a way to understand why
+that kind of thing would happen. Anyway,
+so
+well I could uh I'm not sure how how
+deep in this particular rabbit hole to
+go, but but the um uh so the the the the
+thing that to me has been very
+surprising is that from these very
+simple underlying rules, you can end up
+with things that correspond to general
+relativity, correspond to quantum
+mechanics, tell you how the second order
+of thermodynamics works. One of the
+things that is sort of a remaining
+mystery there is okay we say we're going
+to find this rule and it's going to
+produce general relativity it's going to
+produce quantum mechanics it's going to
+produce certain features of physics and
+so on but why why did we in our universe
+get this rule and not another rule well
+I was kind of confused by that for a
+while and then I realized that just like
+in quantum mechanics this a particular
+rule is being applied in many different
+places so you can go beyond that and say
+what if you just apply all possible
+rules pools in all possible places and
+then what you get is this thing that I
+call the rouad which is the entangled
+limit of all possible computational
+processes. So you can see a very simple
+example of that. Here's like simple
+touring machine that's just got a little
+rule and it's just applying that rule
+and going back and forward. Well, you
+can make a multi-way touring machine
+where you have several different choices
+for what it can do at each step. Then
+you can say well what happens if we just
+look at all possible touring machines
+and what they do and you would say well
+what what is the object that you get
+from following all possible from from
+looking at the structure of all possible
+touring machines and how they behave and
+what you realize is that you get this
+thing that in a sense represents all
+possible computations. Well then so that
+seems like a very messy thing. It's a
+thing that has a lot of structure
+actually. But um you can then say well
+okay if that's the thing that exists
+this thing that represents all possible
+computations. What do we perceive from
+that? We are presumably observers who
+are embedded within this rouad object
+and we are made from the same stuff as
+the roulead object. But what do we
+perceive in it? Well, turns out that
+what you can see is that if we are
+observers who have certain
+characteristics, then it will
+necessarily be the case that within this
+rouad object, we must perceive certain
+kinds of things. In particular, if we
+are computationally bounded observers
+and we are observers who believe we are
+persistent in time in the sense that we
+have this sort of single thread of
+experience that goes through time. If if
+we are observers with those
+characteristics then it turns out that
+it is inevitable that we will observe
+the general laws of physics that we
+actually observe. So to me this is
+really surprising because it means that
+instead of the laws of physics being
+just something that's wheeled in as well
+we happen to have these laws of physics
+it's instead the case that one can
+derive the laws of physics that the laws
+of physics are necessarily the way they
+are for observers like us. So, okay,
+maybe I should um I I'll talk briefly
+and maybe people can ask if if you're
+interested in this the the um uh so that
+that's kind of the in some sense the
+deepest point of the rabbit hole talking
+about physics then we can kind of um
+come up and um uh talk about um talk
+about other kinds of things. So, let's
+talk about mathematics. For example,
+let's say that we we're going to build
+mathematics. We're going to start off
+with certain axioms for mathematics.
+We're going to say we believe these
+things are true. Now, what can we what
+theorems can we prove in mathematics?
+So, let's say we have that as an axiom
+that those two things are equivalent. We
+can then apply those aims a bunch of
+times to say here are a bunch of
+equivalences between expressions and we
+can keep going for a while. We can make
+up a whole proof that shows that one
+particular expression is equivalent to
+another expression by just applying that
+axiom. And that proof corresponds to a
+path in this network. So proofs are
+paths in this network. So then we can
+look at some actual field of mathematics
+like this is boolean algebra logic
+propositional logic. And we're starting
+off from the green axioms and then we're
+sort of building out all possible true
+theorems of of of logic. Keep going a
+while longer. You get lots and lots and
+lots of true theorems of logic. Most of
+them are ones that nobody cares about.
+there two red dots there for ones that
+are given names in typical logic
+textbooks. This is kind of a typical
+thing that in metamatical space there
+sort of you can build out this whole
+structure in metamatical space. Um in
+fact for example you know we humans have
+written down three or four million
+theorems in the in the history of
+mathematics published theorems but you
+can imagine building out this whole
+space of all possible theorems and you
+can start mapping out actually where do
+sort of famous theorems of mathematics
+lie in the space of all possible
+theorems. Well
+that's so you're kind of thinking about
+what's the limit of mathematics as time
+goes to infinity when there's sort of an
+infinite number of theorems that you
+prove. What's the what's the structure
+that you get then? Well, one of the
+things about about what happens when you
+kind of grind mathematics down to down
+to axioms is it's pretty complicated to
+figure out things that are typical kind
+of mathematics one studies. So, for
+example, this is the this is a picture
+showing the uh the lemurs that you have
+to prove to prove the Pythagorean
+theorem from set theory. So, it's really
+complicated mess. Um, and so you might
+wonder how come we can actually do
+mathematics using something like the
+Pythagorean theorem? Why don't we always
+have to grind our way down to talk about
+the definition of real numbers and all
+this kind of thing whenever we're
+dealing with the Pythagorean theorem?
+Well, actually this is very analogous to
+what happens in fluid mechanics because
+you might think that you could never
+make a higher level description of a
+fluid just in terms of velocity fields
+and things. You might think that instead
+you would never be able to do fluid
+mechanics. You'd always have to be
+talking about what all the individual
+molecules do to know what will happen in
+the fluid. The fact that there is a
+possibility of a higher level fluid
+mechanics is is a you know is a is a
+notable fact that same phenomenon of
+kind of the underlying computationally
+irreducible system when observed by
+observers like us something that you can
+then find this kind of simplified
+description. That same thing I think is
+happening in mathematics that the the
+sort of the possibility of higher level
+mathematics as opposed to always having
+to worry about every detail of every
+axiom is is happens for the same reasons
+that we have kind of a a human level
+understanding of fluids or of the
+structure of space or whatever else. And
+so while there are lots of interesting
+conclusions from sort of the
+correspondence between the structure of
+mathematics and the structure of
+physics, I should say that the that the
+object that you get by looking at all
+possible axiom systems is actually none
+other than this rouad object that I
+already mentioned. So in a sense,
+physics is one kind of observation of
+the rulad. Mathematics is another kind
+of observation of it. And there are lots
+of interesting correspondences between
+physics and mathematics that one can
+make from knowing that. So for example,
+one of the you can ask things like what
+is the analog of motion? Physical motion
+being able to move something from one
+place to another in mathematics. It's
+basically that you can take uh something
+like that's formulated in terms of
+algebra let's say and reformulate it in
+terms of geometry. It's this fact that
+there are these correspondences between
+different areas of mathematics. I think
+that that that's sort of homogeneity and
+meta mathematical space is what what
+that what leads to that. All right.
+Well, let me mention um uh just mention
+maybe a couple of other things that um I
+could also uh
+maybe um I might mention actually in uh
+well okay let let's talk about a quite
+different field. Let's talk about
+biology. So I got interested recently
+actually in the 1980s I was interested
+in sort of the foundations of biology
+and didn't manage to figure out much
+about them. And then last year I managed
+to actually figure out some things that
+I think think are kind of interesting.
+Um this is an incredibly idealized
+picture of biology. kind of on the on
+the left is kind of a genome rules for
+sort of the the development of an
+organism and on the right is the
+phenotype the organism just starting
+from one red cell. It's another one of
+these just cellular automaton uh
+behaviors. And so we say okay this is
+this is an organism and we want it to be
+um uh let's say we want this organism to
+have um
+uh uh we're going to mutate the genome
+for this organism. uh trying to make the
+organism kind of live as long as
+possible but not an infinite time. So
+this is what we get by by every red dot
+is one sort of mutation of the genome
+and we're asking you know how long did
+it live and you see those big plateaus
+where it lives more or less the same
+time and every so often it makes kind of
+a breakthrough and figures out how to
+live a bit longer. And if we look at
+that sort of series of breakthroughs,
+we see that it's kind of building on uh
+progressively building on on um on what
+it figured out so far. If we kind of
+roll the dice another time, we'll get it
+will it will behave in a different way.
+You can kind of imagine that these
+different stages or different steps, you
+know, different things you find in the
+fossil record where one set of critters
+managed to be successful one way,
+another set of critters managed to be
+successful another way. Well, one of the
+questions that's existed for a long time
+is why biological evolution actually
+works. Why it's possible to get sort of
+usefully better organisms by just making
+mutations of of things like genomes. And
+I will say that the the picture here
+ends up being very physics-like because
+you can make these multi-way graphs that
+show the sort of set of all possible
+mutations that can happen. And then what
+ends up happening is that the the reason
+that biological evolution can work is
+that the fitness functions, the things
+that make organisms survive or not are
+very a very coarse kinds of things. And
+it ends up being a story very similar to
+the story of the second law or for the
+derivation of of higher level
+mathematics and so on. It ends up being
+another story of the interplay between
+computational boundedness of something
+like an observer and computational
+irreducibility underneath. The
+computational irreducibility is kind of
+giving the uh uh is is is coming up with
+the innovation so to speak that biology
+has. But what's happening is that it's
+it's possible to kind of channel that
+innovation because the kind of thing
+you're trying to achieve is is fairly
+coarse. And if it wasn't the case, so
+you might imagine every organism when
+born has to immediately be able to, you
+know, prove the reman hypothesis or
+something. No organisms will make it
+under those circumstances. The actual
+constraints on organisms are much
+coarser than that. And it's that
+coarseness that makes it possible for
+for evolution to work. So I find it kind
+of interesting that the same underlying
+kind of principles end up also telling
+one things about in this case biological
+evolution. Mention one other thing which
+is about machine learning. So typical
+machine learning setup with a neural
+net. You um um this is just a neural net
+was trained to take an a single number x
+in at the top and then produce an f ofx
+at the bottom and that corresponding to
+that that function over on the right.
+Well, it's it's kind of hard to
+visualize what's going on here. You
+know, you change the input, lots of
+different activations, you get you get
+certain output. It's it's a it's a
+complicated mess what's happening. So I
+got interested in how can we simplify
+what's going on in neural nets,
+understand that a bit more um uh a bit
+more easily. You can make kind of a a a
+grid. You can actually set it up so that
+at every point on the grid instead of
+doing something with numbers, you're
+just doing something with a rule. Like
+even a cellular automaton rule, you pick
+between one of these two rules. At every
+point here, you the the the pink ones
+and the and the blue ones. One of them
+is one rule, one of them is the other
+rule. And then what you're trying to do,
+for example, is to say, let's find an
+arrangement of these different rules in
+this array that make the behavior of the
+system have a particular form. So in
+this case, it's lib 50 steps and then
+die out. Well, what you can do, you can
+make one of these sort of fitness curves
+or if you're doing machine learning gets
+tipped upside down and it's a loss curve
+um for for this kind of system and you
+can say, well, okay, how does this how
+does it work? What does it how do you
+get the different um uh how can you get
+it to learn this thing you want it to
+learn? Well, what ends up happening is
+sometimes it's very easy to explain what
+happened. It it does something something
+very trivial like like that. Um but much
+of the time the the way that it manages
+to do what it does is something that is
+in the end sort of a p a result of
+computational reducibility. Essentially
+what's happening is you're getting um
+you are you are producing a result that
+is um like like like one of these things
+here where it happens to have the
+properties it has but it would be very
+hard to predict that it would have those
+properties. So essentially the picture
+that emerges of machine learning is that
+uh it's sort of a story of using pieces
+of computational irreducibility and
+putting them together in such a way that
+one achieves whatever whatever objective
+training objective one has. So kind of a
+picture of it is if one is thinking
+about how does one build some
+computational system. One let's make the
+analogy of building a wall. If one way
+to build a wall is you make bricks. You
+arrange the bricks in a nice kind of
+engineering way. Another way to build a
+wall is you just look for random rocks
+that are lying around. You just see how
+they fit together and see what um and
+and build up your wall that way. That
+second thing I think is what's happening
+in machine learning that you are
+basically picking up these lumps of
+irreducible computation and arranging
+them in such a way that you can achieve
+the objective the training objective
+that you have. So that means that if you
+try to sort of interpret what's going on
+inside, it's not going to work very well
+because it's like saying, well, why did
+you get that rock rather than another
+one? Maybe I should just say a few
+things about um uh maybe a little bit so
+so that that's a little bit of some
+science. There's a bit of bit of
+progress I just made very recently in in
+foundations of biology, but let me let
+me not uh I I can talk about that if
+people are interested. But let me um
+let's go to uh uh talk a tiny bit about
+technology and um uh one of the things
+that um
+in my uh you know I I kind of view the
+big effort I've studied a lot kind of
+computation in the wild computation as
+happens in sort of the natural world and
+so on but I've also spent a bunch of
+time thinking about sort of how to make
+computation something that is maximally
+useful to us humans.
+And so kind of the what I've been trying
+to do for the last 40 years or so is to
+build sort of a notation for thinking
+about things computationally. So kind of
+back 500 years ago or so now
+mathematical notation was invented.
+Before that time, people when they
+talked about math were talking about it
+with words and then you know plus signs
+and equal signs and things like that got
+invented and then that led to
+development of algebra and calculus and
+then mathematical sciences. And so kind
+of our mission with with wolf from
+language and so on is to u create kind
+of a notation for computation that
+enables kind of computational x for all
+x and kind of for pretty much every
+field. you know the the big paradigm of
+the 21st century is the idea of
+computation and for every field there
+either is now or will be a computational
+version of that field a kind of
+computational X and kind of what we've
+been trying to do is to provide kind of
+the uh the language that allows you to
+do computational X for all X and I I
+suspect many of you have have used uh
+our tech but people people are often
+very um uh people often sort of uh don't
+realized that um you know in in the
+effort to uh uh we're really interested
+in sort of making everything
+computational. So you know you can make
+a graph and you can say let me uh let me
+compute something with that graph. Let's
+say we can take that graph and just do
+that and um oops the you know we can we
+can make some computation on that graph
+or for example I could say let's let's
+capture an image
+uh see if it will capture there we go
+it's a good image there um so we could
+for example take that image and um uh we
+could edge detect that image or
+something or we could say here's a good
+thing to do we could Say, let us do um
+uh um
+let's see here we go. This um let's try
+using there's a there's a built-in
+function for identifying images, but
+let's use an explicit neural net to try
+and identify that image. Maybe it will
+have to drat um it has to download the
+neural nets. Oh, maybe it didn't take so
+long. Let's see what happens here. Oh,
+no. And this is appears to be a very
+slow internet connection. Okay. Well,
+it'll have to download this neural net.
+But then what I was going to show you
+was kind of what it looks like to kind
+of explore the inards of that neural
+net. But um uh the um Okay, this is very
+very slow. Um the uh uh um not not our
+fault. Um the uh Oh, it's almost there.
+We might as well wait. Okay. Ah, it
+didn't it didn't see the person the
+[laughter]
+um but we can try and figure out what it
+did inside. I mean if we if we say this
+thing uh let's say let's just take the
+first five levels of that neural net and
+then um uh that's another neural net and
+then apply that to that image. we will
+get probably some collection numbers.
+Okay, let's make images out of those.
+Uh,
+and okay, so that's that's kind of
+what's happening in the mind of the
+neural net sort of partway through its
+computation and and that's where it
+figured out something crazy about what
+that picture was of. But any case the
+the kind of the you know one of the
+ideas is being able to compute about any
+kind of thing whether it's a piece of
+geometry or whether it's a a sound or or
+whatever it is. Um the other big thing
+is kind of knowing things about the
+world. So for example, we could say, you
+know, give me a list of words. Um, and
+we could say, for example, let's make a
+word cloud of the first letters of
+um words in English, for example. And uh
+kind of kind of the point here is that
+the um um you can read what is being
+said here. We have a language which is
+succinct enough that you can uh just um
+uh you can you can use it as a notation
+for thinking about things
+computationally. You can kind of think
+in the language. I'm sure we could say
+we could pick some other human language
+here. I know let's pick Italian
+something. Um and it will do the
+corresponding result for that. Um, and
+then you know we can do things like
+let's say we say uh we have a place like
+Cambridge. Uh we'll know about
+Cambridge. I wonder which Cambridge it
+this it thinks it is. It probably knows
+that. Um Oh, assuming Cambridge,
+Massachusetts. Sorry. Um the you know
+what I I know why that happened. Let let
+me let me show you why that happened. I
+am going to make that not happen because
+the reason that happened is because I am
+connected through VPN. If I do not
+connect through VPN, it should know. Let
+me let me disconnect from VPN and then
+let's see what happens. Let's try it
+again. Uh, now it might know where now
+my computer might know where it is. So,
+let's let's try this again. And,
+uh, come on. Oh, now it has to actually
+connect to the network. Oh, no.
+Let's try that again. See if it
+That's bad. What's going on?
+Your network is troubled. No. Oh, well.
+All right. Well, we can connect to Maybe
+this will work if I connect there. Okay.
+Sorry. Well, let's let's say let's just
+use some natural language and let's just
+say Cambridge, UK. See what that does.
+Okay. Now, let's say let's see where is
+that. Let's say um uh uh geographics.
+Let's see if this is the right Cambridge
+um of a disc. Let's say a uh two-mile
+disc around the center of that
+Cambridge. Let's see if it's going to
+embarrass me again. Um Oh, no.
+Yeah, that's the right Cambridge. Yeah.
+Um
+yeah
+so but um uh the the point is to have
+all sorts of knowledge of of the world
+as it is and you know if you're doing
+chemistry for example we could do um
+actually let's let's do a let's do a
+piece of I don't know we can make a um
+uh caffeine molecule or something and we
+could say make a um uh a 3D molecule
+plot of that or we could do things with
+uh with proteins and we can fold the
+proteins. Oh god, don't tell me it's
+[laughter]
+this is I should have made more of an
+effort to connect to a reasonable
+network here. Sorry. Well, anyway, it
+will produce a nice picture of a
+caffeine molecule. All right. In any
+case, the the um uh just just to say um
+you know what we've been trying to build
+is this kind of computational
+representation of the world where we
+have kind of a way of taking sort of
+knowledge about the world and making it
+something you can precisely compute
+with. On the other hand, in modern times
+there are also LLMs and neural nets and
+so on. They provide a terrific kind of
+linguistic user interface to this kind
+of raw computation. And actually, I
+could pull it up, except I have a very
+bad feeling it's going to be slow if the
+network is this slow. I could um pull up
+our notebook assistant, which is a way
+of having something that you can just
+talk to in kind of natural language and
+use uh use an LLM. And it's it's pretty
+good. If you have a thing where you
+wonder is there a computational way to
+represent this thing that I'm thinking
+about some thing that's a piece of
+homework or some thing that's a piece of
+research you're doing or something like
+that try typing it into the notebook
+assistant in even a pretty vague terms
+and there's a good chance that it will
+generate a piece of orphan language code
+that will be it might not have correctly
+understood what you wanted but there's a
+good chance it did. you can read that
+code, then take that code, compute with
+it, and kind of build this tower of of
+whatever it is you're trying to figure
+out. So, that's a that's a very good way
+to kind of get into this and to let's
+see if this actually worked. Come on.
+Come on.
+Okay, both the notebook assistant came
+up and the caffeine molecule came up.
+That's good. Well, let me let me not um
+uh tempt fate by trying any other
+things. But um uh in any case, the so
+big picture, I've spent a lot of time
+kind of trying to take this paradigm of
+computation and both apply it in
+practice as a way to kind of build
+computational X for all X and apply it
+at a theoretical level as a way to
+understand the foundations of a whole
+bunch of fields. Uh one of them being
+physics. I'm kind of really excited
+about the things we figured out among
+other things in physics. I kind of think
+physics made a lot of progress about 100
+years ago at a foundational level and we
+really haven't had a lot of foundational
+progress since then. I think we finally
+have sort of unlocked a way to get more
+foundational progress in physics. It's a
+lot of work. Computational
+irreducibility kind of gets in the way
+because it's it's uh it's kind of
+telling you there's this sort of
+irreducible amount of computation that
+you have to do. But also within any
+computationally irreducible system there
+are always an infinite number of pockets
+of computational reducibility. Those
+represent the things that we can figure
+out the kind of scientific laws that we
+can discover. And that's kind of the
+mission is to is to find those things
+and to make all the connections with the
+uh with what we already know in physics.
+Um a big two two big initiatives right
+now. One thing we're calling
+infrageeometry is kind of understanding
+the mathematical underpinnings of what
+happens when you have things based on
+hyperraphs rather than based on
+manifolds in uklidian space and so on.
+Another big effort is kind of the
+experimental implications of all of this
+and uh trying to understand um well
+actually it's a good LLM application
+because um uh uh the there are all kinds
+of very bizarre effects that you could
+hope you would be able to identify in
+these models and then maybe somebody
+already did the experiment 50 years ago
+but and they just sort of put it in a
+footnote in some paper somewhere because
+it was too weird to actually talk about
+but that's something you can kind of
+thematically search for with LLMs and
+hopefully we'll find some of those
+things. I think the cautionary tale that
+relates I suppose back to our friend
+James Clerk Maxwell um is uh in in the
+1800s when Maxwell was around. Maxwell
+didn't know that atoms were real. He was
+he thought atoms were kind of a
+hypothesis and he wasn't really prepared
+to be very very uh strident in talking
+about the atomic hypothesis. Boltzman
+was much bigger on the atomic
+hypothesis. But actually they could if
+they had been able to sort of
+thematically search the literature of
+science. They could have known that
+molecules atoms were real because Robert
+Brown
+botonist in 1827 had observed Brown in
+motion little you know pollen grains
+being kicked around by by something. And
+so they because they were not able
+because Maxwell for example uh didn't
+know about this thing that had been done
+over there in bot he was still he wrote
+in actually a very bizarre piece about
+atoms that was in which he was trying to
+argue for why all atoms of a particular
+kind like all atoms of hydrogen are the
+same and he had some very weird kind of
+sociological arguments for how that's
+the way the world should be. Um, they're
+very uh uh and I'm sure I have somewhere
+I'll have a a copy actually. Okay, I'll
+bring up let's let's just finish on a on
+a Maxwell kind of thing. I just have to
+find a little bit of Maxwellism. Um I
+wrote a uh a piece about um about um
+pull this up assuming it's not too
+incredibly slow about the history of the
+second order. Um and that's okay.
+There's there's James Clerk Maxwell's
+signature. Um and uh the um and that's
+that's Conno. He had a very ornate
+signature. Um he also okay one thing to
+say about Conno that's perhaps
+interesting. So Conno was the person who
+originally mentioned the second order
+thermodynamics in I think 1824 and he he
+came up with it. He had this whole
+theory of caro engines and so on. But at
+the time people didn't know what heat
+was and the the you know people knew
+that heat flowed from one thing to
+another and so they assumed what flows
+from one thing to another well it must
+be a fluid so they invented the idea of
+caloric fluid and carnau's ideas about
+about efficiency of heat engines and so
+on were done on the basis of the caloric
+theory of heat which was completely
+wrong. The caloric theory the the the
+correct theory of course is that heat is
+the microscopic motion of molecules. I
+have a suspicion which may or may not
+turn out to be true that in modern times
+we have a similar thing going on in in
+cosmology and astrophysics you know it's
+a big mystery what is dark matter
+there's a lot more there seems to be a
+lot more gravity in our in our galaxy
+that can be accounted for from the
+luminous stars that we see and so I
+think the first mistake is dark matter
+isn't matter in fact my guess is that
+the history of science will bizarrely
+recapitulate itself and that actually
+dark matter is the space-time analog of
+heat. Just as heat is the macroscopic
+manifestation of microscopic motion
+molecules, my guess is that dark matter
+is the macroscopic manifestation of
+microscopic structure, microscopic
+phenomena in kind of the discrete
+structure of space. But anyway, I just
+let me just finish with something about
+Maxwell. Let me find a good Maxwell
+thing here. Um uh let's see. I think um
+uh
+okay, let's see. I hope this if this
+network was only a bit faster, I would
+be able to um to find some nice Maxwell
+quote for you to finish on. Uh this is
+about Clausius.
+Um
+and Boltzman, where is Maxwell?
+Uh
+um
+sorry, I'm Oh, here we go. Here we go.
+Here we go. This is
+um
+I think Maxwell's demon you might have
+heard of. Maxwell's demon is sort of a
+thing that can reverse
+the increase of entropy by just getting
+in there down at the individual molecule
+level. And as as Maxwell explained, you
+imagine this demon who has a cricket bat
+that he's using to bash molecules at a
+very microscopic scale. Um and uh let's
+see where is this uh oh I'm sorry I was
+should have been
+no this I know that I talk about there
+we go Maxwell's demon here we go let's
+get to this so
+um
+uh yeah he was he always had a habit of
+Maxwell always have a habit if you look
+at Maxwell's original documents he
+always um uh talks about thermodynamics
+with a capital theta, capital delta. CS
+was his abbreviation for thermodynamics.
+I don't know quite quite why, but um uh
+let's see. I've just got I've got to
+find this. There's a If only this will
+load. This is a um uh this is this is
+some Well, maybe if we uh we should um
+just
+just have to wait for this to to load
+in. Maybe we should we should stop here
+and I hopefully we'll see some some nice
+uh Maxwell material here. But um uh
+maybe we can stop and I'm happy to try
+and answer questions people have. Those
+[applause]

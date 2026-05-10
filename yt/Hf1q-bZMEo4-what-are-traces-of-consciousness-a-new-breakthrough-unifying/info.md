@@ -5,8 +5,8 @@
 - **Channel**: Mind-Body Solution — https://www.youtube.com/channel/UCPPF9rja6FGEIM7ZJ3Swqnw
 - **Uploaded**: 20251126
 - **Duration**: 2:49:26 (10166s)
-- **Views**: 32349  ·  **Likes**: 715
-- **Captured**: 2026-05-10T12:55:00
+- **Views**: 32359  ·  **Likes**: 716
+- **Captured**: 2026-05-10T18:29:07
 
 ## Description
 
