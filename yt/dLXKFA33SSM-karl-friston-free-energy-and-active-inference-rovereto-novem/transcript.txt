@@ -1,0 +1,1782 @@
+[Music]
+so good
+morning can you hear me
+no you can hear me okay so good morning
+and uh welcome to the inaugural lecture
+for the new PhD year um so so I'll
+welcome today Professor
+friston uh on behalf of the director of
+chimek professor georgeo
+valorara professor friston is the
+scientific director of the welcome trust
+Center for neuroimaging and professor at
+The Institute of Neurology in
+UCL earlier in his career he studied
+physics and psychology as an
+undergraduate at Cambridge
+University then he obtained a medical
+degree with training in
+Psychiatry uh at Kings College London
+and at Oxford University and I was just
+telling Professor friston how uh I think
+his lecture and his background and his
+expertise is going to be perfect because
+I met yesterday with the PHD student and
+the Diversified background of the PHD
+student I think represents very well uh
+the uh approach that chimek has and that
+the school has and so I think it's a
+perfect match for the new PhD
+students uh Professor priston is one of
+the pioneers of neuroimaging and
+contributed greatly to the field both in
+advancing theoretical and devel
+development and for the construction of
+methods and formal approaches used by
+thousands in the
+field he has led the development of the
+most popular toolkit for analysis of
+functional MRI data SPM the study of
+structural differences through
+quantification of voxal based
+morphometry and the study of online
+interactions between brain regions via
+Dynamic causal
+modeling the impact of these methods and
+formalisms on the field cannot be
+understated and they constitute a common
+reference for describing structural and
+functional
+data Professor friston is also a
+rentless innovator with numerous
+contribution to various domain of study
+such as modeling of diseases the
+implementation of formal basian models
+for modeling neurobiological processes
+and most recently the development of a
+formal framework for explaining how the
+human brain processes and samples
+information given prior
+knowledge Professor friston has been the
+president of the international
+organization of human brain mapping and
+received numerous International
+recognitions just to mention a few in
+2006 he was elected fellow of the Royal
+Society and in 2008 he received a medal
+medal from the colle of France so it's a
+great pleasure and honor to have him
+today so please join me in welcoming
+Professor
+friston thank you for that lovely
+introduction it's very full I always
+learn a lot about myself when when we
+introduced so courtly and thoroughly as
+that it's also a great pleasure to be
+here it's it's a wonderful place you
+know the environment is absolutely
+Splendid and been very impressed by the
+uh the academic
+prowess and the clear ascendancy that
+all the people i' I've spoken to and the
+groups I've spoken to are demonstrating
+and I'd also like to extend my welcome
+to the new PhD students so where are you
+put your hand up there there you are all
+in two rows that's very nice welcome um
+now I usually start this lecture by
+saying um you don't have to remember
+anything and you are going to learn
+nothing and I mean that in a um in a
+practical way because what I'm going to
+do is really just provide a context or a
+framework within which you can
+understand what you already know so this
+is more a synthesis of uh different
+perspectives within um a single point of
+view and the point of view is basically
+that the brain actively generates and
+constructs explanations for its sensory
+input so it's an active Basin engine
+generating predictions of
+Sensations and in in generating those
+predictions or hypothesis it's trying to
+explain actively what is happening in
+the outside world and what I'm going to
+do is
+um take that idea and contextualize
+it in terms of developing the underlying
+basic premise the fundaments in a very
+abstract way in fact I'm going to use
+simulations of a very abstract thing
+which will be a uh a primordial soup and
+then using exactly the same formalism in
+differential equations use those ideas
+to uh try and understand the Dynamics
+and the organization of the brain and uh
+will conclude with a simulation of a
+fairly Advanced capacity of the brain
+namely to observe one's own actions and
+the actions of other people so we're
+going to go from primordial soups to
+action observation in 50 minutes you
+ready so let's start with a question
+posed by scoder um I'll just read this
+out because it's a a fascinating
+question how can the events in space and
+time which take place within the spatial
+boundary of a living organism be
+accounted for by physics and
+chemistry um so this was his um one of
+his phrases from his famous monograph or
+essay what is life in this question
+though there is a deep challenge it is
+the notion of a spatial boundary and of
+course if an organism or any
+self-organizing system biotic system
+exists within a spatial boundary it must
+possess a spatial boundary so we have to
+understand what maintains the Integrity
+both functional and dynamic of the
+spatial boundary of any arbitary system
+so that's the challenge we're going to
+set ourselves to the first third of the
+talk we're going to get the answers and
+then apply them to the brain as a
+self-organizing system um so as scoder
+would acknowledge the boundary itself is
+a statistical object is a probabilistic
+object and in probability Theory uh a
+boundary is usually referred to as a
+Markoff blanket so this is a if you
+haven't come across this concept before
+think of it as a collection of states or
+variables that insulates you from the
+outside in the sense that if I wanted to
+know anything about myself I would only
+need to know the states of my Markoff
+blanket and I wouldn't need to know
+anything beyond that blanket so it
+induces a conditional Independence
+between some internal States and some
+external States um so more form what
+I've done here is just to try and
+cartoon this is this have I got the
+wrong uh no it's
+just oh thank you very much that's
+perfect so let's um let's just look look
+at this notion a little bit more
+graphically or formally uh what I've
+done here I'm associating the variables
+or the quantities that would describe
+any arbitrary system from a virus to a
+vegan with these nodes or circles here
+and the dependencies amongst these time
+varying quantities uh by these arrows or
+edges if I take one or a collection for
+Simplicity I'll just take one state here
+and I'll call that the internal State
+then the mark of blanket is defined by
+the parents the children and the parents
+of the children of those States or in
+this example that one state so this
+would be the Markoff blanket of this
+internal State here and these would be
+the external States
+and there's one further aspect of this
+markof blanket that must exist for any
+system that has these uh causal
+dependence dependencies that are not
+complete not all to all and that further
+partition is in terms of states that are
+and are not influenced by the internal
+States so here we have states that are
+not influenced by internal States and
+here we have U um the markof blank
+that is influenced by the internal
+States and I'm going to call this
+bipartition of the Markoff blanket um a
+partition into sensory and active States
+and the reason for doing that uh is
+shown on the next slide um what I'm
+going to do is invite you to think of
+this sort of four-way partition of the
+states of any random system dynamical
+system uh from the point of view of a
+cell or indeed a brain where we have all
+the internal States the intracellular
+states of a cell all the concentrations
+of its internal constituents they will
+constitute the internal States and then
+we might associate the a the active
+states with the actin my filaments that
+support the structure the skeletal
+structure and movement of the cell and
+the and those support the cell membrane
+or the cell surface which I'm going to
+associate with sensory states that are
+subject to influence um
+from external states on the external
+mure of the cell and in exactly the same
+way I'm going to associate uh or you can
+associate the internal states of the
+brain the activity of every cell in the
+brain the connection strengths that wax
+and way anything that you need to write
+down to specify the state of the brain
+at this point in time those those will
+become internal States and then our
+active States would be the state of
+effector organs our motor or muscle
+plant uh that again support the sensory
+epithelia containing the sensory
+receptors or the sensory states that are
+again influenced by uh fluctuations or
+changes in external States I'm also
+going to refer to external States as
+hidden States because they are hidden
+behind the Markoff blanket so with that
+partition in mind let's just stop there
+and then consider the basic behavior of
+any dynamical system so I'm going to get
+get a bit abstract here and ask you to
+think of any system comprising all of
+these states in terms of a trajectory
+through some State space so I've
+cartooned that here in terms of this U
+what's called a random dynamical
+attractor um so the states just change a
+function of time tracing out a
+trajectory in two states here but
+imagine there are thousands millions uh
+possibly an uncountable number of states
+describing this system and what I'm
+going to assume is that this system
+exists in the sense that it is a godic
+or that it has some probability measure
+in other words these trajectories can be
+regarded as reporting the frequency with
+which particular States or positions in
+state space are visited again and again
+and again the probability that they are
+occupied so if these states were X for
+any given system say me m um then this
+can be regarded as a probability
+distribution over the potential states
+that I
+occupy um now I'm going to try and
+suppress the number of equations here
+but uh if you allow me uh two very
+important ones um these are probably the
+two that I well I have in fact used this
+is the fuer plank equation also known as
+the cograph forward equation and also
+nicely the master equation so it's
+perfectly okay to show the master
+equation in a presentation and what it
+does is it describes the evolution of
+this density in and of itself this is
+not important what is important is the
+solution to this equation which is a
+probability distribution of the system
+um in the long term once it has settled
+down it's erodic distribution and that
+solution has been written out here um in
+a form which you may not recognize but
+it is a standard form in fact this
+equation is called the standard form and
+the reason I'm putting it down is I want
+to try and interpret it and unpack it in
+terms of what it would look like if we
+looked at the different components of
+this solution and then use that apparent
+Behavior to understand or interpret um
+self-organization from a biological
+perspective and the the particular form
+here the standard form basically
+decomposes the
+flow uh in terms of a radiant Ascent or
+hill climbing on the log density or
+probability of occupying different
+states and this decomposition is in
+terms of two components it's actually
+known as a helmholtz decomposition uh
+that are called curl and Divergence free
+uh that sounds complicated it's actually
+very very simple if you imagine that the
+Dynamics of this arbitary system here
+are constituted by the system trying to
+go uphill towards the state states that
+it likes to
+visit so climbing a hill and it's being
+knocked back by random fluctuations
+Omega here such that the hill climbing
+and the knocking back are in Perfect
+Balance so this the density is not in
+itself changing then we can decompose
+the hill climbing into two components
+there's one that actually ascends the
+hill
+directly and then there's another
+component that is orthogonal or at right
+angles which is in fact the Divergence
+free component which goes around the iso
+Contours of the hill so in the absence
+of any Hill Cloud me i' just be going
+round around the base of the hill so
+these two components can be interpreted
+as one which doesn't change this
+quantity here the log probability and
+another one that is on average trying to
+increase it to offset the random
+fluctuations that undo that gentle hill
+climbing now that's an important um
+understanding or description of any
+dynamical system but becomes incredibly
+important when we bring back the markof
+blanket into the equation so remember
+the mark of blanket is defined
+operationally in a way that means the
+internal active States
+basically my brain and all my
+muscles is never directly influenced by
+the external States or the hidden States
+and yet this decomposition this sort of
+um nuanced hill climbing flow or
+behavior still applies but in this
+instance the hill climbing is not a
+function of the Hidden States or the
+external States so there's nothing
+remarkable about that this is just the
+standard form marginalized over the
+hidden States until one thinks about the
+different interpretations of this
+standard form here so if this if I just
+saw this system and I knew its Markoff
+blanket what would it look like how
+would I interpret it and there are a
+number of very important interpretations
+that all rest upon how you understand or
+interpret this quantity here I just
+listed a few of the very important ones
+because they all speak to Global
+theories Grand theories of life and the
+brain or the neuroscience and self
+organization the first one is relatively
+simple if the probability of the states
+that I like to occupy given that I am me
+is scored by this probab this log
+probability here then this log
+probability becomes a value function or
+an energy function that describes the
+sorts of States I like to occupy it is
+simply a value function so I would
+interpret the standard flow that is
+inevitable it has to exist in terms of
+the system trying to maximize its value
+trying to recover and get to States it
+likes to occupy and from that one can
+see very easily how uh that perspective
+underpins reinforcement learning optimal
+control theory say motor control and
+indeed right up to the level of
+economics in terms of expected utility
+Theory we're always trying to maximize
+some um some function of our states in
+fact the whole game of normative
+theories defined in terms of there being
+a function that the system is trying to
+optimize or maximize can be explained by
+the interpretation of this log density
+as a value
+function interestingly the ne negative
+log um density or the negative value is
+called self-information and information
+Theory uh also called surprisal or more
+simply surprise it's the quantity uh
+that is upper bounded by free energy
+which is in the title of this
+presentation but I don't need to talk
+about free energy anymore other than to
+say that it um is equivalent to or upper
+bounds
+surprise um and this information
+theoretic perspective means that as
+we're maximizing this quantity we're
+minimizing
+surprise uh and that can be fairly
+easily um unpacked in terms of a lot of
+information theoretic descriptions of
+adaptive Behavior such as the principle
+of Maximum information transfer the max
+principle of Maximum mut information
+principle of minimum redundancy by horis
+barow um Infomax by uh linsa there are
+lots of takes on this but they all can
+be um essentially reduced to the
+minimization of supp rise that's very
+closely related to broader perspectives
+um through the fact that by the agonic
+assumption that this system exists the
+time average of surprise is equal to
+entropy so this natural hill climbing is
+equivalent to minimizing on average the
+entropy of the system in other words it
+would look as though the stuff inside
+the Markoff blanket is locally resisting
+the second law of Thermodynamics a
+resisting and natural tendency to
+dispersion and decay in disorder
+unpredictability which of course is at
+the heart of self-organization and
+cybernetics and to put put these Notions
+very very simply and and and Ross Ashby
+did put them very very simply all that
+this is saying is that biological
+systems have a homeostasis they keep
+things within bounds they resist a
+natural tendency to
+dispersion uh the final interpretation
+which is the one that I'm going to
+appeal to time and time again is a
+purely statistical one in fact comes
+from basian statistics and it's the
+probability of some sensory data given a
+model that's the log model evidence
+sorry it's a model evidence and surprise
+value becomes a log model evidence and
+surprise becomes a negative log model
+evidence and this quantity is the Holy
+Grail of most
+statisticians evaluating and comparing
+the evidence in some data in some
+Sensations for a particular model of
+those data because you have to model
+them because you can never see these
+hidden
+states by virtue of the Markoff blanket
+and that perspective leads us to the Bas
+in brain hypothesis active inference
+which I will talk about and predictive
+coding and those ideas were first
+clearly articulated by helmholz which
+we'll we'll see in a second but before
+we do that what I want to do is just
+illustrate those uh two aspects of these
+interpretations this this notion of well
+let's just see how we're going to
+simulate it first what I'm going to do
+is I'm trying to illustrate some of
+these emergent interpretations emergent
+behaviors that have these
+interpretations by using a completely
+arbitrary um nonlinear random dynamical
+system that I just picked out of the
+blue uh to show the sorts of behaviors
+that we're talking about uh this
+particular system uh comprises about 120
+um little macro molecules each with an
+electrochemical state three states that
+are described by Loren tractor the these
+are the Dynamics that uh in a simple way
+predict convection in weather pattern
+formations it's very simple set of
+equations you can find on Wikipedia they
+have this nice butterfly attractor here
+um so each of these little um cyan
+locations is a location of a molecule
+these dots represent the states which
+move around quickly um modeling
+electrochemical Dynamics and crucially
+the molecules attract and repulse each
+other over the short range where the
+attraction depends upon the synchrony of
+the electrochemical States it really
+doesn't matter how you you know you can
+play around it doesn't really change the
+nature of of the simulation um so here
+is this little soup where I've just
+colored the
+locations um in terms of the phase of
+the electrochemical States just to show
+you typically how fast they change and
+here as a function of time the
+electrochemical States with one in blue
+and the physical location showing
+occasional catastrophic explosions as
+one of these little molecules is
+expelled to the periphery and then
+slowly collapses back into this little
+well containing the primordial soup so
+it bubbles away there gently now our
+game now is to see if we can find any
+evidence for life of the sort that I've
+just described within those uh within
+that
+Dynamic and the doing of that rests upon
+identifying the Markoff blanket if I can
+find the Markoff blanket I can see
+whether it maximizes its value whether
+it minimizes its model evidence whether
+it resists uh a natural tendency to
+Decay um so the first job is to find the
+markof blanket and that is actually very
+easy um I won't bother describing how
+just uh other than to tell you you
+appeal to something called spectral
+graph Theory to take the igen vector the
+principal igen vector of a matrix
+encoding the parents the children the
+parents of the children and that
+identifies uh a little collection of
+internal States eight internal States
+here the blue States here large Blue
+circles that have formed a little ring
+with a tiny little tail or syum that's
+wiggling around and once I've defined
+those I can Define the mark of banket
+and I can defi divide that into active
+States in red that surround the internal
+States and the complement of the Mar of
+blanket which are the sensory states
+which
+unsurprisingly um rest upon the active
+States and form the surface of this
+little simulated organism so by finding
+the Markoff blanket I've now identified
+in this soup a little organism and now I
+can do tests on that organism to
+demonstrate the sorts of behaviors that
+those interpretations suggest should be
+present and their effectiv is two of
+them one this autopoetic the self
+assembly and self-maintenance of the
+mark of banket in the internal states by
+resisting a natural tendency to disorder
+and two some statistical or inference
+property in the sense that what goes on
+inside should encode or represent or be
+able be used to predict what is going on
+outside in the hidden States so I'm
+going to demonstrate that by doing what
+we as neuroscientists do to human brains
+all the time we either look for um um
+correlates of internal brain states with
+with um changes in the sensorium or we
+do brain activation experiments or we do
+leion experiments I'm going to start
+with the legion experiment and my hope
+is that I will be able to show that just
+by changing subtly the interactions
+between one of these four sets of States
+I can
+demonstrate a um a Decay and an increase
+in entropy thereby illustrating that
+this the resistance to that decay is
+inherent in this self-organization so
+the the next
+slide shows
+you what would happen or what happens in
+terms of the
+position just wait patiently I think
+it's got confused by it's moving oh
+there um so here are the positions of
+the elements of the uh little organism
+here um over 512 without any um lesion
+and here are the the Decay the loss of
+this Auto proasis or the loss of this um
+structural
+homeostasis induced by making it Blind
+by destroying the sensitivity to
+external neonian forces uh in and only
+in the sensory states by paralyzing it
+by uh rendering the active States
+insensitive and finally by giving it a
+brain insult or a stroke by uh changing
+or lesioning The Intern States and in
+every case we see this the basically the
+the system just decays and um dissipates
+into the environment it basically it
+dies which is quite
+sad so the next
+illustration is the illustration of this
+predictability this inference um this
+modeling of the external world I'm
+showing one example here to illustrate
+the sort of thing um that emerges from
+this effectively what's called
+generalized synchronization to the
+internal and the external states that
+are separated by the Markoff blanket and
+what I've done here is ask if given the
+internal the electrochemical internal
+states can I predict the motion of
+external States so it be like does
+neuronal depolarization in V1 predict
+the motion of something in the visual
+field um and indeed it does uh I won't
+show any statistics I'll just show one
+particular self-evident example so here
+this is the um the motion of this
+peripheral State out here and here are
+the internal states that best predict it
+in fact one can almost see eyeballing
+these data this distributed set of uh
+fluctuating fluctuations or transient
+here um that predicts this and a smaller
+version can be seen out here with this
+excursion here
+interestingly these fluctuations that do
+the encoding actually predate the event
+so it's a it's a tricky question as to
+whether the event here has been
+registered and sensed by the organism or
+whether the organism actually or the
+internal States through the active
+States actually caus this through if you
+like waves of propagation or generalized
+synchrony uh through the Markoff blanket
+in the same way that you never quite
+know in say um a sard an istic
+experiment whether the the responses are
+visually evoked or whether the you're
+looking at so the oculomotor drive to
+the cic eye movement there's a circular
+C ality here because this agent um is
+effectively causing its own Sensations
+because it is intrinsically embedded
+within the
+environment so just to summarize um
+these basic um sort of uh behaviors the
+existence of a markof blanket
+necessarily implies a partition of
+States into hidden States their markof
+blanket which can itself be divided into
+sensory and active States and external
+or hidden states and because active
+States change but are not changed by
+external States they minimize the
+entropy of internal states and their
+markof blanket and this means an action
+will appear to minimize or maintain
+sorry the structural and functional
+Integrity of the Markoff blanket by
+minimizing the entropy and that's very
+similar to Vera's notion of
+autois internal States appear to infer
+the hidden causes of sensory states by
+maximizing Bas in model evidence and
+influence those causes causes of sensory
+States through action and we're going to
+call that active inference so those are
+the that's the basic
+um behavior that I want to now revisit
+in the context of Neuroscience and see
+if we can see those sorts of behavior
+applying to neuronal Dynamics and the
+way that we uh sample our world I'm
+taking my lead here from these
+intellectual Architects and in
+particular um Helm HS and he articulated
+certainly the Bas respected I think
+beautifully in this phrase um objects
+are always imagined as being present in
+the field of vision as would have to be
+there in order to produce the same
+impression on the nervous mechanism and
+this idea has been championed in um
+psychology and perception by people like
+Richard Gregory uh who proposed the
+notion that perception is hypothesis
+testing that the way that we perceive is
+by confirming or disconfirming
+hypotheses about the causes of sensory
+input using those that sensory input um
+uh as a test of those hypotheses that
+idea has been formalized by Jeffrey
+Hinton Peter Dian and colleagues in
+machine learning um borrowing ideas from
+basing probability Theory and
+statistical um statistic sorry physical
+uh statistical physics particularly
+variation free energy uh and these are
+the people um who formerly I've taken
+most of the uh inspiration uh for the
+the work that I'm going to be using to
+illustrate these ideas I think this
+phrase is is nice because this notion of
+a of of an impression fits very
+comfortably with with with the um the
+notion of this Markoff blanket that acts
+as a veil a
+shroud separating you from the external
+events that are projecting their
+Impressions upon that blanket o Veil and
+your job is to work out what is
+happening ing behind the blanket to try
+and infer and understand and explain in
+this instance what caused the Shadows on
+the Markoff blanket or the veil
+um just to illustrate that um or to sort
+of unpack that for those people are like
+um philosophy and its
+history this is very reminiscent of
+Plato's um allegorical cave where the
+notion was that we or pans at least are
+all prisoners in a cave and all we see
+are the shadows of real performers or
+objects or animates in the real world
+being back illuminated from a fire or
+sunlight here to produce Shadows on the
+back of the cave um now I think that
+Plato I'm no expert in this but I think
+he was using this allegorically as a uh
+to explain that if you had a philosopher
+he could kind of explain that to you and
+you would be enlightened um however I
+think that the the metaphor has a deeper
+meaning in the sense that we are all
+Perpetual perceptual prisoners there are
+contained and imprisoned by our Markoff
+blanket and I don't know that there is
+any true Enlightenment um to show that
+um in slightly more formal terms I'm
+going to go back to our um standard form
+our standard hill climbing equation that
+must apply to our internal brain
+States and what I can do is actually
+write that standard form that uh
+equation of motion as uh in terms of the
+Divergence free and the curl-free
+component where I'm expressing the
+curl-free component in terms of
+something called a prediction error uh
+and I'll explain what a prediction error
+is in a second and what this basically
+means is we can interpret this sort of
+maximization of Basi model evidence as a
+minimization of prediction error so so
+what's prediction error well it's just
+the difference
+between some sensory
+Impressions here and the best prediction
+of those Impressions given the internal
+States so if I can find some generating
+function or
+mapping of the internal states to
+produce the best prediction of the
+sensory States s here the difference
+between the two will be the prediction
+error and and therefore we can um
+interpret the changes in internal brain
+States is trying to minimize the
+prediction error between what is
+actually sensed and what we predict will
+be sensed and in this example uh I've
+shown here the internal States encoding
+or representing a Howling Wolf as the
+best explanation for this Shadow it's
+important to realize that you never know
+the true causes uh the true causes this
+a very sweet picture picture in fact was
+a little pussycat it wasn't a wolf at
+all um however if you didn't know that
+it would never matter and in fact uh on
+average you be you would be Bas optimal
+assuming the cause was a wolf not a cat
+the point I'm trying to make here is
+that the um the predictions the
+hypotheses are not necessarily true and
+are always
+fantasies and in that sense the brain is
+literally a f fantastic organ it
+generates fantasies to explain its
+sensory
+inputs right so we haven't spoken about
+action but um this schematic I think
+just highlights the simple relationship
+between action and perception what I've
+just said is that one can
+interpret this necessary imperative to
+maximize model evidence or minimize
+prediction error um as minimizing the
+difference between Sensations and predic
+predictions now clearly we can
+understand that minimization in one of
+two ways it can either be that we're
+changing the top down predictions to
+match what match the sensory input and
+we're going to associate that with
+perception or we can change the sensory
+samples through action to match the
+predictions and we're going to think
+about that in terms of action now was
+active sampling to make our predictions
+come true this will be an equivalent
+perspective on this underlying
+Dynamic and I'm going to try and
+illustrate that um in the last few
+minutes just by giving you a few
+examples before I do that let's just
+think about the nature of this mapping
+this G this generative model or
+generative mapping from internal
+expectations or internal States uh that
+encode those expectations and the
+sensory predictions uh so what I've done
+here is just taken us into the world of
+hierarchical models or mappings um my
+um motivation for that is clear the
+world is hierarchically composed and
+also if the internal States recapitulate
+the causal structure of the hierarchical
+world they should also have a
+hierarchical anatomy and indeed they do
+with the famous vanessen Felman uh
+diagram in the background here but what
+what I'm trying to illustrate here is a
+notion of a hierarchical generative
+model where in the real world all these
+external hidden States all subject to
+random fluctuations Cascade down upon
+each other with complicated nonlinear
+Dynamics to produce the final sensory
+input which we actually
+sample um and so one example here would
+be if I needed to generate for a
+simulation the U the retinal retinal um
+sampling the visual field as I scanned
+or searched a face in order to do that I
+would need to know the object being
+scanned Its Reflection reflective and
+illuminance properties I would also need
+to know the kinetics of the sampling of
+that uh object I need to do the whatness
+and the awareness and I have to compose
+those in a hierarchical and nonlinear
+way to generate the way that this object
+is being sampled here to actually
+produce say the fal representation that
+would then constitute the sensory
+signals and now the idea is to actually
+understand the internal brain States as
+minimizing prediction error by inverting
+that mapping from cause to sensory
+consequence in other words going from
+sensory consequence on the Markoff
+blanket back to the causes back to the
+expectations that cause those Sensations
+and to do it it's it's actually quite
+simple um one takes the hierarchical
+model
+here and simply using this equation
+noting that it's got these two terms as
+this sort of updating uh prediction
+error minimum ization and there this
+sort of prediction the absence of any
+prediction error of what what the
+state's where the state is going to move
+to next and these two components are
+essentially um modeled in this now what
+has become a hierarchical neural network
+implementation of this equation are
+shown in terms of the prediction errors
+here driving updates here and then the
+prediction terms here um doing the
+prediction term I'm using the um terms
+for these dynamical updates of
+expectations namely prediction and
+update deliberately so for those people
+who are from machine learning or the
+engineering community you will recognize
+those as being parts of a camon filter
+this is a camon filter it's a
+generalized but it can be Rewritten as a
+cman filter which is like a linear
+basian filter and they have prediction
+and update terms to it's like correction
+terms based the augment or Nuance the
+prediction given the current states and
+that's precisely what this little scheme
+does so so here we have these
+expectations generating top- down
+predictions of the level below and the
+uh they are compared with with the
+expectations of the level below to to
+formulate a prediction error and that's
+sent back up the hierarchy to update the
+expectations at the level above so you
+get this reciprocal message passing or
+recurrent neuronal activity between
+hierarchical levels all in the service
+are minimizing prediction error so what
+you end up with is a description of your
+sensory input at the bottom in terms of
+hierarchically organized or composed
+expectations at different levels of
+abstraction that in an internally
+consistent way minimizes prediction
+error at every level of the hierarchy
+and that is a uh a simple description of
+hierarchical predictive coding or
+hierarchical basian filtering uh for
+linear systems that would be that would
+be hierarchical Cal filter um
+intuitively what we have is ascending
+prediction errors from the sensory
+periphery deep into the brain's
+hierarchy with this counter stream of
+descending
+predictions that are forming the
+prediction errors and are informed by
+the prediction ER so there's this sort
+of recurrent circular um Anatomy here
+with these two top down bottom up
+counter streams um dynamically
+optimizing or minim in our prediction
+eror um for those of you who didn't
+quite get that let me just go through um
+that idea uh a bit more heris in the
+context say of eye movement control so
+imagine that we had some visual input
+coming from the retina and that's passed
+up to the laal genicular nucleus here
+and then it's compared with top down
+predictions from the visual cortex these
+form a prediction error that's passed
+forward to visual visual cortex that
+informs the expectations in visual
+cortex to provide better predictions so
+that the prediction error is eliminated
+now before there are top down prediction
+say before the stimulus arrives the
+prediction error is just the stimulus
+content there's no difference between a
+classical feed forward volley of sensory
+information the prediction eror because
+there's no prediction to subtract away
+um however this organization necessarily
+eliminates the expression of that
+prediction so you basically a trans inok
+response like an Erp related potential
+that even with a continuous stimulus now
+this predictive mechanism is also
+occurring um at the higher hierarchy
+level so this expectation is being
+revised here by these ascending
+prediction errors from the lgn but they
+are also being compared the expectations
+with top down predictions um to form a
+new prediction eror that is then sent
+High to revise expectations or beliefs
+about the causes of Sensations higher in
+the
+hierarchy but again what about action
+well we've just considered
+visual input here what about proceptive
+input from the muscles controlling the
+position or the direction of gaze of the
+eye these send sensory uh signals to the
+ponti nuclear nuclei here these could be
+compared with top down predictions to
+elaborate a proceptive prediction error
+that could be passed forward to revise
+our expectations or beliefs about where
+we are currently feeling our eye
+pointing however the important thing
+here is that these prediction errors
+also have the opportunity to couple back
+to the environment and engage active
+States so these can just actually excite
+if they say ah the stretch the length of
+this muscle is much longer than the top-
+down prediction that prediction error
+can be eliminated by Contracting the
+muscle so these prediction errors can
+directly eliminate themselves by
+affecting hidden States real physical
+States in the environment and all that
+we've done is described the classical
+reflex arc Where The top- Down
+predictions provide the set point or the
+reference point or the equilibrium point
+for the classical reflex arc to minimize
+its proceptive prediction errors a very
+simple mechanism there's nothing magical
+about this we're not saying that somehow
+the pon knows what we expect to see next
+well it does know exactly what expects
+to feel next in a fairly low dimensional
+say six otor
+um and they has the brain has very
+precise predictions about what it
+expects to feel and these predictions
+can be fulfilled very very quickly very
+very efficiently by ocular motor
+reflexes now clearly these top- down
+predictions will be informed and
+contextualized by Deep hierarchical
+inference based upon visual input but
+the actual prediction errors minimized
+by action are pro receptive and very
+very simple lowlevel ones so all we're
+saying is that we can understand
+this basic imperative to minimize
+prediction error or
+maximize um model evidence in terms of
+the brain as a predictive coding machine
+that is equipped with classical
+reflexes um this is a f side of this of
+this um section before we look at the
+examples um I'm showing it just to say
+to illustrate that there is an
+intriguing game of trying to map those
+equations and that message passing ONN
+neuroanatomy and neurophysiology and
+trying to associate various populations
+in the cortical layers with different
+roles in terms of expectations or
+prediction errors and look at the
+Dynamics in terms of know neur Anatomy
+uh I won't take you through this other
+to say it's a it's a great game and
+you''ll be very welcome to play it when
+you get older um these are illustrations
+of how how the the best guesses have
+been evolving over the recent years from
+these rather iconic forms here
+uh through um
+uh a micro circuit architecture um
+published last year by Andre bastos that
+try to conform to known neur anatomy in
+terms of intrinsic connectivity and then
+a soon to appear um embellishment or
+nuancing of the simple circuit uh in the
+motor system by by steart ship but it's
+like playing doing a jigsaw you've got
+all these constraints and all these
+known facts and it's a question of
+rearranging them until you you you um
+satisfy as many constraints as is
+possible so in summary biological agents
+minimize their average surprise entropy
+they minimize Surprise by suppressing
+prediction error and this can be reduced
+by changing predictions and we're
+thinking of that in terms of perception
+prediction error can also be reduced by
+change in Sensations through action
+where perception entails recurrent
+message passing to optimize predictions
+uh which are made True or by action that
+obviously minimizes surprise so that's
+the basic idea idea I'm going to close
+now by just giving you a couple of
+examples one in the perceptual domain
+and the final two in the uh action
+domain um just to give you an idea of
+the the nature of the inference
+processes that one can model using this
+hierarchal predictive coding scheme and
+then the next two examples what happens
+when you put reflexes on top of that
+predictive coding scheme so let's come
+back to our Lorent attractor this is
+exactly the same little attractor that I
+use for the
+uh electrochemical states of the
+molecules but in this context I'm now um
+using the two of the states of this Del
+attractor to to modulate the frequency
+and the amplitude of a synthetic song
+Bird's song um shown here in sonog uh
+sonogram format
+um but crucially I'm not just using the
+amplitude and frequency modulation from
+any fixed Loren tractor I'm actually
+slowly changing the shape of this
+attractor with another attractor taking
+two states from that attractor that
+moves more slowly and doing that
+deliberately to introduce a deep
+hierarchical structuring to the
+unfolding temporal contingencies that
+are expressed in terms of the uh the
+song's chirs here so we now have um chir
+sequences of chirps but now we have
+sequences of sequences of chirps that
+constitute this um this bird song and if
+I can I'll display that to you that find
+the uh
+can you hear that pretty so that's
+that's a loren tractor that's singing to
+you do it one more time if we can find
+it um the
+reason the reason I've used that
+hierarchal structures is just to
+illustrate on the next slide um
+something which some of you will be
+familiar with in electrophysiology
+namely emission related responses I just
+wanted to demonstrate that because this
+um these ex this system now has
+expectations about deep hierarchical
+structure it gets upset and it records
+prediction errors when that structure is
+omitted or
+violated um so I'm showing that
+there by now using that generated bird
+song as a stimulus and presenting it to
+a predictive coding simulated Bird
+that's trying to recognize the causes of
+that sequence of inputs and those causes
+are just the state of the high level
+attractor uh and the reason I'm doing
+that is that um I can omit or terminate
+the song um after the first say five
+chirps and look at the responses in
+terms of prediction errors so I'm not
+sure whether this will work but um
+here that's the percept it's not quite
+the same as the stimulus the one of the
+chirps is missing but once it's realize
+the causes and the Dynamics of the uh
+the way that the stimulus is caused then
+it can fairly faithfully and accurately
+produce the predictions and here's the
+perect when I abruptly terminate the
+input now if you were listening
+carefully you would hear actually heard
+something after the cessation of the
+sound and that's reflected um here in
+terms of the prediction error here so
+the key thing I just wanted to um point
+out here is that the prediction error to
+the absence of a sensory input namely
+the emission response here
+is bigger than the prediction error when
+there is a stimulus that is not actually
+perceived and I think this is a nice
+example which is I repeat many of you
+will be familiar with um empirically um
+but it's a very nice example both in
+these simulations and the empirical
+examples of the brain as a generative
+organ as a fantastic organ that you
+wouldn't get evoke responses to nothing
+unless you were predicting something you
+just can't get that and it's very very
+simple very clear evidence of the brain
+uh behaving as if it were a predictive
+uh little predictive engine or basing
+engine um so finally let me uh conclude
+with um an illustration of active
+inference um the example I'm choosing
+here is to set up the final slide um
+what I've done here is equipped this
+little agent with expectations or
+hierarchical beliefs which are called
+empirical PRI that whenever
+the Q the color of a q changes it will
+feel and see its fingers being drawn to
+the
+Target which means that when the color
+does change
+then um confirms the hypothesis that has
+been a color change that necessarily in
+um uh
+engages an invisible spring or elastic
+band so it expects to feel and to see
+its arm reach towards the Target and
+that's exactly what happens and with
+this very relatively simple setup here
+you can simulate uh quite gracefully um
+simulated um cued reaching movements
+using this sort of invisible spring that
+does not exist in the real world but it
+exists in the agents model of the world
+but remember the real world is caused by
+this active States this active sampling
+of the world so if it exists in terms of
+the agent beliefs it also comes to exist
+in the real world or effectively so uh
+and illustrating now um a sort of
+generalized synchrony that's been skewed
+towards the beliefs of the
+agent I wanted to show you that example
+because what I'm going to do now is make
+the target invisible invisible and make
+the target move and I'm going to make
+the target move in a stereotyped way to
+produce handwriting like behavior um and
+the the way that I'm going to do that is
+just by giving it
+expectations that the um that the target
+will um be attracted successively to
+these uh unstable fixed points generated
+from a heteroclinic cycle that's a
+dynamical systems
+description also we can think of this as
+a central patent generator um that
+controls the location of some fixed five
+fixed points in a ukian space that
+attracts the arm with this invisible
+spring and produces is predictions of
+Sensations that when fulfilled look very
+much like handwriting Behavior
+here now one of the reasons I've chosen
+to show you this simulation is that it
+makes a number of key points about the
+nature of predictive coding and the
+nature of hierarchical inference um or
+this interpretation in terms of
+hierarchal inference notice that these
+top- down predictions the descending
+predictions are proceptive but they're
+also providing predictions of visual
+input which means that we in principle
+could use exactly the same
+expectations to explain visual input in
+the absence of proceptive input and I
+can simulate that just by turning down
+the gain or the calibration or the
+Precision of the proceptive input but
+maintaining the visual input and if I do
+that then I can simulate the sorts of
+observations that one would make under
+action and action observation in the
+sense that if this agent sees its hand
+move but can't feel it it's like
+watching another person's hand move or
+watching pass passively action because
+it can't feel nor can it emit actions
+because the prediction the proceptive
+prediction errors have no influence
+anymore CU I switched off their gain or
+their Precision if I now do these uh so
+run the simulation under the original
+context just generating action and then
+plot the activity of one of these five
+neuron populations here um as a red dot
+whenever it exceeds its half maximum
+activity as a function of where it is in
+this ukian space then I get this profile
+responses under action and this under
+action observation and this is a nice
+metaphor for something called mirror
+neurons in the brain again most of you
+will know what they are if you don't
+it's just the observation electrophys
+logically that there are certain
+populations that respond coincidentally
+to doing a movement and watching
+somebody else doing the same
+movement and that I think again
+beautifully illustrates that the concept
+that this is trying to speak to that
+these are amodal conceptual
+representations producing either Pro
+perceptive movement predictions that
+cause actual movement or they could be
+visual or they could be in another
+modality in of themselves these are
+schemata they contingences of an a modal
+sort that can be engaged either by
+visual prediction errors or proceptive
+prediction errors or they can be used to
+predict action through reflexes uh that
+is an interesting perspective because if
+you just looked at say the response
+properties of this cell from the point
+of view of an electri physiologist who
+had discovered that
+when the hand was moving or the agent
+was or the animal was moving through a
+particular place in some ukian space
+they fired there and nowhere else and
+furthermore they only five when moving
+in the downstroke of the J as opposed to
+the upstroke in other words they have a
+directional SEL activity you would say a
+number of things you'd say ah I've
+discovered hipocampo play cells oh ah I
+have discovered classical receptive
+fields that have um both place and
+Direction Cel activity or you if you're
+a motor electrologist you might say ah
+now I found the dynamical correlates the
+central pattern generators underlying
+this rhythmic movement and all of these
+perspectives would be absolutely correct
+and more importantly all internally
+consistent and they're rendered
+internally consistent in this simulation
+because we know that these things are
+not only predicting the sensory
+consequences of movement they're
+actually causing the movement themselves
+so they are true sensory motor um
+predictions so I'm going to close with a
+quote from uh Helm hope that captures
+that uh notion of um um actively
+sampling the environment in a way that
+um discloses the geometries that we
+suppose underly the its causal structure
+so each Movement we make by which we
+alter the appearance of objects should
+be thought of as an experiment designed
+to test whether we have understood
+correctly the invariant relations of the
+phenomena before us that that is their
+existence in definite spatial relations
+he was very eloquent wasn't he so with
+that I'd like to thank all my friends
+and collaborators and colleagues whose
+ideas I've been talking about and most
+of all you for your attention thank you
+very much
+[Applause]
+indeed
+question do I yes I love taking
+questions if they're not if is not too
+tight are there questions from
+bu thank you
+um I'm coming from a complete other
+direction I'm I'm doing cognitive
+Neuroscience basic neuroscience and um
+the small amount I'm actually able
+understand from your talk and I've heard
+your lection the second time is that
+you're implying that we should think
+more of the brain as a system as a
+complex dynamic system that's actually
+an organ to make sense out of all the
+sensory input and Al all the input that
+it receives and I think we're more more
+moving into that Direction with
+electrophysiology and um all the
+research we are doing uh what I would
+like to ask you is um about the
+applications for our line of work so
+what could um in our line of research
+what could we do to um yeah um
+understand the brain better to to prove
+um what your to prove your implications
+um and your theories that you are
+presenting
+here um I mean practically I I think
+combining your your empirical
+electrophysiology with modeling studies
+I think practically it's a really simple
+answer but if you really want to
+understand what's going on and you can
+generate a little base optimal or some
+some normative optimal um coding scheme
+that actually does the job that you're
+studying the processing that you're
+studying in a neuronally plausible way
+you there have a formal model that makes
+very very particular specific
+predictions both about the Dynamics and
+the specificity of the responses I know
+it's a tall order but in many respects
+that's how our empirical standard uh
+electrophysiology research is going that
+we're trying to make say the dynamic
+calls and models we heard about in the
+introduction more and more like the
+predictive coding neuron plausible
+predictive coding schemes purely be
+because it becomes easier then to
+interpret certain response components
+say you know p300 or you know1 P1 sort
+of uh transient um in terms of what it
+might mean computationally under say a
+predictive coding
+implementation um what I didn't say and
+I think it's relevant for the empiricist
+here that or certainly
+electrophysiologists is that people like
+David Mumford and many many people and
+there's lots and lots of circumstantial
+evidence to suggest that it is the case
+that if the brain is using some form of
+of basium filtering IE is that's a posh
+name for predictive coding then um the
+prediction ER errors that are subject to
+the calman gain or that constitute the
+prediction errors in predictive coding
+are likely to be encoded by The
+Superficial paramal cells now that's
+very important because it is those cells
+by their geometry that predominate in
+the generation of Erp and NFP signals so
+unlike fmri where you don't know quite
+which population you're looking at and
+you don't know whether it's excitation
+or inhibitory there may well be a many
+more signatures and specificity in EG
+and Meg data they allow you to get in
+there another thing which is starting to
+Fascinate people is that the
+um just taking I think you're astute a
+nicely summarized take-home message that
+the brain is a complicated dynamical
+system I don't think anybody would deny
+that as the case and you're absolutely
+right I think we have to understand how
+it that complexity in terms of
+principles that of organization that are
+inferential in nature that can be cast
+either in terms of information Theory or
+in terms of um inferences as as as I've
+done here um but the Dynamics of them
+and the asymmetries and the the
+structure you get in that complex comp
+those complex
+interactions tells you a lot and in
+particular um the reciprocal message
+passing and the symmetries between the
+the differences in the nature of top
+down versus bottom up
+signals in this Dynamic context starts
+to put very interesting questions to um
+classic
+characterizations of the sources of
+bottom up and top down signals in terms
+of say gamma and beta uh in terms of
+time frequency resolved induced
+responses in
+electrophysiology so you wouldn't know
+this unless you'd actually written down
+models of this message passing in silico
+and thought about them uh being enacted
+in Vivo and then thinking about the
+sorts of things you'd expect to observe
+so that would be I mean you you it is a
+tool order but I we were discussing um
+oh there are we were discussing before
+about the whole point of of you lot here
+is that in principle you have all you'll
+have all the all the intellectual
+technology and skills available to you
+you've got the cognitive neural
+Linguistics you've got machine learning
+you've got the expertise in uh sort of
+Bas in modeling computer science and the
+cognitive Neuroscience so if you can
+exploit that to make models of the
+system working in silicone that are
+biologically grounded you should be able
+to make very strong predictions about
+the Dynamics you're actually observing
+electrophysiologically or fmri and
+that's the way we try and do it we don't
+have as many people as
+you a bit
+slow thank
+you thanks for the wonderful talk I was
+wondering whether so you said we're not
+going to learn anything new and do not
+have to remember anything I don't think
+you are serious with that because you
+want to make predictions testable
+predictions uh on the other hand I was
+wondering could one use your
+mathematical formulations to identify
+systems that behave the way they should
+if they were Mark of carpets uh given
+the data so the
+nonan approach are you also into that so
+identifying uh areas for example in a uh
+in brain activity uh that be behave like
+little nuclei like closed systems given
+uh the data You observe that's I hadn't
+thought about it's an excellent idea
+yeah in in principle I suppose then now
+thinking about it in response to your
+question that by virtue of the fact that
+in the simulations we had to go straight
+to graph Theory and spectral graph
+spectral graph Theory the Spectrum here
+is just a spectrum of ion values it's
+just a way of organizing The adjacency
+Matrix in a way that discloses the the
+big structures you're interested in so
+you're absolutely right there's no
+reason why one couldn't um in a uh use
+exactly the same spectral graph
+theoretic definitions of markof blankets
+in in Connect terms based upon
+functional connectivity or DTI data um
+at certain scales and look for Markoff
+blankets in low in in bits of the brain
+um and certainly theoretically that
+would be ex uh quite consistent with the
+application of the free energy
+minimization or the surprise
+minimization implicit in the existence
+of those um blankets in the sense that
+there are papers um showing that even
+the dendritic tree can be the message
+passing electrochemical and
+depolarization wise in the dendritic
+tree can be thought of in terms of
+basing inference where the tree is
+trying to model and predict its PR
+synaptic inputs that represent its
+external mure and so that so that has
+its little Markoff blanket at the
+cellular level and one can imagine the
+same story markof blankets living with
+inside Markoff blankets right until a an
+economics level and indeed that has to
+be the case for any one system there is
+no one markof blanket there are you know
+there are probably uncountable number of
+markof blankets and many of them will be
+nested within each other and in
+principle meable to empirical
+analysis I I have a second remark if I
+may uh so looking at the mark of blanket
+you you showed some simulations what
+happens if you leion the the sensory
+States or if you Legion the
+representational states so uh and one of
+the main tenants of cognitive
+neuropsychology is that nothing new
+comes when you when you uh through Aion
+the system doesn't really change is that
+also your impression from uh or is that
+also your view if you change the the
+representational space will there be new
+systems emerging possibly oh I see um G
+I hadn't thought about that but I won
+can imagine that being the case yes I I
+thought you were going to talk about
+paradoxical lesions but and uh so what
+the simulations didn't emphasize with
+the hierarchal structure and the fact
+you have to this this um tendency to
+minimize surprise of free energy
+operates over both sematic time and
+developmental say developmental
+psychology but also in an evolutionary
+time scale and of course you can you can
+it terms of a a form of some conceptual
+Legion you can look at a young an infant
+as the product of what a graceful Legion
+to an adult that doesn't have a
+hierarchy so you would certainly um
+could use that as a metaphorical model
+for cognitive decline in aging if it
+indeed is decline there are some people
+believe it's actually not uh so the
+reducing the complexity of your models
+when they're not necessary could be
+regarded as a an optimal form of
+lesioning in the Aging brain and
+certainly stuff certainly uh not emerges
+it certainly is maintained in that in
+that context thank you was a
+question
+uh thank you for this nice talk um I
+just had a theoretical question so what
+would happen in the case that I would be
+in a room in which I cannot predict uh
+not reduce my prediction error anymore
+meaning that I'm in a white room and
+I've seen it from all the different
+angles and every next glance that I do
+it would be exactly the same than the
+one before wouldn't I be able or
+wouldn't I not perceive the room at all
+anymore if I am not able to reduce my
+prediction error no um so there there
+are two answers there which which good
+question because know it brings up a
+couple on the expectation when I said
+the prediction error um eliminates
+itself or is self supressing
+self-destroying
+um that um destruction leaves the
+expectation elevated so in principle a c
+filter would obviously infer that you'd
+reach a stationary or a fixed point and
+that expectation would be consistent
+with that so the the expectation or the
+belief doesn't Decay just the prediction
+error um so technically speaking in the
+absence of any prediction error you will
+have found your Optimum belief or
+expectation for that stationary
+environment of course the deeper
+question is um do biological systems um
+ever predict or do they ever uh emerge
+from a station in fixed point and the
+answer is clearly
+no so by implication the uh the mo one
+of the most surprising things for an
+animate system is stationarity or fixed
+pointedness and one can see that in
+terms of ambiguous figures or um
+dioptics um binocle rivalry for example
+you cannot hold a perception in mind an
+inance in mind for an extended um period
+of time if there's an equally good comp
+equally accurate competing hypothesis so
+that has a number of interpretations but
+the simplest one is that a priori you
+believe things will change and that you
+are a that becomes such an overriding
+Pride belief that your expectations
+about the causes of a particular
+stimulus will always change even if
+there is no change in the Sens sensory
+input I think that's generally true you
+and then you get into interesting
+arguments about exploitation versus
+exploitation exploration versus
+exploitation various principal
+explanations for visual searches for
+example that all rest upon the belief
+that you will search in a principal and
+dynamic way and there is no sort of
+stationary um stationary beliefs
+underlying that behavior and very
+reasonable follow-up question would just
+be if I may uh what happens in The Other
+Extreme opposite case so that every time
+I try to be to minimize my prediction
+error my sensation is already different
+so I would already have and maybe an
+even even higher prediction error than I
+had before because the next glance it it
+results in a kind of oversampling that
+the environment is oversampling the my
+uh exploration of the environment in
+this case I I think you will not survive
+in an environment that provided that
+level I think you think what you're
+talking about is probably an environment
+where you wouldn't last very long
+literally so if you actually think of a
+physical Environ and the what normally
+people ask is is you know what about the
+dark room where you where you can't see
+anything so there's no prediction of so
+you should be perfectly happy um but
+you're asking something like a white
+room here um but imagine what you're
+talking about where nothing is
+predictable and it's not just your
+beliefs about um your your your skin
+temperature your girlfriend or your dog
+these are beliefs about your your
+physiological status so if if you can't
+predict your heart rate you can't
+predict your blood ASM morality you
+can't predict your your blood pressure
+you're not going to survive very long in
+in that in that environment so this this
+perspective this you know speaks very
+much to the increasing um
+acknowledgement of the importance of
+situatedness in cognition so embodied
+cognition um uh and certainly the the
+the notion of active perception so
+Active Vision for example being one one
+example of that in in computer science
+and machine learning
+um so then you cannot divorce the system
+from the environment in which you it is
+engaging and exchanging with so the
+environment has to be compatible and
+predictable but also Dynamic to support
+you as an INF machine in it if you can't
+infer it you will be subject ultimately
+to the destruction of that Markoff
+blanket and you will Decay I mean I hope
+that doesn't happen it will H us all
+eventually but uh we
+try final
+question I'm U so the framework seems
+very forward oriented but sometimes it
+seems to me like our system in certain
+cases reinterprets uh reinterprets the
+past so it implements hypothesis uh in a
+sense of one can call it postdiction in
+a sense I think classic examples are
+like the Burman effect where you have a
+tone you have a tone and white noise you
+hear tone and white noise but if you
+have a tone white noise and tone you
+actually your phenomenological
+experience is as a continuous white tone
+that is how would that fit into your
+system is it the case that upper levels
+have a longer temporal integration
+Fields or in this discrete time Dynamic
+systems they have S similar integration
+Fields but they actually operate over
+the past as well rather than being just
+forward-looking well you've just
+answered your own question I ief I
+prefer and I'm familiar with and can
+model the first one so as you generally
+what happens is um perhaps just standing
+back for a second because you it's very
+courtesy to say my framework this is
+this you this is your framework so all
+when I say you will learn nothing is
+that your it's your job to put um your
+intuitions and you've just done that
+give a lovely example within the um the
+the framework that that is formally
+constrained by what has to happen and
+provides a graceful link between optimal
+control theory and Canon filtering and
+ois uh in your case I would imagine that
+you would build or you would appeal to
+um a hierarch or predictive coding
+scheme or Cal buy filter where exactly
+as you say the higher levels have longer
+time constants they have super they have
+much more extended uh temporal
+integration windows so the example I
+showed here with the two Loren tractors
+where one was changing the shape of the
+other the only reason that works is that
+the the higher Loren tractor at the
+higher level of the hierarchy had much
+slow Dynamics have much more extended
+temporal um uh time constant which means
+it it it is representing in the sense of
+an expectation stuff that transcends and
+subsumes um many events at the lower
+level so I think what you're saying is
+that the way that the Dynamics have
+become absolutely crucial when you think
+about the real world implementation
+either empirically or in simulation of
+the real sorts of inferences that we do
+which are not in discrete time they are
+in dyn they have Dynamics and they have
+quantifiable and very distinct
+hierarchically separable time scales to
+them where each super allit time scale
+contextualizes what is happening in the
+time scale below so everything like
+postdiction everything like attentional
+blink I think even planning even at the
+level or even sort of um a lot of neur
+implicits semantics narratives these all
+speak to hierarchical multiple levels of
+description with increasing temporal
+integration Windows yeah I think that
+that's once you try and write that down
+either in simulation or at least
+theoretically a lot of stuff starts to
+make sense then
+okay so thank you very much
+again
