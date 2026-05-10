@@ -1,0 +1,14 @@
+# The importance of configurational disorder in crystal structure prediction: the case of loratadine.
+
+- **PMID**: 30052254
+- **DOI**: 10.1039/c8fd00072g
+- **PMCID**:  
+- **Journal**: Faraday discussions  ·  **Year**: 2018
+- **Authors**: Grahame R Woollam, Marcus A Neumann, Trixie Wagner, Roger J Davey
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30052254/
+- **Captured**: 2026-05-10T11:31:34
+
+## Abstract
+
+Loratadine, an over-the-counter antihistamine medication, has two known monotropically related polymorphs, both of which feature disorder. A combined experimental and computational approach using variable temperature single crystal X-ray diffraction (VT-SCXRD) analysis and dispersion corrected density functional theory (DFT-D) reveals that the nature of the disorder in each form is markedly different and cannot be described by a simple isolated-site model with thermally populated conformations in either of the two cases. In Form I, the ethyl carbamate functionality adopts two different configurations, with adjacent moieties interacting along one-dimensional chains. The most stable arrangement features alternating configurations, but because of the low energetic cost of stacking faults, the domain sizes are short and an average crystal structure is observed experimentally. The configurational free energy of the disordered structure is lower than the energy of the two corresponding ordered crystal structures, but the energy decrease is dominated by the lower lattice energy of the alternating arrangement with a small entropic contribution. In Form II, the flexible cycloheptane bridge adopts two different configurations. The disorder is not an equilibrium property but is instead frozen-in during the crystallisation process. The configurational free energy of the disordered structure falls in between the lattice energies of the two corresponding ordered structures. The two ordered components of each disordered structure are all found in a crystal structure prediction (CSP) study with the GRACE programme. However, the experimentally observed stability relationship is only reproduced when the energy contribution of disorder is taken into account. The disordered model of Form I is found to be lower in energy than all the other predicted structures and there is no indication of a missing, thermodynamically more stable, form. The case of loratadine demonstrates that experimentally observed disorder close to 50/50 does not necessarily correspond to a free energy decrease by kT ln 2.

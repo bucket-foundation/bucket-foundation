@@ -1,0 +1,14 @@
+# Analysis of pulsatile blood flow: a carotid siphon model.
+
+- **PMID**: 3795904
+- **DOI**: 10.1016/0141-5425(87)90099-9
+- **PMCID**:  
+- **Journal**: Journal of biomedical engineering  ·  **Year**: 1987
+- **Authors**: K Perktold, H Florian, D Hilbert
+- **MeSH**: Blood Flow Velocity, Carotid Arteries, Models, Biological, Rheology
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3795904/
+- **Captured**: 2026-05-10T11:35:05
+
+## Abstract
+
+Numerical results for axial and secondary flow velocity and pressure in a three-dimensional model of the human carotid siphon have been calculated; the investigations were carried out under physiologically relevant pulsatile flow conditions. Time-dependent, three-dimensional Navier-Stokes equations were solved numerically by using a special finite element method. The results of the computer simulation presented here concentrate on the secondary motion effect during the pulsatile flow cycle in multiple three-dimensional curvatures.

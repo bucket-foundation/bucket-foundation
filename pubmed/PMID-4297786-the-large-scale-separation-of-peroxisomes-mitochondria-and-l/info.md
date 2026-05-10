@@ -1,0 +1,14 @@
+# The large-scale separation of peroxisomes, mitochondria, and lysosomes from the livers of rats injected with triton WR-1339. Improved isolation procedures, automated analysis, biochemical and morphological properties of fractions.
+
+- **PMID**: 4297786
+- **DOI**: 10.1083/jcb.37.2.482
+- **PMCID**: PMC2107417 (full-text saved)
+- **Journal**: The Journal of cell biology  ·  **Year**: 1968
+- **Authors**: F Leighton, B Poole, H Beaufay, P Baudhuin, J W Coffey, S Fowler, C De Duve
+- **MeSH**: Acid Phosphatase, Animals, Automation, Catalase, Centrifugation, Density Gradient, Cytoplasm, DNA, Endoplasmic Reticulum, Female, Glucose-6-Phosphatase
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/4297786/
+- **Captured**: 2026-05-10T11:37:03
+
+## Abstract
+
+Improved, largely automated methods are described for the purification and analysis o peroxisomes, lysosomes, and mitochondria from the livers of rats injected with Triton WR-1339. With these new methods, it has become possible to obtain, in less than 6 hr and with reliable reproducibility, mitochondria practically free of contaminants, as well as the rarer cytoplasmic particles in amounts (about 100 mg of protein) and in a state of purity (95%) that make them suitable for detailed biochemical studies. The results obtained so far on these preparations have made more conclusive and precise previous estimates of the biochemical and morphological properties of the three groups of cytoplasmic particles. In addition, peroxisomes were found to contain essentially all the L-alpha-hydroxy acid oxidase of the liver, as well as a small, but significant fraction of its NADP-linked isocitrate dehydrogenase activity. Another small fraction of the latter enzyme is present in the mitochondria, the remainder being associated with the cell sap. The mitochondrial localization of the metabolically active cytoplasmic DNA could be verified. The relative content of the fractions in mitochondria, whole peroxisomes, peroxisome cores, lysosomes, and endoplasmic reticulum was estimated independently by direct measurements on electron micrographs, and by linear programming (based on the assumption that the particles are biochemically homogeneous) of the results of enzyme assays. The two types of estimates agreed very well, except for one fraction in which low cytochrome oxidase activity was associated with mitochondrial damage.

@@ -1,0 +1,14 @@
+# Observation of 1/k^{4}-Tails after Expansion of Bose-Einstein Condensates with Impurities.
+
+- **PMID**: 37115901
+- **DOI**: 10.1103/PhysRevLett.130.153401
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2023
+- **Authors**: Hugo Cayla, Pietro Massignan, Thierry Giamarchi, Alain Aspect, Christoph I Westbrook, David Clément
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37115901/
+- **Captured**: 2026-05-10T11:34:42
+
+## Abstract
+
+We measure the momentum density in a Bose-Einstein condensate (BEC) with dilute spin impurities after an expansion in the presence of interactions. We observe tails decaying as 1/k^{4} at large momentum k in the condensate and in the impurity cloud. These algebraic tails originate from the impurity-BEC interaction, but their amplitudes greatly exceed those expected from two-body contact interactions at equilibrium in the trap. Furthermore, in the absence of impurities, such algebraic tails are not found in the BEC density measured after the interaction-driven expansion. These results highlight the key role played by impurities when present, a possibility that had not been considered in our previous work [Chang et al., Phys. Rev. Lett. 117, 235303 (2016)PRLTAO0031-900710.1103/PhysRevLett.117.235303]. Our measurements suggest that these unexpected algebraic tails originate from the nontrivial dynamics of the expansion in the presence of impurity-bath interactions.

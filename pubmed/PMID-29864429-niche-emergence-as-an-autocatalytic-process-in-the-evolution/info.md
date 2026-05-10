@@ -1,0 +1,14 @@
+# Niche emergence as an autocatalytic process in the evolution of ecosystems.
+
+- **PMID**: 29864429
+- **DOI**: 10.1016/j.jtbi.2018.05.038
+- **PMCID**:  
+- **Journal**: Journal of theoretical biology  ·  **Year**: 2018
+- **Authors**: Roberto Cazzolla Gatti, Brian Fath, Wim Hordijk, Stuart Kauffman, Robert Ulanowicz
+- **MeSH**: Biodiversity, Biological Evolution, Catalysis, Ecosystem, Fossils, Homeostasis, Models, Biological, Species Specificity
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29864429/
+- **Captured**: 2026-05-10T11:31:20
+
+## Abstract
+
+The utilisation of the ecospace and the change in diversity through time has been suggested to be due to the effect of niche partitioning, as a global long-term pattern in the fossil record. However, niche partitioning, as a way to coexist, could be a limited means to share the environmental resources and condition during evolutionary time. In fact, a physical limit impedes a high partitioning without a high restriction of the niche's variables. Here, we propose that niche emergence, rather than niche partitioning, is what mostly drives ecological diversity. In particular, we view ecosystems in terms of autocatalytic sets: catalytically closed and self-sustaining reaction (or interaction) networks. We provide some examples of such ecological autocatalytic networks, how this can give rise to an expanding process of niche emergence (both in time and space), and how these networks have evolved over time (so-called evoRAFs). Furthermore, we use the autocatalytic set formalism to show that it can be expected to observe a power-law in the size distribution of extinction events in ecosystems. In short, we elaborate on our earlier argument that new species create new niches, and that biodiversity is therefore an autocatalytic process.

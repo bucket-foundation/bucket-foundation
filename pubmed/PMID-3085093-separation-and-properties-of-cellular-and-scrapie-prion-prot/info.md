@@ -1,0 +1,14 @@
+# Separation and properties of cellular and scrapie prion proteins.
+
+- **PMID**: 3085093
+- **DOI**: 10.1073/pnas.83.8.2310
+- **PMCID**: PMC323286 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1986
+- **Authors**: R K Meyer, M P McKinley, K A Bowman, M B Braunfeld, R A Barry, S B Prusiner
+- **MeSH**: Amyloid, Animals, Brain Chemistry, Cricetinae, Detergents, Endopeptidase K, Endopeptidases, Membrane Proteins, Molecular Weight, Nerve Tissue Proteins
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3085093/
+- **Captured**: 2026-05-10T11:32:00
+
+## Abstract
+
+Purified preparations of scrapie prions contain a sialoglycoprotein of Mr 27,000-30,000, designated PrP 27-30, which is derived from the scrapie prion protein [Mr, 33,000-35,000 (PrP 33-35Sc)] by limited proteolysis. Under these same conditions of proteolysis, a cellular protein of the same size (PrP 33-35C) is completely degraded. Subcellular fractionation of hamster brain showed that both PrP 33-35Sc and PrP 33-35C were found only in membrane fractions. NaCl, EDTA, and osmotic shock failed to release the prion proteins from microsomal membranes. Electron microscopy of these microsomal fractions showed membrane vesicles but not prion amyloid rods. Detergent treatment of scrapie-infected membranes solubilized PrP 33-35C, while PrP 33-35Sc aggregated into amyloid rods; the concentration of PrP 33-35C was similar to that recovered from analogous fractions prepared from uninfected control brains. The apparent amphipathic character of the PrP 33-35Sc may explain the association of scrapie infectivity with both membranes and amyloid filaments.

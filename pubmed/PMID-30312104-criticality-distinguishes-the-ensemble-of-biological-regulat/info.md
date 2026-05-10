@@ -1,0 +1,14 @@
+# Criticality Distinguishes the Ensemble of Biological Regulatory Networks.
+
+- **PMID**: 30312104
+- **DOI**: 10.1103/PhysRevLett.121.138102
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2018
+- **Authors**: Bryan C Daniels, Hyunju Kim, Douglas Moore, Siyu Zhou, Harrison B Smith, Bradley Karas, Stuart A Kauffman, Sara I Walker
+- **MeSH**: Animals, Bacterial Physiological Phenomena, Biological Phenomena, Humans, Models, Biological, Plant Physiological Phenomena, Virus Physiological Phenomena
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30312104/
+- **Captured**: 2026-05-10T11:31:44
+
+## Abstract
+
+The hypothesis that many living systems should exhibit near-critical behavior is well motivated theoretically, and an increasing number of cases have been demonstrated empirically. However, a systematic analysis across biological networks, which would enable identification of the network properties that drive criticality, has not yet been realized. Here, we provide a first comprehensive survey of criticality across a diverse sample of biological networks, leveraging a publicly available database of 67 Boolean models of regulatory circuits. We find all 67 networks to be near critical. By comparing to ensembles of random networks with similar topological and logical properties, we show that criticality in biological networks is not predictable solely from macroscale properties such as mean degree ⟨K⟩ and mean bias in the logic functions ⟨p⟩, as previously emphasized in theories of random Boolean networks. Instead, the ensemble of real biological circuits is jointly constrained by the local causal structure and logic of each node. In this way, biological regulatory networks are more distinguished from random networks by their criticality than by other macroscale network properties such as degree distribution, edge density, or fraction of activating conditions.

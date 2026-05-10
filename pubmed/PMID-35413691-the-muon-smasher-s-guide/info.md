@@ -1,0 +1,14 @@
+# The muon Smasher's guide.
+
+- **PMID**: 35413691
+- **DOI**: 10.1088/1361-6633/ac6678
+- **PMCID**:  
+- **Journal**: Reports on progress in physics. Physical Society (Great Britain)  ·  **Year**: 2022
+- **Authors**: Hind Al Ali, Nima Arkani-Hamed, Ian Banta, Sean Benevedes, Dario Buttazzo, Tianji Cai, Junyi Cheng, Timothy Cohen, Nathaniel Craig, Majid Ekhterachian, JiJi Fan, Matthew Forslund, Isabel Garcia Garcia, Samuel Homiller, Seth Koren, Giacomo Koszegi, Zhen Liu, Qianshu Lu, Kun-Feng Lyu, Alberto Mariotti, Amara McCune, Patrick Meade, Isobel Ojalvo, Umut Oktem, Diego Redigolo, Matthew Reece, Filippo Sala, Raman Sundrum, Dave Sutherland, Andrea Tesi, Timothy Trott, Chris Tully, Lian-Tao Wang, Menghang Wang
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35413691/
+- **Captured**: 2026-05-10T11:33:59
+
+## Abstract
+
+We lay out a comprehensive physics case for a future high-energy muon collider, exploring a range of collision energies (from 1 to 100 TeV) and luminosities. We highlight the advantages of such a collider over proposed alternatives. We show how one can leverage both the point-like nature of the muons themselves as well as the cloud of electroweak radiation that surrounds the beam to blur the dichotomy between energy and precision in the search for new physics. The physics case is buttressed by a range of studies with applications to electroweak symmetry breaking, dark matter, and the naturalness of the weak scale. Furthermore, we make sharp connections with complementary experiments that are probing new physics effects using electric dipole moments, flavor violation, and gravitational waves. An extensive appendix provides cross section predictions as a function of the center-of-mass energy for many canonical simplified models.

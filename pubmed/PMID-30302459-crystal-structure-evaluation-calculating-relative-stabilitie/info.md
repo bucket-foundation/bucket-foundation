@@ -1,0 +1,14 @@
+# Crystal structure evaluation: calculating relative stabilities and other criteria: general discussion.
+
+- **PMID**: 30302459
+- **DOI**: 10.1039/C8FD90031K
+- **PMCID**:  
+- **Journal**: Faraday discussions  ·  **Year**: 2018
+- **Authors**: Matthew Addicoat, Claire S Adjiman, Mihails Arhangelskis, Gregory J O Beran, David Bowskill, Jan Gerit Brandenburg, Doris E Braun, Virginia Burger, Jason Cole, Aurora J Cruz-Cabeza, Graeme M Day, Volker L Deringer, Rui Guo, Alan Hare, Julian Helfferich, Johannes Hoja, Luca Iuzzolino, Samuel Jobbins, Noa Marom, David McKay, John B O Mitchell, Sharmarke Mohamed, Marcus Neumann, Sten Nilsson Lill, Jonas Nyman, Artem R Oganov, Pablo Piaggi, Sarah L Price, Susan Reutzel-Edens, Ivo Rietveld, Michael Ruggiero, Matthew R Ryder, German Sastre, J Christian Schön, Christopher Taylor, Alexandre Tkatchenko, Seiji Tsuzuki, Joost van den Ende, Scott M Woodley, Grahame Woollam, Qiang Zhu
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30302459/
+- **Captured**: 2026-05-10T11:31:43
+
+## Abstract
+
+

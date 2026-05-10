@@ -1,0 +1,14 @@
+# Effect of alterations in frequency, inspiratory time, and airway pressure on gas exchange during high frequency jet ventilation in dogs with normal lungs.
+
+- **PMID**: 3037663
+- **DOI**: 10.1016/0300-9572(87)90020-7
+- **PMCID**:  
+- **Journal**: Resuscitation  ·  **Year**: 1987
+- **Authors**: J M Calkins, C K Waterson, S F Quan, H W Militzer, C W Otto, T J Conahan, S R Hameroff
+- **MeSH**: Animals, Dogs, Positive-Pressure Respiration, Pulmonary Gas Exchange, Respiration, Artificial
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3037663/
+- **Captured**: 2026-05-10T11:31:50
+
+## Abstract
+
+High frequency jet ventilation (HFJV) is becoming increasingly useful for providing respiratory support in patients with normal lungs during operative procedures, and also has been advocated as a technique for ventilating patients during cardiopulmonary resuscitation. We studied the effect of frequency, percent inspiratory time (I/E ratio), peak airway pressure, and airway pressure difference (peak-PEEP) during HFJV as operational variables on the efficacy of gas exchange in dogs with normal lungs. We observed that at a constant peak airway pressure and percent inspiratory time, PaCO2 generally increases as frequency rises above 100/min. In contrast, PaCO2 generally decreases as percent inspiratory time is reduced at a constant frequency and peak airway pressure. In addition, increasing peak airway pressure and airway pressure difference are associated with lower levels of PaCO2. Arterial oxygenation was adversely affected by frequencies above 300/min, but was otherwise not influenced by alterations in frequency, percent inspiratory time, or airway pressure.

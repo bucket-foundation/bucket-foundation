@@ -1,0 +1,14 @@
+# Silver nylon cloth: in vitro and in vivo evaluation of antimicrobial activity.
+
+- **PMID**: 3560272
+- **DOI**: 
+- **PMCID**:  
+- **Journal**: The Journal of trauma  ·  **Year**: 1987
+- **Authors**: E A Deitch, A A Marino, V Malakanok, J A Albright
+- **MeSH**: Bandages, Biological Dressings, Burns, Clostridium Infections, Nylons, Pseudomonas Infections, Silver, Staphylococcal Infections
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3560272/
+- **Captured**: 2026-05-10T11:34:09
+
+## Abstract
+
+The topical agents used in burn care today, although beneficial, do have limitations, the most important of which is the failure to prevent or treat burn wound infections in patients with extensive injuries. Therefore, we evaluated the antimicrobial activity of two silver nylon fabrics (SN and HRS) on the growth of S. aureus, P. aeruginosa, and C. albicans. The theoretical advantages of these nylon fabrics over presently available silver compounds is their ability to continuously release silver ions into the burn wound as long as the material is in contact with the wound. Additionally, the release of silver from these fabrics can be augmented electrolytically. The results of these experiments indicated that both materials were microbicidal in vitro for all three test organisms. Furthermore, the antimicrobial activity could be significantly augmented by passing a weak DC current through the material, which increased the rate of release of silver ions from the fabrics. In vivo, HRS was as effective as silver sulfadiazine in preventing colonization of the burn wound. The use of silver nylon fabrics thus appears to be a promising way of delivering large quantities of silver ions into the burn wound without the potential side effects of a carrier molecule or cream.

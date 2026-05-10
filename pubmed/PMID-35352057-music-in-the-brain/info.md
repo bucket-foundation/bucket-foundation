@@ -1,0 +1,14 @@
+# Music in the brain.
+
+- **PMID**: 35352057
+- **DOI**: 10.3758/BF03206432
+- **PMCID**: 4177957 (full-text saved)
+- **Journal**: Nature reviews. Neuroscience  ·  **Year**: 2022
+- **Authors**: Peter Vuust, Ole A Heggli, Karl J Friston, Morten L Kringelbach
+- **MeSH**: Auditory Perception, Brain, Emotions, Humans, Learning, Music
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35352057/
+- **Captured**: 2026-05-10T11:33:58
+
+## Abstract
+
+Music is ubiquitous across human cultures - as a source of affective and pleasurable experience, moving us both physically and emotionally - and learning to play music shapes both brain structure and brain function. Music processing in the brain - namely, the perception of melody, harmony and rhythm - has traditionally been studied as an auditory phenomenon using passive listening paradigms. However, when listening to music, we actively generate predictions about what is likely to happen next. This enactive aspect has led to a more comprehensive understanding of music processing involving brain structures implicated in action, emotion and learning. Here we review the cognitive neuroscience literature of music perception. We show that music perception, action, emotion and learning all rest on the human brain's fundamental capacity for prediction - as formulated by the predictive coding of music model. This Review elucidates how this formulation of music perception and expertise in individuals can be extended to account for the dynamics and underlying brain mechanisms of collective music making. This in turn has important implications for human creativity as evinced by music improvisation. These recent advances shed new light on what makes music meaningful from a neuroscientific perspective.

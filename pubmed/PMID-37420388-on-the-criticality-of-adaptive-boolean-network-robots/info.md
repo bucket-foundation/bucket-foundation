@@ -1,0 +1,14 @@
+# On the Criticality of Adaptive Boolean Network Robots.
+
+- **PMID**: 37420388
+- **DOI**: 10.1007/s11721-012-0072-5
+- **PMCID**: PMC6994979 (full-text saved)
+- **Journal**: Entropy (Basel, Switzerland)  ·  **Year**: 2022
+- **Authors**: Michele Braccini, Andrea Roli, Edoardo Barbieri, Stuart A Kauffman
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37420388/
+- **Captured**: 2026-05-10T11:34:54
+
+## Abstract
+
+Systems poised at a dynamical critical regime, between order and disorder, have been shown capable of exhibiting complex dynamics that balance robustness to external perturbations and rich repertoires of responses to inputs. This property has been exploited in artificial network classifiers, and preliminary results have also been attained in the context of robots controlled by Boolean networks. In this work, we investigate the role of dynamical criticality in robots undergoing online adaptation, i.e., robots that adapt some of their internal parameters to improve a performance metric over time during their activity. We study the behavior of robots controlled by random Boolean networks, which are either adapted in their coupling with robot sensors and actuators or in their structure or both. We observe that robots controlled by critical random Boolean networks have higher average and maximum performance than that of robots controlled by ordered and disordered nets. Notably, in general, adaptation by change of couplings produces robots with slightly higher performance than those adapted by changing their structure. Moreover, we observe that when adapted in their structure, ordered networks tend to move to the critical dynamical regime. These results provide further support to the conjecture that critical regimes favor adaptation and indicate the advantage of calibrating robot control systems at dynamical critical states.

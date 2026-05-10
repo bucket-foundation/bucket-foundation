@@ -1,0 +1,14 @@
+# Cosmic Bell Test Using Random Measurement Settings from High-Redshift Quasars.
+
+- **PMID**: 30192604
+- **DOI**: 10.1103/PhysRevLett.121.080403
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2018
+- **Authors**: Dominik Rauch, Johannes Handsteiner, Armin Hochrainer, Jason Gallicchio, Andrew S Friedman, Calvin Leung, Bo Liu, Lukas Bulla, Sebastian Ecker, Fabian Steinlechner, Rupert Ursin, Beili Hu, David Leon, Chris Benn, Adriano Ghedina, Massimo Cecconi, Alan H Guth, David I Kaiser, Thomas Scheidl, Anton Zeilinger
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30192604/
+- **Captured**: 2026-05-10T11:31:40
+
+## Abstract
+
+In this Letter, we present a cosmic Bell experiment with polarization-entangled photons, in which measurement settings were determined based on real-time measurements of the wavelength of photons from high-redshift quasars, whose light was emitted billions of years ago; the experiment simultaneously ensures locality. Assuming fair sampling for all detected photons and that the wavelength of the quasar photons had not been selectively altered or previewed between emission and detection, we observe statistically significant violation of Bell's inequality by 9.3 standard deviations, corresponding to an estimated p value of ≲7.4×10^{-21}. This experiment pushes back to at least ∼7.8  Gyr ago the most recent time by which any local-realist influences could have exploited the "freedom-of-choice" loophole to engineer the observed Bell violation, excluding any such mechanism from 96% of the space-time volume of the past light cone of our experiment, extending from the big bang to today.

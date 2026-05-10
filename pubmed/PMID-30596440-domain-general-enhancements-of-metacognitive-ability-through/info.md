@@ -1,0 +1,14 @@
+# Domain-general enhancements of metacognitive ability through adaptive training.
+
+- **PMID**: 30596440
+- **DOI**: 10.1037/a0032982
+- **PMCID**: PMC3203218 (full-text saved)
+- **Journal**: Journal of experimental psychology. General  ·  **Year**: 2019
+- **Authors**: Jason Carpenter, Maxine T Sherman, Rogier A Kievit, Anil K Seth, Hakwan Lau, Stephen M Fleming
+- **MeSH**: Adult, Feedback, Psychological, Female, Humans, Male, Metacognition, Middle Aged, Models, Psychological, Practice, Psychological, Task Performance and Analysis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30596440/
+- **Captured**: 2026-05-10T11:31:52
+
+## Abstract
+
+The metacognitive ability to introspect about self-performance varies substantially across individuals. Given that effective monitoring of performance is deemed important for effective behavioral control, intervening to improve metacognition may have widespread benefits, for example in educational and clinical settings. However, it is unknown whether and how metacognition can be systematically improved through training independently of task performance, or whether metacognitive improvements generalize across different task domains. Across 8 sessions, here we provided feedback to two groups of participants in a perceptual discrimination task: an experimental group (n = 29) received feedback on their metacognitive judgments, while an active control group (n = 32) received feedback on their decision performance only. Relative to the control group, adaptive training led to increases in metacognitive calibration (as assessed by Brier scores), which generalized both to untrained stimuli and an untrained task (recognition memory). Leveraging signal detection modeling we found that metacognitive improvements were driven both by changes in metacognitive efficiency (meta-d'/d') and confidence level, and that later increases in metacognitive efficiency were positively mediated by earlier shifts in confidence. Our results reveal a striking malleability of introspection and indicate the potential for a domain-general enhancement of metacognitive abilities. (PsycINFO Database Record (c) 2018 APA, all rights reserved).

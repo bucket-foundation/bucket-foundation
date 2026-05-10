@@ -1,0 +1,14 @@
+# Coulomb Branch Amplitudes from a Deformed Amplituhedron Geometry.
+
+- **PMID**: 38856275
+- **DOI**: 10.1103/PhysRevLett.132.211601
+- **PMCID**:  
+- **Journal**: Physical review letters  ·  **Year**: 2024
+- **Authors**: Nima Arkani-Hamed, Wojciech Flieger, Johannes M Henn, Anders Schreiber, Jaroslav Trnka
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38856275/
+- **Captured**: 2026-05-10T11:35:27
+
+## Abstract
+
+The amplituhedron provides, via geometric means, the all-loop integrand of scattering amplitudes in maximally supersymmetric Yang-Mills theory. Unfortunately, dimensional regularization, used conventionally for integration, breaks the beautiful geometric picture. This motivates us to propose a "deformed" amplituhedron. Focusing on the four-particle amplitude, we introduce two deformation parameters, which can be interpreted as particle masses. We provide evidence that the mass pattern corresponds to a specific choice of vacuum expectation values on the Coulomb branch. The deformed amplitude is infrared finite, making the answer well defined in four dimensions. Leveraging four-dimensional integration techniques based on differential equations, we compute the amplitude up to two loops. In the limit where the deformation parameters are taken to zero, we recover the known Bern-Dixon-Smirnov amplitude. In the limit where only one deformation parameter is taken to zero, we find a connection to the angle-dependent cusp anomalous dimension.

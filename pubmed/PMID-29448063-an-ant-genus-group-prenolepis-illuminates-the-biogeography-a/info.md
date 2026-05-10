@@ -1,0 +1,14 @@
+# An ant genus-group (Prenolepis) illuminates the biogeography and drivers of insect diversification in the Indo-Pacific.
+
+- **PMID**: 29448063
+- **DOI**: 10.1016/j.ympev.2018.02.007
+- **PMCID**:  
+- **Journal**: Molecular phylogenetics and evolution  ·  **Year**: 2018
+- **Authors**: Pável Matos-Maraví, Ronald M Clouse, Eli M Sarnat, Evan P Economo, John S LaPolla, Michaela Borovanska, Christian Rabeling, Jesse Czekanski-Moir, Fransina Latumahina, Edward O Wilson, Milan Janda
+- **MeSH**: Animals, Ants, Asia, Australia, Biodiversity, Calibration, Fossils, Geography, Indonesia, New Guinea
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29448063/
+- **Captured**: 2026-05-10T11:31:12
+
+## Abstract
+
+The Malay Archipelago and the tropical South Pacific (hereafter the Indo-Pacific region) are considered biodiversity hotspots, yet a general understanding of the origins and diversification of species-rich groups in the region remains elusive. We aimed to test hypotheses for the evolutionary processes driving insect species diversity in the Indo-Pacific using a higher-level and comprehensive phylogenetic hypothesis for an ant clade consisting of seven genera. We estimated divergence times and reconstructed the biogeographical history of ant species in the Prenolepis genus-group (Formicidae: Formicinae: Lasiini). We used a fossil-calibrated phylogeny to infer ancestral geographical ranges utilizing a biogeographic model that includes founder-event speciation. Ancestral state reconstructions of the ants' ecological preferences, and diversification rates were estimated for selected Indo-Pacific clades. Overall, we report that faunal interchange between Asia and Australia has occurred since at least 20-25 Ma, and early dispersal to the Fijian Basin happened during the early and mid-Miocene (ca. 10-20 Ma). Differences in diversification rates across Indo-Pacific clades may be related to ecological preference breadth, which in turn may have facilitated geographical range expansions. Ancient dispersal routes suggested by our results agree with the palaeogeography of the region. For this particular group of ants, the rapid orogenesis in New Guinea and possibly subsequent ecological shifts may have promoted their rapid diversification and widespread distribution across the Indo-Pacific.

@@ -1,0 +1,14 @@
+# Allergens in Hymenoptera venom. XX. Isolation of four allergens from imported fire ant (Solenopsis invicta) venom.
+
+- **PMID**: 3192865
+- **DOI**: 10.1016/0091-6749(88)90084-x
+- **PMCID**:  
+- **Journal**: The Journal of allergy and clinical immunology  ·  **Year**: 1988
+- **Authors**: D R Hoffman, D E Dove, R S Jacobson
+- **MeSH**: Adult, Allergens, Animals, Ant Venoms, Ants, Arthropod Venoms, Binding Sites, Antibody, Chemical Phenomena, Chemistry, Physical, Chromatography, Gel
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3192865/
+- **Captured**: 2026-05-10T11:32:30
+
+## Abstract
+
+Commercial Solenopsis invicta (Sol i) venom was fractionated by gel filtration and high-performance cation exchange chromatography. Four proteins were isolated and purified to homogeneity. The four proteins were tested with a panel of sera from patients allergic to fire ant venom; all proteins had significant allergenic activity. These proteins corresponded to four of the bands we previously reported to be allergenic by immunoblot analysis. Sol i I has an apparent molecular weight of 37,000 daltons and yields bands of 18,000, 16,500 and 14,000 daltons in sodium dodecyl sulfate-polyacrylamide gel electrophoresis; cation-exchange chromatography indicates that there are three charge forms. Sol i II has a native molecular weight of 28,000 daltons and appears to be easily cleaved into half molecules; it is a phospholipase structurally unlike either bee or wasp phopholipases. Sol i III has a native and denatured molecular weight of 26,000 daltons. Sol i IV has an apparent native molecular weight of 20,000 daltons and gives a single chain of 15,000 daltons in sodium dodecyl sulfate-polyacrylamide gel electrophoresis. Sol i II and III are the major proteins in the venom; there are only small amounts of Sol i I and IV. All are significant allergens, and patients are found who react most strongly with each. Regression analysis of RAST data with highly purified allergens indicated that the IgE responses to the allergens were not related to each other. Amino acid compositions indicated that the four allergens were distinct and that the allergens were structurally different from each other. Four proteins identical to Sol i I to IV were isolated from hand-milked pure venom.

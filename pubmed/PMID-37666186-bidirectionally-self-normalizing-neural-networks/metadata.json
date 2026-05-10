@@ -1,0 +1,18 @@
+{
+  "pmid": "37666186",
+  "title": "Bidirectionally self-normalizing neural networks.",
+  "abstract": "The problem of vanishing and exploding gradients has been a long-standing obstacle that hinders the effective training of neural networks. Despite various tricks and techniques that have been employed to alleviate the problem in practice, there still lacks satisfactory theories or provable solutions. In this paper, we address the problem from the perspective of high-dimensional probability theory. We provide a rigorous result that shows, under mild conditions, how the vanishing/exploding gradients problem disappears with high probability if the neural networks have sufficient width. Our main idea is to constrain both forward and backward signal propagation in a nonlinear neural network through a new class of activation functions, namely Gaussian-Poincaré normalized functions, and orthogonal weight matrices. Experiments on both synthetic and real-world data validate our theory and confirm its effectiveness on very deep neural networks when applied in practice.",
+  "authors": [
+    "Yao Lu",
+    "Stephen Gould",
+    "Thalaiyasingam Ajanthan"
+  ],
+  "journal": "Neural networks : the official journal of the International Neural Network Society",
+  "year": "2023",
+  "doi": "10.1016/j.neunet.2023.08.017",
+  "pmcid": "",
+  "mesh": [
+    "Neural Networks, Computer",
+    "Normal Distribution"
+  ]
+}

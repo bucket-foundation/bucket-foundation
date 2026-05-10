@@ -1,0 +1,14 @@
+# Changes in cell surface charge and transmembrane potential accompanying neoplastic transformation of rat kidney cells.
+
+- **PMID**: 3828335
+- **DOI**: 10.1016/0005-2736(87)90031-9
+- **PMCID**:  
+- **Journal**: Biochimica et biophysica acta  ·  **Year**: 1987
+- **Authors**: J A Price, R Pethig, C N Lai, F F Becker, P R Gascoyne, A Szent-Györgyi
+- **MeSH**: Animals, Cell Line, Cell Membrane, Cell Transformation, Neoplastic, Electrophoresis, Electrophysiology, Kidney, Membrane Potentials, Rats, Ribonucleases
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3828335/
+- **Captured**: 2026-05-10T11:35:13
+
+## Abstract
+
+Free flow electrophoresis measurements have been used to determine the surface charge density of normal rat kidney (NRK) cells and a clone of NRK, designated as 6m2, that exhibit a transformed phenotype at 33 degrees C and a non-transformed phenotype at 39 degrees C. A clone of 6m2, designated 54-5A4, which is transformed at both 33 degrees C and 39 degrees C was also studied. A surface charge density of -1.42 microC/cm2 was obtained for the NRK and non-transformed 6m2 cells at 39 degrees C, whereas at 33 degrees C values of -1.85 and -1.78 microC/cm2 were determined for the transformed 6m2 and 54-5A4 cells, respectively. It was found that 72% of the increased charge that appeared on the transformed 6m2 cells compared with the non-transformed 6m2 cells was RNAase sensitive. The time-dependent decrease in surface charge that accompanied the shift of the 6m2 cells from their transformed to non-transformed state was found to mirror the increase in transmembrane potential previously reported using a fluorescent dye technique, and was also comparable to the reported temporal changes in their morphology and virally-coded protein content.

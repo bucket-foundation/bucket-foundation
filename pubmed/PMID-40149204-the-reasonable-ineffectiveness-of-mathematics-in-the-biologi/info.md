@@ -1,0 +1,14 @@
+# The Reasonable Ineffectiveness of Mathematics in the Biological Sciences.
+
+- **PMID**: 40149204
+- **DOI**: 10.3390/ijms22052545
+- **PMCID**: PMC7961929 (full-text saved)
+- **Journal**: Entropy (Basel, Switzerland)  ·  **Year**: 2025
+- **Authors**: Seymour Garte, Perry Marshall, Stuart Kauffman
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40149204/
+- **Captured**: 2026-05-10T11:35:57
+
+## Abstract
+
+The known laws of nature in the physical sciences are well expressed in the language of mathematics, a fact that caused Eugene Wigner to wonder at the "unreasonable effectiveness" of mathematical concepts to explain physical phenomena. The biological sciences, in contrast, have resisted the formulation of precise mathematical laws that model the complexity of the living world. The limits of mathematics in biology are discussed as stemming from the impossibility of constructing a deterministic "Laplacian" model and the failure of set theory to capture the creative nature of evolutionary processes in the biosphere. Indeed, biology transcends the limits of computation. This leads to a necessity of finding new formalisms to describe biological reality, with or without strictly mathematical approaches. In the former case, mathematical expressions that do not demand numerical equivalence (equations) provide useful information without exact predictions. Examples of approximations without equal signs are given. The ineffectiveness of mathematics in biology is an invitation to expand the limits of science and to see that the creativity of nature transcends mathematical formalism.

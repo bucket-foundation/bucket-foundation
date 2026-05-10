@@ -1,0 +1,14 @@
+# Minimum-Phase Property of the Hemodynamic Response Function, and Implications for Granger Causality in fMRI.
+
+- **PMID**: 40637327
+- **DOI**: 10.1016/j.media.2013.01.003
+- **PMCID**: PMC3701552 (full-text saved)
+- **Journal**: Human brain mapping  ·  **Year**: 2025
+- **Authors**: Leonardo Novelli, Lionel Barnett, Anil K Seth, Adeel Razi
+- **MeSH**: Magnetic Resonance Imaging, Humans, Brain, Hemodynamics, Oxygen, Models, Neurological, Brain Mapping, Neurovascular Coupling, Cerebrovascular Circulation, Image Processing, Computer-Assisted
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40637327/
+- **Captured**: 2026-05-10T11:36:11
+
+## Abstract
+
+Granger causality (GC) is widely used in neuroimaging to estimate directed statistical dependence between brain regions using time series of brain activity. A known problem is that fMRI measures brain activity indirectly via the blood-oxygen-level-dependent (BOLD) signal, which can distort GC estimates by introducing different time-to-peak responses across brain regions. However, how these distortions affect the validity of inferred connections is not fully understood. Previous studies have shown that false positives are not introduced if the haemodynamic response function (HRF) is minimum-phase; but whether the HRF is actually minimum-phase has remained contentious. Here, we address this issue by studying the transfer functions of three realistic biophysical models. We find that the minimum-phase condition is met for a wide range of physiologically plausible parameter values. Therefore, statistical testing of GC can be viable even if the HRF varies across brain regions, with the following two limitations. First, the minimum-phase condition is violated for parameter combinations that generate an initial dip in the HRF. Second, slow sampling of the BOLD signal (seconds) compared to the timescales of neural signal propagation (milliseconds) may still introduce spurious GC inferences. Beyond GC analysis, the closed-form expressions for the transfer functions of these popular HRF models are valuable for modeling fMRI time series since they balance mathematical tractability with biological plausibility.

@@ -1,0 +1,14 @@
+# Scenarios for modeling solar radiation modification.
+
+- **PMID**: 35939702
+- **DOI**: 10.1073/pnas.2202230119
+- **PMCID**: PMC9388149 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 2022
+- **Authors**: D G MacMartin, D Visioni, B Kravitz, J H Richter, T Felgenhauer, W R Lee, D R Morrow, E A Parson, M Sugiyama
+- **MeSH**: Aerosols, Climate, Climate Change, Ecosystem, Humans, Solar Energy
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35939702/
+- **Captured**: 2026-05-10T11:34:21
+
+## Abstract
+
+Making informed future decisions about solar radiation modification (SRM; also known as solar geoengineering)-approaches such as stratospheric aerosol injection (SAI) that would cool the climate by reflecting sunlight-requires projections of the climate response and associated human and ecosystem impacts. These projections, in turn, will rely on simulations with global climate models. As with climate-change projections, these simulations need to adequately span a range of possible futures, describing different choices, such as start date and temperature target, as well as risks, such as termination or interruptions. SRM modeling simulations to date typically consider only a single scenario, often with some unrealistic or arbitrarily chosen elements (such as starting deployment in 2020), and have often been chosen based on scientific rather than policy-relevant considerations (e.g., choosing quite substantial cooling specifically to achieve a bigger response). This limits the ability to compare risks both between SRM and non-SRM scenarios and between different SRM scenarios. To address this gap, we begin by outlining some general considerations on scenario design for SRM. We then describe a specific set of scenarios to capture a range of possible policy choices and uncertainties and present corresponding SAI simulations intended for broad community use.

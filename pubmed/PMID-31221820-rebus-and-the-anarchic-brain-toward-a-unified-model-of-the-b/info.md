@@ -1,0 +1,14 @@
+# REBUS and the Anarchic Brain: Toward a Unified Model of the Brain Action of Psychedelics.
+
+- **PMID**: 31221820
+- **DOI**: 10.1038/s41386-019-0324-9
+- **PMCID**: PMC3477617 (full-text saved)
+- **Journal**: Pharmacological reviews  ·  **Year**: 2019
+- **Authors**: R L Carhart-Harris, K J Friston
+- **MeSH**: Animals, Brain, Culture, Hallucinogens, Humans, Models, Neurological
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31221820/
+- **Captured**: 2026-05-10T11:32:18
+
+## Abstract
+
+This paper formulates the action of psychedelics by integrating the free-energy principle and entropic brain hypothesis. We call this formulation relaxed beliefs under psychedelics (REBUS) and the anarchic brain, founded on the principle that-via their entropic effect on spontaneous cortical activity-psychedelics work to relax the precision of high-level priors or beliefs, thereby liberating bottom-up information flow, particularly via intrinsic sources such as the limbic system. We assemble evidence for this model and show how it can explain a broad range of phenomena associated with the psychedelic experience. With regard to their potential therapeutic use, we propose that psychedelics work to relax the precision weighting of pathologically overweighted priors underpinning various expressions of mental illness. We propose that this process entails an increased sensitization of high-level priors to bottom-up signaling (stemming from intrinsic sources), and that this heightened sensitivity enables the potential revision and deweighting of overweighted priors. We end by discussing further implications of the model, such as that psychedelics can bring about the revision of other heavily weighted high-level priors, not directly related to mental health, such as those underlying partisan and/or overly-confident political, religious, and/or philosophical perspectives. SIGNIFICANCE STATEMENT: Psychedelics are capturing interest, with efforts underway to bring psilocybin therapy to marketing authorisation and legal access within a decade, spearheaded by the findings of a series of phase 2 trials. In this climate, a compelling unified model of 

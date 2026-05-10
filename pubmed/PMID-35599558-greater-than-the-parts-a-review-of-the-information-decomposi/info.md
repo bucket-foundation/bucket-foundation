@@ -1,0 +1,14 @@
+# Greater than the parts: a review of the information decomposition approach to causal emergence.
+
+- **PMID**: 35599558
+- **DOI**: 10.1371/journal.pcbi.1000091
+- **PMCID**: PMC2386970 (full-text saved)
+- **Journal**: Philosophical transactions. Series A, Mathematical, physical, and engineering sciences  ·  **Year**: 2022
+- **Authors**: Pedro A M Mediano, Fernando E Rosas, Andrea I Luppi, Henrik J Jensen, Anil K Seth, Adam B Barrett, Robin L Carhart-Harris, Daniel Bor
+- **MeSH**: Causality, Consciousness, Models, Theoretical, Neurons
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35599558/
+- **Captured**: 2026-05-10T11:34:08
+
+## Abstract
+
+Emergence is a profound subject that straddles many scientific disciplines, including the formation of galaxies and how consciousness arises from the collective activity of neurons. Despite the broad interest that exists on this concept, the study of emergence has suffered from a lack of formalisms that could be used to guide discussions and advance theories. Here, we summarize, elaborate on, and extend a recent formal theory of causal emergence based on information decomposition, which is quantifiable and amenable to empirical testing. This theory relates emergence with information about a system's temporal evolution that cannot be obtained from the parts of the system separately. This article provides an accessible but rigorous introduction to the framework, discussing the merits of the approach in various scenarios of interest. We also discuss several interpretation issues and potential misunderstandings, while highlighting the distinctive benefits of this formalism. This article is part of the theme issue 'Emergent phenomena in complex physical and socio-technical systems: from cells to societies'.

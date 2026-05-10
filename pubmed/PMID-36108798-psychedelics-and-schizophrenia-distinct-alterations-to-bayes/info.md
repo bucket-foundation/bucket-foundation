@@ -1,0 +1,14 @@
+# Psychedelics and schizophrenia: Distinct alterations to Bayesian inference.
+
+- **PMID**: 36108798
+- **DOI**: 10.1109/TIT.1978.1055911
+- **PMCID**: PMC3175453 (full-text saved)
+- **Journal**: NeuroImage  ·  **Year**: 2022
+- **Authors**: Hardik Rajpal, Pedro A M Mediano, Fernando E Rosas, Christopher B Timmermann, Stefan Brugger, Suresh Muthukumaraswamy, Anil K Seth, Daniel Bor, Robin L Carhart-Harris, Henrik J Jensen
+- **MeSH**: Humans, Hallucinogens, Schizophrenia, Bayes Theorem, Brain, Ketamine
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36108798/
+- **Captured**: 2026-05-10T11:34:24
+
+## Abstract
+
+Schizophrenia and states induced by certain psychotomimetic drugs may share some physiological and phenomenological properties, but they differ in fundamental ways: one is a crippling chronic mental disease, while the others are temporary, pharmacologically-induced states presently being explored as treatments for mental illnesses. Building towards a deeper understanding of these different alterations of normal consciousness, here we compare the changes in neural dynamics induced by LSD and ketamine (in healthy volunteers) against those associated with schizophrenia, as observed in resting-state M/EEG recordings. While both conditions exhibit increased neural signal diversity, our findings reveal that this is accompanied by an increased transfer entropy from the front to the back of the brain in schizophrenia, versus an overall reduction under the two drugs. Furthermore, we show that these effects can be reproduced via different alterations of standard Bayesian inference applied on a computational model based on the predictive processing framework. In particular, the effects observed under the drugs are modelled as a reduction of the precision of the priors, while the effects of schizophrenia correspond to an increased precision of sensory information. These findings shed new light on the similarities and differences between schizophrenia and two psychotomimetic drug states, and have potential implications for the study of consciousness and future mental health treatments.

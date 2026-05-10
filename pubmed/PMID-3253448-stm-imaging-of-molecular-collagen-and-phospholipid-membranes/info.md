@@ -1,0 +1,14 @@
+# STM imaging of molecular collagen and phospholipid membranes.
+
+- **PMID**: 3253448
+- **DOI**: 10.1111/j.1365-2818.1988.tb01421.x
+- **PMCID**:  
+- **Journal**: Journal of microscopy  ·  **Year**: 1988
+- **Authors**: M A Voelker, S R Hameroff, J D He, E L Dereniak, R S McCuskey, C W Schneiker, T A Chvapil, L S Bell, L B Weiss
+- **MeSH**: Animals, Cattle, Cell Membrane, Collagen, Membrane Lipids, Microscopy, Electron, Scanning
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3253448/
+- **Captured**: 2026-05-10T11:32:50
+
+## Abstract
+
+The application of STM to biological materials has been limited by poor conductivity, sample geometry and stability of biological materials. In this paper we describe an STM study of the monomeric helical forms of collagen, a stable, conductive and widely prevalent structural protein. We have also used STM to image artificial Langmuir DPE (dipalmitoyl phosphatidyl ethanolamine) phospholipid membranes. Both molecular collagen and the phospholipid membranes were dried in air on highly oriented pyrolytic graphite (HOPG). Our STM images of collagen dried on HOPG reveal strands 15 A in diameter with a periodicity of about 30 A which correlates with that known to occur in collagen. Spikes which periodically protrude from strands in our STM images of collagen appear to represent pyrrolidine ring structures in the amino acids proline and hydroxyproline. Thus, we report the first STM imaging of native biomolecules revealing intramolecular details and what appear to be specific amino acids. STM imaging of phospholipid membranes show a lattice pattern with densities spaced approximately 4.5 A apart. These are thought to represent individual phospholipid molecules in an artificial membrane formed on the HOPG. We believe STM and its related technologies will have great future utility in biomolecular studies.

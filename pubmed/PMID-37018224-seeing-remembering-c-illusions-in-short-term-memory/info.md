@@ -1,0 +1,14 @@
+# Seeing Ɔ, remembering C: Illusions in short-term memory.
+
+- **PMID**: 37018224
+- **DOI**: 10.1167/10.8.2
+- **PMCID**: PMC4941470 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2023
+- **Authors**: Marte Otten, Anil K Seth, Yair Pinto
+- **MeSH**: Humans, Memory, Short-Term, Illusions, Mental Recall, Memory, Long-Term
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37018224/
+- **Captured**: 2026-05-10T11:34:41
+
+## Abstract
+
+Perception can be shaped by our expectations, which can lead to perceptual illusions. Similarly, long-term memories can be shaped to fit our expectations, which can generate false memories. However, it is generally assumed that short-term memory for percepts formed just 1 or 2 seconds ago accurately represents the percepts as they were at the time of perception. Here 4 experiments consistently show that within this timeframe, participants go from reliably reporting what was there (perceptual inference accurately reflecting the bottom-up input), to erroneously but with high confidence reporting what they expected to be there (memory report strongly influenced by top-down expectations). Together, these experiments show that expectations can reshape perceptual representations over short time scales, leading to what we refer to as short-term memory (STM) illusions. These illusions appeared when participants saw a memory display which contained real and pseudo-letters (i.e. mirrored letters). Within seconds after the memory display disappeared, high confidence memory errors increased substantially. This increase in errors over time indicates that the high confidence errors do not (purely) result from incorrect perceptual encoding of the memory display. Moreover, high confidence errors occurred mainly for pseudo-to-real letter memories, and much less often for real-to-pseudo-letter memories, indicating that visual similarity is not the primary cause of this memory-bias. Instead 'world knowledge' (e.g., which orientation letters usually have) appear to drive these STM illusions. Our findings support a predictive processing view of the formation and maintenance of memory in which all memory stages, including STM, involve integration of bottom-up memory input with top-down predictions, such that prior expectations can shape memory traces.

@@ -1,0 +1,14 @@
+# A Conceptual Framework for the Crystallizability of Organic Compounds.
+
+- **PMID**: 41371992
+- **DOI**: 10.1021/jacs.5c09997
+- **PMCID**: PMC12576777 (full-text saved)
+- **Journal**: Journal of the American Chemical Society  ·  **Year**: 2025
+- **Authors**: Jacco van de Streek, Hanno Dietrich, Dzmitry Firaha, Martin Ludwig, Alexander Ovchinnikov, Kiran Sasikumar, Antonio G DiPasquale, Luca Iuzzolino, Andrew W Kelly, Pierre Lafarguette, Alfred Y Lee, Benoît Robert, Grahame R Woollam, Marcus A Neumann
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/41371992/
+- **Captured**: 2026-05-10T11:36:31
+
+## Abstract
+
+Over the last few decades, various organic crystal structures long established in industrial-scale crystallization suddenly and unexpectedly switched to a different, more thermodynamically stable crystal arrangement. This drastic shift altered the physical characteristics of the product significantly. We spent two decades perfecting the computation of free energies of organic crystal structures until we were able to reliably predict the thermodynamic determinant of these catastrophic crystallization events, but those predictions alone cannot explain why an unstable crystal packing was isolated for many years. In this contribution we demonstrate how "molecular strain energy" can be calculated and used to conceptually gauge the ease of a molecule to crystallize from solution into the thermodynamically most stable crystal packing arrangement. By calculating the dominant factor affecting the crystallization kinetics of flexible organic molecules in addition to thermodynamic stability, we predict if a thermodynamically more stable crystal packing can be expected in the future. With this discovery, we can rationalize the unexpected crystallization of more stable, novel solid forms and provide the pharmaceutical industry with an instrument to direct appropriate resources to the crystallization of these sought-after, frequently elusive, crystal structures.

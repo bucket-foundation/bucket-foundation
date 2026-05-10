@@ -1,0 +1,14 @@
+# Survey of DNA polymerase activity during the early development of Drosophila melanogaster.
+
+- **PMID**: 4200726
+- **DOI**: 10.1073/pnas.70.10.2946
+- **PMCID**: PMC427144 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1973
+- **Authors**: L Margulies, E Chargaff
+- **MeSH**: Animals, DNA, DNA Nucleotidyltransferases, Deoxyribonucleases, Drosophila melanogaster, Female, Fertilization, Male, Oligonucleotides, Ovum
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/4200726/
+- **Captured**: 2026-05-10T11:36:47
+
+## Abstract
+
+The pattern of DNA polymerase activity in developing Drosophila melanogaster has been studied in seven stages of embryonic development as well as in unfertilized eggs. The crude polymerase-containing extracts, most likely of cytoplasmic origin, utilize, in the following order of decreasing template efficiency, "activated" calfthymus DNA, poly(A).oligo(dT), and poly(A).oligo(U). The highest enzymes levels occur in unfertilized eggs; the activity remains high during the first 9 hr of embryogenesis, but shows a progressive decline in the later stages. Deoxyribonuclease exhibits a similar trend. The unfertilized eggs of two genotypically different females had nearly identical levels of DNA polymerase.

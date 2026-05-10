@@ -1,0 +1,14 @@
+# Concordance in Adolescent and Caregiver Report of Social Determinants of Health.
+
+- **PMID**: 35906140
+- **DOI**: 10.1016/j.amepre.2022.06.004
+- **PMCID**:  
+- **Journal**: American journal of preventive medicine  ·  **Year**: 2022
+- **Authors**: Rebeccah L Sokol, Jennifer Clift, Juan José Martínez, Brian Goodwin, Carissa Rusnak, Linette Garza
+- **MeSH**: Adolescent, Humans, Caregivers, Social Determinants of Health, Social Support, Cross-Sectional Studies, Mental Health
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35906140/
+- **Captured**: 2026-05-10T11:34:16
+
+## Abstract
+
+Screening youth for negative social determinants of health is a widespread practice across healthcare settings in the U.S., with such systems almost exclusively relying on caregiver reports. Little work has sought to identify the social determinants of health adolescents identify as having the largest influence on their health and well-being or the extent to which adolescents agree with their caregiver. This study sought to (1) identify the most prevalent and influential negative social determinants of health, according to adolescent reports, and (2) assess concordance between adolescent and caregiver reports of social determinants of health. In Fall 2021, the study team conducted a cross-sectional, observational study within a predominately Latinx urban high school. The team invited all students and their caregivers to participate, resulting in 520 adolescent and 66 caregiver respondents (73% and 9% response rates, respectively). Data analyses occurred in 2022. The most frequent adolescent-reported negative social determinants of health was stress (67%), followed by financial hardship (27%). The negative social determinant of health with the highest ranking of preventing adolescents from living their best and healthiest lives was depression, followed by isolation and stress. Concordance between caregiver and adolescent report of negative social determinants of health was very low across all negative social determinants of health (Krippendorf's α= -0.08 to 0.21). Caregivers under-reported adolescents' social and mental health needs, whereas adolescents under-reported material needs. A hybrid informant approach may be a best practice for social determinants of health screening among adolescents, whereby caregivers and adolescents report material needs, and adolescents report social and mental health needs. Future work should evaluate the concordance between adolescent and caregiver social determinants of health reports in other settings.

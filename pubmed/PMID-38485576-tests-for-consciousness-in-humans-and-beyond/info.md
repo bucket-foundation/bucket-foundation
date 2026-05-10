@@ -1,0 +1,14 @@
+# Tests for consciousness in humans and beyond.
+
+- **PMID**: 38485576
+- **DOI**: 10.1016/j.tics.2024.01.010
+- **PMCID**:  
+- **Journal**: Trends in cognitive sciences  ·  **Year**: 2024
+- **Authors**: Tim Bayne, Anil K Seth, Marcello Massimini, Joshua Shepherd, Axel Cleeremans, Stephen M Fleming, Rafael Malach, Jason B Mattingley, David K Menon, Adrian M Owen, Megan A K Peters, Adeel Razi, Liad Mudrik
+- **MeSH**: Humans, Consciousness, Animals, Artificial Intelligence, Brain
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/38485576/
+- **Captured**: 2026-05-10T11:35:17
+
+## Abstract
+
+Which systems/organisms are conscious? New tests for consciousness ('C-tests') are urgently needed. There is persisting uncertainty about when consciousness arises in human development, when it is lost due to neurological disorders and brain injury, and how it is distributed in nonhuman species. This need is amplified by recent and rapid developments in artificial intelligence (AI), neural organoids, and xenobot technology. Although a number of C-tests have been proposed in recent years, most are of limited use, and currently we have no C-tests for many of the populations for which they are most critical. Here, we identify challenges facing any attempt to develop C-tests, propose a multidimensional classification of such tests, and identify strategies that might be used to validate them.

@@ -1,0 +1,14 @@
+# Molecular phylogeny of Indo-Pacific carpenter ants (Hymenoptera: Formicidae, Camponotus) reveals waves of dispersal and colonization from diverse source areas.
+
+- **PMID**: 34772275
+- **DOI**: 10.1111/cla.12099
+- **PMCID**:  
+- **Journal**: Cladistics : the international journal of the Willi Hennig Society  ·  **Year**: 2015
+- **Authors**: Ronald M Clouse, Milan Janda, Benjamin Blanchard, Prashant Sharma, Benjamin D Hoffmann, Alan N Andersen, Jesse E Czekanski-Moir, Paul Krushelnycky, Christian Rabeling, Edward O Wilson, Evan P Economo, Eli M Sarnat, David M General, Gary D Alpert, Ward C Wheeler
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34772275/
+- **Captured**: 2026-05-10T11:33:36
+
+## Abstract
+
+Ants that resemble Camponotus maculatus (Fabricius, 1782) present an opportunity to test the hypothesis that the origin of the Pacific island fauna was primarily New Guinea, the Philippines, and the Indo-Malay archipelago (collectively known as Malesia). We sequenced two mitochondrial and four nuclear markers from 146 specimens from Pacific islands, Australia, and Malesia. We also added 211 specimens representing a larger worldwide sample and performed a series of phylogenetic analyses and ancestral area reconstructions. Results indicate that the Pacific members of this group comprise several robust clades that have distinctly different biogeographical histories, and they suggest an important role for Australia as a source of Pacific colonizations. Malesian areas were recovered mostly in derived positions, and one lineage appears to be Neotropical. Phylogenetic hypotheses indicate that the orange, pan-Pacific form commonly identified as C. chloroticus Emery 1897 actually consists of two distantly related lineages. Also, the lineage on Hawai'i, which has been called C. variegatus (Smith, 1858), appears to be closely related to C. tortuganus Emery, 1895 in Florida and other lineages in the New World. In Micronesia and Polynesia the C. chloroticus-like species support predictions of the taxon-cycle hypothesis and could be candidates for human-mediated dispersal.

@@ -1,0 +1,14 @@
+# Biogeography and evolution of social parasitism in Australian Myrmecia bulldog ants revealed by phylogenomics.
+
+- **PMID**: 37244505
+- **DOI**: 10.1016/j.ympev.2023.107825
+- **PMCID**:  
+- **Journal**: Molecular phylogenetics and evolution  ·  **Year**: 2023
+- **Authors**: Daniela Mera-Rodríguez, Hervé Jourdan, Philip S Ward, Steven Shattuck, Stefan P Cover, Edward O Wilson, Christian Rabeling
+- **MeSH**: Animals, Phylogeny, Ants, Australia, Symbiosis, New Caledonia, Biological Evolution, Bayes Theorem
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37244505/
+- **Captured**: 2026-05-10T11:34:47
+
+## Abstract
+
+Studying the historical biogeography and life history transitions from eusocial colony life to social parasitism contributes to our understanding of the evolutionary mechanisms generating biodiversity in eusocial insects. The ants in the genus Myrmecia are a well-suited system for testing evolutionary hypotheses about how their species diversity was assembled through time because the genus is endemic to Australia with the single exception of the species M. apicalis inhabiting the Pacific Island of New Caledonia, and because at least one social parasite species exists in the genus. However, the evolutionary mechanisms underlying the disjunct biogeographic distribution of M. apicalis and the life history transition(s) to social parasitism remain unexplored. To study the biogeographic origin of the isolated, oceanic species M. apicalis and to reveal the origin and evolution of social parasitism in the genus, we reconstructed a comprehensive phylogeny of the ant subfamily Myrmeciinae. We utilized Ultra Conserved Elements (UCEs) as molecular markers to generate a molecular genetic dataset consisting of 2,287 loci per taxon on average for 66 out of the 93 known Myrmecia species as well as for the sister lineage Nothomyrmecia macrops and selected outgroups. Our time-calibrated phylogeny inferred that: (i) stem Myrmeciinae originated during the Paleocene ∼ 58 Ma ago; (ii) the current disjunct biogeographic distribution of M. apicalis was driven by long-distance dispersal from Australia to New Caledonia during the Miocene ∼ 14 Ma ago; (iii) the single social parasite species, M. inquilina, evolved directly from one of the two known host species, M. nigriceps, in sympatry via the intraspecific route of social parasite evolution; and (iv) 5 of the 9 previously established taxonomic species groups are non-monophyletic. We suggest minor changes to reconcile the molecular phylogenetic results with the taxonomic classification. Our study enhances our understanding of the evolution and biogeography of Australian bulldog ants, contributes to our knowledge about the evolution of social parasitism in ants, and provides a solid phylogenetic foundation for future inquiries into the biology, taxonomy, and classification of Myrmeciinae.
