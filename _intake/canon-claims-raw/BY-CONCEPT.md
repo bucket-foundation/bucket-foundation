@@ -1,7 +1,7 @@
 # Claim candidates by concept
 
 
-## mitochondria (103 candidates, top 50)
+## mitochondria (129 candidates, top 50)
 
 - **8** [always/never/because] · `01:11:21.900` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=4281)
   > why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when Blue's available but guess what your iPhone never does that's the whole
@@ -61,6 +61,10 @@
   > go away. Why? Because here's the good thing. Your country has great sun. &gt;&gt; And that's the single biggest thing. Your solar redux is the single fastest way to improve your mitochondria. The
 - **6** [causes/only] · `01:00:47.760` [UC 327: Water, Light and Magnetism for Health with Dr Jack K](https://www.youtube.com/watch?v=MSJk1RDH7Aw&t=3647)
   > Your solar redux is the single fastest way to improve your mitochondria. The problem is the water is so bad there that it can create big issues. Um,
+- **6** [must/because/fundamental] · `00:10:57.079` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=657)
+  > stop looking in the genome and I need to learn a little bit more about mitochondria because what is a mitoch Andria fundamentally it's an environmental
+- **6** [must/because/fundamental] · `00:51:36.599` [Dr Jack Kruse: WATER, non-native EMFs & mitochondrial basis ](https://www.youtube.com/watch?v=l9Ubguvfpys&t=3096)
+  > fundamentally false okay it's a sacred cow you need to go after means that you need to understand really how mitochondria work because of this change more and that's
 - **6** [must/causes/because] · `00:08:20.160` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=500)
   > mitochondria warberg shifts you so the way in&nbsp; which you breathe needs to come down well if you&nbsp;&nbsp; espouse a breathing technique that breathes faster&nbsp; do you see how the mismatch would cause a problem&nbsp;&nbsp; and and the problem is the sophistication of&nbs
 - **6** [always/never] · `00:45:19.280` [203: Dr. Jack Kruse - Bitcoin and Biology](https://www.youtube.com/watch?v=uzJYPj7mfyA&t=2719)
@@ -75,6 +79,10 @@
   > the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c oxidase and the other one big one is
 - **5** [always/because] · `01:45:36.040` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6336)
   > infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c oxidase and the other one big one is blood. Blood is 93% water. And remember,
+- **5** [always/because] · `00:02:18.879` [Power of Light in Cancer Healing | SP Mini ft. Dr. Jack Krus](https://www.youtube.com/watch?v=sjg8IUmbqSY&t=138)
+  > You understand why he'll continue to always be at risk? Because if he doesn't understand the story of melanin, vitamin D, melatonin, the control of apoptosis, and mitochondrial biology, like I just
+- **5** [always/because] · `00:02:21.200` [Power of Light in Cancer Healing | SP Mini ft. Dr. Jack Krus](https://www.youtube.com/watch?v=sjg8IUmbqSY&t=141)
+  > always be at risk? Because if he doesn't understand the story of melanin, vitamin D, melatonin, the control of apoptosis, and mitochondrial biology, like I just gave you five layers to this onion.
 - **5** [because/i-proved] · `03:02:47.520` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=10967)
   > you see it's got four red light chromophores&nbsp; 620 680 760 and 860. Chantal can tell you&nbsp;&nbsp; what are the frequencies that we program into&nbsp; the bed to everybody that comes in to see us&nbsp;&nbsp; those four and if you've got a brain problem I'm&nbsp; going to hi
 - **5** [never/because] · `00:31:41.480` [Why Mitochondria, Water, Light, Magnetism, & MitoHacking wit](https://www.youtube.com/watch?v=7SYSPlQa5eY&t=1901)
@@ -93,18 +101,10 @@
   > You'll learn about what survivor soup is. Survivor soup is actually how you create deuterium-depleted water in your body, especially if you have a serious mitochondrial disease. Probably the last thing that I would say is, over my 10 years being in public now and talking about th
 - **5** [always/causes] · `01:02:38.380` [Neuro Surgeon by Day | Mito Hacker By Night | Dr. Jack Kruse](https://www.youtube.com/watch?v=I537lQoiu5c&t=3758)
   > Survivor soup is actually how you create deuterium-depleted water in your body, especially if you have a serious mitochondrial disease. Probably the last thing that I would say is, over my 10 years being in public now and talking about this, always had a goal, actually make a qua
-- **5** [always/because] · `00:16:21.040` [Dr. Jack Kruse - Ketosis fails with circadian mismatches, qu](https://www.youtube.com/watch?v=SIs7wcGR0zY&t=981)
-  > people don't realize why cytochrome one is incredibly important because when [&nbsp;__&nbsp;] goes bad there cytochrome one is almost always next to where mitochondrial DNA is so when things go
-- **5** [always/because] · `00:16:23.880` [Dr. Jack Kruse - Ketosis fails with circadian mismatches, qu](https://www.youtube.com/watch?v=SIs7wcGR0zY&t=983)
-  > is incredibly important because when [&nbsp;__&nbsp;] goes bad there cytochrome one is almost always next to where mitochondrial DNA is so when things go bad there mitochondrial DNA goes bad
-- **5** [never/because] · `00:44:35.359` [Neurosurgeon talks about genetics and longevity: Dr jack kru](https://www.youtube.com/watch?v=sf9VNlTiq5s&t=2675)
-  > Michael Leven and never got a fundamental answer because he tells everybody EMF doesn't have any role in biology. I said well tell me how do we get mitochondrial holetypes because
-- **5** [always/because] · `01:11:17.520` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=4277)
-  > it may be somebody else that comes on a podcast it may begin to explain to you why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when
-- **5** [always/because] · `01:11:19.679` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=4279)
-  > podcast it may begin to explain to you why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when Blue's available but guess what your
+- **5** [always/fundamental] · `00:32:54.919` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=1974)
+  > mitochondria okay still think it's about food folks it's about light it's always been about light and you have to realize that life fundamentally is photoelectric okay technology in biology
 
-## melanin (82 candidates, top 50)
+## melanin (99 candidates, top 50)
 
 - **8** [never/because/i-proved] · `02:19:45.300` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=8385)
   > fascinated by it since I'm a little boy but I didn't know what melanin really did until I got to be about 40 years old then when I figured out I'm like this is the [&nbsp;__&nbsp;] Greatest Story never told
@@ -168,8 +168,18 @@
   > this is now beginning to make some sense but what&nbsp; happens what's the other effect with non-native&nbsp;&nbsp; EMF it degrades melanin so that's when you have to&nbsp; look at all the slides and I don't know if you've&nbsp;&nbsp; seen my slides that I've done from probably 1
 - **5** [always/because] · `01:10:01.200` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4201)
   > EMF it degrades melanin so that's when you have to&nbsp; look at all the slides and I don't know if you've&nbsp;&nbsp; seen my slides that I've done from probably 15&nbsp; to now I like to use this guy Alexander once a&nbsp;&nbsp; slide because he always shows you when you put&nb
+- **5** [always/because] · `00:02:18.879` [Power of Light in Cancer Healing | SP Mini ft. Dr. Jack Krus](https://www.youtube.com/watch?v=sjg8IUmbqSY&t=138)
+  > You understand why he'll continue to always be at risk? Because if he doesn't understand the story of melanin, vitamin D, melatonin, the control of apoptosis, and mitochondrial biology, like I just
+- **5** [always/because] · `00:02:21.200` [Power of Light in Cancer Healing | SP Mini ft. Dr. Jack Krus](https://www.youtube.com/watch?v=sjg8IUmbqSY&t=141)
+  > always be at risk? Because if he doesn't understand the story of melanin, vitamin D, melatonin, the control of apoptosis, and mitochondrial biology, like I just gave you five layers to this onion.
 - **5** [never/because] · `01:21:48.080` [Dr. Jack Kruse - Magnetism and Health](https://www.youtube.com/watch?v=0MmyVoqjkwQ&t=4908)
   > destroys melanin, turns it into dopamine? And that's a real problem, because then you become a low dopamine idiot that never realizes you can fix your problem.
+- **5** [always/because] · `00:30:43.320` [Cancer Prevention Secret: Sunlight Beats Food? | Dr. Jack Kr](https://www.youtube.com/watch?v=B8VcGXbKR34&t=1843)
+  > doctors tell you about the sun you understand why he'll continue to always be at risk because if he doesn't understand the story of melanin vitamin D melatonin the control of apoptosis and
+- **5** [always/because] · `00:30:45.000` [Cancer Prevention Secret: Sunlight Beats Food? | Dr. Jack Kr](https://www.youtube.com/watch?v=B8VcGXbKR34&t=1845)
+  > sun you understand why he'll continue to always be at risk because if he doesn't understand the story of melanin vitamin D melatonin the control of apoptosis and mitochondri biology like I just gave you
+- **5** [always/because] · `00:30:47.240` [Cancer Prevention Secret: Sunlight Beats Food? | Dr. Jack Kr](https://www.youtube.com/watch?v=B8VcGXbKR34&t=1847)
+  > always be at risk because if he doesn't understand the story of melanin vitamin D melatonin the control of apoptosis and mitochondri biology like I just gave you five layers to this onion uh absolutely
 - **5** [always/because] · `01:09:48.600` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4188)
   > ventricular system is actually an ultra filtrator&nbsp; of your blood so all of a sudden you start going&nbsp;&nbsp; this is now beginning to make some sense but what&nbsp; happens what's the other effect with non-native&nbsp;&nbsp; EMF it degrades melanin so that's when you have
 - **5** [always/because] · `01:10:06.900` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4206)
@@ -184,6 +194,8 @@
   > of all the luck and stuff you learned about&nbsp; me because of the cold thermogenesis stuff&nbsp;&nbsp; but you left me before you actually had to ask me&nbsp; the question about melanin and what's the story&nbsp;&nbsp; why is that leptin Milano courtin thing there what&nbsp; I 
 - **5** [never/because] · `01:17:41.940` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4661)
   > but you left me before you actually had to ask me&nbsp; the question about melanin and what's the story&nbsp;&nbsp; why is that leptin Milano courtin thing there what&nbsp; I did I didn't never got that far Jack tell me&nbsp;&nbsp; is that the part that's really important is that
+- **5** [always/because] · `00:02:17.280` [Power of Light in Cancer Healing | SP Mini ft. Dr. Jack Krus](https://www.youtube.com/watch?v=sjg8IUmbqSY&t=137)
+  > all the doctors tell you about the sun. You understand why he'll continue to always be at risk? Because if he doesn't understand the story of melanin, vitamin D, melatonin, the control of apoptosis,
 - **5** [never/because] · `00:53:07.200` [Dr. Jack Kruse on How Light Controls Metabolism & Diabetes |](https://www.youtube.com/watch?v=tg9c6shuazI&t=3187)
   > those are broken. So diabetics can never photo repair themselves because of this process. What allows them to gain control, get rid of the blue light and get melanin back in their body. So what
 - **5** [always/causes] · `01:19:28.640` [Dr. Jack Kruse on How Light Controls Metabolism & Diabetes |](https://www.youtube.com/watch?v=tg9c6shuazI&t=4768)
@@ -194,29 +206,33 @@
   > causes the translation of melanin. And then when you think about leptin and you put that slide up that I always put up that it acts at 220. Well [&nbsp;__&nbsp;] that's even below sunlight. Where's that light
 - **5** [never/because] · `00:17:50.559` [Dr. Jack Kruse UNFILTERED: The FULL 1-Hour Interview They Do](https://www.youtube.com/watch?v=usB5IKPK04E&t=1070)
   > from photosynthesis on. It's like you and Joe never look back and go, "What the [&nbsp;__&nbsp;] happened before?" Why don't we ever talk about the three billion years? You know why? Because that's the melanin
-- **5** [always/because] · `00:54:35.120` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=3275)
-  > retina. There's no oxygen there. What else isn't there? There's no melanin, either. And why is that the case? Because it's always photo-oxidized
-- **5** [causes/evidence] · `03:52:34.920` ["These People Must Pay" Bitcoin, Trump, COVID, and Zionism w](https://www.youtube.com/watch?v=yALOChgRrHQ&t=13954)
-  > causes it and what else does he find their vitamin D levels drop he didn't know about pomy but we now know yeah pomy drops so that means you have less melanin in your skin you remember in the
-- **5** [always/because] · `02:42:58.859` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9778)
-  > the one that I thought was just about obesity&nbsp; it turns out it's about [&nbsp;__&nbsp;] everything yeah&nbsp;&nbsp; tell me what happens always the screen does&nbsp; anything else work is a screen or it's only&nbsp;&nbsp; melanin well what did I tell you was the big&nbsp; se
-- **5** [always/because] · `02:43:04.319` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9784)
-  > tell me what happens always the screen does&nbsp; anything else work is a screen or it's only&nbsp;&nbsp; melanin well what did I tell you was the big&nbsp; semiconductor before the KT event hemoglobin&nbsp;&nbsp; we haven't even talked about that sucker but&nbsp; guess what that
-- **5** [always/because] · `00:44:36.520` [Dr. Jack Kruse - Magnetism and Health](https://www.youtube.com/watch?v=0MmyVoqjkwQ&t=2676)
-  > Mhm. So, guess what? The neural crest cells through evolution, through morphogenesis in mammals, always has melanin there. So, I get a calcium index score because
-- **5** [always/because] · `00:44:38.680` [Dr. Jack Kruse - Magnetism and Health](https://www.youtube.com/watch?v=0MmyVoqjkwQ&t=2678)
-  > cells through evolution, through morphogenesis in mammals, always has melanin there. So, I get a calcium index score because I know that wherever melanin is missing,
 
-## blue-light (56 candidates, top 50)
+## blue-light (77 candidates, top 50)
 
 - **9** [always/because/only] · `00:46:31.500` [Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTO](https://www.youtube.com/watch?v=cy8cByk8H00&t=2791)
   > really really appreciated because you know the one thing that's always flummoxed me he goes why do we have so much melanops in our brain we all know blue light doesn't get through
 - **9** [always/because/only] · `00:46:33.780` [Dr Jack Kruse _Anti-aging scientists wrong! Truth about  mTO](https://www.youtube.com/watch?v=cy8cByk8H00&t=2793)
   > because you know the one thing that's always flummoxed me he goes why do we have so much melanops in our brain we all know blue light doesn't get through our skull except through our eyes
+- **7** [causes/because/i-proved] · `00:05:44.229` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=344)
+  > and his papers that were published in science challenged that in a big way and I've been saying that for 15 years because it's how I figured out that blue light was the cause of my obesity and
+- **7** [causes/because/i-proved] · `00:05:45.850` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=345)
+  > science challenged that in a big way and I've been saying that for 15 years because it's how I figured out that blue light was the cause of my obesity and simplified my gut flora and what I did
+- **7** [causes/because/i-proved] · `00:05:48.669` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=348)
+  > I've been saying that for 15 years because it's how I figured out that blue light was the cause of my obesity and simplified my gut flora and what I did is I used the central retinal pathways
+- **7** [causes/because/i-proved] · `00:05:50.680` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=350)
+  > because it's how I figured out that blue light was the cause of my obesity and simplified my gut flora and what I did is I used the central retinal pathways and my skin as well as my gut surface to
+- **7** [never/causes/because] · `00:40:30.880` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2430)
+  > turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy it that's one of the causes of Lupton resistance you know then it turns out that your microbiome simplifies that's how Jack got fat and I realized that this was
+- **7** [never/causes/because] · `00:40:35.240` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2435)
+  > your diet why because blue light will destroy it that's one of the causes of Lupton resistance you know then it turns out that your microbiome simplifies that's how Jack got fat and I realized that this was a big issue the problem I never knew so I didn't know the link to melanop
 - **6** [must/causes/because] · `01:15:55.600` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4555)
   > from norcals work? We know that non-native EMF and blue light what's the fundamental thing they do? They cause a drop in NAD positive and pseudo hypoxia. That's all you need to know because what
 - **6** [must/causes/because] · `01:15:57.840` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4557)
   > non-native EMF and blue light what's the fundamental thing they do? They cause a drop in NAD positive and pseudo hypoxia. That's all you need to know because what happens then? Blood glucose spikes. So
+- **6** [must/causes/because] · `00:40:22.520` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2422)
+  > that's going on in the gut is radically different depending on the incident light EMF because it has to do with the free radical signal that's made and it turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy it th
+- **6** [must/causes/because] · `00:40:27.170` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2427)
+  > light EMF because it has to do with the free radical signal that's made and it turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy it that's one of the causes of Lupton resistance you know then it turns out that 
 - **6** [must/causes/because] · `00:07:55.200` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=475)
   > understand because I do think it's important that&nbsp; your breathing techniques should marry up to the&nbsp;&nbsp; environment that you're at why because let's just&nbsp; for argument sake say you're doing a breathing&nbsp;&nbsp; treatment and you're in London and they put you&
 - **6** [must/causes/because] · `00:08:02.480` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=482)
@@ -233,6 +249,14 @@
   > way these are. I'm grateful for the fact that I've always been a sun advocate and I'd never wear glasses hardly. And I really am excited now to look closer at things like the blue light blockers,
 - **6** [always/never] · `01:10:01.199` [UC 327: Water, Light and Magnetism for Health with Dr Jack K](https://www.youtube.com/watch?v=MSJk1RDH7Aw&t=4201)
   > that I've always been a sun advocate and I'd never wear glasses hardly. And I really am excited now to look closer at things like the blue light blockers, infrared, and of course, the most
+- **6** [must/only] · `01:30:03.440` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=5403)
+  > and I will tell you if you're a shift worker my advice term insurance make me the beneficiary it's KR e okay and it's the truth you need to protect blue light is the single biggest thing that's
+- **6** [must/only] · `01:30:07.960` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=5407)
+  > worker my advice term insurance make me the beneficiary it's KR e okay and it's the truth you need to protect blue light is the single biggest thing that's destroying us and here's the irony and I
+- **6** [must/only] · `01:30:10.760` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=5410)
+  > the beneficiary it's KR e okay and it's the truth you need to protect blue light is the single biggest thing that's destroying us and here's the irony and I don't know if Beth's still here it's the
+- **6** [must/only] · `01:30:12.679` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=5412)
+  > the truth you need to protect blue light is the single biggest thing that's destroying us and here's the irony and I don't know if Beth's still here it's the single biggest thing that's destroying
 - **6** [always/never] · `01:24:33.400` [Dr. Jack Kruse: Reclaim Your Health, Wealth & Freedom in the](https://www.youtube.com/watch?v=zik08V9waJk&t=5073)
   > guess what in the sun that's behind me you never get Blue by itself you always get the antidote with it that's the reason why blue light from the sun is not like blue light from your device
 - **6** [always/never] · `01:24:34.880` [Dr. Jack Kruse: Reclaim Your Health, Wealth & Freedom in the](https://www.youtube.com/watch?v=zik08V9waJk&t=5074)
@@ -247,6 +271,10 @@
   > six other colors with it and it turns out that blue light has to be have its antidote uh within the sun that's present red light is always present when blue light's
 - **5** [always/must] · `00:04:23.680` [Toxic Screens: How to Protect Eyes from Blue Light with Dr. ](https://www.youtube.com/watch?v=9zJynVS_rYc&t=263)
   > out that blue light has to be have its antidote uh within the sun that's present red light is always present when blue light's present
+- **5** [never/because] · `00:01:05.840` [Dr. Jack Kruse- the false belief that food and exercise is e](https://www.youtube.com/watch?v=AOLIbFIzPnI&t=65)
+  > that absorbed 340 nanometer light i never learned that cytochrome 2 absorbed more blue light because of the type of uh chromophore
+- **5** [never/because] · `00:01:08.799` [Dr. Jack Kruse- the false belief that food and exercise is e](https://www.youtube.com/watch?v=AOLIbFIzPnI&t=68)
+  > never learned that cytochrome 2 absorbed more blue light because of the type of uh chromophore that was present there it's a flavin
 - **5** [always/because] · `01:58:36.540` [Uncomfortable Truths with Dr Jack Kruse](https://www.youtube.com/watch?v=Zka4Lnire1k&t=7116)
   > text screen is always blue lit and it's always in the blue light Hazard between 435 and 465. I'm going to tell you the reason why because it lowers your dopamine level which means you degrade
 - **5** [never/must] · `01:16:07.960` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=4567)
@@ -275,45 +303,19 @@
   > your leptin resistant and leptin resistance is what causes obesity we now know all the effects of blue light this is the artificial light that were around here causes all these things take a look
 - **5** [never/because] · `00:53:07.200` [Dr. Jack Kruse on How Light Controls Metabolism & Diabetes |](https://www.youtube.com/watch?v=tg9c6shuazI&t=3187)
   > those are broken. So diabetics can never photo repair themselves because of this process. What allows them to gain control, get rid of the blue light and get melanin back in their body. So what
-- **5** [always/because] · `01:55:30.420` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6930)
-  > I'm always willing to update I eat them at night&nbsp; because they help me sleep well they will but&nbsp;&nbsp; why because you're blue eye toxic and if I had an&nbsp; LED light here and check your pupil I could prove&nbsp;&nbsp; to you that I'm right do you know why you're&nbsp
-- **5** [never/because] · `01:31:41.840` [#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Su](https://www.youtube.com/watch?v=-VFTXZrbyNA&t=5501)
-  > times is the correct remember that the the blue light from the Sun never not has red well is that true when you put your LED light on above you right now since it's getting dark in your
-- **5** [never/because] · `01:31:44.119` [#58: Dr Jack Kruse - High Latitude Living, Cold Exposure, Su](https://www.youtube.com/watch?v=-VFTXZrbyNA&t=5504)
-  > the blue light from the Sun never not has red well is that true when you put your LED light on above you right now since it's getting dark in your environment no but see that that's the
-- **5** [always/because] · `00:10:46.440` [Cracking the Health Code w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=4RlbKZrkgEg&t=646)
-  > problems in the basil gang it's at the substantial but guess what say if somebody got I don't know say melanoma first their problem may be they are always inside blue light because they're
-- **5** [always/because] · `00:10:48.360` [Cracking the Health Code w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=4RlbKZrkgEg&t=648)
-  > substantial but guess what say if somebody got I don't know say melanoma first their problem may be they are always inside blue light because they're an IT worker okay but are they more
-- **5** [always/because] · `00:10:50.519` [Cracking the Health Code w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=4RlbKZrkgEg&t=650)
-  > somebody got I don't know say melanoma first their problem may be they are always inside blue light because they're an IT worker okay but are they more likely to get Parkinson's or Hashimoto
-- **5** [always/because] · `00:10:51.760` [Cracking the Health Code w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=4RlbKZrkgEg&t=651)
-  > first their problem may be they are always inside blue light because they're an IT worker okay but are they more likely to get Parkinson's or Hashimoto yes how about the lady that's listening
-- **5** [always/because] · `00:10:54.639` [Cracking the Health Code w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=4RlbKZrkgEg&t=654)
-  > always inside blue light because they're an IT worker okay but are they more likely to get Parkinson's or Hashimoto yes how about the lady that's listening to this that has hashimotos I have it
-- **5** [always/because] · `01:06:49.680` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4009)
-  > more at night is because I think you're chronic blue light toxic. And what that means is you have a blue light hazard and it's because of your job. Because I always look at you when I see you on
-- **5** [always/because] · `01:06:51.840` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4011)
-  > chronic blue light toxic. And what that means is you have a blue light hazard and it's because of your job. Because I always look at you when I see you on social media and I notice your eyes
-- **5** [always/because] · `01:06:54.040` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4014)
-  > means is you have a blue light hazard and it's because of your job. Because I always look at you when I see you on social media and I notice your eyes aren't protected. And sometimes when
-- **5** [never/because] · `00:43:09.960` [Sunlight Is the Source of Life | Dr. Jack Kruse | EP 04](https://www.youtube.com/watch?v=6ClqKnD10p4&t=2589)
-  > because every single drug that we know has been tested in a lab under blue light how do we know that the effect is not going to be different under sunlight you don't know we never tested it
-- **5** [always/causes] · `00:07:17.040` [Neuro Surgeon by Day | Mito Hacker By Night | Dr. Jack Kruse](https://www.youtube.com/watch?v=I537lQoiu5c&t=437)
-  > Really all the moves in my life have always been associated with moving towards the sun, and getting blue light and non-AD BMF out of my life. It's not like this trend was new. This was a plan of mine for probably 10 years, but you know having a good idea without execution leads 
-- **5** [never/causes] · `00:54:15.589` [Neuro Surgeon by Day | Mito Hacker By Night | Dr. Jack Kruse](https://www.youtube.com/watch?v=I537lQoiu5c&t=3255)
-  > artificial blue light that really causes the cancer. Turns out that UV light taken out of its spectrum, so if you're thinking about the Pink Floyd album cover, remember, UV light only makes up purple. There's six other colors. UV light will never hurt you when the six other color
-- **5** [always/because] · `04:03:32.760` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=14612)
-  > people who don't use the UV light have noticed the skin that comes back after you use the blue light always has less pigment in it and I think the reason for that is because the way nature wants
-- **5** [always/because] · `04:03:35.159` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=14615)
-  > noticed the skin that comes back after you use the blue light always has less pigment in it and I think the reason for that is because the way nature wants this done it needs not only the nitric
-- **5** [always/because] · `04:03:37.960` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=14617)
-  > you use the blue light always has less pigment in it and I think the reason for that is because the way nature wants this done it needs not only the nitric oxide stimulus but it also needs the UV
+- **5** [causes/evidence] · `01:17:22.400` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4642)
+  > but if you can't do anything with the signal, you're leptin resistant. And leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light
+- **5** [causes/evidence] · `01:17:24.199` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4644)
+  > signal, you're leptin resistant. And leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light that we're around here. Causes all these
+- **5** [causes/evidence] · `01:17:27.679` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4647)
+  > leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light that we're around here. Causes all these things. Take a look at them. Every
 
-## red-light (54 candidates, top 50)
+## red-light (70 candidates, top 50)
 
 - **8** [always/never/because] · `01:11:21.900` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=4281)
   > why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when Blue's available but guess what your iPhone never does that's the whole
+- **8** [always/never/because] · `00:27:44.679` [Blue Light Kills the Fit People | Dr. Jack Kruse | EP 15](https://www.youtube.com/watch?v=0IjUzKzfIbI&t=1664)
+  > underwear yeah to come down because he technically gets red light when he does that and it the the answer always for every human is natural light no matter what is always better yeah never make
 - **8** [always/never/must] · `01:15:11.400` [Sunlight Is the Source of Life | Dr. Jack Kruse | EP 04](https://www.youtube.com/watch?v=6ClqKnD10p4&t=4511)
   > to send sets red light is always present UVA light UVB light especially where you guys are it changes die early and sees them so you need to realize that purple light is never present on Earth without
 - **7** [never/must/because] · `01:28:25.600` [#57 - Dr. Jack Kruse](https://www.youtube.com/watch?v=drdn_hDGALk&t=5305)
@@ -326,8 +328,18 @@
   > from plus two to plus three what do you need to&nbsp; know you don't need to know a lot of fancy signs&nbsp;&nbsp; oxygen delivers to mitochondria when it's plus&nbsp; three and the reason why is what we talked to&nbsp;&nbsp; Andrew before about oxygen is Paramount what does&nbsp
 - **6** [always/never] · `01:24:31.280` [Dr. Jack Kruse: Reclaim Your Health, Wealth & Freedom in the](https://www.youtube.com/watch?v=zik08V9waJk&t=5071)
   > red light is the antidote to Blue so guess what in the sun that's behind me you never get Blue by itself you always get the antidote with it that's the reason why blue light from the sun is
+- **6** [always/never] · `00:27:48.559` [Blue Light Kills the Fit People | Dr. Jack Kruse | EP 15](https://www.youtube.com/watch?v=0IjUzKzfIbI&t=1668)
+  > technically gets red light when he does that and it the the answer always for every human is natural light no matter what is always better yeah never make that mistake like the problem is when I
 - **6** [because/only] · `00:45:54.800` [Red Light, Blue Light, Brain Damage: Dr. Jack Kruse Explains](https://www.youtube.com/watch?v=2njvFN-W4zc&t=2754)
   > long enough, what do I tell you is the single most important thing to do for your health? Sunrise. Why is that? Because Sunrise has the highest quality red light. That's the stuff that you're
+- **6** [always/never] · `00:18:42.820` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=1122)
+  > his hosta study see how at the equator light never changes it's 12 hours of sunlight from sunup to sundown UV light shows up the same time every day red light is always present 12 hours a day
+- **6** [always/never] · `00:18:45.700` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=1125)
+  > light never changes it's 12 hours of sunlight from sunup to sundown UV light shows up the same time every day red light is always present 12 hours a day and the reason why Jeff found in the
+- **6** [because/only] · `00:40:47.720` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=2447)
+  > does your gut get that information because here's what most of your doctors listen to this and the patients that have these conditions don't know red light is the only part of the spectrum
+- **6** [because/only] · `00:40:48.980` [Blue Light, EMF, Circadian Rhythm, Mitochondria and Quantum ](https://www.youtube.com/watch?v=X5WCYlaPAwM&t=2448)
+  > because here's what most of your doctors listen to this and the patients that have these conditions don't know red light is the only part of the spectrum of light that penetrates to touch every
 - **6** [must/causes/because] · `01:27:49.440` [#57 - Dr. Jack Kruse](https://www.youtube.com/watch?v=drdn_hDGALk&t=5269)
   > useless for this. You need to use sun. There is absolutely no question. Why? Because what do we know about vortexing? We know that UV and near infrared light create a
 - **6** [must/causes/because] · `01:27:51.360` [#57 - Dr. Jack Kruse](https://www.youtube.com/watch?v=drdn_hDGALk&t=5271)
@@ -370,6 +382,18 @@
   > podcast it may begin to explain to you why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when Blue's available but guess what your
 - **5** [always/because] · `01:55:30.420` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6930)
   > I'm always willing to update I eat them at night&nbsp; because they help me sleep well they will but&nbsp;&nbsp; why because you're blue eye toxic and if I had an&nbsp; LED light here and check your pupil I could prove&nbsp;&nbsp; to you that I'm right do you know why you're&nbsp
+- **5** [always/because] · `00:27:39.240` [Blue Light Kills the Fit People | Dr. Jack Kruse | EP 15](https://www.youtube.com/watch?v=0IjUzKzfIbI&t=1659)
+  > to you guys you know he's in Germany I got him to ski the Bavarian Alps in his underwear yeah to come down because he technically gets red light when he does that and it the the answer always for
+- **5** [always/because] · `00:27:41.679` [Blue Light Kills the Fit People | Dr. Jack Kruse | EP 15](https://www.youtube.com/watch?v=0IjUzKzfIbI&t=1661)
+  > got him to ski the Bavarian Alps in his underwear yeah to come down because he technically gets red light when he does that and it the the answer always for every human is natural light no matter
+- **5** [never/because] · `01:32:18.840` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=5538)
+  > talking to me about before about big muscles uh the problem is when an orthopedic surgeon sees a bone at time of surgery he never sees a red light why because the light is conserved because
+- **5** [never/because] · `01:32:20.480` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=5540)
+  > muscles uh the problem is when an orthopedic surgeon sees a bone at time of surgery he never sees a red light why because the light is conserved because the current is rectified by two copper
+- **5** [never/because] · `01:32:22.639` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=5542)
+  > orthopedic surgeon sees a bone at time of surgery he never sees a red light why because the light is conserved because the current is rectified by two copper atoms that are in the appetite of bone
+- **5** [never/because] · `01:32:24.080` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=5544)
+  > of surgery he never sees a red light why because the light is conserved because the current is rectified by two copper atoms that are in the appetite of bone but does any orthopedic surgeon learn
 - **5** [always/because] · `01:45:29.120` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6329)
   > naked foot on the metal before I'd even use that. Or if you want to do one and the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in
 - **5** [always/must] · `01:15:01.860` [Sunlight Is the Source of Life | Dr. Jack Kruse | EP 04](https://www.youtube.com/watch?v=6ClqKnD10p4&t=4501)
@@ -388,33 +412,11 @@
   > Light is irreplaceable I always tell people when I do podcasts they always say joculus you're one actionable task the actionable task is you need to harvest as much red light as you
 - **5** [always/must] · `01:38:32.400` [Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Dis](https://www.youtube.com/watch?v=Ln3WszTq0uA&t=5912)
   > people when I do podcasts they always say joculus you're one actionable task the actionable task is you need to harvest as much red light as you possibly can when you have atrophic skin
-- **5** [never/because] · `02:10:38.520` [Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Dis](https://www.youtube.com/watch?v=Ln3WszTq0uA&t=7838)
-  > standpoint what does it tell me as a physician that person never went in the sun yeah because that's effectively what's happening that you are devoid of red light frequencies
-- **5** [never/because] · `02:10:40.800` [Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Dis](https://www.youtube.com/watch?v=Ln3WszTq0uA&t=7840)
-  > physician that person never went in the sun yeah because that's effectively what's happening that you are devoid of red light frequencies and you're paying the toll you're paying
-- **5** [always/because] · `03:16:56.520` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=11816)
-  > big warning on yeah the warning is always there because you're protecting the manufacturer but I would tell you when you realize that you know infrared a and near infrared light are in
-- **5** [always/because] · `03:16:58.560` [Exiled Brain Surgeon: DARPA Mind Control, Quantum Biology & ](https://www.youtube.com/watch?v=SiBFtwbyv44&t=11818)
-  > always there because you're protecting the manufacturer but I would tell you when you realize that you know infrared a and near infrared light are in sunlight it doesn't take a rocket
-- **5** [always/because] · `01:09:24.299` [Uncomfortable Truths with Dr Jack Kruse](https://www.youtube.com/watch?v=Zka4Lnire1k&t=4164)
-  > just the act of looking in there because I'm using a Xenon bulb on a Zeiss microscope is actually causing brain damage in my patient so why do I always put red light and UV light on the
-- **5** [never/must] · `01:28:22.400` [#57 - Dr. Jack Kruse](https://www.youtube.com/watch?v=drdn_hDGALk&t=5302)
-  > blood the most. If you run a test utilizing anybody's red light panel that's LED based, you will never change the dialectric constant of their fluid. Is that a study that needs to be done?
-- **5** [never/because] · `00:51:15.440` [Dr. Jack Kruse: Silent Weapons for Silent Wars](https://www.youtube.com/watch?v=fVUJyK_y3KY&t=3075)
-  > without red light. And that's the key of why you began to understand how nefarious Obama was because he took out UV and IR light so that you would never have it. That's what was in an
-- **5** [always/because] · `01:30:29.360` [Dr. Jack Kruse on How Light Controls Metabolism & Diabetes |](https://www.youtube.com/watch?v=tg9c6shuazI&t=5429)
-  > see on Twitter when people ask me what's the best red light? I always put sun is Tina. What does Tina stand for? There no alternative, right? Hopefully now you understand why I say this because of
-- **5** [always/because] · `01:30:32.080` [Dr. Jack Kruse on How Light Controls Metabolism & Diabetes |](https://www.youtube.com/watch?v=tg9c6shuazI&t=5432)
-  > the best red light? I always put sun is Tina. What does Tina stand for? There no alternative, right? Hopefully now you understand why I say this because of this story that I gave you for the last
-- **5** [never/because] · `00:24:08.400` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=1448)
-  > you have a solar deficiency so let me explain to&nbsp; you something that's really really interesting&nbsp;&nbsp; there's another European uh doctor who's pretty&nbsp; good about light his name is Alexander W he's in&nbsp;&nbsp; Germany and he's got slides that he shows if you&nb
-- **5** [never/because] · `00:24:15.680` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=1455)
-  > there's another European uh doctor who's pretty&nbsp; good about light his name is Alexander W he's in&nbsp;&nbsp; Germany and he's got slides that he shows if you&nbsp; use red light LED light now I'm not a big fan of&nbsp;&nbsp; that but I'll explain to you how this works and&n
-- **5** [never/because] · `00:24:20.720` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=1460)
-  > Germany and he's got slides that he shows if you&nbsp; use red light LED light now I'm not a big fan of&nbsp;&nbsp; that but I'll explain to you how this works and&nbsp; you pre-treat your skin for four to six weeks say&nbsp;&nbsp; before you go to Mexico you'll never get burned&
 
-## leptin (53 candidates, top 50)
+## leptin (68 candidates, top 50)
 
+- **8** [always/never/because] · `00:48:57.319` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=2937)
+  > leptin prescription never never dealt with why because remember when I wrote it I wrote it in 2005 to 2008 okay melan opson we didn't find out about until 2017 I always knew there was an option
 - **6** [because/only] · `00:02:43.620` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=163)
   > dopamine and all of that is occurring within&nbsp; the action Spectra of sunlight I'd also love&nbsp;&nbsp; to learn from you about how changes in Ozone are&nbsp; changing did you read 29 I did did you like the&nbsp;&nbsp; whole story from the beginning because when you&nbsp; see
 - **6** [must/because/fundamental] · `03:27:52.560` [Optimize Your Health in the Modern World with Dr. Jack Kruse](https://www.youtube.com/watch?v=mYMUiOMkKMM&t=12472)
@@ -447,6 +449,16 @@
   > light. UV light is the stimulus that causes the translation of melanin. And then when you think about leptin and you put that slide up that I always put up that it acts at 220. Well [&nbsp;__&nbsp;] that's
 - **5** [always/causes] · `01:19:34.400` [Dr. Jack Kruse on How Light Controls Metabolism & Diabetes |](https://www.youtube.com/watch?v=tg9c6shuazI&t=4774)
   > causes the translation of melanin. And then when you think about leptin and you put that slide up that I always put up that it acts at 220. Well [&nbsp;__&nbsp;] that's even below sunlight. Where's that light
+- **5** [always/causes] · `00:06:21.240` [Dr. Jack Kruse Explains How Sunlight Controls Leptin, Melani](https://www.youtube.com/watch?v=yo4h0B_JMQY&t=381)
+  > palm C without UV light. UV light is the stimulus that causes the translation of melanin. And then when you think about leptin and you put that slide up that I always put
+- **5** [always/causes] · `00:06:22.640` [Dr. Jack Kruse Explains How Sunlight Controls Leptin, Melani](https://www.youtube.com/watch?v=yo4h0B_JMQY&t=382)
+  > stimulus that causes the translation of melanin. And then when you think about leptin and you put that slide up that I always put out
+- **5** [causes/evidence] · `01:17:22.400` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4642)
+  > but if you can't do anything with the signal, you're leptin resistant. And leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light
+- **5** [causes/evidence] · `01:17:24.199` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4644)
+  > signal, you're leptin resistant. And leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light that we're around here. Causes all these
+- **5** [causes/evidence] · `01:17:27.679` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=4647)
+  > leptin resistance is what causes obesity. We now know all the effects of blue light. This is the artificial light that we're around here. Causes all these things. Take a look at them. Every
 - **5** [because/i-proved] · `03:02:53.580` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=10973)
   > what are the frequencies that we program into&nbsp; the bed to everybody that comes in to see us&nbsp;&nbsp; those four and if you've got a brain problem I'm&nbsp; going to hit you with 1535 why because it controls&nbsp;&nbsp; proton movement in your mitochondria so how did&nbsp;
 - **5** [because/i-proved] · `03:02:59.040` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=10979)
@@ -455,6 +467,12 @@
   > fast at night. So here's the other part that we didn't talk about, but we need to. When you get the leptin prescription right, you're going to find that you're always going to eat dinner while the sun
 - **5** [always/must] · `00:30:04.720` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=1804)
   > that we didn't talk about, but we need to. When you get the leptin prescription right, you're going to find that you're always going to eat dinner while the sun is still out. Now, you know, you've been
+- **5** [never/because] · `00:48:52.000` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=2932)
+  > that most of you don't live in the environment that I'm in right now you're afflicted by the other part that the leptin prescription never never dealt with why because remember when I wrote
+- **5** [never/because] · `00:48:54.440` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=2934)
+  > environment that I'm in right now you're afflicted by the other part that the leptin prescription never never dealt with why because remember when I wrote it I wrote it in 2005 to 2008 okay melan
+- **5** [never/because] · `00:48:56.040` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=2936)
+  > afflicted by the other part that the leptin prescription never never dealt with why because remember when I wrote it I wrote it in 2005 to 2008 okay melan opson we didn't find out about until
 - **5** [never/because] · `00:03:19.000` [Cracking the Health Code w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=4RlbKZrkgEg&t=199)
   > going to block it because it was about leptin trials and the leptin drug and Amgen and uh he said why don't you just put on the internet and I was like you know for me the internet I never use the
 - **5** [never/because] · `00:03:14.640` [Dr. Jack Kruse Reveals Insights _Banned TED Talk 2012](https://www.youtube.com/watch?v=7IjfRQSRLt8&t=194)
@@ -465,6 +483,12 @@
   > when you read that blog post you'll never hear me talk about light but really the letin prescription is all about light fundamentally when you break it down well between the leptin receptor
 - **5** [never/fundamental] · `00:05:50.240` [Why Mitochondria, Water, Light, Magnetism, & MitoHacking wit](https://www.youtube.com/watch?v=7SYSPlQa5eY&t=350)
   > never hear me talk about light but really the letin prescription is all about light fundamentally when you break it down well between the leptin receptor and your retina is a thing called the
+- **5** [always/must] · `00:20:30.640` [How Obesity Begins in the Eye & How Sunlight is the Driving ](https://www.youtube.com/watch?v=AFLFYVgFI68&t=1230)
+  > so that it knows precisely what the energy balance is well turns out leptin has to have another photoreceptor in order for it to work i mean remember how i always
+- **5** [always/must] · `00:20:33.360` [How Obesity Begins in the Eye & How Sunlight is the Driving ](https://www.youtube.com/watch?v=AFLFYVgFI68&t=1233)
+  > energy balance is well turns out leptin has to have another photoreceptor in order for it to work i mean remember how i always talk to people about
+- **5** [always/must] · `00:20:34.000` [How Obesity Begins in the Eye & How Sunlight is the Driving ](https://www.youtube.com/watch?v=AFLFYVgFI68&t=1234)
+  > leptin has to have another photoreceptor in order for it to work i mean remember how i always talk to people about everything in biology is a coupled
 - **5** [never/because] · `00:02:09.239` [Neuro Surgeon by Day | Mito Hacker By Night | Dr. Jack Kruse](https://www.youtube.com/watch?v=I537lQoiu5c&t=129)
   > She goes, "Look, I know why this happened to you. I'm going to send you six papers and a book." That jumped me down the rabbit hole. She was trying to give me information tied to a hormone called leptin that I had absolutely never heard about, because I graduated in medical schoo
 - **5** [never/because] · `00:02:10.920` [Neuro Surgeon by Day | Mito Hacker By Night | Dr. Jack Kruse](https://www.youtube.com/watch?v=I537lQoiu5c&t=130)
@@ -491,32 +515,8 @@
   > me a long time ago. Um I just never told you really what pinned down the leptin prescription, the cold thermogenesis protocol. I never really got into the physics behind it because I knew most
 - **5** [never/because] · `00:02:49.440` [UC 327: Water, Light and Magnetism for Health with Dr Jack K](https://www.youtube.com/watch?v=MSJk1RDH7Aw&t=169)
   > you really what pinned down the leptin prescription, the cold thermogenesis protocol. I never really got into the physics behind it because I knew most people back then. Um, we're still in a
-- **5** [never/because] · `01:17:50.100` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4670)
-  > why is that leptin Milano courtin thing there what&nbsp; I did I didn't never got that far Jack tell me&nbsp;&nbsp; is that the part that's really important is that&nbsp; the part that we're kind of missing are we are we&nbsp;&nbsp; not paying attention to the whole story because
-- **5** [never/because] · `00:02:30.560` [Dr Jack Kruse On What Big Pharma & Big Food DON’T Want You t](https://www.youtube.com/watch?v=tha7IPtUTAU&t=150)
-  > second and the name of the book was uh monk Who Sold us for and then the papers were all about a hormone called leptin and I had never learned about leptin because it was
-- **5** [never/because] · `00:02:32.680` [Dr Jack Kruse On What Big Pharma & Big Food DON’T Want You t](https://www.youtube.com/watch?v=tha7IPtUTAU&t=152)
-  > monk Who Sold us for and then the papers were all about a hormone called leptin and I had never learned about leptin because it was discovered after I had finished my
-- **5** [never/because] · `00:02:34.959` [Dr Jack Kruse On What Big Pharma & Big Food DON’T Want You t](https://www.youtube.com/watch?v=tha7IPtUTAU&t=154)
-  > and then the papers were all about a hormone called leptin and I had never learned about leptin because it was discovered after I had finished my training so it was kind of um
-- **5** [never/because] · `00:02:36.720` [Dr Jack Kruse On What Big Pharma & Big Food DON’T Want You t](https://www.youtube.com/watch?v=tha7IPtUTAU&t=156)
-  > hormone called leptin and I had never learned about leptin because it was discovered after I had finished my training so it was kind of um interesting and I went down the rabbit
-- **5** [never/because] · `00:49:40.800` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=2980)
-  > really causing. Why? Because big pharma did a spectacular job hiding this basic information that I'm telling you by making sure that the leptin trials never went to to full course.
-- **5** [never/because] · `01:53:14.159` [Dr. Jack Kruse: Reclaim Your Health, Wealth & Freedom in the](https://www.youtube.com/watch?v=zik08V9waJk&t=6794)
-  > these drugs why when the synthetic leptin trials that I told you about in the Paleo times got canceled I never told you the reason why they were cancelled because they were using these
-- **5** [never/because] · `01:53:17.119` [Dr. Jack Kruse: Reclaim Your Health, Wealth & Freedom in the](https://www.youtube.com/watch?v=zik08V9waJk&t=6797)
-  > leptin trials that I told you about in the Paleo times got canceled I never told you the reason why they were cancelled because they were using these peptides to actually control obesity
-- **5** [never/because] · `01:40:52.260` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6052)
-  > than exercise more and it didn't work I put 30&nbsp; pounds on I said why don't I give crazy a shot&nbsp;&nbsp; nothing to lose all right so I went and did it&nbsp; and guess what 11 months I lost 133 pounds you're&nbsp;&nbsp; gonna tell us what you did yeah it's called the&nbsp;
-- **5** [never/because] · `01:40:57.900` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6057)
-  > nothing to lose all right so I went and did it&nbsp; and guess what 11 months I lost 133 pounds you're&nbsp;&nbsp; gonna tell us what you did yeah it's called the&nbsp; leptin prescription it's on on my Jack crews.com&nbsp;&nbsp; site six steps if you read it you'll never&nbsp; s
-- **5** [never/because] · `01:41:04.020` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6064)
-  > gonna tell us what you did yeah it's called the&nbsp; leptin prescription it's on on my Jack crews.com&nbsp;&nbsp; site six steps if you read it you'll never&nbsp; see anything that we're talking about today&nbsp;&nbsp; that blog is just like Rick's book it's written&nbsp; with w
-- **5** [never/because] · `01:41:11.100` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6071)
-  > site six steps if you read it you'll never&nbsp; see anything that we're talking about today&nbsp;&nbsp; that blog is just like Rick's book it's written&nbsp; with words without signs why because I knew if&nbsp;&nbsp; I told you the truth you'd get the same story&nbsp; that you g
 
-## vitamin-d (37 candidates, top 50)
+## vitamin-d (52 candidates, top 50)
 
 - **8** [must/because/only] · `00:29:18.159` [Toxic Screens: How to Protect Eyes from Blue Light with Dr. ](https://www.youtube.com/watch?v=9zJynVS_rYc&t=1758)
   > sense because that lowers your vitamin d level and that's the one thing that's been shown to be very beneficial for kovit19 so i think people need to realize that
@@ -536,16 +536,34 @@
   > a scientific basis make absolutely no sense because that lowers your vitamin d level and that's the one thing that's been shown to be very beneficial for kovit19
 - **6** [must/only] · `00:29:20.880` [Toxic Screens: How to Protect Eyes from Blue Light with Dr. ](https://www.youtube.com/watch?v=9zJynVS_rYc&t=1760)
   > that lowers your vitamin d level and that's the one thing that's been shown to be very beneficial for kovit19 so i think people need to realize that blue blocking should be used while
+- **6** [must/causes/because] · `00:11:09.360` [How Obesity Begins in the Eye & How Sunlight is the Driving ](https://www.youtube.com/watch?v=AFLFYVgFI68&t=669)
+  > lowers your vitamin d by design so it actually creates a huge problem in your body and believe it or not when vitamin d drops what do you need to know because let's face it the
+- **6** [must/causes/because] · `00:11:10.720` [How Obesity Begins in the Eye & How Sunlight is the Driving ](https://www.youtube.com/watch?v=AFLFYVgFI68&t=670)
+  > so it actually creates a huge problem in your body and believe it or not when vitamin d drops what do you need to know because let's face it the current events right now globally
 - **6** [must/causes/because] · `01:31:48.120` [Uncomfortable Truths with Dr Jack Kruse](https://www.youtube.com/watch?v=Zka4Lnire1k&t=5508)
   > like people don't realize when you take vitamin D pills what you're effectively doing because that's a fat lipid to get it to where it needs to go you have to create cholesterol in you LDL
 - **6** [must/causes/because] · `01:31:50.520` [Uncomfortable Truths with Dr Jack Kruse](https://www.youtube.com/watch?v=Zka4Lnire1k&t=5510)
   > vitamin D pills what you're effectively doing because that's a fat lipid to get it to where it needs to go you have to create cholesterol in you LDL cholesterol to bring into those organs
+- **5** [always/because] · `00:02:18.879` [Power of Light in Cancer Healing | SP Mini ft. Dr. Jack Krus](https://www.youtube.com/watch?v=sjg8IUmbqSY&t=138)
+  > You understand why he'll continue to always be at risk? Because if he doesn't understand the story of melanin, vitamin D, melatonin, the control of apoptosis, and mitochondrial biology, like I just
+- **5** [always/because] · `00:02:21.200` [Power of Light in Cancer Healing | SP Mini ft. Dr. Jack Krus](https://www.youtube.com/watch?v=sjg8IUmbqSY&t=141)
+  > always be at risk? Because if he doesn't understand the story of melanin, vitamin D, melatonin, the control of apoptosis, and mitochondrial biology, like I just gave you five layers to this onion.
 - **5** [never/because] · `00:31:41.480` [Why Mitochondria, Water, Light, Magnetism, & MitoHacking wit](https://www.youtube.com/watch?v=7SYSPlQa5eY&t=1901)
   > that's the reason why you can be Buck ass naked in Los Angeles and your vitamin D will never go up because to actually make vitamin D your mitochondria have to make water because
 - **5** [never/because] · `00:31:44.039` [Why Mitochondria, Water, Light, Magnetism, & MitoHacking wit](https://www.youtube.com/watch?v=7SYSPlQa5eY&t=1904)
   > ass naked in Los Angeles and your vitamin D will never go up because to actually make vitamin D your mitochondria have to make water because one of the things that people are not up
 - **5** [never/because] · `00:31:45.960` [Why Mitochondria, Water, Light, Magnetism, & MitoHacking wit](https://www.youtube.com/watch?v=7SYSPlQa5eY&t=1905)
   > vitamin D will never go up because to actually make vitamin D your mitochondria have to make water because one of the things that people are not up on is all these little details so people
+- **5** [always/because] · `00:30:43.320` [Cancer Prevention Secret: Sunlight Beats Food? | Dr. Jack Kr](https://www.youtube.com/watch?v=B8VcGXbKR34&t=1843)
+  > doctors tell you about the sun you understand why he'll continue to always be at risk because if he doesn't understand the story of melanin vitamin D melatonin the control of apoptosis and
+- **5** [always/because] · `00:30:45.000` [Cancer Prevention Secret: Sunlight Beats Food? | Dr. Jack Kr](https://www.youtube.com/watch?v=B8VcGXbKR34&t=1845)
+  > sun you understand why he'll continue to always be at risk because if he doesn't understand the story of melanin vitamin D melatonin the control of apoptosis and mitochondri biology like I just gave you
+- **5** [always/because] · `00:30:47.240` [Cancer Prevention Secret: Sunlight Beats Food? | Dr. Jack Kr](https://www.youtube.com/watch?v=B8VcGXbKR34&t=1847)
+  > always be at risk because if he doesn't understand the story of melanin vitamin D melatonin the control of apoptosis and mitochondri biology like I just gave you five layers to this onion uh absolutely
+- **5** [never/must] · `00:33:41.840` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2021)
+  > that they can absorb light what is hemoglobin absorb 250 to 600 nanometer light so red blood cells are ferryboats hmm then to work operationally they have to be sulfated what else do you know in your body that has to be sulfated most people never talk about cholesterol and vitami
+- **5** [always/because] · `00:02:17.280` [Power of Light in Cancer Healing | SP Mini ft. Dr. Jack Krus](https://www.youtube.com/watch?v=sjg8IUmbqSY&t=137)
+  > all the doctors tell you about the sun. You understand why he'll continue to always be at risk? Because if he doesn't understand the story of melanin, vitamin D, melatonin, the control of apoptosis,
 - **5** [causes/evidence] · `03:52:30.319` ["These People Must Pay" Bitcoin, Trump, COVID, and Zionism w](https://www.youtube.com/watch?v=yALOChgRrHQ&t=13950)
   > Clean Diet Becker finds out that all the avionics in the plane the non-mf is what causes it and what else does he find their vitamin D levels drop he didn't know about pomy but we now know yeah
 - **5** [causes/evidence] · `03:52:34.920` ["These People Must Pay" Bitcoin, Trump, COVID, and Zionism w](https://www.youtube.com/watch?v=yALOChgRrHQ&t=13954)
@@ -562,6 +580,12 @@
   > going to say oh look you got this cut off you got that cut off but they never ever ever check your vitamin D level because technically if the Sun is toxic everybody's vitamin D should be I don't
 - **5** [never/because] · `00:37:36.680` [Nature’s Hidden Healing Powers w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=CVz-5qK4zBE&t=2256)
   > off you got that cut off but they never ever ever check your vitamin D level because technically if the Sun is toxic everybody's vitamin D should be I don't know 150 to 200 you know what you're
+- **5** [never/must] · `00:33:48.600` [How Our Gut health is linkd with the Sun ... by Dr Jack Krus](https://www.youtube.com/watch?v=Mb8lQtKduVI&t=2028)
+  > work operationally they have to be sulfated what else do you know in your body that has to be sulfated most people never talk about cholesterol and vitamin D do you know that vitamin D is made
+- **5** [never/must] · `00:33:51.399` [How Our Gut health is linkd with the Sun ... by Dr Jack Krus](https://www.youtube.com/watch?v=Mb8lQtKduVI&t=2031)
+  > sulfated what else do you know in your body that has to be sulfated most people never talk about cholesterol and vitamin D do you know that vitamin D is made from cholesterol
+- **5** [never/must] · `00:33:53.760` [How Our Gut health is linkd with the Sun ... by Dr Jack Krus](https://www.youtube.com/watch?v=Mb8lQtKduVI&t=2033)
+  > body that has to be sulfated most people never talk about cholesterol and vitamin D do you know that vitamin D is made from cholesterol there's only one hydrogen difference and
 - **5** [never/because] · `01:29:10.800` [Uncomfortable Truths with Dr Jack Kruse](https://www.youtube.com/watch?v=Zka4Lnire1k&t=5350)
   > bloodstream to the liver and the kidney to be changed but this is the key point the reason why so many people from the UK can go to the sun stay out and never raise their vitamin D up because they
 - **5** [never/because] · `01:29:13.199` [Uncomfortable Truths with Dr Jack Kruse](https://www.youtube.com/watch?v=Zka4Lnire1k&t=5353)
@@ -570,6 +594,12 @@
   > the reason why so many people from the UK can go to the sun stay out and never raise their vitamin D up because they don't realize that their cholesterol on their surface doesn't allow the process
 - **5** [never/because] · `01:29:17.460` [Uncomfortable Truths with Dr Jack Kruse](https://www.youtube.com/watch?v=Zka4Lnire1k&t=5357)
   > UK can go to the sun stay out and never raise their vitamin D up because they don't realize that their cholesterol on their surface doesn't allow the process to happen there's a photo isomerization
+- **5** [never/must] · `00:33:47.990` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2027)
+  > nanometer light so red blood cells are ferryboats hmm then to work operationally they have to be sulfated what else do you know in your body that has to be sulfated most people never talk about cholesterol and vitamin D you know that vitamin D is made from cholesterol there's onl
+- **5** [never/must] · `00:33:53.000` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2033)
+  > hmm then to work operationally they have to be sulfated what else do you know in your body that has to be sulfated most people never talk about cholesterol and vitamin D you know that vitamin D is made from cholesterol there's only one hydrogen difference and a little bond that's
+- **5** [never/must] · `00:33:59.540` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2039)
+  > your body that has to be sulfated most people never talk about cholesterol and vitamin D you know that vitamin D is made from cholesterol there's only one hydrogen difference and a little bond that's not there and 312 nanometer light which is UVB light does this well once that is
 - **5** [never/because] · `00:58:01.520` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=3481)
   > where you live on this planet will determine your level of vitamin D so for example if you live in Sweden you're not going to have a high level of vitamin D ever because the sun's power it never
 - **5** [never/because] · `00:58:03.960` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=3483)
@@ -588,12 +618,85 @@
   > going and hiring a guy at the gym to do push-ups&nbsp; for you and thinking you're getting the benefit&nbsp;&nbsp; that's the analogy I want you to&nbsp; understand now the caveat is as a physician&nbsp;&nbsp; is there times where I'll use different substances&nbsp; that I would 
 - **5** [always/because] · `01:52:19.860` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6739)
   > that's the analogy I want you to&nbsp; understand now the caveat is as a physician&nbsp;&nbsp; is there times where I'll use different substances&nbsp; that I would consider as a supplement for example&nbsp;&nbsp; the big one that I always get asked about is&nbsp; vitamin D I don
-- **5** [always/because] · `01:52:25.080` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6745)
-  > is there times where I'll use different substances&nbsp; that I would consider as a supplement for example&nbsp;&nbsp; the big one that I always get asked about is&nbsp; vitamin D I don't want the lay public taken&nbsp;&nbsp; care of it but I can't practice medicine on the&nbsp; 
-- **5** [always/because] · `01:52:29.160` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=6749)
-  > the big one that I always get asked about is&nbsp; vitamin D I don't want the lay public taken&nbsp;&nbsp; care of it but I can't practice medicine on the&nbsp; internet because a lot of people ask me questions&nbsp;&nbsp; on patreon on Facebook and Twitter but I do tell&nbsp; th
 
-## circadian (34 candidates, top 50)
+## EMF (37 candidates, top 50)
+
+- **8** [never/must/evidence] · `00:50:56.160` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3056)
+  > science is maybe we need to go back and re-look at this with A New Perspective now that never happened but that study was out there and we now know there is non-native EMF effects the the reason
+- **7** [always/causes/because] · `01:24:56.040` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=5096)
+  > don't feel an effect from it I was always wondering well if grounding is so important why is this not producing any effect for me well a lot of times it's because most of them cause their own EMF
+- **7** [always/causes/because] · `01:24:58.199` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=5098)
+  > always wondering well if grounding is so important why is this not producing any effect for me well a lot of times it's because most of them cause their own EMF problems to begin with and remember I'm
+- **7** [always/causes/because] · `01:50:04.860` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6604)
+  > that you have other uh needs and requirements in&nbsp; you that eating a a vegan diet or a vegetarian&nbsp;&nbsp; diet it's not wise now it doesn't mean you&nbsp; can't get away doing it for a long time we saw&nbsp;&nbsp; that for 5 000 years people in Southern India&nbsp; were a
+- **7** [always/causes/because] · `01:50:09.660` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6609)
+  > diet it's not wise now it doesn't mean you&nbsp; can't get away doing it for a long time we saw&nbsp;&nbsp; that for 5 000 years people in Southern India&nbsp; were able to do it but guess what people in&nbsp;&nbsp; Southern India used to be constantly outside&nbsp; no non-native
+- **7** [always/causes/because] · `01:50:17.220` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6617)
+  > that for 5 000 years people in Southern India&nbsp; were able to do it but guess what people in&nbsp;&nbsp; Southern India used to be constantly outside&nbsp; no non-native EMF always in the sun grounded&nbsp;&nbsp; now in the last 25 years since Google and Facebook&nbsp; moved a
+- **7** [always/causes/because] · `01:50:24.180` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6624)
+  > Southern India used to be constantly outside&nbsp; no non-native EMF always in the sun grounded&nbsp;&nbsp; now in the last 25 years since Google and Facebook&nbsp; moved all their stuff over there they create they&nbsp;&nbsp; have created the most diabetics in the world&nbsp; co
+- **6** [must/causes/because] · `01:15:55.600` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4555)
+  > from norcals work? We know that non-native EMF and blue light what's the fundamental thing they do? They cause a drop in NAD positive and pseudo hypoxia. That's all you need to know because what
+- **6** [must/causes/because] · `01:15:57.840` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4557)
+  > non-native EMF and blue light what's the fundamental thing they do? They cause a drop in NAD positive and pseudo hypoxia. That's all you need to know because what happens then? Blood glucose spikes. So
+- **6** [must/causes/because] · `00:40:22.520` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2422)
+  > that's going on in the gut is radically different depending on the incident light EMF because it has to do with the free radical signal that's made and it turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy it th
+- **6** [must/causes/because] · `00:40:27.170` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2427)
+  > light EMF because it has to do with the free radical signal that's made and it turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy it that's one of the causes of Lupton resistance you know then it turns out that 
+- **6** [never/evidence] · `00:50:59.579` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3059)
+  > re-look at this with A New Perspective now that never happened but that study was out there and we now know there is non-native EMF effects the the reason why it's important for me to tell you
+- **6** [never/evidence] · `00:51:01.920` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3061)
+  > now that never happened but that study was out there and we now know there is non-native EMF effects the the reason why it's important for me to tell you about the story that's exactly what
+- **5** [always/because] · `01:09:55.020` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4195)
+  > this is now beginning to make some sense but what&nbsp; happens what's the other effect with non-native&nbsp;&nbsp; EMF it degrades melanin so that's when you have to&nbsp; look at all the slides and I don't know if you've&nbsp;&nbsp; seen my slides that I've done from probably 1
+- **5** [always/because] · `01:10:01.200` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4201)
+  > EMF it degrades melanin so that's when you have to&nbsp; look at all the slides and I don't know if you've&nbsp;&nbsp; seen my slides that I've done from probably 15&nbsp; to now I like to use this guy Alexander once a&nbsp;&nbsp; slide because he always shows you when you put&nb
+- **5** [never/because] · `00:47:58.240` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=2878)
+  > never get to the regeneration pathway. That's actually on ankcoenesis. And that's effectively what's happening in the world today. Why? Because it turns out blue light and non-native EMF,
+- **5** [never/must] · `01:16:07.960` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=4567)
+  > need to realize girls are now having precocious puberty you know at six seven years old that's the effect of blue light and on Native EMF so that means they're never going to make it you know
+- **5** [always/because] · `01:09:48.600` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4188)
+  > ventricular system is actually an ultra filtrator&nbsp; of your blood so all of a sudden you start going&nbsp;&nbsp; this is now beginning to make some sense but what&nbsp; happens what's the other effect with non-native&nbsp;&nbsp; EMF it degrades melanin so that's when you have
+- **5** [never/because] · `00:44:35.359` [Neurosurgeon talks about genetics and longevity: Dr jack kru](https://www.youtube.com/watch?v=sf9VNlTiq5s&t=2675)
+  > Michael Leven and never got a fundamental answer because he tells everybody EMF doesn't have any role in biology. I said well tell me how do we get mitochondrial holetypes because
+- **5** [always/because] · `01:45:18.400` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6318)
+  > told you, anything that's infrared, as long as it's not run off any kind of EMF, helps because what does that do? It builds the regeneration programs up. That's great, but I would always put my
+- **5** [always/because] · `01:45:20.440` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6320)
+  > long as it's not run off any kind of EMF, helps because what does that do? It builds the regeneration programs up. That's great, but I would always put my naked foot on the metal before I'd even
+- **5** [always/because] · `01:45:22.880` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6322)
+  > EMF, helps because what does that do? It builds the regeneration programs up. That's great, but I would always put my naked foot on the metal before I'd even use that. Or if you want to do one and
+- **5** [always/because] · `00:52:50.799` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=3170)
+  > reflective and perhaps even multiplying the EMF back into a different that's what I've always that's what I've always wondered with like the EMF clothing and stuff because it's not closed like your
+- **5** [always/because] · `00:52:52.280` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=3172)
+  > the EMF back into a different that's what I've always that's what I've always wondered with like the EMF clothing and stuff because it's not closed like your head's sticking out of it your arms are
+- **5** [always/because] · `00:52:54.280` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=3174)
+  > what I've always that's what I've always wondered with like the EMF clothing and stuff because it's not closed like your head's sticking out of it your arms are sticking out of it it's like is it just
+- **5** [always/because] · `00:05:30.460` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=330)
+  > the light of the star in the sky and the problem is 99% of people in the world today no longer live under that light and it turns out most of the chronic disease paradigms almost always involve light at some level and it turned out my obesity I realized was tied to the new light 
+- **5** [always/because] · `00:05:37.180` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=337)
+  > today no longer live under that light and it turns out most of the chronic disease paradigms almost always involve light at some level and it turned out my obesity I realized was tied to the new light at night and a lack of sunlight during the day and turned out a lot of non-nati
+- **5** [always/because] · `00:05:42.400` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=342)
+  > disease paradigms almost always involve light at some level and it turned out my obesity I realized was tied to the new light at night and a lack of sunlight during the day and turned out a lot of non-native EMF because of my job why as a neurosurgeon most people get hurt you kno
+- **5** [always/must] · `01:49:59.520` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6599)
+  > you know a nematode and you need to realize&nbsp; that you need to be smart enough to understand&nbsp;&nbsp; that you have other uh needs and requirements in&nbsp; you that eating a a vegan diet or a vegetarian&nbsp;&nbsp; diet it's not wise now it doesn't mean you&nbsp; can't ge
+- **5** [always/because] · `01:01:49.839` [DR. KRUSE: Your Body Was Designed for 500 Years Ago](https://www.youtube.com/watch?v=pKEOaE3VTJA&t=3709)
+  > music's so loud." No, it wasn't. It was because the EMF that they had from their electric guitars from working at night. Got it. That's where that makes sense. Of course, it makes sense. It's always
+- **5** [always/because] · `01:01:52.720` [DR. KRUSE: Your Body Was Designed for 500 Years Ago](https://www.youtube.com/watch?v=pKEOaE3VTJA&t=3712)
+  > because the EMF that they had from their electric guitars from working at night. Got it. That's where that makes sense. Of course, it makes sense. It's always makes sense when it's decentralized. But
+- **5** [always/because] · `01:20:09.440` [The War on Sunlight Is Real (And It’s Not an Accident) | Dr.](https://www.youtube.com/watch?v=qa3FaUXZFSc&t=4809)
+  > neurologic deficit tied to non-native EMF toxicity. Guess why? Because everything he did was based on digitization. He was always around a computer.
+- **5** [always/because] · `01:20:12.080` [The War on Sunlight Is Real (And It’s Not an Accident) | Dr.](https://www.youtube.com/watch?v=qa3FaUXZFSc&t=4812)
+  > EMF toxicity. Guess why? Because everything he did was based on digitization. He was always around a computer. So what happens in the time between Sham
+- **5** [never/because] · `00:44:32.880` [Neurosurgeon talks about genetics and longevity: Dr jack kru](https://www.youtube.com/watch?v=sf9VNlTiq5s&t=2672)
+  > about, Africa, I ask this question all the time. I even asked this question to Michael Leven and never got a fundamental answer because he tells everybody EMF doesn't have any role in
+- **5** [never/because] · `00:44:34.079` [Neurosurgeon talks about genetics and longevity: Dr jack kru](https://www.youtube.com/watch?v=sf9VNlTiq5s&t=2674)
+  > the time. I even asked this question to Michael Leven and never got a fundamental answer because he tells everybody EMF doesn't have any role in biology. I said well tell me how do we
+- **5** [always/because] · `00:58:09.119` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=3489)
+  > musicians? They're always around non-native EMF and they're always doing concerts when at night under what kind of light. Why do they have to use drugs? because their body can't make
+- **5** [always/because] · `00:58:11.440` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=3491)
+  > non-native EMF and they're always doing concerts when at night under what kind of light. Why do they have to use drugs? because their body can't make betaendorphine. So guess
+
+## circadian (36 candidates, top 50)
 
 - **9** [never/because/only] · `00:44:07.680` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=2647)
   > that because it controls circadian biology what have I been consistent about like when you read the letin prescription those six steps the one thing you're never going to see in there
@@ -607,6 +710,8 @@
   > but I will tell you that some of the things about&nbsp; circadian biology some of the things that I write&nbsp;&nbsp; about some of the things I talk about death is the&nbsp; slowest form of of time we create or I should say&nbsp;&nbsp; maybe the other way around it was really ba
 - **6** [because/only] · `00:43:57.960` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=2637)
   > what is the single most important physical Force in the ubiquination uh System Light and why is that because it controls circadian
+- **6** [must/causes/because] · `01:55:21.679` [Dr. Jack Kruse: Sunlight is the Key to Health (Digestive Iss](https://www.youtube.com/watch?v=rKDl37lqEBg&t=6921)
+  > understand circadian biology the basics because he realized that if you're G to create the ultimate form of money what we call hard money that the governments can't steal it has to be valuable in
 - **6** [always/never] · `00:16:32.340` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=992)
   > six things are important turns out one of the&nbsp; things that are in there is alpha msh alpha msh&nbsp;&nbsp; is the reason you have a tan malarian stimulating&nbsp; hormone correct Alpha msh was big so I was like&nbsp;&nbsp; that's the part the biggest part of the story as I&n
 - **6** [always/never] · `00:16:40.500` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=1000)
@@ -629,6 +734,8 @@
   > important. Why? Because you can never appreciate how beneficial the sun is without the darkness at night. Reason why circadian biology uses those two together.
 - **5** [never/because] · `00:20:27.679` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=1227)
   > Because you can never appreciate how beneficial the sun is without the darkness at night. Reason why circadian biology uses those two together. Uh we're going to get back to the uh
+- **5** [never/because] · `00:43:10.559` [The Science of Sunlight and Cold: This Will Transform Your H](https://www.youtube.com/watch?v=2EqExGl4rQU&t=2590)
+  > but protein and fat but you never see the sunrise do you think it's a wise choice to eat that type of diet because really the carnivore diet is a wintertime diet what does the Circadian
 - **5** [always/must] · `01:16:07.840` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4567)
   > growth is sped up. That's what the clocks do. That's what circadian biology is all about. So, the way we're built, the top clock always has to run faster than every other. And the reason is a
 - **5** [always/must] · `01:16:10.760` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=4570)
@@ -729,70 +836,7 @@
 - **5** [always/because] · `00:43:37.500` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=2617)
   > oxygen had on the planet so we call this event&nbsp; and brick I know you've heard it it's called&nbsp;&nbsp; the Cambrian explosion why do I always laugh at&nbsp; people who are like Richard Dawkins Neo darwinists&nbsp;&nbsp; they always love to get on Catholics and religious&nb
 
-## EMF (30 candidates, top 50)
-
-- **8** [never/must/evidence] · `00:50:56.160` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3056)
-  > science is maybe we need to go back and re-look at this with A New Perspective now that never happened but that study was out there and we now know there is non-native EMF effects the the reason
-- **7** [always/causes/because] · `01:24:56.040` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=5096)
-  > don't feel an effect from it I was always wondering well if grounding is so important why is this not producing any effect for me well a lot of times it's because most of them cause their own EMF
-- **7** [always/causes/because] · `01:24:58.199` [Dr Jack Kruse On Biohacking Your Water, EMFs, Blue Light, DH](https://www.youtube.com/watch?v=kZZSLQFZnQM&t=5098)
-  > always wondering well if grounding is so important why is this not producing any effect for me well a lot of times it's because most of them cause their own EMF problems to begin with and remember I'm
-- **7** [always/causes/because] · `01:50:04.860` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6604)
-  > that you have other uh needs and requirements in&nbsp; you that eating a a vegan diet or a vegetarian&nbsp;&nbsp; diet it's not wise now it doesn't mean you&nbsp; can't get away doing it for a long time we saw&nbsp;&nbsp; that for 5 000 years people in Southern India&nbsp; were a
-- **7** [always/causes/because] · `01:50:09.660` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6609)
-  > diet it's not wise now it doesn't mean you&nbsp; can't get away doing it for a long time we saw&nbsp;&nbsp; that for 5 000 years people in Southern India&nbsp; were able to do it but guess what people in&nbsp;&nbsp; Southern India used to be constantly outside&nbsp; no non-native
-- **7** [always/causes/because] · `01:50:17.220` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6617)
-  > that for 5 000 years people in Southern India&nbsp; were able to do it but guess what people in&nbsp;&nbsp; Southern India used to be constantly outside&nbsp; no non-native EMF always in the sun grounded&nbsp;&nbsp; now in the last 25 years since Google and Facebook&nbsp; moved a
-- **7** [always/causes/because] · `01:50:24.180` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6624)
-  > Southern India used to be constantly outside&nbsp; no non-native EMF always in the sun grounded&nbsp;&nbsp; now in the last 25 years since Google and Facebook&nbsp; moved all their stuff over there they create they&nbsp;&nbsp; have created the most diabetics in the world&nbsp; co
-- **6** [must/causes/because] · `01:15:55.600` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4555)
-  > from norcals work? We know that non-native EMF and blue light what's the fundamental thing they do? They cause a drop in NAD positive and pseudo hypoxia. That's all you need to know because what
-- **6** [must/causes/because] · `01:15:57.840` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4557)
-  > non-native EMF and blue light what's the fundamental thing they do? They cause a drop in NAD positive and pseudo hypoxia. That's all you need to know because what happens then? Blood glucose spikes. So
-- **6** [never/evidence] · `00:50:59.579` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3059)
-  > re-look at this with A New Perspective now that never happened but that study was out there and we now know there is non-native EMF effects the the reason why it's important for me to tell you
-- **6** [never/evidence] · `00:51:01.920` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=3061)
-  > now that never happened but that study was out there and we now know there is non-native EMF effects the the reason why it's important for me to tell you about the story that's exactly what
-- **5** [always/because] · `01:09:55.020` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4195)
-  > this is now beginning to make some sense but what&nbsp; happens what's the other effect with non-native&nbsp;&nbsp; EMF it degrades melanin so that's when you have to&nbsp; look at all the slides and I don't know if you've&nbsp;&nbsp; seen my slides that I've done from probably 1
-- **5** [always/because] · `01:10:01.200` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4201)
-  > EMF it degrades melanin so that's when you have to&nbsp; look at all the slides and I don't know if you've&nbsp;&nbsp; seen my slides that I've done from probably 15&nbsp; to now I like to use this guy Alexander once a&nbsp;&nbsp; slide because he always shows you when you put&nb
-- **5** [never/because] · `00:47:58.240` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=2878)
-  > never get to the regeneration pathway. That's actually on ankcoenesis. And that's effectively what's happening in the world today. Why? Because it turns out blue light and non-native EMF,
-- **5** [never/must] · `01:16:07.960` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=4567)
-  > need to realize girls are now having precocious puberty you know at six seven years old that's the effect of blue light and on Native EMF so that means they're never going to make it you know
-- **5** [always/because] · `01:09:48.600` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=4188)
-  > ventricular system is actually an ultra filtrator&nbsp; of your blood so all of a sudden you start going&nbsp;&nbsp; this is now beginning to make some sense but what&nbsp; happens what's the other effect with non-native&nbsp;&nbsp; EMF it degrades melanin so that's when you have
-- **5** [never/because] · `00:44:35.359` [Neurosurgeon talks about genetics and longevity: Dr jack kru](https://www.youtube.com/watch?v=sf9VNlTiq5s&t=2675)
-  > Michael Leven and never got a fundamental answer because he tells everybody EMF doesn't have any role in biology. I said well tell me how do we get mitochondrial holetypes because
-- **5** [always/because] · `01:45:18.400` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6318)
-  > told you, anything that's infrared, as long as it's not run off any kind of EMF, helps because what does that do? It builds the regeneration programs up. That's great, but I would always put my
-- **5** [always/because] · `01:45:20.440` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6320)
-  > long as it's not run off any kind of EMF, helps because what does that do? It builds the regeneration programs up. That's great, but I would always put my naked foot on the metal before I'd even
-- **5** [always/because] · `01:45:22.880` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6322)
-  > EMF, helps because what does that do? It builds the regeneration programs up. That's great, but I would always put my naked foot on the metal before I'd even use that. Or if you want to do one and
-- **5** [always/because] · `00:52:50.799` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=3170)
-  > reflective and perhaps even multiplying the EMF back into a different that's what I've always that's what I've always wondered with like the EMF clothing and stuff because it's not closed like your
-- **5** [always/because] · `00:52:52.280` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=3172)
-  > the EMF back into a different that's what I've always that's what I've always wondered with like the EMF clothing and stuff because it's not closed like your head's sticking out of it your arms are
-- **5** [always/because] · `00:52:54.280` [Dr. Jack Kruse EMF Podcast Debrief, 5G Explained and Q&A | L](https://www.youtube.com/watch?v=cCU6JShp5-k&t=3174)
-  > what I've always that's what I've always wondered with like the EMF clothing and stuff because it's not closed like your head's sticking out of it your arms are sticking out of it it's like is it just
-- **5** [always/must] · `01:49:59.520` [Dr. Jack Kruse: Circadian Biology, Melanin & How To Heal You](https://www.youtube.com/watch?v=mfXkXp37oZM&t=6599)
-  > you know a nematode and you need to realize&nbsp; that you need to be smart enough to understand&nbsp;&nbsp; that you have other uh needs and requirements in&nbsp; you that eating a a vegan diet or a vegetarian&nbsp;&nbsp; diet it's not wise now it doesn't mean you&nbsp; can't ge
-- **5** [always/because] · `01:01:49.839` [DR. KRUSE: Your Body Was Designed for 500 Years Ago](https://www.youtube.com/watch?v=pKEOaE3VTJA&t=3709)
-  > music's so loud." No, it wasn't. It was because the EMF that they had from their electric guitars from working at night. Got it. That's where that makes sense. Of course, it makes sense. It's always
-- **5** [always/because] · `01:01:52.720` [DR. KRUSE: Your Body Was Designed for 500 Years Ago](https://www.youtube.com/watch?v=pKEOaE3VTJA&t=3712)
-  > because the EMF that they had from their electric guitars from working at night. Got it. That's where that makes sense. Of course, it makes sense. It's always makes sense when it's decentralized. But
-- **5** [always/because] · `01:20:09.440` [The War on Sunlight Is Real (And It’s Not an Accident) | Dr.](https://www.youtube.com/watch?v=qa3FaUXZFSc&t=4809)
-  > neurologic deficit tied to non-native EMF toxicity. Guess why? Because everything he did was based on digitization. He was always around a computer.
-- **5** [always/because] · `01:20:12.080` [The War on Sunlight Is Real (And It’s Not an Accident) | Dr.](https://www.youtube.com/watch?v=qa3FaUXZFSc&t=4812)
-  > EMF toxicity. Guess why? Because everything he did was based on digitization. He was always around a computer. So what happens in the time between Sham
-- **5** [never/because] · `00:44:32.880` [Neurosurgeon talks about genetics and longevity: Dr jack kru](https://www.youtube.com/watch?v=sf9VNlTiq5s&t=2672)
-  > about, Africa, I ask this question all the time. I even asked this question to Michael Leven and never got a fundamental answer because he tells everybody EMF doesn't have any role in
-- **5** [never/because] · `00:44:34.079` [Neurosurgeon talks about genetics and longevity: Dr jack kru](https://www.youtube.com/watch?v=sf9VNlTiq5s&t=2674)
-  > the time. I even asked this question to Michael Leven and never got a fundamental answer because he tells everybody EMF doesn't have any role in biology. I said well tell me how do we
-
-## dopamine (28 candidates, top 50)
+## dopamine (31 candidates, top 50)
 
 - **6** [causes/because/fundamental] · `01:01:59.920` [#57 - Dr. Jack Kruse](https://www.youtube.com/watch?v=drdn_hDGALk&t=3719)
   > leads to neurodeeneration. And fundamentally, this is the reason why everybody's addicted to things that emit microwaves and RF. Why? because it destroys your melanin, makes dopamine.
@@ -836,6 +880,12 @@
   > always there, but you know what the key thing is? We don't see them because we're obedient idiots because we're addicted to modern things that reduce our dopamine level. My job is to make
 - **5** [always/because] · `00:18:21.760` [Dr. Jack Kruse Nourish Vermont 2017 Q & A- part 10 of 10](https://www.youtube.com/watch?v=Uvm0dho_KRM&t=1101)
   > time i went to chicago i always wanted to go back you know why what i just told you dopamine because when you have and you're around
+- **5** [always/because] · `00:10:45.560` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=645)
+  > people don't understand about dopamine as dopamine is created from the aromatic amino acid tyrosine and phenylalanine in humans and the reason why I use the word aromatic is not to confuse the audiences so the audience know the benzene ring is a photon trap and it turns out it's 
+- **5** [always/because] · `02:03:31.360` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=7411)
+  > thing when I went to this restaurant every time I went to Chicago I always wanted to go back. You know why? What I just told you. Dopamine because when you have and
+- **5** [always/because] · `02:03:33.280` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=7413)
+  > every time I went to Chicago I always wanted to go back. You know why? What I just told you. Dopamine because when you have and you're around UV light, you become
 - **5** [always/because] · `01:09:10.739` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=4150)
   > why have you ever asked yourself the question why every single screen tied to a device that uses RF and microwaves always is blue lit well there's a reason for that because it lowers your dopamine
 - **5** [always/because] · `01:09:12.779` [Beyond DNA: The Electromagnetic Blueprint of Life - Jack Kru](https://www.youtube.com/watch?v=zrdRVDk66JE&t=4152)
@@ -850,6 +900,45 @@
   > are like ethylene yeah whatever it is yeah what&nbsp; I'm interested in is what creates that feeling&nbsp;&nbsp; of like yes that more of that the stuff that&nbsp; creates bonding between people I mean you know&nbsp;&nbsp; dopamine is I can tell you I've always thought&nbsp; that
 - **5** [always/causes] · `03:11:12.660` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=11472)
   > of like yes that more of that the stuff that&nbsp; creates bonding between people I mean you know&nbsp;&nbsp; dopamine is I can tell you I've always thought&nbsp; that Chi and dopamine are are sort of synonymous&nbsp;&nbsp; or another I think they are but I would tell you&nbsp; t
+
+## iron (18 candidates, top 50)
+
+- **5** [always/because] · `01:45:31.280` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6331)
+  > use that. Or if you want to do one and the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c
+- **5** [always/because] · `01:45:34.200` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6334)
+  > the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c oxidase and the other one big one is
+- **5** [always/because] · `01:45:36.040` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6336)
+  > infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c oxidase and the other one big one is blood. Blood is 93% water. And remember,
+- **5** [never/must] · `00:48:14.800` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=2894)
+  > oxidation state of iron. That means it'll keep it in the plus three state too long. So you never get to the plus two state. And it turns out plus two is what you need to move oxygen around and
+- **5** [never/must] · `00:33:41.840` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2021)
+  > that they can absorb light what is hemoglobin absorb 250 to 600 nanometer light so red blood cells are ferryboats hmm then to work operationally they have to be sulfated what else do you know in your body that has to be sulfated most people never talk about cholesterol and vitami
+- **5** [never/because] · `00:13:54.400` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=834)
+  > by Lane because in there it's the key part of&nbsp; the story and the question you just asked me&nbsp;&nbsp; it turns out in that event things happen on Earth&nbsp; for us to go from 1% to 21% oxygen we are today so&nbsp;&nbsp; everybody assumes that because there's 21% oxygen&nb
+- **5** [never/because] · `00:14:01.120` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=841)
+  > it turns out in that event things happen on Earth&nbsp; for us to go from 1% to 21% oxygen we are today so&nbsp;&nbsp; everybody assumes that because there's 21% oxygen&nbsp; like in El Salvador and in Europe where you are&nbsp;&nbsp; now that you know oxygen's never an issue wel
+- **5** [never/because] · `00:14:07.200` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=847)
+  > everybody assumes that because there's 21% oxygen&nbsp; like in El Salvador and in Europe where you are&nbsp;&nbsp; now that you know oxygen's never an issue well&nbsp; it turns out that's not true because it turns out&nbsp;&nbsp; from this great oxygenation event hemoglobin can&
+- **5** [never/because] · `00:14:13.040` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=853)
+  > now that you know oxygen's never an issue well&nbsp; it turns out that's not true because it turns out&nbsp;&nbsp; from this great oxygenation event hemoglobin can&nbsp; only carry oxygen when it's in the plus two state&nbsp;&nbsp; hemoglobin can't carry oxygen when it's plus&nbs
+- **5** [always/because] · `02:42:58.859` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9778)
+  > the one that I thought was just about obesity&nbsp; it turns out it's about [&nbsp;__&nbsp;] everything yeah&nbsp;&nbsp; tell me what happens always the screen does&nbsp; anything else work is a screen or it's only&nbsp;&nbsp; melanin well what did I tell you was the big&nbsp; se
+- **5** [always/because] · `02:43:04.319` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9784)
+  > tell me what happens always the screen does&nbsp; anything else work is a screen or it's only&nbsp;&nbsp; melanin well what did I tell you was the big&nbsp; semiconductor before the KT event hemoglobin&nbsp;&nbsp; we haven't even talked about that sucker but&nbsp; guess what that
+- **5** [never/fundamental] · `03:02:18.600` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=10938)
+  > of the things that physicists like Schrodinger&nbsp; couldn't accept they could never figure out how&nbsp;&nbsp; could you be entangled in a warm wet environment&nbsp; that's like a big problem for physics until you&nbsp;&nbsp; understand the chemistry of water what does water&nb
+- **5** [never/because] · `00:51:58.480` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=3118)
+  > occasionally uh donate blood important for men than women because men the ability to lose blood especially if you eat a lot of meat. Making sure your uh iron levels are never too high.
+- **5** [never/because] · `00:52:00.559` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=3120)
+  > for men than women because men the ability to lose blood especially if you eat a lot of meat. Making sure your uh iron levels are never too high. &gt;&gt; If you would have asked me this question
+- **5** [never/must] · `00:33:39.170` [Jack Kruse on How Light sculpts Your Microbiome & Implicatio](https://www.youtube.com/watch?v=g_rlcavhGLs&t=2019)
+  > thing happens what happens the blood vessels are raised to the surface so that they can absorb light what is hemoglobin absorb 250 to 600 nanometer light so red blood cells are ferryboats hmm then to work operationally they have to be sulfated what else do you know in your body t
+- **5** [never/causes] · `01:09:44.960` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4184)
+  > will say I never learned that light could change the oxidation state of iron from plus two to plus three, and certainly never learned about the implications that this creates
+- **5** [never/causes] · `01:09:48.200` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4188)
+  > that light could change the oxidation state of iron from plus two to plus three, and certainly never learned about the implications that this creates methemoglobinemia.
+- **5** [never/causes] · `01:09:51.080` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4191)
+  > state of iron from plus two to plus three, and certainly never learned about the implications that this creates methemoglobinemia. Yeah. I never learned I never learned
 
 ## photosynthesis (17 candidates, top 50)
 
@@ -923,7 +1012,7 @@
 - **5** [always/because] · `03:18:27.180` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=11907)
   > there's nothing in our textbooks that can&nbsp; explain this but the quantum coherence of&nbsp;&nbsp; water and the story about Luke Montagne can that&nbsp; happened before Montagne ever did his experiment&nbsp;&nbsp; I always believe that lady now it's happened&nbsp; two other t
 
-## iron (16 candidates, top 50)
+## cytochrome (16 candidates, top 50)
 
 - **5** [always/because] · `01:45:31.280` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6331)
   > use that. Or if you want to do one and the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c
@@ -931,32 +1020,32 @@
   > the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c oxidase and the other one big one is
 - **5** [always/because] · `01:45:36.040` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6336)
   > infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c oxidase and the other one big one is blood. Blood is 93% water. And remember,
-- **5** [never/must] · `00:48:14.800` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=2894)
-  > oxidation state of iron. That means it'll keep it in the plus three state too long. So you never get to the plus two state. And it turns out plus two is what you need to move oxygen around and
-- **5** [never/because] · `00:13:54.400` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=834)
-  > by Lane because in there it's the key part of&nbsp; the story and the question you just asked me&nbsp;&nbsp; it turns out in that event things happen on Earth&nbsp; for us to go from 1% to 21% oxygen we are today so&nbsp;&nbsp; everybody assumes that because there's 21% oxygen&nb
-- **5** [never/because] · `00:14:01.120` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=841)
-  > it turns out in that event things happen on Earth&nbsp; for us to go from 1% to 21% oxygen we are today so&nbsp;&nbsp; everybody assumes that because there's 21% oxygen&nbsp; like in El Salvador and in Europe where you are&nbsp;&nbsp; now that you know oxygen's never an issue wel
-- **5** [never/because] · `00:14:07.200` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=847)
-  > everybody assumes that because there's 21% oxygen&nbsp; like in El Salvador and in Europe where you are&nbsp;&nbsp; now that you know oxygen's never an issue well&nbsp; it turns out that's not true because it turns out&nbsp;&nbsp; from this great oxygenation event hemoglobin can&
-- **5** [never/because] · `00:14:13.040` [Banned Neurosurgeon: Decentralize Your Health B4 It's Too La](https://www.youtube.com/watch?v=unUTOBIXvdc&t=853)
-  > now that you know oxygen's never an issue well&nbsp; it turns out that's not true because it turns out&nbsp;&nbsp; from this great oxygenation event hemoglobin can&nbsp; only carry oxygen when it's in the plus two state&nbsp;&nbsp; hemoglobin can't carry oxygen when it's plus&nbs
-- **5** [always/because] · `02:42:58.859` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9778)
-  > the one that I thought was just about obesity&nbsp; it turns out it's about [&nbsp;__&nbsp;] everything yeah&nbsp;&nbsp; tell me what happens always the screen does&nbsp; anything else work is a screen or it's only&nbsp;&nbsp; melanin well what did I tell you was the big&nbsp; se
-- **5** [always/because] · `02:43:04.319` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=9784)
-  > tell me what happens always the screen does&nbsp; anything else work is a screen or it's only&nbsp;&nbsp; melanin well what did I tell you was the big&nbsp; semiconductor before the KT event hemoglobin&nbsp;&nbsp; we haven't even talked about that sucker but&nbsp; guess what that
+- **5** [never/because] · `00:01:05.840` [Dr. Jack Kruse- the false belief that food and exercise is e](https://www.youtube.com/watch?v=AOLIbFIzPnI&t=65)
+  > that absorbed 340 nanometer light i never learned that cytochrome 2 absorbed more blue light because of the type of uh chromophore
+- **5** [never/because] · `00:01:08.799` [Dr. Jack Kruse- the false belief that food and exercise is e](https://www.youtube.com/watch?v=AOLIbFIzPnI&t=68)
+  > never learned that cytochrome 2 absorbed more blue light because of the type of uh chromophore that was present there it's a flavin
+- **5** [always/because] · `00:16:21.040` [Dr. Jack Kruse - Ketosis fails with circadian mismatches, qu](https://www.youtube.com/watch?v=SIs7wcGR0zY&t=981)
+  > people don't realize why cytochrome one is incredibly important because when [&nbsp;__&nbsp;] goes bad there cytochrome one is almost always next to where mitochondrial DNA is so when things go
+- **5** [always/because] · `00:16:23.880` [Dr. Jack Kruse - Ketosis fails with circadian mismatches, qu](https://www.youtube.com/watch?v=SIs7wcGR0zY&t=983)
+  > is incredibly important because when [&nbsp;__&nbsp;] goes bad there cytochrome one is almost always next to where mitochondrial DNA is so when things go bad there mitochondrial DNA goes bad
 - **5** [never/fundamental] · `03:02:18.600` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=10938)
   > of the things that physicists like Schrodinger&nbsp; couldn't accept they could never figure out how&nbsp;&nbsp; could you be entangled in a warm wet environment&nbsp; that's like a big problem for physics until you&nbsp;&nbsp; understand the chemistry of water what does water&nb
-- **5** [never/because] · `00:51:58.480` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=3118)
-  > occasionally uh donate blood important for men than women because men the ability to lose blood especially if you eat a lot of meat. Making sure your uh iron levels are never too high.
-- **5** [never/because] · `00:52:00.559` [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=3120)
-  > for men than women because men the ability to lose blood especially if you eat a lot of meat. Making sure your uh iron levels are never too high. &gt;&gt; If you would have asked me this question
-- **5** [never/causes] · `01:09:44.960` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4184)
-  > will say I never learned that light could change the oxidation state of iron from plus two to plus three, and certainly never learned about the implications that this creates
-- **5** [never/causes] · `01:09:48.200` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4188)
-  > that light could change the oxidation state of iron from plus two to plus three, and certainly never learned about the implications that this creates methemoglobinemia.
-- **5** [never/causes] · `01:09:51.080` [Interview with Dr. Jack Kruse (04-08-2025)](https://www.youtube.com/watch?v=wwNutyiyQ2I&t=4191)
-  > state of iron from plus two to plus three, and certainly never learned about the implications that this creates methemoglobinemia. Yeah. I never learned I never learned
+- **5** [always/because] · `00:16:19.440` [Dr. Jack Kruse - Ketosis fails with circadian mismatches, qu](https://www.youtube.com/watch?v=SIs7wcGR0zY&t=979)
+  > reason why this gets really complex is people don't realize why cytochrome one is incredibly important because when [&nbsp;__&nbsp;] goes bad there cytochrome one is almost always next to where
+- **5** [always/because] · `00:11:19.279` [Dr. Jack Kruse Nourish Vermont 2017 Q & A- part 10 of 10](https://www.youtube.com/watch?v=Uvm0dho_KRM&t=679)
+  > 340 nanometer light so if you want to know why electrons from carbohydrates always enter at cytochrome 1 now you know why because carbohydrates
+- **5** [always/because] · `00:11:20.800` [Dr. Jack Kruse Nourish Vermont 2017 Q & A- part 10 of 10](https://www.youtube.com/watch?v=Uvm0dho_KRM&t=680)
+  > so if you want to know why electrons from carbohydrates always enter at cytochrome 1 now you know why because carbohydrates grow when
+- **5** [always/because] · `00:11:22.000` [Dr. Jack Kruse Nourish Vermont 2017 Q & A- part 10 of 10](https://www.youtube.com/watch?v=Uvm0dho_KRM&t=682)
+  > from carbohydrates always enter at cytochrome 1 now you know why because carbohydrates grow when long light cycles when what kind of
+- **5** [always/because] · `01:56:27.920` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=6987)
+  > NAD positive NADH couple, it is a floror protein. It absorbs 340 nanometer light. So, if you want to know why electrons from carbohydrates always enter at cytochrome 1, now you know why. Because
+- **5** [always/because] · `01:56:29.599` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=6989)
+  > protein. It absorbs 340 nanometer light. So, if you want to know why electrons from carbohydrates always enter at cytochrome 1, now you know why. Because carbohydrates grow when long light
+- **5** [always/because] · `01:56:31.119` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=6991)
+  > So, if you want to know why electrons from carbohydrates always enter at cytochrome 1, now you know why. Because carbohydrates grow when long light cycles when what kind of lights out?
+- **5** [always/because] · `01:56:33.280` [Dr. Jack Kruse-Nourish Vermont 2017 on Circadian Biology and](https://www.youtube.com/watch?v=zGAACx89jMU&t=6993)
+  > from carbohydrates always enter at cytochrome 1, now you know why. Because carbohydrates grow when long light cycles when what kind of lights out? Purple light. So, if you live in Vermont
 
 ## becker (15 candidates, top 50)
 
@@ -991,30 +1080,7 @@
 - **5** [always/because] · `01:21:52.680` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=4912)
   > from Einstein I always tell people the four most&nbsp; important scientists to me were Einstein Da Vinci&nbsp;&nbsp; Michelangelo and Roberto Becker those were the&nbsp; four people that have defined my life and find him&nbsp;&nbsp; into I I got to put number five and Fineman was
 
-## cytochrome (10 candidates, top 50)
-
-- **5** [always/because] · `01:45:31.280` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6331)
-  > use that. Or if you want to do one and the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c
-- **5** [always/because] · `01:45:34.200` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6334)
-  > the other, I'm fine with that. But infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c oxidase and the other one big one is
-- **5** [always/because] · `01:45:36.040` [The Most Epic Jack Kruse Interview EVER! EP #75 & #76, The L](https://www.youtube.com/watch?v=5W6x7EsE8C4&t=6336)
-  > infrared is always helpful because the key red light chromophore in every mitochondria is a is cytochrome c oxidase and the other one big one is blood. Blood is 93% water. And remember,
-- **5** [always/because] · `00:16:21.040` [Dr. Jack Kruse - Ketosis fails with circadian mismatches, qu](https://www.youtube.com/watch?v=SIs7wcGR0zY&t=981)
-  > people don't realize why cytochrome one is incredibly important because when [&nbsp;__&nbsp;] goes bad there cytochrome one is almost always next to where mitochondrial DNA is so when things go
-- **5** [always/because] · `00:16:23.880` [Dr. Jack Kruse - Ketosis fails with circadian mismatches, qu](https://www.youtube.com/watch?v=SIs7wcGR0zY&t=983)
-  > is incredibly important because when [&nbsp;__&nbsp;] goes bad there cytochrome one is almost always next to where mitochondrial DNA is so when things go bad there mitochondrial DNA goes bad
-- **5** [never/fundamental] · `03:02:18.600` [Jack Kruse & Andrew Huberman (Rick Rubin Tetragrammaton Podc](https://www.youtube.com/watch?v=zs82rGFo6qg&t=10938)
-  > of the things that physicists like Schrodinger&nbsp; couldn't accept they could never figure out how&nbsp;&nbsp; could you be entangled in a warm wet environment&nbsp; that's like a big problem for physics until you&nbsp;&nbsp; understand the chemistry of water what does water&nb
-- **5** [always/because] · `00:16:19.440` [Dr. Jack Kruse - Ketosis fails with circadian mismatches, qu](https://www.youtube.com/watch?v=SIs7wcGR0zY&t=979)
-  > reason why this gets really complex is people don't realize why cytochrome one is incredibly important because when [&nbsp;__&nbsp;] goes bad there cytochrome one is almost always next to where
-- **5** [always/because] · `00:11:19.279` [Dr. Jack Kruse Nourish Vermont 2017 Q & A- part 10 of 10](https://www.youtube.com/watch?v=Uvm0dho_KRM&t=679)
-  > 340 nanometer light so if you want to know why electrons from carbohydrates always enter at cytochrome 1 now you know why because carbohydrates
-- **5** [always/because] · `00:11:20.800` [Dr. Jack Kruse Nourish Vermont 2017 Q & A- part 10 of 10](https://www.youtube.com/watch?v=Uvm0dho_KRM&t=680)
-  > so if you want to know why electrons from carbohydrates always enter at cytochrome 1 now you know why because carbohydrates grow when
-- **5** [always/because] · `00:11:22.000` [Dr. Jack Kruse Nourish Vermont 2017 Q & A- part 10 of 10](https://www.youtube.com/watch?v=Uvm0dho_KRM&t=682)
-  > from carbohydrates always enter at cytochrome 1 now you know why because carbohydrates grow when long light cycles when what kind of
-
-## photoelectric (6 candidates, top 50)
+## photoelectric (8 candidates, top 50)
 
 - **7** [only/i-proved] · `01:46:51.639` [Optimize Your Health in the Modern World with Dr. Jack Kruse](https://www.youtube.com/watch?v=mYMUiOMkKMM&t=6411)
   > looked at what Helm holds did I looked about what Herz did I looked at the thermodynamic gens and he goes I figured out the photoelectric effect this is the only way it could work could you expand
@@ -1022,12 +1088,16 @@
   > about what Herz did I looked at the thermodynamic gens and he goes I figured out the photoelectric effect this is the only way it could work could you expand on what the photoelectric effect is yeah
 - **7** [only/i-proved] · `01:46:55.719` [Optimize Your Health in the Modern World with Dr. Jack Kruse](https://www.youtube.com/watch?v=mYMUiOMkKMM&t=6415)
   > thermodynamic gens and he goes I figured out the photoelectric effect this is the only way it could work could you expand on what the photoelectric effect is yeah it's the electrons in an atom gets
+- **5** [always/fundamental] · `00:32:54.919` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=1974)
+  > mitochondria okay still think it's about food folks it's about light it's always been about light and you have to realize that life fundamentally is photoelectric okay technology in biology
 - **5** [always/must] · `01:08:25.600` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4105)
   > ring looks really similar. You know, there must be a story here. And the story was I thought the story was always going to be about the different number of electrons and the photoelectric
 - **5** [always/must] · `01:08:27.279` [Regenerative Energy & the Light Inside You | Jack Kruse | 22](https://www.youtube.com/watch?v=67sLlXeMg2I&t=4107)
   > there must be a story here. And the story was I thought the story was always going to be about the different number of electrons and the photoelectric effect. Turned out that's part of the
 - **5** [always/because] · `02:26:30.120` [Dr Jack Kruse: Light, Melanin, POMC in Human Evolution & Dis](https://www.youtube.com/watch?v=Ln3WszTq0uA&t=8790)
   > um with the photoelectric effect I always like to tell the story I told the story of Rick Rubin when we just did the podcast I'm going to recount it for you because people ask me
+- **5** [always/fundamental] · `00:32:57.080` [Nourish Vermont 2016 // Dr. Jack Kruse: How to Bio-Hack Your](https://www.youtube.com/watch?v=N-_DTk9hYvI&t=1977)
+  > food folks it's about light it's always been about light and you have to realize that life fundamentally is photoelectric okay technology in biology should be photonic not
 
 ## ez-water (6 candidates, top 50)
 
