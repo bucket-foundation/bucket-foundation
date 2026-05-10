@@ -1,0 +1,9 @@
+# Jesus, the Last Great Initiate
+
+- **URL**: https://www.sacred-texts.com/eso/jlgi/index.htm
+- **Captured**: 2026-05-09T21:41:41
+- **Site**: www.sacred-texts.com
+
+---
+
+Jesus, the Last Great Initiate Index | Internet Sacred Text Archive Sacred Texts Esoteric Christianity Buy this Book at Amazon.com Buy this Book on Kindle The Apparition, by James Jacques Joseph Tissot [19th cent.] (Public Domain Image) Jesus, the Last Great Initiate by Edouard Schuré [1908] Contents Start Reading Page Index Text [Zipped] This little book, apparently excerpted from a longer work which included sections on Krishna and Orpheus, is an esoteric look at the life of Jesus, here considered the ultimate of a long line of 'Initiates.' Schuré (1841-1929) was a French author who influenced Rudolph Steiner, the German founder of Anthroposophy. Steiner also viewed Christ as both an historical individual and as a manifestation of the divine in the human realm. The basis of this etext is the 1908 Yogi Publication Society edition. There were several others, including a prior 1900 publication in London and editions by Rider in 1917 and 1923. Unlike some of the other YPS books, the identity of the author is not in question. Despite the typos which litter YPS editions, this is a delight to read. Schuré dimensionalizes his 'Essene' Jesus by relating key points in the story in an almost first-person fashion. --J.B. Hare, June 25th, 2008. Title Page Preface Contents Chapter I. Condition of the World at the Birth of Jesus Chapter II. Mary—First Development of Jesus Chapter III. The Essenes—John the Baptist—The Temptation Chapter IV. The Public Life of Jesus—Popular and Esoteric Instruction—Miracles—Apostles—Women Chapter V. Struggle With the Pharisees—Flight to Cæsarea—The Transfiguration Chapter V. Final Journey to Jerusalem—The Promise—The Supper—Trial of Jesus—Death and Resurrection Chapter VII. The Promise and Its Fulfilment—The Temple Advertisements

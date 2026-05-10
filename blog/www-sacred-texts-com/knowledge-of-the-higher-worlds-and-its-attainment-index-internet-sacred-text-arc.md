@@ -1,0 +1,9 @@
+# Knowledge of the Higher Worlds and Its Attainment Index | Internet Sacred Text Archive
+
+- **URL**: https://www.sacred-texts.com/eso/khw/index.htm
+- **Captured**: 2026-05-09T21:44:07
+- **Site**: www.sacred-texts.com
+
+---
+
+Knowledge of the Higher Worlds and Its Attainment Index | Internet Sacred Text Archive Sacred Texts Esoteric Buy this Book at Amazon.com The Wizard, by Edward Burne-Jones [1891-98] (Public Domain Image) Knowledge of the Higher Worlds And Its Attainment by Rudolf Steiner [1947] Contents Start Reading Page Index Text [Zipped] This is Rudolf Steiner's guide to the seeker on the path of esoteric initiation. He includes much that would be of use to novices of any mystical belief system, and a lot of tantalizing information about the subtle body, higher planes of existence, and the spiritual encounter with the 'Guardians of the Threshold.' This text was created from the first (1947) edition of this English translation, which has an unrenewed copyright in the US, and is furthermore a translation of a pre-1923 book, which makes it public domain in the US. The copyrights on the Steiner writings are somewhat complicated. This is the first book by Steiner which we have been able to create a public domain text of. We hope to add more in the future, legalities permitting. Title Page Table of Contents Preface to the Edition of May 1918 Preface to the Sixth Edition Preface to the Third Edition I. How is Knowledge Of The Higher Worlds Attained? II. The Stages of Initiation III. Some Practical Aspects IV. The Conditions of Esoteric Training V. Some Results of Initiation VI. The Transformation of Dream Life VII. The Continuity of Consciousness VIII. The Splitting of the Human Personality during Spiritual Training IX. The Guardian of the Threshold X. Life and Death. The Greater Guardian of the Threshold Appendix

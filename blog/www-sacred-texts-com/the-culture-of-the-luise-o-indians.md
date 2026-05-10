@@ -1,0 +1,9 @@
+# The Culture of the Luiseño Indians
+
+- **URL**: https://www.sacred-texts.com/nam/ca/coli/index.htm
+- **Captured**: 2026-05-09T21:42:30
+- **Site**: www.sacred-texts.com
+
+---
+
+The Culture of the Luise&ntilde;o Indians Index | Internet Sacred Text Archive Sacred Texts Native American California Basketry of the Mission Indians, Photograph by Edward Curtis, The North American Indian Pl. 502 [1926] (Public Domain Image) The Culture of the Luiseño Indians by Philip Stedman Sparkman [1908] Contents Start Reading Page Index Text [Zipped] The earth hears you, the sky and wood-mountain see you. If you will believe this you will grow old. And you will see your sons and daughters, and you will counsel them in this manner, when you reach your old age. --Lecture given to initiated boys. p. 223 This monograph is a posthumous publication; the author died in 1907. Sparkman spent years studying the Luiseño people, who resided in the approximate area of Orange County in California. The text mostly covers material culture, but includes descriptions of shamans and healing plants, folklore and mythological creatures, as well as puberty and mourning ceremonies. It appears that Sparkman had a special interest in ethnobotany, and there is an appendix with a listing of the most important plants in the area, with Latin and Luiseño nomenclature, and a description of their use by Native Californians. Title Page Contents Editor's Note Introduction Vegetable Food Flesh and Hunting Fishing Clothing Pottery Articles Made of Plant Fibers Bows and Arrows Stone Implements Feather Objects Fire Making Gums, Dyes, and Paint Miscellaneous Arts Games Houses Marriage Government Shamanism Changichnish, The Raven Spirits and Monsters Boys’ Puberty Ceremonies Girls’ Puberty Ceremonies Mourning Ceremonies and Mourning Appendix: Plants Used by the Luiseños

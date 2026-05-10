@@ -1,0 +1,9 @@
+# ZANONI
+
+- **URL**: https://www.sacred-texts.com/sro/zan/index.htm
+- **Captured**: 2026-05-09T21:43:10
+- **Site**: www.sacred-texts.com
+
+---
+
+Zanoni Index | Internet Sacred Text Archive Sacred Texts Sub Rosa Buy this Book at Amazon.com La Pia de' Tolomei by Dante Gabriel Rossetti [1868-1880] (Public Domain Image) ZANONI by Edward Bulwer Lytton [1842] Contents Start Reading Text [Zipped] Zanoni introduced the concept of the wandering, eternal adepts into popular culture, with this tale of tragic love. Bulwer Lytton also wrote the fantasy Vril, The Power of the Coming Race , a prototype for fictions of lost civilizations to come. Zanoni had a huge influence on Theosophists and other 19th century occult groups. Title Page Dedicatory Epistle, First Prefixed to the Edition of 1845 Introduction Preface To The Edition Of 1853 Introduction Book I Chapter I Chapter II Chapter III Chapter IV Chapter V Chapter VI Chapter VII Chapter VIII Chapter IX Chapter X Book II Chapter I Chapter II Chapter III Chapter IV Chapter V Chapter VI Chapter VII Chapter VIII Chapter IX Chapter X Book III Chapter I Chapter II Chapter III Chapter IV Chapter V Chapter VI Chapter VII Chapter VIII Chapter IX Chapter X Chapter XI Chapter XII Chapter XIII Chapter XIV Chapter XV Chapter XVI Chapter XVII Chapter XVIII Book IV Chapter I Chapter II Chapter III Chapter IV Chapter V Chapter VI Chapter VII Chapter VIII Chapter IX Chapter X Chapter XI Book V Chapter I Chapter II Chapter III Chapter IV Chapter V Chapter VI Book VI Chapter I Chapter II Chapter III Chapter IV Chapter V Chapter VI Chapter VII Chapter VIII Chapter IX Book VII Chapter I Chapter II Chapter III Chapter IV Chapter V Chapter VI Chapter VII Chapter VIII Chapter IX Chapter X Chapter XI Chapter XII Chapter XIII Chapter XIV Chapter XV Chapter XVI Chapter XVII Note. “Zanoni Explained.”

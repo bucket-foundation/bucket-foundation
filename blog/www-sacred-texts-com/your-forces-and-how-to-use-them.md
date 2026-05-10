@@ -1,0 +1,9 @@
+# Your Forces and How to Use Them
+
+- **URL**: https://www.sacred-texts.com/nth/yfhu/index.htm
+- **Captured**: 2026-05-09T21:41:20
+- **Site**: www.sacred-texts.com
+
+---
+
+Your Forces and How to Use Them Index | Internet Sacred Text Archive Sacred Texts New Thought Your Forces and How to Use Them by Christian D. Larson [1912] Contents Start Reading Page Index Text [Zipped] We are here to become great men and women, and with that purpose in view, we must eliminate everything in our religion and philosophy that tends to make the human mind a dependent weakling. If you would serve God and be truly religious, do not kneel before God, but learn to walk with God, and do something tangible every day to increase the happiness of mankind. This is religion that is worth while, and it is such religion alone that can please the Infinite. --p. 184-5 Title Page Contents Foreword Chapter I. The Ruling Principle In Man Chapter II. How We Govern the Forces We Possess Chapter III. The Use of Mind In Practical Action Chapter IV. The Forces of the Subconscious Chapter V. Training the Subconscious For Special Results Chapter VI. The Power of Subjective Thought Chapter VII. How Man Becomes What He Thinks Chapter VIII. The Art of Changing For the Better Chapter IX. He Can Who Thinks He Can Chapter X. How We Secure What We Persistently Desire Chapter XI. Concentration and the Power Back of Suggestion Chapter XII. The Development of the Will Chapter XIII. The Building of a Great Mind Chapter XIV. How Character Determines Constructive Action Chapter XV. The Art of Building Character Chapter XVI. The Creative Forces In Man Chapter XVII. The Building Power of Constructive Speech Chapter XVIII. Imagination and the Master Mind Chapter XIX. The Higher Forces In Man Chapter XX. The Greatest Power In Man Dust Jacket Copy
