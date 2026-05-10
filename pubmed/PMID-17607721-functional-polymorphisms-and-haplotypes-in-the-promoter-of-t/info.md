@@ -1,0 +1,14 @@
+# Functional polymorphisms and haplotypes in the promoter of the MMP2 gene are associated with risk of nasopharyngeal carcinoma.
+
+- **PMID**: 17607721
+- **DOI**: 10.1002/humu.20570
+- **PMCID**:  
+- **Journal**: Human mutation  ·  **Year**: 2007
+- **Authors**: Gangqiao Zhou, Yun Zhai, Ying Cui, Wei Qiu, Hao Yang, Xiumei Zhang, Xiaojia Dong, Ying He, Kaitai Yao, Hongxing Zhang, Yong Peng, Xiaoyan Yuan, Lianteng Zhi, Xiaoai Zhang, Fuchu He
+- **MeSH**: Base Sequence, Case-Control Studies, China, DNA Primers, Female, Genetic Predisposition to Disease, Haplotypes, Humans, Male, Matrix Metalloproteinase 2
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17607721/
+- **Captured**: 2026-05-10T17:47:05
+
+## Abstract
+
+Matrix metalloproteinases (MMPs) play important roles in cancer initiation and development. Several polymorphisms in the promoters of a number of MMP genes, which can affect the respective MMP production in an allele-specific manner, have been well characterized. We examined whether these functional polymorphisms were related to the risk of nasopharyngeal carcinoma (NPC) in Chinese populations. Eight polymorphisms in the promoter of MMP1, MMP2, MMP3, MMP7, MMP9, MMP12, and MMP13 were genotyped in two independent case-control populations; one is from Guangxi province (593 patients with NPC and 480 controls), and the other is from Guangdong province (239 patients and 286 controls). We observed significantly increased susceptibility to NPC for the MMP2 -1306CC (rs243865:C>T) (odds ratio [OR] = 2.01, 95% confidence interval [CI] = 1.30-3.10) and -735CC (rs2285053:C>T) (OR = 1.56, 95% CI = 1.17-2.09) genotype carriers compared with noncarriers in the Guangxi population. This association was confirmed in the Guangdong population (for -1306CC: OR = 2.19, 95% CI = 1.21-3.96; for -735CC: OR = 1.60, 95% CI = 1.13-2.28). The C(-1306)-C(-735) haplotype was also significantly associated with increased susceptibility to NPC in both the Guangxi (OR = 1.64, 95% CI = 1.35-1.99) and Guangdong population (OR = 1.68, 95% CI = 1.29-2.19). Furthermore, stratified analysis indicated that the increased susceptibility to NPC related to the -1306CC and -735CC genotype and the C(-1306)-C(-735) haplotype was more pronounced in heavier smokers. Our findings suggest that the genetic polymorphisms or haplotype in the MMP2 promoter may play a role in mediating the susceptibility to NPC in Chinese populations.

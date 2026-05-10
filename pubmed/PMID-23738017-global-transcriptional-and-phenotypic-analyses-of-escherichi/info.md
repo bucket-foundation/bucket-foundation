@@ -1,0 +1,14 @@
+# Global transcriptional and phenotypic analyses of Escherichia coli O157:H7 strain Xuzhou21 and its pO157_Sal cured mutant.
+
+- **PMID**: 23738017
+- **DOI**: 10.1371/journal.pone.0065466
+- **PMCID**: PMC18686 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2013
+- **Authors**: Hongqing Zhao, Chen Chen, Yanwen Xiong, Xuefang Xu, Ruiting Lan, Haiyin Wang, Xinyue Yao, Xiangning Bai, Xuetong Liu, Qiong Meng, Xiaoai Zhang, Hui Sun, Ailan Zhao, Xuemei Bai, Yuli Cheng, Qiang Chen, Changyun Ye, Jianguo Xu
+- **MeSH**: Adaptation, Physiological, Bile Acids and Salts, DNA-Binding Proteins, Disease Outbreaks, Drug Resistance, Bacterial, Escherichia coli O157, Escherichia coli Proteins, Gene Expression Profiling, Mutation, Osmosis
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/23738017/
+- **Captured**: 2026-05-10T17:47:34
+
+## Abstract
+
+Escherichia coli O157:H7 is an important food-borne pathogen that can cause hemorrhagic colitis and hemolytic-uremic syndrome in humans. pO157_Sal, a novel conjugative plasmid is present in a Chinese O157:H7 outbreak strain Xuzhou21. Here we investigated the phenotypic and transcriptional differences between the wild type strain Xuzhou21 and the pO157_Sal cured mutant strain Xuzhou21m. RNA-Seq analysis found that all 52 ORFs encoded on pO157_Sal were transcribed. One hundred and sixty eight chromosomal and pO157 genes were differentially expressed (≥2 fold difference) between Xuzhou21 and Xuzhou21m. Sixty-seven and 101 genes were up-regulated and down-regulated respectively by pO157_Sal including genes related to stress response, adaption and virulence. The plasmid-cured mutant Xuzhou21m grew slower than wild type Xuzhou21 and pO157_Sal plasmid complemented strain Xuzhou21c in M9 medium under the condition of high NaCl or presence of sodium deoxycholate (NaDC), corroborating with the RNA-Seq data. Seven differentially expressed genes are associated with NaDC resistance, including the adenine-specific DNA-methyltransferase gene (dam), multidrug efflux system subunit gene mdtA, hyperosmotically inducible periplasmic protein gene osmY and oxidation-reduction related genes while two differentially expressed genes (osmY and pspD) are likely to be related to resistance to osmotic pressure. A number of differentially expressed genes were virulence associated including four genes encoding T3SS effectors from the chromosome and ehxD from pO157. Through complementation of Xuzhou21m with a plasmid construct carrying the pO157_Sal hha homolog we further showed that the pO157_Sal hha represses the expression of T3SS effectors. These findings demonstrated that the plasmid pO157_Sal affects the transcription of the chromosomal and pO157 plasmid genes and contributes to the enhanced ability to resist stress. We conclude that pO157_Sal plays an important role in regulating global gene expression and affects the virulence and adaptation of E. coli O157:H7.

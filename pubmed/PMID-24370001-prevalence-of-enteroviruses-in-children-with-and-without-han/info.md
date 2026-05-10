@@ -1,0 +1,14 @@
+# Prevalence of enteroviruses in children with and without hand, foot, and mouth disease in China.
+
+- **PMID**: 24370001
+- **DOI**: 10.1001/jama.291.2.222
+- **PMCID**: PMC3716818 (full-text saved)
+- **Journal**: BMC infectious diseases  ·  **Year**: 2013
+- **Authors**: Xiaoai Zhang, Hongyu Wang, Shujun Ding, Xianjun Wang, Xiaodan Chen, Ying Wo, Liyuan Wang, Doudou Huang, Wei Liu, Wuchun Cao
+- **MeSH**: Child, Child, Preschool, China, Enterovirus, Female, Hand, Foot and Mouth Disease, Humans, Infant, Male, Molecular Sequence Data
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24370001/
+- **Captured**: 2026-05-10T17:47:43
+
+## Abstract
+
+To determine the prevalence of human enteroviruses (HEVs) among healthy children, their parents, and children with hand, foot, and mouth disease (HFMD). We conducted a case-control study that included throat samples from 579 children with HFMD and from 254 healthy controls. Throat samples from 49 households (98 parents and 53 healthy children) were also analyzed. Phylogenetic analysis was carried out to study genetic relationships of EV71 strains. The HEV positive rate in HFMD patients was significantly higher than that in healthy controls (76.0% vs. 23.2%, P < 0.001). The EV71 (43.7% vs. 15.0%, P < 0.001), CVA16 (18.0% vs. 2.8%, P < 0.001), and CVA10 (5.7% vs. 0.8%, P = 0.001) serotypes were significantly overrepresented in HFMD patients in comparison to healthy children. Other HEV serotypes were detected with comparable frequency in cases and controls. The HEV positive rate in severe HFMD patients was significantly higher than that in mild group (82.1% vs. 73.8%, P = 0.04). The EV71 (55.0% vs. 39.7%, P = 0.001) and CVA16 (11. 9% vs. 20.0%, P = 0.024) positive rate differed significantly between severe and mild HFMD patients. Other HEV serotypes were detected with comparable frequency between severe and mild HFMD patients. Among 49 households, 22 households (44.9%) had at least 1 family member positive for HEV. Children had significantly higher HEV positive rate than adult (28.3% vs. 14.3%, P = 0.037). The HEV positive rate was similar between mothers and fathers (12.24% vs. 16.32%, P = 0.56). The VP1 sequences of EV71 from HFMD patients and healthy children were nearly identical and all were clustered in the same clade, C4a. Our study demonstrated the co-circulation of multiple HEV serotypes in children with and without HFMD during epidemic. Our study deserves the attention on HFMD control.

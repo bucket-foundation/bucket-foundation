@@ -1,0 +1,14 @@
+# Recognition of DNA by the helix-turn-helix global regulatory protein Lrp is modulated by the amino terminus.
+
+- **PMID**: 21642464
+- **DOI**: 10.1128/JB.00191-11
+- **PMCID**: PMC205284 (full-text saved)
+- **Journal**: Journal of bacteriology  ·  **Year**: 2011
+- **Authors**: Benjamin R Hart, Pankaj K Mishra, Robert E Lintner, Jennifer M Hinerman, Andrew B Herr, Robert M Blumenthal
+- **MeSH**: Amino Acid Motifs, Amino Acid Sequence, Bacterial Proteins, DNA, Bacterial, Escherichia coli, Escherichia coli Proteins, Gene Expression Regulation, Bacterial, Helix-Turn-Helix Motifs, Leucine-Responsive Regulatory Protein, Molecular Sequence Data
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/21642464/
+- **Captured**: 2026-05-10T17:47:22
+
+## Abstract
+
+The AsnC/Lrp family of regulatory proteins links bacterial and archaeal transcription patterns to metabolism. In Escherichia coli, Lrp regulates approximately 400 genes, over 200 of them directly. In earlier studies, lrp genes from Vibrio cholerae, Proteus mirabilis, and E. coli were introduced into the same E. coli background and yielded overlapping but significantly different regulons. These differences were seen despite amino acid sequence identities of 92% (Vibrio) and 98% (Proteus) to E. coli Lrp, including complete conservation of the helix-turn-helix motifs. The N-terminal region contains many of the sequence differences among these Lrp orthologs, which led us to investigate its role in Lrp function. Through the generation of hybrid proteins, we found that the N-terminal diversity is responsible for some of the differences between orthologs in terms of DNA binding (as revealed by mobility shift assays) and multimerization (as revealed by gel filtration, dynamic light scattering, and analytical ultracentrifugation). These observations indicate that the N-terminal tail plays a significant role in modulating Lrp function, similar to what is seen for a number of other regulatory proteins.

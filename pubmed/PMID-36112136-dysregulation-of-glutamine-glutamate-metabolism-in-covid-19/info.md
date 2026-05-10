@@ -1,0 +1,14 @@
+# Dysregulation of glutamine/glutamate metabolism in COVID-19 patients: A metabolism study in African population and mini meta-analysis.
+
+- **PMID**: 36112136
+- **DOI**: 10.1002/jmv.28150
+- **PMCID**: PMC9538869 (full-text saved)
+- **Journal**: Journal of medical virology  ·  **Year**: 2023
+- **Authors**: Xiao-Kun Li, Bo Tu, Xiao-Ai Zhang, Wen Xu, Jia-Hao Chen, Guang-Yu Zhao, Biao Xu, Jun-Jie Zheng, Yan-Feng Yan, Peng-Fei Hao, Reginald Cole, Mohamed Boie Jalloh, Qing-Bin Lu, Chang Li, Stephen Sevalie, Wei Liu, Wei-Wei Chen
+- **MeSH**: Humans, Glutamic Acid, Glutamine, COVID-19, Metabolomics, Biomarkers
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/36112136/
+- **Captured**: 2026-05-10T17:49:33
+
+## Abstract
+
+Coronavirus disease 2019 (COVID-19) remains a serious global threat. The metabolic analysis had been successfully applied in the efforts to uncover the pathological mechanisms and biomarkers of disease severity. Here we performed a quasi-targeted metabolomic analysis on 56 COVID-19 patients from Sierra Leone in western Africa, revealing the metabolomic profiles and the association with disease severity, which was confirmed by the targeted metabolomic analysis of 19 pairs of COVID-19 patients. A meta-analysis was performed on published metabolic data of COVID-19 to verify our findings. Of the 596 identified metabolites, 58 showed significant differences between severe and nonsevere groups. The pathway enrichment of these differential metabolites revealed glutamine and glutamate metabolism as the most significant metabolic pathway (Impact = 0.5; -log10P = 1.959). Further targeted metabolic analysis revealed six metabolites with significant intergroup differences, with glutamine/glutamate ratio significantly associated with severe disease, negatively correlated with 10 clinical parameters and positively correlated with SPO

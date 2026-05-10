@@ -1,0 +1,14 @@
+# Dynamics of neutralizing antibodies against severe fever with thrombocytopenia syndrome virus.
+
+- **PMID**: 37247691
+- **DOI**: 10.1016/j.ijid.2023.05.018
+- **PMCID**:  
+- **Journal**: International journal of infectious diseases : IJID : official publication of the International Society for Infectious Diseases  ·  **Year**: 2023
+- **Authors**: Jia-Chen Li, Heng Ding, Gang Wang, Shuo Zhang, Xin Yang, Yong-Xiang Wu, Xue-Fang Peng, Xiao-Ai Zhang, Zhen-Dong Yang, Ning Cui, Hao Li, Wei Liu
+- **MeSH**: Humans, Severe Fever with Thrombocytopenia Syndrome, Antibodies, Neutralizing, Prospective Studies, Bunyaviridae Infections, Antibodies, Viral, Phlebovirus, Immunoglobulin G
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/37247691/
+- **Captured**: 2026-05-10T17:49:47
+
+## Abstract
+
+Severe fever with thrombocytopenia syndrome (SFTS) virus (SFTSV) is an emerging tick-borne bunyavirus with a high pathogenicity. Little is known about the longitudinal dynamics of the SFTSV-specific neutralizing antibody (NAb) and the related factors in patients with SFTS. A prospective cohort study of patients with laboratory-confirmed SFTS were conducted. Antiglomerulonephritis-immunoglobulin G (anti-Gn-IgG) and NAb titers were examined in serially collected serum samples, and their dynamic features were analyzed. NAb was initially detected at 15 days after symptom onset in surviving patients with SFTS, with positive rates of 37.21% (16/43), whereas neither anti-Gn-IgG antibody nor NAb was detected in patients with fatal SFTS during their hospitalization. The NAb levels reached the peak at 2 months after symptom onset, and then gradually declined, with a rapid downward trend from 6 months to 4 years and a relatively slow downward trend from 5 to 10 years. There was a positive correlation between NAb and anti-Gn-IgG titers in surviving patients with SFTS (r = 0.699, P <0.001). Patients with a mild illness or low viral load experienced early NAb seroconversion. Six different dynamic patterns of NAb were noted in surviving patients. These data provide useful information regarding the dynamic changes in NAb in patients with SFTS during the acute and convalescent phases and the follow-up period.

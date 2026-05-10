@@ -1,0 +1,14 @@
+# Clinical efficacy and safety evaluation of favipiravir in treating patients with severe fever with thrombocytopenia syndrome.
+
+- **PMID**: 34563924
+- **DOI**: 10.1016/j.ebiom.2021.103591
+- **PMCID**: PMC7689521 (full-text saved)
+- **Journal**: EBioMedicine  ·  **Year**: 2021
+- **Authors**: Yang Yuan, Qing-Bin Lu, Wen-Si Yao, Jing Zhao, Xiao-Ai Zhang, Ning Cui, Chun Yuan, Tong Yang, Xue-Fang Peng, Shou-Ming Lv, Jia-Chen Li, Ya-Bin Song, Dong-Na Zhang, Li-Qun Fang, Hong-Quan Wang, Hao Li, Wei Liu
+- **MeSH**: Aged, Amides, Antiviral Agents, Female, Humans, Male, Middle Aged, Pyrazines, Severe Fever with Thrombocytopenia Syndrome, Treatment Outcome
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34563924/
+- **Captured**: 2026-05-10T17:49:04
+
+## Abstract
+
+Severe fever with thrombocytopenia syndrome (SFTS) is an emerging infectious disease with high mortality, however with no effective therapy available. The effect of favipiravir (FPV) in treating SFTS was evaluated by an integrated analysis on data collected from a single-arm study (n=428), a surveillance study (n=2350) and published data from a randomized controlled trial study (n=145). A 1:1 propensity score matching was performed to include 780 patients: 390 received FPV and 390 received supportive therapy only. Case fatality rates (CFRs), clinical progress, and adverse effects were compared. FPV treatment had significantly reduced CFR from 20.0% to 9.0% (odds ratio 0.38, 95% confidence interval 0.23-0.65), however showing heterogeneity when patients were grouped by age, onset-to-admission interval, initial viral load and therapy duration. The effect of FPV was significant only among patients aged ≤70 years, with onset-to-admission interval ≤5 days, therapy duration ≥5 days or baseline viral load ≤1 × 10 FPV was safe in treating SFTS patients but showed no benefit for those aged >70 years. Instant FPV therapy could highly benefit SFTS patients aged 60-70 years. China Natural Science Foundation (No. 81825019, 82073617 and 81722041) and China Mega-project for Infectious Diseases (2018ZX10713002 and 2015ZX09102022).

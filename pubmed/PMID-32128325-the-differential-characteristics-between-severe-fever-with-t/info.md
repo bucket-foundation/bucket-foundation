@@ -1,0 +1,14 @@
+# The Differential Characteristics Between Severe Fever With Thrombocytopenia Syndrome and Hemorrhagic Fever With Renal Syndrome in the Endemic Regions.
+
+- **PMID**: 32128325
+- **DOI**: 10.1093/ofid/ofz477
+- **PMCID**: PMC7125729 (full-text saved)
+- **Journal**: Open forum infectious diseases  ·  **Year**: 2019
+- **Authors**: Qing-Bin Lu, Hao Li, Fa-Chun Jiang, Ling-Ling Mao, Xue-Sheng Liu, Ning Wang, Yong-Yun Zhou, Ke Dai, Zhen-Dong Yang, Li-Yan Dong, Ning Cui, Xiao-Ai Zhang, Shao-Fei Zhang, Pan-He Zhang, Li-Qun Fang, Wei Liu
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/32128325/
+- **Captured**: 2026-05-10T17:48:35
+
+## Abstract
+
+An effective differentiation between severe fever with thrombocytopenia syndrome and hemorrhagic fever with renal syndrome was attained by a model considering patients' age, mouse/tick contact, presence of blush, low back pain, diarrhea, enlarged lymph nodes, and white blood cell count.

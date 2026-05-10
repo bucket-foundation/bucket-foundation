@@ -1,0 +1,14 @@
+# Nuclear protein IkappaB-zeta inhibits the activity of STAT3.
+
+- **PMID**: 19595668
+- **DOI**: 10.1016/j.bbrc.2009.07.023
+- **PMCID**:  
+- **Journal**: Biochemical and biophysical research communications  ·  **Year**: 2009
+- **Authors**: Zhihao Wu, Xiaoai Zhang, Juntao Yang, Guangzhou Wu, Ying Zhang, Yanzhi Yuan, Chaozhi Jin, Zhijie Chang, Jian Wang, Xiaoming Yang, Fuchu He
+- **MeSH**: Adaptor Proteins, Signal Transducing, Apoptosis, Cell Line, Cell Nucleus, Gene Expression Regulation, Humans, I-kappa B Proteins, Myeloid Cell Leukemia Sequence 1 Protein, Nuclear Proteins, Proto-Oncogene Proteins c-bcl-2
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19595668/
+- **Captured**: 2026-05-10T17:47:12
+
+## Abstract
+
+STAT3 (Signal transducer and activator of transcription 3) is a key transcription factor of the JAK-STAT (Janus kinase/signal transducer and activator of transcription) pathway that regulates cell proliferation and apoptosis. Activation of STAT3 is under tight regulation, and yet the different signaling pathways and the mechanisms that regulate its activity remain to be elucidated. Using a yeast two-hybrid screening, we have identified a nuclear protein IkappaB-zeta that interacts in a novel way with STAT3. This physical interaction was further confirmed by co-immunoprecipitation assays. The interaction regions were mapped to the coiled-coil domain of STAT3 and the C-terminal of IkappaB-zeta. Overexpression of IkappaB-zeta inhibited the transcriptional activity of STAT3. It also suppressed cell growth and induced cell apoptosis in SRC-simulated cells, which is partially mediated by down-regulation of expression of a known STAT3 target gene, MCL1. Our results suggest that IkappaB-zeta is a negative regulator of STAT3, and demonstrate a novel mechanism in which a component of the NF-kappaB signaling pathway inhibits the activation of STAT3.

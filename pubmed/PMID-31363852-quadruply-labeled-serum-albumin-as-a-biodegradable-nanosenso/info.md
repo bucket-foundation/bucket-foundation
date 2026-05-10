@@ -1,0 +1,14 @@
+# Quadruply-labeled serum albumin as a biodegradable nanosensor for simultaneous fluorescence imaging of intracellular pH values, oxygen and temperature.
+
+- **PMID**: 31363852
+- **DOI**: 10.1007/s00604-019-3674-4
+- **PMCID**:  
+- **Journal**: Mikrochimica acta  ·  **Year**: 2019
+- **Authors**: Xiao-Ai Zhang, Wei Zhang, Qi Wang, Junli Wang, Guodong Ren, Xu-Dong Wang
+- **MeSH**: Biosensing Techniques, Europium, Fluorescein, Fluorescent Dyes, HeLa Cells, Humans, Hydrogen-Ion Concentration, Oxygen, Platinum, Rhodamines
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/31363852/
+- **Captured**: 2026-05-10T17:48:32
+
+## Abstract
+
+The construction of multiple fluorescent nanosensors for intracellular studies is a challenging task because spectral overlap of indicator probes can lead to cross-talk and mutual interference. This work describes biodegradable nanosensors that can simultaneously measure three intracellular parameters (temperature, pH and oxygen concentration). Bovine serum albumin (BSA) is selected as the scaffold to construct the triple nanosensor by covalent immobilization four fluorophores on BSA. The following luminophores were used: (a) fluorescein as a probe for pH values, (b) a platinum(II) porphyrin complex for oxygen; (c) a europium(III) clathrate complex for temperature, and (d) a rhodamine B as a reference dye. The nanoparticles have a size of 20 nm and show excellent biocompatibility and good brightness. The nanosensors were used for ratiometric imaging of intracellular pH values, oxygen and temperature in HeLa cells. The triple nanosensor responds reversibly and this can be used for real-time tracing of these key parameters. Owing to their biodegradable feature, the use of this kind of triple nanosensor reduce the stress on cellular activities because less nanosensors can be used to gather the total information. Graphical abstractA triple nanosensor for simultaneously ratiometrically sensing intracellular pH, oxygen and temperature values was constructed by covalently labelling four fluorophores on a single serum albumin protein. The nanosensor shows good sensitivity, biocompatibility, is biodegradable and suitable for continuously measuring these important parameters.

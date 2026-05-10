@@ -1,0 +1,14 @@
+# Integration of regulatory signals through involvement of multiple global regulators: control of the Escherichia coli gltBDF operon by Lrp, IHF, Crp, and ArgR.
+
+- **PMID**: 17233899
+- **DOI**: 10.1186/gb-2001-2-4-research0013
+- **PMCID**: PMC31482 (full-text saved)
+- **Journal**: BMC microbiology  ·  **Year**: 2007
+- **Authors**: Ligi Paul, Pankaj K Mishra, Robert M Blumenthal, Rowena G Matthews
+- **MeSH**: Base Sequence, Binding Sites, Cyclic AMP Receptor Protein, DNA-Directed RNA Polymerases, Deoxyribonuclease I, Electrophoretic Mobility Shift Assay, Escherichia coli, Escherichia coli Proteins, Gene Expression Regulation, Bacterial, Glutamate Synthase
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17233899/
+- **Captured**: 2026-05-10T17:47:04
+
+## Abstract
+
+The glutamate synthase operon (gltBDF) contributes to one of the two main pathways of ammonia assimilation in Escherichia coli. Of the seven most-global regulators, together affecting expression of about half of all E. coli genes, two were previously shown to exert direct, positive control on gltBDF transcription: Lrp and IHF. The involvement of Lrp is unusual in two respects: first, it is insensitive to the usual coregulator leucine, and second, Lrp binds more than 150 bp upstream of the transcription starting point. There was indirect evidence for involvement of a third global regulator, Crp. Given the physiological importance of gltBDF, and the potential opportunity to learn about integration of global regulatory signals, a combination of in vivo and in vitro approaches was used to investigate the involvement of additional regulatory proteins, and to determine their relative binding positions and potential interactions with one another and with RNA polymerase (RNAP). Crp and a more local regulator, ArgR, directly control gltBDF transcription, both acting negatively. Crp-cAMP binds a sequence centered at -65.5 relative to the transcript start. Mutation of conserved nucleotides in the Crp binding site abolishes the Crp-dependent repression. ArgR also binds to the gltBDF promoter region, upstream of the Lrp binding sites, and decreases transcription. RNAP only yields a defined DNAse I footprint under two tested conditions: in the presence of both Lrp and IHF, or in the presence of Crp-cAMP. The DNAse I footprint of RNAP in the presence of Lrp and IHF is altered by ArgR. The involvement of nearly half of E. coli's most-global regulatory proteins in the control of gltBDF transcription is striking, but seems consistent with the central metabolic role of this operon. Determining the mechanisms of activation and repression for gltBDF was beyond the scope of this study. However the results are consistent with a model in which IHF bends the DNA to allow stabilizing contacts between Lrp and RNAP, ArgR interferes with such contacts, and Crp introduces an interfering bend in the DNA and/or stabilizes RNAP in a poised but inactive state.

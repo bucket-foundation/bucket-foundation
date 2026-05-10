@@ -1,0 +1,14 @@
+# Broad Impacts of Coronavirus Disease 2019 (COVID-19) Pandemic on Acute Respiratory Infections in China: An Observational Study.
+
+- **PMID**: 34788811
+- **DOI**: 10.1093/cid/ciab942
+- **PMCID**: PMC8767888 (full-text saved)
+- **Journal**: Clinical infectious diseases : an official publication of the Infectious Diseases Society of America  ·  **Year**: 2022
+- **Authors**: Zhong Jie Li, Lin Jie Yu, Hai Yang Zhang, Chun Xi Shan, Qing Bin Lu, Xiao Ai Zhang, Xiang Ren, Cui Hong Zhang, Yi Fei Wang, Sheng Hong Lin, Qiang Xu, Bao Gui Jiang, Tao Jiang, Chen Long Lv, Jin Jin Chen, George F Gao, Wei Zhong Yang, Li Ping Wang, Yang Yang, Li Qun Fang, Wei Liu
+- **MeSH**: COVID-19, Child, Human bocavirus, Humans, Metapneumovirus, Orthomyxoviridae, Pandemics, Parainfluenza Virus 1, Human, Respiratory Syncytial Virus, Human, Respiratory Tract Infections
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/34788811/
+- **Captured**: 2026-05-10T17:49:12
+
+## Abstract
+
+To combat the coronavirus disease 2019 (COVID-19) pandemic, nonpharmaceutical interventions (NPIs) were implemented worldwide, which impacted a broad spectrum of acute respiratory infections (ARIs). Etiologically diagnostic data from 142 559 cases with ARIs, who were tested for 8 viral pathogens (influenza virus [IFV], respiratory syncytial virus [RSV], human parainfluenza virus [HPIV], human adenovirus [HAdV], human metapneumovirus [HMPV], human coronavirus [HCoV], human bocavirus [HBoV], and human rhinovirus [HRV]) between 2012 and 2021, were analyzed to assess the changes in respiratory infections in China during the first COVID-19 pandemic year compared with pre-pandemic years. Test-positive rates of all respiratory viruses decreased during 2020, compared to the average levels during 2012-2019, with changes ranging from -17.2% for RSV to -87.6% for IFV. Sharp decreases mostly occurred between February and August when massive NPIs remained active, although HRV rebounded to the historical level during the summer. While IFV and HMPV were consistently suppressed year-round, RSV, HPIV, HCoV, HRV, and HBoV resurged and went beyond historical levels during September 2020-January 2021, after NPIs were largely relaxed and schools reopened. Resurgence was more prominent among children <18 years and in northern China. These observations remain valid after accounting for seasonality and long-term trend of each virus. Activities of respiratory viral infections were reduced substantially in the early phases of the COVID-19 pandemic, and massive NPIs were likely the main driver. Lifting of NPIs can lead to resurgence of viral infections, particularly in children.

@@ -1,0 +1,14 @@
+# Detection of viral and bacterial pathogens in hospitalized children with acute respiratory illnesses, Chongqing, 2009-2013.
+
+- **PMID**: 25906103
+- **DOI**: 10.1097/MD.0000000000000742
+- **PMCID**: PMC7114627 (full-text saved)
+- **Journal**: Medicine  ·  **Year**: 2015
+- **Authors**: Lan Wei, Wei Liu, Xiao-Ai Zhang, En-Mei Liu, Yin Wo, Benjamin J Cowling, Wu-Chun Cao
+- **MeSH**: Acute Disease, Adolescent, Age Distribution, Bacterial Infections, Child, Child, Hospitalized, Child, Preschool, China, Coinfection, Female
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25906103/
+- **Captured**: 2026-05-10T17:48:00
+
+## Abstract
+
+Acute respiratory infections (ARIs) cause large disease burden each year. The codetection of viral and bacterial pathogens is quite common; however, the significance for clinical severity remains controversial. We aimed to identify viruses and bacteria in hospitalized children with ARI and the impact of mixed detections.Hospitalized children with ARI aged ≤16 were recruited from 2009 to 2013 at the Children's Hospital of Chongqing Medical University, Chongqing, China. Nasopharyngeal aspirates (NPAs) were collected for detection of common respiratory viruses by reverse transcription polymerase chain reaction (RT-PCR) or PCR. Bacteria were isolated from NPAs by routine culture methods. Detection and codetection frequencies and clinical features and severity were compared.Of the 3181 hospitalized children, 2375 (74.7%) were detected with ≥1 virus and 707 (22.2%) with ≥1 bacteria, 901 (28.3%) with ≥2 viruses, 57 (1.8%) with ≥2 bacteria, and 542 (17.0%) with both virus and bacteria. The most frequently detected were Streptococcus pneumoniae, respiratory syncytial virus, parainfluenza virus, and influenza virus. Clinical characteristics were similar among different pathogen infections for older group (≥6 years old), with some significant difference for the younger. Cases with any codetection were more likely to present with fever; those with ≥2 virus detections had higher prevalence of cough; cases with virus and bacteria codetection were more likely to have cough and sputum. No significant difference in the risk of pneumonia, severe pneumonia, and intensive care unit admission were found for any codetection than monodetection.There was a high codetection rate of common respiratory pathogens among hospitalized pediatric ARI cases, with fever as a significant predictor. Cases with codetection showed no significant difference in severity than those with single pathogens.

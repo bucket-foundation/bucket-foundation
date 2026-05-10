@@ -1,0 +1,14 @@
+# The platelet derived growth factor-B polymorphism is associated with risk of severe fever with thrombocytopenia syndrome in Chinese individuals.
+
+- **PMID**: 27147565
+- **DOI**: 10.18632/oncotarget.9043
+- **PMCID**: PMC14630 (full-text saved)
+- **Journal**: Oncotarget  ·  **Year**: 2016
+- **Authors**: Xiao-Ai Zhang, Chen-Tao Guo, Qing-Bin Lu, Jian-Gong Hu, Ning Cui, Zhen-Dong Yang, Wei Peng, Rong Liu, Chun-Yan Hu, Shu-Li Qin, Xian-Jun Wang, Shu-Jun Ding, Dou-Dou Huang, Wei Liu, Wu-Chun Cao
+- **MeSH**: Animals, Asian People, Becaplermin, Bunyaviridae Infections, Case-Control Studies, China, Disease Models, Animal, Female, Fever, Gene Frequency
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27147565/
+- **Captured**: 2026-05-10T17:48:05
+
+## Abstract
+
+Severe fever with thrombocytopenia syndrome (SFTS) is an emerging infectious disease caused by a novel bunyavirus named SFTS virus (SFTSV). We hypothesize that host genetic variations may contribute to susceptibility to SFTS. Compared with the rs1800818 AA genotype, AG + GG genotypes were significantly associated with increased susceptibility to SFTS (odds ratio, 1.66, 95% confidence interval = 1.28-2.16; P < 0.001). By using the ELISA assay, we observed that PDGF-BB concentration was significantly reduced in acute phase of patients than in the controls (P < 0.001) and recovered patients at 6 month (P = 0.007) and 12 month (P = 0.003). A persistently reduced PDGF-BB was also revealed from the SFTSV-infected C57BL/6J mice (P < 0.001). The rs1800818 G allele was associated with decreased serum PDGF-BB levels in SFTS patients at their early infection (P = 0.015). In accordance, the relative mRNA levels of the at-risk G allele of 1800818 were lower than those of the A allele in heterozygous cell from acute phase of SFTS patients. PDGF-B rs1800818 conferred no susceptibility to severe or fatal outcome in SFTS patients. An initially small-scale case-control association study guided the selection of platelet derived growth factor-B (PDGF-B) rs1800818 in 1020 SFTS patients and 1353 controls. Functional analyses were conducted to verify the biological significance of rs1800818 polymorphism. Our findings suggest that the PDGF-B rs1800818 polymorphism might play a role in mediating the susceptibility to SFTS.

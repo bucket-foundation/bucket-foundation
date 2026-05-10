@@ -1,0 +1,14 @@
+# Mixed infections of pandemic H1N1 and seasonal H3N2 viruses in 1 outbreak.
+
+- **PMID**: 20380566
+- **DOI**: 10.1086/652143
+- **PMCID**:  
+- **Journal**: Clinical infectious diseases : an official publication of the Infectious Diseases Society of America  ·  **Year**: 2010
+- **Authors**: Wei Liu, Zeng-De Li, Fang Tang, Mao-Ti Wei, Yi-Gang Tong, Lei Zhang, Zhong-Tao Xin, Mai-Juan Ma, Xiao-Ai Zhang, Li-Juan Liu, Lin Zhan, Cui He, Hong Yang, Charles A Boucher, Jan Hendrik Richardus, Wu-Chun Cao
+- **MeSH**: Adolescent, Adult, Antibodies, Viral, Child, Child, Preschool, China, Disease Outbreaks, Female, Hemagglutination Inhibition Tests, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/20380566/
+- **Captured**: 2026-05-10T17:47:18
+
+## Abstract
+
+In early September 2009, an outbreak of influenza occurred at a college campus in Beijing, China, in which both pandemic H1N1 and seasonal H3N2 viruses were detected. Outbreak investigation was performed in the campus. Epidemiologic, clinical data were collected by interviewing patients and retrieving medical records. Individual contact tracing was performed for detailed contact information. Viruses were identified by reverse-transcription polymerase chain reaction assays followed by sequence analysis. The hemagglutination inhibition test was used to detect antibodies to both viruses for paired serum samples. Forty of 45 people with influenza-like illness had laboratory-confirmed influenza A infection; 22 of these 40 people were infected with pandemic H1N1 virus, 12 were infected with seasonal H3N2 virus, and 6 were coinfected with both viruses. In the subsequent generation of cases with mixed infection, we detected pandemic H1N1 virus infection more often than seasonal H3N2 virus infection. The clinical patterns were essentially similar for patients with different virus infections. No substantial differences in sequences were observed in either pandemic H1N1 or seasonal H3N2 virus between patients with mixed and single infection. Sequence analyses revealed that all of the detected viruses were susceptible to oseltamivir but resistant to adamantane. Hemagglutination inhibition tests of paired serum samples confirmed mixed infection in the outbreak. Cocirculation of pandemic H1N1 virus and seasonal H3N2 virus led to a mixed infection in patients. Pandemic H1N1 virus, however, took prevalence over seasonal influenza virus in the course of transmission. Therefore, competitive circulation of seasonal influenza A virus with the pandemic H1N1 virus seems less likely.

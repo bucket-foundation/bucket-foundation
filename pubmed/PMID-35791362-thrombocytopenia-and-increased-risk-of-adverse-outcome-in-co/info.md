@@ -1,0 +1,14 @@
+# Thrombocytopenia and increased risk of adverse outcome in COVID-19 patients.
+
+- **PMID**: 35791362
+- **DOI**: 10.1007/s00277-020-04019-0
+- **PMCID**: PMC7156897 (full-text saved)
+- **Journal**: PeerJ  ·  **Year**: 2022
+- **Authors**: Yang Yuan, Gang Wang, Xi Chen, Xiao-Lei Ye, Xiao-Kun Li, Rui Li, Wan-Li Jiang, Hao-Long Zeng, Juan Du, Xiao-Ai Zhang, Hao Li, Li-Qun Fang, Qing-Bin Lu, Wei Liu
+- **MeSH**: Humans, COVID-19, Retrospective Studies, Thrombocytopenia, Platelet Count, Disseminated Intravascular Coagulation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/35791362/
+- **Captured**: 2026-05-10T17:49:28
+
+## Abstract
+
+Thrombocytopenia was common in the coronavirus disease 2019 (COVID-19) patients during the infection, while the role of thrombocytopenia in COVID-19 pathogenesis and its relationship with systemic host response remained obscure. The study aimed to systematically evaluate the relationship between thrombocytopenia in COVID-19 patients and clinical, haematological and biochemical markers of the disease as well as adverse outcomes. To assess the relationship between abnormal platelet levels and disease progression, a multi-center retrospective cohort study was conducted. COVID-19 patients with thrombocytopenia and a sub-cohort of matched patients without thrombocytopenia were compared for their clinical manifestations, haematological disorders, biochemical parameters, inflammatory markers and clinical outcome. Thrombocytopenia was present in 127 of 2,209 analyzed patients on admission. Compared with the control group, thrombocytopenia patients developed significantly higher frequency of respiratory failure (41.9%  Our finding from this study adds to previous evidence that thrombocytopenia is associated with adverse outcome of the disease and recommend that platelet count and indices be included alongside other haematological, biochemical and inflammatory markers in COVID-19 patients' assessment during the hospital stay.

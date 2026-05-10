@@ -1,0 +1,14 @@
+# MicroRNA expression profile of mouse lung infected with 2009 pandemic H1N1 influenza virus.
+
+- **PMID**: 24066118
+- **DOI**: 10.1186/1743-422X-7-344
+- **PMCID**: PMC2951376 (full-text saved)
+- **Journal**: PloS one  ·  **Year**: 2013
+- **Authors**: Zhihao Wu, Rongzhang Hao, Peng Li, Xiaoai Zhang, Nan Liu, Shaofu Qiu, Ligui Wang, Yong Wang, Wenzhong Xue, Kun Liu, Guang Yang, Jiajun Cui, Chuanfu Zhang, Hongbin Song
+- **MeSH**: Animals, Computational Biology, Influenza A Virus, H1N1 Subtype, Lung, Male, Mice, Mice, Inbred BALB C, MicroRNAs, Orthomyxoviridae Infections
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/24066118/
+- **Captured**: 2026-05-10T17:47:38
+
+## Abstract
+
+MicroRNAs have been implicated in the regulation of gene expression of various biological processes in a post-transcriptional manner under physiological and pathological conditions including host responses to viral infections. The 2009 pandemic H1N1 influenza virus is an emerging reassortant strain of swine, human and bird influenza virus that can cause mild to severe illness and even death. To further understand the molecular pathogenesis of the 2009 pandemic H1N1 influenza virus, we profiled cellular microRNAs of lungs from BALB/c mice infected with wild-type 2009 pandemic influenza virus A/Beijing/501/2009 (H1N1) (hereafter referred to as BJ501) and mouse-adapted influenza virus A/Puerto Rico/8/1934 (H1N1) (hereafter referred to as PR8) for comparison. Microarray analysis showed both the influenza virus BJ501 and PR8 infection induced strain- and temporal-specific microRNA expression patterns and that their infection caused a group of common and distinct differentially expressed microRNAs. Characteristically, more differentially expressed microRNAs were aroused on day 5 post infection than on day 2 and more up-regulated differentially expressed microRNAs were provoked than the down-regulated for both strains of influenza virus. Finally, 47 differentially expressed microRNAs were obtained for the infection of both strains of H1N1 influenza virus with 29 for influenza virus BJ501 and 43 for PR8. Among them, 15 microRNAs had no reported function, while 32 including miR-155 and miR-233 are known to play important roles in cancer, immunity and antiviral activity. Pathway enrichment analyses of the predicted targets revealed that the transforming growth factor-β (TGF-β) signaling pathway was the key cellular pathway associated with the differentially expressed miRNAs during influenza virus PR8 or BJ501 infection. To our knowledge, this is the first report of microRNA expression profiles of the 2009 pandemic H1N1 influenza virus in a mouse model, and our findings might offer novel therapy targets for influenza virus infection.

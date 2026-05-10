@@ -1,0 +1,14 @@
+# Association between peripheral γδ T cell subsets and disease progression of severe fever with thrombocytopenia syndrome virus infection.
+
+- **PMID**: 28859400
+- **DOI**: 10.1093/femspd/ftx086
+- **PMCID**:  
+- **Journal**: Pathogens and disease  ·  **Year**: 2017
+- **Authors**: Wen Xu, Xiao-Kun Li, Qing-Bin Lu, Zhen-Dong Yang, Juan Du, Bo Xing, Ning Cui, Xiao-Ai Zhang, Shao-Fei Zhang, Xin-Xin Yang, Wei Liu, Wei-Wei Chen
+- **MeSH**: Adult, Aged, Bunyaviridae Infections, Case-Control Studies, Disease Progression, Female, Gene Expression, Humans, Immunophenotyping, Male
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28859400/
+- **Captured**: 2026-05-10T17:48:18
+
+## Abstract
+
+Severe fever with thrombocytopenia syndrome (SFTS) is an emerging tick-borne infectious disease caused by SFTS virus. The cellular immune responses during SFTS virus infection have not been fully understood. This study examined the association between circulating γδ T cell subsets and clinical outcome of SFTS patients from China. A total of 101 hospitalized SFTS patients and 28 healthy controls were enrolled. Peripheral blood was collected, and lymphocyte subgroups and γδ T cell frequencies were evaluated by flow cytometry analysis. Their association with patients' outcome was also investigated. Starting from Week 1, the Vδ1 cells of patients were increased to significantly higher level at Month 3 after disease onset than the controls (P < 0.05), followed by a decrease to the normal level in Year 1. In contrast, the Vδ2 cells displayed significant lower level than the controls from Week 2 to Year 1. On Week 2, the Vδ2 cells demonstrated a significant decrease in the severe patients than both the mild and controls (P < 0.05). The adverse disease progression is accompanied by the reduction of Vδ2 cells, suggesting the key role of Vδ2 cells in the disease progression.

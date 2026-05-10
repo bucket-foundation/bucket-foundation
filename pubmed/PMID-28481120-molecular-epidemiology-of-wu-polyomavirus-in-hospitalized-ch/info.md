@@ -1,0 +1,14 @@
+# Molecular epidemiology of WU polyomavirus in hospitalized children with acute respiratory tract infection in China.
+
+- **PMID**: 28481120
+- **DOI**: 10.2217/fmb-2016-0144
+- **PMCID**:  
+- **Journal**: Future microbiology  ·  **Year**: 2017
+- **Authors**: Teng Zhu, Qing-Bin Lu, Shu-Yan Zhang, Ying Wo, Lu Zhuang, Pan-He Zhang, Xiao-Ai Zhang, Wei Wei, Wei Liu
+- **MeSH**: Acute Disease, Child, Child, Preschool, China, DNA, Viral, Female, Humans, Infant, Male, Nasopharynx
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/28481120/
+- **Captured**: 2026-05-10T17:48:13
+
+## Abstract
+
+To explore the molecular epidemiology and clinical characteristics of Washington University polyomavirus (WUPyV) infection in pediatric patients with acute respiratory tract infections in China. A laboratory surveillance was performed to recruit pediatric patients with acute respiratory tract infections. WUPyV was detected using real-time PCR and complete genome was sequenced for randomly selected positive nasopharyngeal aspirate. Altogether 122 (7.5%) of 1617 children found to be infected with WUPyV and 88 (72.1%) were coinfected with other viruses during 2012-2015. The phylogenetic analysis showed that 14 strains from our study formed two new clusters (Id and IIIc) within the Branch I and Branch III, respectively. WUPyV is persistently circulating in China. Surveillance on WUPyV infection in wider areas and long persistence is warranted.

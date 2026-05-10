@@ -1,0 +1,14 @@
+# An increasing prevalence of recombinant GII norovirus in pediatric patients with diarrhea during 2010-2013 in China.
+
+- **PMID**: 25599878
+- **DOI**: 10.1016/j.meegid.2015.01.008
+- **PMCID**:  
+- **Journal**: Infection, genetics and evolution : journal of molecular epidemiology and evolutionary genetics in infectious diseases  ·  **Year**: 2015
+- **Authors**: Qing-Bin Lu, Dou-Dou Huang, Jin Zhao, Hong-Yu Wang, Xiao-Ai Zhang, Hong-Mei Xu, Fen Qu, Wei Liu, Wu-Chun Cao
+- **MeSH**: Adolescent, Caliciviridae Infections, Child, Child, Preschool, China, Diarrhea, Female, Genes, Viral, Genotype, Humans
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/25599878/
+- **Captured**: 2026-05-10T17:47:57
+
+## Abstract
+
+Noroviruses are the primary cause of acute nonbacterial gastroenteritis in humans and are responsible for nearly half of gastroenteritis cases globally. The norovirus strain variants have been circulating in underdeveloped regions in western China, where pediatric diarrhea acts as the major public health concern. The study aims to identify the epidemic genotypes of norovirus and explore their genetic characteristics in Chongqing, China. By performing a hospital-based surveillance from 2010 to 2013, we identified a significant shift of the predominant Norovirus strains in recent 4years in the studied area. The GII.4_Sydney_2012 and GII.12/GII.3 strains replaced GII.4_2006b and GII.4_NewOrleans_2009 to become the predominant genotypes, with the proportion of ORF1/ORF2 recombinants rising steadily from 2010 to 2013. A new GII.12/GII.3 variant that was seldom detected became a predominant genotype during the study course. Several distinct genotypes of norovirus, including GII.16/GII.2, GII.21/GII.3, GII.15 and GII.6, were also detected. The rising circulation of recombination in Chongqing illustrated the significance of recombination, especially in the ORF1/ORF2 overlap region, in the evolution and epidemic of norovirus. The epidemic of GII.12/GII.3 in Chongqing also serves as a reminder that prolonged surveillance is warranted for better prevention and control of norovirus infection.

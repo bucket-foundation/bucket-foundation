@@ -1,0 +1,14 @@
+# Limited functional conservation of a global regulator among related bacterial genera: Lrp in Escherichia, Proteus and Vibrio.
+
+- **PMID**: 18405378
+- **DOI**: 10.1089/10665270050514954
+- **PMCID**: PMC1584274 (full-text saved)
+- **Journal**: BMC microbiology  ·  **Year**: 2008
+- **Authors**: Robert E Lintner, Pankaj K Mishra, Poonam Srivastava, Betsy M Martinez-Vaz, Arkady B Khodursky, Robert M Blumenthal
+- **MeSH**: Alleles, Amino Acid Sequence, Bacterial Proteins, Base Sequence, Escherichia coli, Escherichia coli Proteins, Evolution, Molecular, Gene Expression Regulation, Bacterial, Leucine, Leucine-Responsive Regulatory Protein
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18405378/
+- **Captured**: 2026-05-10T17:47:06
+
+## Abstract
+
+Bacterial genome sequences are being determined rapidly, but few species are physiologically well characterized. Predicting regulation from genome sequences usually involves extrapolation from better-studied bacteria, using the hypothesis that a conserved regulator, conserved target gene, and predicted regulator-binding site in the target promoter imply conserved regulation between the two species. However many compared organisms are ecologically and physiologically diverse, and the limits of extrapolation have not been well tested. In E. coli K-12 the leucine-responsive regulatory protein (Lrp) affects expression of approximately 400 genes. Proteus mirabilis and Vibrio cholerae have highly-conserved lrp orthologs (98% and 92% identity to E. coli lrp). The functional equivalence of Lrp from these related species was assessed. Heterologous Lrp regulated gltB, livK and lrp transcriptional fusions in an E. coli background in the same general way as the native Lrp, though with significant differences in extent. Microarray analysis of these strains revealed that the heterologous Lrp proteins significantly influence only about half of the genes affected by native Lrp. In P. mirabilis, heterologous Lrp restored swarming, though with some pattern differences. P. mirabilis produced substantially more Lrp than E. coli or V. cholerae under some conditions. Lrp regulation of target gene orthologs differed among the three native hosts. Strikingly, while Lrp negatively regulates its own gene in E. coli, and was shown to do so even more strongly in P. mirabilis, Lrp appears to activate its own gene in V. cholerae. The overall similarity of regulatory effects of the Lrp orthologs supports the use of extrapolation between related strains for general purposes. However this study also revealed intrinsic differences even between orthologous regulators sharing >90% overall identity, and 100% identity for the DNA-binding helix-turn-helix motif, as well as differences in the amounts of those regulators. These results suggest that predicting regulation of specific target genes based on genome sequence comparisons alone should be done on a conservative basis.

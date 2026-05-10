@@ -1,0 +1,14 @@
+# Supporting carers: a learning resource for community nurses.
+
+- **PMID**: 26140318
+- **DOI**: 10.12968/bjcn.2015.20.7.335
+- **PMCID**:  
+- **Journal**: British journal of community nursing  ·  **Year**: 2015
+- **Authors**: Pip Maskell, Mary Somerville, Alex Mathews
+- **MeSH**: Community Health Nursing, Education, Nursing, England, Humans, Internet, Needs Assessment, Professional-Family Relations, Program Development, Program Evaluation
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/26140318/
+- **Captured**: 2026-05-10T17:48:01
+
+## Abstract
+
+In 2013, as part of the Queen's Nursing Institute (QNI) Carers Project, the QNI asked the 4M Learning Network to test the need for a learning resource to enable community nurses to support carers' health and wellbeing needs. In order to measure the learning needs of community nurses, the QNI undertook a literature review (Laing and Sprung, 2013). The 4M team commenced with desk research and extensive consultation using an online survey and workshops across England. The outcomes of this consultation informed the development of an open-access online learning resource for community nurses, with modules covering different aspects of the nurses' role in relation to carers, as well as a comprehensive resource directory and e-workbook. This resource was launched in March 2014. In response to the enthusiasm and positive feedback from the community nurses, two learning resources were launched in March 2015 for practice nurses and school nurses. An accompanying resource directory mobile application is currently being development and is due to be released in summer 2015. It should be noted that throughout the article, the term carers refers to informal carers, i.e. family or friends caring for a person at home; it does not refer to an employed care assistant or helper.

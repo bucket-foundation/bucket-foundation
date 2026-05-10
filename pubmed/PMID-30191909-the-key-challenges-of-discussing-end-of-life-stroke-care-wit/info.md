@@ -1,0 +1,14 @@
+# The key challenges of discussing end-of-life stroke care with patients and families: a mixed-methods electronic survey of hospital and community healthcare professionals.
+
+- **PMID**: 30191909
+- **DOI**: 10.4997/JRCPE.2018.305
+- **PMCID**:  
+- **Journal**: The journal of the Royal College of Physicians of Edinburgh  ·  **Year**: 2018
+- **Authors**: F Doubal, E Cowey, F Bailey, S A Murray, S Borthwick, M Somerville, C Lerpiniere, L Reid, K Boyd, G Hynd, G E Mead
+- **MeSH**: Allied Health Personnel, Communication, Education, Medical, Continuing, Health Personnel, Humans, Internet, Medical Staff, Hospital, Needs Assessment, Nursing Staff, Hospital, Physician-Patient Relations
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30191909/
+- **Captured**: 2026-05-10T17:48:22
+
+## Abstract
+
+Communication between professionals, patients and families about palliative and end-of-life care after stroke is complex and there is a need for educational resources in this area. To explore the key learning needs of healthcare professionals, a multidisciplinary, expert group developed a short electronic survey with open and closed questions, and then distributed it to six UK multiprofessional networks and two groups of local clinicians. A total of 599 healthcare professionals responded. Educational topics that were either definitely or probably needed were: ensuring consistent messages to families and patients (88%); resolving conflicts among family members (83%); handling unrealistic expectations (88%); involving families in discussions without them feeling responsible for decisions (82%); discussion of prognostic uncertainties (79%); likely mode of death (72%); and oral feeding for 'comfort' in patients at risk of aspiration (71%). The free-text responses (n = 489) and 82 'memorable' cases identified similar themes. Key topics of unmet need for education in end-of-life care in stroke have been identified and these have influenced the content of an open access, web-based educational resource.
