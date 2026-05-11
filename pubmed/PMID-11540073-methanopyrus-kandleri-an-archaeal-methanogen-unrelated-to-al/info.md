@@ -1,0 +1,14 @@
+# Methanopyrus kandleri: an archaeal methanogen unrelated to all other known methanogens.
+
+- **PMID**: 11540073
+- **DOI**: 10.1016/s0723-2020(11)80308-5
+- **PMCID**:  
+- **Journal**: Systematic and applied microbiology  ·  **Year**: 1991
+- **Authors**: S Burggraf, K O Stetter, P Rouviere, C R Woese
+- **MeSH**: Archaea, Base Sequence, Biological Evolution, Euryarchaeota, Molecular Sequence Data, Phylogeny, RNA, Bacterial, RNA, Ribosomal, 16S, Sequence Homology, Nucleic Acid
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11540073/
+- **Captured**: 2026-05-10T20:45:24
+
+## Abstract
+
+Analysis of its 16S rRNA sequence shows that the newly discovered hyperthermophilic methanogen, Methanopryus kandleri, is phylogenetically unrelated to any other known methanogen. The organism represents a separate lineage originating near the root of the archaeal tree. Although the 16S rRNA sequence of Mp. kandleri resembles euryarchaeal 16S rRNAs more than it does crenarchaeal, it shows more crenarchaeal signature features than any known euryarchaeal rRNA. Attempts to place it in relation to the root of the archaeal tree show that the Mp. kandleri lineage likely arises from the euryarchaeal branch of the tree. While the existence of so deeply branching a methanogenic lineage brings into question the thesis that methanogenesis evolved from an earlier metabolism similar to that seen in Thermococcus, it at the same time reinforces the notion that the aboriginal [correction of aborginal] archaeon was a thermophile.

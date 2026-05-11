@@ -1,0 +1,14 @@
+# Thermal adaptation analyzed by comparison of protein sequences from mesophilic and extremely thermophilic Methanococcus species.
+
+- **PMID**: 10097079
+- **DOI**: 10.1073/pnas.96.7.3578
+- **PMCID**: PMC167549 (full-text saved)
+- **Journal**: Proceedings of the National Academy of Sciences of the United States of America  ·  **Year**: 1999
+- **Authors**: P J Haney, J H Badger, G L Buldak, C I Reich, C R Woese, G J Olsen
+- **MeSH**: Acclimatization, Amino Acid Sequence, Amino Acid Substitution, Bacterial Proteins, Methanococcus, Molecular Sequence Data, Protein Conformation, Species Specificity, Temperature
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10097079/
+- **Captured**: 2026-05-10T20:45:11
+
+## Abstract
+
+The genome sequence of the extremely thermophilic archaeon Methanococcus jannaschii provides a wealth of data on proteins from a thermophile. In this paper, sequences of 115 proteins from M. jannaschii are compared with their homologs from mesophilic Methanococcus species. Although the growth temperatures of the mesophiles are about 50 degrees C below that of M. jannaschii, their genomic G+C contents are nearly identical. The properties most correlated with the proteins of the thermophile include higher residue volume, higher residue hydrophobicity, more charged amino acids (especially Glu, Arg, and Lys), and fewer uncharged polar residues (Ser, Thr, Asn, and Gln). These are recurring themes, with all trends applying to 83-92% of the proteins for which complete sequences were available. Nearly all of the amino acid replacements most significantly correlated with the temperature change are the same relatively conservative changes observed in all proteins, but in the case of the mesophile/thermophile comparison there is a directional bias. We identify 26 specific pairs of amino acids with a statistically significant (P < 0.01) preferred direction of replacement.

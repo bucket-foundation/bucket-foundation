@@ -1,0 +1,14 @@
+# Sequence of 5S ribosomal RNA gene regions and their products in the archaebacterium Halobacterium volcanii.
+
+- **PMID**: 3856725
+- **DOI**: 10.1007/BF00383005
+- **PMCID**:  
+- **Journal**: Molecular & general genetics : MGG  ·  **Year**: 1985
+- **Authors**: C J Daniels, J D Hofman, J G MacWilliam, W F Doolittle, C R Woese, K R Luehrsen, G E Fox
+- **MeSH**: Base Sequence, Cloning, Molecular, DNA, Bacterial, DNA, Ribosomal, Genes, Genes, Bacterial, Genetic Linkage, Halobacterium, Nucleic Acid Conformation, RNA, Ribosomal
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3856725/
+- **Captured**: 2026-05-10T20:47:52
+
+## Abstract
+
+We show that the archaebacterium Halobacterium volcanii contains two ribosomal RNA gene clusters, in which genes for individual rRNAs lie in the order 16S-23S-5S. We have cloned the 5S rRNA genes of both clusters and present sequences of the two 5S rRNA genes and their 5' and 3' flanking regions, as well as the sequence of H. volcanii 5S rRNA. We show that a gene for a tRNACys lies downstream from one, but not the other, 5S rRNA gene, and have obtained evidence that this tRNA gene is transcribed in vivo. We discuss regions of potential secondary structure which may be involved in transcription termination. We note regions of unexpected flanking sequence conversation both within H. volcanii 5S rRNA gene regions, and between them and the corresponding 5S rRNA gene region of H. cutirubrum (Hui and Dennis 1984).

@@ -1,0 +1,14 @@
+# Comparative 16S rRNA oligonucleotide analyses and murein types of round-spore-forming bacilli and non-spore-forming relatives.
+
+- **PMID**: 2452227
+- **DOI**: 10.1099/00221287-133-9-2523
+- **PMCID**:  
+- **Journal**: Journal of general microbiology  ·  **Year**: 1987
+- **Authors**: E Stackebrandt, W Ludwig, M Weizenegger, S Dorn, T J McGill, G E Fox, C R Woese, W Schubert, K H Schleifer
+- **MeSH**: Bacillus, Bacillus cereus, Bacillus subtilis, Base Composition, Base Sequence, DNA, Bacterial, Geobacillus stearothermophilus, Peptidoglycan, Phylogeny, RNA, Bacterial
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/2452227/
+- **Captured**: 2026-05-10T20:47:46
+
+## Abstract
+
+The phylogenetic incoherency of the genus Bacillus as presently described is demonstrated by analysis of both published and new data from comparative 16S rRNA cataloguing of nine Bacillus species and a number of related non-Bacillus taxa, i.e. Caryophanon latum, Filibacter limicola and Planococcus citreus. While the ellipsoidal-spore-forming bacilli, e.g. B. subtilis and allied species, formed a coherent cluster, the round-spore-forming bacilli showed a higher degree of relationship to the non-spore-forming organisms than these bacilli show among each other. Thus B. sphaericus clustered with C. latum, B. globisporus grouped with F. limicola, B. pasteurii with Sporosarcina ureae, and 'B. aminovorans' with P. citreus, respectively. These organisms formed two related subclusters which, in their phylogenetic depth, are comparable to that of the B. subtilis subline. With the exception of 'B. aminovorans', the 16S rRNA phylogeny was entirely consistent with the distribution of murein types. Even more distantly related to and grouping outside the main Bacillus cluster was B. stearothermophilus, which displayed a moderate relationship to Thermoactinomyces vulgaris. Taxonomic problems arising from the new insights into the intrageneric relationships of Bacillus are discussed.

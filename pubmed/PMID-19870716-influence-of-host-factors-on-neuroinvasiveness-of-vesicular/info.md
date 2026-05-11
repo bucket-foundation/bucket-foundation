@@ -1,0 +1,14 @@
+# INFLUENCE OF HOST FACTORS ON NEUROINVASIVENESS OF VESICULAR STOMATITIS VIRUS : IV. VARIATIONS IN NEUROINVASIVENESS IN DIFIERENT SPECIES.
+
+- **PMID**: 19870716
+- **DOI**: 10.1084/jem.67.2.229
+- **PMCID**: PMC2133557 (full-text saved)
+- **Journal**: The Journal of experimental medicine  ·  **Year**: 1938
+- **Authors**: A B Sabin, P K Olitsky
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19870716/
+- **Captured**: 2026-05-10T20:47:25
+
+## Abstract
+
+Peripheral inoculation of vesicular stomatitis virus is constantly followed by myelitis or encephalitis in young mice, but not in young (or old) guinea pigs. The cause of this variation was elucidated by investigating the fate of the virus after inoculation by a number of different routes. Direct intracerebral injection of minimally infective amounts of virus was found to be equally fatal for young mice and young guinea pigs, indicating that the central nervous system as a whole was as easily injured by the virus in one species as in the other. The events following nasal instillation of the virus varied in young and old guinea pigs. While there appeared to be a transitory multiplication of virus in the nasal mucosa of both young and old, the central nervous system was regularly invaded only in the young. In these, virus was first found only in the anterior rhinencephalon; later it spread to the piriform and hippocampal (olfactory regions) but not to the neopallial portions of the cortex, and the only other area to exhibit virus was the diencephalon (including the pars optica hypothalami), where its further progression was apparently arrested. Absence of central nervous system disease following inoculation into sites supplied by spinal nerves (e.g. sciatic) was found to be due to inability of the virus to invade the nerves. Since direct intrasciatic inoculation frequently led to a fatal ascending myelitis, it was evident that the central nervous system could be invaded along the spinal nerves, and that they did not constitute the main barrier. Furthermore, since multiplication of virus was demonstrated in tissues supplied by the spinal nerves, a process of elimination made it seem possible that the specialized, terminal nerve endings might be the structures which prevent the progression of the virus from the infected tissues to the axons and hence also to the central nervous system. 7 day old guinea pigs (or guinea pigs as a species) were thus found to possess much the same type of barriers to the progression of peripherally inoculated vesicular stomatitis virus as are acquired by mice at a considerably later age. In a discussion of the present data, they have been correlated with known variations in neuroinvasiveness of other viruses and their bearing on the nature of inapparent or subclinical infections of the central nervous system has been considered.

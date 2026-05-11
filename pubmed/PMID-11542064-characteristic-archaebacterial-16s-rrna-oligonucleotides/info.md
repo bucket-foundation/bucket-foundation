@@ -1,0 +1,14 @@
+# Characteristic archaebacterial 16S rRNA oligonucleotides.
+
+- **PMID**: 11542064
+- **DOI**: 10.1016/s0723-2020(86)80005-4
+- **PMCID**:  
+- **Journal**: Systematic and applied microbiology  ·  **Year**: 1986
+- **Authors**: T J McGill, J Jurka, J M Sobieski, M H Pickett, C R Woese, G E Fox
+- **MeSH**: Archaea, Base Sequence, Databases, Factual, Euryarchaeota, Methanobacteriaceae, Methanococcaceae, Methanosarcinaceae, Oligonucleotides, Phylogeny, RNA, Archaeal
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11542064/
+- **Captured**: 2026-05-10T20:45:31
+
+## Abstract
+
+A method of analyzing 16S rRNA catalog data has been developed in which groupings at various taxonomic levels can be characterized in terms of specific "signature" oligonucleotides. This approach provides an alternative means for evaluating higher order branching possibilities and can be used to assess the phylogenetic position of isolates that are poorly placed by the usual clustering procedures. This signature approach has been applied to forty archaebacterial catalogs and every oligonucleotide with significant signature value has been identified. Sets of specific oligonucleotides were identified for every major group on a dendrogram produced by cluster analysis procedures. Signatures that would establish between group relationships were also sought and found. In the case of the Methanobacteriaceae the clustering methods suggest a specific relationship to the Methanococcaceae. This inclusion is in fact supported by six strong signature oligonucleotides. However there are also significant numbers of signature oligonucleotides supporting a specific relationship of the Methanobacteriaceae to either the Halobacteriaceae or the Methanomicrobiaceae. Thus the placement of the Methanobacteriaceae is less certain than the usual dendrograms imply. The signature approach also was used to assess the phylogenetic position of Thermoplasma acidophilum which is found to be more closely related to the methanogen/halophile Division than to the sulfur dependent Division of the archaebacteria. This does not imply however that Thermoplasma acidophilum is properly regarded as being in the methanogen/halophile Division.

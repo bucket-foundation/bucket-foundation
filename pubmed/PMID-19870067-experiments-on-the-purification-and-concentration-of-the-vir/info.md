@@ -1,0 +1,14 @@
+# EXPERIMENTS ON THE PURIFICATION AND CONCENTRATION OF THE VIRUS OF POLIOMYELITIS.
+
+- **PMID**: 19870067
+- **DOI**: 10.1084/jem.56.3.307
+- **PMCID**: PMC2132094 (full-text saved)
+- **Journal**: The Journal of experimental medicine  ·  **Year**: 1932
+- **Authors**: A B Sabin
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19870067/
+- **Captured**: 2026-05-10T20:47:12
+
+## Abstract
+
+Methods employed by Willstätter and his coworkers in the isolation and purification of enzymes have been applied to the virus of poliomyelitis. Rhoads (6) showed that alumina gel C mixed with poliomyelitis virus in certain proportions at an acid pH resulted in the adsorption and inactivation of the virus. The experiments in this communication confirm Rhoads' observation, and show further that the adsorption as well as the inactivation are reversible; i.e., by changing the pH to the alkaline side with M/15 Na(2)HPO(4) it is possible to free the virus in a state in which it is again capable of producing typical poliomyelitis. These experiments show also that by this process the virus undergoes considerable purification by diminution in the concentration of non-virus-containing substances. Washing the alumina gel C-virus complex with M/5 NaCl-M/15 KH(2)PO(4) apparently dissociates no virus but is capable of freeing a certain amount of extractible organic substances. Furthermore, it is possible to increase the degree of purity and concentration of the virus by distillation in vacuo, and subsequent repeated adsorptions and elutions. By such partial purification and concentration, a virus solution with a minimal effective dose (as regards the production of typical poliomyelitis) of 0.0003 cc. was obtained. This solution had 0.04 mg. N per cc., and gave negative biuret, xanthoproteic, and ninhydrin reactions. These methods offer an opportunity for the preparation of a quantity of sufficiently purified and concentrated poliomyelitis virus to warrant the beginning of a study of its chemical nature; they also offer a means of anchoring the virus to an insoluble, and centrifugable substance (alumina gel C), which promises to facilitate various immunological studies, that might otherwise have been impossible.

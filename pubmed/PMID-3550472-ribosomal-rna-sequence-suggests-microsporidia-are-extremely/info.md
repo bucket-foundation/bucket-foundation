@@ -1,0 +1,14 @@
+# Ribosomal RNA sequence suggests microsporidia are extremely ancient eukaryotes.
+
+- **PMID**: 3550472
+- **DOI**: 10.1038/326411a0
+- **PMCID**:  
+- **Journal**: Nature  ·  **Year**: 1987 Mar 26-Apr 1
+- **Authors**: C R Vossbrinck, J V Maddox, S Friedman, B A Debrunner-Vossbrinck, C R Woese
+- **MeSH**: Animals, Base Sequence, Biological Evolution, Escherichia coli, Eukaryota, Eukaryotic Cells, Mitochondria, Phylogeny, RNA, Ribosomal, Saccharomyces cerevisiae
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/3550472/
+- **Captured**: 2026-05-10T20:47:50
+
+## Abstract
+
+The microsporidia are a group of unusual, obligately parasitic protists that infect a great variety of other eukaryotes, including vertebrates, arthropods, molluscs, annelids, nematodes, cnidaria and even various ciliates, myxosporidia and gregarines. They possess a number of unusual cytological and molecular characteristics. Their nuclear division is considered to be primitive, they have no mitochondria, their ribosomes and ribosomal RNAs are reported to be of prokaryotic size and their large ribosomal subunit contains no 5.8S rRNA. The uniqueness of the microsporidia may reflect their phylogenetic position, because comparative sequence analysis shows that the small subunit rRNA of the microsporidium Vairimorpha necatrix is more unlike those of other eukaryotes than any known eukaryote 18S rRNA sequence. We conclude that the lineage leading to microsporidia branched very early from that leading to other eukaryotes.

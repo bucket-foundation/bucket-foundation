@@ -1,0 +1,14 @@
+# The Deinococcus-Thermus phylum and the effect of rRNA composition on phylogenetic tree construction.
+
+- **PMID**: 11542160
+- **DOI**: 10.1016/s0723-2020(89)80051-7
+- **PMCID**:  
+- **Journal**: Systematic and applied microbiology  ·  **Year**: 1989
+- **Authors**: W G Weisburg, S J Giovannoni, C R Woese
+- **MeSH**: Bacteria, Base Sequence, Biological Evolution, Cytosine, Guanine, Molecular Sequence Data, Oligonucleotides, Phylogeny, RNA, Bacterial, RNA, Ribosomal, 16S
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/11542160/
+- **Captured**: 2026-05-10T20:45:33
+
+## Abstract
+
+Through comparative analysis of 16S ribosomal RNA sequences, it can be shown that two seemingly dissimilar types of eubacteria Deinococcus and the ubiquitous hot spring organism Thermus are distantly but specifically related to one another. This confirms an earlier report based upon 16S rRNA oligonucleotide cataloging studies (Hensel et al., 1986). Their two lineages form a distinctive grouping within the eubacteria that deserved the taxonomic status of a phylum. The (partial) sequence of T. aquaticus rRNA appears relatively close to those of other thermophilic eubacteria. e.g. Thermotoga maritima and Thermomicrobium roseum. However, this closeness does not reflect a true evolutionary closeness; rather it is due to a "thermophilic convergence", the result of unusually high G+C composition in the rRNAs of thermophilic bacteria. Unless such compositional biases are taken into account, the branching order and root of phylogenetic trees can be incorrectly inferred.

@@ -1,0 +1,14 @@
+# THE NATURAL HISTORY OF HUMAN POLIOMYELITIS : II. ELIMINATION OF THE VIRUS.
+
+- **PMID**: 19871152
+- **DOI**: 10.1084/jem.74.6.519
+- **PMCID**: PMC2135210 (full-text saved)
+- **Journal**: The Journal of experimental medicine  ·  **Year**: 1941
+- **Authors**: A B Sabin, R Ward
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/19871152/
+- **Captured**: 2026-05-10T20:47:31
+
+## Abstract
+
+Studies on the elimination of virus in human paralytic poliomyelitis during the first 2 weeks of the disease, revealed the following:- 1. The nasal (not nasopharyngeal) secretions collected from 22 patients on cotton plugs over a period of 3 days and the saliva and oral secretions expectorated during a similar period by 20 patients failed to yield virus. 2. In 10 of the patients whose secretions (nasal, oral, or both) were investigated, virus was isolated from single specimens of the lower intestinal contents. 3. No virus was found in large amounts of urine (up to 200 cc.) obtained from 12 patients, 6 of whom had paralysis of the bladder. 4. In the present tests virus was found 4 times more often in the stools of patients under 8 years of age (64 per cent of 11 cases) than in older individuals (17 per cent of 12 cases). This difference was found to obtain when our data were combined with those which could justifiably be selected from the literature, the total figures indicating that virus has been isolated from 50 per cent of 58 children under 8 years of age and from 12 per cent of 60 older individuals. 5. No support was found for the hypothesis that poliomyelitis virus in the stools originates from swallowed nasal secretions and saliva or oral secretions.

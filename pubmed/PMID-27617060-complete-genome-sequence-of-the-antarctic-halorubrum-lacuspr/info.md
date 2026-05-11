@@ -1,0 +1,14 @@
+# Complete genome sequence of the Antarctic Halorubrum lacusprofundi type strain ACAM 34.
+
+- **PMID**: 27617060
+- **DOI**: 10.1016/0300-9084(96)84768-7
+- **PMCID**: PMC308517 (full-text saved)
+- **Journal**: Standards in genomic sciences  ·  **Year**: 2016
+- **Authors**: Iain J Anderson, Priya DasSarma, Susan Lucas, Alex Copeland, Alla Lapidus, Tijana Glavina Del Rio, Hope Tice, Eileen Dalin, David C Bruce, Lynne Goodwin, Sam Pitluck, David Sims, Thomas S Brettin, John C Detter, Cliff S Han, Frank Larimer, Loren Hauser, Miriam Land, Natalia Ivanova, Paul Richardson, Ricardo Cavicchioli, Shiladitya DasSarma, Carl R Woese, Nikos C Kyrpides
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/27617060/
+- **Captured**: 2026-05-10T20:47:48
+
+## Abstract
+
+Halorubrum lacusprofundi is an extreme halophile within the archaeal phylum Euryarchaeota. The type strain ACAM 34 was isolated from Deep Lake, Antarctica. H. lacusprofundi is of phylogenetic interest because it is distantly related to the haloarchaea that have previously been sequenced. It is also of interest because of its psychrotolerance. We report here the complete genome sequence of H. lacusprofundi type strain ACAM 34 and its annotation. This genome is part of a 2006 Joint Genome Institute Community Sequencing Program project to sequence genomes of diverse Archaea.

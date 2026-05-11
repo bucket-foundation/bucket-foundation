@@ -1,0 +1,14 @@
+# Antibody response of patients with poliomyelitis to virus recovered from their own alimentary tract.
+
+- **PMID**: 18140667
+- **DOI**: 10.1084/jem.90.4.349
+- **PMCID**: PMC2135911 (full-text saved)
+- **Journal**: The Journal of experimental medicine  ·  **Year**: 1949
+- **Authors**: A J STEIGMAN, A B SABIN
+- **MeSH**: Antibody Formation, Convalescence, Poliomyelitis, Viruses
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/18140667/
+- **Captured**: 2026-05-10T20:46:58
+
+## Abstract
+
+Of 20 strains of virus recovered from 40 patients with poliomyelitis only 9 possessed a titer of 10(-3) or more, permitting significant quantitative neutralization tests in monkeys. Seven of the 9 high titer strains were derived from patients whose illness was ultimately paralytic, and tests with their undiluted sera indicated that the acute phase as well as the 3 month convalescent specimens neutralized maximum amounts of the patient's own virus. However when varying dilutions of the sera were tested against a single dose of virus, it was found that the antibody was present in lowest concentration early after onset and progressively increased in titer over a period of weeks during convalescence. The 2 remaining high titer strains were recovered from patients with a non-paralytic illness, and in both of these the acute phase sera were without significant amounts of antibody for their own virus. Antibody was demonstrable at 14, 28, and 92 days after onset in one of these patients, while the other had none at 1 month and only a minimal amount at 3 and 8 months. Tests with the Lansing virus on the same sera, clearly established the specificity of the antibody response to the strain of virus recovered from each patient under investigation. Five of the 9 patients, whose sera were studied with both viruses, had no antibody for the Lansing virus during the acute phase and none 3 months later. Two had antibody during the acute phase but serum dilution tests showed no increase in titer in the 3 month convalescent specimen. In 2 others, who were without antibody for the Lansing virus during the acute phase but had it at 3 months after onset, it was possible to show that this antibody appeared later than 1 month after the illness and that the virus recovered from these patients during their illness was not antigenically of the Lansing type.

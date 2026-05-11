@@ -1,0 +1,14 @@
+# Haloanaerobium kushneri sp. nov., an obligately halophilic, anaerobic bacterium from an oil brine.
+
+- **PMID**: 10425750
+- **DOI**: 10.1099/00207713-49-3-953
+- **PMCID**:  
+- **Journal**: International journal of systematic bacteriology  ·  **Year**: 1999
+- **Authors**: V K Bhupathiraju, M J McInerney, C R Woese, R S Tanner
+- **MeSH**: Bacterial Typing Techniques, DNA, Bacterial, Fatty Acids, Genes, rRNA, Genotype, Gram-Negative Anaerobic Bacteria, Molecular Sequence Data, Nucleic Acid Hybridization, Petroleum, Phenotype
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/10425750/
+- **Captured**: 2026-05-10T20:45:11
+
+## Abstract
+
+Three strains, designated VS-751T, VS-511 and VS-732, of a strictly anaerobic, moderately halophilic, Gram-negative, rod-shaped bacterium were isolated from a highly saline (15-20%) brine from an oil reservoir in central Oklahoma, USA. The optimal concentration of NaCl for growth of these three strains was 2 M (12%), and the strains also grew in the presence of an additional 1 M MgCl2. The strains were mesophilic and grew at a pH range of 6-8. Carbohydrates used by all three strains included glucose, fructose, arabinose, galactose, maltose, mannose, cellobiose, sucrose and inulin. Glucose fermentation products included ethanol, acetate, H2 and CO2, with formate produced by two of the three strains. Differences were noted among strains in the optimal temperature and pH for growth, the maximum and minimum NaCl concentration that supported growth, substrate utilization and cellular fatty acid composition. Despite the phenotypic differences among the three strains, analysis of the 16S rRNA gene sequences and DNA-DNA hybridizations showed that these three strains were members of the same genospecies which belonged to the genus Haloanaerobium. The phenotypic and genotypic characteristics of strains VS-751T, VS-511 and VS-732 are different from those of previously described species of Haloanaerobium. It is proposed that strain VS-751T (ATCC 700103T) be established as the type strain of a new species, Haloanaerobium kushneri.

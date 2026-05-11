@@ -1,0 +1,14 @@
+# PRODUCTION OF IMMUNITY TO DENGUE WITH VIRUS MODIFIED BY PROPAGATION IN MICE.
+
+- **PMID**: 17844088
+- **DOI**: 10.1126/science.101.2634.640
+- **PMCID**:  
+- **Journal**: Science (New York, N.Y.)  ·  **Year**: 1945
+- **Authors**: A B Sabin, R W Schlesinger
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/17844088/
+- **Captured**: 2026-05-10T20:46:54
+
+## Abstract
+
+It has been demonstrated that dengue virus can be propagated by intracerebral inoculation in mice. Although initial adaptation to the mouse is a tedious and difficult process, 16 consecutive passages have been achieved already in one series and further passages are in progress. The virus propagated in mice produced dengue in human volunters, but was not pathogenic for cotton rats, hamsters, guinea pigs or rabbits. Although it was evident that even after 2 serial passages in mice the virus produced a modified type of disease in human beings, tests with the 7th, 9th and 10th passage material indicated that the modification had become so marked that it could be used as a vaccine for the production of immunity against dengue.
