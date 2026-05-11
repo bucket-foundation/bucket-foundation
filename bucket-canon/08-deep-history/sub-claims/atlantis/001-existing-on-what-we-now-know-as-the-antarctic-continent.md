@@ -4,7 +4,7 @@
 - **Source**: [Did aliens build these mega structures? | Ancient Aliens: Declassified (S1, E39) | Full Ep](https://www.youtube.com/watch?v=83rI9B3vfrk&t=1254)
 - **Timestamp**: `00:20:54.653` (~1254s)
 - **Score**: 7  ·  **Pattern signals**: must, because, evidence
-- **Cross-concepts**: godhead
+- **Cross-concepts**: plato
 - **Captured**: 2026-05-11
 
 ## Excerpt

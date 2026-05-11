@@ -5,7 +5,7 @@
 - **Timestamp**: `01:01:59.920` (~3719s)
 - **Score**: 6  ·  **Pattern signals**: causes, because, fundamental
 - **Cross-concepts**: dopamine
-- **Captured**: 2026-05-10
+- **Captured**: 2026-05-11
 
 ## Excerpt
 

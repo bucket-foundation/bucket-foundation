@@ -4,7 +4,7 @@
 - **Source**: [Optimize Your Health in the Modern World with Dr. Jack Kruse Ep. 1 (WiM544)](https://www.youtube.com/watch?v=mYMUiOMkKMM&t=6411)
 - **Timestamp**: `01:46:51.639` (~6411s)
 - **Score**: 7  ·  **Pattern signals**: only, i-proved
-- **Cross-concepts**: —
+- **Cross-concepts**: thermodynamics
 - **Captured**: 2026-05-11
 
 ## Excerpt

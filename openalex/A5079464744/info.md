@@ -5,9 +5,9 @@
 - **ORCID**: https://orcid.org/0000-0001-7094-4312
 - **Affiliation**: 
 - **Works (total)**: 540
-- **Cited by (total)**: 33903
+- **Cited by (total)**: 33912
 - **Works pulled**: 200
-- **Captured**: 2026-05-10T10:23:13
+- **Captured**: 2026-05-11T08:56:46
 
 ## Top works (by citation count)
 

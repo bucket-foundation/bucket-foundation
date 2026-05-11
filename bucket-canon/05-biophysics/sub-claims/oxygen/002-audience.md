@@ -4,8 +4,8 @@
 - **Source**: [Sunlight is King! w/ Dr. Jack Kruse](https://www.youtube.com/watch?v=2-AKskkKZzA&t=2018)
 - **Timestamp**: `00:33:38.720` (~2018s)
 - **Score**: 6  ·  **Pattern signals**: must, only
-- **Cross-concepts**: —
-- **Captured**: 2026-05-10
+- **Cross-concepts**: quantum-mech, periodic-table
+- **Captured**: 2026-05-11
 
 ## Excerpt
 

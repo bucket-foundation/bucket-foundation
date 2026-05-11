@@ -7,14 +7,14 @@
 - **Works (total)**: 160
 - **Cited by (total)**: 42421
 - **Works pulled**: 160
-- **Captured**: 2026-05-10T17:57:25
+- **Captured**: 2026-05-11T08:56:25
 
 ## Top works (by citation count)
 
 - **The Structure of Scientific Revolutions.** (1964) — cited 9236x  · https://doi.org/10.2307/2217783
 - **Significance of Electromagnetic Potentials in the Quantum Theory** (1959) — cited 6937x  · http://link.aps.org/pdf/10.1103/PhysRev.115.485
-- **A Suggested Interpretation of the Quantum Theory in Terms of "Hidden" Variables. I** (1952) — cited 5495x  · https://doi.org/10.1103/physrev.85.166
-- **A Suggested Interpretation of the Quantum Theory in Terms of "Hidden" Variables. II** (1952) — cited 2037x  · https://doi.org/10.1103/physrev.85.180
+- **A Suggested Interpretation of the Quantum Theory in Terms of "Hidden" Variables. I** (1952) — cited 5496x  · https://doi.org/10.1103/physrev.85.166
+- **A Suggested Interpretation of the Quantum Theory in Terms of "Hidden" Variables. II** (1952) — cited 2038x  · https://doi.org/10.1103/physrev.85.180
 - **A Collective Description of Electron Interactions: III. Coulomb Interactions in a Degenerate Electron Gas** (1953) — cited 1871x  · https://doi.org/10.1103/physrev.92.609
 - **<i>Wholeness and the Implicate Order</i>** (1981) — cited 1822x  · https://doi.org/10.1063/1.2914698
 - **A Collective Description of Electron Interactions: II. Collective<mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML** (1952) — cited 1381x  · https://doi.org/10.1103/physrev.85.338

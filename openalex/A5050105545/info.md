@@ -4,10 +4,10 @@
 - **URL**: https://openalex.org/A5050105545
 - **ORCID**: https://orcid.org/0000-0003-1724-9737
 - **Affiliation**: 
-- **Works (total)**: 526
-- **Cited by (total)**: 25432
+- **Works (total)**: 524
+- **Cited by (total)**: 25391
 - **Works pulled**: 200
-- **Captured**: 2026-05-10T09:39:44
+- **Captured**: 2026-05-11T08:56:23
 
 ## Top works (by citation count)
 

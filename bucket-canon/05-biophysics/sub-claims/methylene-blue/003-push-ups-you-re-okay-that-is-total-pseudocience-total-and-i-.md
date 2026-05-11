@@ -5,7 +5,7 @@
 - **Timestamp**: `00:28:20.160` (~1700s)
 - **Score**: 5  ·  **Pattern signals**: never, because
 - **Cross-concepts**: —
-- **Captured**: 2026-05-10
+- **Captured**: 2026-05-11
 
 ## Excerpt
 

@@ -5,7 +5,7 @@
 - **Timestamp**: `01:31:48.120` (~5508s)
 - **Score**: 6  ·  **Pattern signals**: must, causes, because
 - **Cross-concepts**: —
-- **Captured**: 2026-05-10
+- **Captured**: 2026-05-11
 
 ## Excerpt
 

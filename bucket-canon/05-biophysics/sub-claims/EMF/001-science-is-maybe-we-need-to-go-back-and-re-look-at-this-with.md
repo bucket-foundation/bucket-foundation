@@ -5,7 +5,7 @@
 - **Timestamp**: `00:50:56.160` (~3056s)
 - **Score**: 8  ·  **Pattern signals**: never, must, evidence
 - **Cross-concepts**: —
-- **Captured**: 2026-05-10
+- **Captured**: 2026-05-11
 
 ## Excerpt
 

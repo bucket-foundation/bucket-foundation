@@ -5,9 +5,9 @@
 - **ORCID**: None
 - **Affiliation**: 
 - **Works (total)**: 430
-- **Cited by (total)**: 53658
-- **Works pulled**: 400
-- **Captured**: 2026-05-09T21:54:02
+- **Cited by (total)**: 53668
+- **Works pulled**: 200
+- **Captured**: 2026-05-11T08:55:32
 
 ## Top works (by citation count)
 
@@ -25,7 +25,7 @@
 - **Towards Quantum Superpositions of a Mirror** (2003) — cited 977x  · https://arxiv.org/pdf/quant-ph/0210001
 - **Spinors and Space-Time** (1986) — cited 918x  · https://doi.org/10.1017/cbo9780511524486
 - **Consciousness in the universe** (2013) — cited 892x  · https://doi.org/10.1016/j.plrev.2013.08.002
-- **Zero rest-mass fields including gravitation: asymptotic behaviour** (1965) — cited 851x  · https://doi.org/10.1098/rspa.1965.0058
+- **Zero rest-mass fields including gravitation: asymptotic behaviour** (1965) — cited 852x  · https://doi.org/10.1098/rspa.1965.0058
 - **Asymptotic Properties of Fields and Space-Times** (1963) — cited 806x  · http://link.aps.org/pdf/10.1103/PhysRevLett.10.66
 - **Note on the Bondi-Metzner-Sachs Group** (1966) — cited 802x  · https://doi.org/10.1063/1.1931221
 - **On best approximate solutions of linear matrix equations** (1956) — cited 781x  · https://doi.org/10.1017/s0305004100030929
@@ -36,7 +36,7 @@
 - **A spinor approach to general relativity** (1960) — cited 605x  · https://doi.org/10.1016/0003-4916(60)90021-x
 - **The Road to Reality** (2004) — cited 596x  · https://openalex.org/W2798738336
 - **Techniques in Differential Topology in Relativity** (1972) — cited 589x  · https://doi.org/10.1137/1.9781611970609
-- **On quadratic first integrals of the geodesic equations for type {22} spacetimes** (1970) — cited 583x  · https://doi.org/10.1007/bf01649445
+- **On quadratic first integrals of the geodesic equations for type {22} spacetimes** (1970) — cited 584x  · https://doi.org/10.1007/bf01649445
 - **Twistor theory: An approach to the quantisation of fields and space-time** (1973) — cited 548x  · https://doi.org/10.1016/0370-1573(73)90008-2
 - **Extraction of Rotational Energy from a Black Hole** (1971) — cited 545x  · https://doi.org/10.1038/physci229177a0
 - **What is Life?** (1992) — cited 543x  · https://doi.org/10.1017/cbo9781139644129

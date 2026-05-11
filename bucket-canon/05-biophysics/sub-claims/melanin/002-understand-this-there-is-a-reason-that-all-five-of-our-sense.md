@@ -5,7 +5,7 @@
 - **Timestamp**: `02:01:40.679` (~7300s)
 - **Score**: 7  ·  **Pattern signals**: always, must, because
 - **Cross-concepts**: mitochondria
-- **Captured**: 2026-05-10
+- **Captured**: 2026-05-11
 
 ## Excerpt
 

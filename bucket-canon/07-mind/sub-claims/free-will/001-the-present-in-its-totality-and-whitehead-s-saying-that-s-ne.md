@@ -4,7 +4,7 @@
 - **Source**: [Idea Cast Episode Twenty Nine Bernardo Kastrup In Dialogue With Matthew D Segall.](https://www.youtube.com/watch?v=s7I5j2cteFQ&t=5973)
 - **Timestamp**: `01:39:33.840` (~5973s)
 - **Score**: 8  ·  **Pattern signals**: always, never, because
-- **Cross-concepts**: —
+- **Cross-concepts**: whitehead
 - **Captured**: 2026-05-11
 
 ## Excerpt

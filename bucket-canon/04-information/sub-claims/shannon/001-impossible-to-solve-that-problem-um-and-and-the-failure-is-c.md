@@ -4,7 +4,7 @@
 - **Source**: [Conscious Agents vs Cognitive Agents with Donald Hoffman and Michael Levin](https://www.youtube.com/watch?v=xsy8p435DqM&t=6838)
 - **Timestamp**: `01:53:58.080` (~6838s)
 - **Score**: 5  ·  **Pattern signals**: never, must
-- **Cross-concepts**: —
+- **Cross-concepts**: iit
 - **Captured**: 2026-05-11
 
 ## Excerpt

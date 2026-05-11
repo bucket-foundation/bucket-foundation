@@ -5,13 +5,13 @@
 - **ORCID**: None
 - **Affiliation**: 
 - **Works (total)**: 439
-- **Cited by (total)**: 65410
+- **Cited by (total)**: 65414
 - **Works pulled**: 200
-- **Captured**: 2026-05-10T09:29:06
+- **Captured**: 2026-05-11T08:55:49
 
 ## Top works (by citation count)
 
-- **Simulating physics with computers** (1982) — cited 7459x  · https://doi.org/10.1007/bf02650179
+- **Simulating physics with computers** (1982) — cited 7460x  · https://doi.org/10.1007/bf02650179
 - **Space-Time Approach to Non-Relativistic Quantum Mechanics** (1948) — cited 4247x  · https://doi.org/10.1103/revmodphys.20.367
 - **Forces in Molecules** (1939) — cited 3768x  · https://resolver.caltech.edu/CaltechAUTHORS:FEYpr39
 - **<i>The Feynman Lectures on Physics</i>** (1964) — cited 2925x  · https://doi.org/10.1063/1.3051743

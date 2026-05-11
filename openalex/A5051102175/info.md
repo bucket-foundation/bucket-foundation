@@ -6,8 +6,8 @@
 - **Affiliation**: 
 - **Works (total)**: 241
 - **Cited by (total)**: 9675
-- **Works pulled**: 241
-- **Captured**: 2026-05-09T21:53:47
+- **Works pulled**: 200
+- **Captured**: 2026-05-11T08:56:33
 
 ## Top works (by citation count)
 

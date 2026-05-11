@@ -4,7 +4,7 @@
 - **Source**: [Geometric Unity: Unifying All Forces + Generations | Eric Weinstein](https://www.youtube.com/watch?v=ILlhFKuu3NQ&t=6953)
 - **Timestamp**: `01:55:53.920` (~6953s)
 - **Score**: 7  ·  **Pattern signals**: never, only
-- **Cross-concepts**: gravity
+- **Cross-concepts**: gravity, string-theory
 - **Captured**: 2026-05-11
 
 ## Excerpt
