@@ -1,310 +1,351 @@
-# Curated Canon Claims (Kruse podcast corpus)
+# 05-biophysics · curated claim cards
 
-*Generated 2026-05-10 from 661 candidate claims across 126 transcripts.*
-
-
-Method: regex-based assertion-pattern detection ("the rule is", "always",
-"causes", "must", etc.) intersected with canon-tier concept terms. Clustered by
-video + 90s timestamp window + 60% text overlap; top exemplar per cluster.
-**Each claim is a candidate, NOT canon yet** — needs verification + promotion.
-
-
-## mitochondria (30)
-
-- [`001-why-red-light-has-such-tremendous-benefits-for-mitochondria-`](mitochondria/001-why-red-light-has-such-tremendous-benefits-for-mitochondria-.md) — score=8 `01:11:21.900` — why red light has such tremendous benefits for mitochondria why because sunlight always has red in it when Blue's availa
-- [`002-because-guess-what-the-guy-that-controlled-the-budget-anthon`](mitochondria/002-because-guess-what-the-guy-that-controlled-the-budget-anthon.md) — score=8 `00:23:33.280` — because guess what? The guy that controlled the budget, Anthony Fouchy, made sure we always focused in on RNA and DNA, n
-- [`003-mitochondrial-dna-that-we-re-talking-about-because-you-need-`](mitochondria/003-mitochondrial-dna-that-we-re-talking-about-because-you-need-.md) — score=7 `00:42:05.920` — mitochondrial DNA that we're talking about because you need to understand well yeah that's a big deal. And then when you
-- [`004-need-to-understand-the-details-of-why-and-you-re-never-reall`](mitochondria/004-need-to-understand-the-details-of-why-and-you-re-never-reall.md) — score=7 `00:11:27.240` — need to understand the details of why and you're never really going to understand why we spend 99 of the NIH Budget on o
-- [`005-there-is-cause-and-effect-and-we-want-to-keep-you-there-beca`](mitochondria/005-there-is-cause-and-effect-and-we-want-to-keep-you-there-beca.md) — score=7 `01:07:54.880` — there is cause and effect and we want to keep you there because that's the gold standard if we can keep you focused on R
-- [`006-what-we-just-said-should-be-no-shock-or-why-you-never-want-t`](mitochondria/006-what-we-just-said-should-be-no-shock-or-why-you-never-want-t.md) — score=7 `01:58:37.380` — what we just said should be no shock or why you never want to use fluoride why because it means that your water has lost
-- [`007-about-the-inner-mitochondrial-membrane-two-things-doesn-t-ha`](mitochondria/007-about-the-inner-mitochondrial-membrane-two-things-doesn-t-ha.md) — score=7 `00:52:51.080` — about the inner mitochondrial membrane? Two things. Doesn't have DHA in it. That should stop you cuz DHA is the only lip
-- [`008-and-you-can-put-it-underneath-there-and-if-you-look-at-the-b`](mitochondria/008-and-you-can-put-it-underneath-there-and-if-you-look-at-the-b.md) — score=7 `00:30:50.580` — and you can put it underneath there and if you look at the blogs that I wrote for you gentlemen I showed you pictures of
-- [`009-from-plus-two-to-plus-three-what-do-you-need-to-know-you-don`](mitochondria/009-from-plus-two-to-plus-three-what-do-you-need-to-know-you-don.md) — score=6 `02:36:22.319` — from plus two to plus three what do you need to know you don't need to know a lot of fancy signs oxygen delivers to mito
-- [`010-understand-because-i-do-think-it-s-important-that-your-breat`](mitochondria/010-understand-because-i-do-think-it-s-important-that-your-breat.md) — score=6 `00:07:55.200` — understand because I do think it's important that your breathing techniques should marry up to the environment that you'
-- [`011-like-light-water-magnetism-and-mitochondrial-medicine-that-d`](mitochondria/011-like-light-water-magnetism-and-mitochondrial-medicine-that-d.md) — score=6 `00:00:38.960` — like light water magnetism and mitochondrial medicine that doctors and researchers never code for like for example every
-- [`012-this-is-the-beautiful-part-of-decentralized-medicine-you-don`](mitochondria/012-this-is-the-beautiful-part-of-decentralized-medicine-you-don.md) — score=6 `01:18:10.280` — this is the beautiful part of decentralized medicine you don't need you need to understand every single cell in your bod
-- [`013-world-why-because-it-turns-out-the-way-electromagnetic-radia`](mitochondria/013-world-why-because-it-turns-out-the-way-electromagnetic-radia.md) — score=6 `00:20:23.520` — world. Why? Because it turns out the way electromagnetic radiation works with your mitochondria it it means the environm
-- [`014-go-away-why-because-here-s-the-good-thing-your-country-has-g`](mitochondria/014-go-away-why-because-here-s-the-good-thing-your-country-has-g.md) — score=6 `01:00:41.680` — go away. Why? Because here's the good thing. Your country has great sun. &gt;&gt; And that's the single biggest thing. Y
-- [`015-stop-looking-in-the-genome-and-i-need-to-learn-a-little-bit-`](mitochondria/015-stop-looking-in-the-genome-and-i-need-to-learn-a-little-bit-.md) — score=6 `00:10:57.079` — stop looking in the genome and I need to learn a little bit more about mitochondria because what is a mitoch Andria fund
-- [`016-fundamentally-false-okay-it-s-a-sacred-cow-you-need-to-go-af`](mitochondria/016-fundamentally-false-okay-it-s-a-sacred-cow-you-need-to-go-af.md) — score=6 `00:51:36.599` — fundamentally false okay it's a sacred cow you need to go after means that you need to understand really how mitochondri
-- [`017-of-france-living-outside-never-got-in-a-car-she-s-always-out`](mitochondria/017-of-france-living-outside-never-got-in-a-car-she-s-always-out.md) — score=6 `00:45:19.280` — of france living outside never got in a car she's always out nature always plugged into the decentralized network that m
-- [`018-strength-is-the-key-to-longevity-no-i-think-your-heteroplasm`](mitochondria/018-strength-is-the-key-to-longevity-no-i-think-your-heteroplasm.md) — score=6 `03:24:17.880` — strength is the key to longevity no I think your heteroplasmic rate in your mitochondria here and here is the single mos
-- [`019-use-that-or-if-you-want-to-do-one-and-the-other-i-m-fine-wit`](mitochondria/019-use-that-or-if-you-want-to-do-one-and-the-other-i-m-fine-wit.md) — score=5 `01:45:31.280` — use that. Or if you want to do one and the other, I'm fine with that. But infrared is always helpful because the key red
-- [`020-you-see-it-s-got-four-red-light-chromophores-620-680-760-and`](mitochondria/020-you-see-it-s-got-four-red-light-chromophores-620-680-760-and.md) — score=5 `03:02:47.520` — you see it's got four red light chromophores 620 680 760 and 860. Chantal can tell you what are the frequencies that we 
-- [`021-that-s-the-reason-why-you-can-be-buck-ass-naked-in-los-angel`](mitochondria/021-that-s-the-reason-why-you-can-be-buck-ass-naked-in-los-angel.md) — score=5 `00:31:41.480` — that's the reason why you can be Buck ass naked in Los Angeles and your vitamin D will never go up because to actually m
-- [`022-goes-back-and-see-this-is-the-cool-part-maybe-we-can-end-on-`](mitochondria/022-goes-back-and-see-this-is-the-cool-part-maybe-we-can-end-on-.md) — score=5 `00:54:25.760` — goes back and see this is the cool part maybe we can end on this yeah this is the cool part about Quantum biology becaus
-- [`023-mitochondria-okay-still-think-it-s-about-food-folks-it-s-abo`](mitochondria/023-mitochondria-okay-still-think-it-s-about-food-folks-it-s-abo.md) — score=5 `00:32:54.919` — mitochondria okay still think it's about food folks it's about light it's always been about light and you have to realiz
-- [`024-people-don-t-realize-why-cytochrome-one-is-incredibly-import`](mitochondria/024-people-don-t-realize-why-cytochrome-one-is-incredibly-import.md) — score=5 `00:16:21.040` — people don't realize why cytochrome one is incredibly important because when [ __ ] goes bad there cytochrome one is alm
-- [`025-michael-leven-and-never-got-a-fundamental-answer-because-he-`](mitochondria/025-michael-leven-and-never-got-a-fundamental-answer-because-he-.md) — score=5 `00:44:35.359` — Michael Leven and never got a fundamental answer because he tells everybody EMF doesn't have any role in biology. I said
-- [`026-wanted-to-do-the-interview-it-s-uh-uh-uh-learning-valuable-l`](mitochondria/026-wanted-to-do-the-interview-it-s-uh-uh-uh-learning-valuable-l.md) — score=5 `00:18:03.280` — wanted to do the interview. It's uh uh uh learning valuable lessons. Okay. So, how would uh a person try to improve thei
-- [`027-perspective-need-to-ask-yourself-this-question-how-does-food`](mitochondria/027-perspective-need-to-ask-yourself-this-question-how-does-food.md) — score=5 `00:22:21.440` — perspective need to ask yourself this question how does food explain a kid that's born with a retinol blastoma it doesn'
-- [`028-protocols-you-should-incre-increase-your-redo-first-why-beca`](mitochondria/028-protocols-you-should-incre-increase-your-redo-first-why-beca.md) — score=5 `00:22:39.480` — protocols you should incre increase your redo first why because what I have learned in 20 years is that the physics of o
-- [`029-also-a-little-bit-of-a-mitochondriac-you-still-need-to-add-t`](mitochondria/029-also-a-little-bit-of-a-mitochondriac-you-still-need-to-add-t.md) — score=5 `00:28:34.080` — also a little bit of a mitochondriac. You still need to add the other parts, but dude, you're going to your podcast the 
-- [`030-your-mitochondria-doesn-t-make-enough-water-that-means-you-r`](mitochondria/030-your-mitochondria-doesn-t-make-enough-water-that-means-you-r.md) — score=5 `01:48:32.840` — your mitochondria doesn't make enough water. That means you're not in the sun enough. So, you always hear functional med
-
-## melanin (30)
-
-- [`001-fascinated-by-it-since-i-m-a-little-boy-but-i-didn-t-know-wh`](melanin/001-fascinated-by-it-since-i-m-a-little-boy-but-i-didn-t-know-wh.md) — score=8 `02:19:45.300` — fascinated by it since I'm a little boy but I didn't know what melanin really did until I got to be about 40 years old t
-- [`002-understand-this-there-is-a-reason-that-all-five-of-our-sense`](melanin/002-understand-this-there-is-a-reason-that-all-five-of-our-sense.md) — score=7 `02:01:40.679` — understand this there is a reason that all five of our senses and the six sense which is our mitochondria has paly and m
-- [`003-there-s-no-oxygen-there-what-else-isn-t-there-there-s-no-mel`](melanin/003-there-s-no-oxygen-there-what-else-isn-t-there-there-s-no-mel.md) — score=7 `00:54:37.120` — There's no oxygen there. What else isn't there? There's no melanin, either. And why is that the case? Because it's alway
-- [`004-had-with-mushrooms-when-i-was-a-teenager-had-no-effect-on-me`](melanin/004-had-with-mushrooms-when-i-was-a-teenager-had-no-effect-on-me.md) — score=7 `02:11:58.739` — had with mushrooms when I was a teenager had no effect on me at all and I think the reason for that is because my brain 
-- [`005-sidebars-because-i-think-it-fills-in-the-gaps-that-s-somethi`](melanin/005-sidebars-because-i-think-it-fills-in-the-gaps-that-s-somethi.md) — score=7 `01:04:10.920` — sidebars because I think it fills in the gaps that's something I learned from Rick's book that we need to talk about eit
-- [`006-but-i-will-tell-you-that-some-of-the-things-about-circadian-`](melanin/006-but-i-will-tell-you-that-some-of-the-things-about-circadian-.md) — score=6 `00:53:13.920` — but I will tell you that some of the things about circadian biology some of the things that I write about some of the th
-- [`007-so-when-you-have-melanin-you-re-creating-huge-amounts-of-oxy`](melanin/007-so-when-you-have-melanin-you-re-creating-huge-amounts-of-oxy.md) — score=6 `00:59:22.140` — so when you have melanin you're creating huge amounts of oxygen tension in a Cell you're never going to be hypoxic well 
-- [`008-leads-to-neurodeeneration-and-fundamentally-this-is-the-reas`](melanin/008-leads-to-neurodeeneration-and-fundamentally-this-is-the-reas.md) — score=6 `01:01:59.920` — leads to neurodeeneration. And fundamentally, this is the reason why everybody's addicted to things that emit microwaves
-- [`009-to-keep-the-mitf-ampk-pathway-so-that-you-re-cognitively-oka`](melanin/009-to-keep-the-mitf-ampk-pathway-so-that-you-re-cognitively-oka.md) — score=6 `00:24:56.160` — to keep the MITF/AMPK pathway so that you're cognitively okay and you can still isotopically fractionate bad metals beca
-- [`010-high-level-signal-here-how-many-times-have-i-showed-you-that`](melanin/010-high-level-signal-here-how-many-times-have-i-showed-you-that.md) — score=6 `01:21:28.880` — high-level signal here. How many times have I showed you that picture from tyrosine to melanin, and what do I always tel
-- [`011-own-light-inside-when-the-sun-couldn-t-create-it-and-melanin`](melanin/011-own-light-inside-when-the-sun-couldn-t-create-it-and-melanin.md) — score=6 `01:29:40.440` — own light inside when the sun couldn't create it and melanin was the key to the story why because melanin is the darkest
-- [`012-water-is-always-adjacent-to-where-melanin-is-and-water-does-`](melanin/012-water-is-always-adjacent-to-where-melanin-is-and-water-does-.md) — score=6 `03:46:26.220` — water is always adjacent to where melanin is and water does have a limit to what it can do and what happens is those mel
-- [`013-always-in-the-blue-light-hazard-between-435-and-465-i-m-goin`](melanin/013-always-in-the-blue-light-hazard-between-435-and-465-i-m-goin.md) — score=5 `01:58:39.239` — always in the blue light Hazard between 435 and 465. I'm going to tell you the reason why because it lowers your dopamin
-- [`014-this-is-now-beginning-to-make-some-sense-but-what-happens-wh`](melanin/014-this-is-now-beginning-to-make-some-sense-but-what-happens-wh.md) — score=5 `01:09:55.020` — this is now beginning to make some sense but what happens what's the other effect with non-native EMF it degrades melani
-- [`015-you-understand-why-he-ll-continue-to-always-be-at-risk-becau`](melanin/015-you-understand-why-he-ll-continue-to-always-be-at-risk-becau.md) — score=5 `00:02:18.879` — You understand why he'll continue to always be at risk? Because if he doesn't understand the story of melanin, vitamin D
-- [`016-world-and-you-like-right-in-the-middle-of-it-uh-and-having-t`](melanin/016-world-and-you-like-right-in-the-middle-of-it-uh-and-having-t.md) — score=5 `01:17:20.220` — world and you like right in the middle of it uh and having this update you know after 12 years to discuss some of these 
-- [`017-those-are-broken-so-diabetics-can-never-photo-repair-themsel`](melanin/017-those-are-broken-so-diabetics-can-never-photo-repair-themsel.md) — score=5 `00:53:07.200` — those are broken. So diabetics can never photo repair themselves because of this process. What allows them to gain contr
-- [`018-don-t-make-melanin-from-pomsy-without-uv-light-uv-light-is-t`](melanin/018-don-t-make-melanin-from-pomsy-without-uv-light-uv-light-is-t.md) — score=5 `01:19:28.640` — don't make melanin from pomsy without UV light. UV light is the stimulus that causes the translation of melanin. And the
-- [`019-from-photosynthesis-on-it-s-like-you-and-joe-never-look-back`](melanin/019-from-photosynthesis-on-it-s-like-you-and-joe-never-look-back.md) — score=5 `00:17:50.559` — from photosynthesis on. It's like you and Joe never look back and go, "What the [ __ ] happened before?" Why don't we ev
-- [`020-causes-it-and-what-else-does-he-find-their-vitamin-d-levels-`](melanin/020-causes-it-and-what-else-does-he-find-their-vitamin-d-levels-.md) — score=5 `03:52:34.920` — causes it and what else does he find their vitamin D levels drop he didn't know about pomy but we now know yeah pomy dro
-- [`021-the-one-that-i-thought-was-just-about-obesity-it-turns-out-i`](melanin/021-the-one-that-i-thought-was-just-about-obesity-it-turns-out-i.md) — score=5 `02:42:58.859` — the one that I thought was just about obesity it turns out it's about [ __ ] everything yeah tell me what happens always
-- [`022-mhm-so-guess-what-the-neural-crest-cells-through-evolution-t`](melanin/022-mhm-so-guess-what-the-neural-crest-cells-through-evolution-t.md) — score=5 `00:44:36.520` — Mhm. So, guess what? The neural crest cells through evolution, through morphogenesis in mammals, always has melanin ther
-- [`023-one-horn-it-s-always-grounded-has-a-small-brain-like-a-dinos`](melanin/023-one-horn-it-s-always-grounded-has-a-small-brain-like-a-dinos.md) — score=5 `01:29:19.560` — one horn. It's always grounded, has a small brain like a dinosaur. Why? Its skin is thick. It's armored. So it always ha
-- [`024-he-s-being-drained-of-water-and-melanin-and-what-i-m-trying-`](melanin/024-he-s-being-drained-of-water-and-melanin-and-what-i-m-trying-.md) — score=5 `01:08:01.500` — He's being drained of water and melanin. And what I'm trying to tell him this, this is not trying to be hyperbolic. This
-- [`025-about-you-tristan-thoughts-on-that-since-the-podcast-you-kno`](melanin/025-about-you-tristan-thoughts-on-that-since-the-podcast-you-kno.md) — score=5 `01:32:54.679` — about you Tristan thoughts on that since the podcast you know whenever anyone pulls out a supplement I'm always very ske
-- [`026-to-use-steve-jobs-to-explain-it-as-well-when-you-begin-to-un`](melanin/026-to-use-steve-jobs-to-explain-it-as-well-when-you-begin-to-un.md) — score=5 `01:18:30.179` — to use Steve Jobs to explain it as well when you begin to understand it that's part of the reason why you'll see when I 
-- [`027-people-who-have-mental-disorder-and-that-s-truly-what-creati`](melanin/027-people-who-have-mental-disorder-and-that-s-truly-what-creati.md) — score=5 `01:11:27.240` — people who have mental disorder and that's truly what creativity is it's actually a mental disorder because you've degra
-- [`028-lalonde-and-and-and-rob-wolf-used-to-operate-on-in-the-paleo`](melanin/028-lalonde-and-and-and-rob-wolf-used-to-operate-on-in-the-paleo.md) — score=5 `01:44:34.920` — Lalonde and and and Rob wolf used to operate on in the Paleo committee but that's where they stopped they never got to t
-- [`029-csf-also-enriches-the-csf-with-iodine-so-that-you-can-also-b`](melanin/029-csf-also-enriches-the-csf-with-iodine-so-that-you-can-also-b.md) — score=5 `02:00:09.000` — CSF also enriches the CSF with iodine so that you can also bring more proton conduction in water in your brain which is 
-- [`030-you-is-a-big-deal-now-the-cool-part-of-this-story-is-i-figur`](melanin/030-you-is-a-big-deal-now-the-cool-part-of-this-story-is-i-figur.md) — score=5 `00:33:08.960` — you is a big deal now the cool part of this story is I figured out the gut before I figured out all the stuff that I've 
-
-## blue-light (30)
-
-- [`001-really-really-appreciated-because-you-know-the-one-thing-tha`](blue-light/001-really-really-appreciated-because-you-know-the-one-thing-tha.md) — score=9 `00:46:31.500` — really really appreciated because you know the one thing that's always flummoxed me he goes why do we have so much melan
-- [`002-and-his-papers-that-were-published-in-science-challenged-tha`](blue-light/002-and-his-papers-that-were-published-in-science-challenged-tha.md) — score=7 `00:05:44.229` — and his papers that were published in science challenged that in a big way and I've been saying that for 15 years becaus
-- [`003-blue-blocking-glasses-or-actually-use-amber-bulbs-in-your-ho`](blue-light/003-blue-blocking-glasses-or-actually-use-amber-bulbs-in-your-ho.md) — score=7 `00:17:42.679` — blue-blocking glasses or actually use amber bulbs in your house at nighttime because you really need to cut all blue lig
-- [`004-turns-out-that-you-have-to-turn-on-riboflavin-and-if-ribofla`](blue-light/004-turns-out-that-you-have-to-turn-on-riboflavin-and-if-ribofla.md) — score=7 `00:40:30.880` — turns out that you have to turn on riboflavin and if riboflavin is not in your diet why because blue light will destroy 
-- [`005-from-norcals-work-we-know-that-non-native-emf-and-blue-light`](blue-light/005-from-norcals-work-we-know-that-non-native-emf-and-blue-light.md) — score=6 `01:15:55.600` — from norcals work? We know that non-native EMF and blue light what's the fundamental thing they do? They cause a drop in
-- [`006-red-light-is-the-antidote-to-blue-so-guess-what-in-the-sun-t`](blue-light/006-red-light-is-the-antidote-to-blue-so-guess-what-in-the-sun-t.md) — score=6 `01:24:31.280` — red light is the antidote to Blue so guess what in the sun that's behind me you never get Blue by itself you always get 
-- [`007-blue-light-from-native-situation-meaning-the-sun-is-always-b`](blue-light/007-blue-light-from-native-situation-meaning-the-sun-is-always-b.md) — score=6 `00:13:28.640` — Blue light from native situation, meaning the sun, is always balanced by red. So, it turns out, guess what runs all the 
-- [`008-way-these-are-i-m-grateful-for-the-fact-that-i-ve-always-bee`](blue-light/008-way-these-are-i-m-grateful-for-the-fact-that-i-ve-always-bee.md) — score=6 `01:09:58.480` — way these are. I'm grateful for the fact that I've always been a sun advocate and I'd never wear glasses hardly. And I r
-- [`009-and-i-will-tell-you-if-you-re-a-shift-worker-my-advice-term-`](blue-light/009-and-i-will-tell-you-if-you-re-a-shift-worker-my-advice-term-.md) — score=6 `01:30:03.440` — and I will tell you if you're a shift worker my advice term insurance make me the beneficiary it's KR e okay and it's th
-- [`010-sunlight-always-has-red-in-it-when-blue-s-available-but-gues`](blue-light/010-sunlight-always-has-red-in-it-when-blue-s-available-but-gues.md) — score=6 `01:11:26.159` — sunlight always has red in it when Blue's available but guess what your iPhone never does that's the whole [ __ ] point 
-- [`011-never-get-to-the-regeneration-pathway-that-s-actually-on-ank`](blue-light/011-never-get-to-the-regeneration-pathway-that-s-actually-on-ank.md) — score=5 `00:47:58.240` — never get to the regeneration pathway. That's actually on ankcoenesis. And that's effectively what's happening in the wo
-- [`012-six-other-colors-with-it-and-it-turns-out-that-blue-light-ha`](blue-light/012-six-other-colors-with-it-and-it-turns-out-that-blue-light-ha.md) — score=5 `00:04:20.720` — six other colors with it and it turns out that blue light has to be have its antidote uh within the sun that's present r
-- [`013-text-screen-is-always-blue-lit-and-it-s-always-in-the-blue-l`](blue-light/013-text-screen-is-always-blue-lit-and-it-s-always-in-the-blue-l.md) — score=5 `01:58:36.540` — text screen is always blue lit and it's always in the blue light Hazard between 435 and 465. I'm going to tell you the r
-- [`014-need-to-realize-girls-are-now-having-precocious-puberty-you-`](blue-light/014-need-to-realize-girls-are-now-having-precocious-puberty-you-.md) — score=5 `01:16:07.960` — need to realize girls are now having precocious puberty you know at six seven years old that's the effect of blue light 
-- [`015-all-the-time-yes-the-only-blue-light-you-re-designed-to-get-`](blue-light/015-all-the-time-yes-the-only-blue-light-you-re-designed-to-get-.md) — score=5 `00:51:03.040` — [ __ ] all the time. Yes. The only blue light you're designed to get is blue light from the sun. Why? Because the antido
-- [`016-functionally-is-you-can-have-leptin-but-if-you-can-t-do-anyt`](blue-light/016-functionally-is-you-can-have-leptin-but-if-you-can-t-do-anyt.md) — score=5 `00:09:22.150` — functionally is you can have leptin but if you can't do anything with the signal your leptin resistant and leptin resist
-- [`017-signal-you-re-leptin-resistant-and-leptin-resistance-is-what`](blue-light/017-signal-you-re-leptin-resistant-and-leptin-resistance-is-what.md) — score=5 `01:17:24.199` — signal, you're leptin resistant. And leptin resistance is what causes obesity. We now know all the effects of blue light
-- [`018-i-m-always-willing-to-update-i-eat-them-at-night-because-the`](blue-light/018-i-m-always-willing-to-update-i-eat-them-at-night-because-the.md) — score=5 `01:55:30.420` — I'm always willing to update I eat them at night because they help me sleep well they will but why because you're blue e
-- [`019-times-is-the-correct-remember-that-the-the-blue-light-from-t`](blue-light/019-times-is-the-correct-remember-that-the-the-blue-light-from-t.md) — score=5 `01:31:41.840` — times is the correct remember that the the blue light from the Sun never not has red well is that true when you put your
-- [`020-problems-in-the-basil-gang-it-s-at-the-substantial-but-guess`](blue-light/020-problems-in-the-basil-gang-it-s-at-the-substantial-but-guess.md) — score=5 `00:10:46.440` — problems in the basil gang it's at the substantial but guess what say if somebody got I don't know say melanoma first th
-- [`021-more-at-night-is-because-i-think-you-re-chronic-blue-light-t`](blue-light/021-more-at-night-is-because-i-think-you-re-chronic-blue-light-t.md) — score=5 `01:06:49.680` — more at night is because I think you're chronic blue light toxic. And what that means is you have a blue light hazard an
-- [`022-because-every-single-drug-that-we-know-has-been-tested-in-a-`](blue-light/022-because-every-single-drug-that-we-know-has-been-tested-in-a-.md) — score=5 `00:43:09.960` — because every single drug that we know has been tested in a lab under blue light how do we know that the effect is not g
-- [`023-really-all-the-moves-in-my-life-have-always-been-associated-`](blue-light/023-really-all-the-moves-in-my-life-have-always-been-associated-.md) — score=5 `00:07:17.040` — Really all the moves in my life have always been associated with moving towards the sun, and getting blue light and non-
-- [`024-artificial-blue-light-that-really-causes-the-cancer-turns-ou`](blue-light/024-artificial-blue-light-that-really-causes-the-cancer-turns-ou.md) — score=5 `00:54:15.589` — artificial blue light that really causes the cancer. Turns out that UV light taken out of its spectrum, so if you're thi
-- [`025-me-here-and-then-even-i-since-i-m-here-in-el-salvador-i-real`](blue-light/025-me-here-and-then-even-i-since-i-m-here-in-el-salvador-i-real.md) — score=5 `01:02:54.720` — me here and then even I since I'm here in El Salvador I realized how addicted I was to many things in in life also drugs
-- [`026-red-blood-cell-also-has-a-problem-because-it-s-got-he-hemog-`](blue-light/026-red-blood-cell-also-has-a-problem-because-it-s-got-he-hemog-.md) — score=5 `01:18:26.040` — red blood cell also has a problem because it's got he hemog this is the reason why anemia of chronic disease always is a
-- [`027-people-who-don-t-use-the-uv-light-have-noticed-the-skin-that`](blue-light/027-people-who-don-t-use-the-uv-light-have-noticed-the-skin-that.md) — score=5 `04:03:32.760` — people who don't use the UV light have noticed the skin that comes back after you use the blue light always has less pig
-- [`028-gt-gt-blue-light-penetrates-all-the-way-in-to-the-fat-layer-`](blue-light/028-gt-gt-blue-light-penetrates-all-the-way-in-to-the-fat-layer-.md) — score=5 `00:12:22.880` — &gt;&gt; Blue light penetrates all the way in to the fat layer. That is actually where the arterials are. That's actuall
-- [`029-called-pgc1-alpha-guess-what-both-of-those-are-broken-so-dia`](blue-light/029-called-pgc1-alpha-guess-what-both-of-those-are-broken-so-dia.md) — score=5 `00:53:04.160` — called PGC1 alpha. Guess what? Both of those are broken. So diabetics can never photo repair themselves because of this 
-- [`030-eye-in-your-radial-artery-by-delivering-infrared-a-light-bec`](blue-light/030-eye-in-your-radial-artery-by-delivering-infrared-a-light-bec.md) — score=5 `01:27:29.679` — eye in your radial artery by delivering infrared a light because you know it penetrates right in because I showed you a 
-
-## red-light (22)
-
-- [`001-underwear-yeah-to-come-down-because-he-technically-gets-red-`](red-light/001-underwear-yeah-to-come-down-because-he-technically-gets-red-.md) — score=8 `00:27:44.679` — underwear yeah to come down because he technically gets red light when he does that and it the the answer always for eve
-- [`002-to-send-sets-red-light-is-always-present-uva-light-uvb-light`](red-light/002-to-send-sets-red-light-is-always-present-uva-light-uvb-light.md) — score=8 `01:15:11.400` — to send sets red light is always present UVA light UVB light especially where you guys are it changes die early and sees
-- [`003-utilizing-anybody-s-red-light-panel-that-s-led-based-you-wil`](red-light/003-utilizing-anybody-s-red-light-panel-that-s-led-based-you-wil.md) — score=7 `01:28:25.600` — utilizing anybody's red light panel that's LED based, you will never change the dialectric constant of their fluid. Is t
-- [`004-pbm-which-is-you-know-600-to-1100-nanometer-light-actually-d`](red-light/004-pbm-which-is-you-know-600-to-1100-nanometer-light-actually-d.md) — score=7 `02:20:10.260` — PBM which is you know 600 to 1100 nanometer light actually does something that big Pharma has a pill for it is red light
-- [`005-long-enough-what-do-i-tell-you-is-the-single-most-important-`](red-light/005-long-enough-what-do-i-tell-you-is-the-single-most-important-.md) — score=6 `00:45:54.800` — long enough, what do I tell you is the single most important thing to do for your health? Sunrise. Why is that? Because 
-- [`006-his-hosta-study-see-how-at-the-equator-light-never-changes-i`](red-light/006-his-hosta-study-see-how-at-the-equator-light-never-changes-i.md) — score=6 `00:18:42.820` — his hosta study see how at the equator light never changes it's 12 hours of sunlight from sunup to sundown UV light show
-- [`007-does-your-gut-get-that-information-because-here-s-what-most-`](red-light/007-does-your-gut-get-that-information-because-here-s-what-most-.md) — score=6 `00:40:47.720` — does your gut get that information because here's what most of your doctors listen to this and the patients that have th
-- [`008-get-him-to-do-a-study-on-red-light-and-autism-because-that-s`](red-light/008-get-him-to-do-a-study-on-red-light-and-autism-because-that-s.md) — score=6 `01:33:15.719` — get him to do a study on red light and autism because that's how the pathway needs to start and I said I'll make a deal 
-- [`009-there-s-a-very-specific-action-spectra-250-to-600-nanom-ligh`](red-light/009-there-s-a-very-specific-action-spectra-250-to-600-nanom-ligh.md) — score=6 `01:24:26.400` — there's a very specific action Spectra 250 to 600 nanom light that's red light red light is the antidote to Blue so gues
-- [`010-a-device-that-uses-rf-and-microwaves-always-is-blue-lit-well`](red-light/010-a-device-that-uses-rf-and-microwaves-always-is-blue-lit-well.md) — score=5 `01:09:15.420` — a device that uses RF and microwaves always is blue lit well there's a reason for that because it lowers your dopamine l
-- [`011-talking-to-me-about-before-about-big-muscles-uh-the-problem-`](red-light/011-talking-to-me-about-before-about-big-muscles-uh-the-problem-.md) — score=5 `01:32:18.840` — talking to me about before about big muscles uh the problem is when an orthopedic surgeon sees a bone at time of surgery
-- [`012-naked-foot-on-the-metal-before-i-d-even-use-that-or-if-you-w`](red-light/012-naked-foot-on-the-metal-before-i-d-even-use-that-or-if-you-w.md) — score=5 `01:45:29.120` — naked foot on the metal before I'd even use that. Or if you want to do one and the other, I'm fine with that. But infrar
-- [`013-the-short-story-is-infrared-a-light-forms-up-42-of-sunlight-`](red-light/013-the-short-story-is-infrared-a-light-forms-up-42-of-sunlight-.md) — score=5 `00:59:51.019` — The short story is, infrared A light forms up 42% of sunlight. It's the dominant form of light. Turns out red light in U
-- [`014-light-is-irreplaceable-i-always-tell-people-when-i-do-podcas`](red-light/014-light-is-irreplaceable-i-always-tell-people-when-i-do-podcas.md) — score=5 `01:38:29.880` — Light is irreplaceable I always tell people when I do podcasts they always say joculus you're one actionable task the ac
-- [`015-standpoint-what-does-it-tell-me-as-a-physician-that-person-n`](red-light/015-standpoint-what-does-it-tell-me-as-a-physician-that-person-n.md) — score=5 `02:10:38.520` — standpoint what does it tell me as a physician that person never went in the sun yeah because that's effectively what's 
-- [`016-big-warning-on-yeah-the-warning-is-always-there-because-you-`](red-light/016-big-warning-on-yeah-the-warning-is-always-there-because-you-.md) — score=5 `03:16:56.520` — big warning on yeah the warning is always there because you're protecting the manufacturer but I would tell you when you
-- [`017-it-ought-to-mean-to-go-forward-with-everything-behind-it-but`](red-light/017-it-ought-to-mean-to-go-forward-with-everything-behind-it-but.md) — score=5 `00:36:22.250` — It ought to mean "to go forward" with everything behind it, but needless to say her thoughts on the subject were never i
-- [`018-i-m-inside-like-i-am-now-i-have-infrared-a-light-panels-all-`](red-light/018-i-m-inside-like-i-am-now-i-have-infrared-a-light-panels-all-.md) — score=5 `01:12:39.200` — I'm inside like I am now I have infrared a light panels all around me my clinic has them I will never be inside without 
-- [`019-just-the-act-of-looking-in-there-because-i-m-using-a-xenon-b`](red-light/019-just-the-act-of-looking-in-there-because-i-m-using-a-xenon-b.md) — score=5 `01:09:24.299` — just the act of looking in there because I'm using a Xenon bulb on a Zeiss microscope is actually causing brain damage i
-- [`020-without-red-light-and-that-s-the-key-of-why-you-began-to-und`](red-light/020-without-red-light-and-that-s-the-key-of-why-you-began-to-und.md) — score=5 `00:51:15.440` — without red light. And that's the key of why you began to understand how nefarious Obama was because he took out UV and 
-- [`021-see-on-twitter-when-people-ask-me-what-s-the-best-red-light-`](red-light/021-see-on-twitter-when-people-ask-me-what-s-the-best-red-light-.md) — score=5 `01:30:29.360` — see on Twitter when people ask me what's the best red light? I always put sun is Tina. What does Tina stand for? There n
-- [`022-you-have-a-solar-deficiency-so-let-me-explain-to-you-somethi`](red-light/022-you-have-a-solar-deficiency-so-let-me-explain-to-you-somethi.md) — score=5 `00:24:08.400` — you have a solar deficiency so let me explain to you something that's really really interesting there's another European
-
-## leptin (22)
-
-- [`001-leptin-prescription-never-never-dealt-with-why-because-remem`](leptin/001-leptin-prescription-never-never-dealt-with-why-because-remem.md) — score=8 `00:48:57.319` — leptin prescription never never dealt with why because remember when I wrote it I wrote it in 2005 to 2008 okay melan op
-- [`002-dopamine-and-all-of-that-is-occurring-within-the-action-spec`](leptin/002-dopamine-and-all-of-that-is-occurring-within-the-action-spec.md) — score=6 `00:02:43.620` — dopamine and all of that is occurring within the action Spectra of sunlight I'd also love to learn from you about how ch
-- [`003-of-the-prescription-that-i-wrote-20-years-ago-the-leptin-pre`](leptin/003-of-the-prescription-that-i-wrote-20-years-ago-the-leptin-pre.md) — score=6 `03:27:52.560` — of the prescription that I wrote 20 years ago the leptin prescription when you're in sunlight you don't need to eat food
-- [`004-fast-at-night-so-here-s-the-other-part-that-we-didn-t-talk-a`](leptin/004-fast-at-night-so-here-s-the-other-part-that-we-didn-t-talk-a.md) — score=5 `00:30:02.480` — fast at night. So here's the other part that we didn't talk about, but we need to. When you get the leptin prescription 
-- [`005-going-to-block-it-because-it-was-about-leptin-trials-and-the`](leptin/005-going-to-block-it-because-it-was-about-leptin-trials-and-the.md) — score=5 `00:03:19.000` — going to block it because it was about leptin trials and the leptin drug and Amgen and uh he said why don't you just put
-- [`006-something-called-the-leptin-reset-and-i-never-published-this`](leptin/006-something-called-the-leptin-reset-and-i-never-published-this.md) — score=5 `00:03:14.640` — something called the leptin reset and I never published this until last year on my blog I kept it very quiet in the hosp
-- [`007-post-called-my-leptin-prescription-now-when-you-read-that-bl`](leptin/007-post-called-my-leptin-prescription-now-when-you-read-that-bl.md) — score=5 `00:05:46.840` — post called my leptin prescription now when you read that blog post you'll never hear me talk about light but really the
-- [`008-so-that-it-knows-precisely-what-the-energy-balance-is-well-t`](leptin/008-so-that-it-knows-precisely-what-the-energy-balance-is-well-t.md) — score=5 `00:20:30.640` — so that it knows precisely what the energy balance is well turns out leptin has to have another photoreceptor in order f
-- [`009-she-goes-look-i-know-why-this-happened-to-you-i-m-going-to-s`](leptin/009-she-goes-look-i-know-why-this-happened-to-you-i-m-going-to-s.md) — score=5 `00:02:09.239` — She goes, "Look, I know why this happened to you. I'm going to send you six papers and a book." That jumped me down the 
-- [`010-they-have-scotopic-skin-that-s-the-reason-why-you-ve-always-`](leptin/010-they-have-scotopic-skin-that-s-the-reason-why-you-ve-always-.md) — score=5 `00:37:48.390` — They have scotopic skin. That's the reason why you've always heard me say, "Anything that we learned in medical school i
-- [`011-clinic-everywhere-else-and-he-was-never-able-to-knock-this-o`](leptin/011-clinic-everywhere-else-and-he-was-never-able-to-knock-this-o.md) — score=5 `00:57:42.960` — Clinic everywhere else and he was never able to knock this off so when I fixed his patient he called me up and said what
-- [`012-me-a-long-time-ago-um-i-just-never-told-you-really-what-pinn`](leptin/012-me-a-long-time-ago-um-i-just-never-told-you-really-what-pinn.md) — score=5 `00:02:47.760` — me a long time ago. Um I just never told you really what pinned down the leptin prescription, the cold thermogenesis pro
-- [`013-why-is-that-leptin-milano-courtin-thing-there-what-i-did-i-d`](leptin/013-why-is-that-leptin-milano-courtin-thing-there-what-i-did-i-d.md) — score=5 `01:17:50.100` — why is that leptin Milano courtin thing there what I did I didn't never got that far Jack tell me is that the part that'
-- [`014-second-and-the-name-of-the-book-was-uh-monk-who-sold-us-for-`](leptin/014-second-and-the-name-of-the-book-was-uh-monk-who-sold-us-for-.md) — score=5 `00:02:30.560` — second and the name of the book was uh monk Who Sold us for and then the papers were all about a hormone called leptin a
-- [`015-really-causing-why-because-big-pharma-did-a-spectacular-job-`](leptin/015-really-causing-why-because-big-pharma-did-a-spectacular-job-.md) — score=5 `00:49:40.800` — really causing. Why? Because big pharma did a spectacular job hiding this basic information that I'm telling you by maki
-- [`016-because-i-m-going-to-tell-you-the-answer-is-yes-and-how-i-go`](leptin/016-because-i-m-going-to-tell-you-the-answer-is-yes-and-how-i-go.md) — score=5 `00:12:56.880` — because I'm going to tell you the answer is yes. And how I got pretty famous on the internet is by writing something cal
-- [`017-functionally-is-you-can-have-leptin-but-if-you-can-t-do-anyt`](leptin/017-functionally-is-you-can-have-leptin-but-if-you-can-t-do-anyt.md) — score=5 `01:17:20.320` — functionally is. You can have leptin, but if you can't do anything with the signal, you're leptin resistant. And leptin 
-- [`018-is-based-on-what-i-showed-you-why-because-now-there-s-resear`](leptin/018-is-based-on-what-i-showed-you-why-because-now-there-s-resear.md) — score=5 `01:43:37.679` — is based on what I showed you. Why? Because now there's researchers out there showing you that it really does begin in t
-- [`019-these-drugs-why-when-the-synthetic-leptin-trials-that-i-told`](leptin/019-these-drugs-why-when-the-synthetic-leptin-trials-that-i-told.md) — score=5 `01:53:14.159` — these drugs why when the synthetic leptin trials that I told you about in the Paleo times got canceled I never told you 
-- [`020-than-exercise-more-and-it-didn-t-work-i-put-30-pounds-on-i-s`](leptin/020-than-exercise-more-and-it-didn-t-work-i-put-30-pounds-on-i-s.md) — score=5 `01:40:52.260` — than exercise more and it didn't work I put 30 pounds on I said why don't I give crazy a shot nothing to lose all right 
-- [`021-think-what-i-did-as-a-neurosurgeon-was-focused-on-the-scienc`](leptin/021-think-what-i-did-as-a-neurosurgeon-was-focused-on-the-scienc.md) — score=5 `02:04:15.720` — think what I did as a neurosurgeon was focused on the science and I think my opposite side of the brain always had this 
-- [`022-through-hacking-it-on-me-in-this-leptin-prescription-i-figur`](leptin/022-through-hacking-it-on-me-in-this-leptin-prescription-i-figur.md) — score=5 `03:03:10.800` — through hacking it on me in this leptin prescription I figured out what was moving I've read physics papers I read somat
-
-## vitamin-d (14)
-
-- [`001-sense-because-that-lowers-your-vitamin-d-level-and-that-s-th`](vitamin-d/001-sense-because-that-lowers-your-vitamin-d-level-and-that-s-th.md) — score=8 `00:29:18.159` — sense because that lowers your vitamin d level and that's the one thing that's been shown to be very beneficial for kovi
-- [`002-and-you-start-going-through-the-ophthalmologist-literature-a`](vitamin-d/002-and-you-start-going-through-the-ophthalmologist-literature-a.md) — score=8 `00:55:21.910` — and you start going through the ophthalmologist literature and the dermatologist literature ... One of the things that I
-- [`003-lowers-your-vitamin-d-by-design-so-it-actually-creates-a-hug`](vitamin-d/003-lowers-your-vitamin-d-by-design-so-it-actually-creates-a-hug.md) — score=6 `00:11:09.360` — lowers your vitamin d by design so it actually creates a huge problem in your body and believe it or not when vitamin d 
-- [`004-like-people-don-t-realize-when-you-take-vitamin-d-pills-what`](vitamin-d/004-like-people-don-t-realize-when-you-take-vitamin-d-pills-what.md) — score=6 `01:31:48.120` — like people don't realize when you take vitamin D pills what you're effectively doing because that's a fat lipid to get 
-- [`005-that-they-can-absorb-light-what-is-hemoglobin-absorb-250-to-`](vitamin-d/005-that-they-can-absorb-light-what-is-hemoglobin-absorb-250-to-.md) — score=5 `00:33:41.840` — that they can absorb light what is hemoglobin absorb 250 to 600 nanometer light so red blood cells are ferryboats hmm th
-- [`006-clean-diet-becker-finds-out-that-all-the-avionics-in-the-pla`](vitamin-d/006-clean-diet-becker-finds-out-that-all-the-avionics-in-the-pla.md) — score=5 `03:52:30.319` — Clean Diet Becker finds out that all the avionics in the plane the non-mf is what causes it and what else does he find t
-- [`007-never-been-getting-vitamin-d-i-ve-been-doing-everything-outs`](vitamin-d/007-never-been-getting-vitamin-d-i-ve-been-doing-everything-outs.md) — score=5 `00:18:36.000` — never been getting vitamin D. I've been doing everything outside the window that that narrow depending on where your lat
-- [`008-seven-to-10-devices-that-are-bidirectional-microwave-devices`](vitamin-d/008-seven-to-10-devices-that-are-bidirectional-microwave-devices.md) — score=5 `00:31:38.080` — seven to 10 devices that are bidirectional microwave devices so that's the reason why you can be Buck ass naked in Los A
-- [`009-and-greater-and-greater-then-they-re-going-to-say-oh-look-yo`](vitamin-d/009-and-greater-and-greater-then-they-re-going-to-say-oh-look-yo.md) — score=5 `00:37:32.640` — and greater and greater then they're going to say oh look you got this cut off you got that cut off but they never ever 
-- [`010-bloodstream-to-the-liver-and-the-kidney-to-be-changed-but-th`](vitamin-d/010-bloodstream-to-the-liver-and-the-kidney-to-be-changed-but-th.md) — score=5 `01:29:10.800` — bloodstream to the liver and the kidney to be changed but this is the key point the reason why so many people from the U
-- [`011-where-you-live-on-this-planet-will-determine-your-level-of-v`](vitamin-d/011-where-you-live-on-this-planet-will-determine-your-level-of-v.md) — score=5 `00:58:01.520` — where you live on this planet will determine your level of vitamin D so for example if you live in Sweden you're not goi
-- [`012-1950-was-highly-ketoic-because-they-were-never-around-uva-or`](vitamin-d/012-1950-was-highly-ketoic-because-they-were-never-around-uva-or.md) — score=5 `01:05:14.160` — 1950 was highly ketoic because they were never around UVA or UVB light except for three to four months out of the year. 
-- [`013-huge-problem-too-because-if-your-body-is-not-fully-exposed-a`](vitamin-d/013-huge-problem-too-because-if-your-body-is-not-fully-exposed-a.md) — score=5 `00:27:55.440` — huge problem too because if your body is not fully exposed and you're only exposing your hands and your face why in the 
-- [`014-going-and-hiring-a-guy-at-the-gym-to-do-push-ups-for-you-and`](vitamin-d/014-going-and-hiring-a-guy-at-the-gym-to-do-push-ups-for-you-and.md) — score=5 `01:52:13.140` — going and hiring a guy at the gym to do push-ups for you and thinking you're getting the benefit that's the analogy I wa
-
-## circadian (14)
-
-- [`001-that-because-it-controls-circadian-biology-what-have-i-been-`](circadian/001-that-because-it-controls-circadian-biology-what-have-i-been-.md) — score=9 `00:44:07.680` — that because it controls circadian biology what have I been consistent about like when you read the letin prescription t
-- [`002-developing-cancer-why-because-this-growth-is-sped-up-that-s-`](circadian/002-developing-cancer-why-because-this-growth-is-sped-up-that-s-.md) — score=7 `01:16:05.280` — developing cancer. Why? Because this growth is sped up. That's what the clocks do. That's what circadian biology is all 
-- [`003-and-never-need-the-prescription-part-the-lever-needs-to-go-s`](circadian/003-and-never-need-the-prescription-part-the-lever-needs-to-go-s.md) — score=7 `00:37:43.260` — and never need the prescription part the lever needs to go see the doctor no because you'll have optimized circadian bio
-- [`004-always-say-in-circadian-biology-i-didn-t-say-it-first-of-cou`](circadian/004-always-say-in-circadian-biology-i-didn-t-say-it-first-of-cou.md) — score=7 `02:41:37.319` — always say in circadian biology I didn't say it first of course like light is the most powerful zeitge Gaber time keeper
-- [`005-understand-circadian-biology-the-basics-because-he-realized-`](circadian/005-understand-circadian-biology-the-basics-because-he-realized-.md) — score=6 `01:55:21.679` — understand circadian biology the basics because he realized that if you're G to create the ultimate form of money what w
-- [`006-six-things-are-important-turns-out-one-of-the-things-that-ar`](circadian/006-six-things-are-important-turns-out-one-of-the-things-that-ar.md) — score=6 `00:16:32.340` — six things are important turns out one of the things that are in there is alpha msh alpha msh is the reason you have a t
-- [`007-doing-this-like-wearing-red-glasses-in-the-daytime-but-the-p`](circadian/007-doing-this-like-wearing-red-glasses-in-the-daytime-but-the-p.md) — score=5 `00:23:33.400` — doing this like wearing red glasses in the daytime but the problem is I was always afraid that I'm going to um ruin my c
-- [`008-started-because-i-m-on-trauma-call-now-but-the-things-that-i`](circadian/008-started-because-i-m-on-trauma-call-now-but-the-things-that-i.md) — score=5 `01:04:10.559` — started because I'm on trauma call now but the things that I'm GNA do in the next month I have never done in my life and
-- [`009-realize-that-light-and-dark-is-important-why-because-you-can`](circadian/009-realize-that-light-and-dark-is-important-why-because-you-can.md) — score=5 `00:20:24.799` — realize that light and dark is important. Why? Because you can never appreciate how beneficial the sun is without the da
-- [`010-but-protein-and-fat-but-you-never-see-the-sunrise-do-you-thi`](circadian/010-but-protein-and-fat-but-you-never-see-the-sunrise-do-you-thi.md) — score=5 `00:43:10.559` — but protein and fat but you never see the sunrise do you think it's a wise choice to eat that type of diet because reall
-- [`011-light-you-know-especially-like-a-green-light-shining-on-my-h`](circadian/011-light-you-know-especially-like-a-green-light-shining-on-my-h.md) — score=5 `00:22:14.400` — light you know especially like a green light shining on my hand could disrupt my circadian rhythms and so um I may go ba
-- [`012-present-in-us-we-are-the-one-mammal-that-doesn-t-really-use-`](circadian/012-present-in-us-we-are-the-one-mammal-that-doesn-t-really-use-.md) — score=5 `03:36:20.279` — present in US we are the one mammal that doesn't really use it like we should why because what are the two metrics that 
-- [`013-want-to-make-to-young-guys-like-you-is-that-i-want-you-to-un`](circadian/013-want-to-make-to-young-guys-like-you-is-that-i-want-you-to-un.md) — score=5 `01:05:31.240` — want to make to young guys like you is that I want you to understand fundamentally why we have these breakdowns and it a
-- [`014-and-if-you-make-a-mistake-on-either-side-and-it-becomes-unba`](circadian/014-and-if-you-make-a-mistake-on-either-side-and-it-becomes-unba.md) — score=5 `00:11:38.880` — and if you make a mistake on either side and it becomes unbalanced for want of a better term the Circadian mechanism is 
-
-## oxygen (9)
-
-- [`001-of-rock-25-000-miles-around-it-is-a-refuge-1-3-land-2-3-wate`](oxygen/001-of-rock-25-000-miles-around-it-is-a-refuge-1-3-land-2-3-wate.md) — score=7 `00:00:20.854` — of rock 25,000 miles around. It is a refuge. 1/3 land, 2/3 water, and with an atmosphere rich in oxygen, it is the only 
-- [`002-audience-so-if-there-s-some-problem-with-the-quantum-mechani`](oxygen/002-audience-so-if-there-s-some-problem-with-the-quantum-mechani.md) — score=6 `00:33:38.720` — audience. So if there's some problem with the quantum mechanics here, like for example, most people don't even know that
-- [`003-huge-amounts-of-oxygen-tension-in-a-cell-you-re-never-going-`](oxygen/003-huge-amounts-of-oxygen-tension-in-a-cell-you-re-never-going-.md) — score=6 `00:59:25.680` — huge amounts of oxygen tension in a Cell you're never going to be hypoxic well I want you to think about now biochemistr
-- [`004-so-if-you-re-using-a-tool-that-doesn-t-measure-accurately-li`](oxygen/004-so-if-you-re-using-a-tool-that-doesn-t-measure-accurately-li.md) — score=6 `00:09:23.760` — so if you're using a tool that doesn't measure accurately like when somebody is 86 87% the doctor is trained from medica
-- [`005-beginning-of-this-podcast-the-great-oxygenation-event-it-s-a`](oxygen/005-beginning-of-this-podcast-the-great-oxygenation-event-it-s-a.md) — score=6 `00:56:15.280` — beginning of this podcast the great oxygenation event it's a very interesting event so one of the things that's always f
-- [`006-oxidation-state-of-iron-that-means-it-ll-keep-it-in-the-plus`](oxygen/006-oxidation-state-of-iron-that-means-it-ll-keep-it-in-the-plus.md) — score=5 `00:48:14.800` — oxidation state of iron. That means it'll keep it in the plus three state too long. So you never get to the plus two sta
-- [`007-by-lane-because-in-there-it-s-the-key-part-of-the-story-and-`](oxygen/007-by-lane-because-in-there-it-s-the-key-part-of-the-story-and-.md) — score=5 `00:13:54.400` — by Lane because in there it's the key part of the story and the question you just asked me it turns out in that event th
-- [`008-oxygen-but-you-have-to-be-able-to-use-oxygen-i-m-telling-you`](oxygen/008-oxygen-but-you-have-to-be-able-to-use-oxygen-i-m-telling-you.md) — score=5 `00:49:22.160` — oxygen. But you have to be able to use oxygen. I'm telling you that kids that have neurodedevelopmental delay can't, rig
-- [`009-you-re-the-biologist-i-m-asking-you-to-step-in-my-realm-as-a`](oxygen/009-you-re-the-biologist-i-m-asking-you-to-step-in-my-realm-as-a.md) — score=5 `00:43:19.620` — you're the biologist I'm asking you to step in my realm as a physicist yeah so the sun is a G-Class star correct and the
 
 ## EMF (10)
 
-- [`001-science-is-maybe-we-need-to-go-back-and-re-look-at-this-with`](EMF/001-science-is-maybe-we-need-to-go-back-and-re-look-at-this-with.md) — score=8 `00:50:56.160` — science is maybe we need to go back and re-look at this with A New Perspective now that never happened but that study wa
-- [`002-don-t-feel-an-effect-from-it-i-was-always-wondering-well-if-`](EMF/002-don-t-feel-an-effect-from-it-i-was-always-wondering-well-if-.md) — score=7 `01:24:56.040` — don't feel an effect from it I was always wondering well if grounding is so important why is this not producing any effe
-- [`003-that-you-have-other-uh-needs-and-requirements-in-you-that-ea`](EMF/003-that-you-have-other-uh-needs-and-requirements-in-you-that-ea.md) — score=7 `01:50:04.860` — that you have other uh needs and requirements in you that eating a a vegan diet or a vegetarian diet it's not wise now i
-- [`004-told-you-anything-that-s-infrared-as-long-as-it-s-not-run-of`](EMF/004-told-you-anything-that-s-infrared-as-long-as-it-s-not-run-of.md) — score=5 `01:45:18.400` — told you, anything that's infrared, as long as it's not run off any kind of EMF, helps because what does that do? It bui
-- [`005-reflective-and-perhaps-even-multiplying-the-emf-back-into-a-`](EMF/005-reflective-and-perhaps-even-multiplying-the-emf-back-into-a-.md) — score=5 `00:52:50.799` — reflective and perhaps even multiplying the EMF back into a different that's what I've always that's what I've always wo
-- [`006-the-light-of-the-star-in-the-sky-and-the-problem-is-99-of-pe`](EMF/006-the-light-of-the-star-in-the-sky-and-the-problem-is-99-of-pe.md) — score=5 `00:05:30.460` — the light of the star in the sky and the problem is 99% of people in the world today no longer live under that light and
-- [`007-music-s-so-loud-no-it-wasn-t-it-was-because-the-emf-that-the`](EMF/007-music-s-so-loud-no-it-wasn-t-it-was-because-the-emf-that-the.md) — score=5 `01:01:49.839` — music's so loud." No, it wasn't. It was because the EMF that they had from their electric guitars from working at night.
-- [`008-neurologic-deficit-tied-to-non-native-emf-toxicity-guess-why`](EMF/008-neurologic-deficit-tied-to-non-native-emf-toxicity-guess-why.md) — score=5 `01:20:09.440` — neurologic deficit tied to non-native EMF toxicity. Guess why? Because everything he did was based on digitization. He w
-- [`009-about-africa-i-ask-this-question-all-the-time-i-even-asked-t`](EMF/009-about-africa-i-ask-this-question-all-the-time-i-even-asked-t.md) — score=5 `00:44:32.880` — about, Africa, I ask this question all the time. I even asked this question to Michael Leven and never got a fundamental
-- [`010-musicians-they-re-always-around-non-native-emf-and-they-re-a`](EMF/010-musicians-they-re-always-around-non-native-emf-and-they-re-a.md) — score=5 `00:58:09.119` — musicians? They're always around non-native EMF and they're always doing concerts when at night under what kind of light
+- [001-science-is-maybe-we-need-to-go-back-and-re-look-at-this-with](EMF/001-science-is-maybe-we-need-to-go-back-and-re-look-at-this-with.md)
+- [002-don-t-feel-an-effect-from-it-i-was-always-wondering-well-if-](EMF/002-don-t-feel-an-effect-from-it-i-was-always-wondering-well-if-.md)
+- [003-that-you-have-other-uh-needs-and-requirements-in-you-that-ea](EMF/003-that-you-have-other-uh-needs-and-requirements-in-you-that-ea.md)
+- [004-told-you-anything-that-s-infrared-as-long-as-it-s-not-run-of](EMF/004-told-you-anything-that-s-infrared-as-long-as-it-s-not-run-of.md)
+- [005-reflective-and-perhaps-even-multiplying-the-emf-back-into-a-](EMF/005-reflective-and-perhaps-even-multiplying-the-emf-back-into-a-.md)
+- [006-the-light-of-the-star-in-the-sky-and-the-problem-is-99-of-pe](EMF/006-the-light-of-the-star-in-the-sky-and-the-problem-is-99-of-pe.md)
+- [007-music-s-so-loud-no-it-wasn-t](EMF/007-music-s-so-loud-no-it-wasn-t.md)
+- [008-neurologic-deficit-tied-to-non-native-emf-toxicity](EMF/008-neurologic-deficit-tied-to-non-native-emf-toxicity.md)
+- [009-about-africa-i-ask-this-question-all-the-time](EMF/009-about-africa-i-ask-this-question-all-the-time.md)
+- [010-musicians](EMF/010-musicians.md)
 
-## dopamine (10)
+## becker (11)
 
-- [`001-on-board-with-what-i-ve-heard-you-say-about-the-fact-that-th`](dopamine/001-on-board-with-what-i-ve-heard-you-say-about-the-fact-that-th.md) — score=6 `00:02:28.620` — on board with what I've heard you say about the fact that the way that all the base pairs in DNA and the way that amino 
-- [`002-dopamine-and-that-s-a-real-problem-because-then-you-become-a`](dopamine/002-dopamine-and-that-s-a-real-problem-because-then-you-become-a.md) — score=5 `01:21:51.040` — dopamine? And that's a real problem, because then you become a low dopamine idiot that never realizes you can fix your p
-- [`003-everybody-was-like-this-is-disgusting-and-what-i-m-trying-to`](dopamine/003-everybody-was-like-this-is-disgusting-and-what-i-m-trying-to.md) — score=5 `01:47:07.080` — everybody was like, "This is disgusting." And what I'm trying to say to you is artists are always low dopamine people be
-- [`004-always-there-but-you-know-what-the-key-thing-is-we-don-t-see`](dopamine/004-always-there-but-you-know-what-the-key-thing-is-we-don-t-see.md) — score=5 `00:40:08.200` — always there, but you know what the key thing is? We don't see them because we're obedient idiots because we're addicted
-- [`005-decreases-somewhat-that-produces-a-dopamine-kick-and-that-s-`](dopamine/005-decreases-somewhat-that-produces-a-dopamine-kick-and-that-s-.md) — score=5 `00:47:56.640` — decreases somewhat, that produces a dopamine kick. And that's a signal of reduced entropy in relationship. And it seems 
-- [`006-time-i-went-to-chicago-i-always-wanted-to-go-back-you-know-w`](dopamine/006-time-i-went-to-chicago-i-always-wanted-to-go-back-you-know-w.md) — score=5 `00:18:21.760` — time i went to chicago i always wanted to go back you know why what i just told you dopamine because when you have and y
-- [`007-people-don-t-understand-about-dopamine-as-dopamine-is-create`](dopamine/007-people-don-t-understand-about-dopamine-as-dopamine-is-create.md) — score=5 `00:10:45.560` — people don't understand about dopamine as dopamine is created from the aromatic amino acid tyrosine and phenylalanine in
-- [`008-why-have-you-ever-asked-yourself-the-question-why-every-sing`](dopamine/008-why-have-you-ever-asked-yourself-the-question-why-every-sing.md) — score=5 `01:09:10.739` — why have you ever asked yourself the question why every single screen tied to a device that uses RF and microwaves alway
-- [`009-when-we-talk-about-dopamine-we-always-talk-about-parkinson-s`](dopamine/009-when-we-talk-about-dopamine-we-always-talk-about-parkinson-s.md) — score=5 `02:39:40.380` — when we talk about dopamine we always talk about Parkinson's or something else no no no no dude this story is way bigger
-- [`010-the-whole-time-i-realized-like-we-re-talking-about-neural-en`](dopamine/010-the-whole-time-i-realized-like-we-re-talking-about-neural-en.md) — score=5 `03:10:54.899` — the whole time I realized like we're talking about neural energy what do I mean by that well you know yes we have stored
+- [001-is-maybe-how-we-end-the-wounds-create-the-wisdom-you-have-to](becker/001-is-maybe-how-we-end-the-wounds-create-the-wisdom-you-have-to.md)
+- [001-who-are-diabetic-have-no-super-oxide-pulse-and-have-shitty-n](becker/001-who-are-diabetic-have-no-super-oxide-pulse-and-have-shitty-n.md)
+- [002-disease-generation-um-the-work-of-dr-robertto-becker-in-this](becker/002-disease-generation-um-the-work-of-dr-robertto-becker-in-this.md)
+- [002-who-are-diabetic-have-no-super-oxide-pulse-and-have-shitty-n](becker/002-who-are-diabetic-have-no-super-oxide-pulse-and-have-shitty-n.md)
+- [003-correctly-his-students-never-took-it-to-the-next-level-i-i-g](becker/003-correctly-his-students-never-took-it-to-the-next-level-i-i-g.md)
+- [003-disease-generation-um-the-work-of-dr-robertto-becker-in-this](becker/003-disease-generation-um-the-work-of-dr-robertto-becker-in-this.md)
+- [004-correctly-his-students-never-took-it-to-the-next-level-i-i-g](becker/004-correctly-his-students-never-took-it-to-the-next-level-i-i-g.md)
+- [004-what-i-just-told-you-about-becker-marina-can-you-imagine-com](becker/004-what-i-just-told-you-about-becker-marina-can-you-imagine-com.md)
+- [005-talking-about-all-the-way-down-to-the-periodic-table-of-elem](becker/005-talking-about-all-the-way-down-to-the-periodic-table-of-elem.md)
+- [005-what-i-just-told-you-about-becker-marina-can-you-imagine-com](becker/005-what-i-just-told-you-about-becker-marina-can-you-imagine-com.md)
+- [006-talking-about-all-the-way-down-to-the-periodic-table-of-elem](becker/006-talking-about-all-the-way-down-to-the-periodic-table-of-elem.md)
 
-## becker (6)
+## blue-light (34)
 
-- [`001-is-maybe-how-we-end-the-wounds-create-the-wisdom-you-have-to`](becker/001-is-maybe-how-we-end-the-wounds-create-the-wisdom-you-have-to.md) — score=7 `01:27:06.360` — is maybe how we end the wounds create the wisdom you have to embrace the suck the chaos why because what did Becker tell
-- [`002-who-are-diabetic-have-no-super-oxide-pulse-and-have-shitty-n`](becker/002-who-are-diabetic-have-no-super-oxide-pulse-and-have-shitty-n.md) — score=5 `01:04:16.799` — who are diabetic have no super oxide pulse and have shitty nitric oxide because they never go outside. They're never in 
-- [`003-disease-generation-um-the-work-of-dr-robertto-becker-in-this`](becker/003-disease-generation-um-the-work-of-dr-robertto-becker-in-this.md) — score=5 `00:52:51.839` — disease Generation Um the work of Dr robertto Becker in this area the guy was nominated twice for Nobel PR never one peo
-- [`004-correctly-his-students-never-took-it-to-the-next-level-i-i-g`](becker/004-correctly-his-students-never-took-it-to-the-next-level-i-i-g.md) — score=5 `01:14:09.320` — correctly his students never took it to the next level I I give Albert St Georgie a lot of credit even though he was wro
-- [`005-what-i-just-told-you-about-becker-marina-can-you-imagine-com`](becker/005-what-i-just-told-you-about-becker-marina-can-you-imagine-com.md) — score=5 `01:05:14.940` — what I just told you about Becker Marina can you imagine coming up with such a novel idea and why jobs never told anybod
-- [`006-talking-about-all-the-way-down-to-the-periodic-table-of-elem`](becker/006-talking-about-all-the-way-down-to-the-periodic-table-of-elem.md) — score=5 `01:21:31.440` — talking about all the way down to the periodic table of elements and then what happens with water so you went Ultra redu
-
-## photosynthesis (7)
-
-- [`001-um-i-found-that-person-you-know-what-my-crazy-question-was-b`](photosynthesis/001-um-i-found-that-person-you-know-what-my-crazy-question-was-b.md) — score=7 `01:30:19.740` — um I found that person you know what my crazy question was before I did this biohack on myself I said how long I I if th
-- [`002-photosynthesis-was-interrupted-but-the-one-thing-that-we-do-`](photosynthesis/002-photosynthesis-was-interrupted-but-the-one-thing-that-we-do-.md) — score=6 `00:16:13.380` — photosynthesis was interrupted but the one thing that we do know for sure it was interrupted enough that not one of thos
-- [`003-is-interesting-the-path-that-i-think-people-should-go-to-rea`](photosynthesis/003-is-interesting-the-path-that-i-think-people-should-go-to-rea.md) — score=6 `00:20:38.240` — is interesting the path that I think people should go to really fundamentally understand this is what I told you earlier
-- [`004-always-light-gt-gt-light-gt-gt-because-the-reason-why-you-ha`](photosynthesis/004-always-light-gt-gt-light-gt-gt-because-the-reason-why-you-ha.md) — score=5 `00:25:21.600` — always light. &gt;&gt; Light &gt;&gt; because the reason why you have no food without light. That's the that's the fact 
-- [`005-engagement-of-photosynthesis-and-what-are-they-effectively-d`](photosynthesis/005-engagement-of-photosynthesis-and-what-are-they-effectively-d.md) — score=5 `00:29:24.240` — engagement of photosynthesis. And what are they effectively doing? What effectively are they telegraphing us when you as
-- [`006-that-that-light-is-always-more-important-and-it-was-obvious-`](photosynthesis/006-that-that-light-is-always-more-important-and-it-was-obvious-.md) — score=5 `03:47:45.960` — that that light is always more important and it was obvious to me that light was more important because all food is tied
-- [`007-gt-gt-so-then-i-have-this-key-question-because-i-told-you-a-`](photosynthesis/007-gt-gt-so-then-i-have-this-key-question-because-i-told-you-a-.md) — score=5 `00:37:23.440` — &gt;&gt; So then I have this key question because I told you a big answer here that &gt;&gt; everybody who teaches you w
-
-## quantum (6)
-
-- [`001-he-was-eating-the-french-fries-when-the-accident-occurred-th`](quantum/001-he-was-eating-the-french-fries-when-the-accident-occurred-th.md) — score=8 `03:18:13.200` — he was eating the french fries when the accident occurred this is a lady who never ate potatoes now Andrew the reason I'
-- [`002-then-you-begin-to-realize-there-is-no-correct-answer-and-the`](quantum/002-then-you-begin-to-realize-there-is-no-correct-answer-and-the.md) — score=6 `00:29:30.760` — then you begin to realize there is no correct answer and there is no real truth why because the truth is subject to new 
-- [`003-likely-have-to-change-your-lifestyle-that-actually-gave-you-`](quantum/003-likely-have-to-change-your-lifestyle-that-actually-gave-you-.md) — score=5 `00:22:52.520` — likely have to change your lifestyle that actually gave you the type 1 and type two diabetes to begin with the answer is
-- [`004-connected-and-i-always-believe-this-the-reason-why-people-be`](quantum/004-connected-and-i-always-believe-this-the-reason-why-people-be.md) — score=5 `00:25:07.480` — connected and I always believe this the reason why people become entangled is because you needed to hear that what you e
-- [`005-even-know-about-the-history-of-how-this-goes-back-and-see-th`](quantum/005-even-know-about-the-history-of-how-this-goes-back-and-see-th.md) — score=5 `00:54:22.880` — even know about the history of how this goes back and see this is the cool part maybe we can end on this yeah this is th
-- [`006-always-tell-people-on-my-site-and-on-my-forum-that-you-don-t`](quantum/006-always-tell-people-on-my-site-and-on-my-forum-that-you-don-t.md) — score=5 `00:05:43.000` — always tell people on my site and on my Forum that you don't have to speak Chinese to like Chinese food and that's reall
-
-## cytochrome (5)
-
-- [`001-that-absorbed-340-nanometer-light-i-never-learned-that-cytoc`](cytochrome/001-that-absorbed-340-nanometer-light-i-never-learned-that-cytoc.md) — score=5 `00:01:05.840` — that absorbed 340 nanometer light i never learned that cytochrome 2 absorbed more blue light because of the type of uh c
-- [`002-of-the-things-that-physicists-like-schrodinger-couldn-t-acce`](cytochrome/002-of-the-things-that-physicists-like-schrodinger-couldn-t-acce.md) — score=5 `03:02:18.600` — of the things that physicists like Schrodinger couldn't accept they could never figure out how could you be entangled in
-- [`003-reason-why-this-gets-really-complex-is-people-don-t-realize-`](cytochrome/003-reason-why-this-gets-really-complex-is-people-don-t-realize-.md) — score=5 `00:16:19.440` — reason why this gets really complex is people don't realize why cytochrome one is incredibly important because when [ __
-- [`004-340-nanometer-light-so-if-you-want-to-know-why-electrons-fro`](cytochrome/004-340-nanometer-light-so-if-you-want-to-know-why-electrons-fro.md) — score=5 `00:11:19.279` — 340 nanometer light so if you want to know why electrons from carbohydrates always enter at cytochrome 1 now you know wh
-- [`005-from-carbohydrates-always-enter-at-cytochrome-1-now-you-know`](cytochrome/005-from-carbohydrates-always-enter-at-cytochrome-1-now-you-know.md) — score=5 `01:56:33.280` — from carbohydrates always enter at cytochrome 1, now you know why. Because carbohydrates grow when long light cycles whe
-
-## iron (5)
-
-- [`001-occasionally-uh-donate-blood-important-for-men-than-women-be`](iron/001-occasionally-uh-donate-blood-important-for-men-than-women-be.md) — score=5 `00:51:58.480` — occasionally uh donate blood important for men than women because men the ability to lose blood especially if you eat a 
-- [`002-then-i-don-t-think-we-should-remember-that-style-stills-mean`](iron/002-then-i-don-t-think-we-should-remember-that-style-stills-mean.md) — score=5 `00:18:21.200` — then i don't think we should remember that style stills meant an iron pen and that plane means flat because in that case
-- [`003-but-human-birth-is-the-thing-that-is-always-regarded-as-most`](iron/003-but-human-birth-is-the-thing-that-is-always-regarded-as-most.md) — score=5 `02:34:54.560` — But human birth is the thing that is always regarded as most fortunate because you can be tied to the wheel not only by 
-- [`004-thing-happens-what-happens-the-blood-vessels-are-raised-to-t`](iron/004-thing-happens-what-happens-the-blood-vessels-are-raised-to-t.md) — score=5 `00:33:39.170` — thing happens what happens the blood vessels are raised to the surface so that they can absorb light what is hemoglobin 
-- [`005-will-say-i-never-learned-that-light-could-change-the-oxidati`](iron/005-will-say-i-never-learned-that-light-could-change-the-oxidati.md) — score=5 `01:09:44.960` — will say I never learned that light could change the oxidation state of iron from plus two to plus three, and certainly 
-
-## photoelectric (5)
-
-- [`001-looked-at-what-helm-holds-did-i-looked-about-what-herz-did-i`](photoelectric/001-looked-at-what-helm-holds-did-i-looked-about-what-herz-did-i.md) — score=7 `01:46:51.639` — looked at what Helm holds did I looked about what Herz did I looked at the thermodynamic gens and he goes I figured out 
-- [`002-ring-looks-really-similar-you-know-there-must-be-a-story-her`](photoelectric/002-ring-looks-really-similar-you-know-there-must-be-a-story-her.md) — score=5 `01:08:25.600` — ring looks really similar. You know, there must be a story here. And the story was I thought the story was always going 
-- [`003-it-right-he-didn-t-figure-out-the-second-law-as-we-now-know-`](photoelectric/003-it-right-he-didn-t-figure-out-the-second-law-as-we-now-know-.md) — score=5 `00:45:43.760` — it right. He didn't figure out the second law. As we now know, sort of the paradigmatic ideas that you need to figure ou
-- [`004-um-with-the-photoelectric-effect-i-always-like-to-tell-the-s`](photoelectric/004-um-with-the-photoelectric-effect-i-always-like-to-tell-the-s.md) — score=5 `02:26:30.120` — um with the photoelectric effect I always like to tell the story I told the story of Rick Rubin when we just did the pod
-- [`005-food-folks-it-s-about-light-it-s-always-been-about-light-and`](photoelectric/005-food-folks-it-s-about-light-it-s-always-been-about-light-and.md) — score=5 `00:32:57.080` — food folks it's about light it's always been about light and you have to realize that life fundamentally is photoelectri
-
-## ez-water (3)
-
-- [`001-the-energy-that-you-need-to-build-that-fourth-phase-water-is`](ez-water/001-the-energy-that-you-need-to-build-that-fourth-phase-water-is.md) — score=5 `00:25:19.360` — the energy that you need to build that fourth phase water is there it's in the environment it's all over the place and t
-- [`002-are-you-is-it-the-fourth-phase-of-water-your-book-because-i-`](ez-water/002-are-you-is-it-the-fourth-phase-of-water-your-book-because-i-.md) — score=5 `00:07:16.240` — Are you Is it the fourth phase of water, your book? Because I've got that cuz I wasn't sure if you had more than one cuz
-- [`003-oxygens-in-in-one-of-those-unit-hexagons-this-is-what-you-ge`](ez-water/003-oxygens-in-in-one-of-those-unit-hexagons-this-is-what-you-ge.md) — score=5 `00:41:29.900` — oxygens in in one of those unit hexagons this is what you get you get h3o2 so fourth phase water if our model is correct
-
-## deuterium (4)
-
-- [`001-it-s-deuterium-depleted-because-it-s-gone-through-glycolysis`](deuterium/001-it-s-deuterium-depleted-because-it-s-gone-through-glycolysis.md) — score=6 `02:19:24.420` — it's deuterium depleted because it's gone through glycolysis so then it can enter the TCA cycle without having to go thr
-- [`002-you-ll-learn-about-what-survivor-soup-is-survivor-soup-is-ac`](deuterium/002-you-ll-learn-about-what-survivor-soup-is-survivor-soup-is-ac.md) — score=5 `01:02:36.120` — You'll learn about what survivor soup is. Survivor soup is actually how you create deuterium-depleted water in your body
-- [`003-deuterium-depleted-from-the-mitochondria-and-that-to-date-wi`](deuterium/003-deuterium-depleted-from-the-mitochondria-and-that-to-date-wi.md) — score=5 `02:03:11.219` — deuterium depleted from the mitochondria and that to date with all the great science we know has never been studied the 
-- [`004-wanted-to-jump-in-with-deuterium-and-all-that-but-look-you-l`](deuterium/004-wanted-to-jump-in-with-deuterium-and-all-that-but-look-you-l.md) — score=5 `02:48:21.120` — wanted to jump in with deuterium and all that but look you'll lose people at hello yeah if you do that that's the reason
-
-## pollack (1)
-
-- [`001-is-why-you-know-i-fundamentally-have-a-problem-with-anybody-`](pollack/001-is-why-you-know-i-fundamentally-have-a-problem-with-anybody-.md) — score=7 `01:00:13.720` — is why you know I fundamentally have a problem with anybody who's like Casey means Cali means uberman even Jerry poock y
-
-## methylene-blue (3)
-
-- [`001-it-i-also-believe-that-you-need-to-have-a-decentralized-doct`](methylene-blue/001-it-i-also-believe-that-you-need-to-have-a-decentralized-doct.md) — score=5 `00:17:47.280` — it. I also believe that you need to have a decentralized doctor under your care to tell you whether it's a good thing fo
-- [`002-me-and-ted-did-you-know-we-would-have-went-back-and-used-met`](methylene-blue/002-me-and-ted-did-you-know-we-would-have-went-back-and-used-met.md) — score=5 `02:20:03.399` — me and Ted did you know we would have went back and used methylene blue and nobody would have said anything about it bec
-- [`003-push-ups-you-re-okay-that-is-total-pseudocience-total-and-i-`](methylene-blue/003-push-ups-you-re-okay-that-is-total-pseudocience-total-and-i-.md) — score=5 `00:28:20.160` — push-ups you're okay that is total pseudocience total [ __ ] and I could never get behind that uh and to be honest with 
+- [001-really-really-appreciated-because-you-know-the-one-thing-tha](blue-light/001-really-really-appreciated-because-you-know-the-one-thing-tha.md)
+- [002-and-his-papers-that-were-published-in-science-challenged-tha](blue-light/002-and-his-papers-that-were-published-in-science-challenged-tha.md)
+- [003-blue-blocking-glasses-or-actually-use-amber-bulbs-in-your-ho](blue-light/003-blue-blocking-glasses-or-actually-use-amber-bulbs-in-your-ho.md)
+- [004-turns-out-that-you-have-to-turn-on-riboflavin-and-if-ribofla](blue-light/004-turns-out-that-you-have-to-turn-on-riboflavin-and-if-ribofla.md)
+- [005-from-norcals-work](blue-light/005-from-norcals-work.md)
+- [006-red-light-is-the-antidote-to-blue-so-guess-what-in-the-sun-t](blue-light/006-red-light-is-the-antidote-to-blue-so-guess-what-in-the-sun-t.md)
+- [007-blue-light-from-native-situation-meaning-the-sun-is-always-b](blue-light/007-blue-light-from-native-situation-meaning-the-sun-is-always-b.md)
+- [008-way-these-are](blue-light/008-way-these-are.md)
+- [009-and-i-will-tell-you-if-you-re-a-shift-worker-my-advice-term-](blue-light/009-and-i-will-tell-you-if-you-re-a-shift-worker-my-advice-term-.md)
+- [010-sunlight-always-has-red-in-it-when-blue-s-available-but-gues](blue-light/010-sunlight-always-has-red-in-it-when-blue-s-available-but-gues.md)
+- [011-never-get-to-the-regeneration-pathway](blue-light/011-never-get-to-the-regeneration-pathway.md)
+- [012-six-other-colors-with-it-and-it-turns-out-that-blue-light-ha](blue-light/012-six-other-colors-with-it-and-it-turns-out-that-blue-light-ha.md)
+- [013-text-screen-is-always-blue-lit-and-it-s-always-in-the-blue-l](blue-light/013-text-screen-is-always-blue-lit-and-it-s-always-in-the-blue-l.md)
+- [014-need-to-realize-girls-are-now-having-precocious-puberty-you-](blue-light/014-need-to-realize-girls-are-now-having-precocious-puberty-you-.md)
+- [015-all-the-time](blue-light/015-all-the-time.md)
+- [016-functionally-is-you-can-have-leptin-but-if-you-can-t-do-anyt](blue-light/016-functionally-is-you-can-have-leptin-but-if-you-can-t-do-anyt.md)
+- [017-signal-you-re-leptin-resistant](blue-light/017-signal-you-re-leptin-resistant.md)
+- [018-i-m-always-willing-to-update-i-eat-them-at-night-because-the](blue-light/018-i-m-always-willing-to-update-i-eat-them-at-night-because-the.md)
+- [019-times-is-the-correct-remember-that-the-the-blue-light-from-t](blue-light/019-times-is-the-correct-remember-that-the-the-blue-light-from-t.md)
+- [020-problems-in-the-basil-gang-it-s-at-the-substantial-but-guess](blue-light/020-problems-in-the-basil-gang-it-s-at-the-substantial-but-guess.md)
+- [021-more-at-night-is-because-i-think-you-re-chronic-blue-light-t](blue-light/021-more-at-night-is-because-i-think-you-re-chronic-blue-light-t.md)
+- [022-because-every-single-drug-that-we-know-has-been-tested-in-a-](blue-light/022-because-every-single-drug-that-we-know-has-been-tested-in-a-.md)
+- [023-really-all-the-moves-in-my-life-have-always-been-associated-](blue-light/023-really-all-the-moves-in-my-life-have-always-been-associated-.md)
+- [024-artificial-blue-light-that-really-causes-the-cancer](blue-light/024-artificial-blue-light-that-really-causes-the-cancer.md)
+- [025-me-here-and-then-even-i-since-i-m-here-in-el-salvador-i-real](blue-light/025-me-here-and-then-even-i-since-i-m-here-in-el-salvador-i-real.md)
+- [025-people-who-don-t-use-the-uv-light-have-noticed-the-skin-that](blue-light/025-people-who-don-t-use-the-uv-light-have-noticed-the-skin-that.md)
+- [026-gt-gt-blue-light-penetrates-all-the-way-in-to-the-fat-layer](blue-light/026-gt-gt-blue-light-penetrates-all-the-way-in-to-the-fat-layer.md)
+- [026-red-blood-cell-also-has-a-problem-because-it-s-got-he-hemog-](blue-light/026-red-blood-cell-also-has-a-problem-because-it-s-got-he-hemog-.md)
+- [027-called-pgc1-alpha](blue-light/027-called-pgc1-alpha.md)
+- [027-people-who-don-t-use-the-uv-light-have-noticed-the-skin-that](blue-light/027-people-who-don-t-use-the-uv-light-have-noticed-the-skin-that.md)
+- [028-eye-in-your-radial-artery-by-delivering-infrared-a-light-bec](blue-light/028-eye-in-your-radial-artery-by-delivering-infrared-a-light-bec.md)
+- [028-gt-gt-blue-light-penetrates-all-the-way-in-to-the-fat-layer](blue-light/028-gt-gt-blue-light-penetrates-all-the-way-in-to-the-fat-layer.md)
+- [029-called-pgc1-alpha](blue-light/029-called-pgc1-alpha.md)
+- [030-eye-in-your-radial-artery-by-delivering-infrared-a-light-bec](blue-light/030-eye-in-your-radial-artery-by-delivering-infrared-a-light-bec.md)
 
 ## bone-bioelectric (1)
 
-- [`001-that-darwin-could-never-figure-out-why-all-of-a-sudden-did-w`](bone-bioelectric/001-that-darwin-could-never-figure-out-why-all-of-a-sudden-did-w.md) — score=5 `00:21:44.160` — that Darwin could never figure out? Why all of a sudden did we get 32 phyla seems like overnight? Well, because guess wh
+- [001-that-darwin-could-never-figure-out](bone-bioelectric/001-that-darwin-could-never-figure-out.md)
+
+## circadian (17)
+
+- [001-that-because-it-controls-circadian-biology-what-have-i-been-](circadian/001-that-because-it-controls-circadian-biology-what-have-i-been-.md)
+- [002-developing-cancer](circadian/002-developing-cancer.md)
+- [003-and-never-need-the-prescription-part-the-lever-needs-to-go-s](circadian/003-and-never-need-the-prescription-part-the-lever-needs-to-go-s.md)
+- [004-always-say-in-circadian-biology-i-didn-t-say-it-first-of-cou](circadian/004-always-say-in-circadian-biology-i-didn-t-say-it-first-of-cou.md)
+- [005-understand-circadian-biology-the-basics-because-he-realized-](circadian/005-understand-circadian-biology-the-basics-because-he-realized-.md)
+- [006-six-things-are-important-turns-out-one-of-the-things-that-ar](circadian/006-six-things-are-important-turns-out-one-of-the-things-that-ar.md)
+- [007-doing-this-like-wearing-red-glasses-in-the-daytime-but-the-p](circadian/007-doing-this-like-wearing-red-glasses-in-the-daytime-but-the-p.md)
+- [008-started-because-i-m-on-trauma-call-now-but-the-things-that-i](circadian/008-started-because-i-m-on-trauma-call-now-but-the-things-that-i.md)
+- [009-realize-that-light-and-dark-is-important](circadian/009-realize-that-light-and-dark-is-important.md)
+- [010-but-protein-and-fat-but-you-never-see-the-sunrise-do-you-thi](circadian/010-but-protein-and-fat-but-you-never-see-the-sunrise-do-you-thi.md)
+- [011-light-you-know-especially-like-a-green-light-shining-on-my-h](circadian/011-light-you-know-especially-like-a-green-light-shining-on-my-h.md)
+- [011-present-in-us-we-are-the-one-mammal-that-doesn-t-really-use-](circadian/011-present-in-us-we-are-the-one-mammal-that-doesn-t-really-use-.md)
+- [012-present-in-us-we-are-the-one-mammal-that-doesn-t-really-use-](circadian/012-present-in-us-we-are-the-one-mammal-that-doesn-t-really-use-.md)
+- [012-want-to-make-to-young-guys-like-you-is-that-i-want-you-to-un](circadian/012-want-to-make-to-young-guys-like-you-is-that-i-want-you-to-un.md)
+- [013-and-if-you-make-a-mistake-on-either-side-and-it-becomes-unba](circadian/013-and-if-you-make-a-mistake-on-either-side-and-it-becomes-unba.md)
+- [013-want-to-make-to-young-guys-like-you-is-that-i-want-you-to-un](circadian/013-want-to-make-to-young-guys-like-you-is-that-i-want-you-to-un.md)
+- [014-and-if-you-make-a-mistake-on-either-side-and-it-becomes-unba](circadian/014-and-if-you-make-a-mistake-on-either-side-and-it-becomes-unba.md)
+
+## cytochrome (5)
+
+- [001-that-absorbed-340-nanometer-light-i-never-learned-that-cytoc](cytochrome/001-that-absorbed-340-nanometer-light-i-never-learned-that-cytoc.md)
+- [002-of-the-things-that-physicists-like-schrodinger-couldn-t-acce](cytochrome/002-of-the-things-that-physicists-like-schrodinger-couldn-t-acce.md)
+- [003-reason-why-this-gets-really-complex-is-people-don-t-realize-](cytochrome/003-reason-why-this-gets-really-complex-is-people-don-t-realize-.md)
+- [004-340-nanometer-light-so-if-you-want-to-know-why-electrons-fro](cytochrome/004-340-nanometer-light-so-if-you-want-to-know-why-electrons-fro.md)
+- [005-from-carbohydrates-always-enter-at-cytochrome-1-now-you-know](cytochrome/005-from-carbohydrates-always-enter-at-cytochrome-1-now-you-know.md)
+
+## deuterium (4)
+
+- [001-it-s-deuterium-depleted-because-it-s-gone-through-glycolysis](deuterium/001-it-s-deuterium-depleted-because-it-s-gone-through-glycolysis.md)
+- [002-you-ll-learn-about-what-survivor-soup-is](deuterium/002-you-ll-learn-about-what-survivor-soup-is.md)
+- [003-deuterium-depleted-from-the-mitochondria-and-that-to-date-wi](deuterium/003-deuterium-depleted-from-the-mitochondria-and-that-to-date-wi.md)
+- [004-wanted-to-jump-in-with-deuterium-and-all-that-but-look-you-l](deuterium/004-wanted-to-jump-in-with-deuterium-and-all-that-but-look-you-l.md)
+
+## dopamine (15)
+
+- [001-on-board-with-what-i-ve-heard-you-say-about-the-fact-that-th](dopamine/001-on-board-with-what-i-ve-heard-you-say-about-the-fact-that-th.md)
+- [002-dopamine](dopamine/002-dopamine.md)
+- [003-everybody-was-like-this-is-disgusting-and-what-i-m-trying-to](dopamine/003-everybody-was-like-this-is-disgusting-and-what-i-m-trying-to.md)
+- [004-always-there-but-you-know-what-the-key-thing-is](dopamine/004-always-there-but-you-know-what-the-key-thing-is.md)
+- [005-decreases-somewhat-that-produces-a-dopamine-kick](dopamine/005-decreases-somewhat-that-produces-a-dopamine-kick.md)
+- [005-time-i-went-to-chicago-i-always-wanted-to-go-back-you-know-w](dopamine/005-time-i-went-to-chicago-i-always-wanted-to-go-back-you-know-w.md)
+- [006-people-don-t-understand-about-dopamine-as-dopamine-is-create](dopamine/006-people-don-t-understand-about-dopamine-as-dopamine-is-create.md)
+- [006-time-i-went-to-chicago-i-always-wanted-to-go-back-you-know-w](dopamine/006-time-i-went-to-chicago-i-always-wanted-to-go-back-you-know-w.md)
+- [007-people-don-t-understand-about-dopamine-as-dopamine-is-create](dopamine/007-people-don-t-understand-about-dopamine-as-dopamine-is-create.md)
+- [007-why-have-you-ever-asked-yourself-the-question-why-every-sing](dopamine/007-why-have-you-ever-asked-yourself-the-question-why-every-sing.md)
+- [008-when-we-talk-about-dopamine-we-always-talk-about-parkinson-s](dopamine/008-when-we-talk-about-dopamine-we-always-talk-about-parkinson-s.md)
+- [008-why-have-you-ever-asked-yourself-the-question-why-every-sing](dopamine/008-why-have-you-ever-asked-yourself-the-question-why-every-sing.md)
+- [009-the-whole-time-i-realized-like-we-re-talking-about-neural-en](dopamine/009-the-whole-time-i-realized-like-we-re-talking-about-neural-en.md)
+- [009-when-we-talk-about-dopamine-we-always-talk-about-parkinson-s](dopamine/009-when-we-talk-about-dopamine-we-always-talk-about-parkinson-s.md)
+- [010-the-whole-time-i-realized-like-we-re-talking-about-neural-en](dopamine/010-the-whole-time-i-realized-like-we-re-talking-about-neural-en.md)
+
+## ez-water (3)
+
+- [001-the-energy-that-you-need-to-build-that-fourth-phase-water-is](ez-water/001-the-energy-that-you-need-to-build-that-fourth-phase-water-is.md)
+- [002-are-you-is-it-the-fourth-phase-of-water-your-book](ez-water/002-are-you-is-it-the-fourth-phase-of-water-your-book.md)
+- [003-oxygens-in-in-one-of-those-unit-hexagons-this-is-what-you-ge](ez-water/003-oxygens-in-in-one-of-those-unit-hexagons-this-is-what-you-ge.md)
+
+## iron (5)
+
+- [001-occasionally-uh-donate-blood-important-for-men-than-women-be](iron/001-occasionally-uh-donate-blood-important-for-men-than-women-be.md)
+- [002-then-i-don-t-think-we-should-remember-that-style-stills-mean](iron/002-then-i-don-t-think-we-should-remember-that-style-stills-mean.md)
+- [003-but-human-birth-is-the-thing-that-is-always-regarded-as-most](iron/003-but-human-birth-is-the-thing-that-is-always-regarded-as-most.md)
+- [004-thing-happens-what-happens-the-blood-vessels-are-raised-to-t](iron/004-thing-happens-what-happens-the-blood-vessels-are-raised-to-t.md)
+- [005-will-say-i-never-learned-that-light-could-change-the-oxidati](iron/005-will-say-i-never-learned-that-light-could-change-the-oxidati.md)
+
+## leptin (22)
+
+- [001-leptin-prescription-never-never-dealt-with-why-because-remem](leptin/001-leptin-prescription-never-never-dealt-with-why-because-remem.md)
+- [002-dopamine-and-all-of-that-is-occurring-within-the-action-spec](leptin/002-dopamine-and-all-of-that-is-occurring-within-the-action-spec.md)
+- [003-of-the-prescription-that-i-wrote-20-years-ago-the-leptin-pre](leptin/003-of-the-prescription-that-i-wrote-20-years-ago-the-leptin-pre.md)
+- [004-fast-at-night](leptin/004-fast-at-night.md)
+- [005-going-to-block-it-because-it-was-about-leptin-trials-and-the](leptin/005-going-to-block-it-because-it-was-about-leptin-trials-and-the.md)
+- [006-something-called-the-leptin-reset-and-i-never-published-this](leptin/006-something-called-the-leptin-reset-and-i-never-published-this.md)
+- [007-post-called-my-leptin-prescription-now-when-you-read-that-bl](leptin/007-post-called-my-leptin-prescription-now-when-you-read-that-bl.md)
+- [008-so-that-it-knows-precisely-what-the-energy-balance-is-well-t](leptin/008-so-that-it-knows-precisely-what-the-energy-balance-is-well-t.md)
+- [009-she-goes-look-i-know-why-this-happened-to-you](leptin/009-she-goes-look-i-know-why-this-happened-to-you.md)
+- [010-they-have-scotopic-skin](leptin/010-they-have-scotopic-skin.md)
+- [011-clinic-everywhere-else-and-he-was-never-able-to-knock-this-o](leptin/011-clinic-everywhere-else-and-he-was-never-able-to-knock-this-o.md)
+- [012-me-a-long-time-ago](leptin/012-me-a-long-time-ago.md)
+- [013-why-is-that-leptin-milano-courtin-thing-there-what-i-did-i-d](leptin/013-why-is-that-leptin-milano-courtin-thing-there-what-i-did-i-d.md)
+- [014-second-and-the-name-of-the-book-was-uh-monk-who-sold-us-for-](leptin/014-second-and-the-name-of-the-book-was-uh-monk-who-sold-us-for-.md)
+- [015-really-causing](leptin/015-really-causing.md)
+- [016-because-i-m-going-to-tell-you-the-answer-is-yes](leptin/016-because-i-m-going-to-tell-you-the-answer-is-yes.md)
+- [017-functionally-is](leptin/017-functionally-is.md)
+- [018-is-based-on-what-i-showed-you](leptin/018-is-based-on-what-i-showed-you.md)
+- [019-these-drugs-why-when-the-synthetic-leptin-trials-that-i-told](leptin/019-these-drugs-why-when-the-synthetic-leptin-trials-that-i-told.md)
+- [020-than-exercise-more-and-it-didn-t-work-i-put-30-pounds-on-i-s](leptin/020-than-exercise-more-and-it-didn-t-work-i-put-30-pounds-on-i-s.md)
+- [021-think-what-i-did-as-a-neurosurgeon-was-focused-on-the-scienc](leptin/021-think-what-i-did-as-a-neurosurgeon-was-focused-on-the-scienc.md)
+- [022-through-hacking-it-on-me-in-this-leptin-prescription-i-figur](leptin/022-through-hacking-it-on-me-in-this-leptin-prescription-i-figur.md)
+
+## melanin (37)
+
+- [001-fascinated-by-it-since-i-m-a-little-boy-but-i-didn-t-know-wh](melanin/001-fascinated-by-it-since-i-m-a-little-boy-but-i-didn-t-know-wh.md)
+- [002-understand-this-there-is-a-reason-that-all-five-of-our-sense](melanin/002-understand-this-there-is-a-reason-that-all-five-of-our-sense.md)
+- [003-there-s-no-oxygen-there](melanin/003-there-s-no-oxygen-there.md)
+- [004-had-with-mushrooms-when-i-was-a-teenager-had-no-effect-on-me](melanin/004-had-with-mushrooms-when-i-was-a-teenager-had-no-effect-on-me.md)
+- [005-sidebars-because-i-think-it-fills-in-the-gaps-that-s-somethi](melanin/005-sidebars-because-i-think-it-fills-in-the-gaps-that-s-somethi.md)
+- [006-but-i-will-tell-you-that-some-of-the-things-about-circadian-](melanin/006-but-i-will-tell-you-that-some-of-the-things-about-circadian-.md)
+- [007-so-when-you-have-melanin-you-re-creating-huge-amounts-of-oxy](melanin/007-so-when-you-have-melanin-you-re-creating-huge-amounts-of-oxy.md)
+- [008-leads-to-neurodeeneration](melanin/008-leads-to-neurodeeneration.md)
+- [009-to-keep-the-mitf-ampk-pathway-so-that-you-re-cognitively-oka](melanin/009-to-keep-the-mitf-ampk-pathway-so-that-you-re-cognitively-oka.md)
+- [010-high-level-signal-here](melanin/010-high-level-signal-here.md)
+- [011-own-light-inside-when-the-sun-couldn-t-create-it-and-melanin](melanin/011-own-light-inside-when-the-sun-couldn-t-create-it-and-melanin.md)
+- [012-water-is-always-adjacent-to-where-melanin-is-and-water-does-](melanin/012-water-is-always-adjacent-to-where-melanin-is-and-water-does-.md)
+- [013-always-in-the-blue-light-hazard-between-435-and-465](melanin/013-always-in-the-blue-light-hazard-between-435-and-465.md)
+- [014-this-is-now-beginning-to-make-some-sense-but-what-happens-wh](melanin/014-this-is-now-beginning-to-make-some-sense-but-what-happens-wh.md)
+- [015-you-understand-why-he-ll-continue-to-always-be-at-risk](melanin/015-you-understand-why-he-ll-continue-to-always-be-at-risk.md)
+- [016-world-and-you-like-right-in-the-middle-of-it-uh-and-having-t](melanin/016-world-and-you-like-right-in-the-middle-of-it-uh-and-having-t.md)
+- [017-those-are-broken](melanin/017-those-are-broken.md)
+- [018-don-t-make-melanin-from-pomsy-without-uv-light](melanin/018-don-t-make-melanin-from-pomsy-without-uv-light.md)
+- [019-from-photosynthesis-on](melanin/019-from-photosynthesis-on.md)
+- [020-causes-it-and-what-else-does-he-find-their-vitamin-d-levels-](melanin/020-causes-it-and-what-else-does-he-find-their-vitamin-d-levels-.md)
+- [021-the-one-that-i-thought-was-just-about-obesity-it-turns-out-i](melanin/021-the-one-that-i-thought-was-just-about-obesity-it-turns-out-i.md)
+- [022-mhm](melanin/022-mhm.md)
+- [023-one-horn](melanin/023-one-horn.md)
+- [024-about-you-tristan-thoughts-on-that-since-the-podcast-you-kno](melanin/024-about-you-tristan-thoughts-on-that-since-the-podcast-you-kno.md)
+- [024-he-s-being-drained-of-water-and-melanin](melanin/024-he-s-being-drained-of-water-and-melanin.md)
+- [025-about-you-tristan-thoughts-on-that-since-the-podcast-you-kno](melanin/025-about-you-tristan-thoughts-on-that-since-the-podcast-you-kno.md)
+- [025-to-use-steve-jobs-to-explain-it-as-well-when-you-begin-to-un](melanin/025-to-use-steve-jobs-to-explain-it-as-well-when-you-begin-to-un.md)
+- [026-people-who-have-mental-disorder-and-that-s-truly-what-creati](melanin/026-people-who-have-mental-disorder-and-that-s-truly-what-creati.md)
+- [026-to-use-steve-jobs-to-explain-it-as-well-when-you-begin-to-un](melanin/026-to-use-steve-jobs-to-explain-it-as-well-when-you-begin-to-un.md)
+- [027-lalonde-and-and-and-rob-wolf-used-to-operate-on-in-the-paleo](melanin/027-lalonde-and-and-and-rob-wolf-used-to-operate-on-in-the-paleo.md)
+- [027-people-who-have-mental-disorder-and-that-s-truly-what-creati](melanin/027-people-who-have-mental-disorder-and-that-s-truly-what-creati.md)
+- [028-csf-also-enriches-the-csf-with-iodine-so-that-you-can-also-b](melanin/028-csf-also-enriches-the-csf-with-iodine-so-that-you-can-also-b.md)
+- [028-lalonde-and-and-and-rob-wolf-used-to-operate-on-in-the-paleo](melanin/028-lalonde-and-and-and-rob-wolf-used-to-operate-on-in-the-paleo.md)
+- [029-csf-also-enriches-the-csf-with-iodine-so-that-you-can-also-b](melanin/029-csf-also-enriches-the-csf-with-iodine-so-that-you-can-also-b.md)
+- [029-you-is-a-big-deal-now-the-cool-part-of-this-story-is-i-figur](melanin/029-you-is-a-big-deal-now-the-cool-part-of-this-story-is-i-figur.md)
+- [030-understand-that-what-i-was-getting-ready-to-unleash-was-prob](melanin/030-understand-that-what-i-was-getting-ready-to-unleash-was-prob.md)
+- [030-you-is-a-big-deal-now-the-cool-part-of-this-story-is-i-figur](melanin/030-you-is-a-big-deal-now-the-cool-part-of-this-story-is-i-figur.md)
+
+## methylene-blue (3)
+
+- [001-it](methylene-blue/001-it.md)
+- [002-me-and-ted-did-you-know-we-would-have-went-back-and-used-met](methylene-blue/002-me-and-ted-did-you-know-we-would-have-went-back-and-used-met.md)
+- [003-push-ups-you-re-okay-that-is-total-pseudocience-total-and-i-](methylene-blue/003-push-ups-you-re-okay-that-is-total-pseudocience-total-and-i-.md)
+
+## mitochondria (49)
+
+- [001-why-red-light-has-such-tremendous-benefits-for-mitochondria-](mitochondria/001-why-red-light-has-such-tremendous-benefits-for-mitochondria-.md)
+- [002-because-guess-what](mitochondria/002-because-guess-what.md)
+- [003-mitochondrial-dna-that-we-re-talking-about-because-you-need-](mitochondria/003-mitochondrial-dna-that-we-re-talking-about-because-you-need-.md)
+- [004-need-to-understand-the-details-of-why-and-you-re-never-reall](mitochondria/004-need-to-understand-the-details-of-why-and-you-re-never-reall.md)
+- [005-there-is-cause-and-effect-and-we-want-to-keep-you-there-beca](mitochondria/005-there-is-cause-and-effect-and-we-want-to-keep-you-there-beca.md)
+- [006-what-we-just-said-should-be-no-shock-or-why-you-never-want-t](mitochondria/006-what-we-just-said-should-be-no-shock-or-why-you-never-want-t.md)
+- [007-about-the-inner-mitochondrial-membrane](mitochondria/007-about-the-inner-mitochondrial-membrane.md)
+- [008-and-you-can-put-it-underneath-there-and-if-you-look-at-the-b](mitochondria/008-and-you-can-put-it-underneath-there-and-if-you-look-at-the-b.md)
+- [009-from-plus-two-to-plus-three-what-do-you-need-to-know-you-don](mitochondria/009-from-plus-two-to-plus-three-what-do-you-need-to-know-you-don.md)
+- [010-understand-because-i-do-think-it-s-important-that-your-breat](mitochondria/010-understand-because-i-do-think-it-s-important-that-your-breat.md)
+- [011-like-light-water-magnetism-and-mitochondrial-medicine-that-d](mitochondria/011-like-light-water-magnetism-and-mitochondrial-medicine-that-d.md)
+- [012-this-is-the-beautiful-part-of-decentralized-medicine-you-don](mitochondria/012-this-is-the-beautiful-part-of-decentralized-medicine-you-don.md)
+- [012-world](mitochondria/012-world.md)
+- [013-go-away](mitochondria/013-go-away.md)
+- [013-world](mitochondria/013-world.md)
+- [014-go-away](mitochondria/014-go-away.md)
+- [014-stop-looking-in-the-genome-and-i-need-to-learn-a-little-bit-](mitochondria/014-stop-looking-in-the-genome-and-i-need-to-learn-a-little-bit-.md)
+- [015-fundamentally-false-okay-it-s-a-sacred-cow-you-need-to-go-af](mitochondria/015-fundamentally-false-okay-it-s-a-sacred-cow-you-need-to-go-af.md)
+- [015-stop-looking-in-the-genome-and-i-need-to-learn-a-little-bit-](mitochondria/015-stop-looking-in-the-genome-and-i-need-to-learn-a-little-bit-.md)
+- [016-fundamentally-false-okay-it-s-a-sacred-cow-you-need-to-go-af](mitochondria/016-fundamentally-false-okay-it-s-a-sacred-cow-you-need-to-go-af.md)
+- [016-of-france-living-outside-never-got-in-a-car-she-s-always-out](mitochondria/016-of-france-living-outside-never-got-in-a-car-she-s-always-out.md)
+- [017-of-france-living-outside-never-got-in-a-car-she-s-always-out](mitochondria/017-of-france-living-outside-never-got-in-a-car-she-s-always-out.md)
+- [017-strength-is-the-key-to-longevity-no-i-think-your-heteroplasm](mitochondria/017-strength-is-the-key-to-longevity-no-i-think-your-heteroplasm.md)
+- [018-strength-is-the-key-to-longevity-no-i-think-your-heteroplasm](mitochondria/018-strength-is-the-key-to-longevity-no-i-think-your-heteroplasm.md)
+- [018-use-that](mitochondria/018-use-that.md)
+- [019-use-that](mitochondria/019-use-that.md)
+- [019-you-see-it-s-got-four-red-light-chromophores-620-680-760-and](mitochondria/019-you-see-it-s-got-four-red-light-chromophores-620-680-760-and.md)
+- [020-that-s-the-reason-why-you-can-be-buck-ass-naked-in-los-angel](mitochondria/020-that-s-the-reason-why-you-can-be-buck-ass-naked-in-los-angel.md)
+- [020-you-see-it-s-got-four-red-light-chromophores-620-680-760-and](mitochondria/020-you-see-it-s-got-four-red-light-chromophores-620-680-760-and.md)
+- [021-goes-back-and-see-this-is-the-cool-part-maybe-we-can-end-on-](mitochondria/021-goes-back-and-see-this-is-the-cool-part-maybe-we-can-end-on-.md)
+- [021-that-s-the-reason-why-you-can-be-buck-ass-naked-in-los-angel](mitochondria/021-that-s-the-reason-why-you-can-be-buck-ass-naked-in-los-angel.md)
+- [022-goes-back-and-see-this-is-the-cool-part-maybe-we-can-end-on-](mitochondria/022-goes-back-and-see-this-is-the-cool-part-maybe-we-can-end-on-.md)
+- [022-mitochondria-okay-still-think-it-s-about-food-folks-it-s-abo](mitochondria/022-mitochondria-okay-still-think-it-s-about-food-folks-it-s-abo.md)
+- [023-mitochondria-okay-still-think-it-s-about-food-folks-it-s-abo](mitochondria/023-mitochondria-okay-still-think-it-s-about-food-folks-it-s-abo.md)
+- [023-people-don-t-realize-why-cytochrome-one-is-incredibly-import](mitochondria/023-people-don-t-realize-why-cytochrome-one-is-incredibly-import.md)
+- [024-michael-leven-and-never-got-a-fundamental-answer-because-he-](mitochondria/024-michael-leven-and-never-got-a-fundamental-answer-because-he-.md)
+- [024-people-don-t-realize-why-cytochrome-one-is-incredibly-import](mitochondria/024-people-don-t-realize-why-cytochrome-one-is-incredibly-import.md)
+- [025-michael-leven-and-never-got-a-fundamental-answer-because-he-](mitochondria/025-michael-leven-and-never-got-a-fundamental-answer-because-he-.md)
+- [025-wanted-to-do-the-interview](mitochondria/025-wanted-to-do-the-interview.md)
+- [026-perspective-need-to-ask-yourself-this-question-how-does-food](mitochondria/026-perspective-need-to-ask-yourself-this-question-how-does-food.md)
+- [026-wanted-to-do-the-interview](mitochondria/026-wanted-to-do-the-interview.md)
+- [027-perspective-need-to-ask-yourself-this-question-how-does-food](mitochondria/027-perspective-need-to-ask-yourself-this-question-how-does-food.md)
+- [027-protocols-you-should-incre-increase-your-redo-first-why-beca](mitochondria/027-protocols-you-should-incre-increase-your-redo-first-why-beca.md)
+- [028-also-a-little-bit-of-a-mitochondriac](mitochondria/028-also-a-little-bit-of-a-mitochondriac.md)
+- [028-protocols-you-should-incre-increase-your-redo-first-why-beca](mitochondria/028-protocols-you-should-incre-increase-your-redo-first-why-beca.md)
+- [029-also-a-little-bit-of-a-mitochondriac](mitochondria/029-also-a-little-bit-of-a-mitochondriac.md)
+- [029-your-mitochondria-doesn-t-make-enough-water](mitochondria/029-your-mitochondria-doesn-t-make-enough-water.md)
+- [030-diabetes-so-that-s-the-reason-why-the-disease-process-from-t](mitochondria/030-diabetes-so-that-s-the-reason-why-the-disease-process-from-t.md)
+- [030-your-mitochondria-doesn-t-make-enough-water](mitochondria/030-your-mitochondria-doesn-t-make-enough-water.md)
+
+## oxygen (13)
+
+- [001-audience](oxygen/001-audience.md)
+- [001-of-rock-25-000-miles-around](oxygen/001-of-rock-25-000-miles-around.md)
+- [002-audience](oxygen/002-audience.md)
+- [002-huge-amounts-of-oxygen-tension-in-a-cell-you-re-never-going-](oxygen/002-huge-amounts-of-oxygen-tension-in-a-cell-you-re-never-going-.md)
+- [003-huge-amounts-of-oxygen-tension-in-a-cell-you-re-never-going-](oxygen/003-huge-amounts-of-oxygen-tension-in-a-cell-you-re-never-going-.md)
+- [003-so-if-you-re-using-a-tool-that-doesn-t-measure-accurately-li](oxygen/003-so-if-you-re-using-a-tool-that-doesn-t-measure-accurately-li.md)
+- [004-beginning-of-this-podcast-the-great-oxygenation-event-it-s-a](oxygen/004-beginning-of-this-podcast-the-great-oxygenation-event-it-s-a.md)
+- [004-so-if-you-re-using-a-tool-that-doesn-t-measure-accurately-li](oxygen/004-so-if-you-re-using-a-tool-that-doesn-t-measure-accurately-li.md)
+- [005-beginning-of-this-podcast-the-great-oxygenation-event-it-s-a](oxygen/005-beginning-of-this-podcast-the-great-oxygenation-event-it-s-a.md)
+- [006-oxidation-state-of-iron](oxygen/006-oxidation-state-of-iron.md)
+- [007-by-lane-because-in-there-it-s-the-key-part-of-the-story-and-](oxygen/007-by-lane-because-in-there-it-s-the-key-part-of-the-story-and-.md)
+- [008-oxygen](oxygen/008-oxygen.md)
+- [009-you-re-the-biologist-i-m-asking-you-to-step-in-my-realm-as-a](oxygen/009-you-re-the-biologist-i-m-asking-you-to-step-in-my-realm-as-a.md)
+
+## photoelectric (7)
+
+- [001-looked-at-what-helm-holds-did-i-looked-about-what-herz-did-i](photoelectric/001-looked-at-what-helm-holds-did-i-looked-about-what-herz-did-i.md)
+- [002-ring-looks-really-similar](photoelectric/002-ring-looks-really-similar.md)
+- [003-it-right](photoelectric/003-it-right.md)
+- [003-um-with-the-photoelectric-effect-i-always-like-to-tell-the-s](photoelectric/003-um-with-the-photoelectric-effect-i-always-like-to-tell-the-s.md)
+- [004-food-folks-it-s-about-light-it-s-always-been-about-light-and](photoelectric/004-food-folks-it-s-about-light-it-s-always-been-about-light-and.md)
+- [004-um-with-the-photoelectric-effect-i-always-like-to-tell-the-s](photoelectric/004-um-with-the-photoelectric-effect-i-always-like-to-tell-the-s.md)
+- [005-food-folks-it-s-about-light-it-s-always-been-about-light-and](photoelectric/005-food-folks-it-s-about-light-it-s-always-been-about-light-and.md)
+
+## photosynthesis (7)
+
+- [001-um-i-found-that-person-you-know-what-my-crazy-question-was-b](photosynthesis/001-um-i-found-that-person-you-know-what-my-crazy-question-was-b.md)
+- [002-photosynthesis-was-interrupted-but-the-one-thing-that-we-do-](photosynthesis/002-photosynthesis-was-interrupted-but-the-one-thing-that-we-do-.md)
+- [003-is-interesting-the-path-that-i-think-people-should-go-to-rea](photosynthesis/003-is-interesting-the-path-that-i-think-people-should-go-to-rea.md)
+- [004-always-light](photosynthesis/004-always-light.md)
+- [005-engagement-of-photosynthesis](photosynthesis/005-engagement-of-photosynthesis.md)
+- [006-that-that-light-is-always-more-important-and-it-was-obvious-](photosynthesis/006-that-that-light-is-always-more-important-and-it-was-obvious-.md)
+- [007-gt-gt-so-then-i-have-this-key-question-because-i-told-you-a-](photosynthesis/007-gt-gt-so-then-i-have-this-key-question-because-i-told-you-a-.md)
+
+## pollack (1)
+
+- [001-is-why-you-know-i-fundamentally-have-a-problem-with-anybody-](pollack/001-is-why-you-know-i-fundamentally-have-a-problem-with-anybody-.md)
+
+## quantum (6)
+
+- [001-he-was-eating-the-french-fries-when-the-accident-occurred-th](quantum/001-he-was-eating-the-french-fries-when-the-accident-occurred-th.md)
+- [002-then-you-begin-to-realize-there-is-no-correct-answer-and-the](quantum/002-then-you-begin-to-realize-there-is-no-correct-answer-and-the.md)
+- [003-likely-have-to-change-your-lifestyle-that-actually-gave-you-](quantum/003-likely-have-to-change-your-lifestyle-that-actually-gave-you-.md)
+- [004-connected-and-i-always-believe-this-the-reason-why-people-be](quantum/004-connected-and-i-always-believe-this-the-reason-why-people-be.md)
+- [005-even-know-about-the-history-of-how-this-goes-back-and-see-th](quantum/005-even-know-about-the-history-of-how-this-goes-back-and-see-th.md)
+- [006-always-tell-people-on-my-site-and-on-my-forum-that-you-don-t](quantum/006-always-tell-people-on-my-site-and-on-my-forum-that-you-don-t.md)
+
+## red-light (22)
+
+- [001-underwear-yeah-to-come-down-because-he-technically-gets-red-](red-light/001-underwear-yeah-to-come-down-because-he-technically-gets-red-.md)
+- [002-to-send-sets-red-light-is-always-present-uva-light-uvb-light](red-light/002-to-send-sets-red-light-is-always-present-uva-light-uvb-light.md)
+- [003-utilizing-anybody-s-red-light-panel-that-s-led-based-you-wil](red-light/003-utilizing-anybody-s-red-light-panel-that-s-led-based-you-wil.md)
+- [004-pbm-which-is-you-know-600-to-1100-nanometer-light-actually-d](red-light/004-pbm-which-is-you-know-600-to-1100-nanometer-light-actually-d.md)
+- [005-long-enough-what-do-i-tell-you-is-the-single-most-important-](red-light/005-long-enough-what-do-i-tell-you-is-the-single-most-important-.md)
+- [006-his-hosta-study-see-how-at-the-equator-light-never-changes-i](red-light/006-his-hosta-study-see-how-at-the-equator-light-never-changes-i.md)
+- [007-does-your-gut-get-that-information-because-here-s-what-most-](red-light/007-does-your-gut-get-that-information-because-here-s-what-most-.md)
+- [008-get-him-to-do-a-study-on-red-light-and-autism-because-that-s](red-light/008-get-him-to-do-a-study-on-red-light-and-autism-because-that-s.md)
+- [009-there-s-a-very-specific-action-spectra-250-to-600-nanom-ligh](red-light/009-there-s-a-very-specific-action-spectra-250-to-600-nanom-ligh.md)
+- [010-a-device-that-uses-rf-and-microwaves-always-is-blue-lit-well](red-light/010-a-device-that-uses-rf-and-microwaves-always-is-blue-lit-well.md)
+- [011-talking-to-me-about-before-about-big-muscles-uh-the-problem-](red-light/011-talking-to-me-about-before-about-big-muscles-uh-the-problem-.md)
+- [012-naked-foot-on-the-metal-before-i-d-even-use-that](red-light/012-naked-foot-on-the-metal-before-i-d-even-use-that.md)
+- [013-the-short-story-is-infrared-a-light-forms-up-42-of-sunlight](red-light/013-the-short-story-is-infrared-a-light-forms-up-42-of-sunlight.md)
+- [014-light-is-irreplaceable-i-always-tell-people-when-i-do-podcas](red-light/014-light-is-irreplaceable-i-always-tell-people-when-i-do-podcas.md)
+- [015-standpoint-what-does-it-tell-me-as-a-physician-that-person-n](red-light/015-standpoint-what-does-it-tell-me-as-a-physician-that-person-n.md)
+- [016-big-warning-on-yeah-the-warning-is-always-there-because-you-](red-light/016-big-warning-on-yeah-the-warning-is-always-there-because-you-.md)
+- [017-it-ought-to-mean-to-go-forward-with-everything-behind-it-but](red-light/017-it-ought-to-mean-to-go-forward-with-everything-behind-it-but.md)
+- [018-i-m-inside-like-i-am-now-i-have-infrared-a-light-panels-all-](red-light/018-i-m-inside-like-i-am-now-i-have-infrared-a-light-panels-all-.md)
+- [019-just-the-act-of-looking-in-there-because-i-m-using-a-xenon-b](red-light/019-just-the-act-of-looking-in-there-because-i-m-using-a-xenon-b.md)
+- [020-without-red-light](red-light/020-without-red-light.md)
+- [021-see-on-twitter-when-people-ask-me-what-s-the-best-red-light](red-light/021-see-on-twitter-when-people-ask-me-what-s-the-best-red-light.md)
+- [022-you-have-a-solar-deficiency-so-let-me-explain-to-you-somethi](red-light/022-you-have-a-solar-deficiency-so-let-me-explain-to-you-somethi.md)
+
+## vitamin-d (14)
+
+- [001-sense-because-that-lowers-your-vitamin-d-level-and-that-s-th](vitamin-d/001-sense-because-that-lowers-your-vitamin-d-level-and-that-s-th.md)
+- [002-and-you-start-going-through-the-ophthalmologist-literature-a](vitamin-d/002-and-you-start-going-through-the-ophthalmologist-literature-a.md)
+- [003-lowers-your-vitamin-d-by-design-so-it-actually-creates-a-hug](vitamin-d/003-lowers-your-vitamin-d-by-design-so-it-actually-creates-a-hug.md)
+- [004-like-people-don-t-realize-when-you-take-vitamin-d-pills-what](vitamin-d/004-like-people-don-t-realize-when-you-take-vitamin-d-pills-what.md)
+- [005-that-they-can-absorb-light-what-is-hemoglobin-absorb-250-to-](vitamin-d/005-that-they-can-absorb-light-what-is-hemoglobin-absorb-250-to-.md)
+- [006-clean-diet-becker-finds-out-that-all-the-avionics-in-the-pla](vitamin-d/006-clean-diet-becker-finds-out-that-all-the-avionics-in-the-pla.md)
+- [007-never-been-getting-vitamin-d](vitamin-d/007-never-been-getting-vitamin-d.md)
+- [008-seven-to-10-devices-that-are-bidirectional-microwave-devices](vitamin-d/008-seven-to-10-devices-that-are-bidirectional-microwave-devices.md)
+- [009-and-greater-and-greater-then-they-re-going-to-say-oh-look-yo](vitamin-d/009-and-greater-and-greater-then-they-re-going-to-say-oh-look-yo.md)
+- [010-bloodstream-to-the-liver-and-the-kidney-to-be-changed-but-th](vitamin-d/010-bloodstream-to-the-liver-and-the-kidney-to-be-changed-but-th.md)
+- [011-where-you-live-on-this-planet-will-determine-your-level-of-v](vitamin-d/011-where-you-live-on-this-planet-will-determine-your-level-of-v.md)
+- [012-1950-was-highly-ketoic-because-they-were-never-around-uva-or](vitamin-d/012-1950-was-highly-ketoic-because-they-were-never-around-uva-or.md)
+- [013-huge-problem-too-because-if-your-body-is-not-fully-exposed-a](vitamin-d/013-huge-problem-too-because-if-your-body-is-not-fully-exposed-a.md)
+- [014-going-and-hiring-a-guy-at-the-gym-to-do-push-ups-for-you-and](vitamin-d/014-going-and-hiring-a-guy-at-the-gym-to-do-push-ups-for-you-and.md)

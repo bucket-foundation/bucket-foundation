@@ -23,7 +23,20 @@ export type ClaimCard = {
 };
 
 const REPO_ROOT = path.resolve(process.cwd());
-const CLAIMS_ROOT = path.join(REPO_ROOT, "bucket-canon", "05-biophysics", "sub-claims");
+const CANON_ROOT = path.join(REPO_ROOT, "bucket-canon");
+// All branch dirs that match `\d{2}-*` and contain a `sub-claims/` folder.
+function getBranchDirs(): { branch: string; root: string }[] {
+  if (!fs.existsSync(CANON_ROOT)) return [];
+  const out: { branch: string; root: string }[] = [];
+  for (const d of fs.readdirSync(CANON_ROOT)) {
+    if (!/^\d{2}-/.test(d)) continue;
+    const sc = path.join(CANON_ROOT, d, "sub-claims");
+    if (fs.existsSync(sc) && fs.statSync(sc).isDirectory()) {
+      out.push({ branch: d, root: sc });
+    }
+  }
+  return out.sort((a, b) => a.branch.localeCompare(b.branch));
+}
 
 function parseClaimMd(file: string, branch: string, concept: string, slug: string): ClaimCard | null {
   let raw: string;
@@ -102,19 +115,19 @@ function parseClaimMd(file: string, branch: string, concept: string, slug: strin
 }
 
 export function getAllClaims(): ClaimCard[] {
-  if (!fs.existsSync(CLAIMS_ROOT)) return [];
   const out: ClaimCard[] = [];
-  for (const concept of fs.readdirSync(CLAIMS_ROOT)) {
-    const conceptDir = path.join(CLAIMS_ROOT, concept);
-    if (!fs.statSync(conceptDir).isDirectory()) continue;
-    for (const file of fs.readdirSync(conceptDir)) {
-      if (!file.endsWith(".md")) continue;
-      const slug = file.replace(/\.md$/, "");
-      const c = parseClaimMd(path.join(conceptDir, file), "05-biophysics", concept, slug);
-      if (c) out.push(c);
+  for (const { branch, root } of getBranchDirs()) {
+    for (const concept of fs.readdirSync(root)) {
+      const conceptDir = path.join(root, concept);
+      if (!fs.statSync(conceptDir).isDirectory()) continue;
+      for (const file of fs.readdirSync(conceptDir)) {
+        if (!file.endsWith(".md") || file === "INDEX.md") continue;
+        const slug = file.replace(/\.md$/, "");
+        const c = parseClaimMd(path.join(conceptDir, file), branch, concept, slug);
+        if (c) out.push(c);
+      }
     }
   }
-  // sort score desc, then concept
   out.sort((a, b) => b.score - a.score || a.concept.localeCompare(b.concept));
   return out;
 }
@@ -129,9 +142,11 @@ export function getClaimsByConcept(): Record<string, ClaimCard[]> {
 }
 
 export function getClaim(concept: string, slug: string): ClaimCard | null {
-  const file = path.join(CLAIMS_ROOT, concept, `${slug}.md`);
-  if (!fs.existsSync(file)) return null;
-  return parseClaimMd(file, "05-biophysics", concept, slug);
+  for (const { branch, root } of getBranchDirs()) {
+    const file = path.join(root, concept, `${slug}.md`);
+    if (fs.existsSync(file)) return parseClaimMd(file, branch, concept, slug);
+  }
+  return null;
 }
 
 export function getConcepts(): { concept: string; count: number }[] {

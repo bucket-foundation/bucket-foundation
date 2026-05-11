@@ -1,0 +1,6402 @@
+[
+  {
+    "start": "00:00:00.000",
+    "end": "00:00:01.990",
+    "text": "what we will be going over mostly is the"
+  },
+  {
+    "start": "00:00:02.000",
+    "end": "00:00:04.150",
+    "text": "development the uh"
+  },
+  {
+    "start": "00:00:04.160",
+    "end": "00:00:05.829",
+    "text": "the implementation of poor elasticity"
+  },
+  {
+    "start": "00:00:05.839",
+    "end": "00:00:09.750",
+    "text": "within pilot and the work that"
+  },
+  {
+    "start": "00:00:09.760",
+    "end": "00:00:10.870",
+    "text": "we have been"
+  },
+  {
+    "start": "00:00:10.880",
+    "end": "00:00:11.830",
+    "text": "doing"
+  },
+  {
+    "start": "00:00:11.840",
+    "end": "00:00:13.030",
+    "text": "uh"
+  },
+  {
+    "start": "00:00:13.040",
+    "end": "00:00:14.390",
+    "text": "of late"
+  },
+  {
+    "start": "00:00:14.400",
+    "end": "00:00:16.550",
+    "text": "to get that ready for uh what looks to"
+  },
+  {
+    "start": "00:00:16.560",
+    "end": "00:00:19.910",
+    "text": "be a monumental up-and-coming uh 3.0"
+  },
+  {
+    "start": "00:00:19.920",
+    "end": "00:00:22.630",
+    "text": "release"
+  },
+  {
+    "start": "00:00:22.640",
+    "end": "00:00:24.230",
+    "text": "and"
+  },
+  {
+    "start": "00:00:24.240",
+    "end": "00:00:26.950",
+    "text": "well this is listed by my advisor uh dr"
+  },
+  {
+    "start": "00:00:26.960",
+    "end": "00:00:29.910",
+    "text": "matthew nepley i'd like to also thank uh"
+  },
+  {
+    "start": "00:00:29.920",
+    "end": "00:00:32.630",
+    "text": "brett agard uh charles williams"
+  },
+  {
+    "start": "00:00:32.640",
+    "end": "00:00:34.549",
+    "text": "um"
+  },
+  {
+    "start": "00:00:34.559",
+    "end": "00:00:35.430",
+    "text": "uh"
+  },
+  {
+    "start": "00:00:35.440",
+    "end": "00:00:37.830",
+    "text": "shindalu and quite a few others that"
+  },
+  {
+    "start": "00:00:37.840",
+    "end": "00:00:39.430",
+    "text": "have that have helped along the way with"
+  },
+  {
+    "start": "00:00:39.440",
+    "end": "00:00:40.310",
+    "text": "this"
+  },
+  {
+    "start": "00:00:40.320",
+    "end": "00:00:41.510",
+    "text": "um"
+  },
+  {
+    "start": "00:00:41.520",
+    "end": "00:00:42.549",
+    "text": "it's"
+  },
+  {
+    "start": "00:00:42.559",
+    "end": "00:00:45.830",
+    "text": "it's been quite an interesting journey"
+  },
+  {
+    "start": "00:00:45.840",
+    "end": "00:00:47.430",
+    "text": "okay so"
+  },
+  {
+    "start": "00:00:47.440",
+    "end": "00:00:49.110",
+    "text": "we're gonna go over first a little bit"
+  },
+  {
+    "start": "00:00:49.120",
+    "end": "00:00:51.270",
+    "text": "of a refresher with um"
+  },
+  {
+    "start": "00:00:51.280",
+    "end": "00:00:54.869",
+    "text": "what pilot is and what what the what how"
+  },
+  {
+    "start": "00:00:54.879",
+    "end": "00:00:57.110",
+    "text": "we got to the current point"
+  },
+  {
+    "start": "00:00:57.120",
+    "end": "00:00:59.670",
+    "text": "uh and then we'll go over"
+  },
+  {
+    "start": "00:00:59.680",
+    "end": "00:01:01.910",
+    "text": "more of a motivation of our problem"
+  },
+  {
+    "start": "00:01:01.920",
+    "end": "00:01:04.549",
+    "text": "then the implementation we're using some"
+  },
+  {
+    "start": "00:01:04.559",
+    "end": "00:01:06.310",
+    "text": "results and"
+  },
+  {
+    "start": "00:01:06.320",
+    "end": "00:01:07.990",
+    "text": "there's a lot in the future expansion"
+  },
+  {
+    "start": "00:01:08.000",
+    "end": "00:01:09.350",
+    "text": "part that is"
+  },
+  {
+    "start": "00:01:09.360",
+    "end": "00:01:12.550",
+    "text": "a bit here uh a bit in"
+  },
+  {
+    "start": "00:01:12.560",
+    "end": "00:01:15.270",
+    "text": "somewhere in mostly in somewhat not um"
+  },
+  {
+    "start": "00:01:15.280",
+    "end": "00:01:16.390",
+    "text": "so"
+  },
+  {
+    "start": "00:01:16.400",
+    "end": "00:01:17.990",
+    "text": "if there's interest we can go there's a"
+  },
+  {
+    "start": "00:01:18.000",
+    "end": "00:01:19.590",
+    "text": "lot that we can go over there that"
+  },
+  {
+    "start": "00:01:19.600",
+    "end": "00:01:22.950",
+    "text": "basically would need a small push"
+  },
+  {
+    "start": "00:01:22.960",
+    "end": "00:01:24.149",
+    "text": "so"
+  },
+  {
+    "start": "00:01:24.159",
+    "end": "00:01:28.310",
+    "text": "what is uh pilot uh pilot is a"
+  },
+  {
+    "start": "00:01:28.320",
+    "end": "00:01:29.830",
+    "text": "a code that is"
+  },
+  {
+    "start": "00:01:29.840",
+    "end": "00:01:32.069",
+    "text": "designed that was born out of the union"
+  },
+  {
+    "start": "00:01:32.079",
+    "end": "00:01:32.950",
+    "text": "of"
+  },
+  {
+    "start": "00:01:32.960",
+    "end": "00:01:35.429",
+    "text": "two different individual codes for"
+  },
+  {
+    "start": "00:01:35.439",
+    "end": "00:01:38.069",
+    "text": "dynamic and quasi-static modeling uh"
+  },
+  {
+    "start": "00:01:38.079",
+    "end": "00:01:42.149",
+    "text": "between dr brad agard and dr charles"
+  },
+  {
+    "start": "00:01:42.159",
+    "end": "00:01:43.990",
+    "text": "williams"
+  },
+  {
+    "start": "00:01:44.000",
+    "end": "00:01:46.789",
+    "text": "the entire the idea was to have a"
+  },
+  {
+    "start": "00:01:46.799",
+    "end": "00:01:48.310",
+    "text": "comprehensive simulation that could"
+  },
+  {
+    "start": "00:01:48.320",
+    "end": "00:01:49.190",
+    "text": "model"
+  },
+  {
+    "start": "00:01:49.200",
+    "end": "00:01:50.789",
+    "text": "um"
+  },
+  {
+    "start": "00:01:50.799",
+    "end": "00:01:53.109",
+    "text": "short-term crustal crystal deformation"
+  },
+  {
+    "start": "00:01:53.119",
+    "end": "00:01:54.950",
+    "text": "as well as long-term depth deformation"
+  },
+  {
+    "start": "00:01:54.960",
+    "end": "00:01:55.830",
+    "text": "the same"
+  },
+  {
+    "start": "00:01:55.840",
+    "end": "00:01:57.190",
+    "text": "same uh"
+  },
+  {
+    "start": "00:01:57.200",
+    "end": "00:01:58.310",
+    "text": "platform"
+  },
+  {
+    "start": "00:01:58.320",
+    "end": "00:02:00.870",
+    "text": "have modularity to it and make it open"
+  },
+  {
+    "start": "00:02:00.880",
+    "end": "00:02:03.109",
+    "text": "source and widely available and"
+  },
+  {
+    "start": "00:02:03.119",
+    "end": "00:02:05.830",
+    "text": "this uh admittedly dated download"
+  },
+  {
+    "start": "00:02:05.840",
+    "end": "00:02:06.789",
+    "text": "tracker"
+  },
+  {
+    "start": "00:02:06.799",
+    "end": "00:02:08.309",
+    "text": "shows the uh"
+  },
+  {
+    "start": "00:02:08.319",
+    "end": "00:02:11.270",
+    "text": "the popularity of the tool"
+  },
+  {
+    "start": "00:02:11.280",
+    "end": "00:02:14.390",
+    "text": "um"
+  },
+  {
+    "start": "00:02:14.400",
+    "end": "00:02:15.270",
+    "text": "so"
+  },
+  {
+    "start": "00:02:15.280",
+    "end": "00:02:17.670",
+    "text": "at the moment uh"
+  },
+  {
+    "start": "00:02:17.680",
+    "end": "00:02:19.430",
+    "text": "the pilot pilot is"
+  },
+  {
+    "start": "00:02:19.440",
+    "end": "00:02:22.790",
+    "text": "was stated again to cover basically"
+  },
+  {
+    "start": "00:02:22.800",
+    "end": "00:02:25.190",
+    "text": "mechanics uh we have dynamic rupture or"
+  },
+  {
+    "start": "00:02:25.200",
+    "end": "00:02:27.270",
+    "text": "quasi static relaxation"
+  },
+  {
+    "start": "00:02:27.280",
+    "end": "00:02:28.309",
+    "text": "uh"
+  },
+  {
+    "start": "00:02:28.319",
+    "end": "00:02:30.390",
+    "text": "problems with regard to"
+  },
+  {
+    "start": "00:02:30.400",
+    "end": "00:02:32.229",
+    "text": "earth or earthquake seismology and"
+  },
+  {
+    "start": "00:02:32.239",
+    "end": "00:02:34.150",
+    "text": "crystal deformation"
+  },
+  {
+    "start": "00:02:34.160",
+    "end": "00:02:35.190",
+    "text": "so"
+  },
+  {
+    "start": "00:02:35.200",
+    "end": "00:02:37.750",
+    "text": "the interesting thing this again"
+  },
+  {
+    "start": "00:02:37.760",
+    "end": "00:02:39.589",
+    "text": "covering the basic physics capabilities"
+  },
+  {
+    "start": "00:02:39.599",
+    "end": "00:02:41.990",
+    "text": "that we had within pilot"
+  },
+  {
+    "start": "00:02:42.000",
+    "end": "00:02:43.430",
+    "text": "in the past where we had more of a"
+  },
+  {
+    "start": "00:02:43.440",
+    "end": "00:02:45.910",
+    "text": "mechanic sim what we're moving into the"
+  },
+  {
+    "start": "00:02:45.920",
+    "end": "00:02:48.390",
+    "text": "pilot's version three is"
+  },
+  {
+    "start": "00:02:48.400",
+    "end": "00:02:50.949",
+    "text": "something a bit more uh we're dipping"
+  },
+  {
+    "start": "00:02:50.959",
+    "end": "00:02:53.750",
+    "text": "our toes into the world of multiphysics"
+  },
+  {
+    "start": "00:02:53.760",
+    "end": "00:02:55.750",
+    "text": "uh by not only having quasistatic and"
+  },
+  {
+    "start": "00:02:55.760",
+    "end": "00:02:57.589",
+    "text": "dynamic elasticity"
+  },
+  {
+    "start": "00:02:57.599",
+    "end": "00:02:59.270",
+    "text": "uh but also includes including plural"
+  },
+  {
+    "start": "00:02:59.280",
+    "end": "00:03:00.630",
+    "text": "elasticity"
+  },
+  {
+    "start": "00:03:00.640",
+    "end": "00:03:02.790",
+    "text": "uh the bulk rheologies we're covering"
+  },
+  {
+    "start": "00:03:02.800",
+    "end": "00:03:05.110",
+    "text": "are various for linear elasticity as"
+  },
+  {
+    "start": "00:03:05.120",
+    "end": "00:03:06.070",
+    "text": "well as"
+  },
+  {
+    "start": "00:03:06.080",
+    "end": "00:03:08.149",
+    "text": "non-linear elasticities in the first for"
+  },
+  {
+    "start": "00:03:08.159",
+    "end": "00:03:10.710",
+    "text": "poor elasticity itself"
+  },
+  {
+    "start": "00:03:10.720",
+    "end": "00:03:13.430",
+    "text": "and we'll be covering prescribed slip"
+  },
+  {
+    "start": "00:03:13.440",
+    "end": "00:03:14.949",
+    "text": "for"
+  },
+  {
+    "start": "00:03:14.959",
+    "end": "00:03:17.430",
+    "text": "mechanics related problems"
+  },
+  {
+    "start": "00:03:17.440",
+    "end": "00:03:18.470",
+    "text": "and"
+  },
+  {
+    "start": "00:03:18.480",
+    "end": "00:03:21.430",
+    "text": "that may be expanded here uh in short"
+  },
+  {
+    "start": "00:03:21.440",
+    "end": "00:03:23.750",
+    "text": "order uh i guess you guys will have to"
+  },
+  {
+    "start": "00:03:23.760",
+    "end": "00:03:24.470",
+    "text": "see"
+  },
+  {
+    "start": "00:03:24.480",
+    "end": "00:03:27.030",
+    "text": "come to our workshop this summer and"
+  },
+  {
+    "start": "00:03:27.040",
+    "end": "00:03:29.589",
+    "text": "uh if you really want to see"
+  },
+  {
+    "start": "00:03:29.599",
+    "end": "00:03:30.869",
+    "text": "the"
+  },
+  {
+    "start": "00:03:30.879",
+    "end": "00:03:32.470",
+    "text": "combination of all the efforts that are"
+  },
+  {
+    "start": "00:03:32.480",
+    "end": "00:03:33.910",
+    "text": "kind of running through the air at the"
+  },
+  {
+    "start": "00:03:33.920",
+    "end": "00:03:36.149",
+    "text": "moment"
+  },
+  {
+    "start": "00:03:36.159",
+    "end": "00:03:39.030",
+    "text": "so before we start uh let's kind of go"
+  },
+  {
+    "start": "00:03:39.040",
+    "end": "00:03:40.470",
+    "text": "over a problem"
+  },
+  {
+    "start": "00:03:40.480",
+    "end": "00:03:43.350",
+    "text": "uh when we talk about poor elasticity"
+  },
+  {
+    "start": "00:03:43.360",
+    "end": "00:03:47.190",
+    "text": "what what exactly do we mean uh i we"
+  },
+  {
+    "start": "00:03:47.200",
+    "end": "00:03:49.350",
+    "text": "hear it at least it seems to be have"
+  },
+  {
+    "start": "00:03:49.360",
+    "end": "00:03:51.750",
+    "text": "been a buzzword within geo mechanics"
+  },
+  {
+    "start": "00:03:51.760",
+    "end": "00:03:52.710",
+    "text": "um"
+  },
+  {
+    "start": "00:03:52.720",
+    "end": "00:03:55.270",
+    "text": "so let's let's start by the basics here"
+  },
+  {
+    "start": "00:03:55.280",
+    "end": "00:03:56.949",
+    "text": "is like what what would we consider as a"
+  },
+  {
+    "start": "00:03:56.959",
+    "end": "00:03:58.550",
+    "text": "porous material"
+  },
+  {
+    "start": "00:03:58.560",
+    "end": "00:04:01.670",
+    "text": "well the basic idea is is"
+  },
+  {
+    "start": "00:04:01.680",
+    "end": "00:04:03.830",
+    "text": "comes from soil soil mechanics where you"
+  },
+  {
+    "start": "00:04:03.840",
+    "end": "00:04:05.190",
+    "text": "have a solid"
+  },
+  {
+    "start": "00:04:05.200",
+    "end": "00:04:07.910",
+    "text": "that is full of holes so you have you're"
+  },
+  {
+    "start": "00:04:07.920",
+    "end": "00:04:10.630",
+    "text": "able to model fluid flow"
+  },
+  {
+    "start": "00:04:10.640",
+    "end": "00:04:13.429",
+    "text": "and solid deformation in the same sort"
+  },
+  {
+    "start": "00:04:13.439",
+    "end": "00:04:14.630",
+    "text": "of package"
+  },
+  {
+    "start": "00:04:14.640",
+    "end": "00:04:17.030",
+    "text": "so here we have on the left which is the"
+  },
+  {
+    "start": "00:04:17.040",
+    "end": "00:04:18.949",
+    "text": "basic example of where"
+  },
+  {
+    "start": "00:04:18.959",
+    "end": "00:04:20.550",
+    "text": "most of the mathematics of this came"
+  },
+  {
+    "start": "00:04:20.560",
+    "end": "00:04:22.550",
+    "text": "from which is uh"
+  },
+  {
+    "start": "00:04:22.560",
+    "end": "00:04:25.110",
+    "text": "soil consolidation or sand"
+  },
+  {
+    "start": "00:04:25.120",
+    "end": "00:04:27.430",
+    "text": "and we have the most the common example"
+  },
+  {
+    "start": "00:04:27.440",
+    "end": "00:04:29.749",
+    "text": "of a poor elastic material at least that"
+  },
+  {
+    "start": "00:04:29.759",
+    "end": "00:04:32.230",
+    "text": "i run into less often than i should a"
+  },
+  {
+    "start": "00:04:32.240",
+    "end": "00:04:33.940",
+    "text": "sponge on the left on the right"
+  },
+  {
+    "start": "00:04:33.950",
+    "end": "00:04:35.749",
+    "text": "[Music]"
+  },
+  {
+    "start": "00:04:35.759",
+    "end": "00:04:37.430",
+    "text": "all right"
+  },
+  {
+    "start": "00:04:37.440",
+    "end": "00:04:40.070",
+    "text": "so we see a couple of examples of"
+  },
+  {
+    "start": "00:04:40.080",
+    "end": "00:04:41.749",
+    "text": "core elastic materials just to kind of"
+  },
+  {
+    "start": "00:04:41.759",
+    "end": "00:04:42.550",
+    "text": "show"
+  },
+  {
+    "start": "00:04:42.560",
+    "end": "00:04:45.270",
+    "text": "the utility and how how common these are"
+  },
+  {
+    "start": "00:04:45.280",
+    "end": "00:04:47.670",
+    "text": "uh within our experience is that that"
+  },
+  {
+    "start": "00:04:47.680",
+    "end": "00:04:50.230",
+    "text": "rarely do you have a material that is"
+  },
+  {
+    "start": "00:04:50.240",
+    "end": "00:04:51.270",
+    "text": "that is"
+  },
+  {
+    "start": "00:04:51.280",
+    "end": "00:04:52.070",
+    "text": "well"
+  },
+  {
+    "start": "00:04:52.080",
+    "end": "00:04:55.030",
+    "text": "pardon the pun rock solid"
+  },
+  {
+    "start": "00:04:55.040",
+    "end": "00:04:56.550",
+    "text": "usually there are small pathways of"
+  },
+  {
+    "start": "00:04:56.560",
+    "end": "00:04:57.670",
+    "text": "varying"
+  },
+  {
+    "start": "00:04:57.680",
+    "end": "00:05:00.710",
+    "text": "varying sizes and"
+  },
+  {
+    "start": "00:05:00.720",
+    "end": "00:05:04.310",
+    "text": "tertiosities that that permit"
+  },
+  {
+    "start": "00:05:04.320",
+    "end": "00:05:06.150",
+    "text": "fluids to pass through them and we have"
+  },
+  {
+    "start": "00:05:06.160",
+    "end": "00:05:08.150",
+    "text": "examples from sand"
+  },
+  {
+    "start": "00:05:08.160",
+    "end": "00:05:09.670",
+    "text": "here to"
+  },
+  {
+    "start": "00:05:09.680",
+    "end": "00:05:11.350",
+    "text": "various sorts of metaphorical and"
+  },
+  {
+    "start": "00:05:11.360",
+    "end": "00:05:13.270",
+    "text": "volcanic raw igneous rocks"
+  },
+  {
+    "start": "00:05:13.280",
+    "end": "00:05:14.150",
+    "text": "to"
+  },
+  {
+    "start": "00:05:14.160",
+    "end": "00:05:18.390",
+    "text": "biological materials such as bone"
+  },
+  {
+    "start": "00:05:18.400",
+    "end": "00:05:20.070",
+    "text": "and so"
+  },
+  {
+    "start": "00:05:20.080",
+    "end": "00:05:22.469",
+    "text": "going over this a bit further"
+  },
+  {
+    "start": "00:05:22.479",
+    "end": "00:05:24.790",
+    "text": "is that we"
+  },
+  {
+    "start": "00:05:24.800",
+    "end": "00:05:27.670",
+    "text": "we can see that the um"
+  },
+  {
+    "start": "00:05:27.680",
+    "end": "00:05:30.469",
+    "text": "that the the sorting behavior"
+  },
+  {
+    "start": "00:05:30.479",
+    "end": "00:05:32.870",
+    "text": "that we would see within"
+  },
+  {
+    "start": "00:05:32.880",
+    "end": "00:05:34.790",
+    "text": "the the uh the"
+  },
+  {
+    "start": "00:05:34.800",
+    "end": "00:05:36.230",
+    "text": "rather the sorting behavior that we see"
+  },
+  {
+    "start": "00:05:36.240",
+    "end": "00:05:38.469",
+    "text": "within the material can tell us quite a"
+  },
+  {
+    "start": "00:05:38.479",
+    "end": "00:05:39.909",
+    "text": "bit about"
+  },
+  {
+    "start": "00:05:39.919",
+    "end": "00:05:42.150",
+    "text": "the strength of the material as well as"
+  },
+  {
+    "start": "00:05:42.160",
+    "end": "00:05:44.150",
+    "text": "the in some cases the history of the"
+  },
+  {
+    "start": "00:05:44.160",
+    "end": "00:05:45.510",
+    "text": "material"
+  },
+  {
+    "start": "00:05:45.520",
+    "end": "00:05:47.830",
+    "text": "and often in in the petroleum"
+  },
+  {
+    "start": "00:05:47.840",
+    "end": "00:05:49.670",
+    "text": "engineering aspect we"
+  },
+  {
+    "start": "00:05:49.680",
+    "end": "00:05:53.830",
+    "text": "we would see that uh the level of of the"
+  },
+  {
+    "start": "00:05:53.840",
+    "end": "00:05:56.870",
+    "text": "level of sorting how well sorted the"
+  },
+  {
+    "start": "00:05:56.880",
+    "end": "00:05:58.469",
+    "text": "material would be"
+  },
+  {
+    "start": "00:05:58.479",
+    "end": "00:05:59.830",
+    "text": "would be often"
+  },
+  {
+    "start": "00:05:59.840",
+    "end": "00:06:01.110",
+    "text": "um"
+  },
+  {
+    "start": "00:06:01.120",
+    "end": "00:06:02.550",
+    "text": "indicative of the energy of the"
+  },
+  {
+    "start": "00:06:02.560",
+    "end": "00:06:05.029",
+    "text": "deficient environment in the past or the"
+  },
+  {
+    "start": "00:06:05.039",
+    "end": "00:06:06.309",
+    "text": "other other way around if you were"
+  },
+  {
+    "start": "00:06:06.319",
+    "end": "00:06:07.430",
+    "text": "trying to"
+  },
+  {
+    "start": "00:06:07.440",
+    "end": "00:06:09.029",
+    "text": "to find a"
+  },
+  {
+    "start": "00:06:09.039",
+    "end": "00:06:09.830",
+    "text": "well"
+  },
+  {
+    "start": "00:06:09.840",
+    "end": "00:06:11.510",
+    "text": "a well-sorted"
+  },
+  {
+    "start": "00:06:11.520",
+    "end": "00:06:14.790",
+    "text": "uh relatively high porosity and"
+  },
+  {
+    "start": "00:06:14.800",
+    "end": "00:06:16.950",
+    "text": "a permeability environment"
+  },
+  {
+    "start": "00:06:16.960",
+    "end": "00:06:17.909",
+    "text": "so"
+  },
+  {
+    "start": "00:06:17.919",
+    "end": "00:06:18.790",
+    "text": "let's"
+  },
+  {
+    "start": "00:06:18.800",
+    "end": "00:06:20.469",
+    "text": "we have basically"
+  },
+  {
+    "start": "00:06:20.479",
+    "end": "00:06:22.309",
+    "text": "going overs is that we have two two"
+  },
+  {
+    "start": "00:06:22.319",
+    "end": "00:06:24.790",
+    "text": "values that are important within uh"
+  },
+  {
+    "start": "00:06:24.800",
+    "end": "00:06:27.189",
+    "text": "poorer elasticity number one is porosity"
+  },
+  {
+    "start": "00:06:27.199",
+    "end": "00:06:28.790",
+    "text": "and that is simply a measure of the void"
+  },
+  {
+    "start": "00:06:28.800",
+    "end": "00:06:32.150",
+    "text": "space so if you have in the case here of"
+  },
+  {
+    "start": "00:06:32.160",
+    "end": "00:06:35.189",
+    "text": "the old sphere pack modeling of a poor"
+  },
+  {
+    "start": "00:06:35.199",
+    "end": "00:06:37.350",
+    "text": "elastic material you can see that you"
+  },
+  {
+    "start": "00:06:37.360",
+    "end": "00:06:38.870",
+    "text": "have the same"
+  },
+  {
+    "start": "00:06:38.880",
+    "end": "00:06:40.790",
+    "text": "basic foundation as just simply the way"
+  },
+  {
+    "start": "00:06:40.800",
+    "end": "00:06:42.469",
+    "text": "that they're they're sorted"
+  },
+  {
+    "start": "00:06:42.479",
+    "end": "00:06:45.270",
+    "text": "uh can vary vary the void space but"
+  },
+  {
+    "start": "00:06:45.280",
+    "end": "00:06:47.110",
+    "text": "quite a bit"
+  },
+  {
+    "start": "00:06:47.120",
+    "end": "00:06:50.230",
+    "text": "however having void space alone is not"
+  },
+  {
+    "start": "00:06:50.240",
+    "end": "00:06:51.270",
+    "text": "enough"
+  },
+  {
+    "start": "00:06:51.280",
+    "end": "00:06:52.469",
+    "text": "to"
+  },
+  {
+    "start": "00:06:52.479",
+    "end": "00:06:54.390",
+    "text": "produce"
+  },
+  {
+    "start": "00:06:54.400",
+    "end": "00:06:57.189",
+    "text": "produce material that will allow flow"
+  },
+  {
+    "start": "00:06:57.199",
+    "end": "00:06:58.070",
+    "text": "um"
+  },
+  {
+    "start": "00:06:58.080",
+    "end": "00:06:59.510",
+    "text": "the other the other parameter is"
+  },
+  {
+    "start": "00:06:59.520",
+    "end": "00:07:00.950",
+    "text": "permeability"
+  },
+  {
+    "start": "00:07:00.960",
+    "end": "00:07:03.350",
+    "text": "and permeability is a measure of the"
+  },
+  {
+    "start": "00:07:03.360",
+    "end": "00:07:04.629",
+    "text": "ability"
+  },
+  {
+    "start": "00:07:04.639",
+    "end": "00:07:07.430",
+    "text": "for fluid to flow to through a given"
+  },
+  {
+    "start": "00:07:07.440",
+    "end": "00:07:10.710",
+    "text": "material"
+  },
+  {
+    "start": "00:07:10.720",
+    "end": "00:07:13.110",
+    "text": "the the modern concept"
+  },
+  {
+    "start": "00:07:13.120",
+    "end": "00:07:15.909",
+    "text": "of of permeability came from the"
+  },
+  {
+    "start": "00:07:15.919",
+    "end": "00:07:19.430",
+    "text": "experiments of henry darcy"
+  },
+  {
+    "start": "00:07:19.440",
+    "end": "00:07:22.309",
+    "text": "in in the 1850s uh trying to measure"
+  },
+  {
+    "start": "00:07:22.319",
+    "end": "00:07:24.230",
+    "text": "measure"
+  },
+  {
+    "start": "00:07:24.240",
+    "end": "00:07:27.670",
+    "text": "measure flow time flow through"
+  },
+  {
+    "start": "00:07:27.680",
+    "end": "00:07:31.589",
+    "text": "through columns of material and"
+  },
+  {
+    "start": "00:07:31.599",
+    "end": "00:07:32.629",
+    "text": "what we"
+  },
+  {
+    "start": "00:07:32.639",
+    "end": "00:07:34.710",
+    "text": "found is that the"
+  },
+  {
+    "start": "00:07:34.720",
+    "end": "00:07:35.909",
+    "text": "the"
+  },
+  {
+    "start": "00:07:35.919",
+    "end": "00:07:37.350",
+    "text": "different materials will have different"
+  },
+  {
+    "start": "00:07:37.360",
+    "end": "00:07:39.270",
+    "text": "properties with regard to"
+  },
+  {
+    "start": "00:07:39.280",
+    "end": "00:07:40.390",
+    "text": "the"
+  },
+  {
+    "start": "00:07:40.400",
+    "end": "00:07:42.390",
+    "text": "the the rate at which fluid will flow"
+  },
+  {
+    "start": "00:07:42.400",
+    "end": "00:07:45.270",
+    "text": "through them uh he'd bottle package this"
+  },
+  {
+    "start": "00:07:45.280",
+    "end": "00:07:47.029",
+    "text": "up turn it into something that's"
+  },
+  {
+    "start": "00:07:47.039",
+    "end": "00:07:49.670",
+    "text": "now known currently as darcy's law and"
+  },
+  {
+    "start": "00:07:49.680",
+    "end": "00:07:53.029",
+    "text": "with regard to soil science and um"
+  },
+  {
+    "start": "00:07:53.039",
+    "end": "00:07:54.629",
+    "text": "petroleum engineering"
+  },
+  {
+    "start": "00:07:54.639",
+    "end": "00:07:58.710",
+    "text": "hasn't been quite modified all that much"
+  },
+  {
+    "start": "00:07:58.720",
+    "end": "00:07:59.510",
+    "text": "since"
+  },
+  {
+    "start": "00:07:59.520",
+    "end": "00:08:01.189",
+    "text": "since he wrote it"
+  },
+  {
+    "start": "00:08:01.199",
+    "end": "00:08:02.230",
+    "text": "so"
+  },
+  {
+    "start": "00:08:02.240",
+    "end": "00:08:04.629",
+    "text": "let's go over again i i'm pretty sure"
+  },
+  {
+    "start": "00:08:04.639",
+    "end": "00:08:06.710",
+    "text": "that anyone that's already listening to"
+  },
+  {
+    "start": "00:08:06.720",
+    "end": "00:08:08.790",
+    "text": "this has an idea of"
+  },
+  {
+    "start": "00:08:08.800",
+    "end": "00:08:11.350",
+    "text": "why what this is but also"
+  },
+  {
+    "start": "00:08:11.360",
+    "end": "00:08:13.350",
+    "text": "i would be kind of remiss if i didn't go"
+  },
+  {
+    "start": "00:08:13.360",
+    "end": "00:08:15.270",
+    "text": "over the question of why do we care"
+  },
+  {
+    "start": "00:08:15.280",
+    "end": "00:08:17.589",
+    "text": "about this even though i'm certain that"
+  },
+  {
+    "start": "00:08:17.599",
+    "end": "00:08:19.270",
+    "text": "everyone on this call"
+  },
+  {
+    "start": "00:08:19.280",
+    "end": "00:08:21.350",
+    "text": "probably has some some idea as to why"
+  },
+  {
+    "start": "00:08:21.360",
+    "end": "00:08:22.710",
+    "text": "they might"
+  },
+  {
+    "start": "00:08:22.720",
+    "end": "00:08:25.510",
+    "text": "so i'm going to go over a couple"
+  },
+  {
+    "start": "00:08:25.520",
+    "end": "00:08:27.990",
+    "text": "geophysical examples here"
+  },
+  {
+    "start": "00:08:28.000",
+    "end": "00:08:29.909",
+    "text": "nowhere near all of them"
+  },
+  {
+    "start": "00:08:29.919",
+    "end": "00:08:34.230",
+    "text": "but a few of my my favorites at least"
+  },
+  {
+    "start": "00:08:34.240",
+    "end": "00:08:36.469",
+    "text": "the first is subsidence"
+  },
+  {
+    "start": "00:08:36.479",
+    "end": "00:08:39.029",
+    "text": "uh again my background is from the oil"
+  },
+  {
+    "start": "00:08:39.039",
+    "end": "00:08:40.389",
+    "text": "and gas world so that's what you're"
+  },
+  {
+    "start": "00:08:40.399",
+    "end": "00:08:43.110",
+    "text": "going to get"
+  },
+  {
+    "start": "00:08:43.120",
+    "end": "00:08:46.070",
+    "text": "when when you have most oil is produced"
+  },
+  {
+    "start": "00:08:46.080",
+    "end": "00:08:47.350",
+    "text": "traditionally been produced in what's"
+  },
+  {
+    "start": "00:08:47.360",
+    "end": "00:08:49.269",
+    "text": "called primary recovery"
+  },
+  {
+    "start": "00:08:49.279",
+    "end": "00:08:51.509",
+    "text": "and that simply means uh using the"
+  },
+  {
+    "start": "00:08:51.519",
+    "end": "00:08:53.350",
+    "text": "pressure of the"
+  },
+  {
+    "start": "00:08:53.360",
+    "end": "00:08:55.670",
+    "text": "the confined fluids within the ground to"
+  },
+  {
+    "start": "00:08:55.680",
+    "end": "00:08:57.110",
+    "text": "drive the flow"
+  },
+  {
+    "start": "00:08:57.120",
+    "end": "00:08:59.110",
+    "text": "out of the formation up the well and"
+  },
+  {
+    "start": "00:08:59.120",
+    "end": "00:09:01.269",
+    "text": "into wherever it's going to go"
+  },
+  {
+    "start": "00:09:01.279",
+    "end": "00:09:02.070",
+    "text": "now"
+  },
+  {
+    "start": "00:09:02.080",
+    "end": "00:09:04.630",
+    "text": "you can you can figure out that"
+  },
+  {
+    "start": "00:09:04.640",
+    "end": "00:09:06.230",
+    "text": "it doesn't take"
+  },
+  {
+    "start": "00:09:06.240",
+    "end": "00:09:08.949",
+    "text": "it's pretty obvious that that once this"
+  },
+  {
+    "start": "00:09:08.959",
+    "end": "00:09:10.949",
+    "text": "volume is removed"
+  },
+  {
+    "start": "00:09:10.959",
+    "end": "00:09:13.110",
+    "text": "that it's going to have some sort of an"
+  },
+  {
+    "start": "00:09:13.120",
+    "end": "00:09:15.190",
+    "text": "effect on the"
+  },
+  {
+    "start": "00:09:15.200",
+    "end": "00:09:17.190",
+    "text": "on this on the stress environment"
+  },
+  {
+    "start": "00:09:17.200",
+    "end": "00:09:18.470",
+    "text": "because you have you have the same"
+  },
+  {
+    "start": "00:09:18.480",
+    "end": "00:09:20.470",
+    "text": "amount of stresses that are for example"
+  },
+  {
+    "start": "00:09:20.480",
+    "end": "00:09:23.350",
+    "text": "are burdening the reservoir but you have"
+  },
+  {
+    "start": "00:09:23.360",
+    "end": "00:09:26.389",
+    "text": "less of a pr fluid pressure to to fight"
+  },
+  {
+    "start": "00:09:26.399",
+    "end": "00:09:27.430",
+    "text": "against them"
+  },
+  {
+    "start": "00:09:27.440",
+    "end": "00:09:30.949",
+    "text": "one very very um"
+  },
+  {
+    "start": "00:09:30.959",
+    "end": "00:09:33.910",
+    "text": "very very famous and very clear example"
+  },
+  {
+    "start": "00:09:33.920",
+    "end": "00:09:35.590",
+    "text": "of the effect that"
+  },
+  {
+    "start": "00:09:35.600",
+    "end": "00:09:37.509",
+    "text": "poor elastic behavior can have in the"
+  },
+  {
+    "start": "00:09:37.519",
+    "end": "00:09:39.750",
+    "text": "real world is shown here on the left and"
+  },
+  {
+    "start": "00:09:39.760",
+    "end": "00:09:41.430",
+    "text": "this comes from the one of the first"
+  },
+  {
+    "start": "00:09:41.440",
+    "end": "00:09:42.389",
+    "text": "major"
+  },
+  {
+    "start": "00:09:42.399",
+    "end": "00:09:45.509",
+    "text": "uh oil fields in the north sea echo fisk"
+  },
+  {
+    "start": "00:09:45.519",
+    "end": "00:09:48.070",
+    "text": "and what you're looking at is a platform"
+  },
+  {
+    "start": "00:09:48.080",
+    "end": "00:09:49.590",
+    "text": "that was"
+  },
+  {
+    "start": "00:09:49.600",
+    "end": "00:09:50.870",
+    "text": "that house"
+  },
+  {
+    "start": "00:09:50.880",
+    "end": "00:09:53.430",
+    "text": "uh drilling equipment and and pre"
+  },
+  {
+    "start": "00:09:53.440",
+    "end": "00:09:55.829",
+    "text": "drilling production equipment"
+  },
+  {
+    "start": "00:09:55.839",
+    "end": "00:09:57.750",
+    "text": "and on the left you see the picture a"
+  },
+  {
+    "start": "00:09:57.760",
+    "end": "00:09:59.990",
+    "text": "picture from 1973"
+  },
+  {
+    "start": "00:10:00.000",
+    "end": "00:10:01.910",
+    "text": "where um"
+  },
+  {
+    "start": "00:10:01.920",
+    "end": "00:10:03.829",
+    "text": "the number of uh the number of holes"
+  },
+  {
+    "start": "00:10:03.839",
+    "end": "00:10:06.630",
+    "text": "from the from the superstructures is"
+  },
+  {
+    "start": "00:10:06.640",
+    "end": "00:10:09.590",
+    "text": "is is visible and"
+  },
+  {
+    "start": "00:10:09.600",
+    "end": "00:10:11.829",
+    "text": "uh clearly higher than the clearly more"
+  },
+  {
+    "start": "00:10:11.839",
+    "end": "00:10:13.190",
+    "text": "than the number that had been visible in"
+  },
+  {
+    "start": "00:10:13.200",
+    "end": "00:10:17.350",
+    "text": "1984 which are a couple of years later"
+  },
+  {
+    "start": "00:10:17.360",
+    "end": "00:10:19.910",
+    "text": "so the story with this one was and it"
+  },
+  {
+    "start": "00:10:19.920",
+    "end": "00:10:21.990",
+    "text": "may be somewhat anecdotal"
+  },
+  {
+    "start": "00:10:22.000",
+    "end": "00:10:24.310",
+    "text": "is that this was kind of noticed by"
+  },
+  {
+    "start": "00:10:24.320",
+    "end": "00:10:26.470",
+    "text": "happenstance by people that were working"
+  },
+  {
+    "start": "00:10:26.480",
+    "end": "00:10:27.750",
+    "text": "on the rig"
+  },
+  {
+    "start": "00:10:27.760",
+    "end": "00:10:28.949",
+    "text": "um"
+  },
+  {
+    "start": "00:10:28.959",
+    "end": "00:10:31.110",
+    "text": "i i think it may have also coincided"
+  },
+  {
+    "start": "00:10:31.120",
+    "end": "00:10:33.829",
+    "text": "with some other uh geological activities"
+  },
+  {
+    "start": "00:10:33.839",
+    "end": "00:10:35.590",
+    "text": "that were going on that they"
+  },
+  {
+    "start": "00:10:35.600",
+    "end": "00:10:37.509",
+    "text": "that kind of putting two or two together"
+  },
+  {
+    "start": "00:10:37.519",
+    "end": "00:10:40.470",
+    "text": "but regardless the the result of this"
+  },
+  {
+    "start": "00:10:40.480",
+    "end": "00:10:43.350",
+    "text": "was the first major uh effort"
+  },
+  {
+    "start": "00:10:43.360",
+    "end": "00:10:44.949",
+    "text": "towards um"
+  },
+  {
+    "start": "00:10:44.959",
+    "end": "00:10:46.389",
+    "text": "what's called secondary recovery or"
+  },
+  {
+    "start": "00:10:46.399",
+    "end": "00:10:48.069",
+    "text": "water injection remember the echovis"
+  },
+  {
+    "start": "00:10:48.079",
+    "end": "00:10:49.509",
+    "text": "field is"
+  },
+  {
+    "start": "00:10:49.519",
+    "end": "00:10:52.150",
+    "text": "built on a very very it's built on chalk"
+  },
+  {
+    "start": "00:10:52.160",
+    "end": "00:10:54.389",
+    "text": "so it's a very very fractured very very"
+  },
+  {
+    "start": "00:10:54.399",
+    "end": "00:10:55.990",
+    "text": "fragile material"
+  },
+  {
+    "start": "00:10:56.000",
+    "end": "00:10:58.389",
+    "text": "but the the happy ending here is that"
+  },
+  {
+    "start": "00:10:58.399",
+    "end": "00:11:01.509",
+    "text": "after um after water injection was"
+  },
+  {
+    "start": "00:11:01.519",
+    "end": "00:11:03.110",
+    "text": "commit commenced"
+  },
+  {
+    "start": "00:11:03.120",
+    "end": "00:11:04.949",
+    "text": "uh supposedly that"
+  },
+  {
+    "start": "00:11:04.959",
+    "end": "00:11:06.550",
+    "text": "there was almost no"
+  },
+  {
+    "start": "00:11:06.560",
+    "end": "00:11:09.030",
+    "text": "uh no return produced water"
+  },
+  {
+    "start": "00:11:09.040",
+    "end": "00:11:11.269",
+    "text": "so that basically"
+  },
+  {
+    "start": "00:11:11.279",
+    "end": "00:11:13.990",
+    "text": "not only was the subsidence arrested but"
+  },
+  {
+    "start": "00:11:14.000",
+    "end": "00:11:15.110",
+    "text": "production"
+  },
+  {
+    "start": "00:11:15.120",
+    "end": "00:11:17.110",
+    "text": "significantly increased"
+  },
+  {
+    "start": "00:11:17.120",
+    "end": "00:11:20.150",
+    "text": "and only oil flew out"
+  },
+  {
+    "start": "00:11:20.160",
+    "end": "00:11:22.710",
+    "text": "now the one on the right is"
+  },
+  {
+    "start": "00:11:22.720",
+    "end": "00:11:24.470",
+    "text": "an earlier example this came from the"
+  },
+  {
+    "start": "00:11:24.480",
+    "end": "00:11:26.389",
+    "text": "wilmington oilfield california this is"
+  },
+  {
+    "start": "00:11:26.399",
+    "end": "00:11:29.750",
+    "text": "nearby long beach where uh production"
+  },
+  {
+    "start": "00:11:29.760",
+    "end": "00:11:31.269",
+    "text": "had been"
+  },
+  {
+    "start": "00:11:31.279",
+    "end": "00:11:32.710",
+    "text": "basically"
+  },
+  {
+    "start": "00:11:32.720",
+    "end": "00:11:34.389",
+    "text": "every sort of um"
+  },
+  {
+    "start": "00:11:34.399",
+    "end": "00:11:35.910",
+    "text": "stereotypical"
+  },
+  {
+    "start": "00:11:35.920",
+    "end": "00:11:38.310",
+    "text": "you know boom town at one point"
+  },
+  {
+    "start": "00:11:38.320",
+    "end": "00:11:40.150",
+    "text": "entirely on primary and very close to"
+  },
+  {
+    "start": "00:11:40.160",
+    "end": "00:11:42.069",
+    "text": "the surface what you're seeing is a dog"
+  },
+  {
+    "start": "00:11:42.079",
+    "end": "00:11:44.790",
+    "text": "looking at the fire hydrant that is no"
+  },
+  {
+    "start": "00:11:44.800",
+    "end": "00:11:46.710",
+    "text": "longer at the surface level that it once"
+  },
+  {
+    "start": "00:11:46.720",
+    "end": "00:11:48.310",
+    "text": "was"
+  },
+  {
+    "start": "00:11:48.320",
+    "end": "00:11:49.670",
+    "text": "now uh"
+  },
+  {
+    "start": "00:11:49.680",
+    "end": "00:11:51.670",
+    "text": "perhaps nearly to this audience's heart"
+  },
+  {
+    "start": "00:11:51.680",
+    "end": "00:11:54.310",
+    "text": "is also the issue of induced seismicity"
+  },
+  {
+    "start": "00:11:54.320",
+    "end": "00:11:57.269",
+    "text": "so as i mentioned earlier"
+  },
+  {
+    "start": "00:11:57.279",
+    "end": "00:11:59.590",
+    "text": "uh the"
+  },
+  {
+    "start": "00:11:59.600",
+    "end": "00:12:01.110",
+    "text": "reducing"
+  },
+  {
+    "start": "00:12:01.120",
+    "end": "00:12:03.750",
+    "text": "reduce uh producing fluids"
+  },
+  {
+    "start": "00:12:03.760",
+    "end": "00:12:06.150",
+    "text": "from a subsurface environment or"
+  },
+  {
+    "start": "00:12:06.160",
+    "end": "00:12:09.350",
+    "text": "extracting them doesn't does not remove"
+  },
+  {
+    "start": "00:12:09.360",
+    "end": "00:12:12.069",
+    "text": "does not change the rest of the"
+  },
+  {
+    "start": "00:12:12.079",
+    "end": "00:12:14.870",
+    "text": "uh the the stress picture right the"
+  },
+  {
+    "start": "00:12:14.880",
+    "end": "00:12:16.230",
+    "text": "the uh"
+  },
+  {
+    "start": "00:12:16.240",
+    "end": "00:12:18.069",
+    "text": "the idea is that you still have to deal"
+  },
+  {
+    "start": "00:12:18.079",
+    "end": "00:12:20.470",
+    "text": "with the rest of the uh the grander"
+  },
+  {
+    "start": "00:12:20.480",
+    "end": "00:12:22.710",
+    "text": "stress environment especially if you are"
+  },
+  {
+    "start": "00:12:22.720",
+    "end": "00:12:23.509",
+    "text": "if"
+  },
+  {
+    "start": "00:12:23.519",
+    "end": "00:12:24.870",
+    "text": "there is"
+  },
+  {
+    "start": "00:12:24.880",
+    "end": "00:12:27.030",
+    "text": "something in the case of"
+  },
+  {
+    "start": "00:12:27.040",
+    "end": "00:12:29.350",
+    "text": "perhaps like the uh"
+  },
+  {
+    "start": "00:12:29.360",
+    "end": "00:12:31.269",
+    "text": "of the the rocky mountain earthquakes"
+  },
+  {
+    "start": "00:12:31.279",
+    "end": "00:12:32.870",
+    "text": "that were induced from rocky mountain"
+  },
+  {
+    "start": "00:12:32.880",
+    "end": "00:12:34.790",
+    "text": "arsenal in the 1960s"
+  },
+  {
+    "start": "00:12:34.800",
+    "end": "00:12:37.190",
+    "text": "where there's a disposal well that"
+  },
+  {
+    "start": "00:12:37.200",
+    "end": "00:12:39.590",
+    "text": "happens to diffuse near a critically"
+  },
+  {
+    "start": "00:12:39.600",
+    "end": "00:12:41.110",
+    "text": "stressed fault"
+  },
+  {
+    "start": "00:12:41.120",
+    "end": "00:12:43.670",
+    "text": "um you will start to see"
+  },
+  {
+    "start": "00:12:43.680",
+    "end": "00:12:46.150",
+    "text": "failure as the stress environment starts"
+  },
+  {
+    "start": "00:12:46.160",
+    "end": "00:12:48.550",
+    "text": "to adjust to either the"
+  },
+  {
+    "start": "00:12:48.560",
+    "end": "00:12:52.550",
+    "text": "the uh the lack of or the addition of"
+  },
+  {
+    "start": "00:12:52.560",
+    "end": "00:12:54.710",
+    "text": "uh new forces"
+  },
+  {
+    "start": "00:12:54.720",
+    "end": "00:12:55.509",
+    "text": "uh"
+  },
+  {
+    "start": "00:12:55.519",
+    "end": "00:12:57.590",
+    "text": "the in the uh"
+  },
+  {
+    "start": "00:12:57.600",
+    "end": "00:12:59.350",
+    "text": "the diagram here"
+  },
+  {
+    "start": "00:12:59.360",
+    "end": "00:13:02.710",
+    "text": "given by uh dr thomas gerbil"
+  },
+  {
+    "start": "00:13:02.720",
+    "end": "00:13:05.430",
+    "text": "uh demonstrates that"
+  },
+  {
+    "start": "00:13:05.440",
+    "end": "00:13:07.829",
+    "text": "the the prior review that we had"
+  },
+  {
+    "start": "00:13:07.839",
+    "end": "00:13:09.910",
+    "text": "uh that that"
+  },
+  {
+    "start": "00:13:09.920",
+    "end": "00:13:11.750",
+    "text": "induced seismicity was simply a matter"
+  },
+  {
+    "start": "00:13:11.760",
+    "end": "00:13:14.069",
+    "text": "from fluid diffusion from geothermal"
+  },
+  {
+    "start": "00:13:14.079",
+    "end": "00:13:15.910",
+    "text": "stimulation it may not entirely be"
+  },
+  {
+    "start": "00:13:15.920",
+    "end": "00:13:16.870",
+    "text": "correct"
+  },
+  {
+    "start": "00:13:16.880",
+    "end": "00:13:18.150",
+    "text": "is that"
+  },
+  {
+    "start": "00:13:18.160",
+    "end": "00:13:19.670",
+    "text": "that the the importance here of poor"
+  },
+  {
+    "start": "00:13:19.680",
+    "end": "00:13:21.590",
+    "text": "elastic modeling"
+  },
+  {
+    "start": "00:13:21.600",
+    "end": "00:13:22.710",
+    "text": "is that"
+  },
+  {
+    "start": "00:13:22.720",
+    "end": "00:13:24.470",
+    "text": "we can have secondary effects that are"
+  },
+  {
+    "start": "00:13:24.480",
+    "end": "00:13:25.829",
+    "text": "caused"
+  },
+  {
+    "start": "00:13:25.839",
+    "end": "00:13:26.870",
+    "text": "by"
+  },
+  {
+    "start": "00:13:26.880",
+    "end": "00:13:29.110",
+    "text": "not pressure but also the plural elastic"
+  },
+  {
+    "start": "00:13:29.120",
+    "end": "00:13:31.030",
+    "text": "response to the pressure"
+  },
+  {
+    "start": "00:13:31.040",
+    "end": "00:13:31.829",
+    "text": "that"
+  },
+  {
+    "start": "00:13:31.839",
+    "end": "00:13:35.269",
+    "text": "is uh inputted or extracted"
+  },
+  {
+    "start": "00:13:35.279",
+    "end": "00:13:37.829",
+    "text": "from uh from a from a given amount of"
+  },
+  {
+    "start": "00:13:37.839",
+    "end": "00:13:39.430",
+    "text": "fluid"
+  },
+  {
+    "start": "00:13:39.440",
+    "end": "00:13:41.269",
+    "text": "so"
+  },
+  {
+    "start": "00:13:41.279",
+    "end": "00:13:44.389",
+    "text": "now i'll go back to the problem as we"
+  },
+  {
+    "start": "00:13:44.399",
+    "end": "00:13:45.750",
+    "text": "are looking at it in our current"
+  },
+  {
+    "start": "00:13:45.760",
+    "end": "00:13:47.269",
+    "text": "incarnation"
+  },
+  {
+    "start": "00:13:47.279",
+    "end": "00:13:48.389",
+    "text": "um"
+  },
+  {
+    "start": "00:13:48.399",
+    "end": "00:13:52.470",
+    "text": "we are looking again at a basic bio"
+  },
+  {
+    "start": "00:13:52.480",
+    "end": "00:13:55.670",
+    "text": "formulation of poor elasticity"
+  },
+  {
+    "start": "00:13:55.680",
+    "end": "00:13:58.230",
+    "text": "where we are coupling the"
+  },
+  {
+    "start": "00:13:58.240",
+    "end": "00:14:00.790",
+    "text": "conservation of momentum term"
+  },
+  {
+    "start": "00:14:00.800",
+    "end": "00:14:02.790",
+    "text": "which is drawn entirely from linear"
+  },
+  {
+    "start": "00:14:02.800",
+    "end": "00:14:05.269",
+    "text": "elasticity we simply just modify our"
+  },
+  {
+    "start": "00:14:05.279",
+    "end": "00:14:07.350",
+    "text": "stress tensor to account for uh fluid"
+  },
+  {
+    "start": "00:14:07.360",
+    "end": "00:14:08.470",
+    "text": "pressure"
+  },
+  {
+    "start": "00:14:08.480",
+    "end": "00:14:10.470",
+    "text": "uh"
+  },
+  {
+    "start": "00:14:10.480",
+    "end": "00:14:12.230",
+    "text": "and we combine this with the"
+  },
+  {
+    "start": "00:14:12.240",
+    "end": "00:14:14.069",
+    "text": "conservation of mass term"
+  },
+  {
+    "start": "00:14:14.079",
+    "end": "00:14:16.069",
+    "text": "uh in this case the conservation of mass"
+  },
+  {
+    "start": "00:14:16.079",
+    "end": "00:14:17.430",
+    "text": "term entire"
+  },
+  {
+    "start": "00:14:17.440",
+    "end": "00:14:19.590",
+    "text": "appeal applies entirely to the fluid"
+  },
+  {
+    "start": "00:14:19.600",
+    "end": "00:14:21.910",
+    "text": "component um"
+  },
+  {
+    "start": "00:14:21.920",
+    "end": "00:14:25.030",
+    "text": "as of the moment there is no"
+  },
+  {
+    "start": "00:14:25.040",
+    "end": "00:14:26.150",
+    "text": "um"
+  },
+  {
+    "start": "00:14:26.160",
+    "end": "00:14:27.750",
+    "text": "ability to"
+  },
+  {
+    "start": "00:14:27.760",
+    "end": "00:14:29.269",
+    "text": "add or move"
+  },
+  {
+    "start": "00:14:29.279",
+    "end": "00:14:30.710",
+    "text": "solid mass"
+  },
+  {
+    "start": "00:14:30.720",
+    "end": "00:14:32.710",
+    "text": "from our model i that"
+  },
+  {
+    "start": "00:14:32.720",
+    "end": "00:14:35.110",
+    "text": "could change somebody wanted it perhaps"
+  },
+  {
+    "start": "00:14:35.120",
+    "end": "00:14:35.829",
+    "text": "but"
+  },
+  {
+    "start": "00:14:35.839",
+    "end": "00:14:37.350",
+    "text": "basically we have a coupling of these"
+  },
+  {
+    "start": "00:14:37.360",
+    "end": "00:14:38.470",
+    "text": "two"
+  },
+  {
+    "start": "00:14:38.480",
+    "end": "00:14:40.870",
+    "text": "and the um"
+  },
+  {
+    "start": "00:14:40.880",
+    "end": "00:14:42.470",
+    "text": "the the two the two equations are"
+  },
+  {
+    "start": "00:14:42.480",
+    "end": "00:14:45.670",
+    "text": "coupled through two coefficients"
+  },
+  {
+    "start": "00:14:45.680",
+    "end": "00:14:49.030",
+    "text": "we have the bio coefficient which is"
+  },
+  {
+    "start": "00:14:49.040",
+    "end": "00:14:50.069",
+    "text": "uh"
+  },
+  {
+    "start": "00:14:50.079",
+    "end": "00:14:51.990",
+    "text": "the first which represents the fluid"
+  },
+  {
+    "start": "00:14:52.000",
+    "end": "00:14:54.310",
+    "text": "volume change the result of the bulk"
+  },
+  {
+    "start": "00:14:54.320",
+    "end": "00:14:56.629",
+    "text": "volume change in the drain condition and"
+  },
+  {
+    "start": "00:14:56.639",
+    "end": "00:14:58.949",
+    "text": "the the upshot of this is as this pushes"
+  },
+  {
+    "start": "00:14:58.959",
+    "end": "00:15:00.710",
+    "text": "towards one"
+  },
+  {
+    "start": "00:15:00.720",
+    "end": "00:15:01.910",
+    "text": "um"
+  },
+  {
+    "start": "00:15:01.920",
+    "end": "00:15:04.069",
+    "text": "we have"
+  },
+  {
+    "start": "00:15:04.079",
+    "end": "00:15:07.350",
+    "text": "we have the material becomes closer to"
+  },
+  {
+    "start": "00:15:07.360",
+    "end": "00:15:08.949",
+    "text": "incompressible"
+  },
+  {
+    "start": "00:15:08.959",
+    "end": "00:15:11.670",
+    "text": "and we also have the biomodulus which is"
+  },
+  {
+    "start": "00:15:11.680",
+    "end": "00:15:13.590",
+    "text": "defined as the inverse of the uh"
+  },
+  {
+    "start": "00:15:13.600",
+    "end": "00:15:15.590",
+    "text": "constant strain coefficient or rather"
+  },
+  {
+    "start": "00:15:15.600",
+    "end": "00:15:17.350",
+    "text": "the invalid inver increase in the fluid"
+  },
+  {
+    "start": "00:15:17.360",
+    "end": "00:15:19.590",
+    "text": "volume of the solid phase"
+  },
+  {
+    "start": "00:15:19.600",
+    "end": "00:15:21.910",
+    "text": "per volume per volume of solid phase"
+  },
+  {
+    "start": "00:15:21.920",
+    "end": "00:15:22.710",
+    "text": "that"
+  },
+  {
+    "start": "00:15:22.720",
+    "end": "00:15:24.629",
+    "text": "results in you increase in pore pressure"
+  },
+  {
+    "start": "00:15:24.639",
+    "end": "00:15:27.990",
+    "text": "under constant a volumetric strain so"
+  },
+  {
+    "start": "00:15:28.000",
+    "end": "00:15:29.670",
+    "text": "what we're seeing here"
+  },
+  {
+    "start": "00:15:29.680",
+    "end": "00:15:30.629",
+    "text": "is"
+  },
+  {
+    "start": "00:15:30.639",
+    "end": "00:15:32.790",
+    "text": "is simply the bio modulus that we would"
+  },
+  {
+    "start": "00:15:32.800",
+    "end": "00:15:33.990",
+    "text": "use for"
+  },
+  {
+    "start": "00:15:34.000",
+    "end": "00:15:37.030",
+    "text": "a single phase"
+  },
+  {
+    "start": "00:15:37.040",
+    "end": "00:15:39.110",
+    "text": "fluid term"
+  },
+  {
+    "start": "00:15:39.110",
+    "end": "00:15:39.120",
+    "text": "a single phase fluid term"
+  },
+  {
+    "start": "00:15:39.120",
+    "end": "00:15:41.350",
+    "text": "and if this gets into multi-phase it"
+  },
+  {
+    "start": "00:15:41.360",
+    "end": "00:15:43.670",
+    "text": "gets considerably more difficult more"
+  },
+  {
+    "start": "00:15:43.680",
+    "end": "00:15:45.189",
+    "text": "difficult complex"
+  },
+  {
+    "start": "00:15:45.199",
+    "end": "00:15:48.470",
+    "text": "and we can go over this later on but"
+  },
+  {
+    "start": "00:15:48.480",
+    "end": "00:15:50.310",
+    "text": "basically we have"
+  },
+  {
+    "start": "00:15:50.320",
+    "end": "00:15:57.030",
+    "text": "a term that is matching"
+  },
+  {
+    "start": "00:15:57.040",
+    "end": "00:15:59.829",
+    "text": "compressibility uh"
+  },
+  {
+    "start": "00:15:59.829",
+    "end": "00:15:59.839",
+    "text": "that is matching compressibility uh"
+  },
+  {
+    "start": "00:15:59.839",
+    "end": "00:16:05.110",
+    "text": "between the the two phases"
+  },
+  {
+    "start": "00:16:05.120",
+    "end": "00:16:05.829",
+    "text": "so"
+  },
+  {
+    "start": "00:16:05.839",
+    "end": "00:16:07.430",
+    "text": "here are governing assumptions for a"
+  },
+  {
+    "start": "00:16:07.440",
+    "end": "00:16:08.550",
+    "text": "problem"
+  },
+  {
+    "start": "00:16:08.560",
+    "end": "00:16:10.710",
+    "text": "and this is not necessarily"
+  },
+  {
+    "start": "00:16:10.720",
+    "end": "00:16:12.069",
+    "text": "the these are not necessarily the"
+  },
+  {
+    "start": "00:16:12.079",
+    "end": "00:16:13.670",
+    "text": "probably governing assumptions for the"
+  },
+  {
+    "start": "00:16:13.680",
+    "end": "00:16:15.509",
+    "text": "entire problem"
+  },
+  {
+    "start": "00:16:15.519",
+    "end": "00:16:17.350",
+    "text": "or set of problems that pilots can deal"
+  },
+  {
+    "start": "00:16:17.360",
+    "end": "00:16:19.670",
+    "text": "with but these are the ones that we're"
+  },
+  {
+    "start": "00:16:19.680",
+    "end": "00:16:22.230",
+    "text": "dealing with at the moment uh the rest"
+  },
+  {
+    "start": "00:16:22.240",
+    "end": "00:16:23.189",
+    "text": "are"
+  },
+  {
+    "start": "00:16:23.199",
+    "end": "00:16:25.030",
+    "text": "you know don't quite have the complete"
+  },
+  {
+    "start": "00:16:25.040",
+    "end": "00:16:27.350",
+    "text": "guarantee just yet we're getting there"
+  },
+  {
+    "start": "00:16:27.360",
+    "end": "00:16:28.629",
+    "text": "so what we're looking at is an"
+  },
+  {
+    "start": "00:16:28.639",
+    "end": "00:16:30.550",
+    "text": "infinitesimal strain condition a"
+  },
+  {
+    "start": "00:16:30.560",
+    "end": "00:16:32.470",
+    "text": "basically an undrained condition with"
+  },
+  {
+    "start": "00:16:32.480",
+    "end": "00:16:34.389",
+    "text": "the possible exception of a"
+  },
+  {
+    "start": "00:16:34.399",
+    "end": "00:16:36.629",
+    "text": "of a drained boundary condition say at"
+  },
+  {
+    "start": "00:16:36.639",
+    "end": "00:16:37.910",
+    "text": "the surface"
+  },
+  {
+    "start": "00:16:37.920",
+    "end": "00:16:40.230",
+    "text": "uh the solid matrix is largely linear"
+  },
+  {
+    "start": "00:16:40.240",
+    "end": "00:16:41.509",
+    "text": "elastic"
+  },
+  {
+    "start": "00:16:41.519",
+    "end": "00:16:42.389",
+    "text": "um"
+  },
+  {
+    "start": "00:16:42.399",
+    "end": "00:16:43.910",
+    "text": "we have a slightly compressible single"
+  },
+  {
+    "start": "00:16:43.920",
+    "end": "00:16:45.350",
+    "text": "phase to fluid"
+  },
+  {
+    "start": "00:16:45.360",
+    "end": "00:16:46.069",
+    "text": "so"
+  },
+  {
+    "start": "00:16:46.079",
+    "end": "00:16:48.470",
+    "text": "most of these these"
+  },
+  {
+    "start": "00:16:48.480",
+    "end": "00:16:50.310",
+    "text": "examples will be based around basically"
+  },
+  {
+    "start": "00:16:50.320",
+    "end": "00:16:51.269",
+    "text": "water"
+  },
+  {
+    "start": "00:16:51.279",
+    "end": "00:16:52.629",
+    "text": "uh although"
+  },
+  {
+    "start": "00:16:52.639",
+    "end": "00:16:54.310",
+    "text": "this could be changed if you wanted to"
+  },
+  {
+    "start": "00:16:54.320",
+    "end": "00:16:56.150",
+    "text": "do some sort of pseudo press pressure"
+  },
+  {
+    "start": "00:16:56.160",
+    "end": "00:16:58.310",
+    "text": "proximation and also"
+  },
+  {
+    "start": "00:16:58.320",
+    "end": "00:17:00.470",
+    "text": "we we simply we are"
+  },
+  {
+    "start": "00:17:00.480",
+    "end": "00:17:03.110",
+    "text": "um working on towards multi-phase there"
+  },
+  {
+    "start": "00:17:03.120",
+    "end": "00:17:07.029",
+    "text": "there's a couple of hang-ups within the"
+  },
+  {
+    "start": "00:17:07.039",
+    "end": "00:17:09.429",
+    "text": "design of pilot itself that"
+  },
+  {
+    "start": "00:17:09.429",
+    "end": "00:17:09.439",
+    "text": "the design of pilot itself that"
+  },
+  {
+    "start": "00:17:09.439",
+    "end": "00:17:10.870",
+    "text": "a lot of things it wasn't designed to do"
+  },
+  {
+    "start": "00:17:10.880",
+    "end": "00:17:13.590",
+    "text": "but they're quickly falling away"
+  },
+  {
+    "start": "00:17:13.600",
+    "end": "00:17:14.390",
+    "text": "so"
+  },
+  {
+    "start": "00:17:14.400",
+    "end": "00:17:17.750",
+    "text": "the one thing that we change that is"
+  },
+  {
+    "start": "00:17:17.760",
+    "end": "00:17:18.630",
+    "text": "different"
+  },
+  {
+    "start": "00:17:18.640",
+    "end": "00:17:22.470",
+    "text": "to some degree from other poor elastic"
+  },
+  {
+    "start": "00:17:22.480",
+    "end": "00:17:23.829",
+    "text": "implementations"
+  },
+  {
+    "start": "00:17:23.839",
+    "end": "00:17:25.909",
+    "text": "is that we're using uh an identity"
+  },
+  {
+    "start": "00:17:25.919",
+    "end": "00:17:28.150",
+    "text": "relation for volumetric strain the the"
+  },
+  {
+    "start": "00:17:28.160",
+    "end": "00:17:30.390",
+    "text": "entire point of this is so that it's"
+  },
+  {
+    "start": "00:17:30.400",
+    "end": "00:17:32.470",
+    "text": "easier to solve as the"
+  },
+  {
+    "start": "00:17:32.480",
+    "end": "00:17:35.750",
+    "text": "compressibility as the problem becomes"
+  },
+  {
+    "start": "00:17:35.760",
+    "end": "00:17:37.510",
+    "text": "closer to incompressible"
+  },
+  {
+    "start": "00:17:37.520",
+    "end": "00:17:40.630",
+    "text": "um basically as the bio coefficient goes"
+  },
+  {
+    "start": "00:17:40.640",
+    "end": "00:17:41.750",
+    "text": "to one"
+  },
+  {
+    "start": "00:17:41.760",
+    "end": "00:17:43.669",
+    "text": "and also it should kind of go without"
+  },
+  {
+    "start": "00:17:43.679",
+    "end": "00:17:46.470",
+    "text": "saying but at the moment that pilot is"
+  },
+  {
+    "start": "00:17:46.480",
+    "end": "00:17:49.590",
+    "text": "entirely a fully coupled simulation so"
+  },
+  {
+    "start": "00:17:49.600",
+    "end": "00:17:51.350",
+    "text": "unlike some others"
+  },
+  {
+    "start": "00:17:51.360",
+    "end": "00:17:54.070",
+    "text": "um that salt have dedicated solvers for"
+  },
+  {
+    "start": "00:17:54.080",
+    "end": "00:17:55.909",
+    "text": "fluid flow and dedicated solvers for"
+  },
+  {
+    "start": "00:17:55.919",
+    "end": "00:17:58.710",
+    "text": "mechanics we do both in an all-up all-up"
+  },
+  {
+    "start": "00:17:58.720",
+    "end": "00:18:01.029",
+    "text": "manner which"
+  },
+  {
+    "start": "00:18:01.039",
+    "end": "00:18:02.950",
+    "text": "which makes for"
+  },
+  {
+    "start": "00:18:02.960",
+    "end": "00:18:07.909",
+    "text": "well a different way of handling it"
+  },
+  {
+    "start": "00:18:07.919",
+    "end": "00:18:10.630",
+    "text": "so"
+  },
+  {
+    "start": "00:18:10.640",
+    "end": "00:18:12.390",
+    "text": "next we'll be going over"
+  },
+  {
+    "start": "00:18:12.400",
+    "end": "00:18:14.070",
+    "text": "okay next we're going over basically"
+  },
+  {
+    "start": "00:18:14.080",
+    "end": "00:18:15.669",
+    "text": "what what is the"
+  },
+  {
+    "start": "00:18:15.679",
+    "end": "00:18:17.590",
+    "text": "the interesting thing here"
+  },
+  {
+    "start": "00:18:17.600",
+    "end": "00:18:20.710",
+    "text": "poor elasticity is it's great to have it"
+  },
+  {
+    "start": "00:18:20.720",
+    "end": "00:18:22.390",
+    "text": "but the with the major turning point"
+  },
+  {
+    "start": "00:18:22.400",
+    "end": "00:18:25.029",
+    "text": "here is that we're moving pilot from"
+  },
+  {
+    "start": "00:18:25.039",
+    "end": "00:18:26.950",
+    "text": "something that is"
+  },
+  {
+    "start": "00:18:26.960",
+    "end": "00:18:29.270",
+    "text": "purely rock mechanics and cholesterol"
+  },
+  {
+    "start": "00:18:29.280",
+    "end": "00:18:30.630",
+    "text": "deformation"
+  },
+  {
+    "start": "00:18:30.640",
+    "end": "00:18:32.470",
+    "text": "to sort of choose your own adventure"
+  },
+  {
+    "start": "00:18:32.480",
+    "end": "00:18:35.029",
+    "text": "multiphysics tool"
+  },
+  {
+    "start": "00:18:35.039",
+    "end": "00:18:38.150",
+    "text": "so what we had"
+  },
+  {
+    "start": "00:18:38.160",
+    "end": "00:18:41.110",
+    "text": "in 2016 is we had our first"
+  },
+  {
+    "start": "00:18:41.120",
+    "end": "00:18:42.950",
+    "text": "uh well"
+  },
+  {
+    "start": "00:18:42.960",
+    "end": "00:18:44.710",
+    "text": "poor elasticity had been hinted at for"
+  },
+  {
+    "start": "00:18:44.720",
+    "end": "00:18:46.950",
+    "text": "years but the first"
+  },
+  {
+    "start": "00:18:46.960",
+    "end": "00:18:48.630",
+    "text": "real attempt was at a workshop that we"
+  },
+  {
+    "start": "00:18:48.640",
+    "end": "00:18:50.390",
+    "text": "had in 2016"
+  },
+  {
+    "start": "00:18:50.400",
+    "end": "00:18:51.750",
+    "text": "uh at least the first i don't know"
+  },
+  {
+    "start": "00:18:51.760",
+    "end": "00:18:53.510",
+    "text": "attempt for the first inclinations"
+  },
+  {
+    "start": "00:18:53.520",
+    "end": "00:18:55.590",
+    "text": "towards it before that what we had was a"
+  },
+  {
+    "start": "00:18:55.600",
+    "end": "00:18:56.870",
+    "text": "hardwired"
+  },
+  {
+    "start": "00:18:56.880",
+    "end": "00:18:58.230",
+    "text": "elastic"
+  },
+  {
+    "start": "00:18:58.240",
+    "end": "00:19:00.549",
+    "text": "simulation modeling tool"
+  },
+  {
+    "start": "00:19:00.559",
+    "end": "00:19:02.630",
+    "text": "that had"
+  },
+  {
+    "start": "00:19:02.640",
+    "end": "00:19:03.990",
+    "text": "uh its own"
+  },
+  {
+    "start": "00:19:04.000",
+    "end": "00:19:06.390",
+    "text": "implementations for temporal and spatial"
+  },
+  {
+    "start": "00:19:06.400",
+    "end": "00:19:08.549",
+    "text": "discretization"
+  },
+  {
+    "start": "00:19:08.559",
+    "end": "00:19:09.750",
+    "text": "and was"
+  },
+  {
+    "start": "00:19:09.760",
+    "end": "00:19:11.430",
+    "text": "it was written well it was written for"
+  },
+  {
+    "start": "00:19:11.440",
+    "end": "00:19:13.350",
+    "text": "one purpose entirely"
+  },
+  {
+    "start": "00:19:13.360",
+    "end": "00:19:15.110",
+    "text": "and so what we're doing now is we're"
+  },
+  {
+    "start": "00:19:15.120",
+    "end": "00:19:16.549",
+    "text": "changing this"
+  },
+  {
+    "start": "00:19:16.559",
+    "end": "00:19:19.350",
+    "text": "so as to to make"
+  },
+  {
+    "start": "00:19:19.360",
+    "end": "00:19:22.549",
+    "text": "make the implementation flexible for"
+  },
+  {
+    "start": "00:19:22.559",
+    "end": "00:19:24.710",
+    "text": "the desires of the user"
+  },
+  {
+    "start": "00:19:24.720",
+    "end": "00:19:27.510",
+    "text": "our discretization and our basic"
+  },
+  {
+    "start": "00:19:27.520",
+    "end": "00:19:29.029",
+    "text": "mathematics strengths are entirely being"
+  },
+  {
+    "start": "00:19:29.039",
+    "end": "00:19:30.470",
+    "text": "handed over to"
+  },
+  {
+    "start": "00:19:30.480",
+    "end": "00:19:32.870",
+    "text": "uh pepsi ts"
+  },
+  {
+    "start": "00:19:32.880",
+    "end": "00:19:34.710",
+    "text": "which is a very"
+  },
+  {
+    "start": "00:19:34.720",
+    "end": "00:19:37.350",
+    "text": "very well proven and very robust"
+  },
+  {
+    "start": "00:19:37.360",
+    "end": "00:19:39.669",
+    "text": "framework for"
+  },
+  {
+    "start": "00:19:39.679",
+    "end": "00:19:42.390",
+    "text": "solving time-dependent uh non-linear"
+  },
+  {
+    "start": "00:19:42.400",
+    "end": "00:19:44.789",
+    "text": "non-linear problems"
+  },
+  {
+    "start": "00:19:44.799",
+    "end": "00:19:45.669",
+    "text": "uh"
+  },
+  {
+    "start": "00:19:45.679",
+    "end": "00:19:47.350",
+    "text": "the spatial decorative"
+  },
+  {
+    "start": "00:19:47.360",
+    "end": "00:19:48.950",
+    "text": "discretization is being handed over to"
+  },
+  {
+    "start": "00:19:48.960",
+    "end": "00:19:51.190",
+    "text": "the pepsi dmplex"
+  },
+  {
+    "start": "00:19:51.200",
+    "end": "00:19:54.230",
+    "text": "framework uh as well as the finite"
+  },
+  {
+    "start": "00:19:54.240",
+    "end": "00:19:55.909",
+    "text": "element definition"
+  },
+  {
+    "start": "00:19:55.919",
+    "end": "00:19:57.190",
+    "text": "it's"
+  },
+  {
+    "start": "00:19:57.200",
+    "end": "00:19:58.710",
+    "text": "if there's one reason one thing to to"
+  },
+  {
+    "start": "00:19:58.720",
+    "end": "00:20:00.630",
+    "text": "really be happy about this"
+  },
+  {
+    "start": "00:20:00.640",
+    "end": "00:20:02.310",
+    "text": "is that you can define it elements"
+  },
+  {
+    "start": "00:20:02.320",
+    "end": "00:20:04.950",
+    "text": "without having to worry about any of the"
+  },
+  {
+    "start": "00:20:04.960",
+    "end": "00:20:06.789",
+    "text": "stuff that just makes you confused about"
+  },
+  {
+    "start": "00:20:06.799",
+    "end": "00:20:08.310",
+    "text": "local to global or what have you in"
+  },
+  {
+    "start": "00:20:08.320",
+    "end": "00:20:09.350",
+    "text": "terms of the"
+  },
+  {
+    "start": "00:20:09.360",
+    "end": "00:20:10.870",
+    "text": "the uh"
+  },
+  {
+    "start": "00:20:10.880",
+    "end": "00:20:12.870",
+    "text": "the the"
+  },
+  {
+    "start": "00:20:12.880",
+    "end": "00:20:14.470",
+    "text": "individual elements"
+  },
+  {
+    "start": "00:20:14.480",
+    "end": "00:20:16.549",
+    "text": "so all right let's go back for a minute"
+  },
+  {
+    "start": "00:20:16.559",
+    "end": "00:20:18.230",
+    "text": "and actually look at what how we're"
+  },
+  {
+    "start": "00:20:18.240",
+    "end": "00:20:19.350",
+    "text": "solving problems for the finite"
+  },
+  {
+    "start": "00:20:19.360",
+    "end": "00:20:21.590",
+    "text": "development method basically we have a"
+  },
+  {
+    "start": "00:20:21.600",
+    "end": "00:20:22.710",
+    "text": "pde"
+  },
+  {
+    "start": "00:20:22.720",
+    "end": "00:20:23.990",
+    "text": "that we're multiplying by a trial"
+  },
+  {
+    "start": "00:20:24.000",
+    "end": "00:20:26.149",
+    "text": "function and integrating over a domain"
+  },
+  {
+    "start": "00:20:26.159",
+    "end": "00:20:29.270",
+    "text": "so what we get is a"
+  },
+  {
+    "start": "00:20:29.280",
+    "end": "00:20:31.750",
+    "text": "two terms one that is"
+  },
+  {
+    "start": "00:20:31.760",
+    "end": "00:20:33.590",
+    "text": "multiplied by the trial function one is"
+  },
+  {
+    "start": "00:20:33.600",
+    "end": "00:20:35.350",
+    "text": "multiplied by the gradient of the trial"
+  },
+  {
+    "start": "00:20:35.360",
+    "end": "00:20:37.990",
+    "text": "function if we call them f zero and f"
+  },
+  {
+    "start": "00:20:38.000",
+    "end": "00:20:39.750",
+    "text": "one"
+  },
+  {
+    "start": "00:20:39.760",
+    "end": "00:20:41.350",
+    "text": "um"
+  },
+  {
+    "start": "00:20:41.360",
+    "end": "00:20:42.549",
+    "text": "if we can"
+  },
+  {
+    "start": "00:20:42.559",
+    "end": "00:20:45.270",
+    "text": "step back and also go back to again"
+  },
+  {
+    "start": "00:20:45.280",
+    "end": "00:20:47.190",
+    "text": "our because all the problems that we're"
+  },
+  {
+    "start": "00:20:47.200",
+    "end": "00:20:49.990",
+    "text": "going to be solving for this talk are"
+  },
+  {
+    "start": "00:20:50.000",
+    "end": "00:20:52.789",
+    "text": "quasi-static so that means that we can"
+  },
+  {
+    "start": "00:20:52.799",
+    "end": "00:20:54.390",
+    "text": "solve them implicitly"
+  },
+  {
+    "start": "00:20:54.400",
+    "end": "00:20:55.990",
+    "text": "and so as such"
+  },
+  {
+    "start": "00:20:56.000",
+    "end": "00:20:59.510",
+    "text": "we want to rewrite our problems in a way"
+  },
+  {
+    "start": "00:20:59.520",
+    "end": "00:21:02.070",
+    "text": "that we have a left-hand side that is"
+  },
+  {
+    "start": "00:21:02.080",
+    "end": "00:21:03.270",
+    "text": "equal to zero"
+  },
+  {
+    "start": "00:21:03.280",
+    "end": "00:21:05.590",
+    "text": "minimizes kernels minimizes a lot of"
+  },
+  {
+    "start": "00:21:05.600",
+    "end": "00:21:09.029",
+    "text": "things making makes things easier to do"
+  },
+  {
+    "start": "00:21:09.039",
+    "end": "00:21:09.990",
+    "text": "so"
+  },
+  {
+    "start": "00:21:10.000",
+    "end": "00:21:12.870",
+    "text": "if we take uh the pde from our from our"
+  },
+  {
+    "start": "00:21:12.880",
+    "end": "00:21:14.710",
+    "text": "fina"
+  },
+  {
+    "start": "00:21:14.720",
+    "end": "00:21:16.470",
+    "text": "and the weak form generated from it it"
+  },
+  {
+    "start": "00:21:16.480",
+    "end": "00:21:17.990",
+    "text": "was up on a finite element"
+  },
+  {
+    "start": "00:21:18.000",
+    "end": "00:21:20.390",
+    "text": "implementation from fire page"
+  },
+  {
+    "start": "00:21:20.400",
+    "end": "00:21:22.710",
+    "text": "we can resolve we can"
+  },
+  {
+    "start": "00:21:22.720",
+    "end": "00:21:25.110",
+    "text": "surmise that we're going to get"
+  },
+  {
+    "start": "00:21:25.120",
+    "end": "00:21:27.990",
+    "text": "a collection of"
+  },
+  {
+    "start": "00:21:28.000",
+    "end": "00:21:29.990",
+    "text": "what we would call kernels multiplied by"
+  },
+  {
+    "start": "00:21:30.000",
+    "end": "00:21:31.430",
+    "text": "trial functions"
+  },
+  {
+    "start": "00:21:31.440",
+    "end": "00:21:34.149",
+    "text": "uh that looks like this"
+  },
+  {
+    "start": "00:21:34.159",
+    "end": "00:21:36.870",
+    "text": "where we only have the left-hand side so"
+  },
+  {
+    "start": "00:21:36.880",
+    "end": "00:21:38.710",
+    "text": "if you're confused let's look at an"
+  },
+  {
+    "start": "00:21:38.720",
+    "end": "00:21:41.190",
+    "text": "example for poor elasticity"
+  },
+  {
+    "start": "00:21:41.200",
+    "end": "00:21:43.270",
+    "text": "what we have here is our solution vector"
+  },
+  {
+    "start": "00:21:43.280",
+    "end": "00:21:44.710",
+    "text": "we have our three"
+  },
+  {
+    "start": "00:21:44.720",
+    "end": "00:21:46.870",
+    "text": "solution"
+  },
+  {
+    "start": "00:21:46.880",
+    "end": "00:21:49.830",
+    "text": "solution fields vector displacement uh"
+  },
+  {
+    "start": "00:21:49.840",
+    "end": "00:21:52.549",
+    "text": "pressure and our volumetric strain value"
+  },
+  {
+    "start": "00:21:52.559",
+    "end": "00:21:54.710",
+    "text": "we have our conservation and momentum"
+  },
+  {
+    "start": "00:21:54.720",
+    "end": "00:21:56.789",
+    "text": "term we have our conservation of mass"
+  },
+  {
+    "start": "00:21:56.799",
+    "end": "00:21:58.470",
+    "text": "term we have our identity term and we"
+  },
+  {
+    "start": "00:21:58.480",
+    "end": "00:22:00.310",
+    "text": "have our boundary conditions so this"
+  },
+  {
+    "start": "00:22:00.320",
+    "end": "00:22:02.549",
+    "text": "would be the strong formula"
+  },
+  {
+    "start": "00:22:02.559",
+    "end": "00:22:04.470",
+    "text": "if we go to the weak form"
+  },
+  {
+    "start": "00:22:04.480",
+    "end": "00:22:07.270",
+    "text": "we can convert this into"
+  },
+  {
+    "start": "00:22:07.280",
+    "end": "00:22:10.149",
+    "text": "the following where basically all we"
+  },
+  {
+    "start": "00:22:10.159",
+    "end": "00:22:11.750",
+    "text": "have to worry about now"
+  },
+  {
+    "start": "00:22:11.760",
+    "end": "00:22:14.549",
+    "text": "are the areas that our cover that are"
+  },
+  {
+    "start": "00:22:14.559",
+    "end": "00:22:15.430",
+    "text": "that are"
+  },
+  {
+    "start": "00:22:15.440",
+    "end": "00:22:17.990",
+    "text": "labeled or underscored and and labeled"
+  },
+  {
+    "start": "00:22:18.000",
+    "end": "00:22:21.190",
+    "text": "and colored in blue"
+  },
+  {
+    "start": "00:22:21.200",
+    "end": "00:22:22.149",
+    "text": "so"
+  },
+  {
+    "start": "00:22:22.159",
+    "end": "00:22:23.510",
+    "text": "this makes it easier of course because"
+  },
+  {
+    "start": "00:22:23.520",
+    "end": "00:22:25.029",
+    "text": "the entire point of the weak form is"
+  },
+  {
+    "start": "00:22:25.039",
+    "end": "00:22:26.230",
+    "text": "that you're reducing the order of the"
+  },
+  {
+    "start": "00:22:26.240",
+    "end": "00:22:28.390",
+    "text": "problem so that for the actual"
+  },
+  {
+    "start": "00:22:28.400",
+    "end": "00:22:30.710",
+    "text": "calculations it's it's a simplified way"
+  },
+  {
+    "start": "00:22:30.720",
+    "end": "00:22:31.909",
+    "text": "but we'll go over this a little bit"
+  },
+  {
+    "start": "00:22:31.919",
+    "end": "00:22:33.750",
+    "text": "further in a moment"
+  },
+  {
+    "start": "00:22:33.760",
+    "end": "00:22:34.630",
+    "text": "so"
+  },
+  {
+    "start": "00:22:34.640",
+    "end": "00:22:36.230",
+    "text": "basically why are we doing putting this"
+  },
+  {
+    "start": "00:22:36.240",
+    "end": "00:22:37.110",
+    "text": "out"
+  },
+  {
+    "start": "00:22:37.120",
+    "end": "00:22:38.630",
+    "text": "we're trying to decouple"
+  },
+  {
+    "start": "00:22:38.640",
+    "end": "00:22:39.909",
+    "text": "we're trying to make it some finite"
+  },
+  {
+    "start": "00:22:39.919",
+    "end": "00:22:41.990",
+    "text": "element definite definition"
+  },
+  {
+    "start": "00:22:42.000",
+    "end": "00:22:44.789",
+    "text": "uh is is separate"
+  },
+  {
+    "start": "00:22:44.799",
+    "end": "00:22:47.110",
+    "text": "from the actual"
+  },
+  {
+    "start": "00:22:47.120",
+    "end": "00:22:48.950",
+    "text": "solution process"
+  },
+  {
+    "start": "00:22:48.960",
+    "end": "00:22:52.390",
+    "text": "so what we can do is is that"
+  },
+  {
+    "start": "00:22:52.400",
+    "end": "00:22:54.789",
+    "text": "that we can generate material and"
+  },
+  {
+    "start": "00:22:54.799",
+    "end": "00:22:57.350",
+    "text": "boundary condition point-wise functions"
+  },
+  {
+    "start": "00:22:57.360",
+    "end": "00:22:59.190",
+    "text": "and we can generate them and then give"
+  },
+  {
+    "start": "00:22:59.200",
+    "end": "00:23:01.110",
+    "text": "them to pet c and they solve them over"
+  },
+  {
+    "start": "00:23:01.120",
+    "end": "00:23:03.669",
+    "text": "the entire domain and that's it you"
+  },
+  {
+    "start": "00:23:03.679",
+    "end": "00:23:05.110",
+    "text": "don't have to worry about anything if"
+  },
+  {
+    "start": "00:23:05.120",
+    "end": "00:23:06.710",
+    "text": "you can basically if you can write this"
+  },
+  {
+    "start": "00:23:06.720",
+    "end": "00:23:08.789",
+    "text": "up write something up in a in a kernel"
+  },
+  {
+    "start": "00:23:08.799",
+    "end": "00:23:10.310",
+    "text": "formulation"
+  },
+  {
+    "start": "00:23:10.320",
+    "end": "00:23:11.909",
+    "text": "you can put it in"
+  },
+  {
+    "start": "00:23:11.919",
+    "end": "00:23:12.789",
+    "text": "uh"
+  },
+  {
+    "start": "00:23:12.799",
+    "end": "00:23:13.669",
+    "text": "and"
+  },
+  {
+    "start": "00:23:13.679",
+    "end": "00:23:15.510",
+    "text": "furthermore is that we we already we"
+  },
+  {
+    "start": "00:23:15.520",
+    "end": "00:23:17.830",
+    "text": "also use the ability that has already"
+  },
+  {
+    "start": "00:23:17.840",
+    "end": "00:23:20.390",
+    "text": "been tried and uh tested with pet with"
+  },
+  {
+    "start": "00:23:20.400",
+    "end": "00:23:23.110",
+    "text": "pepsi for multiple"
+  },
+  {
+    "start": "00:23:23.120",
+    "end": "00:23:24.789",
+    "text": "manners of solution"
+  },
+  {
+    "start": "00:23:24.799",
+    "end": "00:23:28.149",
+    "text": "uh implementation over"
+  },
+  {
+    "start": "00:23:28.159",
+    "end": "00:23:29.750",
+    "text": "many many different"
+  },
+  {
+    "start": "00:23:29.760",
+    "end": "00:23:30.630",
+    "text": "uh"
+  },
+  {
+    "start": "00:23:30.640",
+    "end": "00:23:32.630",
+    "text": "different frameworks"
+  },
+  {
+    "start": "00:23:32.640",
+    "end": "00:23:34.630",
+    "text": "uh you don't you don't have you have to"
+  },
+  {
+    "start": "00:23:34.640",
+    "end": "00:23:37.510",
+    "text": "be it's a lot less being of a technician"
+  },
+  {
+    "start": "00:23:37.520",
+    "end": "00:23:39.029",
+    "text": "so"
+  },
+  {
+    "start": "00:23:39.039",
+    "end": "00:23:41.350",
+    "text": "but we we go one further actually"
+  },
+  {
+    "start": "00:23:41.360",
+    "end": "00:23:44.549",
+    "text": "and so the way that we are handling"
+  },
+  {
+    "start": "00:23:44.559",
+    "end": "00:23:46.710",
+    "text": "our um"
+  },
+  {
+    "start": "00:23:46.720",
+    "end": "00:23:49.110",
+    "text": "what we call rheology we have for our"
+  },
+  {
+    "start": "00:23:49.120",
+    "end": "00:23:52.789",
+    "text": "domain say if we were to have a box"
+  },
+  {
+    "start": "00:23:52.799",
+    "end": "00:23:55.110",
+    "text": "that were linear elastic"
+  },
+  {
+    "start": "00:23:55.120",
+    "end": "00:23:56.870",
+    "text": "or rather elastic let's just give it"
+  },
+  {
+    "start": "00:23:56.880",
+    "end": "00:23:57.990",
+    "text": "away"
+  },
+  {
+    "start": "00:23:58.000",
+    "end": "00:23:59.590",
+    "text": "we would have the entire domain that"
+  },
+  {
+    "start": "00:23:59.600",
+    "end": "00:24:01.669",
+    "text": "would be considered"
+  },
+  {
+    "start": "00:24:01.679",
+    "end": "00:24:03.269",
+    "text": "elastic"
+  },
+  {
+    "start": "00:24:03.279",
+    "end": "00:24:04.549",
+    "text": "and you could even"
+  },
+  {
+    "start": "00:24:04.559",
+    "end": "00:24:06.950",
+    "text": "you could even ostensibly have"
+  },
+  {
+    "start": "00:24:06.960",
+    "end": "00:24:08.390",
+    "text": "different areas"
+  },
+  {
+    "start": "00:24:08.400",
+    "end": "00:24:09.909",
+    "text": "say if you wanted"
+  },
+  {
+    "start": "00:24:09.919",
+    "end": "00:24:11.590",
+    "text": "one part to be"
+  },
+  {
+    "start": "00:24:11.600",
+    "end": "00:24:13.430",
+    "text": "uh this i'll give you the example here"
+  },
+  {
+    "start": "00:24:13.440",
+    "end": "00:24:14.950",
+    "text": "of elasticity because it's the best to"
+  },
+  {
+    "start": "00:24:14.960",
+    "end": "00:24:16.230",
+    "text": "find"
+  },
+  {
+    "start": "00:24:16.240",
+    "end": "00:24:19.510",
+    "text": "one part that wanted to be non-linear um"
+  },
+  {
+    "start": "00:24:19.520",
+    "end": "00:24:20.870",
+    "text": "so you want to have the plastic"
+  },
+  {
+    "start": "00:24:20.880",
+    "end": "00:24:23.269",
+    "text": "definitions and the rest to be elastic"
+  },
+  {
+    "start": "00:24:23.279",
+    "end": "00:24:25.590",
+    "text": "you can do this so what we're doing is"
+  },
+  {
+    "start": "00:24:25.600",
+    "end": "00:24:26.789",
+    "text": "we're adding another level of"
+  },
+  {
+    "start": "00:24:26.799",
+    "end": "00:24:28.870",
+    "text": "abstraction here"
+  },
+  {
+    "start": "00:24:28.880",
+    "end": "00:24:30.149",
+    "text": "is that"
+  },
+  {
+    "start": "00:24:30.159",
+    "end": "00:24:31.590",
+    "text": "uh"
+  },
+  {
+    "start": "00:24:31.600",
+    "end": "00:24:34.549",
+    "text": "we can"
+  },
+  {
+    "start": "00:24:34.559",
+    "end": "00:24:38.710",
+    "text": "the we can we can we can basically have"
+  },
+  {
+    "start": "00:24:38.720",
+    "end": "00:24:40.230",
+    "text": "one family"
+  },
+  {
+    "start": "00:24:40.240",
+    "end": "00:24:43.110",
+    "text": "of tools and use"
+  },
+  {
+    "start": "00:24:43.120",
+    "end": "00:24:45.350",
+    "text": "and use different different formulations"
+  },
+  {
+    "start": "00:24:45.360",
+    "end": "00:24:47.510",
+    "text": "they're in so for again for poor"
+  },
+  {
+    "start": "00:24:47.520",
+    "end": "00:24:49.590",
+    "text": "elasticity how does this come about is"
+  },
+  {
+    "start": "00:24:49.600",
+    "end": "00:24:50.630",
+    "text": "that we have"
+  },
+  {
+    "start": "00:24:50.640",
+    "end": "00:24:53.350",
+    "text": "we have a breakdown of the auxiliary"
+  },
+  {
+    "start": "00:24:53.360",
+    "end": "00:24:55.269",
+    "text": "fields that we use auxiliary fields are"
+  },
+  {
+    "start": "00:24:55.279",
+    "end": "00:24:56.870",
+    "text": "not the ones we're solving for these are"
+  },
+  {
+    "start": "00:24:56.880",
+    "end": "00:24:59.590",
+    "text": "the ones that we're defining"
+  },
+  {
+    "start": "00:24:59.600",
+    "end": "00:25:01.430",
+    "text": "so the ones at the top and the material"
+  },
+  {
+    "start": "00:25:01.440",
+    "end": "00:25:03.510",
+    "text": "are used for every version anything"
+  },
+  {
+    "start": "00:25:03.520",
+    "end": "00:25:05.029",
+    "text": "that's poor elastic you're going to need"
+  },
+  {
+    "start": "00:25:05.039",
+    "end": "00:25:07.350",
+    "text": "to to input this and of course body"
+  },
+  {
+    "start": "00:25:07.360",
+    "end": "00:25:09.190",
+    "text": "force gravity and fluid source are"
+  },
+  {
+    "start": "00:25:09.200",
+    "end": "00:25:13.110",
+    "text": "dependent on whether you turn them on"
+  },
+  {
+    "start": "00:25:13.120",
+    "end": "00:25:16.549",
+    "text": "but the rheology terms are dependent"
+  },
+  {
+    "start": "00:25:16.559",
+    "end": "00:25:18.549",
+    "text": "entirely on the reality so what this is"
+  },
+  {
+    "start": "00:25:18.559",
+    "end": "00:25:21.590",
+    "text": "is for isotropic linear polar elasticity"
+  },
+  {
+    "start": "00:25:21.600",
+    "end": "00:25:23.430",
+    "text": "uh you would have these"
+  },
+  {
+    "start": "00:25:23.440",
+    "end": "00:25:25.750",
+    "text": "these terms to"
+  },
+  {
+    "start": "00:25:25.760",
+    "end": "00:25:28.950",
+    "text": "base to identify the elastic poor"
+  },
+  {
+    "start": "00:25:28.960",
+    "end": "00:25:30.710",
+    "text": "elastic behavior of the material if you"
+  },
+  {
+    "start": "00:25:30.720",
+    "end": "00:25:31.990",
+    "text": "were to have"
+  },
+  {
+    "start": "00:25:32.000",
+    "end": "00:25:35.190",
+    "text": "a formulation that would be"
+  },
+  {
+    "start": "00:25:35.200",
+    "end": "00:25:36.630",
+    "text": "that would be"
+  },
+  {
+    "start": "00:25:36.640",
+    "end": "00:25:38.470",
+    "text": "a"
+  },
+  {
+    "start": "00:25:38.480",
+    "end": "00:25:41.590",
+    "text": "visco poro viscoelastic"
+  },
+  {
+    "start": "00:25:41.600",
+    "end": "00:25:43.909",
+    "text": "keep these you drop these"
+  },
+  {
+    "start": "00:25:43.919",
+    "end": "00:25:45.750",
+    "text": "and um"
+  },
+  {
+    "start": "00:25:45.760",
+    "end": "00:25:48.230",
+    "text": "and go on the entire the benefit here is"
+  },
+  {
+    "start": "00:25:48.240",
+    "end": "00:25:50.630",
+    "text": "not only for ease of use but it's also"
+  },
+  {
+    "start": "00:25:50.640",
+    "end": "00:25:52.149",
+    "text": "for the ease of use of the developers"
+  },
+  {
+    "start": "00:25:52.159",
+    "end": "00:25:53.510",
+    "text": "where you're having to"
+  },
+  {
+    "start": "00:25:53.520",
+    "end": "00:25:55.510",
+    "text": "to"
+  },
+  {
+    "start": "00:25:55.520",
+    "end": "00:25:58.470",
+    "text": "uh redo effort whole lot less so within"
+  },
+  {
+    "start": "00:25:58.480",
+    "end": "00:26:00.149",
+    "text": "the kernels themselves we have an"
+  },
+  {
+    "start": "00:26:00.159",
+    "end": "00:26:02.390",
+    "text": "example here of showing which ones are"
+  },
+  {
+    "start": "00:26:02.400",
+    "end": "00:26:05.750",
+    "text": "which the uh the greens uh the green"
+  },
+  {
+    "start": "00:26:05.760",
+    "end": "00:26:07.029",
+    "text": "terms are"
+  },
+  {
+    "start": "00:26:07.039",
+    "end": "00:26:08.789",
+    "text": "have to do with the rheology"
+  },
+  {
+    "start": "00:26:08.799",
+    "end": "00:26:11.269",
+    "text": "and these are the the heavy lifting bits"
+  },
+  {
+    "start": "00:26:11.279",
+    "end": "00:26:13.669",
+    "text": "of the poor a lot of poor elasticity"
+  },
+  {
+    "start": "00:26:13.679",
+    "end": "00:26:16.149",
+    "text": "uh for example for the baseline you have"
+  },
+  {
+    "start": "00:26:16.159",
+    "end": "00:26:18.789",
+    "text": "the added force looking like gravity"
+  },
+  {
+    "start": "00:26:18.799",
+    "end": "00:26:20.630",
+    "text": "and this continues with the jacobians"
+  },
+  {
+    "start": "00:26:20.640",
+    "end": "00:26:21.750",
+    "text": "but"
+  },
+  {
+    "start": "00:26:21.760",
+    "end": "00:26:22.710",
+    "text": "okay"
+  },
+  {
+    "start": "00:26:22.720",
+    "end": "00:26:24.390",
+    "text": "now this is where this becomes a sales"
+  },
+  {
+    "start": "00:26:24.400",
+    "end": "00:26:25.510",
+    "text": "pitch"
+  },
+  {
+    "start": "00:26:25.520",
+    "end": "00:26:27.110",
+    "text": "uh if we go over the kernel"
+  },
+  {
+    "start": "00:26:27.120",
+    "end": "00:26:30.549",
+    "text": "implementation what we see is basically"
+  },
+  {
+    "start": "00:26:30.559",
+    "end": "00:26:33.350",
+    "text": "the idea is that you yes you"
+  },
+  {
+    "start": "00:26:33.360",
+    "end": "00:26:36.950",
+    "text": "can program uh multiphysics"
+  },
+  {
+    "start": "00:26:36.960",
+    "end": "00:26:39.029",
+    "text": "so what we have are plug and play"
+  },
+  {
+    "start": "00:26:39.039",
+    "end": "00:26:41.029",
+    "text": "physics kernels you just you do not have"
+  },
+  {
+    "start": "00:26:41.039",
+    "end": "00:26:42.070",
+    "text": "to be"
+  },
+  {
+    "start": "00:26:42.080",
+    "end": "00:26:43.430",
+    "text": "low level"
+  },
+  {
+    "start": "00:26:43.440",
+    "end": "00:26:45.830",
+    "text": "again if you can write any of these you"
+  },
+  {
+    "start": "00:26:45.840",
+    "end": "00:26:47.510",
+    "text": "can implement new physics you can think"
+  },
+  {
+    "start": "00:26:47.520",
+    "end": "00:26:48.950",
+    "text": "it you can do it"
+  },
+  {
+    "start": "00:26:48.960",
+    "end": "00:26:51.350",
+    "text": "so our inputs to our kernels"
+  },
+  {
+    "start": "00:26:51.360",
+    "end": "00:26:53.510",
+    "text": "are all the same we have the similar the"
+  },
+  {
+    "start": "00:26:53.520",
+    "end": "00:26:54.310",
+    "text": "same"
+  },
+  {
+    "start": "00:26:54.320",
+    "end": "00:26:55.750",
+    "text": "predictable"
+  },
+  {
+    "start": "00:26:55.760",
+    "end": "00:26:57.430",
+    "text": "inputs where we have dimension we have"
+  },
+  {
+    "start": "00:26:57.440",
+    "end": "00:26:59.830",
+    "text": "the number of solution fields we with"
+  },
+  {
+    "start": "00:26:59.840",
+    "end": "00:27:00.789",
+    "text": "the solution fields we have the"
+  },
+  {
+    "start": "00:27:00.799",
+    "end": "00:27:03.830",
+    "text": "auxiliary fields"
+  },
+  {
+    "start": "00:27:03.840",
+    "end": "00:27:07.190",
+    "text": "and the the gradients of of both the the"
+  },
+  {
+    "start": "00:27:07.200",
+    "end": "00:27:08.950",
+    "text": "time derivatives of both"
+  },
+  {
+    "start": "00:27:08.960",
+    "end": "00:27:11.350",
+    "text": "and constants which are"
+  },
+  {
+    "start": "00:27:11.360",
+    "end": "00:27:14.149",
+    "text": "another sort of give me at this point"
+  },
+  {
+    "start": "00:27:14.159",
+    "end": "00:27:15.990",
+    "text": "so again let's go back to linear"
+  },
+  {
+    "start": "00:27:16.000",
+    "end": "00:27:17.590",
+    "text": "elasticity we have these"
+  },
+  {
+    "start": "00:27:17.600",
+    "end": "00:27:21.350",
+    "text": "excuse me these kernels here each one"
+  },
+  {
+    "start": "00:27:21.360",
+    "end": "00:27:23.190",
+    "text": "uh representing some bit of physics"
+  },
+  {
+    "start": "00:27:23.200",
+    "end": "00:27:25.350",
+    "text": "again from the weak form"
+  },
+  {
+    "start": "00:27:25.360",
+    "end": "00:27:26.310",
+    "text": "so"
+  },
+  {
+    "start": "00:27:26.320",
+    "end": "00:27:28.710",
+    "text": "if we're going to look for the f1u"
+  },
+  {
+    "start": "00:27:28.720",
+    "end": "00:27:30.070",
+    "text": "function so what is this we have the"
+  },
+  {
+    "start": "00:27:30.080",
+    "end": "00:27:32.070",
+    "text": "stress tensor"
+  },
+  {
+    "start": "00:27:32.080",
+    "end": "00:27:34.549",
+    "text": "uh okay so there's our definition of a"
+  },
+  {
+    "start": "00:27:34.559",
+    "end": "00:27:37.110",
+    "text": "pro-elastic stress tensor"
+  },
+  {
+    "start": "00:27:37.120",
+    "end": "00:27:38.870",
+    "text": "here's the code"
+  },
+  {
+    "start": "00:27:38.880",
+    "end": "00:27:41.430",
+    "text": "that's all if you can write that you can"
+  },
+  {
+    "start": "00:27:41.440",
+    "end": "00:27:42.789",
+    "text": "implement something else if you were to"
+  },
+  {
+    "start": "00:27:42.799",
+    "end": "00:27:44.389",
+    "text": "change this into"
+  },
+  {
+    "start": "00:27:44.399",
+    "end": "00:27:46.310",
+    "text": "some other form"
+  },
+  {
+    "start": "00:27:46.320",
+    "end": "00:27:49.029",
+    "text": "of of relation that weren't necessarily"
+  },
+  {
+    "start": "00:27:49.039",
+    "end": "00:27:51.029",
+    "text": "standard hooke's law"
+  },
+  {
+    "start": "00:27:51.039",
+    "end": "00:27:54.070",
+    "text": "write it up put it in put it out"
+  },
+  {
+    "start": "00:27:54.080",
+    "end": "00:27:56.230",
+    "text": "uh the same thing for"
+  },
+  {
+    "start": "00:27:56.240",
+    "end": "00:27:57.350",
+    "text": "the uh"
+  },
+  {
+    "start": "00:27:57.360",
+    "end": "00:28:00.070",
+    "text": "variation and fluid and fluid"
+  },
+  {
+    "start": "00:28:00.080",
+    "end": "00:28:01.430",
+    "text": "volume term"
+  },
+  {
+    "start": "00:28:01.440",
+    "end": "00:28:04.149",
+    "text": "for when this this comes from the from"
+  },
+  {
+    "start": "00:28:04.159",
+    "end": "00:28:06.389",
+    "text": "the conservation of mass"
+  },
+  {
+    "start": "00:28:06.399",
+    "end": "00:28:07.750",
+    "text": "equation"
+  },
+  {
+    "start": "00:28:07.760",
+    "end": "00:28:08.710",
+    "text": "again"
+  },
+  {
+    "start": "00:28:08.720",
+    "end": "00:28:10.789",
+    "text": "and here we have for darcy's law i mean"
+  },
+  {
+    "start": "00:28:10.799",
+    "end": "00:28:13.029",
+    "text": "this is this is not real difficult"
+  },
+  {
+    "start": "00:28:13.039",
+    "end": "00:28:15.750",
+    "text": "so we also have another ability that"
+  },
+  {
+    "start": "00:28:15.760",
+    "end": "00:28:17.029",
+    "text": "we're adding in"
+  },
+  {
+    "start": "00:28:17.039",
+    "end": "00:28:19.990",
+    "text": "is that we have the ability to update"
+  },
+  {
+    "start": "00:28:20.000",
+    "end": "00:28:21.669",
+    "text": "state variables"
+  },
+  {
+    "start": "00:28:21.679",
+    "end": "00:28:23.909",
+    "text": "at the moment we are"
+  },
+  {
+    "start": "00:28:23.919",
+    "end": "00:28:25.510",
+    "text": "only implementing this pretty much for"
+  },
+  {
+    "start": "00:28:25.520",
+    "end": "00:28:27.909",
+    "text": "porosity or it can be turned on where"
+  },
+  {
+    "start": "00:28:27.919",
+    "end": "00:28:29.510",
+    "text": "the idea is"
+  },
+  {
+    "start": "00:28:29.520",
+    "end": "00:28:30.389",
+    "text": "is that"
+  },
+  {
+    "start": "00:28:30.399",
+    "end": "00:28:32.710",
+    "text": "we can model compaction"
+  },
+  {
+    "start": "00:28:32.720",
+    "end": "00:28:33.909",
+    "text": "as"
+  },
+  {
+    "start": "00:28:33.919",
+    "end": "00:28:35.029",
+    "text": "for"
+  },
+  {
+    "start": "00:28:35.039",
+    "end": "00:28:35.830",
+    "text": "as"
+  },
+  {
+    "start": "00:28:35.840",
+    "end": "00:28:38.230",
+    "text": "at the end of each solution run so if"
+  },
+  {
+    "start": "00:28:38.240",
+    "end": "00:28:41.190",
+    "text": "you we solve for the primary variables"
+  },
+  {
+    "start": "00:28:41.200",
+    "end": "00:28:43.750",
+    "text": "are pressure displacement and volumetric"
+  },
+  {
+    "start": "00:28:43.760",
+    "end": "00:28:44.710",
+    "text": "strain"
+  },
+  {
+    "start": "00:28:44.720",
+    "end": "00:28:46.070",
+    "text": "at the end of that"
+  },
+  {
+    "start": "00:28:46.080",
+    "end": "00:28:49.110",
+    "text": "we have um what is basically an explicit"
+  },
+  {
+    "start": "00:28:49.120",
+    "end": "00:28:52.149",
+    "text": "solution for um for the auxiliary terms"
+  },
+  {
+    "start": "00:28:52.159",
+    "end": "00:28:54.389",
+    "text": "and we can we can select which ones we"
+  },
+  {
+    "start": "00:28:54.399",
+    "end": "00:28:56.549",
+    "text": "would want to again this is simply just"
+  },
+  {
+    "start": "00:28:56.559",
+    "end": "00:28:58.389",
+    "text": "a matter of adding in a function and the"
+  },
+  {
+    "start": "00:28:58.399",
+    "end": "00:28:59.750",
+    "text": "way that we're"
+  },
+  {
+    "start": "00:28:59.760",
+    "end": "00:29:01.680",
+    "text": "updating porosity is that we have the"
+  },
+  {
+    "start": "00:29:01.690",
+    "end": "00:29:02.710",
+    "text": "[Music]"
+  },
+  {
+    "start": "00:29:02.720",
+    "end": "00:29:04.070",
+    "text": "change in porosity over time is"
+  },
+  {
+    "start": "00:29:04.080",
+    "end": "00:29:05.510",
+    "text": "equivalent to this"
+  },
+  {
+    "start": "00:29:05.520",
+    "end": "00:29:07.669",
+    "text": "and multiply it by the time step and add"
+  },
+  {
+    "start": "00:29:07.679",
+    "end": "00:29:08.950",
+    "text": "it in"
+  },
+  {
+    "start": "00:29:08.960",
+    "end": "00:29:11.190",
+    "text": "the fun fact here is this ends up"
+  },
+  {
+    "start": "00:29:11.200",
+    "end": "00:29:13.669",
+    "text": "requiring a six-field solution"
+  },
+  {
+    "start": "00:29:13.679",
+    "end": "00:29:16.389",
+    "text": "formulation which actually provides for"
+  },
+  {
+    "start": "00:29:16.399",
+    "end": "00:29:18.870",
+    "text": "some interesting results"
+  },
+  {
+    "start": "00:29:18.880",
+    "end": "00:29:19.750",
+    "text": "so"
+  },
+  {
+    "start": "00:29:19.760",
+    "end": "00:29:21.990",
+    "text": "the question now becomes"
+  },
+  {
+    "start": "00:29:22.000",
+    "end": "00:29:25.190",
+    "text": "uh does any of this work"
+  },
+  {
+    "start": "00:29:25.200",
+    "end": "00:29:28.230",
+    "text": "the answer is yeah actually does"
+  },
+  {
+    "start": "00:29:28.240",
+    "end": "00:29:30.789",
+    "text": "so we start with our benchmarks and"
+  },
+  {
+    "start": "00:29:30.799",
+    "end": "00:29:32.870",
+    "text": "those these are the classical benchmarks"
+  },
+  {
+    "start": "00:29:32.880",
+    "end": "00:29:33.750",
+    "text": "from"
+  },
+  {
+    "start": "00:29:33.760",
+    "end": "00:29:35.190",
+    "text": "um"
+  },
+  {
+    "start": "00:29:35.200",
+    "end": "00:29:37.350",
+    "text": "from soil mechanics"
+  },
+  {
+    "start": "00:29:37.360",
+    "end": "00:29:39.750",
+    "text": "we're starting with the case of uh"
+  },
+  {
+    "start": "00:29:39.760",
+    "end": "00:29:41.510",
+    "text": "the terzaghi problem which is a"
+  },
+  {
+    "start": "00:29:41.520",
+    "end": "00:29:42.950",
+    "text": "one-dimensional"
+  },
+  {
+    "start": "00:29:42.960",
+    "end": "00:29:44.789",
+    "text": "one-dimensional soil consolidation"
+  },
+  {
+    "start": "00:29:44.799",
+    "end": "00:29:47.190",
+    "text": "problem that actually predates bioportal"
+  },
+  {
+    "start": "00:29:47.200",
+    "end": "00:29:48.470",
+    "text": "elasticity"
+  },
+  {
+    "start": "00:29:48.480",
+    "end": "00:29:49.990",
+    "text": "so"
+  },
+  {
+    "start": "00:29:50.000",
+    "end": "00:29:52.389",
+    "text": "the prob the numerical system here is"
+  },
+  {
+    "start": "00:29:52.399",
+    "end": "00:29:53.909",
+    "text": "considered in two dimensions although"
+  },
+  {
+    "start": "00:29:53.919",
+    "end": "00:29:55.269",
+    "text": "the entire point is that it can be a"
+  },
+  {
+    "start": "00:29:55.279",
+    "end": "00:29:57.669",
+    "text": "one-dimensional problem"
+  },
+  {
+    "start": "00:29:57.679",
+    "end": "00:29:59.909",
+    "text": "so you have a soil sample of a certain"
+  },
+  {
+    "start": "00:29:59.919",
+    "end": "00:30:02.950",
+    "text": "thickness that's being compressed"
+  },
+  {
+    "start": "00:30:02.960",
+    "end": "00:30:05.190",
+    "text": "it is"
+  },
+  {
+    "start": "00:30:05.200",
+    "end": "00:30:09.029",
+    "text": "not rigid with respect to the to the wa"
+  },
+  {
+    "start": "00:30:09.039",
+    "end": "00:30:11.909",
+    "text": "to well to the lateral directions"
+  },
+  {
+    "start": "00:30:11.919",
+    "end": "00:30:13.190",
+    "text": "uh"
+  },
+  {
+    "start": "00:30:13.200",
+    "end": "00:30:15.190",
+    "text": "that is there's no has no displacement"
+  },
+  {
+    "start": "00:30:15.200",
+    "end": "00:30:16.549",
+    "text": "at the base"
+  },
+  {
+    "start": "00:30:16.559",
+    "end": "00:30:19.510",
+    "text": "um so it's it's lottery constrained"
+  },
+  {
+    "start": "00:30:19.520",
+    "end": "00:30:20.950",
+    "text": "displacement is restricted in x"
+  },
+  {
+    "start": "00:30:20.960",
+    "end": "00:30:23.510",
+    "text": "direction to zero and flow is"
+  },
+  {
+    "start": "00:30:23.520",
+    "end": "00:30:24.789",
+    "text": "prohibited"
+  },
+  {
+    "start": "00:30:24.799",
+    "end": "00:30:27.110",
+    "text": "through the boundaries except for"
+  },
+  {
+    "start": "00:30:27.120",
+    "end": "00:30:28.789",
+    "text": "at the top"
+  },
+  {
+    "start": "00:30:28.799",
+    "end": "00:30:29.510",
+    "text": "so"
+  },
+  {
+    "start": "00:30:29.520",
+    "end": "00:30:31.830",
+    "text": "what we see here are our"
+  },
+  {
+    "start": "00:30:31.840",
+    "end": "00:30:33.190",
+    "text": "values of"
+  },
+  {
+    "start": "00:30:33.200",
+    "end": "00:30:34.870",
+    "text": "the analytical condition this is for"
+  },
+  {
+    "start": "00:30:34.880",
+    "end": "00:30:37.510",
+    "text": "normalized result"
+  },
+  {
+    "start": "00:30:37.520",
+    "end": "00:30:39.909",
+    "text": "at given times and what we see is is"
+  },
+  {
+    "start": "00:30:39.919",
+    "end": "00:30:42.470",
+    "text": "that we provide"
+  },
+  {
+    "start": "00:30:42.480",
+    "end": "00:30:45.990",
+    "text": "relatively uh certainly acceptable uh"
+  },
+  {
+    "start": "00:30:46.000",
+    "end": "00:30:47.830",
+    "text": "reproduction of"
+  },
+  {
+    "start": "00:30:47.840",
+    "end": "00:30:52.789",
+    "text": "of benchmark behavior"
+  },
+  {
+    "start": "00:30:52.799",
+    "end": "00:30:53.669",
+    "text": "so"
+  },
+  {
+    "start": "00:30:53.679",
+    "end": "00:30:56.549",
+    "text": "if we continue this to two dimensions"
+  },
+  {
+    "start": "00:30:56.559",
+    "end": "00:30:59.750",
+    "text": "what we have is is a better better"
+  },
+  {
+    "start": "00:30:59.760",
+    "end": "00:31:01.669",
+    "text": "explanation of the of a coupling of the"
+  },
+  {
+    "start": "00:31:01.679",
+    "end": "00:31:02.789",
+    "text": "coupling"
+  },
+  {
+    "start": "00:31:02.799",
+    "end": "00:31:04.950",
+    "text": "processes of coupling between mechanical"
+  },
+  {
+    "start": "00:31:04.960",
+    "end": "00:31:07.110",
+    "text": "and poor fluid properties"
+  },
+  {
+    "start": "00:31:07.120",
+    "end": "00:31:08.630",
+    "text": "what we have is"
+  },
+  {
+    "start": "00:31:08.640",
+    "end": "00:31:10.710",
+    "text": "a rectangular sample of"
+  },
+  {
+    "start": "00:31:10.720",
+    "end": "00:31:12.149",
+    "text": "of infinite length and it's an"
+  },
+  {
+    "start": "00:31:12.159",
+    "end": "00:31:14.070",
+    "text": "analytical problem that's compressed"
+  },
+  {
+    "start": "00:31:14.080",
+    "end": "00:31:17.110",
+    "text": "between two rigid frictionless plates"
+  },
+  {
+    "start": "00:31:17.120",
+    "end": "00:31:19.590",
+    "text": "uh it's again it's"
+  },
+  {
+    "start": "00:31:19.600",
+    "end": "00:31:21.110",
+    "text": "this the plane strain condition is"
+  },
+  {
+    "start": "00:31:21.120",
+    "end": "00:31:23.269",
+    "text": "holding because we have the infinitely"
+  },
+  {
+    "start": "00:31:23.279",
+    "end": "00:31:24.549",
+    "text": "long um"
+  },
+  {
+    "start": "00:31:24.559",
+    "end": "00:31:26.149",
+    "text": "assumption"
+  },
+  {
+    "start": "00:31:26.159",
+    "end": "00:31:28.710",
+    "text": "and the confined sample"
+  },
+  {
+    "start": "00:31:28.720",
+    "end": "00:31:30.549",
+    "text": "and the confined sample here is assumed"
+  },
+  {
+    "start": "00:31:30.559",
+    "end": "00:31:32.470",
+    "text": "to be homogeneous however this is not"
+  },
+  {
+    "start": "00:31:32.480",
+    "end": "00:31:34.149",
+    "text": "necessarily need to be the case it can"
+  },
+  {
+    "start": "00:31:34.159",
+    "end": "00:31:35.110",
+    "text": "be"
+  },
+  {
+    "start": "00:31:35.120",
+    "end": "00:31:37.430",
+    "text": "accounted for isotropy but our point"
+  },
+  {
+    "start": "00:31:37.440",
+    "end": "00:31:38.389",
+    "text": "here is"
+  },
+  {
+    "start": "00:31:38.399",
+    "end": "00:31:40.470",
+    "text": "for a benchmark"
+  },
+  {
+    "start": "00:31:40.480",
+    "end": "00:31:43.430",
+    "text": "at the time okay so the entire also see"
+  },
+  {
+    "start": "00:31:43.440",
+    "end": "00:31:45.509",
+    "text": "if you see a little corner here this is"
+  },
+  {
+    "start": "00:31:45.519",
+    "end": "00:31:48.310",
+    "text": "because what we have is a symmetric"
+  },
+  {
+    "start": "00:31:48.320",
+    "end": "00:31:51.029",
+    "text": "problem so if you wanted to solve this"
+  },
+  {
+    "start": "00:31:51.039",
+    "end": "00:31:53.269",
+    "text": "in a more simple fashion you just simply"
+  },
+  {
+    "start": "00:31:53.279",
+    "end": "00:31:55.430",
+    "text": "take a quarter of it and"
+  },
+  {
+    "start": "00:31:55.440",
+    "end": "00:31:56.470",
+    "text": "make the"
+  },
+  {
+    "start": "00:31:56.480",
+    "end": "00:31:59.110",
+    "text": "x and y displacement battery zero"
+  },
+  {
+    "start": "00:31:59.120",
+    "end": "00:32:02.710",
+    "text": "at a compression term we call it a day"
+  },
+  {
+    "start": "00:32:02.720",
+    "end": "00:32:05.590",
+    "text": "so anyway at time zero we have a"
+  },
+  {
+    "start": "00:32:05.600",
+    "end": "00:32:06.950",
+    "text": "compressive vertical force that's"
+  },
+  {
+    "start": "00:32:06.960",
+    "end": "00:32:07.830",
+    "text": "applied"
+  },
+  {
+    "start": "00:32:07.840",
+    "end": "00:32:09.430",
+    "text": "from both plates"
+  },
+  {
+    "start": "00:32:09.440",
+    "end": "00:32:10.630",
+    "text": "and"
+  },
+  {
+    "start": "00:32:10.640",
+    "end": "00:32:12.549",
+    "text": "we also have at the lateral edges what's"
+  },
+  {
+    "start": "00:32:12.559",
+    "end": "00:32:14.470",
+    "text": "called a drain condition so free flow"
+  },
+  {
+    "start": "00:32:14.480",
+    "end": "00:32:16.389",
+    "text": "out the side"
+  },
+  {
+    "start": "00:32:16.399",
+    "end": "00:32:19.029",
+    "text": "uh what we will see however is something"
+  },
+  {
+    "start": "00:32:19.039",
+    "end": "00:32:21.750",
+    "text": "called the mandel cryer effect where we"
+  },
+  {
+    "start": "00:32:21.760",
+    "end": "00:32:24.710",
+    "text": "have a slight increase in in pressure"
+  },
+  {
+    "start": "00:32:24.720",
+    "end": "00:32:26.470",
+    "text": "prior to drainage"
+  },
+  {
+    "start": "00:32:26.480",
+    "end": "00:32:29.750",
+    "text": "and we do see this slightly coming out"
+  },
+  {
+    "start": "00:32:29.760",
+    "end": "00:32:31.509",
+    "text": "here again time steps really aren't the"
+  },
+  {
+    "start": "00:32:31.519",
+    "end": "00:32:33.830",
+    "text": "best but we see reasonable"
+  },
+  {
+    "start": "00:32:33.840",
+    "end": "00:32:35.990",
+    "text": "representation of the analytical"
+  },
+  {
+    "start": "00:32:36.000",
+    "end": "00:32:39.909",
+    "text": "solution"
+  },
+  {
+    "start": "00:32:39.919",
+    "end": "00:32:42.789",
+    "text": "all right we have another basic test"
+  },
+  {
+    "start": "00:32:42.799",
+    "end": "00:32:44.470",
+    "text": "that we run and we listen to the"
+  },
+  {
+    "start": "00:32:44.480",
+    "end": "00:32:45.669",
+    "text": "two-dimensional tests as"
+  },
+  {
+    "start": "00:32:45.679",
+    "end": "00:32:47.430",
+    "text": "three-dimensional attempts"
+  },
+  {
+    "start": "00:32:47.440",
+    "end": "00:32:49.509",
+    "text": "even though ironically this is a"
+  },
+  {
+    "start": "00:32:49.519",
+    "end": "00:32:51.190",
+    "text": "basically a one-dimensional problem as"
+  },
+  {
+    "start": "00:32:51.200",
+    "end": "00:32:51.909",
+    "text": "well"
+  },
+  {
+    "start": "00:32:51.919",
+    "end": "00:32:55.269",
+    "text": "uh so crier's problem consists of a"
+  },
+  {
+    "start": "00:32:55.279",
+    "end": "00:32:57.430",
+    "text": "saturn sphere of porous media"
+  },
+  {
+    "start": "00:32:57.440",
+    "end": "00:32:58.710",
+    "text": "that's"
+  },
+  {
+    "start": "00:32:58.720",
+    "end": "00:33:01.430",
+    "text": "subjected to a compressive stress"
+  },
+  {
+    "start": "00:33:01.440",
+    "end": "00:33:04.230",
+    "text": "all along the surface"
+  },
+  {
+    "start": "00:33:04.240",
+    "end": "00:33:07.669",
+    "text": "so surfaces model is drained but we have"
+  },
+  {
+    "start": "00:33:07.679",
+    "end": "00:33:10.310",
+    "text": "a squeezing it's going entirely in from"
+  },
+  {
+    "start": "00:33:10.320",
+    "end": "00:33:12.070",
+    "text": "all sides"
+  },
+  {
+    "start": "00:33:12.080",
+    "end": "00:33:15.350",
+    "text": "and ideally this is modeled well in"
+  },
+  {
+    "start": "00:33:15.360",
+    "end": "00:33:17.830",
+    "text": "theory it's modeled as a ball but in"
+  },
+  {
+    "start": "00:33:17.840",
+    "end": "00:33:20.070",
+    "text": "almost every case that we see"
+  },
+  {
+    "start": "00:33:20.080",
+    "end": "00:33:22.149",
+    "text": "uh folks just simply use the eighth of"
+  },
+  {
+    "start": "00:33:22.159",
+    "end": "00:33:24.389",
+    "text": "it because of the symmetry issue"
+  },
+  {
+    "start": "00:33:24.399",
+    "end": "00:33:26.070",
+    "text": "and"
+  },
+  {
+    "start": "00:33:26.080",
+    "end": "00:33:28.950",
+    "text": "what we have here is is a is a runtime"
+  },
+  {
+    "start": "00:33:28.960",
+    "end": "00:33:30.950",
+    "text": "test from from an eighth"
+  },
+  {
+    "start": "00:33:30.960",
+    "end": "00:33:33.509",
+    "text": "example uh so we have is the radial"
+  },
+  {
+    "start": "00:33:33.519",
+    "end": "00:33:35.750",
+    "text": "distance"
+  },
+  {
+    "start": "00:33:35.760",
+    "end": "00:33:37.750",
+    "text": "the normalized distance from the from"
+  },
+  {
+    "start": "00:33:37.760",
+    "end": "00:33:39.909",
+    "text": "the radius and the"
+  },
+  {
+    "start": "00:33:39.919",
+    "end": "00:33:42.389",
+    "text": "the pres the pressure that is given at"
+  },
+  {
+    "start": "00:33:42.399",
+    "end": "00:33:43.909",
+    "text": "that that radial distance because this"
+  },
+  {
+    "start": "00:33:43.919",
+    "end": "00:33:45.669",
+    "text": "can this can"
+  },
+  {
+    "start": "00:33:45.679",
+    "end": "00:33:47.190",
+    "text": "collapse down to a one-dimensional"
+  },
+  {
+    "start": "00:33:47.200",
+    "end": "00:33:49.350",
+    "text": "problem and we see a slight bump in"
+  },
+  {
+    "start": "00:33:49.360",
+    "end": "00:33:51.190",
+    "text": "pressure before"
+  },
+  {
+    "start": "00:33:51.200",
+    "end": "00:33:53.190",
+    "text": "things finally fall out because the"
+  },
+  {
+    "start": "00:33:53.200",
+    "end": "00:33:55.269",
+    "text": "fluid is draining out the signs"
+  },
+  {
+    "start": "00:33:55.279",
+    "end": "00:33:58.870",
+    "text": "uh here is a another example that we see"
+  },
+  {
+    "start": "00:33:58.880",
+    "end": "00:34:03.990",
+    "text": "from a full case of this"
+  },
+  {
+    "start": "00:34:04.000",
+    "end": "00:34:07.190",
+    "text": "so"
+  },
+  {
+    "start": "00:34:07.200",
+    "end": "00:34:09.750",
+    "text": "but perhaps more interesting"
+  },
+  {
+    "start": "00:34:09.760",
+    "end": "00:34:12.310",
+    "text": "are a couple test runs that we have"
+  },
+  {
+    "start": "00:34:12.320",
+    "end": "00:34:13.349",
+    "text": "um"
+  },
+  {
+    "start": "00:34:13.359",
+    "end": "00:34:15.349",
+    "text": "one one problem that had come up in a"
+  },
+  {
+    "start": "00:34:15.359",
+    "end": "00:34:17.589",
+    "text": "prior hackathon was uh"
+  },
+  {
+    "start": "00:34:17.599",
+    "end": "00:34:18.710",
+    "text": "one of a"
+  },
+  {
+    "start": "00:34:18.720",
+    "end": "00:34:20.470",
+    "text": "magma chamber"
+  },
+  {
+    "start": "00:34:20.480",
+    "end": "00:34:23.030",
+    "text": "and flow coming in and measuring"
+  },
+  {
+    "start": "00:34:23.040",
+    "end": "00:34:26.310",
+    "text": "displacement at the surface"
+  },
+  {
+    "start": "00:34:26.320",
+    "end": "00:34:28.869",
+    "text": "from from the inflow of said magma"
+  },
+  {
+    "start": "00:34:28.879",
+    "end": "00:34:29.990",
+    "text": "so"
+  },
+  {
+    "start": "00:34:30.000",
+    "end": "00:34:33.589",
+    "text": "we have here is a basic test this is"
+  },
+  {
+    "start": "00:34:33.599",
+    "end": "00:34:35.669",
+    "text": "we have our our intrusion"
+  },
+  {
+    "start": "00:34:35.679",
+    "end": "00:34:37.349",
+    "text": "and the entire point the reason why this"
+  },
+  {
+    "start": "00:34:37.359",
+    "end": "00:34:40.869",
+    "text": "is a mushroom is because as opposed to"
+  },
+  {
+    "start": "00:34:40.879",
+    "end": "00:34:44.069",
+    "text": "initially the only way to add fluid in"
+  },
+  {
+    "start": "00:34:44.079",
+    "end": "00:34:45.349",
+    "text": "to the domain"
+  },
+  {
+    "start": "00:34:45.359",
+    "end": "00:34:47.270",
+    "text": "was to have a flux boundary condition"
+  },
+  {
+    "start": "00:34:47.280",
+    "end": "00:34:48.550",
+    "text": "along the edge"
+  },
+  {
+    "start": "00:34:48.560",
+    "end": "00:34:50.950",
+    "text": "so that's what our conduit is"
+  },
+  {
+    "start": "00:34:50.960",
+    "end": "00:34:54.389",
+    "text": "uh so for the input parameters for this"
+  },
+  {
+    "start": "00:34:54.399",
+    "end": "00:34:56.470",
+    "text": "we have and this wasn't"
+  },
+  {
+    "start": "00:34:56.480",
+    "end": "00:34:58.310",
+    "text": "real wasn't all that"
+  },
+  {
+    "start": "00:34:58.320",
+    "end": "00:35:00.870",
+    "text": "that accurate"
+  },
+  {
+    "start": "00:35:00.880",
+    "end": "00:35:02.390",
+    "text": "in terms of big picture we're looking"
+  },
+  {
+    "start": "00:35:02.400",
+    "end": "00:35:04.390",
+    "text": "for basically a difference uh the"
+  },
+  {
+    "start": "00:35:04.400",
+    "end": "00:35:05.910",
+    "text": "biggest difference we've got the similar"
+  },
+  {
+    "start": "00:35:05.920",
+    "end": "00:35:09.190",
+    "text": "similar rock rock parameters except for"
+  },
+  {
+    "start": "00:35:09.200",
+    "end": "00:35:11.510",
+    "text": "incompressibility uh in the larger"
+  },
+  {
+    "start": "00:35:11.520",
+    "end": "00:35:13.270",
+    "text": "domain here"
+  },
+  {
+    "start": "00:35:13.280",
+    "end": "00:35:14.630",
+    "text": "um"
+  },
+  {
+    "start": "00:35:14.640",
+    "end": "00:35:17.990",
+    "text": "and we have a a much"
+  },
+  {
+    "start": "00:35:18.000",
+    "end": "00:35:20.390",
+    "text": "much uh"
+  },
+  {
+    "start": "00:35:20.400",
+    "end": "00:35:21.990",
+    "text": "lower permeability along the larger"
+  },
+  {
+    "start": "00:35:22.000",
+    "end": "00:35:26.470",
+    "text": "domain as well as a lower porosity um i"
+  },
+  {
+    "start": "00:35:26.480",
+    "end": "00:35:27.829",
+    "text": "think there's there's two orders of"
+  },
+  {
+    "start": "00:35:27.839",
+    "end": "00:35:29.430",
+    "text": "minor two difference here the entire"
+  },
+  {
+    "start": "00:35:29.440",
+    "end": "00:35:32.630",
+    "text": "point was that i was wanting fluid to go"
+  },
+  {
+    "start": "00:35:32.640",
+    "end": "00:35:34.150",
+    "text": "up and up quick"
+  },
+  {
+    "start": "00:35:34.160",
+    "end": "00:35:35.750",
+    "text": "um"
+  },
+  {
+    "start": "00:35:35.760",
+    "end": "00:35:36.870",
+    "text": "so"
+  },
+  {
+    "start": "00:35:36.880",
+    "end": "00:35:39.270",
+    "text": "we have a source here that has a inflow"
+  },
+  {
+    "start": "00:35:39.280",
+    "end": "00:35:41.430",
+    "text": "pressure that is two orders of magnitude"
+  },
+  {
+    "start": "00:35:41.440",
+    "end": "00:35:43.109",
+    "text": "higher than the initial pressure that is"
+  },
+  {
+    "start": "00:35:43.119",
+    "end": "00:35:46.790",
+    "text": "set and let's see if we can run"
+  },
+  {
+    "start": "00:35:46.800",
+    "end": "00:35:48.069",
+    "text": "this"
+  },
+  {
+    "start": "00:35:48.079",
+    "end": "00:35:58.310",
+    "text": "example"
+  },
+  {
+    "start": "00:35:58.320",
+    "end": "00:36:01.910",
+    "text": "so let's just go for pressure here"
+  },
+  {
+    "start": "00:36:01.920",
+    "end": "00:36:06.230",
+    "text": "and"
+  },
+  {
+    "start": "00:36:06.240",
+    "end": "00:36:09.589",
+    "text": "we start by"
+  },
+  {
+    "start": "00:36:09.599",
+    "end": "00:36:18.150",
+    "text": "sharing screen"
+  },
+  {
+    "start": "00:36:18.160",
+    "end": "00:36:24.870",
+    "text": "oh"
+  },
+  {
+    "start": "00:36:24.880",
+    "end": "00:36:26.470",
+    "text": "maybe it would be simply easier to do"
+  },
+  {
+    "start": "00:36:26.480",
+    "end": "00:36:29.990",
+    "text": "this with one desktop"
+  },
+  {
+    "start": "00:36:30.000",
+    "end": "00:36:31.589",
+    "text": "let's do this"
+  },
+  {
+    "start": "00:36:31.599",
+    "end": "00:36:35.510",
+    "text": "okay so we're sharing that desktop"
+  },
+  {
+    "start": "00:36:35.520",
+    "end": "00:36:37.430",
+    "text": "we have um"
+  },
+  {
+    "start": "00:36:37.440",
+    "end": "00:36:39.190",
+    "text": "our little"
+  },
+  {
+    "start": "00:36:39.200",
+    "end": "00:36:40.790",
+    "text": "injection here and what we're going to"
+  },
+  {
+    "start": "00:36:40.800",
+    "end": "00:36:42.390",
+    "text": "be measuring"
+  },
+  {
+    "start": "00:36:42.400",
+    "end": "00:36:45.589",
+    "text": "here is pressure"
+  },
+  {
+    "start": "00:36:45.599",
+    "end": "00:36:48.069",
+    "text": "so this simulation run is"
+  },
+  {
+    "start": "00:36:48.079",
+    "end": "00:36:50.790",
+    "text": "10 000 days"
+  },
+  {
+    "start": "00:36:50.800",
+    "end": "00:36:51.750",
+    "text": "but"
+  },
+  {
+    "start": "00:36:51.760",
+    "end": "00:36:53.349",
+    "text": "we can start to see"
+  },
+  {
+    "start": "00:36:53.359",
+    "end": "00:36:56.310",
+    "text": "the difference um"
+  },
+  {
+    "start": "00:36:56.320",
+    "end": "00:36:58.470",
+    "text": "apparently my parameter has worked"
+  },
+  {
+    "start": "00:36:58.480",
+    "end": "00:36:59.910",
+    "text": "because the flow is falling through the"
+  },
+  {
+    "start": "00:36:59.920",
+    "end": "00:37:02.150",
+    "text": "conduit and it doesn't seem to want to"
+  },
+  {
+    "start": "00:37:02.160",
+    "end": "00:37:04.710",
+    "text": "go out the sides the other benefit here"
+  },
+  {
+    "start": "00:37:04.720",
+    "end": "00:37:06.829",
+    "text": "is that"
+  },
+  {
+    "start": "00:37:06.839",
+    "end": "00:37:11.349",
+    "text": "our poor our permeability values"
+  },
+  {
+    "start": "00:37:11.359",
+    "end": "00:37:14.150",
+    "text": "are input and full tensor formulation"
+  },
+  {
+    "start": "00:37:14.160",
+    "end": "00:37:16.950",
+    "text": "uh so anisotropy is really just kind of"
+  },
+  {
+    "start": "00:37:16.960",
+    "end": "00:37:19.910",
+    "text": "a an easy sort of thing to do"
+  },
+  {
+    "start": "00:37:19.920",
+    "end": "00:37:21.829",
+    "text": "because it's"
+  },
+  {
+    "start": "00:37:21.839",
+    "end": "00:37:24.150",
+    "text": "it's expecting that anyhow"
+  },
+  {
+    "start": "00:37:24.160",
+    "end": "00:37:25.510",
+    "text": "so you can either"
+  },
+  {
+    "start": "00:37:25.520",
+    "end": "00:37:27.910",
+    "text": "have different values for the various"
+  },
+  {
+    "start": "00:37:27.920",
+    "end": "00:37:29.589",
+    "text": "directions or you can just keep them the"
+  },
+  {
+    "start": "00:37:29.599",
+    "end": "00:37:34.470",
+    "text": "same but what we see here is"
+  },
+  {
+    "start": "00:37:34.480",
+    "end": "00:37:37.030",
+    "text": "that the pressure is"
+  },
+  {
+    "start": "00:37:37.040",
+    "end": "00:37:38.310",
+    "text": "uh"
+  },
+  {
+    "start": "00:37:38.320",
+    "end": "00:37:39.589",
+    "text": "pooling"
+  },
+  {
+    "start": "00:37:39.599",
+    "end": "00:37:41.750",
+    "text": "in the magma chamber and if we look at"
+  },
+  {
+    "start": "00:37:41.760",
+    "end": "00:37:44.470",
+    "text": "the displacement for the same amount uh"
+  },
+  {
+    "start": "00:37:44.480",
+    "end": "00:37:46.630",
+    "text": "same problem"
+  },
+  {
+    "start": "00:37:46.640",
+    "end": "00:37:48.710",
+    "text": "which i will pull up"
+  },
+  {
+    "start": "00:37:48.720",
+    "end": "00:37:50.069",
+    "text": "to"
+  },
+  {
+    "start": "00:37:50.079",
+    "end": "00:37:51.270",
+    "text": "here we go"
+  },
+  {
+    "start": "00:37:51.280",
+    "end": "00:37:53.829",
+    "text": "again 10 000 days and i probably should"
+  },
+  {
+    "start": "00:37:53.839",
+    "end": "00:37:55.430",
+    "text": "have done this faster than 10 frames per"
+  },
+  {
+    "start": "00:37:55.440",
+    "end": "00:37:56.470",
+    "text": "second"
+  },
+  {
+    "start": "00:37:56.480",
+    "end": "00:37:58.069",
+    "text": "but um"
+  },
+  {
+    "start": "00:37:58.079",
+    "end": "00:37:59.910",
+    "text": "again also this is just the magnitude of"
+  },
+  {
+    "start": "00:37:59.920",
+    "end": "00:38:01.430",
+    "text": "displacement which is i know something"
+  },
+  {
+    "start": "00:38:01.440",
+    "end": "00:38:03.349",
+    "text": "you should never put out"
+  },
+  {
+    "start": "00:38:03.359",
+    "end": "00:38:05.589",
+    "text": "but i didn't feel like torturing you"
+  },
+  {
+    "start": "00:38:05.599",
+    "end": "00:38:07.510",
+    "text": "guys was having to watch two videos for"
+  },
+  {
+    "start": "00:38:07.520",
+    "end": "00:38:10.230",
+    "text": "the x and z component so let's let's"
+  },
+  {
+    "start": "00:38:10.240",
+    "end": "00:38:12.710",
+    "text": "fast forward this down further as we get"
+  },
+  {
+    "start": "00:38:12.720",
+    "end": "00:38:14.150",
+    "text": "we start to see"
+  },
+  {
+    "start": "00:38:14.160",
+    "end": "00:38:16.829",
+    "text": "displacement magnitude"
+  },
+  {
+    "start": "00:38:16.839",
+    "end": "00:38:18.390",
+    "text": "of"
+  },
+  {
+    "start": "00:38:18.400",
+    "end": "00:38:20.150",
+    "text": "towards the top i mean if we're going to"
+  },
+  {
+    "start": "00:38:20.160",
+    "end": "00:38:22.150",
+    "text": "assume that this is all outward coming"
+  },
+  {
+    "start": "00:38:22.160",
+    "end": "00:38:24.310",
+    "text": "from where the injection is this is"
+  },
+  {
+    "start": "00:38:24.320",
+    "end": "00:38:25.990",
+    "text": "about two meters of displacement"
+  },
+  {
+    "start": "00:38:26.000",
+    "end": "00:38:28.150",
+    "text": "straight up"
+  },
+  {
+    "start": "00:38:28.160",
+    "end": "00:38:29.270",
+    "text": "um"
+  },
+  {
+    "start": "00:38:29.280",
+    "end": "00:38:30.390",
+    "text": "but"
+  },
+  {
+    "start": "00:38:30.400",
+    "end": "00:38:31.750",
+    "text": "i thought that was kind of a cheap way"
+  },
+  {
+    "start": "00:38:31.760",
+    "end": "00:38:32.870",
+    "text": "to do it"
+  },
+  {
+    "start": "00:38:32.880",
+    "end": "00:38:34.150",
+    "text": "so"
+  },
+  {
+    "start": "00:38:34.160",
+    "end": "00:38:35.589",
+    "text": "um"
+  },
+  {
+    "start": "00:38:35.599",
+    "end": "00:38:38.230",
+    "text": "what i put in was a"
+  },
+  {
+    "start": "00:38:38.240",
+    "end": "00:38:40.870",
+    "text": "an injection point source and so what we"
+  },
+  {
+    "start": "00:38:40.880",
+    "end": "00:38:43.349",
+    "text": "had was"
+  },
+  {
+    "start": "00:38:43.359",
+    "end": "00:38:45.510",
+    "text": "basically uh what i wanted was a"
+  },
+  {
+    "start": "00:38:45.520",
+    "end": "00:38:46.870",
+    "text": "wellbore model"
+  },
+  {
+    "start": "00:38:46.880",
+    "end": "00:38:49.190",
+    "text": "and i put one in"
+  },
+  {
+    "start": "00:38:49.200",
+    "end": "00:38:50.550",
+    "text": "that uh"
+  },
+  {
+    "start": "00:38:50.560",
+    "end": "00:38:52.069",
+    "text": "full screen"
+  },
+  {
+    "start": "00:38:52.079",
+    "end": "00:38:53.670",
+    "text": "okay uh"
+  },
+  {
+    "start": "00:38:53.680",
+    "end": "00:38:55.270",
+    "text": "that what we're doing is we're using a"
+  },
+  {
+    "start": "00:38:55.280",
+    "end": "00:38:57.430",
+    "text": "standard piecement approximation"
+  },
+  {
+    "start": "00:38:57.440",
+    "end": "00:38:59.270",
+    "text": "where you're using you're assuming"
+  },
+  {
+    "start": "00:38:59.280",
+    "end": "00:39:00.630",
+    "text": "radial flow"
+  },
+  {
+    "start": "00:39:00.640",
+    "end": "00:39:03.109",
+    "text": "around a given wellbore"
+  },
+  {
+    "start": "00:39:03.119",
+    "end": "00:39:06.310",
+    "text": "up to a certain point where that matches"
+  },
+  {
+    "start": "00:39:06.320",
+    "end": "00:39:08.150",
+    "text": "what the equivalent"
+  },
+  {
+    "start": "00:39:08.160",
+    "end": "00:39:09.750",
+    "text": "pressure for"
+  },
+  {
+    "start": "00:39:09.760",
+    "end": "00:39:10.790",
+    "text": "the"
+  },
+  {
+    "start": "00:39:10.800",
+    "end": "00:39:13.349",
+    "text": "for the element block is and so the"
+  },
+  {
+    "start": "00:39:13.359",
+    "end": "00:39:14.950",
+    "text": "trick is"
+  },
+  {
+    "start": "00:39:14.960",
+    "end": "00:39:16.950",
+    "text": "that to know the the dimensions the"
+  },
+  {
+    "start": "00:39:16.960",
+    "end": "00:39:19.349",
+    "text": "element and to"
+  },
+  {
+    "start": "00:39:19.359",
+    "end": "00:39:22.630",
+    "text": "make sure that the radial assumption is"
+  },
+  {
+    "start": "00:39:22.640",
+    "end": "00:39:25.030",
+    "text": "is not bigger than your element itself"
+  },
+  {
+    "start": "00:39:25.040",
+    "end": "00:39:27.109",
+    "text": "uh but"
+  },
+  {
+    "start": "00:39:27.119",
+    "end": "00:39:29.510",
+    "text": "those are minor things uh compared to"
+  },
+  {
+    "start": "00:39:29.520",
+    "end": "00:39:32.230",
+    "text": "building a conduit so let's see what"
+  },
+  {
+    "start": "00:39:32.240",
+    "end": "00:39:33.990",
+    "text": "what'd we do for that okay so we had"
+  },
+  {
+    "start": "00:39:34.000",
+    "end": "00:39:35.030",
+    "text": "another"
+  },
+  {
+    "start": "00:39:35.040",
+    "end": "00:39:37.349",
+    "text": "another similar sort of mesh"
+  },
+  {
+    "start": "00:39:37.359",
+    "end": "00:39:38.710",
+    "text": "we have our little"
+  },
+  {
+    "start": "00:39:38.720",
+    "end": "00:39:41.349",
+    "text": "uh a little reservoir"
+  },
+  {
+    "start": "00:39:41.359",
+    "end": "00:39:44.069",
+    "text": "and we've got well okay so what did we"
+  },
+  {
+    "start": "00:39:44.079",
+    "end": "00:39:46.230",
+    "text": "change here we've got basically the same"
+  },
+  {
+    "start": "00:39:46.240",
+    "end": "00:39:48.230",
+    "text": "uh for some reason i cut i cranked the"
+  },
+  {
+    "start": "00:39:48.240",
+    "end": "00:39:50.310",
+    "text": "permeability way down it's only an order"
+  },
+  {
+    "start": "00:39:50.320",
+    "end": "00:39:51.829",
+    "text": "of magnitude difference"
+  },
+  {
+    "start": "00:39:51.839",
+    "end": "00:39:54.870",
+    "text": "um i guess it didn't need to rush up"
+  },
+  {
+    "start": "00:39:54.880",
+    "end": "00:39:57.910",
+    "text": "and so we have a wellbore pressure that"
+  },
+  {
+    "start": "00:39:57.920",
+    "end": "00:39:59.190",
+    "text": "is"
+  },
+  {
+    "start": "00:39:59.200",
+    "end": "00:40:02.230",
+    "text": "about twice as much of the background"
+  },
+  {
+    "start": "00:40:02.240",
+    "end": "00:40:05.510",
+    "text": "um and a radius of"
+  },
+  {
+    "start": "00:40:05.520",
+    "end": "00:40:07.430",
+    "text": "uh equival it's a reasonable amount of"
+  },
+  {
+    "start": "00:40:07.440",
+    "end": "00:40:11.109",
+    "text": "flow so let's see what we get now for"
+  },
+  {
+    "start": "00:40:11.119",
+    "end": "00:40:13.270",
+    "text": "our injection case"
+  },
+  {
+    "start": "00:40:13.280",
+    "end": "00:40:15.510",
+    "text": "and this is again"
+  },
+  {
+    "start": "00:40:15.520",
+    "end": "00:40:19.030",
+    "text": "10 000 days"
+  },
+  {
+    "start": "00:40:19.040",
+    "end": "00:40:21.349",
+    "text": "and we start to see we have a"
+  },
+  {
+    "start": "00:40:21.359",
+    "end": "00:40:23.910",
+    "text": "oh also the way that this is set up is"
+  },
+  {
+    "start": "00:40:23.920",
+    "end": "00:40:25.270",
+    "text": "that the user"
+  },
+  {
+    "start": "00:40:25.280",
+    "end": "00:40:27.589",
+    "text": "you have the dimensions of the mesh"
+  },
+  {
+    "start": "00:40:27.599",
+    "end": "00:40:29.829",
+    "text": "and you for example for the 2d case you"
+  },
+  {
+    "start": "00:40:29.839",
+    "end": "00:40:32.230",
+    "text": "know the meshes is this many by this"
+  },
+  {
+    "start": "00:40:32.240",
+    "end": "00:40:35.990",
+    "text": "many dimensions and you have you have"
+  },
+  {
+    "start": "00:40:36.000",
+    "end": "00:40:37.510",
+    "text": "the actual"
+  },
+  {
+    "start": "00:40:37.520",
+    "end": "00:40:40.150",
+    "text": "the actual values values of where it is"
+  },
+  {
+    "start": "00:40:40.160",
+    "end": "00:40:43.990",
+    "text": "this could be also converted via via pyr"
+  },
+  {
+    "start": "00:40:44.000",
+    "end": "00:40:46.470",
+    "text": "and this is specified to the input file"
+  },
+  {
+    "start": "00:40:46.480",
+    "end": "00:40:49.030",
+    "text": "and the input the program will plunk"
+  },
+  {
+    "start": "00:40:49.040",
+    "end": "00:40:49.829",
+    "text": "down"
+  },
+  {
+    "start": "00:40:49.839",
+    "end": "00:40:52.069",
+    "text": "another um"
+  },
+  {
+    "start": "00:40:52.079",
+    "end": "00:40:54.550",
+    "text": "basically well not boundary kind of"
+  },
+  {
+    "start": "00:40:54.560",
+    "end": "00:40:56.150",
+    "text": "battery but a point source right there"
+  },
+  {
+    "start": "00:40:56.160",
+    "end": "00:40:58.309",
+    "text": "you don't have to define it within the"
+  },
+  {
+    "start": "00:40:58.319",
+    "end": "00:41:00.470",
+    "text": "within the mesh"
+  },
+  {
+    "start": "00:41:00.480",
+    "end": "00:41:03.990",
+    "text": "so we see the similar sort of thing here"
+  },
+  {
+    "start": "00:41:04.000",
+    "end": "00:41:06.630",
+    "text": "except fluid diffusion is taking longer"
+  },
+  {
+    "start": "00:41:06.640",
+    "end": "00:41:07.670",
+    "text": "i guess"
+  },
+  {
+    "start": "00:41:07.680",
+    "end": "00:41:08.950",
+    "text": "that's what happens when you make the"
+  },
+  {
+    "start": "00:41:08.960",
+    "end": "00:41:11.589",
+    "text": "permeability that much worse"
+  },
+  {
+    "start": "00:41:11.599",
+    "end": "00:41:14.390",
+    "text": "but"
+  },
+  {
+    "start": "00:41:14.400",
+    "end": "00:41:17.349",
+    "text": "and we see"
+  },
+  {
+    "start": "00:41:17.359",
+    "end": "00:41:19.829",
+    "text": "a rather large well a significant"
+  },
+  {
+    "start": "00:41:19.839",
+    "end": "00:41:20.870",
+    "text": "difference"
+  },
+  {
+    "start": "00:41:20.880",
+    "end": "00:41:22.550",
+    "text": "in pressure but the most the more"
+  },
+  {
+    "start": "00:41:22.560",
+    "end": "00:41:24.550",
+    "text": "interesting thing is"
+  },
+  {
+    "start": "00:41:24.560",
+    "end": "00:41:26.230",
+    "text": "this"
+  },
+  {
+    "start": "00:41:26.240",
+    "end": "00:41:28.069",
+    "text": "let's see with our displacement again we"
+  },
+  {
+    "start": "00:41:28.079",
+    "end": "00:41:28.790",
+    "text": "have"
+  },
+  {
+    "start": "00:41:28.800",
+    "end": "00:41:31.910",
+    "text": "displacement here the max of this being"
+  },
+  {
+    "start": "00:41:31.920",
+    "end": "00:41:34.470",
+    "text": "only 1.4 meters"
+  },
+  {
+    "start": "00:41:34.480",
+    "end": "00:41:35.589",
+    "text": "again"
+  },
+  {
+    "start": "00:41:35.599",
+    "end": "00:41:37.910",
+    "text": "diffusion just didn't go as far"
+  },
+  {
+    "start": "00:41:37.920",
+    "end": "00:41:39.349",
+    "text": "but"
+  },
+  {
+    "start": "00:41:39.359",
+    "end": "00:41:41.750",
+    "text": "if you inject this you know the the 10"
+  },
+  {
+    "start": "00:41:41.760",
+    "end": "00:41:44.630",
+    "text": "000 days the length of the vietnam war"
+  },
+  {
+    "start": "00:41:44.640",
+    "end": "00:41:45.750",
+    "text": "after that"
+  },
+  {
+    "start": "00:41:45.760",
+    "end": "00:41:47.510",
+    "text": "you get a"
+  },
+  {
+    "start": "00:41:47.520",
+    "end": "00:41:49.510",
+    "text": "a measurable"
+  },
+  {
+    "start": "00:41:49.520",
+    "end": "00:41:51.670",
+    "text": "good meter of displacement in the"
+  },
+  {
+    "start": "00:41:51.680",
+    "end": "00:41:53.190",
+    "text": "vertical directions except this is kind"
+  },
+  {
+    "start": "00:41:53.200",
+    "end": "00:41:55.510",
+    "text": "of radial anyhow because it's the it's"
+  },
+  {
+    "start": "00:41:55.520",
+    "end": "00:41:57.670",
+    "text": "the"
+  },
+  {
+    "start": "00:41:57.680",
+    "end": "00:41:59.990",
+    "text": "magnitude and it's all coming out from"
+  },
+  {
+    "start": "00:42:00.000",
+    "end": "00:42:01.670",
+    "text": "the injection point"
+  },
+  {
+    "start": "00:42:01.680",
+    "end": "00:42:03.430",
+    "text": "anyway this is just an example of what"
+  },
+  {
+    "start": "00:42:03.440",
+    "end": "00:42:04.550",
+    "text": "we can do"
+  },
+  {
+    "start": "00:42:04.560",
+    "end": "00:42:05.510",
+    "text": "now"
+  },
+  {
+    "start": "00:42:05.520",
+    "end": "00:42:07.270",
+    "text": "uh and this is just the quasi-static"
+  },
+  {
+    "start": "00:42:07.280",
+    "end": "00:42:09.670",
+    "text": "case and these are some admittedly"
+  },
+  {
+    "start": "00:42:09.680",
+    "end": "00:42:12.790",
+    "text": "rather simplistic models so"
+  },
+  {
+    "start": "00:42:12.800",
+    "end": "00:42:13.670",
+    "text": "um"
+  },
+  {
+    "start": "00:42:13.680",
+    "end": "00:42:15.349",
+    "text": "so we have can have questions i need to"
+  },
+  {
+    "start": "00:42:15.359",
+    "end": "00:42:17.109",
+    "text": "cut this out here pretty soon"
+  },
+  {
+    "start": "00:42:17.119",
+    "end": "00:42:18.230",
+    "text": "um"
+  },
+  {
+    "start": "00:42:18.240",
+    "end": "00:42:20.309",
+    "text": "so the next steps that we want to do"
+  },
+  {
+    "start": "00:42:20.319",
+    "end": "00:42:21.190",
+    "text": "here"
+  },
+  {
+    "start": "00:42:21.200",
+    "end": "00:42:23.510",
+    "text": "is the one benefit of pilot is that"
+  },
+  {
+    "start": "00:42:23.520",
+    "end": "00:42:25.670",
+    "text": "everything is very well tested"
+  },
+  {
+    "start": "00:42:25.680",
+    "end": "00:42:28.150",
+    "text": "very well"
+  },
+  {
+    "start": "00:42:28.160",
+    "end": "00:42:32.390",
+    "text": "very rigorous and will not crash"
+  },
+  {
+    "start": "00:42:32.400",
+    "end": "00:42:35.190",
+    "text": "as a developer"
+  },
+  {
+    "start": "00:42:35.200",
+    "end": "00:42:40.390",
+    "text": "that makes things hard so we need to"
+  },
+  {
+    "start": "00:42:40.400",
+    "end": "00:42:42.470",
+    "text": "add in analytical tests"
+  },
+  {
+    "start": "00:42:42.480",
+    "end": "00:42:44.230",
+    "text": "especially for dynamic for our"
+  },
+  {
+    "start": "00:42:44.240",
+    "end": "00:42:45.990",
+    "text": "elasticity we have this"
+  },
+  {
+    "start": "00:42:46.000",
+    "end": "00:42:47.910",
+    "text": "there and it was sort of a"
+  },
+  {
+    "start": "00:42:47.920",
+    "end": "00:42:49.829",
+    "text": "okay we can do the dynamic because we"
+  },
+  {
+    "start": "00:42:49.839",
+    "end": "00:42:51.910",
+    "text": "have a quasi-static too but we didn't"
+  },
+  {
+    "start": "00:42:51.920",
+    "end": "00:42:53.750",
+    "text": "really have a good test for it because"
+  },
+  {
+    "start": "00:42:53.760",
+    "end": "00:42:54.870",
+    "text": "there"
+  },
+  {
+    "start": "00:42:54.880",
+    "end": "00:42:57.109",
+    "text": "wasn't a real reason to"
+  },
+  {
+    "start": "00:42:57.119",
+    "end": "00:42:58.390",
+    "text": "well"
+  },
+  {
+    "start": "00:42:58.400",
+    "end": "00:43:00.150",
+    "text": "there's something else that we have is"
+  },
+  {
+    "start": "00:43:00.160",
+    "end": "00:43:02.950",
+    "text": "aside from the from the point sources as"
+  },
+  {
+    "start": "00:43:02.960",
+    "end": "00:43:05.109",
+    "text": "a wellbore"
+  },
+  {
+    "start": "00:43:05.119",
+    "end": "00:43:07.750",
+    "text": "this is a very rudimentary"
+  },
+  {
+    "start": "00:43:07.760",
+    "end": "00:43:10.829",
+    "text": "example because"
+  },
+  {
+    "start": "00:43:10.839",
+    "end": "00:43:13.670",
+    "text": "um has some issues running in parallel"
+  },
+  {
+    "start": "00:43:13.680",
+    "end": "00:43:15.510",
+    "text": "but what you see here is a ricker source"
+  },
+  {
+    "start": "00:43:15.520",
+    "end": "00:43:17.910",
+    "text": "function multiplied by a"
+  },
+  {
+    "start": "00:43:17.920",
+    "end": "00:43:20.470",
+    "text": "uh moment tensor so as to create just"
+  },
+  {
+    "start": "00:43:20.480",
+    "end": "00:43:23.829",
+    "text": "basically a a point explosive source"
+  },
+  {
+    "start": "00:43:23.839",
+    "end": "00:43:26.470",
+    "text": "and um so once we do that we have that"
+  },
+  {
+    "start": "00:43:26.480",
+    "end": "00:43:30.470",
+    "text": "we can start testing against"
+  },
+  {
+    "start": "00:43:30.480",
+    "end": "00:43:32.390",
+    "text": "the the model"
+  },
+  {
+    "start": "00:43:32.400",
+    "end": "00:43:34.790",
+    "text": "wave amplitudes against a"
+  },
+  {
+    "start": "00:43:34.800",
+    "end": "00:43:36.470",
+    "text": "what we would expect from a given poor"
+  },
+  {
+    "start": "00:43:36.480",
+    "end": "00:43:39.589",
+    "text": "elastic environment and get"
+  },
+  {
+    "start": "00:43:39.599",
+    "end": "00:43:42.790",
+    "text": "at least good enough uh benchmarks to"
+  },
+  {
+    "start": "00:43:42.800",
+    "end": "00:43:44.309",
+    "text": "include this in a"
+  },
+  {
+    "start": "00:43:44.319",
+    "end": "00:43:45.190",
+    "text": "product"
+  },
+  {
+    "start": "00:43:45.200",
+    "end": "00:43:47.109",
+    "text": "final version so"
+  },
+  {
+    "start": "00:43:47.119",
+    "end": "00:43:49.589",
+    "text": "of course we also want uh conversion"
+  },
+  {
+    "start": "00:43:49.599",
+    "end": "00:43:51.190",
+    "text": "scripts for more poor elastic benchmark"
+  },
+  {
+    "start": "00:43:51.200",
+    "end": "00:43:53.270",
+    "text": "cases or even eclipse files but this is"
+  },
+  {
+    "start": "00:43:53.280",
+    "end": "00:43:55.349",
+    "text": "really python stuff it's not"
+  },
+  {
+    "start": "00:43:55.359",
+    "end": "00:43:57.589",
+    "text": "this isn't the hard-coded as much"
+  },
+  {
+    "start": "00:43:57.599",
+    "end": "00:43:59.109",
+    "text": "uh another thing that we're working on"
+  },
+  {
+    "start": "00:43:59.119",
+    "end": "00:44:01.670",
+    "text": "are update functions for auxiliary"
+  },
+  {
+    "start": "00:44:01.680",
+    "end": "00:44:03.510",
+    "text": "variables okay permeability that's"
+  },
+  {
+    "start": "00:44:03.520",
+    "end": "00:44:04.710",
+    "text": "that's what we care about i mean that's"
+  },
+  {
+    "start": "00:44:04.720",
+    "end": "00:44:06.790",
+    "text": "what anyone cares about is is how does"
+  },
+  {
+    "start": "00:44:06.800",
+    "end": "00:44:08.309",
+    "text": "permeability change with respect to"
+  },
+  {
+    "start": "00:44:08.319",
+    "end": "00:44:10.630",
+    "text": "stress and we can if we can we can find"
+  },
+  {
+    "start": "00:44:10.640",
+    "end": "00:44:12.950",
+    "text": "a way to to model this on paper we can"
+  },
+  {
+    "start": "00:44:12.960",
+    "end": "00:44:15.829",
+    "text": "put it in and we can get results"
+  },
+  {
+    "start": "00:44:15.839",
+    "end": "00:44:18.550",
+    "text": "um okay multi-phase models i have an"
+  },
+  {
+    "start": "00:44:18.560",
+    "end": "00:44:21.190",
+    "text": "example of why that is a pain here or if"
+  },
+  {
+    "start": "00:44:21.200",
+    "end": "00:44:24.390",
+    "text": "anyone cares to see it later oh also"
+  },
+  {
+    "start": "00:44:24.400",
+    "end": "00:44:25.589",
+    "text": "something like"
+  },
+  {
+    "start": "00:44:25.599",
+    "end": "00:44:29.109",
+    "text": "poro thermoelasticity"
+  },
+  {
+    "start": "00:44:29.119",
+    "end": "00:44:30.790",
+    "text": "it's just a matter of putting it in"
+  },
+  {
+    "start": "00:44:30.800",
+    "end": "00:44:32.710",
+    "text": "really i mean it's straightforward if"
+  },
+  {
+    "start": "00:44:32.720",
+    "end": "00:44:34.470",
+    "text": "you can put the equations together in"
+  },
+  {
+    "start": "00:44:34.480",
+    "end": "00:44:35.910",
+    "text": "fact i have it later on but i'm not"
+  },
+  {
+    "start": "00:44:35.920",
+    "end": "00:44:37.430",
+    "text": "going to put those up because"
+  },
+  {
+    "start": "00:44:37.440",
+    "end": "00:44:39.270",
+    "text": "nobody really wants to see that here"
+  },
+  {
+    "start": "00:44:39.280",
+    "end": "00:44:42.470",
+    "text": "uh and also fully poor elastic faults"
+  },
+  {
+    "start": "00:44:42.480",
+    "end": "00:44:44.150",
+    "text": "we thought this was more difficult than"
+  },
+  {
+    "start": "00:44:44.160",
+    "end": "00:44:47.190",
+    "text": "it would be uh it's actually"
+  },
+  {
+    "start": "00:44:47.200",
+    "end": "00:44:49.910",
+    "text": "i'm hoping to get this working by our"
+  },
+  {
+    "start": "00:44:49.920",
+    "end": "00:44:52.150",
+    "text": "our conference coming up"
+  },
+  {
+    "start": "00:44:52.160",
+    "end": "00:44:53.190",
+    "text": "and so"
+  },
+  {
+    "start": "00:44:53.200",
+    "end": "00:44:54.950",
+    "text": "um"
+  },
+  {
+    "start": "00:44:54.960",
+    "end": "00:44:56.390",
+    "text": "okay i was about to go over point"
+  },
+  {
+    "start": "00:44:56.400",
+    "end": "00:44:57.910",
+    "text": "sources but i think i will leave this"
+  },
+  {
+    "start": "00:44:57.920",
+    "end": "00:45:03.160",
+    "text": "open to questions now if folks have them"
+  }
+]

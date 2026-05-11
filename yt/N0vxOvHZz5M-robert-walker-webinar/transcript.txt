@@ -1,0 +1,1280 @@
+what we will be going over mostly is the
+development the uh
+the implementation of poor elasticity
+within pilot and the work that
+we have been
+doing
+uh
+of late
+to get that ready for uh what looks to
+be a monumental up-and-coming uh 3.0
+release
+and
+well this is listed by my advisor uh dr
+matthew nepley i'd like to also thank uh
+brett agard uh charles williams
+um
+uh
+shindalu and quite a few others that
+have that have helped along the way with
+this
+um
+it's
+it's been quite an interesting journey
+okay so
+we're gonna go over first a little bit
+of a refresher with um
+what pilot is and what what the what how
+we got to the current point
+uh and then we'll go over
+more of a motivation of our problem
+then the implementation we're using some
+results and
+there's a lot in the future expansion
+part that is
+a bit here uh a bit in
+somewhere in mostly in somewhat not um
+so
+if there's interest we can go there's a
+lot that we can go over there that
+basically would need a small push
+so
+what is uh pilot uh pilot is a
+a code that is
+designed that was born out of the union
+of
+two different individual codes for
+dynamic and quasi-static modeling uh
+between dr brad agard and dr charles
+williams
+the entire the idea was to have a
+comprehensive simulation that could
+model
+um
+short-term crustal crystal deformation
+as well as long-term depth deformation
+the same
+same uh
+platform
+have modularity to it and make it open
+source and widely available and
+this uh admittedly dated download
+tracker
+shows the uh
+the popularity of the tool
+um
+so
+at the moment uh
+the pilot pilot is
+was stated again to cover basically
+mechanics uh we have dynamic rupture or
+quasi static relaxation
+uh
+problems with regard to
+earth or earthquake seismology and
+crystal deformation
+so
+the interesting thing this again
+covering the basic physics capabilities
+that we had within pilot
+in the past where we had more of a
+mechanic sim what we're moving into the
+pilot's version three is
+something a bit more uh we're dipping
+our toes into the world of multiphysics
+uh by not only having quasistatic and
+dynamic elasticity
+uh but also includes including plural
+elasticity
+uh the bulk rheologies we're covering
+are various for linear elasticity as
+well as
+non-linear elasticities in the first for
+poor elasticity itself
+and we'll be covering prescribed slip
+for
+mechanics related problems
+and
+that may be expanded here uh in short
+order uh i guess you guys will have to
+see
+come to our workshop this summer and
+uh if you really want to see
+the
+combination of all the efforts that are
+kind of running through the air at the
+moment
+so before we start uh let's kind of go
+over a problem
+uh when we talk about poor elasticity
+what what exactly do we mean uh i we
+hear it at least it seems to be have
+been a buzzword within geo mechanics
+um
+so let's let's start by the basics here
+is like what what would we consider as a
+porous material
+well the basic idea is is
+comes from soil soil mechanics where you
+have a solid
+that is full of holes so you have you're
+able to model fluid flow
+and solid deformation in the same sort
+of package
+so here we have on the left which is the
+basic example of where
+most of the mathematics of this came
+from which is uh
+soil consolidation or sand
+and we have the most the common example
+of a poor elastic material at least that
+i run into less often than i should a
+sponge on the left on the right
+[Music]
+all right
+so we see a couple of examples of
+core elastic materials just to kind of
+show
+the utility and how how common these are
+uh within our experience is that that
+rarely do you have a material that is
+that is
+well
+pardon the pun rock solid
+usually there are small pathways of
+varying
+varying sizes and
+tertiosities that that permit
+fluids to pass through them and we have
+examples from sand
+here to
+various sorts of metaphorical and
+volcanic raw igneous rocks
+to
+biological materials such as bone
+and so
+going over this a bit further
+is that we
+we can see that the um
+that the the sorting behavior
+that we would see within
+the the uh the
+rather the sorting behavior that we see
+within the material can tell us quite a
+bit about
+the strength of the material as well as
+the in some cases the history of the
+material
+and often in in the petroleum
+engineering aspect we
+we would see that uh the level of of the
+level of sorting how well sorted the
+material would be
+would be often
+um
+indicative of the energy of the
+deficient environment in the past or the
+other other way around if you were
+trying to
+to find a
+well
+a well-sorted
+uh relatively high porosity and
+a permeability environment
+so
+let's
+we have basically
+going overs is that we have two two
+values that are important within uh
+poorer elasticity number one is porosity
+and that is simply a measure of the void
+space so if you have in the case here of
+the old sphere pack modeling of a poor
+elastic material you can see that you
+have the same
+basic foundation as just simply the way
+that they're they're sorted
+uh can vary vary the void space but
+quite a bit
+however having void space alone is not
+enough
+to
+produce
+produce material that will allow flow
+um
+the other the other parameter is
+permeability
+and permeability is a measure of the
+ability
+for fluid to flow to through a given
+material
+the the modern concept
+of of permeability came from the
+experiments of henry darcy
+in in the 1850s uh trying to measure
+measure
+measure flow time flow through
+through columns of material and
+what we
+found is that the
+the
+different materials will have different
+properties with regard to
+the
+the the rate at which fluid will flow
+through them uh he'd bottle package this
+up turn it into something that's
+now known currently as darcy's law and
+with regard to soil science and um
+petroleum engineering
+hasn't been quite modified all that much
+since
+since he wrote it
+so
+let's go over again i i'm pretty sure
+that anyone that's already listening to
+this has an idea of
+why what this is but also
+i would be kind of remiss if i didn't go
+over the question of why do we care
+about this even though i'm certain that
+everyone on this call
+probably has some some idea as to why
+they might
+so i'm going to go over a couple
+geophysical examples here
+nowhere near all of them
+but a few of my my favorites at least
+the first is subsidence
+uh again my background is from the oil
+and gas world so that's what you're
+going to get
+when when you have most oil is produced
+traditionally been produced in what's
+called primary recovery
+and that simply means uh using the
+pressure of the
+the confined fluids within the ground to
+drive the flow
+out of the formation up the well and
+into wherever it's going to go
+now
+you can you can figure out that
+it doesn't take
+it's pretty obvious that that once this
+volume is removed
+that it's going to have some sort of an
+effect on the
+on this on the stress environment
+because you have you have the same
+amount of stresses that are for example
+are burdening the reservoir but you have
+less of a pr fluid pressure to to fight
+against them
+one very very um
+very very famous and very clear example
+of the effect that
+poor elastic behavior can have in the
+real world is shown here on the left and
+this comes from the one of the first
+major
+uh oil fields in the north sea echo fisk
+and what you're looking at is a platform
+that was
+that house
+uh drilling equipment and and pre
+drilling production equipment
+and on the left you see the picture a
+picture from 1973
+where um
+the number of uh the number of holes
+from the from the superstructures is
+is is visible and
+uh clearly higher than the clearly more
+than the number that had been visible in
+1984 which are a couple of years later
+so the story with this one was and it
+may be somewhat anecdotal
+is that this was kind of noticed by
+happenstance by people that were working
+on the rig
+um
+i i think it may have also coincided
+with some other uh geological activities
+that were going on that they
+that kind of putting two or two together
+but regardless the the result of this
+was the first major uh effort
+towards um
+what's called secondary recovery or
+water injection remember the echovis
+field is
+built on a very very it's built on chalk
+so it's a very very fractured very very
+fragile material
+but the the happy ending here is that
+after um after water injection was
+commit commenced
+uh supposedly that
+there was almost no
+uh no return produced water
+so that basically
+not only was the subsidence arrested but
+production
+significantly increased
+and only oil flew out
+now the one on the right is
+an earlier example this came from the
+wilmington oilfield california this is
+nearby long beach where uh production
+had been
+basically
+every sort of um
+stereotypical
+you know boom town at one point
+entirely on primary and very close to
+the surface what you're seeing is a dog
+looking at the fire hydrant that is no
+longer at the surface level that it once
+was
+now uh
+perhaps nearly to this audience's heart
+is also the issue of induced seismicity
+so as i mentioned earlier
+uh the
+reducing
+reduce uh producing fluids
+from a subsurface environment or
+extracting them doesn't does not remove
+does not change the rest of the
+uh the the stress picture right the
+the uh
+the idea is that you still have to deal
+with the rest of the uh the grander
+stress environment especially if you are
+if
+there is
+something in the case of
+perhaps like the uh
+of the the rocky mountain earthquakes
+that were induced from rocky mountain
+arsenal in the 1960s
+where there's a disposal well that
+happens to diffuse near a critically
+stressed fault
+um you will start to see
+failure as the stress environment starts
+to adjust to either the
+the uh the lack of or the addition of
+uh new forces
+uh
+the in the uh
+the diagram here
+given by uh dr thomas gerbil
+uh demonstrates that
+the the prior review that we had
+uh that that
+induced seismicity was simply a matter
+from fluid diffusion from geothermal
+stimulation it may not entirely be
+correct
+is that
+that the the importance here of poor
+elastic modeling
+is that
+we can have secondary effects that are
+caused
+by
+not pressure but also the plural elastic
+response to the pressure
+that
+is uh inputted or extracted
+from uh from a from a given amount of
+fluid
+so
+now i'll go back to the problem as we
+are looking at it in our current
+incarnation
+um
+we are looking again at a basic bio
+formulation of poor elasticity
+where we are coupling the
+conservation of momentum term
+which is drawn entirely from linear
+elasticity we simply just modify our
+stress tensor to account for uh fluid
+pressure
+uh
+and we combine this with the
+conservation of mass term
+uh in this case the conservation of mass
+term entire
+appeal applies entirely to the fluid
+component um
+as of the moment there is no
+um
+ability to
+add or move
+solid mass
+from our model i that
+could change somebody wanted it perhaps
+but
+basically we have a coupling of these
+two
+and the um
+the the two the two equations are
+coupled through two coefficients
+we have the bio coefficient which is
+uh
+the first which represents the fluid
+volume change the result of the bulk
+volume change in the drain condition and
+the the upshot of this is as this pushes
+towards one
+um
+we have
+we have the material becomes closer to
+incompressible
+and we also have the biomodulus which is
+defined as the inverse of the uh
+constant strain coefficient or rather
+the invalid inver increase in the fluid
+volume of the solid phase
+per volume per volume of solid phase
+that
+results in you increase in pore pressure
+under constant a volumetric strain so
+what we're seeing here
+is
+is simply the bio modulus that we would
+use for
+a single phase
+fluid term
+a single phase fluid term
+and if this gets into multi-phase it
+gets considerably more difficult more
+difficult complex
+and we can go over this later on but
+basically we have
+a term that is matching
+compressibility uh
+that is matching compressibility uh
+between the the two phases
+so
+here are governing assumptions for a
+problem
+and this is not necessarily
+the these are not necessarily the
+probably governing assumptions for the
+entire problem
+or set of problems that pilots can deal
+with but these are the ones that we're
+dealing with at the moment uh the rest
+are
+you know don't quite have the complete
+guarantee just yet we're getting there
+so what we're looking at is an
+infinitesimal strain condition a
+basically an undrained condition with
+the possible exception of a
+of a drained boundary condition say at
+the surface
+uh the solid matrix is largely linear
+elastic
+um
+we have a slightly compressible single
+phase to fluid
+so
+most of these these
+examples will be based around basically
+water
+uh although
+this could be changed if you wanted to
+do some sort of pseudo press pressure
+proximation and also
+we we simply we are
+um working on towards multi-phase there
+there's a couple of hang-ups within the
+design of pilot itself that
+the design of pilot itself that
+a lot of things it wasn't designed to do
+but they're quickly falling away
+so
+the one thing that we change that is
+different
+to some degree from other poor elastic
+implementations
+is that we're using uh an identity
+relation for volumetric strain the the
+entire point of this is so that it's
+easier to solve as the
+compressibility as the problem becomes
+closer to incompressible
+um basically as the bio coefficient goes
+to one
+and also it should kind of go without
+saying but at the moment that pilot is
+entirely a fully coupled simulation so
+unlike some others
+um that salt have dedicated solvers for
+fluid flow and dedicated solvers for
+mechanics we do both in an all-up all-up
+manner which
+which makes for
+well a different way of handling it
+so
+next we'll be going over
+okay next we're going over basically
+what what is the
+the interesting thing here
+poor elasticity is it's great to have it
+but the with the major turning point
+here is that we're moving pilot from
+something that is
+purely rock mechanics and cholesterol
+deformation
+to sort of choose your own adventure
+multiphysics tool
+so what we had
+in 2016 is we had our first
+uh well
+poor elasticity had been hinted at for
+years but the first
+real attempt was at a workshop that we
+had in 2016
+uh at least the first i don't know
+attempt for the first inclinations
+towards it before that what we had was a
+hardwired
+elastic
+simulation modeling tool
+that had
+uh its own
+implementations for temporal and spatial
+discretization
+and was
+it was written well it was written for
+one purpose entirely
+and so what we're doing now is we're
+changing this
+so as to to make
+make the implementation flexible for
+the desires of the user
+our discretization and our basic
+mathematics strengths are entirely being
+handed over to
+uh pepsi ts
+which is a very
+very well proven and very robust
+framework for
+solving time-dependent uh non-linear
+non-linear problems
+uh
+the spatial decorative
+discretization is being handed over to
+the pepsi dmplex
+framework uh as well as the finite
+element definition
+it's
+if there's one reason one thing to to
+really be happy about this
+is that you can define it elements
+without having to worry about any of the
+stuff that just makes you confused about
+local to global or what have you in
+terms of the
+the uh
+the the
+individual elements
+so all right let's go back for a minute
+and actually look at what how we're
+solving problems for the finite
+development method basically we have a
+pde
+that we're multiplying by a trial
+function and integrating over a domain
+so what we get is a
+two terms one that is
+multiplied by the trial function one is
+multiplied by the gradient of the trial
+function if we call them f zero and f
+one
+um
+if we can
+step back and also go back to again
+our because all the problems that we're
+going to be solving for this talk are
+quasi-static so that means that we can
+solve them implicitly
+and so as such
+we want to rewrite our problems in a way
+that we have a left-hand side that is
+equal to zero
+minimizes kernels minimizes a lot of
+things making makes things easier to do
+so
+if we take uh the pde from our from our
+fina
+and the weak form generated from it it
+was up on a finite element
+implementation from fire page
+we can resolve we can
+surmise that we're going to get
+a collection of
+what we would call kernels multiplied by
+trial functions
+uh that looks like this
+where we only have the left-hand side so
+if you're confused let's look at an
+example for poor elasticity
+what we have here is our solution vector
+we have our three
+solution
+solution fields vector displacement uh
+pressure and our volumetric strain value
+we have our conservation and momentum
+term we have our conservation of mass
+term we have our identity term and we
+have our boundary conditions so this
+would be the strong formula
+if we go to the weak form
+we can convert this into
+the following where basically all we
+have to worry about now
+are the areas that our cover that are
+that are
+labeled or underscored and and labeled
+and colored in blue
+so
+this makes it easier of course because
+the entire point of the weak form is
+that you're reducing the order of the
+problem so that for the actual
+calculations it's it's a simplified way
+but we'll go over this a little bit
+further in a moment
+so
+basically why are we doing putting this
+out
+we're trying to decouple
+we're trying to make it some finite
+element definite definition
+uh is is separate
+from the actual
+solution process
+so what we can do is is that
+that we can generate material and
+boundary condition point-wise functions
+and we can generate them and then give
+them to pet c and they solve them over
+the entire domain and that's it you
+don't have to worry about anything if
+you can basically if you can write this
+up write something up in a in a kernel
+formulation
+you can put it in
+uh
+and
+furthermore is that we we already we
+also use the ability that has already
+been tried and uh tested with pet with
+pepsi for multiple
+manners of solution
+uh implementation over
+many many different
+uh
+different frameworks
+uh you don't you don't have you have to
+be it's a lot less being of a technician
+so
+but we we go one further actually
+and so the way that we are handling
+our um
+what we call rheology we have for our
+domain say if we were to have a box
+that were linear elastic
+or rather elastic let's just give it
+away
+we would have the entire domain that
+would be considered
+elastic
+and you could even
+you could even ostensibly have
+different areas
+say if you wanted
+one part to be
+uh this i'll give you the example here
+of elasticity because it's the best to
+find
+one part that wanted to be non-linear um
+so you want to have the plastic
+definitions and the rest to be elastic
+you can do this so what we're doing is
+we're adding another level of
+abstraction here
+is that
+uh
+we can
+the we can we can we can basically have
+one family
+of tools and use
+and use different different formulations
+they're in so for again for poor
+elasticity how does this come about is
+that we have
+we have a breakdown of the auxiliary
+fields that we use auxiliary fields are
+not the ones we're solving for these are
+the ones that we're defining
+so the ones at the top and the material
+are used for every version anything
+that's poor elastic you're going to need
+to to input this and of course body
+force gravity and fluid source are
+dependent on whether you turn them on
+but the rheology terms are dependent
+entirely on the reality so what this is
+is for isotropic linear polar elasticity
+uh you would have these
+these terms to
+base to identify the elastic poor
+elastic behavior of the material if you
+were to have
+a formulation that would be
+that would be
+a
+visco poro viscoelastic
+keep these you drop these
+and um
+and go on the entire the benefit here is
+not only for ease of use but it's also
+for the ease of use of the developers
+where you're having to
+to
+uh redo effort whole lot less so within
+the kernels themselves we have an
+example here of showing which ones are
+which the uh the greens uh the green
+terms are
+have to do with the rheology
+and these are the the heavy lifting bits
+of the poor a lot of poor elasticity
+uh for example for the baseline you have
+the added force looking like gravity
+and this continues with the jacobians
+but
+okay
+now this is where this becomes a sales
+pitch
+uh if we go over the kernel
+implementation what we see is basically
+the idea is that you yes you
+can program uh multiphysics
+so what we have are plug and play
+physics kernels you just you do not have
+to be
+low level
+again if you can write any of these you
+can implement new physics you can think
+it you can do it
+so our inputs to our kernels
+are all the same we have the similar the
+same
+predictable
+inputs where we have dimension we have
+the number of solution fields we with
+the solution fields we have the
+auxiliary fields
+and the the gradients of of both the the
+time derivatives of both
+and constants which are
+another sort of give me at this point
+so again let's go back to linear
+elasticity we have these
+excuse me these kernels here each one
+uh representing some bit of physics
+again from the weak form
+so
+if we're going to look for the f1u
+function so what is this we have the
+stress tensor
+uh okay so there's our definition of a
+pro-elastic stress tensor
+here's the code
+that's all if you can write that you can
+implement something else if you were to
+change this into
+some other form
+of of relation that weren't necessarily
+standard hooke's law
+write it up put it in put it out
+uh the same thing for
+the uh
+variation and fluid and fluid
+volume term
+for when this this comes from the from
+the conservation of mass
+equation
+again
+and here we have for darcy's law i mean
+this is this is not real difficult
+so we also have another ability that
+we're adding in
+is that we have the ability to update
+state variables
+at the moment we are
+only implementing this pretty much for
+porosity or it can be turned on where
+the idea is
+is that
+we can model compaction
+as
+for
+as
+at the end of each solution run so if
+you we solve for the primary variables
+are pressure displacement and volumetric
+strain
+at the end of that
+we have um what is basically an explicit
+solution for um for the auxiliary terms
+and we can we can select which ones we
+would want to again this is simply just
+a matter of adding in a function and the
+way that we're
+updating porosity is that we have the
+[Music]
+change in porosity over time is
+equivalent to this
+and multiply it by the time step and add
+it in
+the fun fact here is this ends up
+requiring a six-field solution
+formulation which actually provides for
+some interesting results
+so
+the question now becomes
+uh does any of this work
+the answer is yeah actually does
+so we start with our benchmarks and
+those these are the classical benchmarks
+from
+um
+from soil mechanics
+we're starting with the case of uh
+the terzaghi problem which is a
+one-dimensional
+one-dimensional soil consolidation
+problem that actually predates bioportal
+elasticity
+so
+the prob the numerical system here is
+considered in two dimensions although
+the entire point is that it can be a
+one-dimensional problem
+so you have a soil sample of a certain
+thickness that's being compressed
+it is
+not rigid with respect to the to the wa
+to well to the lateral directions
+uh
+that is there's no has no displacement
+at the base
+um so it's it's lottery constrained
+displacement is restricted in x
+direction to zero and flow is
+prohibited
+through the boundaries except for
+at the top
+so
+what we see here are our
+values of
+the analytical condition this is for
+normalized result
+at given times and what we see is is
+that we provide
+relatively uh certainly acceptable uh
+reproduction of
+of benchmark behavior
+so
+if we continue this to two dimensions
+what we have is is a better better
+explanation of the of a coupling of the
+coupling
+processes of coupling between mechanical
+and poor fluid properties
+what we have is
+a rectangular sample of
+of infinite length and it's an
+analytical problem that's compressed
+between two rigid frictionless plates
+uh it's again it's
+this the plane strain condition is
+holding because we have the infinitely
+long um
+assumption
+and the confined sample
+and the confined sample here is assumed
+to be homogeneous however this is not
+necessarily need to be the case it can
+be
+accounted for isotropy but our point
+here is
+for a benchmark
+at the time okay so the entire also see
+if you see a little corner here this is
+because what we have is a symmetric
+problem so if you wanted to solve this
+in a more simple fashion you just simply
+take a quarter of it and
+make the
+x and y displacement battery zero
+at a compression term we call it a day
+so anyway at time zero we have a
+compressive vertical force that's
+applied
+from both plates
+and
+we also have at the lateral edges what's
+called a drain condition so free flow
+out the side
+uh what we will see however is something
+called the mandel cryer effect where we
+have a slight increase in in pressure
+prior to drainage
+and we do see this slightly coming out
+here again time steps really aren't the
+best but we see reasonable
+representation of the analytical
+solution
+all right we have another basic test
+that we run and we listen to the
+two-dimensional tests as
+three-dimensional attempts
+even though ironically this is a
+basically a one-dimensional problem as
+well
+uh so crier's problem consists of a
+saturn sphere of porous media
+that's
+subjected to a compressive stress
+all along the surface
+so surfaces model is drained but we have
+a squeezing it's going entirely in from
+all sides
+and ideally this is modeled well in
+theory it's modeled as a ball but in
+almost every case that we see
+uh folks just simply use the eighth of
+it because of the symmetry issue
+and
+what we have here is is a is a runtime
+test from from an eighth
+example uh so we have is the radial
+distance
+the normalized distance from the from
+the radius and the
+the pres the pressure that is given at
+that that radial distance because this
+can this can
+collapse down to a one-dimensional
+problem and we see a slight bump in
+pressure before
+things finally fall out because the
+fluid is draining out the signs
+uh here is a another example that we see
+from a full case of this
+so
+but perhaps more interesting
+are a couple test runs that we have
+um
+one one problem that had come up in a
+prior hackathon was uh
+one of a
+magma chamber
+and flow coming in and measuring
+displacement at the surface
+from from the inflow of said magma
+so
+we have here is a basic test this is
+we have our our intrusion
+and the entire point the reason why this
+is a mushroom is because as opposed to
+initially the only way to add fluid in
+to the domain
+was to have a flux boundary condition
+along the edge
+so that's what our conduit is
+uh so for the input parameters for this
+we have and this wasn't
+real wasn't all that
+that accurate
+in terms of big picture we're looking
+for basically a difference uh the
+biggest difference we've got the similar
+similar rock rock parameters except for
+incompressibility uh in the larger
+domain here
+um
+and we have a a much
+much uh
+lower permeability along the larger
+domain as well as a lower porosity um i
+think there's there's two orders of
+minor two difference here the entire
+point was that i was wanting fluid to go
+up and up quick
+um
+so
+we have a source here that has a inflow
+pressure that is two orders of magnitude
+higher than the initial pressure that is
+set and let's see if we can run
+this
+example
+so let's just go for pressure here
+and
+we start by
+sharing screen
+oh
+maybe it would be simply easier to do
+this with one desktop
+let's do this
+okay so we're sharing that desktop
+we have um
+our little
+injection here and what we're going to
+be measuring
+here is pressure
+so this simulation run is
+10 000 days
+but
+we can start to see
+the difference um
+apparently my parameter has worked
+because the flow is falling through the
+conduit and it doesn't seem to want to
+go out the sides the other benefit here
+is that
+our poor our permeability values
+are input and full tensor formulation
+uh so anisotropy is really just kind of
+a an easy sort of thing to do
+because it's
+it's expecting that anyhow
+so you can either
+have different values for the various
+directions or you can just keep them the
+same but what we see here is
+that the pressure is
+uh
+pooling
+in the magma chamber and if we look at
+the displacement for the same amount uh
+same problem
+which i will pull up
+to
+here we go
+again 10 000 days and i probably should
+have done this faster than 10 frames per
+second
+but um
+again also this is just the magnitude of
+displacement which is i know something
+you should never put out
+but i didn't feel like torturing you
+guys was having to watch two videos for
+the x and z component so let's let's
+fast forward this down further as we get
+we start to see
+displacement magnitude
+of
+towards the top i mean if we're going to
+assume that this is all outward coming
+from where the injection is this is
+about two meters of displacement
+straight up
+um
+but
+i thought that was kind of a cheap way
+to do it
+so
+um
+what i put in was a
+an injection point source and so what we
+had was
+basically uh what i wanted was a
+wellbore model
+and i put one in
+that uh
+full screen
+okay uh
+that what we're doing is we're using a
+standard piecement approximation
+where you're using you're assuming
+radial flow
+around a given wellbore
+up to a certain point where that matches
+what the equivalent
+pressure for
+the
+for the element block is and so the
+trick is
+that to know the the dimensions the
+element and to
+make sure that the radial assumption is
+is not bigger than your element itself
+uh but
+those are minor things uh compared to
+building a conduit so let's see what
+what'd we do for that okay so we had
+another
+another similar sort of mesh
+we have our little
+uh a little reservoir
+and we've got well okay so what did we
+change here we've got basically the same
+uh for some reason i cut i cranked the
+permeability way down it's only an order
+of magnitude difference
+um i guess it didn't need to rush up
+and so we have a wellbore pressure that
+is
+about twice as much of the background
+um and a radius of
+uh equival it's a reasonable amount of
+flow so let's see what we get now for
+our injection case
+and this is again
+10 000 days
+and we start to see we have a
+oh also the way that this is set up is
+that the user
+you have the dimensions of the mesh
+and you for example for the 2d case you
+know the meshes is this many by this
+many dimensions and you have you have
+the actual
+the actual values values of where it is
+this could be also converted via via pyr
+and this is specified to the input file
+and the input the program will plunk
+down
+another um
+basically well not boundary kind of
+battery but a point source right there
+you don't have to define it within the
+within the mesh
+so we see the similar sort of thing here
+except fluid diffusion is taking longer
+i guess
+that's what happens when you make the
+permeability that much worse
+but
+and we see
+a rather large well a significant
+difference
+in pressure but the most the more
+interesting thing is
+this
+let's see with our displacement again we
+have
+displacement here the max of this being
+only 1.4 meters
+again
+diffusion just didn't go as far
+but
+if you inject this you know the the 10
+000 days the length of the vietnam war
+after that
+you get a
+a measurable
+good meter of displacement in the
+vertical directions except this is kind
+of radial anyhow because it's the it's
+the
+magnitude and it's all coming out from
+the injection point
+anyway this is just an example of what
+we can do
+now
+uh and this is just the quasi-static
+case and these are some admittedly
+rather simplistic models so
+um
+so we have can have questions i need to
+cut this out here pretty soon
+um
+so the next steps that we want to do
+here
+is the one benefit of pilot is that
+everything is very well tested
+very well
+very rigorous and will not crash
+as a developer
+that makes things hard so we need to
+add in analytical tests
+especially for dynamic for our
+elasticity we have this
+there and it was sort of a
+okay we can do the dynamic because we
+have a quasi-static too but we didn't
+really have a good test for it because
+there
+wasn't a real reason to
+well
+there's something else that we have is
+aside from the from the point sources as
+a wellbore
+this is a very rudimentary
+example because
+um has some issues running in parallel
+but what you see here is a ricker source
+function multiplied by a
+uh moment tensor so as to create just
+basically a a point explosive source
+and um so once we do that we have that
+we can start testing against
+the the model
+wave amplitudes against a
+what we would expect from a given poor
+elastic environment and get
+at least good enough uh benchmarks to
+include this in a
+product
+final version so
+of course we also want uh conversion
+scripts for more poor elastic benchmark
+cases or even eclipse files but this is
+really python stuff it's not
+this isn't the hard-coded as much
+uh another thing that we're working on
+are update functions for auxiliary
+variables okay permeability that's
+that's what we care about i mean that's
+what anyone cares about is is how does
+permeability change with respect to
+stress and we can if we can we can find
+a way to to model this on paper we can
+put it in and we can get results
+um okay multi-phase models i have an
+example of why that is a pain here or if
+anyone cares to see it later oh also
+something like
+poro thermoelasticity
+it's just a matter of putting it in
+really i mean it's straightforward if
+you can put the equations together in
+fact i have it later on but i'm not
+going to put those up because
+nobody really wants to see that here
+uh and also fully poor elastic faults
+we thought this was more difficult than
+it would be uh it's actually
+i'm hoping to get this working by our
+our conference coming up
+and so
+um
+okay i was about to go over point
+sources but i think i will leave this
+open to questions now if folks have them
