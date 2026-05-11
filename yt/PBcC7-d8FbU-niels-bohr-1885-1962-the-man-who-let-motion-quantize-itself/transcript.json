@@ -1,0 +1,2477 @@
+[
+  {
+    "start": "00:00:10.800",
+    "end": "00:00:13.509",
+    "text": "Welcome to the deep dive. Today we're"
+  },
+  {
+    "start": "00:00:13.519",
+    "end": "00:00:15.829",
+    "text": "tackling well a classic puzzle in"
+  },
+  {
+    "start": "00:00:15.839",
+    "end": "00:00:18.390",
+    "text": "physics. Why don't atoms just fall"
+  },
+  {
+    "start": "00:00:18.400",
+    "end": "00:00:19.029",
+    "text": "apart?"
+  },
+  {
+    "start": "00:00:19.039",
+    "end": "00:00:20.950",
+    "text": "&gt;&gt; Right. I mean, think about it. The early"
+  },
+  {
+    "start": "00:00:20.960",
+    "end": "00:00:23.269",
+    "text": "picture was like a mini solar system,"
+  },
+  {
+    "start": "00:00:23.279",
+    "end": "00:00:25.750",
+    "text": "right? Electrons orbiting a nucleus."
+  },
+  {
+    "start": "00:00:25.760",
+    "end": "00:00:28.070",
+    "text": "&gt;&gt; Yeah, like tiny planets. But classical"
+  },
+  {
+    "start": "00:00:28.080",
+    "end": "00:00:29.589",
+    "text": "physics had a huge issue with that"
+  },
+  {
+    "start": "00:00:29.599",
+    "end": "00:00:30.070",
+    "text": "picture."
+  },
+  {
+    "start": "00:00:30.080",
+    "end": "00:00:31.910",
+    "text": "&gt;&gt; A massive issue. Those orbiting"
+  },
+  {
+    "start": "00:00:31.920",
+    "end": "00:00:34.470",
+    "text": "electrons, they're accelerating. And"
+  },
+  {
+    "start": "00:00:34.480",
+    "end": "00:00:36.549",
+    "text": "accelerating charges should radiate"
+  },
+  {
+    "start": "00:00:36.559",
+    "end": "00:00:37.990",
+    "text": "energy continuously."
+  },
+  {
+    "start": "00:00:38.000",
+    "end": "00:00:39.590",
+    "text": "&gt;&gt; Meaning they'd lose energy, spiral"
+  },
+  {
+    "start": "00:00:39.600",
+    "end": "00:00:39.990",
+    "text": "inwards,"
+  },
+  {
+    "start": "00:00:40.000",
+    "end": "00:00:41.830",
+    "text": "&gt;&gt; and crash straight into the nucleus."
+  },
+  {
+    "start": "00:00:41.840",
+    "end": "00:00:44.389",
+    "text": "Boom. The atom should be unstable, gone"
+  },
+  {
+    "start": "00:00:44.399",
+    "end": "00:00:45.510",
+    "text": "in a fraction of a second."
+  },
+  {
+    "start": "00:00:45.520",
+    "end": "00:00:47.029",
+    "text": "&gt;&gt; But they're not. Atoms are incredibly"
+  },
+  {
+    "start": "00:00:47.039",
+    "end": "00:00:49.910",
+    "text": "stable. They make up well everything. So"
+  },
+  {
+    "start": "00:00:49.920",
+    "end": "00:00:51.830",
+    "text": "how did they survive that classical"
+  },
+  {
+    "start": "00:00:51.840",
+    "end": "00:00:53.670",
+    "text": "death sentence? Let's uh unpack this."
+  },
+  {
+    "start": "00:00:53.680",
+    "end": "00:00:55.510",
+    "text": "And this is where Neil's Boore enters"
+  },
+  {
+    "start": "00:00:55.520",
+    "end": "00:00:58.069",
+    "text": "the picture. Back in 1913, he basically"
+  },
+  {
+    "start": "00:00:58.079",
+    "end": "00:00:59.750",
+    "text": "looked at the rules of classical physics"
+  },
+  {
+    "start": "00:00:59.760",
+    "end": "00:01:02.310",
+    "text": "and said, \"Maybe these rules just don't"
+  },
+  {
+    "start": "00:01:02.320",
+    "end": "00:01:02.950",
+    "text": "apply here.\""
+  },
+  {
+    "start": "00:01:02.960",
+    "end": "00:01:04.070",
+    "text": "&gt;&gt; A pretty bold move."
+  },
+  {
+    "start": "00:01:04.080",
+    "end": "00:01:05.750",
+    "text": "&gt;&gt; Incredibly bold. He proposed that"
+  },
+  {
+    "start": "00:01:05.760",
+    "end": "00:01:07.510",
+    "text": "electrons don't gradually slide down"
+  },
+  {
+    "start": "00:01:07.520",
+    "end": "00:01:10.070",
+    "text": "that energy spiral. Instead, they jump."
+  },
+  {
+    "start": "00:01:10.080",
+    "end": "00:01:10.710",
+    "text": "&gt;&gt; Jump."
+  },
+  {
+    "start": "00:01:10.720",
+    "end": "00:01:12.789",
+    "text": "&gt;&gt; Yeah. Jump between specific allowed"
+  },
+  {
+    "start": "00:01:12.799",
+    "end": "00:01:14.950",
+    "text": "energy states. Only certain orbits,"
+  },
+  {
+    "start": "00:01:14.960",
+    "end": "00:01:16.710",
+    "text": "certain energy levels were permitted."
+  },
+  {
+    "start": "00:01:16.720",
+    "end": "00:01:17.670",
+    "text": "Nothing in between."
+  },
+  {
+    "start": "00:01:17.680",
+    "end": "00:01:19.590",
+    "text": "&gt;&gt; So energy isn't continuous down there."
+  },
+  {
+    "start": "00:01:19.600",
+    "end": "00:01:20.870",
+    "text": "It comes in chunks."
+  },
+  {
+    "start": "00:01:20.880",
+    "end": "00:01:22.070",
+    "text": "&gt;&gt; Exactly. That was the birth of"
+  },
+  {
+    "start": "00:01:22.080",
+    "end": "00:01:24.870",
+    "text": "quantization. Energy motion itself comes"
+  },
+  {
+    "start": "00:01:24.880",
+    "end": "00:01:26.469",
+    "text": "in these discrete packets. It was"
+  },
+  {
+    "start": "00:01:26.479",
+    "end": "00:01:27.270",
+    "text": "revolutionary"
+  },
+  {
+    "start": "00:01:27.280",
+    "end": "00:01:28.630",
+    "text": "&gt;&gt; and that's what we're diving into today."
+  },
+  {
+    "start": "00:01:28.640",
+    "end": "00:01:29.670",
+    "text": "Bor's breakthrough,"
+  },
+  {
+    "start": "00:01:29.680",
+    "end": "00:01:32.390",
+    "text": "&gt;&gt; right? His insights that saved the atom"
+  },
+  {
+    "start": "00:01:32.400",
+    "end": "00:01:34.710",
+    "text": "conceptually speaking. And then we'll"
+  },
+  {
+    "start": "00:01:34.720",
+    "end": "00:01:37.190",
+    "text": "look at how a more modern framework uh"
+  },
+  {
+    "start": "00:01:37.200",
+    "end": "00:01:39.109",
+    "text": "motion theory reframes all this"
+  },
+  {
+    "start": "00:01:39.119",
+    "end": "00:01:39.830",
+    "text": "&gt;&gt; motion theory."
+  },
+  {
+    "start": "00:01:39.840",
+    "end": "00:01:42.069",
+    "text": "&gt;&gt; Yeah. It sees quantization not just as a"
+  },
+  {
+    "start": "00:01:42.079",
+    "end": "00:01:44.789",
+    "text": "weird atomic rule, but as something much"
+  },
+  {
+    "start": "00:01:44.799",
+    "end": "00:01:46.389",
+    "text": "more fundamental like a universal"
+  },
+  {
+    "start": "00:01:46.399",
+    "end": "00:01:48.630",
+    "text": "principle almost like"
+  },
+  {
+    "start": "00:01:48.640",
+    "end": "00:01:50.710",
+    "text": "well motion's natural compression"
+  },
+  {
+    "start": "00:01:50.720",
+    "end": "00:01:51.270",
+    "text": "algorithm."
+  },
+  {
+    "start": "00:01:51.280",
+    "end": "00:01:53.030",
+    "text": "&gt;&gt; A compression algorithm like for digital"
+  },
+  {
+    "start": "00:01:53.040",
+    "end": "00:01:53.910",
+    "text": "files"
+  },
+  {
+    "start": "00:01:53.920",
+    "end": "00:01:56.389",
+    "text": "&gt;&gt; sort of yeah nature finding the most"
+  },
+  {
+    "start": "00:01:56.399",
+    "end": "00:01:58.230",
+    "text": "efficient stable ways for motion to"
+  },
+  {
+    "start": "00:01:58.240",
+    "end": "00:02:00.870",
+    "text": "exist and discarding the unstable stuff."
+  },
+  {
+    "start": "00:02:00.880",
+    "end": "00:02:02.550",
+    "text": "Our mission today is really to explore"
+  },
+  {
+    "start": "00:02:02.560",
+    "end": "00:02:05.109",
+    "text": "how motion itself might shape reality."
+  },
+  {
+    "start": "00:02:05.119",
+    "end": "00:02:07.030",
+    "text": "Okay, so back to the core problem Bore"
+  },
+  {
+    "start": "00:02:07.040",
+    "end": "00:02:09.830",
+    "text": "faced. Classical view, continuous"
+  },
+  {
+    "start": "00:02:09.840",
+    "end": "00:02:11.910",
+    "text": "motion, electrons radiate, atoms"
+  },
+  {
+    "start": "00:02:11.920",
+    "end": "00:02:13.910",
+    "text": "collapse. A huge puzzle,"
+  },
+  {
+    "start": "00:02:13.920",
+    "end": "00:02:15.350",
+    "text": "&gt;&gt; a complete dead end for classical"
+  },
+  {
+    "start": "00:02:15.360",
+    "end": "00:02:16.949",
+    "text": "mechanics. Really, if it were true,"
+  },
+  {
+    "start": "00:02:16.959",
+    "end": "00:02:18.470",
+    "text": "matter shouldn't exist as we know it."
+  },
+  {
+    "start": "00:02:18.480",
+    "end": "00:02:20.229",
+    "text": "&gt;&gt; So bore just throughout continuity."
+  },
+  {
+    "start": "00:02:20.239",
+    "end": "00:02:22.229",
+    "text": "&gt;&gt; Essentially, yes, at that level. His"
+  },
+  {
+    "start": "00:02:22.239",
+    "end": "00:02:24.869",
+    "text": "radical assumption. Electrons live only"
+  },
+  {
+    "start": "00:02:24.879",
+    "end": "00:02:27.350",
+    "text": "in specific stationary states. And"
+  },
+  {
+    "start": "00:02:27.360",
+    "end": "00:02:29.030",
+    "text": "crucially, while they're in one of these"
+  },
+  {
+    "start": "00:02:29.040",
+    "end": "00:02:31.030",
+    "text": "states, they don't radiate energy."
+  },
+  {
+    "start": "00:02:31.040",
+    "end": "00:02:32.229",
+    "text": "&gt;&gt; So they're stable there."
+  },
+  {
+    "start": "00:02:32.239",
+    "end": "00:02:35.110",
+    "text": "&gt;&gt; Exactly. They only emit or absorb energy"
+  },
+  {
+    "start": "00:02:35.120",
+    "end": "00:02:36.710",
+    "text": "like light when they jump from one"
+  },
+  {
+    "start": "00:02:36.720",
+    "end": "00:02:37.830",
+    "text": "allowed state to another."
+  },
+  {
+    "start": "00:02:37.840",
+    "end": "00:02:41.190",
+    "text": "&gt;&gt; So classical view, smooth ramp, bor's"
+  },
+  {
+    "start": "00:02:41.200",
+    "end": "00:02:42.790",
+    "text": "view, staircase."
+  },
+  {
+    "start": "00:02:42.800",
+    "end": "00:02:44.790",
+    "text": "&gt;&gt; Perfect analogy. You can be on step one"
+  },
+  {
+    "start": "00:02:44.800",
+    "end": "00:02:46.630",
+    "text": "or step two, but not hovering halfway"
+  },
+  {
+    "start": "00:02:46.640",
+    "end": "00:02:48.869",
+    "text": "between. It was completely alien to"
+  },
+  {
+    "start": "00:02:48.879",
+    "end": "00:02:49.910",
+    "text": "classical thinking."
+  },
+  {
+    "start": "00:02:49.920",
+    "end": "00:02:51.110",
+    "text": "&gt;&gt; You mentioned motion theory gives"
+  },
+  {
+    "start": "00:02:51.120",
+    "end": "00:02:52.949",
+    "text": "context here. How does it see things"
+  },
+  {
+    "start": "00:02:52.959",
+    "end": "00:02:54.309",
+    "text": "like space and time,"
+  },
+  {
+    "start": "00:02:54.319",
+    "end": "00:02:55.830",
+    "text": "&gt;&gt; right? So motion theory provides a"
+  },
+  {
+    "start": "00:02:55.840",
+    "end": "00:02:57.910",
+    "text": "different foundational view. It sees"
+  },
+  {
+    "start": "00:02:57.920",
+    "end": "00:03:00.390",
+    "text": "reality itself not as objects sitting in"
+  },
+  {
+    "start": "00:03:00.400",
+    "end": "00:03:03.910",
+    "text": "space but as um structured motion"
+  },
+  {
+    "start": "00:03:03.920",
+    "end": "00:03:05.670",
+    "text": "patterns of movement synchronizing under"
+  },
+  {
+    "start": "00:03:05.680",
+    "end": "00:03:06.229",
+    "text": "constraints."
+  },
+  {
+    "start": "00:03:06.239",
+    "end": "00:03:07.270",
+    "text": "&gt;&gt; Okay. Motion first."
+  },
+  {
+    "start": "00:03:07.280",
+    "end": "00:03:09.270",
+    "text": "&gt;&gt; Motion first. And space isn't an empty"
+  },
+  {
+    "start": "00:03:09.280",
+    "end": "00:03:11.350",
+    "text": "box. It's more like unresolved"
+  },
+  {
+    "start": "00:03:11.360",
+    "end": "00:03:13.750",
+    "text": "background change. A sea of potential"
+  },
+  {
+    "start": "00:03:13.760",
+    "end": "00:03:15.750",
+    "text": "motion before stable patterns emerge."
+  },
+  {
+    "start": "00:03:15.760",
+    "end": "00:03:16.550",
+    "text": "&gt;&gt; And time."
+  },
+  {
+    "start": "00:03:16.560",
+    "end": "00:03:18.630",
+    "text": "&gt;&gt; Time is seen as a comparison. The sync"
+  },
+  {
+    "start": "00:03:18.640",
+    "end": "00:03:20.710",
+    "text": "rate between different moving systems."
+  },
+  {
+    "start": "00:03:20.720",
+    "end": "00:03:22.790",
+    "text": "How fast one pattern changes relative to"
+  },
+  {
+    "start": "00:03:22.800",
+    "end": "00:03:24.630",
+    "text": "another. Not some universal clock"
+  },
+  {
+    "start": "00:03:24.640",
+    "end": "00:03:25.430",
+    "text": "ticking away."
+  },
+  {
+    "start": "00:03:25.440",
+    "end": "00:03:27.509",
+    "text": "&gt;&gt; Interesting. What about energy and mass?"
+  },
+  {
+    "start": "00:03:27.519",
+    "end": "00:03:29.430",
+    "text": "&gt;&gt; Energy is basically tension within"
+  },
+  {
+    "start": "00:03:29.440",
+    "end": "00:03:31.110",
+    "text": "motion. Think of a wound spring"
+  },
+  {
+    "start": "00:03:31.120",
+    "end": "00:03:34.630",
+    "text": "potential movement and mass. That's the"
+  },
+  {
+    "start": "00:03:34.640",
+    "end": "00:03:36.550",
+    "text": "inertia of rhythm. The resistance to"
+  },
+  {
+    "start": "00:03:36.560",
+    "end": "00:03:37.990",
+    "text": "changing a pattern of motion."
+  },
+  {
+    "start": "00:03:38.000",
+    "end": "00:03:39.910",
+    "text": "&gt;&gt; That inertia of rhythm. I like that."
+  },
+  {
+    "start": "00:03:39.920",
+    "end": "00:03:41.990",
+    "text": "&gt;&gt; Yeah. And bringing it back to bore"
+  },
+  {
+    "start": "00:03:42.000",
+    "end": "00:03:44.869",
+    "text": "quantization in this view is that"
+  },
+  {
+    "start": "00:03:44.879",
+    "end": "00:03:46.789",
+    "text": "natural compression algorithm. We talked"
+  },
+  {
+    "start": "00:03:46.799",
+    "end": "00:03:49.030",
+    "text": "about motion finding its most stable"
+  },
+  {
+    "start": "00:03:49.040",
+    "end": "00:03:49.910",
+    "text": "efficient forms."
+  },
+  {
+    "start": "00:03:49.920",
+    "end": "00:03:51.990",
+    "text": "&gt;&gt; So bore makes these wild assumptions"
+  },
+  {
+    "start": "00:03:52.000",
+    "end": "00:03:54.789",
+    "text": "breaking classical rules. But did it"
+  },
+  {
+    "start": "00:03:54.799",
+    "end": "00:03:56.550",
+    "text": "work? Did it predict anything real?"
+  },
+  {
+    "start": "00:03:56.560",
+    "end": "00:03:58.309",
+    "text": "&gt;&gt; Oh, absolutely. That's the amazing part."
+  },
+  {
+    "start": "00:03:58.319",
+    "end": "00:04:00.390",
+    "text": "He took the simplest atom,"
+  },
+  {
+    "start": "00:04:00.400",
+    "end": "00:04:02.229",
+    "text": "&gt;&gt; hydrogen, just one proton and one"
+  },
+  {
+    "start": "00:04:02.239",
+    "end": "00:04:03.110",
+    "text": "electron. Oh, it did."
+  },
+  {
+    "start": "00:04:03.120",
+    "end": "00:04:05.270",
+    "text": "&gt;&gt; And he proposed a specific rule."
+  },
+  {
+    "start": "00:04:05.280",
+    "end": "00:04:07.030",
+    "text": "&gt;&gt; The electron's angular momentum, sort of"
+  },
+  {
+    "start": "00:04:07.040",
+    "end": "00:04:09.750",
+    "text": "its orbital spin quantity, could only be"
+  },
+  {
+    "start": "00:04:09.760",
+    "end": "00:04:11.670",
+    "text": "integer multiples of a specific value."
+  },
+  {
+    "start": "00:04:11.680",
+    "end": "00:04:12.789",
+    "text": "H2I, right?"
+  },
+  {
+    "start": "00:04:12.799",
+    "end": "00:04:14.550",
+    "text": "&gt;&gt; Planck's constant divided by 2 pi."
+  },
+  {
+    "start": "00:04:14.560",
+    "end": "00:04:16.550",
+    "text": "&gt;&gt; A very specific mathematical condition."
+  },
+  {
+    "start": "00:04:16.560",
+    "end": "00:04:18.150",
+    "text": "&gt;&gt; Very specific. And the incredible thing"
+  },
+  {
+    "start": "00:04:18.160",
+    "end": "00:04:20.229",
+    "text": "when you applied that rule, the allowed"
+  },
+  {
+    "start": "00:04:20.239",
+    "end": "00:04:22.390",
+    "text": "energy levels it predicted perfectly"
+  },
+  {
+    "start": "00:04:22.400",
+    "end": "00:04:24.310",
+    "text": "matched the actual colors, the spectral"
+  },
+  {
+    "start": "00:04:24.320",
+    "end": "00:04:26.469",
+    "text": "lines that scientists observed when"
+  },
+  {
+    "start": "00:04:26.479",
+    "end": "00:04:28.070",
+    "text": "hydrogen gas was excited."
+  },
+  {
+    "start": "00:04:28.080",
+    "end": "00:04:29.749",
+    "text": "&gt;&gt; Wow. So the math, even though it seemed"
+  },
+  {
+    "start": "00:04:29.759",
+    "end": "00:04:32.710",
+    "text": "arbitrary, matched reality exactly."
+  },
+  {
+    "start": "00:04:32.720",
+    "end": "00:04:35.110",
+    "text": "&gt;&gt; Exactly. It was a stunning success. It"
+  },
+  {
+    "start": "00:04:35.120",
+    "end": "00:04:37.749",
+    "text": "showed quantization wasn't just a guess."
+  },
+  {
+    "start": "00:04:37.759",
+    "end": "00:04:39.670",
+    "text": "It was somehow built into the fabric of"
+  },
+  {
+    "start": "00:04:39.680",
+    "end": "00:04:41.990",
+    "text": "the atom, even if classical physics"
+  },
+  {
+    "start": "00:04:42.000",
+    "end": "00:04:42.950",
+    "text": "couldn't explain why."
+  },
+  {
+    "start": "00:04:42.960",
+    "end": "00:04:44.790",
+    "text": "&gt;&gt; But motion theory does offer a why,"
+  },
+  {
+    "start": "00:04:44.800",
+    "end": "00:04:45.189",
+    "text": "right?"
+  },
+  {
+    "start": "00:04:45.199",
+    "end": "00:04:46.550",
+    "text": "&gt;&gt; Yeah. Here's where it gets really"
+  },
+  {
+    "start": "00:04:46.560",
+    "end": "00:04:47.189",
+    "text": "interesting."
+  },
+  {
+    "start": "00:04:47.199",
+    "end": "00:04:49.990",
+    "text": "&gt;&gt; Yes. From the motion theory perspective,"
+  },
+  {
+    "start": "00:04:50.000",
+    "end": "00:04:51.830",
+    "text": "Boore's rule isn't just a magical"
+  },
+  {
+    "start": "00:04:51.840",
+    "end": "00:04:54.230",
+    "text": "decree. It's about survival."
+  },
+  {
+    "start": "00:04:54.240",
+    "end": "00:04:55.430",
+    "text": "&gt;&gt; Survival of motion."
+  },
+  {
+    "start": "00:04:55.440",
+    "end": "00:04:56.310",
+    "text": "&gt;&gt; Precisely. Yeah."
+  },
+  {
+    "start": "00:04:56.320",
+    "end": "00:04:58.870",
+    "text": "&gt;&gt; Why don't electrons crash? Because only"
+  },
+  {
+    "start": "00:04:58.880",
+    "end": "00:05:00.629",
+    "text": "certain kinds of motion loops can"
+  },
+  {
+    "start": "00:05:00.639",
+    "end": "00:05:02.469",
+    "text": "actually persist. They have to close"
+  },
+  {
+    "start": "00:05:02.479",
+    "end": "00:05:03.030",
+    "text": "cleanly."
+  },
+  {
+    "start": "00:05:03.040",
+    "end": "00:05:04.629",
+    "text": "&gt;&gt; Close cleanly. What does that mean?"
+  },
+  {
+    "start": "00:05:04.639",
+    "end": "00:05:06.629",
+    "text": "&gt;&gt; Think of the electron not just as a"
+  },
+  {
+    "start": "00:05:06.639",
+    "end": "00:05:08.870",
+    "text": "particle, but having a wavelike nature,"
+  },
+  {
+    "start": "00:05:08.880",
+    "end": "00:05:10.870",
+    "text": "too. Imagine that wave traveling around"
+  },
+  {
+    "start": "00:05:10.880",
+    "end": "00:05:11.670",
+    "text": "the nucleus."
+  },
+  {
+    "start": "00:05:11.680",
+    "end": "00:05:13.350",
+    "text": "&gt;&gt; Okay? If that wave doesn't perfectly"
+  },
+  {
+    "start": "00:05:13.360",
+    "end": "00:05:16.870",
+    "text": "meet itself in phase after one orbit, it"
+  },
+  {
+    "start": "00:05:16.880",
+    "end": "00:05:18.629",
+    "text": "interferes with itself destructively"
+  },
+  {
+    "start": "00:05:18.639",
+    "end": "00:05:20.469",
+    "text": "&gt;&gt; like ripples canceling each other out."
+  },
+  {
+    "start": "00:05:20.479",
+    "end": "00:05:22.230",
+    "text": "&gt;&gt; Exactly. It bleeds energy, becomes"
+  },
+  {
+    "start": "00:05:22.240",
+    "end": "00:05:24.550",
+    "text": "unstable, it fades away. It just can't"
+  },
+  {
+    "start": "00:05:24.560",
+    "end": "00:05:25.350",
+    "text": "sustain itself."
+  },
+  {
+    "start": "00:05:25.360",
+    "end": "00:05:27.270",
+    "text": "&gt;&gt; Ah, but if it does close,"
+  },
+  {
+    "start": "00:05:27.280",
+    "end": "00:05:28.870",
+    "text": "&gt;&gt; then it reinforces itself. Right."
+  },
+  {
+    "start": "00:05:28.880",
+    "end": "00:05:31.029",
+    "text": "&gt;&gt; Every cycle, the wave pattern overlays"
+  },
+  {
+    "start": "00:05:31.039",
+    "end": "00:05:33.029",
+    "text": "perfectly, strengthening itself like a"
+  },
+  {
+    "start": "00:05:33.039",
+    "end": "00:05:34.070",
+    "text": "standing wave,"
+  },
+  {
+    "start": "00:05:34.080",
+    "end": "00:05:36.390",
+    "text": "&gt;&gt; like a guitar string vibrating at just"
+  },
+  {
+    "start": "00:05:36.400",
+    "end": "00:05:39.270",
+    "text": "the right frequency. It resonates"
+  },
+  {
+    "start": "00:05:39.280",
+    "end": "00:05:41.830",
+    "text": "&gt;&gt; perfectly put. Those self-reinforcing"
+  },
+  {
+    "start": "00:05:41.840",
+    "end": "00:05:44.469",
+    "text": "loops are what Boore called stationary"
+  },
+  {
+    "start": "00:05:44.479",
+    "end": "00:05:47.110",
+    "text": "states. Motion theory calls them"
+  },
+  {
+    "start": "00:05:47.120",
+    "end": "00:05:48.710",
+    "text": "coherence locks."
+  },
+  {
+    "start": "00:05:48.720",
+    "end": "00:05:51.029",
+    "text": "&gt;&gt; Coherence locks. I like that term, too."
+  },
+  {
+    "start": "00:05:51.039",
+    "end": "00:05:52.550",
+    "text": "&gt;&gt; They're patterns of motion that are"
+  },
+  {
+    "start": "00:05:52.560",
+    "end": "00:05:54.790",
+    "text": "inherently stable because they reinforce"
+  },
+  {
+    "start": "00:05:54.800",
+    "end": "00:05:56.150",
+    "text": "themselves. They lock in."
+  },
+  {
+    "start": "00:05:56.160",
+    "end": "00:05:58.629",
+    "text": "&gt;&gt; So quantization isn't a mystery rule."
+  },
+  {
+    "start": "00:05:58.639",
+    "end": "00:06:03.029",
+    "text": "It's motion's way of ensuring stability,"
+  },
+  {
+    "start": "00:06:03.039",
+    "end": "00:06:04.230",
+    "text": "a survival filter."
+  },
+  {
+    "start": "00:06:04.240",
+    "end": "00:06:06.710",
+    "text": "&gt;&gt; That's the idea. Nature automatically"
+  },
+  {
+    "start": "00:06:06.720",
+    "end": "00:06:08.230",
+    "text": "selects for the motion patterns that"
+  },
+  {
+    "start": "00:06:08.240",
+    "end": "00:06:10.390",
+    "text": "cohhere that endure. The messy"
+  },
+  {
+    "start": "00:06:10.400",
+    "end": "00:06:12.550",
+    "text": "self-cancelling ones just don't last."
+  },
+  {
+    "start": "00:06:12.560",
+    "end": "00:06:14.790",
+    "text": "&gt;&gt; So Boore absolutely nailed the existence"
+  },
+  {
+    "start": "00:06:14.800",
+    "end": "00:06:16.790",
+    "text": "of quantization. He saw that the atomic"
+  },
+  {
+    "start": "00:06:16.800",
+    "end": "00:06:18.710",
+    "text": "world wasn't continuous. That was the"
+  },
+  {
+    "start": "00:06:18.720",
+    "end": "00:06:19.350",
+    "text": "huge leap."
+  },
+  {
+    "start": "00:06:19.360",
+    "end": "00:06:21.110",
+    "text": "&gt;&gt; A monumental leap. He fundamentally"
+  },
+  {
+    "start": "00:06:21.120",
+    "end": "00:06:22.469",
+    "text": "changed the game. Even though his"
+  },
+  {
+    "start": "00:06:22.479",
+    "end": "00:06:24.150",
+    "text": "specific model had limitations,"
+  },
+  {
+    "start": "00:06:24.160",
+    "end": "00:06:25.590",
+    "text": "&gt;&gt; right? You mentioned it didn't work so"
+  },
+  {
+    "start": "00:06:25.600",
+    "end": "00:06:26.790",
+    "text": "well for bigger atoms."
+  },
+  {
+    "start": "00:06:26.800",
+    "end": "00:06:28.390",
+    "text": "&gt;&gt; Correct. It struggled with atoms having"
+  },
+  {
+    "start": "00:06:28.400",
+    "end": "00:06:29.830",
+    "text": "more than one electron and couldn't"
+  },
+  {
+    "start": "00:06:29.840",
+    "end": "00:06:32.870",
+    "text": "explain things like electron spin, which"
+  },
+  {
+    "start": "00:06:32.880",
+    "end": "00:06:33.510",
+    "text": "came later."
+  },
+  {
+    "start": "00:06:33.520",
+    "end": "00:06:35.510",
+    "text": "&gt;&gt; So other theories came along. Yes, wave"
+  },
+  {
+    "start": "00:06:35.520",
+    "end": "00:06:37.110",
+    "text": "mechanics from Schrodinger and matrix"
+  },
+  {
+    "start": "00:06:37.120",
+    "end": "00:06:39.270",
+    "text": "mechanics from Heisenberg around 1925"
+  },
+  {
+    "start": "00:06:39.280",
+    "end": "00:06:42.070",
+    "text": "1926. They provided a much more complete"
+  },
+  {
+    "start": "00:06:42.080",
+    "end": "00:06:43.430",
+    "text": "mathematical description."
+  },
+  {
+    "start": "00:06:43.440",
+    "end": "00:06:45.749",
+    "text": "&gt;&gt; But Boore's core idea stuck."
+  },
+  {
+    "start": "00:06:45.759",
+    "end": "00:06:48.070",
+    "text": "&gt;&gt; Absolutely. The fundamental insight that"
+  },
+  {
+    "start": "00:06:48.080",
+    "end": "00:06:50.950",
+    "text": "not all motion is allowed, that nature"
+  },
+  {
+    "start": "00:06:50.960",
+    "end": "00:06:53.110",
+    "text": "picks only the loops that reinforce that"
+  },
+  {
+    "start": "00:06:53.120",
+    "end": "00:06:54.629",
+    "text": "became a cornerstone of quantum"
+  },
+  {
+    "start": "00:06:54.639",
+    "end": "00:06:56.790",
+    "text": "mechanics. It endured."
+  },
+  {
+    "start": "00:06:56.800",
+    "end": "00:06:58.390",
+    "text": "&gt;&gt; And motion theory says this isn't just"
+  },
+  {
+    "start": "00:06:58.400",
+    "end": "00:06:59.189",
+    "text": "about atoms."
+  },
+  {
+    "start": "00:06:59.199",
+    "end": "00:07:00.870",
+    "text": "&gt;&gt; Far from it. That's what's really"
+  },
+  {
+    "start": "00:07:00.880",
+    "end": "00:07:02.870",
+    "text": "fascinating. Motion theory suggests this"
+  },
+  {
+    "start": "00:07:02.880",
+    "end": "00:07:06.070",
+    "text": "principle of coherence of stable loops"
+  },
+  {
+    "start": "00:07:06.080",
+    "end": "00:07:08.230",
+    "text": "applies across incredible scales."
+  },
+  {
+    "start": "00:07:08.240",
+    "end": "00:07:09.029",
+    "text": "&gt;&gt; Like where else?"
+  },
+  {
+    "start": "00:07:09.039",
+    "end": "00:07:10.390",
+    "text": "&gt;&gt; Well, we've talked about atomic"
+  },
+  {
+    "start": "00:07:10.400",
+    "end": "00:07:12.390",
+    "text": "orbitals, those electron clouds. They're"
+  },
+  {
+    "start": "00:07:12.400",
+    "end": "00:07:15.510",
+    "text": "precisely these stable closed loops of"
+  },
+  {
+    "start": "00:07:15.520",
+    "end": "00:07:16.870",
+    "text": "the electrons wave function."
+  },
+  {
+    "start": "00:07:16.880",
+    "end": "00:07:17.350",
+    "text": "&gt;&gt; Okay."
+  },
+  {
+    "start": "00:07:17.360",
+    "end": "00:07:19.189",
+    "text": "&gt;&gt; Then you go into the nucleus, the magic"
+  },
+  {
+    "start": "00:07:19.199",
+    "end": "00:07:21.110",
+    "text": "numbers that make certain nuclei extra"
+  },
+  {
+    "start": "00:07:21.120",
+    "end": "00:07:23.510",
+    "text": "stable. Motion theory sees those as"
+  },
+  {
+    "start": "00:07:23.520",
+    "end": "00:07:25.350",
+    "text": "synchronized loops of protons and"
+  },
+  {
+    "start": "00:07:25.360",
+    "end": "00:07:27.110",
+    "text": "neutrons coherence clusters"
+  },
+  {
+    "start": "00:07:27.120",
+    "end": "00:07:29.430",
+    "text": "&gt;&gt; inside the nucleus itself. Wow."
+  },
+  {
+    "start": "00:07:29.440",
+    "end": "00:07:31.029",
+    "text": "&gt;&gt; Yeah. And even bigger. Think about"
+  },
+  {
+    "start": "00:07:31.039",
+    "end": "00:07:32.870",
+    "text": "planetary resonances in our solar"
+  },
+  {
+    "start": "00:07:32.880",
+    "end": "00:07:35.110",
+    "text": "system. Why do some planets have orbital"
+  },
+  {
+    "start": "00:07:35.120",
+    "end": "00:07:36.790",
+    "text": "periods that are simple ratios of each"
+  },
+  {
+    "start": "00:07:36.800",
+    "end": "00:07:37.110",
+    "text": "other?"
+  },
+  {
+    "start": "00:07:37.120",
+    "end": "00:07:38.629",
+    "text": "&gt;&gt; Like Jupiter and Saturn."
+  },
+  {
+    "start": "00:07:38.639",
+    "end": "00:07:40.629",
+    "text": "&gt;&gt; Exactly. Those are orbital loops locking"
+  },
+  {
+    "start": "00:07:40.639",
+    "end": "00:07:42.230",
+    "text": "into stable harmonics. It prevents"
+  },
+  {
+    "start": "00:07:42.240",
+    "end": "00:07:44.309",
+    "text": "chaos, keeps the system stable over"
+  },
+  {
+    "start": "00:07:44.319",
+    "end": "00:07:46.629",
+    "text": "billions of years. Self-reinforcing"
+  },
+  {
+    "start": "00:07:46.639",
+    "end": "00:07:47.909",
+    "text": "gravitational patterns."
+  },
+  {
+    "start": "00:07:47.919",
+    "end": "00:07:51.270",
+    "text": "&gt;&gt; So wait, you're saying the same basic"
+  },
+  {
+    "start": "00:07:51.280",
+    "end": "00:07:53.909",
+    "text": "logic. Motion finding stable repeating"
+  },
+  {
+    "start": "00:07:53.919",
+    "end": "00:07:56.790",
+    "text": "patterns applies from electrons to"
+  },
+  {
+    "start": "00:07:56.800",
+    "end": "00:07:59.270",
+    "text": "nuclei all the way up to planets. That's"
+  },
+  {
+    "start": "00:07:59.280",
+    "end": "00:08:01.749",
+    "text": "the suggestion. The fundamental logic of"
+  },
+  {
+    "start": "00:08:01.759",
+    "end": "00:08:03.909",
+    "text": "stability through coherence seems to be"
+  },
+  {
+    "start": "00:08:03.919",
+    "end": "00:08:06.629",
+    "text": "scale and variant. It's about motion"
+  },
+  {
+    "start": "00:08:06.639",
+    "end": "00:08:08.950",
+    "text": "finding ways to persist by reinforcing"
+  },
+  {
+    "start": "00:08:08.960",
+    "end": "00:08:09.510",
+    "text": "itself."
+  },
+  {
+    "start": "00:08:09.520",
+    "end": "00:08:11.029",
+    "text": "&gt;&gt; That's yeah, that's genuinely"
+  },
+  {
+    "start": "00:08:11.039",
+    "end": "00:08:12.950",
+    "text": "mindbending. It connects the incredibly"
+  },
+  {
+    "start": "00:08:12.960",
+    "end": "00:08:15.270",
+    "text": "small to the cosmically large through"
+  },
+  {
+    "start": "00:08:15.280",
+    "end": "00:08:16.070",
+    "text": "one principle."
+  },
+  {
+    "start": "00:08:16.080",
+    "end": "00:08:17.909",
+    "text": "&gt;&gt; And Bore wasn't just about the physics"
+  },
+  {
+    "start": "00:08:17.919",
+    "end": "00:08:20.070",
+    "text": "equations. He also thought deeply about"
+  },
+  {
+    "start": "00:08:20.080",
+    "end": "00:08:22.390",
+    "text": "the philosophical implications. He came"
+  },
+  {
+    "start": "00:08:22.400",
+    "end": "00:08:24.790",
+    "text": "up with this concept of complimentarity."
+  },
+  {
+    "start": "00:08:24.800",
+    "end": "00:08:26.950",
+    "text": "&gt;&gt; Complimentarity? What's that about? It's"
+  },
+  {
+    "start": "00:08:26.960",
+    "end": "00:08:27.990",
+    "text": "the idea that something can have"
+  },
+  {
+    "start": "00:08:28.000",
+    "end": "00:08:29.670",
+    "text": "seemingly contradictory properties like"
+  },
+  {
+    "start": "00:08:29.680",
+    "end": "00:08:31.430",
+    "text": "being both a wave and a particle. And"
+  },
+  {
+    "start": "00:08:31.440",
+    "end": "00:08:33.029",
+    "text": "both descriptions can be true just"
+  },
+  {
+    "start": "00:08:33.039",
+    "end": "00:08:34.709",
+    "text": "depending on how you look or measure."
+  },
+  {
+    "start": "00:08:34.719",
+    "end": "00:08:37.350",
+    "text": "&gt;&gt; So an electron isn't either a wave or a"
+  },
+  {
+    "start": "00:08:37.360",
+    "end": "00:08:39.350",
+    "text": "particle. It's somehow both"
+  },
+  {
+    "start": "00:08:39.360",
+    "end": "00:08:41.909",
+    "text": "&gt;&gt; depending on the context. Yes. Borefelt"
+  },
+  {
+    "start": "00:08:41.919",
+    "end": "00:08:43.430",
+    "text": "nature couldn't be squeezed into just"
+  },
+  {
+    "start": "00:08:43.440",
+    "end": "00:08:45.750",
+    "text": "one single picture. You needed multiple"
+  },
+  {
+    "start": "00:08:45.760",
+    "end": "00:08:47.829",
+    "text": "complimentary views to grasp the whole."
+  },
+  {
+    "start": "00:08:47.839",
+    "end": "00:08:49.110",
+    "text": "&gt;&gt; How does motion theory see"
+  },
+  {
+    "start": "00:08:49.120",
+    "end": "00:08:50.310",
+    "text": "complimentarity?"
+  },
+  {
+    "start": "00:08:50.320",
+    "end": "00:08:53.030",
+    "text": "&gt;&gt; It frames it as well different ways of"
+  },
+  {
+    "start": "00:08:53.040",
+    "end": "00:08:55.590",
+    "text": "probing the coherence of motion. Motion"
+  },
+  {
+    "start": "00:08:55.600",
+    "end": "00:08:57.269",
+    "text": "simply expresses different aspects"
+  },
+  {
+    "start": "00:08:57.279",
+    "end": "00:08:58.630",
+    "text": "depending on your interaction with it."
+  },
+  {
+    "start": "00:08:58.640",
+    "end": "00:08:59.829",
+    "text": "&gt;&gt; Can you give an example?"
+  },
+  {
+    "start": "00:08:59.839",
+    "end": "00:09:02.550",
+    "text": "&gt;&gt; Sure. If you measure motion in transit,"
+  },
+  {
+    "start": "00:09:02.560",
+    "end": "00:09:04.389",
+    "text": "focusing on its rhythm and propagation"
+  },
+  {
+    "start": "00:09:04.399",
+    "end": "00:09:06.550",
+    "text": "like light traveling, you see its wave"
+  },
+  {
+    "start": "00:09:06.560",
+    "end": "00:09:07.030",
+    "text": "nature."
+  },
+  {
+    "start": "00:09:07.040",
+    "end": "00:09:08.389",
+    "text": "&gt;&gt; Okay. The continuous flow."
+  },
+  {
+    "start": "00:09:08.399",
+    "end": "00:09:10.470",
+    "text": "&gt;&gt; But if you measure its interaction, the"
+  },
+  {
+    "start": "00:09:10.480",
+    "end": "00:09:12.790",
+    "text": "loop edges like detecting where a photon"
+  },
+  {
+    "start": "00:09:12.800",
+    "end": "00:09:15.430",
+    "text": "hits a screen, you see its discrete"
+  },
+  {
+    "start": "00:09:15.440",
+    "end": "00:09:18.230",
+    "text": "quantum nature, a particle-like event."
+  },
+  {
+    "start": "00:09:18.240",
+    "end": "00:09:20.150",
+    "text": "&gt;&gt; So the measurement itself determines"
+  },
+  {
+    "start": "00:09:20.160",
+    "end": "00:09:21.750",
+    "text": "which aspect you see"
+  },
+  {
+    "start": "00:09:21.760",
+    "end": "00:09:24.150",
+    "text": "&gt;&gt; in a way. Yes. It highlights different"
+  },
+  {
+    "start": "00:09:24.160",
+    "end": "00:09:26.550",
+    "text": "facets of the underlying coherent motion"
+  },
+  {
+    "start": "00:09:26.560",
+    "end": "00:09:28.710",
+    "text": "which makes you wonder what other"
+  },
+  {
+    "start": "00:09:28.720",
+    "end": "00:09:30.630",
+    "text": "aspects of reality are we missing"
+  },
+  {
+    "start": "00:09:30.640",
+    "end": "00:09:32.070",
+    "text": "because we only look from certain"
+  },
+  {
+    "start": "00:09:32.080",
+    "end": "00:09:32.710",
+    "text": "angles."
+  },
+  {
+    "start": "00:09:32.720",
+    "end": "00:09:35.269",
+    "text": "&gt;&gt; H that's a deep question. You know Bors"
+  },
+  {
+    "start": "00:09:35.279",
+    "end": "00:09:37.030",
+    "text": "Institute in Copenhagen sounds like it"
+  },
+  {
+    "start": "00:09:37.040",
+    "end": "00:09:38.710",
+    "text": "was an incredible place. The house of"
+  },
+  {
+    "start": "00:09:38.720",
+    "end": "00:09:39.509",
+    "text": "quantum motion."
+  },
+  {
+    "start": "00:09:39.519",
+    "end": "00:09:41.350",
+    "text": "&gt;&gt; Oh absolutely legendary. You had almost"
+  },
+  {
+    "start": "00:09:41.360",
+    "end": "00:09:43.590",
+    "text": "everyone who was anyone in early quantum"
+  },
+  {
+    "start": "00:09:43.600",
+    "end": "00:09:44.949",
+    "text": "physics passing through there."
+  },
+  {
+    "start": "00:09:44.959",
+    "end": "00:09:48.630",
+    "text": "Heisenberg Paulie Dak Fermy Gamo."
+  },
+  {
+    "start": "00:09:48.640",
+    "end": "00:09:50.790",
+    "text": "&gt;&gt; Wow. Imagine the discussions the"
+  },
+  {
+    "start": "00:09:50.800",
+    "end": "00:09:51.670",
+    "text": "debates."
+  },
+  {
+    "start": "00:09:51.680",
+    "end": "00:09:53.829",
+    "text": "&gt;&gt; Intense. certainly all grappling with"
+  },
+  {
+    "start": "00:09:53.839",
+    "end": "00:09:55.990",
+    "text": "this new reality that motion itself was"
+  },
+  {
+    "start": "00:09:56.000",
+    "end": "00:09:58.949",
+    "text": "quantized, restricted. The very nature"
+  },
+  {
+    "start": "00:09:58.959",
+    "end": "00:10:00.630",
+    "text": "of reality was up for grabs."
+  },
+  {
+    "start": "00:10:00.640",
+    "end": "00:10:02.550",
+    "text": "&gt;&gt; And of course, the famous Bore Einstein"
+  },
+  {
+    "start": "00:10:02.560",
+    "end": "00:10:03.670",
+    "text": "debates happened there. Right."
+  },
+  {
+    "start": "00:10:03.680",
+    "end": "00:10:05.190",
+    "text": "&gt;&gt; Yes. The intellectual sparring between"
+  },
+  {
+    "start": "00:10:05.200",
+    "end": "00:10:07.269",
+    "text": "the two giants. Einstein famously"
+  },
+  {
+    "start": "00:10:07.279",
+    "end": "00:10:09.430",
+    "text": "saying, \"God does not play dice,\""
+  },
+  {
+    "start": "00:10:09.440",
+    "end": "00:10:10.790",
+    "text": "expressing his discomfort with the"
+  },
+  {
+    "start": "00:10:10.800",
+    "end": "00:10:12.630",
+    "text": "randomness and probabilities inherent in"
+  },
+  {
+    "start": "00:10:12.640",
+    "end": "00:10:13.509",
+    "text": "quantum mechanics."
+  },
+  {
+    "start": "00:10:13.519",
+    "end": "00:10:14.710",
+    "text": "&gt;&gt; And Boore's reply,"
+  },
+  {
+    "start": "00:10:14.720",
+    "end": "00:10:17.110",
+    "text": "&gt;&gt; \"Stop telling God what to do.\""
+  },
+  {
+    "start": "00:10:17.120",
+    "end": "00:10:19.030",
+    "text": "&gt;&gt; Classic Boore. For Einstein,"
+  },
+  {
+    "start": "00:10:19.040",
+    "end": "00:10:21.990",
+    "text": "quantization felt incomplete, like there"
+  },
+  {
+    "start": "00:10:22.000",
+    "end": "00:10:23.829",
+    "text": "had to be hidden deterministic rules"
+  },
+  {
+    "start": "00:10:23.839",
+    "end": "00:10:24.790",
+    "text": "underneath."
+  },
+  {
+    "start": "00:10:24.800",
+    "end": "00:10:27.269",
+    "text": "&gt;&gt; But bore felt quantization was the"
+  },
+  {
+    "start": "00:10:27.279",
+    "end": "00:10:28.069",
+    "text": "reality."
+  },
+  {
+    "start": "00:10:28.079",
+    "end": "00:10:29.670",
+    "text": "&gt;&gt; Pretty much he accepted it as a"
+  },
+  {
+    "start": "00:10:29.680",
+    "end": "00:10:31.670",
+    "text": "fundamental feature of nature. And"
+  },
+  {
+    "start": "00:10:31.680",
+    "end": "00:10:33.430",
+    "text": "motion theory, interestingly, kind of"
+  },
+  {
+    "start": "00:10:33.440",
+    "end": "00:10:34.230",
+    "text": "bridges this."
+  },
+  {
+    "start": "00:10:34.240",
+    "end": "00:10:34.710",
+    "text": "&gt;&gt; How so?"
+  },
+  {
+    "start": "00:10:34.720",
+    "end": "00:10:36.949",
+    "text": "&gt;&gt; It suggests quantization isn't arbitrary"
+  },
+  {
+    "start": "00:10:36.959",
+    "end": "00:10:39.269",
+    "text": "like Einstein feared. Nor is it just a"
+  },
+  {
+    "start": "00:10:39.279",
+    "end": "00:10:41.750",
+    "text": "weird brute fact as Bore perhaps"
+  },
+  {
+    "start": "00:10:41.760",
+    "end": "00:10:43.670",
+    "text": "accepted. Instead, it's the natural"
+  },
+  {
+    "start": "00:10:43.680",
+    "end": "00:10:46.069",
+    "text": "outcome of motion seeking coherence."
+  },
+  {
+    "start": "00:10:46.079",
+    "end": "00:10:47.990",
+    "text": "It's how motion must behave to be"
+  },
+  {
+    "start": "00:10:48.000",
+    "end": "00:10:50.389",
+    "text": "stable. Not random chance, not hidden"
+  },
+  {
+    "start": "00:10:50.399",
+    "end": "00:10:52.790",
+    "text": "variables, but the inherent consequence"
+  },
+  {
+    "start": "00:10:52.800",
+    "end": "00:10:54.790",
+    "text": "of self-reinforcing dynamics."
+  },
+  {
+    "start": "00:10:54.800",
+    "end": "00:10:56.310",
+    "text": "&gt;&gt; Let's circle back to hydrogen then."
+  },
+  {
+    "start": "00:10:56.320",
+    "end": "00:10:58.069",
+    "text": "Bor's first big win. You said we should"
+  },
+  {
+    "start": "00:10:58.079",
+    "end": "00:10:59.509",
+    "text": "reframe how we see it."
+  },
+  {
+    "start": "00:10:59.519",
+    "end": "00:11:02.710",
+    "text": "&gt;&gt; Yes. Think beyond just a simple orbit."
+  },
+  {
+    "start": "00:11:02.720",
+    "end": "00:11:04.630",
+    "text": "We observe those specific spectral"
+  },
+  {
+    "start": "00:11:04.640",
+    "end": "00:11:06.710",
+    "text": "lines, those exact colors of light."
+  },
+  {
+    "start": "00:11:06.720",
+    "end": "00:11:08.230",
+    "text": "&gt;&gt; Right. Empirical fact."
+  },
+  {
+    "start": "00:11:08.240",
+    "end": "00:11:10.230",
+    "text": "&gt;&gt; Bor's rule, angular momentum is"
+  },
+  {
+    "start": "00:11:10.240",
+    "end": "00:11:11.910",
+    "text": "quantized. Explain those lines"
+  },
+  {
+    "start": "00:11:11.920",
+    "end": "00:11:13.750",
+    "text": "mathematically. But the motion theory"
+  },
+  {
+    "start": "00:11:13.760",
+    "end": "00:11:15.829",
+    "text": "view gives the physical reason."
+  },
+  {
+    "start": "00:11:15.839",
+    "end": "00:11:18.150",
+    "text": "Only electron loops with integer"
+  },
+  {
+    "start": "00:11:18.160",
+    "end": "00:11:21.430",
+    "text": "self-phase can persist. The electrons"
+  },
+  {
+    "start": "00:11:21.440",
+    "end": "00:11:23.110",
+    "text": "wave has to fit perfectly around the"
+  },
+  {
+    "start": "00:11:23.120",
+    "end": "00:11:25.110",
+    "text": "nucleus. An integer number of"
+  },
+  {
+    "start": "00:11:25.120",
+    "end": "00:11:25.990",
+    "text": "wavelengths."
+  },
+  {
+    "start": "00:11:26.000",
+    "end": "00:11:28.310",
+    "text": "&gt;&gt; Circumference equals n times wavelength."
+  },
+  {
+    "start": "00:11:28.320",
+    "end": "00:11:29.750",
+    "text": "Like that guitar string again."
+  },
+  {
+    "start": "00:11:29.760",
+    "end": "00:11:31.910",
+    "text": "&gt;&gt; Exactly. It's literally a closed wave"
+  },
+  {
+    "start": "00:11:31.920",
+    "end": "00:11:33.670",
+    "text": "resonance. Any wave that doesn't fit"
+  },
+  {
+    "start": "00:11:33.680",
+    "end": "00:11:35.430",
+    "text": "perfectly just fizzles out."
+  },
+  {
+    "start": "00:11:35.440",
+    "end": "00:11:37.350",
+    "text": "&gt;&gt; Only the resonant frequencies, the"
+  },
+  {
+    "start": "00:11:37.360",
+    "end": "00:11:39.190",
+    "text": "coherent loops survive."
+  },
+  {
+    "start": "00:11:39.200",
+    "end": "00:11:40.949",
+    "text": "&gt;&gt; So hydrogen isn't just a particle"
+  },
+  {
+    "start": "00:11:40.959",
+    "end": "00:11:44.550",
+    "text": "orbiting. It's like a tiny motion drum"
+  },
+  {
+    "start": "00:11:44.560",
+    "end": "00:11:45.350",
+    "text": "resonating."
+  },
+  {
+    "start": "00:11:45.360",
+    "end": "00:11:46.470",
+    "text": "&gt;&gt; That's a great way to put it. The"
+  },
+  {
+    "start": "00:11:46.480",
+    "end": "00:11:47.910",
+    "text": "electrons rhythm is locked to the"
+  },
+  {
+    "start": "00:11:47.920",
+    "end": "00:11:49.990",
+    "text": "proton's anchor, creating a stable,"
+  },
+  {
+    "start": "00:11:50.000",
+    "end": "00:11:52.710",
+    "text": "resonant system. It's dynamic harmony,"
+  },
+  {
+    "start": "00:11:52.720",
+    "end": "00:11:53.910",
+    "text": "not just static structure."
+  },
+  {
+    "start": "00:11:53.920",
+    "end": "00:11:55.430",
+    "text": "&gt;&gt; And that simple atom is the universe"
+  },
+  {
+    "start": "00:11:55.440",
+    "end": "00:11:55.990",
+    "text": "whispering."
+  },
+  {
+    "start": "00:11:56.000",
+    "end": "00:11:57.990",
+    "text": "&gt;&gt; Whispering its fundamental law."
+  },
+  {
+    "start": "00:11:58.000",
+    "end": "00:12:00.550",
+    "text": "Stability equals coherence. Persistence"
+  },
+  {
+    "start": "00:12:00.560",
+    "end": "00:12:02.150",
+    "text": "comes from self-reinforcement. It's"
+  },
+  {
+    "start": "00:12:02.160",
+    "end": "00:12:04.069",
+    "text": "shown right there in the simplest atom."
+  },
+  {
+    "start": "00:12:04.079",
+    "end": "00:12:07.190",
+    "text": "Now, Boore mostly focused on atoms, but"
+  },
+  {
+    "start": "00:12:07.200",
+    "end": "00:12:08.790",
+    "text": "you said motion theory takes this"
+  },
+  {
+    "start": "00:12:08.800",
+    "end": "00:12:10.949",
+    "text": "quantization idea much further,"
+  },
+  {
+    "start": "00:12:10.959",
+    "end": "00:12:13.110",
+    "text": "&gt;&gt; right? Boore saw it as primarily an"
+  },
+  {
+    "start": "00:12:13.120",
+    "end": "00:12:15.829",
+    "text": "atomic thing. Motion theory argues it's"
+  },
+  {
+    "start": "00:12:15.839",
+    "end": "00:12:18.310",
+    "text": "a universal principle. Quantization or"
+  },
+  {
+    "start": "00:12:18.320",
+    "end": "00:12:20.150",
+    "text": "at least coherence is everywhere."
+  },
+  {
+    "start": "00:12:20.160",
+    "end": "00:12:22.069",
+    "text": "&gt;&gt; Give us the grand tour then. Where else?"
+  },
+  {
+    "start": "00:12:22.079",
+    "end": "00:12:23.990",
+    "text": "&gt;&gt; Okay, quick rundown. We have electrons"
+  },
+  {
+    "start": "00:12:24.000",
+    "end": "00:12:26.550",
+    "text": "and atoms. Orbitals is closed loops. We"
+  },
+  {
+    "start": "00:12:26.560",
+    "end": "00:12:28.550",
+    "text": "have atomic nuclei. Magic numbers as"
+  },
+  {
+    "start": "00:12:28.560",
+    "end": "00:12:31.030",
+    "text": "nucleon coherence clusters. We have"
+  },
+  {
+    "start": "00:12:31.040",
+    "end": "00:12:33.910",
+    "text": "molecules, quantized vibrational modes,"
+  },
+  {
+    "start": "00:12:33.920",
+    "end": "00:12:35.269",
+    "text": "stable oscillation loops."
+  },
+  {
+    "start": "00:12:35.279",
+    "end": "00:12:36.550",
+    "text": "&gt;&gt; We mentioned planets and orbital"
+  },
+  {
+    "start": "00:12:36.560",
+    "end": "00:12:37.269",
+    "text": "resonances."
+  },
+  {
+    "start": "00:12:37.279",
+    "end": "00:12:39.269",
+    "text": "&gt;&gt; Yep. Stable harmonic loops and gravity."
+  },
+  {
+    "start": "00:12:39.279",
+    "end": "00:12:41.670",
+    "text": "Then look bigger. Fractal clustering of"
+  },
+  {
+    "start": "00:12:41.680",
+    "end": "00:12:44.230",
+    "text": "galaxies in the cosmos. Strange quazar"
+  },
+  {
+    "start": "00:12:44.240",
+    "end": "00:12:46.550",
+    "text": "alignments over vast distances. The very"
+  },
+  {
+    "start": "00:12:46.560",
+    "end": "00:12:49.110",
+    "text": "structure of spiral galaxies. These all"
+  },
+  {
+    "start": "00:12:49.120",
+    "end": "00:12:51.350",
+    "text": "hint at large scale coherence preferred"
+  },
+  {
+    "start": "00:12:51.360",
+    "end": "00:12:51.910",
+    "text": "patterns."
+  },
+  {
+    "start": "00:12:51.920",
+    "end": "00:12:53.750",
+    "text": "&gt;&gt; Wow. So coherence patterns might"
+  },
+  {
+    "start": "00:12:53.760",
+    "end": "00:12:55.509",
+    "text": "structure the entire universe. Motion"
+  },
+  {
+    "start": "00:12:55.519",
+    "end": "00:12:57.829",
+    "text": "theory even suggests framing the very"
+  },
+  {
+    "start": "00:12:57.839",
+    "end": "00:12:59.910",
+    "text": "origin not as a big bang explosion but"
+  },
+  {
+    "start": "00:12:59.920",
+    "end": "00:13:02.069",
+    "text": "as a great motion event. The emergence"
+  },
+  {
+    "start": "00:13:02.079",
+    "end": "00:13:04.069",
+    "text": "of the first stable self-reinforcing"
+  },
+  {
+    "start": "00:13:04.079",
+    "end": "00:13:05.910",
+    "text": "loop of motion from the primordial"
+  },
+  {
+    "start": "00:13:05.920",
+    "end": "00:13:06.790",
+    "text": "background change."
+  },
+  {
+    "start": "00:13:06.800",
+    "end": "00:13:08.389",
+    "text": "&gt;&gt; The first coherence lock."
+  },
+  {
+    "start": "00:13:08.399",
+    "end": "00:13:10.310",
+    "text": "&gt;&gt; Exactly. And from that initial seed to"
+  },
+  {
+    "start": "00:13:10.320",
+    "end": "00:13:12.310",
+    "text": "stable motion quantization cascaded"
+  },
+  {
+    "start": "00:13:12.320",
+    "end": "00:13:14.470",
+    "text": "upwards allowing complexity to build"
+  },
+  {
+    "start": "00:13:14.480",
+    "end": "00:13:18.069",
+    "text": "atoms, stars, galaxies, maybe even life"
+  },
+  {
+    "start": "00:13:18.079",
+    "end": "00:13:20.150",
+    "text": "itself as a highly complex form of"
+  },
+  {
+    "start": "00:13:20.160",
+    "end": "00:13:21.430",
+    "text": "coherent motion."
+  },
+  {
+    "start": "00:13:21.440",
+    "end": "00:13:23.829",
+    "text": "&gt;&gt; Okay. So reflecting on Boore's legacy"
+  },
+  {
+    "start": "00:13:23.839",
+    "end": "00:13:25.990",
+    "text": "now with a century of hindsight and"
+  },
+  {
+    "start": "00:13:26.000",
+    "end": "00:13:28.710",
+    "text": "ideas like motion theory, what did Boore"
+  },
+  {
+    "start": "00:13:28.720",
+    "end": "00:13:31.190",
+    "text": "perhaps miss or what can we add now?"
+  },
+  {
+    "start": "00:13:31.200",
+    "end": "00:13:32.629",
+    "text": "&gt;&gt; Well, obviously he couldn't have known"
+  },
+  {
+    "start": "00:13:32.639",
+    "end": "00:13:34.870",
+    "text": "everything. Concepts like zero point"
+  },
+  {
+    "start": "00:13:34.880",
+    "end": "00:13:36.389",
+    "text": "motion. The idea that there's inherent"
+  },
+  {
+    "start": "00:13:36.399",
+    "end": "00:13:38.310",
+    "text": "motion even at absolute zero that wasn't"
+  },
+  {
+    "start": "00:13:38.320",
+    "end": "00:13:40.470",
+    "text": "part of his picture. Motion theory sees"
+  },
+  {
+    "start": "00:13:40.480",
+    "end": "00:13:42.949",
+    "text": "this as the fundamental background hum"
+  },
+  {
+    "start": "00:13:42.959",
+    "end": "00:13:44.629",
+    "text": "from which coherent loops emerge."
+  },
+  {
+    "start": "00:13:44.639",
+    "end": "00:13:45.110",
+    "text": "&gt;&gt; What else?"
+  },
+  {
+    "start": "00:13:45.120",
+    "end": "00:13:47.269",
+    "text": "&gt;&gt; The idea of coherence gradients. Maybe"
+  },
+  {
+    "start": "00:13:47.279",
+    "end": "00:13:49.269",
+    "text": "quantization isn't always a sharp ono"
+  },
+  {
+    "start": "00:13:49.279",
+    "end": "00:13:51.269",
+    "text": "thing. Perhaps coherence fades gradually"
+  },
+  {
+    "start": "00:13:51.279",
+    "end": "00:13:53.190",
+    "text": "with scale or complexity, but the"
+  },
+  {
+    "start": "00:13:53.200",
+    "end": "00:13:54.550",
+    "text": "tendency towards stable patterns"
+  },
+  {
+    "start": "00:13:54.560",
+    "end": "00:13:55.269",
+    "text": "persists."
+  },
+  {
+    "start": "00:13:55.279",
+    "end": "00:13:56.790",
+    "text": "&gt;&gt; Interesting. Not just sharp steps, but"
+  },
+  {
+    "start": "00:13:56.800",
+    "end": "00:13:58.310",
+    "text": "maybe fuzzy boundaries sometimes"
+  },
+  {
+    "start": "00:13:58.320",
+    "end": "00:13:59.910",
+    "text": "&gt;&gt; possibly. And a really big one,"
+  },
+  {
+    "start": "00:13:59.920",
+    "end": "00:14:01.990",
+    "text": "understanding information is motion."
+  },
+  {
+    "start": "00:14:02.000",
+    "end": "00:14:03.910",
+    "text": "Seeing memory or even prediction not as"
+  },
+  {
+    "start": "00:14:03.920",
+    "end": "00:14:06.470",
+    "text": "static data, but as stored repeatable"
+  },
+  {
+    "start": "00:14:06.480",
+    "end": "00:14:08.150",
+    "text": "loops of coherent activity like patterns"
+  },
+  {
+    "start": "00:14:08.160",
+    "end": "00:14:09.590",
+    "text": "in neural networks perhaps."
+  },
+  {
+    "start": "00:14:09.600",
+    "end": "00:14:11.430",
+    "text": "&gt;&gt; So a thought is a motion loop."
+  },
+  {
+    "start": "00:14:11.440",
+    "end": "00:14:13.030",
+    "text": "&gt;&gt; That's a way to conceptualize it within"
+  },
+  {
+    "start": "00:14:13.040",
+    "end": "00:14:15.269",
+    "text": "this framework. Yes, a persistent"
+  },
+  {
+    "start": "00:14:15.279",
+    "end": "00:14:18.150",
+    "text": "recallable pattern of motion. So motion"
+  },
+  {
+    "start": "00:14:18.160",
+    "end": "00:14:20.310",
+    "text": "theory isn't replacing Boore. It's"
+  },
+  {
+    "start": "00:14:20.320",
+    "end": "00:14:23.110",
+    "text": "extending his core insight. Quantization"
+  },
+  {
+    "start": "00:14:23.120",
+    "end": "00:14:25.110",
+    "text": "isn't some arbitrary atomic quirk."
+  },
+  {
+    "start": "00:14:25.120",
+    "end": "00:14:27.269",
+    "text": "&gt;&gt; It's the universal grammar of motion."
+  },
+  {
+    "start": "00:14:27.279",
+    "end": "00:14:29.750",
+    "text": "&gt;&gt; Exactly. The fundamental way motion"
+  },
+  {
+    "start": "00:14:29.760",
+    "end": "00:14:32.550",
+    "text": "organizes itself to create stability and"
+  },
+  {
+    "start": "00:14:32.560",
+    "end": "00:14:33.910",
+    "text": "structure everywhere."
+  },
+  {
+    "start": "00:14:33.920",
+    "end": "00:14:35.590",
+    "text": "&gt;&gt; What an incredible journey from a"
+  },
+  {
+    "start": "00:14:35.600",
+    "end": "00:14:38.389",
+    "text": "collapsing classical atom to a universe"
+  },
+  {
+    "start": "00:14:38.399",
+    "end": "00:14:41.110",
+    "text": "built on rhythm and coherence. Boore's"
+  },
+  {
+    "start": "00:14:41.120",
+    "end": "00:14:42.949",
+    "text": "genius was his courage, wasn't it? To"
+  },
+  {
+    "start": "00:14:42.959",
+    "end": "00:14:45.509",
+    "text": "just stop forcing the old rules."
+  },
+  {
+    "start": "00:14:45.519",
+    "end": "00:14:47.509",
+    "text": "&gt;&gt; Absolutely. He accepted that the atom"
+  },
+  {
+    "start": "00:14:47.519",
+    "end": "00:14:49.350",
+    "text": "played by different rules. That motion"
+  },
+  {
+    "start": "00:14:49.360",
+    "end": "00:14:51.509",
+    "text": "itself imposed limits. Those allowed"
+  },
+  {
+    "start": "00:14:51.519",
+    "end": "00:14:53.590",
+    "text": "states in hydrogen weren't arbitrary."
+  },
+  {
+    "start": "00:14:53.600",
+    "end": "00:14:55.269",
+    "text": "They were simply the only ways the"
+  },
+  {
+    "start": "00:14:55.279",
+    "end": "00:14:57.030",
+    "text": "electrons motion could survive. The only"
+  },
+  {
+    "start": "00:14:57.040",
+    "end": "00:14:58.150",
+    "text": "loops that closed."
+  },
+  {
+    "start": "00:14:58.160",
+    "end": "00:14:59.910",
+    "text": "&gt;&gt; He found stability in the pattern, not"
+  },
+  {
+    "start": "00:14:59.920",
+    "end": "00:15:01.030",
+    "text": "the particle itself."
+  },
+  {
+    "start": "00:15:01.040",
+    "end": "00:15:03.670",
+    "text": "&gt;&gt; And while his model was, yeah, brilliant"
+  },
+  {
+    "start": "00:15:03.680",
+    "end": "00:15:05.110",
+    "text": "for a sketch later filled in by"
+  },
+  {
+    "start": "00:15:05.120",
+    "end": "00:15:06.550",
+    "text": "Schroinger's waves and direct"
+  },
+  {
+    "start": "00:15:06.560",
+    "end": "00:15:08.710",
+    "text": "symmetries, the heartbeat of his idea is"
+  },
+  {
+    "start": "00:15:08.720",
+    "end": "00:15:10.870",
+    "text": "still there. The universe selects, it"
+  },
+  {
+    "start": "00:15:10.880",
+    "end": "00:15:13.430",
+    "text": "prunes away unstable motion. It favors"
+  },
+  {
+    "start": "00:15:13.440",
+    "end": "00:15:15.590",
+    "text": "coherence. Bore cracked open the atom"
+  },
+  {
+    "start": "00:15:15.600",
+    "end": "00:15:16.470",
+    "text": "and found rhythm."
+  },
+  {
+    "start": "00:15:16.480",
+    "end": "00:15:18.150",
+    "text": "&gt;&gt; And motion theory suggests that rhythm"
+  },
+  {
+    "start": "00:15:18.160",
+    "end": "00:15:20.790",
+    "text": "just scales up, echoing through"
+  },
+  {
+    "start": "00:15:20.800",
+    "end": "00:15:23.750",
+    "text": "molecules, planets, galaxies, the entire"
+  },
+  {
+    "start": "00:15:23.760",
+    "end": "00:15:24.550",
+    "text": "cosmos."
+  },
+  {
+    "start": "00:15:24.560",
+    "end": "00:15:26.150",
+    "text": "&gt;&gt; So Bor's atom wasn't the end of"
+  },
+  {
+    "start": "00:15:26.160",
+    "end": "00:15:27.829",
+    "text": "classical physics after all. In a way,"
+  },
+  {
+    "start": "00:15:27.839",
+    "end": "00:15:29.269",
+    "text": "it was the beginning of seeing reality"
+  },
+  {
+    "start": "00:15:29.279",
+    "end": "00:15:31.189",
+    "text": "as fundamentally based on motion."
+  },
+  {
+    "start": "00:15:31.199",
+    "end": "00:15:32.310",
+    "text": "&gt;&gt; Motion first reality,"
+  },
+  {
+    "start": "00:15:32.320",
+    "end": "00:15:33.590",
+    "text": "&gt;&gt; which leaves us with a thought to"
+  },
+  {
+    "start": "00:15:33.600",
+    "end": "00:15:36.230",
+    "text": "ponder. If stability truly equals"
+  },
+  {
+    "start": "00:15:36.240",
+    "end": "00:15:38.310",
+    "text": "coherence, if persistence comes from"
+  },
+  {
+    "start": "00:15:38.320",
+    "end": "00:15:39.750",
+    "text": "loops closing and reinforcing"
+  },
+  {
+    "start": "00:15:39.760",
+    "end": "00:15:42.389",
+    "text": "themselves, where else in your world do"
+  },
+  {
+    "start": "00:15:42.399",
+    "end": "00:15:44.150",
+    "text": "you see this? In your daily routines,"
+  },
+  {
+    "start": "00:15:44.160",
+    "end": "00:15:46.230",
+    "text": "maybe in successful relationships, even"
+  },
+  {
+    "start": "00:15:46.240",
+    "end": "00:15:48.629",
+    "text": "in ecosystems, where do you see motion"
+  },
+  {
+    "start": "00:15:48.639",
+    "end": "00:15:50.069",
+    "text": "loops closing, creating something"
+  },
+  {
+    "start": "00:15:50.079",
+    "end": "00:15:54.880",
+    "text": "stable, enduring, and oh well, resonant?"
+  }
+]

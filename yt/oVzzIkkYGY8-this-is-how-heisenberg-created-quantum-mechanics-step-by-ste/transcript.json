@@ -1,0 +1,4207 @@
+[
+  {
+    "start": "00:00:03.200",
+    "end": "00:00:05.910",
+    "text": "In the summer of 1925,"
+  },
+  {
+    "start": "00:00:05.920",
+    "end": "00:00:08.870",
+    "text": "Verer Heisenberg developed the first"
+  },
+  {
+    "start": "00:00:08.880",
+    "end": "00:00:11.350",
+    "text": "consistent theory of quantum mechanics."
+  },
+  {
+    "start": "00:00:11.360",
+    "end": "00:00:13.910",
+    "text": "The paper he wrote is cryptic even for"
+  },
+  {
+    "start": "00:00:13.920",
+    "end": "00:00:16.550",
+    "text": "experts. But inside we find four"
+  },
+  {
+    "start": "00:00:16.560",
+    "end": "00:00:19.349",
+    "text": "groundbreaking ideas that rewrote the"
+  },
+  {
+    "start": "00:00:19.359",
+    "end": "00:00:22.070",
+    "text": "rules of physics. In this video, I will"
+  },
+  {
+    "start": "00:00:22.080",
+    "end": "00:00:24.550",
+    "text": "walk you through these ideas, concepts,"
+  },
+  {
+    "start": "00:00:24.560",
+    "end": "00:00:27.910",
+    "text": "and calculations to show you exactly how"
+  },
+  {
+    "start": "00:00:27.920",
+    "end": "00:00:35.030",
+    "text": "Heisenberg created quantum mechanics."
+  },
+  {
+    "start": "00:00:35.040",
+    "end": "00:00:37.590",
+    "text": "Quantum mechanics was created by Verer"
+  },
+  {
+    "start": "00:00:37.600",
+    "end": "00:00:41.350",
+    "text": "Heisenberg in 1925 with the publication"
+  },
+  {
+    "start": "00:00:41.360",
+    "end": "00:00:44.470",
+    "text": "of this paper. The content is hard to"
+  },
+  {
+    "start": "00:00:44.480",
+    "end": "00:00:47.430",
+    "text": "follow. Some sections lack continuity"
+  },
+  {
+    "start": "00:00:47.440",
+    "end": "00:00:49.830",
+    "text": "and some mathematical steps look like"
+  },
+  {
+    "start": "00:00:49.840",
+    "end": "00:00:52.389",
+    "text": "magic. The goal of this video is to"
+  },
+  {
+    "start": "00:00:52.399",
+    "end": "00:00:54.869",
+    "text": "change that and only with the help of"
+  },
+  {
+    "start": "00:00:54.879",
+    "end": "00:00:57.350",
+    "text": "not very advanced physics and plenty of"
+  },
+  {
+    "start": "00:00:57.360",
+    "end": "00:00:59.590",
+    "text": "mathematical manipulation, I hope to"
+  },
+  {
+    "start": "00:00:59.600",
+    "end": "00:01:02.709",
+    "text": "make Heisenberg's paper more accessible."
+  },
+  {
+    "start": "00:01:02.719",
+    "end": "00:01:04.630",
+    "text": "By the end of this video, we will"
+  },
+  {
+    "start": "00:01:04.640",
+    "end": "00:01:07.510",
+    "text": "discover how the famous 0 point energy"
+  },
+  {
+    "start": "00:01:07.520",
+    "end": "00:01:10.710",
+    "text": "appears in Heisenberg's theory and an"
+  },
+  {
+    "start": "00:01:10.720",
+    "end": "00:01:13.750",
+    "text": "early draft of what later became the"
+  },
+  {
+    "start": "00:01:13.760",
+    "end": "00:01:15.830",
+    "text": "uncertainty principle. In this"
+  },
+  {
+    "start": "00:01:15.840",
+    "end": "00:01:18.310",
+    "text": "step-by-step guide, I will show you all"
+  },
+  {
+    "start": "00:01:18.320",
+    "end": "00:01:20.870",
+    "text": "the details so you can also enjoy the"
+  },
+  {
+    "start": "00:01:20.880",
+    "end": "00:01:23.429",
+    "text": "beauty of this groundbreaking paper."
+  },
+  {
+    "start": "00:01:23.439",
+    "end": "00:01:26.070",
+    "text": "This video is divided into three parts."
+  },
+  {
+    "start": "00:01:26.080",
+    "end": "00:01:27.910",
+    "text": "I will begin by showing you the"
+  },
+  {
+    "start": "00:01:27.920",
+    "end": "00:01:31.270",
+    "text": "experimental fact that led to matrices."
+  },
+  {
+    "start": "00:01:31.280",
+    "end": "00:01:34.149",
+    "text": "Then I will introduce the four core"
+  },
+  {
+    "start": "00:01:34.159",
+    "end": "00:01:36.710",
+    "text": "ideas and calculations in the paper. And"
+  },
+  {
+    "start": "00:01:36.720",
+    "end": "00:01:39.350",
+    "text": "finally I will present one of the"
+  },
+  {
+    "start": "00:01:39.360",
+    "end": "00:01:42.069",
+    "text": "examples that Heisenberg provided at the"
+  },
+  {
+    "start": "00:01:42.079",
+    "end": "00:01:44.950",
+    "text": "end of his paper including all the gory"
+  },
+  {
+    "start": "00:01:44.960",
+    "end": "00:01:47.030",
+    "text": "details that I hope can give you a"
+  },
+  {
+    "start": "00:01:47.040",
+    "end": "00:01:49.270",
+    "text": "glimpse on the work of theoretical"
+  },
+  {
+    "start": "00:01:49.280",
+    "end": "00:01:51.990",
+    "text": "physics. As you probably know,"
+  },
+  {
+    "start": "00:01:52.000",
+    "end": "00:01:54.789",
+    "text": "Heisenberg's theory of quantum mechanics"
+  },
+  {
+    "start": "00:01:54.799",
+    "end": "00:01:57.749",
+    "text": "became known as matrix mechanics because"
+  },
+  {
+    "start": "00:01:57.759",
+    "end": "00:02:00.230",
+    "text": "of the use of these mathematical arrays"
+  },
+  {
+    "start": "00:02:00.240",
+    "end": "00:02:03.350",
+    "text": "of numbers. I want to begin by answering"
+  },
+  {
+    "start": "00:02:03.360",
+    "end": "00:02:06.230",
+    "text": "one simple question. Why are matrices"
+  },
+  {
+    "start": "00:02:06.240",
+    "end": "00:02:08.869",
+    "text": "needed in quantum mechanics? The answer"
+  },
+  {
+    "start": "00:02:08.879",
+    "end": "00:02:11.670",
+    "text": "is a simple experimental observation"
+  },
+  {
+    "start": "00:02:11.680",
+    "end": "00:02:14.869",
+    "text": "made by the Swiss physicist Valter Ritz"
+  },
+  {
+    "start": "00:02:14.879",
+    "end": "00:02:17.670",
+    "text": "in the summer of 1908."
+  },
+  {
+    "start": "00:02:17.680",
+    "end": "00:02:20.790",
+    "text": "This table shows some of the lines of"
+  },
+  {
+    "start": "00:02:20.800",
+    "end": "00:02:23.510",
+    "text": "the hydrogen spectrum. Let's take these"
+  },
+  {
+    "start": "00:02:23.520",
+    "end": "00:02:27.430",
+    "text": "two and add their inverse. And now let's"
+  },
+  {
+    "start": "00:02:27.440",
+    "end": "00:02:30.790",
+    "text": "look at the inverse of this line."
+  },
+  {
+    "start": "00:02:30.800",
+    "end": "00:02:33.990",
+    "text": "Let's try with these lines."
+  },
+  {
+    "start": "00:02:34.000",
+    "end": "00:02:36.949",
+    "text": "Now these three. There is clearly a"
+  },
+  {
+    "start": "00:02:36.959",
+    "end": "00:02:41.030",
+    "text": "pattern here. One last time. I will now"
+  },
+  {
+    "start": "00:02:41.040",
+    "end": "00:02:43.990",
+    "text": "show you why this happens. This is a"
+  },
+  {
+    "start": "00:02:44.000",
+    "end": "00:02:48.070",
+    "text": "formula that Reitberg found in 1888 for"
+  },
+  {
+    "start": "00:02:48.080",
+    "end": "00:02:50.390",
+    "text": "the wavelength of hydrogen spectral"
+  },
+  {
+    "start": "00:02:50.400",
+    "end": "00:02:53.350",
+    "text": "lines in terms of two integer numbers J"
+  },
+  {
+    "start": "00:02:53.360",
+    "end": "00:02:56.949",
+    "text": "and K. R is just a constant. Multiplying"
+  },
+  {
+    "start": "00:02:56.959",
+    "end": "00:02:59.670",
+    "text": "all this by the speed of light, we get"
+  },
+  {
+    "start": "00:02:59.680",
+    "end": "00:03:02.790",
+    "text": "frequencies instead. Notice what happens"
+  },
+  {
+    "start": "00:03:02.800",
+    "end": "00:03:05.990",
+    "text": "when we add two frequencies in which the"
+  },
+  {
+    "start": "00:03:06.000",
+    "end": "00:03:09.270",
+    "text": "second index of one is identical to the"
+  },
+  {
+    "start": "00:03:09.280",
+    "end": "00:03:11.990",
+    "text": "first index of the other. Using the"
+  },
+  {
+    "start": "00:03:12.000",
+    "end": "00:03:14.390",
+    "text": "formula above, we find that the middle"
+  },
+  {
+    "start": "00:03:14.400",
+    "end": "00:03:17.430",
+    "text": "indices cancel out and we get a new"
+  },
+  {
+    "start": "00:03:17.440",
+    "end": "00:03:20.470",
+    "text": "frequency with the first index of one"
+  },
+  {
+    "start": "00:03:20.480",
+    "end": "00:03:22.949",
+    "text": "and the second index of the other. This"
+  },
+  {
+    "start": "00:03:22.959",
+    "end": "00:03:25.350",
+    "text": "relation is a general result for"
+  },
+  {
+    "start": "00:03:25.360",
+    "end": "00:03:27.670",
+    "text": "spectral lines. And this is exactly what"
+  },
+  {
+    "start": "00:03:27.680",
+    "end": "00:03:30.309",
+    "text": "I show you in the examples. If I include"
+  },
+  {
+    "start": "00:03:30.319",
+    "end": "00:03:33.110",
+    "text": "the indices, you can see that in all"
+  },
+  {
+    "start": "00:03:33.120",
+    "end": "00:03:36.390",
+    "text": "cases, the general formula works. This"
+  },
+  {
+    "start": "00:03:36.400",
+    "end": "00:03:39.190",
+    "text": "relation is an example of the so-called"
+  },
+  {
+    "start": "00:03:39.200",
+    "end": "00:03:41.830",
+    "text": "Ritz combination principle and it tells"
+  },
+  {
+    "start": "00:03:41.840",
+    "end": "00:03:44.309",
+    "text": "us how the frequencies of a spectral"
+  },
+  {
+    "start": "00:03:44.319",
+    "end": "00:03:46.949",
+    "text": "lines are combined to form new"
+  },
+  {
+    "start": "00:03:46.959",
+    "end": "00:03:49.990",
+    "text": "frequencies. This observation is the key"
+  },
+  {
+    "start": "00:03:50.000",
+    "end": "00:03:52.470",
+    "text": "to unlocking the ideas in Heisenber's"
+  },
+  {
+    "start": "00:03:52.480",
+    "end": "00:03:55.430",
+    "text": "paper. And as I will show you shortly,"
+  },
+  {
+    "start": "00:03:55.440",
+    "end": "00:03:58.149",
+    "text": "this experimental fact is the reason for"
+  },
+  {
+    "start": "00:03:58.159",
+    "end": "00:04:01.030",
+    "text": "the need of matrices."
+  },
+  {
+    "start": "00:04:01.040",
+    "end": "00:04:04.229",
+    "text": "Since 1900, quantum physics was a"
+  },
+  {
+    "start": "00:04:04.239",
+    "end": "00:04:07.110",
+    "text": "collection of arbitrary and unjustified"
+  },
+  {
+    "start": "00:04:07.120",
+    "end": "00:04:10.309",
+    "text": "rules that became known as old quantum"
+  },
+  {
+    "start": "00:04:10.319",
+    "end": "00:04:13.429",
+    "text": "theory. Heisenberg changed all that"
+  },
+  {
+    "start": "00:04:13.439",
+    "end": "00:04:16.150",
+    "text": "after an isolation retreat in a remote"
+  },
+  {
+    "start": "00:04:16.160",
+    "end": "00:04:19.189",
+    "text": "island in June 1925."
+  },
+  {
+    "start": "00:04:19.199",
+    "end": "00:04:21.830",
+    "text": "After his return, he wrote a cryptic"
+  },
+  {
+    "start": "00:04:21.840",
+    "end": "00:04:25.030",
+    "text": "paper titled on the quantum theoretical"
+  },
+  {
+    "start": "00:04:25.040",
+    "end": "00:04:27.430",
+    "text": "reinterpretation of kinematical and"
+  },
+  {
+    "start": "00:04:27.440",
+    "end": "00:04:29.909",
+    "text": "mechanical relationships in which he"
+  },
+  {
+    "start": "00:04:29.919",
+    "end": "00:04:32.790",
+    "text": "laid out four rules for calculating the"
+  },
+  {
+    "start": "00:04:32.800",
+    "end": "00:04:34.950",
+    "text": "outcome of experiments."
+  },
+  {
+    "start": "00:04:34.960",
+    "end": "00:04:37.189",
+    "text": "Everything began with Einstein's quantum"
+  },
+  {
+    "start": "00:04:37.199",
+    "end": "00:04:40.710",
+    "text": "theory of radiation from 1917. After"
+  },
+  {
+    "start": "00:04:40.720",
+    "end": "00:04:42.870",
+    "text": "completing his monumental work on"
+  },
+  {
+    "start": "00:04:42.880",
+    "end": "00:04:45.590",
+    "text": "general relativity, Einstein returned to"
+  },
+  {
+    "start": "00:04:45.600",
+    "end": "00:04:47.990",
+    "text": "the study of radiation, introducing two"
+  },
+  {
+    "start": "00:04:48.000",
+    "end": "00:04:51.270",
+    "text": "key innovations, a new process called"
+  },
+  {
+    "start": "00:04:51.280",
+    "end": "00:04:53.670",
+    "text": "stimulated emission and transition"
+  },
+  {
+    "start": "00:04:53.680",
+    "end": "00:04:55.670",
+    "text": "probabilities for describing the"
+  },
+  {
+    "start": "00:04:55.680",
+    "end": "00:04:58.310",
+    "text": "absorption and emission of light."
+  },
+  {
+    "start": "00:04:58.320",
+    "end": "00:05:00.230",
+    "text": "Unfortunately, there was no way to"
+  },
+  {
+    "start": "00:05:00.240",
+    "end": "00:05:02.550",
+    "text": "determine these probabilities. The"
+  },
+  {
+    "start": "00:05:02.560",
+    "end": "00:05:05.590",
+    "text": "breakthrough came in early 1921 when"
+  },
+  {
+    "start": "00:05:05.600",
+    "end": "00:05:08.150",
+    "text": "Rudolfph Latenburgg found a way to"
+  },
+  {
+    "start": "00:05:08.160",
+    "end": "00:05:10.950",
+    "text": "connect Einstein's quantum probabilities"
+  },
+  {
+    "start": "00:05:10.960",
+    "end": "00:05:13.270",
+    "text": "with classical quantities that could be"
+  },
+  {
+    "start": "00:05:13.280",
+    "end": "00:05:15.749",
+    "text": "measured in dispersion experiments."
+  },
+  {
+    "start": "00:05:15.759",
+    "end": "00:05:18.230",
+    "text": "Inspired by Latenburg, this idea was"
+  },
+  {
+    "start": "00:05:18.240",
+    "end": "00:05:21.270",
+    "text": "extended by Henrik Kramers who found a"
+  },
+  {
+    "start": "00:05:21.280",
+    "end": "00:05:23.990",
+    "text": "quantum theory of dispersion. Kramers"
+  },
+  {
+    "start": "00:05:24.000",
+    "end": "00:05:26.550",
+    "text": "and Max Bourne also discovered a"
+  },
+  {
+    "start": "00:05:26.560",
+    "end": "00:05:29.029",
+    "text": "mathematical relation between classical"
+  },
+  {
+    "start": "00:05:29.039",
+    "end": "00:05:31.350",
+    "text": "and quantum relations that was crucial"
+  },
+  {
+    "start": "00:05:31.360",
+    "end": "00:05:34.150",
+    "text": "for Heisenberg. Let's now dive into"
+  },
+  {
+    "start": "00:05:34.160",
+    "end": "00:05:37.189",
+    "text": "Heisenberg's famous paper. The key word"
+  },
+  {
+    "start": "00:05:37.199",
+    "end": "00:05:39.189",
+    "text": "is reinterpretation."
+  },
+  {
+    "start": "00:05:39.199",
+    "end": "00:05:42.230",
+    "text": "Historians of science refer to this work"
+  },
+  {
+    "start": "00:05:42.240",
+    "end": "00:05:45.510",
+    "text": "as the unon paper. What everyone was"
+  },
+  {
+    "start": "00:05:45.520",
+    "end": "00:05:48.469",
+    "text": "searching for during the 1920s was a way"
+  },
+  {
+    "start": "00:05:48.479",
+    "end": "00:05:51.350",
+    "text": "to derive quantum equations to replace"
+  },
+  {
+    "start": "00:05:51.360",
+    "end": "00:05:53.749",
+    "text": "the equations of classical mechanics."
+  },
+  {
+    "start": "00:05:53.759",
+    "end": "00:05:56.070",
+    "text": "Heisenberg built on the ideas of"
+  },
+  {
+    "start": "00:05:56.080",
+    "end": "00:05:59.590",
+    "text": "Einstein, Latenburg, Kmers, Bore and"
+  },
+  {
+    "start": "00:05:59.600",
+    "end": "00:06:02.950",
+    "text": "Bourne to find the quantum equivalent of"
+  },
+  {
+    "start": "00:06:02.960",
+    "end": "00:06:05.430",
+    "text": "physical quantities from a classical"
+  },
+  {
+    "start": "00:06:05.440",
+    "end": "00:06:08.870",
+    "text": "theory. He starts by setting one of the"
+  },
+  {
+    "start": "00:06:08.880",
+    "end": "00:06:11.110",
+    "text": "core ideas in which his quantum"
+  },
+  {
+    "start": "00:06:11.120",
+    "end": "00:06:14.390",
+    "text": "mechanics is built. It is advisable to"
+  },
+  {
+    "start": "00:06:14.400",
+    "end": "00:06:17.270",
+    "text": "completely discard unobserved quantities"
+  },
+  {
+    "start": "00:06:17.280",
+    "end": "00:06:19.909",
+    "text": "such as the electrons position and"
+  },
+  {
+    "start": "00:06:19.919",
+    "end": "00:06:22.790",
+    "text": "period. Instead, it seems more"
+  },
+  {
+    "start": "00:06:22.800",
+    "end": "00:06:25.189",
+    "text": "reasonable to try to establish a theory"
+  },
+  {
+    "start": "00:06:25.199",
+    "end": "00:06:27.670",
+    "text": "of quantum mechanics in which only"
+  },
+  {
+    "start": "00:06:27.680",
+    "end": "00:06:30.150",
+    "text": "relationships among observable"
+  },
+  {
+    "start": "00:06:30.160",
+    "end": "00:06:32.710",
+    "text": "quantities occur. This is one of the"
+  },
+  {
+    "start": "00:06:32.720",
+    "end": "00:06:34.629",
+    "text": "most radical ideas in the history of"
+  },
+  {
+    "start": "00:06:34.639",
+    "end": "00:06:37.189",
+    "text": "physics, one that leads to debates even"
+  },
+  {
+    "start": "00:06:37.199",
+    "end": "00:06:40.550",
+    "text": "today. Heisenberg proposes here that"
+  },
+  {
+    "start": "00:06:40.560",
+    "end": "00:06:43.670",
+    "text": "quantum mechanics is only a theory about"
+  },
+  {
+    "start": "00:06:43.680",
+    "end": "00:06:46.790",
+    "text": "experimental observables. In his paper,"
+  },
+  {
+    "start": "00:06:46.800",
+    "end": "00:06:49.189",
+    "text": "these are the transition amplitudes and"
+  },
+  {
+    "start": "00:06:49.199",
+    "end": "00:06:51.990",
+    "text": "frequencies. Although this idea is"
+  },
+  {
+    "start": "00:06:52.000",
+    "end": "00:06:54.870",
+    "text": "usually attributed to Heisenberg, one of"
+  },
+  {
+    "start": "00:06:54.880",
+    "end": "00:06:58.070",
+    "text": "its main proponents was Wol and Powley."
+  },
+  {
+    "start": "00:06:58.080",
+    "end": "00:07:00.469",
+    "text": "His letters show that by the summer of"
+  },
+  {
+    "start": "00:07:00.479",
+    "end": "00:07:03.589",
+    "text": "1925, he had convinced most of the key"
+  },
+  {
+    "start": "00:07:03.599",
+    "end": "00:07:05.749",
+    "text": "figures of quantum theory about this"
+  },
+  {
+    "start": "00:07:05.759",
+    "end": "00:07:08.230",
+    "text": "idea. This is something that Einstein"
+  },
+  {
+    "start": "00:07:08.240",
+    "end": "00:07:11.589",
+    "text": "and Shinger strongly opposed. For them,"
+  },
+  {
+    "start": "00:07:11.599",
+    "end": "00:07:14.390",
+    "text": "physics is about describing nature as a"
+  },
+  {
+    "start": "00:07:14.400",
+    "end": "00:07:16.790",
+    "text": "whole, including all its underlying"
+  },
+  {
+    "start": "00:07:16.800",
+    "end": "00:07:19.189",
+    "text": "mechanisms, even those that we cannot"
+  },
+  {
+    "start": "00:07:19.199",
+    "end": "00:07:21.830",
+    "text": "measure. We could say that with this"
+  },
+  {
+    "start": "00:07:21.840",
+    "end": "00:07:25.110",
+    "text": "sentence, Heisenberg began the infamous"
+  },
+  {
+    "start": "00:07:25.120",
+    "end": "00:07:27.670",
+    "text": "shut up and calculate approach. Let me"
+  },
+  {
+    "start": "00:07:27.680",
+    "end": "00:07:29.029",
+    "text": "know in the comments if you have an"
+  },
+  {
+    "start": "00:07:29.039",
+    "end": "00:07:32.230",
+    "text": "opinion about this idea. After this,"
+  },
+  {
+    "start": "00:07:32.240",
+    "end": "00:07:35.189",
+    "text": "Heisenberg begins his rumblings. I stop"
+  },
+  {
+    "start": "00:07:35.199",
+    "end": "00:07:37.270",
+    "text": "following the paper here and present the"
+  },
+  {
+    "start": "00:07:37.280",
+    "end": "00:07:39.909",
+    "text": "ideas in a more coherent order pointing"
+  },
+  {
+    "start": "00:07:39.919",
+    "end": "00:07:41.909",
+    "text": "out to the corresponding results in the"
+  },
+  {
+    "start": "00:07:41.919",
+    "end": "00:07:45.270",
+    "text": "paper. The first concept is position."
+  },
+  {
+    "start": "00:07:45.280",
+    "end": "00:07:47.189",
+    "text": "The classical view of the electron"
+  },
+  {
+    "start": "00:07:47.199",
+    "end": "00:07:49.510",
+    "text": "orbiting the nucleus was enough for"
+  },
+  {
+    "start": "00:07:49.520",
+    "end": "00:07:52.309",
+    "text": "atoms with a single electron but failed"
+  },
+  {
+    "start": "00:07:52.319",
+    "end": "00:07:55.270",
+    "text": "with all the others. After his work with"
+  },
+  {
+    "start": "00:07:55.280",
+    "end": "00:07:58.390",
+    "text": "Bourne, Heisenberg knew that a classical"
+  },
+  {
+    "start": "00:07:58.400",
+    "end": "00:08:01.029",
+    "text": "periodic motion of an electron in a"
+  },
+  {
+    "start": "00:08:01.039",
+    "end": "00:08:04.390",
+    "text": "stationary state n can be described as"
+  },
+  {
+    "start": "00:08:04.400",
+    "end": "00:08:07.430",
+    "text": "an infinite sum of oscillations. This is"
+  },
+  {
+    "start": "00:08:07.440",
+    "end": "00:08:11.029",
+    "text": "called a furier series. A more general"
+  },
+  {
+    "start": "00:08:11.039",
+    "end": "00:08:13.909",
+    "text": "way to write this is by using a complex"
+  },
+  {
+    "start": "00:08:13.919",
+    "end": "00:08:16.469",
+    "text": "exponential instead where the sum is"
+  },
+  {
+    "start": "00:08:16.479",
+    "end": "00:08:19.749",
+    "text": "over all positive and negative values of"
+  },
+  {
+    "start": "00:08:19.759",
+    "end": "00:08:22.150",
+    "text": "the index alpha. I will later drop the"
+  },
+  {
+    "start": "00:08:22.160",
+    "end": "00:08:24.790",
+    "text": "estimation range to simplify notation."
+  },
+  {
+    "start": "00:08:24.800",
+    "end": "00:08:28.390",
+    "text": "The factors a alpha are called fura"
+  },
+  {
+    "start": "00:08:28.400",
+    "end": "00:08:31.749",
+    "text": "modes and kramers showed in his doctoral"
+  },
+  {
+    "start": "00:08:31.759",
+    "end": "00:08:34.469",
+    "text": "thesis that these factors are directly"
+  },
+  {
+    "start": "00:08:34.479",
+    "end": "00:08:36.790",
+    "text": "related to the transition probabilities"
+  },
+  {
+    "start": "00:08:36.800",
+    "end": "00:08:39.589",
+    "text": "between states introduced by Einstein in"
+  },
+  {
+    "start": "00:08:39.599",
+    "end": "00:08:42.230",
+    "text": "his paper on quantum radiation. The"
+  },
+  {
+    "start": "00:08:42.240",
+    "end": "00:08:45.110",
+    "text": "position is a real quantity. Forcing all"
+  },
+  {
+    "start": "00:08:45.120",
+    "end": "00:08:47.990",
+    "text": "this sum to be equal to its own complex"
+  },
+  {
+    "start": "00:08:48.000",
+    "end": "00:08:51.190",
+    "text": "conjugate implies a relation between the"
+  },
+  {
+    "start": "00:08:51.200",
+    "end": "00:08:54.310",
+    "text": "negative and positive fura modes. This"
+  },
+  {
+    "start": "00:08:54.320",
+    "end": "00:08:57.350",
+    "text": "relation will be very useful later. Here"
+  },
+  {
+    "start": "00:08:57.360",
+    "end": "00:09:00.310",
+    "text": "heisenberg introduces his first seminal"
+  },
+  {
+    "start": "00:09:00.320",
+    "end": "00:09:03.030",
+    "text": "idea. According to the correspondence"
+  },
+  {
+    "start": "00:09:03.040",
+    "end": "00:09:05.829",
+    "text": "principle, the classical frequency of"
+  },
+  {
+    "start": "00:09:05.839",
+    "end": "00:09:08.070",
+    "text": "the orbital motion of the electron and"
+  },
+  {
+    "start": "00:09:08.080",
+    "end": "00:09:11.030",
+    "text": "its harmonics get replaced by the"
+  },
+  {
+    "start": "00:09:11.040",
+    "end": "00:09:13.430",
+    "text": "transition frequencies between atomic"
+  },
+  {
+    "start": "00:09:13.440",
+    "end": "00:09:17.910",
+    "text": "states. Alpha omega becomes omega and k"
+  },
+  {
+    "start": "00:09:17.920",
+    "end": "00:09:19.910",
+    "text": "where n is the current state of the"
+  },
+  {
+    "start": "00:09:19.920",
+    "end": "00:09:23.269",
+    "text": "electron and k is any other state that"
+  },
+  {
+    "start": "00:09:23.279",
+    "end": "00:09:25.750",
+    "text": "the electron can transition via a"
+  },
+  {
+    "start": "00:09:25.760",
+    "end": "00:09:28.550",
+    "text": "quantum jump. Just for clarity in this"
+  },
+  {
+    "start": "00:09:28.560",
+    "end": "00:09:31.750",
+    "text": "video, I will use the subindex k as"
+  },
+  {
+    "start": "00:09:31.760",
+    "end": "00:09:35.110",
+    "text": "short notation for n minus alpha. Now we"
+  },
+  {
+    "start": "00:09:35.120",
+    "end": "00:09:37.190",
+    "text": "can write the position of the quantum"
+  },
+  {
+    "start": "00:09:37.200",
+    "end": "00:09:39.750",
+    "text": "electron in this way where the classical"
+  },
+  {
+    "start": "00:09:39.760",
+    "end": "00:09:43.030",
+    "text": "furier modes are replaced by transition"
+  },
+  {
+    "start": "00:09:43.040",
+    "end": "00:09:46.150",
+    "text": "amplitudes with two indices to match the"
+  },
+  {
+    "start": "00:09:46.160",
+    "end": "00:09:48.470",
+    "text": "transition frequencies that obey the"
+  },
+  {
+    "start": "00:09:48.480",
+    "end": "00:09:51.190",
+    "text": "ritz combination principle. Just like in"
+  },
+  {
+    "start": "00:09:51.200",
+    "end": "00:09:53.590",
+    "text": "the classical case, forcing the position"
+  },
+  {
+    "start": "00:09:53.600",
+    "end": "00:09:56.550",
+    "text": "to be a real quantity implies this"
+  },
+  {
+    "start": "00:09:56.560",
+    "end": "00:09:59.030",
+    "text": "relationship. Reversing the indices of"
+  },
+  {
+    "start": "00:09:59.040",
+    "end": "00:10:01.670",
+    "text": "the amplitudes is equivalent to checking"
+  },
+  {
+    "start": "00:10:01.680",
+    "end": "00:10:05.030",
+    "text": "its complex conjugate. This relation"
+  },
+  {
+    "start": "00:10:05.040",
+    "end": "00:10:07.590",
+    "text": "corresponds to Heisenber's position"
+  },
+  {
+    "start": "00:10:07.600",
+    "end": "00:10:10.389",
+    "text": "reinterpretation and the word kinematics"
+  },
+  {
+    "start": "00:10:10.399",
+    "end": "00:10:13.509",
+    "text": "in the title of his paper. Note that the"
+  },
+  {
+    "start": "00:10:13.519",
+    "end": "00:10:16.230",
+    "text": "positive values of alpha represent"
+  },
+  {
+    "start": "00:10:16.240",
+    "end": "00:10:19.030",
+    "text": "quantum transitions between the current"
+  },
+  {
+    "start": "00:10:19.040",
+    "end": "00:10:22.069",
+    "text": "state n and lower levels whereas the"
+  },
+  {
+    "start": "00:10:22.079",
+    "end": "00:10:24.710",
+    "text": "negative values denote higher levels."
+  },
+  {
+    "start": "00:10:24.720",
+    "end": "00:10:27.509",
+    "text": "With this expression, Heisenberg built a"
+  },
+  {
+    "start": "00:10:27.519",
+    "end": "00:10:31.430",
+    "text": "tower of so-called virtual oscillators."
+  },
+  {
+    "start": "00:10:31.440",
+    "end": "00:10:34.630",
+    "text": "The next concept is motion. I bet many"
+  },
+  {
+    "start": "00:10:34.640",
+    "end": "00:10:36.550",
+    "text": "of you were not expecting to find"
+  },
+  {
+    "start": "00:10:36.560",
+    "end": "00:10:39.190",
+    "text": "Newton's second law in the foundational"
+  },
+  {
+    "start": "00:10:39.200",
+    "end": "00:10:41.829",
+    "text": "paper on quantum mechanics, but this is"
+  },
+  {
+    "start": "00:10:41.839",
+    "end": "00:10:44.790",
+    "text": "Heisenberg's starting point. Writing the"
+  },
+  {
+    "start": "00:10:44.800",
+    "end": "00:10:47.509",
+    "text": "force and acceleration as functions of"
+  },
+  {
+    "start": "00:10:47.519",
+    "end": "00:10:50.310",
+    "text": "position, dividing by the mass of the"
+  },
+  {
+    "start": "00:10:50.320",
+    "end": "00:10:52.710",
+    "text": "particle and collecting terms on the"
+  },
+  {
+    "start": "00:10:52.720",
+    "end": "00:10:55.509",
+    "text": "left hand side. Heisenberg renamed this"
+  },
+  {
+    "start": "00:10:55.519",
+    "end": "00:10:59.509",
+    "text": "ratio just f. His idea is that depending"
+  },
+  {
+    "start": "00:10:59.519",
+    "end": "00:11:02.310",
+    "text": "on the physical system of interest, all"
+  },
+  {
+    "start": "00:11:02.320",
+    "end": "00:11:04.310",
+    "text": "you have to do is to identify the"
+  },
+  {
+    "start": "00:11:04.320",
+    "end": "00:11:07.509",
+    "text": "potential energy, calculate f and"
+  },
+  {
+    "start": "00:11:07.519",
+    "end": "00:11:09.670",
+    "text": "properly write this equation of motion"
+  },
+  {
+    "start": "00:11:09.680",
+    "end": "00:11:12.069",
+    "text": "in terms of the quantum position as"
+  },
+  {
+    "start": "00:11:12.079",
+    "end": "00:11:14.630",
+    "text": "defined in the previous section. This"
+  },
+  {
+    "start": "00:11:14.640",
+    "end": "00:11:17.829",
+    "text": "concept is the mechanics in the title of"
+  },
+  {
+    "start": "00:11:17.839",
+    "end": "00:11:21.190",
+    "text": "his paper. as examples for the harmonic"
+  },
+  {
+    "start": "00:11:21.200",
+    "end": "00:11:26.230",
+    "text": "oscillator f is just omega^ squar * x"
+  },
+  {
+    "start": "00:11:26.240",
+    "end": "00:11:28.710",
+    "text": "whereas the so-called unharmonic"
+  },
+  {
+    "start": "00:11:28.720",
+    "end": "00:11:31.590",
+    "text": "oscillator has an extra term with x"
+  },
+  {
+    "start": "00:11:31.600",
+    "end": "00:11:35.269",
+    "text": "squared in general for any function we"
+  },
+  {
+    "start": "00:11:35.279",
+    "end": "00:11:37.910",
+    "text": "can expand the function as a power"
+  },
+  {
+    "start": "00:11:37.920",
+    "end": "00:11:41.990",
+    "text": "series of x and here realized that we"
+  },
+  {
+    "start": "00:11:42.000",
+    "end": "00:11:44.310",
+    "text": "need a proper definition of how to"
+  },
+  {
+    "start": "00:11:44.320",
+    "end": "00:11:47.750",
+    "text": "calculate powers of x which takes us to"
+  },
+  {
+    "start": "00:11:47.760",
+    "end": "00:11:49.110",
+    "text": "the third concept"
+  },
+  {
+    "start": "00:11:49.120",
+    "end": "00:11:50.630",
+    "text": "Multiplication."
+  },
+  {
+    "start": "00:11:50.640",
+    "end": "00:11:52.710",
+    "text": "This concept is probably the most"
+  },
+  {
+    "start": "00:11:52.720",
+    "end": "00:11:54.550",
+    "text": "important and revolutionary in the"
+  },
+  {
+    "start": "00:11:54.560",
+    "end": "00:11:56.389",
+    "text": "paper. Back to the classical"
+  },
+  {
+    "start": "00:11:56.399",
+    "end": "00:11:58.710",
+    "text": "definitions. Let's see what the product"
+  },
+  {
+    "start": "00:11:58.720",
+    "end": "00:12:02.710",
+    "text": "of two positions X and Y is in terms of"
+  },
+  {
+    "start": "00:12:02.720",
+    "end": "00:12:05.750",
+    "text": "FIA modes. For this, we simply multiply"
+  },
+  {
+    "start": "00:12:05.760",
+    "end": "00:12:09.509",
+    "text": "two FA series where A are the modes of X"
+  },
+  {
+    "start": "00:12:09.519",
+    "end": "00:12:13.190",
+    "text": "and B are the modes of Y. Note that the"
+  },
+  {
+    "start": "00:12:13.200",
+    "end": "00:12:15.990",
+    "text": "exponential now combines harmonics of X"
+  },
+  {
+    "start": "00:12:16.000",
+    "end": "00:12:19.030",
+    "text": "and Y. However, we can introduce a new"
+  },
+  {
+    "start": "00:12:19.040",
+    "end": "00:12:21.590",
+    "text": "index toao which allows writing the"
+  },
+  {
+    "start": "00:12:21.600",
+    "end": "00:12:24.870",
+    "text": "product as a new fier series. Defining"
+  },
+  {
+    "start": "00:12:24.880",
+    "end": "00:12:28.310",
+    "text": "the new fier modes in terms of a and b,"
+  },
+  {
+    "start": "00:12:28.320",
+    "end": "00:12:30.790",
+    "text": "we explicitly find that the product of"
+  },
+  {
+    "start": "00:12:30.800",
+    "end": "00:12:34.230",
+    "text": "two positions x and y gives a series"
+  },
+  {
+    "start": "00:12:34.240",
+    "end": "00:12:37.509",
+    "text": "that has the same structure as x. This"
+  },
+  {
+    "start": "00:12:37.519",
+    "end": "00:12:39.750",
+    "text": "is one of the great properties of a"
+  },
+  {
+    "start": "00:12:39.760",
+    "end": "00:12:42.550",
+    "text": "series. We can calculate the product"
+  },
+  {
+    "start": "00:12:42.560",
+    "end": "00:12:45.590",
+    "text": "between y and x instead. Following the"
+  },
+  {
+    "start": "00:12:45.600",
+    "end": "00:12:48.389",
+    "text": "same steps as before, we find that the"
+  },
+  {
+    "start": "00:12:48.399",
+    "end": "00:12:50.389",
+    "text": "order of the product makes no"
+  },
+  {
+    "start": "00:12:50.399",
+    "end": "00:12:52.710",
+    "text": "difference. We call quantities that"
+  },
+  {
+    "start": "00:12:52.720",
+    "end": "00:12:55.110",
+    "text": "satisfy this relation commutative"
+  },
+  {
+    "start": "00:12:55.120",
+    "end": "00:12:57.910",
+    "text": "objects. A common example is real"
+  },
+  {
+    "start": "00:12:57.920",
+    "end": "00:13:00.550",
+    "text": "numbers. The order of the factors does"
+  },
+  {
+    "start": "00:13:00.560",
+    "end": "00:13:03.590",
+    "text": "not affect the product. Now we repeat"
+  },
+  {
+    "start": "00:13:03.600",
+    "end": "00:13:05.590",
+    "text": "this but using the quantum"
+  },
+  {
+    "start": "00:13:05.600",
+    "end": "00:13:07.590",
+    "text": "reinterpretation of position and"
+  },
+  {
+    "start": "00:13:07.600",
+    "end": "00:13:09.990",
+    "text": "frequency introduced before. Taking"
+  },
+  {
+    "start": "00:13:10.000",
+    "end": "00:13:11.990",
+    "text": "their product, we must be careful with"
+  },
+  {
+    "start": "00:13:12.000",
+    "end": "00:13:14.150",
+    "text": "the indices. And just like in the"
+  },
+  {
+    "start": "00:13:14.160",
+    "end": "00:13:16.629",
+    "text": "classical case, the two corresponding"
+  },
+  {
+    "start": "00:13:16.639",
+    "end": "00:13:18.629",
+    "text": "frequencies appear added in the"
+  },
+  {
+    "start": "00:13:18.639",
+    "end": "00:13:21.590",
+    "text": "exponential. But now we have a problem."
+  },
+  {
+    "start": "00:13:21.600",
+    "end": "00:13:24.150",
+    "text": "Note that the two frequencies cannot be"
+  },
+  {
+    "start": "00:13:24.160",
+    "end": "00:13:26.629",
+    "text": "combined into a new frequency like in"
+  },
+  {
+    "start": "00:13:26.639",
+    "end": "00:13:28.949",
+    "text": "the classical case because the indices"
+  },
+  {
+    "start": "00:13:28.959",
+    "end": "00:13:31.190",
+    "text": "do not match the RIT's combination"
+  },
+  {
+    "start": "00:13:31.200",
+    "end": "00:13:33.829",
+    "text": "principle. This would mark the end of"
+  },
+  {
+    "start": "00:13:33.839",
+    "end": "00:13:36.230",
+    "text": "Heisenber's efforts because the product"
+  },
+  {
+    "start": "00:13:36.240",
+    "end": "00:13:38.790",
+    "text": "of two series does not produce a new"
+  },
+  {
+    "start": "00:13:38.800",
+    "end": "00:13:42.230",
+    "text": "series. But here comes the bold move."
+  },
+  {
+    "start": "00:13:42.240",
+    "end": "00:13:45.430",
+    "text": "Heisenberg proposed that this is not how"
+  },
+  {
+    "start": "00:13:45.440",
+    "end": "00:13:48.310",
+    "text": "quantum objects are multiplied. He wants"
+  },
+  {
+    "start": "00:13:48.320",
+    "end": "00:13:50.470",
+    "text": "the two frequencies in the exponential"
+  },
+  {
+    "start": "00:13:50.480",
+    "end": "00:13:53.190",
+    "text": "to have the indices in such order that"
+  },
+  {
+    "start": "00:13:53.200",
+    "end": "00:13:55.269",
+    "text": "the rich combination principle can be"
+  },
+  {
+    "start": "00:13:55.279",
+    "end": "00:13:58.069",
+    "text": "used to convert this sum of quantum"
+  },
+  {
+    "start": "00:13:58.079",
+    "end": "00:14:01.430",
+    "text": "frequencies into a single new frequency."
+  },
+  {
+    "start": "00:14:01.440",
+    "end": "00:14:03.030",
+    "text": "Remember that the ritz combination"
+  },
+  {
+    "start": "00:14:03.040",
+    "end": "00:14:05.590",
+    "text": "principle is an experimental fact."
+  },
+  {
+    "start": "00:14:05.600",
+    "end": "00:14:07.670",
+    "text": "Heisenber simply took this feature of"
+  },
+  {
+    "start": "00:14:07.680",
+    "end": "00:14:10.790",
+    "text": "nature and used it to invent a new way"
+  },
+  {
+    "start": "00:14:10.800",
+    "end": "00:14:13.829",
+    "text": "to manipulate transition frequencies."
+  },
+  {
+    "start": "00:14:13.839",
+    "end": "00:14:16.629",
+    "text": "His multiplication rule is that the"
+  },
+  {
+    "start": "00:14:16.639",
+    "end": "00:14:20.150",
+    "text": "second index of the first amplitude must"
+  },
+  {
+    "start": "00:14:20.160",
+    "end": "00:14:22.870",
+    "text": "be equal to the first index of the"
+  },
+  {
+    "start": "00:14:22.880",
+    "end": "00:14:25.750",
+    "text": "second amplitude. In this way, the two"
+  },
+  {
+    "start": "00:14:25.760",
+    "end": "00:14:27.829",
+    "text": "frequencies in the exponential can be"
+  },
+  {
+    "start": "00:14:27.839",
+    "end": "00:14:30.230",
+    "text": "easily added using the Ritz combination"
+  },
+  {
+    "start": "00:14:30.240",
+    "end": "00:14:33.269",
+    "text": "principle. Now we proceed just as"
+  },
+  {
+    "start": "00:14:33.279",
+    "end": "00:14:35.430",
+    "text": "before. We rename the product of"
+  },
+  {
+    "start": "00:14:35.440",
+    "end": "00:14:38.230",
+    "text": "amplitudes and find that the product of"
+  },
+  {
+    "start": "00:14:38.240",
+    "end": "00:14:41.350",
+    "text": "these two quantum objects is a series"
+  },
+  {
+    "start": "00:14:41.360",
+    "end": "00:14:44.069",
+    "text": "like the original. We can repeat the"
+  },
+  {
+    "start": "00:14:44.079",
+    "end": "00:14:47.750",
+    "text": "same steps to calculate y * x instead."
+  },
+  {
+    "start": "00:14:47.760",
+    "end": "00:14:49.910",
+    "text": "But now we find that the indices are"
+  },
+  {
+    "start": "00:14:49.920",
+    "end": "00:14:52.629",
+    "text": "arranged in a way that the two products"
+  },
+  {
+    "start": "00:14:52.639",
+    "end": "00:14:55.750",
+    "text": "are except in very special cases not"
+  },
+  {
+    "start": "00:14:55.760",
+    "end": "00:14:58.870",
+    "text": "equal. Here Heisenberg found that a"
+  },
+  {
+    "start": "00:14:58.880",
+    "end": "00:15:00.470",
+    "text": "consequence of his quantum"
+  },
+  {
+    "start": "00:15:00.480",
+    "end": "00:15:03.350",
+    "text": "reinterpretation is that quantum objects"
+  },
+  {
+    "start": "00:15:03.360",
+    "end": "00:15:06.470",
+    "text": "are not commutative. This is the bold"
+  },
+  {
+    "start": "00:15:06.480",
+    "end": "00:15:08.710",
+    "text": "conceptual innovation that makes this"
+  },
+  {
+    "start": "00:15:08.720",
+    "end": "00:15:11.350",
+    "text": "paper the foundation of modern quantum"
+  },
+  {
+    "start": "00:15:11.360",
+    "end": "00:15:13.990",
+    "text": "mechanics. This weird multiplication"
+  },
+  {
+    "start": "00:15:14.000",
+    "end": "00:15:17.189",
+    "text": "rule made Heisenberg very uncomfortable."
+  },
+  {
+    "start": "00:15:17.199",
+    "end": "00:15:19.509",
+    "text": "In the paper he wrote this"
+  },
+  {
+    "start": "00:15:19.519",
+    "end": "00:15:21.910",
+    "text": "multiplication rule is an almost"
+  },
+  {
+    "start": "00:15:21.920",
+    "end": "00:15:24.389",
+    "text": "necessary consequence of the frequency"
+  },
+  {
+    "start": "00:15:24.399",
+    "end": "00:15:27.750",
+    "text": "combination rules. He accepted what his"
+  },
+  {
+    "start": "00:15:27.760",
+    "end": "00:15:29.910",
+    "text": "theory was telling him but could not"
+  },
+  {
+    "start": "00:15:29.920",
+    "end": "00:15:31.990",
+    "text": "make sense of the meaning of these"
+  },
+  {
+    "start": "00:15:32.000",
+    "end": "00:15:34.550",
+    "text": "non-commutative objects. After his"
+  },
+  {
+    "start": "00:15:34.560",
+    "end": "00:15:37.030",
+    "text": "return from Helgoland, he expressed his"
+  },
+  {
+    "start": "00:15:37.040",
+    "end": "00:15:39.829",
+    "text": "concern to Max Bourne. What are these"
+  },
+  {
+    "start": "00:15:39.839",
+    "end": "00:15:42.870",
+    "text": "objects that obey these rules? Let me"
+  },
+  {
+    "start": "00:15:42.880",
+    "end": "00:15:44.629",
+    "text": "bring back the way the transition"
+  },
+  {
+    "start": "00:15:44.639",
+    "end": "00:15:47.430",
+    "text": "amplitudes are combined. Heisenberg was"
+  },
+  {
+    "start": "00:15:47.440",
+    "end": "00:15:50.069",
+    "text": "baffled by this relation. But today,"
+  },
+  {
+    "start": "00:15:50.079",
+    "end": "00:15:52.710",
+    "text": "even a freshman student would recognize"
+  },
+  {
+    "start": "00:15:52.720",
+    "end": "00:15:55.990",
+    "text": "it as matrix multiplication. Believe it"
+  },
+  {
+    "start": "00:15:56.000",
+    "end": "00:15:57.910",
+    "text": "or not, Heisenberg didn't know about"
+  },
+  {
+    "start": "00:15:57.920",
+    "end": "00:16:01.430",
+    "text": "matrices. This is how Hans Bete, one of"
+  },
+  {
+    "start": "00:16:01.440",
+    "end": "00:16:03.509",
+    "text": "the great students of Somerfield and"
+  },
+  {
+    "start": "00:16:03.519",
+    "end": "00:16:06.389",
+    "text": "Heisenberg, described it."
+  },
+  {
+    "start": "00:16:06.399",
+    "end": "00:16:09.430",
+    "text": "So he said we should only talk about"
+  },
+  {
+    "start": "00:16:09.440",
+    "end": "00:16:12.470",
+    "text": "experimentally observable quantities"
+  },
+  {
+    "start": "00:16:12.480",
+    "end": "00:16:14.550",
+    "text": "both the frequencies and these"
+  },
+  {
+    "start": "00:16:14.560",
+    "end": "00:16:19.350",
+    "text": "amplitudes but should forget about the"
+  },
+  {
+    "start": "00:16:19.360",
+    "end": "00:16:24.629",
+    "text": "motion of electrons in orbits."
+  },
+  {
+    "start": "00:16:24.639",
+    "end": "00:16:27.030",
+    "text": "Then he"
+  },
+  {
+    "start": "00:16:27.040",
+    "end": "00:16:31.030",
+    "text": "discussed just how these quantities Q"
+  },
+  {
+    "start": "00:16:31.040",
+    "end": "00:16:34.870",
+    "text": "and PKN should occur in the theory. how"
+  },
+  {
+    "start": "00:16:34.880",
+    "end": "00:16:37.749",
+    "text": "would you form kinetic and potential"
+  },
+  {
+    "start": "00:16:37.759",
+    "end": "00:16:40.389",
+    "text": "energy from them? And he found that"
+  },
+  {
+    "start": "00:16:40.399",
+    "end": "00:16:44.550",
+    "text": "these uh quantities obeyed very strange"
+  },
+  {
+    "start": "00:16:44.560",
+    "end": "00:16:47.189",
+    "text": "multiplication rules which he had never"
+  },
+  {
+    "start": "00:16:47.199",
+    "end": "00:16:49.990",
+    "text": "seen before. But he wrote down these"
+  },
+  {
+    "start": "00:16:50.000",
+    "end": "00:16:53.829",
+    "text": "multiplication rules. Uh P and Q just"
+  },
+  {
+    "start": "00:16:53.839",
+    "end": "00:16:57.030",
+    "text": "did not uh behave like ordinary"
+  },
+  {
+    "start": "00:16:57.040",
+    "end": "00:17:00.150",
+    "text": "algebraic quantities. when he came home"
+  },
+  {
+    "start": "00:17:00.160",
+    "end": "00:17:02.069",
+    "text": "to Guttingan"
+  },
+  {
+    "start": "00:17:02.079",
+    "end": "00:17:05.110",
+    "text": "uh Max Bon told him but Heisenberg what"
+  },
+  {
+    "start": "00:17:05.120",
+    "end": "00:17:07.029",
+    "text": "you have there is simply the"
+  },
+  {
+    "start": "00:17:07.039",
+    "end": "00:17:09.590",
+    "text": "multiplication of matrices."
+  },
+  {
+    "start": "00:17:09.600",
+    "end": "00:17:12.150",
+    "text": "Now you all learn about matrices"
+  },
+  {
+    "start": "00:17:12.160",
+    "end": "00:17:15.669",
+    "text": "probably in your freshman year or at"
+  },
+  {
+    "start": "00:17:15.679",
+    "end": "00:17:17.990",
+    "text": "most in your sophomore year but"
+  },
+  {
+    "start": "00:17:18.000",
+    "end": "00:17:20.630",
+    "text": "Heisenberg had never heard about"
+  },
+  {
+    "start": "00:17:20.640",
+    "end": "00:17:23.990",
+    "text": "matrices."
+  },
+  {
+    "start": "00:17:24.000",
+    "end": "00:17:26.710",
+    "text": "Thanks to Bourne, Heisenberg discovered"
+  },
+  {
+    "start": "00:17:26.720",
+    "end": "00:17:29.830",
+    "text": "that quantum objects follow the rules of"
+  },
+  {
+    "start": "00:17:29.840",
+    "end": "00:17:32.710",
+    "text": "matrix algebra. But this only happened"
+  },
+  {
+    "start": "00:17:32.720",
+    "end": "00:17:35.430",
+    "text": "after he wrote his paper. Before we"
+  },
+  {
+    "start": "00:17:35.440",
+    "end": "00:17:37.590",
+    "text": "judge Heisenberg for not knowing about"
+  },
+  {
+    "start": "00:17:37.600",
+    "end": "00:17:40.310",
+    "text": "matrices, the same was true for most"
+  },
+  {
+    "start": "00:17:40.320",
+    "end": "00:17:43.110",
+    "text": "physicists of the time. Matrix algebra"
+  },
+  {
+    "start": "00:17:43.120",
+    "end": "00:17:45.430",
+    "text": "was so unknown that the paper that"
+  },
+  {
+    "start": "00:17:45.440",
+    "end": "00:17:47.669",
+    "text": "Bourne and Jordan wrote following on"
+  },
+  {
+    "start": "00:17:47.679",
+    "end": "00:17:50.150",
+    "text": "Heisenber's work began with a full"
+  },
+  {
+    "start": "00:17:50.160",
+    "end": "00:17:52.310",
+    "text": "section explaining the basics of"
+  },
+  {
+    "start": "00:17:52.320",
+    "end": "00:17:54.470",
+    "text": "matrices."
+  },
+  {
+    "start": "00:17:54.480",
+    "end": "00:17:57.029",
+    "text": "The fourth and final concept introduced"
+  },
+  {
+    "start": "00:17:57.039",
+    "end": "00:17:59.909",
+    "text": "by Heisenberg was a new quantization"
+  },
+  {
+    "start": "00:17:59.919",
+    "end": "00:18:02.950",
+    "text": "rule. I remind you that old quantum"
+  },
+  {
+    "start": "00:18:02.960",
+    "end": "00:18:05.669",
+    "text": "theory was mostly based on the rule"
+  },
+  {
+    "start": "00:18:05.679",
+    "end": "00:18:08.870",
+    "text": "developed by Bore and Somerfeld. This"
+  },
+  {
+    "start": "00:18:08.880",
+    "end": "00:18:11.430",
+    "text": "was very successful for describing an"
+  },
+  {
+    "start": "00:18:11.440",
+    "end": "00:18:14.390",
+    "text": "isolated hydrogen atom, but it failed in"
+  },
+  {
+    "start": "00:18:14.400",
+    "end": "00:18:17.190",
+    "text": "light of new experiments. This rule"
+  },
+  {
+    "start": "00:18:17.200",
+    "end": "00:18:20.390",
+    "text": "worked as follows. First, write the"
+  },
+  {
+    "start": "00:18:20.400",
+    "end": "00:18:23.110",
+    "text": "classical equation of motion. then solve"
+  },
+  {
+    "start": "00:18:23.120",
+    "end": "00:18:24.950",
+    "text": "the equation to find the classical"
+  },
+  {
+    "start": "00:18:24.960",
+    "end": "00:18:28.070",
+    "text": "solution and finally force the classical"
+  },
+  {
+    "start": "00:18:28.080",
+    "end": "00:18:30.710",
+    "text": "solution to satisfy the bore summerfeld"
+  },
+  {
+    "start": "00:18:30.720",
+    "end": "00:18:33.430",
+    "text": "rule. In Heisenber's approach, the"
+  },
+  {
+    "start": "00:18:33.440",
+    "end": "00:18:35.830",
+    "text": "classical solution is irrelevant because"
+  },
+  {
+    "start": "00:18:35.840",
+    "end": "00:18:38.070",
+    "text": "the goal is to determine the transition"
+  },
+  {
+    "start": "00:18:38.080",
+    "end": "00:18:40.470",
+    "text": "amplitudes and frequencies. For this"
+  },
+  {
+    "start": "00:18:40.480",
+    "end": "00:18:42.710",
+    "text": "reason, a new quantization rule was"
+  },
+  {
+    "start": "00:18:42.720",
+    "end": "00:18:45.270",
+    "text": "needed. Heisenberg took the rule from"
+  },
+  {
+    "start": "00:18:45.280",
+    "end": "00:18:48.390",
+    "text": "old quantum theory and replaced momentum"
+  },
+  {
+    "start": "00:18:48.400",
+    "end": "00:18:50.789",
+    "text": "and position by their classical FA"
+  },
+  {
+    "start": "00:18:50.799",
+    "end": "00:18:53.830",
+    "text": "expansions. Using the chain rule, the"
+  },
+  {
+    "start": "00:18:53.840",
+    "end": "00:18:56.470",
+    "text": "integral over position can be turned"
+  },
+  {
+    "start": "00:18:56.480",
+    "end": "00:18:59.029",
+    "text": "into an integral over one orbital"
+  },
+  {
+    "start": "00:18:59.039",
+    "end": "00:19:02.230",
+    "text": "period. We need to determine x dot"
+  },
+  {
+    "start": "00:19:02.240",
+    "end": "00:19:04.950",
+    "text": "squared. Since we know x, we can"
+  },
+  {
+    "start": "00:19:04.960",
+    "end": "00:19:07.669",
+    "text": "directly take the time derivative and"
+  },
+  {
+    "start": "00:19:07.679",
+    "end": "00:19:10.870",
+    "text": "then take the product with itself. These"
+  },
+  {
+    "start": "00:19:10.880",
+    "end": "00:19:13.510",
+    "text": "are classical free expansions. So this"
+  },
+  {
+    "start": "00:19:13.520",
+    "end": "00:19:16.230",
+    "text": "is the conventional product. Now we can"
+  },
+  {
+    "start": "00:19:16.240",
+    "end": "00:19:19.430",
+    "text": "use a trick. Since the sum over beta"
+  },
+  {
+    "start": "00:19:19.440",
+    "end": "00:19:21.669",
+    "text": "includes all positive and negative"
+  },
+  {
+    "start": "00:19:21.679",
+    "end": "00:19:24.950",
+    "text": "values, we can replace beta by minus"
+  },
+  {
+    "start": "00:19:24.960",
+    "end": "00:19:27.510",
+    "text": "beta in this expression and the sum does"
+  },
+  {
+    "start": "00:19:27.520",
+    "end": "00:19:30.230",
+    "text": "not change. In this line, I have simply"
+  },
+  {
+    "start": "00:19:30.240",
+    "end": "00:19:33.590",
+    "text": "replaced every beta by minus beta. Now"
+  },
+  {
+    "start": "00:19:33.600",
+    "end": "00:19:36.470",
+    "text": "we can integrate over time. The orbital"
+  },
+  {
+    "start": "00:19:36.480",
+    "end": "00:19:39.029",
+    "text": "period is related to the frequency. So"
+  },
+  {
+    "start": "00:19:39.039",
+    "end": "00:19:41.669",
+    "text": "we can make this change of variables."
+  },
+  {
+    "start": "00:19:41.679",
+    "end": "00:19:44.710",
+    "text": "This angular integral is not trivial but"
+  },
+  {
+    "start": "00:19:44.720",
+    "end": "00:19:47.909",
+    "text": "it happens to vanish except when beta is"
+  },
+  {
+    "start": "00:19:47.919",
+    "end": "00:19:50.470",
+    "text": "equal to alpha. In case you are familiar"
+  },
+  {
+    "start": "00:19:50.480",
+    "end": "00:19:53.029",
+    "text": "with the name this is an integral"
+  },
+  {
+    "start": "00:19:53.039",
+    "end": "00:19:56.150",
+    "text": "representation of the chronicer delta."
+  },
+  {
+    "start": "00:19:56.160",
+    "end": "00:19:59.909",
+    "text": "This means that when summing over beta"
+  },
+  {
+    "start": "00:19:59.919",
+    "end": "00:20:02.950",
+    "text": "all terms are zero except when beta"
+  },
+  {
+    "start": "00:20:02.960",
+    "end": "00:20:06.230",
+    "text": "equals alpha and this expression reduces"
+  },
+  {
+    "start": "00:20:06.240",
+    "end": "00:20:09.270",
+    "text": "to a single sum. There is nothing new"
+  },
+  {
+    "start": "00:20:09.280",
+    "end": "00:20:11.430",
+    "text": "here. This relation is just the bore"
+  },
+  {
+    "start": "00:20:11.440",
+    "end": "00:20:14.789",
+    "text": "summerfell rule for fier modes. Now"
+  },
+  {
+    "start": "00:20:14.799",
+    "end": "00:20:16.950",
+    "text": "Heisenberg tried to reinterpret this"
+  },
+  {
+    "start": "00:20:16.960",
+    "end": "00:20:19.909",
+    "text": "relation. The obvious thing to do is"
+  },
+  {
+    "start": "00:20:19.919",
+    "end": "00:20:22.470",
+    "text": "replacing the fier modes and harmonics"
+  },
+  {
+    "start": "00:20:22.480",
+    "end": "00:20:25.350",
+    "text": "frequencies by transition amplitudes and"
+  },
+  {
+    "start": "00:20:25.360",
+    "end": "00:20:27.750",
+    "text": "quantum frequencies respectively."
+  },
+  {
+    "start": "00:20:27.760",
+    "end": "00:20:30.310",
+    "text": "However, there is a problem. What to do"
+  },
+  {
+    "start": "00:20:30.320",
+    "end": "00:20:32.870",
+    "text": "with this extra index alpha?"
+  },
+  {
+    "start": "00:20:32.880",
+    "end": "00:20:34.789",
+    "text": "Heisenberg's reinterpretation of"
+  },
+  {
+    "start": "00:20:34.799",
+    "end": "00:20:37.430",
+    "text": "frequency only eliminates one of the"
+  },
+  {
+    "start": "00:20:37.440",
+    "end": "00:20:40.470",
+    "text": "alpha indices. meaning that a direct"
+  },
+  {
+    "start": "00:20:40.480",
+    "end": "00:20:43.029",
+    "text": "reinterpretation of the bore summerfeld"
+  },
+  {
+    "start": "00:20:43.039",
+    "end": "00:20:45.590",
+    "text": "rule is not possible. Here is"
+  },
+  {
+    "start": "00:20:45.600",
+    "end": "00:20:48.390",
+    "text": "Heisenberg's workaround. He took the"
+  },
+  {
+    "start": "00:20:48.400",
+    "end": "00:20:50.630",
+    "text": "derivative with respect to the quantum"
+  },
+  {
+    "start": "00:20:50.640",
+    "end": "00:20:53.830",
+    "text": "number n on both sides. This expression"
+  },
+  {
+    "start": "00:20:53.840",
+    "end": "00:20:56.390",
+    "text": "looks even more complicated. But here he"
+  },
+  {
+    "start": "00:20:56.400",
+    "end": "00:20:58.470",
+    "text": "invoked what we could call the"
+  },
+  {
+    "start": "00:20:58.480",
+    "end": "00:21:00.070",
+    "text": "reinterpretation discovered"
+  },
+  {
+    "start": "00:21:00.080",
+    "end": "00:21:03.590",
+    "text": "independently by Bourne and Kmers. This"
+  },
+  {
+    "start": "00:21:03.600",
+    "end": "00:21:06.390",
+    "text": "relation turns classical derivatives"
+  },
+  {
+    "start": "00:21:06.400",
+    "end": "00:21:08.789",
+    "text": "into quantum differences."
+  },
+  {
+    "start": "00:21:08.799",
+    "end": "00:21:10.470",
+    "text": "This is one of the great outcomes"
+  },
+  {
+    "start": "00:21:10.480",
+    "end": "00:21:13.590",
+    "text": "obtained in the spirit of the failed BKS"
+  },
+  {
+    "start": "00:21:13.600",
+    "end": "00:21:15.510",
+    "text": "theory that I presented in a previous"
+  },
+  {
+    "start": "00:21:15.520",
+    "end": "00:21:18.870",
+    "text": "video. Using this relation, Heisenberg"
+  },
+  {
+    "start": "00:21:18.880",
+    "end": "00:21:21.190",
+    "text": "was able to transform the quantum rule"
+  },
+  {
+    "start": "00:21:21.200",
+    "end": "00:21:23.909",
+    "text": "of the old quantum theory into his new"
+  },
+  {
+    "start": "00:21:23.919",
+    "end": "00:21:26.390",
+    "text": "language of transition amplitudes and"
+  },
+  {
+    "start": "00:21:26.400",
+    "end": "00:21:29.350",
+    "text": "frequencies. Heisenber understood that"
+  },
+  {
+    "start": "00:21:29.360",
+    "end": "00:21:31.990",
+    "text": "this rule provides a recursive relation"
+  },
+  {
+    "start": "00:21:32.000",
+    "end": "00:21:34.630",
+    "text": "between amplitudes. Once you know the"
+  },
+  {
+    "start": "00:21:34.640",
+    "end": "00:21:37.110",
+    "text": "amplitude for one quantum transition,"
+  },
+  {
+    "start": "00:21:37.120",
+    "end": "00:21:40.230",
+    "text": "this relation allows finding the others."
+  },
+  {
+    "start": "00:21:40.240",
+    "end": "00:21:43.029",
+    "text": "This formula and the equation of motion"
+  },
+  {
+    "start": "00:21:43.039",
+    "end": "00:21:44.950",
+    "text": "with the corresponding multiplication"
+  },
+  {
+    "start": "00:21:44.960",
+    "end": "00:21:47.510",
+    "text": "rule constitute the equations of"
+  },
+  {
+    "start": "00:21:47.520",
+    "end": "00:21:50.630",
+    "text": "Heisenberg's quantum theory. And these"
+  },
+  {
+    "start": "00:21:50.640",
+    "end": "00:21:52.549",
+    "text": "are the revolutionary ideas in the"
+  },
+  {
+    "start": "00:21:52.559",
+    "end": "00:21:55.110",
+    "text": "paper. Here is a summary of the key"
+  },
+  {
+    "start": "00:21:55.120",
+    "end": "00:21:58.070",
+    "text": "concepts in Heisenberg's paper. Position"
+  },
+  {
+    "start": "00:21:58.080",
+    "end": "00:21:59.990",
+    "text": "is written in terms of transition"
+  },
+  {
+    "start": "00:22:00.000",
+    "end": "00:22:02.549",
+    "text": "amplitudes and frequencies. These two"
+  },
+  {
+    "start": "00:22:02.559",
+    "end": "00:22:04.950",
+    "text": "quantities are the central unknowns of"
+  },
+  {
+    "start": "00:22:04.960",
+    "end": "00:22:07.430",
+    "text": "the theory because they are observable"
+  },
+  {
+    "start": "00:22:07.440",
+    "end": "00:22:09.510",
+    "text": "in experiments. The transition"
+  },
+  {
+    "start": "00:22:09.520",
+    "end": "00:22:11.830",
+    "text": "amplitudes define the intensity of the"
+  },
+  {
+    "start": "00:22:11.840",
+    "end": "00:22:13.990",
+    "text": "spectral lines and the frequencies"
+  },
+  {
+    "start": "00:22:14.000",
+    "end": "00:22:16.310",
+    "text": "determine their wavelength."
+  },
+  {
+    "start": "00:22:16.320",
+    "end": "00:22:18.950",
+    "text": "Motion is characterized by the quantum"
+  },
+  {
+    "start": "00:22:18.960",
+    "end": "00:22:21.669",
+    "text": "position object satisfying the classical"
+  },
+  {
+    "start": "00:22:21.679",
+    "end": "00:22:24.230",
+    "text": "equations. Note that Heisenberg's theory"
+  },
+  {
+    "start": "00:22:24.240",
+    "end": "00:22:27.430",
+    "text": "is Newtonian. This was later improved"
+  },
+  {
+    "start": "00:22:27.440",
+    "end": "00:22:29.350",
+    "text": "and turned into a more general"
+  },
+  {
+    "start": "00:22:29.360",
+    "end": "00:22:31.909",
+    "text": "Hamiltonian theory by Heisenberg in"
+  },
+  {
+    "start": "00:22:31.919",
+    "end": "00:22:34.390",
+    "text": "collaboration with Bourne and Jordan."
+  },
+  {
+    "start": "00:22:34.400",
+    "end": "00:22:35.990",
+    "text": "Maybe I should make a video about that"
+  },
+  {
+    "start": "00:22:36.000",
+    "end": "00:22:39.510",
+    "text": "too. Quantum objects obey an unusual"
+  },
+  {
+    "start": "00:22:39.520",
+    "end": "00:22:42.230",
+    "text": "multiplication rule. Non-commutativity"
+  },
+  {
+    "start": "00:22:42.240",
+    "end": "00:22:44.549",
+    "text": "of quantum quantities is one of the"
+  },
+  {
+    "start": "00:22:44.559",
+    "end": "00:22:47.350",
+    "text": "central discoveries in the paper. Thanks"
+  },
+  {
+    "start": "00:22:47.360",
+    "end": "00:22:49.510",
+    "text": "to Bourne, Heisenberg and the rest of"
+  },
+  {
+    "start": "00:22:49.520",
+    "end": "00:22:51.510",
+    "text": "the physics community learned that"
+  },
+  {
+    "start": "00:22:51.520",
+    "end": "00:22:54.070",
+    "text": "transition amplitudes are described by"
+  },
+  {
+    "start": "00:22:54.080",
+    "end": "00:22:57.029",
+    "text": "matrix algebra and Heisenberg's theory"
+  },
+  {
+    "start": "00:22:57.039",
+    "end": "00:22:59.590",
+    "text": "became known as the matrix formulation"
+  },
+  {
+    "start": "00:22:59.600",
+    "end": "00:23:01.909",
+    "text": "of quantum mechanics."
+  },
+  {
+    "start": "00:23:01.919",
+    "end": "00:23:03.830",
+    "text": "The quantum nature of transition"
+  },
+  {
+    "start": "00:23:03.840",
+    "end": "00:23:06.789",
+    "text": "amplitudes and frequencies is specified"
+  },
+  {
+    "start": "00:23:06.799",
+    "end": "00:23:09.430",
+    "text": "by Heisenberg's reinterpretation of the"
+  },
+  {
+    "start": "00:23:09.440",
+    "end": "00:23:12.710",
+    "text": "old Bore Somerfell quantum rule. Here is"
+  },
+  {
+    "start": "00:23:12.720",
+    "end": "00:23:14.789",
+    "text": "where plank's constant enters the"
+  },
+  {
+    "start": "00:23:14.799",
+    "end": "00:23:17.750",
+    "text": "equations. And that's it. This is the"
+  },
+  {
+    "start": "00:23:17.760",
+    "end": "00:23:20.310",
+    "text": "recipe for a self-consistent and"
+  },
+  {
+    "start": "00:23:20.320",
+    "end": "00:23:23.430",
+    "text": "systematic quantum mechanics. Heisenberg"
+  },
+  {
+    "start": "00:23:23.440",
+    "end": "00:23:26.630",
+    "text": "described it like this. Equations 11 and"
+  },
+  {
+    "start": "00:23:26.640",
+    "end": "00:23:29.990",
+    "text": "16 contain a complete determination not"
+  },
+  {
+    "start": "00:23:30.000",
+    "end": "00:23:32.789",
+    "text": "only of frequencies and energy values"
+  },
+  {
+    "start": "00:23:32.799",
+    "end": "00:23:34.789",
+    "text": "but also of quantum transition"
+  },
+  {
+    "start": "00:23:34.799",
+    "end": "00:23:36.549",
+    "text": "probabilities."
+  },
+  {
+    "start": "00:23:36.559",
+    "end": "00:23:38.710",
+    "text": "The paper also includes two crucial"
+  },
+  {
+    "start": "00:23:38.720",
+    "end": "00:23:41.830",
+    "text": "questions probably influenced by the"
+  },
+  {
+    "start": "00:23:41.840",
+    "end": "00:23:44.710",
+    "text": "recent reputation of BKS theory."
+  },
+  {
+    "start": "00:23:44.720",
+    "end": "00:23:46.710",
+    "text": "Heisenberg wondered about energy"
+  },
+  {
+    "start": "00:23:46.720",
+    "end": "00:23:49.350",
+    "text": "conservation and also whether the energy"
+  },
+  {
+    "start": "00:23:49.360",
+    "end": "00:23:51.750",
+    "text": "levels predicted by his theory would"
+  },
+  {
+    "start": "00:23:51.760",
+    "end": "00:23:54.230",
+    "text": "satisfy the wellestablished bore"
+  },
+  {
+    "start": "00:23:54.240",
+    "end": "00:23:56.870",
+    "text": "Einstein relation. But the only way to"
+  },
+  {
+    "start": "00:23:56.880",
+    "end": "00:23:59.110",
+    "text": "answer these questions was by testing"
+  },
+  {
+    "start": "00:23:59.120",
+    "end": "00:24:02.070",
+    "text": "the theory with examples. This is what I"
+  },
+  {
+    "start": "00:24:02.080",
+    "end": "00:24:04.630",
+    "text": "will do in the next part."
+  },
+  {
+    "start": "00:24:04.640",
+    "end": "00:24:07.590",
+    "text": "Heisenberg's method was a first draft"
+  },
+  {
+    "start": "00:24:07.600",
+    "end": "00:24:09.669",
+    "text": "for quantum mechanics. All the main"
+  },
+  {
+    "start": "00:24:09.679",
+    "end": "00:24:12.149",
+    "text": "ingredients are there, but he knew that"
+  },
+  {
+    "start": "00:24:12.159",
+    "end": "00:24:15.029",
+    "text": "a mathematical refinement was needed. He"
+  },
+  {
+    "start": "00:24:15.039",
+    "end": "00:24:17.269",
+    "text": "ended his paper with an invitation to"
+  },
+  {
+    "start": "00:24:17.279",
+    "end": "00:24:19.269",
+    "text": "such mathematical polishing of his"
+  },
+  {
+    "start": "00:24:19.279",
+    "end": "00:24:22.950",
+    "text": "ideas. Whether the method proposed here"
+  },
+  {
+    "start": "00:24:22.960",
+    "end": "00:24:25.510",
+    "text": "can be regarded as satisfactory can be"
+  },
+  {
+    "start": "00:24:25.520",
+    "end": "00:24:27.590",
+    "text": "decided only by more intensive"
+  },
+  {
+    "start": "00:24:27.600",
+    "end": "00:24:30.070",
+    "text": "mathematical investigation. The method"
+  },
+  {
+    "start": "00:24:30.080",
+    "end": "00:24:32.149",
+    "text": "has been very superficially employed"
+  },
+  {
+    "start": "00:24:32.159",
+    "end": "00:24:34.070",
+    "text": "here."
+  },
+  {
+    "start": "00:24:34.080",
+    "end": "00:24:36.230",
+    "text": "In the last section of this video, I"
+  },
+  {
+    "start": "00:24:36.240",
+    "end": "00:24:39.029",
+    "text": "want to show you an explicit example of"
+  },
+  {
+    "start": "00:24:39.039",
+    "end": "00:24:41.830",
+    "text": "how to use Heisenber's idea to a"
+  },
+  {
+    "start": "00:24:41.840",
+    "end": "00:24:43.990",
+    "text": "particular system. Although I will"
+  },
+  {
+    "start": "00:24:44.000",
+    "end": "00:24:46.470",
+    "text": "present a simplified case, I will"
+  },
+  {
+    "start": "00:24:46.480",
+    "end": "00:24:49.110",
+    "text": "include all the gory details because I"
+  },
+  {
+    "start": "00:24:49.120",
+    "end": "00:24:52.310",
+    "text": "find this a very instructive exercise. I"
+  },
+  {
+    "start": "00:24:52.320",
+    "end": "00:24:53.909",
+    "text": "honestly think that I understood the"
+  },
+  {
+    "start": "00:24:53.919",
+    "end": "00:24:56.390",
+    "text": "main ideas in Heisenberg's paper only"
+  },
+  {
+    "start": "00:24:56.400",
+    "end": "00:24:58.230",
+    "text": "after going through these calculations"
+  },
+  {
+    "start": "00:24:58.240",
+    "end": "00:25:00.310",
+    "text": "and I hope that they can help you too."
+  },
+  {
+    "start": "00:25:00.320",
+    "end": "00:25:02.390",
+    "text": "This would let you appreciate the amount"
+  },
+  {
+    "start": "00:25:02.400",
+    "end": "00:25:04.950",
+    "text": "of work behind every result in the paper"
+  },
+  {
+    "start": "00:25:04.960",
+    "end": "00:25:07.029",
+    "text": "and hopefully give you a glimpse of the"
+  },
+  {
+    "start": "00:25:07.039",
+    "end": "00:25:09.590",
+    "text": "work of a theoretical physicist."
+  },
+  {
+    "start": "00:25:09.600",
+    "end": "00:25:12.310",
+    "text": "Heisenber begins section three of his"
+  },
+  {
+    "start": "00:25:12.320",
+    "end": "00:25:15.990",
+    "text": "paper with as a simple example the"
+  },
+  {
+    "start": "00:25:16.000",
+    "end": "00:25:18.149",
+    "text": "anharmonic oscillator will now be"
+  },
+  {
+    "start": "00:25:18.159",
+    "end": "00:25:21.190",
+    "text": "treated. The interest in the unharmonic"
+  },
+  {
+    "start": "00:25:21.200",
+    "end": "00:25:23.510",
+    "text": "oscillator is that just like the"
+  },
+  {
+    "start": "00:25:23.520",
+    "end": "00:25:25.990",
+    "text": "hydrogen atom transitions between all"
+  },
+  {
+    "start": "00:25:26.000",
+    "end": "00:25:28.310",
+    "text": "levels are possible. However, this"
+  },
+  {
+    "start": "00:25:28.320",
+    "end": "00:25:30.789",
+    "text": "example requires familiarity with the"
+  },
+  {
+    "start": "00:25:30.799",
+    "end": "00:25:33.909",
+    "text": "methods of perturbation theory. Since I"
+  },
+  {
+    "start": "00:25:33.919",
+    "end": "00:25:36.470",
+    "text": "want this exercise to be valuable even"
+  },
+  {
+    "start": "00:25:36.480",
+    "end": "00:25:38.310",
+    "text": "if this is your first encounter with"
+  },
+  {
+    "start": "00:25:38.320",
+    "end": "00:25:41.029",
+    "text": "quantum mechanics, I will only cover the"
+  },
+  {
+    "start": "00:25:41.039",
+    "end": "00:25:44.070",
+    "text": "particular case of lambda equals 0. This"
+  },
+  {
+    "start": "00:25:44.080",
+    "end": "00:25:46.630",
+    "text": "is the simple harmonic oscillator. There"
+  },
+  {
+    "start": "00:25:46.640",
+    "end": "00:25:48.630",
+    "text": "is a running joke that the simple"
+  },
+  {
+    "start": "00:25:48.640",
+    "end": "00:25:50.789",
+    "text": "harmonic oscillator is the only system"
+  },
+  {
+    "start": "00:25:50.799",
+    "end": "00:25:53.029",
+    "text": "that physicists know how to solve."
+  },
+  {
+    "start": "00:25:53.039",
+    "end": "00:25:55.590",
+    "text": "Sydney Collan described it better. The"
+  },
+  {
+    "start": "00:25:55.600",
+    "end": "00:25:58.230",
+    "text": "career of a young theoretical physicist"
+  },
+  {
+    "start": "00:25:58.240",
+    "end": "00:26:00.070",
+    "text": "consists of treating the harmonic"
+  },
+  {
+    "start": "00:26:00.080",
+    "end": "00:26:02.470",
+    "text": "oscillator in everinccreasing levels of"
+  },
+  {
+    "start": "00:26:02.480",
+    "end": "00:26:04.710",
+    "text": "abstraction. And if you have studied"
+  },
+  {
+    "start": "00:26:04.720",
+    "end": "00:26:06.630",
+    "text": "quantum mechanics and quantum field"
+  },
+  {
+    "start": "00:26:06.640",
+    "end": "00:26:09.669",
+    "text": "theory, you know that this is true. I"
+  },
+  {
+    "start": "00:26:09.679",
+    "end": "00:26:12.230",
+    "text": "will first solve this using the bore"
+  },
+  {
+    "start": "00:26:12.240",
+    "end": "00:26:15.190",
+    "text": "Somerfell rule of the old quantum theory"
+  },
+  {
+    "start": "00:26:15.200",
+    "end": "00:26:17.190",
+    "text": "and then using Heisenber's quantum"
+  },
+  {
+    "start": "00:26:17.200",
+    "end": "00:26:20.230",
+    "text": "mechanics so we can compare. If you"
+  },
+  {
+    "start": "00:26:20.240",
+    "end": "00:26:22.710",
+    "text": "watch my last video, you will like the"
+  },
+  {
+    "start": "00:26:22.720",
+    "end": "00:26:24.870",
+    "text": "subtle differences."
+  },
+  {
+    "start": "00:26:24.880",
+    "end": "00:26:27.269",
+    "text": "As you probably know, the differential"
+  },
+  {
+    "start": "00:26:27.279",
+    "end": "00:26:29.669",
+    "text": "equation of the harmonic oscillator is"
+  },
+  {
+    "start": "00:26:29.679",
+    "end": "00:26:32.310",
+    "text": "exactly satisfied by this general"
+  },
+  {
+    "start": "00:26:32.320",
+    "end": "00:26:35.510",
+    "text": "solution where a and b are constants and"
+  },
+  {
+    "start": "00:26:35.520",
+    "end": "00:26:38.070",
+    "text": "omega kn is the fundamental frequency of"
+  },
+  {
+    "start": "00:26:38.080",
+    "end": "00:26:41.269",
+    "text": "the oscillator. Comparing this solution"
+  },
+  {
+    "start": "00:26:41.279",
+    "end": "00:26:43.830",
+    "text": "with the general fier series, we"
+  },
+  {
+    "start": "00:26:43.840",
+    "end": "00:26:46.149",
+    "text": "immediately find that there are only two"
+  },
+  {
+    "start": "00:26:46.159",
+    "end": "00:26:49.590",
+    "text": "nonzero fier modes and the harmonics are"
+  },
+  {
+    "start": "00:26:49.600",
+    "end": "00:26:52.789",
+    "text": "given by multiples of omega kn. This"
+  },
+  {
+    "start": "00:26:52.799",
+    "end": "00:26:55.669",
+    "text": "means that the infinite sum only has two"
+  },
+  {
+    "start": "00:26:55.679",
+    "end": "00:26:58.310",
+    "text": "terms. Following the recipe of old"
+  },
+  {
+    "start": "00:26:58.320",
+    "end": "00:27:00.950",
+    "text": "quantum theory, now that we have found a"
+  },
+  {
+    "start": "00:27:00.960",
+    "end": "00:27:03.669",
+    "text": "classical solution, we make it quantum"
+  },
+  {
+    "start": "00:27:03.679",
+    "end": "00:27:05.750",
+    "text": "by forcing it to obey the bore"
+  },
+  {
+    "start": "00:27:05.760",
+    "end": "00:27:08.390",
+    "text": "summerfield rule for fier modes found"
+  },
+  {
+    "start": "00:27:08.400",
+    "end": "00:27:11.909",
+    "text": "before where n is an integer. Let's not"
+  },
+  {
+    "start": "00:27:11.919",
+    "end": "00:27:15.029",
+    "text": "forget that this sum has only two terms."
+  },
+  {
+    "start": "00:27:15.039",
+    "end": "00:27:19.430",
+    "text": "One for alpha= 1 and alpha= minus1. by"
+  },
+  {
+    "start": "00:27:19.440",
+    "end": "00:27:21.909",
+    "text": "properties of complex numbers. This"
+  },
+  {
+    "start": "00:27:21.919",
+    "end": "00:27:24.549",
+    "text": "reduces to a single term from which we"
+  },
+  {
+    "start": "00:27:24.559",
+    "end": "00:27:27.029",
+    "text": "directly find the general expression of"
+  },
+  {
+    "start": "00:27:27.039",
+    "end": "00:27:30.470",
+    "text": "the only nonzero fier mode. Let's now"
+  },
+  {
+    "start": "00:27:30.480",
+    "end": "00:27:32.950",
+    "text": "calculate the energy levels of this old"
+  },
+  {
+    "start": "00:27:32.960",
+    "end": "00:27:35.590",
+    "text": "quantum oscillator. Note that we need to"
+  },
+  {
+    "start": "00:27:35.600",
+    "end": "00:27:40.070",
+    "text": "determine x dot squared and x². And for"
+  },
+  {
+    "start": "00:27:40.080",
+    "end": "00:27:43.350",
+    "text": "this we use our simple fa expansion. X"
+  },
+  {
+    "start": "00:27:43.360",
+    "end": "00:27:46.710",
+    "text": "dot is given by this. And it's a square"
+  },
+  {
+    "start": "00:27:46.720",
+    "end": "00:27:49.430",
+    "text": "leads to three terms. Then we do the"
+  },
+  {
+    "start": "00:27:49.440",
+    "end": "00:27:52.390",
+    "text": "same for x^2. The calculation is very"
+  },
+  {
+    "start": "00:27:52.400",
+    "end": "00:27:55.110",
+    "text": "similar. Plug in these two quantities in"
+  },
+  {
+    "start": "00:27:55.120",
+    "end": "00:27:58.070",
+    "text": "the expression for energy, we have six"
+  },
+  {
+    "start": "00:27:58.080",
+    "end": "00:28:01.350",
+    "text": "terms, but two pairs cancel each other"
+  },
+  {
+    "start": "00:28:01.360",
+    "end": "00:28:04.950",
+    "text": "out while the other two are identical."
+  },
+  {
+    "start": "00:28:04.960",
+    "end": "00:28:06.789",
+    "text": "Note that all time dependence"
+  },
+  {
+    "start": "00:28:06.799",
+    "end": "00:28:09.110",
+    "text": "disappears, meaning that the energy"
+  },
+  {
+    "start": "00:28:09.120",
+    "end": "00:28:12.470",
+    "text": "levels are constant in time. Energy is"
+  },
+  {
+    "start": "00:28:12.480",
+    "end": "00:28:15.110",
+    "text": "conserved. We have found the energy"
+  },
+  {
+    "start": "00:28:15.120",
+    "end": "00:28:17.909",
+    "text": "levels in terms of the fier modes. We"
+  },
+  {
+    "start": "00:28:17.919",
+    "end": "00:28:20.549",
+    "text": "can now replace our previous result to"
+  },
+  {
+    "start": "00:28:20.559",
+    "end": "00:28:22.789",
+    "text": "find that the energy levels are"
+  },
+  {
+    "start": "00:28:22.799",
+    "end": "00:28:25.269",
+    "text": "proportional to the quantum number n."
+  },
+  {
+    "start": "00:28:25.279",
+    "end": "00:28:27.510",
+    "text": "For this reason, the energy gap between"
+  },
+  {
+    "start": "00:28:27.520",
+    "end": "00:28:30.870",
+    "text": "two adjacent levels is exactly h bar"
+  },
+  {
+    "start": "00:28:30.880",
+    "end": "00:28:33.750",
+    "text": "omega kn and the bore einstein relation"
+  },
+  {
+    "start": "00:28:33.760",
+    "end": "00:28:37.110",
+    "text": "is satisfied. Here is the summary of the"
+  },
+  {
+    "start": "00:28:37.120",
+    "end": "00:28:38.630",
+    "text": "results."
+  },
+  {
+    "start": "00:28:38.640",
+    "end": "00:28:42.470",
+    "text": "Now we repeat this but following method."
+  },
+  {
+    "start": "00:28:42.480",
+    "end": "00:28:44.630",
+    "text": "Just like before, we begin with the"
+  },
+  {
+    "start": "00:28:44.640",
+    "end": "00:28:46.950",
+    "text": "quantum position, but instead of using"
+  },
+  {
+    "start": "00:28:46.960",
+    "end": "00:28:49.590",
+    "text": "the classical solution, we calculate the"
+  },
+  {
+    "start": "00:28:49.600",
+    "end": "00:28:52.230",
+    "text": "second time derivative to replace it"
+  },
+  {
+    "start": "00:28:52.240",
+    "end": "00:28:54.870",
+    "text": "into the equation of motion. Factorizing"
+  },
+  {
+    "start": "00:28:54.880",
+    "end": "00:28:57.750",
+    "text": "common terms, we find this relation."
+  },
+  {
+    "start": "00:28:57.760",
+    "end": "00:28:59.750",
+    "text": "From now on, we will need the complete"
+  },
+  {
+    "start": "00:28:59.760",
+    "end": "00:29:02.470",
+    "text": "form of the indices. So, I am replacing"
+  },
+  {
+    "start": "00:29:02.480",
+    "end": "00:29:06.630",
+    "text": "K by N minus alpha. Under the assumption"
+  },
+  {
+    "start": "00:29:06.640",
+    "end": "00:29:10.310",
+    "text": "that every state has its own energy for"
+  },
+  {
+    "start": "00:29:10.320",
+    "end": "00:29:13.269",
+    "text": "each value of alpha in the sum, the"
+  },
+  {
+    "start": "00:29:13.279",
+    "end": "00:29:16.470",
+    "text": "exponent will be different. This means"
+  },
+  {
+    "start": "00:29:16.480",
+    "end": "00:29:18.950",
+    "text": "that each element of the sum must"
+  },
+  {
+    "start": "00:29:18.960",
+    "end": "00:29:22.549",
+    "text": "individually vanish. For alpha equals 0,"
+  },
+  {
+    "start": "00:29:22.559",
+    "end": "00:29:25.269",
+    "text": "we get this. Since the transition"
+  },
+  {
+    "start": "00:29:25.279",
+    "end": "00:29:27.830",
+    "text": "frequency of a state with itself is"
+  },
+  {
+    "start": "00:29:27.840",
+    "end": "00:29:30.870",
+    "text": "zero, we find that the same is true for"
+  },
+  {
+    "start": "00:29:30.880",
+    "end": "00:29:34.070",
+    "text": "the amplitude. For alpha equals 1, we"
+  },
+  {
+    "start": "00:29:34.080",
+    "end": "00:29:36.389",
+    "text": "get this. Inspired by the classical"
+  },
+  {
+    "start": "00:29:36.399",
+    "end": "00:29:38.950",
+    "text": "result, we set the amplitude between one"
+  },
+  {
+    "start": "00:29:38.960",
+    "end": "00:29:41.909",
+    "text": "level and the next to be non zero, which"
+  },
+  {
+    "start": "00:29:41.919",
+    "end": "00:29:44.470",
+    "text": "gives us a constant value for the"
+  },
+  {
+    "start": "00:29:44.480",
+    "end": "00:29:46.950",
+    "text": "transition frequency. Contrary to the"
+  },
+  {
+    "start": "00:29:46.960",
+    "end": "00:29:49.669",
+    "text": "hydrogen atom, here the frequencies are"
+  },
+  {
+    "start": "00:29:49.679",
+    "end": "00:29:52.549",
+    "text": "independent of the quantum number n,"
+  },
+  {
+    "start": "00:29:52.559",
+    "end": "00:29:54.789",
+    "text": "which means that the energy levels are"
+  },
+  {
+    "start": "00:29:54.799",
+    "end": "00:29:57.830",
+    "text": "equally spaced. We can now repeat for"
+  },
+  {
+    "start": "00:29:57.840",
+    "end": "00:30:01.909",
+    "text": "alpha= minus1 to get this. Just like the"
+  },
+  {
+    "start": "00:30:01.919",
+    "end": "00:30:04.470",
+    "text": "classical case, the only nonzero"
+  },
+  {
+    "start": "00:30:04.480",
+    "end": "00:30:06.630",
+    "text": "transition amplitudes are between"
+  },
+  {
+    "start": "00:30:06.640",
+    "end": "00:30:09.350",
+    "text": "adjacent states. Using that the energy"
+  },
+  {
+    "start": "00:30:09.360",
+    "end": "00:30:12.389",
+    "text": "levels are equally spaced implies that"
+  },
+  {
+    "start": "00:30:12.399",
+    "end": "00:30:14.950",
+    "text": "for all other values of alpha, the"
+  },
+  {
+    "start": "00:30:14.960",
+    "end": "00:30:18.470",
+    "text": "amplitude is zero. Summarizing from the"
+  },
+  {
+    "start": "00:30:18.480",
+    "end": "00:30:20.549",
+    "text": "equation of motion, we found the"
+  },
+  {
+    "start": "00:30:20.559",
+    "end": "00:30:22.870",
+    "text": "frequencies and the nonvanishing"
+  },
+  {
+    "start": "00:30:22.880",
+    "end": "00:30:26.070",
+    "text": "amplitudes. This condition that the only"
+  },
+  {
+    "start": "00:30:26.080",
+    "end": "00:30:28.549",
+    "text": "allowed transitions are between states"
+  },
+  {
+    "start": "00:30:28.559",
+    "end": "00:30:31.110",
+    "text": "that defer by one quantum unit is"
+  },
+  {
+    "start": "00:30:31.120",
+    "end": "00:30:33.990",
+    "text": "usually known as selection rules. We"
+  },
+  {
+    "start": "00:30:34.000",
+    "end": "00:30:35.510",
+    "text": "still need to find the value of these"
+  },
+  {
+    "start": "00:30:35.520",
+    "end": "00:30:37.909",
+    "text": "two amplitudes. For this, we use the"
+  },
+  {
+    "start": "00:30:37.919",
+    "end": "00:30:40.470",
+    "text": "older equation in Heisenberg's method,"
+  },
+  {
+    "start": "00:30:40.480",
+    "end": "00:30:42.950",
+    "text": "the quantum condition. As mentioned"
+  },
+  {
+    "start": "00:30:42.960",
+    "end": "00:30:45.510",
+    "text": "before, this equation provides a"
+  },
+  {
+    "start": "00:30:45.520",
+    "end": "00:30:47.190",
+    "text": "recursive way to determine the"
+  },
+  {
+    "start": "00:30:47.200",
+    "end": "00:30:49.750",
+    "text": "amplitudes. Since alpha can only take"
+  },
+  {
+    "start": "00:30:49.760",
+    "end": "00:30:52.230",
+    "text": "two values, we can expand the sum"
+  },
+  {
+    "start": "00:30:52.240",
+    "end": "00:30:54.710",
+    "text": "leading to four terms. Using the"
+  },
+  {
+    "start": "00:30:54.720",
+    "end": "00:30:56.549",
+    "text": "previous result for the transition"
+  },
+  {
+    "start": "00:30:56.559",
+    "end": "00:30:58.950",
+    "text": "amplitudes and being extra careful with"
+  },
+  {
+    "start": "00:30:58.960",
+    "end": "00:31:01.510",
+    "text": "the order of the indices to get all the"
+  },
+  {
+    "start": "00:31:01.520",
+    "end": "00:31:04.789",
+    "text": "signs right, we find that the four terms"
+  },
+  {
+    "start": "00:31:04.799",
+    "end": "00:31:07.750",
+    "text": "reduce to two terms. Finally, we can"
+  },
+  {
+    "start": "00:31:07.760",
+    "end": "00:31:09.830",
+    "text": "write the recursive relation for the"
+  },
+  {
+    "start": "00:31:09.840",
+    "end": "00:31:13.590",
+    "text": "amplitudes. The next step is defining a"
+  },
+  {
+    "start": "00:31:13.600",
+    "end": "00:31:16.630",
+    "text": "so-called ground state. This is defined"
+  },
+  {
+    "start": "00:31:16.640",
+    "end": "00:31:19.110",
+    "text": "as the lowest possible state of the"
+  },
+  {
+    "start": "00:31:19.120",
+    "end": "00:31:21.830",
+    "text": "system. Setting this to be represented"
+  },
+  {
+    "start": "00:31:21.840",
+    "end": "00:31:25.830",
+    "text": "by n equals 0, we get the following. In"
+  },
+  {
+    "start": "00:31:25.840",
+    "end": "00:31:28.470",
+    "text": "this step, heisenber reasoned that"
+  },
+  {
+    "start": "00:31:28.480",
+    "end": "00:31:32.389",
+    "text": "transitions below the level n= 0 do not"
+  },
+  {
+    "start": "00:31:32.399",
+    "end": "00:31:35.350",
+    "text": "exist by definition of ground state."
+  },
+  {
+    "start": "00:31:35.360",
+    "end": "00:31:38.950",
+    "text": "Therefore, this term must be zero. And"
+  },
+  {
+    "start": "00:31:38.960",
+    "end": "00:31:41.590",
+    "text": "with this, we find our first transition"
+  },
+  {
+    "start": "00:31:41.600",
+    "end": "00:31:45.509",
+    "text": "amplitude. Next we take n= 1 which is"
+  },
+  {
+    "start": "00:31:45.519",
+    "end": "00:31:47.909",
+    "text": "given in terms of the transition that we"
+  },
+  {
+    "start": "00:31:47.919",
+    "end": "00:31:51.590",
+    "text": "just found. We can repeat for n= 2 and"
+  },
+  {
+    "start": "00:31:51.600",
+    "end": "00:31:54.389",
+    "text": "quickly find the pattern for any state"
+  },
+  {
+    "start": "00:31:54.399",
+    "end": "00:31:57.509",
+    "text": "n. This is the transition amplitude"
+  },
+  {
+    "start": "00:31:57.519",
+    "end": "00:31:59.430",
+    "text": "which I will add to the summary on the"
+  },
+  {
+    "start": "00:31:59.440",
+    "end": "00:32:03.110",
+    "text": "top right. Note that the absolute value"
+  },
+  {
+    "start": "00:32:03.120",
+    "end": "00:32:05.509",
+    "text": "allows reversing the state indices"
+  },
+  {
+    "start": "00:32:05.519",
+    "end": "00:32:07.990",
+    "text": "without affecting the result. Also"
+  },
+  {
+    "start": "00:32:08.000",
+    "end": "00:32:11.350",
+    "text": "notice that we can replace n by n minus"
+  },
+  {
+    "start": "00:32:11.360",
+    "end": "00:32:14.389",
+    "text": "one to obtain this pair of relations"
+  },
+  {
+    "start": "00:32:14.399",
+    "end": "00:32:17.110",
+    "text": "that will be useful in a minute. The"
+  },
+  {
+    "start": "00:32:17.120",
+    "end": "00:32:19.269",
+    "text": "final calculation is the energy of the"
+  },
+  {
+    "start": "00:32:19.279",
+    "end": "00:32:22.070",
+    "text": "oscillator. Just like before we need to"
+  },
+  {
+    "start": "00:32:22.080",
+    "end": "00:32:26.789",
+    "text": "determine x dot squar and x^2. But this"
+  },
+  {
+    "start": "00:32:26.799",
+    "end": "00:32:28.870",
+    "text": "time we must use Heisenber's"
+  },
+  {
+    "start": "00:32:28.880",
+    "end": "00:32:32.470",
+    "text": "multiplication rule. For x dot we simply"
+  },
+  {
+    "start": "00:32:32.480",
+    "end": "00:32:34.310",
+    "text": "take the derivative with respect to"
+  },
+  {
+    "start": "00:32:34.320",
+    "end": "00:32:38.070",
+    "text": "time. Here notice that all these terms"
+  },
+  {
+    "start": "00:32:38.080",
+    "end": "00:32:40.789",
+    "text": "correspond to the amplitude that we have"
+  },
+  {
+    "start": "00:32:40.799",
+    "end": "00:32:43.430",
+    "text": "to use in the multiplication rule. The"
+  },
+  {
+    "start": "00:32:43.440",
+    "end": "00:32:47.029",
+    "text": "product of x dot with itself gives us"
+  },
+  {
+    "start": "00:32:47.039",
+    "end": "00:32:50.230",
+    "text": "this long expression. Now we use that"
+  },
+  {
+    "start": "00:32:50.240",
+    "end": "00:32:53.430",
+    "text": "only transitions between adjacent states"
+  },
+  {
+    "start": "00:32:53.440",
+    "end": "00:32:55.750",
+    "text": "are allowed to expand the sum over"
+  },
+  {
+    "start": "00:32:55.760",
+    "end": "00:32:58.950",
+    "text": "alpha. So we get two terms for the sum"
+  },
+  {
+    "start": "00:32:58.960",
+    "end": "00:33:01.830",
+    "text": "over beta. We have to be extra careful."
+  },
+  {
+    "start": "00:33:01.840",
+    "end": "00:33:03.990",
+    "text": "Let's look at this term from the"
+  },
+  {
+    "start": "00:33:04.000",
+    "end": "00:33:06.149",
+    "text": "selection rules. The indices in the"
+  },
+  {
+    "start": "00:33:06.159",
+    "end": "00:33:09.269",
+    "text": "amplitude can only defer by one."
+  },
+  {
+    "start": "00:33:09.279",
+    "end": "00:33:12.230",
+    "text": "Therefore, beta can only take the values"
+  },
+  {
+    "start": "00:33:12.240",
+    "end": "00:33:16.470",
+    "text": "zero or two leading to these two terms."
+  },
+  {
+    "start": "00:33:16.480",
+    "end": "00:33:18.630",
+    "text": "Using the same method with the second"
+  },
+  {
+    "start": "00:33:18.640",
+    "end": "00:33:21.509",
+    "text": "term, we find that beta can only take"
+  },
+  {
+    "start": "00:33:21.519",
+    "end": "00:33:25.430",
+    "text": "the values 0 and minus2 producing the"
+  },
+  {
+    "start": "00:33:25.440",
+    "end": "00:33:28.149",
+    "text": "next two terms. Now we have to evaluate"
+  },
+  {
+    "start": "00:33:28.159",
+    "end": "00:33:30.470",
+    "text": "the frequencies. Since the two"
+  },
+  {
+    "start": "00:33:30.480",
+    "end": "00:33:33.190",
+    "text": "amplitudes have the same indices in"
+  },
+  {
+    "start": "00:33:33.200",
+    "end": "00:33:36.230",
+    "text": "reverse order, their product is just the"
+  },
+  {
+    "start": "00:33:36.240",
+    "end": "00:33:39.110",
+    "text": "squared magnitude. Using our previous"
+  },
+  {
+    "start": "00:33:39.120",
+    "end": "00:33:41.669",
+    "text": "results, the first frequency is positive"
+  },
+  {
+    "start": "00:33:41.679",
+    "end": "00:33:44.549",
+    "text": "and equal to omega KN. Whereas the"
+  },
+  {
+    "start": "00:33:44.559",
+    "end": "00:33:47.430",
+    "text": "second frequency has the same indices in"
+  },
+  {
+    "start": "00:33:47.440",
+    "end": "00:33:50.630",
+    "text": "reverse order. So it has an extra minus."
+  },
+  {
+    "start": "00:33:50.640",
+    "end": "00:33:52.470",
+    "text": "Finally, we use that the transition"
+  },
+  {
+    "start": "00:33:52.480",
+    "end": "00:33:55.029",
+    "text": "frequency of a state with itself is"
+  },
+  {
+    "start": "00:33:55.039",
+    "end": "00:33:57.590",
+    "text": "zero. Just to make sure that the method"
+  },
+  {
+    "start": "00:33:57.600",
+    "end": "00:34:00.310",
+    "text": "is clear, let me do the second term."
+  },
+  {
+    "start": "00:34:00.320",
+    "end": "00:34:02.630",
+    "text": "Here the product of amplitudes remains"
+  },
+  {
+    "start": "00:34:02.640",
+    "end": "00:34:05.750",
+    "text": "as it is. The first frequency is again"
+  },
+  {
+    "start": "00:34:05.760",
+    "end": "00:34:08.790",
+    "text": "omega kn whereas the second frequency is"
+  },
+  {
+    "start": "00:34:08.800",
+    "end": "00:34:11.990",
+    "text": "also omega kn. If this is unclear, just"
+  },
+  {
+    "start": "00:34:12.000",
+    "end": "00:34:14.869",
+    "text": "replace n by n minus one in the formula"
+  },
+  {
+    "start": "00:34:14.879",
+    "end": "00:34:18.230",
+    "text": "above. The exponent is no longer zero."
+  },
+  {
+    "start": "00:34:18.240",
+    "end": "00:34:20.389",
+    "text": "Since we know that the energy levels are"
+  },
+  {
+    "start": "00:34:20.399",
+    "end": "00:34:23.109",
+    "text": "equally spaced, the frequency between"
+  },
+  {
+    "start": "00:34:23.119",
+    "end": "00:34:25.909",
+    "text": "levels two units apart is simply two"
+  },
+  {
+    "start": "00:34:25.919",
+    "end": "00:34:29.349",
+    "text": "times omega KN. Using the same procedure"
+  },
+  {
+    "start": "00:34:29.359",
+    "end": "00:34:32.790",
+    "text": "with the other two terms, we get this."
+  },
+  {
+    "start": "00:34:32.800",
+    "end": "00:34:35.430",
+    "text": "Taking out the common factor omega"
+  },
+  {
+    "start": "00:34:35.440",
+    "end": "00:34:38.069",
+    "text": "squared, we have found the expression"
+  },
+  {
+    "start": "00:34:38.079",
+    "end": "00:34:41.190",
+    "text": "needed for the kinetic energy. The same"
+  },
+  {
+    "start": "00:34:41.200",
+    "end": "00:34:44.389",
+    "text": "steps are needed for x^2. We expand the"
+  },
+  {
+    "start": "00:34:44.399",
+    "end": "00:34:47.990",
+    "text": "sum over alpha, then sum over beta and"
+  },
+  {
+    "start": "00:34:48.000",
+    "end": "00:34:50.629",
+    "text": "evaluate the frequencies. This is much"
+  },
+  {
+    "start": "00:34:50.639",
+    "end": "00:34:52.950",
+    "text": "easier than the previous one. And now"
+  },
+  {
+    "start": "00:34:52.960",
+    "end": "00:34:54.710",
+    "text": "we're ready to calculate the energy of"
+  },
+  {
+    "start": "00:34:54.720",
+    "end": "00:34:57.270",
+    "text": "the oscillator. Like the semi-class"
+  },
+  {
+    "start": "00:34:57.280",
+    "end": "00:35:00.069",
+    "text": "case, all the time dependent terms"
+  },
+  {
+    "start": "00:35:00.079",
+    "end": "00:35:02.550",
+    "text": "cancel each other out, making the energy"
+  },
+  {
+    "start": "00:35:02.560",
+    "end": "00:35:05.190",
+    "text": "levels constant. This answers"
+  },
+  {
+    "start": "00:35:05.200",
+    "end": "00:35:07.430",
+    "text": "Heisenberg's question about energy"
+  },
+  {
+    "start": "00:35:07.440",
+    "end": "00:35:10.390",
+    "text": "conservation. Yes, the energy of the"
+  },
+  {
+    "start": "00:35:10.400",
+    "end": "00:35:12.790",
+    "text": "harmonic oscillator in quantum mechanics"
+  },
+  {
+    "start": "00:35:12.800",
+    "end": "00:35:15.510",
+    "text": "is conserved. Now I bring back the"
+  },
+  {
+    "start": "00:35:15.520",
+    "end": "00:35:18.150",
+    "text": "amplitudes that we found before because"
+  },
+  {
+    "start": "00:35:18.160",
+    "end": "00:35:20.470",
+    "text": "we can determine the final expression"
+  },
+  {
+    "start": "00:35:20.480",
+    "end": "00:35:22.710",
+    "text": "for the energy. Plugging the two"
+  },
+  {
+    "start": "00:35:22.720",
+    "end": "00:35:25.510",
+    "text": "relevant amplitudes, we get this."
+  },
+  {
+    "start": "00:35:25.520",
+    "end": "00:35:28.150",
+    "text": "Factorizing common terms, we finally"
+  },
+  {
+    "start": "00:35:28.160",
+    "end": "00:35:31.270",
+    "text": "find the energy. Here is the summary of"
+  },
+  {
+    "start": "00:35:31.280",
+    "end": "00:35:34.150",
+    "text": "all the results that we found. We can"
+  },
+  {
+    "start": "00:35:34.160",
+    "end": "00:35:36.550",
+    "text": "answer Heisenberg's second question."
+  },
+  {
+    "start": "00:35:36.560",
+    "end": "00:35:38.950",
+    "text": "Yes, given that the energy levels are"
+  },
+  {
+    "start": "00:35:38.960",
+    "end": "00:35:41.670",
+    "text": "equally spaced, the bore Einstein"
+  },
+  {
+    "start": "00:35:41.680",
+    "end": "00:35:44.950",
+    "text": "relation is satisfied. This is the final"
+  },
+  {
+    "start": "00:35:44.960",
+    "end": "00:35:47.670",
+    "text": "answer from Heisenberg's point of view."
+  },
+  {
+    "start": "00:35:47.680",
+    "end": "00:35:50.069",
+    "text": "It is not the position of the oscillator"
+  },
+  {
+    "start": "00:35:50.079",
+    "end": "00:35:53.109",
+    "text": "or its speed but the observable"
+  },
+  {
+    "start": "00:35:53.119",
+    "end": "00:35:55.990",
+    "text": "quantities transition amplitudes and"
+  },
+  {
+    "start": "00:35:56.000",
+    "end": "00:35:57.589",
+    "text": "frequencies."
+  },
+  {
+    "start": "00:35:57.599",
+    "end": "00:35:59.990",
+    "text": "Additionally, we find that the energy of"
+  },
+  {
+    "start": "00:36:00.000",
+    "end": "00:36:04.310",
+    "text": "the ground state is not zero, but 1/2 h"
+  },
+  {
+    "start": "00:36:04.320",
+    "end": "00:36:07.589",
+    "text": "bar omega kn exactly as many experiments"
+  },
+  {
+    "start": "00:36:07.599",
+    "end": "00:36:09.990",
+    "text": "indicated. In case you're unfamiliar"
+  },
+  {
+    "start": "00:36:10.000",
+    "end": "00:36:12.310",
+    "text": "with this, make sure to check my video"
+  },
+  {
+    "start": "00:36:12.320",
+    "end": "00:36:15.430",
+    "text": "about the 0 point energy. In that video,"
+  },
+  {
+    "start": "00:36:15.440",
+    "end": "00:36:17.270",
+    "text": "I mentioned that there was no room for"
+  },
+  {
+    "start": "00:36:17.280",
+    "end": "00:36:20.470",
+    "text": "this factor 1/2 h bar omega in quantum"
+  },
+  {
+    "start": "00:36:20.480",
+    "end": "00:36:23.589",
+    "text": "theory before Heisenberg. Bringing back"
+  },
+  {
+    "start": "00:36:23.599",
+    "end": "00:36:25.910",
+    "text": "the results of the semic-class theory of"
+  },
+  {
+    "start": "00:36:25.920",
+    "end": "00:36:28.150",
+    "text": "the harmonic oscillator, we see that"
+  },
+  {
+    "start": "00:36:28.160",
+    "end": "00:36:30.790",
+    "text": "Heisenber's theory agrees with all the"
+  },
+  {
+    "start": "00:36:30.800",
+    "end": "00:36:34.069",
+    "text": "results of the bore summer theory except"
+  },
+  {
+    "start": "00:36:34.079",
+    "end": "00:36:36.790",
+    "text": "for the 0 point energy. In the old"
+  },
+  {
+    "start": "00:36:36.800",
+    "end": "00:36:39.430",
+    "text": "theory, the energy of the ground state n"
+  },
+  {
+    "start": "00:36:39.440",
+    "end": "00:36:42.630",
+    "text": "equals 0 is exactly zero. in"
+  },
+  {
+    "start": "00:36:42.640",
+    "end": "00:36:44.550",
+    "text": "contradiction with many experiments at"
+  },
+  {
+    "start": "00:36:44.560",
+    "end": "00:36:47.109",
+    "text": "low temperatures that show that quantum"
+  },
+  {
+    "start": "00:36:47.119",
+    "end": "00:36:50.950",
+    "text": "systems exhibit a remnant energy of 1/2"
+  },
+  {
+    "start": "00:36:50.960",
+    "end": "00:36:54.310",
+    "text": "h bar omega. The hope was that a"
+  },
+  {
+    "start": "00:36:54.320",
+    "end": "00:36:56.550",
+    "text": "systematic theory of quantum mechanics"
+  },
+  {
+    "start": "00:36:56.560",
+    "end": "00:36:58.310",
+    "text": "could explain the origin of this"
+  },
+  {
+    "start": "00:36:58.320",
+    "end": "00:37:00.870",
+    "text": "residual energy and Heisenberg's quantum"
+  },
+  {
+    "start": "00:37:00.880",
+    "end": "00:37:04.150",
+    "text": "mechanics did exactly that. If you track"
+  },
+  {
+    "start": "00:37:04.160",
+    "end": "00:37:06.230",
+    "text": "the origin of the constant term in the"
+  },
+  {
+    "start": "00:37:06.240",
+    "end": "00:37:09.270",
+    "text": "energy, you will find it to arise from"
+  },
+  {
+    "start": "00:37:09.280",
+    "end": "00:37:11.910",
+    "text": "the new quantum condition. Bourne and"
+  },
+  {
+    "start": "00:37:11.920",
+    "end": "00:37:14.470",
+    "text": "Jordan transformed this new rule created"
+  },
+  {
+    "start": "00:37:14.480",
+    "end": "00:37:16.390",
+    "text": "by Heisenberg into one of the"
+  },
+  {
+    "start": "00:37:16.400",
+    "end": "00:37:18.470",
+    "text": "fundamental building blocks of quantum"
+  },
+  {
+    "start": "00:37:18.480",
+    "end": "00:37:21.270",
+    "text": "mechanics found today in textbooks. The"
+  },
+  {
+    "start": "00:37:21.280",
+    "end": "00:37:23.910",
+    "text": "so-called canonical quantum commutation"
+  },
+  {
+    "start": "00:37:23.920",
+    "end": "00:37:25.990",
+    "text": "relation from which the famous"
+  },
+  {
+    "start": "00:37:26.000",
+    "end": "00:37:28.230",
+    "text": "Heisenberg's uncertainty principle can"
+  },
+  {
+    "start": "00:37:28.240",
+    "end": "00:37:30.790",
+    "text": "be derived. But this happens two years"
+  },
+  {
+    "start": "00:37:30.800",
+    "end": "00:37:33.109",
+    "text": "later. For now, I wanted to show you"
+  },
+  {
+    "start": "00:37:33.119",
+    "end": "00:37:36.150",
+    "text": "that Heisenberg's paper already contains"
+  },
+  {
+    "start": "00:37:36.160",
+    "end": "00:37:38.390",
+    "text": "many of the blueprints for modern"
+  },
+  {
+    "start": "00:37:38.400",
+    "end": "00:37:41.030",
+    "text": "quantum mechanics. And although he"
+  },
+  {
+    "start": "00:37:41.040",
+    "end": "00:37:43.829",
+    "text": "didn't know it, this formula is the"
+  },
+  {
+    "start": "00:37:43.839",
+    "end": "00:37:46.710",
+    "text": "first draft of his famous uncertainty"
+  },
+  {
+    "start": "00:37:46.720",
+    "end": "00:37:48.550",
+    "text": "principle."
+  },
+  {
+    "start": "00:37:48.560",
+    "end": "00:37:51.109",
+    "text": "If you made it this far, congratulations"
+  },
+  {
+    "start": "00:37:51.119",
+    "end": "00:37:53.829",
+    "text": "and thank you for joining me. This is a"
+  },
+  {
+    "start": "00:37:53.839",
+    "end": "00:37:56.310",
+    "text": "remarkable paper and I hope that with"
+  },
+  {
+    "start": "00:37:56.320",
+    "end": "00:37:59.190",
+    "text": "this deep dive any student even at the"
+  },
+  {
+    "start": "00:37:59.200",
+    "end": "00:38:01.829",
+    "text": "undergraduate level can understand its"
+  },
+  {
+    "start": "00:38:01.839",
+    "end": "00:38:04.069",
+    "text": "significance and reproduce the original"
+  },
+  {
+    "start": "00:38:04.079",
+    "end": "00:38:07.030",
+    "text": "calculations. Most textbooks present"
+  },
+  {
+    "start": "00:38:07.040",
+    "end": "00:38:09.430",
+    "text": "these results as coming out of a magic"
+  },
+  {
+    "start": "00:38:09.440",
+    "end": "00:38:12.150",
+    "text": "hat but in reality they can be derived"
+  },
+  {
+    "start": "00:38:12.160",
+    "end": "00:38:14.950",
+    "text": "using some math a good understanding of"
+  },
+  {
+    "start": "00:38:14.960",
+    "end": "00:38:17.190",
+    "text": "the historical context and more"
+  },
+  {
+    "start": "00:38:17.200",
+    "end": "00:38:20.310",
+    "text": "importantly building out of experimental"
+  },
+  {
+    "start": "00:38:20.320",
+    "end": "00:38:23.320",
+    "text": "evidence."
+  }
+]

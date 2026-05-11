@@ -1,0 +1,841 @@
+In the summer of 1925,
+Verer Heisenberg developed the first
+consistent theory of quantum mechanics.
+The paper he wrote is cryptic even for
+experts. But inside we find four
+groundbreaking ideas that rewrote the
+rules of physics. In this video, I will
+walk you through these ideas, concepts,
+and calculations to show you exactly how
+Heisenberg created quantum mechanics.
+Quantum mechanics was created by Verer
+Heisenberg in 1925 with the publication
+of this paper. The content is hard to
+follow. Some sections lack continuity
+and some mathematical steps look like
+magic. The goal of this video is to
+change that and only with the help of
+not very advanced physics and plenty of
+mathematical manipulation, I hope to
+make Heisenberg's paper more accessible.
+By the end of this video, we will
+discover how the famous 0 point energy
+appears in Heisenberg's theory and an
+early draft of what later became the
+uncertainty principle. In this
+step-by-step guide, I will show you all
+the details so you can also enjoy the
+beauty of this groundbreaking paper.
+This video is divided into three parts.
+I will begin by showing you the
+experimental fact that led to matrices.
+Then I will introduce the four core
+ideas and calculations in the paper. And
+finally I will present one of the
+examples that Heisenberg provided at the
+end of his paper including all the gory
+details that I hope can give you a
+glimpse on the work of theoretical
+physics. As you probably know,
+Heisenberg's theory of quantum mechanics
+became known as matrix mechanics because
+of the use of these mathematical arrays
+of numbers. I want to begin by answering
+one simple question. Why are matrices
+needed in quantum mechanics? The answer
+is a simple experimental observation
+made by the Swiss physicist Valter Ritz
+in the summer of 1908.
+This table shows some of the lines of
+the hydrogen spectrum. Let's take these
+two and add their inverse. And now let's
+look at the inverse of this line.
+Let's try with these lines.
+Now these three. There is clearly a
+pattern here. One last time. I will now
+show you why this happens. This is a
+formula that Reitberg found in 1888 for
+the wavelength of hydrogen spectral
+lines in terms of two integer numbers J
+and K. R is just a constant. Multiplying
+all this by the speed of light, we get
+frequencies instead. Notice what happens
+when we add two frequencies in which the
+second index of one is identical to the
+first index of the other. Using the
+formula above, we find that the middle
+indices cancel out and we get a new
+frequency with the first index of one
+and the second index of the other. This
+relation is a general result for
+spectral lines. And this is exactly what
+I show you in the examples. If I include
+the indices, you can see that in all
+cases, the general formula works. This
+relation is an example of the so-called
+Ritz combination principle and it tells
+us how the frequencies of a spectral
+lines are combined to form new
+frequencies. This observation is the key
+to unlocking the ideas in Heisenber's
+paper. And as I will show you shortly,
+this experimental fact is the reason for
+the need of matrices.
+Since 1900, quantum physics was a
+collection of arbitrary and unjustified
+rules that became known as old quantum
+theory. Heisenberg changed all that
+after an isolation retreat in a remote
+island in June 1925.
+After his return, he wrote a cryptic
+paper titled on the quantum theoretical
+reinterpretation of kinematical and
+mechanical relationships in which he
+laid out four rules for calculating the
+outcome of experiments.
+Everything began with Einstein's quantum
+theory of radiation from 1917. After
+completing his monumental work on
+general relativity, Einstein returned to
+the study of radiation, introducing two
+key innovations, a new process called
+stimulated emission and transition
+probabilities for describing the
+absorption and emission of light.
+Unfortunately, there was no way to
+determine these probabilities. The
+breakthrough came in early 1921 when
+Rudolfph Latenburgg found a way to
+connect Einstein's quantum probabilities
+with classical quantities that could be
+measured in dispersion experiments.
+Inspired by Latenburg, this idea was
+extended by Henrik Kramers who found a
+quantum theory of dispersion. Kramers
+and Max Bourne also discovered a
+mathematical relation between classical
+and quantum relations that was crucial
+for Heisenberg. Let's now dive into
+Heisenberg's famous paper. The key word
+is reinterpretation.
+Historians of science refer to this work
+as the unon paper. What everyone was
+searching for during the 1920s was a way
+to derive quantum equations to replace
+the equations of classical mechanics.
+Heisenberg built on the ideas of
+Einstein, Latenburg, Kmers, Bore and
+Bourne to find the quantum equivalent of
+physical quantities from a classical
+theory. He starts by setting one of the
+core ideas in which his quantum
+mechanics is built. It is advisable to
+completely discard unobserved quantities
+such as the electrons position and
+period. Instead, it seems more
+reasonable to try to establish a theory
+of quantum mechanics in which only
+relationships among observable
+quantities occur. This is one of the
+most radical ideas in the history of
+physics, one that leads to debates even
+today. Heisenberg proposes here that
+quantum mechanics is only a theory about
+experimental observables. In his paper,
+these are the transition amplitudes and
+frequencies. Although this idea is
+usually attributed to Heisenberg, one of
+its main proponents was Wol and Powley.
+His letters show that by the summer of
+1925, he had convinced most of the key
+figures of quantum theory about this
+idea. This is something that Einstein
+and Shinger strongly opposed. For them,
+physics is about describing nature as a
+whole, including all its underlying
+mechanisms, even those that we cannot
+measure. We could say that with this
+sentence, Heisenberg began the infamous
+shut up and calculate approach. Let me
+know in the comments if you have an
+opinion about this idea. After this,
+Heisenberg begins his rumblings. I stop
+following the paper here and present the
+ideas in a more coherent order pointing
+out to the corresponding results in the
+paper. The first concept is position.
+The classical view of the electron
+orbiting the nucleus was enough for
+atoms with a single electron but failed
+with all the others. After his work with
+Bourne, Heisenberg knew that a classical
+periodic motion of an electron in a
+stationary state n can be described as
+an infinite sum of oscillations. This is
+called a furier series. A more general
+way to write this is by using a complex
+exponential instead where the sum is
+over all positive and negative values of
+the index alpha. I will later drop the
+estimation range to simplify notation.
+The factors a alpha are called fura
+modes and kramers showed in his doctoral
+thesis that these factors are directly
+related to the transition probabilities
+between states introduced by Einstein in
+his paper on quantum radiation. The
+position is a real quantity. Forcing all
+this sum to be equal to its own complex
+conjugate implies a relation between the
+negative and positive fura modes. This
+relation will be very useful later. Here
+heisenberg introduces his first seminal
+idea. According to the correspondence
+principle, the classical frequency of
+the orbital motion of the electron and
+its harmonics get replaced by the
+transition frequencies between atomic
+states. Alpha omega becomes omega and k
+where n is the current state of the
+electron and k is any other state that
+the electron can transition via a
+quantum jump. Just for clarity in this
+video, I will use the subindex k as
+short notation for n minus alpha. Now we
+can write the position of the quantum
+electron in this way where the classical
+furier modes are replaced by transition
+amplitudes with two indices to match the
+transition frequencies that obey the
+ritz combination principle. Just like in
+the classical case, forcing the position
+to be a real quantity implies this
+relationship. Reversing the indices of
+the amplitudes is equivalent to checking
+its complex conjugate. This relation
+corresponds to Heisenber's position
+reinterpretation and the word kinematics
+in the title of his paper. Note that the
+positive values of alpha represent
+quantum transitions between the current
+state n and lower levels whereas the
+negative values denote higher levels.
+With this expression, Heisenberg built a
+tower of so-called virtual oscillators.
+The next concept is motion. I bet many
+of you were not expecting to find
+Newton's second law in the foundational
+paper on quantum mechanics, but this is
+Heisenberg's starting point. Writing the
+force and acceleration as functions of
+position, dividing by the mass of the
+particle and collecting terms on the
+left hand side. Heisenberg renamed this
+ratio just f. His idea is that depending
+on the physical system of interest, all
+you have to do is to identify the
+potential energy, calculate f and
+properly write this equation of motion
+in terms of the quantum position as
+defined in the previous section. This
+concept is the mechanics in the title of
+his paper. as examples for the harmonic
+oscillator f is just omega^ squar * x
+whereas the so-called unharmonic
+oscillator has an extra term with x
+squared in general for any function we
+can expand the function as a power
+series of x and here realized that we
+need a proper definition of how to
+calculate powers of x which takes us to
+the third concept
+Multiplication.
+This concept is probably the most
+important and revolutionary in the
+paper. Back to the classical
+definitions. Let's see what the product
+of two positions X and Y is in terms of
+FIA modes. For this, we simply multiply
+two FA series where A are the modes of X
+and B are the modes of Y. Note that the
+exponential now combines harmonics of X
+and Y. However, we can introduce a new
+index toao which allows writing the
+product as a new fier series. Defining
+the new fier modes in terms of a and b,
+we explicitly find that the product of
+two positions x and y gives a series
+that has the same structure as x. This
+is one of the great properties of a
+series. We can calculate the product
+between y and x instead. Following the
+same steps as before, we find that the
+order of the product makes no
+difference. We call quantities that
+satisfy this relation commutative
+objects. A common example is real
+numbers. The order of the factors does
+not affect the product. Now we repeat
+this but using the quantum
+reinterpretation of position and
+frequency introduced before. Taking
+their product, we must be careful with
+the indices. And just like in the
+classical case, the two corresponding
+frequencies appear added in the
+exponential. But now we have a problem.
+Note that the two frequencies cannot be
+combined into a new frequency like in
+the classical case because the indices
+do not match the RIT's combination
+principle. This would mark the end of
+Heisenber's efforts because the product
+of two series does not produce a new
+series. But here comes the bold move.
+Heisenberg proposed that this is not how
+quantum objects are multiplied. He wants
+the two frequencies in the exponential
+to have the indices in such order that
+the rich combination principle can be
+used to convert this sum of quantum
+frequencies into a single new frequency.
+Remember that the ritz combination
+principle is an experimental fact.
+Heisenber simply took this feature of
+nature and used it to invent a new way
+to manipulate transition frequencies.
+His multiplication rule is that the
+second index of the first amplitude must
+be equal to the first index of the
+second amplitude. In this way, the two
+frequencies in the exponential can be
+easily added using the Ritz combination
+principle. Now we proceed just as
+before. We rename the product of
+amplitudes and find that the product of
+these two quantum objects is a series
+like the original. We can repeat the
+same steps to calculate y * x instead.
+But now we find that the indices are
+arranged in a way that the two products
+are except in very special cases not
+equal. Here Heisenberg found that a
+consequence of his quantum
+reinterpretation is that quantum objects
+are not commutative. This is the bold
+conceptual innovation that makes this
+paper the foundation of modern quantum
+mechanics. This weird multiplication
+rule made Heisenberg very uncomfortable.
+In the paper he wrote this
+multiplication rule is an almost
+necessary consequence of the frequency
+combination rules. He accepted what his
+theory was telling him but could not
+make sense of the meaning of these
+non-commutative objects. After his
+return from Helgoland, he expressed his
+concern to Max Bourne. What are these
+objects that obey these rules? Let me
+bring back the way the transition
+amplitudes are combined. Heisenberg was
+baffled by this relation. But today,
+even a freshman student would recognize
+it as matrix multiplication. Believe it
+or not, Heisenberg didn't know about
+matrices. This is how Hans Bete, one of
+the great students of Somerfield and
+Heisenberg, described it.
+So he said we should only talk about
+experimentally observable quantities
+both the frequencies and these
+amplitudes but should forget about the
+motion of electrons in orbits.
+Then he
+discussed just how these quantities Q
+and PKN should occur in the theory. how
+would you form kinetic and potential
+energy from them? And he found that
+these uh quantities obeyed very strange
+multiplication rules which he had never
+seen before. But he wrote down these
+multiplication rules. Uh P and Q just
+did not uh behave like ordinary
+algebraic quantities. when he came home
+to Guttingan
+uh Max Bon told him but Heisenberg what
+you have there is simply the
+multiplication of matrices.
+Now you all learn about matrices
+probably in your freshman year or at
+most in your sophomore year but
+Heisenberg had never heard about
+matrices.
+Thanks to Bourne, Heisenberg discovered
+that quantum objects follow the rules of
+matrix algebra. But this only happened
+after he wrote his paper. Before we
+judge Heisenberg for not knowing about
+matrices, the same was true for most
+physicists of the time. Matrix algebra
+was so unknown that the paper that
+Bourne and Jordan wrote following on
+Heisenber's work began with a full
+section explaining the basics of
+matrices.
+The fourth and final concept introduced
+by Heisenberg was a new quantization
+rule. I remind you that old quantum
+theory was mostly based on the rule
+developed by Bore and Somerfeld. This
+was very successful for describing an
+isolated hydrogen atom, but it failed in
+light of new experiments. This rule
+worked as follows. First, write the
+classical equation of motion. then solve
+the equation to find the classical
+solution and finally force the classical
+solution to satisfy the bore summerfeld
+rule. In Heisenber's approach, the
+classical solution is irrelevant because
+the goal is to determine the transition
+amplitudes and frequencies. For this
+reason, a new quantization rule was
+needed. Heisenberg took the rule from
+old quantum theory and replaced momentum
+and position by their classical FA
+expansions. Using the chain rule, the
+integral over position can be turned
+into an integral over one orbital
+period. We need to determine x dot
+squared. Since we know x, we can
+directly take the time derivative and
+then take the product with itself. These
+are classical free expansions. So this
+is the conventional product. Now we can
+use a trick. Since the sum over beta
+includes all positive and negative
+values, we can replace beta by minus
+beta in this expression and the sum does
+not change. In this line, I have simply
+replaced every beta by minus beta. Now
+we can integrate over time. The orbital
+period is related to the frequency. So
+we can make this change of variables.
+This angular integral is not trivial but
+it happens to vanish except when beta is
+equal to alpha. In case you are familiar
+with the name this is an integral
+representation of the chronicer delta.
+This means that when summing over beta
+all terms are zero except when beta
+equals alpha and this expression reduces
+to a single sum. There is nothing new
+here. This relation is just the bore
+summerfell rule for fier modes. Now
+Heisenberg tried to reinterpret this
+relation. The obvious thing to do is
+replacing the fier modes and harmonics
+frequencies by transition amplitudes and
+quantum frequencies respectively.
+However, there is a problem. What to do
+with this extra index alpha?
+Heisenberg's reinterpretation of
+frequency only eliminates one of the
+alpha indices. meaning that a direct
+reinterpretation of the bore summerfeld
+rule is not possible. Here is
+Heisenberg's workaround. He took the
+derivative with respect to the quantum
+number n on both sides. This expression
+looks even more complicated. But here he
+invoked what we could call the
+reinterpretation discovered
+independently by Bourne and Kmers. This
+relation turns classical derivatives
+into quantum differences.
+This is one of the great outcomes
+obtained in the spirit of the failed BKS
+theory that I presented in a previous
+video. Using this relation, Heisenberg
+was able to transform the quantum rule
+of the old quantum theory into his new
+language of transition amplitudes and
+frequencies. Heisenber understood that
+this rule provides a recursive relation
+between amplitudes. Once you know the
+amplitude for one quantum transition,
+this relation allows finding the others.
+This formula and the equation of motion
+with the corresponding multiplication
+rule constitute the equations of
+Heisenberg's quantum theory. And these
+are the revolutionary ideas in the
+paper. Here is a summary of the key
+concepts in Heisenberg's paper. Position
+is written in terms of transition
+amplitudes and frequencies. These two
+quantities are the central unknowns of
+the theory because they are observable
+in experiments. The transition
+amplitudes define the intensity of the
+spectral lines and the frequencies
+determine their wavelength.
+Motion is characterized by the quantum
+position object satisfying the classical
+equations. Note that Heisenberg's theory
+is Newtonian. This was later improved
+and turned into a more general
+Hamiltonian theory by Heisenberg in
+collaboration with Bourne and Jordan.
+Maybe I should make a video about that
+too. Quantum objects obey an unusual
+multiplication rule. Non-commutativity
+of quantum quantities is one of the
+central discoveries in the paper. Thanks
+to Bourne, Heisenberg and the rest of
+the physics community learned that
+transition amplitudes are described by
+matrix algebra and Heisenberg's theory
+became known as the matrix formulation
+of quantum mechanics.
+The quantum nature of transition
+amplitudes and frequencies is specified
+by Heisenberg's reinterpretation of the
+old Bore Somerfell quantum rule. Here is
+where plank's constant enters the
+equations. And that's it. This is the
+recipe for a self-consistent and
+systematic quantum mechanics. Heisenberg
+described it like this. Equations 11 and
+16 contain a complete determination not
+only of frequencies and energy values
+but also of quantum transition
+probabilities.
+The paper also includes two crucial
+questions probably influenced by the
+recent reputation of BKS theory.
+Heisenberg wondered about energy
+conservation and also whether the energy
+levels predicted by his theory would
+satisfy the wellestablished bore
+Einstein relation. But the only way to
+answer these questions was by testing
+the theory with examples. This is what I
+will do in the next part.
+Heisenberg's method was a first draft
+for quantum mechanics. All the main
+ingredients are there, but he knew that
+a mathematical refinement was needed. He
+ended his paper with an invitation to
+such mathematical polishing of his
+ideas. Whether the method proposed here
+can be regarded as satisfactory can be
+decided only by more intensive
+mathematical investigation. The method
+has been very superficially employed
+here.
+In the last section of this video, I
+want to show you an explicit example of
+how to use Heisenber's idea to a
+particular system. Although I will
+present a simplified case, I will
+include all the gory details because I
+find this a very instructive exercise. I
+honestly think that I understood the
+main ideas in Heisenberg's paper only
+after going through these calculations
+and I hope that they can help you too.
+This would let you appreciate the amount
+of work behind every result in the paper
+and hopefully give you a glimpse of the
+work of a theoretical physicist.
+Heisenber begins section three of his
+paper with as a simple example the
+anharmonic oscillator will now be
+treated. The interest in the unharmonic
+oscillator is that just like the
+hydrogen atom transitions between all
+levels are possible. However, this
+example requires familiarity with the
+methods of perturbation theory. Since I
+want this exercise to be valuable even
+if this is your first encounter with
+quantum mechanics, I will only cover the
+particular case of lambda equals 0. This
+is the simple harmonic oscillator. There
+is a running joke that the simple
+harmonic oscillator is the only system
+that physicists know how to solve.
+Sydney Collan described it better. The
+career of a young theoretical physicist
+consists of treating the harmonic
+oscillator in everinccreasing levels of
+abstraction. And if you have studied
+quantum mechanics and quantum field
+theory, you know that this is true. I
+will first solve this using the bore
+Somerfell rule of the old quantum theory
+and then using Heisenber's quantum
+mechanics so we can compare. If you
+watch my last video, you will like the
+subtle differences.
+As you probably know, the differential
+equation of the harmonic oscillator is
+exactly satisfied by this general
+solution where a and b are constants and
+omega kn is the fundamental frequency of
+the oscillator. Comparing this solution
+with the general fier series, we
+immediately find that there are only two
+nonzero fier modes and the harmonics are
+given by multiples of omega kn. This
+means that the infinite sum only has two
+terms. Following the recipe of old
+quantum theory, now that we have found a
+classical solution, we make it quantum
+by forcing it to obey the bore
+summerfield rule for fier modes found
+before where n is an integer. Let's not
+forget that this sum has only two terms.
+One for alpha= 1 and alpha= minus1. by
+properties of complex numbers. This
+reduces to a single term from which we
+directly find the general expression of
+the only nonzero fier mode. Let's now
+calculate the energy levels of this old
+quantum oscillator. Note that we need to
+determine x dot squared and x². And for
+this we use our simple fa expansion. X
+dot is given by this. And it's a square
+leads to three terms. Then we do the
+same for x^2. The calculation is very
+similar. Plug in these two quantities in
+the expression for energy, we have six
+terms, but two pairs cancel each other
+out while the other two are identical.
+Note that all time dependence
+disappears, meaning that the energy
+levels are constant in time. Energy is
+conserved. We have found the energy
+levels in terms of the fier modes. We
+can now replace our previous result to
+find that the energy levels are
+proportional to the quantum number n.
+For this reason, the energy gap between
+two adjacent levels is exactly h bar
+omega kn and the bore einstein relation
+is satisfied. Here is the summary of the
+results.
+Now we repeat this but following method.
+Just like before, we begin with the
+quantum position, but instead of using
+the classical solution, we calculate the
+second time derivative to replace it
+into the equation of motion. Factorizing
+common terms, we find this relation.
+From now on, we will need the complete
+form of the indices. So, I am replacing
+K by N minus alpha. Under the assumption
+that every state has its own energy for
+each value of alpha in the sum, the
+exponent will be different. This means
+that each element of the sum must
+individually vanish. For alpha equals 0,
+we get this. Since the transition
+frequency of a state with itself is
+zero, we find that the same is true for
+the amplitude. For alpha equals 1, we
+get this. Inspired by the classical
+result, we set the amplitude between one
+level and the next to be non zero, which
+gives us a constant value for the
+transition frequency. Contrary to the
+hydrogen atom, here the frequencies are
+independent of the quantum number n,
+which means that the energy levels are
+equally spaced. We can now repeat for
+alpha= minus1 to get this. Just like the
+classical case, the only nonzero
+transition amplitudes are between
+adjacent states. Using that the energy
+levels are equally spaced implies that
+for all other values of alpha, the
+amplitude is zero. Summarizing from the
+equation of motion, we found the
+frequencies and the nonvanishing
+amplitudes. This condition that the only
+allowed transitions are between states
+that defer by one quantum unit is
+usually known as selection rules. We
+still need to find the value of these
+two amplitudes. For this, we use the
+older equation in Heisenberg's method,
+the quantum condition. As mentioned
+before, this equation provides a
+recursive way to determine the
+amplitudes. Since alpha can only take
+two values, we can expand the sum
+leading to four terms. Using the
+previous result for the transition
+amplitudes and being extra careful with
+the order of the indices to get all the
+signs right, we find that the four terms
+reduce to two terms. Finally, we can
+write the recursive relation for the
+amplitudes. The next step is defining a
+so-called ground state. This is defined
+as the lowest possible state of the
+system. Setting this to be represented
+by n equals 0, we get the following. In
+this step, heisenber reasoned that
+transitions below the level n= 0 do not
+exist by definition of ground state.
+Therefore, this term must be zero. And
+with this, we find our first transition
+amplitude. Next we take n= 1 which is
+given in terms of the transition that we
+just found. We can repeat for n= 2 and
+quickly find the pattern for any state
+n. This is the transition amplitude
+which I will add to the summary on the
+top right. Note that the absolute value
+allows reversing the state indices
+without affecting the result. Also
+notice that we can replace n by n minus
+one to obtain this pair of relations
+that will be useful in a minute. The
+final calculation is the energy of the
+oscillator. Just like before we need to
+determine x dot squar and x^2. But this
+time we must use Heisenber's
+multiplication rule. For x dot we simply
+take the derivative with respect to
+time. Here notice that all these terms
+correspond to the amplitude that we have
+to use in the multiplication rule. The
+product of x dot with itself gives us
+this long expression. Now we use that
+only transitions between adjacent states
+are allowed to expand the sum over
+alpha. So we get two terms for the sum
+over beta. We have to be extra careful.
+Let's look at this term from the
+selection rules. The indices in the
+amplitude can only defer by one.
+Therefore, beta can only take the values
+zero or two leading to these two terms.
+Using the same method with the second
+term, we find that beta can only take
+the values 0 and minus2 producing the
+next two terms. Now we have to evaluate
+the frequencies. Since the two
+amplitudes have the same indices in
+reverse order, their product is just the
+squared magnitude. Using our previous
+results, the first frequency is positive
+and equal to omega KN. Whereas the
+second frequency has the same indices in
+reverse order. So it has an extra minus.
+Finally, we use that the transition
+frequency of a state with itself is
+zero. Just to make sure that the method
+is clear, let me do the second term.
+Here the product of amplitudes remains
+as it is. The first frequency is again
+omega kn whereas the second frequency is
+also omega kn. If this is unclear, just
+replace n by n minus one in the formula
+above. The exponent is no longer zero.
+Since we know that the energy levels are
+equally spaced, the frequency between
+levels two units apart is simply two
+times omega KN. Using the same procedure
+with the other two terms, we get this.
+Taking out the common factor omega
+squared, we have found the expression
+needed for the kinetic energy. The same
+steps are needed for x^2. We expand the
+sum over alpha, then sum over beta and
+evaluate the frequencies. This is much
+easier than the previous one. And now
+we're ready to calculate the energy of
+the oscillator. Like the semi-class
+case, all the time dependent terms
+cancel each other out, making the energy
+levels constant. This answers
+Heisenberg's question about energy
+conservation. Yes, the energy of the
+harmonic oscillator in quantum mechanics
+is conserved. Now I bring back the
+amplitudes that we found before because
+we can determine the final expression
+for the energy. Plugging the two
+relevant amplitudes, we get this.
+Factorizing common terms, we finally
+find the energy. Here is the summary of
+all the results that we found. We can
+answer Heisenberg's second question.
+Yes, given that the energy levels are
+equally spaced, the bore Einstein
+relation is satisfied. This is the final
+answer from Heisenberg's point of view.
+It is not the position of the oscillator
+or its speed but the observable
+quantities transition amplitudes and
+frequencies.
+Additionally, we find that the energy of
+the ground state is not zero, but 1/2 h
+bar omega kn exactly as many experiments
+indicated. In case you're unfamiliar
+with this, make sure to check my video
+about the 0 point energy. In that video,
+I mentioned that there was no room for
+this factor 1/2 h bar omega in quantum
+theory before Heisenberg. Bringing back
+the results of the semic-class theory of
+the harmonic oscillator, we see that
+Heisenber's theory agrees with all the
+results of the bore summer theory except
+for the 0 point energy. In the old
+theory, the energy of the ground state n
+equals 0 is exactly zero. in
+contradiction with many experiments at
+low temperatures that show that quantum
+systems exhibit a remnant energy of 1/2
+h bar omega. The hope was that a
+systematic theory of quantum mechanics
+could explain the origin of this
+residual energy and Heisenberg's quantum
+mechanics did exactly that. If you track
+the origin of the constant term in the
+energy, you will find it to arise from
+the new quantum condition. Bourne and
+Jordan transformed this new rule created
+by Heisenberg into one of the
+fundamental building blocks of quantum
+mechanics found today in textbooks. The
+so-called canonical quantum commutation
+relation from which the famous
+Heisenberg's uncertainty principle can
+be derived. But this happens two years
+later. For now, I wanted to show you
+that Heisenberg's paper already contains
+many of the blueprints for modern
+quantum mechanics. And although he
+didn't know it, this formula is the
+first draft of his famous uncertainty
+principle.
+If you made it this far, congratulations
+and thank you for joining me. This is a
+remarkable paper and I hope that with
+this deep dive any student even at the
+undergraduate level can understand its
+significance and reproduce the original
+calculations. Most textbooks present
+these results as coming out of a magic
+hat but in reality they can be derived
+using some math a good understanding of
+the historical context and more
+importantly building out of experimental
+evidence.
