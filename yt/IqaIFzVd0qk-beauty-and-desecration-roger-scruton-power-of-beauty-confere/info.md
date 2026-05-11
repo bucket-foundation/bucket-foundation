@@ -1,0 +1,40 @@
+# Beauty and Desecration - Roger Scruton - Power of Beauty Conference
+
+- **Video ID**: `IqaIFzVd0qk`
+- **URL**: https://www.youtube.com/watch?v=IqaIFzVd0qk
+- **Channel**: Hildebrand Project — https://www.youtube.com/channel/UC-y_NwTYPwyP5Q-xiST2wDg
+- **Uploaded**: 20141118
+- **Duration**: 1:19:07 (4747s)
+- **Views**: 102832  ·  **Likes**: 1961
+- **Captured**: 2026-05-10T21:08:05
+
+## Description
+
+Roger Scruton, world-renowned philosopher, writer, and public commentator, delivered the keynote address of the Power of Beauty conference, entitled “Beauty and Desecration."
+
+## Chapters
+
+- `0s` — <Untitled Chapter 1>
+- `1025s` — Delacroix
+- `1451s` — The Water Nymph
+- `2044s` — Charm of Disenchantment
+- `2162s` — What Is the Mission of Art
+- `2239s` — The Search for Beauty Is the Search for Home
+- `2811s` — But Here Is an Example of a Rather Perfected Modernist Interior and Which Is Linking Stein's House in Vienna Which He Designed for His Sister and We Can Shine like Me Had the Sense that that Architecture Ultimately Must Get the Vertical Emphases Right and Must Make Verticals Stand in Parallel to each Other and It's the Sense of Detail That Matters this Is Not My Preferred Form of Architecture but You Can See the Aesthetic Instinct at Work in Everything in this Building He Designed It for His Sister Who Never Lived in It and It Ended Up as the Embassy of a Communist Country Which for Which It Is Wonderfully Suited
+- `3096s` — But the Question Is Might There Not Be Works of Art Which We'Re There Where the Fault Is So Great that that It Isn't Even a Competitor for Art or Something like that Yeah of Course There Is There Are Totally Incompetent Painters As Well if You Are Totally Incompetent though the Best Way Forward Is To Disguise It by Pretending To Be a Modernist I Think I Think De Kooning Is a Very Good Example of this He Never Could Paint He Couldn't Draw He Couldn't Paint and but He Could Disguise the Fact by Making It Look as though He Had Done All that and He Got Through to the Other Side
+- `3410s` — And Learning To Choose the Right End Is Part of Education Just As Much as Choosing the Right Means and Classical Philosophers Made a Lot of this Distinction Aristotle Distinguished Virtue Which Is Knowledge of the Ends from from a Skill Which Is Knowledge of the Means for Achieving Them and although that's Simple I Mean He What He Said It's More Complex than that but You Know You Can Get the Point and I Think that It's Something That We all Recognize As Soon as It's Pointed Out
+- `3489s` — Has Been a Part of the of the Artistic Enterprise To Try and Find in the Empirical World in Which We Live the Marks of the Transcendental and To Bring Them Out So To Speak and and Show Them whether an Artist Doesn't Have To Believe in God and or the Afterlife To Be To Do this You Know this Is for Instance Wagner Interest and His Older Is Trying To To Extract from the Experience of Erotic Love this Sense of the Transcendental as Being the Redemption of Love As Well and I Think and that's What of Course What Botticelli Was up to and I Think all Poets Have that that Back of Their Mind
+- `3664s` — And I Think It's One of the It's One of the Great Problems of Art General of Visual Art That It that It's Consists of Physical Objects That Can Be Owned Poetry and Music Are Not Subject in Quite the Same Way to this Deformation that There Isn't a Market in in Symphonies like There Is a Market in Sculptures because Nobody Can Own Them and So the Kitc Disease Interestingly in both the Kish Disease and the Modernist Disease Have Been a Very Short-Lived in those in Music and Literature and if You Look and Look Today You Know the Novel Is a Very Flourishing Art Form in both My Country and this One and It's It Contains some Incredibly Good Stuff and You Know There May Be a Bits of Kitsch Here and There but When People See that It's Kitsch They Say Well Ok I'Ll Go On to the Next Book
+- `3867s` — And There There Is a Real Problem Then as to How One Secures Aesthetic Values while Allowing Everybody the Freedom that They Naturally Assumed To Have Aesthetic Values of Their Own the Normal Response to this Is To Say Well that We Still Have Education Then the Purpose of Education Is To Get People To Examine Their Own Values To Come to some Kind of Coordination or some Consensus and We Do that in the Moral Sphere You Know the Liberals Extreme Liberals of Course Are You Let's Put Them on One Side for a Moment but Ordinary American Liberals Nevertheless Believe that the Moral Sphere Is One of Consensus
+- `3985s` — And One Result of this Is of Course That the New York City Father's Won't Let It Be Pulled Down and unlike Modern Buildings those Buildings in Lower Manhattan Change Their Use You Know some They Are Now Most in Their Residences They Have Were Warehouses Modernist Architecture Doesn't Change Its Use because It Can't It's Built for a Purpose You Know so There Are There Are Lessons To Learn from All those Things Which Which Indicate that Even Liberals Do every Now and Then Want to Consensus and that in Areas of a Really Matter Tourist Areas of Value
+- `4382s` — And I Think in in Music Too People Are Moving Away from the Harshest Form of Sort of Modernist Stuff Too So I Think that One Shouldn't Despair and in Architecture There's the New Urbanism Movement Which Is Trying To Tell To Present a Vision of Architecture as a Place as Creating a Place of Settlement Rather than Just a Functional Object It Depends on Us in for It To Work Everybody in this if Everyone in this Room Thought that It Really Mattered if Beauty Really Matters and that We'Ve Have To Stand Up for It We'Re in every Place Where It's Threatened
+- `4687s` — And that's another Issue whether an Effect Is Really Part of an Aesthetic Endeavor or whether It's a Distraction from It I Think that Goes Back to the Question from Ryan Schinkel about the Crucifixions that When in Mantegna's Crucifixion Which Has a Sort Sort of Serenity about It He's Not Painting All that Suffering for Effect on the Country the Effect Is that Is What Precisely What He's Trying To Get Away from It He Wants To Get to the Meaning and You Know this in Cinema the Effects Are So Easy To Make Who To Create that Maybe the Meaning Gets Lost You
+
+## Files
+
+- `metadata.json` — full yt-dlp dump
+- `transcript.txt` — plain text
+- `transcript.vtt` — original captions
+- `transcript.json` — timestamped chunks
+- `chapters.json` — chapter markers
+- `thumbnail.jpg`
