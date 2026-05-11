@@ -5,8 +5,8 @@
 - **Channel**: Tom Bilyeu — https://www.youtube.com/channel/UCnYMOamNKLGVlJgRUbamveA
 - **Uploaded**: 20200611
 - **Duration**: 1:50:30 (6630s)
-- **Views**: 194552  ·  **Likes**: 5013
-- **Captured**: 2026-05-10T18:51:03
+- **Views**: 194552  ·  **Likes**: 5012
+- **Captured**: 2026-05-10T21:45:55
 
 ## Description
 
