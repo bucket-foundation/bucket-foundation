@@ -496,5 +496,156 @@
       "[07-mind/godhead] what philosophers have tried to do for the past 2,000 years which is why this question never really gets answered roughly from Plato onward philosophers have always tried to ground being in",
       "[07-mind/kant] statistical mechanics he had always been drawn to something Beyond pure calculation philosophy had never been separate from science in his mind he had read Kant schopenhauer nche and as he"
     ]
+  },
+  "c12": {
+    "cluster_id": 12,
+    "size": 12,
+    "branches": [
+      "02-physics",
+      "06-cosmology",
+      "09-sacred-texts"
+    ],
+    "branch_count": 3,
+    "bridge_score": 5.140445494339506,
+    "judgment": {
+      "primitive_name": "Intrinsic Pressure",
+      "primitive_description": "A fundamental force driving objects towards their centers, manifesting as attractive or repulsive pressure.",
+      "vocabulary_map": [
+        {
+          "branch": "02-physics/gravity",
+          "term": "potential and high pressure",
+          "role": "manifestation of Intrinsic Pressure"
+        },
+        {
+          "branch": "06-cosmology/dark-energy",
+          "term": "energy spread throughout all space",
+          "role": "example of Intrinsic Pressure in the universe"
+        },
+        {
+          "branch": "09-sacred-texts/vedanta",
+          "term": "great field of knowledge is as Tiny as the Earth is in the universe",
+          "role": "illustration of Intrinsic Pressure's subtlety"
+        }
+      ],
+      "canonical_form": "The universe exhibits a pervasive, intrinsic pressure driving objects towards their centers.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "Albert Einstein",
+        "Stephen Hawking",
+        "Adi Shankaracharya"
+      ],
+      "test_falsifiability": "Measuring the effects of Intrinsic Pressure on planetary orbits and cosmological structures"
+    },
+    "excerpts_used": [
+      "[02-physics/gravity] it can push outward as opposed to just pulling inward and this is something that we have never experienced because the gravity created by a rocky object like the earth is always the attractive",
+      "[02-physics/gravity] potential and high pressure of this planet is that part which is nearest its Center lightning and all the forks of lightning are gravitative they always seek the planet never do they proceed in",
+      "[06-cosmology/dark-energy] energy spread throughout all space that we've never seen before we don't know what it is we call it dark energy and if so it would require something like 70% of all the stuff of the universe to be",
+      "[06-cosmology/dark-matter] But understanding it, may hold the key to the very structure of the universe. My mum is always like, you know, \"Why do we have to care about dark matter?\" And, and the truth is",
+      "[09-sacred-texts/vedanta] all our energy and time for research on matter not internal world this this skull small space but a lot of mysterious things still there the great field of knowledge is as Tiny as the Earth is in the universe I mean it's a T it's a spec in and the the the universe is what we don't know and it will a"
+    ]
+  },
+  "c8": {
+    "cluster_id": 8,
+    "size": 11,
+    "branches": [
+      "02-physics",
+      "03-chemistry",
+      "05-biophysics"
+    ],
+    "branch_count": 3,
+    "bridge_score": 5.108105897920506,
+    "judgment": {
+      "primitive_name": "photoelectric effect",
+      "primitive_description": "The process by which light energy is absorbed and converted into chemical energy or biological activity.",
+      "vocabulary_map": [
+        {
+          "branch": "02-physics/photoelectric",
+          "term": "photoelectric effect",
+          "role": "central concept"
+        },
+        {
+          "branch": "03-chemistry/pauling",
+          "term": "positive and negative electricity",
+          "role": "related concept, but not central"
+        },
+        {
+          "branch": "05-biophysics/photoelectric",
+          "term": "photonic",
+          "role": "extension or application"
+        }
+      ],
+      "canonical_form": "The photoelectric effect is the process by which light energy is absorbed and converted into chemical energy.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "<name>",
+        "<name>",
+        "<name>"
+      ],
+      "test_falsifiability": "Experiments measuring the absorption of light energy in biological systems could test this primitive"
+    },
+    "excerpts_used": [
+      "[02-physics/photoelectric] food folks it's about light it's always been about light and you have to realize that life fundamentally is photoelectric okay technology in biology should be photonic not",
+      "[02-physics/photoelectric] that V vitamin d and vitamin A are all about the photoelectric effect and that I kind of scoff at that and I guess that creates more controversy because the photoelectric effect is a",
+      "[03-chemistry/pauling] I don't want anybody to think you know as Linus Pauling thought that if you mainlined a vitamin C that it's gonna lead to your tumor shrinking and you're not gonna die it's helpful because what",
+      "[03-chemistry/periodic-table] they never succeed in so doing each is charged with the other permeated more or less in accord with its periodicity chapter 4 positive and negative electricity again it must be repeated",
+      "[05-biophysics/photoelectric] food folks it's about light it's always been about light and you have to realize that life fundamentally is photoelectric okay technology in biology should be photonic not",
+      "[05-biophysics/photoelectric] that V vitamin d and vitamin A are all about the photoelectric effect and that I kind of scoff at that and I guess that creates more controversy because the photoelectric effect is a"
+    ]
+  },
+  "c14": {
+    "cluster_id": 14,
+    "size": 6,
+    "branches": [
+      "01-mathematics",
+      "02-physics",
+      "04-information",
+      "07-mind"
+    ],
+    "branch_count": 4,
+    "bridge_score": 5.060075567959408,
+    "judgment": {
+      "primitive_name": "Nonlinear Dynamical Systems",
+      "primitive_description": "A system's behavior is highly sensitive to initial conditions and small changes, leading to unpredictable outcomes.",
+      "vocabulary_map": [
+        {
+          "branch": "01-mathematics/chaos-theory",
+          "term": "nonlinear Dynamics",
+          "role": "practically synonym"
+        },
+        {
+          "branch": "02-physics/heisenberg",
+          "term": "matrix mechanics",
+          "role": "expression of"
+        },
+        {
+          "branch": "04-information/wolfram",
+          "term": "cellular automaton",
+          "role": "uses only some subparts"
+        },
+        {
+          "branch": "07-mind/iit",
+          "term": "integration of mental states",
+          "role": "leads to"
+        }
+      ],
+      "canonical_form": "A system's behavior is highly sensitive to initial conditions and small changes, leading to unpredictable outcomes.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "Beno\u00eet Mandelbrot",
+        "Wolfram",
+        "Heisenberg"
+      ],
+      "test_falsifiability": "Testing the sensitivity of a system's behavior to initial conditions and small changes"
+    },
+    "excerpts_used": [
+      "[01-mathematics/chaos-theory] founder of chaos theory he posed this question once he said is it possible that the flap of a butterfly's wings in brazil could lead to a tornado in texas because of this complex non-linear",
+      "[01-mathematics/chaos-theory] patterns uh a month later okay tiny perturbations of initial conditions can lead to huge differences later one practically synonym for chaos theory is nonlinear Dynamics because the whole",
+      "[02-physics/heisenberg] when everything happened. One of them is that the Heisenberg picture was originally called matrix mechanics, because Heisenberg expressed it as matrices, but he had never heard of matrices.",
+      "[04-information/wolfram] Yes, yes. I mean, well, that's a complicated issue because it depends on what subpart of the rules you end up selecting as you make this pattern. I mean it's usually the case that when you produce some pattern from a cellular automaton for example, every little subpart is typically using only some s",
+      "[07-mind/iit] of how mental states join together to form complexes or split apart because splitting apart the formation of fault lines leads to more integrated information. It's the best theory. It's"
+    ]
   }
 }
