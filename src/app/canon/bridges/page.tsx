@@ -1,12 +1,14 @@
 // /canon/bridges — index of canon bridges (the meta-structure across branches).
 import Link from "next/link";
 import { getAllBridges } from "@/lib/canon-bridges";
+import { getAllDetectedBridges } from "@/lib/canon-detected-bridges";
 
 export const metadata = { title: "Canon bridges · bucket.foundation" };
 export const dynamic = "force-static";
 
 export default function Page() {
   const bridges = getAllBridges();
+  const detected = getAllDetectedBridges();
   const primary = bridges.filter((b) => b.tier === "primary axis");
   const secondary = bridges.filter((b) => b.tier === "secondary");
 
@@ -74,6 +76,66 @@ export default function Page() {
           ))}
         </div>
       </section>
+
+      {detected.length > 0 && (
+        <section className="mb-16">
+          <h2
+            className="mb-6 text-sm uppercase tracking-[0.2em]"
+            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+          >
+            Detected primitives ({detected.length})
+          </h2>
+          <p
+            className="mb-6 max-w-2xl text-sm"
+            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
+          >
+            Multi-branch primitives discovered by purely structural analysis —
+            embedding every claim card, clustering the semantic space, and
+            keeping only clusters whose members span three or more canon
+            branches. The clusters emerged from semantic distance alone; an LLM
+            then named each underlying primitive. These are working hypotheses,
+            not yet curated canon.
+          </p>
+          <div className="space-y-3">
+            {detected.map((b) => (
+              <Link
+                key={b.slug}
+                href={`/canon/bridges/detected/${b.slug}`}
+                className="block rounded-md border border-[color:var(--hairline)] p-5 transition hover:border-[color:var(--gold)]"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3
+                    className="text-xl"
+                    style={{ fontFamily: "var(--font-fraunces)", fontWeight: 500 }}
+                  >
+                    {b.name}
+                  </h3>
+                  <span
+                    className="whitespace-nowrap text-xs uppercase tracking-[0.18em]"
+                    style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    {b.branchCount} branches · {b.size} claims
+                  </span>
+                </div>
+                {b.canonicalForm && (
+                  <p
+                    className="mt-2 text-sm italic"
+                    style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
+                  >
+                    {b.canonicalForm.slice(0, 200)}
+                  </p>
+                )}
+                <p
+                  className="mt-2 text-xs"
+                  style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  {b.branches.join(" · ")}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section>
         <h2
