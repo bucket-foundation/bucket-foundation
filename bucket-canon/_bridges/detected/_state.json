@@ -448,5 +448,53 @@
       "[07-mind/godhead] Well, absolutely, people just need to acquaint themselves with this. At school, I got to know Heraclitus, and I thought he was far more interesting than Plato. And then about 20, I read Alan Watts's Tao: The Watercourse Way, and that reconnected me with the pre-Socratic philosophers like Heraclitus.",
       "[07-mind/jung] in 1982 by Jeremy Torture in Los Angeles, a whole new world opened up California I'd never been before. I was invited by Stan Graff to teach in his program at In the Union Societies in Los Angeles and San Francisco invited me to give talks, and I discovered a whole network of union analysts and peop"
     ]
+  },
+  "c25": {
+    "cluster_id": 25,
+    "size": 13,
+    "branches": [
+      "02-physics",
+      "05-biophysics",
+      "07-mind"
+    ],
+    "branch_count": 3,
+    "bridge_score": 5.573095399463993,
+    "judgment": {
+      "primitive_name": "second law of thermodynamics",
+      "primitive_description": "the total entropy of an isolated system always increases over time, describing the direction of spontaneous processes.",
+      "vocabulary_map": [
+        {
+          "branch": "02-physics",
+          "term": "law of thermodynamics",
+          "role": "specifically refers to"
+        },
+        {
+          "branch": "05-biophysics",
+          "term": "computational paradigm",
+          "role": "related to"
+        },
+        {
+          "branch": "07-mind",
+          "term": "grounding being in existence",
+          "role": "similar concept"
+        }
+      ],
+      "canonical_form": "the total entropy of an isolated system always increases over time.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "William Thompson",
+        "Laplace",
+        "Kant"
+      ],
+      "test_falsifiability": "measuring the change in entropy of a closed system over time"
+    },
+    "excerpts_used": [
+      "[02-physics/maxwell] find the right thing here. Oh, no. That's that's not Maxwell yet. That's that's William Thompson. I was going to show you because I once I when I figured out um how I think the second law works,",
+      "[02-physics/newton] Course Laplace was not right. He didn't know about the true laws of physics He thought that Newton's laws were more or less correct it every reason to believe that was true But since then we have relativity and quantum mechanics And so forth so we have a better idea now of what the law is Fundamenta",
+      "[05-biophysics/photoelectric] it right. He didn't figure out the second law. As we now know, sort of the paradigmatic ideas that you need to figure out the second law come from ideas about computation and so on, which were another close to 100 years in the future, so to speak. But it's sort of interesting that he was applying th",
+      "[07-mind/godhead] what philosophers have tried to do for the past 2,000 years which is why this question never really gets answered roughly from Plato onward philosophers have always tried to ground being in",
+      "[07-mind/kant] statistical mechanics he had always been drawn to something Beyond pure calculation philosophy had never been separate from science in his mind he had read Kant schopenhauer nche and as he"
+    ]
   }
 }
