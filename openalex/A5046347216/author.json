@@ -1,0 +1,655 @@
+{
+  "id": "https://openalex.org/A5046347216",
+  "orcid": null,
+  "display_name": "Czesław Miłosz",
+  "raw_author_names": [
+    "CZESLAW MILOSZ",
+    "Czeslaw Milosz",
+    "Czesław Miłosz",
+    "Milosz, Czeslaw",
+    "Miłosz, Czesław"
+  ],
+  "full_name": "Miłosz, Czesław",
+  "works_count": 251,
+  "cited_by_count": 934,
+  "summary_stats": {
+    "2yr_mean_citedness": 0.0,
+    "h_index": 14,
+    "i10_index": 20
+  },
+  "ids": {
+    "openalex": "https://openalex.org/A5046347216",
+    "orcid": null
+  },
+  "affiliations": [
+    {
+      "institution": {
+        "id": "https://openalex.org/I143386109",
+        "ror": "https://ror.org/04mdnw291",
+        "display_name": "Miles College",
+        "country_code": "US",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I143386109"
+        ]
+      },
+      "years": [
+        2004
+      ]
+    },
+    {
+      "institution": {
+        "id": "https://openalex.org/I95457486",
+        "ror": "https://ror.org/01an7q238",
+        "display_name": "University of California, Berkeley",
+        "country_code": "US",
+        "type": "education",
+        "lineage": [
+          "https://openalex.org/I95457486"
+        ]
+      },
+      "years": [
+        1988,
+        1975
+      ]
+    }
+  ],
+  "last_known_institutions": null,
+  "topics": [
+    {
+      "id": "https://openalex.org/T14041",
+      "display_name": "Central European Literary Studies",
+      "count": 61,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3314",
+        "display_name": "Anthropology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12764",
+      "display_name": "Polish Historical and Cultural Studies",
+      "count": 55,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3320",
+        "display_name": "Political Science and International Relations"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12658",
+      "display_name": "Language and Culture",
+      "count": 51,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3310",
+        "display_name": "Linguistics and Language"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13225",
+      "display_name": "Polish-Jewish Holocaust Memory Studies",
+      "count": 21,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1211",
+        "display_name": "Philosophy"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/12",
+        "display_name": "Arts and Humanities"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12928",
+      "display_name": "Education and Cultural Studies",
+      "count": 14,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3304",
+        "display_name": "Education"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    }
+  ],
+  "topic_share": [
+    {
+      "id": "https://openalex.org/T14041",
+      "display_name": "Central European Literary Studies",
+      "value": 0.0005347,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3314",
+        "display_name": "Anthropology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13225",
+      "display_name": "Polish-Jewish Holocaust Memory Studies",
+      "value": 0.0002875,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1211",
+        "display_name": "Philosophy"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/12",
+        "display_name": "Arts and Humanities"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12658",
+      "display_name": "Language and Culture",
+      "value": 0.0002761,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3310",
+        "display_name": "Linguistics and Language"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T12764",
+      "display_name": "Polish Historical and Cultural Studies",
+      "value": 0.0002118,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3320",
+        "display_name": "Political Science and International Relations"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T13973",
+      "display_name": "Catholicism, Bioethics, Media, Education",
+      "value": 0.0001239,
+      "subfield": {
+        "id": "https://openalex.org/subfields/3311",
+        "display_name": "Safety Research"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      }
+    }
+  ],
+  "x_concepts": [
+    {
+      "id": "164913051",
+      "wikidata": "https://www.wikidata.org/wiki/Q482",
+      "display_name": "Poetry",
+      "score": 0.9509772062301636
+    },
+    {
+      "id": "124952713",
+      "wikidata": "https://www.wikidata.org/wiki/Q8242",
+      "display_name": "Literature",
+      "score": 0.679925262928009
+    },
+    {
+      "id": "142362112",
+      "wikidata": "https://www.wikidata.org/wiki/Q735",
+      "display_name": "Art",
+      "score": 0.6739568114280701
+    },
+    {
+      "id": "138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "score": 0.6543524265289307
+    },
+    {
+      "id": "95457728",
+      "wikidata": "https://www.wikidata.org/wiki/Q309",
+      "display_name": "History",
+      "score": 0.5884120464324951
+    }
+  ],
+  "counts_by_year": [
+    {
+      "year": 1948,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1951,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 3
+    },
+    {
+      "year": 1953,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 168
+    },
+    {
+      "year": 1954,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1955,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 9
+    },
+    {
+      "year": 1959,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1960,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 32
+    },
+    {
+      "year": 1961,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1962,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 5
+    },
+    {
+      "year": 1963,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 4
+    },
+    {
+      "year": 1965,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1966,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1968,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 3
+    },
+    {
+      "year": 1969,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 8
+    },
+    {
+      "year": 1970,
+      "works_count": 5,
+      "oa_works_count": 0,
+      "cited_by_count": 117
+    },
+    {
+      "year": 1971,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1974,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1975,
+      "works_count": 3,
+      "oa_works_count": 2,
+      "cited_by_count": 13
+    },
+    {
+      "year": 1976,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 12
+    },
+    {
+      "year": 1977,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 7
+    },
+    {
+      "year": 1978,
+      "works_count": 11,
+      "oa_works_count": 0,
+      "cited_by_count": 17
+    },
+    {
+      "year": 1979,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 4
+    },
+    {
+      "year": 1980,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1981,
+      "works_count": 11,
+      "oa_works_count": 0,
+      "cited_by_count": 2
+    },
+    {
+      "year": 1982,
+      "works_count": 8,
+      "oa_works_count": 0,
+      "cited_by_count": 20
+    },
+    {
+      "year": 1983,
+      "works_count": 5,
+      "oa_works_count": 0,
+      "cited_by_count": 71
+    },
+    {
+      "year": 1984,
+      "works_count": 8,
+      "oa_works_count": 1,
+      "cited_by_count": 12
+    },
+    {
+      "year": 1985,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 16
+    },
+    {
+      "year": 1986,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1987,
+      "works_count": 9,
+      "oa_works_count": 1,
+      "cited_by_count": 16
+    },
+    {
+      "year": 1988,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 56
+    },
+    {
+      "year": 1989,
+      "works_count": 5,
+      "oa_works_count": 0,
+      "cited_by_count": 2
+    },
+    {
+      "year": 1990,
+      "works_count": 8,
+      "oa_works_count": 1,
+      "cited_by_count": 2
+    },
+    {
+      "year": 1991,
+      "works_count": 5,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1992,
+      "works_count": 7,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 1993,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 1994,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 8
+    },
+    {
+      "year": 1995,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 2
+    },
+    {
+      "year": 1996,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 7
+    },
+    {
+      "year": 1997,
+      "works_count": 6,
+      "oa_works_count": 0,
+      "cited_by_count": 24
+    },
+    {
+      "year": 1998,
+      "works_count": 13,
+      "oa_works_count": 1,
+      "cited_by_count": 3
+    },
+    {
+      "year": 1999,
+      "works_count": 13,
+      "oa_works_count": 0,
+      "cited_by_count": 9
+    },
+    {
+      "year": 2000,
+      "works_count": 6,
+      "oa_works_count": 0,
+      "cited_by_count": 14
+    },
+    {
+      "year": 2001,
+      "works_count": 6,
+      "oa_works_count": 0,
+      "cited_by_count": 41
+    },
+    {
+      "year": 2002,
+      "works_count": 6,
+      "oa_works_count": 0,
+      "cited_by_count": 56
+    },
+    {
+      "year": 2003,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 6
+    },
+    {
+      "year": 2004,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2005,
+      "works_count": 3,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2006,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 9
+    },
+    {
+      "year": 2007,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 18
+    },
+    {
+      "year": 2008,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2009,
+      "works_count": 3,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2010,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 46
+    },
+    {
+      "year": 2011,
+      "works_count": 6,
+      "oa_works_count": 1,
+      "cited_by_count": 5
+    },
+    {
+      "year": 2012,
+      "works_count": 2,
+      "oa_works_count": 0,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2014,
+      "works_count": 1,
+      "oa_works_count": 0,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2015,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2016,
+      "works_count": 5,
+      "oa_works_count": 0,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2017,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2019,
+      "works_count": 4,
+      "oa_works_count": 0,
+      "cited_by_count": 78
+    },
+    {
+      "year": 2020,
+      "works_count": 3,
+      "oa_works_count": 2,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2021,
+      "works_count": 1,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    },
+    {
+      "year": 2023,
+      "works_count": 2,
+      "oa_works_count": 1,
+      "cited_by_count": 0
+    }
+  ],
+  "display_name_alternatives": [
+    "CZESLAW MILOSZ",
+    "Czeslaw Milosz",
+    "Czesław Miłosz",
+    "Milosz, Czeslaw",
+    "Miłosz, Czesław"
+  ],
+  "block_key": "c milosz",
+  "works_api_url": "https://api.openalex.org/works?filter=author.id:A5046347216",
+  "updated_date": "2026-05-08T12:23:59",
+  "created_date": "2016-06-24T00:00:00"
+}
