@@ -5,14 +5,14 @@
 - **ORCID**: None
 - **Affiliation**: 
 - **Works (total)**: 480
-- **Cited by (total)**: 248378
+- **Cited by (total)**: 248472
 - **Works pulled**: 200
-- **Captured**: 2026-05-10T13:32:10
+- **Captured**: 2026-05-11T09:49:57
 
 ## Top works (by citation count)
 
-- **Deep learning** (2015) — cited 80380x  · https://doi.org/10.1038/nature14539
-- **Gradient-based learning applied to document recognition** (1998) — cited 57640x  · https://hal.science/hal-03926082/document
+- **Deep learning** (2015) — cited 80394x  · https://doi.org/10.1038/nature14539
+- **Gradient-based learning applied to document recognition** (1998) — cited 57646x  · https://hal.science/hal-03926082/document
 - **Backpropagation Applied to Handwritten Zip Code Recognition** (1989) — cited 11800x  · https://doi.org/10.1162/neco.1989.1.4.541
 - **Dimensionality Reduction by Learning an Invariant Mapping** (2006) — cited 5177x  · https://doi.org/10.1109/cvpr.2006.100
 - **Convolutional networks for images, speech, and time series** (1998) — cited 4367x  · https://doi.org/10.5555/303568.303704
@@ -27,7 +27,7 @@
 - **Convolutional networks and applications in vision** (2010) — cited 2161x  · https://doi.org/10.1109/iscas.2010.5537907
 - **SIGNATURE VERIFICATION USING A “SIAMESE” TIME DELAY NEURAL NETWORK** (1993) — cited 2082x  · https://doi.org/10.1142/s0218001493000339
 - **Efficient BackProp** (1998) — cited 1413x  · https://openalex.org/W2914484425
-- **Efficient object localization using Convolutional Networks** (2015) — cited 1351x  · https://doi.org/10.1109/cvpr.2015.7298664
+- **Efficient object localization using Convolutional Networks** (2015) — cited 1352x  · https://doi.org/10.1109/cvpr.2015.7298664
 - **Learning methods for generic object recognition with invariance to pose and lighting** (2004) — cited 1344x  · https://doi.org/10.1109/cvpr.2004.1315150
 - **Learning Fast Approximations of Sparse Coding** (2010) — cited 1258x  · https://openalex.org/W2118103795
 - **Efficient BackProp** (2012) — cited 1206x  · https://doi.org/10.1007/978-3-642-35289-8_3
