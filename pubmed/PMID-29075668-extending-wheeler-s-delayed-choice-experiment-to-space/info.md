@@ -1,0 +1,14 @@
+# Extending Wheeler's delayed-choice experiment to space.
+
+- **PMID**: 29075668
+- **DOI**: 10.1126/sciadv.1701180
+- **PMCID**: PMC5527279 (full-text saved)
+- **Journal**: Science advances  ·  **Year**: 2017
+- **Authors**: Francesco Vedovato, Costantino Agnesi, Matteo Schiavon, Daniele Dequal, Luca Calderaro, Marco Tomasin, Davide G Marangon, Andrea Stanco, Vincenza Luceri, Giuseppe Bianco, Giuseppe Vallone, Paolo Villoresi
+- **MeSH**: 
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/29075668/
+- **Captured**: 2026-05-10T21:53:21
+
+## Abstract
+
+Gedankenexperiments have consistently played a major role in the development of quantum theory. A paradigmatic example is Wheeler's delayed-choice experiment, a wave-particle duality test that cannot be fully understood using only classical concepts. We implement Wheeler's idea along a satellite-ground interferometer that extends for thousands of kilometers in space. We exploit temporal and polarization degrees of freedom of photons reflected by a fast-moving satellite equipped with retroreflecting mirrors. We observe the complementary wave- or particle-like behaviors at the ground station by choosing the measurement apparatus while the photons are propagating from the satellite to the ground. Our results confirm quantum mechanical predictions, demonstrating the need of the dual wave-particle interpretation at this unprecedented scale. Our work paves the way for novel applications of quantum mechanics in space links involving multiple photon degrees of freedom.

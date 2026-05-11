@@ -1,0 +1,14 @@
+# Active inference and cognitive control: Balancing deliberation and habits through precision optimization.
+
+- **PMID**: 40424850
+- **DOI**: 10.1016/j.plrev.2025.05.008
+- **PMCID**:  
+- **Journal**: Physics of life reviews  ·  **Year**: 2025
+- **Authors**: Riccardo Proietti, Thomas Parr, Alessia Tessari, Karl Friston, Giovanni Pezzulo
+- **MeSH**: Humans, Cognition, Habits
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40424850/
+- **Captured**: 2026-05-10T21:52:11
+
+## Abstract
+
+We advance a novel formulation of cognitive control within the active inference framework. The theory proposes that cognitive control amounts to optimising a precision parameter, which acts as a control signal and balances the contributions of deliberative and habitual components of action selection. To illustrate the theory, we simulate a driving scenario in which the driver follows a well-known route, but encounters unexpected challenges. Our simulations show that a standard active inference model can form adaptive habits; i.e., can pass from deliberative to habitual control when the context is stable, but generally fails to revert to deliberative control, when the context changes. To address this failure of context-sensitivity, we introduce a novel type of hierarchical active inference, in which a lower level is responsible for behavioural control and the higher (or meta-cognitive) level observes the belief updating of the lower level below and is responsible for cognitive control. Crucially, the meta-cognitive level can both form habits and suspend them, by controlling the (precision) parameter that prioritizes deliberative choices at the behavioural level. Furthermore, we show that several processes linked to cognitive control - such as surprise detection, cognitive conflict monitoring, control signal regulation and specification, the simulation of future outcomes and the assessment of the costs of control and mental effort - stem coherently from the free energy minimization scheme that underpins active inference. Finally, we discuss the putative neurobiology of cognitive control by simulating brain dynamics in the mesolimbic and mesocortical pathways of the dopamine system, the dorsal anterior cingulate cortex and the locus coeruleus.

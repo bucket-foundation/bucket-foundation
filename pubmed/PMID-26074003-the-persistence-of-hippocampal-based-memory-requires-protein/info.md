@@ -7,7 +7,7 @@
 - **Authors**: Luana Fioriti, Cory Myers, Yan-You Huang, Xiang Li, Joseph S Stephan, Pierre Trifilieff, Luca Colnaghi, Stylianos Kosmidis, Bettina Drisaldi, Elias Pavlopoulos, Eric R Kandel
 - **MeSH**: Animals, Anxiety, Conditioning, Psychological, Exploratory Behavior, Fear, Glutamic Acid, Hippocampus, In Vitro Techniques, Locomotion, Long-Term Potentiation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/26074003/
-- **Captured**: 2026-05-10T16:18:26
+- **Captured**: 2026-05-10T21:53:01
 
 ## Abstract
 

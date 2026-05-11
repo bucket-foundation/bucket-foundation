@@ -7,7 +7,7 @@
 - **Authors**: Seungju An, Byung-Soo Choi
 - **MeSH**: Microtubules, Quantum Theory, Tubulin, Humans, Consciousness, Neurons, Computer Simulation, Models, Biological
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/39978568/
-- **Captured**: 2026-05-09T09:42:07
+- **Captured**: 2026-05-10T21:51:45
 
 ## Abstract
 

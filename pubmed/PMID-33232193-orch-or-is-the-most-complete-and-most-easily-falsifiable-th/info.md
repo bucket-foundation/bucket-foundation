@@ -7,7 +7,7 @@
 - **Authors**: Stuart Hameroff
 - **MeSH**: Biophysical Phenomena, Brain, Consciousness, Humans, Microtubules, Neurons, Quantum Theory
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/33232193/
-- **Captured**: 2026-05-09T09:42:08
+- **Captured**: 2026-05-10T21:51:47
 
 ## Abstract
 

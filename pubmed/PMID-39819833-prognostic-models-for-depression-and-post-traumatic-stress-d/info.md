@@ -1,0 +1,14 @@
+# Prognostic models for depression and post-traumatic stress disorder symptoms following traumatic brain injury: a CENTER-TBI study.
+
+- **PMID**: 39819833
+- **DOI**: 10.1089/neu.2022.0013
+- **PMCID**: PMC3139106 (full-text saved)
+- **Journal**: BMJ mental health  ·  **Year**: 2025
+- **Authors**: Ana Mikolić, David van Klaveren, Mathilde Jost, Andrew Ir Maas, Shuyuan Shi, Noah D Silverberg, Lindsay Wilson, Hester F Lingsma, Ewout W Steyerberg
+- **MeSH**: Stress Disorders, Post-Traumatic, Brain Injuries, Traumatic, Depression, Humans, Male, Female, Adolescent, Young Adult, Adult, Middle Aged
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/39819833/
+- **Captured**: 2026-05-10T21:52:50
+
+## Abstract
+
+Traumatic brain injury (TBI) is associated with an increased risk of major depressive disorder (MDD) and post-traumatic stress disorder (PTSD). We aimed to identify predictors and develop models for the prediction of depression and PTSD symptoms at 6 months post-TBI. We analysed data from the Collaborative European NeuroTrauma Effectiveness Research in Traumatic Brain Injury study. We used linear regression to model the relationship between predictors and depression (Patient Health Questionnaire-9) and PTSD symptoms (PTSD Checklist for Diagnostic and Statistical Manual for Mental Health Disorders Fifth Edition). Predictors were selected based on Akaike's Information Criterion. Additionally, we fitted logistic models for the endpoints 'probable MDD' and 'probable PTSD'. We also examined the incremental prognostic value of 2-3 weeks of symptoms. We included 2163 adults (76% Glasgow Coma Scale=13-15). Depending on the scoring criteria, 7-18% screened positive for probable MDD and about 10% for probable PTSD. For both outcomes, the selected models included psychiatric history, employment status, sex, injury cause, alcohol intoxication and total injury severity; and for depression symptoms also preinjury health and education. The performance of the models was modest (proportion of explained variance=R Preinjury characteristics, such as psychiatric history and unemployment, and injury characteristics, such as violent injury cause, can increase the risk of mental health problems after TBI. The identification of patients at risk should be guided by early screening of mental health.

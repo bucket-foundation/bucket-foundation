@@ -7,7 +7,7 @@
 - **Authors**: Eric G Cavalcanti, Andrea Di Biagio, Carlo Rovelli
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/38028813/
-- **Captured**: 2026-05-10T11:35:09
+- **Captured**: 2026-05-10T21:53:31
 
 ## Abstract
 

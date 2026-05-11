@@ -7,7 +7,7 @@
 - **Authors**: Gaël Malleret, Juan M Alarcon, Guillaume Martel, Shuichi Takizawa, Svetlana Vronskaya, Deqi Yin, Irene Z Chen, Eric R Kandel, Gleb P Shumyatsky
 - **MeSH**: Animals, Cyclic AMP-Dependent Protein Kinases, Hippocampus, Male, Memory, Mice, Mice, Inbred CBA, Mice, Transgenic, Mutation, Neural Pathways
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/20220016/
-- **Captured**: 2026-05-10T16:06:30
+- **Captured**: 2026-05-10T21:53:02
 
 ## Abstract
 

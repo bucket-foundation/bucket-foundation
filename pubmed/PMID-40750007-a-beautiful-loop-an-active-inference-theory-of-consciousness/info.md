@@ -1,0 +1,14 @@
+# A beautiful loop: An active inference theory of consciousness.
+
+- **PMID**: 40750007
+- **DOI**: 10.1016/j.neubiorev.2025.106296
+- **PMCID**:  
+- **Journal**: Neuroscience and biobehavioral reviews  ·  **Year**: 2025
+- **Authors**: Ruben Laukkonen, Karl Friston, Shamil Chandaria
+- **MeSH**: Consciousness, Humans, Bayes Theorem, Brain, Models, Neurological
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/40750007/
+- **Captured**: 2026-05-10T21:52:06
+
+## Abstract
+
+Can active inference model consciousness? We offer three conditions implying that it can. The first condition is the simulation of a world model, which determines what can be known or acted upon; namely an epistemic field. The second is inferential competition to enter the world model. Only the inferences that coherently reduce long-term uncertainty win, evincing a selection for consciousness that we call Bayesian binding. The third is epistemic depth, which is the recurrent sharing of the Bayesian beliefs throughout the system. Due to this recursive loop in a hierarchical system (such as a brain) the world model contains the knowledge that it exists. This is distinct from self-consciousness, because the world model knows itself non-locally and continuously evidences this knowing (i.e., field-evidencing). Formally, we propose a hyper-model for precision-control, whose latent states (or parameters) encode and control the overall structure and weighting rules for all layers of inference. These globally integrated preferences for precision enact the epistemic agency and flexibility reminiscent of general intelligence. This Beautiful Loop Theory is also deeply revealing about altered states, meditation, and the full spectrum of conscious experience.

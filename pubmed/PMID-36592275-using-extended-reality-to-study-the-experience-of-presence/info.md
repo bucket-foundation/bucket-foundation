@@ -7,7 +7,7 @@
 - **Authors**: Keisuke Suzuki, Alberto Mariola, David J Schwartzman, Anil K Seth
 - **MeSH**: Humans, Virtual Reality
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/36592275/
-- **Captured**: 2026-05-10T11:34:33
+- **Captured**: 2026-05-10T21:52:19
 
 ## Abstract
 

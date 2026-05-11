@@ -7,7 +7,7 @@
 - **Authors**: Nadezhda Barvitenko, Alfons Lawen, Muhammad Aslam, Antonella Pantaleo, Carlota Saldanha, Elisaveta Skverchinskaya, Marco Regolini, Jack A Tuszynski
 - **MeSH**: Actins, Animals, Apoptosis, Cell Lineage, Cell Membrane, Centrosome, Cytoskeleton, Decision Making, Humans, Ions
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/30142359/
-- **Captured**: 2026-05-09T09:42:08
+- **Captured**: 2026-05-10T21:51:47
 
 ## Abstract
 

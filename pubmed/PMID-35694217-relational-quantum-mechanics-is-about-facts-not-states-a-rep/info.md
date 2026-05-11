@@ -7,7 +7,7 @@
 - **Authors**: Andrea Di Biagio, Carlo Rovelli
 - **MeSH**: 
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/35694217/
-- **Captured**: 2026-05-10T11:34:11
+- **Captured**: 2026-05-10T21:53:33
 
 ## Abstract
 

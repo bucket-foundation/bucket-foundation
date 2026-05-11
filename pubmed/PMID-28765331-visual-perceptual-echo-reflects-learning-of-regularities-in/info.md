@@ -7,7 +7,7 @@
 - **Authors**: Acer Y-C Chang, David J Schwartzman, Rufin VanRullen, Ryota Kanai, Anil K Seth
 - **MeSH**: Adolescent, Adult, Attention, Female, Humans, Learning, Long-Term Potentiation, Male, Nerve Net, Photic Stimulation
 - **URL**: https://pubmed.ncbi.nlm.nih.gov/28765331/
-- **Captured**: 2026-05-10T11:29:07
+- **Captured**: 2026-05-10T21:52:23
 
 ## Abstract
 

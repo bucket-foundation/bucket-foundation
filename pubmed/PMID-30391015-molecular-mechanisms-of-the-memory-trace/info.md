@@ -1,0 +1,14 @@
+# Molecular Mechanisms of the Memory Trace.
+
+- **PMID**: 30391015
+- **DOI**: 10.3389/fnana.2015.00080
+- **PMCID**: PMC3424517 (full-text saved)
+- **Journal**: Trends in neurosciences  ·  **Year**: 2019
+- **Authors**: Arun Asok, Félix Leroy, Joseph B Rayman, Eric R Kandel
+- **MeSH**: Animals, Humans, Memory, Memory, Long-Term, Models, Neurological, Neuronal Plasticity, Neurons, Synapses
+- **URL**: https://pubmed.ncbi.nlm.nih.gov/30391015/
+- **Captured**: 2026-05-10T21:52:59
+
+## Abstract
+
+Over the past half-century, we have gained significant insights into the molecular biology of long-term memory storage at the level of the synapse. In recent years, our understanding of the cellular architecture supporting long-term memory traces has also substantially improved. However, the molecular biology of consolidation at the level of neuronal systems has been relatively neglected. In this opinion article, we first examine our current understanding of the cellular mechanisms of synaptic consolidation. We then outline areas requiring further investigation on how cellular changes contribute to systems consolidation. Finally, we highlight recent findings on the cellular architecture of memory traces in rodents and how the application of new technologies will expand our understanding of systems consolidation at the neural circuit level. In the coming years, this research focus will be critical for understanding the evolution of long-term memories and for enabling the development of novel therapeutics which embrace the dynamic nature of memories.
