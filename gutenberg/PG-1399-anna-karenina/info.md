@@ -8,7 +8,7 @@
 - **Download count (PG)**: 19119
 - **Subjects**: Adultery -- Fiction, Didactic fiction, Love stories, Married women -- Fiction, Russia -- Fiction
 - **Bookshelves**: Best Books Ever Listings, Category: Classics of Literature, Category: Novels, Category: Russian Literature, Harvard Classics
-- **Captured**: 2026-05-10T20:20:16
+- **Captured**: 2026-05-10T21:01:36
 
 ## Files
 
