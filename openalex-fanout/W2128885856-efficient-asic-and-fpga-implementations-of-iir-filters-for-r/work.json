@@ -1,0 +1,1010 @@
+{
+  "id": "https://openalex.org/W2128885856",
+  "doi": "https://doi.org/10.1109/icip.1997.638793",
+  "title": "Efficient ASIC and FPGA implementations of IIR filters for real time edge detection",
+  "display_name": "Efficient ASIC and FPGA implementations of IIR filters for real time edge detection",
+  "publication_year": 2002,
+  "publication_date": "2002-11-22",
+  "ids": {
+    "openalex": "https://openalex.org/W2128885856",
+    "doi": "https://doi.org/10.1109/icip.1997.638793",
+    "mag": "2128885856"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1109/icip.1997.638793",
+    "is_oa": false,
+    "landing_page_url": "https://doi.org/10.1109/icip.1997.638793",
+    "pdf_url": null,
+    "source": null,
+    "license": null,
+    "license_id": null,
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Proceedings of International Conference on Image Processing",
+    "raw_type": "proceedings-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5031963540",
+        "display_name": "Federico García Lorca",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210142324",
+          "display_name": "CY Cergy Paris Université",
+          "ror": "https://ror.org/043htjv09",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210142324"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1294671590",
+          "display_name": "Centre National de la Recherche Scientifique",
+          "ror": "https://ror.org/02feahw73",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I1294671590"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I86175216",
+          "display_name": "École Nationale Supérieure de l'Électronique et de ses Applications",
+          "ror": "https://ror.org/03qeacd72",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I86175216"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "F.G. Lorca",
+      "raw_affiliation_strings": [
+        "ETIS URA 2235, CNRS ENSEA UCP, Cergy-Pontoise, France"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "ETIS URA 2235, CNRS ENSEA UCP, Cergy-Pontoise, France",
+          "institution_ids": [
+            "https://openalex.org/I86175216",
+            "https://openalex.org/I4210142324",
+            "https://openalex.org/I1294671590"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5111384640",
+        "display_name": "Lounis Kessal",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210142324",
+          "display_name": "CY Cergy Paris Université",
+          "ror": "https://ror.org/043htjv09",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210142324"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I86175216",
+          "display_name": "École Nationale Supérieure de l'Électronique et de ses Applications",
+          "ror": "https://ror.org/03qeacd72",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I86175216"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1294671590",
+          "display_name": "Centre National de la Recherche Scientifique",
+          "ror": "https://ror.org/02feahw73",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I1294671590"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "L. Kessal",
+      "raw_affiliation_strings": [
+        "ETIS URA 2235, CNRS ENSEA UCP, Cergy-Pontoise, France"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "ETIS URA 2235, CNRS ENSEA UCP, Cergy-Pontoise, France",
+          "institution_ids": [
+            "https://openalex.org/I86175216",
+            "https://openalex.org/I4210142324",
+            "https://openalex.org/I1294671590"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5004935802",
+        "display_name": "Didier Demigny",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I4210142324",
+          "display_name": "CY Cergy Paris Université",
+          "ror": "https://ror.org/043htjv09",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I4210142324"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I1294671590",
+          "display_name": "Centre National de la Recherche Scientifique",
+          "ror": "https://ror.org/02feahw73",
+          "country_code": "FR",
+          "type": "funder",
+          "lineage": [
+            "https://openalex.org/I1294671590"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I86175216",
+          "display_name": "École Nationale Supérieure de l'Électronique et de ses Applications",
+          "ror": "https://ror.org/03qeacd72",
+          "country_code": "FR",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I86175216"
+          ]
+        }
+      ],
+      "countries": [
+        "FR"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "D. Demigny",
+      "raw_affiliation_strings": [
+        "ETIS URA 2235, CNRS ENSEA UCP, Cergy-Pontoise, France"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "ETIS URA 2235, CNRS ENSEA UCP, Cergy-Pontoise, France",
+          "institution_ids": [
+            "https://openalex.org/I86175216",
+            "https://openalex.org/I4210142324",
+            "https://openalex.org/I1294671590"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 3,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5031963540"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I1294671590",
+    "https://openalex.org/I4210142324",
+    "https://openalex.org/I86175216"
+  ],
+  "apc_list": null,
+  "apc_paid": null,
+  "fwci": 2.082,
+  "has_fulltext": false,
+  "cited_by_count": 40,
+  "citation_normalized_percentile": {
+    "value": 0.88934698,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": false
+  },
+  "cited_by_percentile_year": {
+    "min": 89,
+    "max": 98
+  },
+  "biblio": {
+    "volume": null,
+    "issue": null,
+    "first_page": "406",
+    "last_page": "409"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10688",
+    "display_name": "Image and Signal Denoising Methods",
+    "score": 0.9993000030517578,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1707",
+      "display_name": "Computer Vision and Pattern Recognition"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/17",
+      "display_name": "Computer Science"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10688",
+      "display_name": "Image and Signal Denoising Methods",
+      "score": 0.9993000030517578,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10052",
+      "display_name": "Medical Image Segmentation Techniques",
+      "score": 0.9991000294685364,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1707",
+        "display_name": "Computer Vision and Pattern Recognition"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10500",
+      "display_name": "Sparse and Compressive Sensing Techniques",
+      "score": 0.9937000274658203,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2206",
+        "display_name": "Computational Mechanics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.7605488300323486
+    },
+    {
+      "id": "https://openalex.org/keywords/infinite-impulse-response",
+      "display_name": "Infinite impulse response",
+      "score": 0.666410505771637
+    },
+    {
+      "id": "https://openalex.org/keywords/field-programmable-gate-array",
+      "display_name": "Field-programmable gate array",
+      "score": 0.6652750968933105
+    },
+    {
+      "id": "https://openalex.org/keywords/application-specific-integrated-circuit",
+      "display_name": "Application-specific integrated circuit",
+      "score": 0.6480847597122192
+    },
+    {
+      "id": "https://openalex.org/keywords/adder",
+      "display_name": "Adder",
+      "score": 0.5968185067176819
+    },
+    {
+      "id": "https://openalex.org/keywords/filter",
+      "display_name": "Filter (signal processing)",
+      "score": 0.5676705241203308
+    },
+    {
+      "id": "https://openalex.org/keywords/block",
+      "display_name": "Block (permutation group theory)",
+      "score": 0.5274244546890259
+    },
+    {
+      "id": "https://openalex.org/keywords/computation",
+      "display_name": "Computation",
+      "score": 0.49489229917526245
+    },
+    {
+      "id": "https://openalex.org/keywords/enhanced-data-rates-for-gsm-evolution",
+      "display_name": "Enhanced Data Rates for GSM Evolution",
+      "score": 0.4537792503833771
+    },
+    {
+      "id": "https://openalex.org/keywords/implementation",
+      "display_name": "Implementation",
+      "score": 0.43779227137565613
+    },
+    {
+      "id": "https://openalex.org/keywords/finite-impulse-response",
+      "display_name": "Finite impulse response",
+      "score": 0.43513017892837524
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-engineering",
+      "display_name": "Computer engineering",
+      "score": 0.41857343912124634
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-hardware",
+      "display_name": "Computer hardware",
+      "score": 0.36555224657058716
+    },
+    {
+      "id": "https://openalex.org/keywords/parallel-computing",
+      "display_name": "Parallel computing",
+      "score": 0.35690951347351074
+    },
+    {
+      "id": "https://openalex.org/keywords/algorithm",
+      "display_name": "Algorithm",
+      "score": 0.32422059774398804
+    },
+    {
+      "id": "https://openalex.org/keywords/digital-filter",
+      "display_name": "Digital filter",
+      "score": 0.25765109062194824
+    },
+    {
+      "id": "https://openalex.org/keywords/artificial-intelligence",
+      "display_name": "Artificial intelligence",
+      "score": 0.11321884393692017
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.10958361625671387
+    },
+    {
+      "id": "https://openalex.org/keywords/telecommunications",
+      "display_name": "Telecommunications",
+      "score": 0.08069068193435669
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.7605488300323486
+    },
+    {
+      "id": "https://openalex.org/C183816354",
+      "wikidata": "https://www.wikidata.org/wiki/Q665617",
+      "display_name": "Infinite impulse response",
+      "level": 4,
+      "score": 0.666410505771637
+    },
+    {
+      "id": "https://openalex.org/C42935608",
+      "wikidata": "https://www.wikidata.org/wiki/Q190411",
+      "display_name": "Field-programmable gate array",
+      "level": 2,
+      "score": 0.6652750968933105
+    },
+    {
+      "id": "https://openalex.org/C77390884",
+      "wikidata": "https://www.wikidata.org/wiki/Q217302",
+      "display_name": "Application-specific integrated circuit",
+      "level": 2,
+      "score": 0.6480847597122192
+    },
+    {
+      "id": "https://openalex.org/C164620267",
+      "wikidata": "https://www.wikidata.org/wiki/Q376953",
+      "display_name": "Adder",
+      "level": 3,
+      "score": 0.5968185067176819
+    },
+    {
+      "id": "https://openalex.org/C106131492",
+      "wikidata": "https://www.wikidata.org/wiki/Q3072260",
+      "display_name": "Filter (signal processing)",
+      "level": 2,
+      "score": 0.5676705241203308
+    },
+    {
+      "id": "https://openalex.org/C2777210771",
+      "wikidata": "https://www.wikidata.org/wiki/Q4927124",
+      "display_name": "Block (permutation group theory)",
+      "level": 2,
+      "score": 0.5274244546890259
+    },
+    {
+      "id": "https://openalex.org/C45374587",
+      "wikidata": "https://www.wikidata.org/wiki/Q12525525",
+      "display_name": "Computation",
+      "level": 2,
+      "score": 0.49489229917526245
+    },
+    {
+      "id": "https://openalex.org/C162307627",
+      "wikidata": "https://www.wikidata.org/wiki/Q204833",
+      "display_name": "Enhanced Data Rates for GSM Evolution",
+      "level": 2,
+      "score": 0.4537792503833771
+    },
+    {
+      "id": "https://openalex.org/C26713055",
+      "wikidata": "https://www.wikidata.org/wiki/Q245962",
+      "display_name": "Implementation",
+      "level": 2,
+      "score": 0.43779227137565613
+    },
+    {
+      "id": "https://openalex.org/C198386975",
+      "wikidata": "https://www.wikidata.org/wiki/Q117785",
+      "display_name": "Finite impulse response",
+      "level": 2,
+      "score": 0.43513017892837524
+    },
+    {
+      "id": "https://openalex.org/C113775141",
+      "wikidata": "https://www.wikidata.org/wiki/Q428691",
+      "display_name": "Computer engineering",
+      "level": 1,
+      "score": 0.41857343912124634
+    },
+    {
+      "id": "https://openalex.org/C9390403",
+      "wikidata": "https://www.wikidata.org/wiki/Q3966",
+      "display_name": "Computer hardware",
+      "level": 1,
+      "score": 0.36555224657058716
+    },
+    {
+      "id": "https://openalex.org/C173608175",
+      "wikidata": "https://www.wikidata.org/wiki/Q232661",
+      "display_name": "Parallel computing",
+      "level": 1,
+      "score": 0.35690951347351074
+    },
+    {
+      "id": "https://openalex.org/C11413529",
+      "wikidata": "https://www.wikidata.org/wiki/Q8366",
+      "display_name": "Algorithm",
+      "level": 1,
+      "score": 0.32422059774398804
+    },
+    {
+      "id": "https://openalex.org/C36390408",
+      "wikidata": "https://www.wikidata.org/wiki/Q1163067",
+      "display_name": "Digital filter",
+      "level": 3,
+      "score": 0.25765109062194824
+    },
+    {
+      "id": "https://openalex.org/C154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "level": 1,
+      "score": 0.11321884393692017
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.10958361625671387
+    },
+    {
+      "id": "https://openalex.org/C76155785",
+      "wikidata": "https://www.wikidata.org/wiki/Q418",
+      "display_name": "Telecommunications",
+      "level": 1,
+      "score": 0.08069068193435669
+    },
+    {
+      "id": "https://openalex.org/C2524010",
+      "wikidata": "https://www.wikidata.org/wiki/Q8087",
+      "display_name": "Geometry",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C31972630",
+      "wikidata": "https://www.wikidata.org/wiki/Q844240",
+      "display_name": "Computer vision",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C82876162",
+      "wikidata": "https://www.wikidata.org/wiki/Q17096504",
+      "display_name": "Latency (audio)",
+      "level": 2,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C199360897",
+      "wikidata": "https://www.wikidata.org/wiki/Q9143",
+      "display_name": "Programming language",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "id": "doi:10.1109/icip.1997.638793",
+      "is_oa": false,
+      "landing_page_url": "https://doi.org/10.1109/icip.1997.638793",
+      "pdf_url": null,
+      "source": null,
+      "license": null,
+      "license_id": null,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Proceedings of International Conference on Image Processing",
+      "raw_type": "proceedings-article"
+    }
+  ],
+  "best_oa_location": null,
+  "sustainable_development_goals": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "grobid_xml": false,
+    "pdf": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 6,
+  "referenced_works": [
+    "https://openalex.org/W2069562432",
+    "https://openalex.org/W2105954112",
+    "https://openalex.org/W2105960303",
+    "https://openalex.org/W2124891757",
+    "https://openalex.org/W2145023731",
+    "https://openalex.org/W2173710661"
+  ],
+  "related_works": [
+    "https://openalex.org/W4312785053",
+    "https://openalex.org/W2142009384",
+    "https://openalex.org/W3140661709",
+    "https://openalex.org/W3082309838",
+    "https://openalex.org/W2021631062",
+    "https://openalex.org/W3138047207",
+    "https://openalex.org/W2129450128",
+    "https://openalex.org/W2810377961",
+    "https://openalex.org/W3007580271",
+    "https://openalex.org/W2072565115"
+  ],
+  "abstract_inverted_index": {
+    "To": [
+      0
+    ],
+    "reduce": [
+      1,
+      102
+    ],
+    "the": [
+      2,
+      9,
+      19,
+      42,
+      48,
+      56,
+      61,
+      68,
+      72,
+      89,
+      97,
+      103,
+      112,
+      119,
+      123
+    ],
+    "computation": [
+      3,
+      73
+    ],
+    "cost,": [
+      4
+    ],
+    "Deriche": [
+      5,
+      50
+    ],
+    "(1987,": [
+      6
+    ],
+    "1990)": [
+      7
+    ],
+    "extended": [
+      8
+    ],
+    "work": [
+      10
+    ],
+    "from": [
+      11,
+      107
+    ],
+    "Canny": [
+      12
+    ],
+    "(1986)": [
+      13
+    ],
+    "on": [
+      14,
+      35,
+      140
+    ],
+    "optimal": [
+      15
+    ],
+    "edge": [
+      16
+    ],
+    "detectors": [
+      17
+    ],
+    "to": [
+      18,
+      95
+    ],
+    "use": [
+      20,
+      90
+    ],
+    "of": [
+      21,
+      47,
+      55,
+      78,
+      91,
+      122,
+      135
+    ],
+    "recursive": [
+      22,
+      115
+    ],
+    "filters.": [
+      23
+    ],
+    "Nevertheless,": [
+      24
+    ],
+    "this": [
+      25,
+      108
+    ],
+    "cost": [
+      26,
+      74
+    ],
+    "is": [
+      27,
+      58,
+      110,
+      118,
+      144
+    ],
+    "still": [
+      28
+    ],
+    "too": [
+      29
+    ],
+    "high": [
+      30
+    ],
+    "for": [
+      31,
+      80
+    ],
+    "real": [
+      32
+    ],
+    "time": [
+      33
+    ],
+    "implementation": [
+      34
+    ],
+    "FGGA": [
+      36
+    ],
+    "circuits.": [
+      37
+    ],
+    "Here,": [
+      38
+    ],
+    "we": [
+      39
+    ],
+    "optimized": [
+      40
+    ],
+    "both": [
+      41,
+      81
+    ],
+    "algorithmic": [
+      43
+    ],
+    "and": [
+      44,
+      63,
+      71,
+      83
+    ],
+    "architectural": [
+      45
+    ],
+    "aspects": [
+      46
+    ],
+    "original": [
+      49
+    ],
+    "filter.": [
+      51
+    ],
+    "A": [
+      52
+    ],
+    "new": [
+      53
+    ],
+    "organization": [
+      54
+    ],
+    "filter": [
+      57,
+      116,
+      139
+    ],
+    "proposed": [
+      59
+    ],
+    "at": [
+      60
+    ],
+    "2D": [
+      62
+    ],
+    "1D": [
+      64
+    ],
+    "levels": [
+      65
+    ],
+    "which": [
+      66,
+      117
+    ],
+    "reduces": [
+      67
+    ],
+    "memory": [
+      69
+    ],
+    "size": [
+      70
+    ],
+    "by": [
+      75
+    ],
+    "a": [
+      76,
+      136
+    ],
+    "factor": [
+      77
+    ],
+    "two": [
+      79
+    ],
+    "software": [
+      82
+    ],
+    "hardware": [
+      84
+    ],
+    "implementations.": [
+      85
+    ],
+    "We": [
+      86
+    ],
+    "prove": [
+      87
+    ],
+    "that": [
+      88,
+      111
+    ],
+    "only": [
+      92,
+      130
+    ],
+    "3": [
+      93
+    ],
+    "bits": [
+      94
+    ],
+    "code": [
+      96
+    ],
+    "scale": [
+      98
+    ],
+    "parameter": [
+      99
+    ],
+    "does": [
+      100
+    ],
+    "not": [
+      101
+    ],
+    "quality.": [
+      104
+    ],
+    "The": [
+      105,
+      133
+    ],
+    "result": [
+      106
+    ],
+    "choice": [
+      109
+    ],
+    "first": [
+      113
+    ],
+    "order": [
+      114
+    ],
+    "basic": [
+      120
+    ],
+    "block": [
+      121
+    ],
+    "entire": [
+      124
+    ],
+    "architecture": [
+      125,
+      134
+    ],
+    "can": [
+      126
+    ],
+    "be": [
+      127
+    ],
+    "built": [
+      128
+    ],
+    "with": [
+      129
+    ],
+    "4": [
+      131
+    ],
+    "adders.": [
+      132
+    ],
+    "10": [
+      137
+    ],
+    "Mpixels/second": [
+      138
+    ],
+    "an": [
+      141
+    ],
+    "unique": [
+      142
+    ],
+    "FPGA": [
+      143
+    ],
+    "described.": [
+      145
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2023,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2022,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2020,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2018,
+      "cited_by_count": 3
+    },
+    {
+      "year": 2017,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2016,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2015,
+      "cited_by_count": 1
+    },
+    {
+      "year": 2014,
+      "cited_by_count": 4
+    },
+    {
+      "year": 2013,
+      "cited_by_count": 3
+    }
+  ],
+  "updated_date": "2025-11-06T03:46:38.306776",
+  "created_date": "2025-10-10T00:00:00"
+}
