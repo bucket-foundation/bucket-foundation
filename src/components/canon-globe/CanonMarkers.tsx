@@ -136,23 +136,35 @@ export function CanonMarkers({
             </mesh>
 
             {hover === i && (
-              <Html position={p.clone().multiplyScalar(1.16)} center distanceFactor={6} zIndexRange={[100, 0]}>
+              <Html
+                position={p.clone().multiplyScalar(1.18)}
+                center
+                zIndexRange={[100, 0]}
+                style={{ pointerEvents: "none" }}
+              >
                 <div
                   style={{
                     pointerEvents: "none",
-                    whiteSpace: "nowrap",
+                    maxWidth: "240px",
                     background: "var(--bone)",
                     color: "var(--basalt)",
                     border: "1px solid var(--hairline)",
-                    padding: "4px 10px",
+                    padding: "6px 12px",
                     fontFamily: "Cinzel, serif",
                     fontSize: 11,
+                    lineHeight: 1.4,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     boxShadow: "0 2px 8px rgba(31,28,22,0.18)",
+                    transform: "translate(-50%, -100%) translateY(-8px)",
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
                   }}
                 >
-                  {m.title}{m.year ? ` · ${m.year}` : ""} · {m.branch}
+                  {m.title}{m.year ? ` · ${m.year}` : ""}
+                  <div style={{ fontSize: 9, opacity: 0.7, marginTop: 2 }}>
+                    {m.branch}
+                  </div>
                 </div>
               </Html>
             )}

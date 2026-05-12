@@ -35,14 +35,14 @@ interface Props {
 export default function CanonGlobeMount({ branches: _branches, markers }: Props) {
   return (
     // Full-bleed breakout: escape the max-w-6xl parent so the globe spans
-    // the whole viewport. Aspect-square on mobile, taller on desktop, capped
-    // at 95vh so it never pushes the page below the fold on huge monitors.
-    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
+    // the whole viewport. Padded top + bottom so hover tooltips on
+    // top/bottom markers have room to render without clipping.
+    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-12 md:py-16">
       <div
         className="relative w-full mx-auto"
         style={{
-          height: "min(95vh, 1100px)",
-          minHeight: "640px",
+          height: "min(95vh, 1200px)",
+          minHeight: "760px",
         }}
       >
         {/* radial vignette behind the globe — pulls it forward, hides canvas edges */}

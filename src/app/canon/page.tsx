@@ -53,9 +53,50 @@ export default function Page() {
             Outcomes (longevity, disease, cognition) are downstream applications, not canon.
           </p>
 
-          <div className="mt-12 w-full">
+          <nav className="mt-10 flex flex-wrap gap-2 small-caps text-[11px]">
+            <Link
+              href="/canon/search"
+              className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
+            >
+              ⌕  search canon
+            </Link>
+            <Link
+              href="/canon/claims"
+              className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
+            >
+              ◯  599 claim cards
+            </Link>
+            <Link
+              href="/canon/bridges"
+              className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
+            >
+              ⤺⤻  17 bridges (multi-branch primitives)
+            </Link>
+            <Link
+              href="/canon/graph"
+              className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
+            >
+              ⌬  knowledge graph
+            </Link>
+            <Link
+              href="/canon/timeline"
+              className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
+            >
+              ⏵  globe through time
+            </Link>
+            <a
+              href="/api/canon/search?q=consciousness&top_k=5"
+              target="_blank"
+              rel="noreferrer"
+              className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
+            >
+              ⚙  api · for ai agents
+            </a>
+          </nav>
+
+          <div className="mt-12 mb-10 w-full">
             <CanonGlobeMount branches={globeBranches} />
-            <div className="mt-6 text-center small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.15em]">
+            <div className="mt-8 text-center small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.15em]">
               hover a marker · click to enter the canon
             </div>
           </div>
