@@ -148,6 +148,31 @@ export default function BuildPage() {
             Three paths. Pick one. Every path ships today on mainnet-adjacent
             infrastructure; every path terminates in a citeable envelope.
           </p>
+
+          {/* Hub links — Build absorbs Protocol/Learn/Research/Whats-new as
+              sub-surfaces. UX: users see all related entry points in one row. */}
+          <nav className="mt-8 flex flex-wrap gap-2 small-caps text-[11px]">
+            <Link href="/protocol"
+                  className="border border-[color:var(--basalt)] px-3 py-2 hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition">
+              ⌬ protocol spec
+            </Link>
+            <Link href="/learn"
+                  className="border border-[color:var(--basalt)] px-3 py-2 hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition">
+              ✎ learn
+            </Link>
+            <Link href="/research"
+                  className="border border-[color:var(--basalt)] px-3 py-2 hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition">
+              ⌕ research surface
+            </Link>
+            <Link href="/whats-new"
+                  className="border border-[color:var(--basalt)] px-3 py-2 hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition">
+              ⤵ what&apos;s new (feed)
+            </Link>
+            <Link href="/access"
+                  className="border border-[color:var(--basalt)] px-3 py-2 hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition">
+              ⊕ access map
+            </Link>
+          </nav>
         </div>
       </section>
 

@@ -114,22 +114,46 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
       {/* SEARCH BAR — sticky above the globe */}
       <div className="sticky top-20 z-30 mx-auto mb-3 w-full px-4 flex justify-center">
         <div className="w-full max-w-2xl pointer-events-auto">
+          {/* Visible label so users immediately know what this is */}
           <div
-            className="rounded-md shadow-sm"
+            className="text-[10px] uppercase tracking-[0.22em] mb-1 px-1"
+            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+          >
+            ⌕ search canon · 599 claims across 9 branches
+          </div>
+          <div
+            className="rounded-md shadow-sm flex items-center"
             style={{ background: "var(--bone)", border: "1px solid var(--hairline)" }}
           >
+            <span
+              className="pl-3 pr-2 text-base"
+              style={{ color: "var(--parchment-dim)" }}
+              aria-hidden
+            >
+              ⌕
+            </span>
             <input
               type="text"
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="search the canon — try 'penrose consciousness'"
-              className="w-full bg-transparent px-4 py-3 text-sm md:text-base outline-none placeholder:text-[color:var(--parchment-dim)]"
+              placeholder="type a question — e.g. 'why can't computers be conscious?'"
+              className="flex-1 bg-transparent py-3 text-sm md:text-base outline-none placeholder:text-[color:var(--parchment-dim)]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             />
-            {q.trim() && (
+            {q && (
+              <button
+                onClick={() => { setQ(""); setResults([]); }}
+                className="px-3 text-[color:var(--parchment-dim)] hover:text-[color:var(--basalt)]"
+                aria-label="clear"
+              >
+                ×
+              </button>
+            )}
+          </div>
+          {q.trim() && (
               <div
-                className="max-h-72 overflow-y-auto border-t"
-                style={{ borderColor: "var(--hairline)" }}
+                className="max-h-72 overflow-y-auto border rounded-md mt-1"
+                style={{ borderColor: "var(--hairline)", background: "var(--bone)" }}
               >
                 {searching && results.length === 0 && (
                   <div className="px-4 py-3 text-xs text-[color:var(--parchment-dim)]">
@@ -138,7 +162,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
                 )}
                 {!searching && results.length === 0 && (
                   <div className="px-4 py-3 text-xs text-[color:var(--parchment-dim)]">
-                    no matches in 599 claim cards
+                    no matches · try a broader term like &quot;consciousness&quot; or &quot;entropy&quot;
                   </div>
                 )}
                 {results.map((r) => (
@@ -182,29 +206,45 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
                 ))}
               </div>
             )}
-          </div>
         </div>
       </div>
 
-      {/* HOVER READOUT — small chip under search bar */}
+      {/* INSTRUCTIONAL READOUT — tells the user exactly what to do */}
       {!selected && (
-        <div className="mx-auto mb-2 flex justify-center px-4 pointer-events-none">
+        <div className="mx-auto mb-3 flex justify-center px-4 pointer-events-none">
           <div
-            className="rounded-full px-4 py-1 transition-opacity duration-150"
+            className="rounded-md px-4 py-2 transition-all duration-200"
             style={{
               background: "var(--bone)",
               border: `1px solid ${hovered ? "var(--gold)" : "var(--hairline)"}`,
-              opacity: hovered ? 0.95 : 0.4,
+              opacity: hovered ? 1 : 0.85,
+              maxWidth: "min(640px, calc(100vw - 24px))",
             }}
           >
-            <span
-              className="text-xs uppercase tracking-[0.18em]"
-              style={{ fontFamily: "var(--font-jetbrains)", color: "var(--basalt)" }}
-            >
-              {hovered
-                ? `${hovered.title}${hovered.year !== undefined ? ` · ${fmtYear(hovered.year)}` : ""}`
-                : "click a marker for details · drag globe to rotate · scroll to zoom"}
-            </span>
+            {hovered ? (
+              <div className="text-center">
+                <div className="text-sm" style={{ fontFamily: "Cinzel, serif", color: "var(--basalt)", letterSpacing: "0.04em" }}>
+                  {hovered.title}
+                </div>
+                <div
+                  className="text-[10px] uppercase tracking-[0.2em] mt-1"
+                  style={{ fontFamily: "var(--font-jetbrains)", color: "var(--gold)" }}
+                >
+                  {hovered.year !== undefined && `${fmtYear(hovered.year)} · `}
+                  {hovered.branch} · click to open details
+                </div>
+              </div>
+            ) : (
+              <div
+                className="text-[11px] uppercase tracking-[0.18em] flex flex-wrap items-center justify-center gap-x-4 gap-y-1"
+                style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}
+              >
+                <span><span style={{ color: "var(--gold)" }}>drag</span> to rotate</span>
+                <span><span style={{ color: "var(--gold)" }}>scroll</span> to zoom</span>
+                <span><span style={{ color: "var(--gold)" }}>click</span> a marker for details</span>
+                <span><span style={{ color: "var(--gold)" }}>scrub time</span> below</span>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -234,12 +274,19 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         />
       </div>
 
-      {/* TIME SCRUBBER — always visible directly below the globe */}
-      <div className="mx-auto mt-4 max-w-3xl px-4">
+      {/* TIME SCRUBBER — always visible, clearly labelled */}
+      <div className="mx-auto mt-5 max-w-3xl px-4">
+        <div
+          className="text-[10px] uppercase tracking-[0.22em] mb-2 px-1 text-center"
+          style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+        >
+          ⏵ scrub through history — drag the slider to filter the globe by year
+        </div>
         <div className="flex items-center gap-3 mb-1">
           <span
-            className="font-serif-display text-xl md:text-2xl text-[color:var(--gold)] flex-shrink-0"
+            className="font-serif-display text-xl md:text-2xl text-[color:var(--gold)] flex-shrink-0 text-right"
             style={{ minWidth: "120px" }}
+            aria-label="current year"
           >
             {fmtYear(Math.round(year))}
           </span>
@@ -251,16 +298,19 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
             value={year}
             onChange={(e) => { setYear(Number(e.target.value)); setPlaying(false); }}
             className="flex-1 accent-[color:var(--gold)]"
+            aria-label="year selector"
           />
           <button
             onClick={() => setPlaying((p) => !p)}
             className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-3 py-1 flex-shrink-0"
+            title={playing ? "pause animation" : "auto-play through history"}
+            aria-label={playing ? "pause" : "play"}
           >
-            {playing ? "⏸" : "▶"}
+            {playing ? "⏸ pause" : "▶ play"}
           </button>
         </div>
         <div className="flex justify-between small-caps text-[9px] text-[color:var(--parchment-dim)] tracking-[0.16em]">
-          <button onClick={() => setYear(MIN_YEAR)} className="hover:text-[color:var(--gold)]">
+          <button onClick={() => setYear(MIN_YEAR)} className="hover:text-[color:var(--gold)]" title="jump to earliest canon event">
             ⏮ {fmtYear(MIN_YEAR)}
           </button>
           <button onClick={() => setYear(0)} className="hover:text-[color:var(--gold)]">
@@ -269,12 +319,12 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
           <button onClick={() => setYear(1500)} className="hover:text-[color:var(--gold)]">
             1500
           </button>
-          <button onClick={() => setYear(MAX_YEAR)} className="hover:text-[color:var(--gold)]">
-            {fmtYear(MAX_YEAR)} ⏭
+          <button onClick={() => setYear(MAX_YEAR)} className="hover:text-[color:var(--gold)]" title="jump to today">
+            present {fmtYear(MAX_YEAR)} ⏭
           </button>
         </div>
-        <div className="mt-2 text-center small-caps text-[9px] text-[color:var(--parchment-dim)] tracking-[0.18em]">
-          {markers.length} canon event{markers.length === 1 ? "" : "s"} by {fmtYear(Math.round(year))}
+        <div className="mt-2 text-center small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.18em]">
+          showing {markers.length} canon event{markers.length === 1 ? "" : "s"} that happened by {fmtYear(Math.round(year))}
         </div>
       </div>
 
@@ -293,6 +343,16 @@ function Drawer({
 }) {
   const search = (selected as unknown as { _search?: SearchResult })?._search;
   const branchSlug = selected?.branch?.replace(/^\d+-/, "");
+
+  // Close on Escape — standard UX expectation for drawers/modals
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected, onClose]);
 
   return (
     <>
@@ -319,21 +379,33 @@ function Drawer({
       >
         {selected && (
           <div className="p-6 md:p-8">
-            <div className="flex items-start justify-between gap-3 mb-6">
+            <div
+              className="flex items-baseline justify-between mb-1 pb-3 border-b"
+              style={{ borderColor: "var(--hairline)" }}
+            >
+              <span
+                className="text-[10px] uppercase tracking-[0.22em]"
+                style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+              >
+                Canon detail · click anywhere outside to close
+              </span>
+              <button
+                onClick={onClose}
+                className="text-2xl leading-none hover:text-[color:var(--gold)]"
+                style={{ color: "var(--parchment-dim)" }}
+                aria-label="close drawer"
+                title="close (Esc)"
+              >
+                ×
+              </button>
+            </div>
+            <div className="mt-5 mb-2">
               <span
                 className="text-xs uppercase tracking-[0.18em]"
                 style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
               >
                 {selected.kind?.replace(/-/g, " ")}
               </span>
-              <button
-                onClick={onClose}
-                className="text-2xl leading-none hover:text-[color:var(--gold)]"
-                style={{ color: "var(--parchment-dim)" }}
-                aria-label="close"
-              >
-                ×
-              </button>
             </div>
 
             <h2
