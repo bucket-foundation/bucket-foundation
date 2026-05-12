@@ -8,7 +8,6 @@ import { CanonMarkers, type CanonMarker } from "./CanonMarkers";
 import { useReducedMotion } from "./useReducedMotion";
 import { useMemo } from "react";
 import * as THREE from "three";
-import StaticCanonGlobe from "@/components/CanonGlobe";
 
 // Pre-flight WebGL detection. Some browsers (privacy mode, no hw accel,
 // sandboxed renderers) report WebGL disabled — mounting Three.js there
@@ -25,12 +24,91 @@ function detectWebGL(): boolean {
 }
 
 function FallbackGlobe({ className }: { className?: string }) {
-  // No message — just the static globe centered in the container.
+  // Self-contained SVG — slowly rotating armillary. Doesn't depend on any
+  // external component or canvas. Guaranteed to render in every browser
+  // that can paint SVG (every browser since 2010).
   return (
-    <div className={className} style={{ width: "100%", height: "100%" }}>
-      <div className="w-full h-full flex items-center justify-center">
-        <StaticCanonGlobe branches={[]} size={420} interactive={false} />
-      </div>
+    <div
+      className={className}
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <svg
+        viewBox="-110 -110 220 220"
+        style={{ width: "min(80%, 520px)", height: "min(80%, 520px)" }}
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="canon armillary globe"
+      >
+        <defs>
+          <radialGradient id="fg-sphere" cx="0.32" cy="0.3" r="0.9">
+            <stop offset="0" stopColor="var(--bone)" />
+            <stop offset="0.55" stopColor="var(--bone-2)" />
+            <stop offset="1" stopColor="var(--bone-3)" />
+          </radialGradient>
+          <radialGradient id="fg-rim" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0.92" stopColor="var(--gold)" stopOpacity="0" />
+            <stop offset="1" stopColor="var(--gold)" stopOpacity="0.6" />
+          </radialGradient>
+        </defs>
+
+        {/* outer gold limb */}
+        <circle cx="0" cy="0" r="105" fill="url(#fg-rim)" />
+        {/* main sphere */}
+        <circle cx="0" cy="0" r="100" fill="url(#fg-sphere)" stroke="var(--gold)" strokeOpacity="0.5" strokeWidth="0.8" />
+
+        {/* slow-spinning meridians + parallels */}
+        <g
+          style={{
+            transformOrigin: "0px 0px",
+            animation: "fg-spin 90s linear infinite",
+          }}
+        >
+          {/* meridians (vertical ellipses) */}
+          {[8, 30, 55, 78, 95].map((rx, i) => (
+            <ellipse
+              key={`m-${i}`}
+              cx="0" cy="0" rx={rx} ry="100"
+              fill="none" stroke="var(--gold)" strokeOpacity="0.35" strokeWidth="0.5"
+            />
+          ))}
+          {/* parallels (horizontal ellipses) */}
+          {[-70, -45, -22, 0, 22, 45, 70].map((y, i) => {
+            const ry = Math.sqrt(Math.max(0, 100 * 100 - y * y)) * 0.18;
+            const rx = Math.sqrt(Math.max(0, 100 * 100 - y * y));
+            return (
+              <ellipse
+                key={`p-${i}`}
+                cx="0" cy={y} rx={rx} ry={ry}
+                fill="none" stroke="var(--gold)" strokeOpacity={y === 0 ? 0.55 : 0.25} strokeWidth={y === 0 ? 0.7 : 0.4}
+              />
+            );
+          })}
+          {/* equatorial ring */}
+          <circle cx="0" cy="0" r="100" fill="none" stroke="var(--gold)" strokeOpacity="0.45" strokeWidth="0.6" />
+        </g>
+
+        {/* eight branch ports — gold dots evenly spaced around the equator */}
+        {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
+          const rad = (deg * Math.PI) / 180;
+          return (
+            <circle
+              key={deg}
+              cx={Math.cos(rad) * 100}
+              cy={Math.sin(rad) * 100}
+              r="3"
+              fill="var(--gold)"
+            />
+          );
+        })}
+
+        <style>{`@keyframes fg-spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }`}</style>
+      </svg>
     </div>
   );
 }
